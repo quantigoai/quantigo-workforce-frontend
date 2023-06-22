@@ -7,7 +7,7 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 import React from "react";
-import {Route, Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import BenchMarkIndex from "../../BenchMarkNew/BenchMarkIndex";
 import BenchmarkList from "../../BenchMarkNew/BenchmarkList";
 import CreateBenchMarkNew from "../../BenchMarkNew/CreateBenchMarkNew";
@@ -37,6 +37,7 @@ import ForgetPassword from "../ForgetPassword/ForgetPassword";
 import ResetPassword from "../ForgetPassword/ResetPassword";
 import ActiveJobList from "../Job/ActiveJobList";
 import AllJobs from "../Job/AllJobs";
+import AllJobsForReviewer from "../Job/AllJobsForReviewer";
 import CreateJob from "../Job/CreateJob";
 import Job from "../Job/Job";
 import OngoingJob from "../Job/OngoingJob";
@@ -46,23 +47,12 @@ import ShowResult from "../Quiz/QuizPage/ShowResult/ShowResult";
 import UpdateQuiz from "../Quiz/UpdateQuiz";
 import Skills from "../Skill/Skills";
 import UserListIndex from "../UserListNew/UserListIndex";
-import AllJobsForReviewer from "../Job/AllJobsForReviewer";
 
 const Routers = () => {
   return (
     <>
       <Routes>
         <Route path={"/"} element={<Dashboard />} />
-        {/* ------------------------- */}
-        {/*TODO Conditionally check this */}
-        {/*<Route path={"/login"} element={<LoginPage />} />
-         */}
-        {/*<Route path={"/loginpage"} element={<LoginPage />} />*/}
-        {/* <Route path={"/register"} element={<RegistrationPage />} /> */}
-
-        {/* <Route path={"/newnda"} element={<NewNdaUpload />} /> */}
-
-        {/* ------------------------- */}
 
         {/*TODO Correction in this component */}
         <Route path={"/emailVerification"} element={<EmailVerification />} />
@@ -80,7 +70,6 @@ const Routers = () => {
         <Route path={"/edit-course/:id"} element={<UpdateCourse />} />
         <Route path={"/update-chapter/:id"} element={<UpdateChapter />} />
 
-        {/* <Route path={"/course-details-index/:id"} element={<CourseDetailsIndex />}> */}
         <Route path={"/course-details/:id"} element={<CourseDetails />}>
           <Route path="index" element={<CourseDetailsIndex />} />
           <Route path="content" element={<CourseMainContent />} />

@@ -1,5 +1,5 @@
 import React from "react";
-import {Route, Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import ProjectDirectoryIndex from "../../ProjectDirectory/ProjectDirectoryIndex";
 import EmailVerification from "../Auth/EmailVerification/EmailVerification";
 import EmailVerificationConfarmation from "../Auth/EmailVerification/EmailVerificationConfarmation";
@@ -30,7 +30,6 @@ const RoutersLogin = () => {
           element={<EmailVerificationConfarmation />}
         />
         <Route path={"/reset-password"} element={<ResetPassword />} />
-        {/* <Route path={"/reset-password"} element={<ResetPassword />} /> */}
         <Route path={"/forgetpassword"} element={<ForgetPassword />} />
         <Route path={"/register"} element={<RegisterHomePage />} />
         <Route path={"/login"} element={<LoginHomePage />} />

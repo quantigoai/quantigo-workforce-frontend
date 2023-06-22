@@ -7,9 +7,9 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 
-import React, {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
-import {checkJobExpiration} from "../../../features/slice/jobSlice";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { checkJobExpiration } from "../../../features/slice/jobSlice";
 
 const formatTime = (time) => {
   const hours = Math.floor(time / 3600000);

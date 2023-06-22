@@ -7,20 +7,20 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 import {
-    Box,
-    Button,
-    FilledInput,
-    FormControl,
-    FormControlLabel,
-    Grid,
-    InputLabel,
-    Paper,
-    Radio,
-    RadioGroup,
-    Typography,
+  Box,
+  Button,
+  FilledInput,
+  FormControl,
+  FormControlLabel,
+  Grid,
+  InputLabel,
+  Paper,
+  Radio,
+  RadioGroup,
+  Typography,
 } from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useNavigate, useOutletContext} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 const ClassTagFields = ({ register, handleSubmit, classes, tags }) => {
   // const { register, handleSubmit } = useForm();

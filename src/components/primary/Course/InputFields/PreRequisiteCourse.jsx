@@ -6,11 +6,20 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Box, Chip, FilledInput, FormControl, Grid, InputLabel, MenuItem, Select,} from "@mui/material";
-import React, {useEffect, useState} from "react";
+import {
+  Box,
+  Chip,
+  FilledInput,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import {useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const PreRequisiteCourse = ({
   course = { course },

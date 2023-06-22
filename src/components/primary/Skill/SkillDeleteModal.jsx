@@ -1,13 +1,12 @@
-import {Box, Button, Dialog, DialogTitle} from "@mui/material";
+import { Box, Button, Dialog, DialogTitle } from "@mui/material";
 import React from "react";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {deleteASkill, getAllSkills} from "../../../features/slice/skillSlice";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteASkill, getAllSkills } from "../../../features/slice/skillSlice";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-
 const SkillDeleteModal = ({ skill }) => {
   const [open, setOpen] = React.useState(false);
  ;

@@ -1,4 +1,4 @@
-import {Box} from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 import Register from "../Auth/Register/Register";
 import "./bd.css";

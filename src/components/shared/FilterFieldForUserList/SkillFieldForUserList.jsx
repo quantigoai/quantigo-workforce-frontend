@@ -1,9 +1,18 @@
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import {Box, Chip, FilledInput, FormControl, Grid, InputLabel, MenuItem, Select,} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {getAllSkills} from "../../../features/slice/skillSlice";
-import {useDispatch, useSelector} from "react-redux";
+import {
+  Box,
+  Chip,
+  FilledInput,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { getAllSkills } from "../../../features/slice/skillSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const iconStyle = {
   color: "rgba(45, 88, 255, 1)",

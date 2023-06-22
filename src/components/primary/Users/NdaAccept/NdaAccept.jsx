@@ -1,11 +1,11 @@
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import CancelIcon from "@mui/icons-material/Cancel";
-import {Button} from "@mui/material";
-import React, {useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {updateAUserById} from "../../../../features/slice/userSlice";
+import { Button } from "@mui/material";
+import React, { useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { updateAUserById } from "../../../../features/slice/userSlice";
 import NdaRejectModal from "./NdaRejectModal";
 
 const NdaAccept = ({ signNda, userId, isNDASigned, signImage }) => {

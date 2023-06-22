@@ -21,9 +21,10 @@ const ProjectDirectoryDeleteModal = ({ item }) => {
   const handleClose = () => {
     setOpen(false);
   };
-  const handleDelete = (id) => {
+  const handleDelete = (projectName) => {
+
     setOpen(false);
-    dispatch(deleteProjectDirectory(id)).then((action) => {
+    dispatch(deleteProjectDirectory(projectName)).then((action) => {
       if (action.payload.status === 200) {
         alert.show("Successfully Deleted Project Directory", {
           type: "success",
@@ -68,7 +69,7 @@ const ProjectDirectoryDeleteModal = ({ item }) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description">
         <DialogTitle id="alert-dialog-title">
-          {"Are you sure Delete ?"}
+          {"Are you sure Delete Project Directory?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -77,7 +78,7 @@ const ProjectDirectoryDeleteModal = ({ item }) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>No</Button>
-          <Button onClick={() => handleDelete(item._id)} autoFocus>
+          <Button onClick={() => handleDelete(item.Project_Name)} autoFocus>
             YES
           </Button>
         </DialogActions>

@@ -1,11 +1,15 @@
-import {Grid, styled, Typography} from "@mui/material";
+import { Grid, styled, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
 import * as React from "react";
 import u_multiply from "../../../../assets/images/u_multiply.png";
-import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
+import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 import TakenTime from "../../../shared/CountDown/TakenTime";
+import ViewColumnIcon from "@mui/icons-material/ViewColumn";
+import PauseResumeJob from "./PauseResumeJob/PauseResumeJob";
+import ReAssignPopper from "../SharedComponents/ReAssignPopper";
+import ReassignedJobIndex from "./ReassignedJob/ReassignedJobIndex";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -58,10 +62,8 @@ const ActiveJobAnnotatorDetails = ({ job, setAnchorEl }) => {
         </Box>
         <Box sx={{ padding: "4%" }}>
           <Grid container>
-            <Grid
-              container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-              <Grid xs={3} sx={{ justifyContent: "left" }}>
+            <Grid container>
+              <Grid xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Title
                 </Typography>
@@ -72,24 +74,9 @@ const ActiveJobAnnotatorDetails = ({ job, setAnchorEl }) => {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid
-              container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-              <Grid xs={3} sx={{ justifyContent: "left" }}>
-                <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                  Path
-                </Typography>
-              </Grid>
-              <Grid xs={7} sx={{ paddingLeft: "20%" }}>
-                <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                  {job.teamName} /{job.workspaceName}/{job.projectName}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-              <Grid xs={3} sx={{ justifyContent: "left" }}>
+
+            <Grid container>
+              <Grid xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Reviewer Status
                 </Typography>
@@ -102,10 +89,10 @@ const ActiveJobAnnotatorDetails = ({ job, setAnchorEl }) => {
             </Grid>
             {job.reviewNote ? (
               <>
-                <Grid
-                  container
-                  sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-                  <Grid xs={3} sx={{ justifyContent: "left" }}>
+                <Grid container>
+                  <Grid
+                    xs={3}
+                    sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                     <Typography variant="h8" sx={{ color: "#969CAF" }}>
                       Reviewer Note
                     </Typography>
@@ -120,10 +107,8 @@ const ActiveJobAnnotatorDetails = ({ job, setAnchorEl }) => {
             ) : (
               <></>
             )}
-            <Grid
-              container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-              <Grid xs={3} sx={{ justifyContent: "left" }}>
+            <Grid container>
+              <Grid xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Taken Time
                 </Typography>
@@ -134,10 +119,8 @@ const ActiveJobAnnotatorDetails = ({ job, setAnchorEl }) => {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid
-              container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-              <Grid xs={3} sx={{ justifyContent: "left" }}>
+            <Grid container>
+              <Grid xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Attempt Left
                 </Typography>
@@ -148,10 +131,8 @@ const ActiveJobAnnotatorDetails = ({ job, setAnchorEl }) => {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid
-              container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-              <Grid xs={3} sx={{ justifyContent: "left" }}>
+            <Grid container>
+              <Grid xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Time Limit
                 </Typography>
@@ -163,7 +144,7 @@ const ActiveJobAnnotatorDetails = ({ job, setAnchorEl }) => {
               </Grid>
             </Grid>
           </Grid>
-          {/* <Grid sx={{ border: "1px solid #DADCDF" }}></Grid> */}
+          <Grid sx={{ border: "1px solid #DADCDF" }}></Grid>
         </Box>
       </Box>
     </>

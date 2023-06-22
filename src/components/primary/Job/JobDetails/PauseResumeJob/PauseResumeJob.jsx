@@ -1,9 +1,16 @@
-import {Button, FormControl, Grid, InputLabel, MenuItem, Select, styled,} from "@mui/material";
+import {
+  Button,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  styled,
+} from "@mui/material";
 import React from "react";
-import {useAlert} from "react-alert";
-import {useDispatch} from "react-redux";
-import {pauseResumeJobs} from "../../../../../features/slice/jobSlice";
-
+import { useAlert } from "react-alert";
+import { useDispatch } from "react-redux";
+import { pauseResumeJobs } from "../../../../../features/slice/jobSlice";
 const ButtonStyle = styled(Button)({
   width: "100%",
   // height: "40px",

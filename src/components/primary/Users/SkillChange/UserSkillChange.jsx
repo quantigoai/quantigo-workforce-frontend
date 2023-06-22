@@ -1,11 +1,11 @@
-import {Box, Button, styled} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {getAllSkills} from "../../../../features/slice/skillSlice";
-import {updateAUserById} from "../../../../features/slice/userSlice";
+import { Box, Button, styled } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllSkills } from "../../../../features/slice/skillSlice";
+import { updateAUserById } from "../../../../features/slice/userSlice";
 import SkillField from "../../Course/InputFields/SkillField";
-
+import Skills from "../../Skill/Skills";
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
   // borderRadius: "2px",

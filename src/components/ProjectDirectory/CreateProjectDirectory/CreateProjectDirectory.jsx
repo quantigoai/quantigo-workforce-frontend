@@ -56,7 +56,7 @@ const CreateProjectDirectory = () => {
             }}
           >
             <AddIcon />
-            Add Project
+            Add Project Directory
           </Box>
         </Button>
       </Box>

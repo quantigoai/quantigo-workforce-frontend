@@ -1,15 +1,14 @@
-import {Box, Button, Dialog, DialogTitle} from "@mui/material";
+import { Box, Button, Dialog, DialogTitle } from "@mui/material";
 import React from "react";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {useAlert} from "react-alert";
-import {deleteACourseById} from "../../../../features/slice/courseSlice";
-import deleteIcon from "../../../../assets/images/delete.svg";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useAlert } from "react-alert";
+import { deleteACourseById } from "../../../../features/slice/courseSlice";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Tooltip from "@mui/material/Tooltip";
-
 const CourseDeleteModal = ({ course }) => {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
@@ -37,18 +36,18 @@ const CourseDeleteModal = ({ course }) => {
     <>
       <Tooltip title="Delete Course" arrow>
         <Button
-          // variant="contained"
+          variant="contained"
           // disabled={isLoading}
           type="submit"
           sx={{
-            // width: "100%",
-            // height: "45px",
-            // backgroundColor: "#D8514B",
-            // color: "#FFFFFF",
-            // "&:hover": {
-            //   backgroundColor: "#FF9A45",
-            //   color: "#1D1D1D",
-            // },
+            width: "100%",
+            height: "45px",
+            backgroundColor: "#D8514B",
+            color: "#FFFFFF",
+            "&:hover": {
+              backgroundColor: "#FF9A45",
+              color: "#1D1D1D",
+            },
             borderRadius: "2px",
           }}
           onClick={handleClickOpen}>
@@ -58,8 +57,7 @@ const CourseDeleteModal = ({ course }) => {
               gap: 1,
               justifyContent: "center",
             }}>
-              <img src={deleteIcon}/>
-            {/* <DeleteOutlineIcon /> */}
+            <DeleteOutlineIcon />
             {/* Course */}
           </Box>
         </Button>

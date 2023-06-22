@@ -1,20 +1,20 @@
-import {Box, Typography} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 import CreateNewAccount from "../../../../../assets/images/CreateNewAccount.PNG";
 import newUserPic from "../../../../../assets/images/NewUser.PNG";
 import oldUserPic from "../../../../../assets/images/oldUser.PNG";
+import verifiedImage from "../../../../../assets/images/verified.PNG";
 import ImageModal from "../ImageModal";
-
 const CreateAnAccountComponents = () => {
   return (
     <>
       <Box sx={{ paddingBottom: "1%" }}>
-        <Typography variant="h6" sx={{ color: "#282F3D" }}>
+        <Typography variant="h6" sx={{ color: "#FFFFFF" }}>
           Create an account
         </Typography>
       </Box>
       <Box sx={{ paddingBottom: "1%" }}>
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           Creating an account on QAI Workforce is a simple process that provides
           access to a diverse selection of job listings and skill development
           courses. If you have not yet registered for an account, initiate the
@@ -25,8 +25,7 @@ const CreateAnAccountComponents = () => {
         {/* <FiberManualRecordIcon /> */}
         <Typography
           variant="subtitle2"
-          sx={{ fontWeight: "bold", color: "#47536B" }}
-        >
+          sx={{ fontWeight: "bold", color: "#FFFFFF" }}>
           <b> Step 1: </b> Click on <b>“Create New Account” </b> at the top of
           the left corner of the LOGIN button.
         </Typography>
@@ -35,8 +34,7 @@ const CreateAnAccountComponents = () => {
         {/* <FiberManualRecordIcon /> */}
         <Typography
           variant="subtitle2"
-          sx={{ fontWeight: "bold", color: "#47536B" }}
-        >
+          sx={{ fontWeight: "bold", color: "#FFFFFF" }}>
           <b>Step 2: </b>Complete the required fields marked with an asterisk
           (*) including your <b>name, email, and password </b>.You can view your
           password in its written form by clicking on the eye symbol.The minimum
@@ -47,8 +45,7 @@ const CreateAnAccountComponents = () => {
         {/* <FiberManualRecordIcon /> */}
         <Typography
           variant="subtitle2"
-          sx={{ fontWeight: "bold", color: "#47536B" }}
-        >
+          sx={{ fontWeight: "bold", color: "#FFFFFF" }}>
           Step 3: To finish the account registration process, click the “Create
           New Account” button. It will take you to the profile Setup page.
         </Typography>
@@ -58,70 +55,70 @@ const CreateAnAccountComponents = () => {
       </Box>
 
       <Box sx={{ paddingBottom: "1%" }}>
-        <Typography variant="h6" sx={{ color: "#47536B" }}>
+        <Typography variant="h6" sx={{ color: "#FFFFFF" }}>
           Setup Profile
         </Typography>
       </Box>
       <Box sx={{ paddingBottom: "2%" }}>
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           In order to complete the account creation process a few information
           will be needed.
         </Typography>
       </Box>
       <Box sx={{ paddingBottom: "0%" }}>
-        <Typography variant="h6" sx={{ color: "#47536B" }}>
+        <Typography variant="h6" sx={{ color: "#FFFFFF" }}>
           New User
         </Typography>
       </Box>
       <Box sx={{ paddingBottom: "1%" }}>
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           If you are a new user you have to follow this following process
         </Typography>
       </Box>
       <Box sx={{ paddingLeft: "3%", paddingBottom: "1%" }}>
         {/* <FiberManualRecordIcon /> */}
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           <b> User Status : </b>Click on the dropdown and select{" "}
           <b> “New User” </b>
         </Typography>
       </Box>
       <Box sx={{ paddingLeft: "3%", paddingBottom: "1%" }}>
         {/* <FiberManualRecordIcon /> */}
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           <b> HUB: </b> You have to select your preferred HUB from the options
           given.
         </Typography>
       </Box>
       <Box sx={{ paddingLeft: "3%", paddingBottom: "1%" }}>
         {/* <FiberManualRecordIcon /> */}
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           <b>Quantigo Username : </b>Insert user name and select HUB , Quantigo
           Username will be generated automatically.
         </Typography>
       </Box>
       <Box sx={{ paddingLeft: "3%", paddingBottom: "1%" }}>
         {/* <FiberManualRecordIcon /> */}
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           <b>Gender:</b> Select your gender.
         </Typography>
       </Box>
       <Box sx={{ paddingLeft: "3%", paddingBottom: "1%" }}>
         {/* <FiberManualRecordIcon /> */}
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           <b>Date of Birth: </b>Enter your Date of Birth. There is an age limit,
           user age must not be less than 13 years.
         </Typography>
       </Box>
       <Box sx={{ paddingLeft: "3%", paddingBottom: "2%" }}>
         {/* <FiberManualRecordIcon /> */}
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           <b>Nagad Account Number : </b> To make a payment on QAI Workforce, you
           will need to provide a Nagad account number.
         </Typography>
       </Box>
       <Box sx={{ paddingBottom: "1%" }}>
         {/* <FiberManualRecordIcon /> */}
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           ***Please note that the Nagad account number you are providing cannot
           be edited or changed once submitted. Therefore, you have to be extra
           careful and accurate while entering the phone number.
@@ -129,7 +126,7 @@ const CreateAnAccountComponents = () => {
       </Box>
       <Box sx={{ paddingBottom: "1%" }}>
         {/* <FiberManualRecordIcon /> */}
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           Finally, click on the” Finish” button to complete the entire process.{" "}
         </Typography>
       </Box>
@@ -139,37 +136,37 @@ const CreateAnAccountComponents = () => {
 
       {/* old user */}
       <Box sx={{ paddingBottom: "1%" }}>
-        <Typography variant="h6" sx={{ color: "#47536B" }}>
+        <Typography variant="h6" sx={{ color: "#FFFFFF" }}>
           Old User
         </Typography>
       </Box>
       <Box sx={{ paddingBottom: "1%" }}>
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           If you are a old user you have to follow this following process
         </Typography>
       </Box>
       <Box sx={{ paddingLeft: "3%", paddingBottom: "1%" }}>
         {/* <FiberManualRecordIcon /> */}
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           <b> User Status:</b> Click on the drop down and select{" "}
           <b> “Old User”.</b>
         </Typography>
       </Box>
       <Box sx={{ paddingLeft: "3%", paddingBottom: "1%" }}>
         {/* <FiberManualRecordIcon /> */}
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           <b> Quantigo Username :</b> Insert your Quantigo Username.
         </Typography>
       </Box>
       <Box sx={{ paddingLeft: "3%", paddingBottom: "1%" }}>
         {/* <FiberManualRecordIcon /> */}
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           <b>Gender:</b> Select your gender.
         </Typography>
       </Box>
       <Box sx={{ paddingLeft: "3%", paddingBottom: "1%" }}>
         {/* <FiberManualRecordIcon /> */}
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           <b> Date of Birth: </b>There is an age limit, user age must not be
           less than 13 years.
         </Typography>
@@ -177,14 +174,14 @@ const CreateAnAccountComponents = () => {
 
       <Box sx={{ paddingLeft: "3%", paddingBottom: "3%" }}>
         {/* <FiberManualRecordIcon /> */}
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           <b>Nagad Account Number : </b>To make a payment on QAI Workforce, you
           will need to provide a Nagad account number.
         </Typography>
       </Box>
       <Box sx={{ paddingBottom: "1%" }}>
         {/* <FiberManualRecordIcon /> */}
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           ***Please note that the Nagad account number you are providing cannot
           be edited or changed once submitted. Therefore, you have to be extra
           careful and accurate while entering the phone number.
@@ -192,7 +189,7 @@ const CreateAnAccountComponents = () => {
       </Box>
       <Box sx={{ paddingBottom: "1%" }}>
         {/* <FiberManualRecordIcon /> */}
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           Finally, click on the” Finish” button to complete the entire process.{" "}
         </Typography>
       </Box>
@@ -201,7 +198,7 @@ const CreateAnAccountComponents = () => {
       </Box>
       <Box sx={{ paddingBottom: "1%" }}>
         {/* <FiberManualRecordIcon /> */}
-        <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+        <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
           A verification link will be sent to your email address. It will direct
           you to your Dashboard.
         </Typography>

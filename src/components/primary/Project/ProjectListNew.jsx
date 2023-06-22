@@ -10,31 +10,34 @@
 import SaveIcon from "@mui/icons-material/Save";
 import SearchIcon from "@mui/icons-material/Search";
 import {
-    Box,
-    FormControl,
-    Grid,
-    InputAdornment,
-    InputLabel,
-    MenuItem,
-    Paper,
-    Select,
-    SvgIcon,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    TextField,
-    Typography,
+  Box,
+  FormControl,
+  Grid,
+  InputAdornment,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+  SvgIcon,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
 } from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {setActivePath} from "../../../features/slice/activePathSlice";
-import {getProjectByWorkSpace, updateAProjectById,} from "../../../features/slice/projectByWorkspaceSlice";
-import {getAllTeams} from "../../../features/slice/teamSlice";
-import {getWorkSpaceById} from "../../../features/slice/workSpaceSlice";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { setActivePath } from "../../../features/slice/activePathSlice";
+import {
+  getProjectByWorkSpace,
+  updateAProjectById,
+} from "../../../features/slice/projectByWorkspaceSlice";
+import { getAllTeams } from "../../../features/slice/teamSlice";
+import { getWorkSpaceById } from "../../../features/slice/workSpaceSlice";
 import HubField from "./HubField";
 import PriorityField from "./PriorityField";
 import StatusField from "./StatusField";

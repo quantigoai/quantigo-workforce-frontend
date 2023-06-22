@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Alert, AlertTitle} from "@mui/material";
+import { Alert, AlertTitle } from "@mui/material";
 import React from "react";
 
 const UserBlocked = () => {

@@ -1,9 +1,13 @@
 import SearchIcon from "@mui/icons-material/Search";
-import {IconButton, Paper, Popover, styled} from "@mui/material";
+import { IconButton, Paper, Popover, Typography, styled } from "@mui/material";
 import * as React from "react";
 import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
+import MenuIcon from "@mui/icons-material/Menu";
+import DirectionsIcon from "@mui/icons-material/Directions";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import MiniModal from "../FilterField/MiniModal";
+import { useOutletContext } from "react-router-dom";
 import MiniModelUser from "../FilterFieldForUserList/MiniModelUser";
 
 const CustomFilterIcon = styled(FilterAltIcon)({

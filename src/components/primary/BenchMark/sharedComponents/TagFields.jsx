@@ -7,16 +7,16 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 import {
-    Box,
-    FilledInput,
-    FormControl,
-    FormControlLabel,
-    Grid,
-    InputLabel,
-    Paper,
-    Radio,
-    RadioGroup,
-    Typography,
+  Box,
+  FilledInput,
+  FormControl,
+  FormControlLabel,
+  Grid,
+  InputLabel,
+  Paper,
+  Radio,
+  RadioGroup,
+  Typography,
 } from "@mui/material";
 import React from "react";
 

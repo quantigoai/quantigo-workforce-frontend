@@ -7,24 +7,37 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 
-import {CircularProgress, FormControl, FormHelperText, Grid, InputLabel, Link, Select, TextField,} from "@mui/material";
+import {
+  CircularProgress,
+  FilledInput,
+  FormControl,
+  FormHelperText,
+  Grid,
+  IconButton,
+  InputLabel,
+  Link,
+  Select,
+  TextField,
+} from "@mui/material";
 import Button from "@mui/material/Button";
+import InputAdornment from "@mui/material/InputAdornment";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
-import {styled} from "@mui/material/styles";
-import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
-import {DatePicker} from "@mui/x-date-pickers/DatePicker";
-import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
-import React, {useState} from "react";
-import {useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {convertDate} from "../../../../helper/customData";
+import { styled } from "@mui/material/styles";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import phoneicon from "../../../../assets/images/IconPhone.png";
+import { convertDate } from "../../../../helper/customData";
 import EmailField from "./EmailField";
-import {HubField} from "./HubField";
+import { HubField } from "./HubField";
 import NameField from "./NameField";
 import PasswordField from "./PasswordField";
+import { UserNameField } from "./UserNameField";
 import PhoneNumberfield from "./PhoneNumberfield";
-import {UserNameField} from "./UserNameField";
 
 const ButtonStyle = styled(Button)({
   backgroundColor: "#2D58FF",
@@ -64,14 +77,7 @@ const InputFields = ({
   handleQaiUserName,
   qaiErrorMessageCheck,
   qaiErrorMessage,
-  setQaiErrorMessage,
   setQaiUserName,
-  validUserName,
-  setValidUserName,
-  qaiUserName,
-  handleSerGender,
-  gender,
-  setGender,
 }) => {
   const [value, setValue] = React.useState(null);
   // const [isRegister, setIsRegister] = useState(false);
@@ -83,8 +89,6 @@ const InputFields = ({
   const [selectedDate, setSelectedDate] = useState(null);
   const [isError, setIsError] = useState(false);
   const { isLoading } = useSelector((state) => state.user);
-  const [hubSelect, setHubSelect] = useState("");
-  const [currentUserStatus, setCurrentUserStatus] = useState("oldUser");
 
   const handleDate = (newValue) => {
     const today = new Date();
@@ -111,13 +115,7 @@ const InputFields = ({
   };
 
   const handleChange = (e) => {
-    setQaiID("");
-    setHubSelect("");
-    setValidUserName(false);
-    setQaiErrorMessage("");
     setChecked(e.target.value);
-    setCurrentUserStatus(e.target.value);
-   
   };
 
   const handleFocused = () => {
@@ -137,7 +135,8 @@ const InputFields = ({
               style={{
                 color: "#FFFFFF",
                 fontSize: "40px",
-              }}>
+              }}
+            >
               Setup Profile
             </Typography>
           ) : (
@@ -146,7 +145,8 @@ const InputFields = ({
               style={{
                 color: "#FFFFFF",
                 fontSize: "40px",
-              }}>
+              }}
+            >
               {isSignup ? "Create New Account" : "Login"}
             </Typography>
           )}
@@ -166,6 +166,16 @@ const InputFields = ({
                 setEmail={setEmail}
                 handleEmail={handleEmail}
               />
+
+              {/* {isSignup ? (
+                !isFieldValid && (
+                  <FormHelperText sx={{ color: "#FF0000" }}>
+                    Email field is required
+                  </FormHelperText>
+                )
+              ) : (
+                <></>
+              )} */}
             </Grid>
             {/* TODO Double Check password */}
             <Grid item xs={12} sx={{ paddingBottom: "3%" }}>
@@ -208,7 +218,8 @@ const InputFields = ({
                     justifyContent: "flex-end",
                     cursor: "pointer",
                     color: "#FFFFFF",
-                  }}>
+                  }}
+                >
                   Already User? Login
                 </Link>
               </Grid>
@@ -225,24 +236,26 @@ const InputFields = ({
                 sx={{
                   cursor: "pointer",
                   color: "#FFFFFF",
-                }}>
+                }}
+              >
                 Create New Account
               </Link>
             </Grid>
-            <Grid
-              item
+            <Grid item
               xs={6}
               sx={{
                 display: "flex",
                 justifyContent: "flex-end",
-              }}>
+              }}
+            >
               <Link
                 onClick={() => navigate("/forgetpassword")}
                 underline="hover"
                 sx={{
                   cursor: "pointer",
                   color: "#FFFFFF",
-                }}>
+                }}
+              >
                 Forget password?
               </Link>
             </Grid>
@@ -257,20 +270,23 @@ const InputFields = ({
               <Grid
                 item
                 xs={6}
-                sx={{ paddingBottom: "3%", paddingRight: "1%" }}>
+                sx={{ paddingBottom: "3%", paddingRight: "1%" }}
+              >
                 <FormControl
                   variant="filled"
                   required={true}
                   fullWidth
-                  sx={{ backgroundColor: "#FFFFFF" }}>
+                  sx={{ backgroundColor: "#FFFFFF" }}
+                >
                   <InputLabel id="demo-simple-select-filled-label">
                     User Status
                   </InputLabel>
                   <Select
                     labelId="demo-simple-select-filled-label"
                     id="demo-simple-select-filled"
-                    defaultValue={currentUserStatus}
-                    onChange={handleChange}>
+                    defaultValue={"oldUser"}
+                    onChange={handleChange}
+                  >
                     <MenuItem value={"newUser"}>New User</MenuItem>
                     <MenuItem value={"oldUser"}>Old User</MenuItem>
                   </Select>
@@ -285,7 +301,6 @@ const InputFields = ({
                     id="filled-basic"
                     label="Quantigo Username"
                     variant="filled"
-                    defaultValue={qaiUserName}
                     onBlur={(e) => handleQaiUserName(e.target.value)}
                   />
                   {!qaiErrorMessageCheck && (
@@ -295,7 +310,8 @@ const InputFields = ({
                           qaiErrorMessage === "User Id is available"
                             ? "green"
                             : "red",
-                      }}>
+                      }}
+                    >
                       {qaiErrorMessage}
                     </FormHelperText>
                   )}
@@ -305,9 +321,6 @@ const InputFields = ({
                   setQaiID={setQaiID}
                   setHub={setHub}
                   setQaiUserName={setQaiUserName}
-                  setValidUserName={setValidUserName}
-                  hubSelect={hubSelect}
-                  setHubSelect={setHubSelect}
                 />
               )}
             </Grid>
@@ -322,16 +335,17 @@ const InputFields = ({
                   variant="filled"
                   fullWidth
                   required={true}
-                  sx={{ backgroundColor: "#FFFFFF" }}>
+                  sx={{ backgroundColor: "#FFFFFF" }}
+                >
                   <InputLabel id="demo-simple-select-filled-label">
                     Gender
                   </InputLabel>
                   <Select
                     labelId="demo-simple-select-filled-label"
                     id="demo-simple-select-filled"
-                    onChange={(e) => handleSerGender(e)}
-                    // {...register("gender", { required: true })}
-                    defaultValue={gender}>
+                    {...register("gender", { required: true })}
+                    defaultValue={""}
+                  >
                     <MenuItem value={"male"}>Male</MenuItem>
                     <MenuItem value={"female"}>Female</MenuItem>
                     <MenuItem value={"other"}>Other</MenuItem>
@@ -346,7 +360,8 @@ const InputFields = ({
                   onClick={handleFocused}
                   onBlur={handleFocusedOut}
                   fullWidth
-                  sx={{ backgroundColor: "#FFFFFF" }}>
+                  sx={{ backgroundColor: "#FFFFFF" }}
+                >
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                       disableFuture
@@ -380,6 +395,41 @@ const InputFields = ({
                     Invalid phone number
                   </FormHelperText>
                 )}
+                {/* <TextField
+                  fullWidth
+                  type="number"
+                  sx={{ backgroundColor: "#FFFFFF" }}
+                  id="filled-basic"
+                  label="Nagad Phone Number"
+                  variant="filled"
+                  autoComplete="off"
+                  {...register("phone", { required: true })}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="start">
+                        <img src={phoneicon} />
+                      </InputAdornment>
+                    ),
+                    maxLength: 11,
+                  }}
+                /> */}
+                {/* <FormControl
+                  variant="filled"
+                  fullWidth
+                  sx={{ backgroundColor: "#FFFFFF" }}
+                >
+                  <InputLabel>Nagad Phone Number</InputLabel>
+                  <FilledInput
+                    {...register("phone", { required: true })}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton edge="end">
+                          <img src={phoneicon} />
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl> */}
               </Grid>
             </Grid>
           </>
@@ -393,25 +443,18 @@ const InputFields = ({
                     fullWidth
                     onClick={() => {
                       setIsRegister(false);
-                    }}>
+                    }}
+                  >
                     Back
                   </ButtonStyle>
                 </Grid>
 
                 <Grid item xs={6}>
                   <ButtonStyle
-                    disabled={
-                      isLoading ||
-                      !email ||
-                      !password ||
-                      !validUserName ||
-                      !isPhoneNumberCheck ||
-                      !phone ||
-                      !gender ||
-                      isError
-                    }
+                    disabled={isLoading || !email || !password}
                     fullWidth
-                    type="submit">
+                    type="submit"
+                  >
                     Finish
                   </ButtonStyle>
                   {isLoading && (
@@ -436,7 +479,8 @@ const InputFields = ({
               disabled={!isFieldValid}
               onClick={() => {
                 setIsRegister(true);
-              }}>
+              }}
+            >
               Create New Account
             </ButtonStyle>
           ) : (

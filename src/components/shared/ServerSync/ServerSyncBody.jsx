@@ -6,10 +6,10 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Box, Grid, Skeleton} from "@mui/material";
+import { Box, Grid, Paper, Skeleton } from "@mui/material";
 import React from "react";
 import MiniCard from "./MiniCard";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 const ServerSyncBody = () => {
   const { updatedValue, isLoading } = useSelector((state) => state.serverSync);

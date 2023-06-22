@@ -7,22 +7,22 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 import {
-    Box,
-    FormControl,
-    FormControlLabel,
-    Grid,
-    InputLabel,
-    MenuItem,
-    Paper,
-    Radio,
-    RadioGroup,
-    Select,
-    Typography,
+  Box,
+  FormControl,
+  FormControlLabel,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Radio,
+  RadioGroup,
+  Select,
+  Typography,
 } from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {getAllCourses} from "../../../features/slice/courseSlice";
-import {getAQuizById} from "../../../features/slice/quizSlice";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCourses } from "../../../features/slice/courseSlice";
+import { getAQuizById } from "../../../features/slice/quizSlice";
 import UpdateQuiz from "./UpdateQuiz";
 
 const paperstyle = {

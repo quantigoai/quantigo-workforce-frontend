@@ -1,8 +1,7 @@
-import {Box, Typography} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 import ActiveJobImage from "../../../../../assets/images/ActiveJob.PNG";
 import ImageModal from "../ImageModal";
-
 const FifthPageJob = () => {
   return (
     <>
@@ -30,18 +29,18 @@ const FifthPageJob = () => {
           },
         }}>
         <Box sx={{ paddingBottom: "2%" }}>
-          <Typography variant="h4" sx={{ color: "#282F3D" }}>
+          <Typography variant="h4" sx={{ color: "#FFFFFF" }}>
             Job
           </Typography>
         </Box>
         <Box sx={{ paddingBottom: "1%" }}>
-          <Typography variant="h6" sx={{ color: "#47536B" }}>
+          <Typography variant="h6" sx={{ color: "#FFFFFF" }}>
             Available Job
           </Typography>
         </Box>
 
         <Box sx={{ paddingBottom: "0%" }}>
-          <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+          <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
             Clicking on the <b> Jobs </b> button in the Dashboard navigation
             will display the available jobs that match your skills. Here, you
             can view the job category, no. of images, time limit and other
@@ -53,13 +52,13 @@ const FifthPageJob = () => {
         </Box>
 
         <Box sx={{ paddingBottom: "1%" }}>
-          <Typography variant="h6" sx={{ color: "#47536B" }}>
+          <Typography variant="h6" sx={{ color: "#FFFFFF" }}>
             Active Job
           </Typography>
         </Box>
 
         <Box sx={{ paddingBottom: "1%" }}>
-          <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+          <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
             When you click on the <b> "Take Job" </b> option, the job will be
             moved to the <b> "Active Jobs" </b> section.Here, you can view the
             status of the job, the time left for submitting the job, the job
@@ -67,7 +66,7 @@ const FifthPageJob = () => {
           </Typography>
         </Box>
         <Box sx={{ paddingBottom: "1%" }}>
-          <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+          <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
             When you take a job, it will move to the active jobs section, and
             the status will be shown as <b> "in progress" </b>. After finishing
             the job, when you click on the "submit" button, the status will
@@ -82,7 +81,7 @@ const FifthPageJob = () => {
           </Typography>
         </Box>
         <Box sx={{ paddingBottom: "1%" }}>
-          <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+          <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
             <b> "Time Left" </b> refers to the remaining time you have to
             complete the job before the deadline.
           </Typography>
@@ -91,13 +90,13 @@ const FifthPageJob = () => {
           <ImageModal Img={ActiveJobImage} />
         </Box>
         <Box sx={{ paddingBottom: "1%" }}>
-          <Typography variant="h6" sx={{ color: "#47536B" }}>
+          <Typography variant="h6" sx={{ color: "#FFFFFF" }}>
             Archive Job
           </Typography>
         </Box>
 
         <Box sx={{ paddingBottom: "1%" }}>
-          <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+          <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
             If you are able to successfully complete the job within the given
             three attempts, it will move to the archived section as a completed
             job, where you can see all the details of the job on{" "}
@@ -105,7 +104,7 @@ const FifthPageJob = () => {
           </Typography>
         </Box>
         <Box sx={{ paddingBottom: "1%" }}>
-          <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+          <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
             However, if you fail to complete the job within the given time limit
             or fail to meet the quality standards even after three attempts, the
             job status will be marked as <b> "Expired" </b> and you will no
@@ -113,7 +112,7 @@ const FifthPageJob = () => {
           </Typography>
         </Box>
         <Box sx={{ paddingBottom: "5%" }}>
-          <Typography variant="subtitle2" sx={{ color: "#47536B" }}>
+          <Typography variant="subtitle2" sx={{ color: "#FFFFFF" }}>
             Job link will also be provided at "Job Link" section. This link will
             lead you to the job details and requirements, and you can use it to
             complete the job.

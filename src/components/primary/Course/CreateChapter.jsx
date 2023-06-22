@@ -1,12 +1,12 @@
-import {Box, Grid, Paper, Stack} from "@mui/material";
+import { Box, Grid, Paper, Stack } from "@mui/material";
 import axios from "axios";
-import React, {useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate, useParams} from "react-router-dom";
-import {createCourseChapter} from "../../../features/slice/courseSlice";
-import {realToken} from "../../../helper/lib";
+import React, { useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { createCourseChapter } from "../../../features/slice/courseSlice";
+import { realToken } from "../../../helper/lib";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import ChapterDescription from "./InputFields/ChapterDescription";
 import ChapterName from "./InputFields/ChapterName";
@@ -15,9 +15,9 @@ import ContentField from "./InputFields/ContentField";
 import CourseNameField from "./InputFields/CourseNameField";
 import EstimatedTimeToRead from "./InputFields/EstimatedTimeToRead";
 import {
-    clearTemporaryData,
-    deleteTemporaryData,
-    updateTemporaryData,
+  clearTemporaryData,
+  deleteTemporaryData,
+  updateTemporaryData,
 } from "../../../features/slice/temporaryDataSlice";
 
 const paperstyle = {

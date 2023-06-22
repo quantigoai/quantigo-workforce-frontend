@@ -7,13 +7,16 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 
-import {Box, Grid, Paper, Stack, Typography} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate, useParams} from "react-router-dom";
-import {updateACourseById,} from "../../../features/slice/courseSlice";
+import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  updateACourseById,
+  validateCourseName,
+} from "../../../features/slice/courseSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import CategoryField from "./InputFields/CategoryField";
 import CoverImageField from "./InputFields/CoverImageField";
@@ -25,7 +28,7 @@ import LiveSessionStartedTime from "./InputFields/LiveSessionStartedTime";
 import NameField from "./InputFields/NameField";
 import PreRequisiteCourse from "./InputFields/PreRequisiteCourse";
 import SkillField from "./InputFields/SkillField";
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;

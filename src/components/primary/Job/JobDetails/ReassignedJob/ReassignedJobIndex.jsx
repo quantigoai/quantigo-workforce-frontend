@@ -1,8 +1,21 @@
-import {Box, Button, FormControl, FormControlLabel, Radio, RadioGroup,} from "@mui/material";
-import React, {useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {assignedJobToAUser} from "../../../../../features/slice/jobSlice";
+import SearchIcon from "@mui/icons-material/Search";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormControlLabel,
+  InputAdornment,
+  Popper,
+  Radio,
+  RadioGroup,
+  SvgIcon,
+  TextField,
+} from "@mui/material";
+import React, { useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { assignedJobToAUser } from "../../../../../features/slice/jobSlice";
+import ReAssignPopper from "../../SharedComponents/ReAssignPopper";
 
 const ReassignedJobIndex = ({ job }) => {
   const [value, setValue] = useState(""); // initialize value as an empty string

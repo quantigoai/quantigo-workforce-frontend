@@ -1,9 +1,9 @@
-import {Button, Grid, Paper, Typography} from "@mui/material";
+import { Button, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {setActiveChapterIndex} from "../../../../../features/slice/activePathSlice";
-import {manuallySetCourseChapter} from "../../../../../features/slice/courseSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setActiveChapterIndex } from "../../../../../features/slice/activePathSlice";
+import { manuallySetCourseChapter } from "../../../../../features/slice/courseSlice";
 
 const ShowResult = () => {
   const navigate = useNavigate();

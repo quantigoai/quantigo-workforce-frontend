@@ -1,6 +1,6 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import { realToken } from "../../helper/lib";
 const url = "https://centralprojectrepository.onrender.com";
 // const url = process.env.REACT_APP_SERVER_URL;
 // const jwtSecret = process.env.REACT_APP_JWT_SECRET;
@@ -89,8 +89,8 @@ export const updateProjectDirectory = createAsyncThunk(
 // Delete project
 export const deleteProjectDirectory = createAsyncThunk(
   "delete/project/directory",
-  async (id) => {
-    return axios.delete(`${url}/api/ProjectList/remove?id=${id}`);
+  async (projectName) => {
+    return axios.delete(`${url}/api/ProjectList${projectName}/remove`);
   }
 );
 

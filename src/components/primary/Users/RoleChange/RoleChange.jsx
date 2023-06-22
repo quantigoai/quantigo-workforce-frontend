@@ -1,8 +1,16 @@
-import {Button, FormControl, Grid, InputLabel, MenuItem, Select, styled,} from "@mui/material";
-import React, {useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {changeRole} from "../../../../features/slice/userSlice";
+import {
+  Button,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  styled,
+} from "@mui/material";
+import React, { useState } from "react";
+import { positions, useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { changeRole } from "../../../../features/slice/userSlice";
 
 const ButtonStyle = styled(Button)({
   width: "100%",
@@ -61,12 +69,12 @@ const RoleChange = ({ user }) => {
               <MenuItem value={"level_3_annotator"}>Level 3 Annotator</MenuItem>
               <MenuItem value={"reviewer"}>Reviewer</MenuItem>
               <MenuItem value={"trainer"}>Trainer</MenuItem>
-              <MenuItem value={"project_lead"}>Delivery Lead</MenuItem>
+              <MenuItem value={"project_lead"}>Project Lead</MenuItem>
               <MenuItem value={"project_coordinator"}>
                 Project Coordinator
               </MenuItem>
               {(role === "admin" || role === "recruitment_manager") && (
-                <MenuItem value={"delivery_manager"}>Project Delivery Lead</MenuItem>
+                <MenuItem value={"delivery_manager"}>Delivery Manager</MenuItem>
               )}
               {(role === "admin" || role === "recruitment_manager") && (
                 <MenuItem value={"project_manager"}>Project Manager</MenuItem>

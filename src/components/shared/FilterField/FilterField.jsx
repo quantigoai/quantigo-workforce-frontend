@@ -7,10 +7,16 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {InputAdornment, styled,} from "@mui/material";
+import {
+  Box,
+  InputAdornment,
+  Popover,
+  Typography,
+  styled,
+} from "@mui/material";
 import React from "react";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-
+import MiniModal from "./MiniModal";
 const FilterField = ({ handleClick }) => {
   const CustomFilterIcon = styled(FilterAltIcon)({
     color: "rgba(45, 88, 255, 1)",

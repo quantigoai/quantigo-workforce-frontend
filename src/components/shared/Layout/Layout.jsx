@@ -25,10 +25,10 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import {styled} from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import * as React from "react";
-import {useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
 import Header from "../Header/Header";
 import UserBlocked from "../UserBlocked/UserBlocked";
@@ -102,7 +102,7 @@ const Layout = ({ children }) => {
     { name: "Jobs", icon: JobSvg },
     { name: "Benchmark", icon: BenchmarkSvg },
     { name: "Sync Server", icon: BenchmarkSvg },
-    { name: "Project Directory", icon: ProjectSvg },
+    { name: "Project Directory", icon: BenchmarkSvg },
   ];
   const projectManagerOptions = [
     { name: "Dashboard", icon: DashboardSvg },
@@ -112,7 +112,6 @@ const Layout = ({ children }) => {
     { name: "Jobs", icon: JobSvg },
     { name: "Benchmark", icon: BenchmarkSvg },
     { name: "Sync Server", icon: BenchmarkSvg },
-    { name: "Project Directory", icon: ProjectSvg },
   ];
   const projectLeadOptions = [
     { name: "Dashboard", icon: DashboardSvg },
@@ -121,7 +120,6 @@ const Layout = ({ children }) => {
     { name: "Projects", icon: ProjectSvg },
     { name: "Jobs", icon: JobSvg },
     { name: "Benchmark", icon: BenchmarkSvg },
-    { name: "Project Directory", icon: ProjectSvg },
     { name: "Sync Server", icon: BenchmarkSvg },
   ];
   const projectCoordinatorOptions = [
@@ -129,7 +127,6 @@ const Layout = ({ children }) => {
     { name: "Projects", icon: ProjectSvg },
     { name: "Jobs", icon: JobSvg },
     { name: "Sync Server", icon: BenchmarkSvg },
-    { name: "Project Directory", icon: ProjectSvg },
   ];
 
   const dmOptions = [
@@ -139,8 +136,8 @@ const Layout = ({ children }) => {
     { name: "Skill", icon: CourseSvg },
     { name: "Projects", icon: ProjectSvg },
     { name: "Jobs", icon: JobSvg },
+    { name: "Hour Calculation", icon: HourSvg },
     { name: "Benchmark", icon: BenchmarkSvg },
-    { name: "Project Directory", icon: ProjectSvg },
     { name: "Sync Server", icon: BenchmarkSvg },
   ];
 
@@ -148,7 +145,7 @@ const Layout = ({ children }) => {
     { name: "Dashboard", icon: DashboardSvg },
     { name: "Course", icon: CourseSvg },
     { name: "Jobs", icon: JobSvg },
-    // { name: "Payment", icon: PaymentSvg },
+    { name: "Payment", icon: PaymentSvg },
   ];
 
   const level0AnnotatorOptions = [
@@ -235,7 +232,7 @@ const Layout = ({ children }) => {
         return navigate("/jobs/create-job");
       case "Jobs":
         return role === "reviewer"
-          ? navigate("/jobs/availablejobs")
+          ? navigate("/jobs/activejobs")
           : navigate("/jobs/alljobs");
       case "On Going Job":
         return navigate("/jobs/activejobs");
@@ -277,7 +274,8 @@ const Layout = ({ children }) => {
               paddingLeft: "3%",
             },
           }}
-          onClick={() => handleOptionClick(text.name)}>
+          onClick={() => handleOptionClick(text.name)}
+        >
           <ListItemIcon sx={{ color: "#FFFFFF" }}>
             <img src={text.icon} />
           </ListItemIcon>
@@ -304,7 +302,8 @@ const Layout = ({ children }) => {
           },
         }}
         variant="permanent"
-        anchor="left">
+        anchor="left"
+      >
         <DrawerHeader>
           <img
             onClick={() => navigate("/")}
@@ -366,7 +365,8 @@ const Layout = ({ children }) => {
         )}
 
         <DrawerFooter
-          sx={{ paddingLeft: "8%", paddingRight: "5%", paddingBottom: "5%" }}>
+          sx={{ paddingLeft: "8%", paddingRight: "5%", paddingBottom: "5%" }}
+        >
           <GetHelp />
         </DrawerFooter>
       </Drawer>
@@ -379,7 +379,8 @@ const Layout = ({ children }) => {
           // bgcolor: isLightTheme ? "#F5F5F5" : "#000c1f",
           bgcolor: "#F5F5F5",
           height: "100%",
-        }}>
+        }}
+      >
         <Main open={open}>
           <DrawerHeader />
           {isLoggedIn && !isBlocked ? children : <UserBlocked />}

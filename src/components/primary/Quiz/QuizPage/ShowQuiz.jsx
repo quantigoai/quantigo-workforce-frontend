@@ -1,10 +1,18 @@
-import {Button, FormControlLabel, Grid, Paper, Radio, RadioGroup, Typography,} from "@mui/material";
+import {
+  Button,
+  FormControlLabel,
+  Grid,
+  Paper,
+  Radio,
+  RadioGroup,
+  Typography,
+} from "@mui/material";
 import React from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import {submitQuizById} from "../../../../features/slice/quizSlice";
+import { submitQuizById } from "../../../../features/slice/quizSlice";
 
 const ShowQuiz = () => {
   const { quiz, isLoading } = useSelector((state) => state.quiz);

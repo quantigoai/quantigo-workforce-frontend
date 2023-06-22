@@ -6,35 +6,48 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {useTheme} from "@emotion/react";
+import { useTheme } from "@emotion/react";
 import DownloadIcon from "@mui/icons-material/Download";
 
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
-import {Box, Button, Grid, IconButton, Popper, TablePagination, Typography,} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import {
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  InputAdornment,
+  Popper,
+  SvgIcon,
+  TablePagination,
+  TextField,
+  Typography,
+} from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell, {tableCellClasses} from "@mui/material/TableCell";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import {styled} from "@mui/material/styles";
-import React, {useEffect, useRef, useState} from "react";
-import {CSVLink} from "react-csv";
-import {useDispatch, useSelector} from "react-redux";
-import {useLocation} from "react-router-dom";
-import {setActivePath} from "../../../features/slice/activePathSlice";
-import {getAllSkills} from "../../../features/slice/skillSlice";
-import {getAllUsers} from "../../../features/slice/userSlice";
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
+import { styled } from "@mui/material/styles";
+import React, { useEffect, useRef, useState } from "react";
+import { CSVLink } from "react-csv";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { setActivePath } from "../../../features/slice/activePathSlice";
+import { getAllSkills } from "../../../features/slice/skillSlice";
+import { getAllUsers } from "../../../features/slice/userSlice";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import NdaAccept from "./NdaAccept/NdaAccept";
 import NidDetails from "./NidDetals/NidDetails";
 import UserActiveStatueCheck from "./UserActiveCheck/UserActiveStatueCheck";
 import UserDetailsIndex from "./UserDetais/UserDetailsIndex";
+import SearchBar from "../../shared/SearchBar/SearchBar";
 import SearchBarforUserList from "../../shared/SearchBar/SearchBarforUserList";
 
 function TablePaginationActions(props) {
@@ -543,13 +556,9 @@ const AllUsers = ({ action }) => {
                           : user.role === "level_3_annotator"
                           ? "Level 3 Annotator"
                           : user.role === "delivery_manager"
-                          ? "Project Delivery Lead"
+                          ? "Delivery Manager"
                           : user.role === "project_lead"
-                          ? "Delivery Lead"
-                          : user.role === "project_coordinator"
-                          ? "Project Coordinator"
-                          : user.role === "project_manager"
-                          ? "Project Manager"
+                          ? "Project Lead"
                           : user.role === "recruitment_manager"
                           ? "Recruitment Manager"
                           : capitalizeFirstLetter(user?.role)}

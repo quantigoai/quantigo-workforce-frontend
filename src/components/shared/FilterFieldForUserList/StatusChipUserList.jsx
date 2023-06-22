@@ -1,6 +1,5 @@
-import {Chip, Grid} from "@mui/material";
-import React from "react";
-
+import { Chip, Grid } from "@mui/material";
+import React, { useState } from "react";
 let jobStatus = [
   {
     label: "Active Annotator",

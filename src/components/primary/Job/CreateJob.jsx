@@ -7,20 +7,24 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 
-import {Box, Grid, Paper} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {getDataSetByProjectID} from "../../../features/slice/datasetSlice";
-import {createJob, getVideoId, videoJobCreate,} from "../../../features/slice/jobSlice";
-import {getProjectByWorkSpace} from "../../../features/slice/projectByWorkspaceSlice";
-import {getAllTeams} from "../../../features/slice/teamSlice";
-import {getWorkSpaceById} from "../../../features/slice/workSpaceSlice";
+import { Box, Grid, Paper } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { getDataSetByProjectID } from "../../../features/slice/datasetSlice";
+import {
+  createJob,
+  getVideoId,
+  videoJobCreate,
+} from "../../../features/slice/jobSlice";
+import { getProjectByWorkSpace } from "../../../features/slice/projectByWorkspaceSlice";
+import { getAllTeams } from "../../../features/slice/teamSlice";
+import { getWorkSpaceById } from "../../../features/slice/workSpaceSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import SelectMenu from "../BenchMark/SelectMenu";
 import OptionalFields from "./SharedComponents/OptionalFields";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const paperstyle = {
   width: "80vw",
@@ -149,7 +153,7 @@ const CreateJob = () => {
       dispatch(createJob(finalData)).then((action) => {
         if (action.payload?.status === 201) {
           alert.show(`${action.payload.data.message}`, { type: "success" });
-        } else if (action.payload?.status === 202) {
+        } else if (action.payload.status === 202) {
           alert.show(action.payload.data.message, { type: "error" });
         } else {
           alert.show("Something went wrong", { type: "error" });

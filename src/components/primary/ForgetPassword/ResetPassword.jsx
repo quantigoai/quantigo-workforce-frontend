@@ -106,7 +106,7 @@ const ResetPassword = () => {
     };
 
     dispatch(setNewPassword(resetdata)).then((action) => {
-      if (action.payload?.status === 200) {
+      if (action.payload.status === 200) {
         alert.show(" Password Reset Successfully", { type: "success" });
         navigate("/login");
       } else {

@@ -12,9 +12,9 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {realToken} from "../../helper/lib";
+import { realToken } from "../../helper/lib";
 
 const url = process.env.REACT_APP_SERVER_URL;
 const jwtSecret = process.env.REACT_APP_JWT_SECRET;
@@ -39,15 +39,12 @@ const initialState = {
 // All Courses get request
 // TODO Handle the limit in dynamic way
 export const getAllJobs = createAsyncThunk("job/getAlljobs", async (data) => {
-  const { limit, skip, status, annotator, reviewerId, attemptLeft ,projectIdFilter, date } =
+  const { limit, skip, status, annotator, reviewerId, attemptLeft, date } =
     data || {};
   let query = `isActive=true&sortBy=createdAt:desc&sortBy=title:asc`;
 
   if (status) {
     query += `&status=${status}`;
-  }
-  if (projectIdFilter) {
-    query += `&projectId=${projectIdFilter}`;
   }
   if (limit) {
     query += `&limit=${limit}`;
@@ -142,21 +139,12 @@ export const submitAJob = createAsyncThunk(
 
 export const getAjobInfoById = createAsyncThunk(
   "/get/A/job/info/by/id",
-  async (data) => {
-    const { server_agent, id } = data;
-    if (server_agent === "quantigo") {
-      return axios.get(`${urlsuper}/public/api/v3/jobs.info?id=${id}`, {
-        headers: {
-          "x-api-key": `${REACT_SUPERVISLY_API_KEY}`,
-        },
-      });
-    } else {
-      return axios.get(`${urlag}/public/api/v3/jobs.info?id=${id}`, {
-        headers: {
-          "x-api-key": `${REACT_AG_API_KEY}`,
-        },
-      });
-    }
+  async (id) => {
+    return axios.get(`${urlsuper}/public/api/v3/jobs.info?id=${id}`, {
+      headers: {
+        "x-api-key": `${REACT_SUPERVISLY_API_KEY}`,
+      },
+    });
   }
 );
 
@@ -184,19 +172,6 @@ export const getMyJobs = createAsyncThunk(
     }
 
     return axios.get(`${url}/assignedjobs/getmyjobs?${query}`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
-
-// get Available jobs for reviewer
-
-export const availableJobsForReviewer = createAsyncThunk(
-  "available/job/reviewer",
-  async () => {
-    return axios.get(`${url}/assignedjobs/reviewer-available-jobs`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -240,39 +215,6 @@ export const addUserToATeam = createAsyncThunk(
     const { id, role } = bulkData;
     return axios.post(
       `${url}/qaiusers/addToTeam/${id}`,
-      { role },
-      {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      }
-    );
-  }
-);
-// add default reviewer to a Team
-export const addDefaultReviewer = createAsyncThunk(
-  "assignedjobs/addDefaultReviewer",
-  async (bulkData) => {
-    const { id, role } = bulkData;
-    return axios.post(
-      `${url}/qaiusers/addDefaultReviewer/${id}`,
-      { role },
-      {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      }
-    );
-  }
-);
-
-// add default annotator to a Team
-export const addDefaultAnnotator = createAsyncThunk(
-  "assignedjobs/addDefaultAnnotator",
-  async (bulkData) => {
-    const { id, role } = bulkData;
-    return axios.post(
-      `${url}/qaiusers/addDefaultAnnotator/${id}`,
       { role },
       {
         headers: {
@@ -354,24 +296,6 @@ export const checkJobExpiration = createAsyncThunk(
   }
 );
 
-// take a job for reviewer
-
-export const takeJobForReviewer = createAsyncThunk(
-  "job/take/reviewer",
-  async (data) => {
-    const { jobId, assignedJobId } = data;
-    return axios.post(
-      `${url}/assignedjobs/takejob-reviewer/${jobId}/${assignedJobId}`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      }
-    );
-  }
-);
-
 //  get Video Id
 
 export const getVideoId = createAsyncThunk("/get/video/Id", async (id) => {
@@ -401,18 +325,6 @@ const jobSlice = createSlice({
         state.totalJobs = action.payload.data.total;
       })
       .addCase(getAllJobs.rejected, (state) => {
-        state.isLoading = false;
-      })
-      .addCase(availableJobsForReviewer.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(availableJobsForReviewer.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        state.jobs = action.payload.data.data;
-        state.totalJobs = action.payload.data.count;
-      })
-      .addCase(availableJobsForReviewer.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(createJob.pending, (state) => {
@@ -457,26 +369,6 @@ const jobSlice = createSlice({
         }
       })
       .addCase(takeAjob.rejected, (state, action) => {
-        state.isLoading = false;
-      })
-      .addCase(takeJobForReviewer.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(takeJobForReviewer.fulfilled, (state, action) => {
-        state.isLoading = false;
-        if (action.payload.status === 200) {
-          console.log("hiyyy")
-          state.jobs = state.jobs.filter(
-            (item) =>
-              item.job.id._id !== action.payload.data.assignedJob.job.id
-          );
-          state.myJobs = [
-            action.payload.data.assignedJob,
-            ...state.myJobs,
-          ];
-        }
-      })
-      .addCase(takeJobForReviewer.rejected, (state, action) => {
         state.isLoading = false;
       })
       .addCase(getMyJobs.pending, (state) => {
@@ -571,28 +463,6 @@ const jobSlice = createSlice({
         state.error = null;
       })
       .addCase(addUserToATeam.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(addDefaultReviewer.pending, (state, action) => {
-        state.isLoading = true;
-      })
-      .addCase(addDefaultReviewer.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(addDefaultReviewer.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(addDefaultAnnotator.pending, (state, action) => {
-        state.isLoading = true;
-      })
-      .addCase(addDefaultAnnotator.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(addDefaultAnnotator.rejected, (state, action) => {
         state.isLoading = false;
         state.error = null;
       })

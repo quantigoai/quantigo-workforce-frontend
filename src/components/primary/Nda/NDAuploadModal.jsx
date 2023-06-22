@@ -1,16 +1,24 @@
-import {Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Typography,} from "@mui/material";
-import {styled} from "@mui/material/styles";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useDropzone} from "react-dropzone";
-import {useDispatch, useSelector} from "react-redux";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  Typography,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useDropzone } from "react-dropzone";
+import { useDispatch, useSelector } from "react-redux";
 import pdfSvg from "../../../assets/images/PDF.svg";
 import actionIcon from "../../../assets/images/drag_indicator_24px.png";
 import downloadIcon from "../../../assets/images/fi_download.png";
 import deleteIcon from "../../../assets/images/fi_trash-2.png";
 import croxButton from "../../../assets/images/u_multiply.png";
 import Ndafile from "../../../assets/ndifile/NDA - Independant Contractor.docx_2.pdf";
-import {signingNda} from "../../../features/slice/userSlice";
+import { signingNda } from "../../../features/slice/userSlice";
 import "./ndaUpload.css";
 import PdfNdaUploadField from "./PdfNdaUploadField";
 

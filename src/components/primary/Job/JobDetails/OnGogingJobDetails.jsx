@@ -1,12 +1,15 @@
-import {Grid, styled, Typography} from "@mui/material";
+import { Grid, styled, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
 import * as React from "react";
 import u_multiply from "../../../../assets/images/u_multiply.png";
-import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
+import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 import TakenTime from "../../../shared/CountDown/TakenTime";
+import ViewColumnIcon from "@mui/icons-material/ViewColumn";
 import PauseResumeJob from "./PauseResumeJob/PauseResumeJob";
+import ReAssignPopper from "../SharedComponents/ReAssignPopper";
+import ReassignedJobIndex from "./ReassignedJob/ReassignedJobIndex";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -59,8 +62,8 @@ const OnGogingJobDetails = ({ job, setAnchorEl }) => {
         </Box>
         <Box sx={{ padding: "4%" }}>
           <Grid container>
-            <Grid container sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-              <Grid xs={3} sx={{ justifyContent: "left",}}>
+            <Grid container>
+              <Grid xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Title
                 </Typography>
@@ -71,33 +74,21 @@ const OnGogingJobDetails = ({ job, setAnchorEl }) => {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid container sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-              <Grid xs={3} sx={{ justifyContent: "left",}}>
-                <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                  Path
-                </Typography>
-              </Grid>
-              <Grid xs={7} sx={{ paddingLeft: "20%" }}>
-                <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                  {job.teamName} /{job.workspaceName}/{job.projectName}
-                </Typography>
-              </Grid>
-            </Grid>
 
-            <Grid container sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-              <Grid xs={3} sx={{ justifyContent: "left", }}>
+            <Grid container>
+              <Grid xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Reviewer
                 </Typography>
               </Grid>
               <Grid xs={7} sx={{ paddingLeft: "20%" }}>
                 <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                  {job?.reviewer?.qaiUserName}
+                  {job?.reviewer.qaiUserName}
                 </Typography>
               </Grid>
             </Grid>
-            <Grid container sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-              <Grid xs={3} sx={{ justifyContent: "left", }}>
+            <Grid container>
+              <Grid xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Reviewer Status
                 </Typography>
@@ -108,8 +99,8 @@ const OnGogingJobDetails = ({ job, setAnchorEl }) => {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid container sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-              <Grid xs={3} sx={{ justifyContent: "left",  }}>
+            <Grid container>
+              <Grid xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Taken Time
                 </Typography>
@@ -120,8 +111,8 @@ const OnGogingJobDetails = ({ job, setAnchorEl }) => {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid container  sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-              <Grid xs={3} sx={{ justifyContent: "left", }}>
+            <Grid container>
+              <Grid xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Submitted Time
                 </Typography>
@@ -133,12 +124,12 @@ const OnGogingJobDetails = ({ job, setAnchorEl }) => {
               </Grid>
             </Grid>
           </Grid>
-          {/* <Grid sx={{ border: "1px solid #DADCDF" }}></Grid> */}
+          <Grid sx={{ border: "1px solid #DADCDF" }}></Grid>
         </Box>
         {job.status === "inProgress" || job.status === "paused" ? (
           <>
             <Box sx={{ paddingTop: "2%", paddingLeft: "4%" }}>
-              <Grid container >
+              <Grid container>
                 <Grid xs={10}>
                   <Typography variant="h7" sx={{ color: "#090080" }}>
                     Pause Or Resume

@@ -84,7 +84,7 @@ const LineChartDaily = ({ loading }) => {
   useEffect(() => {
     const takenJobsData = [];
     if (!loading) {
-      const labels = Object.keys(hourlyData?.hourJobs);
+      const labels = Object.keys(hourlyData.hourJobs);
       const finalLabel = [];
 
       labels.forEach((label) => {

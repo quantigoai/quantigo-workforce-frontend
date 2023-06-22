@@ -8,32 +8,43 @@
  */
 
 import TableCell from "@mui/material/TableCell";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
 
 import {
-    Box,
-    Grid,
-    IconButton,
-    Paper,
-    Table,
-    TableBody,
-    TableContainer,
-    TableHead,
-    TablePagination,
-    TableRow,
+  Box,
+  FormControl,
+  Grid,
+  IconButton,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
 } from "@mui/material";
-import {useDispatch, useSelector} from "react-redux";
-import {assignedJobToAUser, getAllAssignedJob,} from "../../../features/slice/jobSlice";
-import {getAllUsers} from "../../../features/slice/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  assignedJobToAUser,
+  getAllAssignedJob,
+  getAllJobs,
+  pauseResumeJobs,
+} from "../../../features/slice/jobSlice";
+import { getAllUsers } from "../../../features/slice/userSlice";
 // import NotificationToaster from "../NotificationToaster/NotificationToaster";
-import {useTheme} from "@emotion/react";
+import { useTheme } from "@emotion/react";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
+import { useOutletContext } from "react-router-dom";
 import TakenTime from "../../shared/CountDown/TakenTime";
 import SearchBar from "../../shared/SearchBar/SearchBar";
+import ActionOnGoingJob from "./ActionOnGoingJob";
 import JobStatusField from "./JobStatusBox/JobStatusField";
 import OnGogingJobDetails from "./JobDetails/OnGogingJobDetails";
 import DateAndTime from "../../shared/CountDown/DateAndTime";
@@ -63,13 +74,15 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
-        aria-label="first page">
+        aria-label="first page"
+      >
         {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
-        aria-label="previous page">
+        aria-label="previous page"
+      >
         {theme.direction === "rtl" ? (
           <KeyboardArrowRight />
         ) : (
@@ -79,7 +92,8 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page">
+        aria-label="next page"
+      >
         {theme.direction === "rtl" ? (
           <KeyboardArrowLeft />
         ) : (
@@ -89,7 +103,8 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page">
+        aria-label="last page"
+      >
         {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
@@ -107,7 +122,7 @@ const OngoingJob = ({ action }) => {
   const [page, setPage] = React.useState(0);
   const [filterAssignedJob, setFilterAssignedJob] = useState([]);
   useEffect(() => {
-    // dispatch(getAllJobs());
+    dispatch(getAllJobs());
     dispatch(getAllAssignedJob());
     dispatch(getAllUsers());
   }, []);
@@ -216,7 +231,8 @@ const OngoingJob = ({ action }) => {
               paddingLeft: "3%",
               paddingRight: "3%",
               paddingBottom: "0%",
-            }}>
+            }}
+          >
             <SearchBar
               placeholder="Search Job"
               onChange={handleChange}
@@ -230,48 +246,57 @@ const OngoingJob = ({ action }) => {
               paddingLeft: "3%",
               paddingRight: "3%",
               paddingBottom: "3%",
-            }}>
+            }}
+          >
             <TableContainer>
               <Table
                 aria-label="simple table"
-                sx={{ border: "1px solid #DADCDF" }}>
+                sx={{ border: "1px solid #DADCDF" }}
+              >
                 {/* TODO : Convert this in a separate component  */}
                 <TableHead sx={{ background: "#F8F8F8", height: "80px" }}>
                   <TableRow>
                     <TableCell
                       align="center"
-                      sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      sx={{ color: "#969CAF", fontSize: "20px" }}
+                    >
                       No
                     </TableCell>
                     <TableCell
                       align="left"
-                      sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      sx={{ color: "#969CAF", fontSize: "20px" }}
+                    >
                       Title
                     </TableCell>
                     <TableCell
                       align="center"
-                      sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      sx={{ color: "#969CAF", fontSize: "20px" }}
+                    >
                       Annotator
                     </TableCell>
                     <TableCell
                       align="center"
-                      sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      sx={{ color: "#969CAF", fontSize: "20px" }}
+                    >
                       Reviewer
                     </TableCell>
                     <TableCell
                       align="center"
-                      sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      sx={{ color: "#969CAF", fontSize: "20px" }}
+                    >
                       Status
                     </TableCell>
                     <TableCell
                       align="center"
-                      sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      sx={{ color: "#969CAF", fontSize: "20px" }}
+                    >
                       Taken Time
                     </TableCell>
 
                     <TableCell
                       align="center"
-                      sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      sx={{ color: "#969CAF", fontSize: "20px" }}
+                    >
                       Attempt Left
                     </TableCell>
                     {/* <TableCell
@@ -282,7 +307,8 @@ const OngoingJob = ({ action }) => {
 
                     <TableCell
                       align="left"
-                      sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      sx={{ color: "#969CAF", fontSize: "20px" }}
+                    >
                       Action
                     </TableCell>
                   </TableRow>
@@ -299,7 +325,8 @@ const OngoingJob = ({ action }) => {
                       key={job._id}
                       sx={{
                         height: "54px",
-                      }}>
+                      }}
+                    >
                       <TableCell align="center">
                         {page * rowsPerPage + i + 1}
                       </TableCell>
@@ -311,7 +338,7 @@ const OngoingJob = ({ action }) => {
                       </TableCell>
                       <TableCell align="center">
                         {" "}
-                        {job?.reviewer?.qaiUserName}
+                        {job?.reviewer.qaiUserName}
                       </TableCell>
 
                       <TableCell align="center">
@@ -365,7 +392,7 @@ const OngoingJob = ({ action }) => {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
               colSpan={3}
-              count={filterAssignedJob.length}
+              count={assignedJob.length}
               rowsPerPage={rowsPerPage}
               page={page}
               SelectProps={{

@@ -7,15 +7,27 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Button, FormControl, Grid, InputLabel, MenuItem, Paper, Select, TextField,} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {setActivePath} from "../../../features/slice/activePathSlice";
-import {getAllTeams, resetTeams} from "../../../features/slice/teamSlice";
+import {
+  Button,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+  TextField,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setActivePath } from "../../../features/slice/activePathSlice";
+import { getAllTeams, resetTeams } from "../../../features/slice/teamSlice";
 import CommonHeader from "../CustomComponenet/CommonHeader/CommonHeader";
 import Teams from "../SPV/Teams";
-import {resetUpdatedValue, syncATeam,} from "../../../features/slice/syncServerSlice";
-import {useAlert} from "react-alert";
+import {
+  resetUpdatedValue,
+  syncATeam,
+} from "../../../features/slice/syncServerSlice";
+import { useAlert } from "react-alert";
 import ServerSyncBody from "./ServerSyncBody";
 
 const ServerSync = () => {

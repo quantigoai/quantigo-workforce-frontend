@@ -8,9 +8,9 @@
  */
 
 import React from "react";
-import {useForm} from "react-hook-form";
-import {useSelector} from "react-redux";
-import {useOutletContext} from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { useOutletContext } from "react-router-dom";
 
 import ClassTagFields from "./sharedComponents/ClassTagFields";
 

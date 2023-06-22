@@ -12,10 +12,10 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import Cookies from "js-cookie";
-import {realToken} from "../../helper/lib";
+import { realToken } from "../../helper/lib";
 
 const CryptoJS = require("crypto-js");
 
@@ -275,13 +275,17 @@ export const deleteOrActivateUser = createAsyncThunk(
 
 export const UnblockJobsForUser = createAsyncThunk(
   "user/Jov/Unblock/id/action",
-  async (data) => {
-    const { id, updatedJobLimit } = data;
-    return axios.post(`${url}/users/unblockjob/${id}`, updatedJobLimit, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
+  async (id) => {
+    // const { id, action } = finalData;
+    return axios.post(
+      `${url}/users/unblockjob/${id}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+      }
+    );
   }
 );
 
@@ -322,18 +326,6 @@ export const resendEmailVarification = createAsyncThunk(
   "resend/email/varifiacation",
   async () => {
     return axios.get(`${url}/users/resendverificationemail`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
-
-// change Password
-export const changePassword = createAsyncThunk(
-  "change/password",
-  async (data) => {
-    return axios.post(`${url}/users/change-password`, data, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -733,16 +725,6 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(emailVerificationLink.rejected, (state, action) => {
-        state.error = action.error.message;
-      })
-      .addCase(changePassword.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(changePassword.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(changePassword.rejected, (state, action) => {
         state.error = action.error.message;
       });
     // .addCase(verifyUser.pending, (state) => {

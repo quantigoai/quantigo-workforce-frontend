@@ -1,19 +1,19 @@
-import {Grid, Paper, Stack} from "@mui/material";
-import {Box} from "@mui/system";
-import React, {useEffect, useState} from "react";
-import {useForm} from "react-hook-form";
-import {useNavigate, useParams} from "react-router-dom";
+import { Grid, Paper, Stack } from "@mui/material";
+import { Box } from "@mui/system";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import ChapterDescription from "./InputFields/ChapterDescription";
 import ChapterName from "./InputFields/ChapterName";
 import CourseNameField from "./InputFields/CourseNameField";
 import axios from "axios";
-import {realToken} from "../../../helper/lib";
+import { realToken } from "../../../helper/lib";
 import ContentField from "./InputFields/ContentField";
-import {useDispatch, useSelector} from "react-redux";
-import {updateAChapterById} from "../../../features/slice/courseSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { updateAChapterById } from "../../../features/slice/courseSlice";
 import ChapterNoFiledForUpdate from "./InputFields/ChapterNoFiledForUpdate";
-import {useAlert} from "react-alert";
+import { useAlert } from "react-alert";
 import EstimatedTimeToRead from "./InputFields/EstimatedTimeToRead";
 
 const UpdateChapter = () => {

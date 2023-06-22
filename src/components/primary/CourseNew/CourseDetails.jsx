@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Grid, Paper } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
@@ -15,8 +15,6 @@ import { setActiveChapterIndex } from "../../../features/slice/activePathSlice";
 import { getAChapterById } from "../../../features/slice/courseSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import CourseDrawer from "./CourseDrawer";
-import CourseDrawerNew from "./CourseDrawerNew";
-import CommonHeaderForCourse from "../../shared/CustomComponenet/CommonHeader/CommonHeaderForCourse";
 
 const CourseDetails = () => {
   const { course, courseChapter, isLoading } = useSelector(
@@ -31,7 +29,7 @@ const CourseDetails = () => {
 
   useEffect(() => {
     navigate(`/course-details/${course._id}/index`);
-  }, [course._id]);
+  }, [course._id]); 
   // },[]); zayed branch
 
   useEffect(() => {
@@ -49,34 +47,27 @@ const CourseDetails = () => {
 
   return (
     <>
-      <Paper sx={{ width: "100%" }} elevation={0}>
-        <Box sx={{ display: "flex", alignItems: "baseline" }}>
-          <Grid
-            container
-            sx={{
-              paddingBottom: "2%",
-            }}>
-            <CommonHeader
+      <Box sx={{ display: "flex", alignItems: "baseline" }}>
+        <Grid
+          container
+          sx={{
+            paddingBottom: "2%",
+          }}
+        >
+          <CommonHeader
             title={course.name}
             description={course.description}
             isLoading={isLoading}
             customButton="Edit Course"
           />
-            {/* <CommonHeaderForCourse
-              title={course.name}
-              description={course.description}
-              isLoading={isLoading}
-              customButton="Edit Course"
-            /> */}
-          </Grid>
-        </Box>
-      </Paper>
-      <Box sx={{paddingTop: "1%"}}>
+        </Grid>
+      </Box>
+
+      <Box>
         <Grid container>
           {!isInContent && (
-            <Grid item xs={3} sx={{ paddingRight: "1%",  }}>
+            <Grid item xs={3} sx={{ paddingRight: "1%" }}>
               <CourseDrawer handleChapterClick={handleChapterClick} />
-              {/* <CourseDrawerNew handleChapterClick={handleChapterClick} /> */}
             </Grid>
           )}
           <Grid item xs={isInContent ? 12 : 9}>

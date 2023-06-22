@@ -6,19 +6,19 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Box, Grid, Paper} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {updateQuizById} from "../../../features/slice/quizSlice";
+import { Box, Grid, Paper } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { updateQuizById } from "../../../features/slice/quizSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import QuestionAnswer from "./QuestionAnswer";
 import ChapterName from "./QuizField.jsx/ChapterName";
 import CourseName from "./QuizField.jsx/CourseName";
 import Duration from "./QuizField.jsx/Duration";
 import QuizName from "./QuizField.jsx/QuizName";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UpdateQuiz = ({ quizId }) => {
   const alert = useAlert();

@@ -1,36 +1,50 @@
+import SearchIcon from "@mui/icons-material/Search";
 import {
-    Box,
-    Button,
-    FormControl,
-    Grid,
-    InputLabel,
-    MenuItem,
-    Paper,
-    Select,
-    styled,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Typography,
+  Box,
+  Button,
+  FormControl,
+  Grid,
+  InputAdornment,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+  styled,
+  SvgIcon,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
 } from "@mui/material";
-import React, {useEffect, useRef, useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {setActivePath} from "../../../features/slice/activePathSlice";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { setActivePath } from "../../../features/slice/activePathSlice";
 import {
-    getProjectByWorkSpace,
-    resetProjects,
-    updateAProjectById,
+  getProjectByWorkSpace,
+  resetProjects,
+  updateAProjectById,
 } from "../../../features/slice/projectByWorkspaceSlice";
-import {getAllTeams} from "../../../features/slice/teamSlice";
-import {getWorkSpaceById, resetWorkspaces,} from "../../../features/slice/workSpaceSlice";
+import { getAllTeams, resetTeams } from "../../../features/slice/teamSlice";
+import {
+  getWorkSpaceById,
+  resetWorkspaces,
+} from "../../../features/slice/workSpaceSlice";
 
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import {downloadMappingSheet, getDataSetByProjectID,} from "../../../features/slice/datasetSlice";
+import io from "socket.io-client";
+
+import { useRef } from "react";
+import {
+  downloadMappingSheet,
+  getDataSetByProjectID,
+} from "../../../features/slice/datasetSlice";
 import InnerTable from "./InnerTable";
+import { socket } from "../../../App";
 
 import ProjectSearchIndex from "./ProjectSearch/ProjectSearchIndex";
 

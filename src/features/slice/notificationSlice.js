@@ -13,9 +13,9 @@
  * ------------------------
  */
 
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {realToken} from "../../helper/lib";
+import { realToken } from "../../helper/lib";
 
 const url = process.env.REACT_APP_SERVER_URL;
 const jwtSecret = process.env.REACT_APP_JWT_SECRET;
@@ -88,17 +88,6 @@ export const readAllNotification = createAsyncThunk(
         },
       }
     );
-  }
-);
-
-export const deleteBefore15DaysNotifications = createAsyncThunk(
-  "notification/deleteBefore15Days",
-  async () => {
-    return axios.delete(`${url}/notifications/delete-before-15days`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
   }
 );
 
@@ -178,16 +167,6 @@ const notificationSlice = createSlice({
       .addCase(readAllNotification.rejected, (state) => {
         state.isLoading = false;
       })
-      .addCase(deleteBefore15DaysNotifications.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(deleteBefore15DaysNotifications.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(deleteBefore15DaysNotifications.rejected, (state) => {
-        state.isLoading = false;
-      });
   },
 });
 

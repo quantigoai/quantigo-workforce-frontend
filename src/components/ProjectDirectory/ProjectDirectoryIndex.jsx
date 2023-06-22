@@ -60,13 +60,15 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
-        aria-label="first page">
+        aria-label="first page"
+      >
         {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
-        aria-label="previous page">
+        aria-label="previous page"
+      >
         {theme.direction === "rtl" ? (
           <KeyboardArrowRight />
         ) : (
@@ -76,7 +78,8 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page">
+        aria-label="next page"
+      >
         {theme.direction === "rtl" ? (
           <KeyboardArrowLeft />
         ) : (
@@ -86,7 +89,8 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page">
+        aria-label="last page"
+      >
         {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
@@ -94,8 +98,6 @@ function TablePaginationActions(props) {
 }
 
 const ProjectDirectoryIndex = () => {
-  const { user } = useSelector((state) => state);
-  const { role } = user.user;
   const [projectDirectorys, setProjectDirectory] = useState([]);
   const dispatch = useDispatch();
   const { projectDirectory } = useSelector((state) => state.projectDirectory);
@@ -193,7 +195,8 @@ const ProjectDirectoryIndex = () => {
               marginLeft: "0%",
               display: "flex",
             }}
-            container>
+            container
+          >
             <Typography variant="h4" style={{ color: "#090080" }}>
               Projects Directory
             </Typography>
@@ -205,7 +208,8 @@ const ProjectDirectoryIndex = () => {
               textAlign: "right",
               justifyContent: "end",
               paddingLeft: "0%",
-            }}>
+            }}
+          >
             <Grid container>
               <Grid item xs={6}>
                 <Grid
@@ -214,7 +218,8 @@ const ProjectDirectoryIndex = () => {
                     textAlign: "right",
                     justifyContent: "end",
                     paddingLeft: "0%",
-                  }}>
+                  }}
+                >
                   {/* //! need to moved */}
                   {/* <Box>
                     <Button
@@ -244,13 +249,7 @@ const ProjectDirectoryIndex = () => {
                 </Grid>
               </Grid>
               <Grid item xs={6}>
-                {role === "admin" || role == "project_manager" ? (
-                  <>
-                    <CreateProjectDirectory />
-                  </>
-                ) : (
-                  <></>
-                )}
+                <CreateProjectDirectory />
               </Grid>
             </Grid>
           </Grid>
@@ -265,7 +264,8 @@ const ProjectDirectoryIndex = () => {
               paddingLeft: "1%",
               paddingRight: "3%",
               paddingBottom: "0%",
-            }}>
+            }}
+          >
             <SearchProjectDirectory
               placeholder="Search "
               handleClickFilter={handleClickFilter}
@@ -293,7 +293,8 @@ const ProjectDirectoryIndex = () => {
               paddingLeft: "1%",
               paddingRight: "3%",
               // paddingBottom: "3%",
-            }}>
+            }}
+          >
             {projectDirectory.length === 0 ? (
               <>
                 <Grid container sx={{ paddingTop: "0%" }}>
@@ -316,80 +317,78 @@ const ProjectDirectoryIndex = () => {
                 <TableContainer>
                   <Table
                     aria-label="simple table"
-                    sx={{ border: "1px solid #DADCDF" }}>
+                    sx={{ border: "1px solid #DADCDF" }}
+                  >
                     {/* TODO : Convert this in a separate component  */}
                     <TableHead sx={{ background: "#F8F8F8", height: "80px" }}>
                       <TableRow>
                         <TableCell
                           align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          sx={{ color: "#969CAF", fontSize: "20px" }}
+                        >
                           SL
                         </TableCell>
                         <TableCell
                           align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          sx={{ color: "#969CAF", fontSize: "20px" }}
+                        >
                           Project Timeline
                         </TableCell>
 
                         <TableCell
                           align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          sx={{ color: "#969CAF", fontSize: "20px" }}
+                        >
                           Client Alias
                         </TableCell>
                         <TableCell
                           align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          sx={{ color: "#969CAF", fontSize: "20px" }}
+                        >
                           Project Name
                         </TableCell>
                         <TableCell
                           align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          sx={{ color: "#969CAF", fontSize: "20px" }}
+                        >
                           Industry Type
                         </TableCell>
 
                         <TableCell
                           align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          sx={{ color: "#969CAF", fontSize: "20px" }}
+                        >
                           Annotation Type
                         </TableCell>
                         <TableCell
                           align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          sx={{ color: "#969CAF", fontSize: "20px" }}
+                        >
                           Data Type
                         </TableCell>
 
                         <TableCell
                           align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          sx={{ color: "#969CAF", fontSize: "20px" }}
+                        >
                           PDR
                         </TableCell>
-                        {role === "admin" || role == "project_manager" ? (
-                          <>
-                            {" "}
-                            <TableCell
-                              align="center"
-                              sx={{ color: "#969CAF", fontSize: "20px" }}>
-                              Action
-                            </TableCell>
-                          </>
-                        ) : (
-                          <></>
-                        )}
-                        {role === "admin" || role == "project_manager" ? (
-                          <>
-                            {" "}
-                            <TableCell
-                              align="center"
-                              sx={{ color: "#969CAF", fontSize: "20px" }}>
-                              Update
-                            </TableCell>
-                          </>
-                        ) : (
-                          <></>
-                        )}
+
                         <TableCell
                           align="center"
+                          sx={{ color: "#969CAF", fontSize: "20px" }}
+                        >
+                          Action
+                        </TableCell>
+                        {/* <TableCell
+                          align="center"
                           sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          Update
+                        </TableCell> */}
+                        <TableCell
+                          align="center"
+                          sx={{ color: "#969CAF", fontSize: "20px" }}
+                        >
                           Details
                         </TableCell>
                       </TableRow>
@@ -424,26 +423,13 @@ const ProjectDirectoryIndex = () => {
                           <TableCell align="center">{item.Data_Type}</TableCell>
 
                           <TableCell align="center">{item.PDR}</TableCell>
-                          {role === "admin" || role == "project_manager" ? (
-                            <>
-                              <TableCell align="center">
-                                <ProjectDirectoryDeleteModal item={item} />
-                              </TableCell>
-                            </>
-                          ) : (
-                            <></>
-                          )}
 
-                          {role === "admin" || role == "project_manager" ? (
-                            <>
-                              <TableCell align="center">
-                                <UpdateProjectDirectory item={item} />
-                              </TableCell>
-                            </>
-                          ) : (
-                            <></>
-                          )}
-
+                          <TableCell align="center">
+                            <ProjectDirectoryDeleteModal item={item} />
+                          </TableCell>
+                          {/* <TableCell align="center">
+                            <UpdateProjectDirectory item={item} />
+                          </TableCell> */}
                           <TableCell align="center">
                             <ProjectDirectoryDetailsIndex item={item} />
                           </TableCell>

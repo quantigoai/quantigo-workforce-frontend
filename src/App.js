@@ -1,23 +1,30 @@
-import {Box} from "@mui/material";
+import { Box } from "@mui/material";
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
-import {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import io from "socket.io-client";
 import "./App.css";
 import Routers from "./components/primary/Routers/Routers";
 import RoutersLogin from "./components/primary/Routers/RoutersLogin";
 import Layout from "./components/shared/Layout/Layout";
-import {availableJobsForReviewer, getAllAssignedJob, getAllJobs, getMyJobs} from "./features/slice/jobSlice";
 import {
-    deleteBefore15DaysNotifications,
-    getAllNotifications,
-    getAllUnreadNotifications,
-    getLatestNotifications,
-    setNewNotification,
+  getAllJobs,
+  getMyJobs,
+  removeSingleJobFromAvailable,
+} from "./features/slice/jobSlice";
+import {
+  getAllNotifications,
+  getAllUnreadNotifications,
+  getLatestNotifications,
+  setNewNotification,
 } from "./features/slice/notificationSlice";
-import {setFromPreviousTheme} from "./features/slice/themeSlice";
-import {alreadyLogin, updateLoggedInUserManually, updateSingleUserManually,} from "./features/slice/userSlice";
+import { setFromPreviousTheme } from "./features/slice/themeSlice";
+import {
+  alreadyLogin,
+  updateLoggedInUserManually,
+  updateSingleUserManually,
+} from "./features/slice/userSlice";
 
 const CryptoJS = require("crypto-js");
 
@@ -68,29 +75,6 @@ function App() {
       }
     };
 
-    const handleJobBlockNotification = (notification, user) => {
-      storedUser.user._id === user._id &&
-        dispatch(updateLoggedInUserManually(user));
-      if (
-        notification.notificationFor.includes(storedUser.user.role) ||
-        notification.notificationForUserIds.includes(storedUser.user._id)
-      ) {
-        dispatch(getAllJobs());
-        notification.notificationFor.includes(storedUser.user._id) &&
-          dispatch(setNewNotification(notification));
-      }
-    };
-
-    const handleNewJobNotification = (notification, user) => {
-      if (
-        notification.notificationFor.includes(storedUser.user.role) ||
-        notification.notificationForUserIds.includes(storedUser.user._id)
-      ) {
-        dispatch(getAllJobs());
-        dispatch(setNewNotification(notification));
-      }
-    };
-
     const handleAntNotification = (notification, project) => {
       if (
         project.activeHub.includes(storedUser.user.hub) &&
@@ -117,7 +101,6 @@ function App() {
       ) {
         dispatch(setNewNotification(notification));
         dispatch(getMyJobs());
-        dispatch(availableJobsForReviewer());
       }
     };
 
@@ -131,19 +114,12 @@ function App() {
       }
     };
 
-    const handleJobTakersNotification = (notification, { job, targetUser }) => {
-      const storedUserRole = storedUser.user.role;
-      const storedUserId = storedUser.user._id;
-
-      if (targetUser._id === storedUserId) {
-        dispatch(updateLoggedInUserManually(targetUser));
-      }
-      if (notification.notificationFor.includes(storedUserRole)) {
-        dispatch(getAllJobs());
-        dispatch(getAllAssignedJob());
-      }
-      if (storedUserRole === "admin") {
-        dispatch(updateSingleUserManually({ user : targetUser }));
+    const handleJobTakersNotification = (notification, job) => {
+      if (
+        notification.notificationFor.includes(storedUser.user.role) ||
+        notification.notificationForUserIds.includes(storedUser.user._id)
+      ) {
+        dispatch(removeSingleJobFromAvailable(job));
       }
     };
 
@@ -161,11 +137,6 @@ function App() {
     socket.on("updateProjectPriority", handleAntNotification);
     socket.on("updateProjectHub", handleAntNotification);
     socket.on("updateProjectStatus", handleAntNotification);
-    socket.on("newJobAvailable", handleNewJobNotification);
-    
-    socket.on("reviewerAvailableJob", handleReviewerNotification);
-    
-    
     socket.on("takeJobReviewer", handleReviewerNotification);
     socket.on("takeJobAnnotator", handleJobTakersNotification);
     socket.on("reviewOnJobAccept", handleAnnotatorNotification);
@@ -178,8 +149,7 @@ function App() {
     socket.on("courseCompleteUser", handleNotification);
     socket.on("benchmarkCreate", handleNotification);
     socket.on("benchMarkUpdate", handleNotification);
-    socket.on("jobBlockAnnotator", handleJobBlockNotification);
-    socket.on("jobUnblockAnnotator", handleJobBlockNotification);
+    socket.on("jobBlockAnnotator", handleUserNotification);
 
     return () => {
       socket.off("notification", handleNotification);
@@ -197,10 +167,6 @@ function App() {
       socket.off("updateProjectHub", handleAntNotification);
       socket.off("updateProjectStatus", handleAntNotification);
 
-      socket.off("newJobAvailable", handleNewJobNotification);
-      socket.off("reviewerAvailableJob", handleReviewerNotification);
-
-
       socket.off("takeJobReviewer", handleReviewerNotification);
       socket.off("reviewOnJobAccept", handleAnnotatorNotification);
       socket.off("reviewOnJobReject", handleAnnotatorNotification);
@@ -212,19 +178,14 @@ function App() {
       socket.off("courseCompleteUser", handleNotification);
       socket.off("benchmarkCreate", handleNotification);
       socket.off("benchMarkUpdate", handleNotification);
-      socket.off("jobBlockAnnotator", handleJobBlockNotification);
-      socket.off("jobUnblockAnnotator", handleJobBlockNotification);
+      socket.off("jobBlockAnnotator", handleUserNotification);
     };
   }, [dispatch, storedUser.user.role]);
 
   useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(deleteBefore15DaysNotifications()).then((res) => {
-        dispatch(getAllNotifications());
-        dispatch(getLatestNotifications());
-        dispatch(getAllUnreadNotifications());
-      });
-    }
+    dispatch(getAllNotifications());
+    dispatch(getLatestNotifications());
+    dispatch(getAllUnreadNotifications());
   }, [storedUser.user.role]);
 
   return (

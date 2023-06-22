@@ -7,9 +7,9 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 
-import {Box, Typography} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import error from "../../../assets/images/error.jpg";
 
 const ErrorPage = () => {

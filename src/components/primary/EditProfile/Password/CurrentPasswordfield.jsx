@@ -4,47 +4,31 @@ import {
   FormControl,
   InputAdornment,
   InputLabel,
-  TextField,
 } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 
-const CurrentPasswordfield = ({ setCurrentPassword, CurrentPassword }) => {
-  const [showPassword, setShowPassword] = React.useState(false);
-  // const [password, setPassword] = useState("");
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-  const handlePassword = (e) => {
-    setCurrentPassword(e);
-  };
+const CurrentPasswordfield = () => {
   return (
     <>
-      <TextField
-        fullWidth
-        label="Current Password"
+      <FormControl
         variant="filled"
-        type={showPassword ? "text" : "password"}
-        id="filled-adornment-password"
-        value={CurrentPassword}
-        required={true}
-        autoComplete="off"
-        onChange={(e) => handlePassword(e.target.value)}
-        inputProps={{ minLength: 6 }}
-        sx={{ backgroundColor: "#FFFFFF" }}
-        InputProps={{
-          endAdornment: (
+        fullWidth
+        sx={{ backgroundColor: "#FFFFFF" }}>
+        <InputLabel> Current Password</InputLabel>
+        <FilledInput
+          type="password"
+          id="filled-adornment-password"
+          endAdornment={
             <InputAdornment
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
+              //   onClick={handleClickShowPassword}
+              //   onMouseDown={handleMouseDownPassword}
               sx={{ cursor: "pointer" }}
               position="end">
-              {showPassword ? <VisibilityOff /> : <Visibility />}
+              {/* {showPassword ? <VisibilityOff /> : <Visibility />} */}
             </InputAdornment>
-          ),
-        }}
-      />
+          }
+        />
+      </FormControl>
     </>
   );
 };

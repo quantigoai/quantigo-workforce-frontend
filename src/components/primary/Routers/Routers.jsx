@@ -7,7 +7,7 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 import React from "react";
-import {Route, Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import BenchMarkIndex from "../../BenchMarkNew/BenchMarkIndex";
 import BenchmarkList from "../../BenchMarkNew/BenchmarkList";
 import CreateBenchMarkNew from "../../BenchMarkNew/CreateBenchMarkNew";
@@ -46,7 +46,6 @@ import ShowResult from "../Quiz/QuizPage/ShowResult/ShowResult";
 import UpdateQuiz from "../Quiz/UpdateQuiz";
 import Skills from "../Skill/Skills";
 import UserListIndex from "../UserListNew/UserListIndex";
-import AllJobsForReviewer from "../Job/AllJobsForReviewer";
 
 const Routers = () => {
   return (
@@ -123,7 +122,6 @@ const Routers = () => {
         <Route path={"jobs"} element={<Job />}>
           <Route path={"create-job"} element={<CreateJob />} />
           <Route path={"alljobs"} element={<AllJobs />} />
-          <Route path={"availablejobs"} element={<AllJobsForReviewer />} />
           <Route
             path={"ongoingjobs"}
             element={<OngoingJob action={"jobs"} />}

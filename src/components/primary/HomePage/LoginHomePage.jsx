@@ -1,6 +1,6 @@
-import {Box, keyframes, styled} from "@mui/material";
+import { Box, Grid, keyframes, styled, Typography } from "@mui/material";
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Login from "../Auth/Login/Login";
 import "./bd.css";
 import HeaderNav from "./HeaderNav";

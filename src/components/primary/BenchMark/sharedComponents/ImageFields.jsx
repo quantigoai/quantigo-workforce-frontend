@@ -7,9 +7,17 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Box, FilledInput, FormControl, Grid, InputLabel, Paper, Typography,} from "@mui/material";
+import {
+  Box,
+  FilledInput,
+  FormControl,
+  Grid,
+  InputLabel,
+  Paper,
+  Typography,
+} from "@mui/material";
 import React from "react";
-import {useOutletContext} from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 const ImageFields = ({ isUpdate = false, bm }) => {
   const [

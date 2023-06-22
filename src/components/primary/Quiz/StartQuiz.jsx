@@ -8,12 +8,24 @@
  */
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import {Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, Typography,} from "@mui/material";
-import React, {useEffect} from "react";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate, useParams} from "react-router-dom";
-import {getAQuizById, submitQuizById,} from "../../../features/slice/quizSlice";
+import {
+  Box,
+  Button,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+} from "@mui/material";
+import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  getAQuizById,
+  submitQuizById,
+} from "../../../features/slice/quizSlice";
 
 const StartQuiz = () => {
   const {

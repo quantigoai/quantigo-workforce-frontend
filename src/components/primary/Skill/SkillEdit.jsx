@@ -1,13 +1,23 @@
-import {Box, Button, Dialog, DialogTitle, styled, TextField,} from "@mui/material";
-import React, {useEffect, useState} from "react";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogTitle,
+  styled,
+  TextField,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Tooltip from "@mui/material/Tooltip";
-import {useDispatch, useSelector} from "react-redux";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {updateASkill} from "../../../features/slice/skillSlice";
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
+import { useDispatch, useSelector } from "react-redux";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { updateASkill } from "../../../features/slice/skillSlice";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 
 const ButtonStyleDelete = styled(Button)({
   // backgroundColor: "#2D58FF",

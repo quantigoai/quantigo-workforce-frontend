@@ -6,17 +6,18 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Box, Button, Typography} from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import SingleNotification from "./SingleNotification";
 import dayjs from "dayjs";
 import {
-    getAllNotifications,
-    getAllUnreadNotifications,
-    getLatestNotifications,
-    readAllNotification,
+  getAllNotifications,
+  getAllUnreadNotifications,
+  getLatestNotifications,
+  readAllNotification,
 } from "../../../features/slice/notificationSlice";
-import {useAlert} from "react-alert";
+import { useAlert } from "react-alert";
 
 const convertDate = (date) => {
   return dayjs(date).format("DD MMM hh:mm A");

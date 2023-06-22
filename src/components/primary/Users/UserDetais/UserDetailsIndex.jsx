@@ -1,21 +1,20 @@
-import {Chip, Grid, styled, Typography} from "@mui/material";
+import { Chip, Grid, styled, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
 import * as React from "react";
-import {useState} from "react";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import u_multiply from "../../../../assets/images/u_multiply.png";
 import RoleChange from "../RoleChange/RoleChange";
 import UserSkillChange from "../SkillChange/UserSkillChange";
 import UserStatusChange from "../UserStatusChange/UserStatusChange";
+import { useState } from "react";
 import NidDetails from "../NidDetals/NidDetails";
-import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
+import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 import TakenTime from "../../../shared/CountDown/TakenTime";
 import axios from "axios";
-import {realToken} from "../../../../helper/lib";
+import { realToken } from "../../../../helper/lib";
 import JobStatusChange from "../JobStatusChange/JobStatusChange";
-
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
   // color: "#FFFFFF",
@@ -90,10 +89,11 @@ const UserDetailsIndex = ({ user }) => {
     <Box
       sx={{
         width: anchor === "top" || anchor === "bottom" ? "auto" : 550,
+        // padding: "4%",
       }}
       role="presentation"
-
-    >
+      //   onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}>
       <Box sx={{ paddingTop: "4%", paddingLeft: "4%" }}>
         <Grid container>
           <Grid item xs={10}>
@@ -116,10 +116,9 @@ const UserDetailsIndex = ({ user }) => {
             <>
               <Grid container sx={{ paddingBottom: "4%" }}>
                 <Grid
-                  item
+                item
                   xs={3}
-                  sx={{ justifyContent: "left", paddingBottom: "2%" }}
-                >
+                  sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                   <Typography variant="h8" sx={{ color: "#969CAF" }}>
                     Skill
                   </Typography>
@@ -143,11 +142,7 @@ const UserDetailsIndex = ({ user }) => {
             </>
           )}
           <Grid container>
-            <Grid
-              item
-              xs={3}
-              sx={{ justifyContent: "left", paddingBottom: "2%" }}
-            >
+            <Grid item xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
               <Typography variant="h8" sx={{ color: "#969CAF" }}>
                 Role
               </Typography>
@@ -167,11 +162,7 @@ const UserDetailsIndex = ({ user }) => {
             </Grid>
           </Grid>
           <Grid container>
-            <Grid
-              item
-              xs={3}
-              sx={{ justifyContent: "left", paddingBottom: "2%" }}
-            >
+            <Grid item xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
               <Typography variant="h8" sx={{ color: "#969CAF" }}>
                 Hub
               </Typography>
@@ -184,11 +175,7 @@ const UserDetailsIndex = ({ user }) => {
           </Grid>
 
           <Grid container>
-            <Grid
-              item
-              xs={3}
-              sx={{ justifyContent: "left", paddingBottom: "2%" }}
-            >
+            <Grid item xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
               <Typography variant="h8" sx={{ color: "#969CAF" }}>
                 Gender
               </Typography>
@@ -205,11 +192,7 @@ const UserDetailsIndex = ({ user }) => {
             </Grid>
           </Grid>
           <Grid container>
-            <Grid
-              item
-              xs={3}
-              sx={{ justifyContent: "left", paddingBottom: "2%" }}
-            >
+            <Grid item xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
               <Typography variant="h8" sx={{ color: "#969CAF" }}>
                 Date Of Birth
               </Typography>
@@ -222,11 +205,7 @@ const UserDetailsIndex = ({ user }) => {
           </Grid>
 
           <Grid container>
-            <Grid
-              item
-              xs={3}
-              sx={{ justifyContent: "left", paddingBottom: "2%" }}
-            >
+            <Grid item xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
               <Typography variant="h8" sx={{ color: "#969CAF" }}>
                 Phone No
               </Typography>
@@ -238,6 +217,18 @@ const UserDetailsIndex = ({ user }) => {
             </Grid>
           </Grid>
 
+          {/* <Grid  container >
+            <Grid xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
+              <Typography variant="h8" sx={{ color: "#969CAF" }}>
+                User Status
+              </Typography>
+            </Grid>
+            <Grid xs={7} sx={{ paddingLeft: "5%" }}>
+              <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                {user.isBlocked ? "Block" : "Unblock"}
+              </Typography>
+            </Grid>
+          </Grid> */}
           {user.role === "admin" ? (
             <></>
           ) : (
@@ -246,8 +237,7 @@ const UserDetailsIndex = ({ user }) => {
                 <Grid
                   xs={3}
                   item
-                  sx={{ justifyContent: "left", paddingBottom: "2%" }}
-                >
+                  sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                   <Typography variant="h8" sx={{ color: "#969CAF" }}>
                     Complete Course
                   </Typography>
@@ -271,11 +261,7 @@ const UserDetailsIndex = ({ user }) => {
             </>
           )}
           <Grid container>
-            <Grid
-              item
-              xs={3}
-              sx={{ justifyContent: "left", paddingBottom: "2%" }}
-            >
+            <Grid item xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
               <Typography variant="h8" sx={{ color: "#969CAF" }}>
                 Address
               </Typography>
@@ -296,7 +282,7 @@ const UserDetailsIndex = ({ user }) => {
               <Grid item xs={6} sx={{ paddingRight: "3%" }}>
                 {" "}
                 {user.documentNo ? (
-                  <ButtonStyle
+                  <ButtonStyle 
                     variant="outlined"
                     fullWidth
                     onClick={() =>
@@ -306,8 +292,7 @@ const UserDetailsIndex = ({ user }) => {
                         user.documentsType,
                         user.name
                       )
-                    }
-                  >
+                    }>
                     Document
                   </ButtonStyle>
                 ) : (
@@ -322,8 +307,7 @@ const UserDetailsIndex = ({ user }) => {
                         user.documentsType,
                         user.name
                       )
-                    }
-                  >
+                    }>
                     Document
                   </ButtonStyle>
                 )}
@@ -333,8 +317,7 @@ const UserDetailsIndex = ({ user }) => {
                   <ButtonStyle
                     variant="outlined"
                     fullWidth
-                    onClick={() => handleClick(user.signImage)}
-                  >
+                    onClick={() => handleClick(user.signImage)}>
                     NDA
                   </ButtonStyle>
                 ) : (
@@ -342,8 +325,7 @@ const UserDetailsIndex = ({ user }) => {
                     variant="outlined"
                     fullWidth
                     disabled
-                    onClick={() => handleClick(user.signImage)}
-                  >
+                    onClick={() => handleClick(user.signImage)}>
                     NDA
                   </ButtonStyle>
                 )}
@@ -404,33 +386,23 @@ const UserDetailsIndex = ({ user }) => {
       ) : (
         <></>
       )}
-      {user.role === "level_1_annotator" ||
-      user.role === "level_2_annotator" ||
-      user.role === "level_3_annotator" ||
-      user.role === "level_0_annotator" ? (
-        <>
-          {!user.isJobBlocked ? (
-            <></>
-          ) : (
-            <>
-              {" "}
-              <Box sx={{ paddingTop: "2%", paddingLeft: "4%" }}>
-                <Grid container>
-                  <Grid item xs={10}>
-                    <Typography variant="h7" sx={{ color: "#090080" }}>
-                      Job Change Status
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </Box>
-              <Box sx={{ padding: "4%" }}>
-                <JobStatusChange user={user} />
-              </Box>
-            </>
-          )}
-        </>
-      ) : (
+      {!user.isJobBlocked ? (
         <></>
+      ) : (
+        <>
+          <Box sx={{ paddingTop: "2%", paddingLeft: "4%" }}>
+            <Grid container>
+              <Grid item xs={10}>
+                <Typography variant="h7" sx={{ color: "#090080" }}>
+                  Job Change Status
+                </Typography>
+              </Grid>
+            </Grid>
+          </Box>
+          <Box sx={{ padding: "4%" }}>
+            <JobStatusChange user={user} />
+          </Box>
+        </>
       )}
     </Box>
   );
@@ -439,18 +411,16 @@ const UserDetailsIndex = ({ user }) => {
     <>
       <Box>
         {["right"].map((anchor) => (
-          <React.Fragment key={user._id}>
+          <React.Fragment key={anchor}>
             <ButtonStyle
               variant="outlined"
-              onClick={toggleDrawer(anchor, true)}
-            >
+              onClick={toggleDrawer(anchor, true)}>
               Details
             </ButtonStyle>
             <Drawer
               anchor={anchor}
               open={state[anchor]}
-              onClose={toggleDrawer(anchor, false)}
-            >
+              onClose={toggleDrawer(anchor, false)}>
               {list(anchor)}
             </Drawer>
           </React.Fragment>

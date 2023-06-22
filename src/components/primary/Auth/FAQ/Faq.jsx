@@ -1,15 +1,17 @@
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import {Box, Grid, Link, Typography} from "@mui/material";
+import { Box, Grid, Link, Typography } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
-import {styled} from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import bgimg from "../../../../assets/images/LoginBG.png";
 import arrow from "../../../../assets/images/u_arrow-left.png";
 import HeaderNav from "../../HomePage/HeaderNav";
 import "../../HomePage/bd.css";
+import logo from "../../../../assets/images/logo.png";
+import CommonDesign from "../../HomePage/CommonDesign";
 
 const BgBox = styled(Box)({
   backgroundImage: `url(${bgimg})`,

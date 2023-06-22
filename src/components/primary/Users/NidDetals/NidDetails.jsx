@@ -1,6 +1,6 @@
-import {Box, Grid, Modal, Paper, Skeleton, Typography} from "@mui/material";
+import { Box, Grid, Modal, Paper, Skeleton, Typography } from "@mui/material";
 import React from "react";
-import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
+import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 
 const style = {
   position: "absolute",

@@ -1,8 +1,17 @@
-import {Button, FormControl, Grid, InputLabel, MenuItem, Select, styled, TextField,} from "@mui/material";
-import React, {useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {UnblockJobsForUser,} from "../../../../features/slice/userSlice";
+import {
+  Button,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  styled,
+} from "@mui/material";
+import React from "react";
+import { useState } from "react";
+import { useAlert, positions } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { UnblockJobsForUser, deleteOrActivateUser } from "../../../../features/slice/userSlice";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -19,23 +28,14 @@ const JobStatusChange = ({ user }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const [actionStatus, setActionStatus] = useState("");
-  const [jobLimit, setJobLimit] = useState();
   const { isLoading } = useSelector((state) => state.user);
   const handleSetStatus = (e) => {
     setActionStatus(e.target.value);
   };
-  const handleChangeJobLimit = (e) => {
-    setJobLimit(e.target.value);
-  };
   const handleChange = () => {
-    const data = {
-      id: user._id,
-      updatedJobLimit: {
-        updatedJobLimit: jobLimit,
-      },
-    };
-    console.log(data);
-    dispatch(UnblockJobsForUser(data)).then((action) => {
+  
+
+    dispatch(UnblockJobsForUser(user._id)).then((action) => {
       if (action.payload?.status === 200) {
         alert.show(
           "Unblock Job Successfully",
@@ -47,45 +47,30 @@ const JobStatusChange = ({ user }) => {
       }
     });
   };
-
+  
   return (
     <>
       <Grid container gap={3}>
-        <Grid container>
-          <Grid item xs={6}>
-            <FormControl variant="filled" fullWidth>
-              <InputLabel id="demo-simple-select-label">
-                {" "}
-                job Statue Change
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                onChange={handleSetStatus}
-                defaultValue={""}
-                sx={{
-                  backgroundColor: "#F8F8F8",
-                  border: "1px solid #DADCDF",
-                  borderRadius: "4px",
-                }}
-              >
-                {/* <MenuItem value={"block"}>Block</MenuItem> */}
-                <MenuItem value={"unblock"}>Unblock</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={6} sx={{ paddingLeft: "1%" }}>
-            <TextField
-              fullWidth
-              label="Job Limit"
-              variant="filled"
-              type="number"
-              InputProps={{ inputProps: { min: 0 } }}
-              defaultValue={user.jobLimit}
-              onChange={(e) => handleChangeJobLimit(e)}
-              sx={{ backgroundColor: "#FFFFFF" }}
-            />
-          </Grid>
+        <Grid item xs={12}>
+          <FormControl variant="filled" fullWidth>
+            <InputLabel id="demo-simple-select-label">
+              {" "}
+              job Statue Change
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              onChange={handleSetStatus}
+              // defaultValue={user.role}
+              sx={{
+                backgroundColor: "#F8F8F8",
+                border: "1px solid #DADCDF",
+                borderRadius: "4px",
+              }}>
+              {/* <MenuItem value={"block"}>Block</MenuItem> */}
+              <MenuItem value={"unblock"}>Unblock</MenuItem>
+            </Select>
+          </FormControl>
         </Grid>
         <Grid container sx={{ justifyContent: "center" }}>
           {actionStatus === "" ? (
@@ -96,8 +81,7 @@ const JobStatusChange = ({ user }) => {
             <ButtonStyle
               variant="outlined"
               disabled={isLoading}
-              onClick={handleChange}
-            >
+              onClick={handleChange}>
               Action Status
             </ButtonStyle>
           )}

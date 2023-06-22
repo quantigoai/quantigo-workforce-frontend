@@ -6,11 +6,11 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Box, Grid} from "@mui/material";
-import React, {useMemo} from "react";
+import { Box, Grid } from "@mui/material";
+import React, { useMemo } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import dragiconplus from "../../../../assets/images/dragiconplus.svg";
-import {useDropzone} from "react-dropzone";
+import { useDropzone } from "react-dropzone";
 
 const baseStyle = {
   flex: 1,

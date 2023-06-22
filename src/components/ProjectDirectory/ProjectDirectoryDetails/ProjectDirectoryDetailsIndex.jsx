@@ -123,21 +123,21 @@ const ProjectDirectoryDetailsIndex = ({ item }) => {
               </Grid>
               <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
                 <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                  
-                  {/* <Link
+                  <Link
                     onClick={() => handleClick(item.Guideline)}
                     underline="hover"
                     sx={{
                       color: "blue",
                       cursor: "pointer",
-                    }}>
-                    {item.Guideline}
-                  </Link> */}
-                  <Button onClick={() => handleClick(item.Guideline)}>
+                    }}
+                  >
+                    Go to Guideline
+                  </Link>
+                  {/* <Button onClick={() => handleClick(item.Guideline)}>
                     Link
-                  </Button>
+                  </Button> */}
                 </Typography>
-              </Grid>   
+              </Grid>
             </Grid>
             <Grid
               container

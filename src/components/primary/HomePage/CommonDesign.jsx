@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Grid, Typography} from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import React from "react";
 
 const CommonDesign = ({ children }) => {

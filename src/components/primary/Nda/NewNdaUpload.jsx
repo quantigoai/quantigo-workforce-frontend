@@ -1,22 +1,22 @@
 import {
-    Button,
-    Checkbox,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-    FilledInput,
-    FormControl,
-    FormControlLabel,
-    FormGroup,
-    Grid,
-    IconButton,
-    InputAdornment,
-    InputLabel,
+  Button,
+  Checkbox,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  FilledInput,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  Grid,
+  IconButton,
+  InputAdornment,
+  InputLabel,
 } from "@mui/material";
 import React from "react";
-import {styled} from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import croxButton from "../../../assets/images/u_multiply.png";
 
 const ButtonStyle = styled(Button)({

@@ -1,7 +1,9 @@
 import CloseIcon from "@mui/icons-material/Close";
-import {Box, Button, Grid, Typography} from "@mui/material";
-import React from "react";
+import { Box, Button, Grid, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import PriorityFieldFilter from "./ProjectFilterFields/PriorityFieldFilter";
+import StatusFilterField from "./ProjectFilterFields/StatusFilterField";
 import ProjectTypeFilter from "./ProjectFilterFields/ProjectTypeFields";
 
 const MiniModelForProjectSearch = ({

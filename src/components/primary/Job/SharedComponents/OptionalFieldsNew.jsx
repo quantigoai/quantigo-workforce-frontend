@@ -14,10 +14,18 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {FilledInput, FormControl, Grid, InputAdornment, InputLabel, MenuItem, Select,} from "@mui/material";
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {getAllSkills} from "../../../../features/slice/skillSlice";
+import {
+  FilledInput,
+  FormControl,
+  Grid,
+  InputAdornment,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllSkills } from "../../../../features/slice/skillSlice";
 import SkillField from "../../Course/InputFields/SkillField";
 import styled from "@emotion/styled";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";

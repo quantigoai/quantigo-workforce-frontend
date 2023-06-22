@@ -1,10 +1,10 @@
 import React from "react";
-import {styled} from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import bgimg from "../../../../assets/images/LoginBG.png";
 import logo from "../../../../assets/images/logo.png";
-import {Box, Grid, Link, Typography} from "@mui/material";
+import { Box, Grid, Link, Typography } from "@mui/material";
 import Register from "./Register";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const BgBox = styled(Box)({
   backgroundImage: `url(${bgimg})`,

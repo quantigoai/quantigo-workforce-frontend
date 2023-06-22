@@ -12,7 +12,7 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import {configureStore} from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 
 import benchMarkReducer from "../slice/benchMarkSlice";
 import courseReducer from "../slice/courseSlice";

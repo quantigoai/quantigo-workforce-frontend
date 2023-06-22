@@ -4,6 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import SettingUpAccount from "./PagesForHowItWork/SettingUpAccount";
 import FirstPage from "./TabPages/FirstPage";
 import SettingUpAccountPage from "./TabPages/SettingUpAccountPage";
 import ThirdPageProfileSetup from "./TabPages/ThirdPageProfileSetup";
@@ -58,10 +59,9 @@ export default function LayoutUsingTab() {
         onChange={handleChange}
         aria-label="Vertical tabs example"
         sx={{
-          height: "80vh",
+          height: "100%",
           width: "230px",
-          borderRight: "1px solid #E1E8F5",
-          // borderRight: 1,
+          borderRight: 1,
           borderColor: "divider",
           paddingTop: "1%",
           textAlign: "left",
@@ -69,30 +69,30 @@ export default function LayoutUsingTab() {
         <Tab
           sx={{
             width: "290px",
-            color: "#828894",
+            color: "#FFFFFF",
             alignItems: "flex-start",
           }}
           label="What is QAI Workforce"
           {...a11yProps(0)}
         />
         <Tab
-          sx={{ width: "290px", color: "#828894", alignItems: "flex-start" }}
+          sx={{ width: "290px", color: "#FFFFFF", alignItems: "flex-start" }}
           label="Setting up account"
           {...a11yProps(1)}
         />
 
         <Tab
-          sx={{ width: "290px", color: "#828894", alignItems: "flex-start" }}
+          sx={{ width: "290px", color: "#FFFFFF", alignItems: "flex-start" }}
           label="Profile Setup"
           {...a11yProps(2)}
         />
         <Tab
-          sx={{ width: "290px", color: "#828894", alignItems: "flex-start" }}
+          sx={{ width: "290px", color: "#FFFFFF", alignItems: "flex-start" }}
           label="Course"
           {...a11yProps(3)}
         />
         <Tab
-          sx={{ width: "290px", color: "#828894", alignItems: "flex-start" }}
+          sx={{ width: "290px", color: "#FFFFFF", alignItems: "flex-start" }}
           label="Job"
           {...a11yProps(4)}
         />

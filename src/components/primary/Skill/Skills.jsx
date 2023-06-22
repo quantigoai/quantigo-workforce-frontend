@@ -1,28 +1,35 @@
 import {
-    Button,
-    Grid,
-    Paper,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    TextField,
-    Typography,
+  Button,
+  Grid,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
 } from "@mui/material";
-import {styled} from "@mui/material/styles";
-import {Box} from "@mui/system";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {setActivePath} from "../../../features/slice/activePathSlice";
-import {createASkill, getAllSkills,} from "../../../features/slice/skillSlice";
+import { styled } from "@mui/material/styles";
+import { Box } from "@mui/system";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { setActivePath } from "../../../features/slice/activePathSlice";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import {
+  createASkill,
+  deleteASkill,
+  getAllSkills,
+  validateSkill,
+} from "../../../features/slice/skillSlice";
 
 import SkillEdit from "./SkillEdit";
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import SkillDeleteModal from "./SkillDeleteModal";
+import { io } from "socket.io-client";
 // import io from "socket.io-client";
 
 const ButtonStyle = styled(Button)({

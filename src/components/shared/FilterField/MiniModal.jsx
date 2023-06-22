@@ -8,15 +8,14 @@
  */
 
 import CloseIcon from "@mui/icons-material/Close";
-import {Box, Button, Grid, Typography} from "@mui/material";
-import React, {useState} from "react";
-import {useSelector} from "react-redux";
-import {useLocation, useOutletContext} from "react-router-dom";
+import { Box, Button, Grid, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useLocation, useOutletContext } from "react-router-dom";
 import AttemptLeftField from "./AttemptLeftField";
 import DateField from "./DateField";
 import StatusChip from "./StatusChip";
 import UsersRadioGroup from "./UsersRadioGroup";
-import ProjectIdField from "./ProjectIdField";
 
 const MiniModal = () => {
   const [
@@ -39,12 +38,9 @@ const MiniModal = () => {
     setIsClicked,
     dateValue,
     setDateValue,
-    setProjectIdFilter,
-    projectIdFilter,
   ] = useOutletContext();
 
-  const { users, user } = useSelector((state) => state.user);
-  console.log("🚀 ~ file: MiniModal.jsx:44 ~ MiniModal ~ user:", user.role);
+  const { users } = useSelector((state) => state.user);
   const [value, setValue] = useState(""); // initialize value as an empty string
 
   const location = useLocation();
@@ -61,13 +57,15 @@ const MiniModal = () => {
           bgcolor: "background.paper",
           width: "570px",
           height: "350px",
-        }}>
+        }}
+      >
         <Box
           sx={{
             display: "flex",
             alignContent: "center",
             justifyContent: "space-between",
-          }}>
+          }}
+        >
           <Typography variant="h6">Filter by</Typography>
           <CloseIcon
             sx={{ color: "#2D58FF", cursor: "pointer", fontweight: "600 " }}
@@ -83,57 +81,22 @@ const MiniModal = () => {
           <Grid container spacing={2}>
             {location.pathname !== "/jobs/alljobs" && (
               <Grid item xs={6}>
-                {user.role === "level_1_annotator" ||
-                user.role === "level_0_annotator" ||
-                user.role === "level_2_annotator" ||
-                user.role === "level_3_annotator" ||
-                user.role === "reviewer" ? (
-                  <></>
-                ) : (
-                  <>
-                    {" "}
-                    <UsersRadioGroup
-                      users={users}
-                      handleChange={handleChange}
-                    />
-                  </>
-                )}
+                <UsersRadioGroup users={users} handleChange={handleChange} />
               </Grid>
             )}
             <Grid item xs={6}>
-              {/* {user.role === "level_1_annotator" ||
-              user.role === "level_0_annotator" ||
-              user.role === "level_2_annotator" ||
-              user.role === "level_3_annotator" ||
-              user.role === "reviewer" ? (
-                <></>
-              ) : ( */}
-                <>
-                 <ProjectIdField/>
-                  {/* <UsersRadioGroup
-                    users={users}
-                    handleChange={handleChange}
-                    isReviewers={true}
-                  /> */}
-                </>
-              {/* )} */}
+              <UsersRadioGroup
+                users={users}
+                handleChange={handleChange}
+                isReviewers={true}
+              />
             </Grid>
             {location.pathname !== "/jobs/alljobs" && (
               <Grid item xs={6}>
                 <AttemptLeftField />
               </Grid>
             )}
-            <Grid
-              item
-              xs={
-                user.role === "level_1_annotator" ||
-                user.role === "level_0_annotator" ||
-                user.role === "level_2_annotator" ||
-                user.role === "level_3_annotator" ||
-                user.role === "reviewer"
-                  ? 6
-                  : 6
-              }>
+            <Grid item xs={6}>
               <DateField />
             </Grid>
           </Grid>

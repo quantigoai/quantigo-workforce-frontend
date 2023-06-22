@@ -6,16 +6,22 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Box} from "@mui/material";
-import {styled} from "@mui/material/styles";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {checkUserByUserName, createAgUser, createQaiUser, signup,} from "../../../../features/slice/userSlice";
-import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
+import { Box } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {
+  checkUserByUserName,
+  createAgUser,
+  createQaiUser,
+  login,
+  signup,
+} from "../../../../features/slice/userSlice";
 import InputFields from "../InputFields/InputFields";
+import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 
 const BgBox = styled(Box)({
   display: "flex",
@@ -36,7 +42,6 @@ const Register = () => {
   const [isFieldValid, setIsFieldValid] = useState(false);
   const [isPhoneNumberCheck, setsPhoneNumberCheck] = useState(false);
   const [phone, setPhone] = useState("");
-  const [gender, setGender] = useState("");
   const [qaiUserName, setQaiUserName] = useState("");
   const [qaiErrorMessage, setQaiErrorMessage] = useState("");
   const [qaiErrorMessageCheck, setQaiErrorMessageCheck] = useState(false);
@@ -60,9 +65,7 @@ const Register = () => {
       setIsRegister(true);
     }
   };
-  const handleSerGender = (e) => {
-    setGender(e.target.value);
-  };
+
   useEffect(() => {
     if (
       isValidEmail &&
@@ -97,19 +100,10 @@ const Register = () => {
   const handleName = (e) => {
     setName(capitalizeFirstLetter(e));
   };
-  const [validUserName, setValidUserName] = useState(false);
   const handleQaiUserName = (e) => {
     setQaiUserName(e);
     dispatch(checkUserByUserName(e)).then((action) => {
       if (action.payload.status === 200) {
-        if (
-          action.payload.data.isExist &&
-          action.payload.data.message !== "This User Id is already taken"
-        ) {
-          setValidUserName(true);
-        } else {
-          setValidUserName(false);
-        }
         setQaiErrorMessage(action.payload.data.message);
       }
     });
@@ -131,7 +125,6 @@ const Register = () => {
     data.password = password;
     data.name = name;
     data.qaiUserName = qaiUserName;
-    data.gender = gender;
     const qaiCreateData = {
       loginName: data.qaiUserName,
       password: password,
@@ -145,7 +138,7 @@ const Register = () => {
     }
 
     const filterdData = data;
-
+  
     isSignup && hub
       ? dispatch(createQaiUser(qaiCreateData)).then((res) => {
           dispatch(createAgUser(qaiCreateData)).then((res) => {
@@ -204,15 +197,8 @@ const Register = () => {
               phone={phone}
               handleQaiUserName={handleQaiUserName}
               qaiErrorMessage={qaiErrorMessage}
-              setQaiErrorMessage={setQaiErrorMessage}
               qaiErrorMessageCheck={qaiErrorMessageCheck}
               setQaiUserName={setQaiUserName}
-              validUserName={validUserName}
-              setValidUserName={setValidUserName}
-              qaiUserName={qaiUserName}
-              handleSerGender={handleSerGender}
-              gender={gender}
-              setGender={setGender}
             />
           </form>
         </BgBox>

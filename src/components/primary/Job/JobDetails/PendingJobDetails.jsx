@@ -1,12 +1,12 @@
-import {Chip, Grid, styled, Typography} from "@mui/material";
+import { Chip, Grid, styled, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
 import * as React from "react";
 import u_multiply from "../../../../assets/images/u_multiply.png";
-import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
-import {useSelector} from "react-redux";
-
+import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
+import ViewColumnIcon from "@mui/icons-material/ViewColumn";
+import { useSelector } from "react-redux";
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
   // color: "#FFFFFF",
@@ -58,10 +58,11 @@ const PendingJobDetails = ({ job }) => {
         </Box>
         <Box sx={{ padding: "4%" }}>
           <Grid container>
-            <Grid
-              container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-              <Grid item xs={3} sx={{ justifyContent: "left" }}>
+            <Grid container>
+              <Grid
+                item
+                xs={3}
+                sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Title
                 </Typography>
@@ -72,23 +73,24 @@ const PendingJobDetails = ({ job }) => {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid
-              container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-              <Grid item xs={3} sx={{ justifyContent: "left" }}>
+            <Grid container sx={{ paddingBottom: "2%" }}>
+              <Grid
+                item
+                xs={3}
+                sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Skill
                 </Typography>
               </Grid>
               <Grid item xs={7} sx={{ paddingLeft: "20%" }}>
-                {job?.skills?.length === 0 ? (
+                {job.skills.length === 0 ? (
                   <>
                     {" "}
                     <Typography variant="body1">None</Typography>
                   </>
                 ) : (
                   <>
-                    {job?.skills?.map((skill) => (
+                    {job.skills.map((skill) => (
                       <>
                         <Grid key={skill._id} item gap={1}>
                           <Chip
@@ -113,41 +115,44 @@ const PendingJobDetails = ({ job }) => {
               <></>
             ) : (
               <>
-                <Grid
-                  container
-                  sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-                  <Grid item xs={3} sx={{ justifyContent: "left" }}>
+                <Grid container>
+                  <Grid
+                    item
+                    xs={3}
+                    sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                     <Typography variant="h8" sx={{ color: "#969CAF" }}>
                       Reviewer
                     </Typography>
                   </Grid>
                   <Grid item xs={7} sx={{ paddingLeft: "20%" }}>
                     <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                      {job?.reviewer?.qaiUserName}
+                      {job?.reviewer.qaiUserName}
                     </Typography>
                   </Grid>
                 </Grid>
               </>
             )}
 
-            <Grid
-              container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-              <Grid item xs={3} sx={{ justifyContent: "left" }}>
+            <Grid container>
+              <Grid
+                item
+                xs={3}
+                sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Path
                 </Typography>
               </Grid>
               <Grid item xs={7} sx={{ paddingLeft: "20%" }}>
                 <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                  {job.teamName} /{job.workspaceName}/{job.projectName}
+                  {job.teamName} /{job.projectName}
                 </Typography>
               </Grid>
             </Grid>
-            <Grid
-              container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-              <Grid item xs={3} sx={{ justifyContent: "left" }}>
+            <Grid container>
+              <Grid
+                item
+                xs={3}
+                sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Active Hub
                 </Typography>
@@ -156,19 +161,20 @@ const PendingJobDetails = ({ job }) => {
                 {job.activeHub &&
                   job.activeHub.map((item) => (
                     <>
-                      {/* <Box key={item}> */}
-                      <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                        {item} ,
-                      </Typography>
-                      {/* </Box> */}
+                      <Box key={item}>
+                        <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                          {item},
+                        </Typography>
+                      </Box>
                     </>
                   ))}
               </Grid>
             </Grid>
-            <Grid
-              container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-              <Grid item xs={3} sx={{ justifyContent: "left" }}>
+            <Grid container>
+              <Grid
+                item
+                xs={3}
+                sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Category
                 </Typography>
@@ -179,10 +185,11 @@ const PendingJobDetails = ({ job }) => {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid
-              container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-              <Grid item xs={3} sx={{ justifyContent: "left" }}>
+            <Grid container>
+              <Grid
+                item
+                xs={3}
+                sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Server
                 </Typography>
@@ -193,10 +200,11 @@ const PendingJobDetails = ({ job }) => {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid
-              container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-              <Grid item xs={3} sx={{ justifyContent: "left" }}>
+            <Grid container>
+              <Grid
+                item
+                xs={3}
+                sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Time Limit
                 </Typography>
@@ -208,7 +216,7 @@ const PendingJobDetails = ({ job }) => {
               </Grid>
             </Grid>
           </Grid>
-          {/* <Grid sx={{ border: "1px solid #DADCDF" }}></Grid> */}
+          <Grid sx={{ border: "1px solid #DADCDF" }}></Grid>
         </Box>
       </Box>
     </>

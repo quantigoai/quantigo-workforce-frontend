@@ -7,22 +7,22 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 import {
-    Box,
-    Button,
-    FormControl,
-    Grid,
-    InputLabel,
-    MenuItem,
-    Modal,
-    Paper,
-    Select,
-    styled,
-    TextField,
-    Typography,
+  Box,
+  Button,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Modal,
+  Paper,
+  Select,
+  styled,
+  TextField,
+  Typography,
 } from "@mui/material";
 import React from "react";
-import {useForm} from "react-hook-form";
-import {useSelector} from "react-redux";
+import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",

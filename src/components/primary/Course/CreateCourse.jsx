@@ -7,24 +7,30 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 
-import {Box, Grid, Paper, Stack, Typography} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {createCourse, getAllCourses,} from "../../../features/slice/courseSlice";
-import {getAllSkills} from "../../../features/slice/skillSlice";
+import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {
+  createCourse,
+  getAllCourses,
+  validateCourseName,
+} from "../../../features/slice/courseSlice";
+import { getAllSkills } from "../../../features/slice/skillSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import CategoryField from "./InputFields/CategoryField";
 import CoverImageField from "./InputFields/CoverImageField";
 import DescriptionField from "./InputFields/DescriptionField";
 import LanguageField from "./InputFields/LanguageField";
 import LevelField from "./InputFields/LevelField";
+import LiveSessionLink from "./InputFields/LiveSessionLink";
+import LiveSessionStartedTime from "./InputFields/LiveSessionStartedTime";
 import NameField from "./InputFields/NameField";
 import PreRequisiteCourse from "./InputFields/PreRequisiteCourse";
 import SkillField from "./InputFields/SkillField";
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;

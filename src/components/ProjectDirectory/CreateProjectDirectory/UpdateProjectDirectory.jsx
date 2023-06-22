@@ -69,7 +69,6 @@ const UpdateProjectDirectory = ({ item }) => {
   const handleUpdateProjectDirectory = (projectDirectory) => {
     setOpenModal(true);
   };
-
   return (
     <>
       <Button
@@ -144,7 +143,7 @@ const UpdateProjectDirectory = ({ item }) => {
                       variant="filled"
                       name="SINo"
                       label="Client Name"
-                      defaultValue={item.Client_Name}
+                      defaultValue={item.Project_Timeline}
                       {...register("Client_Name", {
                         required: false,
                       })}></TextField>
@@ -154,9 +153,9 @@ const UpdateProjectDirectory = ({ item }) => {
                       fullWidth
                       sx={{ backgroundColor: "#FFFFFF" }}
                       variant="filled"
-                      name="Client_Alias"
+                      name="Project_Timeline"
                       label="Client Alias"
-                      defaultValue={item.Client_Alias}
+                      defaultValue={item.Project_Timeline}
                       {...register("Client_Alias", {
                         required: false,
                       })}></TextField>
@@ -169,7 +168,7 @@ const UpdateProjectDirectory = ({ item }) => {
                       sx={{ backgroundColor: "#FFFFFF" }}
                       variant="filled"
                       name="SINo"
-                      defaultValue={item.Project_Name}
+                      defaultValue={item.Project_Timeline}
                       label="Project Name"
                       {...register("Project_Name", {
                         required: false,

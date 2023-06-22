@@ -7,25 +7,25 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 import {
-    Box,
-    Button,
-    Grid,
-    Paper,
-    Tab,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Tabs,
-    Typography,
+  Box,
+  Button,
+  Grid,
+  Paper,
+  Tab,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Tabs,
+  Typography,
 } from "@mui/material";
-import React, {useState} from "react";
-import {useSelector} from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import editIcon from "../../../assets/images/fi_edit-2.png";
-import {useForm} from "react-hook-form";
-import {useNavigate, useOutletContext} from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import PropTypes from "prop-types";
 
 function TabPanel(props) {

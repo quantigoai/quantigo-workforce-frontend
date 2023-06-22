@@ -1,7 +1,6 @@
-import {InputAdornment, TextField} from "@mui/material";
+import { InputAdornment, TextField } from "@mui/material";
 import React from "react";
 import phoneicon from "../../../../assets/images/IconPhone.png";
-
 const PhoneNumberfield = ({ phone, handlePhoneNumber }) => {
   return (
     <>

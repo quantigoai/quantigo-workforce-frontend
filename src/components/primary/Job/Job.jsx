@@ -6,16 +6,20 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {useTheme} from "@emotion/react";
+import { useTheme } from "@emotion/react";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
-import {Box, Grid, IconButton, Paper, Radio, Tab, Tabs} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {Outlet, useLocation, useNavigate} from "react-router-dom";
-import {availableJobsForReviewer, getAllAssignedJob, getAllJobs, getMyJobs,} from "../../../features/slice/jobSlice";
+import { Box, Grid, IconButton, Paper, Radio, Tab, Tabs } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import {
+  getAllAssignedJob,
+  getAllJobs,
+  getMyJobs,
+} from "../../../features/slice/jobSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 
 // import NotificationToaster from "../NotificationToaster/NotificationToaster";
@@ -45,13 +49,15 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
-        aria-label="first page">
+        aria-label="first page"
+      >
         {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
-        aria-label="previous page">
+        aria-label="previous page"
+      >
         {theme.direction === "rtl" ? (
           <KeyboardArrowRight />
         ) : (
@@ -61,7 +67,8 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page">
+        aria-label="next page"
+      >
         {theme.direction === "rtl" ? (
           <KeyboardArrowLeft />
         ) : (
@@ -71,7 +78,8 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page">
+        aria-label="last page"
+      >
         {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
@@ -92,8 +100,6 @@ const Job = () => {
   const [annotator, setAnnotator] = useState("");
   const [reviewer, setReviewer] = useState("");
   const [attemptLeft, setAttemptLeft] = useState(0);
-  const [projectIdFilter, setProjectIdFilter] = useState(0);
-  
   const [date, setDate] = useState("");
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [isClicked, setIsClicked] = React.useState("");
@@ -105,7 +111,6 @@ const Job = () => {
       ...(annotator ? { annotator } : {}),
       ...(reviewer ? { reviewerId: reviewer } : {}),
       ...(attemptLeft ? { attemptLeft } : {}),
-      ...(projectIdFilter ? { projectIdFilter } : {}),
       ...(date ? { date } : {}),
     };
     // TODO: need to fix this
@@ -129,7 +134,6 @@ const Job = () => {
     setAnnotator("");
     setReviewer("");
     setAttemptLeft("");
-    setProjectIdFilter("");
     setDate("");
     setDateValue(null);
   };
@@ -138,16 +142,11 @@ const Job = () => {
   };
 
   useEffect(() => {
-    if (role === "reviewer") {
-      dispatch(availableJobsForReviewer());
-    } else {
-      dispatch(getAllJobs());
-    }
+    dispatch(getAllJobs());
 
     dispatch(getMyJobs());
     dispatch(getAllAssignedJob());
     location.pathname === "/jobs/alljobs" && setValue1("Pending");
-    location.pathname === "/jobs/availablejobs" && setValue1("Pending");
     location.pathname === "/jobs/ongoingjobs" && setValue1("taken");
   }, []);
 
@@ -178,7 +177,8 @@ const Job = () => {
             sx={{
               display: "flex",
               pb: "2%",
-            }}>
+            }}
+          >
             <Grid
               container
               sx={{
@@ -186,7 +186,8 @@ const Job = () => {
                 display: "flex",
                 alignContent: "center",
                 alignItems: "center",
-              }}>
+              }}
+            >
               <CommonHeader
                 title="Jobs"
                 description="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "
@@ -212,7 +213,8 @@ const Job = () => {
                     indicatorColor="primary"
                     textColor="primary"
                     value={value1}
-                    onChange={handleChangeTag}>
+                    onChange={handleChangeTag}
+                  >
                     <Tab
                       value="Pending"
                       onClick={() => navigate("/jobs/alljobs")}
@@ -235,45 +237,7 @@ const Job = () => {
                 </Box>
               </Paper>
             </>
-          ) : (
-            // ) : role === "reviewer" ? (
-            //   <>
-            //     <Paper elevation={0} style={paperstyle}>
-            //       <Box sx={{ width: "100%" }}>
-            //         <Tabs
-            //           centered
-            //           sx={{
-            //             width: "100%",
-            //             display: "flex",
-            //           }}
-            //           variant="fullWidth"
-            //           indicatorColor="primary"
-            //           textColor="primary"
-            //           value={value1}
-            //           onChange={handleChangeTag}>
-            //           <Tab
-            //             value="Pending"
-            //             onClick={() => navigate("/jobs/availablejobs")}
-            //             control={<Radio />}
-            //             label="Available Job"
-            //           />
-            //           <Tab
-            //             value="taken"
-            //             onClick={() => navigate("/jobs/activejobs")}
-            //             control={<Radio />}
-            //             label="Active Job"
-            //           />
-            //           <Tab
-            //             value="archived"
-            //             onClick={() => navigate("/jobs/archivejobs")}
-            //             control={<Radio />}
-            //             label="Archive Job"
-            //           />
-            //         </Tabs>
-            //       </Box>
-            //     </Paper>
-            //   </>
-            // )
+          ) : role === "reviewer" ? (
             <>
               <Paper elevation={0} style={paperstyle}>
                 <Box sx={{ width: "100%" }}>
@@ -287,14 +251,43 @@ const Job = () => {
                     indicatorColor="primary"
                     textColor="primary"
                     value={value1}
-                    onChange={handleChangeTag}>
+                    onChange={handleChangeTag}
+                  >
+                    <Tab
+                      value="taken"
+                      onClick={() => navigate("/jobs/activejobs")}
+                      control={<Radio />}
+                      label="Active Job"
+                    />
+                    <Tab
+                      value="archived"
+                      onClick={() => navigate("/jobs/archivejobs")}
+                      control={<Radio />}
+                      label="Archive Job"
+                    />
+                  </Tabs>
+                </Box>
+              </Paper>
+            </>
+          ) : (
+            <>
+              <Paper elevation={0} style={paperstyle}>
+                <Box sx={{ width: "100%" }}>
+                  <Tabs
+                    centered
+                    sx={{
+                      width: "100%",
+                      display: "flex",
+                    }}
+                    variant="fullWidth"
+                    indicatorColor="primary"
+                    textColor="primary"
+                    value={value1}
+                    onChange={handleChangeTag}
+                  >
                     <Tab
                       value="Pending"
-                      onClick={() =>
-                        role === "reviewer"
-                          ? navigate("/jobs/availablejobs")
-                          : navigate("/jobs/alljobs")
-                      }
+                      onClick={() => navigate("/jobs/alljobs")}
                       control={<Radio />}
                       label="Available Job"
                     />
@@ -338,8 +331,6 @@ const Job = () => {
           setIsClicked,
           dateValue,
           setDateValue,
-          setProjectIdFilter,
-          projectIdFilter
         ]}
       />
     </>

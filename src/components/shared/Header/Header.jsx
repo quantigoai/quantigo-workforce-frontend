@@ -11,20 +11,20 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import {Avatar, Badge, Typography} from "@mui/material";
+import { Avatar, Badge, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import {styled as mstyled} from "@mui/material/styles";
-import React, {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { styled as mstyled } from "@mui/material/styles";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import line from "../../../assets/images/Line 1.png";
-import {setTheme} from "../../../features/slice/themeSlice";
-import {logout} from "../../../features/slice/userSlice";
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
+import { setTheme } from "../../../features/slice/themeSlice";
+import { logout } from "../../../features/slice/userSlice";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import NotificationModal from "../Notification/NotificationModal";
 
 const NavBarFull = mstyled(AppBar)({
@@ -84,18 +84,21 @@ const Header = () => {
         sx={{
           background: isLightTheme ? "#F5F5F5" : "#000c1f",
           color: isLightTheme ? "#000c1f" : "#F5F5F5",
-        }}>
+        }}
+      >
         <Box
           sx={{
             mx: 0,
             py: 2,
             px: 0,
-          }}>
+          }}
+        >
           <Box
             sx={{
               display: "flex",
               justifyContent: "flex-end",
-            }}>
+            }}
+          >
             <Button>
               {isLightTheme ? (
                 <DarkModeIcon onClick={() => dispatch(setTheme(false))} />
@@ -109,14 +112,16 @@ const Header = () => {
                 justifyContent: "flex-end",
                 alignItems: "center",
               }}
-              onClick={handleNotificationOpen}>
+              onClick={handleNotificationOpen}
+            >
               {allUnreadNotifications.length === 0 ? (
                 <NotificationsNoneIcon sx={{ color: "#1976d2" }} />
               ) : (
                 <>
                   <Badge
                     badgeContent={allUnreadNotifications.length}
-                    color="primary">
+                    color="primary"
+                  >
                     <NotificationsActiveIcon sx={{ color: "#1976d2" }} />
                   </Badge>
                 </>
@@ -148,7 +153,8 @@ const Header = () => {
                     sx={{
                       color: isLightTheme ? "#1D1D1D" : "#ffffff",
                     }}
-                    variant="body2">
+                    variant="body2"
+                  >
                     {name}
                   </Typography>
                   <Typography sx={{ color: "#969CAF" }} variant="caption">
@@ -161,13 +167,9 @@ const Header = () => {
                       : role === "level_3_annotator"
                       ? "Level 3 Annotator"
                       : role === "delivery_manager"
-                      ? "Project Delivery Lead"
+                      ? "Delivery Manager"
                       : role === "project_lead"
-                      ? "Delivery Lead"
-                      : role === "project_coordinator"
-                      ? "Project Coordinator"
-                      : role === "project_manager"
-                      ? "Project Manager"
+                      ? "Project Lead"
                       : role === "recruitment_manager"
                       ? "Recruitment Manager"
                       : capitalizeFirstLetter(role)}
@@ -183,7 +185,8 @@ const Header = () => {
                     }}
                     anchorEl={anchorEl}
                     open={open}
-                    onClose={handleClose}>
+                    onClose={handleClose}
+                  >
                     <MenuItem onClick={handleEditProfile}>
                       Edit Profile
                     </MenuItem>

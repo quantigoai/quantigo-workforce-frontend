@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Grid, TextField} from "@mui/material";
+import { Grid, TextField } from "@mui/material";
 import React from "react";
 
 const NameField = ({ course = {}, register, nameValidation }) => {

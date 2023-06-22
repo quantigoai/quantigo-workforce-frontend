@@ -1,4 +1,4 @@
-import { Box, Button, Chip, Grid, Paper, Typography } from "@mui/material";
+import { Box, Chip, Grid, Paper, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useAlert } from "react-alert";
@@ -24,9 +24,6 @@ import ProfilePictureIndex from "./ProfilePicture/ProfilePictureIndex";
 import SkillShowUser from "./SkillShowUser";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import ActivateDeactivateStatus from "./ActivateDeactivateStatus";
-import ResetPassword from "./Password/ResetPassword";
-import ConfirmPassword from "./Password/ConfirmPassword";
-import ChangePasswordIndex from "./Password/ChangePasswordIndex";
 const paperStyle = {
   width: "80vw",
 };
@@ -69,9 +66,6 @@ const EditProfileIndex = () => {
   };
 
   const handleuploadImage = () => {};
-  const handleChangePassword = () => {
-    console.log("hittt");
-  };
 
   const onSubmit = (data) => {
     const finalData = {
@@ -106,7 +100,8 @@ const EditProfileIndex = () => {
               container
               sx={{
                 paddingBottom: "2%",
-              }}>
+              }}
+            >
               <CommonHeader
                 title="Profile"
                 // description={}
@@ -119,7 +114,8 @@ const EditProfileIndex = () => {
               container
               sx={{
                 paddingBottom: "2%",
-              }}>
+              }}
+            >
               <CommonHeader
                 title="Show Profile"
                 // description={}
@@ -241,43 +237,24 @@ const EditProfileIndex = () => {
               </Grid>
             </Grid>
           </Box>
-          <Box sx={{ padding: "2%" }}>
+          {/* <Box sx={{ padding: "2%" }}>
             <Grid container sx={{ paddingBottom: "1%" }}>
               <Typography variant="h7" sx={{ color: "#090080" }}>
                 Change Password
               </Typography>
             </Grid>
-            {/* <Grid container>
+            <Grid  container >
               <Grid xs={4} sx={{ paddingRight: "1%" }}>
                 <CurrentPasswordfield />
               </Grid>
               <Grid xs={4} sx={{ paddingRight: "1%" }}>
-                <ResetPassword />
+                <CurrentPasswordfield />
               </Grid>
               <Grid xs={4}>
-                <ConfirmPassword />
+                <CurrentPasswordfield />
               </Grid>
-            </Grid> */}
-            <Grid xs={4}>
-              <ChangePasswordIndex />
-              {/*               
-              <Button
-                variant="contained"
-                sx={{
-                  height: "45px",
-                  backgroundColor: "#2D58FF",
-                  color: "#FFFFFF",
-                  "&:hover": {
-                    backgroundColor: "#FF9A45",
-                    color: "#1D1D1D",
-                  },
-                  borderRadius: "2px",
-                }}
-                onClick={() => handleChangePassword()}>
-                Change Password
-              </Button> */}
             </Grid>
-          </Box>
+          </Box> */}
         </Paper>
       </form>
     </>

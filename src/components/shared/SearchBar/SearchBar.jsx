@@ -7,13 +7,15 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 import SearchIcon from "@mui/icons-material/Search";
-import {IconButton, Paper, Popover, styled} from "@mui/material";
+import { IconButton, Paper, Popover, Typography, styled } from "@mui/material";
 import * as React from "react";
 import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
+import MenuIcon from "@mui/icons-material/Menu";
+import DirectionsIcon from "@mui/icons-material/Directions";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import MiniModal from "../FilterField/MiniModal";
-import {useLocation, useOutletContext} from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 const CustomFilterIcon = styled(FilterAltIcon)({
   color: "rgba(45, 88, 255, 1)",
@@ -41,11 +43,9 @@ const SearchBar = ({ placeholder, func }) => {
     setIsClicked,
     dateValue,
     setDateValue,
-    setProjectIdFilter,
-    projectIdFilter,
   ] = useOutletContext();
   // const [anchorEl, setAnchorEl] = React.useState(null);
-  const location = useLocation();
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -56,17 +56,20 @@ const SearchBar = ({ placeholder, func }) => {
     <>
       <Paper
         component="form"
+        
         sx={{
           p: "2px 4px",
           display: "flex",
           alignItems: "center",
           width: "100%",
-        }}>
+        }}
+      >
         <IconButton
           disabled
           type="button"
           sx={{ p: "10px" }}
-          aria-label="search">
+          aria-label="search"
+        >
           <SearchIcon />
         </IconButton>
         <InputBase
@@ -75,20 +78,10 @@ const SearchBar = ({ placeholder, func }) => {
           onChange={func}
           inputProps={{ "aria-label": placeholder }}
         />
-        {location.pathname === "/jobs/availablejobs" ? (
-          <></>
-        ) : (
-          <>
-            {" "}
-            <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-            <IconButton
-              sx={{ p: "10px" }}
-              aria-label="menu"
-              onClick={handleClick}>
-              <CustomFilterIcon />
-            </IconButton>
-          </>
-        )}
+        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+        <IconButton sx={{ p: "10px" }} aria-label="menu" onClick={handleClick}>
+          <CustomFilterIcon />
+        </IconButton>
       </Paper>
       <Popover
         id={id}
@@ -98,7 +91,8 @@ const SearchBar = ({ placeholder, func }) => {
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "left",
-        }}>
+        }}
+      >
         <MiniModal />
       </Popover>
     </>

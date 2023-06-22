@@ -160,6 +160,7 @@ const UserListIndex = ({ action }) => {
   const [isClicked, setIsClicked] = React.useState("");
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleChangeSkills = (event) => {
+   
     const {
       target: { value },
     } = event;
@@ -343,6 +344,7 @@ const UserListIndex = ({ action }) => {
   //filter
   const handleChange = (e) => {
     setSearch(e.target.value);
+   
   };
   const filtered = filterUsers.filter((entry) =>
     Object.values(entry).some(
@@ -394,7 +396,7 @@ const UserListIndex = ({ action }) => {
 
   const popperOpen = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
-
+  
   return (
     <>
       <>
@@ -600,13 +602,9 @@ const UserListIndex = ({ action }) => {
                             : user.role === "level_3_annotator"
                             ? "Level 3 Annotator"
                             : user.role === "delivery_manager"
-                            ? "Project Delivery Lead"
+                            ? "Delivery Manager"
                             : user.role === "project_lead"
-                            ? "Delivery Lead"
-                            : user.role === "project_coordinator"
-                            ? "Project Coordinator"
-                            : user.role === "project_manager"
-                            ? "Project Manager"
+                            ? "Project Lead"
                             : user.role === "recruitment_manager"
                             ? "Recruitment Manager"
                             : capitalizeFirstLetter(user?.role)}

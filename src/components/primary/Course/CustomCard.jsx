@@ -6,16 +6,23 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Box, Button, CircularProgress, Grid, Typography} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { Box, Button, CircularProgress, Grid, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import imageSample from "../../../assets/images/img.png";
-import {getACourseByID, getAllChapterFromACourse, getCourseQuizzesResults,} from "../../../features/slice/courseSlice";
+import {
+  getACourseByID,
+  getAllChapterFromACourse,
+  getCourseQuizzesResults,
+} from "../../../features/slice/courseSlice";
 import CategoryChip from "./CategoryChip";
 import LevelChip from "./CourseCardActionLebel/LevelChip";
 import LanguageChip from "./LanguageChip";
-import {setActiveChapterIndex, setActiveCourseId,} from "../../../features/slice/activePathSlice";
+import {
+  setActiveChapterIndex,
+  setActiveCourseId,
+} from "../../../features/slice/activePathSlice";
 
 const MyCustomCard = {
   padding: "0 0 0 0 ",

@@ -1,8 +1,16 @@
-import {Button, FormControl, Grid, InputLabel, MenuItem, Select, styled,} from "@mui/material";
-import React, {useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {deleteOrActivateUser} from "../../../../features/slice/userSlice";
+import {
+  Button,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  styled,
+} from "@mui/material";
+import React, { useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteOrActivateUser } from "../../../../features/slice/userSlice";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",

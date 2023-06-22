@@ -15,50 +15,22 @@
 // Flat create benchmark should be fixed
 // Default value is not set in text field for flat bm update benchmark
 
-import {Button, Grid,} from "@mui/material";
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useOutletContext} from "react-router-dom";
-import NameDescFIeld from "../primary/BenchMark/sharedComponents/NameDescFIeld";
+import { Button, Grid } from "@mui/material";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getProjectMeta,
+  getProjectMetaAg,
+} from "../../features/slice/benchMarkSlice";
 import CommonMetaFields from "../primary/BenchMark/sharedComponents/CommonMeta/CommonMetaFields";
-import {getProjectMeta, getProjectMetaAg,} from "../../features/slice/benchMarkSlice";
 import ImageFields from "../primary/BenchMark/sharedComponents/ImageFields";
+import NameDescFIeld from "../primary/BenchMark/sharedComponents/NameDescFIeld";
 
 const UpdateBenchMarkNew = () => {
-  const [
-    handleDetails,
-    handleChangeServer,
-    handleChangeCategory,
-    handleChangeTeam,
-    handleChangeWorkspace,
-    handleChangeProject,
-    handleChangeName,
-    handleChangeDescription,
-    handleChange,
-    handleCreateTest,
-    handleClassflatvalue,
-    value,
-    value1,
-    handleChangeTag,
-    handleInputChange,
-    server,
-    setServer,
-    category,
-    setCategory,
-    handleChangeclasses,
-    handleTest,
-    register,
-    customData,
-    setCustomData,
-    imageData,
-    setImageData,
-  ] = useOutletContext();
   const { benchMark } = useSelector((state) => state.benchMark);
 
-  const { teams } = useSelector((state) => state.team);
-  const { workspaces } = useSelector((state) => state.workspace);
-  const { projects } = useSelector((state) => state.project);
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (benchMark.server_agent) {
       if (benchMark.server_agent === "ag") {
@@ -68,34 +40,6 @@ const UpdateBenchMarkNew = () => {
       }
     }
   }, []);
-
-  // const [classGrid, setClassGrid] = useState(4);
-  // const [tagGrid, setTagGrid] = useState(4);
-  // const classesLength = benchMark?.classesBenchMark.length;
-  // const tagLength = benchMark?.tagsBenchMark.length;
-  // useEffect(() => {
-  //   if (classesLength === 1) {
-  //     setClassGrid(12);
-  //   } else if (classesLength === 2) {
-  //     setClassGrid(6);
-  //   } else if (classesLength === 4) {
-  //     setClassGrid(6);
-  //   } else {
-  //     setClassGrid(4);
-  //   }
-  // }, [classesLength]);
-
-  // useEffect(() => {
-  //   if (tagLength === 1) {
-  //     setTagGrid(12);
-  //   } else if (tagLength === 2) {
-  //     setTagGrid(6);
-  //   } else if (tagLength === 4) {
-  //     setTagGrid(6);
-  //   } else {
-  //     setTagGrid(4);
-  //   }
-  // }, [tagLength]);
 
   return (
     <>

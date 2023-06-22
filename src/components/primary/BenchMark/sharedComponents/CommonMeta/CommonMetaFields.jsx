@@ -7,20 +7,20 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 import {
-    Box,
-    FilledInput,
-    FormControl,
-    FormControlLabel,
-    Grid,
-    InputLabel,
-    Paper,
-    Radio,
-    RadioGroup,
-    Typography,
+  Box,
+  FilledInput,
+  FormControl,
+  FormControlLabel,
+  Grid,
+  InputLabel,
+  Paper,
+  Radio,
+  RadioGroup,
+  Typography,
 } from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useSelector} from "react-redux";
-import {useOutletContext} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useOutletContext } from "react-router-dom";
 
 const CommonMetaFields = ({ isUpdate = false, renderItems, bm }) => {
   const [
@@ -88,7 +88,8 @@ const CommonMetaFields = ({ isUpdate = false, renderItems, bm }) => {
             <Grid
               container
               xs={12}
-              sx={{ paddingLeft: "0%", paddingTop: "0%" }}>
+              sx={{ paddingLeft: "0%", paddingTop: "0%" }}
+            >
               <Typography variant="subtitle" sx={{ color: "#090080" }}>
                 {renderItems === "classes" ? "Classes" : "Tags"}
               </Typography>
@@ -109,7 +110,8 @@ const CommonMetaFields = ({ isUpdate = false, renderItems, bm }) => {
                   value={renderItems === "classes" ? value : value1}
                   onChange={
                     renderItems === "classes" ? handleChange : handleChangeTag
-                  }>
+                  }
+                >
                   <FormControlLabel
                     value="bench"
                     control={<Radio />}
@@ -148,7 +150,8 @@ const CommonMetaFields = ({ isUpdate = false, renderItems, bm }) => {
                           <Grid xs={12} sx={{ pb: "1%" }}>
                             <Typography
                               variant="body2"
-                              sx={{ color: "#090080" }}>
+                              sx={{ color: "#090080" }}
+                            >
                               {renderItems === "classes" ? row.title : row.name}
                             </Typography>
                           </Grid>
@@ -159,7 +162,8 @@ const CommonMetaFields = ({ isUpdate = false, renderItems, bm }) => {
                                 fullWidth
                                 sx={{
                                   backgroundColor: "#FFFFFF",
-                                }}>
+                                }}
+                              >
                                 <InputLabel>Time (Seconds)</InputLabel>
                                 <FilledInput
                                   fullWidth
@@ -211,7 +215,8 @@ const CommonMetaFields = ({ isUpdate = false, renderItems, bm }) => {
                                 fullWidth
                                 sx={{
                                   backgroundColor: "#FFFFFF",
-                                }}>
+                                }}
+                              >
                                 <InputLabel htmlFor="filled-adornment-password">
                                   Count (Avg)
                                 </InputLabel>
@@ -277,7 +282,8 @@ const CommonMetaFields = ({ isUpdate = false, renderItems, bm }) => {
                           fullWidth
                           sx={{
                             backgroundColor: "#FFFFFF",
-                          }}>
+                          }}
+                        >
                           <InputLabel htmlFor="filled-adornment-password">
                             Time (Second)
                           </InputLabel>
@@ -310,7 +316,8 @@ const CommonMetaFields = ({ isUpdate = false, renderItems, bm }) => {
                           fullWidth
                           sx={{
                             backgroundColor: "#FFFFFF",
-                          }}>
+                          }}
+                        >
                           <InputLabel htmlFor="filled-adornment-password">
                             Count (Avg)
                           </InputLabel>

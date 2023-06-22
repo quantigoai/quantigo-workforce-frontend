@@ -8,23 +8,22 @@
  */
 
 import {
-    Box,
-    Grid,
-    Paper,
-    Tab,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Tabs,
-    Typography,
+  Box,
+  Grid,
+  Paper,
+  Tab,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Tabs,
+  Typography,
 } from "@mui/material";
 import PropTypes from "prop-types";
 import React from "react";
-import {useSelector} from "react-redux";
-import {useNavigate, useOutletContext} from "react-router-dom";
+import { useSelector } from "react-redux";
 import CommonHeader from "../shared/CustomComponenet/CommonHeader/CommonHeader";
 
 function TabPanel(props) {
@@ -36,7 +35,8 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      {...other}>
+      {...other}
+    >
       {value === index && (
         <Box sx={{ p: 3 }}>
           <Typography>{children}</Typography>
@@ -60,23 +60,12 @@ function a11yProps(index) {
 }
 
 const SingleBenchmarkNew = () => {
-  const [
-    handleDetails,
-    handleChangeServer,
-    handleChangeCategory,
-    handleChangeTeam,
-    handleChangeWorkspace,
-    handleChangeProject,
-  ] = useOutletContext();
-
   const { benchMark } = useSelector((state) => state.benchMark);
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  const navigate = useNavigate();
 
   const paperStyleList = {
     width: "80vw",
@@ -94,59 +83,18 @@ const SingleBenchmarkNew = () => {
       {benchMark && Object.keys(benchMark).length > 0 && (
         <>
           <Paper elevation={0} style={paperStyleList}>
-            {/* <Grid container>
             <Grid
               container
-              xs={10}
-              sx={{ paddingLeft: "4%", paddingTop: "2%" }}
+              sx={{ paddingLeft: "4%", paddingRight: "4%", paddingTop: "2%" }}
             >
-              <Grid xs={12}>
-                <Typography variant="h5" sx={{ color: "#090080" }}>
-                  {benchMark?.name}
-                </Typography>
-              </Grid>
-              <Grid xs={12}>
-                <Typography variant="caption" sx={{ color: "#969CAF" }}>
-                  {benchMark?.description}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              xs={2}
-              sx={{
-                justifyContent: "right",
-                paddingRight: "4%",
-                paddingTop: "2%",
-              }}
-            >
-              <Button
-                onClick={() => navigate("/benchmark/update")}
-                sx={{
-                  border: "1px solid #2D58FF",
-                  color: "#2D58FF",
-                  borderRadius: "2px",
-                  backgroundColor: "#FFFFFF",
-                  width: "105px",
-                }}
-              >
-                <img src={editIcon} /> EDIT
-              </Button>
-            </Grid>
-          </Grid> */}
-
-            {/* class ,Tag and image annotation   */}
-
-            <Grid
-              container
-              sx={{ paddingLeft: "4%", paddingRight: "4%", paddingTop: "2%" }}>
               <Grid xs={12}>
                 <Box sx={{ width: "100%" }}>
                   <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                     <Tabs
                       value={value}
                       onChange={handleChange}
-                      aria-label="basic tabs example">
+                      aria-label="basic tabs example"
+                    >
                       <Tab label="Class" {...a11yProps(0)} />
                       <Tab label="Tag" {...a11yProps(1)} />
                       <Tab label="Image" {...a11yProps(2)} />
@@ -171,7 +119,8 @@ const SingleBenchmarkNew = () => {
                                 "&:last-child td, &:last-child th": {
                                   border: 0,
                                 },
-                              }}>
+                              }}
+                            >
                               <TableCell align="left">{i + 1}</TableCell>
 
                               <TableCell align="left">{row.title}</TableCell>
@@ -204,7 +153,8 @@ const SingleBenchmarkNew = () => {
                                 "&:last-child td, &:last-child th": {
                                   border: 0,
                                 },
-                              }}>
+                              }}
+                            >
                               <TableCell align="left">{i + 1}</TableCell>
                               <TableCell align="left">{row.name}</TableCell>
                               <TableCell align="left">{row.value}</TableCell>
@@ -230,7 +180,8 @@ const SingleBenchmarkNew = () => {
                           <TableRow
                             sx={{
                               "&:last-child td, &:last-child th": { border: 0 },
-                            }}>
+                            }}
+                          >
                             <TableCell align="left">1</TableCell>
                             <TableCell align="left">
                               {benchMark.imageBenchMark.value}

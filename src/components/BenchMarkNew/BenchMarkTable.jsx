@@ -1,29 +1,29 @@
-import {
-    Box,
-    Button,
-    Grid,
-    IconButton,
-    InputAdornment,
-    Paper,
-    SvgIcon,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TablePagination,
-    TableRow,
-    TextField,
-} from "@mui/material";
-import {useTheme} from "@emotion/react";
-import React, {useState} from "react";
-import {useOutletContext} from "react-router-dom";
-import SearchIcon from "@mui/icons-material/Search";
+import { useTheme } from "@emotion/react";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
-import {capitalizeFirstLetter} from "../../helper/capitalizeFirstWord";
+import SearchIcon from "@mui/icons-material/Search";
+import {
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  InputAdornment,
+  Paper,
+  SvgIcon,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
+  TextField,
+} from "@mui/material";
+import React, { useState } from "react";
+import { useOutletContext } from "react-router-dom";
+import { capitalizeFirstLetter } from "../../helper/capitalizeFirstWord";
 
 const paperStyle = {
   padding: "0px 0px",
@@ -56,13 +56,15 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
-        aria-label="first page">
+        aria-label="first page"
+      >
         {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
-        aria-label="previous page">
+        aria-label="previous page"
+      >
         {theme.direction === "rtl" ? (
           <KeyboardArrowRight />
         ) : (
@@ -72,7 +74,8 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page">
+        aria-label="next page"
+      >
         {theme.direction === "rtl" ? (
           <KeyboardArrowLeft />
         ) : (
@@ -82,7 +85,8 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page">
+        aria-label="last page"
+      >
         {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
@@ -97,7 +101,7 @@ const BenchMarkTable = ({ benchMarks }) => {
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
-  //   paggination
+  //   pagination
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -115,7 +119,6 @@ const BenchMarkTable = ({ benchMarks }) => {
     )
   );
 
-  // const 
   return (
     <>
       <Box>
@@ -128,7 +131,8 @@ const BenchMarkTable = ({ benchMarks }) => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "0%",
-              }}>
+              }}
+            >
               <TextField
                 fullWidth
                 InputProps={{
@@ -153,57 +157,68 @@ const BenchMarkTable = ({ benchMarks }) => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "3%",
-              }}>
+              }}
+            >
               <TableContainer>
                 <Table
                   aria-label="simple table"
-                  sx={{ border: "1px solid #DADCDF" }}>
+                  sx={{ border: "1px solid #DADCDF" }}
+                >
                   {/* TODO : Convert this in a separate component  */}
                   <TableHead sx={{ background: "#F8F8F8", height: "80px" }}>
                     <TableRow>
                       <TableCell
                         align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        sx={{ color: "#969CAF", fontSize: "20px" }}
+                      >
                         SL
                       </TableCell>
                       <TableCell
                         align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        sx={{ color: "#969CAF", fontSize: "20px" }}
+                      >
                         Name
                       </TableCell>
                       <TableCell
                         align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        sx={{ color: "#969CAF", fontSize: "20px" }}
+                      >
                         Created By
                       </TableCell>
                       <TableCell
                         align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        sx={{ color: "#969CAF", fontSize: "20px" }}
+                      >
                         Team
                       </TableCell>
                       <TableCell
                         align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        sx={{ color: "#969CAF", fontSize: "20px" }}
+                      >
                         Workspace
                       </TableCell>
                       <TableCell
                         align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        sx={{ color: "#969CAF", fontSize: "20px" }}
+                      >
                         Project
                       </TableCell>
                       <TableCell
                         align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        sx={{ color: "#969CAF", fontSize: "20px" }}
+                      >
                         Category
                       </TableCell>
                       <TableCell
                         align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        sx={{ color: "#969CAF", fontSize: "20px" }}
+                      >
                         Server
                       </TableCell>
                       <TableCell
                         align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        sx={{ color: "#969CAF", fontSize: "20px" }}
+                      >
                         Action
                       </TableCell>
                     </TableRow>
@@ -246,7 +261,8 @@ const BenchMarkTable = ({ benchMarks }) => {
                               },
                             }}
                             variant="outlined"
-                            color="primary">
+                            color="primary"
+                          >
                             View
                           </Button>
                         </TableCell>

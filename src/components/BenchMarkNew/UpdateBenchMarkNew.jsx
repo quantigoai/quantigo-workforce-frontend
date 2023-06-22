@@ -15,29 +15,13 @@
 // Flat create benchmark should be fixed
 // Default value is not set in text field for flat bm update benchmark
 
-import {
-  Box,
-  Button,
-  FilledInput,
-  FormControl,
-  FormControlLabel,
-  Grid,
-  InputLabel,
-  Paper,
-  Radio,
-  RadioGroup,
-  Typography,
-} from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useOutletContext } from "react-router-dom";
-import SelectMenuNew from "./sharedComponentsNew/SelectMenuNew";
+import {Button, Grid,} from "@mui/material";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useOutletContext} from "react-router-dom";
 import NameDescFIeld from "../primary/BenchMark/sharedComponents/NameDescFIeld";
 import CommonMetaFields from "../primary/BenchMark/sharedComponents/CommonMeta/CommonMetaFields";
-import {
-  getProjectMeta,
-  getProjectMetaAg,
-} from "../../features/slice/benchMarkSlice";
+import {getProjectMeta, getProjectMetaAg,} from "../../features/slice/benchMarkSlice";
 import ImageFields from "../primary/BenchMark/sharedComponents/ImageFields";
 
 const UpdateBenchMarkNew = () => {

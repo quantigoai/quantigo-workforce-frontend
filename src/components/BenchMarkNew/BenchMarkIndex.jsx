@@ -7,23 +7,23 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
+import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import {
-  createBenchMark,
-  getABenchMarkByProjectId,
-  getProjectMeta,
-  getProjectMetaAg,
-  resetProjectMetas,
-  setBenchMarkLocal,
-  updateABenchMarkById,
+    createBenchMark,
+    getABenchMarkByProjectId,
+    getProjectMeta,
+    getProjectMetaAg,
+    resetProjectMetas,
+    setBenchMarkLocal,
+    updateABenchMarkById,
 } from "../../features/slice/benchMarkSlice";
-import { getProjectByWorkSpace } from "../../features/slice/projectByWorkspaceSlice";
-import { getAllTeams } from "../../features/slice/teamSlice";
-import { getWorkSpaceById } from "../../features/slice/workSpaceSlice";
-import { useAlert } from "react-alert";
+import {getProjectByWorkSpace} from "../../features/slice/projectByWorkspaceSlice";
+import {getAllTeams} from "../../features/slice/teamSlice";
+import {getWorkSpaceById} from "../../features/slice/workSpaceSlice";
+import {useAlert} from "react-alert";
 
 const BenchMarkIndex = () => {
   const dispatch = useDispatch();

@@ -7,16 +7,14 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Grid, Paper } from "@mui/material";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { setActiveChapterIndex } from "../../../features/slice/activePathSlice";
-import { getAChapterById } from "../../../features/slice/courseSlice";
+import {Box, Grid, Paper} from "@mui/material";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {Outlet, useLocation, useNavigate} from "react-router-dom";
+import {setActiveChapterIndex} from "../../../features/slice/activePathSlice";
+import {getAChapterById} from "../../../features/slice/courseSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import CourseDrawer from "./CourseDrawer";
-import CourseDrawerNew from "./CourseDrawerNew";
-import CommonHeaderForCourse from "../../shared/CustomComponenet/CommonHeader/CommonHeaderForCourse";
 
 const CourseDetails = () => {
   const { course, courseChapter, isLoading } = useSelector(

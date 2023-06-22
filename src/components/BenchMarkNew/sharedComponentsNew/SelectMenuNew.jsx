@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
+import {FormControl, Grid, InputLabel, MenuItem, Select} from "@mui/material";
 import React from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import styled from "@emotion/styled";

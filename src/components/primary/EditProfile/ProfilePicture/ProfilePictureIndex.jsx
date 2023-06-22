@@ -1,10 +1,7 @@
-import { PhotoCamera } from "@mui/icons-material";
-import { Avatar, Button, Grid, IconButton, styled } from "@mui/material";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import demoPic from "../../../../assets/images/10072.png";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { uploadMyImage } from "../../../../features/slice/userSlice";
+import {Avatar, Button, Grid, styled} from "@mui/material";
+import React from "react";
+import {useDispatch, useSelector} from "react-redux";
+
 const ButtonStyle = styled(Button)({
   backgroundColor: "#2D58FF",
   color: "#FFFFFF",

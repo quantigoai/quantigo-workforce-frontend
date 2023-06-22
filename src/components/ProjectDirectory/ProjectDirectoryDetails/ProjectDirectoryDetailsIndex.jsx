@@ -1,11 +1,10 @@
-import { Chip, Grid, Link, styled, Typography } from "@mui/material";
+import {Grid, Link, styled, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
 import * as React from "react";
 import u_multiply from "../../../assets/images/u_multiply.png";
-import ViewColumnIcon from "@mui/icons-material/ViewColumn";
-import { useSelector } from "react-redux";
+
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
   // color: "#FFFFFF",
@@ -41,8 +40,7 @@ const ProjectDirectoryDetailsIndex = ({ item }) => {
         }}
         role="presentation"
         //   onClick={toggleDrawer(anchor, false)}
-        onKeyDown={toggleDrawer(anchor, false)}
-      >
+        onKeyDown={toggleDrawer(anchor, false)}>
         <Box sx={{ paddingTop: "4%", paddingLeft: "4%" }}>
           <Grid container>
             <Grid item xs={10}>
@@ -61,15 +59,13 @@ const ProjectDirectoryDetailsIndex = ({ item }) => {
           <Grid container>
             <Grid
               container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}
-            >
+              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
               <Grid
                 item
                 xs={3}
                 sx={{
                   justifyContent: "left",
-                }}
-              >
+                }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Project Name
                 </Typography>
@@ -83,39 +79,36 @@ const ProjectDirectoryDetailsIndex = ({ item }) => {
 
             <Grid
               container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}
-            >
+              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
               <Grid item xs={3} sx={{ justifyContent: "left" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                  Client Name
+                  Platform
                 </Typography>
               </Grid>
               <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
                 <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                  {item.Client_Name}
+                  {item.Platform}
                 </Typography>
               </Grid>
             </Grid>
 
             <Grid
               container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}
-            >
+              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
               <Grid item xs={3} sx={{ justifyContent: "left" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                  Use Case
+                  Action_Items
                 </Typography>
               </Grid>
               <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
                 <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                  {item.Use_Case}
+                  {item.Action_Items}
                 </Typography>
               </Grid>
             </Grid>
             <Grid
               container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}
-            >
+              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
               <Grid item xs={3} sx={{ justifyContent: "left" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Guideline
@@ -123,7 +116,6 @@ const ProjectDirectoryDetailsIndex = ({ item }) => {
               </Grid>
               <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
                 <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                  
                   {/* <Link
                     onClick={() => handleClick(item.Guideline)}
                     underline="hover"
@@ -137,71 +129,208 @@ const ProjectDirectoryDetailsIndex = ({ item }) => {
                     Link
                   </Button>
                 </Typography>
-              </Grid>   
+              </Grid>
             </Grid>
             <Grid
               container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}
-            >
+              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
               <Grid item xs={3} sx={{ justifyContent: "left" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                  Edge_Case
+                  QA Check Points
                 </Typography>
               </Grid>
               <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
                 <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                  {item.Edge_Case}
+                  {item.QA_Check_Points}
                 </Typography>
               </Grid>
             </Grid>
             <Grid
               container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}
-            >
+              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
               <Grid item xs={3} sx={{ justifyContent: "left" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                  Benchmark
+                  Obj_Benchmark
                 </Typography>
               </Grid>
               <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
                 <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                  {item.Benchmark}
+                  {item.Obj_Benchmark}
                 </Typography>
               </Grid>
             </Grid>
+
             <Grid
               container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}
-            >
+              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
               <Grid item xs={3} sx={{ justifyContent: "left" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                  Project Charter
+                  Img_Benchmark
                 </Typography>
               </Grid>
               <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
                 <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                  <Link
-                    onClick={() => handleClick(item.Project_Charter)}
-                    underline="hover"
-                    sx={{
-                      color: "blue",
-                      cursor: "pointer",
-                    }}
-                  >
-                    Go to Project Charter
-                  </Link>
-                  {/* <Button
-                    onClick={() => handleClick(item.Project_Charter)}
-                  >
-                    Link
-                  </Button> */}
+                  {item.Img_Benchmark}
                 </Typography>
               </Grid>
             </Grid>
             <Grid
               container
-              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}
-            >
+              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
+              <Grid item xs={3} sx={{ justifyContent: "left" }}>
+                <Typography variant="h8" sx={{ color: "#969CAF" }}>
+                  Tagging_Benchmark
+                </Typography>
+              </Grid>
+              <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
+                <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                  {item.Tagging_Benchmark}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              container
+              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
+              <Grid item xs={3} sx={{ justifyContent: "left" }}>
+                <Typography variant="h8" sx={{ color: "#969CAF" }}>
+                  Deletion
+                </Typography>
+              </Grid>
+              <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
+                <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                  {item.Deletion}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              container
+              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
+              <Grid item xs={3} sx={{ justifyContent: "left" }}>
+                <Typography variant="h8" sx={{ color: "#969CAF" }}>
+                  Skip_Image
+                </Typography>
+              </Grid>
+              <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
+                <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                  {item.Skip_Image}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              container
+              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
+              <Grid item xs={3} sx={{ justifyContent: "left" }}>
+                <Typography variant="h8" sx={{ color: "#969CAF" }}>
+                  Update
+                </Typography>
+              </Grid>
+              <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
+                <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                  {item.Update}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              container
+              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
+              <Grid item xs={3} sx={{ justifyContent: "left" }}>
+                <Typography variant="h8" sx={{ color: "#969CAF" }}>
+                  Image_Loading
+                </Typography>
+              </Grid>
+              <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
+                <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                  {item.Image_Loading}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              container
+              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
+              <Grid item xs={3} sx={{ justifyContent: "left" }}>
+                <Typography variant="h8" sx={{ color: "#969CAF" }}>
+                  Object_Saving_Time
+                </Typography>
+              </Grid>
+              <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
+                <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                  {item.Object_Saving_Time}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              container
+              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
+              <Grid item xs={3} sx={{ justifyContent: "left" }}>
+                <Typography variant="h8" sx={{ color: "#969CAF" }}>
+                  Video_Watch_Time
+                </Typography>
+              </Grid>
+              <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
+                <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                  {item.Video_Watch_Time}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              container
+              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
+              <Grid item xs={3} sx={{ justifyContent: "left" }}>
+                <Typography variant="h8" sx={{ color: "#969CAF" }}>
+                  Judgement_Time{" "}
+                </Typography>
+              </Grid>
+              <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
+                <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                  {item.Judgement_Time}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              container
+              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
+              <Grid item xs={3} sx={{ justifyContent: "left" }}>
+                <Typography variant="h8" sx={{ color: "#969CAF" }}>
+                  QA_Benchmark
+                </Typography>
+              </Grid>
+              <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
+                <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                  {item.QA_Benchmark}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              container
+              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
+              <Grid item xs={3} sx={{ justifyContent: "left" }}>
+                <Typography variant="h8" sx={{ color: "#969CAF" }}>
+                  Annotation
+                </Typography>
+              </Grid>
+              <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
+                <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                  {item.Annotation}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              container
+              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
+              <Grid item xs={3} sx={{ justifyContent: "left" }}>
+                <Typography variant="h8" sx={{ color: "#969CAF" }}>
+                  QA
+                </Typography>
+              </Grid>
+              <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
+                <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                  {item.QA}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              container
+              sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
               <Grid item xs={3} sx={{ justifyContent: "left" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
                   Remarks
@@ -226,15 +355,13 @@ const ProjectDirectoryDetailsIndex = ({ item }) => {
           <React.Fragment key={anchor}>
             <ButtonStyle
               variant="outlined"
-              onClick={toggleDrawer(anchor, true)}
-            >
+              onClick={toggleDrawer(anchor, true)}>
               Details
             </ButtonStyle>
             <Drawer
               anchor={anchor}
               open={state[anchor]}
-              onClose={toggleDrawer(anchor, false)}
-            >
+              onClose={toggleDrawer(anchor, false)}>
               {list(anchor)}
             </Drawer>
           </React.Fragment>

@@ -1,9 +1,6 @@
-import { Box, Grid, Paper, Typography } from "@mui/material";
+import {Box, Grid, Paper, Typography} from "@mui/material";
 import React from "react";
-import NorthIcon from "@mui/icons-material/North";
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { useEffect } from "react";
+import {useDispatch, useSelector} from "react-redux";
 
 const InActiveRequest = () => {
   const dispatch = useDispatch();

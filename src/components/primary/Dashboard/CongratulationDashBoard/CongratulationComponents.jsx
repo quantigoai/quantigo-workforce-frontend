@@ -1,7 +1,7 @@
 import React from "react";
-import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import {Box, Button, Grid, Paper, Typography} from "@mui/material";
 import congImg from "../../../../assets/images/Frame 626711.png";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const CongratulationComponents = () => {
   const paperstyle = {

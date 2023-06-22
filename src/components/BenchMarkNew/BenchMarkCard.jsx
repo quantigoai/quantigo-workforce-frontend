@@ -6,9 +6,9 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Box, Button, Grid, Typography } from "@mui/material";
+import {Box, Button, Grid, Typography} from "@mui/material";
 import React from "react";
-import { useOutletContext } from "react-router-dom";
+import {useOutletContext} from "react-router-dom";
 
 const BenchMarkCard = ({ bm }) => {
   const [handleDetails] = useOutletContext();

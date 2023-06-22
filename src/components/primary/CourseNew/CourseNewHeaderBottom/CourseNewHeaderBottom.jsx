@@ -2,7 +2,8 @@ import React from "react";
 import levelImage from "../../../../assets/images/Frame 2.svg";
 
 import categoryIcon from "../../../../assets/images/categorysvg.svg";
-import { Grid, Typography } from "@mui/material";
+import {Grid, Typography} from "@mui/material";
+
 const CourseNewHeaderBottom = () => {
   return (
     <>

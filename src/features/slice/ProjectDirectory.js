@@ -82,7 +82,7 @@ export const updateProjectDirectory = createAsyncThunk(
   "Project/Directory/update",
   async (data) => {
     const { Project_Name } = data;
-    return axios.put(`${url}/api/ProjectList${Project_Name}/update`, data);
+    return axios.put(`${url}/api/ProjectList/${Project_Name}/update`, data);
   }
 );
 

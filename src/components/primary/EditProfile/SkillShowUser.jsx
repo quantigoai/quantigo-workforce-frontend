@@ -1,6 +1,6 @@
-import { Box, Chip, Grid, Typography } from "@mui/material";
+import {Chip, Grid, Typography} from "@mui/material";
 import React from "react";
-import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
+import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
 
 const SkillShowUser = ({ user }) => {
   return (

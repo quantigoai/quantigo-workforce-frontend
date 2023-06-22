@@ -7,9 +7,9 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 import Box from "@mui/material/Box";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import {DatePicker} from "@mui/x-date-pickers/DatePicker";
+import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 import * as React from "react";
 
 const DateField = ({ dateValue, setDateValue }) => {

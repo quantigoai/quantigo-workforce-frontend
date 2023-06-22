@@ -1,12 +1,6 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import {
-  FilledInput,
-  FormControl,
-  InputAdornment,
-  InputLabel,
-  TextField,
-} from "@mui/material";
-import React, { useState } from "react";
+import {Visibility, VisibilityOff} from "@mui/icons-material";
+import {InputAdornment, TextField,} from "@mui/material";
+import React from "react";
 
 const CurrentPasswordfield = ({ setCurrentPassword, CurrentPassword }) => {
   const [showPassword, setShowPassword] = React.useState(false);

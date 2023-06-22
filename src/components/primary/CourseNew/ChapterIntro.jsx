@@ -6,18 +6,15 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Box, Button, styled, Typography } from "@mui/material";
+import {Box, Button, styled, Typography} from "@mui/material";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import QuizIcon from "@mui/icons-material/Quiz";
-import { useNavigate } from "react-router-dom";
-import { enrollACourse } from "../../../features/slice/courseSlice";
-import {
-  updateLoggedInUserManually,
-  updateSingleUserManually,
-  updateUserEnrollCourse,
-} from "../../../features/slice/userSlice";
+import {useNavigate} from "react-router-dom";
+import {enrollACourse} from "../../../features/slice/courseSlice";
+import {updateUserEnrollCourse,} from "../../../features/slice/userSlice";
+
 const ButtonStyle = styled(Button)({
   border: "1px",
   backgroundColor: "#2D58FF",

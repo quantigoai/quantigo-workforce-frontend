@@ -7,16 +7,16 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { useOutletContext } from "react-router-dom";
+import React, {useEffect} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
+import {useOutletContext} from "react-router-dom";
 
-import { Grid, Paper } from "@mui/material";
+import {Grid, Paper} from "@mui/material";
 import ClassTagFieldsNew from "./sharedComponentsNew/ClassTagFieldsNew";
 import CommonHeader from "../shared/CustomComponenet/CommonHeader/CommonHeader";
 import SelectMenuNew from "./sharedComponentsNew/SelectMenuNew";
-import { resetProjectMetas } from "../../features/slice/benchMarkSlice";
+import {resetProjectMetas} from "../../features/slice/benchMarkSlice";
 
 const CreateBenchMarkNew = () => {
   const { benchMark, benchMarks, isLoading } = useSelector(

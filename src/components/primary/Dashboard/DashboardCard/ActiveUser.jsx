@@ -1,9 +1,7 @@
-import { Box, Grid, Paper, Typography } from "@mui/material";
-import React, { useEffect } from "react";
-import NorthIcon from "@mui/icons-material/North";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllUsers } from "../../../../features/slice/userSlice";
-import { useState } from "react";
+import {Box, Grid, Paper, Typography} from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+
 const ActiveUser = () => {
   const dispatch = useDispatch();
   const { totalCountData } = useSelector((state) => state.dashboard);

@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import {Box, Grid} from "@mui/material";
 import React from "react";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import DashboardCardIndex from "./DashboardCardIndex";

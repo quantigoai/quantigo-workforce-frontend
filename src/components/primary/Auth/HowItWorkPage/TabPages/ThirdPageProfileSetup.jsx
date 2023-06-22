@@ -1,7 +1,7 @@
-import {Box, Typography} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
-import ProfileCompletion from "../../../../../assets/images/ProfileCompletion.PNG";
 import NdaUploadImage from "../../../../../assets/images/Ndaupload.PNG";
+import ProfileCompletion from "../../../../../assets/images/ProfileCompletion.PNG";
 import congratulationImage from "../../../../../assets/images/congratulation.PNG";
 import ImageModal from "../ImageModal";
 

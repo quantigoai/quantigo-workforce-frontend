@@ -1,7 +1,7 @@
-import {FormControl, Grid, InputLabel, MenuItem, Select} from "@mui/material";
+import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
 import axios from "axios";
 import React from "react";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 
 export const HubField = ({
   setQaiID,
@@ -13,7 +13,6 @@ export const HubField = ({
 }) => {
   const dispatch = useDispatch();
   const url = process.env.REACT_APP_SERVER_URL;
-  // const [hubSelect, setHubSelect] = useState("");
   const test = (e) => {
     const hub = e.target.value;
     setHub(e.target.value);
@@ -32,14 +31,16 @@ export const HubField = ({
           variant="filled"
           fullWidth
           required={true}
-          sx={{ backgroundColor: "#FFFFFF" }}>
+          sx={{ backgroundColor: "#FFFFFF" }}
+        >
           <InputLabel id="demo-simple-select-filled-label"> HUB</InputLabel>
           <Select
             labelId="demo-simple-select-filled-label"
             id="demo-simple-select-filled"
             label="HUB"
             value={hubSelect}
-            onChange={(e) => test(e)}>
+            onChange={(e) => test(e)}
+          >
             <MenuItem value={"DK"}>Dhaka</MenuItem>
             <MenuItem value={"CD"}>Chuadanga</MenuItem>
             <MenuItem value={"SG"}>Sirajganj</MenuItem>

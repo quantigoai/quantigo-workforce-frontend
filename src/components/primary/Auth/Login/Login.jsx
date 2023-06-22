@@ -6,14 +6,14 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Box} from "@mui/material";
-import {styled} from "@mui/material/styles";
-import {React, useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {login} from "../../../../features/slice/userSlice";
+import { Box } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { React, useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { login } from "../../../../features/slice/userSlice";
 import InputFields from "../InputFields/InputFields";
 
 const BgBox = styled(Box)({

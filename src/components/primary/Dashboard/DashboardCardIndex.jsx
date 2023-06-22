@@ -1,21 +1,18 @@
-import { Grid } from "@mui/material";
-import React from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getTotalCountData } from "../../../features/slice/dashboardSlice";
-import { getAllUsers } from "../../../features/slice/userSlice";
+import {Grid} from "@mui/material";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getTotalCountData} from "../../../features/slice/dashboardSlice";
+import {getAllUsers} from "../../../features/slice/userSlice";
 import ActiveJobsCard from "./DashboardCard/ActiveJobsCard";
 import ActiveUser from "./DashboardCard/ActiveUser";
 import ApprovedRequest from "./DashboardCard/ApprovedRequest";
 import InActiveRequest from "./DashboardCard/InActiveRequest";
 import PendingRequest from "./DashboardCard/PendingRequest";
 import TotalAnnotator from "./DashboardCard/TotalAnnotator";
-import TotalCompletedJobs from "./DashboardCard/TotalCompletedJobs";
 import TotalJobs from "./DashboardCard/TotalJobs";
 import TotalUser from "./DashboardCard/TotalUser";
 import DashboardCardforDM from "./DashboardCardRole/DashboardCardforDM";
 import DashboardCardForAnnotator from "./DashboardCardRole/DashboardCardForAnnotator";
-import OngoingJob from "../Job/OngoingJob";
 import OnGoingProject from "./DashboardCard/OnGoingProject";
 
 const DashboardCardIndex = () => {

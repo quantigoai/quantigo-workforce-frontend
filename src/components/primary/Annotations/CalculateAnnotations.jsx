@@ -8,7 +8,7 @@
  */
 
 import {
-  Box,
+    Box,
     Grid,
     Paper,
     Skeleton,

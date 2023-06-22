@@ -1,41 +1,27 @@
-import React from "react";
-import { useTheme } from "@emotion/react";
+import React, {useEffect, useRef, useState} from "react";
+import {useTheme} from "@emotion/react";
 import DownloadIcon from "@mui/icons-material/Download";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
-import SearchIcon from "@mui/icons-material/Search";
-import {
-  Box,
-  Button,
-  Grid,
-  IconButton,
-  InputAdornment,
-  Popper,
-  SvgIcon,
-  TablePagination,
-  TextField,
-  Typography,
-} from "@mui/material";
+import {Box, Button, Grid, IconButton, Popper, TablePagination, Typography,} from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableCell, {tableCellClasses} from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { styled } from "@mui/material/styles";
-import { useEffect, useRef, useState } from "react";
-import { CSVLink } from "react-csv";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import { setActivePath } from "../../../features/slice/activePathSlice";
-import { getAllSkills } from "../../../features/slice/skillSlice";
-import { getAllUsers } from "../../../features/slice/userSlice";
-import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
+import {styled} from "@mui/material/styles";
+import {CSVLink} from "react-csv";
+import {useDispatch, useSelector} from "react-redux";
+import {useLocation} from "react-router-dom";
+import {setActivePath} from "../../../features/slice/activePathSlice";
+import {getAllSkills} from "../../../features/slice/skillSlice";
+import {getAllUsers} from "../../../features/slice/userSlice";
+import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
-import SearchBar from "../../shared/SearchBar/SearchBar";
 import SearchBarforUserList from "../../shared/SearchBar/SearchBarforUserList";
 import NidDetails from "../Users/NidDetals/NidDetails";
 import UserDetailsIndex from "../Users/UserDetais/UserDetailsIndex";

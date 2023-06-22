@@ -1,15 +1,10 @@
-import { Box, Button, Chip, Grid, Paper, Typography } from "@mui/material";
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { useAlert } from "react-alert";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
-import {
-  myProfileEdit,
-  removeMyImage,
-  uploadMyImage,
-} from "../../../features/slice/userSlice";
+import {Box, Chip, Grid, Paper, Typography} from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {useAlert} from "react-alert";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
+import {useLocation, useNavigate} from "react-router-dom";
+import {myProfileEdit, removeMyImage, uploadMyImage,} from "../../../features/slice/userSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import AddressField from "./AddressField";
 import CityField from "./CityField";
@@ -18,15 +13,13 @@ import EmailField from "./EmailField";
 import GenderField from "./GenderField";
 import NameFiled from "./NameFiled";
 import OccupationField from "./OccupationField";
-import CurrentPasswordfield from "./Password/CurrentPasswordfield";
 import PhoneNumberField from "./PhoneNumberField";
 import ProfilePictureIndex from "./ProfilePicture/ProfilePictureIndex";
 import SkillShowUser from "./SkillShowUser";
-import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
+import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
 import ActivateDeactivateStatus from "./ActivateDeactivateStatus";
-import ResetPassword from "./Password/ResetPassword";
-import ConfirmPassword from "./Password/ConfirmPassword";
 import ChangePasswordIndex from "./Password/ChangePasswordIndex";
+
 const paperStyle = {
   width: "80vw",
 };

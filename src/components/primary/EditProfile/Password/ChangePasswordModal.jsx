@@ -1,26 +1,13 @@
-import React from "react";
-import {
-  Box,
-  Button,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Modal,
-  Paper,
-  Select,
-  styled,
-  TextField,
-  Typography,
-} from "@mui/material";
+import React, {useState} from "react";
+import {Box, Button, Grid, Modal, Paper, Typography,} from "@mui/material";
 import CurrentPasswordfield from "./CurrentPasswordfield";
 import ResetPassword from "./ResetPassword";
 import ConfirmPassword from "./ConfirmPassword";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { changePassword, logout } from "../../../../features/slice/userSlice";
-import { useAlert } from "react-alert";
-import { useNavigate } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {changePassword, logout} from "../../../../features/slice/userSlice";
+import {useAlert} from "react-alert";
+import {useNavigate} from "react-router-dom";
+
 const paperstyle = { width: 500 };
 const style = {
   position: "absolute",

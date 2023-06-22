@@ -1,9 +1,8 @@
-import { Grid } from "@mui/material";
+import {Grid} from "@mui/material";
 import React from "react";
 import TotalJobs from "../DashboardCard/TotalJobs";
 import ActiveJobsCard from "../DashboardCard/ActiveJobsCard";
 import TotalAnnotator from "../DashboardCard/TotalAnnotator";
-import TotalUser from "../DashboardCard/TotalUser";
 import OnGoingProject from "../DashboardCard/OnGoingProject";
 import ActiveUser from "../DashboardCard/ActiveUser";
 import InActiveRequest from "../DashboardCard/InActiveRequest";

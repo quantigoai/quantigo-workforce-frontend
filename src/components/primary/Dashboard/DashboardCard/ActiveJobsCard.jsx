@@ -1,11 +1,8 @@
-import { Grid, Paper, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import React from "react";
-import NorthIcon from "@mui/icons-material/North";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getAllAssignedJob } from "../../../../features/slice/jobSlice";
-import { useState } from "react";
+import {Grid, Paper, Typography} from "@mui/material";
+import {Box} from "@mui/system";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getAllAssignedJob} from "../../../../features/slice/jobSlice";
 
 const ActiveJobsCard = () => {
   const { totalCountData } = useSelector((state) => state.dashboard);

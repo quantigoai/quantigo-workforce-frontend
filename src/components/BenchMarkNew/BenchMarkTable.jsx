@@ -1,30 +1,29 @@
 import {
-  Box,
-  Button,
-  Grid,
-  IconButton,
-  InputAdornment,
-  Paper,
-  SvgIcon,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
-  TextField,
+    Box,
+    Button,
+    Grid,
+    IconButton,
+    InputAdornment,
+    Paper,
+    SvgIcon,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TablePagination,
+    TableRow,
+    TextField,
 } from "@mui/material";
-import { useTheme } from "@emotion/react";
-import React, { useState } from "react";
-import { useOutletContext } from "react-router-dom";
-import SearchBar from "../shared/SearchBar/SearchBar";
+import {useTheme} from "@emotion/react";
+import React, {useState} from "react";
+import {useOutletContext} from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
-import { capitalizeFirstLetter } from "../../helper/capitalizeFirstWord";
+import {capitalizeFirstLetter} from "../../helper/capitalizeFirstWord";
 
 const paperStyle = {
   padding: "0px 0px",

@@ -1,7 +1,6 @@
 import React from "react";
 import TotalWorkingHour from "../DashboardCard/TotalWorkingHour";
-import TotalworkingHourMonthly from "../DashboardCard/TotalworkingHourMonthly";
-import { Grid } from "@mui/material";
+import {Grid} from "@mui/material";
 import TotalJobs from "../DashboardCard/TotalJobs";
 import ActiveJobsCard from "../DashboardCard/ActiveJobsCard";
 import TotalCompletedJobs from "../DashboardCard/TotalCompletedJobs";

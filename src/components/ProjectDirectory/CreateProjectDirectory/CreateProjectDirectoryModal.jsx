@@ -1,20 +1,6 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Modal,
-  Paper,
-  Select,
-  styled,
-  TextField,
-  Typography,
-} from "@mui/material";
+import {Box, Button, Grid, Modal, Paper, styled, TextField, Typography,} from "@mui/material";
 import React from "react";
-import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import {useForm} from "react-hook-form";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -62,55 +48,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
             </Grid>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Grid container sx={{ padding: "1%" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
-                    label="SI No"
-                    {...register("Sl_No", {
-                      required: false,
-                    })}></TextField>
-                </Grid>
-                <Grid item xs={6}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="Project_Timeline"
-                    label="Project_Timeline"
-                    {...register("Project_Timeline", {
-                      required: false,
-                    })}></TextField>
-                </Grid>
-              </Grid>
-              <Grid container sx={{ padding: "1%" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
-                    label="Client Name"
-                    {...register("Client_Name", {
-                      required: false,
-                    })}></TextField>
-                </Grid>
-                <Grid item xs={6}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="Project_Timeline"
-                    label="Client Alias"
-                    {...register("Client_Alias", {
-                      required: false,
-                    })}></TextField>
-                </Grid>
-              </Grid>
-              <Grid container sx={{ padding: "1%" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
                   <TextField
                     fullWidth
                     sx={{ backgroundColor: "#FFFFFF" }}
@@ -121,116 +59,256 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                       required: false,
                     })}></TextField>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
                   <TextField
                     fullWidth
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="Project_Timeline"
-                    label="Industry Type"
-                    {...register("Industry_Type", {
+                    label="Client Alias"
+                    {...register("Client_Alias", {
                       required: false,
                     })}></TextField>
                 </Grid>
-              </Grid>
-              <Grid container sx={{ padding: "1%" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+
+                <Grid item xs={4} sx={{ paddingRight: "0%" }}>
                   <TextField
                     fullWidth
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="UseCase"
-                    {...register("Use_Case", {
+                    label="Industry"
+                    {...register("Industry", {
                       required: false,
                     })}></TextField>
                 </Grid>
-                <Grid item xs={6}>
+              </Grid>
+              <Grid container sx={{ padding: "1%" }}>
+                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
                   <TextField
                     fullWidth
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="Project_Timeline"
-                    label="Guideline"
-                    {...register("Guideline", {
+                    label="Platform"
+                    {...register("Platform", {
                       required: false,
                     })}></TextField>
                 </Grid>
-              </Grid>
-              <Grid container sx={{ padding: "1%" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
                   <TextField
                     fullWidth
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="Edge Case"
-                    {...register("Edge_Case", {
+                    label="Tool_Type"
+                    {...register("Tool_Type", {
                       required: false,
                     })}></TextField>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={4}>
                   <TextField
                     fullWidth
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="Project_Timeline"
-                    label="Annotation_Type"
-                    {...register("Annotation_Type", {
-                      required: false,
-                    })}></TextField>
-                </Grid>
-              </Grid>
-              <Grid container sx={{ padding: "1%" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
-                    label="Data Type"
-                    {...register("Data_Type", {
-                      required: false,
-                    })}></TextField>
-                </Grid>
-                <Grid item xs={6}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="Project_Timeline"
-                    label="Benchmark"
-                    {...register("Benchmark", {
-                      required: false,
-                    })}></TextField>
-                </Grid>
-              </Grid>
-              <Grid container sx={{ padding: "1%" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
                     label="PDR"
                     {...register("PDR", {
                       required: false,
                     })}></TextField>
                 </Grid>
-                <Grid item xs={6}>
+              </Grid>
+              <Grid container sx={{ padding: "1%" }}>
+                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
+                  <TextField
+                    fullWidth
+                    sx={{ backgroundColor: "#FFFFFF" }}
+                    variant="filled"
+                    name="SINo"
+                    label="Project_Type"
+                    {...register("Project_Type", {
+                      required: false,
+                    })}></TextField>
+                </Grid>
+                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
                   <TextField
                     fullWidth
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="Project_Timeline"
-                    label="Project Charter"
-                    {...register("Project_Charter", {
+                    label="Action_Items"
+                    {...register("Action_Items", {
+                      required: false,
+                    })}></TextField>
+                </Grid>
+                <Grid item xs={4} sx={{ paddingRight: "0%" }}>
+                  <TextField
+                    fullWidth
+                    sx={{ backgroundColor: "#FFFFFF" }}
+                    variant="filled"
+                    name="SINo"
+                    label="QA_Check_Points"
+                    {...register("QA_Check_Points", {
+                      required: false,
+                    })}></TextField>
+                </Grid>
+              </Grid>
+
+              <Grid container sx={{ padding: "1%" }}>
+                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
+                  <TextField
+                    fullWidth
+                    sx={{ backgroundColor: "#FFFFFF" }}
+                    variant="filled"
+                    name="Project_Timeline"
+                    label="Obj_Benchmark"
+                    {...register("Obj_Benchmark", {
+                      required: false,
+                    })}></TextField>
+                </Grid>
+                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
+                  <TextField
+                    fullWidth
+                    sx={{ backgroundColor: "#FFFFFF" }}
+                    variant="filled"
+                    name="SINo"
+                    label="Img_Benchmark"
+                    {...register("Img_Benchmark", {
+                      required: false,
+                    })}></TextField>
+                </Grid>
+                <Grid item xs={4}>
+                  <TextField
+                    fullWidth
+                    sx={{ backgroundColor: "#FFFFFF" }}
+                    variant="filled"
+                    name="Project_Timeline"
+                    label="Tagging_Benchmark"
+                    {...register("Tagging_Benchmark", {
+                      required: false,
+                    })}></TextField>
+                </Grid>
+              </Grid>
+
+              <Grid container sx={{ padding: "1%" }}>
+                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
+                  <TextField
+                    fullWidth
+                    sx={{ backgroundColor: "#FFFFFF" }}
+                    variant="filled"
+                    name="SINo"
+                    label="Deletion"
+                    {...register("Deletion", {
+                      required: false,
+                    })}></TextField>
+                </Grid>
+                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
+                  <TextField
+                    fullWidth
+                    sx={{ backgroundColor: "#FFFFFF" }}
+                    variant="filled"
+                    name="Project_Timeline"
+                    label="Skip_Image"
+                    {...register("Skip_Image", {
+                      required: false,
+                    })}></TextField>
+                </Grid>
+                <Grid item xs={4} sx={{ paddingRight: "0%" }}>
+                  <TextField
+                    fullWidth
+                    sx={{ backgroundColor: "#FFFFFF" }}
+                    variant="filled"
+                    name="SINo"
+                    label="Update"
+                    {...register("Update", {
                       required: false,
                     })}></TextField>
                 </Grid>
               </Grid>
               <Grid container sx={{ padding: "1%" }}>
-                <Grid item xs={12} sx={{ paddingRight: "0%" }}>
+                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
+                  <TextField
+                    fullWidth
+                    sx={{ backgroundColor: "#FFFFFF" }}
+                    variant="filled"
+                    name="SINo"
+                    label="Image_Loading"
+                    {...register("Image_Loading", {
+                      required: false,
+                    })}></TextField>
+                </Grid>
+                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
+                  <TextField
+                    fullWidth
+                    sx={{ backgroundColor: "#FFFFFF" }}
+                    variant="filled"
+                    name="SINo"
+                    label="Object_Saving_Time"
+                    {...register("Object_Saving_Time", {
+                      required: false,
+                    })}></TextField>
+                </Grid>
+                <Grid item xs={4} sx={{ paddingRight: "0%" }}>
+                  <TextField
+                    fullWidth
+                    sx={{ backgroundColor: "#FFFFFF" }}
+                    variant="filled"
+                    name="SINo"
+                    label="Video_Watch_Time"
+                    {...register("Video_Watch_Time", {
+                      required: false,
+                    })}></TextField>
+                </Grid>
+              </Grid>
+
+              <Grid container sx={{ padding: "1%" }}>
+                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
+                  <TextField
+                    fullWidth
+                    sx={{ backgroundColor: "#FFFFFF" }}
+                    variant="filled"
+                    name="SINo"
+                    label="Judgement_Time"
+                    {...register("Judgement_Time", {
+                      required: false,
+                    })}></TextField>
+                </Grid>
+                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
+                  <TextField
+                    fullWidth
+                    sx={{ backgroundColor: "#FFFFFF" }}
+                    variant="filled"
+                    name="SINo"
+                    label="QA_Benchmark"
+                    {...register("QA_Benchmark", {
+                      required: false,
+                    })}></TextField>
+                </Grid>
+                <Grid item xs={4} sx={{ paddingRight: "0%" }}>
+                  <TextField
+                    fullWidth
+                    sx={{ backgroundColor: "#FFFFFF" }}
+                    variant="filled"
+                    name="SINo"
+                    label="Annotation"
+                    {...register("Annotation", {
+                      required: false,
+                    })}></TextField>
+                </Grid>
+              </Grid>
+              <Grid container sx={{ padding: "1%" }}>
+                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                  <TextField
+                    fullWidth
+                    sx={{ backgroundColor: "#FFFFFF" }}
+                    variant="filled"
+                    name="SINo"
+                    label="QA"
+                    {...register("QA", {
+                      required: false,
+                    })}></TextField>
+                </Grid>
+                <Grid item xs={6} sx={{ paddingRight: "0%" }}>
                   <TextField
                     fullWidth
                     sx={{ backgroundColor: "#FFFFFF" }}

@@ -1,6 +1,7 @@
-import { TextField } from "@mui/material";
+import {TextField} from "@mui/material";
 import React from "react";
-import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
+import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
+
 const GenderField = ({ user }) => {
   return (
     <>

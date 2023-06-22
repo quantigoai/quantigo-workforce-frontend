@@ -8,25 +8,23 @@
  */
 
 import {
-  Box,
-  Button,
-  Grid,
-  Paper,
-  Tab,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Tabs,
-  Typography,
+    Box,
+    Grid,
+    Paper,
+    Tab,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Tabs,
+    Typography,
 } from "@mui/material";
 import PropTypes from "prop-types";
 import React from "react";
-import { useSelector } from "react-redux";
-import { useNavigate, useOutletContext } from "react-router-dom";
-import editIcon from "../../assets/images/fi_edit-2.png";
+import {useSelector} from "react-redux";
+import {useNavigate, useOutletContext} from "react-router-dom";
 import CommonHeader from "../shared/CustomComponenet/CommonHeader/CommonHeader";
 
 function TabPanel(props) {

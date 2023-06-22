@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Chip, Grid, Typography} from "@mui/material";
+import { Chip, Grid, Typography } from "@mui/material";
 import React from "react";
 import iconButton from "../../../assets/images/Vector (1).png";
 
@@ -55,10 +55,6 @@ const SingleChapter = ({ courseChapter }) => {
         </Grid>
         {courseChapter.score !== undefined && (
           <Grid item xs={4}>
-            {/* <Chip
-              label={`score : ${courseChapter.score}`}
-              sx={scoreStyle(courseChapter.score)}
-            ></Chip> */}
             <Chip
               label={`Avg: ${courseChapter.scoreAverage}`}
               sx={scoreStyle(courseChapter.scoreAverage)}

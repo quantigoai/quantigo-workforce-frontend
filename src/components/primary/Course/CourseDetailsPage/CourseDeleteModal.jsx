@@ -1,14 +1,14 @@
-import {Box, Button, Dialog, DialogTitle} from "@mui/material";
-import React from "react";
+import { Box, Button, Dialog, DialogTitle } from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {useAlert} from "react-alert";
-import {deleteACourseById} from "../../../../features/slice/courseSlice";
-import deleteIcon from "../../../../assets/images/delete.svg";
 import Tooltip from "@mui/material/Tooltip";
+import React from "react";
+import { useAlert } from "react-alert";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import deleteIcon from "../../../../assets/images/delete.svg";
+import { deleteACourseById } from "../../../../features/slice/courseSlice";
 
 const CourseDeleteModal = ({ course }) => {
   const [open, setOpen] = React.useState(false);
@@ -37,30 +37,20 @@ const CourseDeleteModal = ({ course }) => {
     <>
       <Tooltip title="Delete Course" arrow>
         <Button
-          // variant="contained"
-          // disabled={isLoading}
           type="submit"
           sx={{
-            // width: "100%",
-            // height: "45px",
-            // backgroundColor: "#D8514B",
-            // color: "#FFFFFF",
-            // "&:hover": {
-            //   backgroundColor: "#FF9A45",
-            //   color: "#1D1D1D",
-            // },
             borderRadius: "2px",
           }}
-          onClick={handleClickOpen}>
+          onClick={handleClickOpen}
+        >
           <Box
             sx={{
               display: "flex",
               gap: 1,
               justifyContent: "center",
-            }}>
-              <img src={deleteIcon}/>
-            {/* <DeleteOutlineIcon /> */}
-            {/* Course */}
+            }}
+          >
+            <img src={deleteIcon} />
           </Box>
         </Button>
       </Tooltip>
@@ -68,7 +58,8 @@ const CourseDeleteModal = ({ course }) => {
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description">
+        aria-describedby="alert-dialog-description"
+      >
         <DialogTitle id="alert-dialog-title">
           {"Are you sure Delete Course?"}
         </DialogTitle>

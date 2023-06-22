@@ -1,16 +1,12 @@
-import {Chip, Grid, Typography} from "@mui/material";
+import { Chip, Grid, Typography } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 import iconButton from "../../../assets/images/Vector (1).png";
+import chapterBlueIcon from "../../../assets/images/blueChaptericon.svg";
 import iconBlue from "../../../assets/images/blueIcon.png";
 import iconChapter from "../../../assets/images/chapterIcon.svg";
-import chapterBlueIcon from "../../../assets/images/blueChaptericon.svg";
-import {useSelector} from "react-redux";
 
 const SingleChapterNew = ({ courseChapter, index }) => {
-  console.log(
-    "🚀 ~ file: SingleChapterNew.jsx:8 ~ SingleChapterNew ~ index:",
-    index
-  );
   const { activeChapterIndex } = useSelector((state) => state.activePath);
 
   const Style80 = {
@@ -52,26 +48,23 @@ const SingleChapterNew = ({ courseChapter, index }) => {
         <Grid item xs={2}>
           <img
             src={activeChapterIndex === index ? chapterBlueIcon : iconChapter}
-            // sx={{ color: activeChapterIndex === index ? "#2D58FF" : "#1D1D1D" }}
           />
         </Grid>
         <Grid item xs={8} sx={{ display: "flex" }}>
           <Typography
             sx={{
               color: activeChapterIndex === index ? "#2D58FF" : "#1D1D1D",
-            }}>
+            }}
+          >
             {courseChapter.title}
           </Typography>
         </Grid>
         {courseChapter.score !== undefined && (
           <Grid item xs={4}>
-            {/* <Chip
-              label={`score : ${courseChapter.score}`}
-              sx={scoreStyle(courseChapter.score)}
-            ></Chip> */}
             <Chip
               label={`Avg: ${courseChapter.scoreAverage}`}
-              sx={scoreStyle(courseChapter.scoreAverage)}></Chip>
+              sx={scoreStyle(courseChapter.scoreAverage)}
+            ></Chip>
           </Grid>
         )}
       </Grid>

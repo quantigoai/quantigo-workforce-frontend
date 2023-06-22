@@ -6,16 +6,23 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Box, Button, CircularProgress, Grid, Typography} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { Box, Button, CircularProgress, Grid, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import imageSample from "../../../assets/images/img.png";
-import {getACourseByID, getAllChapterFromACourse, getCourseQuizzesResults,} from "../../../features/slice/courseSlice";
+import {
+  setActiveChapterIndex,
+  setActiveCourseId,
+} from "../../../features/slice/activePathSlice";
+import {
+  getACourseByID,
+  getAllChapterFromACourse,
+  getCourseQuizzesResults,
+} from "../../../features/slice/courseSlice";
 import CategoryChip from "./CategoryChip";
 import LevelChip from "./CourseCardActionLebel/LevelChip";
 import LanguageChip from "./LanguageChip";
-import {setActiveChapterIndex, setActiveCourseId,} from "../../../features/slice/activePathSlice";
 
 const MyCustomCard = {
   padding: "0 0 0 0 ",
@@ -48,8 +55,6 @@ const ButtonDivMouseOn = {
 };
 const ButtonHover = {
   color: "#090080",
-
-  // backgroundColor: "#FF9A45",
   backgroundColor: "rgba(255, 154, 69, 0.1)",
 };
 
@@ -70,7 +75,7 @@ const CustomCard = ({ course }) => {
   };
 
   const imageUrl = course.images?.length ? `${course.images[0]}` : imageSample;
-  
+
   const [hovering, setHovering] = useState(false);
   const [buttonHovering, setButtonHovering] = useState(false);
 
@@ -108,11 +113,9 @@ const CustomCard = ({ course }) => {
     <>
       <Box
         sx={{
-          // width: "100%",
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          // justifyContent: "space-around",
           //!! Need to remove shadow later
           boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
           mx: "0%",
@@ -122,7 +125,6 @@ const CustomCard = ({ course }) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {/* image */}
         <Box
           sx={{
             width: "100%",

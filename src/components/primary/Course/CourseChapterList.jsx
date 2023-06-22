@@ -6,12 +6,12 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Box, Button, Grid, Paper} from "@mui/material";
+import { Box, Button, Grid, Paper } from "@mui/material";
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setActiveChapterIndex } from "../../../features/slice/activePathSlice";
 import SingleChapter from "./SingleChapter";
-import {setActiveChapterIndex} from "../../../features/slice/activePathSlice";
 
 const CourseChapterList = ({ courseChapters, handleChapter}) => {
   const { course } = useSelector((state) => state.course);

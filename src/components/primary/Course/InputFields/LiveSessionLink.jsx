@@ -1,4 +1,4 @@
-import {Grid, TextField} from "@mui/material";
+import { Grid, TextField } from "@mui/material";
 import React from "react";
 
 const LiveSessionLink = ({ course, register }) => {
@@ -12,12 +12,12 @@ const LiveSessionLink = ({ course, register }) => {
             backgroundColor: "#F8F8F8",
             border: "1px solid #DADCDF",
             borderRadius: "4px",
-            // height: "56px",
           }}
           name="liveSessionLink"
           label="Live Session Link"
           defaultValue={course && course.liveSessionLink}
-          {...register("liveSessionLink")}></TextField>
+          {...register("liveSessionLink")}
+        ></TextField>
       </Grid>
     </>
   );

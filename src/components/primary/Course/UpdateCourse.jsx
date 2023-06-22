@@ -7,13 +7,14 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 
-import {Box, Grid, Paper, Stack, Typography} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate, useParams} from "react-router-dom";
-import {updateACourseById,} from "../../../features/slice/courseSlice";
+import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { updateACourseById } from "../../../features/slice/courseSlice";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import CategoryField from "./InputFields/CategoryField";
 import CoverImageField from "./InputFields/CoverImageField";
@@ -25,7 +26,6 @@ import LiveSessionStartedTime from "./InputFields/LiveSessionStartedTime";
 import NameField from "./InputFields/NameField";
 import PreRequisiteCourse from "./InputFields/PreRequisiteCourse";
 import SkillField from "./InputFields/SkillField";
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -39,9 +39,6 @@ const MenuProps = {
 };
 
 const UpdateCourse = () => {
-  const params = useParams();
-  const id = params.id;
-
   const {
     register,
     handleSubmit,
@@ -51,8 +48,6 @@ const UpdateCourse = () => {
   const navigate = useNavigate();
   const [content, setContent] = useState("");
   const dispatch = useDispatch();
-  const API_URl = process.env.REACT_APP_SERVER_URL;
-  const UPLOAD_ENDPOINT = "courses/couseimages/uploads";
   const { course, courses, isLoading } = useSelector((state) => state.course);
   const { skills } = useSelector((state) => state.skill);
   const [skill, setSkill] = React.useState([]);
@@ -62,7 +57,6 @@ const UpdateCourse = () => {
   const [courseName, setCourseName] = useState([]);
   const [name, setName] = useState(course.name);
   const [error, setError] = useState(false);
-
 
   const [isPreRequisiteCourseEmpty, setIsPreRequisiteCourseEmpty] =
     useState(false);
@@ -165,7 +159,6 @@ const UpdateCourse = () => {
     );
   };
 
- 
   // update name validation
   const nameValidation = (e) => {
     setName(capitalizeFirstLetter(e.target.value));
@@ -241,7 +234,8 @@ const UpdateCourse = () => {
                 sx={{
                   py: "2%",
                   px: "2%",
-                }}>
+                }}
+              >
                 <Grid container sx={{ mb: 4 }}>
                   <Grid item xs={12} px={0}>
                     <Stack direction="column" spacing={3}>
@@ -258,7 +252,8 @@ const UpdateCourse = () => {
                                 color: "red",
                                 padding: "5px 5px",
                                 marginBottom: "10px",
-                              }}>
+                              }}
+                            >
                               {" "}
                               {"This Course name is already exists."}
                             </Box>

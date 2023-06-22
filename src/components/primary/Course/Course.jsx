@@ -6,30 +6,18 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Grid} from "@mui/material";
+import { Grid } from "@mui/material";
 import Box from "@mui/material/Box";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import * as React from "react";
-import {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {setActivePath} from "../../../features/slice/activePathSlice";
-import {getAllCourses} from "../../../features/slice/courseSlice";
-import {getAllSkills} from "../../../features/slice/skillSlice";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setActivePath } from "../../../features/slice/activePathSlice";
+import { getAllCourses } from "../../../features/slice/courseSlice";
+import { getAllSkills } from "../../../features/slice/skillSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import LoadingSkeleton from "../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton";
-import CustomCard from "./CustomCard";
 import CourseTab from "./CourseTab";
-
-const card = (
-  <React.Fragment>
-    <CardContent>
-      <Typography variant="h5" component="div">
-        All Courses
-      </Typography>
-    </CardContent>
-  </React.Fragment>
-);
+import CustomCard from "./CustomCard";
 
 const Course = () => {
   const { role } = useSelector((state) => state.user.user);
@@ -52,7 +40,8 @@ const Course = () => {
         sx={{
           display: "flex",
           mb: "2%",
-        }}>
+        }}
+      >
         <Grid
           container
           sx={{
@@ -60,7 +49,8 @@ const Course = () => {
             display: "flex",
             alignContent: "center",
             alignItems: "center",
-          }}>
+          }}
+        >
           <CommonHeader
             title="Courses"
             description="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "
@@ -100,14 +90,6 @@ const Course = () => {
                 </Grid>
               </>
             )}
-
-            {/* <Grid container spacing={4}>
-              {filterCourses.map((course) => (
-                <Grid key={course._id} item xs={12} sm={6} md={3} gap={1}>
-                  <CustomCard course={course} />
-                </Grid>
-              ))}
-            </Grid> */}
           </>
         )}
       </Box>

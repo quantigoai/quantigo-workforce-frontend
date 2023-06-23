@@ -1,1 +1,0 @@
-# quantigo-workforce-frontend

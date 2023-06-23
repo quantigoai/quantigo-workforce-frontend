@@ -1,0 +1,18 @@
+
+
+.App {
+  font-family: 'Roboto', sans-serif;
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+}
+
+.MyCustomCard{
+  padding-top: "0%";
+  width: "250px";
+}
+
+.App-Dark {
+  background-color: #000;
+}

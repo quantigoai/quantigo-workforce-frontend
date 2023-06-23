@@ -44,8 +44,15 @@ const UpdateProjectDirectory = ({ item }) => {
   const handleClose = () => setOpenModal(false);
 
   const onSubmit = (data) => {
-    dispatch(updateProjectDirectory(data)).then((action) => {
-      if (action.payload.status === 200) {
+    console.log(item._id)
+    console.log(data)
+    const finalData ={
+      data ,
+      "id":item._id
+    }
+   console.log(finalData)
+    dispatch(updateProjectDirectory(finalData)).then((action) => {
+      if (action?.payload?.status === 200) {
         setOpenModal(false);
         alert.show("Successfully Updated Project Directory", {
           type: "success",

@@ -10,6 +10,8 @@ import { Grid, Paper } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import CourseNewDetailsIndex from "./CourseNewDetailsIndex";
+import ChapterIntro from "./ChapterIntro";
+import AdditionalInfo from "./AdditionalInfo";
 
 const CourseDetailsIndex = () => {
   //   TODO Need to fix the height of the paper
@@ -24,7 +26,16 @@ const CourseDetailsIndex = () => {
     <>
       <Paper elevation={0} sx={paperStyle}>
         <Grid container spacing={2}>
-          <CourseNewDetailsIndex />
+          {/* <CourseNewDetailsIndex /> */}
+          <Grid item xs={7}>
+            <Paper variant="outlined">
+              <ChapterIntro />
+            </Paper>
+          </Grid>
+
+          <Grid item xs={5}>
+            <AdditionalInfo />
+          </Grid>
         </Grid>
       </Paper>
     </>

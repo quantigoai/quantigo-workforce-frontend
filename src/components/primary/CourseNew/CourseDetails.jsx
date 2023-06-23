@@ -47,7 +47,7 @@ const CourseDetails = () => {
 
   return (
     <>
-      <Paper sx={{ width: "100%" }} elevation={0}>
+      {/* <Paper sx={{ width: "100%" }} elevation={0}> */}
         <Box sx={{ display: "flex", alignItems: "baseline" }}>
           <Grid
             container
@@ -69,8 +69,8 @@ const CourseDetails = () => {
             /> */}
           </Grid>
         </Box>
-      </Paper>
-      <Box sx={{ paddingTop: "1%" }}>
+      {/* </Paper> */}
+      <Box sx={{paddingTop: "1%"}}>
         <Grid container>
           {!isInContent && (
             <Grid item xs={3} sx={{ paddingRight: "1%" }}>

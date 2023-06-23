@@ -398,7 +398,7 @@ const ProjectDirectoryIndex = () => {
                         : filtered
                       ).map((item, i) => (
                         <TableRow key={item._id}>
-                          <TableCell align="center">{i+1}</TableCell>
+                          <TableCell align="center"> {page * rowsPerPage + i + 1}</TableCell>
                           <TableCell align="center">
                             {item.Project_Name}
                           </TableCell>

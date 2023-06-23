@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 
-const url = "https://centralprojectrepository.onrender.com";
+const url = "https://centralprojectdirectory.as.r.appspot.com";
 // const url = process.env.REACT_APP_SERVER_URL;
 // const jwtSecret = process.env.REACT_APP_JWT_SECRET;
 
@@ -80,9 +80,9 @@ export const createProjectDirectory = createAsyncThunk(
 
 export const updateProjectDirectory = createAsyncThunk(
   "Project/Directory/update",
-  async (data) => {
-    const { Project_Name } = data;
-    return axios.put(`${url}/api/ProjectList/${Project_Name}/update`, data);
+  async (finalData) => {
+    const { data,id } = finalData;
+    return axios.put(`${url}/api/ProjectList/${id}/update`, data);
   }
 );
 

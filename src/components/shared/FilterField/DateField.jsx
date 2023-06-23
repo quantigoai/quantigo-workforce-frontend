@@ -47,14 +47,14 @@ const DateField = () => {
     setDob(dateValue);
     setDate(x);
   };
-
+console.log(dateValue)
   return (
     <>
       <FormControl fullWidth sx={{ backgroundColor: "#FFFFFF" }}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
             label="Created Date"
-            value={dateValue || dayjs(date)}
+            defaultValue={dateValue}
             onChange={(newValue) => {
               handleDate(newValue);
             }}

@@ -18,7 +18,7 @@ let jobStatus = [
   },
   {
     label: "In Progress",
-    value: "in-progress",
+    value: "inProgress",
   },
   {
     label: "Reviewing",
@@ -39,6 +39,10 @@ let jobStatus = [
   {
     label: "Paused",
     value: "paused",
+  },
+  {
+    label: "Expired",
+    value: "expired",
   },
 ];
 
@@ -78,23 +82,40 @@ const StatusChip = () => {
         return (
           status.value !== "pending" &&
           status.value !== "completed" &&
+          status.value !== "expired" &&
           status.value !== "rejected"
         );
       });
+      setUpdatedStatus(x);
+    }
+    if (location.pathname === "/jobs/archivejob") {
+      const x = jobStatus.filter((status) => {
+        return (
+          status.value !== "pending" &&
+          status.value !== "inProgress" &&
+          status.value !== "paused" &&
+          status.value !== "rechecked" &&
+          status.value !== "reviewing"
+        );
+      });
+      console.log(x)
       setUpdatedStatus(x);
     }
     if (location.pathname === "/jobs/archivejobs") {
       const x = jobStatus.filter((status) => {
         return (
           status.value !== "pending" &&
-          status.value !== "completed" &&
-          status.value !== "rejected"
+          status.value !== "inProgress" &&
+          status.value !== "paused" &&
+          status.value !== "rechecked" &&
+          status.value !== "reviewing"
         );
       });
+      console.log(x)
       setUpdatedStatus(x);
     }
   }, [location.pathname]);
-
+console.log(updatedStatus)
   const handleClick = (e) => {
     if (isClicked === e) {
       setIsClicked("");

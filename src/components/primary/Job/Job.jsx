@@ -114,6 +114,7 @@ const Job = () => {
       dispatch(getAllAssignedJob(data));
     location.pathname === "/jobs/assignedjobs" &&
       dispatch(getAllAssignedJob(data));
+    location.pathname === "/jobs/archivejob" && dispatch(getAllAssignedJob(data));
     location.pathname === "/jobs/activejobs" && dispatch(getMyJobs(data));
     location.pathname === "/jobs/archivejobs" && dispatch(getMyJobs(data));
   };
@@ -124,6 +125,7 @@ const Job = () => {
     location.pathname === "/jobs/assignedjobs" && dispatch(getAllAssignedJob());
     location.pathname === "/jobs/activejobs" && dispatch(getMyJobs());
     location.pathname === "/jobs/archivejobs" && dispatch(getMyJobs());
+    location.pathname === "/jobs/archivejob" && dispatch(getAllAssignedJob());
     setStatusType("");
     setIsClicked("");
     setAnnotator("");

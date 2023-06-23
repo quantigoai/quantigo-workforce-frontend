@@ -1,6 +1,6 @@
-import { Box, Grid } from "@mui/material";
 import React from "react";
 import HeaderNav from "../../HomePage/HeaderNav";
+import {Box, Grid} from "@mui/material";
 import "../../HomePage/bd.css";
 import LayoutUsingTab from "./LayoutUsingTab";
 

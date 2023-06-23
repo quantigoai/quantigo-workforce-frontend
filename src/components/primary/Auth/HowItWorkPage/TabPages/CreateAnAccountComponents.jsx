@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import React from "react";
 import CreateNewAccount from "../../../../../assets/images/CreateNewAccount.PNG";
 import newUserPic from "../../../../../assets/images/NewUser.PNG";

@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import React from "react";
 import ActiveJobImage from "../../../../../assets/images/ActiveJob.PNG";
 import ImageModal from "../ImageModal";

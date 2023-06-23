@@ -7,8 +7,8 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { InputAdornment, TextField } from "@mui/material";
+import {Visibility, VisibilityOff} from "@mui/icons-material";
+import {InputAdornment, TextField,} from "@mui/material";
 import React from "react";
 
 const PasswordField = ({
@@ -44,13 +44,40 @@ const PasswordField = ({
               onClick={handleClickShowPassword}
               onMouseDown={handleMouseDownPassword}
               sx={{ cursor: "pointer" }}
-              position="end"
-            >
+              position="end">
               {showPassword ? <VisibilityOff /> : <Visibility />}
             </InputAdornment>
           ),
         }}
       />
+      {/* <FormControl
+        variant="filled"
+        fullWidth
+        sx={{ backgroundColor: "#FFFFFF" }}>
+        <InputLabel>Password</InputLabel>
+        <FilledInput
+          type={showPassword ? "text" : "password"}
+          id="filled-adornment-password"
+          value={password}
+          required={true}
+          autoComplete="off"
+          onChange={(e) =>
+            isSignup
+              ? handlePassword(e.target.value)
+              : setPassword(e.target.value)
+          }
+          inputProps={{ minLength: 6 }}
+          endAdornment={
+            <InputAdornment
+              onClick={handleClickShowPassword}
+              onMouseDown={handleMouseDownPassword}
+              sx={{ cursor: "pointer" }}
+              position="end">
+              {showPassword ? <VisibilityOff /> : <Visibility />}
+            </InputAdornment>
+          }
+        />
+      </FormControl> */}
     </>
   );
 };

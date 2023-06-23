@@ -1,11 +1,11 @@
-import { Box, Button, Grid, Paper, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { emailVerificationLink } from "../../../../features/slice/userSlice";
+import {Box, Button, Grid, Paper, Typography} from "@mui/material";
+import React, {useEffect} from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import {styled} from "@mui/material/styles";
+import {useDispatch} from "react-redux";
+import {emailVerificationLink} from "../../../../features/slice/userSlice";
 
-const paperStyleResendEmail = {
+const paperstyleResendEmail = {
   backgroundColor: "#FFFFFF",
   padding: "3%",
   width: "100%",
@@ -24,13 +24,14 @@ const ButtonStyle = styled(Button)({
   },
 });
 const EmailVerificationAfterLogin = () => {
-  const params = useParams();
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(emailVerificationLink(params));
-  }, []);
+    const params = useParams();
+    const { id, token } = params;
+   
+    const dispatch = useDispatch();
+  
+    useEffect(() => {
+      dispatch(emailVerificationLink(params));
+    }, []);
   const navigate = useNavigate();
   return (
     <>
@@ -41,9 +42,8 @@ const EmailVerificationAfterLogin = () => {
             height: "100%",
             width: "100%",
             paddingLeft: "1%",
-          }}
-        >
-          <Paper elevation={0} style={paperStyleResendEmail}>
+          }}>
+          <Paper elevation={0} style={paperstyleResendEmail}>
             <Grid container sx={{ justifyContent: "center", paddingTop: "7%" }}>
               <Typography variant="h4" sx={{ color: "#090080" }}>
                 Your Account is Verified
@@ -54,8 +54,7 @@ const EmailVerificationAfterLogin = () => {
                 fullWidth
                 onClick={() => {
                   navigate("/");
-                }}
-              >
+                }}>
                 Go to Dashboard{" "}
               </ButtonStyle>
             </Grid>

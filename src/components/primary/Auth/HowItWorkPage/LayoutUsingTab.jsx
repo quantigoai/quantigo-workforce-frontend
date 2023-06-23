@@ -1,14 +1,14 @@
-import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
-import Tabs from "@mui/material/Tabs";
-import Typography from "@mui/material/Typography";
-import PropTypes from "prop-types";
 import * as React from "react";
-import FifthPageJob from "./TabPages/FifthPageJob";
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import FirstPage from "./TabPages/FirstPage";
-import FourthPageCourse from "./TabPages/FourthPageCourse";
 import SettingUpAccountPage from "./TabPages/SettingUpAccountPage";
 import ThirdPageProfileSetup from "./TabPages/ThirdPageProfileSetup";
+import FourthPageCourse from "./TabPages/FourthPageCourse";
+import FifthPageJob from "./TabPages/FifthPageJob";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

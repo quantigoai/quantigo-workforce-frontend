@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { TextField } from "@mui/material";
+import {TextField} from "@mui/material";
 import React from "react";
 
 const NameField = ({ name, handleName }) => {
@@ -16,6 +16,7 @@ const NameField = ({ name, handleName }) => {
         fullWidth
         value={name}
         required={true}
+        // autocapitalize="word"
         sx={{ backgroundColor: "#FFFFFF" }}
         id="filled-basic"
         label="Name"

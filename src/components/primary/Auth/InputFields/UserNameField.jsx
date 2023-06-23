@@ -1,4 +1,4 @@
-import { Grid, TextField } from "@mui/material";
+import {Grid, TextField} from "@mui/material";
 import React from "react";
 
 export const UserNameField = ({ register, qaiID }) => {
@@ -14,6 +14,7 @@ export const UserNameField = ({ register, qaiID }) => {
           label="Quantigo Username"
           variant="filled"
           value={qaiID}
+          // {...register("qaiUserName")}
         />
       </Grid>
     </>

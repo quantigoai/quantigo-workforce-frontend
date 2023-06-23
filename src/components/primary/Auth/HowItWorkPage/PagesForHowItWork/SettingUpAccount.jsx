@@ -1,4 +1,4 @@
-import { Box, Grid, Paper, Typography } from "@mui/material";
+import {Box, Grid, Paper, Typography} from "@mui/material";
 import React from "react";
 
 const paperstyle = {
@@ -16,10 +16,10 @@ const SettingUpAccount = () => {
         <Grid
           container
           sx={{
+            // justifyContent: "center",
             paddingLeft: "0%",
             paddingBottom: "2%",
-          }}
-        >
+          }}>
           <Typography variant="caption" sx={{ color: "#090080" }}>
             To initiate your onboarding process with QAI Workforce, please open
             your preferred web browser and enter the following URL in the

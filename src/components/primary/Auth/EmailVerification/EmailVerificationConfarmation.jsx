@@ -1,9 +1,9 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { emailVerificationLink } from "../../../../features/slice/userSlice";
+import {Box, Button, Grid, Typography} from "@mui/material";
+import {styled} from "@mui/material/styles";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate, useParams} from "react-router-dom";
+import {emailVerificationLink} from "../../../../features/slice/userSlice";
 import HeaderNav from "../../HomePage/HeaderNav";
 
 const ForgetPasswordBox = styled(Box)({

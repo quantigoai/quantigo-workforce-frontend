@@ -1,7 +1,16 @@
-import { Box, Grid, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import {Box, Grid, Typography} from "@mui/material";
+import {styled} from "@mui/material/styles";
 import React from "react";
+import {useNavigate} from "react-router-dom";
+import bgimg from "../../../../assets/images/LoginBG.png";
 import HeaderNav from "../../HomePage/HeaderNav";
+
+const BgBox = styled(Box)({
+  backgroundImage: `url(${bgimg})`,
+  width: "100vw",
+  height: "120vh",
+  backgroundRepeat: "no-repeat",
+});
 
 const ForgetPasswordBox = styled(Box)({
   display: "flex",
@@ -22,6 +31,8 @@ const TypographyBody = styled(Typography)({
   fontFamily: "Roboto",
 });
 const EmailVerification = () => {
+  const navigate = useNavigate();
+
   const Keyframes = styled("div")({
     height: "100vh",
     width: "100%",
@@ -43,22 +54,19 @@ const EmailVerification = () => {
               paddingTop: "15%",
               paddingLeft: "35%",
               justifyContent: "center",
-            }}
-          >
+            }}>
             <ForgetPasswordBox>
               <Grid container spacing={4}>
                 <Grid
                   container
                   xs={12}
-                  sx={{ paddingTop: "10%", justifyContent: "center" }}
-                >
+                  sx={{ paddingTop: "10%", justifyContent: "center" }}>
                   <Typography
                     style={{
                       color: "#FFFFFF",
                       fontSize: "40px",
                       fontFamily: "Roboto",
-                    }}
-                  >
+                    }}>
                     Email Verification
                   </Typography>
                 </Grid>
@@ -69,14 +77,16 @@ const EmailVerification = () => {
                       paddingBottom: "3%",
                       paddingLeft: "7%",
                       paddingRight: "2%",
-                    }}
-                  >
+                    }}>
                     <TypographyBody>
                       A verification link has been sent to your email address.
                       Please check your email.
                     </TypographyBody>
                   </Grid>
                 </Grid>
+                {/* <Grid item xs={12}>
+                     <Button onClick={()=>{ navigate("/login")}}>Back to Login </Button>
+                 </Grid> */}
               </Grid>
             </ForgetPasswordBox>
           </Grid>

@@ -8,28 +8,28 @@
  */
 
 import {
-  Box,
-  Grid,
-  Paper,
-  Skeleton,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
+    Box,
+    Grid,
+    Paper,
+    Skeleton,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { setActivePath } from "../../../features/slice/activePathSlice";
-import { calculateAnnotation, getABenchMarkByProjectId, } from "../../../features/slice/benchMarkSlice";
-import { getDataSetByProjectID } from "../../../features/slice/datasetSlice";
-import { getProjectByWorkSpace } from "../../../features/slice/projectByWorkspaceSlice";
-import { getAllTeams } from "../../../features/slice/teamSlice";
-import { getWorkSpaceById } from "../../../features/slice/workSpaceSlice";
+import React, {useEffect, useState} from "react";
+import {useAlert} from "react-alert";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
+import {setActivePath} from "../../../features/slice/activePathSlice";
+import {calculateAnnotation, getABenchMarkByProjectId,} from "../../../features/slice/benchMarkSlice";
+import {getDataSetByProjectID} from "../../../features/slice/datasetSlice";
+import {getProjectByWorkSpace} from "../../../features/slice/projectByWorkspaceSlice";
+import {getAllTeams} from "../../../features/slice/teamSlice";
+import {getWorkSpaceById} from "../../../features/slice/workSpaceSlice";
 import SelectMenu from "../BenchMark/SelectMenu";
 
 const paperstyle = {

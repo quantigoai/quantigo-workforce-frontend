@@ -1,7 +1,7 @@
-import { Box, Grid, Link, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import {Box, Grid, Link, Typography} from "@mui/material";
+import {styled} from "@mui/material/styles";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import bgimg from "../../../../assets/images/LoginBG.png";
 import logo from "../../../../assets/images/logo.png";
 import Login from "./Login";

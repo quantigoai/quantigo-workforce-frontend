@@ -1,10 +1,10 @@
-import { Box, Link, Typography } from "@mui/material";
+import {Box, Link, Typography} from "@mui/material";
 import React from "react";
 
-import { useNavigate } from "react-router-dom";
 import logImg from "../../../../../assets/images/loginWMP.PNG";
-import ImageModal from "../ImageModal";
 import CreateAnAccountComponents from "./CreateAnAccountComponents";
+import {useNavigate} from "react-router-dom";
+import ImageModal from "../ImageModal";
 
 const SettingUpAccountPage = () => {
   const navigate = useNavigate();
@@ -17,6 +17,7 @@ const SettingUpAccountPage = () => {
           paddingRight: "7%",
 
           height: "82vh",
+          // flexGrow: 2,
           scrollBehavior: "smooth",
           overflow: "auto",
           scrollbarWidth: "thin",

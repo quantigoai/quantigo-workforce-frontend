@@ -6,20 +6,15 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Box } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
-import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import {
-  checkUserByUserName,
-  createAgUser,
-  createQaiUser,
-  signup,
-} from "../../../../features/slice/userSlice";
-import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
+import {Box} from "@mui/material";
+import {styled} from "@mui/material/styles";
+import React, {useEffect, useState} from "react";
+import {useAlert} from "react-alert";
+import {useForm} from "react-hook-form";
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {checkUserByUserName, createAgUser, createQaiUser, signup,} from "../../../../features/slice/userSlice";
+import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
 import InputFields from "../InputFields/InputFields";
 
 const BgBox = styled(Box)({
@@ -148,6 +143,8 @@ const Register = () => {
     if (hub.length) {
       data.hub = hub;
     }
+
+    const filterdData = data;
 
     isSignup && hub
       ? dispatch(createQaiUser(qaiCreateData)).then((res) => {

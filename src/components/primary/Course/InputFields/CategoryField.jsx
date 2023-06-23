@@ -6,19 +6,12 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import React, {useState} from "react";
-import {FormControl, Grid, InputLabel, MenuItem, Select,} from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
+import React, { useState } from "react";
 
 const CategoryField = ({ course, register }) => {
-  const Category = [
-    { value: "intro", label: "Intro" },
-    { value: "image", label: "Image" },
-    { value: "video", label: "Video" },
-    { value: "LiDAR", label: "LiDAR" },
-  ];
-
   const [isOpen, SetIsOpen] = useState(false);
   const handleOpenClose = () => {
     SetIsOpen(!isOpen);

@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Grid, TextField} from "@mui/material";
+import { Grid, TextField } from "@mui/material";
 import React from "react";
 
 const NameField = ({ course = {}, register, nameValidation }) => {
@@ -20,13 +20,11 @@ const NameField = ({ course = {}, register, nameValidation }) => {
             backgroundColor: "#F8F8F8",
             border: "1px solid #DADCDF",
             borderRadius: "4px",
-            // height: "56px",
           }}
           name="name"
           label="Course Name"
           defaultValue={course && course.name}
           onChange={nameValidation}
-          // {...register("name", { required: true })}
         ></TextField>
       </Grid>
     </>

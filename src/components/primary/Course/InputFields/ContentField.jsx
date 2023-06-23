@@ -6,8 +6,8 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {CKEditor} from "@ckeditor/ckeditor5-react";
-import {Grid} from "@mui/material";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import { Grid } from "@mui/material";
 import Editor from "ckeditor5-custom-build/build/ckeditor";
 import React from "react";
 
@@ -40,9 +40,7 @@ const ContentField = ({ courseChapter = {}, uploadPlugin, setContent }) => {
               ? courseChapter.content
               : "<h2>Write your content here</h2>"
           }
-          onReady={(editor) => {
-            // You can store the "editor" and use when it is needed.
-          }}
+          onReady={(editor) => {}}
           onChange={(event, editor) => {
             setContent(editor.getData());
           }}

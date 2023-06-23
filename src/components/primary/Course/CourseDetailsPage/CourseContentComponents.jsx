@@ -1,11 +1,11 @@
-import {Button, Grid, Paper, Typography} from "@mui/material";
+import { Button, Grid, Paper, Typography } from "@mui/material";
 import parse from "html-react-parser";
 import React from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {deleteAChapterById} from "../../../../features/slice/courseSlice";
-import {getAQuizById} from "../../../../features/slice/quizSlice";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { deleteAChapterById } from "../../../../features/slice/courseSlice";
+import { getAQuizById } from "../../../../features/slice/quizSlice";
 
 const CourseContentComponents = ({ quizId }) => {
   const { course, courseChapter } = useSelector((state) => state.course);
@@ -25,7 +25,6 @@ const CourseContentComponents = ({ quizId }) => {
     } else {
       alert.show("Quiz not found", { type: "error" });
     }
-    // navigate("/show-quiz");
   };
 
   const handleCreateQuiz = () => {
@@ -58,14 +57,15 @@ const CourseContentComponents = ({ quizId }) => {
                   overflowY: "scroll",
                   scrollbarWidth: "none",
                   height: "900px",
-                }}>
-                {/* <Typography> {courseChapter._id}</Typography> */}
+                }}
+              >
                 <Grid
                   xs={12}
                   sx={{
                     paddingLeft: "3%",
                     paddingRight: "3%",
-                  }}>
+                  }}
+                >
                   <Typography>
                     {dummyCourseChapter.content &&
                       parse(dummyCourseChapter.content)}
@@ -84,7 +84,8 @@ const CourseContentComponents = ({ quizId }) => {
             paddingRight: "3%",
             paddingTop: "2%",
             paddingBottom: "2%",
-          }}>
+          }}
+        >
           {user.role === "trainer" || user.role === "admin" ? (
             <>
               {" "}
@@ -94,7 +95,8 @@ const CourseContentComponents = ({ quizId }) => {
                 sx={{
                   border: "1px solid #2D58FF",
                   borderRadius: "2px",
-                }}>
+                }}
+              >
                 Delete Chapter
               </Button>
               <Button
@@ -104,7 +106,8 @@ const CourseContentComponents = ({ quizId }) => {
                   border: "1px solid #2D58FF",
                   borderRadius: "2px",
                   width: "128px",
-                }}>
+                }}
+              >
                 Edit Chapter
               </Button>
               <Button
@@ -114,7 +117,8 @@ const CourseContentComponents = ({ quizId }) => {
                   border: "1px solid #2D58FF",
                   borderRadius: "2px",
                   width: "128px",
-                }}>
+                }}
+              >
                 Create Quiz
               </Button>
             </>
@@ -134,7 +138,8 @@ const CourseContentComponents = ({ quizId }) => {
               },
             }}
             onClick={() => handleQuizStart()}
-            variant="contained">
+            variant="contained"
+          >
             {user.role === "trainer" || user.role === "admin"
               ? "Show Quiz"
               : "Start Quiz"}

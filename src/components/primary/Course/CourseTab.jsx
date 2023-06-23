@@ -1,12 +1,12 @@
-import * as React from "react";
-import {useEffect} from "react";
-import PropTypes from "prop-types";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
+import { Grid } from "@mui/material";
 import Box from "@mui/material/Box";
-import {useSelector} from "react-redux";
-import {Grid} from "@mui/material";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import Typography from "@mui/material/Typography";
+import PropTypes from "prop-types";
+import * as React from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import CustomCard from "./CustomCard";
 
 function TabPanel(props) {

@@ -15,8 +15,6 @@ import { setActiveChapterIndex } from "../../../features/slice/activePathSlice";
 import { getAChapterById } from "../../../features/slice/courseSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import CourseDrawer from "./CourseDrawer";
-import CourseDrawerNew from "./CourseDrawerNew";
-import CommonHeaderForCourse from "../../shared/CustomComponenet/CommonHeader/CommonHeaderForCourse";
 
 const CourseDetails = () => {
   const { course, courseChapter, isLoading } = useSelector(
@@ -49,19 +47,20 @@ const CourseDetails = () => {
 
   return (
     <>
-      <Paper sx={{ width: "100%" }} elevation={0}>
+      {/* <Paper sx={{ width: "100%" }} elevation={0}> */}
         <Box sx={{ display: "flex", alignItems: "baseline" }}>
           <Grid
             container
             sx={{
               paddingBottom: "2%",
-            }}>
+            }}
+          >
             <CommonHeader
-            title={course.name}
-            description={course.description}
-            isLoading={isLoading}
-            customButton="Edit Course"
-          />
+              title={course.name}
+              description={course.description}
+              isLoading={isLoading}
+              customButton="Edit Course"
+            />
             {/* <CommonHeaderForCourse
               title={course.name}
               description={course.description}
@@ -70,13 +69,12 @@ const CourseDetails = () => {
             /> */}
           </Grid>
         </Box>
-      </Paper>
+      {/* </Paper> */}
       <Box sx={{paddingTop: "1%"}}>
         <Grid container>
           {!isInContent && (
-            <Grid item xs={3} sx={{ paddingRight: "1%",  }}>
+            <Grid item xs={3} sx={{ paddingRight: "1%" }}>
               <CourseDrawer handleChapterClick={handleChapterClick} />
-              {/* <CourseDrawerNew handleChapterClick={handleChapterClick} /> */}
             </Grid>
           )}
           <Grid item xs={isInContent ? 12 : 9}>

@@ -6,11 +6,20 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Box, Chip, FilledInput, FormControl, Grid, InputLabel, MenuItem, Select,} from "@mui/material";
-import React, {useEffect, useState} from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import {useLocation} from "react-router-dom";
+import {
+  Box,
+  Chip,
+  FilledInput,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const PreRequisiteCourse = ({
   course = { course },
@@ -91,11 +100,11 @@ const PreRequisiteCourse = ({
                   ))}
                 </Box>
               )}
-              MenuProps={MenuProps}>
+              MenuProps={MenuProps}
+            >
               {setCourse.map((item) => (
                 <MenuItem key={item._id} value={item.name}>
                   {item.name}
-                  {/* {course?.name === item.name ? "" : item.name} */}
                 </MenuItem>
               ))}
             </Select>

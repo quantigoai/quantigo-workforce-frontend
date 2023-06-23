@@ -8,6 +8,7 @@
  */
 
 import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
@@ -23,15 +24,10 @@ import {
 import { getProjectByWorkSpace } from "../../features/slice/projectByWorkspaceSlice";
 import { getAllTeams } from "../../features/slice/teamSlice";
 import { getWorkSpaceById } from "../../features/slice/workSpaceSlice";
-import { useAlert } from "react-alert";
 
 const BenchMarkIndex = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const { benchMarks, isLoading } = useSelector((state) => state.benchMark);
-  const { teams } = useSelector((state) => state.team);
-  const { workspaces } = useSelector((state) => state.workspace);
-  const { projects } = useSelector((state) => state.project);
   const { benchMark, projectMetas } = useSelector((state) => state.benchMark);
 
   const [customData, setCustomData] = useState({});
@@ -40,11 +36,9 @@ const BenchMarkIndex = () => {
   const [server, setServer] = useState("ag");
   const [category, setCategory] = useState("annotator");
 
-  // mame desc
   const [name, setName] = React.useState("");
   const [description, setDescription] = React.useState("");
 
-  // classes
   const [value, setValue] = React.useState("bench");
 
   const [data, setData] = useState({
@@ -56,10 +50,7 @@ const BenchMarkIndex = () => {
     tagList: [],
   });
 
-  // tags
   const [value1, setValue1] = React.useState("bench");
-
-  const [avgCount, setAvgCount] = useState();
 
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();

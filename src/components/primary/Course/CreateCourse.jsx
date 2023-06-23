@@ -7,14 +7,18 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 
-import {Box, Grid, Paper, Stack, Typography} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {createCourse, getAllCourses,} from "../../../features/slice/courseSlice";
-import {getAllSkills} from "../../../features/slice/skillSlice";
+import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {
+  createCourse,
+  getAllCourses,
+} from "../../../features/slice/courseSlice";
+import { getAllSkills } from "../../../features/slice/skillSlice";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import CategoryField from "./InputFields/CategoryField";
 import CoverImageField from "./InputFields/CoverImageField";
@@ -24,7 +28,6 @@ import LevelField from "./InputFields/LevelField";
 import NameField from "./InputFields/NameField";
 import PreRequisiteCourse from "./InputFields/PreRequisiteCourse";
 import SkillField from "./InputFields/SkillField";
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -37,7 +40,7 @@ const MenuProps = {
   },
 };
 
-const paperstyle = {
+const paperStyle = {
   width: "80vw",
 };
 
@@ -49,8 +52,6 @@ const CreateCourse = () => {
   } = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const API_URl = process.env.REACT_APP_SERVER_URL;
-  const UPLOAD_ENDPOINT = "courses/couseimages/uploads";
   const { courses, isLoading, course } = useSelector((state) => state.course);
   const { skills } = useSelector((state) => state.skill);
   const alert = useAlert();
@@ -68,7 +69,6 @@ const CreateCourse = () => {
 
   const [coverImageFile, setCoverImageFile] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
-  const [liveSessionTime, setLiveSessionTime] = useState(null);
   const handleImage = (e) => {
     setCoverImageFile(e[0]);
     const file = e[0];
@@ -87,9 +87,6 @@ const CreateCourse = () => {
   const [preRequisiteCourses, setPreRequisiteCourses] = React.useState([]);
   const [skill, setSkill] = React.useState([]);
 
-  const [preRequisite, setPreRequisite] = React.useState([]);
-  const [preRequisite1, setPreRequisite1] = React.useState([]);
-
   const handleChange_Pre_Requisite_Course = (event) => {
     const {
       target: { value },
@@ -99,22 +96,6 @@ const CreateCourse = () => {
       return courses.find((c) => c.name === course);
     });
 
-    // event.target.value.map((preRequisite) => {
-    //   const preData = {
-    //     name: preRequisite.name,
-    //     id: preRequisite._id,
-    //   };
-    //   setPreRequisite([
-    //     {
-    //       ...preData,
-    //     },
-    //   ]);
-    // });
-    // setPreRequisite1([
-    //   {
-    //     ...preRequisite,
-    //   },
-    // ]);
     setPreRequisiteCourses(
       // On autofill we get a stringified value.
       typeof selectedPreRequisiteCourses === "string"
@@ -155,7 +136,6 @@ const CreateCourse = () => {
       return skill._id;
     });
 
-    // const exdate = "20"
     const formData = new FormData();
     formData.append("name", name);
     formData.append("category", data.category);
@@ -163,12 +143,7 @@ const CreateCourse = () => {
     formData.append("language", data.language);
     formData.append("description", data.description);
     formData.append("images", coverImageFile);
-    // formData.append("liveSessionLink", data.liveSessionLink);
-    // formData.append("liveSessionStartedAt", liveSessionTime);
-    // formData.append(
-    //   "liveSessionStartedAt",
-    //   data.liveSessionStartedAt.toString()
-    // );
+
     formData.append("prerequisiteCourses", preRequisiteCoursesColl);
     formData.append("skills", skillColl);
     dispatch(createCourse(formData)).then((action) => {
@@ -193,14 +168,15 @@ const CreateCourse = () => {
         </Grid>
 
         <Box style={{ padding: "0%" }}>
-          <Paper elevation={0} style={paperstyle} sx={{ padding: "0%" }}>
+          <Paper elevation={0} style={paperStyle} sx={{ padding: "0%" }}>
             <Grid container style={{ padding: "0%" }}>
               <Grid
                 container
                 sx={{
                   py: "2%",
                   px: "2%",
-                }}>
+                }}
+              >
                 <Grid container sx={{ mb: 4 }}>
                   <Grid item xs={12} px={0}>
                     <Stack direction="column" spacing={3}>
@@ -216,7 +192,8 @@ const CreateCourse = () => {
                                 color: "red",
                                 padding: "5px 5px",
                                 marginBottom: "10px",
-                              }}>
+                              }}
+                            >
                               {" "}
                               {"This Course name is already exists."}
                             </Box>
@@ -237,7 +214,6 @@ const CreateCourse = () => {
                         MenuProps={MenuProps}
                       />
                     </Stack>
-                    
                   </Grid>
                 </Grid>
                 <Grid container spacing={2}>
@@ -255,17 +231,6 @@ const CreateCourse = () => {
                   </Grid>
                   <LanguageField register={register} />
                 </Grid>
-                {/* <Grid container spacing={2} sx={{ py: 4 }}>
-                  <Grid item xs={6}>
-                    <LiveSessionLink register={register} />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <LiveSessionStartedTime
-                      setLiveSessionTime={setLiveSessionTime}
-                      register={register}
-                    />
-                  </Grid>
-                </Grid> */}
 
                 <Grid xs={12} sx={{ py: 6 }}>
                   <Grid xs={12} sx={{ paddingLeft: "0%", paddingBottom: "1%" }}>

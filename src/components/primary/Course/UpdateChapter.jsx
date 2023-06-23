@@ -1,19 +1,19 @@
-import {Grid, Paper, Stack} from "@mui/material";
-import {Box} from "@mui/system";
-import React, {useEffect, useState} from "react";
-import {useForm} from "react-hook-form";
-import {useNavigate, useParams} from "react-router-dom";
+import { Grid, Paper, Stack } from "@mui/material";
+import { Box } from "@mui/system";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { updateAChapterById } from "../../../features/slice/courseSlice";
+import { realToken } from "../../../helper/lib";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import ChapterDescription from "./InputFields/ChapterDescription";
 import ChapterName from "./InputFields/ChapterName";
-import CourseNameField from "./InputFields/CourseNameField";
-import axios from "axios";
-import {realToken} from "../../../helper/lib";
-import ContentField from "./InputFields/ContentField";
-import {useDispatch, useSelector} from "react-redux";
-import {updateAChapterById} from "../../../features/slice/courseSlice";
 import ChapterNoFiledForUpdate from "./InputFields/ChapterNoFiledForUpdate";
-import {useAlert} from "react-alert";
+import ContentField from "./InputFields/ContentField";
+import CourseNameField from "./InputFields/CourseNameField";
 import EstimatedTimeToRead from "./InputFields/EstimatedTimeToRead";
 
 const UpdateChapter = () => {
@@ -63,7 +63,7 @@ const UpdateChapter = () => {
       },
     };
   }
-  const paperstyle = {
+  const paperStyle = {
     width: "80vw",
   };
 
@@ -83,9 +83,7 @@ const UpdateChapter = () => {
     formData.append("description", data.description);
     formData.append("content", data.content);
     formData.append("estimatedTimeToRead", data.estimatedTimeToRead);
- 
 
-    // formData.append("chapterNo", data.chapterNo);
     const newData = {
       id: id,
       formData: data,
@@ -112,7 +110,7 @@ const UpdateChapter = () => {
         </Grid>
 
         <Box style={{ padding: "0%" }}>
-          <Paper elevation={0} style={paperstyle} sx={{ padding: "0%" }}>
+          <Paper elevation={0} style={paperStyle} sx={{ padding: "0%" }}>
             <Grid container style={{ padding: "0%" }}>
               {" "}
               <Grid

@@ -105,30 +105,7 @@ const PendingJobDetails = ({ job }) => {
                 )}
               </Grid>
             </Grid>
-            {user.role === "level_0_annotator" ||
-            user.role === "level_1_annotator" ||
-            user.role === "level_2_annotator" ||
-            user.role === "level_3_annotator" ||
-            user.role === "reviewer" ? (
-              <></>
-            ) : (
-              <>
-                <Grid
-                  container
-                  sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
-                  <Grid item xs={3} sx={{ justifyContent: "left" }}>
-                    <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                      Reviewer
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={7} sx={{ paddingLeft: "20%" }}>
-                    <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                      {job?.reviewer?.qaiUserName}
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </>
-            )}
+            
 
             <Grid
               container

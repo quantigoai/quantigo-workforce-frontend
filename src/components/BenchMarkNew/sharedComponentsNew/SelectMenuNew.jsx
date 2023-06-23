@@ -9,17 +9,10 @@
 
 import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
 import React from "react";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import styled from "@emotion/styled";
 import Datasets from "../../shared/SPV/Datasets";
 import Projects from "../../shared/SPV/Projects";
-import Workspaces from "../../shared/SPV/Workspaces";
 import Teams from "../../shared/SPV/Teams";
-
-const CustomDownArrow = styled(KeyboardArrowDownIcon)({
-  color: "rgba(45, 88, 255, 1)",
-  marginRight: "10px",
-});
+import Workspaces from "../../shared/SPV/Workspaces";
 
 const SelectMenuNew = ({
   teams,

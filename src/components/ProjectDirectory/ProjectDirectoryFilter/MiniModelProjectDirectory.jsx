@@ -1,9 +1,8 @@
 import CloseIcon from "@mui/icons-material/Close";
-import { Box, Button, Grid, Typography } from "@mui/material";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { useLocation, useOutletContext } from "react-router-dom";
-import RoleField from "../../shared/FilterFieldForUserList/RoleField";
+import {Box, Button, Grid, Typography} from "@mui/material";
+import React from "react";
+import {useSelector} from "react-redux";
+import {useLocation} from "react-router-dom";
 import IndustryTypeField from "./IndustryTypeField";
 import ClientAliasField from "./ClientAliasField";
 import AnnotationType from "./AnnotationType";

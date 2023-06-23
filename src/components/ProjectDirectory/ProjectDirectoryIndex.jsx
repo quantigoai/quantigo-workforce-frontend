@@ -3,27 +3,26 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import {
-  Box,
-  Button,
-  Grid,
-  IconButton,
-  Paper,
-  Skeleton,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
-  Typography,
-  useTheme,
+    Box,
+    Grid,
+    IconButton,
+    Paper,
+    Skeleton,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TablePagination,
+    TableRow,
+    Typography,
+    useTheme,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
-import { useDispatch, useSelector } from "react-redux";
-import { getProjectByDirectory } from "../../features/slice/ProjectDirectory";
-import { setActivePath } from "../../features/slice/activePathSlice";
+import React, {useEffect, useState} from "react";
+import {useAlert} from "react-alert";
+import {useDispatch, useSelector} from "react-redux";
+import {getProjectByDirectory} from "../../features/slice/ProjectDirectory";
+import {setActivePath} from "../../features/slice/activePathSlice";
 import CreateProjectDirectory from "./CreateProjectDirectory/CreateProjectDirectory";
 import UpdateProjectDirectory from "./CreateProjectDirectory/UpdateProjectDirectory";
 import ProjectDirectoryDeleteModal from "./ProjectDirectoryDeleteModal";
@@ -328,7 +327,7 @@ const ProjectDirectoryIndex = () => {
                         <TableCell
                           align="center"
                           sx={{ color: "#969CAF", fontSize: "20px" }}>
-                          Project Timeline
+                          Project Name
                         </TableCell>
 
                         <TableCell
@@ -336,26 +335,22 @@ const ProjectDirectoryIndex = () => {
                           sx={{ color: "#969CAF", fontSize: "20px" }}>
                           Client Alias
                         </TableCell>
+                        
                         <TableCell
                           align="center"
                           sx={{ color: "#969CAF", fontSize: "20px" }}>
-                          Project Name
-                        </TableCell>
-                        <TableCell
-                          align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}>
-                          Industry Type
+                          Industry
                         </TableCell>
 
                         <TableCell
                           align="center"
                           sx={{ color: "#969CAF", fontSize: "20px" }}>
-                          Annotation Type
+                          Tool Type
                         </TableCell>
                         <TableCell
                           align="center"
                           sx={{ color: "#969CAF", fontSize: "20px" }}>
-                          Data Type
+                          Project Type
                         </TableCell>
 
                         <TableCell
@@ -403,25 +398,23 @@ const ProjectDirectoryIndex = () => {
                         : filtered
                       ).map((item, i) => (
                         <TableRow key={item._id}>
-                          <TableCell align="center">{item.Sl_No}</TableCell>
+                          <TableCell align="center"> {page * rowsPerPage + i + 1}</TableCell>
                           <TableCell align="center">
-                            {item.Project_Timeline}
+                            {item.Project_Name}
                           </TableCell>
 
                           <TableCell align="center">
                             {item.Client_Alias}
                           </TableCell>
+                          
                           <TableCell align="center">
-                            {item.Project_Name}
-                          </TableCell>
-                          <TableCell align="center">
-                            {item.Industry_Type}
+                            {item.Industry}
                           </TableCell>
 
                           <TableCell align="center">
-                            {item.Annotation_Type}
+                            {item.Tool_Type}
                           </TableCell>
-                          <TableCell align="center">{item.Data_Type}</TableCell>
+                          <TableCell align="center">{item.Project_Type}</TableCell>
 
                           <TableCell align="center">{item.PDR}</TableCell>
                           {role === "admin" || role == "project_manager" ? (

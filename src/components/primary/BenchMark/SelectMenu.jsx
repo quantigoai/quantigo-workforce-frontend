@@ -6,19 +6,12 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {FormControl, Grid, InputLabel, MenuItem, Select} from "@mui/material";
+import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
 import React from "react";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import styled from "@emotion/styled";
+import Datasets from "../../shared/SPV/Datasets";
+import Projects from "../../shared/SPV/Projects";
 import Teams from "../../shared/SPV/Teams";
 import Workspaces from "../../shared/SPV/Workspaces";
-import Projects from "../../shared/SPV/Projects";
-import Datasets from "../../shared/SPV/Datasets";
-
-const CustomDownArrow = styled(KeyboardArrowDownIcon)({
-  color: "rgba(45, 88, 255, 1)",
-  marginRight: "10px",
-});
 
 const SelectMenu = ({
   teams,
@@ -46,7 +39,8 @@ const SelectMenu = ({
               paddingLeft: "3%",
               paddingRight: jobCreate ? "3%" : "1%",
               paddingBottom: "0%",
-            }}>
+            }}
+          >
             <FormControl
               variant="filled"
               fullWidth
@@ -56,7 +50,8 @@ const SelectMenu = ({
                 borderRadius: "4px",
                 // width: "238.5px",
                 height: "58px",
-              }}>
+              }}
+            >
               <InputLabel id="demo-simple-select-filled-label">
                 Server
               </InputLabel>
@@ -64,7 +59,8 @@ const SelectMenu = ({
                 labelId="demo-simple-select-filled-label"
                 id="demo-simple-select-filled"
                 defaultValue={"ag"}
-                onChange={(e) => handleChangeServer(e)}>
+                onChange={(e) => handleChangeServer(e)}
+              >
                 <MenuItem value={"quantigo"}>Quantigo Server</MenuItem>
                 <MenuItem value={"ag"}>Ag Server</MenuItem>
               </Select>
@@ -74,7 +70,8 @@ const SelectMenu = ({
             <Grid
               container
               xs={6}
-              style={{ paddingLeft: "0%", paddingRight: "3%" }}>
+              style={{ paddingLeft: "0%", paddingRight: "3%" }}
+            >
               <FormControl
                 variant="filled"
                 fullWidth
@@ -84,7 +81,8 @@ const SelectMenu = ({
                   borderRadius: "4px",
                   // width: "238.5px",
                   height: "58px",
-                }}>
+                }}
+              >
                 <InputLabel id="demo-simple-select-filled-label">
                   Category
                 </InputLabel>
@@ -92,7 +90,8 @@ const SelectMenu = ({
                   labelId="demo-simple-select-filled-label"
                   id="demo-simple-select-filled"
                   defaultValue={""}
-                  onChange={(e) => handleChangeCategory(e)}>
+                  onChange={(e) => handleChangeCategory(e)}
+                >
                   <MenuItem value={"annotator"}>Annotator</MenuItem>
                   <MenuItem value={"reviewer"}>Reviewer</MenuItem>
                 </Select>
@@ -110,17 +109,20 @@ const SelectMenu = ({
         sx={{
           py: "3%",
           mx: "3%",
-        }}>
+        }}
+      >
         {/* Show Team List */}
         <Grid
           xs={jobCreate || calculateAnnotation ? 3 : 4}
-          sx={{ paddingRight: "1%" }}>
+          sx={{ paddingRight: "1%" }}
+        >
           <Teams teams={teams} handleChangeTeam={handleChangeTeam} />
         </Grid>
         {/* Show Workspaces List */}
         <Grid
           xs={jobCreate || calculateAnnotation ? 3 : 4}
-          sx={{ paddingRight: "1%" }}>
+          sx={{ paddingRight: "1%" }}
+        >
           <Workspaces
             workspaces={workspaces}
             handleChangeWorkspace={handleChangeWorkspace}
@@ -129,7 +131,8 @@ const SelectMenu = ({
         {/* Show Project List */}
         <Grid
           xs={jobCreate || calculateAnnotation ? 3 : 4}
-          sx={{ paddingRight: "1%" }}>
+          sx={{ paddingRight: "1%" }}
+        >
           <Projects
             xs={jobCreate || calculateAnnotation ? 3 : 4}
             projects={projects}
@@ -141,7 +144,8 @@ const SelectMenu = ({
         {(jobCreate || calculateAnnotation) && (
           <Grid
             xs={jobCreate || calculateAnnotation ? 3 : 4}
-            sx={{ paddingRight: "0%" }}>
+            sx={{ paddingRight: "0%" }}
+          >
             <Datasets
               jobCreate={jobCreate}
               calculateAnnotation={calculateAnnotation}

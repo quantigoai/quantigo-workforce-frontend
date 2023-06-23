@@ -6,10 +6,18 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Box, FilledInput, FormControl, Grid, InputLabel, Paper, Typography,} from "@mui/material";
+import {
+  Box,
+  FilledInput,
+  FormControl,
+  Grid,
+  InputLabel,
+  Paper,
+  Typography,
+} from "@mui/material";
 import React from "react";
-import {useSelector} from "react-redux";
-import {useOutletContext} from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useOutletContext } from "react-router-dom";
 
 const NameDescFIeld = ({ isUpdate = false }) => {
   const [
@@ -35,7 +43,8 @@ const NameDescFIeld = ({ isUpdate = false }) => {
                 variant="h5"
                 sx={{
                   color: "#090080",
-                }}>
+                }}
+              >
                 General Info
               </Typography>
             </Grid>
@@ -47,7 +56,8 @@ const NameDescFIeld = ({ isUpdate = false }) => {
                   fullWidth
                   sx={{
                     backgroundColor: "#FFFFFF",
-                  }}>
+                  }}
+                >
                   <InputLabel>Name</InputLabel>
                   <FilledInput
                     defaultValue={(isUpdate && benchMark.name) || ""}
@@ -61,7 +71,8 @@ const NameDescFIeld = ({ isUpdate = false }) => {
                 <FormControl
                   variant="filled"
                   fullWidth
-                  sx={{ backgroundColor: "#FFFFFF" }}>
+                  sx={{ backgroundColor: "#FFFFFF" }}
+                >
                   <InputLabel htmlFor="filled-adornment-password">
                     Description
                   </InputLabel>

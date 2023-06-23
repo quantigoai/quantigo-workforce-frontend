@@ -7,9 +7,17 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Box, FilledInput, FormControl, Grid, InputLabel, Paper, Typography,} from "@mui/material";
+import {
+  Box,
+  FilledInput,
+  FormControl,
+  Grid,
+  InputLabel,
+  Paper,
+  Typography,
+} from "@mui/material";
 import React from "react";
-import {useOutletContext} from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 const ImageFields = ({ isUpdate = false, bm }) => {
   const [
@@ -61,7 +69,8 @@ const ImageFields = ({ isUpdate = false, bm }) => {
                 backgroundColor: "#FFFFFF",
                 border: "1px solid #DADCDF",
                 borderRadius: "4px",
-              }}>
+              }}
+            >
               <InputLabel htmlFor="filled-adornment-password">
                 Observation Time
               </InputLabel>
@@ -78,7 +87,6 @@ const ImageFields = ({ isUpdate = false, bm }) => {
                 type={"number"}
                 label="Count"
                 defaultValue={isUpdate ? bm.imageBenchMark.value : ""}
-                // value={imageBenchMark.value}
                 onChange={isUpdate ? handleInputChangeTest : handleInputChange}
               />
             </FormControl>

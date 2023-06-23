@@ -13,15 +13,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useOutletContext } from "react-router-dom";
 
 import { Grid, Paper } from "@mui/material";
-import ClassTagFieldsNew from "./sharedComponentsNew/ClassTagFieldsNew";
-import CommonHeader from "../shared/CustomComponenet/CommonHeader/CommonHeader";
-import SelectMenuNew from "./sharedComponentsNew/SelectMenuNew";
 import { resetProjectMetas } from "../../features/slice/benchMarkSlice";
+import CommonHeader from "../shared/CustomComponenet/CommonHeader/CommonHeader";
+import ClassTagFieldsNew from "./sharedComponentsNew/ClassTagFieldsNew";
+import SelectMenuNew from "./sharedComponentsNew/SelectMenuNew";
 
 const CreateBenchMarkNew = () => {
-  const { benchMark, benchMarks, isLoading } = useSelector(
-    (state) => state.benchMark
-  );
+  const { isLoading } = useSelector((state) => state.benchMark);
 
   const { teams } = useSelector((state) => state.team);
   const { workspaces } = useSelector((state) => state.workspace);
@@ -75,7 +73,8 @@ const CreateBenchMarkNew = () => {
       </Grid>
       <Paper
         elevation={0}
-        sx={{ mb: 2, paddingLeft: "2%", paddingRight: "2%" }}>
+        sx={{ mb: 2, paddingLeft: "2%", paddingRight: "2%" }}
+      >
         <SelectMenuNew
           teams={teams}
           workspaces={workspaces}

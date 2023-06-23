@@ -1,7 +1,7 @@
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
-import React, { useEffect, useState } from "react";
-import { getType } from '../../../features/slice/ProjectDirectory';
-import { useDispatch } from 'react-redux';
+import {FormControl, InputLabel, MenuItem, Select} from '@mui/material'
+import React, {useEffect, useState} from "react";
+import {getType} from '../../../features/slice/ProjectDirectory';
+import {useDispatch} from 'react-redux';
 
 const AnnotationType = () => {
   const [annotationTypes, setAnnotationTypes] = useState([]);

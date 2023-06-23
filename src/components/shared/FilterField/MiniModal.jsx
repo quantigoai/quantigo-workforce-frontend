@@ -76,7 +76,8 @@ const MiniModal = () => {
         </Box>
         <br />
         <Box sx={{ px: 1 }}>
-          <StatusChip />
+          {location.pathname === "/jobs/alljobs" ?<></> :<> <StatusChip /></>}
+          
         </Box>
         <br />
         <Box>
@@ -109,7 +110,7 @@ const MiniModal = () => {
                 <></>
               ) : ( */}
                 <>
-                 <ProjectIdField/>
+                 {/* <ProjectIdField/> */}
                   {/* <UsersRadioGroup
                     users={users}
                     handleChange={handleChange}

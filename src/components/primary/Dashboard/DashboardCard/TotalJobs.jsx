@@ -1,8 +1,8 @@
-import { Grid, Paper, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import {Grid, Paper, Typography} from "@mui/material";
+import {Box} from "@mui/system";
 import React from "react";
-import NorthIcon from "@mui/icons-material/North";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
+
 const TotalJobs = () => {
   const { totalCountData } = useSelector((state) => state.dashboard);
   return (

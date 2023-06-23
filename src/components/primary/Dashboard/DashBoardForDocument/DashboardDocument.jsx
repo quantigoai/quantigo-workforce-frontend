@@ -1,15 +1,7 @@
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Grid,
-  Paper,
-  Typography,
-} from "@mui/material";
+import {Box, Button, Grid, Paper, Typography,} from "@mui/material";
 
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import circularpro from "../../../../assets/images/Frame 626705.png";
+import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import UpdateDocumentModal from "../../Documents/UpdateDocumentModal";
 import NDAuploadModal from "../../Nda/NDAuploadModal";
 import ProgressBarForDashboard from "../ProgressBarForDashboard";

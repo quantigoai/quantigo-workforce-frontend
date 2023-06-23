@@ -12,7 +12,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivePath } from "../../features/slice/activePathSlice";
 import { getAllBenchMarks } from "../../features/slice/benchMarkSlice";
-import BenchMarkCard from "./BenchMarkCard";
 import CommonHeader from "../shared/CustomComponenet/CommonHeader/CommonHeader";
 import BenchMarkTable from "./BenchMarkTable";
 
@@ -22,7 +21,7 @@ const BenchmarkList = () => {
   useEffect(() => {
     dispatch(setActivePath("Benchmark"));
     dispatch(getAllBenchMarks({ server_agent: "all" }));
-  }, []);
+  }, [dispatch]);
 
   const { benchMarks, isLoading } = useSelector((state) => state.benchMark);
 
@@ -36,16 +35,7 @@ const BenchmarkList = () => {
           customButton="Create Benchmark"
         />
       </Grid>
-
-      {/* <Grid container>
-        {benchMarks.map((bm) => (
-          <BenchMarkCard key={bm.id} bm={bm} />
-        ))}
-      </Grid> */}
-
-      {/* {benchMarks.map((bm) => ( */}
       <BenchMarkTable benchMarks={benchMarks} />
-      {/* // ))} */}
     </>
   );
 };

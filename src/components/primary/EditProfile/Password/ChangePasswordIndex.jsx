@@ -1,8 +1,7 @@
-import { Box, Button } from "@mui/material";
-import React from "react";
-import { useState } from "react";
-import { useAlert } from "react-alert";
-import { useDispatch } from "react-redux";
+import {Box, Button} from "@mui/material";
+import React, {useState} from "react";
+import {useAlert} from "react-alert";
+import {useDispatch} from "react-redux";
 import ChangePasswordModal from "./ChangePasswordModal";
 
 const ChangePasswordIndex = () => {

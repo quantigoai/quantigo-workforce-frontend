@@ -1,10 +1,9 @@
 import AddIcon from "@mui/icons-material/Add";
-import {Box, Button, Grid} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {useLocation, useNavigate} from "react-router-dom";
-import {getAChapterById} from "../../../../features/slice/courseSlice";
+import { Box, Button, Grid } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { getAChapterById } from "../../../../features/slice/courseSlice";
 import CommonHeader from "../../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import ShowQuiz from "../../Quiz/QuizPage/ShowQuiz";
 import ShowResult from "../../Quiz/QuizPage/ShowResult/ShowResult";
@@ -18,7 +17,6 @@ const CourseContentIndex = () => {
   const { courseChapters } = useSelector(
     (state) => state.course.courseChapters
   );
-  const alert = useAlert();
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -33,9 +31,6 @@ const CourseContentIndex = () => {
         courseChapters.map((courseChapter, i) => {
           if (i === 0) {
             dispatch(getAChapterById(courseChapter._id));
-            // if (courseChapter.quiz) {
-            //   SetQuizId(courseChapter.quiz.id);
-            // }
           }
         });
       }
@@ -45,9 +40,6 @@ const CourseContentIndex = () => {
   const handleChapter = (id) => {
     dispatch(getAChapterById(id));
   };
-  // const handleQuizId = (id) => {
-  //   SetQuizId(id);
-  // };
   const handleCreateChapter = (id) => {
     navigate(`/create-chapter/${id}`);
   };
@@ -80,22 +72,15 @@ const CourseContentIndex = () => {
             <Grid xs={12}>
               {user.role === "trainer" || user.role === "admin" ? (
                 <Box>
-                  <CourseDeleteModal
-                    course={course}
-                    // handleDeleteCourse={handleDeleteCourse}
-                  />
+                  <CourseDeleteModal course={course} />
                 </Box>
               ) : (
                 <></>
               )}
-              {/* Course Intro and progress section */}
-              {/* <CourseIntroBox course={course} value={60} /> */}
-
               {/* Chapter List item */}
               <CourseChapterList
                 courseChapters={courseChapters}
                 handleChapter={handleChapter}
-                // handleQuizId={handleQuizId}
               />
               {user.role === "trainer" || user.role === "admin" ? (
                 <Box>
@@ -132,12 +117,6 @@ const CourseContentIndex = () => {
                 <></>
               )}
             </Grid>
-
-            {/* <Grid xs={12}>
-              <Button onClick={() => handleCreateChapter(course._id)}>
-                Create Chapter
-              </Button>
-            </Grid> */}
           </Grid>
           {/* Course Content */}
           <Grid container xs={9} sx={{}}>
@@ -146,7 +125,6 @@ const CourseContentIndex = () => {
             ) : location.pathname === "/quiz-result" ? (
               <ShowResult />
             ) : (
-              // <CourseDescriptionComponent />
               <CourseContentComponents quizId={quizId} />
             )}
           </Grid>

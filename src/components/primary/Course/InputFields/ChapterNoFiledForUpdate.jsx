@@ -1,4 +1,4 @@
-import {Grid, TextField} from "@mui/material";
+import { Grid, TextField } from "@mui/material";
 import React from "react";
 
 const ChapterNoFiledForUpdate = ({ chapterNo }) => {
@@ -12,7 +12,8 @@ const ChapterNoFiledForUpdate = ({ chapterNo }) => {
           sx={{ backgroundColor: "#FFFFFF" }}
           name="chapterNo"
           label="Chapter No"
-          defaultValue={chapterNo}></TextField>
+          defaultValue={chapterNo}
+        ></TextField>
       </Grid>
     </>
   );

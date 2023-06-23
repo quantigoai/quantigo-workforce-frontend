@@ -1,34 +1,25 @@
 import {
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  FilledInput,
-  FormControl,
-  Grid,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  MenuItem,
-  Select,
-  Stack,
-  TextField,
-  Typography,
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    FormControl,
+    Grid,
+    InputLabel,
+    MenuItem,
+    Select,
+    TextField,
 } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { PhotoCamera } from "@mui/icons-material";
-import React, { useState } from "react";
-import { styled } from "@mui/material/styles";
+import React, {useState} from "react";
+import {styled} from "@mui/material/styles";
 import croxButton from "../../../assets/images/u_multiply.png";
-import { useDropzone } from "react-dropzone";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { updateMyDocuments } from "../../../features/slice/userSlice";
-import { useAlert } from "react-alert";
-import io from "socket.io-client";
-import { socket } from "../../../App";
+import {useDropzone} from "react-dropzone";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
+import {updateMyDocuments} from "../../../features/slice/userSlice";
+import {useAlert} from "react-alert";
+import {socket} from "../../../App";
 import DocumentImageUpload from "./DocumentImageUpload";
 
 const ButtonStyle = styled(Button)({

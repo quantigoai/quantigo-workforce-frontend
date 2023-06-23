@@ -1,14 +1,15 @@
-import { Box, Button, Dialog, DialogTitle } from "@mui/material";
+import {Box, Button, Dialog, DialogTitle} from "@mui/material";
 import React from "react";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useAlert } from "react-alert";
+import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {useAlert} from "react-alert";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Tooltip from "@mui/material/Tooltip";
-import { deleteProjectDirectory } from "../../features/slice/ProjectDirectory";
+import {deleteProjectDirectory} from "../../features/slice/ProjectDirectory";
+
 const ProjectDirectoryDeleteModal = ({ item }) => {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const ProjectDirectoryDeleteModal = ({ item }) => {
   const handleDelete = (id) => {
     setOpen(false);
     dispatch(deleteProjectDirectory(id)).then((action) => {
-      if (action.payload.status === 200) {
+      if (action?.payload?.status === 200) {
         alert.show("Successfully Deleted Project Directory", {
           type: "success",
         });

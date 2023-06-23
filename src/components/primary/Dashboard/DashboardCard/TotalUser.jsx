@@ -1,10 +1,8 @@
-import { Grid, Paper, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import React from "react";
-import NorthIcon from "@mui/icons-material/North";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllUsers } from "../../../../features/slice/userSlice";
-import { useEffect } from "react";
+import {Grid, Paper, Typography} from "@mui/material";
+import {Box} from "@mui/system";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getAllUsers} from "../../../../features/slice/userSlice";
 
 const TotalUser = () => {
   const dispatch = useDispatch();

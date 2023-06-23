@@ -6,20 +6,12 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Box, Grid, Typography } from "@mui/material";
-import {
-  BarElement,
-  CategoryScale,
-  Chart as ChartJS,
-  Legend,
-  LinearScale,
-  Title,
-  Tooltip,
-} from "chart.js";
-import React, { useEffect } from "react";
-import { Bar } from "react-chartjs-2";
-import { useSelector } from "react-redux";
-import { chartValues, labelsData } from "../../../../helper/customData";
+import {Grid, Typography} from "@mui/material";
+import {BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip,} from "chart.js";
+import React, {useEffect} from "react";
+import {Bar} from "react-chartjs-2";
+import {useSelector} from "react-redux";
+import {chartValues, labelsData} from "../../../../helper/customData";
 import DateField from "../DatePicker/DateField";
 
 ChartJS.register(

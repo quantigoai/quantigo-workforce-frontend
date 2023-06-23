@@ -25,7 +25,7 @@ const ProjectDirectoryDeleteModal = ({ item }) => {
   const handleDelete = (id) => {
     setOpen(false);
     dispatch(deleteProjectDirectory(id)).then((action) => {
-      if (action.payload.status === 200) {
+      if (action?.payload?.status === 200) {
         alert.show("Successfully Deleted Project Directory", {
           type: "success",
         });

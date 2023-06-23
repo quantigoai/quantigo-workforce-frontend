@@ -12,17 +12,16 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import Cookies from "js-cookie";
-import {realToken} from "../../helper/lib";
 import CryptoJS from "crypto-js";
+import Cookies from "js-cookie";
+import { realToken } from "../../helper/lib";
 
 // const CryptoJS =
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
-console.log("🚀 ~ file: userSlice.js:25 ~ jwtSecret:", jwtSecret)
 
 const initialState = {
   isLoading: false,

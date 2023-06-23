@@ -1,3 +1,13 @@
+/*
+ * Filename: /home/tanzim/OfficeWorkstation/wmpfrontv2/netlify.toml
+ * Path: /home/tanzim/OfficeWorkstation/wmpfrontv2
+ * Created Date: Saturday, June 24th 2023, 1:59:48 am
+ * Author: Tanzim Ahmed
+ * 
+ * Copyright (c) 2023 Tanzim Ahmed
+ */
+
+
 [[redirects]]
   from = "/*"
   to = "/"

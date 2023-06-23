@@ -17,7 +17,7 @@ import CourseNameField from "./InputFields/CourseNameField";
 import EstimatedTimeToRead from "./InputFields/EstimatedTimeToRead";
 
 const UpdateChapter = () => {
-  const API_URl = process.env.REACT_APP_SERVER_URL;
+  const API_URl = import.meta.env.VITE_APP_SERVER_URL;
   const UPLOAD_ENDPOINT = "courses/couseimages/uploads";
   const { courseChapter, course, isLoading } = useSelector(
     (state) => state.course
@@ -118,7 +118,8 @@ const UpdateChapter = () => {
                 sx={{
                   py: "2%",
                   px: "2%",
-                }}>
+                }}
+              >
                 <Grid container sx={{ mb: 4 }}>
                   <Grid item xs={12} px={0}>
                     <Stack direction="column" spacing={3}>

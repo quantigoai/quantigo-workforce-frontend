@@ -29,10 +29,10 @@ import {
 } from "./features/slice/userSlice";
 import socketHandlers from "./socketHandlers";
 
-const CryptoJS = require("crypto-js");
+import CryptoJS from "crypto-js";
 
-const jwtSecret = process.env.REACT_APP_JWT_SECRET;
-export const socket = io(process.env.REACT_APP_SOCKET_SERVER_URL);
+const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
+export const socket = io(import.meta.env.VITE_APP_SOCKET_SERVER_URL);
 
 function App() {
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ function App() {
       var bytes = CryptoJS.AES.decrypt(existedToken, jwtSecret);
       var originalToken = bytes.toString(CryptoJS.enc.Utf8);
       var decoded = jwt_decode(originalToken);
-      const { _id, name } = decoded;
+      const { _id } = decoded;
       return _id;
     }
   };

@@ -1,26 +1,34 @@
-import React, {useEffect, useRef, useState} from "react";
-import {useTheme} from "@emotion/react";
+import React, { useEffect, useRef, useState } from "react";
+import { useTheme } from "@emotion/react";
 import DownloadIcon from "@mui/icons-material/Download";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
-import {Box, Button, Grid, IconButton, Popper, TablePagination, Typography,} from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  Popper,
+  TablePagination,
+  Typography,
+} from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell, {tableCellClasses} from "@mui/material/TableCell";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import {styled} from "@mui/material/styles";
-import {CSVLink} from "react-csv";
-import {useDispatch, useSelector} from "react-redux";
-import {useLocation} from "react-router-dom";
-import {setActivePath} from "../../../features/slice/activePathSlice";
-import {getAllSkills} from "../../../features/slice/skillSlice";
-import {getAllUsers} from "../../../features/slice/userSlice";
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
+import { styled } from "@mui/material/styles";
+import { CSVLink } from "react-csv";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { setActivePath } from "../../../features/slice/activePathSlice";
+import { getAllSkills } from "../../../features/slice/skillSlice";
+import { getAllUsers } from "../../../features/slice/userSlice";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import SearchBarforUserList from "../../shared/SearchBar/SearchBarforUserList";
 import NidDetails from "../Users/NidDetals/NidDetails";
@@ -53,13 +61,15 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
-        aria-label="first page">
+        aria-label="first page"
+      >
         {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
-        aria-label="previous page">
+        aria-label="previous page"
+      >
         {theme.direction === "rtl" ? (
           <KeyboardArrowRight />
         ) : (
@@ -69,7 +79,8 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page">
+        aria-label="next page"
+      >
         {theme.direction === "rtl" ? (
           <KeyboardArrowLeft />
         ) : (
@@ -79,7 +90,8 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page">
+        aria-label="last page"
+      >
         {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
@@ -210,7 +222,7 @@ const UserListIndex = ({ action }) => {
     setAnchorE2(null);
   };
 
-  const url = process.env.REACT_APP_SERVER_URL;
+  const url = import.meta.env.VITE_APP_SERVER_URL;
   const tableRef = useRef(null);
   // const { jobs } = useSelector((state) => state.job);
   // const serverLink = "https://wmpserver.onrender.com/api/v1/";
@@ -388,7 +400,8 @@ const UserListIndex = ({ action }) => {
           sx={{
             display: "flex",
             mb: "2%",
-          }}>
+          }}
+        >
           <Grid
             container
             sx={{
@@ -396,7 +409,8 @@ const UserListIndex = ({ action }) => {
               display: "flex",
               alignContent: "center",
               alignItems: "center",
-            }}>
+            }}
+          >
             <CommonHeader
               title="User Management"
               // description="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "
@@ -415,7 +429,8 @@ const UserListIndex = ({ action }) => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "0%",
-              }}>
+              }}
+            >
               <Grid
                 item
                 xs={11}
@@ -423,7 +438,8 @@ const UserListIndex = ({ action }) => {
                   display: "flex",
                   alignItems: "center",
                   paddingRight: "1%",
-                }}>
+                }}
+              >
                 <SearchBarforUserList
                   placeholder="Search User"
                   handleChange={handleChange}
@@ -452,7 +468,8 @@ const UserListIndex = ({ action }) => {
                     <ButtonStyle
                       variant="outlined"
                       onMouseOver={handleMouseOver}
-                      onMouseOut={handleMouseOut}>
+                      onMouseOut={handleMouseOut}
+                    >
                       <Grid container sx={{ paddingTop: "8%" }}>
                         <Grid item xs={4}>
                           <DownloadIcon />
@@ -478,14 +495,16 @@ const UserListIndex = ({ action }) => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "3%",
-              }}>
+              }}
+            >
               <TableContainer>
                 <Table sx={{ border: "1px solid #DADCDF" }} ref={tableRef}>
                   <TableHead sx={{ background: "#F8F8F8", height: "80px" }}>
                     <TableRow>
                       <TableCell
                         align="left"
-                        sx={{ color: "#969CAF", fontSize: "16px" }}>
+                        sx={{ color: "#969CAF", fontSize: "16px" }}
+                      >
                         No
                       </TableCell>
                       <TableCell sx={{ color: "#969CAF", fontSize: "16px" }}>
@@ -496,17 +515,20 @@ const UserListIndex = ({ action }) => {
                       </TableCell>
                       <TableCell
                         align="left"
-                        sx={{ color: "#969CAF", fontSize: "16px" }}>
+                        sx={{ color: "#969CAF", fontSize: "16px" }}
+                      >
                         Email
                       </TableCell>
                       <TableCell
                         align="left"
-                        sx={{ color: "#969CAF", fontSize: "16px" }}>
+                        sx={{ color: "#969CAF", fontSize: "16px" }}
+                      >
                         Role
                       </TableCell>
                       <TableCell
                         align="left"
-                        sx={{ color: "#969CAF", fontSize: "16px" }}>
+                        sx={{ color: "#969CAF", fontSize: "16px" }}
+                      >
                         Status
                       </TableCell>
                       <TableCell
@@ -515,7 +537,8 @@ const UserListIndex = ({ action }) => {
                           color: "#969CAF",
                           fontSize: "16px",
                           paddingLeft: "2%",
-                        }}>
+                        }}
+                      >
                         Completed Job
                       </TableCell>
 
@@ -531,14 +554,16 @@ const UserListIndex = ({ action }) => {
                               color: "#969CAF",
                               fontSize: "16px",
                               paddingLeft: "4%",
-                            }}>
+                            }}
+                          >
                             Action
                           </TableCell>
                         </>
                       ) : (
                         <TableCell
                           align="center"
-                          sx={{ color: "#969CAF", fontSize: "16px" }}>
+                          sx={{ color: "#969CAF", fontSize: "16px" }}
+                        >
                           Verified
                         </TableCell>
                       )}
@@ -546,7 +571,8 @@ const UserListIndex = ({ action }) => {
                       role === "delivery_manager" ? (
                         <TableCell
                           align="left"
-                          sx={{ color: "#969CAF", fontSize: "16px" }}>
+                          sx={{ color: "#969CAF", fontSize: "16px" }}
+                        >
                           Details
                         </TableCell>
                       ) : (
@@ -665,7 +691,8 @@ const UserListIndex = ({ action }) => {
           <Paper elevation={0} style={paperStyle} sx={{ padding: "0%" }}>
             <Grid
               container
-              sx={{ justifyContent: "right", paddingRight: "3%" }}>
+              sx={{ justifyContent: "right", paddingRight: "3%" }}
+            >
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
                 colSpan={3}

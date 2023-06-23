@@ -1,8 +1,8 @@
 import {Box, Typography} from "@mui/material";
 import React from "react";
-import ProfileCompletion from "../../../../../assets/images/ProfileCompletion.PNG";
-import NdaUploadImage from "../../../../../assets/images/Ndaupload.PNG";
-import congratulationImage from "../../../../../assets/images/congratulation.PNG";
+import ProfileCompletion from "../../../../../assets/images/ProfileCompletion.png";
+import NdaUploadImage from "../../../../../assets/images/Ndaupload.png";
+import congratulationImage from "../../../../../assets/images/congratulation.png";
 import ImageModal from "../ImageModal";
 
 const ThirdPageProfileSetup = () => {

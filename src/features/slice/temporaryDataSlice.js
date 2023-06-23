@@ -17,7 +17,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 import {realToken} from "../../helper/lib";
 
-const url = process.env.REACT_APP_SERVER_URL;
+const url = import.meta.env.VITE_APP_SERVER_URL;
 
 const initialState = {
   isLoading: false,

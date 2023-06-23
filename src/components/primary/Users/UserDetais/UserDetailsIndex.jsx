@@ -1,19 +1,19 @@
-import {Chip, Grid, styled, Typography} from "@mui/material";
+import { Chip, Grid, styled, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
 import * as React from "react";
-import {useState} from "react";
-import {useSelector} from "react-redux";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import u_multiply from "../../../../assets/images/u_multiply.png";
 import RoleChange from "../RoleChange/RoleChange";
 import UserSkillChange from "../SkillChange/UserSkillChange";
 import UserStatusChange from "../UserStatusChange/UserStatusChange";
 import NidDetails from "../NidDetals/NidDetails";
-import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
+import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 import TakenTime from "../../../shared/CountDown/TakenTime";
 import axios from "axios";
-import {realToken} from "../../../../helper/lib";
+import { realToken } from "../../../../helper/lib";
 import JobStatusChange from "../JobStatusChange/JobStatusChange";
 
 const ButtonStyle = styled(Button)({
@@ -32,7 +32,7 @@ const UserDetailsIndex = ({ user }) => {
   const { role } = useSelector((state) => state.user.user);
   const [userName, setUserName] = useState([]);
   const [documentsNo, setDocumentsNo] = useState();
-  const BACKEND_URL = process.env.REACT_APP_SERVER_URL;
+  const BACKEND_URL = import.meta.env.VITE_APP_SERVER_URL;
   const [state, setState] = React.useState({
     right: false,
   });
@@ -92,7 +92,6 @@ const UserDetailsIndex = ({ user }) => {
         width: anchor === "top" || anchor === "bottom" ? "auto" : 550,
       }}
       role="presentation"
-
     >
       <Box sx={{ paddingTop: "4%", paddingLeft: "4%" }}>
         <Grid container>

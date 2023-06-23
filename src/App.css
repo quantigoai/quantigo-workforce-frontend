@@ -1,14 +1,12 @@
-
-
 .App {
   font-family: 'Roboto', sans-serif;
 }
 
-body{
+body {
   font-family: 'Roboto', sans-serif;
 }
 
-.MyCustomCard{
+.MyCustomCard {
   padding-top: "0%";
   width: "250px";
 }

@@ -33,7 +33,7 @@ const CreateChapter = () => {
   const params = useParams();
   const id = params.id;
   const UPLOAD_ENDPOINT = "courses/couseimages/uploads";
-  const API_URl = process.env.REACT_APP_SERVER_URL;
+  const API_URl = import.meta.env.VITE_APP_SERVER_URL;
   const [content, setContent] = useState("");
   const dispatch = useDispatch();
   const alert = useAlert();

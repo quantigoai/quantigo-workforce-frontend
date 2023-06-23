@@ -16,17 +16,17 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 import {realToken} from "../../helper/lib";
 
-const url = process.env.REACT_APP_SERVER_URL;
-const jwtSecret = process.env.REACT_APP_JWT_SECRET;
+const url = import.meta.env.VITE_APP_SERVER_URL;
+const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 
 // Quantigo Server
-const REACT_QUANTIGO_API_KEY = process.env.REACT_APP_QUANTIGO_KEY;
-const urlquantigo = process.env.REACT_APP_QUANTIGOAPI_URL;
+const REACT_QUANTIGO_API_KEY = import.meta.env.VITE_APP_QUANTIGO_KEY;
+const urlquantigo = import.meta.env.VITE_APP_QUANTIGOAPI_URL;
 
 // Ag Server
 
-const REACT_AG_API_KEY = process.env.REACT_APP_AG_KEY;
-const urlag = process.env.REACT_APP_AGAPI_URL;
+const REACT_AG_API_KEY = import.meta.env.VITE_APP_AG_KEY;
+const urlag = import.meta.env.VITE_APP_AGAPI_URL;
 
 const initialState = {
   isLoading: false,

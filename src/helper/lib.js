@@ -15,7 +15,7 @@
 import CryptoJS from "crypto-js";
 import Cookies from "js-cookie";
 
-const jwtSecret = process.env.REACT_APP_JWT_SECRET;
+const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 export const realToken = () => {
   const existedToken = Cookies.get("token");
   if (existedToken) {

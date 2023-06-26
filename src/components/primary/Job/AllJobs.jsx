@@ -7,41 +7,41 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 
-import {useTheme} from "@emotion/react";
+import { useTheme } from "@emotion/react";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import {
-    Alert,
-    AlertTitle,
-    Box,
-    Button,
-    Grid,
-    IconButton,
-    Paper,
-    styled,
-    Table,
-    TableBody,
-    TableContainer,
-    TableHead,
-    TablePagination,
-    TableRow,
+  Alert,
+  AlertTitle,
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  Paper,
+  styled,
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
 } from "@mui/material";
 import TableCell from "@mui/material/TableCell";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {setActivePath} from "../../../features/slice/activePathSlice";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { setActivePath } from "../../../features/slice/activePathSlice";
 import {
-    addDefaultReviewer,
-    addUserToATeam,
-    availableJobsForReviewer,
-    getAllJobs,
-    takeAjob,
+  addDefaultReviewer,
+  addUserToATeam,
+  availableJobsForReviewer,
+  getAllJobs,
+  takeAjob,
 } from "../../../features/slice/jobSlice";
-import {getAllTeams} from "../../../features/slice/teamSlice";
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
+import { getAllTeams } from "../../../features/slice/teamSlice";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import SearchBar from "../../shared/SearchBar/SearchBar";
 import PendingJobDetails from "./JobDetails/PendingJobDetails";
 
@@ -79,13 +79,15 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
-        aria-label="first page">
+        aria-label="first page"
+      >
         {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
-        aria-label="previous page">
+        aria-label="previous page"
+      >
         {theme.direction === "rtl" ? (
           <KeyboardArrowRight />
         ) : (
@@ -95,7 +97,8 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page">
+        aria-label="next page"
+      >
         {theme.direction === "rtl" ? (
           <KeyboardArrowLeft />
         ) : (
@@ -105,7 +108,8 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page">
+        aria-label="last page"
+      >
         {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
@@ -199,7 +203,8 @@ const AllJobs = () => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "0%",
-              }}>
+              }}
+            >
               <SearchBar placeholder="Search a Job" func={handleChange} />
             </Grid>
 
@@ -219,7 +224,8 @@ const AllJobs = () => {
                         paddingLeft: "3%",
                         paddingRight: "3%",
                         paddingBottom: "0%",
-                      }}>
+                      }}
+                    >
                       <Alert sx={{ width: "100%" }} severity="error">
                         <AlertTitle>Error</AlertTitle>
                         Please contact admin for unblock account —{" "}
@@ -242,29 +248,34 @@ const AllJobs = () => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "3%",
-              }}>
+              }}
+            >
               <TableContainer>
                 <Table
                   aria-label="simple table"
-                  sx={{ border: "1px solid #DADCDF" }}>
+                  sx={{ border: "1px solid #DADCDF" }}
+                >
                   {/* TODO : Convert this in a separate component  */}
                   <TableHead sx={{ background: "#F8F8F8", height: "80px" }}>
                     <TableRow>
                       <TableCell
                         align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        sx={{ color: "#969CAF", fontSize: "20px" }}
+                      >
                         No
                       </TableCell>
 
                       <TableCell
                         align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        sx={{ color: "#969CAF", fontSize: "20px" }}
+                      >
                         Title
                       </TableCell>
-                      
+
                       <TableCell
                         align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        sx={{ color: "#969CAF", fontSize: "20px" }}
+                      >
                         No of Images
                       </TableCell>
                       {user.role === "admin" ||
@@ -280,23 +291,27 @@ const AllJobs = () => {
                       ) : (
                         <TableCell
                           align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          sx={{ color: "#969CAF", fontSize: "20px" }}
+                        >
                           Take Job
                         </TableCell>
                       )}
                       <TableCell
                         align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        sx={{ color: "#969CAF", fontSize: "20px" }}
+                      >
                         Time Limit (Minutes)
                       </TableCell>
                       <TableCell
                         align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        sx={{ color: "#969CAF", fontSize: "20px" }}
+                      >
                         Category
                       </TableCell>
                       <TableCell
                         align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        sx={{ color: "#969CAF", fontSize: "20px" }}
+                      >
                         Action
                       </TableCell>
                     </TableRow>
@@ -316,7 +331,7 @@ const AllJobs = () => {
                           {page * rowsPerPage + i + 1}
                         </TableCell>
                         <TableCell align="left">{job.title}</TableCell>
-                        
+
                         <TableCell align="center">
                           {job?.images?.length}
                         </TableCell>
@@ -335,7 +350,8 @@ const AllJobs = () => {
                             <ButtonStyle
                               disabled
                               variant="outlined"
-                              onClick={() => handleTakeJob(job._id)}>
+                              onClick={() => handleTakeJob(job._id)}
+                            >
                               Take Job
                             </ButtonStyle>
                           </TableCell>
@@ -347,7 +363,8 @@ const AllJobs = () => {
                                 <ButtonStyle
                                   disabled
                                   variant="outlined"
-                                  onClick={() => handleTakeJob(job._id)}>
+                                  onClick={() => handleTakeJob(job._id)}
+                                >
                                   Take Job
                                 </ButtonStyle>
                               </>
@@ -357,7 +374,8 @@ const AllJobs = () => {
                                 <ButtonStyle
                                   disabled={isLoading}
                                   variant="outlined"
-                                  onClick={() => handleTakeJob(job._id)}>
+                                  onClick={() => handleTakeJob(job._id)}
+                                >
                                   Take Job
                                 </ButtonStyle>
                               </>

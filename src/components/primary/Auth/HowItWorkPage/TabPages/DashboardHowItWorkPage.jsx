@@ -1,6 +1,6 @@
 import React from "react";
 import {Box, Typography} from "@mui/material";
-import DashBoardPageImage from "../../../../../assets/images/DashBoardPage.PNG";
+import DashBoardPageImage from "../../../../../assets/images/DashBoardPage.png";
 import ImageModal from "../ImageModal";
 
 const DashboardHowItWorkPage = () => {

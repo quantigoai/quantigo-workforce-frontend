@@ -12,19 +12,19 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {realToken} from "../../helper/lib";
+import { realToken } from "../../helper/lib";
 
-const url = process.env.REACT_APP_SERVER_URL;
-const jwtSecret = process.env.REACT_APP_JWT_SECRET;
+const url = import.meta.env.VITE_APP_SERVER_URL;
+const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 
-const REACT_SUPERVISLY_API_KEY = process.env.REACT_APP_QUANTIGO_KEY;
-const urlsuper = process.env.REACT_APP_QUANTIGOAPI_URL;
+const REACT_SUPERVISLY_API_KEY = import.meta.env.VITE_APP_QUANTIGO_KEY;
+const urlsuper = import.meta.env.VITE_APP_QUANTIGOAPI_URL;
 
 // Ag server
-const REACT_AG_API_KEY = process.env.REACT_APP_AG_KEY;
-const urlag = process.env.REACT_APP_AGAPI_URL;
+const REACT_AG_API_KEY = import.meta.env.VITE_APP_AG_KEY;
+const urlag = import.meta.env.VITE_APP_AGAPI_URL;
 
 const initialState = {
   isLoading: false,
@@ -39,8 +39,17 @@ const initialState = {
 // All Courses get request
 // TODO Handle the limit in dynamic way
 export const getAllJobs = createAsyncThunk("job/getAlljobs", async (data) => {
-  const { limit, skip, status, annotator, reviewerId, attemptLeft ,projectIdFilter, date } =
-    data || {};
+  const {
+    limit,
+    skip,
+    status,
+    annotator,
+    reviewerId,
+    attemptLeft,
+    projectIdFilter,
+    skills,
+    date,
+  } = data || {};
   let query = `isActive=true&sortBy=createdAt:desc&sortBy=title:asc`;
 
   if (status) {
@@ -67,6 +76,11 @@ export const getAllJobs = createAsyncThunk("job/getAlljobs", async (data) => {
   }
   if (attemptLeft) {
     query += `&attemptLeft=${attemptLeft}`;
+  }
+  if (skills) {
+    for (let x in skills) {
+      query += `&skills=${skills[x]}`;
+    }
   }
   if (date) {
     query += `&createdAt=${date}`;
@@ -465,15 +479,11 @@ const jobSlice = createSlice({
       .addCase(takeJobForReviewer.fulfilled, (state, action) => {
         state.isLoading = false;
         if (action.payload.status === 200) {
-          console.log("hiyyy")
+          console.log("hiyyy");
           state.jobs = state.jobs.filter(
-            (item) =>
-              item.job.id._id !== action.payload.data.assignedJob.job.id
+            (item) => item.job.id._id !== action.payload.data.assignedJob.job.id
           );
-          state.myJobs = [
-            action.payload.data.assignedJob,
-            ...state.myJobs,
-          ];
+          state.myJobs = [action.payload.data.assignedJob, ...state.myJobs];
         }
       })
       .addCase(takeJobForReviewer.rejected, (state, action) => {

@@ -1,28 +1,28 @@
 import {
-    Button,
-    Grid,
-    Paper,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    TextField,
-    Typography,
+  Button,
+  Grid,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
 } from "@mui/material";
-import {styled} from "@mui/material/styles";
-import {Box} from "@mui/system";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {setActivePath} from "../../../features/slice/activePathSlice";
-import {createASkill, getAllSkills,} from "../../../features/slice/skillSlice";
+import { styled } from "@mui/material/styles";
+import { Box } from "@mui/system";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { setActivePath } from "../../../features/slice/activePathSlice";
+import { createASkill, getAllSkills } from "../../../features/slice/skillSlice";
 
-import SkillEdit from "./SkillEdit";
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import SkillDeleteModal from "./SkillDeleteModal";
+import SkillEdit from "./SkillEdit";
 // import io from "socket.io-client";
 
 const ButtonStyle = styled(Button)({
@@ -110,7 +110,8 @@ const Skills = () => {
             // justifyContent: "center",
             paddingLeft: "0%",
             paddingBottom: "2%",
-          }}>
+          }}
+        >
           <Typography variant="h4" sx={{ color: "#090080" }}>
             Skill
           </Typography>
@@ -143,7 +144,8 @@ const Skills = () => {
                       color: "red",
                       padding: "5px 5px",
                       marginBottom: "10px",
-                    }}>
+                    }}
+                  >
                     {" "}
                     {"This Skill is already exists."}
                   </Box>
@@ -167,7 +169,8 @@ const Skills = () => {
                   <ButtonStyle
                     disabled={error || isLoading}
                     variant="contained"
-                    type="submit">
+                    type="submit"
+                  >
                     Create Skill
                   </ButtonStyle>
                 </Grid>
@@ -195,7 +198,8 @@ const Skills = () => {
                     "&::-webkit-scrollbar-thumb:hover": {
                       background: "#555",
                     },
-                  }}>
+                  }}
+                >
                   <TableContainer component={Paper}>
                     <Table aria-label="simple table">
                       <TableHead sx={{ background: "#F8F8F8", height: "70px" }}>
@@ -214,7 +218,8 @@ const Skills = () => {
                             key={skill._id}
                             sx={{
                               "&:last-child td, &:last-child th": { border: 0 },
-                            }}>
+                            }}
+                          >
                             <TableCell align="left">{i + 1}</TableCell>
                             <TableCell align="left">
                               {capitalizeFirstLetter(skill.name)}

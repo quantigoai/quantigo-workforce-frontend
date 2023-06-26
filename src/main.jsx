@@ -1,14 +1,13 @@
-import {createTheme, ThemeProvider} from "@mui/material";
 import React from "react";
-import {positions, Provider as AlertProvider, transitions} from "react-alert";
-import AlertTemplate from "react-alert-template-basic";
 import ReactDOM from "react-dom/client";
-import {Provider} from "react-redux";
-import {BrowserRouter} from "react-router-dom";
-import App from "./App";
-import store from "./features/store/store";
+import App from "./App.jsx";
 import "./index.css";
-import reportWebVitals from "./reportWebVitals";
+import { createTheme, ThemeProvider } from "@mui/material";
+import { positions, Provider as AlertProvider, transitions } from "react-alert";
+import AlertTemplate from "react-alert-template-basic";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import store from "./features/store/store";
 
 const theme = createTheme({
   typography: {
@@ -68,8 +67,6 @@ const theme = createTheme({
   },
 });
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
 const options = {
   position: positions.BOTTOM_RIGHT,
   timeout: 6500,
@@ -80,7 +77,7 @@ const options = {
   },
 };
 
-root.render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <ThemeProvider theme={theme}>
     <React.StrictMode>
       <AlertProvider template={AlertTemplate} {...options}>
@@ -93,5 +90,3 @@ root.render(
     </React.StrictMode>
   </ThemeProvider>
 );
-
-reportWebVitals();

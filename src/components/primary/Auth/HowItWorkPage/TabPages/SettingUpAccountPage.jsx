@@ -1,9 +1,9 @@
-import {Box, Link, Typography} from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import React from "react";
 
-import logImg from "../../../../../assets/images/loginWMP.PNG";
+import logImg from "../../../../../assets/images/loginWMP.png";
 import CreateAnAccountComponents from "./CreateAnAccountComponents";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ImageModal from "../ImageModal";
 
 const SettingUpAccountPage = () => {
@@ -33,7 +33,8 @@ const SettingUpAccountPage = () => {
           "&::-webkit-scrollbar-thumb:hover": {
             background: "#555",
           },
-        }}>
+        }}
+      >
         <Box sx={{ paddingBottom: "2%" }}>
           <Typography variant="h4" sx={{ color: "#282F3D" }}>
             Setting up QAI Workforce account
@@ -53,7 +54,8 @@ const SettingUpAccountPage = () => {
               sx={{
                 color: "#47536B",
                 cursor: "pointer",
-              }}>
+              }}
+            >
               https://qaiworkforce.netlify.app/
             </Link>
           </Typography>
@@ -81,7 +83,8 @@ const SettingUpAccountPage = () => {
             {/* <FiberManualRecordIcon /> */}
             <Typography
               variant="subtitle2"
-              sx={{ fontWeight: "bold", color: "#47536B" }}>
+              sx={{ fontWeight: "bold", color: "#47536B" }}
+            >
               Step 1: Entering Your Login Information
             </Typography>
           </Box>
@@ -107,7 +110,8 @@ const SettingUpAccountPage = () => {
             {/* <FiberManualRecordIcon /> */}
             <Typography
               variant="subtitle2"
-              sx={{ fontWeight: "bold", color: "#47536B" }}>
+              sx={{ fontWeight: "bold", color: "#47536B" }}
+            >
               Step 2 : Verification
             </Typography>
           </Box>
@@ -127,7 +131,8 @@ const SettingUpAccountPage = () => {
             {/* <FiberManualRecordIcon /> */}
             <Typography
               variant="subtitle2"
-              sx={{ fontWeight: "bold", color: "#47536B" }}>
+              sx={{ fontWeight: "bold", color: "#47536B" }}
+            >
               Step 3: Forgot Your Password
             </Typography>
           </Box>

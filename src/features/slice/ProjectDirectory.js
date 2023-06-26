@@ -1,9 +1,9 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const url = "https://centralprojectdirectory.as.r.appspot.com";
-// const url = process.env.REACT_APP_SERVER_URL;
-// const jwtSecret = process.env.REACT_APP_JWT_SECRET;
+// const url = import.meta.env.VITE_APP_SERVER_URL;
+// const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 
 const initialState = {
   isLoading: false,
@@ -81,8 +81,8 @@ export const createProjectDirectory = createAsyncThunk(
 export const updateProjectDirectory = createAsyncThunk(
   "Project/Directory/update",
   async (finalData) => {
-    const { data,id } = finalData;
-    return axios.put(`${url}/api/ProjectList/${id}/update`, data);
+    const { data, id } = finalData;
+    return axios.patch(`${url}/api/ProjectList/${id}/update`, data);
   }
 );
 

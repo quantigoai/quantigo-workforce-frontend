@@ -17,6 +17,7 @@ import DateField from "./DateField";
 import StatusChip from "./StatusChip";
 import UsersRadioGroup from "./UsersRadioGroup";
 import ProjectIdField from "./ProjectIdField";
+import SkillFieldForUserList from "../FilterFieldForUserList/SkillFieldForUserList";
 
 const MiniModal = () => {
   const [
@@ -41,6 +42,8 @@ const MiniModal = () => {
     setDateValue,
     setProjectIdFilter,
     projectIdFilter,
+    handleChangeSkills,
+          skill
   ] = useOutletContext();
 
   const { users, user } = useSelector((state) => state.user);
@@ -137,6 +140,11 @@ const MiniModal = () => {
               }>
               <DateField />
             </Grid>
+            {location.pathname === "/jobs/alljobs" &&
+            <Grid item xs={6}>
+<SkillFieldForUserList  handleChangeSkills={handleChangeSkills}
+                skillSet={skill}/>
+            </Grid>}
           </Grid>
         </Box>
 

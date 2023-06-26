@@ -17,8 +17,8 @@ import axios from "axios";
 import {realToken} from "../../helper/lib";
 import {calculateProgress} from "../../helper/scoreStore";
 
-const url = process.env.REACT_APP_SERVER_URL;
-const jwtSecret = process.env.REACT_APP_JWT_SECRET;
+const url = import.meta.env.VITE_APP_SERVER_URL;
+const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 
 const initialState = {
   isLoading: false,

@@ -93,19 +93,61 @@ const Job = () => {
   const [reviewer, setReviewer] = useState("");
   const [attemptLeft, setAttemptLeft] = useState(0);
   const [projectIdFilter, setProjectIdFilter] = useState(0);
-  
+  const { skills} = useSelector((state) => state.skill);
+  const [skill, setSkill] = React.useState([]);
+  const [skillSet1, setSkillSet1] = React.useState([]);
+  const [skillSet2, setSkillSet2] = React.useState([]);
   const [date, setDate] = useState("");
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [isClicked, setIsClicked] = React.useState("");
   const [dateValue, setDateValue] = React.useState(null);
+  const [isSkillEmpty, setIsSkillEmpty] = useState(false);
+
+  const handleChangeSkills = (event) => {
+    const {
+      target: { value },
+    } = event;
+    const selectedSkills = value.map((skill) => {
+      return skills.find((s) => s.name === skill);
+    });
+
+    // value.map((skill) => {
+    selectedSkills.map((skill) => {
+      const preData = {
+        name: skill.name,
+        id: skill._id,
+      };
+      setSkillSet1([
+        {
+          ...preData,
+        },
+      ]);
+    });
+    setSkillSet2([
+      {
+        ...skillSet1,
+      },
+    ]);
+    !selectedSkills.length && setIsSkillEmpty(true);
+    setSkill(
+      // On autofill we get a stringified value.
+      typeof selectedSkills === "string" ? value.split(",") : selectedSkills
+    );
+  };
+
+
 
   const handleFilter = () => {
+    const skillColl = skill.map((skill) => {
+      return skill._id;
+    });
     const data = {
       ...(statusType ? { status: statusType } : {}),
       ...(annotator ? { annotator } : {}),
       ...(reviewer ? { reviewerId: reviewer } : {}),
       ...(attemptLeft ? { attemptLeft } : {}),
       ...(projectIdFilter ? { projectIdFilter } : {}),
+      ...(skillColl ? { skills: skillColl } : {}),
       ...(date ? { date } : {}),
     };
     // TODO: need to fix this
@@ -341,7 +383,9 @@ const Job = () => {
           dateValue,
           setDateValue,
           setProjectIdFilter,
-          projectIdFilter
+          projectIdFilter,
+          handleChangeSkills,
+          skill
         ]}
       />
     </>

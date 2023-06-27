@@ -12,7 +12,7 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import {configureStore} from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 
 import benchMarkReducer from "../slice/benchMarkSlice";
 import courseReducer from "../slice/courseSlice";
@@ -50,13 +50,13 @@ const store = configureStore({
     activePath: activePathReducer,
     tempData: temporaryDataReducer,
     notification: notificationReducer,
-    projectDirectory: projectDirectoryReducer
+    projectDirectory: projectDirectoryReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
     }),
-  devTools: process.env.NODE_ENV !== "production",
+  devTools: import.meta.env.NODE_ENV !== "production",
 });
 
 export default store;

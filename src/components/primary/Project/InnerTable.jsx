@@ -9,18 +9,18 @@
 
 import DownloadIcon from "@mui/icons-material/Download";
 import {
-    Box,
-    Button,
-    Collapse,
-    Grid,
-    IconButton,
-    Skeleton,
-    styled,
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableRow,
+  Box,
+  Button,
+  Collapse,
+  Grid,
+  IconButton,
+  Skeleton,
+  styled,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
 } from "@mui/material";
 import React from "react";
 import HubField from "./HubField";
@@ -28,12 +28,12 @@ import PriorityField from "./PriorityField";
 import StatusField from "./StatusField";
 
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import {CSVLink} from "react-csv";
+import { CSVLink } from "react-csv";
 import DatasetProgressIndex from "./DatasetProgressIndex";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -76,14 +76,16 @@ const InnerTable = ({
             "&:last-child td, &:last-child th": {
               border: 0,
             },
-          }}>
+          }}
+        >
           <TableCell align="left">
             {project.type === "videos" || project.type === "images" ? (
               <>
                 <IconButton
                   aria-label="expand row"
                   size="small"
-                  onClick={() => handleClickExtend(project.id)}>
+                  onClick={() => handleClickExtend(project.id)}
+                >
                   {projectId === project.id && open ? (
                     <KeyboardArrowUpIcon />
                   ) : (
@@ -135,12 +137,15 @@ const InnerTable = ({
               paddingTop: 0,
               paddingLeft: "5%",
             }}
-            colSpan={10}>
+            colSpan={10}
+          >
             <Collapse
               in={projectId === project.id && open ? true : false}
-              timeout="auto">
+              timeout="auto"
+            >
               <Box sx={{ margin: 1 }}>
-                {datasets.length === 0 || isLoading ? (
+                {/* {datasets.length === 0 || isLoading ? ( */}
+                {isLoading ? (
                   <>
                     <Grid container sx={{ paddingTop: "0%" }}>
                       {" "}
@@ -156,6 +161,8 @@ const InnerTable = ({
                       </Box>
                     </Grid>
                   </>
+                ) : !datasets.length ? (
+                  <>No dataset found</>
                 ) : (
                   <>
                     {" "}
@@ -164,7 +171,8 @@ const InnerTable = ({
                         sx={{
                           background: "#F8F8F8",
                           height: "60px",
-                        }}>
+                        }}
+                      >
                         <TableRow>
                           <TableCell align="left">Dataset Name </TableCell>
                           <TableCell align="left">Dataset ID</TableCell>
@@ -188,20 +196,21 @@ const InnerTable = ({
                               <TableCell
                                 component="th"
                                 align="left"
-                                scope="row">
+                                scope="row"
+                              >
                                 {dataset.name}
                               </TableCell>
                               <TableCell align="left">{dataset.id}</TableCell>
                               <TableCell align="left">
                                 <DatasetProgressIndex dataset={dataset} />
                                 {/* <LinearProgress
-                              value={50}
-                              variant="determinate"
-                              sx={{
-                                // height: "20px",
-                                borderRadius: "5px",
-                              }}
-                            /> */}
+                                  value={50}
+                                  variant="determinate"
+                                  sx={{
+                                    // height: "20px",
+                                    borderRadius: "5px",
+                                  }}
+                                /> */}
                               </TableCell>
                               {project.type === "videos" ? (
                                 <>
@@ -213,7 +222,8 @@ const InnerTable = ({
                                           variant="outlined"
                                           onClick={() =>
                                             handleDownloadExport(dataset)
-                                          }>
+                                          }
+                                        >
                                           <DownloadIcon />
                                           Export
                                         </ButtonStyle>
@@ -228,7 +238,8 @@ const InnerTable = ({
                                       <>
                                         <ButtonStyle
                                           variant="outlined"
-                                          disabled>
+                                          disabled
+                                        >
                                           <DownloadIcon />
                                           Export
                                         </ButtonStyle>

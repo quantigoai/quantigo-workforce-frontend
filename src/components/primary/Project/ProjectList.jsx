@@ -1,35 +1,41 @@
 import {
-    Box,
-    Button,
-    FormControl,
-    Grid,
-    InputLabel,
-    MenuItem,
-    Paper,
-    Select,
-    styled,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Typography,
+  Box,
+  Button,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+  styled,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
 } from "@mui/material";
-import React, {useEffect, useRef, useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {setActivePath} from "../../../features/slice/activePathSlice";
+import React, { useEffect, useRef, useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { setActivePath } from "../../../features/slice/activePathSlice";
 import {
-    getProjectByWorkSpace,
-    resetProjects,
-    updateAProjectById,
+  getProjectByWorkSpace,
+  resetProjects,
+  updateAProjectById,
 } from "../../../features/slice/projectByWorkspaceSlice";
-import {getAllTeams} from "../../../features/slice/teamSlice";
-import {getWorkSpaceById, resetWorkspaces,} from "../../../features/slice/workSpaceSlice";
+import { getAllTeams } from "../../../features/slice/teamSlice";
+import {
+  getWorkSpaceById,
+  resetWorkspaces,
+} from "../../../features/slice/workSpaceSlice";
 
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import {downloadMappingSheet, getDataSetByProjectID,} from "../../../features/slice/datasetSlice";
+import {
+  downloadMappingSheet,
+  getDataSetByProjectID,
+} from "../../../features/slice/datasetSlice";
 import InnerTable from "./InnerTable";
 
 import ProjectSearchIndex from "./ProjectSearch/ProjectSearchIndex";
@@ -217,13 +223,9 @@ const ProjectList = () => {
 
     dispatch(updateAProjectById(finalData))
       .then((action) => {
-        // setActiveHub([]);
         setProjectStatus("");
         setPriority("");
         setHubModified(false);
-        // socket.emit("updateProjectHub");
-        // socket.emit("updateProjectStatus");
-        // socket.emit("updateProjectPriority");
 
         return alert.show("Project status updated", { type: "success" });
       })
@@ -274,7 +276,8 @@ const ProjectList = () => {
             marginLeft: "0%",
             display: "flex",
           }}
-          container>
+          container
+        >
           <Typography variant="h4" style={{ color: "#090080" }}>
             Projects
           </Typography>
@@ -296,7 +299,8 @@ const ProjectList = () => {
               paddingLeft: "3%",
               paddingRight: "3%",
               paddingBottom: "1%",
-            }}>
+            }}
+          >
             <Grid item xs={4} sx={{ paddingRight: "1%" }}>
               <FormControl
                 variant="filled"
@@ -307,7 +311,8 @@ const ProjectList = () => {
                   borderRadius: "4px",
                   // width: "238.5px",
                   height: "58px",
-                }}>
+                }}
+              >
                 <InputLabel id="demo-simple-select-filled-label">
                   Server
                 </InputLabel>
@@ -316,7 +321,8 @@ const ProjectList = () => {
                   id="demo-simple-select-filled"
                   defaultValue={"ag"}
                   IconComponent={() => <CustomDownArrow />}
-                  onChange={(e) => handleChangeServer(e)}>
+                  onChange={(e) => handleChangeServer(e)}
+                >
                   <MenuItem value={"quantigo"}>Quantigo Server</MenuItem>
                   <MenuItem value={"ag"}>Ag Server</MenuItem>
                 </Select>
@@ -334,7 +340,8 @@ const ProjectList = () => {
                   borderRadius: "4px",
                   // width: "238.5px",
                   height: "58px",
-                }}>
+                }}
+              >
                 <InputLabel id="demo-simple-select-label">Team</InputLabel>
                 {teams.length > 0 && (
                   <Select
@@ -343,7 +350,8 @@ const ProjectList = () => {
                     defaultValue=""
                     IconComponent={() => <CustomDownArrow />}
                     onChange={(e) => handleChangeTeam(e)}
-                    label="Team">
+                    label="Team"
+                  >
                     {teams.map((team) => (
                       <MenuItem key={team._id} value={team.id || ""}>
                         {team.name}
@@ -365,7 +373,8 @@ const ProjectList = () => {
                     borderRadius: "4px",
                     // width: "238.5px",
                     height: "58px",
-                  }}>
+                  }}
+                >
                   <InputLabel id="demo-simple-select-label">
                     Work Space{" "}
                   </InputLabel>
@@ -374,11 +383,13 @@ const ProjectList = () => {
                       onChange={(e) => handleChangeWorkspace(e)}
                       label="workspace"
                       IconComponent={() => <CustomDownArrow />}
-                      defaultValue={""}>
+                      defaultValue={""}
+                    >
                       {workspaces.map((workspace) => (
                         <MenuItem
                           key={workspace._id}
-                          value={workspace.id || ""}>
+                          value={workspace.id || ""}
+                        >
                           {workspace.name}
                         </MenuItem>
                       ))}
@@ -400,7 +411,8 @@ const ProjectList = () => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "0%",
-              }}>
+              }}
+            >
               {/* <TextField
                 fullWidth
                 InputProps={{
@@ -437,7 +449,8 @@ const ProjectList = () => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "2%",
-              }}>
+              }}
+            >
               {!isLoading && (
                 <Grid container>
                   <TableContainer component={Paper}>

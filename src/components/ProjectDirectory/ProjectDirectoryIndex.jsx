@@ -3,26 +3,26 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import {
-    Box,
-    Grid,
-    IconButton,
-    Paper,
-    Skeleton,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TablePagination,
-    TableRow,
-    Typography,
-    useTheme,
+  Box,
+  Grid,
+  IconButton,
+  Paper,
+  Skeleton,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
+  Typography,
+  useTheme,
 } from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {getProjectByDirectory} from "../../features/slice/ProjectDirectory";
-import {setActivePath} from "../../features/slice/activePathSlice";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { getProjectByDirectory } from "../../features/slice/ProjectDirectory";
+import { setActivePath } from "../../features/slice/activePathSlice";
 import CreateProjectDirectory from "./CreateProjectDirectory/CreateProjectDirectory";
 import UpdateProjectDirectory from "./CreateProjectDirectory/UpdateProjectDirectory";
 import ProjectDirectoryDeleteModal from "./ProjectDirectoryDeleteModal";
@@ -97,7 +97,9 @@ const ProjectDirectoryIndex = () => {
   const { role } = user.user;
   const [projectDirectorys, setProjectDirectory] = useState([]);
   const dispatch = useDispatch();
-  const { projectDirectory } = useSelector((state) => state.projectDirectory);
+  const { projectDirectory, isLoading } = useSelector(
+    (state) => state.projectDirectory
+  );
   const [search, setSearch] = useState("");
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
@@ -108,6 +110,28 @@ const ProjectDirectoryIndex = () => {
   const [dataTypeFilter, setDataTypeFilter] = useState("");
   const [pDRFilter, setPDRFilter] = useState("");
   const [annotationFilter, setAnnotationFilter] = useState("");
+  const [platformFieldFilter, setPlatformFieldFilter] = useState("");
+  const [projectTypeFieldFilter, setProjectTypeFieldFilter] = useState("");
+  const [actionItemsFieldFilter, setActionItemsFieldFilter] = useState("");
+  const [qaCheckPointFieldFilter, setQaCheckPointFieldFilter] = useState("");
+  const [objBenchMarkFieldFilter, setObjBenchMarkFieldFilter] = useState("");
+  const [imgBenchMarkFieldFilter, setImgBenchMarkFieldFilter] = useState("");
+  const [deletionFieldFilter, setDeletionFieldFilter] = useState("");
+  const [toolTypeFieldFilter, setToolTypeFieldFilter] = useState("");
+
+  const [qAFieldFilter, setQAFieldFilter] = useState("");
+  const [qABenchmarkFieldFilter, setQABenchmarkFieldFilter] = useState("");
+  const [judgementTimeFieldFilter, setJudgementTimeFieldFilter] = useState("");
+
+  const [skipImageFieldFilter, setSkipImageFieldFilter] = useState("");
+  const [imageLoadingFieldFilter, setImageLoadingFieldFilter] = useState("");
+  const [objectSavingTimeFieldFilter, setobjectSavingTimeFieldFilter] =
+    useState("");
+  const [videoWatchTimeFieldFilter, setVideoWatchTimeFieldFilter] =
+    useState("");
+
+  const [taggingBenchMarkFieldFilter, setTaggingBenchMarkFieldFilter] =
+    useState("");
   const [date, setDate] = useState("");
   const handleClickFilter = (event) => {
     setAnchorE2(event.currentTarget);
@@ -125,8 +149,54 @@ const ProjectDirectoryIndex = () => {
       ...(industryType ? { industryType: industryType } : {}),
       ...(clientAliasFilter ? { clientAliasFilter: clientAliasFilter } : {}),
       ...(dataTypeFilter ? { dataTypeFilter: dataTypeFilter } : {}),
+      ...(actionItemsFieldFilter
+        ? { actionItemsFieldFilter: actionItemsFieldFilter }
+        : {}),
+      ...(qAFieldFilter ? { qAFieldFilter: qAFieldFilter } : {}),
+      ...(qABenchmarkFieldFilter
+        ? { qABenchmarkFieldFilter: qABenchmarkFieldFilter }
+        : {}),
+      ...(judgementTimeFieldFilter
+        ? { judgementTimeFieldFilter: judgementTimeFieldFilter }
+        : {}),
+      ...(skipImageFieldFilter
+        ? { skipImageFieldFilter: skipImageFieldFilter }
+        : {}),
+      ...(imageLoadingFieldFilter
+        ? { imageLoadingFieldFilter: imageLoadingFieldFilter }
+        : {}),
+      ...(objectSavingTimeFieldFilter
+        ? { objectSavingTimeFieldFilter: objectSavingTimeFieldFilter }
+        : {}),
+      ...(videoWatchTimeFieldFilter
+        ? { videoWatchTimeFieldFilter: videoWatchTimeFieldFilter }
+        : {}),
+      ...(toolTypeFieldFilter
+        ? { toolTypeFieldFilter: toolTypeFieldFilter }
+        : {}),
+      ...(deletionFieldFilter
+        ? { deletionFieldFilter: deletionFieldFilter }
+        : {}),
+      ...(platformFieldFilter
+        ? { platformFieldFilter: platformFieldFilter }
+        : {}),
+      ...(projectTypeFieldFilter
+        ? { projectTypeFieldFilter: projectTypeFieldFilter }
+        : {}),
       ...(annotationFilter ? { annotationFilter: annotationFilter } : {}),
       ...(pDRFilter ? { pdr: pDRFilter } : {}),
+      ...(qaCheckPointFieldFilter
+        ? { qaCheckPointFieldFilter: qaCheckPointFieldFilter }
+        : {}),
+      ...(imgBenchMarkFieldFilter
+        ? { imgBenchMarkFieldFilter: imgBenchMarkFieldFilter }
+        : {}),
+      ...(taggingBenchMarkFieldFilter
+        ? { taggingBenchMarkFieldFilter: taggingBenchMarkFieldFilter }
+        : {}),
+      ...(objBenchMarkFieldFilter
+        ? { objBenchMarkFieldFilter: objBenchMarkFieldFilter }
+        : {}),
       ...(date ? { date } : {}),
     };
     dispatch(getProjectByDirectory(data)).then((action) => {
@@ -136,6 +206,21 @@ const ProjectDirectoryIndex = () => {
     });
   };
   const handleResetProjectDirectory = () => {
+    setVideoWatchTimeFieldFilter("")
+    setPlatformFieldFilter("");
+    setProjectTypeFieldFilter("");
+    setActionItemsFieldFilter("");
+    setObjBenchMarkFieldFilter("");
+    setImgBenchMarkFieldFilter("");
+    setDeletionFieldFilter("");
+    setToolTypeFieldFilter("");
+    setQAFieldFilter("");
+    setQABenchmarkFieldFilter("");
+    setJudgementTimeFieldFilter("");
+    setSkipImageFieldFilter("");
+    setImageLoadingFieldFilter("");
+    setobjectSavingTimeFieldFilter("");
+    setTaggingBenchMarkFieldFilter("");
     setIndustryType("");
     setClientAliasesFilter("");
     setDataTypeFilter("");
@@ -283,6 +368,38 @@ const ProjectDirectoryIndex = () => {
               dataTypeFilter={dataTypeFilter}
               setAnnotationFilter={setAnnotationFilter}
               annotationFilter={annotationFilter}
+              platformFieldFilter={platformFieldFilter}
+              setPlatformFieldFilter={setPlatformFieldFilter}
+              projectTypeFieldFilter={projectTypeFieldFilter}
+              setProjectTypeFieldFilter={setProjectTypeFieldFilter}
+              actionItemsFieldFilter={actionItemsFieldFilter}
+              setActionItemsFieldFilter={setActionItemsFieldFilter}
+              qaCheckPointFieldFilter={qaCheckPointFieldFilter}
+              setQaCheckPointFieldFilter={setQaCheckPointFieldFilter}
+              objBenchMarkFieldFilter={objBenchMarkFieldFilter}
+              setObjBenchMarkFieldFilter={setObjBenchMarkFieldFilter}
+              imgBenchMarkFieldFilter={imgBenchMarkFieldFilter}
+              setImgBenchMarkFieldFilter={setImgBenchMarkFieldFilter}
+              taggingBenchMarkFieldFilter={taggingBenchMarkFieldFilter}
+              setTaggingBenchMarkFieldFilter={setTaggingBenchMarkFieldFilter}
+              deletionFieldFilter={deletionFieldFilter}
+              setDeletionFieldFilter={setDeletionFieldFilter}
+              toolTypeFieldFilter={toolTypeFieldFilter}
+              setToolTypeFieldFilter={setToolTypeFieldFilter}
+              skipImageFieldFilter={skipImageFieldFilter}
+              setSkipImageFieldFilter={setSkipImageFieldFilter}
+              imageLoadingFieldFilter={imageLoadingFieldFilter}
+              setImageLoadingFieldFilter={setImageLoadingFieldFilter}
+              objectSavingTimeFieldFilter={objectSavingTimeFieldFilter}
+              setobjectSavingTimeFieldFilter={setobjectSavingTimeFieldFilter}
+              videoWatchTimeFieldFilter={videoWatchTimeFieldFilter}
+              setVideoWatchTimeFieldFilter={setVideoWatchTimeFieldFilter}
+              qAFieldFilter={qAFieldFilter}
+              setQAFieldFilter={setQAFieldFilter}
+              judgementTimeFieldFilter={judgementTimeFieldFilter}
+              setJudgementTimeFieldFilter={setJudgementTimeFieldFilter}
+              qABenchmarkFieldFilter={qABenchmarkFieldFilter}
+              setQABenchmarkFieldFilter={setQABenchmarkFieldFilter}
             />
           </Grid>
           <Grid
@@ -293,7 +410,7 @@ const ProjectDirectoryIndex = () => {
               paddingRight: "3%",
               // paddingBottom: "3%",
             }}>
-            {projectDirectory.length === 0 ? (
+            {isLoading ? (
               <>
                 <Grid container sx={{ paddingTop: "0%" }}>
                   {" "}
@@ -307,6 +424,17 @@ const ProjectDirectoryIndex = () => {
                       </>
                     ))}
                   </Box>
+                </Grid>
+              </>
+            ) : projectDirectory.length === 0 ? (
+              <>
+                <Grid
+                  container
+                  sx={{ paddingTop: "0%", justifyContent: "center" }}>
+                  {" "}
+                  <Typography variant="h6" sx={{ justifyItems: "center" }}>
+                    Project not Found
+                  </Typography>
                 </Grid>
               </>
             ) : (
@@ -335,7 +463,7 @@ const ProjectDirectoryIndex = () => {
                           sx={{ color: "#969CAF", fontSize: "20px" }}>
                           Client Alias
                         </TableCell>
-                        
+
                         <TableCell
                           align="center"
                           sx={{ color: "#969CAF", fontSize: "20px" }}>
@@ -398,7 +526,10 @@ const ProjectDirectoryIndex = () => {
                         : filtered
                       ).map((item, i) => (
                         <TableRow key={item._id}>
-                          <TableCell align="center"> {page * rowsPerPage + i + 1}</TableCell>
+                          <TableCell align="center">
+                            {" "}
+                            {page * rowsPerPage + i + 1}
+                          </TableCell>
                           <TableCell align="center">
                             {item.Project_Name}
                           </TableCell>
@@ -406,15 +537,13 @@ const ProjectDirectoryIndex = () => {
                           <TableCell align="center">
                             {item.Client_Alias}
                           </TableCell>
-                          
-                          <TableCell align="center">
-                            {item.Industry}
-                          </TableCell>
 
+                          <TableCell align="center">{item.Industry}</TableCell>
+
+                          <TableCell align="center">{item.Tool_Type}</TableCell>
                           <TableCell align="center">
-                            {item.Tool_Type}
+                            {item.Project_Type}
                           </TableCell>
-                          <TableCell align="center">{item.Project_Type}</TableCell>
 
                           <TableCell align="center">{item.PDR}</TableCell>
                           {role === "admin" || role == "project_manager" ? (

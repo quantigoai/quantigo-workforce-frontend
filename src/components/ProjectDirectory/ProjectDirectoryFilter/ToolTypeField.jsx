@@ -3,11 +3,11 @@ import {useDispatch} from "react-redux";
 import {getType,} from "../../../features/slice/ProjectDirectory";
 import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 
-const IndustryTypeField = ({ setIndustryType, industryType }) => {
+const ToolTypeField = ({ setToolTypeFieldFilter,toolTypeFieldFilter }) => {
   const [industryAllType, setIndustryAllType] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getType("Industry")).then((action) => {
+    dispatch(getType("Tool_Type")).then((action) => {
       if (action.payload.status === 200) {
         setIndustryAllType(action.payload.data);
       }
@@ -17,12 +17,12 @@ const IndustryTypeField = ({ setIndustryType, industryType }) => {
   return (
     <>
       <FormControl variant="filled" fullWidth>
-        <InputLabel id="demo-simple-select-label">Industry Type</InputLabel>
+        <InputLabel id="demo-simple-select-label">Tool_Type</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          onChange={(e) => setIndustryType(e.target.value)}
-          value={industryType || ""}
+          onChange={(e) => setToolTypeFieldFilter(e.target.value)}
+          value={toolTypeFieldFilter || ""}
           sx={{
             backgroundColor: "#F8F8F8",
             border: "1px solid #DADCDF",
@@ -39,4 +39,4 @@ const IndustryTypeField = ({ setIndustryType, industryType }) => {
   );
 };
 
-export default IndustryTypeField;
+export default ToolTypeField;

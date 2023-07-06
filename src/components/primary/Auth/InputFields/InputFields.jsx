@@ -7,24 +7,34 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 
-import {CircularProgress, FormControl, FormHelperText, Grid, InputLabel, Link, Select, TextField,} from "@mui/material";
+import {
+  CircularProgress,
+  FormControl,
+  FormHelperText,
+  Grid,
+  InputLabel,
+  Link,
+  Select,
+  TextField,
+} from "@mui/material";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
-import {styled} from "@mui/material/styles";
-import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
-import {DatePicker} from "@mui/x-date-pickers/DatePicker";
-import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
-import React, {useState} from "react";
-import {useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {convertDate} from "../../../../helper/customData";
+import { styled } from "@mui/material/styles";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { convertDate } from "../../../../helper/customData";
 import EmailField from "./EmailField";
-import {HubField} from "./HubField";
+import { HubField } from "./HubField";
 import NameField from "./NameField";
 import PasswordField from "./PasswordField";
 import PhoneNumberfield from "./PhoneNumberfield";
-import {UserNameField} from "./UserNameField";
+import { UserNameField } from "./UserNameField";
+import UserPhoneNumberField from "./UserPhoneNumberField";
 
 const ButtonStyle = styled(Button)({
   backgroundColor: "#2D58FF",
@@ -72,6 +82,9 @@ const InputFields = ({
   handleSerGender,
   gender,
   setGender,
+  handleUserPhoneNumber,
+  userPhoneNumber,
+  isUserPhoneNumberCheck
 }) => {
   const [value, setValue] = React.useState(null);
   // const [isRegister, setIsRegister] = useState(false);
@@ -117,7 +130,6 @@ const InputFields = ({
     setQaiErrorMessage("");
     setChecked(e.target.value);
     setCurrentUserStatus(e.target.value);
-   
   };
 
   const handleFocused = () => {
@@ -382,6 +394,17 @@ const InputFields = ({
                 )}
               </Grid>
             </Grid>
+            <Grid item xs={12} sx={{ paddingBottom: "2%" }}>
+              <UserPhoneNumberField
+                handleUserPhoneNumber={handleUserPhoneNumber}
+                userPhoneNumber={userPhoneNumber}
+              />
+              {!isUserPhoneNumberCheck && (
+                <FormHelperText sx={{ color: "#FF0000" }}>
+                  Invalid phone number
+                </FormHelperText>
+              )}
+            </Grid>
           </>
         )}
         <Grid item xs={12} sx={{ paddingTop: "4%" }}>
@@ -408,6 +431,7 @@ const InputFields = ({
                       !isPhoneNumberCheck ||
                       !phone ||
                       !gender ||
+                      !isUserPhoneNumberCheck||
                       isError
                     }
                     fullWidth

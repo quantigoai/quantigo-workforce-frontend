@@ -12,12 +12,11 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {realToken} from "../../helper/lib";
+import { realToken } from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
-const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 
 // Quantigo Server
 const REACT_QUANTIGO_API_KEY = import.meta.env.VITE_APP_QUANTIGO_KEY;
@@ -35,6 +34,7 @@ const initialState = {
   projectMetas: [],
   error: "null",
   isCreated: false,
+  annotationCalculation: {},
 };
 
 export const createBenchMark = createAsyncThunk(
@@ -74,9 +74,10 @@ export const getProjectMetaAg = createAsyncThunk(
 // calculate Annotation
 export const calculateAnnotation = createAsyncThunk(
   "spv/annotations/calculateannotation/:datasetId",
-  async (datasetId) => {
+  async (data) => {
+    const { datasetId, server_agent } = data;
     return axios.get(
-      `${url}/spv/annotations/calculateannotation/${datasetId}`,
+      `${url}/spv/annotations/calculateannotation/${datasetId}/${server_agent}`,
       {
         headers: {
           Authorization: `Bearer ${realToken()}`,
@@ -110,7 +111,6 @@ export const updateABenchMarkById = createAsyncThunk(
 );
 
 //  Delete A BenchMark BY ID
-
 export const deleteABenchMarkById = createAsyncThunk(
   "/benchmarkA/delete",
   async (id) => {
@@ -148,6 +148,9 @@ const benchMarkSlice = createSlice({
     setBenchMarkLocal: (state, action) => {
       state.benchMark = action.payload;
     },
+    resetCalculationData: (state) => {
+      state.annotationCalculation = {};
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -159,7 +162,7 @@ const benchMarkSlice = createSlice({
         state.benchMark = action.payload.data.benchMark;
         state.error = null;
       })
-      .addCase(createBenchMark.rejected, (state, action) => {
+      .addCase(createBenchMark.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(getProjectMeta.pending, (state) => {
@@ -189,7 +192,7 @@ const benchMarkSlice = createSlice({
       })
       .addCase(calculateAnnotation.fulfilled, (state, action) => {
         state.error = null;
-        state.benchMarks = action.payload.data;
+        state.annotationCalculation = action.payload.data;
         state.isLoading = false;
       })
       .addCase(calculateAnnotation.rejected, (state) => {
@@ -222,7 +225,7 @@ const benchMarkSlice = createSlice({
       .addCase(deleteABenchMarkById.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(deleteABenchMarkById.fulfilled, (state, action) => {
+      .addCase(deleteABenchMarkById.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
@@ -243,5 +246,6 @@ const benchMarkSlice = createSlice({
   },
 });
 
-export const { resetProjectMetas, setBenchMarkLocal } = benchMarkSlice.actions;
+export const { resetProjectMetas, setBenchMarkLocal, resetCalculationData } =
+  benchMarkSlice.actions;
 export default benchMarkSlice.reducer;

@@ -43,6 +43,9 @@ const socketHandlers = ({
       notification.notificationFor.includes(storedUser.user.role) ||
       notification.notificationForUserIds.includes(storedUser.user._id)
     ) {
+      if (storedUser.user.role === "reviewer") {
+        dispatch(availableJobsForReviewer());
+      }
       dispatch(setNewNotification(notification));
     }
   };

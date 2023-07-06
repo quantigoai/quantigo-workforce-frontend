@@ -24,13 +24,15 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivePath } from "../../../features/slice/activePathSlice";
-import { calculateAnnotation } from "../../../features/slice/benchMarkSlice";
+import {
+  calculateAnnotation,
+  resetCalculationData,
+} from "../../../features/slice/benchMarkSlice";
 import { getDataSetByProjectID } from "../../../features/slice/datasetSlice";
 import { getProjectByWorkSpace } from "../../../features/slice/projectByWorkspaceSlice";
 import { getAllTeams } from "../../../features/slice/teamSlice";
 import { getWorkSpaceById } from "../../../features/slice/workSpaceSlice";
 import SelectMenu from "../BenchMark/SelectMenu";
-
 const paperStyle = {
   padding: "10px 10px",
   width: "80vw",
@@ -46,6 +48,7 @@ const CalculateAnnotations = () => {
 
   const [projectID, setProjectID] = useState("");
   const [classes, setClasses] = useState([]);
+  // const [userName, setUserName] = useState([]);
 
   const { register } = useForm();
   const [server, setServer] = useState("quantigo");
@@ -57,6 +60,11 @@ const CalculateAnnotations = () => {
   const { totalAnnotationsCount, totalTimeCalculation } = useSelector(
     (state) => state.benchMark.annotationCalculation
   );
+
+  useEffect(() => {
+    // setClasses([]);
+    // dispatch(resetCalculationData());
+  }, []);
 
   useEffect(() => {
     dispatch(setActivePath("Calculate Annotation"));
@@ -95,12 +103,14 @@ const CalculateAnnotations = () => {
     dispatch(calculateAnnotation({ datasetId, server_agent: server }));
   };
 
-  const userName = Object.keys(classes);
-
   useEffect(() => {
     dispatch(getDataSetByProjectID(projectID));
   }, [projectID]);
 
+  
+
+  
+  const userName = Object.keys(classes);
   useEffect(() => {
     totalTimeCalculation?.classes && setClasses(totalTimeCalculation.classes);
   }, [totalTimeCalculation]);

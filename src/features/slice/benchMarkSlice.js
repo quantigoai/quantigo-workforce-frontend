@@ -148,6 +148,9 @@ const benchMarkSlice = createSlice({
     setBenchMarkLocal: (state, action) => {
       state.benchMark = action.payload;
     },
+    resetCalculationData: (state) => {
+      state.annotationCalculation = {};
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -243,5 +246,6 @@ const benchMarkSlice = createSlice({
   },
 });
 
-export const { resetProjectMetas, setBenchMarkLocal } = benchMarkSlice.actions;
+export const { resetProjectMetas, setBenchMarkLocal, resetCalculationData } =
+  benchMarkSlice.actions;
 export default benchMarkSlice.reducer;

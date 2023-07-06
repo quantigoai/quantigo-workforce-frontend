@@ -103,7 +103,7 @@ const Layout = ({ children }) => {
     { name: "Benchmark", icon: BenchmarkSvg },
     { name: "Sync Server", icon: BenchmarkSvg },
     { name: "Project Directory", icon: ProjectSvg },
-    { name: "Calculate Annotation", icon: HourSvg },
+    // { name: "Calculate Annotation", icon: HourSvg },
   ];
   const projectManagerOptions = [
     { name: "Dashboard", icon: DashboardSvg },
@@ -183,7 +183,7 @@ const Layout = ({ children }) => {
     { name: "AllUsers", icon: UserSvg },
     { name: "Annotator List", icon: UserSvg },
     { name: "Archive Job", icon: JobSvg },
-    { name: "Calculate Annotation", icon: HourSvg },
+    // { name: "Calculate Annotation", icon: HourSvg },
     { name: "Course", icon: CourseSvg },
     { name: "Benchmark", icon: BenchmarkSvg },
     { name: "Create Course", icon: CourseSvg },
@@ -232,8 +232,8 @@ const Layout = ({ children }) => {
         return navigate("/quiz");
       case "Create Quiz":
         return navigate("/create-quiz");
-      case "Calculate Annotation":
-        return navigate("/calculate-annotation");
+      // case "Calculate Annotation":
+      //   return navigate("/calculate-annotation");
       case "Create Job":
         return navigate("/jobs/create-job");
       case "Jobs":

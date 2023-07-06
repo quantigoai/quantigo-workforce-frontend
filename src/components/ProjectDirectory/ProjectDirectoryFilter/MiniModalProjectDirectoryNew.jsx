@@ -323,100 +323,99 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {imageBenchMarkField ? (
-           <Grid container sx={{ padding: "2%" }}>
-          <ImgBenchmark
-            setImgBenchMarkFieldFilter={setImgBenchMarkFieldFilter}
-            imgBenchMarkFieldFilter={imgBenchMarkFieldFilter}
+          <Grid container sx={{ padding: "2%" }}>
+            <ImgBenchmark
+              setImgBenchMarkFieldFilter={setImgBenchMarkFieldFilter}
+              imgBenchMarkFieldFilter={imgBenchMarkFieldFilter}
             />
-            </Grid>
+          </Grid>
         ) : (
           <></>
         )}
         {objBenchMarkField ? (
           <Grid container sx={{ padding: "2%" }}>
-          <ObjBenchmarkField
-            setObjBenchMarkFieldFilter={setObjBenchMarkFieldFilter}
-            objBenchMarkFieldFilter={objBenchMarkFieldFilter}
+            <ObjBenchmarkField
+              setObjBenchMarkFieldFilter={setObjBenchMarkFieldFilter}
+              objBenchMarkFieldFilter={objBenchMarkFieldFilter}
             />
-            </Grid>
+          </Grid>
         ) : (
           <></>
         )}
         {qaCheckPointField ? (
           <Grid container sx={{ padding: "2%" }}>
-          <QACheckPointsField
-            qaCheckPointFieldFilter={qaCheckPointFieldFilter}
-            setQaCheckPointFieldFilter={setQaCheckPointFieldFilter}
-          />
+            <QACheckPointsField
+              qaCheckPointFieldFilter={qaCheckPointFieldFilter}
+              setQaCheckPointFieldFilter={setQaCheckPointFieldFilter}
+            />
           </Grid>
         ) : (
           <></>
         )}
         {actionItemsField ? (
           <Grid container sx={{ padding: "2%" }}>
-          <ActionTypeField
-            actionItemsFieldFilter={actionItemsFieldFilter}
-            setActionItemsFieldFilter={setActionItemsFieldFilter}
-          />
+            <ActionTypeField
+              actionItemsFieldFilter={actionItemsFieldFilter}
+              setActionItemsFieldFilter={setActionItemsFieldFilter}
+            />
           </Grid>
         ) : (
           <></>
         )}
         {projectTypeField ? (
           <Grid container sx={{ padding: "2%" }}>
-          <ProjectTypeField
-            projectTypeFieldFilter={projectTypeFieldFilter}
-            setProjectTypeFieldFilter={setProjectTypeFieldFilter}
-          />
+            <ProjectTypeField
+              projectTypeFieldFilter={projectTypeFieldFilter}
+              setProjectTypeFieldFilter={setProjectTypeFieldFilter}
+            />
           </Grid>
         ) : (
           <></>
         )}
         {platformField ? (
           <Grid container sx={{ padding: "2%" }}>
-          <PlatformField
-            platformFieldFilter={platformFieldFilter}
-            setPlatformFieldFilter={setPlatformFieldFilter}
-          />
-</Grid>
+            <PlatformField
+              platformFieldFilter={platformFieldFilter}
+              setPlatformFieldFilter={setPlatformFieldFilter}
+            />
+          </Grid>
         ) : (
           <></>
         )}
         {pdrSetFilter ? (
           <Grid container sx={{ padding: "2%" }}>
- 
             <PdrField setPDRFilter={setPDRFilter} pDRFilter={pDRFilter} />
-            </Grid>
-            ) : (
+          </Grid>
+        ) : (
           <></>
         )}
         {Client_AliasSetFilter ? (
           <Grid container sx={{ padding: "2%" }}>
-          <ClientAliasField
-            setClientAliasesFilter={setClientAliasesFilter}
-            clientAliasFilter={clientAliasFilter}
-          />
+            <ClientAliasField
+              setClientAliasesFilter={setClientAliasesFilter}
+              clientAliasFilter={clientAliasFilter}
+            />
           </Grid>
         ) : (
           <></>
         )}
         {industrySetFilter ? (
           <Grid container sx={{ padding: "2%" }}>
-          <IndustryTypeField
-            setIndustryType={setIndustryType}
-            industryType={industryType}
-          />
+            <IndustryTypeField
+              setIndustryType={setIndustryType}
+              industryType={industryType}
+            />
           </Grid>
         ) : (
           <></>
         )}
         {annotationSetFilter ? (
           <Grid container sx={{ padding: "2%" }}>
-          <AnnotationType
-            setAnnotationFilter={setAnnotationFilter}
-            annotationFilter={annotationFilter}
+            <AnnotationType
+              setAnnotationFilter={setAnnotationFilter}
+              annotationFilter={annotationFilter}
             />
-            </Grid>
+          </Grid>
         ) : (
           <></>
         )}
@@ -424,7 +423,7 @@ const MiniModalProjectDirectoryNew = ({
         <br />
         <Box>
           <Grid container spacing={2}>
-            <Grid item xs={4}>
+            <Grid item xs={6}>
               <Button
                 onClick={handleResetProjectDirectory}
                 fullWidth
@@ -432,15 +431,15 @@ const MiniModalProjectDirectoryNew = ({
                 Reset
               </Button>
             </Grid>
-            <Grid item xs={4}>
+            {/* <Grid item xs={4}>
               <Button
                 // onClick={handleResetProjectDirectory}
                 fullWidth
                 variant="outlined">
                 Add Filter
               </Button>
-            </Grid>
-            <Grid item xs={4}>
+            </Grid> */}
+            <Grid item xs={6}>
               <Button
                 onClick={handleFilterProjectDirectory}
                 fullWidth

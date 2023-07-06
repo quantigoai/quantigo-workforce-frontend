@@ -129,8 +129,6 @@ const ButtonStyle = styled(Button)({
   },
 });
 const UserListIndex = ({ action }) => {
-  const [rows, setRows] = useState("");
-  const [searched, setSearched] = useState("");
   const [filterUsers, setFilterUsers] = useState([]);
   const [csvUsers, setCsvUsers] = useState([]);
   const dispatch = useDispatch();
@@ -233,12 +231,6 @@ const UserListIndex = ({ action }) => {
     dispatch(getAllSkills());
   }, [action]);
 
-  const paperstyle = {
-    padding: "10px 10px",
-    width: "100%",
-    margin: "5px auto",
-  };
-
   useEffect(() => {
     const newArray = users.map(
       ({
@@ -320,24 +312,6 @@ const UserListIndex = ({ action }) => {
     }
   }, [users]);
 
-  const customHub = (userName) => {
-    const hubCode = userName ? userName?.split("_")[1]?.substring(0, 2) : "";
-    switch (hubCode) {
-      case "DK":
-        return "Dhaka";
-      case "KH":
-        return "Khulna";
-      case "SG":
-        return "Sirajganj";
-      case "CD":
-        return "Chuadanga";
-      case "MS":
-        return "Mymensingh";
-      default:
-        return "Unknown";
-    }
-  };
-
   //filter
   const handleChange = (e) => {
     setSearch(e.target.value);
@@ -361,13 +335,6 @@ const UserListIndex = ({ action }) => {
 
   // sorting
 
-  const handleDetailNid = (documentImage, documentNo, documentType, name) => {
-    setOpenModal(true);
-    setDocumentsImage(documentImage);
-    setDocumentsNo(documentNo);
-    setDocumentsType(documentType);
-    setUserName(name);
-  };
   const handleClose = () => {
     setAnchorEl(null);
     setOpenModal(false);
@@ -386,7 +353,7 @@ const UserListIndex = ({ action }) => {
     // setAnchorEl(anchorEl ? null : event.currentTarget);
     setAnchorEl(event.currentTarget);
   };
-  const handleMouseOut = (event) => {
+  const handleMouseOut = () => {
     setAnchorEl(null);
   };
 

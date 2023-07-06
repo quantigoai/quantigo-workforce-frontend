@@ -1,15 +1,12 @@
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 import IndustryTypeField from "./IndustryTypeField";
 import ClientAliasField from "./ClientAliasField";
 import AnnotationType from "./AnnotationType";
-import DataTypeField from "./DataTypeField";
 import PdrField from "./PdrField";
 import SelectFilterProjectDirectory from "./SelectFilterProjectDirectory";
-import SampleExampleField from "./SampleExampleField";
+
 import PlatformField from "./PlatformField";
 import ToolTypeField from "./ToolTypeField";
 import ProjectTypeField from "./ProjectTypeField";
@@ -116,7 +113,7 @@ const MiniModalProjectDirectoryNew = ({
             paddingLeft: "3%",
           }}>
           <Typography variant="h6">
-            <b>Filter by </b>
+            <b>Filter By </b>
           </Typography>
           <CloseIcon
             sx={{ color: "#2D58FF", cursor: "pointer", fontweight: "600 " }}
@@ -134,23 +131,6 @@ const MiniModalProjectDirectoryNew = ({
           </Grid>
         </Box>
         <br />
-
-        {/* {filterArray.length === 0 ? (
-          <></>
-        ) : (
-          <>
-            {filterArray.map((item) => (
-              <>
-                <SampleExampleField
-                  setIndustryType={setIndustryType}
-                  industryType={industryType}
-                  item={item}
-                />
-                
-              </>
-            ))}
-          </>
-        )} */}
         {qAField ? (
           <Grid container sx={{ padding: "2%" }}>
             <QAField
@@ -351,7 +331,10 @@ const MiniModalProjectDirectoryNew = ({
 
         <br />
         <Box>
-          <Grid container spacing={2} sx={{ paddingLeft: "2%",paddingRight:"2%" }}>
+          <Grid
+            container
+            spacing={2}
+            sx={{ paddingLeft: "2%", paddingRight: "2%", paddingBottom: "2%" }}>
             <Grid item xs={6}>
               <Button
                 onClick={handleResetProjectDirectory}

@@ -1,18 +1,9 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  InputLabel,
-  Menu,
-  MenuItem,
-  Select,
-} from "@mui/material";
+import { Box, Button, Menu, MenuItem } from "@mui/material";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 const selectTypeFilter = [
   "Client_Alias",
   "Industry",
-  // "Project_Name",
   "Platform",
   "Tool_Type",
   "PDR",
@@ -24,7 +15,6 @@ const selectTypeFilter = [
   "Tagging_Benchmark",
   "Deletion",
   "Skip_Image",
-  // "Update",
   "Image_Loading",
   "Object_Saving_Time",
   "Video_Watch_Time",
@@ -32,15 +22,12 @@ const selectTypeFilter = [
   "QA_Benchmark",
   "Annotation",
   "QA",
-  // "Remarks"
 ];
 const SelectFilterProjectDirectory = ({
   handleMenuItemClick,
   setAnchorEl,
   anchorEl,
 }) => {
-  // const [anchorEl, setAnchorEl] = useState(null);
-
   const handleButtonClick = (event) => {
     setAnchorEl(event.currentTarget);
   };

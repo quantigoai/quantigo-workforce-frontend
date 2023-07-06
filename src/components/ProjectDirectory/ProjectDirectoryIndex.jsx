@@ -122,14 +122,12 @@ const ProjectDirectoryIndex = () => {
   const [qAFieldFilter, setQAFieldFilter] = useState("");
   const [qABenchmarkFieldFilter, setQABenchmarkFieldFilter] = useState("");
   const [judgementTimeFieldFilter, setJudgementTimeFieldFilter] = useState("");
-
   const [skipImageFieldFilter, setSkipImageFieldFilter] = useState("");
   const [imageLoadingFieldFilter, setImageLoadingFieldFilter] = useState("");
   const [objectSavingTimeFieldFilter, setobjectSavingTimeFieldFilter] =
     useState("");
   const [videoWatchTimeFieldFilter, setVideoWatchTimeFieldFilter] =
     useState("");
-
   const [taggingBenchMarkFieldFilter, setTaggingBenchMarkFieldFilter] =
     useState("");
   const [date, setDate] = useState("");
@@ -153,9 +151,8 @@ const ProjectDirectoryIndex = () => {
   const [DeletionField, setDeletionFilter] = useState(false);
   const [judgementTimeFilter, setJudgementTimeFilter] = useState(false);
   const [qABenchmarkField, setQABenchmarkField] = useState(false);
-  const [typeFilter, setTypeFilter] = useState("");
-  const [filterArray, setFilterArray] = useState([]);
-  // const [qAField, setQAFilter] = useState(false);
+  
+ 
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClickFilter = (event) => {
@@ -167,11 +164,8 @@ const ProjectDirectoryIndex = () => {
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
-  const handleClose = () => {};
+  
   const handleMenuItemClick = (e) => {
-    setFilterArray((current) => [...current, e]);
-
-    setTypeFilter(e);
     if (e === "PDR") {
       setPdrSetFilter(true);
     }
@@ -233,7 +227,7 @@ const ProjectDirectoryIndex = () => {
       setAnnotationSetFilter(true);
     }
     setAnchorEl(null);
-    console.log(e);
+    
   };
   const handleFilterProjectDirectory = () => {
     const data = {

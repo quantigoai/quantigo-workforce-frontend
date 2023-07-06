@@ -103,6 +103,7 @@ const Layout = ({ children }) => {
     { name: "Benchmark", icon: BenchmarkSvg },
     { name: "Sync Server", icon: BenchmarkSvg },
     { name: "Project Directory", icon: ProjectSvg },
+    { name: "Hour Calculation", icon: HourSvg },
   ];
   const projectManagerOptions = [
     { name: "Dashboard", icon: DashboardSvg },

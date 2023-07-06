@@ -27,6 +27,7 @@ import {
   TableHead,
   TablePagination,
   TableRow,
+  TableSortLabel,
 } from "@mui/material";
 import TableCell from "@mui/material/TableCell";
 import React, { useEffect, useState } from "react";
@@ -121,14 +122,25 @@ const AllJobs = () => {
   const dispatch = useDispatch();
   const { user, role } = useSelector((state) => state.user);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [orderSortTimeLimit, setOrderSortTimeLimit] = React.useState(true);
   const [page, setPage] = React.useState(0);
   const { isLoading, jobs, totalJobs } = useSelector((state) => state.job);
-
+  const [date, setDate] = useState("");
   useEffect(() => {
     dispatch(setActivePath("Jobs"));
     // !! Need to be fixed later
     dispatch(getAllTeams());
   }, []);
+  
+const createSortHandler=()=>{
+  setOrderSortTimeLimit(!orderSortTimeLimit)
+  const data = {
+    ...(orderSortTimeLimit ? { timeLimit: 'desc'} : {timeLimit: 'asc'}),
+    ...(date ? { date } : {}),
+  };
+  console.log(data)
+  location.pathname === "/jobs/alljobs" && dispatch(getAllJobs(data));
+}
 
   const handleTakeJob = (id) => {
     const annotatorData = {
@@ -169,13 +181,13 @@ const AllJobs = () => {
     setSearch(e.target.value);
   };
 
-  const filtered = jobs.filter((entry) =>
-    Object.values(entry).some(
-      (val) =>
-        typeof val === "string" &&
-        val.toLowerCase().includes(search.toLowerCase())
-    )
-  );
+  // const filtered = jobs.filter((entry) =>
+  //   Object.values(entry).some(
+  //     (val) =>
+  //       typeof val === "string" &&
+  //       val.toLowerCase().includes(search.toLowerCase())
+  //   )
+  // );
 
   const paperStyle = {
     padding: "0px 0px",
@@ -276,7 +288,9 @@ const AllJobs = () => {
                         align="center"
                         sx={{ color: "#969CAF", fontSize: "20px" }}
                       >
+                        <TableSortLabel >
                         No of Images
+                        </TableSortLabel>
                       </TableCell>
                       {user.role === "admin" ||
                       user.role === "project_lead" ||
@@ -300,7 +314,12 @@ const AllJobs = () => {
                         align="center"
                         sx={{ color: "#969CAF", fontSize: "20px" }}
                       >
+                        <TableSortLabel 
+                         direction={orderSortTimeLimit ? 'asc' : 'dsc'} 
+                         onClick={()=>createSortHandler()}
+                         >
                         Time Limit (Minutes)
+                        </TableSortLabel>
                       </TableCell>
                       <TableCell
                         align="center"

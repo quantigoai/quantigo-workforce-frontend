@@ -21,13 +21,77 @@ export const getProjectByDirectory = createAsyncThunk(
       dataTypeFilter,
       annotationFilter,
       pdr,
+      platformFieldFilter,
+      projectTypeFieldFilter,
+      actionItemsFieldFilter,
+      qaCheckPointFieldFilter,
+      taggingBenchMarkFieldFilter,
+      imgBenchMarkFieldFilter,
+      objBenchMarkFieldFilter,
+      deletionFieldFilter,
+      toolTypeFieldFilter,
+      videoWatchTimeFieldFilter,
+      objectSavingTimeFieldFilter,
+      imageLoadingFieldFilter,
+      skipImageFieldFilter,
+      qAFieldFilter,
+      qABenchmarkFieldFilter,
+      judgementTimeFieldFilter,
     } = data || {};
     let query = ``;
     if (data) {
       query += `?`;
     }
     if (industryType) {
-      query += `&Industry_Type=${industryType}`;
+      query += `&Industry=${industryType}`;
+    }
+    if (judgementTimeFieldFilter) {
+      query += `&Judgement_Time=${judgementTimeFieldFilter}`;
+    }
+    if (qABenchmarkFieldFilter) {
+      query += `&QA_Benchmark=${qABenchmarkFieldFilter}`;
+    }
+    if (qAFieldFilter) {
+      query += `&QA=${qAFieldFilter}`;
+    }
+    if (skipImageFieldFilter) {
+      query += `&Skip_Image=${skipImageFieldFilter}`;
+    }
+    if (imageLoadingFieldFilter) {
+      query += `&Image_Loading=${imageLoadingFieldFilter}`;
+    }
+    if (objectSavingTimeFieldFilter) {
+      query += `&Object_Saving_Time=${objectSavingTimeFieldFilter}`;
+    }
+    if (videoWatchTimeFieldFilter) {
+      query += `&Video_Watch_Time=${videoWatchTimeFieldFilter}`;
+    }
+    if (toolTypeFieldFilter) {
+      query += `&Tool_Type=${toolTypeFieldFilter}`;
+    }
+    if (deletionFieldFilter) {
+      query += `&Deletion=${deletionFieldFilter}`;
+    }
+    if (objBenchMarkFieldFilter) {
+      query += `&Obj_Benchmark=${objBenchMarkFieldFilter}`;
+    }
+    if (imgBenchMarkFieldFilter) {
+      query += `&Img_Benchmark=${imgBenchMarkFieldFilter}`;
+    }
+    if (taggingBenchMarkFieldFilter) {
+      query += `&Tagging_Benchmark=${taggingBenchMarkFieldFilter}`;
+    }
+    if (actionItemsFieldFilter) {
+      query += `&Action_Items=${actionItemsFieldFilter}`;
+    }
+    if (qaCheckPointFieldFilter) {
+      query += `&QA_Check_Points=${qaCheckPointFieldFilter}`;
+    }
+    if (projectTypeFieldFilter) {
+      query += `&Project_Type=${projectTypeFieldFilter}`;
+    }
+    if (platformFieldFilter) {
+      query += `&Platform=${platformFieldFilter}`;
     }
     if (clientAliasFilter) {
       query += `&Client_Alias=${clientAliasFilter}`;
@@ -36,7 +100,7 @@ export const getProjectByDirectory = createAsyncThunk(
       query += `&Data_Type=${dataTypeFilter}`;
     }
     if (annotationFilter) {
-      query += `&Annotation_Type=${annotationFilter}`;
+      query += `&Annotation=${annotationFilter}`;
     }
     if (pdr) {
       query += `&PDR=${pdr}`;
@@ -131,7 +195,7 @@ const ProjectDirectory = createSlice({
         state.isLoading = false;
       })
       .addCase(getType.pending, (state) => {
-        state.isLoading = true;
+        state.isLoading = false;
       })
       .addCase(getType.fulfilled, (state, action) => {
         state.isLoading = false;

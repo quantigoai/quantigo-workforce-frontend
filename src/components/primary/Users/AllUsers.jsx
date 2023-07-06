@@ -39,11 +39,11 @@ import { getAllSkills } from "../../../features/slice/skillSlice";
 import { getAllUsers } from "../../../features/slice/userSlice";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
+import SearchBarforUserList from "../../shared/SearchBar/SearchBarforUserList";
 import NdaAccept from "./NdaAccept/NdaAccept";
 import NidDetails from "./NidDetals/NidDetails";
 import UserActiveStatueCheck from "./UserActiveCheck/UserActiveStatueCheck";
 import UserDetailsIndex from "./UserDetais/UserDetailsIndex";
-import SearchBarforUserList from "../../shared/SearchBar/SearchBarforUserList";
 
 function TablePaginationActions(props) {
   const theme = useTheme();

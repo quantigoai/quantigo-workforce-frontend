@@ -1,4 +1,3 @@
-import React, { useEffect, useRef, useState } from "react";
 import { useTheme } from "@emotion/react";
 import DownloadIcon from "@mui/icons-material/Download";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
@@ -22,6 +21,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { styled } from "@mui/material/styles";
+import React, { useEffect, useRef, useState } from "react";
 import { CSVLink } from "react-csv";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -31,10 +31,10 @@ import { getAllUsers } from "../../../features/slice/userSlice";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import SearchBarforUserList from "../../shared/SearchBar/SearchBarforUserList";
-import NidDetails from "../Users/NidDetals/NidDetails";
-import UserDetailsIndex from "../Users/UserDetais/UserDetailsIndex";
 import NdaAccept from "../Users/NdaAccept/NdaAccept";
+import NidDetails from "../Users/NidDetals/NidDetails";
 import UserActiveStatueCheck from "../Users/UserActiveCheck/UserActiveStatueCheck";
+import UserDetailsIndex from "../Users/UserDetais/UserDetailsIndex";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -109,15 +109,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
+
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
   // color: "#FFFFFF",

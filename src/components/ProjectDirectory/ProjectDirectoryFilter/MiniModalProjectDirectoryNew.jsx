@@ -113,15 +113,18 @@ const MiniModalProjectDirectoryNew = ({
             display: "flex",
             alignContent: "center",
             justifyContent: "space-between",
+            paddingLeft: "3%",
           }}>
-          <Typography variant="h6">Filter by</Typography>
+          <Typography variant="h6">
+            <b>Filter by </b>
+          </Typography>
           <CloseIcon
             sx={{ color: "#2D58FF", cursor: "pointer", fontweight: "600 " }}
             onClick={handleCloseFilter}
           />
         </Box>
         <br />
-        <Box sx={{ px: 1 }}>
+        <Box sx={{ px: 2 }}>
           <Grid item xs={6}>
             <SelectFilterProjectDirectory
               handleMenuItemClick={handleMenuItemClick}
@@ -160,18 +163,10 @@ const MiniModalProjectDirectoryNew = ({
         )}
         {judgementTimeFilter ? (
           <Grid container sx={{ padding: "2%" }}>
-            <Grid xs={11}>
-              <JudgementTimeField
-                setJudgementTimeFieldFilter={setJudgementTimeFieldFilter}
-                judgementTimeFieldFilter={judgementTimeFieldFilter}
-              />
-            </Grid>
-            <Grid item xs={1} sx={{ justifyItem: "center" }}>
-              <CloseIcon
-                sx={{ color: "#2D58FF", cursor: "pointer", fontweight: "200 " }}
-                // onClick={handleCloseFilter}
-              />
-            </Grid>
+            <JudgementTimeField
+              setJudgementTimeFieldFilter={setJudgementTimeFieldFilter}
+              judgementTimeFieldFilter={judgementTimeFieldFilter}
+            />
           </Grid>
         ) : (
           <></>
@@ -356,7 +351,7 @@ const MiniModalProjectDirectoryNew = ({
 
         <br />
         <Box>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} sx={{ paddingLeft: "2%",paddingRight:"2%" }}>
             <Grid item xs={6}>
               <Button
                 onClick={handleResetProjectDirectory}
@@ -365,14 +360,6 @@ const MiniModalProjectDirectoryNew = ({
                 Reset
               </Button>
             </Grid>
-            {/* <Grid item xs={4}>
-              <Button
-                // onClick={handleResetProjectDirectory}
-                fullWidth
-                variant="outlined">
-                Add Filter
-              </Button>
-            </Grid> */}
             <Grid item xs={6}>
               <Button
                 onClick={handleFilterProjectDirectory}

@@ -45,49 +45,22 @@ const SelectFilterProjectDirectory = ({
     setAnchorEl(event.currentTarget);
   };
 
-  // const handleMenuItemClick = (value) => {
-  //   setSelectedValue(value);
-  //   setAnchorEl(null);
-  // };
-
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
   return (
     <>
-      {/* <FormControl variant="filled" fullWidth>
-        <InputLabel id="demo-simple-select-label">Filter Type</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          onChange={(e) => handleSetFilter(e.target.value)}
-          // value={industryType || ""}
-          sx={{
-            backgroundColor: "#F8F8F8",
-            border: "1px solid #DADCDF",
-            borderRadius: "4px",
-          }}>
-          {selectTypeFilter.map((Industry) => (
-            <MenuItem key={Industry} value={Industry}>
-              {Industry}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl> */}
-
       <Box>
         <Button
-           variant="outlined"
-           sx={{
-             // backgroundColor: "#2D58FF",
-             // color: "#FFFFFF",
-             "&:hover": {
-               backgroundColor: "#FF9A45",
-               color: "#1D1D1D",
-             },
-           }}
+          variant="outlined"
+          sx={{
+            "&:hover": {
+              backgroundColor: "#FF9A45",
+              color: "#1D1D1D",
+            },
+          }}
           onMouseOver={handleButtonClick}>
-          Filter Type
+          Add Filter Type
         </Button>
         <Menu
           anchorEl={anchorEl}

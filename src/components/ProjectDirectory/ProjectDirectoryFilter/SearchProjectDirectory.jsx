@@ -1,10 +1,11 @@
 import SearchIcon from "@mui/icons-material/Search";
-import {IconButton, Paper, Popover, styled} from "@mui/material";
+import { IconButton, Paper, Popover, styled } from "@mui/material";
 import * as React from "react";
 import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import MiniModelProjectDirectory from "./MiniModelProjectDirectory";
+import MiniModalProjectDirectoryNew from "./MiniModalProjectDirectoryNew";
 
 const CustomFilterIcon = styled(FilterAltIcon)({
   color: "rgba(45, 88, 255, 1)",
@@ -29,6 +30,38 @@ const SearchProjectDirectory = ({
   dataTypeFilter,
   setAnnotationFilter,
   annotationFilter,
+  platformFieldFilter,
+  setPlatformFieldFilter,
+  projectTypeFieldFilter,
+  setProjectTypeFieldFilter,
+  actionItemsFieldFilter,
+  setActionItemsFieldFilter,
+  qaCheckPointFieldFilter,
+  setQaCheckPointFieldFilter,
+  objBenchMarkFieldFilter,
+  setObjBenchMarkFieldFilter,
+  imgBenchMarkFieldFilter,
+  setImgBenchMarkFieldFilter,
+  taggingBenchMarkFieldFilter,
+  setTaggingBenchMarkFieldFilter,
+  deletionFieldFilter,
+  setDeletionFieldFilter,
+  toolTypeFieldFilter,
+  setToolTypeFieldFilter,
+  skipImageFieldFilter,
+  setSkipImageFieldFilter,
+  imageLoadingFieldFilter,
+  setImageLoadingFieldFilter,
+  objectSavingTimeFieldFilter,
+  setobjectSavingTimeFieldFilter,
+  videoWatchTimeFieldFilter,
+  setVideoWatchTimeFieldFilter,
+  qAFieldFilter,
+  setQAFieldFilter,
+  judgementTimeFieldFilter,
+  setJudgementTimeFieldFilter,
+  qABenchmarkFieldFilter,
+  setQABenchmarkFieldFilter,
 }) => {
   const open = Boolean(anchorE2);
   const id = open ? "simple-popover" : undefined;
@@ -72,7 +105,7 @@ const SearchProjectDirectory = ({
           vertical: "bottom",
           horizontal: "left",
         }}>
-        <MiniModelProjectDirectory
+        {/* <MiniModelProjectDirectory
           handleCloseFilter={handleCloseFilter}
           setIndustryType={setIndustryType}
           handleFilterProjectDirectory={handleFilterProjectDirectory}
@@ -86,6 +119,53 @@ const SearchProjectDirectory = ({
           dataTypeFilter={dataTypeFilter}
           setAnnotationFilter={setAnnotationFilter}
           annotationFilter={annotationFilter}
+        /> */}
+        <MiniModalProjectDirectoryNew
+          handleCloseFilter={handleCloseFilter}
+          setIndustryType={setIndustryType}
+          handleFilterProjectDirectory={handleFilterProjectDirectory}
+          handleResetProjectDirectory={handleResetProjectDirectory}
+          industryType={industryType}
+          setClientAliasesFilter={setClientAliasesFilter}
+          clientAliasFilter={clientAliasFilter}
+          setPDRFilter={setPDRFilter}
+          pDRFilter={pDRFilter}
+          setDataTypeFilter={setDataTypeFilter}
+          dataTypeFilter={dataTypeFilter}
+          setAnnotationFilter={setAnnotationFilter}
+          annotationFilter={annotationFilter}
+          platformFieldFilter={platformFieldFilter}
+          setPlatformFieldFilter={setPlatformFieldFilter}
+          projectTypeFieldFilter={projectTypeFieldFilter}
+          setProjectTypeFieldFilter={setProjectTypeFieldFilter}
+          actionItemsFieldFilter={actionItemsFieldFilter}
+          setActionItemsFieldFilter={setActionItemsFieldFilter}
+          qaCheckPointFieldFilter={qaCheckPointFieldFilter}
+          setQaCheckPointFieldFilter={setQaCheckPointFieldFilter}
+          objBenchMarkFieldFilter={objBenchMarkFieldFilter}
+          setObjBenchMarkFieldFilter={setObjBenchMarkFieldFilter}
+          imgBenchMarkFieldFilter={imgBenchMarkFieldFilter}
+          setImgBenchMarkFieldFilter={setImgBenchMarkFieldFilter}
+          taggingBenchMarkFieldFilter={taggingBenchMarkFieldFilter}
+          setTaggingBenchMarkFieldFilter={setTaggingBenchMarkFieldFilter}
+          deletionFieldFilter={deletionFieldFilter}
+          setDeletionFieldFilter={setDeletionFieldFilter}
+          toolTypeFieldFilter={toolTypeFieldFilter}
+          setToolTypeFieldFilter={setToolTypeFieldFilter}
+          skipImageFieldFilter={skipImageFieldFilter}
+          setSkipImageFieldFilter={setSkipImageFieldFilter}
+          imageLoadingFieldFilter={imageLoadingFieldFilter}
+          setImageLoadingFieldFilter={setImageLoadingFieldFilter}
+          objectSavingTimeFieldFilter={objectSavingTimeFieldFilter}
+          setobjectSavingTimeFieldFilter={setobjectSavingTimeFieldFilter}
+          videoWatchTimeFieldFilter={videoWatchTimeFieldFilter}
+          setVideoWatchTimeFieldFilter={setVideoWatchTimeFieldFilter}
+          qAFieldFilter={qAFieldFilter}
+          setQAFieldFilter={setQAFieldFilter }
+          judgementTimeFieldFilter={judgementTimeFieldFilter }
+          setJudgementTimeFieldFilter={ setJudgementTimeFieldFilter}
+          qABenchmarkFieldFilter={qABenchmarkFieldFilter }
+          setQABenchmarkFieldFilter={setQABenchmarkFieldFilter}
         />
       </Popover>
     </>

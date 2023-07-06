@@ -6,15 +6,20 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Box} from "@mui/material";
-import {styled} from "@mui/material/styles";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {checkUserByUserName, createAgUser, createQaiUser, signup,} from "../../../../features/slice/userSlice";
-import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
+import { Box } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {
+  checkUserByUserName,
+  createAgUser,
+  createQaiUser,
+  signup,
+} from "../../../../features/slice/userSlice";
+import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 import InputFields from "../InputFields/InputFields";
 
 const BgBox = styled(Box)({
@@ -35,7 +40,9 @@ const Register = () => {
   const [dob, setDob] = useState("");
   const [isFieldValid, setIsFieldValid] = useState(false);
   const [isPhoneNumberCheck, setsPhoneNumberCheck] = useState(false);
+  const [isUserPhoneNumberCheck, setIsUserPhoneNumberCheck] = useState(false);
   const [phone, setPhone] = useState("");
+  const [userPhoneNumber, setUserPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
   const [qaiUserName, setQaiUserName] = useState("");
   const [qaiErrorMessage, setQaiErrorMessage] = useState("");
@@ -85,7 +92,18 @@ const Register = () => {
       setsPhoneNumberCheck(false);
     }
   }, [phone]);
-
+  useEffect(() => {
+    if (
+      (userPhoneNumber.length === 11 &&
+        userPhoneNumber[0] === "0" &&
+        userPhoneNumber[1] === "1") ||
+      userPhoneNumber.length === 0
+    ) {
+      setIsUserPhoneNumberCheck(true);
+    } else {
+      setIsUserPhoneNumberCheck(false);
+    }
+  }, [userPhoneNumber]);
   useEffect(() => {
     if (qaiUserName.length === 0) {
       setQaiErrorMessageCheck(true);
@@ -125,7 +143,9 @@ const Register = () => {
   const handlePhoneNumber = (e) => {
     setPhone(e);
   };
-
+  const handleUserPhoneNumber = (e) => {
+    setUserPhoneNumber(e);
+  };
   const onSubmit = (data) => {
     data.email = email;
     data.password = password;
@@ -138,14 +158,14 @@ const Register = () => {
       name: name,
       email: email,
     };
-    data.phone = phone;
+    data.billingAccountNo = phone;
+    data.phone = userPhoneNumber;
     data.dob = dob;
     if (hub.length) {
       data.hub = hub;
     }
 
     const filterdData = data;
-
     isSignup && hub
       ? dispatch(createQaiUser(qaiCreateData)).then((res) => {
           dispatch(createAgUser(qaiCreateData)).then((res) => {
@@ -213,6 +233,9 @@ const Register = () => {
               handleSerGender={handleSerGender}
               gender={gender}
               setGender={setGender}
+              handleUserPhoneNumber={handleUserPhoneNumber}
+              userPhoneNumber={userPhoneNumber}
+              isUserPhoneNumberCheck={isUserPhoneNumberCheck}
             />
           </form>
         </BgBox>

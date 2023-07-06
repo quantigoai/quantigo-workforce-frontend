@@ -48,12 +48,16 @@ export const getAllJobs = createAsyncThunk("job/getAlljobs", async (data) => {
     attemptLeft,
     projectIdFilter,
     skills,
+    timeLimit,
     date,
   } = data || {};
   let query = `isActive=true&sortBy=createdAt:desc&sortBy=title:asc`;
 
   if (status) {
     query += `&status=${status}`;
+  }
+  if (timeLimit) {
+    query += `&sortBy=timeLimit:${timeLimit}`;
   }
   if (projectIdFilter) {
     query += `&projectId=${projectIdFilter}`;

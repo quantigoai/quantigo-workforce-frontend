@@ -1,10 +1,14 @@
-import {Box, Chip, Grid, Paper, Typography} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {useLocation, useNavigate} from "react-router-dom";
-import {myProfileEdit, removeMyImage, uploadMyImage,} from "../../../features/slice/userSlice";
+import { Box, Chip, Grid, Paper, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  myProfileEdit,
+  removeMyImage,
+  uploadMyImage,
+} from "../../../features/slice/userSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import AddressField from "./AddressField";
 import CityField from "./CityField";
@@ -16,9 +20,10 @@ import OccupationField from "./OccupationField";
 import PhoneNumberField from "./PhoneNumberField";
 import ProfilePictureIndex from "./ProfilePicture/ProfilePictureIndex";
 import SkillShowUser from "./SkillShowUser";
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import ActivateDeactivateStatus from "./ActivateDeactivateStatus";
 import ChangePasswordIndex from "./Password/ChangePasswordIndex";
+import NagadPhoneNumberField from "./NagadPhoneNumberField";
 
 const paperStyle = {
   width: "80vw",
@@ -217,7 +222,7 @@ const EditProfileIndex = () => {
                 <EmailField user={user} />
               </Grid>
             </Grid>
-            <Grid container>
+            <Grid container sx={{ paddingBottom: "1%" }}>
               <Grid item xs={6} sx={{ paddingRight: "1%" }}>
                 <AddressField
                   editAble={editAble}
@@ -232,6 +237,16 @@ const EditProfileIndex = () => {
                   register={register}
                 />
               </Grid>
+            </Grid>
+            <Grid container>
+              <Grid item xs={6} sx={{ paddingRight: "1%" }}>
+                <NagadPhoneNumberField
+                  editAble={editAble}
+                  user={user}
+                  register={register}
+                />
+              </Grid>
+              <Grid item xs={6}></Grid>
             </Grid>
           </Box>
           <Box sx={{ padding: "2%" }}>

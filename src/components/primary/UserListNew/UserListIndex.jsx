@@ -588,9 +588,9 @@ const UserListIndex = ({ action }) => {
                           {/* <UserStatusField userStatus={user.active} /> */}
                         </StyledTableCell>
                         <StyledTableCell align="center">
-                          {user.completedJobs.length === 0
+                          {user.completedJobs?.length === 0
                             ? "N/A"
-                            : user.completedJobs.length}
+                            : user.completedJobs?.length}
                         </StyledTableCell>
                         {role === "delivery_manager" ? (
                           <></>

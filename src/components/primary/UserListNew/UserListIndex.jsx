@@ -145,12 +145,11 @@ const UserListIndex = ({ action }) => {
       dispatch(getAllUsers({ limit: rowsPerPage, skip: page * rowsPerPage }));
     }
     dispatch(getAllSkills());
-  }, [action, rowsPerPage, page]);
+  }, [action, rowsPerPage, page, role, dispatch]);
 
   useEffect(() => {
-    const newArray =
-      users &&
-      users.map(
+    if (users && users.length > 0) {
+      const newArray = users.map(
         ({
           activeJobs,
           completedCourses,
@@ -171,24 +170,23 @@ const UserListIndex = ({ action }) => {
         }) => rest
       );
 
-    const finalArray =
-      newArray.length &&
-      newArray.map((item) => {
+      const finalArray = newArray.map((item) => {
         if (item) {
           item.dob = new Date(item.dob).toLocaleDateString("en-US");
         }
         return item;
       });
 
-    setCsvUsers(finalArray);
-    if (location.pathname === "/annotators") {
-      dispatch(setActivePath("Annotator List"));
-    } else if (location.pathname === "/reviewers") {
-      dispatch(setActivePath("Reviewer List"));
-    } else if (location.pathname === "/users") {
-      dispatch(setActivePath("Users"));
-    } else {
-      dispatch(setActivePath("All Users"));
+      setCsvUsers(finalArray);
+      if (location.pathname === "/annotators") {
+        dispatch(setActivePath("Annotator List"));
+      } else if (location.pathname === "/reviewers") {
+        dispatch(setActivePath("Reviewer List"));
+      } else if (location.pathname === "/users") {
+        dispatch(setActivePath("Users"));
+      } else {
+        dispatch(setActivePath("All Users"));
+      }
     }
   }, [dispatch, location.pathname, users]);
 

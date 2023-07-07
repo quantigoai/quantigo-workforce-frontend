@@ -33,8 +33,15 @@ const ButtonStyle = styled(Button)({
     color: "#1D1D1D",
   },
 });
+const annotatorRoles = [
+  "level_0_annotator",
+  "level_1_annotator",
+  "level_2_annotator",
+  "level_3_annotator",
+];
+const reviewerRoles = ["reviewer"];
+
 const UserListIndex = ({ action }) => {
-  const [filterUsers, setFilterUsers] = useState([]);
   const [csvUsers, setCsvUsers] = useState([]);
   const dispatch = useDispatch();
   const { users, totalUsers } = useSelector((state) => state.user.users);
@@ -43,10 +50,7 @@ const UserListIndex = ({ action }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const [openModal, setOpenModal] = useState(false);
-  const [documentsImage, setDocumentsImage] = useState([]);
-  const [documentsType, setDocumentsType] = useState("");
-  const [userName, setUserName] = useState([]);
-  const [documentsNo, setDocumentsNo] = useState();
+
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [roleFilter, setRoleFilter] = useState("");
@@ -109,31 +113,63 @@ const UserListIndex = ({ action }) => {
   const location = useLocation();
 
   useEffect(() => {
-    dispatch(getAllUsers({ limit: rowsPerPage, skip: page * rowsPerPage }));
+    if (action === "annotator") {
+      dispatch(
+        getAllUsers({
+          role: annotatorRoles,
+          limit: rowsPerPage,
+          skip: page * rowsPerPage,
+        })
+      );
+    } else if (
+      role === "recruitment_manager" ||
+      role === "trainer" ||
+      action === "recruitment_manager"
+    ) {
+      dispatch(
+        getAllUsers({
+          role: [...annotatorRoles, ...reviewerRoles],
+          limit: rowsPerPage,
+          skip: page * rowsPerPage,
+        })
+      );
+    } else if (action === "reviewer") {
+      dispatch(
+        getAllUsers({
+          role: reviewerRoles,
+          limit: rowsPerPage,
+          skip: page * rowsPerPage,
+        })
+      );
+    } else {
+      dispatch(getAllUsers({ limit: rowsPerPage, skip: page * rowsPerPage }));
+    }
     dispatch(getAllSkills());
   }, [action, rowsPerPage, page]);
 
   useEffect(() => {
-    const newArray = users.map(
-      ({
-        activeJobs,
-        completedCourses,
-        completedJobs,
-        documentsImage,
-        enrolledCourses,
-        image,
-        inCompletedJobs,
-        rejectedJobs,
-        skills,
-        submittedJobs,
-        emailToken,
-        signImage,
-        updatedAt,
-        qaiId,
-        __v,
-        ...rest
-      }) => rest
-    );
+    const newArray =
+      users &&
+      users.map(
+        ({
+          activeJobs,
+          completedCourses,
+          completedJobs,
+          documentsImage,
+          enrolledCourses,
+          image,
+          inCompletedJobs,
+          rejectedJobs,
+          skills,
+          submittedJobs,
+          emailToken,
+          signImage,
+          updatedAt,
+          qaiId,
+          __v,
+          ...rest
+        }) => rest
+      );
 
     const finalArray = newArray.map((item) => {
       if (item) {
@@ -151,47 +187,6 @@ const UserListIndex = ({ action }) => {
       dispatch(setActivePath("Users"));
     } else {
       dispatch(setActivePath("All Users"));
-    }
-    if (action === "reviewer") {
-      setFilterUsers(users.filter((user) => user.role === "reviewer"));
-    } else if (action === "annotator") {
-      setFilterUsers(
-        users.filter(
-          (user) =>
-            user.role === "level_0_annotator" ||
-            user.role === "level_1_annotator" ||
-            user.role === "level_2_annotator" ||
-            user.role === "level_3_annotator"
-        )
-      );
-    } else if (
-      role === "recruitment_manager" ||
-      action === "recruitment_manager"
-    ) {
-      // TODO
-      setFilterUsers(
-        users.filter(
-          (user) =>
-            user.role === "level_0_annotator" ||
-            user.role === "level_1_annotator" ||
-            user.role === "level_2_annotator" ||
-            user.role === "level_3_annotator" ||
-            user.role === "reviewer"
-        )
-      );
-    } else if (role === "trainer") {
-      setFilterUsers(
-        users.filter(
-          (user) =>
-            user.role === "level_0_annotator" ||
-            user.role === "level_1_annotator" ||
-            user.role === "level_2_annotator" ||
-            user.role === "level_3_annotator" ||
-            user.role === "reviewer"
-        )
-      );
-    } else {
-      setFilterUsers(users);
     }
   }, [users]);
 
@@ -226,9 +221,9 @@ const UserListIndex = ({ action }) => {
   };
 
   const handleMouseOver = (event) => {
-    // setAnchorEl(anchorEl ? null : event.currentTarget);
     setAnchorEl(event.currentTarget);
   };
+
   const handleMouseOut = () => {
     setAnchorEl(null);
   };
@@ -366,14 +361,7 @@ const UserListIndex = ({ action }) => {
             </Grid>
           </Paper>
         </Box>
-        <NidDetails
-          openModal={openModal}
-          handleClose={handleClose}
-          documentImage={documentsImage}
-          documentsNo={documentsNo}
-          documentsType={documentsType}
-          userName={userName}
-        />
+        <NidDetails openModal={openModal} handleClose={handleClose} />
       </>
     </>
   );

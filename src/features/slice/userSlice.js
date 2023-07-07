@@ -67,7 +67,7 @@ export const alreadyLogin = createAsyncThunk(
 );
 
 // read My Profile
-export const readMyProfile = createAsyncThunk("read/myProfile", async (id) => {
+export const readMyProfile = createAsyncThunk("read/myProfile", async () => {
   return axios.get(`${url}/users/my-profile`, {
     headers: {
       Authorization: `Bearer ${realToken()}`,
@@ -158,7 +158,9 @@ export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
     query += `&skip=0`;
   }
   if (role) {
-    query += `&role=${role}`;
+    role.map((item) => {
+      query += `&role=${item}`;
+    });
   }
   if (hub) {
     query += `&hub=${hub}`;
@@ -330,7 +332,7 @@ export const emailVerificationLink = createAsyncThunk(
 // resend email
 
 export const resendEmailVarification = createAsyncThunk(
-  "resend/email/varifiacation",
+  "resend/email/verification",
   async () => {
     return axios.get(`${url}/users/resendverificationemail`, {
       headers: {

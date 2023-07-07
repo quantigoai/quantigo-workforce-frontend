@@ -171,12 +171,14 @@ const UserListIndex = ({ action }) => {
         }) => rest
       );
 
-    const finalArray = newArray.map((item) => {
-      if (item) {
-        item.dob = new Date(item.dob).toLocaleDateString("en-US");
-      }
-      return item;
-    });
+    const finalArray =
+      newArray.length &&
+      newArray.map((item) => {
+        if (item) {
+          item.dob = new Date(item.dob).toLocaleDateString("en-US");
+        }
+        return item;
+      });
 
     setCsvUsers(finalArray);
     if (location.pathname === "/annotators") {
@@ -188,7 +190,7 @@ const UserListIndex = ({ action }) => {
     } else {
       dispatch(setActivePath("All Users"));
     }
-  }, [users]);
+  }, [dispatch, location.pathname, users]);
 
   // filter;
   const handleChange = (e) => {

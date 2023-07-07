@@ -6,35 +6,36 @@ import { getAllUsers } from "../../../../features/slice/userSlice";
 
 const TotalUser = () => {
   const dispatch = useDispatch();
-  const { users } = useSelector((state) => state.user.users);
-
-  const userLength = users.length;
+  const { isLoading } = useSelector((state) => state.user);
+  const { totalUsers } = useSelector((state) => state.user.users);
 
   useEffect(() => {
-    dispatch(getAllUsers());
-  }, []);
+    dispatch(getAllUsers({ limit: 10, skip: 0 }));
+  }, [dispatch]);
   return (
-    <>
-      <Grid container>
-        <Paper
-          elevation={0}
-          sx={{ padding: "0%", width: "100%", height: "100px" }}
-        >
-          <Box sx={{ padding: "4%" }}>
-            <Grid container>
-              <Typography sx={{ color: "#969CAF" }}>Total Users</Typography>
-            </Grid>
-            <Grid container sx={{ paddingTop: "4%" }}>
-              <Grid item xs={8}>
-                <Typography sx={{ color: "##1D1D1D" }} variant="h5">
-                  {userLength}
-                </Typography>
+    !isLoading && (
+      <>
+        <Grid container>
+          <Paper
+            elevation={0}
+            sx={{ padding: "0%", width: "100%", height: "100px" }}
+          >
+            <Box sx={{ padding: "4%" }}>
+              <Grid container>
+                <Typography sx={{ color: "#969CAF" }}>Total Users</Typography>
               </Grid>
-            </Grid>
-          </Box>
-        </Paper>
-      </Grid>
-    </>
+              <Grid container sx={{ paddingTop: "4%" }}>
+                <Grid item xs={8}>
+                  <Typography sx={{ color: "##1D1D1D" }} variant="h5">
+                    {totalUsers}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Box>
+          </Paper>
+        </Grid>
+      </>
+    )
   );
 };
 

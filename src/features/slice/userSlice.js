@@ -144,9 +144,19 @@ export const updateMyDocuments = createAsyncThunk(
 // filter User
 
 export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
-  const { role, hub, skills, active } = data || {};
+  const { role, hub, active, limit, skip, skills } = data || {};
   const todayDate = new Date().toISOString().slice(0, 10);
   let query = `sortBy=createdAt:desc`;
+  if (limit) {
+    query += `&limit=${limit}`;
+  } else {
+    query += `&limit=10`;
+  }
+  if (skip) {
+    query += `&skip=${skip}`;
+  } else {
+    query += `&skip=0`;
+  }
   if (role) {
     query += `&role=${role}`;
   }
@@ -498,7 +508,7 @@ const userSlice = createSlice({
       .addCase(getAllUsers.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.users = action.payload.data;
+        state.users = action.payload.data.users;
       })
       .addCase(getAllUsers.rejected, (state, action) => {
         state.error = action.error.message;

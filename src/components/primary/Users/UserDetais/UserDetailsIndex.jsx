@@ -252,7 +252,7 @@ const UserDetailsIndex = ({ user }) => {
                   </Typography>
                 </Grid>
                 <Grid item xs={7} sx={{ paddingLeft: "5%" }}>
-                  {user?.completedCourses.length === 0 ? (
+                  {user.completedCourses?.length === 0 ? (
                     <>
                       <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
                         No Course Completed
@@ -261,7 +261,7 @@ const UserDetailsIndex = ({ user }) => {
                   ) : (
                     <>
                       <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                        {user?.completedCourses.length}
+                        {user?.completedCourses?.length}
                       </Typography>
                     </>
                   )}

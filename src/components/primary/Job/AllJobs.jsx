@@ -118,7 +118,7 @@ function TablePaginationActions(props) {
 const AllJobs = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
-  const { user, role } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [orderSortTimeLimit, setOrderSortTimeLimit] = React.useState(true);
   const [page, setPage] = React.useState(0);
@@ -136,7 +136,6 @@ const AllJobs = () => {
       ...(orderSortTimeLimit ? { timeLimit: "desc" } : { timeLimit: "asc" }),
       ...(date ? { date } : {}),
     };
-    console.log(data);
     location.pathname === "/jobs/alljobs" && dispatch(getAllJobs(data));
   };
 

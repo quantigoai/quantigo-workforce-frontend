@@ -1,27 +1,17 @@
-import {Box, Grid, Paper, Typography} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { Box, Grid, Paper, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const ActiveUser = () => {
-  const dispatch = useDispatch();
   const { totalCountData } = useSelector((state) => state.dashboard);
-  const { activeAnnotators } = totalCountData;
-  const { users } = useSelector((state) => state.user);
-  const [activeUser, setactiveUser] = useState(0);
-  const userLength = users.length;
-  useEffect(() => {
-    users.map((user, i) => {
-      if (!user.active) {
-        setactiveUser(i + 1);
-      }
-    });
-  }, []);
+
   return (
     <>
       <Grid container>
         <Paper
           elevation={0}
-          sx={{ padding: "0%", width: "100%", height: "100px" }}>
+          sx={{ padding: "0%", width: "100%", height: "100px" }}
+        >
           <Box sx={{ padding: "4%" }}>
             <Grid container>
               <Typography sx={{ color: "#969CAF" }}>
@@ -34,18 +24,6 @@ const ActiveUser = () => {
                   {totalCountData.activeAnnotators}
                 </Typography>
               </Grid>
-              {/* <Grid
-                container
-                item
-                xs={4}
-                sx={{ justifyContent: "right", paddingTop: "2%" }}
-              >
-                <Typography sx={{ color: "#2D58FF" }} variant="body2">
-                  {" "}
-                  +{userLength - activeUser}%
-                </Typography>
-                <NorthIcon sx={{ color: "#2D58FF", fontSize: "small" }} />
-              </Grid> */}
             </Grid>
           </Box>
         </Paper>

@@ -47,7 +47,6 @@ const MiniModal = () => {
   ] = useOutletContext();
 
   const { users, user } = useSelector((state) => state.user);
-  console.log("🚀 ~ file: MiniModal.jsx:44 ~ MiniModal ~ user:", user.role);
   const [value, setValue] = useState(""); // initialize value as an empty string
 
   const location = useLocation();
@@ -106,7 +105,7 @@ const MiniModal = () => {
                     <>
                       {" "}
                       <UsersRadioGroup
-                        users={users}
+                        users={users.users}
                         handleChange={handleChange}
                       />
                     </>
@@ -123,7 +122,7 @@ const MiniModal = () => {
                     <>
                       {" "}
                       <UsersRadioGroup
-                        users={users}
+                        users={users.users}
                         handleChange={handleChange}
                         isReviewers={true}
                       />

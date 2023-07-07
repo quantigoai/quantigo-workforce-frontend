@@ -9,28 +9,28 @@
 
 // TODO Remove this file and its references
 import {
-    Avatar,
-    Box,
-    Button,
-    FormControl,
-    Grid,
-    IconButton,
-    InputLabel,
-    MenuItem,
-    Paper,
-    Select,
-    Stack,
-    TextField,
-    Typography,
+  Avatar,
+  Box,
+  Button,
+  FormControl,
+  Grid,
+  IconButton,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+  Stack,
+  TextField,
+  Typography,
 } from "@mui/material";
-import React, {useState} from "react";
+import { useState } from "react";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import DeleteIcon from "@mui/icons-material/Delete";
-import {PhotoCamera} from "@mui/icons-material";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {updateMyDocuments} from "../../../features/slice/userSlice";
-import {useAlert} from "react-alert";
+import { PhotoCamera } from "@mui/icons-material";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { updateMyDocuments } from "../../../features/slice/userSlice";
+import { useAlert } from "react-alert";
 
 const UpdateDocument = () => {
   const dispatch = useDispatch();
@@ -46,11 +46,7 @@ const UpdateDocument = () => {
   const [coverImage, setCoverImage] = useState(null);
   const { user } = useSelector((state) => state.user);
   const alert = useAlert();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const handleImage = (e) => {
     setCoverImageFile(e.target.files[0]);
@@ -75,7 +71,7 @@ const UpdateDocument = () => {
       formData: formData,
     };
     dispatch(updateMyDocuments(finalData)).then((action) => {
-      if (action.payload?.status === 200 || 201) {
+      if (action.payload?.status === 200 || action.payload?.status === 201) {
         alert.show("User Documents update successfully", { type: "success" });
       } else {
         alert.show("Do not update Document", { type: "error" });

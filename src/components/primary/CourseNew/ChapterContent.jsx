@@ -6,10 +6,9 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Button, Grid, Paper} from "@mui/material";
-import React from "react";
+import { Button, Grid, Paper } from "@mui/material";
 import parse from "html-react-parser";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import ChapterDeleteModal from "../Course/CourseDetailsPage/ChapterDeleteModal";
 import ChapterHeader from "./ChapterHeader";
 
@@ -17,7 +16,6 @@ const ChapterContent = ({
   handleQuizStart,
   handleCreateQuiz,
   handleEditChapter,
-  handleQuizEdit,
 }) => {
   const { user } = useSelector((state) => state.user);
   const { courseChapter } = useSelector((state) => state.course);
@@ -45,14 +43,16 @@ const ChapterContent = ({
               "&::-webkit-scrollbar-thumb:hover": {
                 background: "#555",
               },
-            }}>
+            }}
+          >
             {/* <Typography> {courseChapter._id}</Typography> */}
             <Grid
               xs={12}
               sx={{
                 paddingLeft: "3%",
                 paddingRight: "3%",
-              }}>
+              }}
+            >
               {courseChapter.content && parse(courseChapter.content)}
             </Grid>
           </Grid>
@@ -67,7 +67,8 @@ const ChapterContent = ({
             paddingRight: "3%",
             paddingTop: "2%",
             paddingBottom: "2%",
-          }}>
+          }}
+        >
           {user.role === "trainer" || user.role === "admin" ? (
             <>
               <ChapterDeleteModal />
@@ -79,7 +80,8 @@ const ChapterContent = ({
                   border: "1px solid #2D58FF",
                   borderRadius: "2px",
                   width: "128px",
-                }}>
+                }}
+              >
                 Edit Chapter
               </Button>
               <Button
@@ -89,7 +91,8 @@ const ChapterContent = ({
                   border: "1px solid #2D58FF",
                   borderRadius: "2px",
                   width: "128px",
-                }}>
+                }}
+              >
                 Create Quiz
               </Button>
             </>
@@ -109,7 +112,8 @@ const ChapterContent = ({
               },
             }}
             onClick={() => handleQuizStart(courseChapter?.quiz?.id || null)}
-            variant="contained">
+            variant="contained"
+          >
             {user.role === "trainer" || user.role === "admin"
               ? "Show Quiz"
               : "Start Quiz"}

@@ -1,19 +1,20 @@
-import {Box, Button, CircularProgress, FilledInput, FormControl, Grid, InputLabel, Typography,} from "@mui/material";
-import {styled} from "@mui/material/styles";
-import React, {useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import bgimg from "../../../assets/images/LoginBG.png";
-import {forgetPasswordSlice} from "../../../features/slice/userSlice";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  FilledInput,
+  FormControl,
+  Grid,
+  InputLabel,
+  Typography,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { forgetPasswordSlice } from "../../../features/slice/userSlice";
 import HeaderNav from "../HomePage/HeaderNav";
-
-const BgBox = styled(Box)({
-  backgroundImage: `url(${bgimg})`,
-  width: "100vw",
-  height: "120vh",
-  backgroundRepeat: "no-repeat",
-});
 
 const ButtonStyle = styled(Button)({
   backgroundColor: "#2D58FF",
@@ -38,11 +39,7 @@ const ForgetPassword = () => {
   const { isLoading } = useSelector((state) => state.user);
   const [varificationMessage, setVarificationMessage] = useState("notset");
   const alert = useAlert();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const onSubmit = (data) => {
     dispatch(forgetPasswordSlice(data)).then((action) => {
@@ -54,16 +51,7 @@ const ForgetPassword = () => {
       }
     });
   };
-  const paperstyle = {
-    padding: "40px 90px",
-    width: 500,
-    height: 300,
-    margin: "20px auto",
-  };
-  const Keyframes = styled("div")({
-    height: "100vh",
-    width: "100%",
-  });
+
   return (
     <>
       <Box className="container">
@@ -78,7 +66,8 @@ const ForgetPassword = () => {
                 sm={12}
                 md={6}
                 lg={6}
-                sx={{ paddingTop: "10%", paddingLeft: "35%" }}>
+                sx={{ paddingTop: "10%", paddingLeft: "35%" }}
+              >
                 <ForgetPasswordBox>
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <Grid container sx={{ padding: "10%" }}>
@@ -87,7 +76,8 @@ const ForgetPassword = () => {
                           style={{
                             color: "#FFFFFF",
                             fontSize: "40px",
-                          }}>
+                          }}
+                        >
                           Enter Your Email
                         </Typography>
                       </Grid>
@@ -96,12 +86,14 @@ const ForgetPassword = () => {
                           container
                           item
                           xs={12}
-                          sx={{ paddingBottom: "4%" }}>
+                          sx={{ paddingBottom: "4%" }}
+                        >
                           <Typography
                             variant="body1"
                             style={{
                               color: "#FFFFFF",
-                            }}>
+                            }}
+                          >
                             A verification link has been sent to your email
                             address. Please check your email.
                           </Typography>
@@ -113,7 +105,8 @@ const ForgetPassword = () => {
                         <FormControl
                           variant="filled"
                           fullWidth
-                          sx={{ backgroundColor: "#FFFFFF" }}>
+                          sx={{ backgroundColor: "#FFFFFF" }}
+                        >
                           <InputLabel>Email</InputLabel>
                           <FilledInput
                             {...register("email", {
@@ -128,7 +121,8 @@ const ForgetPassword = () => {
                         <ButtonStyle
                           disabled={isLoading}
                           fullWidth
-                          type="submit">
+                          type="submit"
+                        >
                           {" "}
                           Send
                         </ButtonStyle>
@@ -156,7 +150,6 @@ const ForgetPassword = () => {
         {/* <Login /> */}
       </Box>
     </>
-   
   );
 };
 

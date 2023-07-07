@@ -1,6 +1,5 @@
-import {Avatar, Button, Grid, styled} from "@mui/material";
-import React from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { Avatar, Button, Grid, styled } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const ButtonStyle = styled(Button)({
   backgroundColor: "#2D58FF",
@@ -11,14 +10,8 @@ const ButtonStyle = styled(Button)({
     color: "#1D1D1D",
   },
 });
-const ProfilePictureIndex = ({
-  coverImage,
-  handleImage,
-  removeImage,
-  handleuploadImage,
-}) => {
+const ProfilePictureIndex = ({ coverImage, handleImage, removeImage }) => {
   const { user } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
 
   const image = user.image;
 
@@ -37,7 +30,8 @@ const ProfilePictureIndex = ({
             <ButtonStyle
               variant="contained"
               aria-label="upload picture"
-              component="label">
+              component="label"
+            >
               <input
                 hidden
                 accept="image/*"
@@ -58,7 +52,8 @@ const ProfilePictureIndex = ({
               }}
               aria-label="remove picture"
               component="label"
-              onClick={removeImage}>
+              onClick={removeImage}
+            >
               Remove Picture
               {/* <DeleteIcon /> */}
             </Button>

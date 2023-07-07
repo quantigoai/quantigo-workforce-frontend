@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Grid, Paper } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
@@ -21,7 +21,6 @@ const CourseDetails = () => {
     (state) => state.course
   );
 
-  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const location = useLocation();
   const [isInContent, setIsInContent] = React.useState(false);
@@ -40,7 +39,7 @@ const CourseDetails = () => {
 
   const handleChapterClick = (courseChapter, index) => {
     dispatch(setActiveChapterIndex(index));
-    dispatch(getAChapterById(courseChapter._id)).then((res) => {
+    dispatch(getAChapterById(courseChapter._id)).then(() => {
       navigate(`/course-details/${course._id}/index`);
     });
   };
@@ -48,29 +47,29 @@ const CourseDetails = () => {
   return (
     <>
       {/* <Paper sx={{ width: "100%" }} elevation={0}> */}
-        <Box sx={{ display: "flex", alignItems: "baseline" }}>
-          <Grid
-            container
-            sx={{
-              paddingBottom: "2%",
-            }}
-          >
-            <CommonHeader
-              title={course.name}
-              description={course.description}
-              isLoading={isLoading}
-              customButton="Edit Course"
-            />
-            {/* <CommonHeaderForCourse
+      <Box sx={{ display: "flex", alignItems: "baseline" }}>
+        <Grid
+          container
+          sx={{
+            paddingBottom: "2%",
+          }}
+        >
+          <CommonHeader
+            title={course.name}
+            description={course.description}
+            isLoading={isLoading}
+            customButton="Edit Course"
+          />
+          {/* <CommonHeaderForCourse
               title={course.name}
               description={course.description}
               isLoading={isLoading}
               customButton="Edit Course"
             /> */}
-          </Grid>
-        </Box>
+        </Grid>
+      </Box>
       {/* </Paper> */}
-      <Box sx={{paddingTop: "1%"}}>
+      <Box sx={{ paddingTop: "1%" }}>
         <Grid container>
           {!isInContent && (
             <Grid item xs={3} sx={{ paddingRight: "1%" }}>

@@ -74,7 +74,6 @@ const MiniModalProjectDirectoryNew = ({
   qABenchmarkFieldFilter,
   setQABenchmarkFieldFilter,
 }) => {
-  const { users } = useSelector((state) => state.user);
   // initialize value as an empty string
   const [typeFilter, setTypeFilter] = useState("");
   const [pdrSetFilter, setPdrSetFilter] = useState(false);
@@ -181,13 +180,15 @@ const MiniModalProjectDirectoryNew = ({
           bgcolor: "background.paper",
           width: "570px",
           height: "100%",
-        }}>
+        }}
+      >
         <Box
           sx={{
             display: "flex",
             alignContent: "center",
             justifyContent: "space-between",
-          }}>
+          }}
+        >
           <Typography variant="h6">Filter by</Typography>
           <CloseIcon
             sx={{ color: "#2D58FF", cursor: "pointer", fontweight: "600 " }}
@@ -427,7 +428,8 @@ const MiniModalProjectDirectoryNew = ({
               <Button
                 onClick={handleResetProjectDirectory}
                 fullWidth
-                variant="outlined">
+                variant="outlined"
+              >
                 Reset
               </Button>
             </Grid>
@@ -443,7 +445,8 @@ const MiniModalProjectDirectoryNew = ({
               <Button
                 onClick={handleFilterProjectDirectory}
                 fullWidth
-                variant="contained">
+                variant="contained"
+              >
                 Apply
               </Button>
             </Grid>

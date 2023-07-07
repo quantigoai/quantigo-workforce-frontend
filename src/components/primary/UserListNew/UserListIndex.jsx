@@ -1,113 +1,27 @@
-import { useTheme } from "@emotion/react";
 import DownloadIcon from "@mui/icons-material/Download";
-import FirstPageIcon from "@mui/icons-material/FirstPage";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import LastPageIcon from "@mui/icons-material/LastPage";
 import {
   Box,
   Button,
   Grid,
-  IconButton,
   Popper,
   TablePagination,
   Typography,
 } from "@mui/material";
 import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 import { styled } from "@mui/material/styles";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CSVLink } from "react-csv";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import { getAllSkills } from "../../../features/slice/skillSlice";
 import { getAllUsers } from "../../../features/slice/userSlice";
-import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import SearchBarforUserList from "../../shared/SearchBar/SearchBarforUserList";
-import NdaAccept from "../Users/NdaAccept/NdaAccept";
 import NidDetails from "../Users/NidDetals/NidDetails";
-import UserActiveStatueCheck from "../Users/UserActiveCheck/UserActiveStatueCheck";
-import UserDetailsIndex from "../Users/UserDetais/UserDetailsIndex";
-
-function TablePaginationActions(props) {
-  const theme = useTheme();
-  const { count, page, rowsPerPage, onPageChange } = props;
-
-  const handleFirstPageButtonClick = (event) => {
-    onPageChange(event, 0);
-  };
-
-  const handleBackButtonClick = (event) => {
-    onPageChange(event, page - 1);
-  };
-
-  const handleNextButtonClick = (event) => {
-    onPageChange(event, page + 1);
-  };
-
-  const handleLastPageButtonClick = (event) => {
-    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-  };
-
-  return (
-    <Box sx={{ flexShrink: 0 }}>
-      <IconButton
-        onClick={handleFirstPageButtonClick}
-        disabled={page === 0}
-        aria-label="first page"
-      >
-        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
-      </IconButton>
-      <IconButton
-        onClick={handleBackButtonClick}
-        disabled={page === 0}
-        aria-label="previous page"
-      >
-        {theme.direction === "rtl" ? (
-          <KeyboardArrowRight />
-        ) : (
-          <KeyboardArrowLeft />
-        )}
-      </IconButton>
-      <IconButton
-        onClick={handleNextButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page"
-      >
-        {theme.direction === "rtl" ? (
-          <KeyboardArrowLeft />
-        ) : (
-          <KeyboardArrowRight />
-        )}
-      </IconButton>
-      <IconButton
-        onClick={handleLastPageButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page"
-      >
-        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
-      </IconButton>
-    </Box>
-  );
-}
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#5C5CFF",
-    color: theme.palette.common.white,
-    fontSize: 18,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 16,
-  },
-}));
+import TablePaginationActions from "./TablePaginationActions";
+import UsersTable from "./UsersTable";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -123,7 +37,7 @@ const UserListIndex = ({ action }) => {
   const [filterUsers, setFilterUsers] = useState([]);
   const [csvUsers, setCsvUsers] = useState([]);
   const dispatch = useDispatch();
-  const { users } = useSelector((state) => state.user);
+  const { users, totalUsers } = useSelector((state) => state.user.users);
   const { user } = useSelector((state) => state);
   const { role } = user.user;
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -138,14 +52,12 @@ const UserListIndex = ({ action }) => {
   const [roleFilter, setRoleFilter] = useState("");
   const [hubFilter, setHubFilter] = useState("");
   const [date, setDate] = useState("");
-  const { skills, isLoading } = useSelector((state) => state.skill);
+  const { skills } = useSelector((state) => state.skill);
   const [skill, setSkill] = React.useState([]);
-  const [skillSet1, setSkillSet1] = React.useState([]);
-  const [skillSet2, setSkillSet2] = React.useState([]);
-  const [isSkillEmpty, setIsSkillEmpty] = useState(false);
   const [statusType, setStatusType] = useState("");
   const [isClicked, setIsClicked] = React.useState("");
   const [anchorEl, setAnchorEl] = React.useState(null);
+
   const handleChangeSkills = (event) => {
     const {
       target: { value },
@@ -153,25 +65,6 @@ const UserListIndex = ({ action }) => {
     const selectedSkills = value.map((skill) => {
       return skills.find((s) => s.name === skill);
     });
-
-    // value.map((skill) => {
-    selectedSkills.map((skill) => {
-      const preData = {
-        name: skill.name,
-        id: skill._id,
-      };
-      setSkillSet1([
-        {
-          ...preData,
-        },
-      ]);
-    });
-    setSkillSet2([
-      {
-        ...skillSet1,
-      },
-    ]);
-    !selectedSkills.length && setIsSkillEmpty(true);
     setSkill(
       // On autofill we get a stringified value.
       typeof selectedSkills === "string" ? value.split(",") : selectedSkills
@@ -212,15 +105,13 @@ const UserListIndex = ({ action }) => {
   };
 
   const url = import.meta.env.VITE_APP_SERVER_URL;
-  const tableRef = useRef(null);
-  // const { jobs } = useSelector((state) => state.job);
-  // const serverLink = "https://wmpserver.onrender.com/api/v1/";
+
   const location = useLocation();
 
   useEffect(() => {
-    dispatch(getAllUsers());
+    dispatch(getAllUsers({ limit: rowsPerPage, skip: page * rowsPerPage }));
     dispatch(getAllSkills());
-  }, [action]);
+  }, [action, rowsPerPage, page]);
 
   useEffect(() => {
     const newArray = users.map(
@@ -243,6 +134,7 @@ const UserListIndex = ({ action }) => {
         ...rest
       }) => rest
     );
+
     const finalArray = newArray.map((item) => {
       if (item) {
         item.dob = new Date(item.dob).toLocaleDateString("en-US");
@@ -303,18 +195,12 @@ const UserListIndex = ({ action }) => {
     }
   }, [users]);
 
-  //filter
+  // filter;
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
-  const filtered = filterUsers.filter((entry) =>
-    Object.values(entry).some(
-      (val) =>
-        typeof val === "string" &&
-        val.toLowerCase().includes(search.toLowerCase())
-    )
-  );
-  //  pagging table
+
+  //  pagination table
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -325,7 +211,6 @@ const UserListIndex = ({ action }) => {
   };
 
   // sorting
-
   const handleClose = () => {
     setAnchorEl(null);
     setOpenModal(false);
@@ -369,12 +254,7 @@ const UserListIndex = ({ action }) => {
               alignItems: "center",
             }}
           >
-            <CommonHeader
-              title="User Management"
-              // description="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "
-              // isLoading={isLoading}
-              customButton="Create User"
-            />
+            <CommonHeader title="User Management" customButton="Create User" />
           </Grid>
         </Box>
 
@@ -456,195 +336,17 @@ const UserListIndex = ({ action }) => {
               }}
             >
               <TableContainer>
-                <Table sx={{ border: "1px solid #DADCDF" }} ref={tableRef}>
-                  <TableHead sx={{ background: "#F8F8F8", height: "80px" }}>
-                    <TableRow>
-                      <TableCell
-                        align="left"
-                        sx={{ color: "#969CAF", fontSize: "16px" }}
-                      >
-                        No
-                      </TableCell>
-                      <TableCell sx={{ color: "#969CAF", fontSize: "16px" }}>
-                        QAI ID
-                      </TableCell>
-                      <TableCell sx={{ color: "#969CAF", fontSize: "16px" }}>
-                        Name
-                      </TableCell>
-                      <TableCell
-                        align="left"
-                        sx={{ color: "#969CAF", fontSize: "16px" }}
-                      >
-                        Email
-                      </TableCell>
-                      <TableCell
-                        align="left"
-                        sx={{ color: "#969CAF", fontSize: "16px" }}
-                      >
-                        Role
-                      </TableCell>
-                      <TableCell
-                        align="left"
-                        sx={{ color: "#969CAF", fontSize: "16px" }}
-                      >
-                        Status
-                      </TableCell>
-                      <TableCell
-                        align="left"
-                        sx={{
-                          color: "#969CAF",
-                          fontSize: "16px",
-                          paddingLeft: "2%",
-                        }}
-                      >
-                        Completed Job
-                      </TableCell>
-
-                      {role === "delivery_manager" ? (
-                        <></>
-                      ) : role === "recruitment_manager" ||
-                        role === "admin" ||
-                        role === "trainer" ? (
-                        <>
-                          <TableCell
-                            align="left"
-                            sx={{
-                              color: "#969CAF",
-                              fontSize: "16px",
-                              paddingLeft: "4%",
-                            }}
-                          >
-                            Action
-                          </TableCell>
-                        </>
-                      ) : (
-                        <TableCell
-                          align="center"
-                          sx={{ color: "#969CAF", fontSize: "16px" }}
-                        >
-                          Verified
-                        </TableCell>
-                      )}
-                      {role === "recruitment_manager" ||
-                      role === "delivery_manager" ? (
-                        <TableCell
-                          align="left"
-                          sx={{ color: "#969CAF", fontSize: "16px" }}
-                        >
-                          Details
-                        </TableCell>
-                      ) : (
-                        <></>
-                      )}
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {(rowsPerPage > 0
-                      ? filtered.slice(
-                          page * rowsPerPage,
-                          page * rowsPerPage + rowsPerPage
-                        )
-                      : filtered
-                    ).map((user, i) => (
-                      <TableRow key={i}>
-                        <StyledTableCell align="left">
-                          {page * rowsPerPage + i + 1}
-                        </StyledTableCell>
-                        <StyledTableCell component="th" scope="row">
-                          {user.qaiUserName || "N/A"}
-                        </StyledTableCell>
-                        <StyledTableCell component="th" scope="row">
-                          {user.name}
-                        </StyledTableCell>
-                        <StyledTableCell align="left">
-                          {user.email}
-                        </StyledTableCell>
-
-                        <StyledTableCell align="left">
-                          {user.role === "level_1_annotator"
-                            ? "Level 1 Annotator"
-                            : user.role === "level_2_annotator"
-                            ? "Level 2 Annotator"
-                            : user.role === "level_0_annotator"
-                            ? "Level 0 Annotator"
-                            : user.role === "level_3_annotator"
-                            ? "Level 3 Annotator"
-                            : user.role === "delivery_manager"
-                            ? "Project Delivery Lead"
-                            : user.role === "project_lead"
-                            ? "Delivery Lead"
-                            : user.role === "project_coordinator"
-                            ? "Project Coordinator"
-                            : user.role === "project_manager"
-                            ? "Project Manager"
-                            : user.role === "recruitment_manager"
-                            ? "Recruitment Manager"
-                            : capitalizeFirstLetter(user?.role)}
-                        </StyledTableCell>
-                        {/* {role === "delivery_manager" ? <></> : */}
-                        <StyledTableCell align="left">
-                          {/* {user.phone ? user.phone : "N/A"} */}
-                          <UserActiveStatueCheck user={user} />
-                          {/* <UserStatusField userStatus={user.active} /> */}
-                        </StyledTableCell>
-                        <StyledTableCell align="center">
-                          {user.completedJobs?.length === 0
-                            ? "N/A"
-                            : user.completedJobs?.length}
-                        </StyledTableCell>
-                        {role === "delivery_manager" ? (
-                          <></>
-                        ) : role === "recruitment_manager" ? (
-                          <>
-                            {user.isVerified ? (
-                              <>
-                                <StyledTableCell align="center">
-                                  <Typography>Verified</Typography>
-                                </StyledTableCell>
-                              </>
-                            ) : user.isNDAApproved === "rejected" ||
-                              user.isDocumentsSubmitted === "rejected" ? (
-                              <>
-                                <StyledTableCell align="center">
-                                  <Typography>Rejected</Typography>
-                                </StyledTableCell>
-                              </>
-                            ) : (
-                              <>
-                                {" "}
-                                <StyledTableCell align="center">
-                                  <NdaAccept
-                                    signNda={user.signImage}
-                                    userId={user._id}
-                                    isNDASigned={user.isNDASigned}
-                                    signImage={user.signImage}
-                                  />
-                                </StyledTableCell>
-                              </>
-                            )}
-                          </>
-                        ) : (
-                          <StyledTableCell align="center">
-                            <UserDetailsIndex user={user} />
-                            {/* {user.verified ? "Verified" : "Unverified"}{" "} */}
-                          </StyledTableCell>
-                        )}
-                        {role === "recruitment_manager" ||
-                        role === "delivery_manager" ? (
-                          <StyledTableCell align="left">
-                            <UserDetailsIndex user={user} />
-                          </StyledTableCell>
-                        ) : (
-                          <></>
-                        )}
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                <UsersTable
+                  role={role}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  users={users}
+                />
               </TableContainer>
             </Grid>
           </Paper>
         </Box>
+
         <Box>
           <Paper elevation={0} style={paperStyle} sx={{ padding: "0%" }}>
             <Grid
@@ -654,7 +356,7 @@ const UserListIndex = ({ action }) => {
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
                 colSpan={3}
-                count={users.length}
+                count={totalUsers}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}

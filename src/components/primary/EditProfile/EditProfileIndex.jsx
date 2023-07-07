@@ -1,5 +1,5 @@
 import { Box, Chip, Grid, Paper, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -67,9 +67,6 @@ const EditProfileIndex = () => {
   };
 
   const handleuploadImage = () => {};
-  const handleChangePassword = () => {
-    console.log("hittt");
-  };
 
   const onSubmit = (data) => {
     const finalData = {
@@ -104,7 +101,8 @@ const EditProfileIndex = () => {
               container
               sx={{
                 paddingBottom: "2%",
-              }}>
+              }}
+            >
               <CommonHeader
                 title="Profile"
                 // description={}
@@ -117,7 +115,8 @@ const EditProfileIndex = () => {
               container
               sx={{
                 paddingBottom: "2%",
-              }}>
+              }}
+            >
               <CommonHeader
                 title="Show Profile"
                 // description={}

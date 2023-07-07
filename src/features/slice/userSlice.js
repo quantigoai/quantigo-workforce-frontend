@@ -26,7 +26,7 @@ const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 const initialState = {
   isLoading: false,
   user: {},
-  users: [],
+  users: {},
   error: "null",
   isCreated: false,
   isLoggedIn: false,
@@ -368,7 +368,7 @@ const userSlice = createSlice({
     },
     updateSingleUserManually: (state, action) => {
       const { user } = action.payload;
-      state.users = state.users.map((item) => {
+      state.users.users = state.users.users.map((item) => {
         if (item._id === user._id) {
           return user;
         }
@@ -437,7 +437,7 @@ const userSlice = createSlice({
       .addCase(signup.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(signup.fulfilled, (state, action) => {
+      .addCase(signup.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
         state.user = {};
@@ -453,12 +453,12 @@ const userSlice = createSlice({
       .addCase(logout.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(logout.fulfilled, (state, action) => {
+      .addCase(logout.fulfilled, (state) => {
         state.isLoading = false;
         Cookies.remove("token");
         state.error = null;
         state.user = {};
-        state.users = [];
+        state.users = {};
         state.isLoggedIn = false;
       })
       .addCase(logout.rejected, (state, action) => {
@@ -508,7 +508,7 @@ const userSlice = createSlice({
       .addCase(getAllUsers.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.users = action.payload.data.users;
+        state.users = action.payload.data;
       })
       .addCase(getAllUsers.rejected, (state, action) => {
         state.error = action.error.message;
@@ -529,7 +529,7 @@ const userSlice = createSlice({
       .addCase(forgetPasswordSlice.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(forgetPasswordSlice.fulfilled, (state, action) => {
+      .addCase(forgetPasswordSlice.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
@@ -539,7 +539,7 @@ const userSlice = createSlice({
       .addCase(setNewPassword.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(setNewPassword.fulfilled, (state, action) => {
+      .addCase(setNewPassword.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
@@ -582,7 +582,7 @@ const userSlice = createSlice({
       .addCase(generateQuiId.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(generateQuiId.fulfilled, (state, action) => {
+      .addCase(generateQuiId.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
@@ -592,7 +592,7 @@ const userSlice = createSlice({
       .addCase(resendEmailVarification.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(resendEmailVarification.fulfilled, (state, action) => {
+      .addCase(resendEmailVarification.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
@@ -603,7 +603,7 @@ const userSlice = createSlice({
       .addCase(checkUserByUserName.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(checkUserByUserName.fulfilled, (state, action) => {
+      .addCase(checkUserByUserName.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
@@ -613,7 +613,7 @@ const userSlice = createSlice({
       .addCase(createQaiUser.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(createQaiUser.fulfilled, (state, action) => {
+      .addCase(createQaiUser.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
@@ -623,7 +623,7 @@ const userSlice = createSlice({
       .addCase(createAgUser.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(createAgUser.fulfilled, (state, action) => {
+      .addCase(createAgUser.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
@@ -638,7 +638,7 @@ const userSlice = createSlice({
         state.user = action.payload.data;
         state.error = null;
       })
-      .addCase(signingNda.rejected, (state, action) => {
+      .addCase(signingNda.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(updateAUserById.pending, (state) => {
@@ -647,7 +647,7 @@ const userSlice = createSlice({
       .addCase(updateAUserById.fulfilled, (state, action) => {
         state.isLoading = false;
 
-        state.users = state.users.map((user) => {
+        state.users.users = state.users.users.map((user) => {
           if (user._id === action.payload.data._id) {
             return action.payload.data;
           }
@@ -655,7 +655,7 @@ const userSlice = createSlice({
         });
         state.error = null;
       })
-      .addCase(updateAUserById.rejected, (state, action) => {
+      .addCase(updateAUserById.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(changeRole.pending, (state) => {
@@ -664,7 +664,7 @@ const userSlice = createSlice({
       .addCase(changeRole.fulfilled, (state, action) => {
         state.isLoading = false;
 
-        state.users = state.users.map((user) => {
+        state.users.users = state.users.users.map((user) => {
           if (user._id === action.payload.data._id) {
             return action.payload.data;
           }
@@ -672,7 +672,7 @@ const userSlice = createSlice({
         });
         state.error = null;
       })
-      .addCase(changeRole.rejected, (state, action) => {
+      .addCase(changeRole.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(deleteOrActivateUser.pending, (state) => {
@@ -681,7 +681,7 @@ const userSlice = createSlice({
       .addCase(deleteOrActivateUser.fulfilled, (state, action) => {
         state.isLoading = false;
 
-        state.users = state.users.map((user) => {
+        state.users.users = state.users.users.map((user) => {
           if (user._id === action.payload.data._id) {
             return action.payload.data;
           }
@@ -689,7 +689,7 @@ const userSlice = createSlice({
         });
         state.error = null;
       })
-      .addCase(deleteOrActivateUser.rejected, (state, action) => {
+      .addCase(deleteOrActivateUser.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(activateDeactivateUser.pending, (state) => {
@@ -698,15 +698,9 @@ const userSlice = createSlice({
       .addCase(activateDeactivateUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload.data;
-        // state.users = state.users.map((user) => {
-        //   if (user._id === action.payload.data._id) {
-        //     return action.payload.data;
-        //   }
-        //   return user;
-        // });
         state.error = null;
       })
-      .addCase(activateDeactivateUser.rejected, (state, action) => {
+      .addCase(activateDeactivateUser.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(UnblockJobsForUser.pending, (state) => {
@@ -715,7 +709,7 @@ const userSlice = createSlice({
       .addCase(UnblockJobsForUser.fulfilled, (state, action) => {
         state.isLoading = false;
 
-        state.users = state.users.map((user) => {
+        state.users.users = state.users.users.map((user) => {
           if (user._id === action.payload.data.user._id) {
             return action.payload.data.user;
           }
@@ -723,13 +717,13 @@ const userSlice = createSlice({
         });
         state.error = null;
       })
-      .addCase(UnblockJobsForUser.rejected, (state, action) => {
+      .addCase(UnblockJobsForUser.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(emailVerificationCheck.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(emailVerificationCheck.fulfilled, (state, action) => {
+      .addCase(emailVerificationCheck.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
@@ -739,7 +733,7 @@ const userSlice = createSlice({
       .addCase(emailVerificationLink.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(emailVerificationLink.fulfilled, (state, action) => {
+      .addCase(emailVerificationLink.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
@@ -749,25 +743,13 @@ const userSlice = createSlice({
       .addCase(changePassword.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(changePassword.fulfilled, (state, action) => {
+      .addCase(changePassword.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
       .addCase(changePassword.rejected, (state, action) => {
         state.error = action.error.message;
       });
-    // .addCase(verifyUser.pending, (state) => {
-    //     state.isLoading = true;
-    // })
-    // .addCase(verifyUser.fulfilled, (state, action) => {
-    //     state.isLoading = false;
-    //     state.error = null;
-    //     state.user = action.payload.data;
-    //     state.isLoggedIn = true;
-    // })
-    // .addCase(verifyUser.rejected, (state, action) => {
-    //     state.error = action.error.message;
-    // });
   },
 });
 export const {

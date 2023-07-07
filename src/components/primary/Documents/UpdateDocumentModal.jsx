@@ -1,25 +1,24 @@
 import {
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-    FormControl,
-    Grid,
-    InputLabel,
-    MenuItem,
-    Select,
-    TextField,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
 } from "@mui/material";
-import React, {useState} from "react";
-import {styled} from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
+import  { useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { socket } from "../../../App";
 import croxButton from "../../../assets/images/u_multiply.png";
-import {useDropzone} from "react-dropzone";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {updateMyDocuments} from "../../../features/slice/userSlice";
-import {useAlert} from "react-alert";
-import {socket} from "../../../App";
+import { updateMyDocuments } from "../../../features/slice/userSlice";
 import DocumentImageUpload from "./DocumentImageUpload";
 
 const ButtonStyle = styled(Button)({
@@ -29,31 +28,15 @@ const ButtonStyle = styled(Button)({
   height: "30px",
 });
 
-const UpdateDocumentModal = ({ openModal, handleClose, onDrop, accept }) => {
-  const { getRootProps, getInputProps, isDragActive, acceptedFiles } =
-    useDropzone({
-      accept,
-      onDrop,
-    });
+const UpdateDocumentModal = ({ openModal, handleClose, }) => {
   const [coverImageFile, setCoverImageFile] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
   const dispatch = useDispatch();
   const { user, isLoading } = useSelector((state) => state.user);
   const alert = useAlert();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  // const handleImage = (e) => {
-  //   setCoverImageFile(e.target.files[0]);
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     const url = URL.createObjectURL(file);
-  //     setCoverImage(url);
-  //   }
-  // };
+  const { register, handleSubmit } = useForm();
+
   const handleImage = (e) => {
     setCoverImageFile(e[0]);
     const file = e[0];
@@ -77,7 +60,7 @@ const UpdateDocumentModal = ({ openModal, handleClose, onDrop, accept }) => {
       formData: formData,
     };
     dispatch(updateMyDocuments(finalData)).then((action) => {
-      if (action.payload?.status === 200 || 201) {
+      if (action.payload?.status === 200 || action.payload?.status === 201) {
         if (
           action.payload.data.isNDAApproved !== "rejected" &&
           action.payload.data.isDocumentsSubmitted !== "rejected"
@@ -134,7 +117,6 @@ const UpdateDocumentModal = ({ openModal, handleClose, onDrop, accept }) => {
                 handleImage={handleImage}
               />
             </Grid>
-          
           </DialogContent>
           <DialogContent>
             <Grid container sx={{ padding: "0%", paddingLeft: "0%" }}>
@@ -147,14 +129,16 @@ const UpdateDocumentModal = ({ openModal, handleClose, onDrop, accept }) => {
                   borderRadius: "4px",
                   // width: "238.5px",
                   height: "58px",
-                }}>
+                }}
+              >
                 <InputLabel id="demo-simple-select-filled-label">
                   Document Type
                 </InputLabel>
                 <Select
                   labelId="demo-simple-select-filled-label"
                   id="demo-simple-select-filled"
-                  {...register("documentsType", { required: true })}>
+                  {...register("documentsType", { required: true })}
+                >
                   <MenuItem value={"NID"}>NID</MenuItem>
                   <MenuItem value={"passport"}>Passport</MenuItem>
                 </Select>
@@ -175,7 +159,6 @@ const UpdateDocumentModal = ({ openModal, handleClose, onDrop, accept }) => {
                 }}
                 {...register("documentNo", { required: true })}
               />
-             
             </Grid>
           </DialogContent>
 
@@ -186,7 +169,8 @@ const UpdateDocumentModal = ({ openModal, handleClose, onDrop, accept }) => {
                 paddingLeft: "2%",
                 paddingRight: "2%",
                 paddingBottom: "1%",
-              }}>
+              }}
+            >
               {!coverImageFile?.name ? (
                 <>
                   {" "}
@@ -200,7 +184,8 @@ const UpdateDocumentModal = ({ openModal, handleClose, onDrop, accept }) => {
                   <ButtonStyle
                     variant="contained"
                     disabled={isLoading}
-                    type="submit">
+                    type="submit"
+                  >
                     SUBMIT
                   </ButtonStyle>
                 </>

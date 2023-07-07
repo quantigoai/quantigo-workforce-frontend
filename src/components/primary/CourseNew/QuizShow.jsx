@@ -6,14 +6,22 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Button, FormControlLabel, Grid, Paper, Radio, RadioGroup, Typography,} from "@mui/material";
+import {
+  Button,
+  FormControlLabel,
+  Grid,
+  Paper,
+  Radio,
+  RadioGroup,
+  Typography,
+} from "@mui/material";
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {submitQuizById} from "../../../features/slice/quizSlice";
-import {useNavigate} from "react-router-dom";
-import {useAlert} from "react-alert";
-import {manuallySetCourseChapterResult} from "../../../features/slice/courseSlice";
-import {updateUserCompletedCourse} from "../../../features/slice/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { submitQuizById } from "../../../features/slice/quizSlice";
+import { useNavigate } from "react-router-dom";
+import { useAlert } from "react-alert";
+import { manuallySetCourseChapterResult } from "../../../features/slice/courseSlice";
+import { updateUserCompletedCourse } from "../../../features/slice/userSlice";
 
 const QuizShow = () => {
   const { quiz, isLoading } = useSelector((state) => state.quiz);
@@ -22,7 +30,7 @@ const QuizShow = () => {
   const { user } = useSelector((state) => state.user);
   const [data, setData] = React.useState({});
   const alert = useAlert();
-  const { course, courseChapter } = useSelector((state) => state.course);
+  const { course } = useSelector((state) => state.course);
 
   const handleQuizResult = (possibleAnswer, id) => {
     const x = {};
@@ -65,11 +73,13 @@ const QuizShow = () => {
             overflowY: "scroll",
             scrollbarWidth: "none",
             // height: "900px",
-          }}>
+          }}
+        >
           <Grid
             container
             xs={12}
-            sx={{ padding: "2%", justifyContent: "center" }}>
+            sx={{ padding: "2%", justifyContent: "center" }}
+          >
             <Typography variant="h5" sx={{ color: "#090080" }}>
               {" "}
               {quiz.name}
@@ -93,7 +103,8 @@ const QuizShow = () => {
                     paddingRight: "2%",
                     paddingBottom: "1%",
                     paddingTop: "1%",
-                  }}>
+                  }}
+                >
                   <Typography variant="h5" sx={{ color: "#090080" }}>
                     Q{i + 1}. {item.question} ?
                   </Typography>
@@ -129,7 +140,8 @@ const QuizShow = () => {
             paddingRight: "3%",
             paddingTop: "2%",
             paddingBottom: "2%",
-          }}>
+          }}
+        >
           {user.role === "trainer" || user.role === "admin" ? (
             <>
               {" "}
@@ -146,7 +158,8 @@ const QuizShow = () => {
                   },
                 }}
                 onClick={() => handleQuizEdit()}
-                variant="contained">
+                variant="contained"
+              >
                 Edit Quiz
               </Button>
             </>
@@ -170,7 +183,8 @@ const QuizShow = () => {
                   },
                 }}
                 onClick={() => handleQuizSubmit()}
-                variant="contained">
+                variant="contained"
+              >
                 Submit
               </Button>
             </>

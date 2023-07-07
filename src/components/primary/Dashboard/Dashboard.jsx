@@ -6,19 +6,26 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Box, Button, CircularProgress, Grid, Paper, Typography,} from "@mui/material";
-import dayjs from "dayjs";
-import React, {useEffect} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {setActivePath} from "../../../features/slice/activePathSlice";
 import {
-    getDashboardData,
-    getDashboardDataHourly,
-    getDashboardDataWeekly,
+  Box,
+  Button,
+  CircularProgress,
+  Grid,
+  Paper,
+  Typography,
+} from "@mui/material";
+import dayjs from "dayjs";
+import React, { useEffect } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { setActivePath } from "../../../features/slice/activePathSlice";
+import {
+  getDashboardData,
+  getDashboardDataHourly,
+  getDashboardDataWeekly,
 } from "../../../features/slice/dashboardSlice";
-import {resendEmailVarification} from "../../../features/slice/userSlice";
-import {convertDate} from "../../../helper/customData";
+import { resendEmailVarification } from "../../../features/slice/userSlice";
+import { convertDate } from "../../../helper/customData";
 import BarChart from "./BarChart/BarChart";
 import CongratulationComponents from "./CongratulationDashBoard/CongratulationComponents";
 import DashboardDocument from "./DashBoardForDocument/DashboardDocument";
@@ -47,7 +54,7 @@ const Dashboard = () => {
       startDate: convertDate(startDate),
       endDate: convertDate(endDate),
     };
-    dispatch(getDashboardData(data)).then((res) => {
+    dispatch(getDashboardData(data)).then(() => {
       setProjectLoading(false);
     });
   }, [startDate, endDate]);
@@ -56,21 +63,14 @@ const Dashboard = () => {
     dispatch(setActivePath("Dashboard"));
     setWeekLoading(true);
     setHourLoading(true);
-    dispatch(getDashboardDataWeekly()).then((res) => {
+    dispatch(getDashboardDataWeekly()).then(() => {
       setWeekLoading(false);
     });
-    dispatch(getDashboardDataHourly()).then((res) => {
+    dispatch(getDashboardDataHourly()).then(() => {
       setHourLoading(false);
     });
   }, []);
-  const paperstyle = {
-    backgroundColor: "#FFFFFF",
-    padding: "3%",
-    width: "100%",
-    height: "100%",
-    borderRadius: "2px",
-    justifyContent: "center",
-  };
+
   const paperstyleResendEmail = {
     backgroundColor: "#FFFFFF",
     padding: "3%",

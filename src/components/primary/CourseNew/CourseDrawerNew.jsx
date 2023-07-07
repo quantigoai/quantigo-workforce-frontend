@@ -8,7 +8,6 @@
  */
 import AddIcon from "@mui/icons-material/Add";
 import {Box, Button, Grid, Paper, Typography} from "@mui/material";
-import React from "react";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import SingleChapterNew from "../Course/SingleChapterNew";

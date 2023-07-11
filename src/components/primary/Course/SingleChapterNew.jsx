@@ -2,9 +2,9 @@ import { Chip, Grid, Typography } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import iconButton from "../../../assets/images/Vector (1).png";
-import chapterBlueIcon from "../../../assets/images/blueChaptericon.svg";
+import chapterBlueIcon from "../../../assets/images/Group 1.svg";
 import iconBlue from "../../../assets/images/blueIcon.png";
-import iconChapter from "../../../assets/images/chapterIcon.svg";
+import iconChapter from "../../../assets/images/Group 1.svg";
 
 const SingleChapterNew = ({ courseChapter, index }) => {
   const { activeChapterIndex } = useSelector((state) => state.activePath);
@@ -54,8 +54,7 @@ const SingleChapterNew = ({ courseChapter, index }) => {
           <Typography
             sx={{
               color: activeChapterIndex === index ? "#2D58FF" : "#1D1D1D",
-            }}
-          >
+            }}>
             {courseChapter.title}
           </Typography>
         </Grid>
@@ -63,8 +62,7 @@ const SingleChapterNew = ({ courseChapter, index }) => {
           <Grid item xs={4}>
             <Chip
               label={`Avg: ${courseChapter.scoreAverage}`}
-              sx={scoreStyle(courseChapter.scoreAverage)}
-            ></Chip>
+              sx={scoreStyle(courseChapter.scoreAverage)}></Chip>
           </Grid>
         )}
       </Grid>

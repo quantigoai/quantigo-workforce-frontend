@@ -102,7 +102,7 @@ const MiniModalProjectDirectoryNew = ({
           // border: 1,
           p: 1,
           bgcolor: "background.paper",
-          width: "570px",
+          width: "540px",
           height: "100%",
         }}>
         <Box
@@ -111,6 +111,7 @@ const MiniModalProjectDirectoryNew = ({
             alignContent: "center",
             justifyContent: "space-between",
             paddingLeft: "3%",
+            paddingRight: "2%",
           }}>
           <Typography variant="h6">
             <b>Filter By </b>
@@ -163,10 +164,12 @@ const MiniModalProjectDirectoryNew = ({
         )}
 
         {skipImageField ? (
-          <SkipImageField
-            setSkipImageFieldFilter={setSkipImageFieldFilter}
-            skipImageFieldFilter={skipImageFieldFilter}
-          />
+          <Grid container sx={{ padding: "2%" }}>
+            <SkipImageField
+              setSkipImageFieldFilter={setSkipImageFieldFilter}
+              skipImageFieldFilter={skipImageFieldFilter}
+            />
+          </Grid>
         ) : (
           <></>
         )}

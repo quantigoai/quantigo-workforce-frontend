@@ -6,14 +6,21 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Alert, AlertTitle, Box, Button, Grid, Typography,} from "@mui/material";
+import {
+  Alert,
+  AlertTitle,
+  Box,
+  Button,
+  Grid,
+  Typography,
+} from "@mui/material";
 import React from "react";
-import {useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import CourseDeleteModal from "../../../primary/Course/CourseDetailsPage/CourseDeleteModal";
 import CourseNewHeaderBottom from "../../../primary/CourseNew/CourseNewHeaderBottom/CourseNewHeaderBottom";
 import editCourseIcon from "../../../../assets/images/edit.svg";
-
+import RectangleIcon from "../../../../assets/images/Rectangle 3.svg";
 const CommonHeaderForCourse = ({
   isLoading,
   title,
@@ -75,151 +82,169 @@ const CommonHeaderForCourse = ({
           alignItems: "start",
           width: "100%",
         }}>
-        <Grid item xs={8}>
+        <Grid container>
           <Grid
+            item
+            xs={12}
             sx={{
               display: "flex",
-              paddingTop: "3%",
+              paddingTop: "1%",
               paddingLeft: "3%",
-            }}
-            container>
-            <Typography variant="h4" style={{ color: "#1D1D1D" }}>
-              <b> {title} </b>
-            </Typography>
-          </Grid>
-
-          <Grid
-            container
-            sx={{
-              justifyContent: "left",
-              paddingTop: "2%",
-              paddingLeft: "3%",
+              paddingBottom: "1%",
+              borderBottom: "1px solid #EBEDF5",
             }}>
-            <CourseNewHeaderBottom />
-          </Grid>
-        </Grid>
-        <Grid
-          item
-          xs={4}
-          sx={{
-            justifyContent: "end",
-          }}>
-          <Grid
-            container
-            gap={4}
-            sx={{
-              textAlign: "right",
-              justifyContent: "end",
-              paddingLeft: "0%",
-            }}>
-            {customButton === "dashboard" ||
-            customButton === "Create User" ||
-            customButton === "null" ? (
-              <></>
-            ) : customButton ? (
-              <Grid item xs={6}>
-                {/* {user.role === "trainer" || user.role === "admin" ? ( */}
-                <>
-                  {user.role === "trainer" ||
-                  user.role === "admin" ||
-                  user.role === "delivery_manager" ? (
+            <Grid item xs={8}>
+              <Grid item xs={12}>
+                <Typography variant="h5" style={{ color: "#1D1D1D" }}>
+                  <b> {title} </b>
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography sx={{ color: "#969CAF" }} variant="caption">
+                  Course Duration: <b>4 hrs 32 mins </b>
+                  <img src={RectangleIcon} /> Course Progress: 75%
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={4}
+              sx={{
+                justifyContent: "end",
+              }}>
+              <Grid
+                container
+                gap={4}
+                sx={{
+                  textAlign: "right",
+                  justifyContent: "end",
+                  paddingLeft: "0%",
+                  // borderBottom: "1px solid #EBEDF5",
+                }}>
+                {customButton === "dashboard" ||
+                customButton === "Create User" ||
+                customButton === "null" ? (
+                  <></>
+                ) : customButton ? (
+                  <Grid item xs={6}>
+                    {/* {user.role === "trainer" || user.role === "admin" ? ( */}
                     <>
-                      <Grid
-                        container
-                        sx={{ paddingTop: "7%", justifyContent: "right" }}>
-                        <Grid item xs={8} sx={{}}>
+                      {user.role === "trainer" ||
+                      user.role === "admin" ||
+                      user.role === "delivery_manager" ? (
+                        <>
+                          <Grid
+                            container
+                            sx={{
+                              paddingTop: "2%",
+                              justifyContent: "right",
+                            }}>
+                            <Grid item xs={8} sx={{}}>
+                              <Button
+                                // variant="contained"
+                                disabled={isLoading}
+                                type="submit"
+                                sx={{
+                                  //   width: "100%",
+                                  //   height: "45px",
+                                  //   backgroundColor: "#2D58FF",
+                                  //   color: "#FFFFFF",
+                                  //   "&:hover": {
+                                  //     backgroundColor: "#FF9A45",
+                                  //     color: "#1D1D1D",
+                                  //   },
+                                  borderRadius: "2px",
+                                }}
+                                onClick={() => handleNavigation(customButton)}>
+                                <img src={editCourseIcon} />
+                              </Button>
+                              <CourseDeleteModal
+                                course={course}
+                                // handleDeleteCourse={handleDeleteCourse}
+                              />
+                            </Grid>
+                          </Grid>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                    </>
+                  </Grid>
+                ) : (
+                  <>
+                    <Grid item xs={3}>
+                      <Button
+                        onClick={goPreviousPage}
+                        variant="outlined"
+                        sx={{
+                          width: "100%",
+                          color: "#2D58FF",
+                          height: "45px",
+                          borderRadius: "2px",
+                        }}>
+                        CANCEL
+                      </Button>
+                    </Grid>
+
+                    <Grid item xs={3}>
+                      {title === "Create Job Pool" ||
+                      title === "Create a Benchmark" ? (
+                        <>
                           <Button
-                            // variant="contained"
+                            variant="contained"
                             disabled={isLoading}
                             type="submit"
                             sx={{
-                              //   width: "100%",
-                              //   height: "45px",
-                              //   backgroundColor: "#2D58FF",
-                              //   color: "#FFFFFF",
-                              //   "&:hover": {
-                              //     backgroundColor: "#FF9A45",
-                              //     color: "#1D1D1D",
-                              //   },
+                              width: "100%",
+                              height: "45px",
+                              backgroundColor: "#2D58FF",
+                              color: "#FFFFFF",
+                              "&:hover": {
+                                backgroundColor: "#FF9A45",
+                                color: "#1D1D1D",
+                              },
                               borderRadius: "2px",
-                            }}
-                            onClick={() => handleNavigation(customButton)}>
-                            <img src={editCourseIcon} />
+                            }}>
+                            Create
                           </Button>
-                          <CourseDeleteModal
-                            course={course}
-                            // handleDeleteCourse={handleDeleteCourse}
-                          />
-                        </Grid>
-                      </Grid>
-                    </>
-                  ) : (
-                    <></>
-                  )}
-                </>
+                        </>
+                      ) : (
+                        <>
+                          <Button
+                            variant="contained"
+                            disabled={isLoading}
+                            type="submit"
+                            sx={{
+                              width: "100%",
+                              height: "45px",
+                              backgroundColor: "#2D58FF",
+                              color: "#FFFFFF",
+                              "&:hover": {
+                                backgroundColor: "#FF9A45",
+                                color: "#1D1D1D",
+                              },
+                              borderRadius: "2px",
+                            }}>
+                            Save
+                          </Button>
+                        </>
+                      )}
+                    </Grid>
+                  </>
+                )}
               </Grid>
-            ) : (
-              <>
-                <Grid item xs={3}>
-                  <Button
-                    onClick={goPreviousPage}
-                    variant="outlined"
-                    sx={{
-                      width: "100%",
-                      color: "#2D58FF",
-                      height: "45px",
-                      borderRadius: "2px",
-                    }}>
-                    CANCEL
-                  </Button>
-                </Grid>
-
-                <Grid item xs={3}>
-                  {title === "Create Job Pool" ||
-                  title === "Create a Benchmark" ? (
-                    <>
-                      <Button
-                        variant="contained"
-                        disabled={isLoading}
-                        type="submit"
-                        sx={{
-                          width: "100%",
-                          height: "45px",
-                          backgroundColor: "#2D58FF",
-                          color: "#FFFFFF",
-                          "&:hover": {
-                            backgroundColor: "#FF9A45",
-                            color: "#1D1D1D",
-                          },
-                          borderRadius: "2px",
-                        }}>
-                        Create
-                      </Button>
-                    </>
-                  ) : (
-                    <>
-                      <Button
-                        variant="contained"
-                        disabled={isLoading}
-                        type="submit"
-                        sx={{
-                          width: "100%",
-                          height: "45px",
-                          backgroundColor: "#2D58FF",
-                          color: "#FFFFFF",
-                          "&:hover": {
-                            backgroundColor: "#FF9A45",
-                            color: "#1D1D1D",
-                          },
-                          borderRadius: "2px",
-                        }}>
-                        Save
-                      </Button>
-                    </>
-                  )}
-                </Grid>
-              </>
-            )}
+            </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            <Grid
+              container
+              sx={{
+                justifyContent: "left",
+                paddingTop: "1%",
+                paddingLeft: "3%",
+              }}>
+              <CourseNewHeaderBottom course={course} />
+            </Grid>
           </Grid>
         </Grid>
       </Box>

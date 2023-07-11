@@ -47,6 +47,7 @@ import ShowResult from "../Quiz/QuizPage/ShowResult/ShowResult";
 import UpdateQuiz from "../Quiz/UpdateQuiz";
 import Skills from "../Skill/Skills";
 import UserListIndex from "../UserListNew/UserListIndex";
+import CourseNewDetailsIndex from "../CourseNew/CourseNewDetailsIndex";
 
 const Routers = () => {
   return (
@@ -71,7 +72,8 @@ const Routers = () => {
         <Route path={"/update-chapter/:id"} element={<UpdateChapter />} />
 
         <Route path={"/course-details/:id"} element={<CourseDetails />}>
-          <Route path="index" element={<CourseDetailsIndex />} />
+          {/* <Route path="index" element={<CourseDetailsIndex />} /> */}
+          <Route path="index" element={<CourseNewDetailsIndex />} />
           <Route path="content" element={<CourseMainContent />} />
           <Route path="show-quiz" element={<QuizShow />} />
           <Route path={"quiz-result"} element={<ShowResult />} />
@@ -159,8 +161,7 @@ const Routers = () => {
         <Route path={"/show-profile"} element={<EditProfileIndex />}></Route>
         <Route
           path={"/show-all-notification"}
-          element={<AllNotification />}
-        ></Route>
+          element={<AllNotification />}></Route>
         <Route path={"/projectDirectory"} element={<ProjectDirectoryIndex />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>

@@ -25,10 +25,10 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import {styled} from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import * as React from "react";
-import {useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
 import Header from "../Header/Header";
 import UserBlocked from "../UserBlocked/UserBlocked";
@@ -376,7 +376,7 @@ const Layout = ({ children }) => {
         // component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
+          // p: 2,
           // bgcolor: isLightTheme ? "#F5F5F5" : "#000c1f",
           bgcolor: "#F5F5F5",
           height: "100%",

@@ -8,31 +8,32 @@
  */
 
 import {
-    Box,
-    Grid,
-    Paper,
-    Skeleton,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Typography,
+  Box,
+  Grid,
+  Paper,
+  Skeleton,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
 } from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {setActivePath} from "../../../features/slice/activePathSlice";
-import {calculateAnnotation, getABenchMarkByProjectId,} from "../../../features/slice/benchMarkSlice";
-import {getDataSetByProjectID} from "../../../features/slice/datasetSlice";
-import {getProjectByWorkSpace} from "../../../features/slice/projectByWorkspaceSlice";
-import {getAllTeams} from "../../../features/slice/teamSlice";
-import {getWorkSpaceById} from "../../../features/slice/workSpaceSlice";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { setActivePath } from "../../../features/slice/activePathSlice";
+import {
+  calculateAnnotation,
+  resetCalculationData,
+} from "../../../features/slice/benchMarkSlice";
+import { getDataSetByProjectID } from "../../../features/slice/datasetSlice";
+import { getProjectByWorkSpace } from "../../../features/slice/projectByWorkspaceSlice";
+import { getAllTeams } from "../../../features/slice/teamSlice";
+import { getWorkSpaceById } from "../../../features/slice/workSpaceSlice";
 import SelectMenu from "../BenchMark/SelectMenu";
-
-const paperstyle = {
+const paperStyle = {
   padding: "10px 10px",
   width: "80vw",
   margin: "5px auto",
@@ -46,20 +47,24 @@ const CalculateAnnotations = () => {
   const dispatch = useDispatch();
 
   const [projectID, setProjectID] = useState("");
-  const [datasetID, setDatasetID] = useState("");
-  const alert = useAlert();
   const [classes, setClasses] = useState([]);
+  // const [userName, setUserName] = useState([]);
 
-  const { register, handleSubmit } = useForm();
-  const [isLoading, setIsLoading] = useState(true);
-  const [userList, setUserIist] = useState([]);
+  const { register } = useForm();
   const [server, setServer] = useState("quantigo");
   const handleChangeServer = (e) => {
     setServer(e.target.value);
   };
 
-  const { annotationsCount, totalAnnotationsCount, totalTimeCalculation } =
-    useSelector((state) => state.benchMark.benchMarks);
+  const { isLoading } = useSelector((state) => state.benchMark);
+  const { totalAnnotationsCount, totalTimeCalculation } = useSelector(
+    (state) => state.benchMark.annotationCalculation
+  );
+
+  useEffect(() => {
+    // setClasses([]);
+    // dispatch(resetCalculationData());
+  }, []);
 
   useEffect(() => {
     dispatch(setActivePath("Calculate Annotation"));
@@ -67,41 +72,47 @@ const CalculateAnnotations = () => {
   }, [server]);
 
   const handleChangeTeam = (e) => {
-    dispatch(getWorkSpaceById(e.target.value));
-  };
-  const handleChangeWorkspace = (e) => {
-    dispatch(getProjectByWorkSpace(e.target.value));
-  };
-  const handleChangeProject = (e) => {
-    setProjectID(e.target.value);
-    dispatch(getABenchMarkByProjectId(e.target.value)).then((action) => {
-      if (!action.payload?.data) {
-        // dispatch(getProjectMeta(e.target.value)).then((action) => {
-        //   // Do nothing
-        // });
-      } else {
-        // navigate("/benchmark/single");
-      }
-    });
+    const data = {
+      id: e.target.value,
+      server_agent: server,
+    };
+    dispatch(getWorkSpaceById(data));
   };
 
-  const handlechangeDataset = (e) => {
-    setDatasetID(e.target.value);
+  const handleChangeWorkspace = (e) => {
+    const data = {
+      id: e.target.value,
+      server_agent: server,
+    };
+    dispatch(getProjectByWorkSpace(data));
+  };
+
+  const handleChangeProject = (e) => {
+    setProjectID(e.target.value);
+    const data = {
+      id: e.target.value,
+      server_agent: server,
+    };
+
+    dispatch(getDataSetByProjectID(data));
+  };
+
+  const handleChangeDataset = (e) => {
     setClasses([]);
     const datasetId = e.target.value;
-    dispatch(calculateAnnotation(datasetId)).then((res) => {
-      setIsLoading(false);
-    });
+    dispatch(calculateAnnotation({ datasetId, server_agent: server }));
   };
-  const userName = Object.keys(classes);
 
   useEffect(() => {
     dispatch(getDataSetByProjectID(projectID));
   }, [projectID]);
 
+  
+
+  
+  const userName = Object.keys(classes);
   useEffect(() => {
     totalTimeCalculation?.classes && setClasses(totalTimeCalculation.classes);
-    classes.length > 0 && setUserIist(Object.keys(classes));
   }, [totalTimeCalculation]);
 
   return (
@@ -116,7 +127,7 @@ const CalculateAnnotations = () => {
       </Grid>
 
       <Box style={{ padding: "2%", paddingLeft: "2%" }}>
-        <Paper elevation={5} style={paperstyle} sx={{ padding: "0%" }}>
+        <Paper elevation={5} style={paperStyle} sx={{ padding: "0%" }}>
           <Grid container style={{ padding: "2%" }}>
             <SelectMenu
               teams={teams}
@@ -126,7 +137,7 @@ const CalculateAnnotations = () => {
               handleChangeTeam={handleChangeTeam}
               handleChangeWorkspace={handleChangeWorkspace}
               handleChangeProject={handleChangeProject}
-              handlechangeDataset={handlechangeDataset}
+              handleChangeDataset={handleChangeDataset}
               register={register}
               calculateAnnotation={true}
               handleChangeServer={handleChangeServer}

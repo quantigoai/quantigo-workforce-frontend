@@ -47,8 +47,6 @@ import SearchBar from "../../shared/SearchBar/SearchBar";
 import PendingJobDetails from "./JobDetails/PendingJobDetails";
 
 const ButtonStyle = styled(Button)({
-  // backgroundColor: "#2D58FF",
-  // color: "#FFFFFF",
   "&:hover": {
     backgroundColor: "#FF9A45",
     color: "#1D1D1D",
@@ -120,7 +118,7 @@ function TablePaginationActions(props) {
 const AllJobs = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
-  const { user, role } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [orderSortTimeLimit, setOrderSortTimeLimit] = React.useState(true);
   const [page, setPage] = React.useState(0);
@@ -131,16 +129,15 @@ const AllJobs = () => {
     // !! Need to be fixed later
     dispatch(getAllTeams());
   }, []);
-  
-const createSortHandler=()=>{
-  setOrderSortTimeLimit(!orderSortTimeLimit)
-  const data = {
-    ...(orderSortTimeLimit ? { timeLimit: 'desc'} : {timeLimit: 'asc'}),
-    ...(date ? { date } : {}),
+
+  const createSortHandler = () => {
+    setOrderSortTimeLimit(!orderSortTimeLimit);
+    const data = {
+      ...(orderSortTimeLimit ? { timeLimit: "desc" } : { timeLimit: "asc" }),
+      ...(date ? { date } : {}),
+    };
+    location.pathname === "/jobs/alljobs" && dispatch(getAllJobs(data));
   };
-  console.log(data)
-  location.pathname === "/jobs/alljobs" && dispatch(getAllJobs(data));
-}
 
   const handleTakeJob = (id) => {
     const annotatorData = {
@@ -288,9 +285,7 @@ const createSortHandler=()=>{
                         align="center"
                         sx={{ color: "#969CAF", fontSize: "20px" }}
                       >
-                        <TableSortLabel >
-                        No of Images
-                        </TableSortLabel>
+                        <TableSortLabel>No of Images</TableSortLabel>
                       </TableCell>
                       {user.role === "admin" ||
                       user.role === "project_lead" ||
@@ -314,11 +309,11 @@ const createSortHandler=()=>{
                         align="center"
                         sx={{ color: "#969CAF", fontSize: "20px" }}
                       >
-                        <TableSortLabel 
-                         direction={orderSortTimeLimit ? 'asc' : 'dsc'} 
-                         onClick={()=>createSortHandler()}
-                         >
-                        Time Limit (Minutes)
+                        <TableSortLabel
+                          direction={orderSortTimeLimit ? "asc" : "dsc"}
+                          onClick={() => createSortHandler()}
+                        >
+                          Time Limit (Minutes)
                         </TableSortLabel>
                       </TableCell>
                       <TableCell

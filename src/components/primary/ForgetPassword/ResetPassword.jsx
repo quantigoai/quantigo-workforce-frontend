@@ -1,32 +1,25 @@
-import {Visibility, VisibilityOff} from "@mui/icons-material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
-    Box,
-    Button,
-    FilledInput,
-    FormControl,
-    FormHelperText,
-    Grid,
-    InputAdornment,
-    InputLabel,
-    TextField,
-    Typography,
+  Box,
+  Button,
+  FilledInput,
+  FormControl,
+  FormHelperText,
+  Grid,
+  InputAdornment,
+  InputLabel,
+  TextField,
+  Typography,
 } from "@mui/material";
-import {styled} from "@mui/material/styles";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate, useParams} from "react-router-dom";
-import bgimg from "../../../assets/images/LoginBG.png";
-import {setNewPassword} from "../../../features/slice/userSlice";
+import { styled } from "@mui/material/styles";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { setNewPassword } from "../../../features/slice/userSlice";
 import HeaderNav from "../HomePage/HeaderNav";
 
-const BgBox = styled(Box)({
-  backgroundImage: `url(${bgimg})`,
-  width: "100vw",
-  height: "120vh",
-  backgroundRepeat: "no-repeat",
-});
 const ForgetPasswordBox = styled(Box)({
   display: "flex",
   color: "#fffff",
@@ -133,7 +126,8 @@ const ResetPassword = () => {
               sm={12}
               md={6}
               lg={6}
-              sx={{ paddingTop: "7%", paddingLeft: "31%" }}>
+              sx={{ paddingTop: "7%", paddingLeft: "31%" }}
+            >
               <ForgetPasswordBox>
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <Grid container sx={{ padding: "10%" }}>
@@ -142,7 +136,8 @@ const ResetPassword = () => {
                         style={{
                           color: "#FFFFFF",
                           fontSize: "40px",
-                        }}>
+                        }}
+                      >
                         Password Change
                       </Typography>
                     </Grid>
@@ -152,7 +147,8 @@ const ResetPassword = () => {
                         variant="body1"
                         style={{
                           color: "#FFFFFF",
-                        }}>
+                        }}
+                      >
                         Change your password now.
                       </Typography>
                     </Grid>
@@ -175,7 +171,8 @@ const ResetPassword = () => {
                               onClick={handleClickShowPassword}
                               onMouseDown={handleMouseDownPassword}
                               sx={{ cursor: "pointer" }}
-                              position="end">
+                              position="end"
+                            >
                               {showPassword ? (
                                 <VisibilityOff />
                               ) : (
@@ -195,7 +192,8 @@ const ResetPassword = () => {
                       <FormControl
                         variant="filled"
                         fullWidth
-                        sx={{ backgroundColor: "#FFFFFF" }}>
+                        sx={{ backgroundColor: "#FFFFFF" }}
+                      >
                         <InputLabel>Confirm Password</InputLabel>
                         <FilledInput
                           type={showConfirmPassword ? "text" : "password"}
@@ -208,7 +206,8 @@ const ResetPassword = () => {
                               onClick={handleClickShowConfirmPassword}
                               onMouseDown={handleMouseDownConfirmPassword}
                               sx={{ cursor: "pointer" }}
-                              position="end">
+                              position="end"
+                            >
                               {showConfirmPassword ? (
                                 <VisibilityOff />
                               ) : (

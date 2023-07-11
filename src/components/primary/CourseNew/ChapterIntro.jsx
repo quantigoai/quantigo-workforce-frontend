@@ -6,14 +6,13 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Box, Button, styled, Typography} from "@mui/material";
-import React from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { Box, Button, styled, Typography } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import QuizIcon from "@mui/icons-material/Quiz";
-import {useNavigate} from "react-router-dom";
-import {enrollACourse} from "../../../features/slice/courseSlice";
-import {updateUserEnrollCourse,} from "../../../features/slice/userSlice";
+import { useNavigate } from "react-router-dom";
+import { enrollACourse } from "../../../features/slice/courseSlice";
+import { updateUserEnrollCourse } from "../../../features/slice/userSlice";
 
 const ButtonStyle = styled(Button)({
   border: "1px",
@@ -27,7 +26,7 @@ const ButtonStyle = styled(Button)({
 
 const ChapterIntro = () => {
   const dispatch = useDispatch();
-  const { course, courseChapter, courseChapters } = useSelector(
+  const { courseChapter, courseChapters } = useSelector(
     (state) => state.course
   );
   const { user } = useSelector((state) => state.user);
@@ -116,6 +115,5 @@ const ChapterIntro = () => {
     </>
   );
 };
-
 
 export default ChapterIntro;

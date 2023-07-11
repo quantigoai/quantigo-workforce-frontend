@@ -210,7 +210,6 @@ export const getMyJobs = createAsyncThunk(
 );
 
 // get Available jobs for reviewer
-
 export const availableJobsForReviewer = createAsyncThunk(
   "available/job/reviewer",
   async () => {

@@ -103,7 +103,7 @@ const Layout = ({ children }) => {
     { name: "Benchmark", icon: BenchmarkSvg },
     { name: "Sync Server", icon: BenchmarkSvg },
     { name: "Project Directory", icon: ProjectSvg },
-    { name: "Hour Calculation", icon: HourSvg },
+    // { name: "Calculate Annotation", icon: HourSvg },
   ];
   const projectManagerOptions = [
     { name: "Dashboard", icon: DashboardSvg },
@@ -183,7 +183,7 @@ const Layout = ({ children }) => {
     { name: "AllUsers", icon: UserSvg },
     { name: "Annotator List", icon: UserSvg },
     { name: "Archive Job", icon: JobSvg },
-    { name: "Calculate Annotation", icon: HourSvg },
+    // { name: "Calculate Annotation", icon: HourSvg },
     { name: "Course", icon: CourseSvg },
     { name: "Benchmark", icon: BenchmarkSvg },
     { name: "Create Course", icon: CourseSvg },
@@ -232,6 +232,8 @@ const Layout = ({ children }) => {
         return navigate("/quiz");
       case "Create Quiz":
         return navigate("/create-quiz");
+      // case "Calculate Annotation":
+      //   return navigate("/calculate-annotation");
       case "Create Job":
         return navigate("/jobs/create-job");
       case "Jobs":
@@ -278,7 +280,8 @@ const Layout = ({ children }) => {
               paddingLeft: "3%",
             },
           }}
-          onClick={() => handleOptionClick(text.name)}>
+          onClick={() => handleOptionClick(text.name)}
+        >
           <ListItemIcon sx={{ color: "#FFFFFF" }}>
             <img src={text.icon} />
           </ListItemIcon>
@@ -305,7 +308,8 @@ const Layout = ({ children }) => {
           },
         }}
         variant="permanent"
-        anchor="left">
+        anchor="left"
+      >
         <DrawerHeader>
           <img
             onClick={() => navigate("/")}
@@ -367,7 +371,8 @@ const Layout = ({ children }) => {
         )}
 
         <DrawerFooter
-          sx={{ paddingLeft: "8%", paddingRight: "5%", paddingBottom: "5%" }}>
+          sx={{ paddingLeft: "8%", paddingRight: "5%", paddingBottom: "5%" }}
+        >
           <GetHelp />
         </DrawerFooter>
       </Drawer>
@@ -380,7 +385,8 @@ const Layout = ({ children }) => {
           // bgcolor: isLightTheme ? "#F5F5F5" : "#000c1f",
           bgcolor: "#F5F5F5",
           height: "100%",
-        }}>
+        }}
+      >
         <Main open={open}>
           <DrawerHeader />
           {isLoggedIn && !isBlocked ? children : <UserBlocked />}

@@ -24,7 +24,7 @@ const MiniModelProjectDirectory = ({
   setAnnotationFilter,
   annotationFilter,
 }) => {
-  const { users } = useSelector((state) => state.user);
+  const { users } = useSelector((state) => state.user.users);
   // initialize value as an empty string
 
   const location = useLocation();

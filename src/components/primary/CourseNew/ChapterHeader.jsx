@@ -7,10 +7,19 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Box, FormControl, Grid, InputLabel, LinearProgress, MenuItem, Paper, Select, Typography,} from "@mui/material";
-import React from "react";
-import {useSelector} from "react-redux";
-import {useOutletContext} from "react-router-dom";
+import {
+  Box,
+  FormControl,
+  Grid,
+  InputLabel,
+  LinearProgress,
+  MenuItem,
+  Paper,
+  Select,
+  Typography,
+} from "@mui/material";
+import { useSelector } from "react-redux";
+import { useOutletContext } from "react-router-dom";
 
 const ChapterHeader = () => {
   const { courseChapters, courseChapter, course } = useSelector(
@@ -31,12 +40,14 @@ const ChapterHeader = () => {
                 <Select
                   labelId="demo-simple-select-filled-label"
                   id="demo-simple-select-filled"
-                  value={courseChapter._id}>
+                  value={courseChapter._id}
+                >
                   {courseChapters.map((chapter, index) => (
                     <MenuItem
                       key={chapter._id}
                       value={chapter._id}
-                      onClick={() => handleChapterClick(chapter, index)}>
+                      onClick={() => handleChapterClick(chapter, index)}
+                    >
                       {chapter.title}
                     </MenuItem>
                   ))}
@@ -54,7 +65,8 @@ const ChapterHeader = () => {
                     sx={{
                       fontWeight: "bold",
                       color: "blue",
-                    }}>
+                    }}
+                  >
                     {course.progress}%
                     <LinearProgress
                       value={course.progress}

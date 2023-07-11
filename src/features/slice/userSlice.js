@@ -148,7 +148,11 @@ export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
   const todayDate = new Date().toISOString().slice(0, 10);
   let query = `sortBy=createdAt:desc`;
   if (limit) {
-    query += `&limit=${limit}`;
+    if (limit === -1) {
+      query += ``;
+    } else {
+      query += `&limit=${limit}`;
+    }
   } else {
     query += `&limit=10`;
   }

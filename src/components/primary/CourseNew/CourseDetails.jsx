@@ -48,34 +48,34 @@ const CourseDetails = () => {
 
   return (
     <>
-      <Paper sx={{ width: "100%" }} elevation={0}>
-        <Box sx={{ display: "flex", alignItems: "baseline" }}>
-          <Grid
-            container
-            sx={{
-              paddingBottom: "1%",
-            }}>
-            {/* <CommonHeader
+      {/* <Paper sx={{ width: "100%" }} elevation={0}> */}
+      <Box sx={{ display: "flex", alignItems: "baseline" }}>
+        <Grid
+          container
+          sx={{
+            paddingBottom: "1%",
+          }}>
+          <CommonHeader
+            title={course.name}
+            description={course.description}
+            isLoading={isLoading}
+            customButton="Edit Course"
+          />
+          {/* <CommonHeaderForCourse
               title={course.name}
               description={course.description}
               isLoading={isLoading}
               customButton="Edit Course"
             /> */}
-            <CommonHeaderForCourse
-              title={course.name}
-              description={course.description}
-              isLoading={isLoading}
-              customButton="Edit Course"
-            />
-          </Grid>
-        </Box>
-      </Paper>
+        </Grid>
+      </Box>
+      {/* </Paper> */}
       <Box sx={{ paddingTop: "1%" }}>
         <Grid container>
           {!isInContent && (
             <Grid item xs={3} sx={{ paddingRight: "1%" }}>
-              {/* <CourseDrawer handleChapterClick={handleChapterClick} /> */}
-              <CourseDrawerNew handleChapterClick={handleChapterClick} />
+              <CourseDrawer handleChapterClick={handleChapterClick} />
+              {/* <CourseDrawerNew handleChapterClick={handleChapterClick} /> */}
             </Grid>
           )}
           <Grid item xs={isInContent ? 12 : 9}>

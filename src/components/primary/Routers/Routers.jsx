@@ -72,8 +72,8 @@ const Routers = () => {
         <Route path={"/update-chapter/:id"} element={<UpdateChapter />} />
 
         <Route path={"/course-details/:id"} element={<CourseDetails />}>
-          {/* <Route path="index" element={<CourseDetailsIndex />} /> */}
-          <Route path="index" element={<CourseNewDetailsIndex />} />
+          <Route path="index" element={<CourseDetailsIndex />} />
+          {/* <Route path="index" element={<CourseNewDetailsIndex />} /> */}
           <Route path="content" element={<CourseMainContent />} />
           <Route path="show-quiz" element={<QuizShow />} />
           <Route path={"quiz-result"} element={<ShowResult />} />

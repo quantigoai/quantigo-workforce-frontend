@@ -89,8 +89,6 @@ const Layout = ({ children }) => {
   );
   const [open, setOpen] = React.useState(true);
 
-  
-
   const adminOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "All Users", icon: UserSvg },
@@ -278,8 +276,7 @@ const Layout = ({ children }) => {
               paddingLeft: "3%",
             },
           }}
-          onClick={() => handleOptionClick(text.name)}
-        >
+          onClick={() => handleOptionClick(text.name)}>
           <ListItemIcon sx={{ color: "#FFFFFF" }}>
             <img src={text.icon} />
           </ListItemIcon>
@@ -306,8 +303,7 @@ const Layout = ({ children }) => {
           },
         }}
         variant="permanent"
-        anchor="left"
-      >
+        anchor="left">
         <DrawerHeader>
           <img
             onClick={() => navigate("/")}
@@ -367,8 +363,7 @@ const Layout = ({ children }) => {
         )}
 
         <DrawerFooter
-          sx={{ paddingLeft: "8%", paddingRight: "5%", paddingBottom: "5%" }}
-        >
+          sx={{ paddingLeft: "8%", paddingRight: "5%", paddingBottom: "5%" }}>
           <GetHelp />
         </DrawerFooter>
       </Drawer>
@@ -377,12 +372,11 @@ const Layout = ({ children }) => {
         // component="main"
         sx={{
           flexGrow: 1,
-          // p: 2,
+          p: 2,
           // bgcolor: isLightTheme ? "#F5F5F5" : "#000c1f",
           bgcolor: "#F5F5F5",
           height: "100%",
-        }}
-      >
+        }}>
         <Main open={open}>
           <DrawerHeader />
           {isLoggedIn && !isBlocked ? children : <UserBlocked />}

@@ -39,7 +39,7 @@ const CourseNewDetailsIndex = () => {
   };
   const paperStyle = {
     padding: "1%",
-    height: "85vh",
+    height: "70vh",
   };
   return (
     <>
@@ -72,7 +72,25 @@ const CourseNewDetailsIndex = () => {
             </Typography>
           </Grid>
           <Box>
-            <Box sx={{ py: "0%" }}>
+            <Box
+              sx={{
+                py: "0%",
+                height: "50vh",
+                overflow: "auto",
+                scrollbarWidth: "thin",
+                "&::-webkit-scrollbar": {
+                  width: "0.4em",
+                },
+                "&::-webkit-scrollbar-track": {
+                  background: "#f1f1f1",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  backgroundColor: "#888",
+                },
+                "&::-webkit-scrollbar-thumb:hover": {
+                  background: "#555",
+                },
+              }}>
               <Typography sx={{}} variant="body1">
                 {courseChapter?.description}
               </Typography>

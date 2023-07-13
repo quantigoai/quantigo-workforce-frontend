@@ -6,11 +6,18 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Alert, AlertTitle, Box, Button, Grid, Typography,} from "@mui/material";
+import {
+  Alert,
+  AlertTitle,
+  Box,
+  Button,
+  Grid,
+  Typography,
+} from "@mui/material";
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import CourseDeleteModal from "../../../primary/Course/CourseDetailsPage/CourseDeleteModal";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 
@@ -48,6 +55,7 @@ const CommonHeader = ({
         break;
     }
   };
+
   const goPreviousPage = () => {
     handleCancel && handleCancel();
     navigate(-1);

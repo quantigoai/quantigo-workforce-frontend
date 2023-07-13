@@ -171,7 +171,7 @@ const UserListIndex = ({ action }) => {
         }) => rest
       );
 
-    const finalArray = newArray.map((item) => {
+    const finalArray = newArray?.map((item) => {
       if (item) {
         item.dob = new Date(item.dob).toLocaleDateString("en-US");
       }
@@ -230,7 +230,7 @@ const UserListIndex = ({ action }) => {
 
   const popperOpen = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
-
+  console.log(csvUsers);
   return (
     <>
       <>
@@ -238,8 +238,7 @@ const UserListIndex = ({ action }) => {
           sx={{
             display: "flex",
             mb: "2%",
-          }}
-        >
+          }}>
           <Grid
             container
             sx={{
@@ -247,8 +246,7 @@ const UserListIndex = ({ action }) => {
               display: "flex",
               alignContent: "center",
               alignItems: "center",
-            }}
-          >
+            }}>
             <CommonHeader title="User Management" customButton="Create User" />
           </Grid>
         </Box>
@@ -262,8 +260,7 @@ const UserListIndex = ({ action }) => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "0%",
-              }}
-            >
+              }}>
               <Grid
                 item
                 xs={11}
@@ -271,8 +268,7 @@ const UserListIndex = ({ action }) => {
                   display: "flex",
                   alignItems: "center",
                   paddingRight: "1%",
-                }}
-              >
+                }}>
                 <SearchBarforUserList
                   placeholder="Search User"
                   handleChange={handleChange}
@@ -301,8 +297,7 @@ const UserListIndex = ({ action }) => {
                     <ButtonStyle
                       variant="outlined"
                       onMouseOver={handleMouseOver}
-                      onMouseOut={handleMouseOut}
-                    >
+                      onMouseOut={handleMouseOut}>
                       <Grid container sx={{ paddingTop: "8%" }}>
                         <Grid item xs={4}>
                           <DownloadIcon />
@@ -328,8 +323,7 @@ const UserListIndex = ({ action }) => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "3%",
-              }}
-            >
+              }}>
               <TableContainer>
                 <UsersTable
                   role={role}
@@ -346,8 +340,7 @@ const UserListIndex = ({ action }) => {
           <Paper elevation={0} style={paperStyle} sx={{ padding: "0%" }}>
             <Grid
               container
-              sx={{ justifyContent: "right", paddingRight: "3%" }}
-            >
+              sx={{ justifyContent: "right", paddingRight: "3%" }}>
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
                 colSpan={3}

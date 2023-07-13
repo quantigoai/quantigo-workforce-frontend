@@ -131,12 +131,18 @@ const BenchMarkIndex = () => {
     if (type === "class") {
       const classList = { ...data.classList };
       if (action === "value") {
-        classList[item] = { ...classList[item], value: value, title: title };
+        classList[item] = {
+          ...classList[item],
+          value: value,
+          title: title,
+          id: item,
+        };
       } else {
         classList[item] = {
           ...classList[item],
           averageCount: value,
           title: title,
+          id: item,
         };
       }
 
@@ -144,12 +150,18 @@ const BenchMarkIndex = () => {
     } else if (type === "tag") {
       const tagList = { ...data.tagList };
       if (action === "value") {
-        tagList[item] = { ...tagList[item], value: value, name: title };
+        tagList[item] = {
+          ...tagList[item],
+          id: item,
+          value: value,
+          name: title,
+        };
       } else {
         tagList[item] = {
           ...tagList[item],
           averageCount: value,
           name: title,
+          id: item,
         };
       }
       setData({ ...data, tagList });
@@ -222,8 +234,9 @@ const BenchMarkIndex = () => {
 
   //**  Create a new Benchmark ----------------*//
   const onCreateSubmit = (tempData) => {
-    tempData.imageBenchMark = parseInt(tempData.imageBenchMark);
+    tempData.imageBenchMark = parseInt(tempData.imageBenchMark) || 1;
     imageBenchMark.value = parseInt(imageBenchMark.value);
+
     imageBenchMark.averageCount = parseInt(imageBenchMark.averageCount);
     const classList = [];
     const tagList = [];
@@ -286,7 +299,7 @@ const BenchMarkIndex = () => {
 
     dispatch(createBenchMark(finalData))
       .then((action) => {
-        if (action.payload?.status === 201 || 200) {
+        if (action.payload?.status === 201 || action.payload?.status === 200) {
           alert.show("BenchMark created successfully", { type: "success" });
         } else {
           alert.show("BenchMark can not created", { type: "error" });
@@ -362,6 +375,7 @@ const BenchMarkIndex = () => {
       }
     });
   };
+
   const handleMultiple = (data) => {
     location.pathname === "/benchmarknew/create"
       ? onCreateSubmit(data)

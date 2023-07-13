@@ -1,6 +1,15 @@
-import {Box, Button, Grid, Modal, Paper, styled, TextField, Typography,} from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Modal,
+  Paper,
+  styled,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React from "react";
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -101,7 +110,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="Tool_Type"
+                    label="Tool Type"
                     {...register("Tool_Type", {
                       required: false,
                     })}></TextField>
@@ -125,7 +134,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="Project_Type"
+                    label="Project Type"
                     {...register("Project_Type", {
                       required: false,
                     })}></TextField>
@@ -136,7 +145,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="Project_Timeline"
-                    label="Action_Items"
+                    label="Action Items"
                     {...register("Action_Items", {
                       required: false,
                     })}></TextField>
@@ -147,7 +156,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="QA_Check_Points"
+                    label="QA Check Points"
                     {...register("QA_Check_Points", {
                       required: false,
                     })}></TextField>
@@ -161,7 +170,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="Project_Timeline"
-                    label="Obj_Benchmark"
+                    label="Object Benchmark"
                     {...register("Obj_Benchmark", {
                       required: false,
                     })}></TextField>
@@ -172,7 +181,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="Img_Benchmark"
+                    label="Image Benchmark"
                     {...register("Img_Benchmark", {
                       required: false,
                     })}></TextField>
@@ -183,7 +192,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="Project_Timeline"
-                    label="Tagging_Benchmark"
+                    label="Tagging Benchmark"
                     {...register("Tagging_Benchmark", {
                       required: false,
                     })}></TextField>
@@ -208,7 +217,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="Project_Timeline"
-                    label="Skip_Image"
+                    label="Skip Image"
                     {...register("Skip_Image", {
                       required: false,
                     })}></TextField>
@@ -232,7 +241,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="Image_Loading"
+                    label="Image Loading"
                     {...register("Image_Loading", {
                       required: false,
                     })}></TextField>
@@ -243,7 +252,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="Object_Saving_Time"
+                    label="Object Saving Time"
                     {...register("Object_Saving_Time", {
                       required: false,
                     })}></TextField>
@@ -254,7 +263,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="Video_Watch_Time"
+                    label="Video Watch Time"
                     {...register("Video_Watch_Time", {
                       required: false,
                     })}></TextField>
@@ -268,7 +277,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="Judgement_Time"
+                    label="Judgement Time"
                     {...register("Judgement_Time", {
                       required: false,
                     })}></TextField>
@@ -279,7 +288,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="QA_Benchmark"
+                    label="QA Benchmark"
                     {...register("QA_Benchmark", {
                       required: false,
                     })}></TextField>

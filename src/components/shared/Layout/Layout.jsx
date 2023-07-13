@@ -89,9 +89,7 @@ const Layout = ({ children }) => {
   );
   const [open, setOpen] = React.useState(true);
 
-  const handleHelp = () => {
-    window.open("https://discord.gg/YarPssHr6y");
-  };
+  
 
   const adminOptions = [
     { name: "Dashboard", icon: DashboardSvg },
@@ -103,7 +101,7 @@ const Layout = ({ children }) => {
     { name: "Benchmark", icon: BenchmarkSvg },
     { name: "Sync Server", icon: BenchmarkSvg },
     { name: "Project Directory", icon: ProjectSvg },
-    { name: "Calculate Annotation", icon: HourSvg },
+    { name: "Hour Calculation", icon: HourSvg },
   ];
   const projectManagerOptions = [
     { name: "Dashboard", icon: DashboardSvg },
@@ -265,7 +263,7 @@ const Layout = ({ children }) => {
     }
   };
 
-  const handleMenu = (text, index) => {
+  const handleMenu = (text) => {
     return (
       <ListItem key={text.name} disablePadding sx={{ paddingLeft: "8%" }}>
         <ListItemButton
@@ -322,51 +320,49 @@ const Layout = ({ children }) => {
         {/*  SideBar Menu */}
 
         {isLoggedIn && !isBlocked && !isEmailVerified ? (
-          <List>
-            {unverifiedOptions.map((text, index) => handleMenu(text))}
-          </List>
+          <List>{unverifiedOptions.map((text) => handleMenu(text))}</List>
         ) : (
           <List>
             {isLoggedIn &&
               role === "admin" &&
-              adminOptions.map((text, index) => handleMenu(text))}
+              adminOptions.map((text) => handleMenu(text))}
             {isLoggedIn &&
               role === "delivery_manager" &&
-              dmOptions.map((text, index) => handleMenu(text))}
+              dmOptions.map((text) => handleMenu(text))}
             {isLoggedIn &&
               role === "level_1_annotator" &&
-              anntatorOptions.map((text, index) => handleMenu(text))}
+              anntatorOptions.map((text) => handleMenu(text))}
             {isLoggedIn &&
               role === "level_2_annotator" &&
-              anntatorOptions.map((text, index) => handleMenu(text))}
+              anntatorOptions.map((text) => handleMenu(text))}
             {isLoggedIn &&
               role === "level_3_annotator" &&
-              anntatorOptions.map((text, index) => handleMenu(text))}
+              anntatorOptions.map((text) => handleMenu(text))}
             {isLoggedIn &&
               role === "trainer" &&
-              trainerOptions.map((text, index) => handleMenu(text))}
+              trainerOptions.map((text) => handleMenu(text))}
             {isLoggedIn &&
               role === "reviewer" &&
-              reviewerOptions.map((text, index) => handleMenu(text))}
+              reviewerOptions.map((text) => handleMenu(text))}
             {isLoggedIn &&
               role === "engineering_lead" &&
-              devOptions.map((text, index) => handleMenu(text))}
+              devOptions.map((text) => handleMenu(text))}
             {isLoggedIn &&
               role === "recruitment_manager" &&
-              recruitOptions.map((text, index) => handleMenu(text))}
+              recruitOptions.map((text) => handleMenu(text))}
             {isLoggedIn &&
               role === "project_lead" &&
-              projectLeadOptions.map((text, index) => handleMenu(text))}
+              projectLeadOptions.map((text) => handleMenu(text))}
             {isLoggedIn &&
               role === "project_coordinator" &&
-              projectCoordinatorOptions.map((text, index) => handleMenu(text))}
+              projectCoordinatorOptions.map((text) => handleMenu(text))}
             {isLoggedIn &&
               role === "project_manager" &&
-              projectManagerOptions.map((text, index) => handleMenu(text))}
+              projectManagerOptions.map((text) => handleMenu(text))}
             {isLoggedIn &&
               isVerified &&
               role === "level_0_annotator" &&
-              level0AnnotatorOptions.map((text, index) => handleMenu(text))}
+              level0AnnotatorOptions.map((text) => handleMenu(text))}
           </List>
         )}
 
@@ -381,7 +377,7 @@ const Layout = ({ children }) => {
         // component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
+          // p: 2,
           // bgcolor: isLightTheme ? "#F5F5F5" : "#000c1f",
           bgcolor: "#F5F5F5",
           height: "100%",

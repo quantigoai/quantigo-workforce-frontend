@@ -62,6 +62,30 @@ const SearchProjectDirectory = ({
   setJudgementTimeFieldFilter,
   qABenchmarkFieldFilter,
   setQABenchmarkFieldFilter,
+  setQAFilter,
+  qAField,
+  pdrSetFilter,
+  Client_AliasSetFilter,
+  annotationSetFilter,
+  platformField,
+  industrySetFilter,
+  toolTypeField,
+  actionItemsField,
+  projectTypeField,
+  qaCheckPointField,
+  objBenchMarkField,
+  imageBenchMarkField,
+  tagingBenchMarkField,
+  skipImageField,
+  imageLoadingField,
+  objectSavingTimeFilter,
+  videoWatchTimeFilter,
+  DeletionField,
+  judgementTimeFilter,
+  qABenchmarkField,
+  handleMenuItemClick,
+  setAnchorEl,
+  anchorEl
 }) => {
   const open = Boolean(anchorE2);
   const id = open ? "simple-popover" : undefined;
@@ -161,11 +185,35 @@ const SearchProjectDirectory = ({
           videoWatchTimeFieldFilter={videoWatchTimeFieldFilter}
           setVideoWatchTimeFieldFilter={setVideoWatchTimeFieldFilter}
           qAFieldFilter={qAFieldFilter}
-          setQAFieldFilter={setQAFieldFilter }
-          judgementTimeFieldFilter={judgementTimeFieldFilter }
-          setJudgementTimeFieldFilter={ setJudgementTimeFieldFilter}
-          qABenchmarkFieldFilter={qABenchmarkFieldFilter }
+          setQAFieldFilter={setQAFieldFilter}
+          judgementTimeFieldFilter={judgementTimeFieldFilter}
+          setJudgementTimeFieldFilter={setJudgementTimeFieldFilter}
+          qABenchmarkFieldFilter={qABenchmarkFieldFilter}
           setQABenchmarkFieldFilter={setQABenchmarkFieldFilter}
+          setQAFilter={setQAFilter}
+          qAField={qAField}
+          pdrSetFilter={pdrSetFilter}
+          Client_AliasSetFilter={Client_AliasSetFilter}
+          annotationSetFilter={annotationSetFilter}
+          platformField={platformField}
+          industrySetFilter={industrySetFilter}
+          toolTypeField={toolTypeField}
+          actionItemsField={actionItemsField}
+          projectTypeField={projectTypeField}
+          qaCheckPointField={qaCheckPointField}
+          objBenchMarkField={objBenchMarkField}
+          imageBenchMarkField={imageBenchMarkField}
+          tagingBenchMarkField={tagingBenchMarkField}
+          skipImageField={skipImageField}
+          imageLoadingField={imageLoadingField}
+          objectSavingTimeFilter={objectSavingTimeFilter}
+          videoWatchTimeFilter={videoWatchTimeFilter}
+          DeletionField={DeletionField}
+          judgementTimeFilter={judgementTimeFilter}
+          qABenchmarkField={qABenchmarkField}
+          handleMenuItemClick={handleMenuItemClick}
+          setAnchorEl={setAnchorEl}
+          anchorEl={anchorEl}
         />
       </Popover>
     </>

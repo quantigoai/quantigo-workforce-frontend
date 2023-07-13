@@ -7,10 +7,12 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 import AddIcon from "@mui/icons-material/Add";
-import {Box, Button, Grid, Paper, Typography} from "@mui/material";
-import {useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import React from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import SingleChapterNew from "../Course/SingleChapterNew";
+import { BorderBottom } from "@mui/icons-material";
 
 const CourseDrawerNew = ({ handleChapterClick }) => {
   const { courseChapters } = useSelector((state) => state.course);
@@ -30,8 +32,56 @@ const CourseDrawerNew = ({ handleChapterClick }) => {
           {/* TODO Handle this smartly */}
           {/* If there are no chapters under this course */}
           {!courseChapters && <p>No Chapters found for this course</p>}
-          <Grid item xs={12} sx={{ paddingLeft: "10%", paddingTop: "3%" }}>
-            <Typography variant="h6">All Chapters</Typography>
+          <Grid
+            item
+            xs={12}
+            sx={{
+              paddingLeft: "10%",
+              paddingTop: "3%",
+              paddingBottom: "3%",
+              borderBottom: "1px solid #EBEDF5",
+            }}>
+            <Grid container sx={{ justifyContent: "space-between" }}>
+              <Grid item xs={7}>
+                <Grid xs={12}>
+                  <Typography variant="16px">
+                    <b>All Chapters</b>
+                  </Typography>
+                </Grid>
+                <Grid xs={12}>
+                  <Typography sx={{ color: "#969CAF" }} variant="caption">
+                    6 Chapters , 4 hrs 32 min
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid item xs={5}>
+                <Button
+                  variant="contained"
+                  disabled={isLoading}
+                  type="submit"
+                  sx={{
+                    width: "80%",
+                    height: "28px",
+                    backgroundColor: "#2D58FF",
+                    color: "#FFFFFF",
+                    "&:hover": {
+                      backgroundColor: "#FF9A45",
+                      color: "#1D1D1D",
+                    },
+                    borderRadius: "32px",
+                  }}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      gap: 1,
+                      justifyContent: "center",
+                    }}>
+                    <AddIcon />
+                    create
+                  </Box>
+                </Button>
+              </Grid>
+            </Grid>
           </Grid>
           {/* If there are chapters under this course */}
           {courseChapters?.length &&

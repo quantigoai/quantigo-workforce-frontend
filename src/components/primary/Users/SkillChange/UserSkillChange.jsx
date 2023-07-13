@@ -1,9 +1,9 @@
-import {Box, Button, styled} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {getAllSkills} from "../../../../features/slice/skillSlice";
-import {updateAUserById} from "../../../../features/slice/userSlice";
+import { Box, Button, styled } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllSkills } from "../../../../features/slice/skillSlice";
+import { updateAUserById } from "../../../../features/slice/userSlice";
 import SkillField from "../../Course/InputFields/SkillField";
 
 const ButtonStyle = styled(Button)({
@@ -74,7 +74,7 @@ const UserSkillChange = ({ user }) => {
       if (action.payload?.status === 200) {
         alert.show("Skill Update successfully", { type: "success" });
       } else {
-        alert.show("User not Verified ", { type: "error" });
+        alert.show("Skill can not updated ", { type: "error" });
       }
     });
   };

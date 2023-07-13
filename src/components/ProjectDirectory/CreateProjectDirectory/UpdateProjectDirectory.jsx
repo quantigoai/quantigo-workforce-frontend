@@ -164,7 +164,7 @@ const UpdateProjectDirectory = ({ item }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="Tool_Type"
+                    label="Tool Type"
                     defaultValue={item.Tool_Type}
                     {...register("Tool_Type", {
                       required: false,
@@ -190,7 +190,7 @@ const UpdateProjectDirectory = ({ item }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="Project_Type"
+                    label="Project Type"
                     defaultValue={item.Project_Type}
                     {...register("Project_Type", {
                       required: false,
@@ -202,7 +202,7 @@ const UpdateProjectDirectory = ({ item }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="Project_Timeline"
-                    label="Action_Items"
+                    label="Action Items"
                     defaultValue={item.Action_Items}
                     {...register("Action_Items", {
                       required: false,
@@ -214,7 +214,7 @@ const UpdateProjectDirectory = ({ item }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="QA_Check_Points"
+                    label="QA Check Points"
                     defaultValue={item.QA_Check_Points}
                     {...register("QA_Check_Points", {
                       required: false,
@@ -229,7 +229,7 @@ const UpdateProjectDirectory = ({ item }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="Project_Timeline"
-                    label="Obj_Benchmark"
+                    label="Object Benchmark"
                     defaultValue={item.Obj_Benchmark}
                     {...register("Obj_Benchmark", {
                       required: false,
@@ -241,7 +241,7 @@ const UpdateProjectDirectory = ({ item }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="Img_Benchmark"
+                    label="Image Benchmark"
                     defaultValue={item.Img_Benchmark}
                     {...register("Img_Benchmark", {
                       required: false,
@@ -253,7 +253,7 @@ const UpdateProjectDirectory = ({ item }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="Project_Timeline"
-                    label="Tagging_Benchmark"
+                    label="Tagging Benchmark"
                     defaultValue={item.Tagging_Benchmark}
                     {...register("Tagging_Benchmark", {
                       required: false,
@@ -280,7 +280,7 @@ const UpdateProjectDirectory = ({ item }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="Project_Timeline"
-                    label="Skip_Image"
+                    label="Skip Image"
                     defaultValue={item.Skip_Image}
                     {...register("Skip_Image", {
                       required: false,
@@ -306,7 +306,7 @@ const UpdateProjectDirectory = ({ item }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="Image_Loading"
+                    label="Image Loading"
                     defaultValue={item.Image_Loading}
                     {...register("Image_Loading", {
                       required: false,
@@ -318,7 +318,7 @@ const UpdateProjectDirectory = ({ item }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="Object_Saving_Time"
+                    label="Object Saving Time"
                     defaultValue={item.Object_Saving_Time}
                     {...register("Object_Saving_Time", {
                       required: false,
@@ -330,7 +330,7 @@ const UpdateProjectDirectory = ({ item }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="Video_Watch_Time"
+                    label="Video Watch Time"
                     defaultValue={item.Video_Watch_Time}
                     {...register("Video_Watch_Time", {
                       required: false,
@@ -345,7 +345,7 @@ const UpdateProjectDirectory = ({ item }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="Judgement_Time"
+                    label="Judgement Time"
                     defaultValue={item.Judgement_Time}
                     {...register("Judgement_Time", {
                       required: false,
@@ -357,7 +357,7 @@ const UpdateProjectDirectory = ({ item }) => {
                     sx={{ backgroundColor: "#FFFFFF" }}
                     variant="filled"
                     name="SINo"
-                    label="QA_Benchmark"
+                    label="QA Benchmark"
                     defaultValue={item.QA_Benchmark}
                     {...register("QA_Benchmark", {
                       required: false,

@@ -1,9 +1,9 @@
-import {Box, Button, styled, Typography} from "@mui/material";
+import { Box, Button, Grid, Paper, styled, Typography } from "@mui/material";
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {enrollACourse} from "../../../features/slice/courseSlice";
-import {updateUserEnrollCourse,} from "../../../features/slice/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { enrollACourse } from "../../../features/slice/courseSlice";
+import { updateUserEnrollCourse } from "../../../features/slice/userSlice";
 
 const ButtonStyle = styled(Button)({
   border: "8px",
@@ -37,46 +37,89 @@ const CourseNewDetailsIndex = () => {
         });
     }
   };
+  const paperStyle = {
+    padding: "1%",
+    height: "70vh",
+  };
   return (
     <>
-      {" "}
-      <Box sx={{ padding: "3%" }}>
-        <Box>
-          <Typography
-            variant="h5"
-            sx={{ fontWeight: "bold", color: "#1D1D1D" }}>
-            {courseChapter?.title}
-          </Typography>
-
-          <Box sx={{ py: "2%" }}>
-            <Typography sx={{}} variant="body1">
-              {courseChapter?.description}
+      <Paper elevation={0} sx={paperStyle}>
+        <Grid
+          container
+          sx={{ paddingLeft: "2%", borderBottom: "1px solid #EBEDF5" }}>
+          <Grid xs={12}>
+            <Typography
+              variant="h5"
+              sx={{ fontWeight: "bold", color: "#1D1D1D" }}>
+              {courseChapter?.title}
             </Typography>
-          </Box>
+          </Grid>
+          <Grid xs={12}>
+            {" "}
+            <Typography
+              variant="caption"
+              sx={{ fontWeight: "bold", color: "#969CAF" }}>
+              7 min read
+            </Typography>
+          </Grid>
+        </Grid>
+        <Box sx={{ padding: "2%" }}>
+          <Grid container>
+            <Typography
+              variant="h6"
+              sx={{ fontWeight: "bold", color: "#1D1D1D" }}>
+              OverView
+            </Typography>
+          </Grid>
+          <Box>
+            <Box
+              sx={{
+                py: "0%",
+                height: "50vh",
+                overflow: "auto",
+                scrollbarWidth: "thin",
+                "&::-webkit-scrollbar": {
+                  width: "0.4em",
+                },
+                "&::-webkit-scrollbar-track": {
+                  background: "#f1f1f1",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  backgroundColor: "#888",
+                },
+                "&::-webkit-scrollbar-thumb:hover": {
+                  background: "#555",
+                },
+              }}>
+              <Typography sx={{}} variant="body1">
+                {courseChapter?.description}
+              </Typography>
+            </Box>
 
-          <Box sx={{ py: "2%", textAlign: "left" }}>
-            {courseChapters?.length &&
-              (user.role === "trainer" || user.role === "admin" ? (
-                <>
-                  {" "}
-                  <ButtonStyle
-                    variant="contained"
-                    onClick={() => handleStart(courseChapter._id)}>
-                    View Chapter
-                  </ButtonStyle>
-                </>
-              ) : (
-                <>
-                  <ButtonStyle
-                    variant="contained"
-                    onClick={() => handleStart(courseChapter._id)}>
-                    GET STARTED
-                  </ButtonStyle>
-                </>
-              ))}
+            <Box sx={{ py: "2%", textAlign: "left" }}>
+              {courseChapters?.length &&
+                (user.role === "trainer" || user.role === "admin" ? (
+                  <>
+                    {" "}
+                    <ButtonStyle
+                      variant="contained"
+                      onClick={() => handleStart(courseChapter._id)}>
+                      View Chapter
+                    </ButtonStyle>
+                  </>
+                ) : (
+                  <>
+                    <ButtonStyle
+                      variant="contained"
+                      onClick={() => handleStart(courseChapter._id)}>
+                      GET STARTED
+                    </ButtonStyle>
+                  </>
+                ))}
+            </Box>
           </Box>
         </Box>
-      </Box>
+      </Paper>
     </>
   );
 };

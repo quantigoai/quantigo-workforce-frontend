@@ -97,7 +97,7 @@ const ProjectDirectoryDetailsIndex = ({ item }) => {
               sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
               <Grid item xs={3} sx={{ justifyContent: "left" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                  Action_Items
+                  Action Items
                 </Typography>
               </Grid>
               <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
@@ -150,7 +150,7 @@ const ProjectDirectoryDetailsIndex = ({ item }) => {
               sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
               <Grid item xs={3} sx={{ justifyContent: "left" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                  Obj_Benchmark
+                  Object Benchmark
                 </Typography>
               </Grid>
               <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
@@ -165,7 +165,7 @@ const ProjectDirectoryDetailsIndex = ({ item }) => {
               sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
               <Grid item xs={3} sx={{ justifyContent: "left" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                  Img_Benchmark
+                  Image Benchmark
                 </Typography>
               </Grid>
               <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
@@ -179,7 +179,7 @@ const ProjectDirectoryDetailsIndex = ({ item }) => {
               sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
               <Grid item xs={3} sx={{ justifyContent: "left" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                  Tagging_Benchmark
+                  Tagging Benchmark
                 </Typography>
               </Grid>
               <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
@@ -207,7 +207,7 @@ const ProjectDirectoryDetailsIndex = ({ item }) => {
               sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
               <Grid item xs={3} sx={{ justifyContent: "left" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                  Skip_Image
+                  Skip Image
                 </Typography>
               </Grid>
               <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
@@ -235,7 +235,7 @@ const ProjectDirectoryDetailsIndex = ({ item }) => {
               sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
               <Grid item xs={3} sx={{ justifyContent: "left" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                  Image_Loading
+                  Image Loading
                 </Typography>
               </Grid>
               <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
@@ -249,7 +249,7 @@ const ProjectDirectoryDetailsIndex = ({ item }) => {
               sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
               <Grid item xs={3} sx={{ justifyContent: "left" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                  Object_Saving_Time
+                  Object Saving Time
                 </Typography>
               </Grid>
               <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
@@ -263,7 +263,7 @@ const ProjectDirectoryDetailsIndex = ({ item }) => {
               sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
               <Grid item xs={3} sx={{ justifyContent: "left" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                  Video_Watch_Time
+                  Video Watch Time
                 </Typography>
               </Grid>
               <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
@@ -277,7 +277,7 @@ const ProjectDirectoryDetailsIndex = ({ item }) => {
               sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
               <Grid item xs={3} sx={{ justifyContent: "left" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                  Judgement_Time{" "}
+                  Judgement Time
                 </Typography>
               </Grid>
               <Grid item xs={7} sx={{ paddingLeft: "15%" }}>
@@ -291,7 +291,7 @@ const ProjectDirectoryDetailsIndex = ({ item }) => {
               sx={{ paddingY: "2%", borderBottom: "1px solid #d8e5d8" }}>
               <Grid item xs={3} sx={{ justifyContent: "left" }}>
                 <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                  QA_Benchmark
+                  QA Benchmark
                 </Typography>
               </Grid>
               <Grid item xs={7} sx={{ paddingLeft: "15%" }}>

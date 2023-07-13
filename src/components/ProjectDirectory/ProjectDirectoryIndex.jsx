@@ -118,21 +118,43 @@ const ProjectDirectoryIndex = () => {
   const [imgBenchMarkFieldFilter, setImgBenchMarkFieldFilter] = useState("");
   const [deletionFieldFilter, setDeletionFieldFilter] = useState("");
   const [toolTypeFieldFilter, setToolTypeFieldFilter] = useState("");
-
+  const [qAField, setQAFilter] = useState(false);
   const [qAFieldFilter, setQAFieldFilter] = useState("");
   const [qABenchmarkFieldFilter, setQABenchmarkFieldFilter] = useState("");
   const [judgementTimeFieldFilter, setJudgementTimeFieldFilter] = useState("");
-
   const [skipImageFieldFilter, setSkipImageFieldFilter] = useState("");
   const [imageLoadingFieldFilter, setImageLoadingFieldFilter] = useState("");
   const [objectSavingTimeFieldFilter, setobjectSavingTimeFieldFilter] =
     useState("");
   const [videoWatchTimeFieldFilter, setVideoWatchTimeFieldFilter] =
     useState("");
-
   const [taggingBenchMarkFieldFilter, setTaggingBenchMarkFieldFilter] =
     useState("");
   const [date, setDate] = useState("");
+
+  const [pdrSetFilter, setPdrSetFilter] = useState(false);
+  const [Client_AliasSetFilter, setClient_AliasSetFilter] = useState(false);
+  const [annotationSetFilter, setAnnotationSetFilter] = useState(false);
+  const [platformField, setPlatformField] = useState(false);
+  const [industrySetFilter, setIndustrySetFilter] = useState(false);
+  const [toolTypeField, setToolTypeFilter] = useState(false);
+  const [projectTypeField, setProjectTypeFilter] = useState(false);
+  const [actionItemsField, setActionItemsFilter] = useState(false);
+  const [qaCheckPointField, setQaCheckPointFilter] = useState(false);
+  const [objBenchMarkField, setObjBenchMarkFilter] = useState(false);
+  const [imageBenchMarkField, setImageBenchMarkFilter] = useState(false);
+  const [tagingBenchMarkField, setTagingBenchMarkFilter] = useState(false);
+  const [skipImageField, setSkipImageFilter] = useState(false);
+  const [imageLoadingField, setImageLoadingFilter] = useState(false);
+  const [objectSavingTimeFilter, setObjectSavingTimeFilter] = useState(false);
+  const [videoWatchTimeFilter, setVideoWatchTimeFilter] = useState(false);
+  const [DeletionField, setDeletionFilter] = useState(false);
+  const [judgementTimeFilter, setJudgementTimeFilter] = useState(false);
+  const [qABenchmarkField, setQABenchmarkField] = useState(false);
+  
+ 
+  const [anchorEl, setAnchorEl] = useState(null);
+
   const handleClickFilter = (event) => {
     setAnchorE2(event.currentTarget);
   };
@@ -142,8 +164,71 @@ const ProjectDirectoryIndex = () => {
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
-  const handleClose = () => {};
-
+  
+  const handleMenuItemClick = (e) => {
+    if (e === "PDR") {
+      setPdrSetFilter(true);
+    }
+    if (e === "QA") {
+      setQAFilter(true);
+    }
+    if (e === "QA_Benchmark") {
+      setQABenchmarkField(true);
+    }
+    if (e === "Judgement_Time") {
+      setJudgementTimeFilter(true);
+    }
+    if (e === "Skip_Image") {
+      setSkipImageFilter(true);
+    }
+    if (e === "Image_Loading") {
+      setImageLoadingFilter(true);
+    }
+    if (e === "Object_Saving_Time") {
+      setObjectSavingTimeFilter(true);
+    }
+    if (e === "Video_Watch_Time") {
+      setVideoWatchTimeFilter(true);
+    }
+    if (e === "Deletion") {
+      setDeletionFilter(true);
+    }
+    if (e === "Tagging_Benchmark") {
+      setTagingBenchMarkFilter(true);
+    }
+    if (e === "Img_Benchmark") {
+      setImageBenchMarkFilter(true);
+    }
+    if (e === "Obj_Benchmark") {
+      setObjBenchMarkFilter(true);
+    }
+    if (e === "QA_Check_Points") {
+      setQaCheckPointFilter(true);
+    }
+    if (e === "Action_Items") {
+      setActionItemsFilter(true);
+    }
+    if (e === "Project_Type") {
+      setProjectTypeFilter(true);
+    }
+    if (e === "Tool_Type") {
+      setToolTypeFilter(true);
+    }
+    if (e === "Platform") {
+      setPlatformField(true);
+    }
+    if (e === "Client_Alias") {
+      setClient_AliasSetFilter(true);
+    }
+    if (e === "Industry") {
+      setIndustrySetFilter(true);
+    }
+    if (e === "Annotation") {
+      setAnnotationSetFilter(true);
+    }
+    setAnchorEl(null);
+    
+  };
   const handleFilterProjectDirectory = () => {
     const data = {
       ...(industryType ? { industryType: industryType } : {}),
@@ -206,7 +291,7 @@ const ProjectDirectoryIndex = () => {
     });
   };
   const handleResetProjectDirectory = () => {
-    setVideoWatchTimeFieldFilter("")
+    setVideoWatchTimeFieldFilter("");
     setPlatformFieldFilter("");
     setProjectTypeFieldFilter("");
     setActionItemsFieldFilter("");
@@ -226,6 +311,26 @@ const ProjectDirectoryIndex = () => {
     setDataTypeFilter("");
     setPDRFilter("");
     setAnnotationFilter("");
+    setQAFilter(false);
+    setPdrSetFilter(false)
+    setQABenchmarkField(false);
+    setJudgementTimeFilter(false);
+    setSkipImageFilter(false);
+    setImageLoadingFilter(false)
+    setObjectSavingTimeFilter(false);
+    setVideoWatchTimeFilter(false);
+    setDeletionFilter(false);
+    setTagingBenchMarkFilter(false);
+    setImageBenchMarkFilter(false);
+    setObjBenchMarkFilter(false);
+    setQaCheckPointFilter(false);
+    setActionItemsFilter(false);
+    setProjectTypeFilter(false);
+    setToolTypeFilter(false);
+    setPlatformField(false);
+    setClient_AliasSetFilter(false);
+    setIndustrySetFilter(false);
+    setAnnotationSetFilter(false);
     dispatch(getProjectByDirectory()).then((action) => {
       if (action.payload.status === 200) {
         setProjectDirectory(action.payload.data);
@@ -257,9 +362,7 @@ const ProjectDirectoryIndex = () => {
     )
   );
 
-  const handleClick = (link) => {
-    window.open(link);
-  };
+
   const skeletonCount = 5;
   const skeletonArray = Array.from(
     { length: skeletonCount },
@@ -400,6 +503,30 @@ const ProjectDirectoryIndex = () => {
               setJudgementTimeFieldFilter={setJudgementTimeFieldFilter}
               qABenchmarkFieldFilter={qABenchmarkFieldFilter}
               setQABenchmarkFieldFilter={setQABenchmarkFieldFilter}
+              setQAFilter={setQAFilter}
+              qAField={qAField}
+              pdrSetFilter={pdrSetFilter}
+              Client_AliasSetFilter={Client_AliasSetFilter}
+              annotationSetFilter={annotationSetFilter}
+              platformField={platformField}
+              industrySetFilter={industrySetFilter}
+              toolTypeField={toolTypeField}
+              actionItemsField={actionItemsField}
+              projectTypeField={projectTypeField}
+              qaCheckPointField={qaCheckPointField}
+              objBenchMarkField={objBenchMarkField}
+              imageBenchMarkField={imageBenchMarkField}
+              tagingBenchMarkField={tagingBenchMarkField}
+              skipImageField={skipImageField}
+              imageLoadingField={imageLoadingField}
+              objectSavingTimeFilter={objectSavingTimeFilter}
+              videoWatchTimeFilter={videoWatchTimeFilter}
+              DeletionField={DeletionField}
+              judgementTimeFilter={judgementTimeFilter}
+              qABenchmarkField={qABenchmarkField}
+              handleMenuItemClick={handleMenuItemClick}
+              setAnchorEl={setAnchorEl}
+              anchorEl={anchorEl}
             />
           </Grid>
           <Grid
@@ -433,7 +560,7 @@ const ProjectDirectoryIndex = () => {
                   sx={{ paddingTop: "0%", justifyContent: "center" }}>
                   {" "}
                   <Typography variant="h6" sx={{ justifyItems: "center" }}>
-                    Project not Found
+                    Project not found
                   </Typography>
                 </Grid>
               </>

@@ -239,7 +239,7 @@ const ProjectDirectory = createSlice({
         state.isLoading = false;
       })
       .addCase(updateProjectDirectory.pending, (state) => {
-        state.isLoading = true;
+        state.isLoading = false;
       })
       .addCase(updateProjectDirectory.fulfilled, (state, action) => {
         state.isLoading = false;

@@ -4,6 +4,7 @@ import {
   Button,
   Grid,
   Popper,
+  Skeleton,
   TablePagination,
   Typography,
 } from "@mui/material";
@@ -230,7 +231,12 @@ const UserListIndex = ({ action }) => {
 
   const popperOpen = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
-
+  const skeletonCount = 5;
+  const skeletonArray = Array.from(
+    { length: skeletonCount },
+    (_, index) => index + 1
+  );
+  
   return (
     <>
       <>
@@ -324,14 +330,37 @@ const UserListIndex = ({ action }) => {
                 paddingRight: "3%",
                 paddingBottom: "3%",
               }}>
-              <TableContainer>
-                <UsersTable
-                  role={role}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  users={users}
-                />
-              </TableContainer>
+              {user.isLoading ? (
+                <>
+                  {" "}
+                  <Grid container sx={{ paddingTop: "0%" }}>
+                    {" "}
+                    <Box sx={{ width: "100%" }}>
+                      {skeletonArray.map((item) => (
+                        <>
+                          {" "}
+                          <Box key={item}>
+                            <Skeleton height={40} />
+                            <Skeleton animation="wave" height={40} />
+                            <Skeleton animation={false} height={40} />
+                          </Box>
+                        </>
+                      ))}
+                    </Box>
+                  </Grid>
+                </>
+              ) : (
+                <>
+                  <TableContainer>
+                    <UsersTable
+                      role={role}
+                      rowsPerPage={rowsPerPage}
+                      page={page}
+                      users={users}
+                    />
+                  </TableContainer>
+                </>
+              )}
             </Grid>
           </Paper>
         </Box>

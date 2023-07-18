@@ -13,9 +13,9 @@
  * ------------------------
  */
 
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {realToken} from "../../helper/lib";
+import { realToken } from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
@@ -94,6 +94,7 @@ const skillSlice = createSlice({
   name: "team",
   initialState: initialState,
   reducers: {
+    updateSkillData: () => initialState,
     resetSkills: (state) => {
       state.skills = [];
     },
@@ -182,5 +183,5 @@ const skillSlice = createSlice({
   },
 });
 
-export const { resetSkills } = skillSlice.actions;
+export const { resetSkills, updateSkillData } = skillSlice.actions;
 export default skillSlice.reducer;

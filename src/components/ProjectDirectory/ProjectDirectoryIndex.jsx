@@ -151,8 +151,7 @@ const ProjectDirectoryIndex = () => {
   const [DeletionField, setDeletionFilter] = useState(false);
   const [judgementTimeFilter, setJudgementTimeFilter] = useState(false);
   const [qABenchmarkField, setQABenchmarkField] = useState(false);
-  
- 
+
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClickFilter = (event) => {
@@ -164,7 +163,7 @@ const ProjectDirectoryIndex = () => {
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
-  
+
   const handleMenuItemClick = (e) => {
     if (e === "PDR") {
       setPdrSetFilter(true);
@@ -227,7 +226,6 @@ const ProjectDirectoryIndex = () => {
       setAnnotationSetFilter(true);
     }
     setAnchorEl(null);
-    
   };
   const handleFilterProjectDirectory = () => {
     const data = {
@@ -312,11 +310,11 @@ const ProjectDirectoryIndex = () => {
     setPDRFilter("");
     setAnnotationFilter("");
     setQAFilter(false);
-    setPdrSetFilter(false)
+    setPdrSetFilter(false);
     setQABenchmarkField(false);
     setJudgementTimeFilter(false);
     setSkipImageFilter(false);
-    setImageLoadingFilter(false)
+    setImageLoadingFilter(false);
     setObjectSavingTimeFilter(false);
     setVideoWatchTimeFilter(false);
     setDeletionFilter(false);
@@ -361,7 +359,6 @@ const ProjectDirectoryIndex = () => {
         val.toLowerCase().includes(search.toLowerCase())
     )
   );
-
 
   const skeletonCount = 5;
   const skeletonArray = Array.from(
@@ -544,10 +541,11 @@ const ProjectDirectoryIndex = () => {
                   <Box sx={{ width: "100%" }}>
                     {skeletonArray.map((item) => (
                       <>
-                        {" "}
-                        <Skeleton height={40} />
-                        <Skeleton animation="wave" height={40} />
-                        <Skeleton animation={false} height={40} />
+                        <Box key={item}>
+                          <Skeleton height={40} />
+                          <Skeleton animation="wave" height={40} />
+                          <Skeleton animation={false} height={40} />
+                        </Box>
                       </>
                     ))}
                   </Box>

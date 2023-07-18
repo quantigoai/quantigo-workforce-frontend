@@ -101,8 +101,7 @@ const EditProfileIndex = () => {
               container
               sx={{
                 paddingBottom: "2%",
-              }}
-            >
+              }}>
               <CommonHeader
                 title="Profile"
                 // description={}
@@ -115,8 +114,7 @@ const EditProfileIndex = () => {
               container
               sx={{
                 paddingBottom: "2%",
-              }}
-            >
+              }}>
               <CommonHeader
                 title="Show Profile"
                 // description={}
@@ -249,40 +247,8 @@ const EditProfileIndex = () => {
             </Grid>
           </Box>
           <Box sx={{ padding: "2%" }}>
-            <Grid container sx={{ paddingBottom: "1%" }}>
-              <Typography variant="h7" sx={{ color: "#090080" }}>
-                Change Password
-              </Typography>
-            </Grid>
-            {/* <Grid container>
-              <Grid xs={4} sx={{ paddingRight: "1%" }}>
-                <CurrentPasswordfield />
-              </Grid>
-              <Grid xs={4} sx={{ paddingRight: "1%" }}>
-                <ResetPassword />
-              </Grid>
-              <Grid xs={4}>
-                <ConfirmPassword />
-              </Grid>
-            </Grid> */}
             <Grid xs={4}>
               <ChangePasswordIndex />
-              {/*               
-              <Button
-                variant="contained"
-                sx={{
-                  height: "45px",
-                  backgroundColor: "#2D58FF",
-                  color: "#FFFFFF",
-                  "&:hover": {
-                    backgroundColor: "#FF9A45",
-                    color: "#1D1D1D",
-                  },
-                  borderRadius: "2px",
-                }}
-                onClick={() => handleChangePassword()}>
-                Change Password
-              </Button> */}
             </Grid>
           </Box>
         </Paper>

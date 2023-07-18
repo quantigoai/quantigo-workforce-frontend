@@ -442,7 +442,7 @@ const jobSlice = createSlice({
         state.jobs = [...state.jobs, ...action.payload.data.jobs];
         state.error = null;
       })
-      .addCase(createJob.rejected, (state, action) => {
+      .addCase(createJob.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(videoJobCreate.pending, (state) => {
@@ -475,7 +475,7 @@ const jobSlice = createSlice({
           ];
         }
       })
-      .addCase(takeAjob.rejected, (state, action) => {
+      .addCase(takeAjob.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(takeJobForReviewer.pending, (state) => {
@@ -491,7 +491,7 @@ const jobSlice = createSlice({
           state.myJobs = [action.payload.data.assignedJob, ...state.myJobs];
         }
       })
-      .addCase(takeJobForReviewer.rejected, (state, action) => {
+      .addCase(takeJobForReviewer.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(getMyJobs.pending, (state) => {
@@ -519,7 +519,7 @@ const jobSlice = createSlice({
           ),
         ];
       })
-      .addCase(submitAJob.rejected, (state, action) => {
+      .addCase(submitAJob.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(updateReviewerStatus.pending, (state) => {
@@ -539,7 +539,7 @@ const jobSlice = createSlice({
           });
         }
       })
-      .addCase(updateReviewerStatus.rejected, (state, action) => {
+      .addCase(updateReviewerStatus.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(getAllAssignedJob.pending, (state) => {
@@ -556,13 +556,13 @@ const jobSlice = createSlice({
       .addCase(assignedJobToAUser.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(assignedJobToAUser.fulfilled, (state, action) => {
+      .addCase(assignedJobToAUser.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
         // state.job.jobs = state.job.jobs.filter( (job) => job._id !== action.payload.data.data.assignedJob._id )
         // state.myJobs = [...state.myJobs, action.payload.data.data.assignedJob];
       })
-      .addCase(assignedJobToAUser.rejected, (state, action) => {
+      .addCase(assignedJobToAUser.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(pauseResumeJobs.pending, (state) => {
@@ -575,46 +575,46 @@ const jobSlice = createSlice({
           job._id === action.payload.data[0]._id ? action.payload.data[0] : job
         );
       })
-      .addCase(pauseResumeJobs.rejected, (state, action) => {
+      .addCase(pauseResumeJobs.rejected, (state) => {
         state.isLoading = false;
       })
-      .addCase(addUserToATeam.pending, (state, action) => {
+      .addCase(addUserToATeam.pending, (state ) => {
         state.isLoading = true;
       })
-      .addCase(addUserToATeam.fulfilled, (state, action) => {
+      .addCase(addUserToATeam.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(addUserToATeam.rejected, (state, action) => {
+      .addCase(addUserToATeam.rejected, (state) => {
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(addDefaultReviewer.pending, (state, action) => {
+      .addCase(addDefaultReviewer.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(addDefaultReviewer.fulfilled, (state, action) => {
+      .addCase(addDefaultReviewer.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(addDefaultReviewer.rejected, (state, action) => {
+      .addCase(addDefaultReviewer.rejected, (state) => {
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(addDefaultAnnotator.pending, (state, action) => {
+      .addCase(addDefaultAnnotator.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(addDefaultAnnotator.fulfilled, (state, action) => {
+      .addCase(addDefaultAnnotator.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(addDefaultAnnotator.rejected, (state, action) => {
+      .addCase(addDefaultAnnotator.rejected, (state) => {
         state.isLoading = false;
         state.error = null;
       })
       .addCase(superJobSetStatus.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(superJobSetStatus.fulfilled, (state, action) => {
+      .addCase(superJobSetStatus.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
@@ -624,7 +624,7 @@ const jobSlice = createSlice({
       .addCase(getAjobInfoById.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getAjobInfoById.fulfilled, (state, action) => {
+      .addCase(getAjobInfoById.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
@@ -650,7 +650,7 @@ const jobSlice = createSlice({
       .addCase(getVideoId.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getVideoId.fulfilled, (state, action) => {
+      .addCase(getVideoId.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })

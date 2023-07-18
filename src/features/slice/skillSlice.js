@@ -144,7 +144,7 @@ const skillSlice = createSlice({
       .addCase(validateSkill.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(validateSkill.fulfilled, (state, action) => {
+      .addCase(validateSkill.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
@@ -173,7 +173,7 @@ const skillSlice = createSlice({
       .addCase(deleteASkill.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(deleteASkill.fulfilled, (state, action) => {
+      .addCase(deleteASkill.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })

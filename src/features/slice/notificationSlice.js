@@ -13,12 +13,11 @@
  * ------------------------
  */
 
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {realToken} from "../../helper/lib";
+import { realToken } from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
-const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 
 const initialState = {
   isLoading: false,
@@ -161,7 +160,7 @@ const notificationSlice = createSlice({
       .addCase(readLatestNotification.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(readLatestNotification.fulfilled, (state, action) => {
+      .addCase(readLatestNotification.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
@@ -171,7 +170,7 @@ const notificationSlice = createSlice({
       .addCase(readAllNotification.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(readAllNotification.fulfilled, (state, action) => {
+      .addCase(readAllNotification.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
@@ -181,7 +180,7 @@ const notificationSlice = createSlice({
       .addCase(deleteBefore15DaysNotifications.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(deleteBefore15DaysNotifications.fulfilled, (state, action) => {
+      .addCase(deleteBefore15DaysNotifications.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })

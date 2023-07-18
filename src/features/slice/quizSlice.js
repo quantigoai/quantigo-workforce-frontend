@@ -17,7 +17,6 @@ import axios from "axios";
 import { realToken } from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
-const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 
 const initialState = {
   isLoading: false,
@@ -118,7 +117,7 @@ const quizSlice = createSlice({
       .addCase(createAQuiz.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(createAQuiz.fulfilled, (state, action) => {
+      .addCase(createAQuiz.fulfilled, (state) => {
         state.isLoading = false;
 
         //   state.quizs =[...state.quizs, action.payload.data]
@@ -152,7 +151,7 @@ const quizSlice = createSlice({
       .addCase(updateQuizQA.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(updateQuizQA.fulfilled, (state, action) => {
+      .addCase(updateQuizQA.fulfilled, (state) => {
         state.isLoading = false;
 
         state.error = null;
@@ -194,7 +193,7 @@ const quizSlice = createSlice({
       .addCase(deleteQuestionFromQuiz.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(deleteQuestionFromQuiz.fulfilled, (state, action) => {
+      .addCase(deleteQuestionFromQuiz.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })

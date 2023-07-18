@@ -49,7 +49,6 @@ function App() {
   const dispatch = useDispatch();
   const { user: storedUser } = useSelector((state) => state);
   const { activePath } = useSelector((state) => state.activePath);
-  const { dashboard } = useSelector((state) => state);
   const { isLoggedIn } = storedUser;
 
   const tokenCheck = () => {

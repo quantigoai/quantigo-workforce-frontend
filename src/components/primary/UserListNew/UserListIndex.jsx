@@ -170,12 +170,12 @@ const UserListIndex = ({ action }) => {
         }) => rest
       );
 
-    const finalArray = newArray?.map((item) => {
-      if (item) {
-        item.dob = new Date(item.dob).toLocaleDateString("en-US");
-      }
-      return item;
-    });
+      const finalArray = newArray?.map((item) => {
+        if (item) {
+          item.dob = new Date(item.dob).toLocaleDateString("en-US");
+        }
+        return item;
+      });
 
       setCsvUsers(finalArray);
       if (location.pathname === "/annotators") {
@@ -230,7 +230,7 @@ const UserListIndex = ({ action }) => {
 
   const popperOpen = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
-  console.log(csvUsers);
+
   return (
     <>
       <>

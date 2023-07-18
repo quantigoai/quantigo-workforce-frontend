@@ -12,9 +12,9 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {realToken} from "../../helper/lib";
+import { realToken } from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
@@ -27,8 +27,6 @@ const initialState = {
   error: "null",
   isCreated: false,
 };
-
-
 
 export const createAQuiz = createAsyncThunk("/quizzes", async (data) => {
   return axios.post(`${url}/quizzes`, data, {
@@ -112,6 +110,9 @@ export const deleteQuestionFromQuiz = createAsyncThunk(
 const quizSlice = createSlice({
   name: "quiz",
   initialState: initialState,
+  reducers: {
+    updateQuizData: () => initialState,
+  },
   extraReducers: (builder) => {
     builder
       .addCase(createAQuiz.pending, (state) => {
@@ -204,4 +205,5 @@ const quizSlice = createSlice({
   },
 });
 
+export const { updateQuizData } = quizSlice.actions;
 export default quizSlice.reducer;

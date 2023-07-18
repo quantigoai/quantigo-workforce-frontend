@@ -402,6 +402,7 @@ const jobSlice = createSlice({
   name: "job",
   initialState: initialState,
   reducers: {
+    updateJobData: () => initialState,
     removeSingleJobFromAvailable: (state, action) => {
       state.jobs = state.jobs.filter((job) => job._id !== action.payload._id);
     },
@@ -657,5 +658,5 @@ const jobSlice = createSlice({
       });
   },
 });
-export const { removeSingleJobFromAvailable } = jobSlice.actions;
+export const { removeSingleJobFromAvailable, updateJobData } = jobSlice.actions;
 export default jobSlice.reducer;

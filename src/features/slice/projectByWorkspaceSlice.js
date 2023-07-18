@@ -12,9 +12,9 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {realToken} from "../../helper/lib";
+import { realToken } from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
@@ -59,6 +59,7 @@ const projectByWorkspaceSlice = createSlice({
   name: "project",
   initialState: initialState,
   reducers: {
+    updateProjectData: () => initialState,
     resetProjects: (state) => {
       state.projects = [];
     },
@@ -98,5 +99,6 @@ const projectByWorkspaceSlice = createSlice({
       });
   },
 });
-export const { resetProjects } = projectByWorkspaceSlice.actions;
+export const { resetProjects, updateProjectData } =
+  projectByWorkspaceSlice.actions;
 export default projectByWorkspaceSlice.reducer;

@@ -1,4 +1,4 @@
-import {Button, Grid, Paper, styled, Typography} from "@mui/material";
+import { Button, Grid, Paper, styled, Typography } from "@mui/material";
 import React from "react";
 import HelpIcon from "../../../assets/images/IconHelp.svg";
 
@@ -67,6 +67,14 @@ const GetHelp = () => {
           <ButtonStyleHelp variant="outlined" onClick={handleHelp}>
             Get Help
           </ButtonStyleHelp>
+
+          {/* <iframe
+            src="https://discordapp.com/widget?id=919892777150595072&theme=light"
+            width="350"
+            height="200"
+            allowtransparency="true"
+            frameborder="0"
+            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe> */}
         </Grid>
       </Paper>
     </>

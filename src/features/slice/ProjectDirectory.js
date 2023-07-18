@@ -162,6 +162,7 @@ const ProjectDirectory = createSlice({
   name: "projectDirectory",
   initialState: initialState,
   reducers: {
+    updateProjectDirectoryData: () => initialState,
     resetProjects: (state) => {
       state.projectDirectory = [];
     },
@@ -180,7 +181,7 @@ const ProjectDirectory = createSlice({
         state.isLoading = false;
       })
       .addCase(deleteProjectDirectory.pending, (state) => {
-        state.isLoading = true;
+        state.isLoading = false;
       })
       .addCase(deleteProjectDirectory.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -225,7 +226,7 @@ const ProjectDirectory = createSlice({
         state.isLoading = false;
       })
       .addCase(createProjectDirectory.pending, (state) => {
-        state.isLoading = true;
+        state.isLoading = false;
       })
       .addCase(createProjectDirectory.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -244,7 +245,7 @@ const ProjectDirectory = createSlice({
       .addCase(updateProjectDirectory.fulfilled, (state, action) => {
         state.isLoading = false;
         state.projectDirectory = state.projectDirectory.map((item) => {
-          if (item.Project_Name !== action.payload.data.Project_Name) {
+          if (item._id !== action.payload.data._id) {
             return item;
           } else {
             return action.payload.data;
@@ -257,5 +258,5 @@ const ProjectDirectory = createSlice({
       });
   },
 });
-
+export const { updateProjectDirectoryData } = ProjectDirectory.actions;
 export default ProjectDirectory.reducer;

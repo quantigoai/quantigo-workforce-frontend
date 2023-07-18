@@ -142,6 +142,7 @@ const benchMarkSlice = createSlice({
   name: "benchMark",
   initialState: initialState,
   reducers: {
+    updateBenchmarkData: () => initialState,
     resetProjectMetas: (state) => {
       state.projectMetas = [];
     },
@@ -246,6 +247,6 @@ const benchMarkSlice = createSlice({
   },
 });
 
-export const { resetProjectMetas, setBenchMarkLocal, resetCalculationData } =
+export const { resetProjectMetas, setBenchMarkLocal, resetCalculationData ,updateBenchmarkData} =
   benchMarkSlice.actions;
 export default benchMarkSlice.reducer;

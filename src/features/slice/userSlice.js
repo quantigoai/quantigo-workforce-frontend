@@ -146,7 +146,7 @@ export const updateMyDocuments = createAsyncThunk(
 export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
   const { role, hub, active, limit, skip, skills } = data || {};
   const todayDate = new Date().toISOString().slice(0, 10);
-  let query = `sortBy=createdAt:desc`;
+  let query = `sortBy=createdAt:asc`;
   if (limit) {
     if (limit === -1) {
       query += ``;

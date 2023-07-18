@@ -70,6 +70,7 @@ const BenchMarkIndex = () => {
     };
     dispatch(getProjectByWorkSpace(data));
   };
+
   const handleChangeCategory = (e) => {
     setCategory(e.target.value);
   };
@@ -89,6 +90,7 @@ const BenchMarkIndex = () => {
       server_agent: server,
     };
     setProjectID(e.target.value);
+
     dispatch(getABenchMarkByProjectId(finalData)).then((action) => {
       if (action.payload?.status === 203) {
         if (server === "ag") {
@@ -301,12 +303,12 @@ const BenchMarkIndex = () => {
       .then((action) => {
         if (action.payload?.status === 201 || action.payload?.status === 200) {
           alert.show("BenchMark created successfully", { type: "success" });
+          navigate("/benchmarknew/list");
         } else {
-          alert.show("BenchMark can not created", { type: "error" });
+          alert.show("Unable to create BenchMark", { type: "error" });
         }
       })
       .then(() => {
-        navigate("/benchmarknew/list");
         dispatch(resetProjectMetas());
       });
   };

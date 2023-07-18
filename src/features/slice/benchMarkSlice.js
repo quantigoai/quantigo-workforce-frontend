@@ -19,7 +19,7 @@ import { realToken } from "../../helper/lib";
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
 // Quantigo Server
-const REACT_QUANTIGO_API_KEY = import.meta.env.VITE_APP_QUANTIGO_KEY;
+const REACT_QUANTIGO_API_KEY = import.meta.env.VITE_APP_QUANTIGO_SUPERADMIN_KEY;
 const urlquantigo = import.meta.env.VITE_APP_QUANTIGOAPI_URL;
 
 // Ag Server

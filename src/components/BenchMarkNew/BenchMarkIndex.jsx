@@ -110,16 +110,15 @@ const BenchMarkIndex = () => {
       server_agent: server,
     };
     setProjectID(e.target.value);
-
     dispatch(getABenchMarkByProjectId(finalData)).then((action) => {
       if (action.payload?.status === 203) {
+        dispatch(resetProjectMetas());
         if (server === "ag") {
-          dispatch(getProjectMetaAg(e.target.value)).then((action) => {
+          dispatch(getProjectMetaAg(e.target.value)).then(() => {
             navigate("/benchmarknew/create");
           });
         } else {
-          // setIsRedirect(true); //!! need to change this
-          dispatch(getProjectMeta(e.target.value)).then((action) => {
+          dispatch(getProjectMeta(e.target.value)).then(() => {
             navigate("/benchmarknew/create");
           });
         }

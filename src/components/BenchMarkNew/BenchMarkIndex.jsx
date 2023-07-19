@@ -318,19 +318,19 @@ const BenchMarkIndex = () => {
       data1,
       server_agent: server,
     };
-    console.log(finalData);
-    // dispatch(createBenchMark(finalData))
-    //   .then((action) => {
-    //     if (action.payload?.status === 201 || action.payload?.status === 200) {
-    //       alert.show("BenchMark created successfully", { type: "success" });
-    //       navigate("/benchmarknew/list");
-    //     } else {
-    //       alert.show("Unable to create BenchMark", { type: "error" });
-    //     }
-    //   })
-    //   .then(() => {
-    //     dispatch(resetProjectMetas());
-    //   });
+
+    dispatch(createBenchMark(finalData))
+      .then((action) => {
+        if (action.payload?.status === 201 || action.payload?.status === 200) {
+          alert.show("BenchMark created successfully", { type: "success" });
+          navigate("/benchmarknew/list");
+        } else {
+          alert.show("Unable to create BenchMark", { type: "error" });
+        }
+      })
+      .then(() => {
+        dispatch(resetProjectMetas());
+      });
   };
   useEffect(() => {
     setImageData(benchMark?.imageBenchMark);

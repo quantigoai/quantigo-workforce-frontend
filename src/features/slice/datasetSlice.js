@@ -13,9 +13,9 @@
  * ------------------------
  */
 
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {realToken} from "../../helper/lib";
+import { realToken } from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
@@ -56,6 +56,9 @@ export const downloadMappingSheet = createAsyncThunk(
 const dataSetSlice = createSlice({
   name: "dataset",
   initialState: initialState,
+  reducers: {
+    updateDatasetData: () => initialState,
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getDataSetByProjectID.pending, (state) => {
@@ -81,5 +84,5 @@ const dataSetSlice = createSlice({
       });
   },
 });
-
+export const { updateDatasetData } = dataSetSlice.actions;
 export default dataSetSlice.reducer;

@@ -12,12 +12,11 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {realToken} from "../../helper/lib";
+import { realToken } from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
-const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 
 const initialState = {
   isLoading: false,
@@ -27,8 +26,6 @@ const initialState = {
   error: "null",
   isCreated: false,
 };
-
-
 
 export const createAQuiz = createAsyncThunk("/quizzes", async (data) => {
   return axios.post(`${url}/quizzes`, data, {
@@ -112,12 +109,15 @@ export const deleteQuestionFromQuiz = createAsyncThunk(
 const quizSlice = createSlice({
   name: "quiz",
   initialState: initialState,
+  reducers: {
+    updateQuizData: () => initialState,
+  },
   extraReducers: (builder) => {
     builder
       .addCase(createAQuiz.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(createAQuiz.fulfilled, (state, action) => {
+      .addCase(createAQuiz.fulfilled, (state) => {
         state.isLoading = false;
 
         //   state.quizs =[...state.quizs, action.payload.data]
@@ -151,7 +151,7 @@ const quizSlice = createSlice({
       .addCase(updateQuizQA.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(updateQuizQA.fulfilled, (state, action) => {
+      .addCase(updateQuizQA.fulfilled, (state) => {
         state.isLoading = false;
 
         state.error = null;
@@ -193,7 +193,7 @@ const quizSlice = createSlice({
       .addCase(deleteQuestionFromQuiz.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(deleteQuestionFromQuiz.fulfilled, (state, action) => {
+      .addCase(deleteQuestionFromQuiz.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
@@ -204,4 +204,5 @@ const quizSlice = createSlice({
   },
 });
 
+export const { updateQuizData } = quizSlice.actions;
 export default quizSlice.reducer;

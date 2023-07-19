@@ -6,16 +6,21 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {useTheme} from "@emotion/react";
+import { useTheme } from "@emotion/react";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
-import {Box, Grid, IconButton, Paper, Radio, Tab, Tabs} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {Outlet, useLocation, useNavigate} from "react-router-dom";
-import {availableJobsForReviewer, getAllAssignedJob, getAllJobs, getMyJobs,} from "../../../features/slice/jobSlice";
+import { Box, Grid, IconButton, Paper, Radio, Tab, Tabs } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import {
+  availableJobsForReviewer,
+  getAllAssignedJob,
+  getAllJobs,
+  getMyJobs,
+} from "../../../features/slice/jobSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 
 // import NotificationToaster from "../NotificationToaster/NotificationToaster";
@@ -93,7 +98,7 @@ const Job = () => {
   const [reviewer, setReviewer] = useState("");
   const [attemptLeft, setAttemptLeft] = useState(0);
   const [projectIdFilter, setProjectIdFilter] = useState(0);
-  const { skills} = useSelector((state) => state.skill);
+  const { skills } = useSelector((state) => state.skill);
   const [skill, setSkill] = React.useState([]);
   const [skillSet1, setSkillSet1] = React.useState([]);
   const [skillSet2, setSkillSet2] = React.useState([]);
@@ -135,8 +140,6 @@ const Job = () => {
     );
   };
 
-
-
   const handleFilter = () => {
     const skillColl = skill.map((skill) => {
       return skill._id;
@@ -156,7 +159,8 @@ const Job = () => {
       dispatch(getAllAssignedJob(data));
     location.pathname === "/jobs/assignedjobs" &&
       dispatch(getAllAssignedJob(data));
-    location.pathname === "/jobs/archivejob" && dispatch(getAllAssignedJob(data));
+    location.pathname === "/jobs/archivejob" &&
+      dispatch(getAllAssignedJob(data));
     location.pathname === "/jobs/activejobs" && dispatch(getMyJobs(data));
     location.pathname === "/jobs/archivejobs" && dispatch(getMyJobs(data));
   };
@@ -187,8 +191,10 @@ const Job = () => {
     } else {
       dispatch(getAllJobs());
     }
+    if (role !== "admin") {
+      dispatch(getMyJobs());
+    }
 
-    dispatch(getMyJobs());
     dispatch(getAllAssignedJob());
     location.pathname === "/jobs/alljobs" && setValue1("Pending");
     location.pathname === "/jobs/availablejobs" && setValue1("Pending");
@@ -385,7 +391,7 @@ const Job = () => {
           setProjectIdFilter,
           projectIdFilter,
           handleChangeSkills,
-          skill
+          skill,
         ]}
       />
     </>

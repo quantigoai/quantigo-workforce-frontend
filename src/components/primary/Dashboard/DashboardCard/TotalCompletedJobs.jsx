@@ -5,18 +5,7 @@ import {useSelector} from "react-redux";
 
 const TotalCompletedJobs = () => {
   const { totalCountData } = useSelector((state) => state.dashboard);
-  // const { assignedJob } = useSelector((state) => state.job);
-  // const dispatch = useDispatch();
-  // const [totalJob, setTotalJob] = useState(0);
-  // const JobLength = assignedJob.length;
-  // useEffect(() => {
-  //   dispatch(getAllAssignedJob());
-  //   assignedJob.map((job, i) => {
-  //     if (job.status === "completed") {
-  //       setTotalJob(i + 1);
-  //     }
-  //   });
-  // }, []);
+ 
   return (
     <>
       <Grid container>

@@ -12,10 +12,10 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {realToken} from "../../helper/lib";
-import {calculateProgress} from "../../helper/scoreStore";
+import { realToken } from "../../helper/lib";
+import { calculateProgress } from "../../helper/scoreStore";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
@@ -134,7 +134,6 @@ export const updateAChapterById = createAsyncThunk(
   }
 );
 
-
 export const enrollACourse = createAsyncThunk(
   "/enroll/course",
   async (courseId) => {
@@ -210,6 +209,7 @@ const courseSlice = createSlice({
   name: "course",
   initialState: initialState,
   reducers: {
+    updateCourseData: () => initialState,
     manuallyUpdateCourse: (state, action) => {
       state.courseChapter = {
         ...state.courseChapter,
@@ -411,5 +411,6 @@ export const {
   manuallyUpdateCourse,
   manuallySetCourseChapter,
   manuallySetCourseChapterResult,
+  updateCourseData,
 } = courseSlice.actions;
 export default courseSlice.reducer;

@@ -1,6 +1,6 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {realToken} from "../../helper/lib";
+import { realToken } from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
@@ -28,6 +28,7 @@ const workSpaceSlice = createSlice({
   name: "workspace",
   initialState: initialState,
   reducers: {
+    updateWorkSpaceData: () => initialState,
     resetWorkspaces: (state) => {
       state.workspaces = [];
     },
@@ -48,5 +49,5 @@ const workSpaceSlice = createSlice({
   },
 });
 
-export const { resetWorkspaces } = workSpaceSlice.actions;
+export const { resetWorkspaces, updateWorkSpaceData } = workSpaceSlice.actions;
 export default workSpaceSlice.reducer;

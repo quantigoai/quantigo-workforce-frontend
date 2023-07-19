@@ -13,9 +13,9 @@
  * ------------------------
  */
 
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {realToken} from "../../helper/lib";
+import { realToken } from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
@@ -81,7 +81,9 @@ export const getTotalCountData = createAsyncThunk(
 export const dashboardSlice = createSlice({
   name: "dashboard",
   initialState,
-  reducers: {},
+  reducers: {
+    updateDashboardData: () => initialState,
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getDashboardData.pending, (state) => {
@@ -131,5 +133,7 @@ export const dashboardSlice = createSlice({
       });
   },
 });
+
+export const { updateDashboardData } = dashboardSlice.actions;
 
 export default dashboardSlice.reducer;

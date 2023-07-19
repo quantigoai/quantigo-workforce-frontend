@@ -4,8 +4,6 @@ import {Box, Button, Grid, Paper, Table, TableBody, TableContainer, TableHead, T
 import TableCell, {tableCellClasses} from "@mui/material/TableCell";
 import {styled} from "@mui/material/styles";
 import {useDispatch, useSelector} from "react-redux";
-
-// import { getMyJobs, submitAJob, updateReviewerStatus } from '../../features/slice/jobSlice';
 import MoveUpIcon from "@mui/icons-material/MoveUp";
 import SwipeRightIcon from "@mui/icons-material/SwipeRight";
 
@@ -27,25 +25,7 @@ const ButtonStyle = styled(Button)({
     color: "#1D1D1D",
   },
 });
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.blue,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
 
 const ActiveJobList = ({ action }) => {
   const [open, setOpen] = useState(false);

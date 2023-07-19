@@ -41,6 +41,7 @@ const teamSlice = createSlice({
   name: "team",
   initialState: initialState,
   reducers: {
+    updateTeamData: () => initialState,
     resetTeams: (state) => {
       state.teams = [];
     },
@@ -61,5 +62,5 @@ const teamSlice = createSlice({
   },
 });
 
-export const { resetTeams } = teamSlice.actions;
+export const { resetTeams ,updateTeamData } = teamSlice.actions;
 export default teamSlice.reducer;

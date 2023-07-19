@@ -20,10 +20,17 @@ import {
   resetProjectMetas,
   setBenchMarkLocal,
   updateABenchMarkById,
+  updateBenchmarkData,
 } from "../../features/slice/benchMarkSlice";
-import { getProjectByWorkSpace } from "../../features/slice/projectByWorkspaceSlice";
+import {
+  getProjectByWorkSpace,
+  resetProjects,
+} from "../../features/slice/projectByWorkspaceSlice";
 import { getAllTeams } from "../../features/slice/teamSlice";
-import { getWorkSpaceById } from "../../features/slice/workSpaceSlice";
+import {
+  getWorkSpaceById,
+  resetWorkspaces,
+} from "../../features/slice/workSpaceSlice";
 
 const BenchMarkIndex = () => {
   const dispatch = useDispatch();
@@ -33,6 +40,8 @@ const BenchMarkIndex = () => {
   const [customData, setCustomData] = useState({});
 
   const [projectId, setProjectID] = useState();
+  const [teamId, setTeamId] = useState();
+  const [workspaceId, setWorkspaceId] = useState();
   const [server, setServer] = useState("ag");
   const [category, setCategory] = useState("annotator");
 
@@ -56,6 +65,7 @@ const BenchMarkIndex = () => {
   const navigate = useNavigate();
 
   const handleChangeTeam = (e) => {
+    setTeamId(e.target.value);
     const data = {
       id: e.target.value,
       server_agent: server,
@@ -64,6 +74,7 @@ const BenchMarkIndex = () => {
   };
 
   const handleChangeWorkspace = (e) => {
+    setWorkspaceId(e.target.value);
     const data = {
       id: e.target.value,
       server_agent: server,
@@ -82,7 +93,16 @@ const BenchMarkIndex = () => {
   useEffect(() => {
     dispatch(getAllTeams({ server_agent: server }));
   }, [server]);
+  useEffect(() => {
+    dispatch(updateBenchmarkData());
+    // dispatch(resetWorkspaces());
+    dispatch(resetProjects());
+  }, [server, teamId, workspaceId]);
 
+  useEffect(() => {
+    // dispatch(updateBenchmarkData());
+    dispatch(resetWorkspaces());
+  }, [server, teamId]);
   const handleChangeProject = (e) => {
     const finalData = {
       id: e.target.value,
@@ -298,19 +318,19 @@ const BenchMarkIndex = () => {
       data1,
       server_agent: server,
     };
-
-    dispatch(createBenchMark(finalData))
-      .then((action) => {
-        if (action.payload?.status === 201 || action.payload?.status === 200) {
-          alert.show("BenchMark created successfully", { type: "success" });
-          navigate("/benchmarknew/list");
-        } else {
-          alert.show("Unable to create BenchMark", { type: "error" });
-        }
-      })
-      .then(() => {
-        dispatch(resetProjectMetas());
-      });
+    console.log(finalData);
+    // dispatch(createBenchMark(finalData))
+    //   .then((action) => {
+    //     if (action.payload?.status === 201 || action.payload?.status === 200) {
+    //       alert.show("BenchMark created successfully", { type: "success" });
+    //       navigate("/benchmarknew/list");
+    //     } else {
+    //       alert.show("Unable to create BenchMark", { type: "error" });
+    //     }
+    //   })
+    //   .then(() => {
+    //     dispatch(resetProjectMetas());
+    //   });
   };
   useEffect(() => {
     setImageData(benchMark?.imageBenchMark);

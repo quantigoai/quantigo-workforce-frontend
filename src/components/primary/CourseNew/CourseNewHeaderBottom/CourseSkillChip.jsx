@@ -2,21 +2,10 @@ import {
   Grid,
   Tooltip,
   Typography,
-  styled,
-  tooltipClasses,
 } from "@mui/material";
 import React from "react";
 import skillImage from "../../../../assets/images/skillsIcon.svg";
-const BootstrapTooltip = styled(({ className, ...props }) => (
-  <Tooltip {...props} arrow classes={{ popper: className }} />
-))(({ theme }) => ({
-  [`& .${tooltipClasses.arrow}`]: {
-    color: theme.palette.common.black,
-  },
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: theme.palette.common.black,
-  },
-}));
+
 const CourseSkillChip = ({ skills }) => {
   return (
     <>

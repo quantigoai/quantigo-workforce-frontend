@@ -648,7 +648,7 @@ const userSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(updateAUserById.pending, (state) => {
-        state.isLoading = true;
+        state.isLoading = false;
       })
       .addCase(updateAUserById.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -665,7 +665,7 @@ const userSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(changeRole.pending, (state) => {
-        state.isLoading = true;
+        state.isLoading = false;
       })
       .addCase(changeRole.fulfilled, (state, action) => {
         state.isLoading = false;

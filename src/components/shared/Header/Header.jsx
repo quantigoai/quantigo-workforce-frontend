@@ -11,20 +11,21 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import {Avatar, Badge, Typography} from "@mui/material";
+import { Avatar, Badge, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import {styled as mstyled} from "@mui/material/styles";
-import React, {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { styled as mstyled } from "@mui/material/styles";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import line from "../../../assets/images/Line 1.png";
-import {setTheme} from "../../../features/slice/themeSlice";
-import {logout} from "../../../features/slice/userSlice";
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
+import backIcon from "../../../assets/images/backIcon.svg";
+import { setTheme } from "../../../features/slice/themeSlice";
+import { logout } from "../../../features/slice/userSlice";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import NotificationModal from "../Notification/NotificationModal";
 
 const NavBarFull = mstyled(AppBar)({
@@ -75,6 +76,9 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleGoBack = () => {
+    navigate(-1);
+  };
 
   const image = user.user.image;
 
@@ -96,6 +100,13 @@ const Header = () => {
               display: "flex",
               justifyContent: "flex-end",
             }}>
+            {/* Go Back button  */}
+            {/* <Box>
+              <Button onClick={() => handleGoBack()}>
+                <img src={backIcon} />
+                Go Back
+              </Button>
+            </Box> */}
             <Button>
               {isLightTheme ? (
                 <DarkModeIcon onClick={() => dispatch(setTheme(false))} />

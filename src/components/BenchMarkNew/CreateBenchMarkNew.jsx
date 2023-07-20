@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useOutletContext } from "react-router-dom";
 
-import { Grid, Paper } from "@mui/material";
+import { Box, Grid, Paper, Skeleton } from "@mui/material";
 import { resetProjectMetas } from "../../features/slice/benchMarkSlice";
 import CommonHeader from "../shared/CustomComponenet/CommonHeader/CommonHeader";
 import ClassTagFieldsNew from "./sharedComponentsNew/ClassTagFieldsNew";
@@ -62,6 +62,12 @@ const CreateBenchMarkNew = () => {
     dispatch(resetProjectMetas());
   }, []);
 
+  const skeletonCount = 5;
+  const skeletonArray = Array.from(
+    { length: skeletonCount },
+    (_, index) => index + 1
+  );
+
   return (
     <>
       <Grid container sx={{ paddingBottom: "2%" }}>
@@ -73,8 +79,7 @@ const CreateBenchMarkNew = () => {
       </Grid>
       <Paper
         elevation={0}
-        sx={{ mb: 2, paddingLeft: "2%", paddingRight: "2%" }}
-      >
+        sx={{ mb: 2, paddingLeft: "2%", paddingRight: "2%" }}>
         <SelectMenuNew
           teams={teams}
           workspaces={workspaces}
@@ -89,12 +94,34 @@ const CreateBenchMarkNew = () => {
           server={server}
         />
       </Paper>
-      <ClassTagFieldsNew
-        register={register}
-        handleSubmit={handleSubmit}
-        classes={classes}
-        tags={tags}
-      />
+      {isLoading ? (
+        <>
+          <Grid container sx={{ paddingTop: "0%" }}>
+            {" "}
+            <Box sx={{ width: "100%" }}>
+              {skeletonArray.map((item) => (
+                <>
+                  <Box key={item}>
+                    <Skeleton height={40} />
+                    <Skeleton animation="wave" height={40} />
+                    <Skeleton animation={false} height={40} />
+                  </Box>
+                </>
+              ))}
+            </Box>
+          </Grid>
+        </>
+      ) : (
+          <>
+            
+          <ClassTagFieldsNew
+            register={register}
+            handleSubmit={handleSubmit}
+            classes={classes}
+            tags={tags}
+          />
+        </>
+      )}
     </>
   );
 };

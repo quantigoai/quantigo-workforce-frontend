@@ -1,12 +1,3 @@
-/*
- * Filename: /home/tanzim/WorkStation/wmpv2/src/components/BenchMarkNew/SingleBenchmarkNew.jsx
- * Path: /home/tanzim/WorkStation/wmpv2
- * Created Date: Monday, March 27th 2023, 12:43:41 am
- * Author: Tanzim Ahmed
- *
- * Copyright (c) 2023 Tanzim Ahmed
- */
-
 import {
   Box,
   Grid,
@@ -35,8 +26,7 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
+      {...other}>
       {value === index && (
         <Box sx={{ p: 3 }}>
           <Typography>{children}</Typography>
@@ -68,7 +58,7 @@ const SingleBenchmarkNew = () => {
   };
 
   const paperStyleList = {
-    width: "80vw",
+    width: "100%",
   };
 
   return (
@@ -83,117 +73,152 @@ const SingleBenchmarkNew = () => {
       {benchMark && Object.keys(benchMark).length > 0 && (
         <>
           <Paper elevation={0} style={paperStyleList}>
-            <Grid
-              container
-              sx={{ paddingLeft: "4%", paddingRight: "4%", paddingTop: "2%" }}
-            >
-              <Grid xs={12}>
-                <Box sx={{ width: "100%" }}>
-                  <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                    <Tabs
-                      value={value}
-                      onChange={handleChange}
-                      aria-label="basic tabs example"
-                    >
-                      <Tab label="Class" {...a11yProps(0)} />
-                      <Tab label="Tag" {...a11yProps(1)} />
-                      <Tab label="Image" {...a11yProps(2)} />
-                    </Tabs>
-                  </Box>
-                  <TabPanel value={value} index={0}>
-                    <TableContainer>
-                      <Table aria-label="simple table">
-                        <TableHead>
-                          <TableRow>
-                            <TableCell>SL No.</TableCell>
-                            <TableCell align="left">Title</TableCell>
-                            <TableCell align="left">Time (Second)</TableCell>
-                            <TableCell align="left">Count (Avg)</TableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {benchMark?.classesBenchMark.map((row, i) => (
-                            <TableRow
-                              key={row.title}
-                              sx={{
-                                "&:last-child td, &:last-child th": {
-                                  border: 0,
-                                },
-                              }}
-                            >
-                              <TableCell align="left">{i + 1}</TableCell>
+            <Box sx={{ width: "100%", paddingTop: "1%" }}>
+              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                <Tabs
+                  value={value}
+                  onChange={handleChange}
+                  variant="fullWidth"
+                  indicatorColor="primary"
+                  textColor="primary"
+                  sx={{
+                    width: "100%",
+                    display: "flex",
+                  }}>
+                  <Tab label="Class" {...a11yProps(0)} />
+                  <Tab label="Tag" {...a11yProps(1)} />
+                  <Tab label="Image" {...a11yProps(2)} />
+                </Tabs>
+              </Box>
+              <TabPanel value={value} index={0}>
+                <TableContainer>
+                  <Table sx={{ border: "1px solid #DADCDF" }}>
+                    <TableHead sx={{ background: "#F8F8F8", height: "70px" }}>
+                      <TableRow>
+                        <TableCell
+                          align="left"
+                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          SL No.
+                        </TableCell>
+                        <TableCell
+                          align="center"
+                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          Title
+                        </TableCell>
+                        <TableCell
+                          align="center"
+                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          Time (Second)
+                        </TableCell>
+                        <TableCell
+                          align="center"
+                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          Count (Avg)
+                        </TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {benchMark?.classesBenchMark.map((row, i) => (
+                        <TableRow
+                          key={row.title}
+                          sx={{
+                            "&:last-child td, &:last-child th": {
+                              border: 0,
+                            },
+                          }}>
+                          <TableCell align="left">{i + 1}</TableCell>
 
-                              <TableCell align="left">{row.title}</TableCell>
-                              <TableCell align="left">{row.value}</TableCell>
-                              <TableCell align="left">
-                                {row.averageCount}
-                              </TableCell>
-                            </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </TableContainer>
-                  </TabPanel>
-                  <TabPanel value={value} index={1}>
-                    <TableContainer>
-                      <Table aria-label="simple table">
-                        <TableHead>
-                          <TableRow>
-                            <TableCell>SL No.</TableCell>
-                            <TableCell align="left">Title</TableCell>
-                            <TableCell align="left">Time (Second)</TableCell>
-                            <TableCell align="left">Count (Avg)</TableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {benchMark?.tagsBenchMark.map((row, i) => (
-                            <TableRow
-                              key={row.name}
-                              sx={{
-                                "&:last-child td, &:last-child th": {
-                                  border: 0,
-                                },
-                              }}
-                            >
-                              <TableCell align="left">{i + 1}</TableCell>
-                              <TableCell align="left">{row.name}</TableCell>
-                              <TableCell align="left">{row.value}</TableCell>
-                              <TableCell align="left">
-                                {row.averageCount}
-                              </TableCell>
-                            </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </TableContainer>
-                  </TabPanel>
-                  <TabPanel value={value} index={2}>
-                    <TableContainer>
-                      <Table aria-label="simple table">
-                        <TableHead>
-                          <TableRow>
-                            <TableCell>SL No.</TableCell>
-                            <TableCell align="left">Observation Time</TableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          <TableRow
-                            sx={{
-                              "&:last-child td, &:last-child th": { border: 0 },
-                            }}
-                          >
-                            <TableCell align="left">1</TableCell>
-                            <TableCell align="left">
-                              {benchMark.imageBenchMark.value}
-                            </TableCell>
-                          </TableRow>
-                        </TableBody>
-                      </Table>
-                    </TableContainer>
-                  </TabPanel>
-                </Box>
-              </Grid>
-            </Grid>
+                          <TableCell align="center">{row.title}</TableCell>
+                          <TableCell align="center">{row.value}</TableCell>
+                          <TableCell align="center">
+                            {row.averageCount}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </TabPanel>
+              <TabPanel value={value} index={1}>
+                <TableContainer>
+                  <Table sx={{ border: "1px solid #DADCDF" }}>
+                    <TableHead sx={{ background: "#F8F8F8", height: "70px" }}>
+                      <TableRow>
+                        <TableCell
+                          align="left"
+                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          SL No.
+                        </TableCell>
+                        <TableCell
+                          align="center"
+                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          Title
+                        </TableCell>
+                        <TableCell
+                          align="center"
+                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          Time (Second)
+                        </TableCell>
+                        <TableCell
+                          align="center"
+                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          Count (Avg)
+                        </TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {benchMark?.tagsBenchMark.map((row, i) => (
+                        <TableRow
+                          key={row.name}
+                          sx={{
+                            "&:last-child td, &:last-child th": {
+                              border: 0,
+                            },
+                          }}>
+                          <TableCell align="left">{i + 1}</TableCell>
+                          <TableCell align="center">{row.name}</TableCell>
+                          <TableCell align="center">{row.value}</TableCell>
+                          <TableCell align="center">
+                            {row.averageCount}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </TabPanel>
+              <TabPanel value={value} index={2}>
+                <TableContainer>
+                  <Table sx={{ border: "1px solid #DADCDF" }}>
+                    <TableHead sx={{ background: "#F8F8F8", height: "70px" }}>
+                      <TableRow>
+                        <TableCell
+                          align="center"
+                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          SL No.
+                        </TableCell>
+                        <TableCell
+                          align="center"
+                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                          Observation Time
+                        </TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      <TableRow
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}>
+                        <TableCell align="center">1</TableCell>
+                        <TableCell align="center">
+                          {benchMark.imageBenchMark.value}
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </TabPanel>
+            </Box>
           </Paper>
         </>
       )}

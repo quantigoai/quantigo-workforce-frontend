@@ -98,7 +98,7 @@ const StatusChip = () => {
           status.value !== "reviewing"
         );
       });
-      console.log(x)
+   
       setUpdatedStatus(x);
     }
     if (location.pathname === "/jobs/archivejobs") {
@@ -111,11 +111,11 @@ const StatusChip = () => {
           status.value !== "reviewing"
         );
       });
-      console.log(x)
+   
       setUpdatedStatus(x);
     }
   }, [location.pathname]);
-console.log(updatedStatus)
+
   const handleClick = (e) => {
     if (isClicked === e) {
       setIsClicked("");

@@ -484,7 +484,6 @@ const jobSlice = createSlice({
       .addCase(takeJobForReviewer.fulfilled, (state, action) => {
         state.isLoading = false;
         if (action.payload.status === 200) {
-          console.log("hiyyy");
           state.jobs = state.jobs.filter(
             (item) => item.job.id._id !== action.payload.data.assignedJob.job.id
           );
@@ -578,7 +577,7 @@ const jobSlice = createSlice({
       .addCase(pauseResumeJobs.rejected, (state) => {
         state.isLoading = false;
       })
-      .addCase(addUserToATeam.pending, (state ) => {
+      .addCase(addUserToATeam.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(addUserToATeam.fulfilled, (state) => {

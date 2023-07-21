@@ -28,10 +28,7 @@ const intermediateStyle = {
   borderRadius: "100px",
 };
 const CourseLevelChip = ({ level }) => {
-  console.log(
-    "🚀 ~ file: CourseLevelChip.jsx:5 ~ CourseLevelChip ~ level:",
-    level
-  );
+  
   let style = {};
 
   switch (level) {

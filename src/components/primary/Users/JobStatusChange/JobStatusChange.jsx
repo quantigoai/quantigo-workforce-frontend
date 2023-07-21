@@ -34,7 +34,7 @@ const JobStatusChange = ({ user }) => {
         updatedJobLimit: jobLimit,
       },
     };
-    console.log(data);
+    
     dispatch(UnblockJobsForUser(data)).then((action) => {
       if (action.payload?.status === 200) {
         alert.show(

@@ -4,10 +4,7 @@ import { getType } from "../../../features/slice/ProjectDirectory";
 import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 const SampleExampleField = ({ setIndustryType, industryType, item }) => {
-  console.log(
-    "🚀 ~ file: SampleExampleField.jsx:7 ~ SampleExampleField ~ item:",
-    item
-  );
+  
   const [industryAllType, setIndustryAllType] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {

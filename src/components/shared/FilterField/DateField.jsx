@@ -38,7 +38,6 @@ const DateField = () => {
     setProjectIdFilter,
     projectIdFilter,
   ] = useOutletContext();
-  // const [dateValue, setDateValue] = React.useState(null);
   const [dob, setDob] = useState("");
 
   const handleDate = (newValue) => {
@@ -47,7 +46,7 @@ const DateField = () => {
     setDob(dateValue);
     setDate(x);
   };
-console.log(dateValue)
+
   return (
     <>
       <FormControl fullWidth sx={{ backgroundColor: "#FFFFFF" }}>

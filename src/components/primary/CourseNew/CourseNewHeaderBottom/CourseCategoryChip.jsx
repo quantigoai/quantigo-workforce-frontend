@@ -3,10 +3,7 @@ import React from "react";
 import categoryIcon from "../../../../assets/images/categorysvg.svg";
 import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 const CourseCategoryChip = ({ category }) => {
-  console.log(
-    "🚀 ~ file: CourseCategoryChip.jsx:5 ~ CourseCategoryChip ~ category:",
-    category
-  );
+ 
   return (
     <>
       <Grid container>

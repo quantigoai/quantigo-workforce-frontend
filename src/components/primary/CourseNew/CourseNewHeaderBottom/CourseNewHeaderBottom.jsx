@@ -8,10 +8,7 @@ import CoursePrerequisiteChip from "./CoursePrerequisiteChip";
 import CourseSkillChip from "./CourseSkillChip";
 
 const CourseNewHeaderBottom = ({ course }) => {
-  console.log(
-    "🚀 ~ file: CourseNewHeaderBottom.jsx:11 ~ CourseNewHeaderBottom ~ course:",
-    course
-  );
+  
   return (
     <>
       <Grid container>

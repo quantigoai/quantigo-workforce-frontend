@@ -58,7 +58,7 @@ const UpdateProjectDirectory = ({ item }) => {
       data,
       id: item._id,
     };
-    console.log(finalData);
+    
     dispatch(updateProjectDirectory(finalData)).then((action) => {
       if (action?.payload?.status === 200) {
         setOpenModal(false);

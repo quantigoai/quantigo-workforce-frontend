@@ -13,12 +13,11 @@
  * ------------------------
  */
 
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {realToken} from "../../helper/lib";
+import { realToken } from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
-const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 
 const initialState = {
   isLoading: false,
@@ -30,6 +29,7 @@ export const syncATeam = createAsyncThunk("sync/team", async (data) => {
   const { server_agent, teamId } = data;
   return axios.post(
     `${url}/spv/projects/syncserver/${server_agent}/${teamId}`,
+    {},
     {
       headers: {
         Authorization: `Bearer ${realToken()}`,

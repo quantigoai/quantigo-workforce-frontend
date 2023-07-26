@@ -17,7 +17,6 @@ import axios from "axios";
 import { realToken } from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
-const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 
 const REACT_SUPERVISLY_API_KEY = import.meta.env
   .VITE_APP_QUANTIGO_SUPERADMIN_KEY;

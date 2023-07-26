@@ -2,8 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const url = "https://centralprojectdirectory.as.r.appspot.com";
-// const url = import.meta.env.VITE_APP_SERVER_URL;
-// const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 
 const initialState = {
   isLoading: false,
@@ -198,7 +196,7 @@ const ProjectDirectory = createSlice({
       .addCase(getType.pending, (state) => {
         state.isLoading = false;
       })
-      .addCase(getType.fulfilled, (state, action) => {
+      .addCase(getType.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
@@ -208,7 +206,7 @@ const ProjectDirectory = createSlice({
       .addCase(getIndustryType.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getIndustryType.fulfilled, (state, action) => {
+      .addCase(getIndustryType.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
@@ -218,7 +216,7 @@ const ProjectDirectory = createSlice({
       .addCase(getClientAliases.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getClientAliases.fulfilled, (state, action) => {
+      .addCase(getClientAliases.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })
@@ -236,7 +234,7 @@ const ProjectDirectory = createSlice({
         ];
         state.error = null;
       })
-      .addCase(createProjectDirectory.rejected, (state, action) => {
+      .addCase(createProjectDirectory.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(updateProjectDirectory.pending, (state) => {
@@ -253,7 +251,7 @@ const ProjectDirectory = createSlice({
         });
         state.error = null;
       })
-      .addCase(updateProjectDirectory.rejected, (state, action) => {
+      .addCase(updateProjectDirectory.rejected, (state) => {
         state.isLoading = false;
       });
   },

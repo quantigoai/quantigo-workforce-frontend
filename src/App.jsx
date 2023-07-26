@@ -31,16 +31,16 @@ import {
 import socketHandlers from "./socketHandlers";
 
 import CryptoJS from "crypto-js";
-import { updateDashboardData } from "./features/slice/dashboardSlice";
+import { updateProjectDirectoryData } from "./features/slice/ProjectDirectory";
 import { updateBenchmarkData } from "./features/slice/benchMarkSlice";
 import { updateCourseData } from "./features/slice/courseSlice";
-import { updateTeamData } from "./features/slice/teamSlice";
+import { updateDashboardData } from "./features/slice/dashboardSlice";
 import { updateDatasetData } from "./features/slice/datasetSlice";
-import { updateWorkSpaceData } from "./features/slice/workSpaceSlice";
-import { updateProjectDirectoryData } from "./features/slice/ProjectDirectory";
-import { updateQuizData } from "./features/slice/quizSlice";
 import { updateProjectData } from "./features/slice/projectByWorkspaceSlice";
+import { updateQuizData } from "./features/slice/quizSlice";
 import { updateSkillData } from "./features/slice/skillSlice";
+import { updateTeamData } from "./features/slice/teamSlice";
+import { updateWorkSpaceData } from "./features/slice/workSpaceSlice";
 
 const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 export const socket = io(import.meta.env.VITE_APP_SOCKET_SERVER_URL);
@@ -182,7 +182,7 @@ function App() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(deleteBefore15DaysNotifications()).then((res) => {
+      dispatch(deleteBefore15DaysNotifications()).then(() => {
         dispatch(getAllNotifications());
         dispatch(getLatestNotifications());
         dispatch(getAllUnreadNotifications());

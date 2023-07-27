@@ -35,6 +35,7 @@ import PasswordField from "./PasswordField";
 import PhoneNumberfield from "./PhoneNumberfield";
 import { UserNameField } from "./UserNameField";
 import UserPhoneNumberField from "./UserPhoneNumberField";
+import LastNameField from "./LastNameField";
 
 const ButtonStyle = styled(Button)({
   backgroundColor: "#2D58FF",
@@ -66,7 +67,8 @@ const InputFields = ({
   setIsRegister,
   isFieldValid,
   isPhoneNumberCheck,
-  handleName,
+  handleFirstName,
+  handleLastName,
   handleEmail,
   handlePassword,
   handlePhoneNumber,
@@ -84,7 +86,8 @@ const InputFields = ({
   setGender,
   handleUserPhoneNumber,
   userPhoneNumber,
-  isUserPhoneNumberCheck
+  isUserPhoneNumberCheck,
+  lastName
 }) => {
   const [value, setValue] = React.useState(null);
   // const [isRegister, setIsRegister] = useState(false);
@@ -165,8 +168,13 @@ const InputFields = ({
         </Grid>
 
         {isSignup && !isRegister && (
-          <Grid item xs={12} sx={{ paddingBottom: "4%" }}>
-            <NameField name={name} handleName={handleName} />
+          <Grid container sx={{ paddingBottom: "4%" }}>
+            <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+              <NameField name={name} handleFirstName={handleFirstName} />
+            </Grid>
+            <Grid item xs={6}>
+              <LastNameField lastName={lastName} handleLastName={handleLastName} />
+            </Grid>
           </Grid>
         )}
         {!isRegister && (
@@ -431,7 +439,7 @@ const InputFields = ({
                       !isPhoneNumberCheck ||
                       !phone ||
                       !gender ||
-                      !isUserPhoneNumberCheck||
+                      !isUserPhoneNumberCheck ||
                       isError
                     }
                     fullWidth

@@ -22,16 +22,14 @@ import {
   TableHead,
   TableRow,
   Typography,
-  styled
+  styled,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { CSVLink } from "react-csv";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivePath } from "../../../features/slice/activePathSlice";
-import {
-  calculateAnnotation
-} from "../../../features/slice/benchMarkSlice";
+import { calculateAnnotation } from "../../../features/slice/benchMarkSlice";
 import { getDataSetByProjectID } from "../../../features/slice/datasetSlice";
 import { getProjectByWorkSpace } from "../../../features/slice/projectByWorkspaceSlice";
 import { getAllTeams } from "../../../features/slice/teamSlice";
@@ -79,7 +77,6 @@ const CalculateAnnotations = () => {
   );
 
   const handleSearch = (e) => {
-    
     setSearch(e.target.value);
   };
 
@@ -139,6 +136,7 @@ const CalculateAnnotations = () => {
         val.toLowerCase().includes(search.toLowerCase())
     )
   );
+  const [cvButton, setCsvButton] = useState(false);
   useEffect(() => {
     setAnnotationCsv([
       userName.map((item) => {
@@ -153,10 +151,13 @@ const CalculateAnnotations = () => {
         return data;
       }),
     ]);
-   
-  }, [totalAnnotationsCount]);
+  }, [cvButton, userName]);
+  const handlebuttoncsv = () => {
+    setCsvButton(true);
+  };
   const popperOpen = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
+  console.log(annotationCsv[0]?.length);
   return (
     <>
       <Box
@@ -234,6 +235,7 @@ const CalculateAnnotations = () => {
                       filename={"Annotation.csv"}>
                       <ButtonStyle
                         variant="outlined"
+                        onClick={() => handlebuttoncsv()}
                         // onMouseOver={handleMouseOver}
                         // onMouseOut={handleMouseOut}
                       >
@@ -331,70 +333,99 @@ const CalculateAnnotations = () => {
                   </TableBody>
                 ) : (
                   <>
-                    {annotationCsv[0]?.length > 0 ? (
-                      filtered.map((user, index) => (
-                        <>
-                          <TableBody>
-                            <TableRow key={index}>
-                              <TableCell align="left"> {index + 1}</TableCell>
-                              <TableCell align="center">
-                                {user.QAI_ID}
-                              </TableCell>
-                              {/* <TableCell align='left'> </TableCell> */}
-                              <TableCell align="center">
-                                {user.NO_Of_Tags}
-                              </TableCell>
-                              <TableCell align="center">
-                                {user.No_of_Objects}
-                              </TableCell>
-                              <TableCell align="center">
-                                {user.Effective_Work_hour}
-                              </TableCell>
-                              <TableCell align="right">
-                                {user.Effective_Work_Second}
-                              </TableCell>
-                            </TableRow>
-                          </TableBody>
-                        </>
-                      ))
-                    ) : (
-                      // userName.map((user, index) => (
-                      //   <>
-                      //     <TableBody>
-                      //       <TableRow key={index}>
-                      //         <TableCell align="left"> {index + 1}</TableCell>
-                      //         <TableCell align="center">{user}</TableCell>
-                      //         {/* <TableCell align='left'> </TableCell> */}
-                      //         <TableCell align="center">
-                      //           {totalAnnotationsCount.tags
-                      //             ? totalAnnotationsCount.tags[user] || 0
-                      //             : 0}
-                      //         </TableCell>
-                      //         <TableCell align="center">
-                      //           {totalAnnotationsCount.classes
-                      //             ? totalAnnotationsCount.classes[user] || 0
-                      //             : 0}
-                      //         </TableCell>
-                      //         <TableCell align="center">
-                      //           {classes[user] / 3600}
-                      //         </TableCell>
-                      //         <TableCell align="right">
-                      //           {classes[user]}
-                      //         </TableCell>
-                      //       </TableRow>
-                      //     </TableBody>
-                      //   </>
-                      // ))
-
+                    {userName.map((user, index) => (
                       <>
                         <TableBody>
-                          <Grid container sx={{ justifyContent: "center" }}>
-                            {/* <Typography variant="h5">Not Found</Typography> */}
-                          </Grid>
+                          <TableRow key={index}>
+                            <TableCell align="left"> {index + 1}</TableCell>
+                            <TableCell align="center">{user}</TableCell>
+                            {/* <TableCell align='left'> </TableCell> */}
+                            <TableCell align="center">
+                              {totalAnnotationsCount.tags
+                                ? totalAnnotationsCount.tags[user] || 0
+                                : 0}
+                            </TableCell>
+                            <TableCell align="center">
+                              {totalAnnotationsCount.classes
+                                ? totalAnnotationsCount.classes[user] || 0
+                                : 0}
+                            </TableCell>
+                            <TableCell align="center">
+                              {classes[user] / 3600}
+                            </TableCell>
+                            <TableCell align="center">
+                              {classes[user]}
+                            </TableCell>
+                          </TableRow>
                         </TableBody>
                       </>
-                    )}
+                    ))}
                   </>
+                  // <>
+                  //   {annotationCsv[0]?.length > 0 ? (
+                  //     filtered.map((user, index) => (
+                  //       <>
+                  //         <TableBody>
+                  //           <TableRow key={index}>
+                  //             <TableCell align="left"> {index + 1}</TableCell>
+                  //             <TableCell align="center">
+                  //               {user.QAI_ID}
+                  //             </TableCell>
+                  //             {/* <TableCell align='left'> </TableCell> */}
+                  //             <TableCell align="center">
+                  //               {user.NO_Of_Tags}
+                  //             </TableCell>
+                  //             <TableCell align="center">
+                  //               {user.No_of_Objects}
+                  //             </TableCell>
+                  //             <TableCell align="center">
+                  //               {user.Effective_Work_hour}
+                  //             </TableCell>
+                  //             <TableCell align="right">
+                  //               {user.Effective_Work_Second}
+                  //             </TableCell>
+                  //           </TableRow>
+                  //         </TableBody>
+                  //       </>
+                  //     ))
+                  //   ) : (
+                  //     // userName.map((user, index) => (
+                  //     //   <>
+                  //     //     <TableBody>
+                  //     //       <TableRow key={index}>
+                  //     //         <TableCell align="left"> {index + 1}</TableCell>
+                  //     //         <TableCell align="center">{user}</TableCell>
+                  //     //         {/* <TableCell align='left'> </TableCell> */}
+                  //     //         <TableCell align="center">
+                  //     //           {totalAnnotationsCount.tags
+                  //     //             ? totalAnnotationsCount.tags[user] || 0
+                  //     //             : 0}
+                  //     //         </TableCell>
+                  //     //         <TableCell align="center">
+                  //     //           {totalAnnotationsCount.classes
+                  //     //             ? totalAnnotationsCount.classes[user] || 0
+                  //     //             : 0}
+                  //     //         </TableCell>
+                  //     //         <TableCell align="center">
+                  //     //           {classes[user] / 3600}
+                  //     //         </TableCell>
+                  //     //         <TableCell align="right">
+                  //     //           {classes[user]}
+                  //     //         </TableCell>
+                  //     //       </TableRow>
+                  //     //     </TableBody>
+                  //     //   </>
+                  //     // ))
+
+                  //     <>
+                  //       <TableBody>
+                  //         <Grid container sx={{ justifyContent: "center" }}>
+                  //           {/* <Typography variant="h5">Not Found</Typography> */}
+                  //         </Grid>
+                  //       </TableBody>
+                  //     </>
+                  //   )}
+                  // </>
                 )}
               </Table>
             </TableContainer>

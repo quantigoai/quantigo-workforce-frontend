@@ -6,10 +6,10 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {TextField} from "@mui/material";
+import { TextField } from "@mui/material";
 import React from "react";
 
-const NameField = ({ name, handleName }) => {
+const NameField = ({ name, handleFirstName }) => {
   return (
     <>
       <TextField
@@ -19,10 +19,10 @@ const NameField = ({ name, handleName }) => {
         // autocapitalize="word"
         sx={{ backgroundColor: "#FFFFFF" }}
         id="filled-basic"
-        label="Name"
+        label="First Name"
         variant="filled"
         autoComplete="off"
-        onChange={(e) => handleName(e.target.value)}
+        onChange={(e) => handleFirstName(e.target.value)}
       />
     </>
   );

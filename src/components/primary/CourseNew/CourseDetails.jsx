@@ -10,9 +10,9 @@
 import { Box, Grid, Paper } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import { setActiveChapterIndex } from "../../../features/slice/activePathSlice";
-import { getAChapterById } from "../../../features/slice/courseSlice";
+import { getAChapterById, getACourseByID } from "../../../features/slice/courseSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import CourseDrawer from "./CourseDrawer";
 import CommonHeaderForCourse from "../../shared/CustomComponenet/CommonHeader/CommonHeaderForCourse";
@@ -22,11 +22,18 @@ const CourseDetails = () => {
   const { course, courseChapter, isLoading } = useSelector(
     (state) => state.course
   );
-
+  const params = useParams();
   const dispatch = useDispatch();
   const location = useLocation();
   const [isInContent, setIsInContent] = React.useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!course._id) {
+      dispatch(getACourseByID(params.id));
+    }
+    // navigate(`/course-details/${course._id}/index`);
+  }, []);
 
   useEffect(() => {
     navigate(`/course-details/${course._id}/index`);

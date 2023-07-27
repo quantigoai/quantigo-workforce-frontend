@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   FormControl,
   Grid,
   InputLabel,
@@ -40,14 +39,6 @@ import InnerTable from "./InnerTable";
 
 import ProjectSearchIndex from "./ProjectSearch/ProjectSearchIndex";
 
-const ButtonStyle = styled(Button)({
-  // backgroundColor: "#2D58FF",
-  // color: "#FFFFFF",
-  "&:hover": {
-    backgroundColor: "#FF9A45",
-    color: "#1D1D1D",
-  },
-});
 const CustomDownArrow = styled(KeyboardArrowDownIcon)({
   color: "rgba(45, 88, 255, 1)",
   marginRight: "10px",
@@ -70,10 +61,10 @@ const paperStyle = {
 };
 
 const ProjectList = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const { teams } = useSelector((state) => state.team);
   const { workspaces } = useSelector((state) => state.workspace);
-  const { projects } = useSelector((state) => state.project);
+  const { projects, isLoading } = useSelector((state) => state.project);
   const { datasets } = useSelector((state) => state.dataset);
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -187,9 +178,7 @@ const ProjectList = () => {
       server_agent: server,
     };
     setWorkSpaceId(e.target.value);
-    dispatch(getProjectByWorkSpace(data)).then((res) => {
-      setIsLoading(false);
-    });
+    dispatch(getProjectByWorkSpace(data));
   };
   const handleStatusProject = (e) => {
     setProjectStatus(e.target.value);
@@ -276,8 +265,7 @@ const ProjectList = () => {
             marginLeft: "0%",
             display: "flex",
           }}
-          container
-        >
+          container>
           <Typography variant="h4" style={{ color: "#090080" }}>
             Projects
           </Typography>
@@ -299,8 +287,7 @@ const ProjectList = () => {
               paddingLeft: "3%",
               paddingRight: "3%",
               paddingBottom: "1%",
-            }}
-          >
+            }}>
             <Grid item xs={4} sx={{ paddingRight: "1%" }}>
               <FormControl
                 variant="filled"
@@ -311,8 +298,7 @@ const ProjectList = () => {
                   borderRadius: "4px",
                   // width: "238.5px",
                   height: "58px",
-                }}
-              >
+                }}>
                 <InputLabel id="demo-simple-select-filled-label">
                   Server
                 </InputLabel>
@@ -321,8 +307,7 @@ const ProjectList = () => {
                   id="demo-simple-select-filled"
                   defaultValue={"ag"}
                   IconComponent={() => <CustomDownArrow />}
-                  onChange={(e) => handleChangeServer(e)}
-                >
+                  onChange={(e) => handleChangeServer(e)}>
                   <MenuItem value={"quantigo"}>Quantigo Server</MenuItem>
                   <MenuItem value={"ag"}>Ag Server</MenuItem>
                 </Select>
@@ -340,8 +325,7 @@ const ProjectList = () => {
                   borderRadius: "4px",
                   // width: "238.5px",
                   height: "58px",
-                }}
-              >
+                }}>
                 <InputLabel id="demo-simple-select-label">Team</InputLabel>
                 {teams.length > 0 && (
                   <Select
@@ -350,8 +334,7 @@ const ProjectList = () => {
                     defaultValue=""
                     IconComponent={() => <CustomDownArrow />}
                     onChange={(e) => handleChangeTeam(e)}
-                    label="Team"
-                  >
+                    label="Team">
                     {teams.map((team) => (
                       <MenuItem key={team._id} value={team.id || ""}>
                         {team.name}
@@ -373,8 +356,7 @@ const ProjectList = () => {
                     borderRadius: "4px",
                     // width: "238.5px",
                     height: "58px",
-                  }}
-                >
+                  }}>
                   <InputLabel id="demo-simple-select-label">
                     Work Space{" "}
                   </InputLabel>
@@ -383,13 +365,11 @@ const ProjectList = () => {
                       onChange={(e) => handleChangeWorkspace(e)}
                       label="workspace"
                       IconComponent={() => <CustomDownArrow />}
-                      defaultValue={""}
-                    >
+                      defaultValue={""}>
                       {workspaces.map((workspace) => (
                         <MenuItem
                           key={workspace._id}
-                          value={workspace.id || ""}
-                        >
+                          value={workspace.id || ""}>
                           {workspace.name}
                         </MenuItem>
                       ))}
@@ -411,23 +391,7 @@ const ProjectList = () => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "0%",
-              }}
-            >
-              {/* <TextField
-                fullWidth
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SvgIcon fontSize="small" color="action">
-                        <SearchIcon />
-                      </SvgIcon>
-                    </InputAdornment>
-                  ),
-                }}
-                placeholder="Search a Project"
-                variant="outlined"
-                onChange={handleChange}
-              /> */}
+              }}>
               <ProjectSearchIndex
                 anchorEl={anchorEl}
                 placeholder="Search Project"
@@ -449,8 +413,7 @@ const ProjectList = () => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "2%",
-              }}
-            >
+              }}>
               {!isLoading && (
                 <Grid container>
                   <TableContainer component={Paper}>

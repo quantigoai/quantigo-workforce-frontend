@@ -1,13 +1,11 @@
 import { Box } from "@mui/material";
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
-import { useEffect } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import io from "socket.io-client";
 import "./App.css";
 import Routers from "./components/primary/Routers/Routers";
-import RoutersLogin from "./components/primary/Routers/RoutersLogin";
-import Layout from "./components/shared/Layout/Layout";
 import {
   availableJobsForReviewer,
   getAllAssignedJob,
@@ -29,8 +27,15 @@ import {
   updateSingleUserManually,
 } from "./features/slice/userSlice";
 import socketHandlers from "./socketHandlers";
+// import RoutersLogin from "./components/primary/Routers/RoutersLogin";
+const RoutersLogin = lazy(() =>
+  import("./components/primary/Routers/RoutersLogin")
+);
+// import Layout from "./components/shared/Layout/Layout";
+const Layout = lazy(() => import("./components/shared/Layout/Layout"));
 
 import CryptoJS from "crypto-js";
+import LoadingComponent from "./components/shared/Loading/LoadingComponent";
 import { updateProjectDirectoryData } from "./features/slice/ProjectDirectory";
 import { updateBenchmarkData } from "./features/slice/benchMarkSlice";
 import { updateCourseData } from "./features/slice/courseSlice";
@@ -193,11 +198,15 @@ function App() {
   return (
     <Box className="App">
       {isLoggedIn ? (
-        <Layout>
-          <Routers />
-        </Layout>
+        <Suspense fallback={<LoadingComponent />}>
+          <Layout>
+            <Routers />
+          </Layout>
+        </Suspense>
       ) : (
-        <RoutersLogin />
+        <Suspense fallback={<LoadingComponent />}>
+          <RoutersLogin />
+        </Suspense>
       )}
     </Box>
   );

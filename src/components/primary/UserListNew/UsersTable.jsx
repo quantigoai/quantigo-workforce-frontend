@@ -187,7 +187,6 @@ const UsersTable = (props) => {
                 ) : (
                   <StyledTableCell align="center">
                     <UserDetailsIndex user={user} />
-                    {/* {user.verified ? "Verified" : "Unverified"}{" "} */}
                   </StyledTableCell>
                 )}
                 {role === "recruitment_manager" ||

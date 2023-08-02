@@ -27,7 +27,7 @@ const LoadingComponent = () => {
         alt="Loading..."
         style={{
           animation: "fade-in 2s",
-          opacity: 0,
+          opacity: 0, 
         }}
       />
     </Box>

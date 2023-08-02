@@ -7,20 +7,23 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Typography } from "@mui/material";
+import {  Typography } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { styled } from "@mui/material/styles";
-import { useRef } from "react";
+import  { useRef,} from "react";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import NdaAccept from "../Users/NdaAccept/NdaAccept";
 import UserActiveStatueCheck from "../Users/UserActiveCheck/UserActiveStatueCheck";
 import UserDetailsIndex from "../Users/UserDetais/UserDetailsIndex";
 
+
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#5C5CFF",
     color: theme.palette.common.white,
@@ -34,9 +37,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 
 const UsersTable = (props) => {
+
   const { role, rowsPerPage, page, users } = props;
   const tableRef = useRef(null);
-
+ 
   return (
     <>
       <Table sx={{ border: "1px solid #DADCDF" }} ref={tableRef}>
@@ -187,8 +191,10 @@ const UsersTable = (props) => {
                     )}
                   </>
                 ) : (
-                  <StyledTableCell align="center">
-                    <UserDetailsIndex user={user} />
+                  <StyledTableCell align="center" >  
+  
+                    <UserDetailsIndex  user={user} />
+                    
                   </StyledTableCell>
                 )}
                 {role === "recruitment_manager" ||

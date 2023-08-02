@@ -324,6 +324,7 @@ const courseSlice = createSlice({
       .addCase(updateACourseById.pending, (state) => {
         state.isLoading = true;
       })
+      // TODO check if this is working
       .addCase(updateACourseById.fulfilled, (state, action) => {
         state.isLoading = false;
         state.course = action.payload.data;

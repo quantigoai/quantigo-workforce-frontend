@@ -92,7 +92,7 @@ const Layout = ({ children }) => {
   const adminOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "All Users", icon: UserSvg },
-    { name: "All Projects2", icon: UserSvg },
+    { name: "All Projects2", icon: ProjectSvg },
     { name: "Skill", icon: CourseSvg },
     { name: "Projects", icon: ProjectSvg },
     { name: "Course", icon: CourseSvg },
@@ -178,6 +178,7 @@ const Layout = ({ children }) => {
   const devOptions = [
     { name: "Account Activation", icon: DashboardSvg },
     { name: "AllUsers", icon: UserSvg },
+    { name: "All Projects2", icon: ProjectSvg },
     { name: "Annotator List", icon: UserSvg },
     { name: "Archive Job", icon: JobSvg },
     // { name: "Calculate Annotation", icon: HourSvg },

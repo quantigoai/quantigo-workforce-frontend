@@ -32,8 +32,7 @@ import temporaryDataReducer from "../slice/temporaryDataSlice";
 import themeReducer from "../slice/themeSlice";
 import userReducer from "../slice/userSlice";
 import workspaceReducer from "../slice/workSpaceSlice";
-
-
+import projectDrawerReducer from "./projectDrawerSlice";
 const rootPersistConfig = {
   key: "root",
   storage: storage,
@@ -58,6 +57,7 @@ const rootReducers = combineReducers({
   tempData: temporaryDataReducer,
   notification: notificationReducer,
   projectDirectory: projectDirectoryReducer,
+  projectDrawer: projectDrawerReducer,
 });
 
 export { rootPersistConfig, rootReducers };

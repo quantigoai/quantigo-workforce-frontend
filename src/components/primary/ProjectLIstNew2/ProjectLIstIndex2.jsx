@@ -1,10 +1,10 @@
-import { Box, Button, Divider, Grid, IconButton,  Paper, Typography} from '@mui/material';
+import { Box, Button, Grid, IconButton,  Paper,} from '@mui/material';
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
-import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import SortIcon from '@mui/icons-material/Sort';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from "@mui/material/styles";
 import InputBase from '@mui/material/InputBase';
+import CreateProjectDrawer from './CreateProjectDrawer';
 const ProjectLIstIndex2 = () => {
     const CustomFilterIcon = styled(SortIcon)({
         color: "#266AED",
@@ -81,15 +81,10 @@ const ProjectLIstIndex2 = () => {
           >
           <CustomFilterIcon />
         </IconButton>
-        <Grid>
-                  <ButtonStyle
-                    
-                    variant="contained"
-                    type="submit"
-                  >
-                    Create Project
-                  </ButtonStyle>
-                </Grid>
+        
+                <Box>
+                  <CreateProjectDrawer/>
+                </Box>
       
        </Box>
        

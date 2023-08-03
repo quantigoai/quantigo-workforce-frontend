@@ -73,9 +73,9 @@ const dataSetSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(downloadMappingSheet.pending, (state) => {
-        state.isLoading = true;
+        state.isLoading = false;
       })
-      .addCase(downloadMappingSheet.fulfilled, (state, action) => {
+      .addCase(downloadMappingSheet.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
       })

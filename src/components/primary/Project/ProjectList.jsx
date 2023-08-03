@@ -61,7 +61,6 @@ const paperStyle = {
 };
 
 const ProjectList = () => {
-  // const [isLoading, setIsLoading] = useState(true);
   const { teams } = useSelector((state) => state.team);
   const { workspaces } = useSelector((state) => state.workspace);
   const { projects, isLoading } = useSelector((state) => state.project);
@@ -247,7 +246,7 @@ const ProjectList = () => {
 
     dispatch(downloadMappingSheet(data)).then((action) => {
       setDataInCSV(
-        action.payload.data.mappingSheet.mappingData.map(
+        action.payload.data.mappingSheet?.mappingData?.map(
           ({ _id, jobId, ...rest }) => rest
         )
       );

@@ -25,7 +25,7 @@ const ButtonStyle = styled(Button)({
   },
 });
 
-const UserDetailsIndex = ({ user }) => {
+const UserDetailsIndex = ({ user ,openDetails}) => {
   const [openModal, setOpenModal] = React.useState(false);
   const [documentsImage, setDocumentsImage] = useState([]);
   const [documentsType, setDocumentsType] = useState("");
@@ -87,7 +87,8 @@ const UserDetailsIndex = ({ user }) => {
   };
   const handleClose = () => setOpenModal(false);
   const list = (anchor) => (
-    <Box
+   <>
+    { openDetails===true &&<Box
       sx={{
         width: anchor === "top" || anchor === "bottom" ? "auto" : 550,
       }}
@@ -97,7 +98,7 @@ const UserDetailsIndex = ({ user }) => {
         <Grid container>
           <Grid item xs={10}>
             <Typography variant="h6" sx={{ color: "#090080" }}>
-              Details
+              Details 
             </Typography>
           </Grid>
           <Grid item xs={2} sx={{ justifyContent: "right" }}>
@@ -120,7 +121,7 @@ const UserDetailsIndex = ({ user }) => {
                   sx={{ justifyContent: "left", paddingBottom: "2%" }}
                 >
                   <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                    Skill
+                    Skill 
                   </Typography>
                 </Grid>
                 <Grid item xs={7} sx={{ paddingLeft: "5%" }}>
@@ -148,7 +149,7 @@ const UserDetailsIndex = ({ user }) => {
               sx={{ justifyContent: "left", paddingBottom: "2%" }}
             >
               <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                Role
+                Role 
               </Typography>
             </Grid>
             <Grid item xs={7} sx={{ paddingLeft: "5%" }}>
@@ -431,7 +432,9 @@ const UserDetailsIndex = ({ user }) => {
       ) : (
         <></>
       )}
-    </Box>
+    </Box>}
+    </>
+    
   );
 
   return (
@@ -443,7 +446,7 @@ const UserDetailsIndex = ({ user }) => {
               variant="outlined"
               onClick={toggleDrawer(anchor, true)}
             >
-              Details
+              Details 
             </ButtonStyle>
             <Drawer
               anchor={anchor}

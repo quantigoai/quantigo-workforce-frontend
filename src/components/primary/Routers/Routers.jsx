@@ -48,6 +48,8 @@ import UpdateQuiz from "../Quiz/UpdateQuiz";
 import Skills from "../Skill/Skills";
 import UserListIndex from "../UserListNew/UserListIndex";
 import CourseNewDetailsIndex from "../CourseNew/CourseNewDetailsIndex";
+import UserDetailsIndex from "../Users/UserDetais/UserDetailsIndex";
+import ProjectLIstIndex2 from "../ProjectLIstNew2/ProjectLIstIndex2";
 
 const Routers = () => {
   return (
@@ -102,6 +104,11 @@ const Routers = () => {
           path={"/allusers"}
           element={<UserListIndex action={"alluser"} />}
         />
+         <Route
+          path={"/allprojects"}
+          element={<ProjectLIstIndex2 action={"allprojects"} />}
+        />
+         
         <Route
           path={"/users"}
           element={<UserListIndex action={"recruitment_manager"} />}

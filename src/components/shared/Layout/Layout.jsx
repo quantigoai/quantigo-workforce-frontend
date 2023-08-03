@@ -92,6 +92,7 @@ const Layout = ({ children }) => {
   const adminOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "All Users", icon: UserSvg },
+    { name: "All Projects2", icon: ProjectSvg },
     { name: "Skill", icon: CourseSvg },
     { name: "Projects", icon: ProjectSvg },
     { name: "Course", icon: CourseSvg },
@@ -177,6 +178,7 @@ const Layout = ({ children }) => {
   const devOptions = [
     { name: "Account Activation", icon: DashboardSvg },
     { name: "AllUsers", icon: UserSvg },
+    { name: "All Projects2", icon: ProjectSvg },
     { name: "Annotator List", icon: UserSvg },
     { name: "Archive Job", icon: JobSvg },
     // { name: "Calculate Annotation", icon: HourSvg },
@@ -204,9 +206,11 @@ const Layout = ({ children }) => {
     switch (option) {
       case "Dashboard":
         return navigate("/dashboard");
-      case "All Users":
-        return navigate("/allusers");
-      case "Project Directory":
+        case "All Users":
+          return navigate("/allusers");
+          case "All Projects2":
+        return navigate("/allprojects");
+        case "Project Directory":
         return navigate("/projectDirectory");
       case "Users":
         return navigate("/users");

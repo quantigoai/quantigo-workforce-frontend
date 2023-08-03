@@ -157,7 +157,7 @@ const CalculateAnnotations = () => {
   };
   const popperOpen = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
-  console.log(annotationCsv[0]?.length);
+  // console.log(annotationCsv[0]?.length);
   return (
     <>
       <Box

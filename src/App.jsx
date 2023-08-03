@@ -74,6 +74,7 @@ function App() {
     dispatch(setFromPreviousTheme());
   }, []);
 
+  // TODO Need to handle this dynamically
   useEffect(() => {
     if (activePath === "All Users") {
       dispatch(updateDashboardData());

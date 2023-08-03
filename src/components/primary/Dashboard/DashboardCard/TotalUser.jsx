@@ -11,6 +11,7 @@ const TotalUser = () => {
 
   useEffect(() => {
     dispatch(getAllUsers({ limit: 10, skip: 0 }));
+
   }, [dispatch]);
   return (
     !isLoading && (

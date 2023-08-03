@@ -104,11 +104,11 @@ const Routers = () => {
           path={"/allusers"}
           element={<UserListIndex action={"alluser"} />}
         />
-         <Route
+        <Route
           path={"/allprojects"}
           element={<ProjectLIstIndex2 action={"allprojects"} />}
         />
-         
+
         <Route
           path={"/users"}
           element={<UserListIndex action={"recruitment_manager"} />}
@@ -168,7 +168,8 @@ const Routers = () => {
         <Route path={"/show-profile"} element={<EditProfileIndex />}></Route>
         <Route
           path={"/show-all-notification"}
-          element={<AllNotification />}></Route>
+          element={<AllNotification />}
+        ></Route>
         <Route path={"/projectDirectory"} element={<ProjectDirectoryIndex />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>

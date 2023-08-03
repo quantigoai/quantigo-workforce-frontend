@@ -34,6 +34,7 @@ const BgBox = styled(Box)({
 
 const Register = () => {
   const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hub, setHub] = useState("");
@@ -75,13 +76,14 @@ const Register = () => {
       isValidEmail &&
       email.length > 6 &&
       password.length > 5 &&
-      name.length > 0
+      name.length > 0 &&
+      lastName.length > 0
     ) {
       setIsFieldValid(true);
     } else {
       setIsFieldValid(false);
     }
-  }, [name, email, password]);
+  }, [name, email, password, lastName]);
   useEffect(() => {
     if (
       (phone.length === 11 && phone[0] === "0" && phone[1] === "1") ||
@@ -112,8 +114,11 @@ const Register = () => {
     }
   }, [qaiUserName]);
 
-  const handleName = (e) => {
+  const handleFirstName = (e) => {
     setName(capitalizeFirstLetter(e));
+  };
+  const handleLastName = (e) => {
+    setLastName(capitalizeFirstLetter(e));
   };
   const [validUserName, setValidUserName] = useState(false);
   const handleQaiUserName = (e) => {
@@ -149,13 +154,15 @@ const Register = () => {
   const onSubmit = (data) => {
     data.email = email;
     data.password = password;
-    data.name = name;
+    data.name = name.concat(" ", lastName);
+    data.firstName = name;
+    data.lastName = lastName;
     data.qaiUserName = qaiUserName;
     data.gender = gender;
     const qaiCreateData = {
       loginName: data.qaiUserName,
       password: password,
-      name: name,
+      name: name.concat(" ", lastName),
       email: email,
     };
     data.billingAccountNo = phone;
@@ -207,7 +214,8 @@ const Register = () => {
               setHub={setHub}
               email={email}
               setEmail={setEmail}
-              handleName={handleName}
+              handleFirstName={handleFirstName}
+              handleLastName={handleLastName}
               handleEmail={handleEmail}
               handlePassword={handlePassword}
               password={password}
@@ -236,6 +244,7 @@ const Register = () => {
               handleUserPhoneNumber={handleUserPhoneNumber}
               userPhoneNumber={userPhoneNumber}
               isUserPhoneNumberCheck={isUserPhoneNumberCheck}
+              lastName={lastName}
             />
           </form>
         </BgBox>

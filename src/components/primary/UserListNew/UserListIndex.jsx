@@ -62,6 +62,7 @@ const UserListIndex = ({ action }) => {
   const [statusType, setStatusType] = useState("");
   const [isClicked, setIsClicked] = React.useState("");
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [filterData, setFilterData] = React.useState({});
 
   const handleChangeSkills = (event) => {
     const {
@@ -88,15 +89,20 @@ const UserListIndex = ({ action }) => {
       ...(skillColl ? { skills: skillColl } : {}),
       ...(date ? { date } : {}),
     };
+    setFilterData(data);
+    data.limit = rowsPerPage;
+    data.skip = page * rowsPerPage;
     dispatch(getAllUsers(data));
   };
   const handleResetUser = () => {
     setSkill([]);
-    dispatch(getAllUsers());
     setDate("");
     setRoleFilter("");
     setHubFilter("");
     setStatusType("");
+    setFilterData({});
+    setRowsPerPage(10);
+    setPage(0);
   };
 
   const [anchorE2, setAnchorE2] = React.useState(null);
@@ -143,7 +149,13 @@ const UserListIndex = ({ action }) => {
         })
       );
     } else {
-      dispatch(getAllUsers({ limit: rowsPerPage, skip: page * rowsPerPage }));
+      dispatch(
+        getAllUsers({
+          ...filterData,
+          limit: rowsPerPage,
+          skip: page * rowsPerPage,
+        })
+      );
     }
     dispatch(getAllSkills());
   }, [action, rowsPerPage, page, role, dispatch]);

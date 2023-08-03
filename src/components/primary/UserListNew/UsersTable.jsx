@@ -191,10 +191,8 @@ const UsersTable = (props) => {
                     )}
                   </>
                 ) : (
-                  <StyledTableCell align="center" >  
-  
-                    <UserDetailsIndex  user={user} />
-                    
+                  <StyledTableCell align="center">
+                    <UserDetailsIndex user={user} openDetails={true} />
                   </StyledTableCell>
                 )}
                 {role === "recruitment_manager" ||

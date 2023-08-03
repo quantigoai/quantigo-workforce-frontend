@@ -11,7 +11,6 @@ import CourseSvg from "../../../assets/images/wmp_svg/drawer/courseNew.svg";
 // import DashboardSvg from "../../../assets/images/wmp_svg/drawer/dashboard.svg";
 import DashboardSvg from "../../../assets/images/wmp_svg/drawer/u_apps.svg";
 
-import HourSvg from "../../../assets/images/wmp_svg/drawer/hourCalculate.svg";
 import JobSvg from "../../../assets/images/wmp_svg/drawer/jobsNew.svg";
 // import LogoutSvg from "../../../assets/images/wmp_svg/drawer/logout.svg";
 import ProjectSvg from "../../../assets/images/wmp_svg/drawer/projectNew.svg";
@@ -92,7 +91,7 @@ const Layout = ({ children }) => {
   const adminOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "All Users", icon: UserSvg },
-    { name: "All Projects2", icon: ProjectSvg },
+    // { name: "All Projects2", icon: ProjectSvg },
     { name: "Skill", icon: CourseSvg },
     { name: "Projects", icon: ProjectSvg },
     { name: "Course", icon: CourseSvg },
@@ -178,7 +177,7 @@ const Layout = ({ children }) => {
   const devOptions = [
     { name: "Account Activation", icon: DashboardSvg },
     { name: "AllUsers", icon: UserSvg },
-    { name: "All Projects2", icon: ProjectSvg },
+    // { name: "All Projects2", icon: ProjectSvg },
     { name: "Annotator List", icon: UserSvg },
     { name: "Archive Job", icon: JobSvg },
     // { name: "Calculate Annotation", icon: HourSvg },
@@ -206,11 +205,11 @@ const Layout = ({ children }) => {
     switch (option) {
       case "Dashboard":
         return navigate("/dashboard");
-        case "All Users":
-          return navigate("/allusers");
-          case "All Projects2":
+      case "All Users":
+        return navigate("/allusers");
+      case "All Projects2":
         return navigate("/allprojects");
-        case "Project Directory":
+      case "Project Directory":
         return navigate("/projectDirectory");
       case "Users":
         return navigate("/users");
@@ -280,7 +279,8 @@ const Layout = ({ children }) => {
               paddingLeft: "3%",
             },
           }}
-          onClick={() => handleOptionClick(text.name)}>
+          onClick={() => handleOptionClick(text.name)}
+        >
           <ListItemIcon sx={{ color: "#FFFFFF" }}>
             <img src={text.icon} />
           </ListItemIcon>
@@ -307,7 +307,8 @@ const Layout = ({ children }) => {
           },
         }}
         variant="permanent"
-        anchor="left">
+        anchor="left"
+      >
         <DrawerHeader>
           <img
             onClick={() => navigate("/")}
@@ -367,7 +368,8 @@ const Layout = ({ children }) => {
         )}
 
         <DrawerFooter
-          sx={{ paddingLeft: "8%", paddingRight: "5%", paddingBottom: "5%" }}>
+          sx={{ paddingLeft: "8%", paddingRight: "5%", paddingBottom: "5%" }}
+        >
           <GetHelp />
         </DrawerFooter>
       </Drawer>
@@ -380,7 +382,8 @@ const Layout = ({ children }) => {
           // bgcolor: isLightTheme ? "#F5F5F5" : "#000c1f",
           bgcolor: "#F5F5F5",
           height: "100%",
-        }}>
+        }}
+      >
         <Main open={open}>
           <DrawerHeader />
           {isLoggedIn && !isBlocked ? children : <UserBlocked />}

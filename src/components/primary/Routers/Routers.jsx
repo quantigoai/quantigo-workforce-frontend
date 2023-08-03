@@ -104,10 +104,10 @@ const Routers = () => {
           path={"/allusers"}
           element={<UserListIndex action={"alluser"} />}
         />
-         <Route
+         {/* <Route
           path={"/allprojects"}
           element={<ProjectLIstIndex2 action={"allprojects"} />}
-        />
+        /> */}
          
         <Route
           path={"/users"}

@@ -18,7 +18,6 @@ import { realToken } from "../../helper/lib";
 import { calculateProgress } from "../../helper/scoreStore";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
-const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 
 const initialState = {
   isLoading: false,
@@ -325,6 +324,7 @@ const courseSlice = createSlice({
       .addCase(updateACourseById.pending, (state) => {
         state.isLoading = true;
       })
+      // TODO check if this is working
       .addCase(updateACourseById.fulfilled, (state, action) => {
         state.isLoading = false;
         state.course = action.payload.data;

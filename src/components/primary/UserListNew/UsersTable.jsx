@@ -31,6 +31,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
+
+
 const UsersTable = (props) => {
   const { role, rowsPerPage, page, users } = props;
   const tableRef = useRef(null);
@@ -187,7 +189,6 @@ const UsersTable = (props) => {
                 ) : (
                   <StyledTableCell align="center">
                     <UserDetailsIndex user={user} />
-                    {/* {user.verified ? "Verified" : "Unverified"}{" "} */}
                   </StyledTableCell>
                 )}
                 {role === "recruitment_manager" ||

@@ -264,6 +264,17 @@ export const updateAUserById = createAsyncThunk(
   }
 );
 
+export const getAUserById = createAsyncThunk(
+  "getUser/user/Id",
+  async (id) => {
+    return axios.get(`${url}/users/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  }
+);
+
 // Change user Role
 export const changeRole = createAsyncThunk("change/role", async (finalData) => {
   const { id, data } = finalData;

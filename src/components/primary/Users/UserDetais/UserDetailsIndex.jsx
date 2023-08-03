@@ -2,19 +2,19 @@ import { Chip, Grid, styled, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
+import axios from "axios";
 import * as React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import u_multiply from "../../../../assets/images/u_multiply.png";
+import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
+import { realToken } from "../../../../helper/lib";
+import TakenTime from "../../../shared/CountDown/TakenTime";
+import JobStatusChange from "../JobStatusChange/JobStatusChange";
+import NidDetails from "../NidDetals/NidDetails";
 import RoleChange from "../RoleChange/RoleChange";
 import UserSkillChange from "../SkillChange/UserSkillChange";
 import UserStatusChange from "../UserStatusChange/UserStatusChange";
-import NidDetails from "../NidDetals/NidDetails";
-import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
-import TakenTime from "../../../shared/CountDown/TakenTime";
-import axios from "axios";
-import { realToken } from "../../../../helper/lib";
-import JobStatusChange from "../JobStatusChange/JobStatusChange";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -102,7 +102,7 @@ const UserDetailsIndex = ({ user }) => {
           </Grid>
           <Grid item xs={2} sx={{ justifyContent: "right" }}>
             <Button onClick={toggleDrawer(anchor, false)}>
-              <img alt="profilePic" src={u_multiply} />
+              <img alt="cross" src={u_multiply} />
             </Button>
           </Grid>
         </Grid>
@@ -125,7 +125,7 @@ const UserDetailsIndex = ({ user }) => {
                 </Grid>
                 <Grid item xs={7} sx={{ paddingLeft: "5%" }}>
                   <Grid container spacing={1}>
-                    {user.skills.map((item) => (
+                    {user.skills?.map((item) => (
                       <Grid key={item._id} item gap={1}>
                         <Chip
                           sx={{

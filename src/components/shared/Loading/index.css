@@ -1,0 +1,18 @@
+/*
+ * Filename: /home/tanzim/OfficeWorkstation/quantigo-workforce-frontend/src/components/shared/Loading/index.css
+ * Path: /home/tanzim/OfficeWorkstation/quantigo-workforce-frontend
+ * Created Date: Wednesday, August 2nd 2023, 12:45:28 am
+ * Author: Tanzim Ahmed
+ * 
+ * Copyright (c) 2023 Tanzim Ahmed
+ */
+
+
+@keyframes fade-in {
+  from {
+    opacity: 0; 
+  }
+  to {
+    opacity: 1;  
+}
+}

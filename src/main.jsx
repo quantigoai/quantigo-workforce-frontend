@@ -1,13 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
 import { createTheme, ThemeProvider } from "@mui/material";
-import { positions, Provider as AlertProvider, transitions } from "react-alert";
+import React, { lazy, Suspense } from "react";
+import { Provider as AlertProvider, positions, transitions } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
+import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import store from "./features/store/store";
+import LoadingComponent from "./components/shared/Loading/LoadingComponent";
+import { store } from "./features/store/store";
+import "./index.css";
+const App = lazy(() => import("./App.jsx"));
 
 const theme = createTheme({
   typography: {
@@ -83,7 +84,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <AlertProvider template={AlertTemplate} {...options}>
         <Provider store={store}>
           <BrowserRouter>
-            <App />
+            <Suspense fallback={<LoadingComponent />}>
+              <App />
+            </Suspense>
           </BrowserRouter>
         </Provider>
       </AlertProvider>

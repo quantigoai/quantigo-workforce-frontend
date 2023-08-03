@@ -162,9 +162,7 @@ export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
     query += `&skip=0`;
   }
   if (role) {
-    role.map((item) => {
-      query += `&role=${item}`;
-    });
+    query += `&role=${role}`;
   }
   if (hub) {
     query += `&hub=${hub}`;
@@ -264,16 +262,13 @@ export const updateAUserById = createAsyncThunk(
   }
 );
 
-export const getAUserById = createAsyncThunk(
-  "getUser/user/Id",
-  async (id) => {
-    return axios.get(`${url}/users/${id}`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const getAUserById = createAsyncThunk("getUser/user/Id", async (id) => {
+  return axios.get(`${url}/users/${id}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // Change user Role
 export const changeRole = createAsyncThunk("change/role", async (finalData) => {

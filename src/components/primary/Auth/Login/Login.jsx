@@ -6,14 +6,15 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Box} from "@mui/material";
-import {styled} from "@mui/material/styles";
-import {React, useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {login} from "../../../../features/slice/userSlice";
+
+import { Box } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { React, useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { login } from "../../../../features/slice/userSlice";
 import InputFields from "../InputFields/InputFields";
 
 const BgBox = styled(Box)({
@@ -27,12 +28,12 @@ const BgBox = styled(Box)({
 });
 
 const Login = () => {
+  const { error } = useSelector((state) => state.user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const alert = useAlert();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
 
   const {
     register,
@@ -49,7 +50,7 @@ const Login = () => {
         alert.show("Login Successful", { type: "success" });
         navigate("/dashboard");
       } else {
-        alert.show("Login Failed", { type: "error" });
+        alert.show(error, { type: "error" });
       }
     });
   };

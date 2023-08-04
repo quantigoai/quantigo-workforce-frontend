@@ -11,7 +11,7 @@ import { styled } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   checkUserByUserName,
@@ -49,7 +49,7 @@ const Register = () => {
   const [qaiErrorMessage, setQaiErrorMessage] = useState("");
   const [qaiErrorMessageCheck, setQaiErrorMessageCheck] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
-
+  const { error } = useSelector((state) => state.user);
   const {
     register,
     handleSubmit,
@@ -178,12 +178,15 @@ const Register = () => {
           dispatch(createAgUser(qaiCreateData)).then((res) => {
             dispatch(signup(data)).then((action) => {
               if (action.error) {
-                alert.show("User can not Register", { type: "error" });
+                alert.show(error, { type: "error" });
               } else if (action.payload.status === 204) {
-                alert.show("This email address already exists", {
+                alert.show(error, {
                   type: "error",
                 });
-              } else if (action.payload.status === 200 || 201) {
+              } else if (
+                action.payload.status === 200 ||
+                action.payload.status === 201
+              ) {
                 alert.show("User Register Successfully", { type: "success" });
                 navigate("/emailVerification");
               }
@@ -192,8 +195,11 @@ const Register = () => {
         })
       : dispatch(signup(data)).then((action) => {
           if (action.error) {
-            alert.show("User can not Register", { type: "error" });
-          } else if (action.payload?.status === 200 || 201) {
+            alert.show(error, { type: "error" });
+          } else if (
+            action.payload?.status === 200 ||
+            action.payload?.status === 201
+          ) {
             alert.show("User Register Successfully", { type: "success" });
             navigate("/emailVerification");
           }

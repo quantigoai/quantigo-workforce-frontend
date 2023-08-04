@@ -5,6 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { styled } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import CreateProjectDrawer from "./CreateProjectDrawer";
+import DataTable from "./DataTable";
 const ProjectLIstIndex2 = () => {
   const CustomFilterIcon = styled(SortIcon)({
     color: "#266AED",
@@ -85,6 +86,9 @@ const ProjectLIstIndex2 = () => {
             <CreateProjectDrawer />
           </Box>
         </Box>
+      </Box>
+      <Box sx={{ mt: "40px" }}>
+        <DataTable />
       </Box>
     </>
   );

@@ -270,6 +270,7 @@ export default function DataTable() {
   const [myRows, setMyRows] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
+    
     dispatch(getAllProjectDrawers());
   }, []);
 

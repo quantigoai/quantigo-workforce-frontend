@@ -1,9 +1,12 @@
-import { Box, Button, Grid, IconButton, Paper } from "@mui/material";
-import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
-import SortIcon from "@mui/icons-material/Sort";
 import SearchIcon from "@mui/icons-material/Search";
-import { styled } from "@mui/material/styles";
+import SortIcon from "@mui/icons-material/Sort";
+import { Box, Button, Grid, IconButton, Paper } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
+import { styled } from "@mui/material/styles";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setActivePath } from "../../../features/slice/activePathSlice";
+import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import CreateProjectDrawer from "./CreateProjectDrawer";
 import DataTable from "./DataTable";
 const ProjectLIstIndex2 = () => {
@@ -23,6 +26,10 @@ const ProjectLIstIndex2 = () => {
       color: "#1D1D1D",
     },
   });
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setActivePath("All Projects2"));
+  }, []);
 
   return (
     <>

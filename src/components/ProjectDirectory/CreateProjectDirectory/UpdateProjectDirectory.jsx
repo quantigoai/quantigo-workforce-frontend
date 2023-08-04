@@ -9,10 +9,10 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useForm } from "react-hook-form";
-import { updateProjectDirectory } from "../../../features/slice/ProjectDirectory";
 import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { updateProjectDirectory } from "../../../features/slice/ProjectDirectorySlice";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -58,7 +58,7 @@ const UpdateProjectDirectory = ({ item }) => {
       data,
       id: item._id,
     };
-    
+
     dispatch(updateProjectDirectory(finalData)).then((action) => {
       if (action?.payload?.status === 200) {
         setOpenModal(false);
@@ -86,13 +86,15 @@ const UpdateProjectDirectory = ({ item }) => {
             color: "#1D1D1D",
           },
         }}
-        onClick={() => handleUpdateProjectDirectory(item)}>
+        onClick={() => handleUpdateProjectDirectory(item)}
+      >
         <Box
           sx={{
             display: "flex",
             gap: 1,
             justifyContent: "center",
-          }}>
+          }}
+        >
           Update
         </Box>
       </Button>
@@ -102,12 +104,14 @@ const UpdateProjectDirectory = ({ item }) => {
           open={openModal}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description">
+          aria-describedby="modal-modal-description"
+        >
           <Box sx={style}>
             <Paper elevation={5} style={paperstyle} sx={{}}>
               <Grid
                 container
-                sx={{ justifyContent: "center", paddingTop: "1%" }}>
+                sx={{ justifyContent: "center", paddingTop: "1%" }}
+              >
                 <Typography variant="h4">
                   Update Project Directory
                   {/* ({job._id}) */}
@@ -125,7 +129,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.Project_Name}
                       {...register("Project_Name", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                   <Grid item xs={4} sx={{ paddingRight: "2%" }}>
                     <TextField
@@ -137,7 +142,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.Client_Alias}
                       {...register("Client_Alias", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
 
                   <Grid item xs={4} sx={{ paddingRight: "0%" }}>
@@ -150,7 +156,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.Industry}
                       {...register("Industry", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                 </Grid>
                 <Grid container sx={{ padding: "1%" }}>
@@ -164,7 +171,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.Platform}
                       {...register("Platform", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                   <Grid item xs={4} sx={{ paddingRight: "2%" }}>
                     <TextField
@@ -176,7 +184,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.Tool_Type}
                       {...register("Tool_Type", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                   <Grid item xs={4}>
                     <TextField
@@ -188,7 +197,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.PDR}
                       {...register("PDR", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                 </Grid>
                 <Grid container sx={{ padding: "1%" }}>
@@ -202,7 +212,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.Project_Type}
                       {...register("Project_Type", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                   <Grid item xs={4} sx={{ paddingRight: "2%" }}>
                     <TextField
@@ -214,7 +225,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.Action_Items}
                       {...register("Action_Items", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                   <Grid item xs={4} sx={{ paddingRight: "0%" }}>
                     <TextField
@@ -226,7 +238,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.QA_Check_Points}
                       {...register("QA_Check_Points", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                 </Grid>
 
@@ -241,7 +254,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.Obj_Benchmark}
                       {...register("Obj_Benchmark", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                   <Grid item xs={4} sx={{ paddingRight: "2%" }}>
                     <TextField
@@ -253,7 +267,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.Img_Benchmark}
                       {...register("Img_Benchmark", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                   <Grid item xs={4}>
                     <TextField
@@ -265,7 +280,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.Tagging_Benchmark}
                       {...register("Tagging_Benchmark", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                 </Grid>
 
@@ -280,7 +296,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.Deletion}
                       {...register("Deletion", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                   <Grid item xs={4} sx={{ paddingRight: "2%" }}>
                     <TextField
@@ -292,7 +309,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.Skip_Image}
                       {...register("Skip_Image", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                   <Grid item xs={4} sx={{ paddingRight: "0%" }}>
                     <TextField
@@ -304,7 +322,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.Skip_Image}
                       {...register("Update", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                 </Grid>
                 <Grid container sx={{ padding: "1%" }}>
@@ -318,7 +337,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.Image_Loading}
                       {...register("Image_Loading", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                   <Grid item xs={4} sx={{ paddingRight: "2%" }}>
                     <TextField
@@ -330,7 +350,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.Object_Saving_Time}
                       {...register("Object_Saving_Time", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                   <Grid item xs={4} sx={{ paddingRight: "0%" }}>
                     <TextField
@@ -342,7 +363,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.Video_Watch_Time}
                       {...register("Video_Watch_Time", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                 </Grid>
 
@@ -357,7 +379,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.Judgement_Time}
                       {...register("Judgement_Time", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                   <Grid item xs={4} sx={{ paddingRight: "2%" }}>
                     <TextField
@@ -369,7 +392,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.QA_Benchmark}
                       {...register("QA_Benchmark", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                   <Grid item xs={4} sx={{ paddingRight: "0%" }}>
                     <TextField
@@ -381,7 +405,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.Annotation}
                       {...register("Annotation", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                 </Grid>
                 <Grid container sx={{ padding: "1%" }}>
@@ -395,7 +420,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.QA}
                       {...register("QA", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                   <Grid item xs={6} sx={{ paddingRight: "0%" }}>
                     <TextField
@@ -407,7 +433,8 @@ const UpdateProjectDirectory = ({ item }) => {
                       defaultValue={item.Remarks}
                       {...register("Remarks", {
                         required: false,
-                      })}></TextField>
+                      })}
+                    ></TextField>
                   </Grid>
                 </Grid>
 
@@ -419,11 +446,13 @@ const UpdateProjectDirectory = ({ item }) => {
                     paddingRight: "10%",
                     paddingBottom: "1%",
                     justifyContent: "center",
-                  }}>
+                  }}
+                >
                   <ButtonStyle
                     //   disabled={isLoading}
                     variant="contained"
-                    type="submit">
+                    type="submit"
+                  >
                     Update
                   </ButtonStyle>
                 </Grid>

@@ -36,7 +36,7 @@ const Layout = lazy(() => import("./components/shared/Layout/Layout"));
 
 import CryptoJS from "crypto-js";
 import LoadingComponent from "./components/shared/Loading/LoadingComponent";
-import { updateProjectDirectoryData } from "./features/slice/ProjectDirectory";
+import { updateProjectDirectoryData } from "./features/slice/ProjectDirectorySlice";
 import { updateBenchmarkData } from "./features/slice/benchMarkSlice";
 import { updateCourseData } from "./features/slice/courseSlice";
 import { updateDashboardData } from "./features/slice/dashboardSlice";

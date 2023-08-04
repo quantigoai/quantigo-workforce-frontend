@@ -1,10 +1,10 @@
-import {Box, Button} from "@mui/material";
-import React, {useState} from "react";
 import AddIcon from "@mui/icons-material/Add";
+import { Box, Button } from "@mui/material";
+import React, { useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch } from "react-redux";
+import { createProjectDirectory } from "../../../features/slice/ProjectDirectorySlice";
 import CreateProjectDirectoryModal from "./CreateProjectDirectoryModal";
-import {useDispatch} from "react-redux";
-import {createProjectDirectory} from "../../../features/slice/ProjectDirectory";
-import {useAlert} from "react-alert";
 
 const CreateProjectDirectory = () => {
   const [open, setOpen] = useState(false);

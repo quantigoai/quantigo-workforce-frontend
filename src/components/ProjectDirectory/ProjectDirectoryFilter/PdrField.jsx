@@ -1,7 +1,7 @@
-import {FormControl, InputLabel, MenuItem, Select,} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
-import {getType} from "../../../features/slice/ProjectDirectory";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getType } from "../../../features/slice/ProjectDirectorySlice";
 
 const PdrField = ({ setPDRFilter, pDRFilter }) => {
   const [pDR, setPDR] = useState([]);
@@ -26,7 +26,8 @@ const PdrField = ({ setPDRFilter, pDRFilter }) => {
             backgroundColor: "#F8F8F8",
             border: "1px solid #DADCDF",
             borderRadius: "4px",
-          }}>
+          }}
+        >
           {pDR.map((Industry) => (
             <MenuItem key={Industry} value={Industry}>
               {Industry}

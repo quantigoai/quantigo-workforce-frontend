@@ -6,8 +6,11 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { DataGrid } from "@mui/x-data-grid";
-import * as React from "react";
+import { alpha, styled } from "@mui/material/styles";
+import { DataGrid, gridClasses } from "@mui/x-data-grid";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProjectDrawers } from "../../../features/slice/projectDrawerSlice";
 
 const columns = [
   { field: "id", headerName: "ID", width: 70 },
@@ -204,20 +207,105 @@ const rows = [
   },
 ];
 
+const ODD_OPACITY = 0.2;
+const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
+  [`& .${gridClasses.row}.even`]: {
+    backgroundColor: theme.palette.grey[200],
+    "&:hover, &.Mui-hovered": {
+      backgroundColor: alpha(theme.palette.primary.main, ODD_OPACITY),
+      "@media (hover: none)": {
+        backgroundColor: "transparent",
+      },
+    },
+    "&.Mui-selected": {
+      backgroundColor: alpha(
+        theme.palette.primary.main,
+        ODD_OPACITY + theme.palette.action.selectedOpacity
+      ),
+      "&:hover, &.Mui-hovered": {
+        backgroundColor: alpha(
+          theme.palette.primary.main,
+          ODD_OPACITY +
+            theme.palette.action.selectedOpacity +
+            theme.palette.action.hoverOpacity
+        ),
+        // Reset on touch devices, it doesn't add specificity
+        "@media (hover: none)": {
+          backgroundColor: alpha(
+            theme.palette.primary.main,
+            ODD_OPACITY + theme.palette.action.selectedOpacity
+          ),
+        },
+      },
+    },
+  },
+}));
+
+const customHeader = (params) => {
+  switch (params) {
+    case "project_id":
+      return "Project Id";
+    default:
+      return params;
+  }
+};
+
+const generatedColumns = (columns) => {
+  const filterColumns = columns.filter(
+    (c) => c !== "_id" && c !== "__v" && c !== "createdAt" && c !== "updatedAt"
+  );
+
+  const x = filterColumns.map((c) => {
+    return {
+      field: c,
+      headerName: customHeader(c),
+      width: 100,
+    };
+  });
+  return x;
+};
+
 export default function DataTable() {
+  const [myColumns, setMyColumns] = useState([]);
+  const [myRows, setMyRows] = useState([]);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllProjectDrawers());
+  }, []);
+
+  const { projectDrawers } = useSelector((state) => state.projectDrawer);
+
+  useEffect(() => {
+    const pdColumns = Object.keys(projectDrawers[0]);
+    setMyColumns(generatedColumns(pdColumns));
+    setMyRows(projectDrawers.map((pd) => ({ ...pd, id: pd._id })));
+  }, [projectDrawers]);
+
   return (
     <div style={{ height: "100%", width: "100%" }}>
-      <DataGrid
-        sx={{ textAlign: "center" }}
-        rows={rows}
-        columns={columns}
+      <StripedDataGrid
+        sx={{
+          textAlign: "center",
+          borderColor: "primary.light",
+          "& .MuiDataGrid-cell": {
+            color: "#3C4D6B",
+          },
+          "& .MuiDataGrid-cell:hover": {
+            color: "primary.main",
+          },
+        }}
+        rows={myRows}
+        columns={myColumns}
         initialState={{
           pagination: {
             paginationModel: { page: 0, pageSize: 10 },
           },
         }}
+        getRowClassName={(params) =>
+          params.indexRelativeToCurrentPage % 2 === 0 ? "even" : "odd"
+        }
         pageSizeOptions={[5, 10, 20, 50, 100]}
-        checkboxSelection
+        // checkboxSelection
       />
     </div>
   );

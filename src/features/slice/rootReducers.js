@@ -15,7 +15,7 @@
 
 import { combineReducers } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
-import projectDirectoryReducer from "../slice/ProjectDirectory";
+import projectDirectoryReducer from "../slice/ProjectDirectorySlice";
 import activePathReducer from "../slice/activePathSlice";
 import benchMarkReducer from "../slice/benchMarkSlice";
 import courseReducer from "../slice/courseSlice";

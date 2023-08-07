@@ -37,17 +37,19 @@ const ProjectModal = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [platform, setPlatform] = React.useState("");
+  const [status, setStatus] = React.useState("");
   const [projectType, setProjectType] = React.useState("");
-  const [skill, setSkill] = React.useState("");
 
   const handleChange = (event) => {
     setPlatform(event.target.value);
   };
-  const handleChangeSkill = (event) => {
-    setSkill(event.target.value);
-  };
+
   const handleChangeProjectType = (event) => {
     setProjectType(event.target.value);
+  };
+  //['not-Started', 'in-Progress', 'completed', 'hours-added']
+  const handleStatus = (event) => {
+    setStatus(event.target.value);
   };
 
   return (
@@ -202,7 +204,7 @@ const ProjectModal = () => {
                   <Typography
                     sx={{
                       fontWeight: "500",
-                      mt: "20px",
+                      mt: "10px",
                       fontSize: "14px",
                       mb: "10px",
                       paddingRight: "1%",
@@ -289,6 +291,63 @@ const ProjectModal = () => {
                     label=""
                     variant="outlined"
                   />
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography
+                    sx={{
+                      fontWeight: "500",
+                      fontSize: "14px",
+                      mb: "10px",
+                      marginTop: "5%",
+                    }}
+                    variant="h6"
+                  >
+                    Estimated End Time
+                  </Typography>
+
+                  <TextField
+                    sx={{ width: "90%" }}
+                    id="outlined-basic"
+                    label=""
+                    variant="outlined"
+                  />
+                </Grid>
+
+                <Grid item xs={6} sx={{ paddingRight: "1%", mt: "10px" }}>
+                  <Typography
+                    sx={{ fontWeight: "500", mb: "10px", fontSize: "14px" }}
+                    variant="h6"
+                  >
+                    Status
+                  </Typography>
+                  <FormControl
+                    variant="filled"
+                    sx={{
+                      backgroundColor: "#F8F8F8",
+                      borderRadius: "8px",
+                      // width: "238.5px",
+                      height: "60px",
+                      background: "#E6ECF5",
+                      fontSize: "14px",
+                      width: "90%",
+                    }}
+                  >
+                    <InputLabel id="demo-simple-select-filled-label">
+                      Select
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-filled-label"
+                      id="demo-simple-select-filled"
+                      defaultValue={status}
+                      IconComponent={() => <CustomDownArrow />}
+                      onChange={(e) => handleStatus(e)}
+                    >
+                      <MenuItem value={"not-Started"}>Not Started</MenuItem>
+                      <MenuItem value={"completed"}>Completed</MenuItem>
+                      <MenuItem value={"hours-added"}>Hours Added</MenuItem>
+                      <MenuItem value={"in-Progress"}>In Progress</MenuItem>
+                    </Select>
+                  </FormControl>
                 </Grid>
                 <Grid item xs={12}>
                   <Typography

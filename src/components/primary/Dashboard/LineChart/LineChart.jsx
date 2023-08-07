@@ -6,21 +6,21 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Grid} from "@mui/material";
+import { Grid } from "@mui/material";
 import {
-    CategoryScale,
-    Chart as ChartJS,
-    Legend,
-    LinearScale,
-    LineElement,
-    PointElement,
-    Title,
-    Tooltip,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
 } from "chart.js";
-import React, {useEffect} from "react";
-import {Line} from "react-chartjs-2";
-import {useSelector} from "react-redux";
-import {daysAndMonths} from "../../../../helper/dateConverter";
+import React, { useEffect } from "react";
+import { Bar, Line } from "react-chartjs-2";
+import { useSelector } from "react-redux";
+import { daysAndMonths } from "../../../../helper/dateConverter";
 
 ChartJS.register(
   CategoryScale,
@@ -39,12 +39,12 @@ export const options = {
     intersect: false,
   },
   stacked: false,
-  plugins: {
-    title: {
-      display: true,
-      text: "Weekly Job Statistics",
-    },
-  },
+  // plugins: {
+  //   title: {
+  //     display: true,
+  //     text: "Weekly Job Statistics",
+  //   },
+  // },
   scales: {
     y: {
       beginAtZero: true,
@@ -131,7 +131,7 @@ const LineChart = ({ loading }) => {
   return (
     <>
       <Grid container sx={{ padding: "3%" }}>
-        {!isDataUpdate && <Line options={options} data={customData} />}
+        {!isDataUpdate && <Bar options={options} data={customData} />}
       </Grid>
     </>
   );

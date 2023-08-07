@@ -86,7 +86,7 @@ const Header = () => {
     <>
       <NavBarFull
         sx={{
-          background: isLightTheme ? "#F5F5F5" : "#000c1f",
+          background: isLightTheme ? "#FFFFFF" : "#000c1f",
           color: isLightTheme ? "#000c1f" : "#F5F5F5",
         }}>
         <Box

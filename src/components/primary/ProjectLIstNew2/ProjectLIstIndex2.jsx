@@ -1,3 +1,12 @@
+/*
+ * Filename: /home/tanzim/OfficeWorkstation/quantigo-workforce-frontend/src/components/primary/ProjectLIstNew2/ProjectLIstIndex2.jsx
+ * Path: /home/tanzim/OfficeWorkstation/quantigo-workforce-frontend
+ * Created Date: Monday, August 7th 2023, 2:33:07 pm
+ * Author: Tanzim Ahmed
+ *
+ * Copyright (c) 2023 Tanzim Ahmed
+ */
+
 import SearchIcon from "@mui/icons-material/Search";
 import SortIcon from "@mui/icons-material/Sort";
 import { Box, Grid, IconButton, Paper } from "@mui/material";
@@ -32,6 +41,7 @@ const fields = [
   },
 ];
 
+import ProjectModal from "./ProjectModal";
 const ProjectLIstIndex2 = () => {
   const CustomFilterIcon = styled(SortIcon)({
     color: "#266AED",
@@ -123,10 +133,12 @@ const ProjectLIstIndex2 = () => {
           <Box>
             <CreateProjectDrawer />
           </Box>
+          <Box>
+            <ProjectModal />
+          </Box>
         </Box>
       </Box>
       <Box sx={{ mt: "40px" }}>
-        {/* <DataTable /> */}
         <CustomTable myColumn={myColumn} myRows={myRows} />
       </Box>
     </>

@@ -7,8 +7,16 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import React, {useEffect} from "react";
-import {Checkbox, FilledInput, FormControl, ListItemText, MenuItem, Select, styled,} from "@mui/material";
+import React, { useEffect } from "react";
+import {
+  Checkbox,
+  FilledInput,
+  FormControl,
+  ListItemText,
+  MenuItem,
+  Select,
+  styled,
+} from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const CustomDownArrow = styled(KeyboardArrowDownIcon)({

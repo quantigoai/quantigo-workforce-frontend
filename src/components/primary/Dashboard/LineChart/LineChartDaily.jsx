@@ -23,6 +23,7 @@ import { Line } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import { weeklyConver } from "../../../../helper/weeklyConver";
 import { capitalizeAllwordAndSlic } from "../../../../helper/capitalizeAllwordAndSlic.js";
+import LineChartExple from "./LineChartExple";
 
 ChartJS.register(
   CategoryScale,
@@ -43,9 +44,11 @@ export const options = {
 
   stacked: true,
   plugins: {
-    title: {
-      display: true,
-      text: "Hourly Job Statistics",
+    legend: {
+      position: "bottom",
+      labels: {
+        boxWidth: 10,
+      },
     },
   },
   scales: {
@@ -100,10 +103,15 @@ const LineChartDaily = ({ loading }) => {
         datasets: [
           {
             label: "Active job",
-            data: [...takenJobsData.reverse()],
+            data: [
+              12, 20, 30, 40, 50, 12, 20, 30, 40, 50, 12, 20, 30, 40, 50, 12,
+              20, 30, 40, 50,
+            ],
+            // data: [...takenJobsData.reverse()],
             // data: [0, 1, 1, 2, 3, 4, 5],
             borderColor: "#3399FF",
-            backgroundColor: "#0066CC",
+            // fill: true,
+            backgroundColor: "yellow",
             tension: 0.5,
           },
         ],
@@ -116,7 +124,8 @@ const LineChartDaily = ({ loading }) => {
   return (
     <>
       <Grid container sx={{ padding: "3%" }}>
-        {!isDataUpdate && <Line options={options} data={customData} />}
+        {/* {!isDataUpdate && <Line options={options} data={customData} />} */}
+        <LineChartExple />
       </Grid>
     </>
   );

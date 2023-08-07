@@ -1,7 +1,8 @@
-import {Grid, Paper, Typography} from "@mui/material";
-import {Box} from "@mui/system";
+import { Grid, Paper, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import React from "react";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
+import iconPendding from "../../../../assets/images/dashboardIcon/totalAvailableProjectIcon.svg";
 
 const TotalJobs = () => {
   const { totalCountData } = useSelector((state) => state.dashboard);
@@ -10,29 +11,31 @@ const TotalJobs = () => {
       <Grid container>
         <Paper
           elevation={0}
-          sx={{ padding: "0%", width: "100%", height: "100px" }}>
-          <Box sx={{ padding: "4%" }}>
-            <Grid container>
-              <Typography sx={{ color: "#969CAF" }}>Total Available Jobs</Typography>
-            </Grid>
-            <Grid container sx={{ paddingTop: "4%" }}>
-              <Grid item xs={8}>
-                <Typography sx={{ color: "##1D1D1D" }} variant="h5">
-                  {" "}
-                  {totalCountData.totalAvailableJobs}
-                </Typography>
+          sx={{
+            padding: "0%",
+            width: "100%",
+            height: "100px",
+            borderRadius: "8px",
+          }}>
+          <Box sx={{ padding: "4%", position: "relative" }}>
+            <Grid container sx={{ paddingTop: "3%" }}>
+              <Grid item xs={3}>
+                <img src={iconPendding} />
               </Grid>
-              {/* <Grid
-                container
-                item
-                xs={4}
-                sx={{ justifyContent: "right", paddingTop: "2%" }}>
-                <Typography sx={{ color: "#2D58FF" }} variant="body2">
-                  {" "}
-                  + {totalCountData.availableJobs}%
-                </Typography>
-                <NorthIcon sx={{ color: "#2D58FF", fontSize: "small" }} />
-              </Grid> */}
+              <Grid item xs={9}>
+                <Grid container>
+                  <Typography  sx={{ color: "#3C4D6B" }}>
+                    Total Available Jobs
+                  </Typography>
+                </Grid>
+                <Grid container sx={{ paddingTop: "4%" }}>
+                  <Grid item xs={8}>
+                    <Typography sx={{ color: "#091E42" }} variant="h5">
+                      <b> {totalCountData.totalAvailableJobs}</b>
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Grid>
             </Grid>
           </Box>
         </Paper>

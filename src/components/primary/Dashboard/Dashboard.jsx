@@ -95,8 +95,7 @@ const Dashboard = () => {
         <>
           <Box
             // sx={{ backgroundColor: "#F5F5F5", height: "100%", width: "100%" }}>
-            sx={{ height: "100%" }}
-          >
+            sx={{ height: "100%" }}>
             {role === "level_0_annotator" ? (
               <>
                 {user.user.isVerified ? (
@@ -120,7 +119,7 @@ const Dashboard = () => {
                   <>
                     <Grid container sx={{ paddingBottom: "2%" }}>
                       <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                        <Paper elevation={0}>
+                        <Paper elevation={0} sx={{ borderRadius: "8px" }}>
                           {!projectLoading && (
                             <BarChart
                               startDate={startDate}
@@ -135,30 +134,36 @@ const Dashboard = () => {
                       <Grid item xs={3} sx={{ paddingRight: "2%" }}>
                         <Paper
                           elevation={0}
-                          sx={{ paddingTop: "10%", height: "90%" }}
-                        >
+                          sx={{
+                            paddingTop: "10%",
+                            height: "90%",
+                            borderRadius: "8px",
+                          }}>
                           {/* <Grid sx={{ paddingTop: "5%" }}></Grid> */}
-                          <PieChart />
+                          <PieChartForUser />
                         </Paper>
                       </Grid>
                       <Grid item xs={3}>
                         <Paper
                           elevation={0}
-                          sx={{ paddingTop: "5%", height: "93%" }}
-                        >
-                          <PieChartForUser />
+                          sx={{
+                            paddingTop: "5%",
+                            height: "93%",
+                            borderRadius: "8px",
+                          }}>
+                          <PieChart />
                         </Paper>
                       </Grid>
                     </Grid>
 
                     <Grid container>
                       <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                        <Paper elevation={0}>
+                        <Paper elevation={0} sx={{ borderRadius: "8px" }}>
                           <LineChart loading={weekLoading} />
                         </Paper>
                       </Grid>
                       <Grid item xs={6}>
-                        <Paper elevation={0}>
+                        <Paper elevation={0} sx={{ borderRadius: "8px" }}>
                           <LineChartDaily loading={hourLoading} />
                         </Paper>
                       </Grid>
@@ -177,13 +182,11 @@ const Dashboard = () => {
               height: "100%",
               // width: "100%",
               padding: "1%",
-            }}
-          >
+            }}>
             <Paper elevation={0} style={paperstyleResendEmail}>
               <Grid
                 container
-                sx={{ justifyContent: "center", paddingTop: "7%" }}
-              >
+                sx={{ justifyContent: "center", paddingTop: "7%" }}>
                 <Typography variant="h4" sx={{ color: "#090080" }}>
                   Please check your email
                 </Typography>
@@ -195,8 +198,7 @@ const Dashboard = () => {
                   justifyContent: "center",
                   paddingTop: "2%",
                   position: "relative",
-                }}
-              >
+                }}>
                 <Button
                   disabled={isLoading}
                   sx={{
@@ -207,8 +209,7 @@ const Dashboard = () => {
                       color: "#1D1D1D",
                     },
                   }}
-                  onClick={() => handleresendEmail()}
-                >
+                  onClick={() => handleresendEmail()}>
                   Resend Email
                 </Button>
                 {isLoading && (
@@ -224,8 +225,7 @@ const Dashboard = () => {
 
               <Grid
                 container
-                sx={{ justifyContent: "center", paddingTop: "2%" }}
-              >
+                sx={{ justifyContent: "center", paddingTop: "2%" }}>
                 <Typography variant="h6" sx={{ color: "#090080" }}>
                   {sendMessage}
                 </Typography>

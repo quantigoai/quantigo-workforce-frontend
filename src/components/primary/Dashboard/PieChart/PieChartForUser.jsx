@@ -1,14 +1,38 @@
 import React from "react";
-import {ArcElement, Chart as ChartJS, Legend, Tooltip} from "chart.js";
-import {Pie} from "react-chartjs-2";
-import {useSelector} from "react-redux";
+import { ArcElement, Chart as ChartJS, Legend, Title, Tooltip } from "chart.js";
+import { Pie } from "react-chartjs-2";
+import { useSelector } from "react-redux";
+import { Grid, Typography } from "@mui/material";
+import PiechartExaplem from "./PiechartExaplem";
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 const PieChartForUser = () => {
   const { activeJobs, takenJobs, totalCountData } = useSelector(
     (state) => state.dashboard
   );
+  const options = {
+    maintainAspectRatio: false,
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "bottom",
+        labels: {
+          boxWidth: 10,
+        },
+      },
+      datalabels: {
+        // display: false,
+        color: "black",
+        font: {
+          size: 24,
+          weight: "bold",
+        },
+      },
+    },
+
+    radius: "90%",
+  };
   const data = {
     labels: [
       "Level 0 Annotator",
@@ -28,28 +52,23 @@ const PieChartForUser = () => {
           totalCountData.reviewer,
         ],
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
+          "#266AED",
+          "#FFAB00",
+          "#36B37E",
+          "#FF4757",
+          "#9747FF",
         ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
-        borderWidth: 2,
+
+        borderWidth: 3,
       },
     ],
   };
   return (
     <>
-      <Pie data={data} />
+      {/* <Typography variant="h6">
+        <b>Annotators Activity</b>
+      </Typography> */}
+      <Pie options={options} data={data} />
     </>
   );
 };

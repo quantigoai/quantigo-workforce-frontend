@@ -84,35 +84,6 @@ const ProjectForm = ({toggleDrawer,anchor}) => {
           </Grid>
            {/* <SkillField/> */}
            <SkillFieldProject/>
-          {/* <Grid item xs={12} sx={{ paddingRight: "1%",mt:"10px" }}>
-            <Typography sx={{fontWeight:"500",mb:"10px",fontSize:"14px"}} variant='h6' >Skill</Typography>
-              <FormControl 
-                variant="filled"
-                fullWidth
-                sx={{
-                  backgroundColor: "#F8F8F8",
-                  borderRadius: "8px",
-                  // width: "238.5px",
-                  height: "60px",
-                  background:"#E6ECF5"
-                }}
-              >
-                 <InputLabel id="demo-simple-select-filled-label">
-                  Select
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-filled-label"
-                  id="demo-simple-select-filled"
-                  defaultValue={skill}
-                  IconComponent={() => <CustomDownArrow />}
-                  onChange={(e) => handleChangeSkill(e)}
-                >
-                  <MenuItem value={"supervisely"}>Supervisely</MenuItem>
-                  <MenuItem value={"encord"}>Encord Server</MenuItem>
-                  <MenuItem value={"superb_ai"}>Superb Ai</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid> */}
             <Grid  item xs={12} >
           <Typography sx={{fontWeight:"500",mt:"15px",fontSize:"14px",mb:"10px"}} variant='h6' >Benchmark</Typography>
            

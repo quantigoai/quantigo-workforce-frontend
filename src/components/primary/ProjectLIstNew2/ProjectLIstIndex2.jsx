@@ -6,6 +6,7 @@ import { styled } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import CreateProjectDrawer from "./CreateProjectDrawer";
 import DataTable from "./DataTable";
+import ProjectModal from "./ProjectModal";
 const ProjectLIstIndex2 = () => {
   const CustomFilterIcon = styled(SortIcon)({
     color: "#266AED",
@@ -84,6 +85,9 @@ const ProjectLIstIndex2 = () => {
 
           <Box>
             <CreateProjectDrawer />
+          </Box>
+          <Box>
+            <ProjectModal />
           </Box>
         </Box>
       </Box>

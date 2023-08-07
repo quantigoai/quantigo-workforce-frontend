@@ -6,7 +6,7 @@ import DashboardCardIndex from "./DashboardCardIndex";
 const DashboardIndex = () => {
   return (
     <>
-      <Box
+      {/* <Box
         sx={{
           display: "flex",
           mb: "2%",
@@ -26,7 +26,7 @@ const DashboardIndex = () => {
             customButton="dashboard"
           />
         </Grid>
-      </Box>
+      </Box> */}
       <Box
         sx={{
           // display: "flex",

@@ -33,8 +33,13 @@ const initialState = {
 };
 
 export const login = createAsyncThunk("user/login", async (data) => {
-  return await axios.post(`${url}/users/login`, data);
+  try {
+    return await axios.post(`${url}/users/login`, data);
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
 });
+
 //social login
 export const socialLogin = createAsyncThunk(
   "users/sociallogin",
@@ -44,7 +49,12 @@ export const socialLogin = createAsyncThunk(
 );
 
 export const signup = createAsyncThunk("user/users", async (data) => {
-  return axios.post(`${url}/users`, data);
+  try {
+    const response = await axios.post(`${url}/users`, data);
+    return response;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
 });
 
 export const logout = createAsyncThunk("user/logout", async () => {
@@ -220,7 +230,11 @@ export const generateQuiId = createAsyncThunk(
 export const createQaiUser = createAsyncThunk(
   "qaiusers/createqaiuser",
   async (data) => {
-    return axios.post(`${url}/qaiusers/createqaiuser`, data);
+    try {
+      return axios.post(`${url}/qaiusers/createqaiuser`, data);
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
   }
 );
 
@@ -430,7 +444,6 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.error = null;
         state.user = action.payload.data.user;
         state.isLoggedIn = true;
@@ -440,26 +453,27 @@ const userSlice = createSlice({
           jwtSecret
         ).toString();
         Cookies.set("token", encryptedToken, { expires: 10 });
+        state.isLoading = false;
       })
       .addCase(login.rejected, (state, action) => {
-        state.isLoading = false;
         state.user = {};
         state.error = action.error.message;
+        state.isLoading = false;
       })
       .addCase(signup.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(signup.fulfilled, (state) => {
-        state.isLoading = false;
         state.error = null;
         state.user = {};
         state.isCreated = true;
+        state.isLoading = false;
       })
       .addCase(signup.rejected, (state, action) => {
-        state.isLoading = false;
+        state.error = action.error.message;
         state.user = {};
         state.isCreated = false;
-        state.error = action.error.message;
+        state.isLoading = false;
       })
 
       .addCase(logout.pending, (state) => {
@@ -575,10 +589,10 @@ const userSlice = createSlice({
         Cookies.set("token", encryptedToken, { expires: 10 });
       })
       .addCase(socialLogin.rejected, (state, action) => {
-        state.isLoading = true;
         state.user = {};
         state.error = action.error.message;
         state.isLoggedIn = false;
+        state.isLoading = false;
       })
       .addCase(getAUserQuiId.pending, (state) => {
         state.isLoading = true;
@@ -631,6 +645,7 @@ const userSlice = createSlice({
       })
       .addCase(createQaiUser.rejected, (state, action) => {
         state.error = action.error.message;
+        state.isLoading = false;
       })
       .addCase(createAgUser.pending, (state) => {
         state.isLoading = true;

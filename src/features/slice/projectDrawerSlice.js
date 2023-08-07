@@ -72,9 +72,9 @@ export const updateProjectDrawerById = createAsyncThunk(
 
 export const deleteProjectDrawerById = createAsyncThunk(
   "/project-drawer/delete",
-  async (data) => {
+  async (id) => {
     try {
-      return axios.delete(`${url}/project-drawer/${data.id}`, {
+      return axios.delete(`${url}/project-drawer/${id}`, {
         headers: {
           Authorization: `Bearer ${realToken()}`,
         },

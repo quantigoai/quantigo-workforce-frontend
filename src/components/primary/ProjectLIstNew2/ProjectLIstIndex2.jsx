@@ -131,9 +131,6 @@ const ProjectLIstIndex2 = () => {
           </IconButton>
 
           <Box>
-            <CreateProjectDrawer />
-          </Box>
-          <Box>
             <ProjectModal />
           </Box>
         </Box>

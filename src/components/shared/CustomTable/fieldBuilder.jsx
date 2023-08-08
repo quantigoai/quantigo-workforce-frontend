@@ -22,10 +22,10 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
   const MyButton = ({ params }) => {
     return (
       <>
-        <Button onClick={() => handleClick(params)} variant="outlined">
+        <Button sx={{ color: "#2E58FF" }} onClick={() => handleClick(params)}>
           <i className="ri-edit-line"></i>
         </Button>
-        <Button onClick={() => handleDelete(params)} variant="outlined">
+        <Button sx={{ color: "#F04438" }} onClick={() => handleDelete(params)}>
           <i className="ri-delete-bin-6-line"></i>
         </Button>
       </>
@@ -38,7 +38,7 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
       customItems = {
         id: index,
         field: field.field,
-        width: field.width || 160,
+        width: field.width || 200,
         headerName: customHeader(field.field),
         renderCell: (params) => <MyButton params={params} />,
         editable: field.editable || false,
@@ -48,7 +48,7 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
       customItems = {
         id: index,
         field: field.field,
-        width: field.width || 160,
+        width: field.width || 250,
         headerName: customHeader(field.field),
         renderCell: (params) => {
           return <ProjectDrawerStatusChip value={params.value} />;
@@ -60,7 +60,7 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
       customItems = {
         id: index,
         field: field.field,
-        width: field.width || 160,
+        width: field.width || 180,
         headerName: customHeader(field.field),
         editable: field.editable || false,
         cellClassName: field.cellClassName || "",

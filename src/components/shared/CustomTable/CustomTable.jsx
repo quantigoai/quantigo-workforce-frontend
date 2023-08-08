@@ -53,9 +53,8 @@ const CustomTable = ({ myColumn, myRows }) => {
         <StripedDataGrid
           showColumnVerticalBorder
           showCellVerticalBorder={false}
-          // getRowHeight={(z) => console.log(z.model.project_skills.length)}
-          getRowHeight={(z) =>
-            z.model.project_skills.length && z.model.project_skills.length * 22
+          getRowHeight={(row) =>
+            row.model.project_skills.length && row.model.project_skills.length * 22
           }
           sx={{
             textAlign: "center",

@@ -71,10 +71,6 @@ const CustomTable = ({ myColumn, myRows }) => {
           }}
           getRowClassName={
             (params) => {
-              console.log(
-                "🚀 ~ file: CustomTable.jsx:71 ~ CustomTable ~ params:",
-                params
-              );
               return (params.indexRelativeToCurrentPage = "even");
             }
             // params.indexRelativeToCurrentPage % 2 === 0 ? "even" : "odd"

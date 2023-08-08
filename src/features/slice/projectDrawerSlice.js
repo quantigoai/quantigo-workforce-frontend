@@ -22,7 +22,7 @@ const initialState = {
   isLoading: false,
   projectDrawers: [],
   projectDrawer: {},
-  error: "null",
+  error: null,
 };
 
 export const getAllProjectDrawers = createAsyncThunk(
@@ -44,7 +44,7 @@ export const createProjectDrawer = createAsyncThunk(
   "/project-drawer/create",
   async (data) => {
     try {
-      return axios.post(`${url}/project-drawer`, data, {
+      return await axios.post(`${url}/project-drawer`, data, {
         headers: {
           Authorization: `Bearer ${realToken()}`,
         },

@@ -11,36 +11,14 @@ import { styled } from "@mui/material/styles";
 import { Box } from "@mui/system";
 import { DataGrid, gridClasses } from "@mui/x-data-grid";
 import "./index.css";
-const ODD_OPACITY = 0.2;
+
 const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
   [`& .${gridClasses.row}.even`]: {
     backgroundColor: theme.palette.grey[200],
-    "&:hover, &.Mui-hovered": {
-      // backgroundColor: alpha("#3C4D6B", ODD_OPACITY),
-      // backgroundColor: alpha(theme.palette.primary.main, ODD_OPACITY),
-      // "@media (hover: none)": {
-      //   backgroundColor: "transparent",
-      // },
-    },
+    "&:hover, &.Mui-hovered": {},
     "&.Mui-selected": {
-      // backgroundColor: alpha(
-      //   theme.palette.primary.main,
-      //   ODD_OPACITY + theme.palette.action.selectedOpacity
-      // ),
       "&:hover, &.Mui-hovered": {
-        // backgroundColor: alpha(
-        //   theme.palette.primary.main,
-        //   ODD_OPACITY +
-        //     theme.palette.action.selectedOpacity +
-        //     theme.palette.action.hoverOpacity
-        // ),
-        // Reset on touch devices, it doesn't add specificity
-        "@media (hover: none)": {
-          // backgroundColor: alpha(
-          //   theme.palette.primary.main,
-          //   ODD_OPACITY + theme.palette.action.selectedOpacity
-          // ),
-        },
+        "@media (hover: none)": {},
       },
     },
   },
@@ -53,9 +31,19 @@ const CustomTable = ({ myColumn, myRows }) => {
         <StripedDataGrid
           showColumnVerticalBorder
           showCellVerticalBorder={false}
-          getRowHeight={(row) =>
-            row.model.project_skills.length && row.model.project_skills.length * 22
-          }
+          // checkboxSelection
+          // columnHeaderHeight={50}
+          hideFooterSelectedRowCount
+          // getRowHeight={(row) =>
+          //   row.model.project_skills.length &&
+          //   row.model.project_skills.length * 22
+          // }
+          getCellClassName={(params) => {
+            if (params.field === "project_skills") {
+              return "skills-cell";
+            }
+            return "";
+          }}
           sx={{
             textAlign: "center",
             "& .MuiDataGrid-cell": {
@@ -72,12 +60,9 @@ const CustomTable = ({ myColumn, myRows }) => {
               paginationModel: { page: 0, pageSize: 10 },
             },
           }}
-          getRowClassName={
-            (params) => {
-              return (params.indexRelativeToCurrentPage = "even");
-            }
-            // params.indexRelativeToCurrentPage % 2 === 0 ? "even" : "odd"
-          }
+          getRowClassName={(params) => {
+            return (params.indexRelativeToCurrentPage = "even");
+          }}
           pageSizeOptions={[5, 10, 20, 50]}
         />
       </Box>

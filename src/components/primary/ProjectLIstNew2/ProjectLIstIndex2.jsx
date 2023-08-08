@@ -12,8 +12,8 @@ import SortIcon from "@mui/icons-material/Sort";
 import { Box, Grid, IconButton, Paper } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import { styled } from "@mui/material/styles";
-import { useAlert } from "react-alert";
 import { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import "remixicon/fonts/remixicon.css";
 import { setActivePath } from "../../../features/slice/activePathSlice";
@@ -32,7 +32,7 @@ const fields = [
   { field: "project_platform" },
   { field: "project_batch", width: 100 },
   { field: "project_status", renderCell: "chip" },
-  { field: "project_skills", width: 250, renderCell: "status-chip" },
+  { field: "project_skills", width: 360, renderCell: "status-chip" },
   { field: "pdr", width: 140 },
   {
     field: "Actions",
@@ -50,32 +50,41 @@ const ProjectLIstIndex2 = () => {
     padding: "10px",
   });
 
-  const { projectDrawers } = useSelector((state) => state.projectDrawer);
+  const { projectDrawers, error } = useSelector((state) => state.projectDrawer);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(setActivePath("All Projects2"));
     dispatch(getAllProjectDrawers());
   }, []);
+
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
+
   const alert = useAlert();
+
   const handleClick = (e) => {
     console.log("🚀 ~ file: ProjectLIstIndex2.jsx:44 ~ handleClick ~ e:", e);
   };
 
   const handleDelete = (e) => {
-    dispatch(deleteProjectDrawerById(e.row.id)).then((action) => {
-      if (action.payload.status === 200) {
-        alert.show(action.payload.data.message, { type: "success" });
-      }
-    });
+    dispatch(deleteProjectDrawerById(e.row.id))
+      .then((action) => {
+        if (action.payload.status === 200) {
+          alert.show(action.payload.data.message, { type: "success" });
+        }
+      })
+      .catch(() => {
+        alert.show(error, { type: "error" });
+      });
   };
 
   useEffect(() => {
     setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
     setMyRows(dataBuilder(projectDrawers));
   }, [projectDrawers]);
+
   return (
     <>
       <Box
@@ -102,6 +111,7 @@ const ProjectLIstIndex2 = () => {
               <CommonHeader title="Projects" customButton="Create User" />
             </Grid>
           </Box>
+
           <Box
             sx={{
               display: "flex",
@@ -143,6 +153,7 @@ const ProjectLIstIndex2 = () => {
             </Box>
           </Box>
         </Box>
+
         <Box
           sx={{
             width: "100%",

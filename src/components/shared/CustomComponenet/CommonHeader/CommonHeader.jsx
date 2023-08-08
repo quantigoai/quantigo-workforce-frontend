@@ -6,6 +6,8 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
+import AddIcon from "@mui/icons-material/Add";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import {
   Alert,
   AlertTitle,
@@ -14,12 +16,9 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import AddIcon from "@mui/icons-material/Add";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import CourseDeleteModal from "../../../primary/Course/CourseDetailsPage/CourseDeleteModal";
-import ModeEditIcon from "@mui/icons-material/ModeEdit";
 
 const CommonHeader = ({
   isLoading,
@@ -31,6 +30,7 @@ const CommonHeader = ({
   const navigate = useNavigate();
   const { course } = useSelector((state) => state.course);
   const { user } = useSelector((state) => state.user);
+
   const handleNavigation = (navigateLink) => {
     switch (navigateLink) {
       case "Create Course":
@@ -65,7 +65,6 @@ const CommonHeader = ({
     <>
       {user.role === "reviewer" && !user.active ? (
         <>
-          {" "}
           <Grid container sx={{ paddingBottom: "1%" }}>
             <Alert sx={{ width: "100%" }} severity="error">
               <AlertTitle>Warning</AlertTitle>
@@ -82,13 +81,15 @@ const CommonHeader = ({
           display: "flex",
           alignItems: "start",
           width: "100%",
-        }}>
+        }}
+      >
         <Grid item xs={8}>
           <Grid
             sx={{
               display: "flex",
             }}
-            container>
+            container
+          >
             <Typography variant="h4" style={{ color: "#090080" }}>
               {title}
             </Typography>
@@ -99,7 +100,8 @@ const CommonHeader = ({
                 variant="body2"
                 sx={{
                   textAlign: "justify",
-                }}>
+                }}
+              >
                 {description?.length > 500
                   ? description?.substring(0, 500) + "....."
                   : description}
@@ -114,7 +116,8 @@ const CommonHeader = ({
           xs={4}
           sx={{
             justifyContent: "end",
-          }}>
+          }}
+        >
           <Grid
             container
             gap={4}
@@ -122,7 +125,8 @@ const CommonHeader = ({
               textAlign: "right",
               justifyContent: "end",
               paddingLeft: "0%",
-            }}>
+            }}
+          >
             {customButton === "dashboard" ||
             customButton === "Create User" ||
             customButton === "null" ? (
@@ -139,7 +143,8 @@ const CommonHeader = ({
                         <Grid
                           item
                           xs={customButton === "Edit Course" ? 8 : 12}
-                          sx={{ paddingRight: "2%" }}>
+                          sx={{ paddingRight: "2%" }}
+                        >
                           <Button
                             variant="contained"
                             disabled={isLoading}
@@ -155,13 +160,15 @@ const CommonHeader = ({
                               },
                               borderRadius: "2px",
                             }}
-                            onClick={() => handleNavigation(customButton)}>
+                            onClick={() => handleNavigation(customButton)}
+                          >
                             <Box
                               sx={{
                                 display: "flex",
                                 gap: 1,
                                 justifyContent: "center",
-                              }}>
+                              }}
+                            >
                               {customButton === "Edit Course" ? (
                                 <ModeEditIcon />
                               ) : (
@@ -199,7 +206,8 @@ const CommonHeader = ({
                       color: "#2D58FF",
                       height: "45px",
                       borderRadius: "2px",
-                    }}>
+                    }}
+                  >
                     CANCEL
                   </Button>
                 </Grid>
@@ -222,7 +230,8 @@ const CommonHeader = ({
                             color: "#1D1D1D",
                           },
                           borderRadius: "2px",
-                        }}>
+                        }}
+                      >
                         Create
                       </Button>
                     </>
@@ -242,7 +251,8 @@ const CommonHeader = ({
                             color: "#1D1D1D",
                           },
                           borderRadius: "2px",
-                        }}>
+                        }}
+                      >
                         Save
                       </Button>
                     </>

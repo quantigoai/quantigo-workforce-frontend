@@ -15,3 +15,11 @@
             outline: none !important;
 
 }
+
+.MuiAvatarGroup-avatar{
+    background-color: rgb(171, 191, 228);
+    height: 30px;
+    width: 30px;
+    font-size: 14px;
+    color: rgb(4, 4, 86);
+}

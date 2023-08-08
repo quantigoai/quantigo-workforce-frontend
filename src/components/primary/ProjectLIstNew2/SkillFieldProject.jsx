@@ -9,9 +9,9 @@ import {
   Select,
   Typography,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useTheme } from "@mui/material/styles";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -34,29 +34,25 @@ function getStyles(name, addSkills, theme) {
 }
 const SkillFieldProject = () => {
   const { skills } = useSelector((state) => state.skill);
-  console.log(skills);
   const [mainSKills, setMainSkills] = useState([]);
   const [addSKills, setAddSkills] = useState([]);
 
   useEffect(() => {
     setMainSkills(skills);
   }, [skills]);
-  const theme = useTheme();
-  const namesArray = mainSKills.map((item) => item.name);
 
-  console.log(namesArray);
+  const theme = useTheme();
+
+  const namesArray = mainSKills.map((item) => item.name);
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
     console.log(value);
-    setAddSkills(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+    setAddSkills(typeof value === "string" ? value.split(",") : value);
   };
-  console.log(mainSKills);
+  
   return (
     <>
       <Grid sx={{ mt: "18px" }} item xs={6}>

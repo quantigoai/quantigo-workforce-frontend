@@ -13,11 +13,11 @@
  * ------------------------
  */
 
-import { Box, Button } from "@mui/material";
+import { AvatarGroup, Button } from "@mui/material";
 import "remixicon/fonts/remixicon.css";
 import ProjectDrawerStatusChip from "../FilterField/ProjectDrawerStatusChip.jsx";
-import customHeader from "./formatHeader.js";
 import DeleteModal from "./DeleteModal.jsx";
+import customHeader from "./formatHeader.js";
 
 const fieldBuilder = (fields, handleClick, handleDelete) => {
   const MyButton = ({ params }) => {
@@ -65,17 +65,11 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
         headerName: customHeader(field.field),
         renderCell: (params) => {
           return (
-            <Box
-              sx={{
-                display: "grid",
-                gridTemplateColumns: "repeat(2,1fr)",
-                gap: "5px",
-              }}
-            >
+            <AvatarGroup max={3}>
               {params.value.map((p) => (
                 <ProjectDrawerStatusChip key={p._id} value={p.name} />
               ))}
-            </Box>
+            </AvatarGroup>
           );
         },
         editable: field.editable || false,

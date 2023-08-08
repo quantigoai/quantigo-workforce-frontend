@@ -1,10 +1,4 @@
-import React from "react";
-import Backdrop from "@mui/material/Backdrop";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import Fade from "@mui/material/Fade";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import {
   FormControl,
   Grid,
@@ -14,13 +8,20 @@ import {
   TextField,
   styled,
 } from "@mui/material";
-import u_multiply from "../../../assets/images/u_multiply.png";
-import SkillFieldProject from "./SkillFieldProject";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { useForm } from "react-hook-form";
+import Backdrop from "@mui/material/Backdrop";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Fade from "@mui/material/Fade";
+import Modal from "@mui/material/Modal";
+import Typography from "@mui/material/Typography";
+import React from "react";
 import { useAlert } from "react-alert";
-import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import u_multiply from "../../../assets/images/u_multiply.png";
 import { createProjectDrawer } from "../../../features/slice/projectDrawerSlice";
+import SkillFieldProject from "./SkillFieldProject";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -32,32 +33,43 @@ const style = {
   boxShadow: 24,
   p: 0,
 };
+
 const CustomDownArrow = styled(KeyboardArrowDownIcon)({
   color: "#667085",
   marginRight: "10px",
 });
+
 const ProjectModal = () => {
+  const dispatch = useDispatch();
+  const alert = useAlert();
+  
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const dispatch = useDispatch();
   const handleClose = () => setOpen(false);
   const [platform, setPlatform] = React.useState("");
   const [status, setStatus] = React.useState("");
   const [projectType, setProjectType] = React.useState("");
   const { register, handleSubmit, reset } = useForm();
-  const alert = useAlert();
+  const { error } = useSelector((state) => state.projectDrawer);
+  
   const onSubmit = (data) => {
-    dispatch(createProjectDrawer(data)).then((action) => {
-      if (action.payload.status === 201) {
-        alert.show(action.payload.data.message, { type: "success" });
-        reset();
-        setOpen(false);
-      }
-    });
+    dispatch(createProjectDrawer(data))
+      .then((action) => {
+        if (action.payload.status === 201) {
+          alert.show(action.payload.data.message, { type: "success" });
+          reset();
+          setOpen(false);
+        }
+      })
+      .catch(() => {
+        alert.show(error, { type: "error" });
+      });
   };
+  
   const handleChange = (event) => {
     setPlatform(event.target.value);
   };
+  
   const handleAddDoc = () => {
     console.log("clicked");
   };
@@ -65,7 +77,7 @@ const ProjectModal = () => {
   const handleChangeProjectType = (event) => {
     setProjectType(event.target.value);
   };
-  //['not-Started', 'in-Progress', 'completed', 'hours-added']
+  
   const handleStatus = (event) => {
     setStatus(event.target.value);
   };

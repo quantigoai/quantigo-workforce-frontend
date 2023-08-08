@@ -17,6 +17,7 @@ import { Button } from "@mui/material";
 import "remixicon/fonts/remixicon.css";
 import ProjectDrawerStatusChip from "../FilterField/ProjectDrawerStatusChip.jsx";
 import customHeader from "./formatHeader.js";
+import DeleteModal from "./DeleteModal.jsx";
 
 const fieldBuilder = (fields, handleClick, handleDelete) => {
   const MyButton = ({ params }) => {
@@ -25,8 +26,8 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
         <Button sx={{ color: "#2E58FF" }} onClick={() => handleClick(params)}>
           <i className="ri-edit-line"></i>
         </Button>
-        <Button sx={{ color: "#F04438" }} onClick={() => handleDelete(params)}>
-          <i className="ri-delete-bin-6-line"></i>
+        <Button sx={{ color: "#F04438" }}>
+          <DeleteModal handleDelete={handleDelete} params={params} />
         </Button>
       </>
     );

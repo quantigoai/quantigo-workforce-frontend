@@ -12,6 +12,7 @@ import SortIcon from "@mui/icons-material/Sort";
 import { Box, Grid, IconButton, Paper } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import { styled } from "@mui/material/styles";
+import { useAlert } from "react-alert";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "remixicon/fonts/remixicon.css";
@@ -24,7 +25,6 @@ import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeade
 import CustomTable from "../../shared/CustomTable/CustomTable";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
-import CreateProjectDrawer from "./CreateProjectDrawer";
 import "./index.css";
 
 const fields = [
@@ -59,13 +59,17 @@ const ProjectLIstIndex2 = () => {
   }, []);
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
-
+  const alert = useAlert();
   const handleClick = (e) => {
     console.log("🚀 ~ file: ProjectLIstIndex2.jsx:44 ~ handleClick ~ e:", e);
   };
 
   const handleDelete = (e) => {
-    dispatch(deleteProjectDrawerById(e.row.id));
+    dispatch(deleteProjectDrawerById(e.row.id)).then((action) => {
+      if (action.payload.status === 200) {
+        alert.show(action.payload.data.message, { type: "success" });
+      }
+    });
   };
 
   useEffect(() => {

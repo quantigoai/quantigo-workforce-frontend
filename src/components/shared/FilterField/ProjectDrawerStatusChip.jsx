@@ -8,7 +8,6 @@
  */
 
 import { Chip } from "@mui/material";
-import React from "react";
 
 let drawerStatus = (status) => {
   switch (status) {

@@ -43,6 +43,9 @@ const ProjectModal = () => {
   const handleChange = (event) => {
     setPlatform(event.target.value);
   };
+  const handleAddDoc = () => {
+    console.log("clicked");
+  };
 
   const handleChangeProjectType = (event) => {
     setProjectType(event.target.value);
@@ -54,7 +57,13 @@ const ProjectModal = () => {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button
+        sx={{ textTransform: "normal", borderRadius: "8px" }}
+        variant="contained"
+        onClick={handleOpen}
+      >
+        Create Project
+      </Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -403,6 +412,20 @@ const ProjectModal = () => {
                     variant="outlined"
                   />
                 </Grid>
+                <Typography
+                  sx={{
+                    fontWeight: "600",
+                    mt: "15px",
+                    fontSize: "14px",
+                    mb: "10px",
+                    color: "#2E58FF",
+                    cursor: "pointer",
+                  }}
+                  variant="h6"
+                  onClick={handleAddDoc}
+                >
+                  <i className="ri-add-line"></i> Add another document
+                </Typography>
               </Grid>
               <Box
                 sx={{

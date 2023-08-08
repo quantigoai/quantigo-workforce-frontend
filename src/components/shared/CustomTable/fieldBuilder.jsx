@@ -13,7 +13,7 @@
  * ------------------------
  */
 
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import "remixicon/fonts/remixicon.css";
 import ProjectDrawerStatusChip from "../FilterField/ProjectDrawerStatusChip.jsx";
 import customHeader from "./formatHeader.js";
@@ -48,10 +48,34 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
       customItems = {
         id: index,
         field: field.field,
-        width: field.width || 250,
+        width: field.width || 180,
         headerName: customHeader(field.field),
         renderCell: (params) => {
           return <ProjectDrawerStatusChip value={params.value} />;
+        },
+        editable: field.editable || false,
+        cellClassName: field.cellClassName || "",
+      };
+    } else if (field.renderCell === "status-chip") {
+      customItems = {
+        id: index,
+        field: field.field,
+        width: field.width || 180,
+        headerName: customHeader(field.field),
+        renderCell: (params) => {
+          return (
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2,1fr)",
+                gap: "5px",
+              }}
+            >
+              {params.value.map((p) => (
+                <ProjectDrawerStatusChip key={p._id} value={p.name} />
+              ))}
+            </Box>
+          );
         },
         editable: field.editable || false,
         cellClassName: field.cellClassName || "",
@@ -68,6 +92,7 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
     }
     return customItems;
   });
+
   return newFields;
 };
 export default fieldBuilder;

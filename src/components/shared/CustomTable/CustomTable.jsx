@@ -52,7 +52,11 @@ const CustomTable = ({ myColumn, myRows }) => {
       <Box style={{ height: "100%", width: "100%" }}>
         <StripedDataGrid
           showColumnVerticalBorder
-          showCellVerticalBorder
+          showCellVerticalBorder={false}
+          // getRowHeight={(z) => console.log(z.model.project_skills.length)}
+          getRowHeight={(z) =>
+            z.model.project_skills.length && z.model.project_skills.length * 22
+          }
           sx={{
             textAlign: "center",
             "& .MuiDataGrid-cell": {

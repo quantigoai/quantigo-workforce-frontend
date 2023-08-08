@@ -21,26 +21,25 @@ import {
   getAllProjectDrawers,
 } from "../../../features/slice/projectDrawerSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
-import CustomTable from "../../shared/CustomTable/CustomTable";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
-import CreateProjectDrawer from "./CreateProjectDrawer";
 import "./index.css";
 
 const fields = [
   { field: "project_drawer_name", width: 200 },
   { field: "project_alias" },
   { field: "project_platform" },
-  { field: "project_batch" },
-  { field: "project_status", renderCell: "chip", cellClassName: "test" },
-  { field: "project_skills" },
-  { field: "pdr" },
+  { field: "project_batch", width: 100 },
+  { field: "project_status", renderCell: "chip" },
+  { field: "project_skills", width: 250, renderCell: "status-chip" },
+  { field: "pdr", width: 140 },
   {
     field: "Actions",
     renderCell: "button",
   },
 ];
 
+import CustomTable from "../../shared/CustomTable/CustomTable";
 import ProjectModal from "./ProjectModal";
 const ProjectLIstIndex2 = () => {
   const CustomFilterIcon = styled(SortIcon)({
@@ -76,67 +75,78 @@ const ProjectLIstIndex2 = () => {
     <>
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: "100%",
+          position: "relative",
         }}
       >
-        <Box sx={{ width: "40%" }}>
-          <Grid
-            container
-            sx={{
-              paddingBottom: "0%",
-              display: "flex",
-              alignContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <CommonHeader title="Projects" customButton="Create User" />
-          </Grid>
-        </Box>
         <Box
           sx={{
             display: "flex",
-            justifyContent: "space-around",
-            width: "40%",
-            alignItems: "center",
+            justifyContent: "space-between",
           }}
         >
-          <Paper
-            component="form"
+          <Box sx={{ width: "40%" }}>
+            <Grid
+              container
+              sx={{
+                paddingBottom: "0%",
+                display: "flex",
+                alignContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <CommonHeader title="Projects" customButton="Create User" />
+            </Grid>
+          </Box>
+          <Box
             sx={{
-              p: "2px 4px",
               display: "flex",
+              justifyContent: "space-around",
+              width: "40%",
               alignItems: "center",
-              width: "250px",
-              background: "#F4F7FE",
             }}
           >
-            <IconButton
-              disabled
-              type="button"
-              sx={{ p: "10px" }}
-              aria-label="search"
+            <Paper
+              component="form"
+              sx={{
+                p: "2px 4px",
+                display: "flex",
+                alignItems: "center",
+                width: "250px",
+                background: "#F4F7FE",
+              }}
             >
-              <SearchIcon />
+              <IconButton
+                disabled
+                type="button"
+                sx={{ p: "10px" }}
+                aria-label="search"
+              >
+                <SearchIcon />
+              </IconButton>
+              <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search" />
+            </Paper>
+            <IconButton
+              sx={{ p: "0px", background: "#F4F7FE" }}
+              aria-label="menu"
+              //   onClick={handleClickFilter}
+            >
+              <CustomFilterIcon />
             </IconButton>
-            <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search" />
-          </Paper>
-          <IconButton
-            sx={{ p: "0px", background: "#F4F7FE" }}
-            aria-label="menu"
-            //   onClick={handleClickFilter}
-          >
-            <CustomFilterIcon />
-          </IconButton>
 
-          <Box>
-            <ProjectModal />
+            <Box>
+              <ProjectModal />
+            </Box>
           </Box>
         </Box>
-      </Box>
-      <Box sx={{ mt: "40px" }}>
-        <CustomTable myColumn={myColumn} myRows={myRows} />
+        <Box
+          sx={{
+            width: "100%",
+            mt: "40px",
+            position: "absolute",
+          }}
+        >
+          <CustomTable myColumn={myColumn} myRows={myRows} />
+        </Box>
       </Box>
     </>
   );

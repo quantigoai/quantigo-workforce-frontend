@@ -20,11 +20,15 @@ let drawerStatus = (status) => {
     case "completed":
       return "Completed";
     default:
-      break;
+      return status;
   }
 };
 
 const ProjectDrawerStatusChip = ({ value }) => {
+  console.log(
+    "🚀 ~ file: ProjectDrawerStatusChip.jsx:28 ~ ProjectDrawerStatusChip ~ value:",
+    value
+  );
   const style = (status) => {
     switch (status) {
       case "not-Started":
@@ -56,7 +60,12 @@ const ProjectDrawerStatusChip = ({ value }) => {
           border: "1px solid #C4F5DF",
         };
       default:
-        break;
+        return {
+          backgroundColor: "rgba(242, 246, 252, 1)",
+          color: "rgba(60, 77, 107, 1)",
+          width: "120px",
+          border: "1px solid rgba(230, 236, 245, 1)",
+        };
     }
   };
 

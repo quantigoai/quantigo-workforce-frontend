@@ -1,0 +1,17 @@
+/*
+ * Filename: /home/tanzim/OfficeWorkstation/quantigo-workforce-frontend/src/components/shared/CustomTable/index.css
+ * Path: /home/tanzim/OfficeWorkstation/quantigo-workforce-frontend
+ * Created Date: Tuesday, August 8th 2023, 12:01:15 pm
+ * Author: Tanzim Ahmed
+ * 
+ * Copyright (c) 2023 Tanzim Ahmed
+ */
+       
+.MuiDataGrid-root .MuiDataGrid-cell:focus-within {
+            outline: none !important;
+
+}
+.MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within {
+            outline: none !important;
+
+}

@@ -9,7 +9,6 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -19,40 +18,29 @@ const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 210,
+      width: 110,
     },
   },
 };
 
-function getStyles(name, addSkills, theme) {
-  return {
-    fontWeight:
-      addSkills.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
-const SkillFieldProject = () => {
-  const { skills } = useSelector((state) => state.skill);
-  const [mainSKills, setMainSkills] = useState([]);
-  const [addSKills, setAddSkills] = useState([]);
+const SkillFieldProject = ({ skills, handleChangeSkill, addSkills }) => {
+  // const [addSkills, setAddSkills] = useState([]);
 
-  useEffect(() => {
-    setMainSkills(skills);
-  }, [skills]);
+  // const handleChange = (event) => {
+  //   const {
+  //     target: { value },
+  //   } = event;
 
-  const theme = useTheme();
+  //   const selectedSkills = value.map((skill) => {
+  //     return skills.find((s) => s.name === skill);
+  //   });
 
-  const namesArray = mainSKills.map((item) => item.name);
+  //   setAddSkills(
+  //     // On autofill we get a stringified value.
+  //     typeof selectedSkills === "string" ? value.split(",") : selectedSkills
+  //   );
+  // };
 
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    console.log(value);
-    setAddSkills(typeof value === "string" ? value.split(",") : value);
-  };
-  
   return (
     <>
       <Grid sx={{ mt: "18px" }} item xs={6}>
@@ -66,8 +54,8 @@ const SkillFieldProject = () => {
             labelId="demo-multiple-chip-label"
             id="demo-multiple-chip"
             multiple
-            value={addSKills}
-            onChange={handleChange}
+            defaultValue={addSkills}
+            onChange={handleChangeSkill}
             input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
             renderValue={(selected) => (
               <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
@@ -78,13 +66,9 @@ const SkillFieldProject = () => {
             )}
             MenuProps={MenuProps}
           >
-            {namesArray?.map((name) => (
-              <MenuItem
-                key={name}
-                value={name}
-                style={getStyles(name, addSKills, theme)}
-              >
-                {name}
+            {skills.map((skill) => (
+              <MenuItem key={skill._id} value={skill.name}>
+                {skill.name}
               </MenuItem>
             ))}
           </Select>

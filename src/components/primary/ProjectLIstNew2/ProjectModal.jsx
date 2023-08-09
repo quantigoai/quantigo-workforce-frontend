@@ -14,7 +14,7 @@ import Button from "@mui/material/Button";
 import Fade from "@mui/material/Fade";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import React from "react";
+import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -40,9 +40,11 @@ const CustomDownArrow = styled(KeyboardArrowDownIcon)({
 });
 
 const ProjectModal = () => {
+  const { skills } = useSelector((state) => state.skill);
   const dispatch = useDispatch();
   const alert = useAlert();
-  
+  const [addSkills, setAddSkills] = useState([]);
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -51,25 +53,47 @@ const ProjectModal = () => {
   const [projectType, setProjectType] = React.useState("");
   const { register, handleSubmit, reset } = useForm();
   const { error } = useSelector((state) => state.projectDrawer);
-  
-  const onSubmit = (data) => {
-    dispatch(createProjectDrawer(data))
-      .then((action) => {
-        if (action.payload.status === 201) {
-          alert.show(action.payload.data.message, { type: "success" });
-          reset();
-          setOpen(false);
-        }
-      })
-      .catch(() => {
-        alert.show(error, { type: "error" });
-      });
+
+  const handleChangeSkill = (event) => {
+    const {
+      target: { value },
+    } = event;
+
+    const selectedSkills = value.map((skill) => {
+      return skills.find((s) => s.name === skill);
+    });
+
+    setAddSkills(
+      // On autofill we get a stringified value.
+      typeof selectedSkills === "string" ? value.split(",") : selectedSkills
+    );
   };
-  
+
+  const skillId = addSkills?.map((skill) => skill._id);
+
+  const onSubmit = (data) => {
+    const newData = { ...data, project_skills: skillId };
+    console.log(
+      "🚀 ~ file: ProjectModal.jsx:76 ~ onSubmit ~ newData:",
+      newData
+    );
+
+    dispatch(createProjectDrawer(newData)).then((action) => {
+      console.log(action);
+      if (action.payload.status === 201) {
+        alert.show(action.payload.data.message, { type: "success" });
+        reset();
+        setOpen(false);
+      } else {
+        alert.show("error", { type: "error" });
+      }
+    });
+  };
+
   const handleChange = (event) => {
     setPlatform(event.target.value);
   };
-  
+
   const handleAddDoc = () => {
     console.log("clicked");
   };
@@ -77,7 +101,7 @@ const ProjectModal = () => {
   const handleChangeProjectType = (event) => {
     setProjectType(event.target.value);
   };
-  
+
   const handleStatus = (event) => {
     setStatus(event.target.value);
   };
@@ -323,7 +347,11 @@ const ProjectModal = () => {
                   {/* <SkillField/> */}
 
                   <Grid item xs={6} sx={{ width: "40%" }}>
-                    <SkillFieldProject />
+                    <SkillFieldProject
+                      skills={skills}
+                      addSkills={addSkills}
+                      handleChangeSkill={handleChangeSkill}
+                    />
                   </Grid>
                   <Grid item xs={6}>
                     <Typography
@@ -390,7 +418,7 @@ const ProjectModal = () => {
                         Select
                       </InputLabel>
                       <Select
-                        {...register("status")}
+                        {...register("project_status")}
                         required
                         labelId="demo-simple-select-filled-label"
                         id="demo-simple-select-filled"

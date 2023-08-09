@@ -86,6 +86,7 @@ const CreateCourse = () => {
   // pre request courses function
   const [preRequisiteCourses, setPreRequisiteCourses] = React.useState([]);
   const [skill, setSkill] = React.useState([]);
+  console.log("🚀 ~ file: CreateCourse.jsx:89 ~ CreateCourse ~ skill:", skill);
 
   const handleChange_Pre_Requisite_Course = (event) => {
     const {

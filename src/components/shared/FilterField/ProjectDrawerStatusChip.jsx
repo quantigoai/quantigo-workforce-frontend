@@ -25,6 +25,7 @@ let drawerStatus = (status) => {
 };
 
 const ProjectDrawerStatusChip = ({ value }) => {
+  
   const style = (status) => {
     switch (status) {
       case "not-Started":

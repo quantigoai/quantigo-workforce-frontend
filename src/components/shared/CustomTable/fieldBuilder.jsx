@@ -13,9 +13,9 @@
  * ------------------------
  */
 
-import { AvatarGroup } from "@mui/material";
 import "remixicon/fonts/remixicon.css";
 import ProjectDrawerStatusChip from "../FilterField/ProjectDrawerStatusChip.jsx";
+import ChipGroup from "./ChipGroup.jsx";
 import CustomButton from "./CustomButton.jsx";
 import customHeader from "./formatHeader.js";
 
@@ -50,20 +50,14 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
         editable: field.editable || false,
         cellClassName: field.cellClassName || "",
       };
-    } else if (field.renderCell === "status-chip") {
+    } else if (field.renderCell === "skills-chip") {
       customItems = {
         id: index,
         field: field.field,
         width: field.width || 180,
         headerName: customHeader(field.field),
         renderCell: (params) => {
-          return (
-            <AvatarGroup max={3}>
-              {params.value.map((p) => (
-                <ProjectDrawerStatusChip key={p._id} value={p.name} />
-              ))}
-            </AvatarGroup>
-          );
+          return <ChipGroup params={params} />;
         },
         editable: field.editable || false,
         cellClassName: field.cellClassName || "",

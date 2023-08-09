@@ -33,7 +33,7 @@ const fields = [
   { field: "project_platform" },
   { field: "project_batch", width: 100 },
   { field: "project_status", renderCell: "chip" },
-  { field: "project_skills", width: 360, renderCell: "status-chip" },
+  { field: "project_skills", width: 360, renderCell: "skills-chip" },
   { field: "pdr", width: 140 },
   {
     field: "Actions",

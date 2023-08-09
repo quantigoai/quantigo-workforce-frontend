@@ -12,7 +12,7 @@ import SortIcon from "@mui/icons-material/Sort";
 import { Box, Grid, IconButton, Paper } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import { styled } from "@mui/material/styles";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import "remixicon/fonts/remixicon.css";
@@ -43,6 +43,8 @@ const fields = [
 
 import CustomTable from "../../shared/CustomTable/CustomTable";
 import ProjectModal from "./ProjectModal";
+import EditProjectModal from "./EditProjectModal";
+
 const ProjectLIstIndex2 = () => {
   const CustomFilterIcon = styled(SortIcon)({
     color: "#266AED",
@@ -67,11 +69,13 @@ const ProjectLIstIndex2 = () => {
 
   const alert = useAlert();
 
-  const handleClick = (e) => {
-    dispatch(setCurrentProjectDrawer(e.id)).then(() => {
-      // sent projectDrawer as  params
+  const [open, setOpen] = React.useState(false);
+  // const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-    });
+  const handleClick = (e) => {
+    dispatch(setCurrentProjectDrawer(e.id));
+    setOpen(true);
   };
 
   const handleDelete = (e) => {
@@ -159,7 +163,14 @@ const ProjectLIstIndex2 = () => {
             </Box>
           </Box>
         </Box>
-
+        <EditProjectModal
+          // handleOpen={handleOpen}
+          open={open}
+          handleClick={handleClick}
+          handleClose={handleClose}
+          projectDrawer={projectDrawer}
+        />
+        ;
         <Box
           sx={{
             width: "100%",

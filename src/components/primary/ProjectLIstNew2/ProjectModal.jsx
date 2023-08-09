@@ -44,7 +44,6 @@ const ProjectModal = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const [addSkills, setAddSkills] = useState([]);
-  const [SkillsId, setSkillsId] = useState([]);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -70,21 +69,25 @@ const ProjectModal = () => {
     );
   };
 
-  const skillId = addSkills.map((skill) => skill._id);
+  const skillId = addSkills?.map((skill) => skill._id);
 
   const onSubmit = (data) => {
     const newData = { ...data, project_skills: skillId };
-    dispatch(createProjectDrawer(newData))
-      .then((action) => {
-        if (action.payload.status === 201) {
-          alert.show(action.payload.data.message, { type: "success" });
-          reset();
-          setOpen(false);
-        }
-      })
-      .catch(() => {
-        alert.show(error, { type: "error" });
-      });
+    console.log(
+      "🚀 ~ file: ProjectModal.jsx:76 ~ onSubmit ~ newData:",
+      newData
+    );
+
+    dispatch(createProjectDrawer(newData)).then((action) => {
+      console.log(action);
+      if (action.payload.status === 201) {
+        alert.show(action.payload.data.message, { type: "success" });
+        reset();
+        setOpen(false);
+      } else {
+        alert.show("error", { type: "error" });
+      }
+    });
   };
 
   const handleChange = (event) => {
@@ -415,7 +418,7 @@ const ProjectModal = () => {
                         Select
                       </InputLabel>
                       <Select
-                        {...register("status")}
+                        {...register("project_status")}
                         required
                         labelId="demo-simple-select-filled-label"
                         id="demo-simple-select-filled"

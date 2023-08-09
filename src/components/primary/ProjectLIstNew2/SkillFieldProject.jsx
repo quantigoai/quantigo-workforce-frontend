@@ -9,8 +9,7 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -24,22 +23,7 @@ const MenuProps = {
 };
 
 const SkillFieldProject = ({ skills, handleChangeSkill, addSkills }) => {
-  // const [addSkills, setAddSkills] = useState([]);
-
-  // const handleChange = (event) => {
-  //   const {
-  //     target: { value },
-  //   } = event;
-
-  //   const selectedSkills = value.map((skill) => {
-  //     return skills.find((s) => s.name === skill);
-  //   });
-
-  //   setAddSkills(
-  //     // On autofill we get a stringified value.
-  //     typeof selectedSkills === "string" ? value.split(",") : selectedSkills
-  //   );
-  // };
+ 
 
   return (
     <>

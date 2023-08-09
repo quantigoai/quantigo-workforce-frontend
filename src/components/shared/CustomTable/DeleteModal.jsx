@@ -1,8 +1,8 @@
-import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import Typography from "@mui/material/Typography";
+import React from "react";
 const style = {
   position: "absolute",
   top: "50%",
@@ -15,13 +15,9 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-const DeleteModal = ({ handleDelete, params }) => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+const DeleteModal = ({ open, handleDelete, params, handleClose }) => {
   return (
     <>
-      <i onClick={handleOpen} className="ri-delete-bin-6-line"></i>
       <Modal
         open={open}
         onClose={handleClose}

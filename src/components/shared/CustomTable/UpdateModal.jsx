@@ -1,8 +1,8 @@
-import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import Typography from "@mui/material/Typography";
+import React from "react";
 
 const style = {
   position: "absolute",
@@ -16,13 +16,9 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-const UpdateModal = ({ handleClick, params }) => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+const UpdateModal = ({ open, handleClose, handleClick, params }) => {
   return (
     <>
-      <i onClick={handleOpen} className="ri-edit-line"></i>
       <Modal
         open={open}
         onClose={handleClose}

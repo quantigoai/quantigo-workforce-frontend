@@ -13,32 +13,13 @@
  * ------------------------
  */
 
-import { AvatarGroup, Button } from "@mui/material";
+import { AvatarGroup } from "@mui/material";
 import "remixicon/fonts/remixicon.css";
 import ProjectDrawerStatusChip from "../FilterField/ProjectDrawerStatusChip.jsx";
-import DeleteModal from "./DeleteModal.jsx";
-import UpdateModal from "./UpdateModal.jsx";
+import CustomButton from "./CustomButton.jsx";
 import customHeader from "./formatHeader.js";
 
 const fieldBuilder = (fields, handleClick, handleDelete) => {
-  
-  const MyButton = ({ params }) => {
-    return (
-      <>
-        <Button sx={{ color: "#2E58FF" }} onClick={() => handleClick(params)}>
-          <UpdateModal handleClick={handleClick} params={params} />
-        </Button>
-        <Button sx={{ color: "#F04438" }}>
-          <DeleteModal
-            button={"delete"}
-            handleDelete={handleDelete}
-            params={params}
-          />
-        </Button>
-      </>
-    );
-  };
-
   const newFields = fields.map((field, index) => {
     let customItems;
     if (field.renderCell === "button") {
@@ -47,7 +28,13 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
         field: field.field,
         width: field.width || 200,
         headerName: customHeader(field.field),
-        renderCell: (params) => <MyButton params={params} />,
+        renderCell: (params) => (
+          <CustomButton
+            params={params}
+            handleClick={handleClick}
+            handleDelete={handleDelete}
+          />
+        ),
         editable: field.editable || false,
         cellClassName: field.cellClassName || "",
       };

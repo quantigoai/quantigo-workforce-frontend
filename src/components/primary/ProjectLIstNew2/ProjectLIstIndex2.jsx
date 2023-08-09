@@ -20,6 +20,7 @@ import { setActivePath } from "../../../features/slice/activePathSlice";
 import {
   deleteProjectDrawerById,
   getAllProjectDrawers,
+  setCurrentProjectDrawer,
 } from "../../../features/slice/projectDrawerSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
@@ -50,7 +51,9 @@ const ProjectLIstIndex2 = () => {
     padding: "10px",
   });
 
-  const { projectDrawers, error } = useSelector((state) => state.projectDrawer);
+  const { projectDrawer, projectDrawers, error } = useSelector(
+    (state) => state.projectDrawer
+  );
 
   const dispatch = useDispatch();
 
@@ -65,7 +68,10 @@ const ProjectLIstIndex2 = () => {
   const alert = useAlert();
 
   const handleClick = (e) => {
-    console.log("🚀 ~ file: ProjectLIstIndex2.jsx:44 ~ handleClick ~ e:", e);
+    dispatch(setCurrentProjectDrawer(e.id)).then(() => {
+      // sent projectDrawer as  params
+
+    });
   };
 
   const handleDelete = (e) => {

@@ -160,6 +160,11 @@ const projectDrawerSlice = createSlice({
     resetProjectDrawer: (state) => {
       state.projectDrawers = [];
     },
+    setCurrentProjectDrawer : (state, action) => {
+      
+      state.projectDrawer = state.projectDrawers.find((p)=> p._id === action.payload)
+      
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -272,5 +277,5 @@ const projectDrawerSlice = createSlice({
       });
   },
 });
-export const { resetProjectDrawer } = projectDrawerSlice.actions;
+export const { resetProjectDrawer,setCurrentProjectDrawer } = projectDrawerSlice.actions;
 export default projectDrawerSlice.reducer;

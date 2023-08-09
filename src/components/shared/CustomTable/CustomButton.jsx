@@ -25,7 +25,10 @@ const CustomButton = ({ params, handleClick, handleDelete }) => {
           handleClick(params);
         }}
       >
-        <i onClick={handleOpen} className="ri-edit-line"></i>
+        <i
+          className="ri-edit-line"
+          // onClick={handleOpen}
+        ></i>
       </Button>
 
       <Button
@@ -39,7 +42,7 @@ const CustomButton = ({ params, handleClick, handleDelete }) => {
       <MainModal
         open={open}
         handleClose={handleClose}
-        handleClick={handleClick}
+        // handleClick={handleClick}
         handleDelete={handleDelete}
         params={params}
         isEdit={isEdit}

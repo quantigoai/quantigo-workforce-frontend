@@ -17,17 +17,23 @@ import { AvatarGroup, Button } from "@mui/material";
 import "remixicon/fonts/remixicon.css";
 import ProjectDrawerStatusChip from "../FilterField/ProjectDrawerStatusChip.jsx";
 import DeleteModal from "./DeleteModal.jsx";
+import UpdateModal from "./UpdateModal.jsx";
 import customHeader from "./formatHeader.js";
 
 const fieldBuilder = (fields, handleClick, handleDelete) => {
+  
   const MyButton = ({ params }) => {
     return (
       <>
         <Button sx={{ color: "#2E58FF" }} onClick={() => handleClick(params)}>
-          <i className="ri-edit-line"></i>
+          <UpdateModal handleClick={handleClick} params={params} />
         </Button>
         <Button sx={{ color: "#F04438" }}>
-          <DeleteModal handleDelete={handleDelete} params={params} />
+          <DeleteModal
+            button={"delete"}
+            handleDelete={handleDelete}
+            params={params}
+          />
         </Button>
       </>
     );

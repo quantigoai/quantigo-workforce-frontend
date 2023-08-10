@@ -170,7 +170,7 @@ const ProjectLIstIndex2 = () => {
           handleClose={handleClose}
           projectDrawer={projectDrawer}
         />
-        ;
+
         <Box
           sx={{
             width: "100%",

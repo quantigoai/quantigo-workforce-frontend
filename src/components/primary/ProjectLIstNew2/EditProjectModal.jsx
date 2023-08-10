@@ -38,14 +38,14 @@ const CustomDownArrow = styled(KeyboardArrowDownIcon)({
   marginRight: "10px",
 });
 const EditProjectModal = ({ open, handleClose, projectDrawer }) => {
-  console.log(
-    "🚀 ~ file: EditProjectModal.jsx:41 ~ EditProjectModal ~ projectDrawer:",
-    projectDrawer
-  );
-  console.log(
-    "🚀 ~ file: EditProjectModal.jsx:37 ~ EditProjectModal ~ open:",
-    open
-  );
+  // console.log(
+  //   "🚀 ~ file: EditProjectModal.jsx:41 ~ EditProjectModal ~ projectDrawer:",
+  //   projectDrawer
+  // );
+  // console.log(
+  //   "🚀 ~ file: EditProjectModal.jsx:37 ~ EditProjectModal ~ open:",
+  //   open
+  // );
 
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -54,17 +54,17 @@ const EditProjectModal = ({ open, handleClose, projectDrawer }) => {
   const [projectType, setProjectType] = React.useState("");
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    dispatch(createProjectDrawer(data))
-      .then((action) => {
-        if (action.payload.status === 201) {
-          alert.show(action.payload.data.message, { type: "success" });
-          reset();
-          //   setOpen(false);
-        }
-      })
-      .catch(() => {
-        alert.show(error, { type: "error" });
-      });
+    // dispatch(createProjectDrawer(data))
+    //   .then((action) => {
+    //     if (action.payload.status === 201) {
+    //       alert.show(action.payload.data.message, { type: "success" });
+    //       reset();
+    //       //   setOpen(false);
+    //     }
+    //   })
+    //   .catch(() => {
+    //     alert.show(error, { type: "error" });
+    //   });
   };
 
   const handleChange = (event) => {

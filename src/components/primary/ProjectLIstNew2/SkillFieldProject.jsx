@@ -9,7 +9,7 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-
+import { useEffect, useState } from "react";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -23,8 +23,10 @@ const MenuProps = {
 };
 
 const SkillFieldProject = ({ skills, handleChangeSkill, addSkills }) => {
- 
-
+  const [isUpdate, setIsUpdate] = useState(false);
+  useEffect(() => {
+    setIsUpdate(true);
+  }, [skills]);
   return (
     <>
       <Grid sx={{ mt: "18px" }} item xs={6}>
@@ -38,7 +40,7 @@ const SkillFieldProject = ({ skills, handleChangeSkill, addSkills }) => {
             labelId="demo-multiple-chip-label"
             id="demo-multiple-chip"
             multiple
-            defaultValue={addSkills}
+            defaultValue={isUpdate ? addSkills : []}
             onChange={handleChangeSkill}
             input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
             renderValue={(selected) => (

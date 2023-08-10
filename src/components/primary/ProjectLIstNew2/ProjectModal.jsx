@@ -53,6 +53,7 @@ const ProjectModal = () => {
   const [projectType, setProjectType] = React.useState("");
   const { register, handleSubmit, reset } = useForm();
   const { error } = useSelector((state) => state.projectDrawer);
+  console.log("🚀 ~ file: ProjectModal.jsx:56 ~ ProjectModal ~ error:", error);
 
   const handleChangeSkill = (event) => {
     const {
@@ -73,19 +74,16 @@ const ProjectModal = () => {
 
   const onSubmit = (data) => {
     const newData = { ...data, project_skills: skillId };
-    console.log(
-      "🚀 ~ file: ProjectModal.jsx:76 ~ onSubmit ~ newData:",
-      newData
-    );
 
     dispatch(createProjectDrawer(newData)).then((action) => {
-      console.log(action);
-      if (action.payload.status === 201) {
+      console.log("🚀 ~ file: ProjectModal.jsx:81 ~ .then ~ action:", action);
+      if (action.error.message) {
+        alert.show(error, { type: "error" });
+      }
+      if (action.payload?.status === 201) {
         alert.show(action.payload.data.message, { type: "success" });
         reset();
         setOpen(false);
-      } else {
-        alert.show("error", { type: "error" });
       }
     });
   };

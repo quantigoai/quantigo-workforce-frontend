@@ -51,6 +51,7 @@ export const createProjectDrawer = createAsyncThunk(
         },
       });
     } catch (error) {
+      console.log("🚀 ~ file: projectDrawerSlice.js:54 ~ error:", error)
       throw new Error(error.response.data.message);
     }
   }
@@ -183,14 +184,15 @@ const projectDrawerSlice = createSlice({
       })
       .addCase(createProjectDrawer.pending, (state) => {
         state.isLoading = true;
+
       })
       .addCase(createProjectDrawer.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.error = null;
         state.projectDrawers = [
           action.payload.data.projectDrawer,
           ...state.projectDrawers,
         ];
+        state.isLoading = false;
       })
       .addCase(createProjectDrawer.rejected, (state, action) => {
         state.error = action.error.message;

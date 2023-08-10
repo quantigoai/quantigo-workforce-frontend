@@ -60,7 +60,7 @@ const ProjectLIstIndex2 = () => {
   const dispatch = useDispatch();
   const [paginationModel, setPaginationModel] = React.useState({
     page: 0,
-    pageSipaginationModeze: 10,
+    pageSize: 10,
   });
   useEffect(() => {
     dispatch(setActivePath("All Projects2"));
@@ -102,7 +102,6 @@ const ProjectLIstIndex2 = () => {
       <Box
         sx={{
           position: "relative",
-          mt: 2,
         }}
       >
         <Box
@@ -168,7 +167,7 @@ const ProjectLIstIndex2 = () => {
         </Box>
         <EditProjectModal
           // handleOpen={handleOpen}
-          // open={open}
+          open={open}
           handleClick={handleClick}
           handleClose={handleClose}
           projectDrawer={projectDrawer}

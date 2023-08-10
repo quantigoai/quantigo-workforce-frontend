@@ -224,13 +224,14 @@ const projectDrawerSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(deleteProjectDrawerById.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.error = null;
         state.projectDrawers = [
           ...state.projectDrawers.filter(
             (drawer) => drawer._id !== action.payload.data.projectDrawer._id
           ),
         ];
+        state.total = action.payload.data.count;
+        state.isLoading = false;
       })
       .addCase(deleteProjectDrawerById.rejected, (state, action) => {
         state.error = action.error.message;

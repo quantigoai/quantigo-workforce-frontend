@@ -53,9 +53,8 @@ const ProjectLIstIndex2 = () => {
     padding: "10px",
   });
 
-  const {isLoading, projectDrawer, projectDrawers, total, error } = useSelector(
-    (state) => state.projectDrawer
-  );
+  const { isLoading, projectDrawer, projectDrawers, total, error } =
+    useSelector((state) => state.projectDrawer);
 
   const dispatch = useDispatch();
   const [paginationModel, setPaginationModel] = React.useState({
@@ -65,7 +64,8 @@ const ProjectLIstIndex2 = () => {
   useEffect(() => {
     dispatch(setActivePath("All Projects2"));
     dispatch(getAllProjectDrawers({ paginationModel }));
-  }, [paginationModel]);
+  }, [paginationModel, total]);
+
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
 

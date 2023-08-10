@@ -25,6 +25,7 @@ const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
 }));
 
 const CustomTable = ({ myColumn, myRows }) => {
+  
   return (
     <>
       <Box style={{ height: "100%", width: "100%" }}>

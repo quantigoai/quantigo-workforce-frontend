@@ -1,13 +1,8 @@
-import {Box, Button} from "@mui/material";
-import React, {useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch} from "react-redux";
+import { Box, Button } from "@mui/material";
+import React, { useState } from "react";
 import ChangePasswordModal from "./ChangePasswordModal";
 
 const ChangePasswordIndex = () => {
-  const [open, setOpen] = useState(false);
-  const alert = useAlert();
-  const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const handleCreateModal = () => {
     setOpenModal(true);
@@ -35,7 +30,11 @@ const ChangePasswordIndex = () => {
           Change Password
         </Button>
       </Box>
-      <ChangePasswordModal openModal={openModal} handleClose={handleClose} setOpenModal={setOpenModal}/>
+      <ChangePasswordModal
+        openModal={openModal}
+        handleClose={handleClose}
+        setOpenModal={setOpenModal}
+      />
     </>
   );
 };

@@ -24,8 +24,7 @@ let drawerStatus = (status) => {
   }
 };
 
-const ProjectDrawerStatusChip = ({ value }) => {
-  
+const ProjectDrawerStatusChip = ({ value, isPopper = false }) => {
   const style = (status) => {
     switch (status) {
       case "not-Started":
@@ -60,7 +59,7 @@ const ProjectDrawerStatusChip = ({ value }) => {
         return {
           backgroundColor: "rgba(242, 246, 252, 1)",
           color: "rgba(60, 77, 107, 1)",
-          width: "110px",
+          width: isPopper ? "220px" : "120px",
           padding: "0px",
           border: "1px solid rgba(230, 236, 245, 1)",
         };

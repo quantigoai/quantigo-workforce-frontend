@@ -29,9 +29,17 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 700,
   bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
+  border: "none",
+  borderRadius: "8px",
   p: 0,
+  input: {
+    color: "black",
+    height: "20px",
+    borderRadius: "8px",
+  },
+  select: {
+    height: "20px",
+  },
 };
 
 const CustomDownArrow = styled(KeyboardArrowDownIcon)({
@@ -76,9 +84,8 @@ const ProjectModal = () => {
     const newData = { ...data, project_skills: skillId };
 
     dispatch(createProjectDrawer(newData)).then((action) => {
-      console.log("🚀 ~ file: ProjectModal.jsx:81 ~ .then ~ action:", action);
-      if (action.error.message) {
-        alert.show(error, { type: "error" });
+      if (action.error?.message) {
+        alert.show(action.error?.message, { type: "error" });
       }
       if (action.payload?.status === 201) {
         alert.show(action.payload.data.message, { type: "success" });
@@ -135,8 +142,7 @@ const ProjectModal = () => {
             <Box
               sx={{
                 paddingTop: "2%",
-                paddingLeft: "0%",
-                width: "700px",
+                width: "695px",
                 background: "#F2F6FC",
               }}
             >
@@ -146,12 +152,17 @@ const ProjectModal = () => {
                   paddingBottom: "1%",
                   display: "flex",
                   alignItems: "center",
+                  borderRadius: "8px",
                 }}
               >
                 <Grid item xs={11} sx={{ paddingLeft: "30px" }}>
                   <Typography
                     variant="h6"
-                    sx={{ color: "#3C4D6B", fontSize: "16px" }}
+                    sx={{
+                      color: "#3C4D6B",
+                      fontSize: "16px",
+                      fontWeight: "600",
+                    }}
                   >
                     Create Project
                   </Typography>
@@ -168,7 +179,7 @@ const ProjectModal = () => {
               </Grid>
             </Box>
             <Box
-              sx={{ paddingLeft: "4%", paddingTop: "2%", paddingRight: "1%" }}
+              sx={{ paddingLeft: "3%", paddingTop: "2%", paddingRight: "3%" }}
             >
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Grid container>
@@ -181,6 +192,7 @@ const ProjectModal = () => {
                     </Typography>
                     <FormControl
                       variant="filled"
+                      size="small"
                       sx={{
                         backgroundColor: "#F8F8F8",
                         borderRadius: "8px",
@@ -225,7 +237,7 @@ const ProjectModal = () => {
                     <TextField
                       {...register("project_drawer_name")}
                       required
-                      sx={{ borderRadius: "10px", width: "90%" }}
+                      sx={{ borderRadius: "10px", width: "100%" }}
                       id="outlined-basic"
                       label=""
                       variant="outlined"
@@ -240,6 +252,7 @@ const ProjectModal = () => {
                     </Typography>
                     <FormControl
                       variant="filled"
+                      size="small"
                       sx={{
                         backgroundColor: "#F8F8F8",
                         borderRadius: "8px",
@@ -288,7 +301,7 @@ const ProjectModal = () => {
                       sx={{
                         borderRadius: "10px",
                         height: "40px",
-                        width: "90%",
+                        width: "100%",
                       }}
                       id="outlined-basic"
                       label=""
@@ -302,7 +315,7 @@ const ProjectModal = () => {
                         mt: "15px",
                         fontSize: "14px",
                         mb: "10px",
-                        marginLeft: "5%",
+                        marginLeft: "0%",
                       }}
                       variant="h6"
                     >
@@ -336,7 +349,7 @@ const ProjectModal = () => {
                       type="number"
                       {...register("pdr")}
                       required
-                      sx={{ width: "90%" }}
+                      sx={{ width: "100%" }}
                       id="outlined-basic"
                       label=""
                       variant="outlined"
@@ -365,7 +378,7 @@ const ProjectModal = () => {
                     </Typography>
 
                     <TextField
-                      sx={{ width: "90%" }}
+                      sx={{ width: "100%" }}
                       id="outlined-basic"
                       label=""
                       variant="outlined"
@@ -402,6 +415,7 @@ const ProjectModal = () => {
                     </Typography>
                     <FormControl
                       variant="filled"
+                      size="small"
                       sx={{
                         backgroundColor: "#F8F8F8",
                         borderRadius: "8px",
@@ -409,7 +423,7 @@ const ProjectModal = () => {
                         height: "60px",
                         background: "#E6ECF5",
                         fontSize: "14px",
-                        width: "90%",
+                        width: "100%",
                       }}
                     >
                       <InputLabel id="demo-simple-select-filled-label">
@@ -445,63 +459,83 @@ const ProjectModal = () => {
                     </Typography>
                   </Grid>
 
-                  <Grid item xs={6}>
-                    <Typography
-                      sx={{
-                        fontWeight: "500",
-                        fontSize: "14px",
-                        mb: "10px",
-                        marginLeft: "5%",
-                      }}
-                      variant="h6"
-                    >
-                      Document
-                    </Typography>
-
-                    <TextField
-                      {...register("guideline")}
-                      required
-                      sx={{ width: "90%" }}
-                      id="outlined-basic"
-                      label=""
-                      variant="outlined"
-                    />
-                  </Grid>
-
-                  <Grid item xs={6}>
-                    <Typography
-                      sx={{
-                        fontWeight: "500",
-                        fontSize: "14px",
-                        mb: "10px",
-                      }}
-                      variant="h6"
-                    >
-                      Link
-                    </Typography>
-
-                    <TextField
-                      sx={{ width: "90%" }}
-                      id="outlined-basic"
-                      label=""
-                      variant="outlined"
-                    />
-                  </Grid>
-                  <Typography
+                  <Grid
+                    container
                     sx={{
-                      fontWeight: "600",
-                      mt: "15px",
-                      fontSize: "14px",
-                      mb: "10px",
-                      color: "#2E58FF",
-                      cursor: "pointer",
+                      border: "2px solid #E6ECF5",
+                      padding: "16px",
+                      borderRadius: "8px",
+                      background: "#FAFCFF",
                     }}
-                    variant="h6"
-                    onClick={handleAddDoc}
+                    item
+                    xs={12}
                   >
-                    <i className="ri-add-line"></i> Add another document
-                  </Typography>
+                    <Grid item xs={6}>
+                      <Typography
+                        sx={{
+                          fontWeight: "500",
+                          fontSize: "14px",
+                          mb: "10px",
+                          marginLeft: "5%",
+                        }}
+                        variant="h6"
+                      >
+                        Document
+                      </Typography>
+
+                      <TextField
+                        {...register("guideline")}
+                        required
+                        sx={{ width: "90%", height: "20px" }}
+                        id="outlined-basic"
+                        label=""
+                        variant="outlined"
+                      />
+                    </Grid>
+
+                    <Grid item xs={6}>
+                      <Typography
+                        sx={{
+                          fontWeight: "500",
+                          fontSize: "14px",
+                          mb: "10px",
+                        }}
+                        variant="h6"
+                      >
+                        Link
+                      </Typography>
+
+                      <TextField
+                        sx={{ width: "100%" }}
+                        id="outlined-basic"
+                        label=""
+                        variant="outlined"
+                      />
+                    </Grid>
+                    <Typography
+                      sx={{
+                        fontWeight: "600",
+                        mt: "15px",
+                        fontSize: "14px",
+                        mb: "10px",
+                        color: "#2E58FF",
+                        cursor: "pointer",
+                      }}
+                      variant="h6"
+                      onClick={handleAddDoc}
+                    >
+                      <i className="ri-add-line"></i> Add another document
+                    </Typography>
+                  </Grid>
                 </Grid>
+                <hr
+                  style={{
+                    color: "#F2F6FC",
+                    marginTop: "16px",
+                    width: "650px",
+                    paddingLeft: "0px",
+                  }}
+                />
                 <Box
                   sx={{
                     display: "flex",
@@ -517,6 +551,10 @@ const ProjectModal = () => {
                       paddingX: "30px",
                       paddingY: "5px",
                       fontSize: "16px",
+                      "&:hover": {
+                        backgroundColor: "rgba(46, 88, 255, .81)",
+                        color: "white",
+                      },
                     }}
                     variant="filled"
                     size="large"
@@ -531,6 +569,10 @@ const ProjectModal = () => {
                       paddingY: "5px",
                       fontSize: "16px",
                       background: "#2E58FF",
+                      "&:hover": {
+                        backgroundColor: "rgba(46, 88, 255, .81)",
+                        color: "white",
+                      },
                     }}
                     variant="contained"
                     size="large"

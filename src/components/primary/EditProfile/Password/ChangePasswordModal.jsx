@@ -1,12 +1,12 @@
-import React, {useState} from "react";
-import {Box, Button, Grid, Modal, Paper, Typography,} from "@mui/material";
+import { Box, Button, Grid, Modal, Paper, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { changePassword, logout } from "../../../../features/slice/userSlice";
+import ConfirmPassword from "./ConfirmPassword";
 import CurrentPasswordfield from "./CurrentPasswordfield";
 import ResetPassword from "./ResetPassword";
-import ConfirmPassword from "./ConfirmPassword";
-import {useDispatch} from "react-redux";
-import {changePassword, logout} from "../../../../features/slice/userSlice";
-import {useAlert} from "react-alert";
-import {useNavigate} from "react-router-dom";
 
 const paperstyle = { width: 500 };
 const style = {
@@ -33,18 +33,16 @@ const ChangePasswordModal = ({ openModal, handleClose, setOpenModal }) => {
       oldPassword: CurrentPassword,
       newPassword: confirmPassword,
     };
-   
+
     dispatch(changePassword(data)).then((action) => {
       if (action.payload.status === 200) {
         dispatch(logout()).then(() => {
           navigate("/");
-        
         });
         setOpenModal(false);
         alert.show("Password changed successfully", {
           type: "success",
         });
-
       } else {
         setOpenModal(false);
         alert.show("Password can not change", {
@@ -59,7 +57,8 @@ const ChangePasswordModal = ({ openModal, handleClose, setOpenModal }) => {
         open={openModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
+        aria-describedby="modal-modal-description"
+      >
         <Box sx={style}>
           <Paper elevation={5} style={paperstyle} sx={{}}>
             <Grid container sx={{ justifyContent: "center", paddingTop: "4%" }}>
@@ -85,7 +84,8 @@ const ChangePasswordModal = ({ openModal, handleClose, setOpenModal }) => {
             </Grid>
             <Grid
               container
-              sx={{ justifyContent: "center", paddingBottom: "3%" }}>
+              sx={{ justifyContent: "center", paddingBottom: "3%" }}
+            >
               <Button
                 variant="contained"
                 sx={{
@@ -98,7 +98,8 @@ const ChangePasswordModal = ({ openModal, handleClose, setOpenModal }) => {
                   },
                   borderRadius: "2px",
                 }}
-                onClick={() => handleChangePassword()}>
+                onClick={() => handleChangePassword()}
+              >
                 Save
               </Button>
             </Grid>

@@ -42,8 +42,8 @@ const fields = [
 ];
 
 import CustomTable from "../../shared/CustomTable/CustomTable";
-import ProjectModal from "./ProjectModal";
 import EditProjectModal from "./EditProjectModal";
+import ProjectModal from "./ProjectModal";
 
 const ProjectLIstIndex2 = () => {
   const CustomFilterIcon = styled(SortIcon)({
@@ -53,17 +53,19 @@ const ProjectLIstIndex2 = () => {
     padding: "10px",
   });
 
-  const { projectDrawer, projectDrawers, error } = useSelector(
+  const {isLoading, projectDrawer, projectDrawers, total, error } = useSelector(
     (state) => state.projectDrawer
   );
 
   const dispatch = useDispatch();
-
+  const [paginationModel, setPaginationModel] = React.useState({
+    page: 0,
+    pageSipaginationModeze: 10,
+  });
   useEffect(() => {
     dispatch(setActivePath("All Projects2"));
-    dispatch(getAllProjectDrawers());
-  }, []);
-
+    dispatch(getAllProjectDrawers({ paginationModel }));
+  }, [paginationModel]);
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
 
@@ -179,7 +181,14 @@ const ProjectLIstIndex2 = () => {
             position: "absolute",
           }}
         >
-          <CustomTable myColumn={myColumn} myRows={myRows} />
+          <CustomTable
+            myColumn={myColumn}
+            myRows={myRows}
+            totalCount={total}
+            paginationModel={paginationModel}
+            setPaginationModel={setPaginationModel}
+            isLoading={isLoading}
+          />
         </Box>
       </Box>
     </>

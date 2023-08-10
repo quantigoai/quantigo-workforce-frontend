@@ -24,20 +24,21 @@ const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
   },
 }));
 
-const CustomTable = ({ myColumn, myRows }) => {
+const CustomTable = ({
+  myColumn,
+  myRows,
+  totalCount,
+  paginationModel,
+  setPaginationModel,
+  isLoading,
+}) => {
   return (
     <>
       <Box style={{ height: "100%", width: "100%" }}>
         <StripedDataGrid
           showColumnVerticalBorder
           showCellVerticalBorder={false}
-          // checkboxSelection
-          // columnHeaderHeight={50}
           hideFooterSelectedRowCount
-          // getRowHeight={(row) =>
-          //   row.model.project_skills.length &&
-          //   row.model.project_skills.length * 22
-          // }
           getCellClassName={(params) => {
             if (params.field === "project_skills") {
               return "skills-cell";
@@ -49,12 +50,10 @@ const CustomTable = ({ myColumn, myRows }) => {
             "& .MuiDataGrid-cell": {
               color: "#3C4D6B",
             },
-            "& .MuiDataGrid-cell:hover": {
-              // color: "primary.main",
-            },
           }}
           rows={myRows}
           columns={myColumn}
+          rowCount={totalCount}
           initialState={{
             pagination: {
               paginationModel: { page: 0, pageSize: 10 },
@@ -64,6 +63,10 @@ const CustomTable = ({ myColumn, myRows }) => {
             return (params.indexRelativeToCurrentPage = "even");
           }}
           pageSizeOptions={[5, 10, 20, 50]}
+          paginationModel={paginationModel}
+          paginationMode="server"
+          onPaginationModelChange={setPaginationModel}
+          loading={isLoading}
         />
       </Box>
     </>

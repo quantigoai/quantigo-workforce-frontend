@@ -100,6 +100,7 @@ const ProjectLIstIndex2 = () => {
       <Box
         sx={{
           position: "relative",
+          mt: 2,
         }}
       >
         <Box
@@ -165,7 +166,7 @@ const ProjectLIstIndex2 = () => {
         </Box>
         <EditProjectModal
           // handleOpen={handleOpen}
-          open={open}
+          // open={open}
           handleClick={handleClick}
           handleClose={handleClose}
           projectDrawer={projectDrawer}

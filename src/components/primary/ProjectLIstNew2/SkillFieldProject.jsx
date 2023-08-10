@@ -34,7 +34,7 @@ const SkillFieldProject = ({ skills, handleChangeSkill, addSkills }) => {
           {" "}
           Skills
         </Typography>
-        <FormControl sx={{ mt: 1, width: 300 }}>
+        <FormControl sx={{ mt: 1, width: 300 }} size="small">
           <InputLabel id="demo-multiple-chip-label">Skills</InputLabel>
           <Select
             labelId="demo-multiple-chip-label"
@@ -44,7 +44,13 @@ const SkillFieldProject = ({ skills, handleChangeSkill, addSkills }) => {
             onChange={handleChangeSkill}
             input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
             renderValue={(selected) => (
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+              <Box
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3,1fr)",
+                  gap: 0.5,
+                }}
+              >
                 {selected?.map((value) => (
                   <Chip key={value} label={value} />
                 ))}

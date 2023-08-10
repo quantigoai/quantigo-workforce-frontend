@@ -42,11 +42,24 @@ const ChipGroup = ({ params }) => {
       </Box>
       <Popper id={id} open={open} anchorEl={skillsAnchorEl}>
         {/* TODO change the design */}
-        <Box sx={{ border: 1, p: 1, bgcolor: "background.paper" }}>
+        <Box
+          sx={{
+            border: 0,
+            p: 2,
+            bgcolor: "background.paper",
+            display: "grid",
+            gridTemplateColumns: "repeat(3,1fr)",
+            gap: "15px",
+          }}
+        >
           {params.value.map(
             (p, i) =>
               ![0, 1].includes(i) && (
-                <ProjectDrawerStatusChip key={p._id} value={p.name} />
+                <ProjectDrawerStatusChip
+                  key={p._id}
+                  value={p.name}
+                  isPopper={true}
+                />
               )
           )}
         </Box>

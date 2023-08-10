@@ -42,8 +42,8 @@ const fields = [
 ];
 
 import CustomTable from "../../shared/CustomTable/CustomTable";
-import ProjectModal from "./ProjectModal";
 import EditProjectModal from "./EditProjectModal";
+import ProjectModal from "./ProjectModal";
 
 const ProjectLIstIndex2 = () => {
   const CustomFilterIcon = styled(SortIcon)({

@@ -31,13 +31,7 @@ const CustomTable = ({ myColumn, myRows }) => {
         <StripedDataGrid
           showColumnVerticalBorder
           showCellVerticalBorder={false}
-          // checkboxSelection
-          // columnHeaderHeight={50}
           hideFooterSelectedRowCount
-          // getRowHeight={(row) =>
-          //   row.model.project_skills.length &&
-          //   row.model.project_skills.length * 22
-          // }
           getCellClassName={(params) => {
             if (params.field === "project_skills") {
               return "skills-cell";
@@ -49,12 +43,10 @@ const CustomTable = ({ myColumn, myRows }) => {
             "& .MuiDataGrid-cell": {
               color: "#3C4D6B",
             },
-            "& .MuiDataGrid-cell:hover": {
-              // color: "primary.main",
-            },
           }}
           rows={myRows}
           columns={myColumn}
+          rowCount={120}
           initialState={{
             pagination: {
               paginationModel: { page: 0, pageSize: 10 },

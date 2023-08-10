@@ -24,8 +24,14 @@ const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
   },
 }));
 
-const CustomTable = ({ myColumn, myRows }) => {
-  
+const CustomTable = ({
+  myColumn,
+  myRows,
+  totalCount,
+  paginationModel,
+  setPaginationModel,
+  isLoading,
+}) => {
   return (
     <>
       <Box style={{ height: "100%", width: "100%" }}>
@@ -47,7 +53,7 @@ const CustomTable = ({ myColumn, myRows }) => {
           }}
           rows={myRows}
           columns={myColumn}
-          rowCount={120}
+          rowCount={totalCount}
           initialState={{
             pagination: {
               paginationModel: { page: 0, pageSize: 10 },
@@ -57,6 +63,10 @@ const CustomTable = ({ myColumn, myRows }) => {
             return (params.indexRelativeToCurrentPage = "even");
           }}
           pageSizeOptions={[5, 10, 20, 50]}
+          paginationModel={paginationModel}
+          paginationMode="server"
+          onPaginationModelChange={setPaginationModel}
+          loading={isLoading}
         />
       </Box>
     </>

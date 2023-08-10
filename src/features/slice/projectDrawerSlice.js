@@ -22,14 +22,19 @@ const initialState = {
   isLoading: false,
   projectDrawers: [],
   projectDrawer: {},
+  total: 0,
   error: null,
 };
 
 export const getAllProjectDrawers = createAsyncThunk(
   "/project-drawer/",
-  async () => {
+  async (data) => {
     try {
-      return axios.get(`${url}/project-drawer`, {
+      const { paginationModel } = data;
+      let query = `limit=${paginationModel.pageSize}&skip=${
+        paginationModel.page * paginationModel.pageSize
+      }`;
+      return axios.get(`${url}/project-drawer?${query}`, {
         headers: {
           Authorization: `Bearer ${realToken()}`,
         },
@@ -51,7 +56,6 @@ export const createProjectDrawer = createAsyncThunk(
         },
       });
     } catch (error) {
-      console.log("🚀 ~ file: projectDrawerSlice.js:54 ~ error:", error)
       throw new Error(error.response.data.message);
     }
   }
@@ -162,11 +166,11 @@ const projectDrawerSlice = createSlice({
     resetProjectDrawer: (state) => {
       state.projectDrawers = [];
     },
-    setCurrentProjectDrawer : (state, action) => {
-      
-      state.projectDrawer = state.projectDrawers.find((p)=> p._id === action.payload)
-      
-    }
+    setCurrentProjectDrawer: (state, action) => {
+      state.projectDrawer = state.projectDrawers.find(
+        (p) => p._id === action.payload
+      );
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -176,6 +180,7 @@ const projectDrawerSlice = createSlice({
       .addCase(getAllProjectDrawers.fulfilled, (state, action) => {
         state.isLoading = false;
         state.projectDrawers = action.payload.data.projectDrawers;
+        state.total = action.payload.data.count;
         state.error = null;
       })
       .addCase(getAllProjectDrawers.rejected, (state, action) => {
@@ -184,7 +189,6 @@ const projectDrawerSlice = createSlice({
       })
       .addCase(createProjectDrawer.pending, (state) => {
         state.isLoading = true;
-
       })
       .addCase(createProjectDrawer.fulfilled, (state, action) => {
         state.error = null;
@@ -280,5 +284,6 @@ const projectDrawerSlice = createSlice({
       });
   },
 });
-export const { resetProjectDrawer,setCurrentProjectDrawer } = projectDrawerSlice.actions;
+export const { resetProjectDrawer, setCurrentProjectDrawer } =
+  projectDrawerSlice.actions;
 export default projectDrawerSlice.reducer;

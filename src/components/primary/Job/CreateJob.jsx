@@ -12,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getDataSetByProjectID } from "../../../features/slice/datasetSlice";
 import {
   createJob,
@@ -24,7 +25,6 @@ import { getWorkSpaceById } from "../../../features/slice/workSpaceSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import SelectMenu from "../BenchMark/SelectMenu";
 import OptionalFields from "./SharedComponents/OptionalFields";
-import { useNavigate } from "react-router-dom";
 
 const paperstyle = {
   width: "80vw",
@@ -85,7 +85,6 @@ const CreateJob = () => {
   const [videosId, setVideosId] = useState([]);
   const handleChangeDataset = (e) => {
     setDatasetID(e.target.value);
-
     if (projectType === "videos") {
       dispatch(getVideoId(e.target.value)).then((action) => {
         action.payload.data.entities.map((entitie) => {

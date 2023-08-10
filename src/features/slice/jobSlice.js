@@ -392,11 +392,18 @@ export const takeJobForReviewer = createAsyncThunk(
 //  get Video Id
 
 export const getVideoId = createAsyncThunk("/get/video/Id", async (id) => {
-  return axios.get(`${urlag}/public/api/v3/videos.list?datasetId=${id}`, {
-    headers: {
-      "x-api-key": `${REACT_AG_API_KEY}`,
-    },
-  });
+  try {
+    return await axios.get(
+      `${urlag}/public/api/v3/videos.list?datasetId=${id}`,
+      {
+        headers: {
+          "x-api-key": `${REACT_AG_API_KEY}`,
+        },
+      }
+    );
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
 });
 const jobSlice = createSlice({
   name: "job",
@@ -652,7 +659,8 @@ const jobSlice = createSlice({
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(getVideoId.rejected, (state) => {
+      .addCase(getVideoId.rejected, (state, action) => {
+        state.error = action.error.message;
         state.isLoading = false;
       });
   },

@@ -19,8 +19,15 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import u_multiply from "../../../assets/images/u_multiply.png";
-import { createProjectDrawer } from "../../../features/slice/projectDrawerSlice";
+import {
+  createProjectDrawer,
+  updateProjectDrawerById,
+} from "../../../features/slice/projectDrawerSlice";
 import SkillFieldProject from "./SkillFieldProject";
+import CreateProjectFieldSelect from "./CreateProjectFieldSelect";
+import CreateProjectField from "./CreateProjectField";
+import GuidelineField from "./GuidelineField";
+import ProjectModalHeader from "./ProjectModalHeader";
 
 const style = {
   position: "absolute",
@@ -37,8 +44,12 @@ const CustomDownArrow = styled(KeyboardArrowDownIcon)({
   color: "#667085",
   marginRight: "10px",
 });
-const EditProjectModal = ({ editModalOpen, handleEditProjectClose }) => {
-  const { projectDrawer } = useSelector((state) => state.projectDrawer);
+const EditProjectModal = ({
+  editModalOpen,
+  handleEditProjectClose,
+  projectDrawer,
+  setEditModalOpen,
+}) => {
   console.log(
     "🚀 ~ file: EditProjectModal.jsx:41 ~ EditProjectModal ~ projectDrawer:",
     projectDrawer
@@ -56,9 +67,16 @@ const EditProjectModal = ({ editModalOpen, handleEditProjectClose }) => {
   const alert = useAlert();
   const [platform, setPlatform] = React.useState("");
   const [status, setStatus] = React.useState("");
-  const [projectType, setProjectType] = React.useState("");
   const { register, handleSubmit, reset } = useForm();
+  const [selectedSkills, setSelectedSkills] = useState(
+    projectDrawer.project_skills
+  );
+  console.log(
+    "🚀 ~ file: EditProjectModal.jsx:70 ~ selectedSkills:",
+    selectedSkills
+  );
   const [editSkills, setEditSkills] = useState([]);
+
   const { skills } = useSelector((state) => state.skill);
   // const { isLoading, projectDrawer, projectDrawers, total, error } =
   //   useSelector((state) => state.projectDrawer);
@@ -78,20 +96,29 @@ const EditProjectModal = ({ editModalOpen, handleEditProjectClose }) => {
     );
   };
 
-  const skillId = editSkills?.map((skill) => skill._id);
+  const filteredSkillInfo = editSkills.map((skill) => ({
+    name: skill.name,
+    id: skill._id,
+  }));
+  console.log(
+    "🚀 ~ file: EditProjectModal.jsx:100 ~ filteredSkillInfo ~ filteredSkillInfo:",
+    filteredSkillInfo
+  );
 
   const onSubmit = (data) => {
-    // dispatch(createProjectDrawer(data))
-    //   .then((action) => {
-    //     if (action.payload.status === 201) {
-    //       alert.show(action.payload.data.message, { type: "success" });
-    //       reset();
-    //       //   setOpen(false);
-    //     }
-    //   })
-    //   .catch(() => {
-    //     alert.show(error, { type: "error" });
-    //   });
+    const newData = { ...data, project_skills: filteredSkillInfo };
+    const allData = { id: projectDrawer._id, data: newData };
+
+    dispatch(updateProjectDrawerById(allData)).then((action) => {
+      if (action.error?.message) {
+        alert.show(action.error?.message, { type: "error" });
+      }
+      if (action.payload?.status === 200) {
+        alert.show(action.payload.data.message, { type: "success" });
+        reset();
+        setEditModalOpen(false);
+      }
+    });
   };
 
   const handleChange = (event) => {
@@ -102,16 +129,12 @@ const EditProjectModal = ({ editModalOpen, handleEditProjectClose }) => {
     console.log("clicked");
   };
 
-  const handleChangeProjectType = (event) => {
-    setProjectType(event.target.value);
-  };
-
   const handleStatus = (event) => {
     setStatus(event.target.value);
   };
 
   return (
-    <div>
+    <>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -127,312 +150,99 @@ const EditProjectModal = ({ editModalOpen, handleEditProjectClose }) => {
       >
         <Fade in={editModalOpen}>
           <Box sx={style}>
+            <ProjectModalHeader
+              handleCreateProjectClose={handleEditProjectClose}
+            />
             <Box
-              sx={{
-                paddingTop: "2%",
-                paddingLeft: "0%",
-                width: "700px",
-                background: "#F2F6FC",
-              }}
-            >
-              <Grid
-                container
-                sx={{
-                  paddingBottom: "1%",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <Grid item xs={11} sx={{ paddingLeft: "30px" }}>
-                  <Typography
-                    variant="h6"
-                    sx={{ color: "#3C4D6B", fontSize: "16px" }}
-                  >
-                    Create Project
-                  </Typography>
-                </Grid>
-                <Grid item xs={1} sx={{ justifyContent: "right" }}>
-                  <Button onClick={handleEditProjectClose}>
-                    <img
-                      style={{ width: "20px" }}
-                      alt="cross"
-                      src={u_multiply}
-                    />
-                  </Button>
-                </Grid>
-              </Grid>
-            </Box>
-            <Box
-              sx={{ paddingLeft: "4%", paddingTop: "2%", paddingRight: "1%" }}
+              sx={{ paddingLeft: "3%", paddingTop: "2%", paddingRight: "3%" }}
             >
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Grid container>
-                  <Grid item xs={6} sx={{ paddingRight: "1%", mt: "10px" }}>
-                    <Typography
-                      sx={{ fontWeight: "500", mb: "10px", fontSize: "14px" }}
-                      variant="h6"
-                    >
-                      Platform
-                    </Typography>
-                    <FormControl
-                      variant="filled"
-                      sx={{
-                        backgroundColor: "#F8F8F8",
-                        borderRadius: "8px",
-                        // width: "238.5px",
-                        height: "60px",
-                        background: "#E6ECF5",
-                        fontSize: "14px",
-                        width: "90%",
-                      }}
-                    >
-                      <InputLabel id="demo-simple-select-filled-label">
-                        Select
-                      </InputLabel>
-                      <Select
-                        {...register("project_platform")}
-                        required
-                        labelId="demo-simple-select-filled-label"
-                        id="demo-simple-select-filled"
-                        defaultValue={platform}
-                        IconComponent={() => <CustomDownArrow />}
-                        onChange={(e) => handleChange(e)}
-                      >
-                        <MenuItem value={"supervisely"}>Supervisely</MenuItem>
-                        <MenuItem value={"encord"}>Encord Server</MenuItem>
-                        <MenuItem value={"superb_ai"}>Superb Ai</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  
-                  <Grid item xs={6}>
-                    <Typography
-                      sx={{
-                        fontWeight: "500",
-                        mt: "10px",
-                        fontSize: "14px",
-                        mb: "10px",
-                      }}
-                      variant="h6"
-                    >
-                      Project Name
-                    </Typography>
+                  <CreateProjectFieldSelect
+                    field={"Platform"}
+                    register={register}
+                    registerName={"project_platform"}
+                    defaultValue={projectDrawer.project_platform}
+                    value_1={"supervisely"}
+                    value_2={"encord"}
+                    value_3={"superb_ai"}
+                    MenuItemValue_1={"Supervisely"}
+                    MenuItemValue_2={"Encord Server"}
+                    MenuItemValue_3={"Superb AI"}
+                    CustomDownArrow={CustomDownArrow}
+                    onChange={(e) => handleChange(e)}
+                  />
 
-                    <TextField
-                      {...register("project_drawer_name")}
-                      required
-                      sx={{ borderRadius: "10px", width: "90%" }}
-                      id="outlined-basic"
-                      // defaultValue={skills}
-                      label=""
-                      variant="outlined"
-                    />
-                  </Grid>
-                  <Grid item xs={6} sx={{ paddingRight: "1%", mt: "10px" }}>
-                    <Typography
-                      sx={{ fontWeight: "500", mb: "10px", fontSize: "14px" }}
-                      variant="h6"
-                    >
-                      Project Type
-                    </Typography>
-                    <FormControl
-                      variant="filled"
-                      sx={{
-                        backgroundColor: "#F8F8F8",
-                        borderRadius: "8px",
-                        // width: "238.5px",
-                        height: "60px",
-                        background: "#E6ECF5",
-                        fontSize: "14px",
-                        width: "90%",
-                      }}
-                    >
-                      <InputLabel id="demo-simple-select-filled-label">
-                        Select
-                      </InputLabel>
-                      <Select
-                        labelId="demo-simple-select-filled-label"
-                        id="demo-simple-select-filled"
-                        defaultValue={projectType}
-                        IconComponent={() => <CustomDownArrow />}
-                        onChange={(e) => handleChangeProjectType(e)}
-                      >
-                        <MenuItem value={"supervisely"}>Supervisely</MenuItem>
-                        <MenuItem value={"encord"}>Encord Server</MenuItem>
-                        <MenuItem value={"superb_ai"}>Superb Ai</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
+                  <CreateProjectField
+                    field={"Project Name"}
+                    registerName={"project_drawer_name"}
+                    register={register}
+                    type={"text"}
+                    defaultValue={projectDrawer.project_drawer_name}
+                  />
+
+                  <CreateProjectField
+                    field={"Batch"}
+                    registerName={"project_batch"}
+                    register={register}
+                    type={"number"}
+                    inputProps={{ min: "1" }}
+                    defaultValue={projectDrawer.project_batch}
+                  />
+
+                  <CreateProjectField
+                    field={"Alias"}
+                    registerName={"project_alias"}
+                    register={register}
+                    type={"text"}
+                    defaultValue={projectDrawer.project_alias}
+                  />
+
+                  <CreateProjectField
+                    field={"PDR"}
+                    registerName={"pdr"}
+                    register={register}
+                    type={"number"}
+                    inputProps={{ min: "1", max: "5" }}
+                    defaultValue={projectDrawer.pdr}
+                  />
+                  {/* <SkillField/> */}
 
                   <Grid item xs={6}>
-                    <Typography
-                      sx={{
-                        fontWeight: "500",
-                        mt: "10px",
-                        fontSize: "14px",
-                        mb: "10px",
-                        paddingRight: "1%",
-                      }}
-                      variant="h6"
-                    >
-                      Batch
-                    </Typography>
-
-                    <TextField
-                      {...register("project_batch")}
-                      required
-                      type="number"
-                      sx={{
-                        borderRadius: "10px",
-                        height: "40px",
-                        width: "90%",
-                      }}
-                      id="outlined-basic"
-                      label=""
-                      variant="outlined"
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography
-                      sx={{
-                        fontWeight: "500",
-                        mt: "15px",
-                        fontSize: "14px",
-                        mb: "10px",
-                        marginLeft: "5%",
-                      }}
-                      variant="h6"
-                    >
-                      Alias
-                    </Typography>
-
-                    <TextField
-                      {...register("project_alias")}
-                      required
-                      sx={{ width: "90%" }}
-                      id="outlined-basic"
-                      label=""
-                      variant="outlined"
-                    />
-                  </Grid>
-
-                  <Grid item xs={6}>
-                    <Typography
-                      sx={{
-                        fontWeight: "500",
-                        mt: "15px",
-                        fontSize: "14px",
-                        mb: "10px",
-                      }}
-                      variant="h6"
-                    >
-                      PDR
-                    </Typography>
-
-                    <TextField
-                      type="number"
-                      {...register("pdr")}
-                      required
-                      sx={{ width: "90%" }}
-                      id="outlined-basic"
-                      label=""
-                      variant="outlined"
-                    />
-                  </Grid>
-                  {/* <SkillFieFld/> */}
-
-                  <Grid item xs={6} sx={{ width: "40%" }}>
-                    {/* <SkillFieldProject
+                    <SkillFieldProject
+                      isEdit={true}
+                      selectedSkills={selectedSkills}
                       skills={skills}
                       editSkills={editSkills}
-                      handleEditSkill={handleEditSkill}
-                    /> */}
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography
-                      sx={{
-                        fontWeight: "500",
-                        mt: "15px",
-                        fontSize: "14px",
-                        mb: "10px",
-                      }}
-                      variant="h6"
-                    >
-                      Benchmark
-                    </Typography>
-
-                    <TextField
-                      sx={{ width: "90%" }}
-                      id="outlined-basic"
-                      label=""
-                      variant="outlined"
+                      handleChangeSkill={handleEditSkill}
                     />
                   </Grid>
-                  <Grid item xs={6}>
-                    <Typography
-                      sx={{
-                        fontWeight: "500",
-                        fontSize: "14px",
-                        mb: "10px",
-                        marginTop: "5%",
-                      }}
-                      variant="h6"
-                    >
-                      Estimated End Time
-                    </Typography>
+                  {/* benchmark goes here  */}
 
-                    <TextField
-                      // {...register("estimated_end_date")}
-                      sx={{ width: "90%" }}
-                      id="outlined-basic"
-                      label=""
-                      variant="outlined"
-                    />
-                  </Grid>
+                  {/* estimated end date here  */}
 
-                  <Grid item xs={6} sx={{ paddingRight: "1%", mt: "10px" }}>
-                    <Typography
-                      sx={{ fontWeight: "500", mb: "10px", fontSize: "14px" }}
-                      variant="h6"
-                    >
-                      Status
-                    </Typography>
-                    <FormControl
-                      variant="filled"
-                      sx={{
-                        backgroundColor: "#F8F8F8",
-                        borderRadius: "8px",
-                        // width: "238.5px",
-                        height: "60px",
-                        background: "#E6ECF5",
-                        fontSize: "14px",
-                        width: "90%",
-                      }}
-                    >
-                      <InputLabel id="demo-simple-select-filled-label">
-                        Select
-                      </InputLabel>
-                      <Select
-                        {...register("status")}
-                        required
-                        labelId="demo-simple-select-filled-label"
-                        id="demo-simple-select-filled"
-                        defaultValue={status}
-                        IconComponent={() => <CustomDownArrow />}
-                        onChange={(e) => handleStatus(e)}
-                      >
-                        <MenuItem value={"not-Started"}>Not Started</MenuItem>
-                        <MenuItem value={"completed"}>Completed</MenuItem>
-                        <MenuItem value={"hours-added"}>Hours Added</MenuItem>
-                        <MenuItem value={"in-Progress"}>In Progress</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
+                  <CreateProjectFieldSelect
+                    field={"Status"}
+                    register={register}
+                    registerName={"project_status"}
+                    defaultValue={projectDrawer.project_status}
+                    value_1={"not-Started"}
+                    value_2={"completed"}
+                    value_3={"in-Progress"}
+                    value_4={"hours-added"}
+                    MenuItemValue_1={"Not Started"}
+                    MenuItemValue_2={"Completed"}
+                    MenuItemValue_3={"In Progress"}
+                    MenuItemValue_4={"Hours Added"}
+                    CustomDownArrow={CustomDownArrow}
+                    onChange={(e) => handleStatus(e)}
+                  />
+
                   <Grid item xs={12}>
                     <Typography
                       sx={{
                         fontWeight: "500",
-                        mt: "15px",
+                        mt: "55px",
                         fontSize: "14px",
                         mb: "10px",
                       }}
@@ -442,63 +252,20 @@ const EditProjectModal = ({ editModalOpen, handleEditProjectClose }) => {
                     </Typography>
                   </Grid>
 
-                  <Grid item xs={6}>
-                    <Typography
-                      sx={{
-                        fontWeight: "500",
-                        fontSize: "14px",
-                        mb: "10px",
-                        marginLeft: "5%",
-                      }}
-                      variant="h6"
-                    >
-                      Document
-                    </Typography>
-
-                    <TextField
-                      {...register("guideline")}
-                      required
-                      sx={{ width: "90%" }}
-                      id="outlined-basic"
-                      label=""
-                      variant="outlined"
-                    />
-                  </Grid>
-
-                  <Grid item xs={6}>
-                    <Typography
-                      sx={{
-                        fontWeight: "500",
-                        fontSize: "14px",
-                        mb: "10px",
-                      }}
-                      variant="h6"
-                    >
-                      Link
-                    </Typography>
-
-                    <TextField
-                      sx={{ width: "90%" }}
-                      id="outlined-basic"
-                      label=""
-                      variant="outlined"
-                    />
-                  </Grid>
-                  <Typography
-                    sx={{
-                      fontWeight: "600",
-                      mt: "15px",
-                      fontSize: "14px",
-                      mb: "10px",
-                      color: "#2E58FF",
-                      cursor: "pointer",
-                    }}
-                    variant="h6"
-                    onClick={handleAddDoc}
-                  >
-                    <i className="ri-add-line"></i> Add another document
-                  </Typography>
+                  <GuidelineField
+                    register={register}
+                    handleAddDoc={handleAddDoc}
+                    defaultValue={projectDrawer.guideline}
+                  />
                 </Grid>
+                <hr
+                  style={{
+                    color: "#F2F6FC",
+                    marginTop: "16px",
+                    width: "650px",
+                    paddingLeft: "0px",
+                  }}
+                />
                 <Box
                   sx={{
                     display: "flex",
@@ -514,6 +281,10 @@ const EditProjectModal = ({ editModalOpen, handleEditProjectClose }) => {
                       paddingX: "30px",
                       paddingY: "5px",
                       fontSize: "16px",
+                      "&:hover": {
+                        backgroundColor: "rgba(46, 88, 255, .81)",
+                        color: "white",
+                      },
                     }}
                     variant="filled"
                     size="large"
@@ -528,6 +299,10 @@ const EditProjectModal = ({ editModalOpen, handleEditProjectClose }) => {
                       paddingY: "5px",
                       fontSize: "16px",
                       background: "#2E58FF",
+                      "&:hover": {
+                        backgroundColor: "rgba(46, 88, 255, .81)",
+                        color: "white",
+                      },
                     }}
                     variant="contained"
                     size="large"
@@ -540,7 +315,7 @@ const EditProjectModal = ({ editModalOpen, handleEditProjectClose }) => {
           </Box>
         </Fade>
       </Modal>
-    </div>
+    </>
   );
 };
 

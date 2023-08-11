@@ -206,15 +206,15 @@ const projectDrawerSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(updateProjectDrawerById.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.error = null;
         state.projectDrawers = [
           ...state.projectDrawers.map((drawer) =>
-            drawer._id === action.payload.data.projectDrawer._id
-              ? action.payload.data
+          drawer._id.toString() === action.payload.data.projectDrawer._id.toString()
+              ? action.payload.data.projectDrawer
               : drawer
-          ),
-        ];
+              ),
+            ];
+            state.isLoading = false;
       })
       .addCase(updateProjectDrawerById.rejected, (state, action) => {
         state.error = action.error.message;

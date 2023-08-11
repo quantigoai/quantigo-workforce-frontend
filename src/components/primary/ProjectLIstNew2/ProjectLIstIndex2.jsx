@@ -53,7 +53,7 @@ const ProjectLIstIndex2 = () => {
     padding: "10px",
   });
 
-  const { isLoading, projectDrawers, total, error } =
+  const { isLoading, projectDrawers, projectDrawer, total, error } =
     useSelector((state) => state.projectDrawer);
 
   const dispatch = useDispatch();
@@ -186,7 +186,7 @@ const ProjectLIstIndex2 = () => {
                   createProjectOpen={createProjectOpen}
                   handleProjectCreateOpen={handleProjectCreateOpen}
                   handleCreateProjectClose={handleCreateProjectClose}
-                  setCreateProjectOpen={setCreateProjectOpen}
+                  setEditModalOpen={setEditModalOpen}
                 />
               </Box>
             )}
@@ -195,9 +195,10 @@ const ProjectLIstIndex2 = () => {
         {editModalOpen && (
           <Box>
             <EditProjectModal
-              // handleOpen={handleOpen}
+              projectDrawer={projectDrawer}
               editModalOpen={editModalOpen}
               handleClick={handleClick}
+              setEditModalOpen={setEditModalOpen}
               handleEditProjectClose={handleEditProjectClose}
             />
           </Box>

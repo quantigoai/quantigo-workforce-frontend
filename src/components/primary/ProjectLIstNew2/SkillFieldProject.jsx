@@ -22,11 +22,14 @@ const MenuProps = {
   },
 };
 
-const SkillFieldProject = ({ skills, handleChangeSkill, addSkills }) => {
-  console.log(
-    "🚀 ~ file: SkillFieldProject.jsx:26 ~ SkillFieldProject ~ skills:",
-    skills
-  );
+const SkillFieldProject = ({
+  skills,
+  handleChangeSkill,
+  addSkills,
+  editSkills,
+  isEdit,
+  selectedSkills,
+}) => {
   const [isUpdate, setIsUpdate] = useState(false);
   useEffect(() => {
     setIsUpdate(true);
@@ -44,7 +47,9 @@ const SkillFieldProject = ({ skills, handleChangeSkill, addSkills }) => {
             labelId="demo-multiple-chip-label"
             id="demo-multiple-chip"
             multiple
-            defaultValue={isUpdate ? addSkills : []}
+            defaultValue={
+              isEdit ? selectedSkills.map((skill) => skill.name) : addSkills
+            }
             onChange={handleChangeSkill}
             input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
             renderValue={(selected) => (

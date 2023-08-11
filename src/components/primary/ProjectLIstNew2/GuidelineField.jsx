@@ -2,7 +2,7 @@ import { Grid, TextField, Typography } from "@mui/material";
 import React from "react";
 import CreateProjectField from "./CreateProjectField";
 
-const GuidelineField = ({ register, handleAddDoc }) => {
+const GuidelineField = ({ register, handleAddDoc, defaultValue }) => {
   return (
     <Grid
       container
@@ -19,6 +19,7 @@ const GuidelineField = ({ register, handleAddDoc }) => {
         field={"Document"}
         registerName={"guideline"}
         register={register}
+        defaultValue={defaultValue}
         type={"text"}
       />
 

@@ -68,9 +68,7 @@ const ProjectLIstIndex2 = () => {
 
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
-
   const alert = useAlert();
-
   const [editModalOpen, setEditModalOpen] = React.useState(false);
   const [createProjectOpen, setCreateProjectOpen] = React.useState(false);
   const handleProjectCreateOpen = () => setCreateProjectOpen(true);

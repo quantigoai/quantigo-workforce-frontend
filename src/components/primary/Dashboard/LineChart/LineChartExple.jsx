@@ -70,16 +70,22 @@ const LineChartExple = () => {
     },
     scales: {
       x: {
+        ticks: {
+          color: "#7D89A3", // Change label text color here
+        },
         display: true,
         grid: {
           display: false,
         },
       },
       y: {
+        ticks: {
+          color: "#7D89A3", // Change label text color here
+        },
         display: true,
         border: {
           display: false,
-        }
+        },
       },
       // y: {
       //   min: 2,

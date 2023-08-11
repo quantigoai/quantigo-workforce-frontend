@@ -38,7 +38,19 @@ export const options = {
     legend: {
       position: "bottom",
       labels: {
-        boxWidth: 10,
+        usePointStyle: true,
+        // boxWidth: 10,
+        color: "#091E42",
+        // pointStyle: {
+        //   // width: "10px",
+        //   // height: "10px",
+        //   radius: 9,
+        // },
+      },
+    },
+    elements: {
+      point: {
+        radius: 9, // Set the radius of the circle icon
       },
     },
     datalabels: {
@@ -53,6 +65,10 @@ export const options = {
   },
   scales: {
     x: {
+      ticks: {
+        color: "#7D89A3", // Change label text color here
+      },
+
       grid: {
         display: false,
       },
@@ -63,6 +79,7 @@ export const options = {
       },
       beginAtZero: true,
       ticks: {
+        color: "#7D89A3",
         callback: function (val) {
           return Number.isInteger(val) ? val : null;
         },

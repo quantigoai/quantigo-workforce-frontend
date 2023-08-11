@@ -8,6 +8,7 @@ const CreateProjectField = ({
   register,
   type,
   inputProps,
+  defaultValue,
 }) => {
   //   const { register, handleSubmit, reset } = useForm();
   return (
@@ -37,6 +38,7 @@ const CreateProjectField = ({
         label=""
         variant="outlined"
         type={type}
+        defaultValue={defaultValue}
         inputProps={inputProps}
       />
     </Grid>

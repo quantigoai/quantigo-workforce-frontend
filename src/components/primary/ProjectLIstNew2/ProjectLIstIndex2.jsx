@@ -53,7 +53,7 @@ const ProjectLIstIndex2 = () => {
     padding: "10px",
   });
 
-  const { isLoading, projectDrawers, total, error } =
+  const { isLoading, projectDrawers, projectDrawer, total, error } =
     useSelector((state) => state.projectDrawer);
 
   const dispatch = useDispatch();
@@ -68,9 +68,7 @@ const ProjectLIstIndex2 = () => {
 
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
-
   const alert = useAlert();
-
   const [editModalOpen, setEditModalOpen] = React.useState(false);
   const [createProjectOpen, setCreateProjectOpen] = React.useState(false);
   const handleProjectCreateOpen = () => setCreateProjectOpen(true);
@@ -186,7 +184,7 @@ const ProjectLIstIndex2 = () => {
                   createProjectOpen={createProjectOpen}
                   handleProjectCreateOpen={handleProjectCreateOpen}
                   handleCreateProjectClose={handleCreateProjectClose}
-                  setCreateProjectOpen={setCreateProjectOpen}
+                  setEditModalOpen={setEditModalOpen}
                 />
               </Box>
             )}
@@ -195,9 +193,10 @@ const ProjectLIstIndex2 = () => {
         {editModalOpen && (
           <Box>
             <EditProjectModal
-              // handleOpen={handleOpen}
+              projectDrawer={projectDrawer}
               editModalOpen={editModalOpen}
               handleClick={handleClick}
+              setEditModalOpen={setEditModalOpen}
               handleEditProjectClose={handleEditProjectClose}
             />
           </Box>

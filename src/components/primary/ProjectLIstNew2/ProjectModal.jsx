@@ -1,13 +1,5 @@
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import {
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-  styled,
-} from "@mui/material";
+import { Grid, styled } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -52,7 +44,7 @@ const CustomDownArrow = styled(KeyboardArrowDownIcon)({
 
 const ProjectModal = ({
   createProjectOpen,
-  handleProjectCreateOpen,
+  // handleProjectCreateOpen,
   handleCreateProjectClose,
   setCreateProjectOpen,
 }) => {
@@ -60,12 +52,11 @@ const ProjectModal = ({
   const dispatch = useDispatch();
   const alert = useAlert();
   const [addSkills, setAddSkills] = useState([]);
-  console.log("🚀 ~ file: ProjectModal.jsx:60 ~ addSkills:", addSkills);
   const [platform, setPlatform] = React.useState("");
   const [status, setStatus] = React.useState("");
 
   const { register, handleSubmit, reset } = useForm();
-  const { error } = useSelector((state) => state.projectDrawer);
+  // const { error } = useSelector((state) => state.projectDrawer);
 
   const handleChangeSkill = (event) => {
     const {

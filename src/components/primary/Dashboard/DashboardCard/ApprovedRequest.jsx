@@ -20,7 +20,7 @@ const ApprovedRequest = () => {
             borderRadius: "8px",
           }}>
           <Box sx={{ padding: "4%", position: "relative" }}>
-            <Grid container sx={{ paddingTop: "3%" }}>
+            <Grid container sx={{ paddingTop: "0%" }}>
               <Grid item xs={3}>
                 <img src={iconPendding} />
               </Grid>

@@ -43,28 +43,43 @@ const LineChartExple = () => {
       {
         // label: "",
         data: [10, 20, 30, 42, 51, 82, 31, 59, 61, 73, 91, 58],
-
-        // backgroundColor: "#47536B",
-        borderColor: "#266AED",
-        // backgroundShadowColor: "#266AED",
-        tension: 0.6,
         fill: true,
-        // pointStyle: "rect",
-        // pointBorderColor: "blue",
-        // pointBackgroundColor: "#fff",
-        showLine: true,
+        backgroundColor: "#DDE8FB",
+        tension: 0.6,
+        borderColor: "#3399FF",
+        // // backgroundColor: "#47536B",
+        // borderColor: "#266AED",
+        // // backgroundShadowColor: "#266AED",
+        // tension: 0.6,
+        // fill: true,
+        // // pointStyle: "rect",
+        // // pointBorderColor: "blue",
+        // // pointBackgroundColor: "#fff",
+        // showLine: true,
       },
     ],
   });
   const options = {
     plugins: {
       legend: false,
+      datalabels: {
+        display: false,
+
+        // backgroundColor: "#404040",
+      },
     },
     scales: {
       x: {
+        display: true,
         grid: {
           display: false,
         },
+      },
+      y: {
+        display: true,
+        border: {
+          display: false,
+        }
       },
       // y: {
       //   min: 2,
@@ -77,7 +92,7 @@ const LineChartExple = () => {
     },
   };
   return (
-    <div className="App" style={{ width: "800px", height: "800px" }}>
+    <div className="App" style={{ width: "800px", height: "100%" }}>
       <Line options={options} data={data}>
         Hello
       </Line>

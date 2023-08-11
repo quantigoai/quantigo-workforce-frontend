@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import {
   CategoryScale,
   Chart as ChartJS,
@@ -34,19 +34,33 @@ ChartJS.register(
 
 export const options = {
   responsive: true,
-  interaction: {
-    mode: "index",
-    intersect: false,
+  plugins: {
+    legend: {
+      position: "bottom",
+      labels: {
+        boxWidth: 10,
+      },
+    },
+    datalabels: {
+      display: false,
+
+      // backgroundColor: "#404040",
+    },
+    title: {
+      display: true,
+      // text: "Project Based Jobs",
+    },
   },
-  stacked: false,
-  // plugins: {
-  //   title: {
-  //     display: true,
-  //     text: "Weekly Job Statistics",
-  //   },
-  // },
   scales: {
+    x: {
+      grid: {
+        display: false,
+      },
+    },
     y: {
+      border: {
+        display: false,
+      },
       beginAtZero: true,
       ticks: {
         callback: function (val) {
@@ -55,27 +69,39 @@ export const options = {
       },
     },
   },
-  // scales: {
-  //   y: {
-  //     type: "linear",
-  //     display: true,
-  //     position: "left",
-  //   },
-  //   y1: {
-  //     type: "linear",
-  //     display: true,
-  //     position: "right",
-  //     grid: {
-  //       drawOnChartArea: false,
-  //     },
-  //   },
-  // },
 };
 
 const LineChart = ({ loading }) => {
   const { weeklyData } = useSelector((state) => state.dashboard);
   const [customData, setCustomData] = React.useState({});
   const [isDataUpdate, setIsDataUpdate] = React.useState(true);
+  const sampleData = {
+    labels: [1, 2, 3, 4],
+    datasets: [
+      {
+        label: "Active job",
+        data: [1, 2, 3, 4, 3, 7, 7],
+        backgroundColor: "#A2D2FF",
+        borderWidth: 1,
+        borderRadius: 10,
+      },
+      {
+        label: "Submitted job",
+        data: [1, 2, 3, 4, 3, 7, 7],
+        backgroundColor: "#B7E4C7",
+        borderWidth: 1,
+        borderRadius: 10,
+      },
+      {
+        label: "Failed jobs",
+        data: [1, 2, 3, 4, 3, 7, 7],
+        backgroundColor: "#FF8FA3",
+        borderWidth: 1,
+        borderRadius: 10,
+      },
+    ],
+  };
+
   useEffect(() => {
     if (!loading) {
       const chartLabels = [...weeklyData.dateArray];
@@ -105,21 +131,18 @@ const LineChart = ({ loading }) => {
             data: [...takenJobsData],
             borderColor: "#3399FF",
             backgroundColor: "#0066CC",
-            yAxisID: "y",
           },
           {
             label: "Submitted job",
             data: [...completedJobsData.reverse()],
             borderColor: "#009900",
             backgroundColor: "#66FF66",
-            yAxisID: "y",
           },
           {
             label: "Failed jobs",
             data: [...failedJobsData.reverse()],
             borderColor: "#FF3333",
             backgroundColor: "#FF6666",
-            yAxisID: "y",
           },
         ],
       };
@@ -130,9 +153,22 @@ const LineChart = ({ loading }) => {
   }, [loading]);
   return (
     <>
-      <Grid container sx={{ padding: "3%" }}>
-        {!isDataUpdate && <Bar options={options} data={customData} />}
-      </Grid>
+      <Box sx={{ padding: "2%" }}>
+        <Grid container>
+          <Grid xs={12} sx={{ paddingTop: "1%" }}>
+            <Typography variant="h6" sx={{ color: "#091E42" }}>
+              <b>Weekly Job Statistics</b>
+            </Typography>
+          </Grid>
+        </Grid>
+
+        <Grid container sx={{ padding: "2%" }}>
+          {!isDataUpdate && <Bar options={options} data={sampleData} />}
+        </Grid>
+      </Box>
+      {/* <Grid container sx={{ padding: "2%" }}>
+        {!isDataUpdate && <Bar options={options} data={sampleData} />}
+      </Grid> */}
     </>
   );
 };

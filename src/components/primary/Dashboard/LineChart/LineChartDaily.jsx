@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import {
   CategoryScale,
   Chart as ChartJS,
@@ -35,48 +35,33 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  responsive: true,
-  interaction: {
-    mode: "index",
-    intersect: false,
-  },
-
-  stacked: true,
+const options = {
   plugins: {
-    legend: {
-      position: "bottom",
-      labels: {
-        boxWidth: 10,
-      },
+    legend: false,
+    datalabels: {
+      display: false,
+
+      // backgroundColor: "#404040",
     },
   },
   scales: {
-    y: {
-      beginAtZero: true,
-      ticks: {
-        callback: function (val) {
-          return Number.isInteger(val) ? val : null;
-        },
+    x: {
+      grid: {
+        display: true,
       },
     },
+    yAxis: {
+      display: false,
+    }
+    // y: {
+    //   min: 2,
+    //   max: 10,
+    //   ticks: {
+    //     stepSize: 2,
+    //     callback: (value) => value + "K",
+    //   },
+    // },
   },
-
-  // scales: {
-  //   y: {
-  //     type: "linear",
-  //     display: true,
-  //     position: "left",
-  //   },
-  //   y1: {
-  //     type: "linear",
-  //     display: true,
-  //     position: "right",
-  //     grid: {
-  //       drawOnChartArea: false,
-  //     },
-  //   },
-  // },
 };
 const LineChartDaily = ({ loading }) => {
   const { hourlyData } = useSelector((state) => state.dashboard);
@@ -104,15 +89,18 @@ const LineChartDaily = ({ loading }) => {
           {
             label: "Active job",
             data: [
-              12, 20, 30, 40, 50, 12, 20, 30, 40, 50, 12, 20, 30, 40, 50, 12,
-              20, 30, 40, 50,
+              10, 20, 30, 42, 51, 82, 31, 59, 61, 73, 91, 58, 10, 20, 30, 42,
+              51, 82, 31, 59, 61, 73, 61, 73,
             ],
             // data: [...takenJobsData.reverse()],
             // data: [0, 1, 1, 2, 3, 4, 5],
             borderColor: "#3399FF",
             // fill: true,
-            backgroundColor: "yellow",
-            tension: 0.5,
+            // backgroundColor: "yellow",
+            // tension: 0.5,
+            fill: true,
+            backgroundColor: "#DDE8FB",
+            tension: 0.6,
           },
         ],
       };
@@ -123,11 +111,25 @@ const LineChartDaily = ({ loading }) => {
   }, [loading]);
   return (
     <>
-      <Grid container sx={{ padding: "3%" }}>
-        {/* {!isDataUpdate && <Line options={options} data={customData} />} */}
-        <LineChartExple />
-      </Grid>
+      <Box sx={{ padding: "2%" }}>
+        <Grid container>
+          <Grid xs={12} sx={{ paddingTop: "1%" }}>
+            <Typography variant="h6" sx={{ color: "#091E42" }}>
+              <b>Hourly Check-ins</b>
+            </Typography>
+          </Grid>
+        </Grid>
+
+        <Grid container sx={{ padding: "2%" }}>
+          <LineChartExple />
+          {/* <Line options={options} data={customData} /> */}
+        </Grid>
+      </Box>
     </>
+    // <Grid container sx={{ padding: "3%" }}>
+    //   {/* {!isDataUpdate && <Line options={options} data={customData} />} */}
+    //   <LineChartExple />
+    // </Grid>
   );
 };
 

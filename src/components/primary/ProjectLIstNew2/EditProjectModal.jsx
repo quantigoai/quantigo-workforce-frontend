@@ -14,7 +14,7 @@ import Button from "@mui/material/Button";
 import Fade from "@mui/material/Fade";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import React from "react";
+import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -37,7 +37,12 @@ const CustomDownArrow = styled(KeyboardArrowDownIcon)({
   color: "#667085",
   marginRight: "10px",
 });
-const EditProjectModal = ({ open, handleClose, projectDrawer }) => {
+const EditProjectModal = ({ editModalOpen, handleEditProjectClose }) => {
+  const { projectDrawer } = useSelector((state) => state.projectDrawer);
+  console.log(
+    "🚀 ~ file: EditProjectModal.jsx:41 ~ EditProjectModal ~ projectDrawer:",
+    projectDrawer
+  );
   // console.log(
   //   "🚀 ~ file: EditProjectModal.jsx:41 ~ EditProjectModal ~ projectDrawer:",
   //   projectDrawer
@@ -53,6 +58,28 @@ const EditProjectModal = ({ open, handleClose, projectDrawer }) => {
   const [status, setStatus] = React.useState("");
   const [projectType, setProjectType] = React.useState("");
   const { register, handleSubmit, reset } = useForm();
+  const [editSkills, setEditSkills] = useState([]);
+  const { skills } = useSelector((state) => state.skill);
+  // const { isLoading, projectDrawer, projectDrawers, total, error } =
+  //   useSelector((state) => state.projectDrawer);
+
+  const handleEditSkill = (event) => {
+    const {
+      target: { value },
+    } = event;
+
+    const selectedSkills = value.map((skill) => {
+      return skills.find((s) => s.name === skill);
+    });
+
+    setEditSkills(
+      // On autofill we get a stringified value.
+      typeof selectedSkills === "string" ? value.split(",") : selectedSkills
+    );
+  };
+
+  const skillId = editSkills?.map((skill) => skill._id);
+
   const onSubmit = (data) => {
     // dispatch(createProjectDrawer(data))
     //   .then((action) => {
@@ -88,8 +115,8 @@ const EditProjectModal = ({ open, handleClose, projectDrawer }) => {
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
-        open={open}
-        onClose={handleClose}
+        open={editModalOpen}
+        onClose={handleEditProjectClose}
         closeAfterTransition
         slots={{ backdrop: Backdrop }}
         slotProps={{
@@ -98,7 +125,7 @@ const EditProjectModal = ({ open, handleClose, projectDrawer }) => {
           },
         }}
       >
-        <Fade in={open}>
+        <Fade in={editModalOpen}>
           <Box sx={style}>
             <Box
               sx={{
@@ -125,7 +152,7 @@ const EditProjectModal = ({ open, handleClose, projectDrawer }) => {
                   </Typography>
                 </Grid>
                 <Grid item xs={1} sx={{ justifyContent: "right" }}>
-                  <Button onClick={handleClose}>
+                  <Button onClick={handleEditProjectClose}>
                     <img
                       style={{ width: "20px" }}
                       alt="cross"
@@ -195,6 +222,7 @@ const EditProjectModal = ({ open, handleClose, projectDrawer }) => {
                       required
                       sx={{ borderRadius: "10px", width: "90%" }}
                       id="outlined-basic"
+                      // defaultValue={skills}
                       label=""
                       variant="outlined"
                     />
@@ -310,10 +338,14 @@ const EditProjectModal = ({ open, handleClose, projectDrawer }) => {
                       variant="outlined"
                     />
                   </Grid>
-                  {/* <SkillField/> */}
+                  {/* <SkillFieFld/> */}
 
                   <Grid item xs={6} sx={{ width: "40%" }}>
-                    <SkillFieldProject />
+                    {/* <SkillFieldProject
+                      skills={skills}
+                      editSkills={editSkills}
+                      handleEditSkill={handleEditSkill}
+                    /> */}
                   </Grid>
                   <Grid item xs={6}>
                     <Typography
@@ -475,7 +507,7 @@ const EditProjectModal = ({ open, handleClose, projectDrawer }) => {
                   }}
                 >
                   <Button
-                    onClick={handleClose}
+                    onClick={handleEditProjectClose}
                     sx={{
                       textTransform: "none",
                       paddingX: "30px",

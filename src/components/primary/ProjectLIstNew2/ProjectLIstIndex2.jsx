@@ -9,7 +9,7 @@
 
 import SearchIcon from "@mui/icons-material/Search";
 import SortIcon from "@mui/icons-material/Sort";
-import { Box, Grid, IconButton, Paper } from "@mui/material";
+import { Box, Button, Grid, IconButton, Paper } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import { styled } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
@@ -53,7 +53,7 @@ const ProjectLIstIndex2 = () => {
     padding: "10px",
   });
 
-  const {isLoading, projectDrawer, projectDrawers, total, error } = useSelector(
+  const { isLoading, projectDrawers, total, error } = useSelector(
     (state) => state.projectDrawer
   );
 
@@ -71,13 +71,22 @@ const ProjectLIstIndex2 = () => {
 
   const alert = useAlert();
 
-  const [open, setOpen] = React.useState(false);
+  const [editModalOpen, setEditModalOpen] = React.useState(false);
+  const [createProjectOpen, setCreateProjectOpen] = React.useState(false);
+  const handleProjectCreateOpen = () => setCreateProjectOpen(true);
   // const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+
+  const handleCreateProjectClose = () => {
+    setCreateProjectOpen(false);
+  };
+
+  const handleEditProjectClose = () => {
+    setEditModalOpen(false);
+  };
 
   const handleClick = (e) => {
     dispatch(setCurrentProjectDrawer(e.id));
-    setOpen(true);
+    setEditModalOpen(true);
   };
 
   const handleDelete = (e) => {
@@ -159,19 +168,40 @@ const ProjectLIstIndex2 = () => {
             >
               <CustomFilterIcon />
             </IconButton>
+            <Button
+              sx={{
+                textTransform: "none",
+                borderRadius: "8px",
+                background: "#2E58FF",
+              }}
+              variant="contained"
+              onClick={handleProjectCreateOpen}
+            >
+              Create Project
+            </Button>
 
-            <Box>
-              <ProjectModal />
-            </Box>
+            {createProjectOpen && (
+              <Box>
+                <ProjectModal
+                  createProjectOpen={createProjectOpen}
+                  handleProjectCreateOpen={handleProjectCreateOpen}
+                  handleCreateProjectClose={handleCreateProjectClose}
+                  setCreateProjectOpen={setCreateProjectOpen}
+                />
+              </Box>
+            )}
           </Box>
         </Box>
-        <EditProjectModal
-          // handleOpen={handleOpen}
-          open={open}
-          handleClick={handleClick}
-          handleClose={handleClose}
-          projectDrawer={projectDrawer}
-        />
+        {editModalOpen && (
+          <Box>
+            <EditProjectModal
+              // handleOpen={handleOpen}
+              editModalOpen={editModalOpen}
+              handleClick={handleClick}
+              handleEditProjectClose={handleEditProjectClose}
+            />
+          </Box>
+        )}
 
         <Box
           sx={{

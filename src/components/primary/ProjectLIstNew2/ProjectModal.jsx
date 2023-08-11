@@ -47,21 +47,22 @@ const CustomDownArrow = styled(KeyboardArrowDownIcon)({
   marginRight: "10px",
 });
 
-const ProjectModal = () => {
+const ProjectModal = ({
+  createProjectOpen,
+  handleProjectCreateOpen,
+  handleCreateProjectClose,
+  setCreateProjectOpen,
+}) => {
   const { skills } = useSelector((state) => state.skill);
   const dispatch = useDispatch();
   const alert = useAlert();
   const [addSkills, setAddSkills] = useState([]);
-
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  console.log("🚀 ~ file: ProjectModal.jsx:60 ~ addSkills:", addSkills);
   const [platform, setPlatform] = React.useState("");
   const [status, setStatus] = React.useState("");
   const [projectType, setProjectType] = React.useState("");
   const { register, handleSubmit, reset } = useForm();
   const { error } = useSelector((state) => state.projectDrawer);
-  console.log("🚀 ~ file: ProjectModal.jsx:56 ~ ProjectModal ~ error:", error);
 
   const handleChangeSkill = (event) => {
     const {
@@ -79,10 +80,14 @@ const ProjectModal = () => {
   };
 
   const skillId = addSkills?.map((skill) => skill._id);
+  console.log("🚀 ~ file: ProjectModal.jsx:82 ~ skillId:", skillId);
 
   const onSubmit = (data) => {
     const newData = { ...data, project_skills: skillId };
-
+    console.log(
+      "🚀 ~ file: ProjectModal.jsx:86 ~ onSubmit ~ newData:",
+      newData
+    );
     dispatch(createProjectDrawer(newData)).then((action) => {
       if (action.error?.message) {
         alert.show(action.error?.message, { type: "error" });
@@ -90,7 +95,7 @@ const ProjectModal = () => {
       if (action.payload?.status === 201) {
         alert.show(action.payload.data.message, { type: "success" });
         reset();
-        setOpen(false);
+        setCreateProjectOpen(false);
       }
     });
   };
@@ -112,23 +117,12 @@ const ProjectModal = () => {
   };
 
   return (
-    <div>
-      <Button
-        sx={{
-          textTransform: "none",
-          borderRadius: "8px",
-          background: "#2E58FF",
-        }}
-        variant="contained"
-        onClick={handleOpen}
-      >
-        Create Project
-      </Button>
+    <>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
-        open={open}
-        onClose={handleClose}
+        open={createProjectOpen}
+        onClose={handleCreateProjectClose}
         closeAfterTransition
         slots={{ backdrop: Backdrop }}
         slotProps={{
@@ -137,7 +131,7 @@ const ProjectModal = () => {
           },
         }}
       >
-        <Fade in={open}>
+        <Fade in={createProjectOpen}>
           <Box sx={style}>
             <Box
               sx={{
@@ -168,7 +162,7 @@ const ProjectModal = () => {
                   </Typography>
                 </Grid>
                 <Grid item xs={1} sx={{ justifyContent: "right" }}>
-                  <Button onClick={handleClose}>
+                  <Button onClick={handleCreateProjectClose}>
                     <img
                       style={{ width: "20px" }}
                       alt="cross"
@@ -306,6 +300,7 @@ const ProjectModal = () => {
                       id="outlined-basic"
                       label=""
                       variant="outlined"
+                      inputProps={{ min: "1" }}
                     />
                   </Grid>
                   <Grid item xs={6}>
@@ -353,6 +348,7 @@ const ProjectModal = () => {
                       id="outlined-basic"
                       label=""
                       variant="outlined"
+                      inputProps={{ min: "1" }} 
                     />
                   </Grid>
                   {/* <SkillField/> */}
@@ -545,7 +541,7 @@ const ProjectModal = () => {
                   }}
                 >
                   <Button
-                    onClick={handleClose}
+                    onClick={handleCreateProjectClose}
                     sx={{
                       textTransform: "none",
                       paddingX: "30px",
@@ -585,7 +581,7 @@ const ProjectModal = () => {
           </Box>
         </Fade>
       </Modal>
-    </div>
+    </>
   );
 };
 

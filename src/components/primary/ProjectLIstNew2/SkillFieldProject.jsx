@@ -23,6 +23,10 @@ const MenuProps = {
 };
 
 const SkillFieldProject = ({ skills, handleChangeSkill, addSkills }) => {
+  console.log(
+    "🚀 ~ file: SkillFieldProject.jsx:26 ~ SkillFieldProject ~ skills:",
+    skills
+  );
   const [isUpdate, setIsUpdate] = useState(false);
   useEffect(() => {
     setIsUpdate(true);
@@ -58,7 +62,7 @@ const SkillFieldProject = ({ skills, handleChangeSkill, addSkills }) => {
             )}
             MenuProps={MenuProps}
           >
-            {skills.map((skill) => (
+            {skills?.map((skill) => (
               <MenuItem key={skill._id} value={skill.name}>
                 {skill.name}
               </MenuItem>

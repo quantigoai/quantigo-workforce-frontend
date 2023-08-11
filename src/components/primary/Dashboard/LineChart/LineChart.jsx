@@ -58,6 +58,9 @@ export const options = {
       },
     },
     y: {
+      border: {
+        display: false,
+      },
       beginAtZero: true,
       ticks: {
         callback: function (val) {

@@ -63,7 +63,9 @@ export const options = {
     },
     y: {
       beginAtZero: true,
-
+      border: {
+        display: false,
+      },
       ticks: {
         callback: function (val) {
           return Number.isInteger(val) ? val : null;

@@ -19,6 +19,21 @@ const PieChart = () => {
           boxWidth: 10,
         },
       },
+      title: {
+        display: true,
+        text: "Projects",
+        align: "start",
+        font: {
+          size: 20,
+        },
+        color: "#091E42",
+        // padding: 20,
+        padding: {
+          top: 25,
+          left: 30,
+          // bottom: 30,
+        },
+      },
       datalabels: {
         display: true,
         formatter: (value, ctx) => {

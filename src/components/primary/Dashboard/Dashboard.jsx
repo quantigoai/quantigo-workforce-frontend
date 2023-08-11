@@ -146,7 +146,7 @@ const Dashboard = () => {
                   <>
                     <Grid container sx={{ paddingBottom: "2%" }}>
                       <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                        <Paper elevation={1} sx={{ borderRadius: "8px" }}>
+                        <Paper elevation={0} sx={{ borderRadius: "8px" }}>
                           {!projectLoading && (
                             <BarChart
                               startDate={startDate}
@@ -160,11 +160,12 @@ const Dashboard = () => {
                       </Grid>
                       <Grid item xs={3} sx={{ paddingRight: "2%" }}>
                         <Paper
-                          elevation={1}
+                          elevation={0}
                           sx={{
                             // paddingTop: "10%",
                             height: "99%",
                             borderRadius: "8px",
+                            paddingLeft: "3%",
                           }}>
                           {/* <Grid sx={{ paddingTop: "5%" }}></Grid> */}
                           <PieChartForUser />
@@ -172,11 +173,12 @@ const Dashboard = () => {
                       </Grid>
                       <Grid item xs={3}>
                         <Paper
-                          elevation={1}
+                          elevation={0}
                           sx={{
                             // paddingTop: "5%",
                             height: "99%",
                             borderRadius: "8px",
+                            paddingLeft: "3%",
                           }}>
                           <PieChart />
                         </Paper>
@@ -185,12 +187,12 @@ const Dashboard = () => {
 
                     <Grid container>
                       <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                        <Paper elevation={1} sx={{ borderRadius: "8px" }}>
+                        <Paper elevation={0} sx={{ borderRadius: "8px" }}>
                           <LineChart loading={weekLoading} />
                         </Paper>
                       </Grid>
                       <Grid item xs={6}>
-                        <Paper elevation={1} sx={{ borderRadius: "8px" }}>
+                        <Paper elevation={0} sx={{ borderRadius: "8px" }}>
                           <LineChartDaily loading={hourLoading} />
                         </Paper>
                       </Grid>

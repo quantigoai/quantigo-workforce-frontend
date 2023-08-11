@@ -70,9 +70,16 @@ const LineChartExple = () => {
     },
     scales: {
       x: {
+        display: true,
         grid: {
           display: false,
         },
+      },
+      y: {
+        display: true,
+        border: {
+          display: false,
+        }
       },
       // y: {
       //   min: 2,

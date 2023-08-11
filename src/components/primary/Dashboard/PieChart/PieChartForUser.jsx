@@ -53,8 +53,18 @@ const PieChartForUser = () => {
         },
       },
       title: {
-        display: false,
+        display: true,
         text: "Annotators Activity",
+        align: "start",
+        font: {
+          size: 20,
+        },
+        color: "#091E42",
+        padding: {
+          top: 25,
+          left: 30,
+          // bottom: 30,
+        },
       },
       datalabels: {
         display: true,

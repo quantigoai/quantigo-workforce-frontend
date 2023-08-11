@@ -47,9 +47,12 @@ const options = {
   scales: {
     x: {
       grid: {
-        display: false,
+        display: true,
       },
     },
+    yAxis: {
+      display: false,
+    }
     // y: {
     //   min: 2,
     //   max: 10,

@@ -57,8 +57,9 @@ const Dashboard = () => {
     dispatch(getDashboardData(data)).then(() => {
       setProjectLoading(false);
     });
-  }, [startDate, endDate]);
-
+  }, []);
+  console.log("start", startDate);
+  console.log("end", endDate);
   useEffect(() => {
     dispatch(setActivePath("Dashboard"));
     setWeekLoading(true);
@@ -114,12 +115,38 @@ const Dashboard = () => {
                 role === "level_2_annotator" ||
                 role === "level_3_annotator" ||
                 role === "reviewer" ? (
-                  <></>
+                  <>
+                    <Box
+                      container
+                      sx={{
+                        paddingRight: "2%",
+                        width: "100%",
+                        height: "20%",
+                      }}>
+                      <Paper
+                        elevation={0}
+                        sx={{
+                          borderRadius: "8px",
+                          // width: "100%",
+                          // height: "100%",
+                        }}>
+                        {!projectLoading && (
+                          <BarChart
+                            startDate={startDate}
+                            setStartDate={setStartDate}
+                            endDate={endDate}
+                            setEndDate={setEndDate}
+                            loading={projectLoading}
+                          />
+                        )}
+                      </Paper>
+                    </Box>
+                  </>
                 ) : (
                   <>
                     <Grid container sx={{ paddingBottom: "2%" }}>
                       <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                        <Paper elevation={0} sx={{ borderRadius: "8px" }}>
+                        <Paper elevation={1} sx={{ borderRadius: "8px" }}>
                           {!projectLoading && (
                             <BarChart
                               startDate={startDate}
@@ -133,10 +160,10 @@ const Dashboard = () => {
                       </Grid>
                       <Grid item xs={3} sx={{ paddingRight: "2%" }}>
                         <Paper
-                          elevation={0}
+                          elevation={1}
                           sx={{
-                            paddingTop: "10%",
-                            height: "90%",
+                            // paddingTop: "10%",
+                            height: "99%",
                             borderRadius: "8px",
                           }}>
                           {/* <Grid sx={{ paddingTop: "5%" }}></Grid> */}
@@ -145,10 +172,10 @@ const Dashboard = () => {
                       </Grid>
                       <Grid item xs={3}>
                         <Paper
-                          elevation={0}
+                          elevation={1}
                           sx={{
-                            paddingTop: "5%",
-                            height: "93%",
+                            // paddingTop: "5%",
+                            height: "99%",
                             borderRadius: "8px",
                           }}>
                           <PieChart />
@@ -158,12 +185,12 @@ const Dashboard = () => {
 
                     <Grid container>
                       <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                        <Paper elevation={0} sx={{ borderRadius: "8px" }}>
+                        <Paper elevation={1} sx={{ borderRadius: "8px" }}>
                           <LineChart loading={weekLoading} />
                         </Paper>
                       </Grid>
                       <Grid item xs={6}>
-                        <Paper elevation={0} sx={{ borderRadius: "8px" }}>
+                        <Paper elevation={1} sx={{ borderRadius: "8px" }}>
                           <LineChartDaily loading={hourLoading} />
                         </Paper>
                       </Grid>

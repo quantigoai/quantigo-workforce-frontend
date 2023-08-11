@@ -4,35 +4,14 @@ import { Pie } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import { Grid, Typography } from "@mui/material";
 import PiechartExaplem from "./PiechartExaplem";
-
-ChartJS.register(ArcElement, Tooltip, Legend, Title);
+import ChartDataLabels from "chartjs-plugin-datalabels";
+ChartJS.register(ArcElement, Tooltip, Legend, Title, ChartDataLabels);
 
 const PieChartForUser = () => {
   const { activeJobs, takenJobs, totalCountData } = useSelector(
     (state) => state.dashboard
   );
-  const options = {
-    maintainAspectRatio: false,
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "bottom",
-        labels: {
-          boxWidth: 10,
-        },
-      },
-      datalabels: {
-        // display: false,
-        color: "black",
-        font: {
-          size: 24,
-          weight: "bold",
-        },
-      },
-    },
 
-    radius: "90%",
-  };
   const data = {
     labels: [
       "Level 0 Annotator",
@@ -63,12 +42,53 @@ const PieChartForUser = () => {
       },
     ],
   };
+  const options = {
+    maintainAspectRatio: false,
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "bottom",
+        labels: {
+          boxWidth: 10,
+        },
+      },
+      title: {
+        display: false,
+        text: "Annotators Activity",
+      },
+      datalabels: {
+        display: true,
+        formatter: (value, ctx) => {
+          const dataset = ctx.chart.data.datasets[0];
+          const total = dataset.data.reduce((prev, curr) => prev + curr);
+          const percentage = ((value / total) * 100).toFixed(2); // Calculate percentage
+          return percentage === "0.00" ? "" : `${percentage}%`;
+        },
+        color: "#FFFFFF",
+        // backgroundColor: "#404040",
+      },
+    },
+
+    radius: "80%",
+  };
   return (
     <>
+      <Pie options={options} data={data} />
+      {/* <Grid container>
+        <Grid item xs={12}>
+          <Typography variant="h6" sx={{ color: "#091E42" }}>
+            <b>Annotators Activity</b>
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          {" "}
+          <Pie options={options} data={data} />
+        </Grid>
+      </Grid> */}
       {/* <Typography variant="h6">
         <b>Annotators Activity</b>
       </Typography> */}
-      <Pie options={options} data={data} />
+      {/*  */}
     </>
   );
 };

@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Grid, Typography } from "@mui/material";
+import { Box, Grid, TextField, Typography } from "@mui/material";
 import {
   BarElement,
   CategoryScale,
@@ -16,7 +16,7 @@ import {
   Title,
   Tooltip,
 } from "chart.js";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import { chartValues, labelsData } from "../../../../helper/customData";
@@ -38,8 +38,17 @@ export const options = {
     legend: {
       position: "bottom",
       labels: {
+        // usePointStyle: true,
+        // pointStyle: "circle",
         boxWidth: 10,
+        // borderRadius: 28,
+        pointStyleWidth: 20,
       },
+    },
+    datalabels: {
+      display: false,
+
+      // backgroundColor: "#404040",
     },
     title: {
       display: true,
@@ -47,8 +56,14 @@ export const options = {
     },
   },
   scales: {
+    x: {
+      grid: {
+        display: false,
+      },
+    },
     y: {
       beginAtZero: true,
+
       ticks: {
         callback: function (val) {
           return Number.isInteger(val) ? val : null;
@@ -68,6 +83,30 @@ const BarChart = ({
   const { activeJobs, takenJobs } = useSelector((state) => state.dashboard);
   const [customData, setCustomData] = React.useState({});
   const [isDataUpdate, setIsDataUpdate] = React.useState(true);
+  const [dateRange, setDateRange] = useState("");
+
+  const handleDateChange = (event) => {
+    setDateRange(event.target.value);
+  };
+  const sampleData = {
+    labels: [1, 2, 3, 4],
+    datasets: [
+      {
+        label: "dataset1",
+        data: [1, 2, 3, 4],
+        backgroundColor: "#B6C9F0",
+        borderWidth: 1,
+        borderRadius: 10,
+      },
+      {
+        label: "dataset2",
+        data: [1, 2, 5, 4],
+        backgroundColor: "#2E58FF",
+        borderWidth: 1,
+        borderRadius: 10,
+      },
+    ],
+  };
   useEffect(() => {
     if (!loading) {
       const activeProjectIds = Object.keys(activeJobs);
@@ -110,41 +149,77 @@ const BarChart = ({
   }, [loading]);
   return (
     <>
-      {/* //! Fix this in inline  */}
-      <Grid container sx={{ padding: "2%" }}>
-        <Grid item xs={6}>
-          <Typography sx={{ color: "#091E42" }}>
-            <b>Project based Annotators/Reviewers</b>
-          </Typography>
+      <Box sx={{ padding: "2%" }}>
+        <Grid container>
+          <Grid xs={6} sx={{ paddingTop: "1%" }}>
+            <Typography variant="h6" sx={{ color: "#091E42" }}>
+              <b>Project based Annotators/Reviewers</b>
+            </Typography>
+          </Grid>
+          <Grid xs={6}>
+            <Grid container sx={{ justifyContent: "right" }}>
+              <DateRangeField
+                setStartDate={setStartDate}
+                setEndDate={setEndDate}
+              />
+            </Grid>
+          </Grid>
         </Grid>
-        <Grid item xs={6}>
-          {/* <Grid item xs={12} md={6} lg={3} sx={{ paddingTop: "2%" }}>
-            <DateField dateValue={startDate} setDateValue={setStartDate} />
-          </Grid> */}
-          {/* <DateRangeField /> */}
-          <DateField dateValue={endDate} setDateValue={setEndDate} />
-        </Grid>
-      </Grid>
 
-      {/* <Grid container item xs={12} sx={{ padding: "2%" }}>
-        <Grid container item xs={12} md={6} lg={6}>
-          <Grid item xs={12} md={6} lg={3} sx={{ paddingTop: "2%" }}>
-            <Typography>Project based Annotators/Reviewers</Typography>
-          </Grid>
+        <Grid container sx={{ padding: "2%" }}>
+          {!isDataUpdate && <Bar options={options} data={sampleData} />}
         </Grid>
-        <Grid container item xs={12} md={6} lg={6}>
-          <Grid item xs={12} md={6} lg={3} sx={{ paddingTop: "2%" }}>
-            <DateField dateValue={startDate} setDateValue={setStartDate} />
-          </Grid>
-          <Grid item xs={12} md={6} lg={9}>
-            <DateField dateValue={endDate} setDateValue={setEndDate} />
-          </Grid>
-        </Grid>
-      </Grid> */}
-      <Grid container sx={{ padding: "2%" }}>
-        {!isDataUpdate && <Bar options={options} data={customData} />}
-      </Grid>
+      </Box>
     </>
+    // <>
+    //   {/* //! Fix this in inline  */}
+    //   <Grid container sx={{ padding: "0%" }}>
+    //     <Grid item xs={6}>
+    //       <Typography sx={{ color: "#091E42" }}>
+    //         <b>Project based Annotators/Reviewers</b>
+    //       </Typography>
+    //     </Grid>
+    //     <Grid item xs={6}>
+    //       {/* <Grid item xs={12} md={6} lg={3} sx={{ paddingTop: "2%" }}>
+    //         <DateField dateValue={startDate} setDateValue={setStartDate} />
+    //       </Grid> */}
+    //       <Grid container sx={{ justifyContent: "right" }} >
+    //         <DateRangeField />
+    //       </Grid>
+
+    //       {/* <TextField
+    //         label="Date Range"
+    //         type="text"
+    //         value={dateRange}
+    //         onChange={handleDateChange}
+    //         placeholder="YYYY-MM-DD to YYYY-MM-DD"
+    //         InputLabelProps={{
+    //           shrink: true,
+    //         }}
+    //       /> */}
+    //       {/* <DateField dateValue={endDate} setDateValue={setEndDate} /> */}
+    //     </Grid>
+    //   </Grid>
+
+    //   {/* <Grid container item xs={12} sx={{ padding: "2%" }}>
+    //     <Grid container item xs={12} md={6} lg={6}>
+    //       <Grid item xs={12} md={6} lg={3} sx={{ paddingTop: "2%" }}>
+    //         <Typography>Project based Annotators/Reviewers</Typography>
+    //       </Grid>
+    //     </Grid>
+    //     <Grid container item xs={12} md={6} lg={6}>
+    //       <Grid item xs={12} md={6} lg={3} sx={{ paddingTop: "2%" }}>
+    //         <DateField dateValue={startDate} setDateValue={setStartDate} />
+    //       </Grid>
+    //       <Grid item xs={12} md={6} lg={9}>
+    //         <DateField dateValue={endDate} setDateValue={setEndDate} />
+    //       </Grid>
+    //     </Grid>
+    //   </Grid> */}
+    //   {/* <Grid container sx={{ padding: "2%" }}>
+    //     {!isDataUpdate && <Bar options={options} data={sampleData} />}
+    //   </Grid> */}
+    // </>
   );
 };
 

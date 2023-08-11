@@ -1,31 +1,45 @@
 import * as React from "react";
-import dayjs from "dayjs";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { useState } from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-// import { DateRangePicker } from "@mui/x-date-pickers/DateRangePicker";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
+import { SingleInputDateRangeField } from "@mui/x-date-pickers-pro/SingleInputDateRangeField";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { InputAdornment, TextField } from "@mui/material";
+import Calendar from "@mui/icons-material/Event";
+import calenderIcon from "../../../../assets/images/dashboardIcon/calendar-line.svg";
+export default function DateRangeField({ setStartDate, setEndDate }) {
+  const [selectedDateRange, setSelectedDateRange] = useState([null, null]); // Step 1
 
-const lastSunday = dayjs().startOf("week").subtract(1, "day");
-const nextSunday = dayjs().endOf("week").startOf("day");
-
-const isWeekend = (date) => {
-  const day = date.day();
-
-  return day === 0 || day === 6;
-};
-
-export default function DateRangeField() {
+  const handleDateRangeChange = (newValue) => {
+    setSelectedDateRange(newValue);
+    setStartDate(selectedDateRange[0]);
+    setEndDate(selectedDateRange[1]);
+  };
+  console.log(selectedDateRange);
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DateRangePicker
-        defaultValue={[lastSunday, nextSunday]}
-        shouldDisableDate={(date, position) => {
-          if (position === "end") {
-            return false;
-          }
-
-          return isWeekend(date);
-        }}
-      />
-    </LocalizationProvider>
+    <>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DemoContainer components={["SingleInputDateRangeField"]}>
+          <DateRangePicker
+            slots={{ field: SingleInputDateRangeField }}
+            slotProps={{
+              textField: {
+                InputProps: {
+                  endAdornment: <img src={calenderIcon} />,
+                  style: {
+                    borderRadius: "10px",
+                    height: "70%",
+                    width: "100%",
+                  }, // Example styles
+                },
+              },
+            }}
+            value={selectedDateRange} // Pass the value prop
+            onChange={handleDateRangeChange}
+          />
+        </DemoContainer>
+      </LocalizationProvider>
+    </>
   );
 }

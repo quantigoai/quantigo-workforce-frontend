@@ -2,7 +2,7 @@ import { Grid, Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import { useSelector } from "react-redux";
-import iconPendding from "../../../../assets/images/dashboardIcon/totalAvailableProjectIcon.svg";
+import iconPendding from "../../../../assets/images/dashboardIcon/IconJOb.svg";
 
 const TotalJobs = () => {
   const { totalCountData } = useSelector((state) => state.dashboard);
@@ -18,13 +18,13 @@ const TotalJobs = () => {
             borderRadius: "8px",
           }}>
           <Box sx={{ padding: "4%", position: "relative" }}>
-            <Grid container sx={{ paddingTop: "3%" }}>
+            <Grid container sx={{ paddingTop: "0%" }}>
               <Grid item xs={3}>
                 <img src={iconPendding} />
               </Grid>
               <Grid item xs={9}>
                 <Grid container>
-                  <Typography  sx={{ color: "#3C4D6B" }}>
+                  <Typography sx={{ color: "#3C4D6B" }}>
                     Total Available Jobs
                   </Typography>
                 </Grid>

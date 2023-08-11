@@ -18,9 +18,12 @@ import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import u_multiply from "../../../assets/images/u_multiply.png";
-import { createProjectDrawer } from "../../../features/slice/projectDrawerSlice";
 import SkillFieldProject from "./SkillFieldProject";
+import CreateProjectField from "./CreateProjectField";
+import CreateProjectFieldSelect from "./CreateProjectFieldSelect";
+import ProjectModalHeader from "./ProjectModalHeader";
+import { createProjectDrawer } from "../../../features/slice/projectDrawerSlice";
+import GuidelineField from "./GuidelineField";
 
 const style = {
   position: "absolute",
@@ -60,7 +63,7 @@ const ProjectModal = ({
   console.log("🚀 ~ file: ProjectModal.jsx:60 ~ addSkills:", addSkills);
   const [platform, setPlatform] = React.useState("");
   const [status, setStatus] = React.useState("");
-  const [projectType, setProjectType] = React.useState("");
+
   const { register, handleSubmit, reset } = useForm();
   const { error } = useSelector((state) => state.projectDrawer);
 
@@ -80,14 +83,10 @@ const ProjectModal = ({
   };
 
   const skillId = addSkills?.map((skill) => skill._id);
-  console.log("🚀 ~ file: ProjectModal.jsx:82 ~ skillId:", skillId);
 
   const onSubmit = (data) => {
     const newData = { ...data, project_skills: skillId };
-    console.log(
-      "🚀 ~ file: ProjectModal.jsx:86 ~ onSubmit ~ newData:",
-      newData
-    );
+
     dispatch(createProjectDrawer(newData)).then((action) => {
       if (action.error?.message) {
         alert.show(action.error?.message, { type: "error" });
@@ -106,10 +105,6 @@ const ProjectModal = ({
 
   const handleAddDoc = () => {
     console.log("clicked");
-  };
-
-  const handleChangeProjectType = (event) => {
-    setProjectType(event.target.value);
   };
 
   const handleStatus = (event) => {
@@ -133,319 +128,93 @@ const ProjectModal = ({
       >
         <Fade in={createProjectOpen}>
           <Box sx={style}>
-            <Box
-              sx={{
-                paddingTop: "2%",
-                width: "695px",
-                background: "#F2F6FC",
-              }}
-            >
-              <Grid
-                container
-                sx={{
-                  paddingBottom: "1%",
-                  display: "flex",
-                  alignItems: "center",
-                  borderRadius: "8px",
-                }}
-              >
-                <Grid item xs={11} sx={{ paddingLeft: "30px" }}>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      color: "#3C4D6B",
-                      fontSize: "16px",
-                      fontWeight: "600",
-                    }}
-                  >
-                    Create Project
-                  </Typography>
-                </Grid>
-                <Grid item xs={1} sx={{ justifyContent: "right" }}>
-                  <Button onClick={handleCreateProjectClose}>
-                    <img
-                      style={{ width: "20px" }}
-                      alt="cross"
-                      src={u_multiply}
-                    />
-                  </Button>
-                </Grid>
-              </Grid>
-            </Box>
+            <ProjectModalHeader
+              handleCreateProjectClose={handleCreateProjectClose}
+            />
             <Box
               sx={{ paddingLeft: "3%", paddingTop: "2%", paddingRight: "3%" }}
             >
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Grid container>
-                  <Grid item xs={6} sx={{ paddingRight: "1%", mt: "10px" }}>
-                    <Typography
-                      sx={{ fontWeight: "500", mb: "10px", fontSize: "14px" }}
-                      variant="h6"
-                    >
-                      Platform
-                    </Typography>
-                    <FormControl
-                      variant="filled"
-                      size="small"
-                      sx={{
-                        backgroundColor: "#F8F8F8",
-                        borderRadius: "8px",
-                        // width: "238.5px",
-                        height: "60px",
-                        background: "#E6ECF5",
-                        fontSize: "14px",
-                        width: "90%",
-                      }}
-                    >
-                      <InputLabel id="demo-simple-select-filled-label">
-                        Select
-                      </InputLabel>
-                      <Select
-                        {...register("project_platform")}
-                        required
-                        labelId="demo-simple-select-filled-label"
-                        id="demo-simple-select-filled"
-                        defaultValue={platform}
-                        IconComponent={() => <CustomDownArrow />}
-                        onChange={(e) => handleChange(e)}
-                      >
-                        <MenuItem value={"supervisely"}>Supervisely</MenuItem>
-                        <MenuItem value={"encord"}>Encord Server</MenuItem>
-                        <MenuItem value={"superb_ai"}>Superb Ai</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography
-                      sx={{
-                        fontWeight: "500",
-                        mt: "10px",
-                        fontSize: "14px",
-                        mb: "10px",
-                      }}
-                      variant="h6"
-                    >
-                      Project Name
-                    </Typography>
+                  <CreateProjectFieldSelect
+                    field={"Platform"}
+                    register={register}
+                    registerName={"project_platform"}
+                    defaultValue={platform}
+                    value_1={"supervisely"}
+                    value_2={"encord"}
+                    value_3={"superb_ai"}
+                    MenuItemValue_1={"Supervisely"}
+                    MenuItemValue_2={"Encord Server"}
+                    MenuItemValue_3={"Superb AI"}
+                    CustomDownArrow={CustomDownArrow}
+                    onChange={(e) => handleChange(e)}
+                  />
 
-                    <TextField
-                      {...register("project_drawer_name")}
-                      required
-                      sx={{ borderRadius: "10px", width: "100%" }}
-                      id="outlined-basic"
-                      label=""
-                      variant="outlined"
-                    />
-                  </Grid>
-                  <Grid item xs={6} sx={{ paddingRight: "1%", mt: "10px" }}>
-                    <Typography
-                      sx={{ fontWeight: "500", mb: "10px", fontSize: "14px" }}
-                      variant="h6"
-                    >
-                      Project Type
-                    </Typography>
-                    <FormControl
-                      variant="filled"
-                      size="small"
-                      sx={{
-                        backgroundColor: "#F8F8F8",
-                        borderRadius: "8px",
-                        // width: "238.5px",
-                        height: "60px",
-                        background: "#E6ECF5",
-                        fontSize: "14px",
-                        width: "90%",
-                      }}
-                    >
-                      <InputLabel id="demo-simple-select-filled-label">
-                        Select
-                      </InputLabel>
-                      <Select
-                        labelId="demo-simple-select-filled-label"
-                        id="demo-simple-select-filled"
-                        defaultValue={projectType}
-                        IconComponent={() => <CustomDownArrow />}
-                        onChange={(e) => handleChangeProjectType(e)}
-                      >
-                        <MenuItem value={"supervisely"}>Supervisely</MenuItem>
-                        <MenuItem value={"encord"}>Encord Server</MenuItem>
-                        <MenuItem value={"superb_ai"}>Superb Ai</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
+                  <CreateProjectField
+                    field={"Project Name"}
+                    registerName={"project_drawer_name"}
+                    register={register}
+                    type={"text"}
+                  />
 
-                  <Grid item xs={6}>
-                    <Typography
-                      sx={{
-                        fontWeight: "500",
-                        mt: "10px",
-                        fontSize: "14px",
-                        mb: "10px",
-                        paddingRight: "1%",
-                      }}
-                      variant="h6"
-                    >
-                      Batch
-                    </Typography>
+                  <CreateProjectField
+                    field={"Batch"}
+                    registerName={"project_batch"}
+                    register={register}
+                    type={"number"}
+                    inputProps={{ min: "1" }}
+                  />
 
-                    <TextField
-                      {...register("project_batch")}
-                      required
-                      type="number"
-                      sx={{
-                        borderRadius: "10px",
-                        height: "40px",
-                        width: "100%",
-                      }}
-                      id="outlined-basic"
-                      label=""
-                      variant="outlined"
-                      inputProps={{ min: "1" }}
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography
-                      sx={{
-                        fontWeight: "500",
-                        mt: "15px",
-                        fontSize: "14px",
-                        mb: "10px",
-                        marginLeft: "0%",
-                      }}
-                      variant="h6"
-                    >
-                      Alias
-                    </Typography>
+                  <CreateProjectField
+                    field={"Alias"}
+                    registerName={"project_alias"}
+                    register={register}
+                    type={"text"}
+                  />
 
-                    <TextField
-                      {...register("project_alias")}
-                      required
-                      sx={{ width: "90%" }}
-                      id="outlined-basic"
-                      label=""
-                      variant="outlined"
-                    />
-                  </Grid>
-
-                  <Grid item xs={6}>
-                    <Typography
-                      sx={{
-                        fontWeight: "500",
-                        mt: "15px",
-                        fontSize: "14px",
-                        mb: "10px",
-                      }}
-                      variant="h6"
-                    >
-                      PDR
-                    </Typography>
-
-                    <TextField
-                      type="number"
-                      {...register("pdr")}
-                      required
-                      sx={{ width: "100%" }}
-                      id="outlined-basic"
-                      label=""
-                      variant="outlined"
-                      inputProps={{ min: "1" }} 
-                    />
-                  </Grid>
+                  <CreateProjectField
+                    field={"PDR"}
+                    registerName={"pdr"}
+                    register={register}
+                    type={"number"}
+                    inputProps={{ min: "1", max: "5" }}
+                  />
                   {/* <SkillField/> */}
 
-                  <Grid item xs={6} sx={{ width: "40%" }}>
+                  <Grid item xs={6}>
                     <SkillFieldProject
                       skills={skills}
                       addSkills={addSkills}
                       handleChangeSkill={handleChangeSkill}
                     />
                   </Grid>
-                  <Grid item xs={6}>
-                    <Typography
-                      sx={{
-                        fontWeight: "500",
-                        mt: "15px",
-                        fontSize: "14px",
-                        mb: "10px",
-                      }}
-                      variant="h6"
-                    >
-                      Benchmark
-                    </Typography>
+                  {/* benchmark goes here  */}
 
-                    <TextField
-                      sx={{ width: "100%" }}
-                      id="outlined-basic"
-                      label=""
-                      variant="outlined"
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography
-                      sx={{
-                        fontWeight: "500",
-                        fontSize: "14px",
-                        mb: "10px",
-                        marginTop: "5%",
-                      }}
-                      variant="h6"
-                    >
-                      Estimated End Time
-                    </Typography>
+                  {/* estimated end date here  */}
 
-                    <TextField
-                      // {...register("estimated_end_date")}
-                      sx={{ width: "90%" }}
-                      id="outlined-basic"
-                      label=""
-                      variant="outlined"
-                    />
-                  </Grid>
+                  <CreateProjectFieldSelect
+                    field={"Status"}
+                    register={register}
+                    registerName={"project_status"}
+                    defaultValue={status}
+                    value_1={"not-Started"}
+                    value_2={"completed"}
+                    value_3={"in-Progress"}
+                    value_4={"hours-added"}
+                    MenuItemValue_1={"Not Started"}
+                    MenuItemValue_2={"Completed"}
+                    MenuItemValue_3={"In Progress"}
+                    MenuItemValue_4={"Hours Added"}
+                    CustomDownArrow={CustomDownArrow}
+                    onChange={(e) => handleStatus(e)}
+                  />
 
-                  <Grid item xs={6} sx={{ paddingRight: "1%", mt: "10px" }}>
-                    <Typography
-                      sx={{ fontWeight: "500", mb: "10px", fontSize: "14px" }}
-                      variant="h6"
-                    >
-                      Status
-                    </Typography>
-                    <FormControl
-                      variant="filled"
-                      size="small"
-                      sx={{
-                        backgroundColor: "#F8F8F8",
-                        borderRadius: "8px",
-                        // width: "238.5px",
-                        height: "60px",
-                        background: "#E6ECF5",
-                        fontSize: "14px",
-                        width: "100%",
-                      }}
-                    >
-                      <InputLabel id="demo-simple-select-filled-label">
-                        Select
-                      </InputLabel>
-                      <Select
-                        {...register("project_status")}
-                        required
-                        labelId="demo-simple-select-filled-label"
-                        id="demo-simple-select-filled"
-                        defaultValue={status}
-                        IconComponent={() => <CustomDownArrow />}
-                        onChange={(e) => handleStatus(e)}
-                      >
-                        <MenuItem value={"not-Started"}>Not Started</MenuItem>
-                        <MenuItem value={"completed"}>Completed</MenuItem>
-                        <MenuItem value={"hours-added"}>Hours Added</MenuItem>
-                        <MenuItem value={"in-Progress"}>In Progress</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
                   <Grid item xs={12}>
                     <Typography
                       sx={{
                         fontWeight: "500",
-                        mt: "15px",
+                        mt: "55px",
                         fontSize: "14px",
                         mb: "10px",
                       }}
@@ -455,74 +224,10 @@ const ProjectModal = ({
                     </Typography>
                   </Grid>
 
-                  <Grid
-                    container
-                    sx={{
-                      border: "2px solid #E6ECF5",
-                      padding: "16px",
-                      borderRadius: "8px",
-                      background: "#FAFCFF",
-                    }}
-                    item
-                    xs={12}
-                  >
-                    <Grid item xs={6}>
-                      <Typography
-                        sx={{
-                          fontWeight: "500",
-                          fontSize: "14px",
-                          mb: "10px",
-                          marginLeft: "5%",
-                        }}
-                        variant="h6"
-                      >
-                        Document
-                      </Typography>
-
-                      <TextField
-                        {...register("guideline")}
-                        required
-                        sx={{ width: "90%", height: "20px" }}
-                        id="outlined-basic"
-                        label=""
-                        variant="outlined"
-                      />
-                    </Grid>
-
-                    <Grid item xs={6}>
-                      <Typography
-                        sx={{
-                          fontWeight: "500",
-                          fontSize: "14px",
-                          mb: "10px",
-                        }}
-                        variant="h6"
-                      >
-                        Link
-                      </Typography>
-
-                      <TextField
-                        sx={{ width: "100%" }}
-                        id="outlined-basic"
-                        label=""
-                        variant="outlined"
-                      />
-                    </Grid>
-                    <Typography
-                      sx={{
-                        fontWeight: "600",
-                        mt: "15px",
-                        fontSize: "14px",
-                        mb: "10px",
-                        color: "#2E58FF",
-                        cursor: "pointer",
-                      }}
-                      variant="h6"
-                      onClick={handleAddDoc}
-                    >
-                      <i className="ri-add-line"></i> Add another document
-                    </Typography>
-                  </Grid>
+                  <GuidelineField
+                    register={register}
+                    handleAddDoc={handleAddDoc}
+                  />
                 </Grid>
                 <hr
                   style={{

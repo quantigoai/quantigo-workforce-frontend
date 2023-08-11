@@ -38,7 +38,7 @@ const SkillFieldProject = ({ skills, handleChangeSkill, addSkills }) => {
           {" "}
           Skills
         </Typography>
-        <FormControl sx={{ mt: 1, width: 300 }} size="small">
+        <FormControl sx={{ mt: 1, width: 310 }} size="small">
           <InputLabel id="demo-multiple-chip-label">Skills</InputLabel>
           <Select
             labelId="demo-multiple-chip-label"

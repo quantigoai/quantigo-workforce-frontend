@@ -46,13 +46,19 @@ const options = {
   },
   scales: {
     x: {
+      ticks: {
+        color: "#7D89A3", // Change label text color here
+      },
       grid: {
         display: true,
       },
     },
     yAxis: {
+      ticks: {
+        color: "#7D89A3", // Change label text color here
+      },
       display: false,
-    }
+    },
     // y: {
     //   min: 2,
     //   max: 10,

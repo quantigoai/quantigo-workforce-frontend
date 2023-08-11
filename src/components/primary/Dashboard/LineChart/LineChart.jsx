@@ -56,6 +56,10 @@ export const options = {
   },
   scales: {
     x: {
+      ticks: {
+        color: "#7D89A3", // Change label text color here
+      },
+
       grid: {
         display: false,
       },
@@ -66,6 +70,7 @@ export const options = {
       },
       beginAtZero: true,
       ticks: {
+        color: "#7D89A3",
         callback: function (val) {
           return Number.isInteger(val) ? val : null;
         },

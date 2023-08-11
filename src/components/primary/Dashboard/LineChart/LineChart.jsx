@@ -36,7 +36,7 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: "top",
+      position: "bottom",
       labels: {
         usePointStyle: true,
         pointStyle: "circle",

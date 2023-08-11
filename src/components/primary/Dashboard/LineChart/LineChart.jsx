@@ -11,14 +11,14 @@ import {
   CategoryScale,
   Chart as ChartJS,
   Legend,
-  LinearScale,
   LineElement,
+  LinearScale,
   PointElement,
   Title,
   Tooltip,
 } from "chart.js";
 import React, { useEffect } from "react";
-import { Bar, Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import { daysAndMonths } from "../../../../helper/dateConverter";
 
@@ -36,9 +36,12 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: "bottom",
+      position: "top",
       labels: {
+        usePointStyle: true,
+        pointStyle: "circle",
         boxWidth: 10,
+        boxHeight: 7,
       },
     },
     datalabels: {

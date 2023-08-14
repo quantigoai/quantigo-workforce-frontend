@@ -53,14 +53,15 @@ const PieChart = () => {
         display: true,
         formatter: (value, ctx) => {
           const dataset = ctx.chart.data.datasets[0];
-
           const total = dataset.data.reduce((prev, curr) => prev + curr);
-          const percentage = ((value / total) * 100).toFixed(2); // Calculate percentage
+          const percentage = ((value / total) * 100).toFixed(2);
           return `${percentage}%`;
         },
-        color: "#FFFFFF",
-
-        // backgroundColor: "#404040",
+        color: (context) => {
+          const dataset = context.dataset.backgroundColor;
+          const value = dataset[context.dataIndex];
+          return value === "#2E58FF" ? "#FFFFFF" : "#3C4D6B"; // Dynamic color based on value
+        },
       },
     },
     radius: "80%",

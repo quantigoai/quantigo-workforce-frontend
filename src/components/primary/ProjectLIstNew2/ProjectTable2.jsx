@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import PageinationTable from "./PageinationTable";
 import { Box } from "@mui/material";
 const ProjectTable2 = ({ myColumn, myRows }) => {
   //   const columns = Object.keys(myColumn[0] || {});
@@ -57,6 +58,11 @@ const ProjectTable2 = ({ myColumn, myRows }) => {
             ))}
           </TableBody>
         </Table>
+        <Box
+          sx={{ display: "flex", justifyContent: "flex-end", width: "100%" }}
+        >
+          <PageinationTable />
+        </Box>
       </TableContainer>
     </>
   );

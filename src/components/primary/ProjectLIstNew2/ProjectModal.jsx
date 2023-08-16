@@ -1,5 +1,6 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { Grid, Stack, styled } from "@mui/material";
+import { Stack, styled } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -10,17 +11,11 @@ import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import SkillFieldProject from "./SkillFieldProject";
-import CreateProjectField from "./CreateProjectField";
-import CreateProjectFieldSelect from "./CreateProjectFieldSelect";
-import ProjectModalHeader from "./ProjectModalHeader";
-import { createProjectDrawer } from "../../../features/slice/projectDrawerSlice";
-import GuidelineField from "./GuidelineField";
-import CustomTextField from "../../shared/CustomField/CustomTextField";
 import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import FormProvider from "../../shared/FormProvider/FormProvider";
+import { createProjectDrawer } from "../../../features/slice/projectDrawerSlice";
 import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
+import FormProvider from "../../shared/FormProvider/FormProvider";
+import ProjectModalHeader from "./ProjectModalHeader";
 const style = {
   position: "absolute",
   top: "50%",
@@ -105,7 +100,7 @@ const ProjectModal = ({
     setStatus(event.target.value);
   };
   const ProjectDrawerSchema = Yup.object().shape({
-    project_drawer_name: Yup.string().required("Email is required"),
+    project_drawer_name: Yup.string().required("Project name required"),
   });
 
   const methods = useForm({

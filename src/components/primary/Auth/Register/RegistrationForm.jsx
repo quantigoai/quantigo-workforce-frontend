@@ -57,7 +57,8 @@ const RegistrationForm = () => {
       .email("Email must be a valid email address"),
     password: Yup.string().required("Password is required"),
     currentUserStatus: Yup.string(),
-    qaiUserName: Yup.string().required("QAI Id is required"),
+    // qaiUserName: Yup.string().required("QAI Id is required"),
+    qaiUserName: Yup.string(),
     hub: Yup.string(),
     gender: Yup.string(),
     dob: Yup.string(),
@@ -71,6 +72,7 @@ const RegistrationForm = () => {
   const {
     reset,
     setError,
+    setValue,
     handleSubmit,
     formState: { errors },
   } = methods;
@@ -110,6 +112,7 @@ const RegistrationForm = () => {
     const hub = e.target.value;
     axios.get(`${url}/qaiusers/hubs/${hub}`).then((res) => {
       setGeneratedHubId(res.data);
+      setValue("qaiUserName", res.data);
     });
   };
 
@@ -124,6 +127,10 @@ const RegistrationForm = () => {
       }
     });
   };
+  const handleChangeGender = (e) => {
+    setValue(e.target.name, e.target.value);
+  };
+
   return (
     <Box sx={{ width: "100%" }}>
       <Grid container item xs={12} sx={{ paddingBottom: "4%" }}>
@@ -202,7 +209,7 @@ const RegistrationForm = () => {
                         : userStatusOptions[1].value
                     }
                     label={"User Status"}
-                    handleChange={handleChangeUserType}
+                    onChange={handleChangeUserType}
                   />
                   {isNewUser ? (
                     <CustomSelectField
@@ -210,7 +217,9 @@ const RegistrationForm = () => {
                       helperText="Select a hub"
                       options={hubOptions}
                       label={"User Hub"}
-                      handleChange={handleChangeHub}
+                      onChange={handleChangeHub}
+                      // handleChange={handleChangeHub}
+                      setValue={setValue}
                     />
                   ) : (
                     <CustomTextField
@@ -253,10 +262,11 @@ const RegistrationForm = () => {
                     name="gender"
                     helperText="Select an option"
                     options={genderOptions}
-                    defaultValue={genderOptions[0].value}
                     label={"Gender"}
+                    setValue={setValue}
                   />
-                  <CustomDatePicker name="dob" />
+
+                  <CustomDatePicker setError={setError} setValue={setValue} name="dob" />
                 </Stack>
                 <CustomTextField
                   name="billingAccountNo"

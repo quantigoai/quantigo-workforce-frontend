@@ -26,8 +26,8 @@ export default function CustomSelectField({
   helperText,
   options,
   label,
+  setValue,
   defaultValue,
-  handleChange,
   ...other
 }) {
   const { control } = useFormContext();
@@ -49,13 +49,18 @@ export default function CustomSelectField({
               {...field}
               label={label}
               defaultValue={defaultValue}
-              onChange={handleChange}
               error={!!error}
               helperText={error ? error?.message : helperText}
               {...other}
             >
               {options.map((option) => (
-                <MenuItem key={option.value} fullWidth value={option.value}>
+                <MenuItem
+                  key={option.value}
+                  fullWidth
+                  value={
+                    (() => setValue(field.name, field.value), option.value)
+                  }
+                >
                   {option.label}
                 </MenuItem>
               ))}

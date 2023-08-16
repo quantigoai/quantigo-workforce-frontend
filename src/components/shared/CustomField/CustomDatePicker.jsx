@@ -9,8 +9,10 @@
 import { FormControl, InputLabel, TextField, styled } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from "dayjs";
 import PropTypes from "prop-types";
 import { Controller, useFormContext } from "react-hook-form";
+import { convertDate } from "../../../helper/customData";
 
 CustomDatePicker.propTypes = {
   name: PropTypes.string,
@@ -42,6 +44,8 @@ export const MyFormControl = styled(FormControl)(() => ({
 }));
 export default function CustomDatePicker({
   name,
+  setValue,
+  setError,
   helperText,
   options,
   label,
@@ -50,21 +54,35 @@ export default function CustomDatePicker({
 }) {
   const { control } = useFormContext();
 
+  const handleDate = (newValue) => {
+    const x = convertDate(newValue);
+    setValue("dob", x);
+  };
+  const minDob = dayjs().subtract(13, "year");
+  const maxDob = dayjs().subtract(70, "year");
   return (
     <Controller
       control={control}
       name={name}
-      render={({ field: { onChange, onBlur, value, ref } }) => (
+      render={({ field: { onChange, onBlur, value, ref, error } }) => (
         <MyFormControl fullWidth sx={{ backgroundColor: "#FFFFFF" }}>
           <MyInputLabel htmlFor="date-picker" shrink>
             Date of Birth
           </MyInputLabel>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <MyDatePicker>
+            <MyDatePicker
+              inputFormat="DD-MM-YYYY"
+              minDate={maxDob}
+              maxDate={minDob}
+              onChange={(newValue) => {
+                handleDate(newValue);
+              }}
+            >
               <TextField
                 sx={{ padding: "5px" }}
+                error={!!error}
+                helperText={error && error?.message}
                 id="date-picker"
-                placeholder=""
               />
             </MyDatePicker>
           </LocalizationProvider>

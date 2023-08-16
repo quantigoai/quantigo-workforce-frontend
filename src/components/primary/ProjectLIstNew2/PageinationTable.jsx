@@ -1,5 +1,5 @@
-import { Box, Button, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Box, Button } from "@mui/material";
+import { useEffect, useState } from "react";
 
 const PageinationTable = () => {
   const totalItems = [
@@ -11,11 +11,14 @@ const PageinationTable = () => {
   const totalPages = Math.ceil(totalItems.length / itemPerPage);
 
   const [pageNumber, setPageNumber] = useState([]);
-  const [disable, setDisable] = useState(false);
+  const [disableNext, setDisableNext] = useState(false);
+  const [disablePrev, setDisablePrev] = useState(false);
+  const [selectedPage, setSelectedPage] = useState(0);
 
   useEffect(() => {
     const pageNumberMain = [...Array(totalPages / 2).keys()];
     setPageNumber(pageNumberMain);
+    setDisablePrev(true);
   }, []);
   const startPage = totalPages / 2;
 
@@ -24,43 +27,49 @@ const PageinationTable = () => {
       (i) => i + startPage
     );
     setPageNumber(pageNumberMain);
-    setDisable(true);
+    setDisableNext(true);
+    setDisablePrev(false);
   };
 
   const handlePrevPage = () => {
     const pageNumberMain = [...Array(totalPages / 2).keys()];
     setPageNumber(pageNumberMain);
-    setDisable(false);
+    setDisablePrev(true);
+    setDisableNext(false);
   };
 
   return (
     <>
-      <Button sx={{ minWidth: "40px" }} onClick={handlePrevPage} variant="none">
+      <Button
+        disabled={disablePrev}
+        sx={{ minWidth: "30px" }}
+        onClick={handlePrevPage}
+        variant="none"
+      >
         {" "}
         <i className="ri-arrow-left-s-line"></i>
       </Button>
       <Box>
-        {pageNumber.map((page) => (
+        {pageNumber.map((page, id) => (
           <>
             <Button
+              key={id}
               variant="small"
+              onClick={() => setSelectedPage(page)}
               sx={{
                 minWidth: "40px",
                 fontSize: "16px",
                 padding: "10px",
 
-                color: "#62728F",
+                color: selectedPage === page ? "white" : "#62728F",
+                backgroundColor:
+                  selectedPage === page ? "#2E58FF" : "transparent",
 
-                "&:active": {
-                  boxShadow: "red",
-                  backgroundColor: "red",
-                },
                 "&:focus": {
                   color: "white",
                   backgroundColor: "#2E58FF",
                 },
               }}
-              key={page}
             >
               {page + 1}
             </Button>
@@ -69,7 +78,7 @@ const PageinationTable = () => {
       </Box>
       <Button
         sx={{ minWidth: "40px" }}
-        disabled={disable}
+        disabled={disableNext}
         variant="none"
         onClick={handleNextPage}
       >

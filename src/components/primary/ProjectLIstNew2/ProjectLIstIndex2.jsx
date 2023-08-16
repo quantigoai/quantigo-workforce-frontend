@@ -28,7 +28,7 @@ import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 import "./index.css";
 
 const fields = [
-  { field: "project_drawer_name", width: 200, },
+  { field: "project_drawer_name", width: 200 },
   { field: "project_alias" },
   { field: "project_platform" },
   { field: "project_batch", width: 60 },
@@ -73,7 +73,6 @@ const ProjectLIstIndex2 = () => {
   const [editModalOpen, setEditModalOpen] = React.useState(false);
   const [createProjectOpen, setCreateProjectOpen] = React.useState(false);
   const handleProjectCreateOpen = () => setCreateProjectOpen(true);
-  // const handleOpen = () => setOpen(true);
 
   const handleCreateProjectClose = () => {
     setCreateProjectOpen(false);
@@ -105,10 +104,6 @@ const ProjectLIstIndex2 = () => {
     setMyRows(dataBuilder(projectDrawers));
   }, [projectDrawers]);
 
-  // useEffect(() => {
-  //   setMyColumn(projectDrawers);
-  //   setMyRows(dataBuilder(projectDrawers));
-  // }, [projectDrawers]);
   return (
     <>
       <Box
@@ -120,9 +115,10 @@ const ProjectLIstIndex2 = () => {
           sx={{
             display: "flex",
             justifyContent: "space-between",
+            width: "100%",
           }}
         >
-          <Box sx={{ width: "40%" }}>
+          <Box sx={{ width: "30%" }}>
             <Grid
               container
               sx={{
@@ -139,8 +135,8 @@ const ProjectLIstIndex2 = () => {
           <Box
             sx={{
               display: "flex",
-              justifyContent: "space-around",
-              width: "40%",
+              justifyContent: "space-between",
+              // width: "30%",
               alignItems: "center",
             }}
           >
@@ -150,7 +146,7 @@ const ProjectLIstIndex2 = () => {
                 p: "2px 4px",
                 display: "flex",
                 alignItems: "center",
-                width: "250px",
+                width: "240px",
                 background: "#F4F7FE",
               }}
             >
@@ -162,10 +158,10 @@ const ProjectLIstIndex2 = () => {
               >
                 <SearchIcon />
               </IconButton>
-              <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search" />
+              <InputBase sx={{ ml: 0, flex: 1 }} placeholder="Search" />
             </Paper>
             <IconButton
-              sx={{ p: "0px", background: "#F4F7FE" }}
+              sx={{ px: "15px", background: "#F4F7FE" }}
               aria-label="menu"
               //   onClick={handleClickFilter}
             >
@@ -196,7 +192,7 @@ const ProjectLIstIndex2 = () => {
           </Box>
         </Box>
         {editModalOpen && (
-          <Box>
+          <Box sx={{ width: "100%" }}>
             <EditProjectModal
               projectDrawer={projectDrawer}
               editModalOpen={editModalOpen}

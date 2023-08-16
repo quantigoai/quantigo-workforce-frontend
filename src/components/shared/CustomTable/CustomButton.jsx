@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import React from "react";
 import MainModal from "./MainModal";
 
@@ -17,9 +17,15 @@ const CustomButton = ({ params, handleClick, handleDelete }) => {
   const [isEdit, setIsEdit] = React.useState(true);
 
   return (
-    <>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "flex-end",
+        width: "200px",
+      }}
+    >
       <Button
-        sx={{ color: "#2E58FF" }}
+        sx={{ color: "#2E58FF", padding: "0px", minWidth: "35px" }}
         onClick={() => {
           setIsEdit(true);
           handleClick(params);
@@ -32,7 +38,7 @@ const CustomButton = ({ params, handleClick, handleDelete }) => {
       </Button>
 
       <Button
-        sx={{ color: "#F04438" }}
+        sx={{ color: "#F04438", padding: "0px", minWidth: "35px" }}
         onClick={() => {
           setIsEdit(false);
         }}
@@ -47,7 +53,7 @@ const CustomButton = ({ params, handleClick, handleDelete }) => {
         params={params}
         isEdit={isEdit}
       />
-    </>
+    </Box>
   );
 };
 

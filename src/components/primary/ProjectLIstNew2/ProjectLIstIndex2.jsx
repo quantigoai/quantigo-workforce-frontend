@@ -31,10 +31,10 @@ const fields = [
   { field: "project_drawer_name", width: 200, },
   { field: "project_alias" },
   { field: "project_platform" },
-  { field: "project_batch", width: 100 },
+  { field: "project_batch", width: 60 },
   { field: "project_status", renderCell: "chip" },
-  { field: "project_skills", width: 360, renderCell: "skills-chip" },
-  { field: "pdr", width: 140 },
+  // { field: "project_skills", width: 400, renderCell: "skills-chip" },
+  { field: "pdr", width: 100 },
   {
     field: "Actions",
     renderCell: "button",
@@ -44,6 +44,7 @@ const fields = [
 import CustomTable from "../../shared/CustomTable/CustomTable";
 import EditProjectModal from "./EditProjectModal";
 import ProjectModal from "./ProjectModal";
+import ProjectTable2 from "./ProjectTable2";
 
 const ProjectLIstIndex2 = () => {
   const CustomFilterIcon = styled(SortIcon)({
@@ -104,6 +105,10 @@ const ProjectLIstIndex2 = () => {
     setMyRows(dataBuilder(projectDrawers));
   }, [projectDrawers]);
 
+  // useEffect(() => {
+  //   setMyColumn(projectDrawers);
+  //   setMyRows(dataBuilder(projectDrawers));
+  // }, [projectDrawers]);
   return (
     <>
       <Box
@@ -184,7 +189,7 @@ const ProjectLIstIndex2 = () => {
                   createProjectOpen={createProjectOpen}
                   handleProjectCreateOpen={handleProjectCreateOpen}
                   handleCreateProjectClose={handleCreateProjectClose}
-                  setEditModalOpen={setEditModalOpen}
+                  setCreateProjectOpen={setCreateProjectOpen}
                 />
               </Box>
             )}
@@ -209,14 +214,15 @@ const ProjectLIstIndex2 = () => {
             position: "absolute",
           }}
         >
-          <CustomTable
+          {/* <CustomTable
             myColumn={myColumn}
             myRows={myRows}
             totalCount={total}
             paginationModel={paginationModel}
             setPaginationModel={setPaginationModel}
             isLoading={isLoading}
-          />
+          /> */}
+          <ProjectTable2 myColumn={myColumn} myRows={myRows} />
         </Box>
       </Box>
     </>

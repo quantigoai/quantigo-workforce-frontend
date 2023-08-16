@@ -26,7 +26,8 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
       customItems = {
         id: index,
         field: field.field,
-        width: field.width || 200,
+        // width: field.width || 140,
+        width: field.width,
         headerName: customHeader(field.field),
         renderCell: (params) => (
           <CustomButton
@@ -42,7 +43,9 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
       customItems = {
         id: index,
         field: field.field,
-        width: field.width || 180,
+        // width: field.width || 200,
+        width: field.width,
+
         headerName: customHeader(field.field),
         renderCell: (params) => {
           return <ProjectDrawerStatusChip value={params.value} />;
@@ -54,7 +57,8 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
       customItems = {
         id: index,
         field: field.field,
-        width: field.width || 180,
+        // width: field.width || 180,
+        width: field.width,
         headerName: customHeader(field.field),
         renderCell: (params) => {
           return <ChipGroup params={params} />;
@@ -66,9 +70,11 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
       customItems = {
         id: index,
         field: field.field,
-        width: field.width || 180,
+        // width: field.width || 214,
+        width: field.width,
         headerName: customHeader(field.field),
         editable: field.editable || false,
+
         cellClassName: field.cellClassName || "",
       };
     }

@@ -44,7 +44,6 @@ const CustomDownArrow = styled(KeyboardArrowDownIcon)({
 
 const ProjectModal = ({
   createProjectOpen,
-  // handleProjectCreateOpen,
   handleCreateProjectClose,
   setCreateProjectOpen,
 }) => {

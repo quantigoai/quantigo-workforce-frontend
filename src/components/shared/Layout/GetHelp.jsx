@@ -28,7 +28,8 @@ const GetHelp = () => {
             position: "relative",
             bottom: "20px",
             justifyContent: "center",
-          }}>
+          }}
+        >
           <img src={HelpIcon} />
         </Grid>
         <Grid container sx={{ justifyContent: "center" }}>
@@ -44,14 +45,16 @@ const GetHelp = () => {
             paddingRight: "5%",
             paddingTop: "2%",
             textAlign: "center",
-          }}>
+          }}
+        >
           <Typography
             sx={{
               color: "#969CAF",
               justifyContent: "center",
               textAlign: "center",
             }}
-            variant="body2">
+            variant="body2"
+          >
             Our customer support is at your service.
           </Typography>
         </Grid>
@@ -63,7 +66,8 @@ const GetHelp = () => {
             paddingRight: "7%",
             paddingTop: "2%",
             paddingBottom: "5%",
-          }}>
+          }}
+        >
           <ButtonStyleHelp variant="outlined" onClick={handleHelp}>
             Get Help
           </ButtonStyleHelp>

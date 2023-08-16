@@ -34,7 +34,7 @@ const CustomTable = ({
 }) => {
   return (
     <>
-      <Box style={{ height: "100%", width: "100%" }}>
+      <Box style={{ height: 750, width: "100%" }}>
         <StripedDataGrid
           showColumnVerticalBorder
           showCellVerticalBorder={false}
@@ -46,7 +46,10 @@ const CustomTable = ({
             return "";
           }}
           sx={{
+            display: "flex",
+            justifyContent: "center",
             textAlign: "center",
+            fontSize: "14px",
             "& .MuiDataGrid-cell": {
               color: "#3C4D6B",
             },

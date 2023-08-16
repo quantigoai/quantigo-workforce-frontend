@@ -1,5 +1,5 @@
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { Grid, styled } from "@mui/material";
+import { Grid, Stack, styled } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -16,7 +16,11 @@ import CreateProjectFieldSelect from "./CreateProjectFieldSelect";
 import ProjectModalHeader from "./ProjectModalHeader";
 import { createProjectDrawer } from "../../../features/slice/projectDrawerSlice";
 import GuidelineField from "./GuidelineField";
-
+import CustomTextField from "../../shared/CustomField/CustomTextField";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import FormProvider from "../../shared/FormProvider/FormProvider";
+import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
 const style = {
   position: "absolute",
   top: "50%",
@@ -54,7 +58,7 @@ const ProjectModal = ({
   const [platform, setPlatform] = React.useState("");
   const [status, setStatus] = React.useState("");
 
-  const { register, handleSubmit, reset } = useForm();
+  // const { register, handleSubmit, reset } = useForm();
   // const { error } = useSelector((state) => state.projectDrawer);
 
   const handleChangeSkill = (event) => {
@@ -100,6 +104,20 @@ const ProjectModal = ({
   const handleStatus = (event) => {
     setStatus(event.target.value);
   };
+  const ProjectDrawerSchema = Yup.object().shape({
+    project_drawer_name: Yup.string().required("Email is required"),
+  });
+
+  const methods = useForm({
+    resolver: yupResolver(ProjectDrawerSchema),
+  });
+
+  const {
+    reset,
+    setError,
+    handleSubmit,
+    formState: { errors },
+  } = methods;
 
   return (
     <>
@@ -124,11 +142,30 @@ const ProjectModal = ({
             <Box
               sx={{ paddingLeft: "3%", paddingTop: "2%", paddingRight: "3%" }}
             >
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <Grid container>
-                  <CreateProjectFieldSelect
+              <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+                <Stack direction="row" gap={2} sx={{ py: "2%" }}>
+                  <PDTextFIeld
+                    name="project_drawer_name"
+                    label="Project Name"
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
+                  />
+
+                  <PDTextFIeld
+                    name="project_batch"
+                    label="Batch"
+                    InputProps={{
+                      disableUnderline: true,
+                      min: 1,
+                    }}
+                    isNumber="true"
+                  />
+                </Stack>
+
+                {/* <CreateProjectFieldSelect
                     field={"Platform"}
-                    register={register}
+                    // register={register}
                     registerName={"project_platform"}
                     defaultValue={platform}
                     value_1={"supervisely"}
@@ -139,50 +176,57 @@ const ProjectModal = ({
                     MenuItemValue_3={"Superb AI"}
                     CustomDownArrow={CustomDownArrow}
                     onChange={(e) => handleChange(e)}
+                  /> */}
+
+                <Stack direction="row" gap={2} sx={{ py: "2%" }}>
+                  <PDTextFIeld
+                    name="project_alias"
+                    label="Alias"
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
                   />
 
-                  <CreateProjectField
-                    field={"Project Name"}
-                    registerName={"project_drawer_name"}
-                    register={register}
-                    type={"text"}
+                  <PDTextFIeld
+                    name="pdr"
+                    label="PDR"
+                    InputProps={{
+                      disableUnderline: true,
+                      min: 1,
+                      max: 5,
+                    }}
+                    isNumberPdr="true"
                   />
+                </Stack>
+                {/* <SkillField/> */}
 
-                  <CreateProjectField
-                    field={"Batch"}
-                    registerName={"project_batch"}
-                    register={register}
-                    type={"number"}
-                    inputProps={{ min: "1" }}
-                  />
-
-                  <CreateProjectField
-                    field={"Alias"}
-                    registerName={"project_alias"}
-                    register={register}
-                    type={"text"}
-                  />
-
-                  <CreateProjectField
-                    field={"PDR"}
-                    registerName={"pdr"}
-                    register={register}
-                    type={"number"}
-                    inputProps={{ min: "1", max: "5" }}
-                  />
-                  {/* <SkillField/> */}
-
-                  <Grid item xs={6}>
+                {/* <Grid item xs={6}>
                     <SkillFieldProject
                       skills={skills}
                       addSkills={addSkills}
                       handleChangeSkill={handleChangeSkill}
                     />
-                  </Grid>
-                  {/* benchmark goes here  */}
+                  </Grid> */}
 
-                  {/* estimated end date here  */}
+                <Stack direction="row" gap={2} sx={{ py: "2%" }}>
+                  <PDTextFIeld
+                    name="benchmark"
+                    label="Benchmark"
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
+                  />
 
+                  <PDTextFIeld
+                    name="end_time"
+                    label="Estimated End Time"
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
+                  />
+                </Stack>
+
+                {/* 
                   <CreateProjectFieldSelect
                     field={"Status"}
                     register={register}
@@ -199,26 +243,60 @@ const ProjectModal = ({
                     CustomDownArrow={CustomDownArrow}
                     onChange={(e) => handleStatus(e)}
                   />
+ */}
+                <Typography
+                  sx={{
+                    fontWeight: "500",
+                    mt: "5px",
+                    fontSize: "14px",
+                    mb: "10px",
+                  }}
+                  variant="h6"
+                >
+                  Guideline and Edge-case Document
+                </Typography>
 
-                  <Grid item xs={12}>
-                    <Typography
-                      sx={{
-                        fontWeight: "500",
-                        mt: "55px",
-                        fontSize: "14px",
-                        mb: "10px",
+                <Stack
+                  sx={{
+                    border: "2px solid #E6ECF5",
+                    padding: "16px",
+                    borderRadius: "8px",
+                    background: "#FAFCFF",
+                  }}
+                >
+                  <Stack direction="row" gap={2} xs={12}>
+                    <PDTextFIeld
+                      name="guideline"
+                      label="Document"
+                      InputProps={{
+                        disableUnderline: true,
                       }}
-                      variant="h6"
-                    >
-                      Guideline and Edge-case Document
-                    </Typography>
-                  </Grid>
+                    />
 
-                  <GuidelineField
-                    register={register}
-                    handleAddDoc={handleAddDoc}
-                  />
-                </Grid>
+                    <PDTextFIeld
+                      name="link"
+                      label="Link"
+                      InputProps={{
+                        disableUnderline: true,
+                      }}
+                    />
+                  </Stack>
+                  <Typography
+                    sx={{
+                      fontWeight: "600",
+                      mt: "15px",
+                      fontSize: "14px",
+                      mb: "0px",
+                      color: "#2E58FF",
+                      cursor: "pointer",
+                    }}
+                    variant="h6"
+                    onClick={handleAddDoc}
+                  >
+                    <i className="ri-add-line"></i> Add another document
+                  </Typography>
+                </Stack>
+
                 <hr
                   style={{
                     color: "#F2F6FC",
@@ -271,7 +349,7 @@ const ProjectModal = ({
                     Save
                   </Button>
                 </Box>
-              </form>
+              </FormProvider>
             </Box>
           </Box>
         </Fade>

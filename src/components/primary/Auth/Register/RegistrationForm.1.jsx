@@ -1,12 +1,3 @@
-/*
- * Filename: /home/tanzim/OfficeWorkstation/quantigo-workforce-frontend/src/components/primary/Auth/Login/RegistrationForm.jsx
- * Path: /home/tanzim/OfficeWorkstation/quantigo-workforce-frontend
- * Created Date: Saturday, August 12th 2023, 11:47:40 pm
- * Author: Tanzim Ahmed
- *
- * Copyright (c) 2023 Tanzim Ahmed
- */
-
 import { yupResolver } from "@hookform/resolvers/yup";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CheckIcon from "@mui/icons-material/Check";
@@ -37,7 +28,8 @@ import CustomTextField from "../../../shared/CustomField/CustomTextField";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
 import { LoadingButtonStyle } from "../Login/Login";
 import FooterInstruction from "./FooterInstruction";
-const RegistrationForm = () => {
+
+export const RegistrationForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -72,7 +64,6 @@ const RegistrationForm = () => {
     lastName: "Ahmed",
     email: "tanzim.ahmed1@g.bracu.ac.bd",
     password: "ta12345",
-    gender: "male",
   };
 
   const methods = useForm({
@@ -84,7 +75,6 @@ const RegistrationForm = () => {
     watch,
     reset,
     setError,
-    clearErrors,
     setValue,
     handleSubmit,
     formState: { errors },
@@ -130,7 +120,7 @@ const RegistrationForm = () => {
 
   const handleChangeUserType = (e) => {
     setValue("qaiUserName", null);
-    clearErrors("qaiUserName");
+    setError("qaiUserName", {});
     setHelperMessage("");
     if (e.target.value === "newUser") {
       setIsNewUser(true);
@@ -155,6 +145,7 @@ const RegistrationForm = () => {
         setError("qaiUserName", { type: "custom", message: res.error.message });
         setHelperMessage("");
       } else {
+        // setError("");
         setHelperMessage(res.payload.data.message);
       }
     });
@@ -202,6 +193,7 @@ const RegistrationForm = () => {
                     ),
                   }}
                 />
+
                 <CustomTextField
                   name="password"
                   label="Password"
@@ -224,6 +216,7 @@ const RegistrationForm = () => {
                     ),
                   }}
                 />
+
                 <FooterInstruction navigate={navigate}></FooterInstruction>
               </>
             )}
@@ -249,11 +242,13 @@ const RegistrationForm = () => {
                       options={hubOptions}
                       label={"User Hub"}
                       onChange={handleChangeHub}
+                      // handleChange={handleChangeHub}
                       setValue={setValue}
                     />
                   ) : (
                     <CustomTextField
                       name="qaiUserName"
+                      // helperText={error ? error : helperMessage}
                       label="Quantigo Username"
                       onBlur={handleCheckQaiUserName}
                       InputProps={{
@@ -265,7 +260,7 @@ const RegistrationForm = () => {
                                 sx={{ color: "green", fontWeight: 700 }}
                               />
                             )}
-                            {errors.qaiUserName && (
+                            {error && (
                               <CancelIcon
                                 sx={{ color: "red", fontWeight: 700 }}
                               />
@@ -287,7 +282,6 @@ const RegistrationForm = () => {
                 <Stack direction="row" spacing={2}>
                   <CustomSelectField
                     name="gender"
-                    defaultValue={genderOptions[0].value}
                     helperText="Select an option"
                     options={genderOptions}
                     label={"Gender"}
@@ -371,5 +365,3 @@ const RegistrationForm = () => {
     </Box>
   );
 };
-
-export default RegistrationForm;

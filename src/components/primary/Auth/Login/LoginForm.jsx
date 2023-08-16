@@ -62,7 +62,6 @@ const LoginForm = () => {
   } = methods;
 
   const onSubmit = async (data) => {
-    console.log(data);
     dispatch(login(data)).then((action) => {
       if (action.payload?.status === 200) {
         alert.show("Login Successful", { type: "success" });

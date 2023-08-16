@@ -19,14 +19,7 @@ const MyTextField = styled(TextField)(() => ({
   borderRadius: "5px",
   "& .MuiInputBase-root": { height: "100%" },
 }));
-export default function CustomTextField({
-  name,
-  helperText,
-  isNumber,
-  isNumberPdr,
-  InputProps,
-  ...other
-}) {
+export default function CustomTextField({ name, helperText, ...other }) {
   const { control } = useFormContext();
 
   return (
@@ -36,13 +29,11 @@ export default function CustomTextField({
       render={({ field, fieldState: { error } }) => {
         return (
           <MyTextField
-            type={isNumber || isNumberPdr ? "number" : "text"}
             id="input-with-icon-textfield"
             {...field}
             fullWidth
             InputProps={{ disableUnderline: true }}
             variant="filled"
-            inputProps={InputProps}
             sx={{
               backgroundColor: "#FFFFFF",
             }}

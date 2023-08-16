@@ -94,6 +94,7 @@ const LoginForm = () => {
             name="email"
             label="Email address"
             InputProps={{
+              disableUnderline: true,
               endAdornment: (
                 <InputAdornment position="end">
                   <img src={emailIcon} />
@@ -107,6 +108,7 @@ const LoginForm = () => {
             label="Password"
             type={showPassword ? "text" : "password"}
             InputProps={{
+              disableUnderline: true,
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton

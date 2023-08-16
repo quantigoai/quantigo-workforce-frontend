@@ -1,3 +1,5 @@
+
+
 /*
  * Filename: /home/tanzim/WorkStation/wmpv2/src/components/primary/Auth/InputFields/InputFields.jsx
  * Path: /home/tanzim/WorkStation/wmpv2
@@ -28,13 +30,14 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { convertDate } from "../../../../helper/customData";
-import LoginForm from "../Login/LoginForm";
+import EmailField from "./EmailField";
 import { HubField } from "./HubField";
-import LastNameField from "./LastNameField";
 import NameField from "./NameField";
+import PasswordField from "./PasswordField";
 import PhoneNumberfield from "./PhoneNumberfield";
 import { UserNameField } from "./UserNameField";
 import UserPhoneNumberField from "./UserPhoneNumberField";
+import LastNameField from "./LastNameField";
 
 const ButtonStyle = styled(Button)({
   backgroundColor: "#2D58FF",
@@ -56,13 +59,20 @@ const InputFields = ({
   setDob,
   setHub,
   email,
+  setEmail,
   password,
+  setPassword,
+  setIsFieldValid,
+  errors,
+  handleNextPage,
   isRegister,
   setIsRegister,
   isFieldValid,
   isPhoneNumberCheck,
   handleFirstName,
   handleLastName,
+  handleEmail,
+  handlePassword,
   handlePhoneNumber,
   phone,
   handleQaiUserName,
@@ -75,10 +85,11 @@ const InputFields = ({
   qaiUserName,
   handleSerGender,
   gender,
+  setGender,
   handleUserPhoneNumber,
   userPhoneNumber,
   isUserPhoneNumberCheck,
-  lastName,
+  lastName
 }) => {
   const [value, setValue] = React.useState(null);
   // const [isRegister, setIsRegister] = useState(false);
@@ -137,22 +148,68 @@ const InputFields = ({
   return (
     <>
       <Grid container sx={{ padding: "6%" }}>
+        <Grid container item xs={12} sx={{ paddingBottom: "4%" }}>
+          {isRegister ? (
+            <Typography
+              style={{
+                color: "#FFFFFF",
+                fontSize: "40px",
+              }}>
+              Setup Profile
+            </Typography>
+          ) : (
+            <Typography
+              variant="h3"
+              style={{
+                color: "#FFFFFF",
+                fontSize: "40px",
+              }}>
+              {isSignup ? "Create New Account" : "Login"}
+            </Typography>
+          )}
+        </Grid>
+
         {isSignup && !isRegister && (
           <Grid container sx={{ paddingBottom: "4%" }}>
             <Grid item xs={6} sx={{ paddingRight: "2%" }}>
               <NameField name={name} handleFirstName={handleFirstName} />
             </Grid>
             <Grid item xs={6}>
-              <LastNameField
-                lastName={lastName}
-                handleLastName={handleLastName}
-              />
+              <LastNameField lastName={lastName} handleLastName={handleLastName} />
             </Grid>
           </Grid>
         )}
         {!isRegister && (
           <>
-            <LoginForm />
+            <Grid item xs={12} sx={{ paddingBottom: "4%" }}>
+              <EmailField
+                isSignup={isSignup}
+                email={email}
+                setEmail={setEmail}
+                handleEmail={handleEmail}
+              />
+            </Grid>
+            {/* TODO Double Check password */}
+            <Grid item xs={12} sx={{ paddingBottom: "3%" }}>
+              <PasswordField
+                isSignup={isSignup}
+                handlePassword={handlePassword}
+                password={password}
+                setPassword={setPassword}
+                showPassword={showPassword}
+                handleClickShowPassword={handleClickShowPassword}
+                handleMouseDownPassword={handleMouseDownPassword}
+              />
+              {isSignup ? (
+                !isFieldValid && (
+                  <FormHelperText sx={{ color: "#FF0000" }}>
+                    Password must be at least 6 characters
+                  </FormHelperText>
+                )
+              ) : (
+                <></>
+              )}
+            </Grid>
           </>
         )}
 
@@ -173,15 +230,45 @@ const InputFields = ({
                     justifyContent: "flex-end",
                     cursor: "pointer",
                     color: "#FFFFFF",
-                  }}
-                >
+                  }}>
                   Already User? Login
                 </Link>
               </Grid>
             </Grid>
           </>
         ) : !isSignup && !isRegister ? (
-          <></>
+          <Grid container sx={{ display: "flex" }}>
+            <Grid item xs={6} sx={{ paddingBottom: "5%" }}>
+              <Link
+                onClick={() => {
+                  navigate("/register");
+                }}
+                underline="hover"
+                sx={{
+                  cursor: "pointer",
+                  color: "#FFFFFF",
+                }}>
+                Create New Account
+              </Link>
+            </Grid>
+            <Grid
+              item
+              xs={6}
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+              }}>
+              <Link
+                onClick={() => navigate("/forgetpassword")}
+                underline="hover"
+                sx={{
+                  cursor: "pointer",
+                  color: "#FFFFFF",
+                }}>
+                Forget password?
+              </Link>
+            </Grid>
+          </Grid>
         ) : (
           <></>
         )}
@@ -192,14 +279,12 @@ const InputFields = ({
               <Grid
                 item
                 xs={6}
-                sx={{ paddingBottom: "3%", paddingRight: "1%" }}
-              >
+                sx={{ paddingBottom: "3%", paddingRight: "1%" }}>
                 <FormControl
                   variant="filled"
                   required={true}
                   fullWidth
-                  sx={{ backgroundColor: "#FFFFFF" }}
-                >
+                  sx={{ backgroundColor: "#FFFFFF" }}>
                   <InputLabel id="demo-simple-select-filled-label">
                     User Status
                   </InputLabel>
@@ -207,8 +292,7 @@ const InputFields = ({
                     labelId="demo-simple-select-filled-label"
                     id="demo-simple-select-filled"
                     defaultValue={currentUserStatus}
-                    onChange={handleChange}
-                  >
+                    onChange={handleChange}>
                     <MenuItem value={"newUser"}>New User</MenuItem>
                     <MenuItem value={"oldUser"}>Old User</MenuItem>
                   </Select>
@@ -233,8 +317,7 @@ const InputFields = ({
                           qaiErrorMessage === "User Id is available"
                             ? "green"
                             : "red",
-                      }}
-                    >
+                      }}>
                       {qaiErrorMessage}
                     </FormHelperText>
                   )}
@@ -261,8 +344,7 @@ const InputFields = ({
                   variant="filled"
                   fullWidth
                   required={true}
-                  sx={{ backgroundColor: "#FFFFFF" }}
-                >
+                  sx={{ backgroundColor: "#FFFFFF" }}>
                   <InputLabel id="demo-simple-select-filled-label">
                     Gender
                   </InputLabel>
@@ -271,8 +353,7 @@ const InputFields = ({
                     id="demo-simple-select-filled"
                     onChange={(e) => handleSerGender(e)}
                     // {...register("gender", { required: true })}
-                    defaultValue={gender}
-                  >
+                    defaultValue={gender}>
                     <MenuItem value={"male"}>Male</MenuItem>
                     <MenuItem value={"female"}>Female</MenuItem>
                     <MenuItem value={"other"}>Other</MenuItem>
@@ -287,8 +368,7 @@ const InputFields = ({
                   onClick={handleFocused}
                   onBlur={handleFocusedOut}
                   fullWidth
-                  sx={{ backgroundColor: "#FFFFFF" }}
-                >
+                  sx={{ backgroundColor: "#FFFFFF" }}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                       disableFuture
@@ -346,8 +426,7 @@ const InputFields = ({
                     fullWidth
                     onClick={() => {
                       setIsRegister(false);
-                    }}
-                  >
+                    }}>
                     Back
                   </ButtonStyle>
                 </Grid>
@@ -366,8 +445,7 @@ const InputFields = ({
                       isError
                     }
                     fullWidth
-                    type="submit"
-                  >
+                    type="submit">
                     Finish
                   </ButtonStyle>
                   {isLoading && (
@@ -392,12 +470,28 @@ const InputFields = ({
               disabled={!isFieldValid}
               onClick={() => {
                 setIsRegister(true);
-              }}
-            >
+              }}>
               Create New Account
             </ButtonStyle>
           ) : (
-            <></>
+            <>
+              <ButtonStyle disabled={isLoading} fullWidth type="submit">
+                Login
+              </ButtonStyle>
+              {isLoading && (
+                <CircularProgress
+                  size={30}
+                  sx={{
+                    position: "absolute",
+                    color: "#FF9A45",
+                    top: "85%",
+                    left: "50%",
+                    marginTop: "-12px",
+                    marginLeft: "-12px",
+                  }}
+                />
+              )}
+            </>
           )}
         </Grid>
       </Grid>

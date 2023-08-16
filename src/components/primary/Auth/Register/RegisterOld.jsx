@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Box, Grid } from "@mui/material";
+import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
@@ -20,8 +20,7 @@ import {
   signup,
 } from "../../../../features/slice/userSlice";
 import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
-import RegistrationForm from "./RegistrationForm";
-import InputFields from "../InputFields/InputFieldsOld";
+import InputFields from "../InputFields/InputFields";
 
 const BgBox = styled(Box)({
   display: "flex",
@@ -211,10 +210,6 @@ const Register = () => {
     <>
       <>
         <BgBox>
-          {/* <InputFields /> */}
-          {/* <Grid container sx={{ padding: "6%" }}>
-            <RegistrationForm />
-          </Grid> */}
           <form onSubmit={handleSubmit(onSubmit)}>
             <InputFields
               register={register}

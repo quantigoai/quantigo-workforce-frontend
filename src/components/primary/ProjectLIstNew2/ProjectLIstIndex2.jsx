@@ -28,7 +28,7 @@ import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 import "./index.css";
 
 const fields = [
-  { field: "project_drawer_name", width: 200 },
+  { field: "project_drawer_name", width: 200, },
   { field: "project_alias" },
   { field: "project_platform" },
   { field: "project_batch", width: 100 },

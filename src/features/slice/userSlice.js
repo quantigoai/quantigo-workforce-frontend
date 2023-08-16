@@ -381,7 +381,11 @@ export const changePassword = createAsyncThunk(
 export const checkUserByUserName = createAsyncThunk(
   "check/user/userName",
   async (qaiUserName) => {
-    return axios.get(`${url}/qaiusers/checkuser/${qaiUserName}`);
+    try {
+      return await axios.get(`${url}/qaiusers/checkuser/${qaiUserName}`);
+    } catch (err) {
+      throw new Error(err.response.data.message);
+    }
   }
 );
 
@@ -503,6 +507,7 @@ const userSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(myProfileEdit.rejected, (state, action) => {
+        state.isLoading = false;
         state.error = action.error.message;
       })
       .addCase(uploadMyImage.pending, (state) => {
@@ -515,6 +520,7 @@ const userSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(uploadMyImage.rejected, (state, action) => {
+        state.isLoading = false;
         state.error = action.error.message;
       })
       .addCase(removeMyImage.pending, (state) => {
@@ -527,6 +533,7 @@ const userSlice = createSlice({
       })
       .addCase(removeMyImage.rejected, (state, action) => {
         state.error = action.error.message;
+        state.isLoading = false;
       })
       .addCase(getAllUsers.pending, (state) => {
         state.isLoading = true;
@@ -538,6 +545,7 @@ const userSlice = createSlice({
       })
       .addCase(getAllUsers.rejected, (state, action) => {
         state.error = action.error.message;
+        state.isLoading = false;
       })
       .addCase(updateMyDocuments.pending, (state) => {
         state.isLoading = true;
@@ -549,8 +557,8 @@ const userSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(updateMyDocuments.rejected, (state, action) => {
-        state.isLoading = false;
         state.error = action.error.message;
+        state.isLoading = false;
       })
       .addCase(forgetPasswordSlice.pending, (state) => {
         state.isLoading = true;
@@ -561,6 +569,7 @@ const userSlice = createSlice({
       })
       .addCase(forgetPasswordSlice.rejected, (state, action) => {
         state.error = action.error.message;
+        state.isLoading = false;
       })
       .addCase(setNewPassword.pending, (state) => {
         state.isLoading = true;
@@ -570,8 +579,8 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(setNewPassword.rejected, (state, action) => {
-        state.isLoading = true;
         state.error = action.error.message;
+        state.isLoading = false;
       })
       .addCase(socialLogin.pending, (state) => {
         state.isLoading = true;
@@ -604,37 +613,40 @@ const userSlice = createSlice({
       })
       .addCase(getAUserQuiId.rejected, (state, action) => {
         state.error = action.error.message;
+        state.isLoading = false;
       })
       .addCase(generateQuiId.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(generateQuiId.fulfilled, (state) => {
-        state.isLoading = false;
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(generateQuiId.rejected, (state, action) => {
         state.error = action.error.message;
+        state.isLoading = false;
       })
       .addCase(resendEmailVarification.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(resendEmailVarification.fulfilled, (state) => {
-        state.isLoading = false;
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(resendEmailVarification.rejected, (state, action) => {
-        state.isLoading = false;
         state.error = action.error.message;
+        state.isLoading = false;
       })
       .addCase(checkUserByUserName.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(checkUserByUserName.fulfilled, (state) => {
-        state.isLoading = false;
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(checkUserByUserName.rejected, (state, action) => {
         state.error = action.error.message;
+        state.isLoading = false;
       })
       .addCase(createQaiUser.pending, (state) => {
         state.isLoading = true;
@@ -656,6 +668,7 @@ const userSlice = createSlice({
       })
       .addCase(createAgUser.rejected, (state, action) => {
         state.error = action.error.message;
+        state.isLoading = false;
       })
       .addCase(signingNda.pending, (state) => {
         state.isLoading = true;
@@ -669,11 +682,9 @@ const userSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(updateAUserById.pending, (state) => {
-        state.isLoading = false;
+        state.isLoading = true;
       })
       .addCase(updateAUserById.fulfilled, (state, action) => {
-        state.isLoading = false;
-
         state.users.users = state.users.users.map((user) => {
           if (user._id === action.payload.data._id) {
             return action.payload.data;
@@ -681,16 +692,15 @@ const userSlice = createSlice({
           return user;
         });
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(updateAUserById.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(changeRole.pending, (state) => {
-        state.isLoading = false;
+        state.isLoading = true;
       })
       .addCase(changeRole.fulfilled, (state, action) => {
-        state.isLoading = false;
-
         state.users.users = state.users.users.map((user) => {
           if (user._id === action.payload.data._id) {
             return action.payload.data;
@@ -698,6 +708,7 @@ const userSlice = createSlice({
           return user;
         });
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(changeRole.rejected, (state) => {
         state.isLoading = false;
@@ -706,8 +717,6 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(deleteOrActivateUser.fulfilled, (state, action) => {
-        state.isLoading = false;
-
         state.users.users = state.users.users.map((user) => {
           if (user._id === action.payload.data._id) {
             return action.payload.data;
@@ -715,6 +724,7 @@ const userSlice = createSlice({
           return user;
         });
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(deleteOrActivateUser.rejected, (state) => {
         state.isLoading = false;
@@ -723,9 +733,9 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(activateDeactivateUser.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.user = action.payload.data;
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(activateDeactivateUser.rejected, (state) => {
         state.isLoading = false;
@@ -734,8 +744,6 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(UnblockJobsForUser.fulfilled, (state, action) => {
-        state.isLoading = false;
-
         state.users.users = state.users.users.map((user) => {
           if (user._id === action.payload.data.user._id) {
             return action.payload.data.user;
@@ -743,6 +751,7 @@ const userSlice = createSlice({
           return user;
         });
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(UnblockJobsForUser.rejected, (state) => {
         state.isLoading = false;
@@ -751,31 +760,34 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(emailVerificationCheck.fulfilled, (state) => {
-        state.isLoading = false;
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(emailVerificationCheck.rejected, (state, action) => {
         state.error = action.error.message;
+        state.isLoading = false;
       })
       .addCase(emailVerificationLink.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(emailVerificationLink.fulfilled, (state) => {
-        state.isLoading = false;
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(emailVerificationLink.rejected, (state, action) => {
         state.error = action.error.message;
+        state.isLoading = false;
       })
       .addCase(changePassword.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(changePassword.fulfilled, (state) => {
-        state.isLoading = false;
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(changePassword.rejected, (state, action) => {
         state.error = action.error.message;
+        state.isLoading = false;
       });
   },
 });

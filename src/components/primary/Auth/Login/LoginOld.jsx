@@ -1,3 +1,4 @@
+
 /*
  * Filename: /home/tanzim/WorkStation/wmpv2/src/components/primary/Auth/Login/Login.jsx
  * Path: /home/tanzim/WorkStation/wmpv2
@@ -6,7 +7,7 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { LoadingButton } from "@mui/lab";
+
 import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { React, useState } from "react";
@@ -15,7 +16,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../../../features/slice/userSlice";
-import InputFields from "../InputFields/InputFieldsOld";
+import InputFields from "../InputFields/InputFields";
 
 const BgBox = styled(Box)({
   display: "flex",
@@ -25,19 +26,6 @@ const BgBox = styled(Box)({
   backdropFilter: "blur(8px)",
   borderRadius: "36px",
   boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-});
-
-export const LoadingButtonStyle = styled(LoadingButton)({
-  backgroundColor: "#2D58FF",
-  color: "#FFFFFF",
-  "&:hover": {
-    backgroundColor: "#FF9A45",
-    color: "#1D1D1D",
-  },
-  "&:disabled": {
-    backgroundColor: "#7c91df",
-    color: "#FFFFFF",
-  },
 });
 
 const Login = () => {
@@ -67,13 +55,10 @@ const Login = () => {
       }
     });
   };
+
   return (
     <>
       <BgBox>
-        {/* <InputFields /> */}
-        {/* <Grid container sx={{ padding: "6%" }}>
-          <LoginForm />
-        </Grid> */}
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputFields
             register={register}

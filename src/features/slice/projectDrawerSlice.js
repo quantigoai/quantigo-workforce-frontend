@@ -34,7 +34,7 @@ export const getAllProjectDrawers = createAsyncThunk(
       let query = `limit=${paginationModel.pageSize}&skip=${
         paginationModel.page * paginationModel.pageSize
       }`;
-      return axios.get(`${url}/project-drawer?${query}`, {
+      return await axios.get(`${url}/project-drawer?${query}`, {
         headers: {
           Authorization: `Bearer ${realToken()}`,
         },
@@ -65,7 +65,7 @@ export const updateProjectDrawerById = createAsyncThunk(
   "/project-drawer/update",
   async (data) => {
     try {
-      return axios.patch(`${url}/project-drawer/${data.id}`, data.data, {
+      return await axios.patch(`${url}/project-drawer/${data.id}`, data.data, {
         headers: {
           Authorization: `Bearer ${realToken()}`,
         },
@@ -80,7 +80,7 @@ export const deleteProjectDrawerById = createAsyncThunk(
   "/project-drawer/delete",
   async (id) => {
     try {
-      return axios.delete(`${url}/project-drawer/${id}`, {
+      return await axios.delete(`${url}/project-drawer/${id}`, {
         headers: {
           Authorization: `Bearer ${realToken()}`,
         },
@@ -95,7 +95,7 @@ export const checkInProjectDrawerById = createAsyncThunk(
   "/project-drawer/check-in",
   async (data) => {
     try {
-      return axios.patch(`${url}/project-drawer/check-in/${data.id}`, {
+      return await axios.patch(`${url}/project-drawer/check-in/${data.id}`, {
         headers: {
           Authorization: `Bearer ${realToken()}`,
         },
@@ -110,7 +110,7 @@ export const checkOutProjectDrawerById = createAsyncThunk(
   "/project-drawer/check-out",
   async (data) => {
     try {
-      return axios.patch(`${url}/project-drawer/check-out/${data.id}`, {
+      return await axios.patch(`${url}/project-drawer/check-out/${data.id}`, {
         headers: {
           Authorization: `Bearer ${realToken()}`,
         },
@@ -125,7 +125,7 @@ export const addSkillsToCheckInUser = createAsyncThunk(
   "/project-drawer/add-skills",
   async (data) => {
     try {
-      return axios.patch(
+      return await axios.patch(
         `${url}/project-drawer/assign-skills/${data.id}`,
         data.data,
         {
@@ -144,7 +144,7 @@ export const removeSkillsToCheckInUser = createAsyncThunk(
   "/project-drawer/remove-skills",
   async (data) => {
     try {
-      return axios.patch(
+      return await axios.patch(
         `${url}/project-drawer/remove-skills/${data.id}`,
         data.data,
         {
@@ -209,12 +209,13 @@ const projectDrawerSlice = createSlice({
         state.error = null;
         state.projectDrawers = [
           ...state.projectDrawers.map((drawer) =>
-          drawer._id.toString() === action.payload.data.projectDrawer._id.toString()
+            drawer._id.toString() ===
+            action.payload.data.projectDrawer._id.toString()
               ? action.payload.data.projectDrawer
               : drawer
-              ),
-            ];
-            state.isLoading = false;
+          ),
+        ];
+        state.isLoading = false;
       })
       .addCase(updateProjectDrawerById.rejected, (state, action) => {
         state.error = action.error.message;

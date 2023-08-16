@@ -10,8 +10,8 @@
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/system";
 import { DataGrid, gridClasses } from "@mui/x-data-grid";
+import { DataGridPro } from "@mui/x-data-grid-pro";
 import "./index.css";
-
 const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
   [`& .${gridClasses.row}.even`]: {
     backgroundColor: theme.palette.grey[200],
@@ -55,6 +55,8 @@ const CustomTable = ({
           columns={myColumn}
           rowCount={totalCount}
           initialState={{
+            pinnedColumns: { left: ["project_drawer_name"] },
+
             pagination: {
               paginationModel: { page: 0, pageSize: 10 },
             },

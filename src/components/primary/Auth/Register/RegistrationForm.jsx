@@ -35,8 +35,10 @@ import CustomDatePicker from "../../../shared/CustomField/CustomDatePicker";
 import CustomSelectField from "../../../shared/CustomField/CustomSelectField";
 import CustomTextField from "../../../shared/CustomField/CustomTextField";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
-import { LoadingButtonStyle } from "../Login/Login";
+import FinalButton from "./FinalButton";
 import FooterInstruction from "./FooterInstruction";
+import PrimaryButton from "./PrimaryButton";
+
 const RegistrationForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -159,9 +161,6 @@ const RegistrationForm = () => {
       }
     });
   };
-  const handleChangeGender = (e) => {
-    setValue(e.target.name, e.target.value);
-  };
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -189,7 +188,7 @@ const RegistrationForm = () => {
                   <CustomTextField name="firstName" label="First Name" />
                   <CustomTextField name="lastName" label="Last Name" />
                 </Stack>
-
+                {/* Email */}
                 <CustomTextField
                   name="email"
                   label="Email address"
@@ -202,6 +201,7 @@ const RegistrationForm = () => {
                     ),
                   }}
                 />
+                {/* Password */}
                 <CustomTextField
                   name="password"
                   label="Password"
@@ -224,12 +224,14 @@ const RegistrationForm = () => {
                     ),
                   }}
                 />
+                {/* Footer navigate  */}
                 <FooterInstruction navigate={navigate}></FooterInstruction>
               </>
             )}
             {showOtherField && (
               <>
                 <Stack direction="row" spacing={2}>
+                  {/* User Type */}
                   <CustomSelectField
                     name="currentUserStatus"
                     helperText="Select an option"
@@ -243,6 +245,7 @@ const RegistrationForm = () => {
                     onChange={handleChangeUserType}
                   />
                   {isNewUser ? (
+                    // Hub Field
                     <CustomSelectField
                       name="hub"
                       helperText="Select a hub"
@@ -252,6 +255,7 @@ const RegistrationForm = () => {
                       setValue={setValue}
                     />
                   ) : (
+                    // QAI Username Field
                     <CustomTextField
                       name="qaiUserName"
                       label="Quantigo Username"
@@ -277,6 +281,7 @@ const RegistrationForm = () => {
                   )}
                 </Stack>
                 {isNewUser && (
+                  // Generated QAI Username Field
                   <CustomTextField
                     disabled
                     name="qaiUserName"
@@ -285,6 +290,7 @@ const RegistrationForm = () => {
                   />
                 )}
                 <Stack direction="row" spacing={2}>
+                  {/* Gender field */}
                   <CustomSelectField
                     name="gender"
                     defaultValue={genderOptions[0].value}
@@ -293,13 +299,14 @@ const RegistrationForm = () => {
                     label={"Gender"}
                     setValue={setValue}
                   />
-
+                  {/* Date Picker */}
                   <CustomDatePicker
                     setError={setError}
                     setValue={setValue}
                     name="dob"
                   />
                 </Stack>
+                {/* Nagad Number  */}
                 <CustomTextField
                   name="billingAccountNo"
                   label="Nagad Account No"
@@ -312,6 +319,7 @@ const RegistrationForm = () => {
                     ),
                   }}
                 />
+                {/* Contact Number */}
                 <CustomTextField
                   name="contactNo"
                   label="Phone Number"
@@ -330,42 +338,16 @@ const RegistrationForm = () => {
         </Box>
 
         {showOtherField ? (
-          <>
-            <Stack direction="row" spacing={2}>
-              <LoadingButtonStyle
-                fullWidth
-                color="inherit"
-                size="large"
-                variant="contained"
-                loading={isLoading}
-                onClick={() => setShowOtherField(false)}
-              >
-                Back
-              </LoadingButtonStyle>
-              <LoadingButtonStyle
-                type="submit"
-                fullWidth
-                color="inherit"
-                size="large"
-                variant="contained"
-                loading={isLoading}
-              >
-                Finish
-              </LoadingButtonStyle>
-            </Stack>
-          </>
+          <FinalButton
+            setShowOtherField={setShowOtherField}
+            isLoading={isLoading}
+          />
         ) : (
-          <LoadingButtonStyle
-            fullWidth
-            disabled={disableFirstButton}
-            color="inherit"
-            size="large"
-            variant="contained"
-            loading={isLoading}
-            onClick={() => setShowOtherField(true)}
-          >
-            Create New Account
-          </LoadingButtonStyle>
+          <PrimaryButton
+            setShowOtherField={setShowOtherField}
+            disableFirstButton={disableFirstButton}
+            isLoading={isLoading}
+          />
         )}
       </FormProvider>
     </Box>

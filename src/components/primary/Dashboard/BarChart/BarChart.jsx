@@ -39,12 +39,10 @@ export const options = {
       color: "#091E42",
       position: "bottom",
       labels: {
-        color: "#091E42",
-        // usePointStyle: true,
-        // pointStyle: "circle",
+        usePointStyle: true,
+        pointStyle: "circle",
         boxWidth: 10,
-        // borderRadius: 28,
-        pointStyleWidth: 20,
+        boxHeight: 7,
       },
     },
     datalabels: {

@@ -7,15 +7,14 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 import { LoadingButton } from "@mui/lab";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { React, useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../../../features/slice/userSlice";
-import InputFields from "../InputFields/InputFieldsOld";
+import LoginForm from "./LoginForm";
 
 const BgBox = styled(Box)({
   display: "flex",
@@ -54,27 +53,26 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    data.email = email;
-    data.password = password;
+  // const onSubmit = (data) => {
+  //   data.email = email;
+  //   data.password = password;
 
-    dispatch(login(data)).then((action) => {
-      if (action.payload?.status === 200) {
-        alert.show("Login Successful", { type: "success" });
-        navigate("/dashboard");
-      } else {
-        alert.show(error, { type: "error" });
-      }
-    });
-  };
+  //   dispatch(login(data)).then((action) => {
+  //     if (action.payload?.status === 200) {
+  //       alert.show("Login Successful", { type: "success" });
+  //       navigate("/dashboard");
+  //     } else {
+  //       alert.show(error, { type: "error" });
+  //     }
+  //   });
+  // };
   return (
     <>
       <BgBox>
-        {/* <InputFields /> */}
-        {/* <Grid container sx={{ padding: "6%" }}>
+        <Grid container sx={{ padding: "6%" }}>
           <LoginForm />
-        </Grid> */}
-        <form onSubmit={handleSubmit(onSubmit)}>
+        </Grid>
+        {/* <form onSubmit={handleSubmit(onSubmit)}>
           <InputFields
             register={register}
             email={email}
@@ -82,7 +80,7 @@ const Login = () => {
             password={password}
             setPassword={setPassword}
           />
-        </form>
+        </form> */}
       </BgBox>
     </>
   );

@@ -212,10 +212,10 @@ const Register = () => {
       <>
         <BgBox>
           {/* <InputFields /> */}
-          {/* <Grid container sx={{ padding: "6%" }}>
+          <Grid container sx={{ padding: "6%" }}>
             <RegistrationForm />
-          </Grid> */}
-          <form onSubmit={handleSubmit(onSubmit)}>
+          </Grid>
+          {/* <form onSubmit={handleSubmit(onSubmit)}>
             <InputFields
               register={register}
               name={name}
@@ -257,7 +257,7 @@ const Register = () => {
               isUserPhoneNumberCheck={isUserPhoneNumberCheck}
               lastName={lastName}
             />
-          </form>
+          </form> */}
         </BgBox>
       </>
     </>

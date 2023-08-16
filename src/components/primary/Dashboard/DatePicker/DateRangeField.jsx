@@ -29,6 +29,7 @@ export default function DateRangeField({ setStartDate, setEndDate }) {
                   endAdornment: <img src={calenderIcon} />,
                   style: {
                     borderRadius: "10px",
+                    border: "2px solid #E6ECF5",
                     height: "70%",
                     width: "100%",
                   }, // Example styles

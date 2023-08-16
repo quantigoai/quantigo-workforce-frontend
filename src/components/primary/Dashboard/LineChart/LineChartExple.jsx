@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useState } from "react";
 import { Line } from "react-chartjs-2";
 import {
@@ -44,18 +44,20 @@ const LineChartExple = () => {
         // label: "",
         data: [10, 20, 30, 42, 51, 82, 31, 59, 61, 73, 91, 58],
         fill: true,
-        backgroundColor: "rgba(51, 153, 255,0.1)",
+        // backgroundColor: "rgba(51, 153, 255,0.1)",
+        // backgroundColor: "linear-gradient(to right, #ff0000, #00ff00)",
         tension: 0.6,
         borderColor: "#266AED",
-        // // backgroundColor: "#47536B",
-        // borderColor: "#266AED",
-        // // backgroundShadowColor: "#266AED",
-        // tension: 0.6,
-        // fill: true,
-        // // pointStyle: "rect",
-        // // pointBorderColor: "blue",
-        // // pointBackgroundColor: "#fff",
-        // showLine: true,
+        pointRadius: 0,
+        backgroundColor: (context) => {
+          const ctx = context.chart.ctx;
+          const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+          gradient.addColorStop(0, "rgba(51, 153, 255,0.1)");
+          gradient.addColorStop(0.5, "rgba(51, 153, 255,0.1)");
+          gradient.addColorStop(1, "rgba(250,174,50,0)");
+          return gradient;
+        },
+       
       },
     ],
   });

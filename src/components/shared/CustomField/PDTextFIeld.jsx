@@ -17,12 +17,11 @@ PDTextFIeld.propTypes = {
   helperText: PropTypes.node,
 };
 const MyTextField = styled(TextField)(() => ({
-  //   backgroundColor: "red",
-  borderRadius: "5px",
   "& .MuiOutlinedInput-notchedOutline": {
     border: "2px solid #E6ECF5 !important",
+    borderRadius: "10px",
   },
-  "& .MuiInputBase-root": { height: "100%" },
+  "& .MuiInputBase-root": { height: "90%", fontSize: "14px" },
 }));
 export default function PDTextFIeld({
   name,
@@ -33,6 +32,7 @@ export default function PDTextFIeld({
   label,
   ...other
 }) {
+  console.log("🚀 ~ file: PDTextFIeld.jsx:35 ~ name:", name);
   const { control } = useFormContext();
 
   return (
@@ -41,21 +41,10 @@ export default function PDTextFIeld({
       control={control}
       render={({ field, fieldState: { error } }) => {
         return (
-          //   <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-          //     <OutlinedInput
-          //       id="outlined-adornment-weight"
-          //       endAdornment={<InputAdornment position="end">kg</InputAdornment>}
-          //       aria-describedby="outlined-weight-helper-text"
-          //       inputProps={{
-          //         "aria-label": "weight",
-          //       }}
-          //     />
-          //     <FormHelperText id="outlined-weight-helper-text">
-          //       Weight
-          //     </FormHelperText>
-          //   </FormControl>
           <FormControl fullWidth>
-            <Typography sx={{ fontSize: "14px" }}>{label}</Typography>
+            <Typography sx={{ fontSize: "14px", fontWeight: "500", mb: 1 }}>
+              {label}
+            </Typography>
             <MyTextField
               type={isNumber || isNumberPdr ? "number" : "text"}
               //   id="outlined-basic"
@@ -64,10 +53,6 @@ export default function PDTextFIeld({
               fullWidth
               InputProps={{ disableUnderline: true }}
               inputProps={InputProps}
-              sx={{
-                borderRadius: "10px",
-                fontSize: "14px",
-              }}
               value={
                 typeof field.value === "number" && field.value === 0
                   ? ""

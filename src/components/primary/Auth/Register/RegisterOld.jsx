@@ -176,6 +176,7 @@ const Register = () => {
     isSignup && hub
       ? dispatch(createQaiUser(qaiCreateData)).then((res) => {
           dispatch(createAgUser(qaiCreateData)).then((res) => {
+          
             dispatch(signup(data)).then((action) => {
               if (action.error) {
                 alert.show(error, { type: "error" });
@@ -193,7 +194,9 @@ const Register = () => {
             });
           });
         })
-      : dispatch(signup(data)).then((action) => {
+      :
+      
+      dispatch(signup(data)).then((action) => {
           if (action.error) {
             alert.show(error, { type: "error" });
           } else if (

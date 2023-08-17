@@ -26,6 +26,9 @@ export default function FinalButton(props) {
       <LoadingButtonStyle
         type="submit"
         fullWidth
+        disabled={
+          !props.isFieldsNotEmptyFinalPage || props.disableFinishButtonCheck
+        }
         color="inherit"
         size="large"
         variant="contained"

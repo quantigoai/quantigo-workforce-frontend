@@ -1,10 +1,9 @@
-import {Box, Button, Grid, Paper, Typography} from "@mui/material";
-import React, {useEffect} from "react";
-import {useNavigate, useParams} from "react-router-dom";
-import {styled} from "@mui/material/styles";
-import {useDispatch} from "react-redux";
-import {emailVerificationLink} from "../../../../features/slice/userSlice";
-
+import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { emailVerificationLink } from "../../../../features/slice/userSlice";
 const paperstyleResendEmail = {
   backgroundColor: "#FFFFFF",
   padding: "3%",
@@ -24,14 +23,18 @@ const ButtonStyle = styled(Button)({
   },
 });
 const EmailVerificationAfterLogin = () => {
-    const params = useParams();
-    const { id, token } = params;
-   
-    const dispatch = useDispatch();
-  
-    useEffect(() => {
-      dispatch(emailVerificationLink(params));
-    }, []);
+  const params = useParams();
+  let [searchParams] = useSearchParams();
+  // const { id, token } = params;
+  const { id } = params;
+  const token = searchParams.get("token");
+  const dispatch = useDispatch();
+  const data = { id, token };
+
+  useEffect(() => {
+    // dispatch(emailVerificationLink(params));
+    dispatch(emailVerificationLink(data));
+  }, []);
   const navigate = useNavigate();
   return (
     <>
@@ -42,7 +45,8 @@ const EmailVerificationAfterLogin = () => {
             height: "100%",
             width: "100%",
             paddingLeft: "1%",
-          }}>
+          }}
+        >
           <Paper elevation={0} style={paperstyleResendEmail}>
             <Grid container sx={{ justifyContent: "center", paddingTop: "7%" }}>
               <Typography variant="h4" sx={{ color: "#090080" }}>
@@ -54,7 +58,8 @@ const EmailVerificationAfterLogin = () => {
                 fullWidth
                 onClick={() => {
                   navigate("/");
-                }}>
+                }}
+              >
                 Go to Dashboard{" "}
               </ButtonStyle>
             </Grid>

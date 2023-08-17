@@ -27,10 +27,12 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import * as Yup from "yup";
 import emailIcon from "../../../../assets/images/IconEmail.png";
 import phoneicon from "../../../../assets/images/IconPhone.png";
-import { checkUserByUserName } from "../../../../features/slice/userSlice";
+import {
+  checkUserByUserName,
+  signup,
+} from "../../../../features/slice/userSlice";
 import CustomDatePicker from "../../../shared/CustomField/CustomDatePicker";
 import CustomSelectField from "../../../shared/CustomField/CustomSelectField";
 import CustomTextField from "../../../shared/CustomField/CustomTextField";
@@ -38,6 +40,12 @@ import FormProvider from "../../../shared/FormProvider/FormProvider";
 import FinalButton from "./FinalButton";
 import FooterInstruction from "./FooterInstruction";
 import PrimaryButton from "./PrimaryButton";
+import {
+  RegistrationSchema,
+  genderOptions,
+  hubOptions,
+  userStatusOptions,
+} from "./RegistrationFormHelper";
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -52,22 +60,7 @@ const RegistrationForm = () => {
 
   const [generatedHubId, setGeneratedHubId] = useState("");
   const [helperMessage, setHelperMessage] = useState("");
-  const { error, isLoading } = useSelector((state) => state.user);
-
-  const RegistrationSchema = Yup.object().shape({
-    firstName: Yup.string().required("First Name is required"),
-    lastName: Yup.string().required("Last Name is required"),
-    email: Yup.string()
-      .required("Email is required")
-      .email("Email must be a valid email address"),
-    password: Yup.string().required("Password is required"),
-    qaiUserName: Yup.string().required("QAI Id is required"),
-    hub: Yup.string(),
-    gender: Yup.string().required("Gender is required"),
-    dob: Yup.date(),
-    billingAccountNo: Yup.string().required("Nagad Number is required"),
-    contactNo: Yup.string().required("Contact Number is required"),
-  });
+  const { isLoading } = useSelector((state) => state.user);
 
   const defaultValues = {
     firstName: "Tanzim",
@@ -92,9 +85,21 @@ const RegistrationForm = () => {
     formState: { errors },
   } = methods;
 
-  const { firstName, lastName, email, password } = watch();
-  const fieldsNotEmptyFirstPage =
+  const {
+    firstName,
+    lastName,
+    email,
+    password,
+    qaiUserName,
+    contactNo,
+    billingAccountNo,
+  } = watch();
+
+  const isFieldsNotEmptyFirstPage =
     !!firstName && !!lastName && !!email && !!password;
+
+  const isFieldsNotEmptyFinalPage =
+    !!qaiUserName && !!contactNo && !!billingAccountNo;
 
   const disableButtonCheck =
     !!errors.firstName ||
@@ -102,36 +107,37 @@ const RegistrationForm = () => {
     !!errors.email ||
     !!errors.password;
 
+  const disableFinishButtonCheck =
+    !!errors.qaiUserName || !!errors.contactNo || !!errors.billingAccountNo;
+
   useEffect(() => {
-    if (fieldsNotEmptyFirstPage) {
+    if (isFieldsNotEmptyFirstPage) {
       setDisableFirstButton(disableButtonCheck);
     } else {
       setDisableFirstButton(true);
     }
-  }, [disableButtonCheck, fieldsNotEmptyFirstPage]);
+  }, [disableButtonCheck, isFieldsNotEmptyFirstPage]);
 
-  const userStatusOptions = [
-    { value: "newUser", label: "New User" },
-    { value: "oldUser", label: "Old User" },
-  ];
-  const genderOptions = [
-    { value: "male", label: "Male" },
-    { value: "female", label: "Female" },
-    { value: "other", label: "Other" },
-  ];
-  const hubOptions = [
-    { value: "DK", label: "Dhaka" },
-    { value: "KH", label: "Khulna" },
-    { value: "SG", label: "Sirajganj" },
-    { value: "MS", label: "Mymensingh" },
-    { value: "CD", label: "Chuadanga" },
-  ];
   const onSubmitRegData = async (data) => {
-    console.log(data);
+    data.isNewUser = isNewUser;
+    console.log({ data });
+    const { hub, ...rest } = data;
+    dispatch(signup(rest)).then((action) => {
+      if (action.error) {
+        alert.show(action.error.message, { type: "error" });
+      } else if (
+        action.payload?.status === 200 ||
+        action.payload?.status === 201
+      ) {
+        alert.show("User Registered Successfully", { type: "success" });
+        //  navigate("/emailVerification");
+      }
+    });
   };
 
   const handleChangeUserType = (e) => {
     setValue("qaiUserName", null);
+    setValue("hub", null);
     clearErrors("qaiUserName");
     setHelperMessage("");
     if (e.target.value === "newUser") {
@@ -145,6 +151,7 @@ const RegistrationForm = () => {
 
   const handleChangeHub = (e) => {
     const hub = e.target.value;
+    setValue("hub", hub);
     axios.get(`${url}/qaiusers/hubs/${hub}`).then((res) => {
       setGeneratedHubId(res.data);
       setValue("qaiUserName", res.data);
@@ -341,6 +348,8 @@ const RegistrationForm = () => {
           <FinalButton
             setShowOtherField={setShowOtherField}
             isLoading={isLoading}
+            isFieldsNotEmptyFinalPage={isFieldsNotEmptyFinalPage}
+            disableFinishButtonCheck={disableFinishButtonCheck}
           />
         ) : (
           <PrimaryButton

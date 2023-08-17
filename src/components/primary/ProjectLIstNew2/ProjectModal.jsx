@@ -100,7 +100,13 @@ const ProjectModal = ({
     setStatus(event.target.value);
   };
   const ProjectDrawerSchema = Yup.object().shape({
-    project_drawer_name: Yup.string().required("Project name required"),
+    project_drawer_name: Yup.string().required(" project name is required"),
+    project_alias: Yup.string().required("alias is required"),
+    project_batch: Yup.string().required(" batch is required"),
+    pdr: Yup.string().required(" pdr is required"),
+    benchmark: Yup.string().required(" benchmark is required"),
+    guideline: Yup.string().required(" document is required"),
+    link: Yup.string().required("link is required"),
   });
 
   const methods = useForm({

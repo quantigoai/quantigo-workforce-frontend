@@ -130,7 +130,7 @@ const RegistrationForm = () => {
         action.payload?.status === 201
       ) {
         alert.show("User Registered Successfully", { type: "success" });
-        //  navigate("/emailVerification");
+        navigate("/emailVerification");
       }
     });
   };
@@ -152,10 +152,16 @@ const RegistrationForm = () => {
   const handleChangeHub = (e) => {
     const hub = e.target.value;
     setValue("hub", hub);
-    axios.get(`${url}/qaiusers/hubs/${hub}`).then((res) => {
-      setGeneratedHubId(res.data);
-      setValue("qaiUserName", res.data);
-    });
+    axios
+      .get(`${url}/qaiusers/hubs/${hub}`)
+      .then((res) => {
+        setGeneratedHubId(res.data);
+        setValue("qaiUserName", res.data);
+      })
+      .catch(() => {
+        setGeneratedHubId("");
+        setValue("qaiUserName", null);
+      });
   };
 
   const handleCheckQaiUserName = (e) => {

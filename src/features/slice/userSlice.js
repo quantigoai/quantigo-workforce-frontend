@@ -347,9 +347,12 @@ export const emailVerificationCheck = createAsyncThunk(
 export const emailVerificationLink = createAsyncThunk(
   "/users/verify-email/:id/:token",
   async (resetdata) => {
-    const { id, token } = resetdata;
-
-    return axios.post(`${url}/users/verify-email/${id}/${token}`, {});
+    try {
+      const { id, token } = resetdata;
+      return await axios.post(`${url}/users/verify-email/${id}/${token}`, {});
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
   }
 );
 

@@ -8,7 +8,7 @@ const RegistrationSchema = Yup.object().shape({
     .email("Email must be a valid email address"),
   password: Yup.string().required("Password is required"),
   qaiUserName: Yup.string().required("QAI Id is required"),
-  hub: Yup.string(),
+  // hub: Yup.string(),
   gender: Yup.string().required("Gender is required"),
   dob: Yup.date(),
   billingAccountNo: Yup.string()

@@ -2,7 +2,7 @@ import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { emailVerificationLink } from "../../../../features/slice/userSlice";
 const paperstyleResendEmail = {
   backgroundColor: "#FFFFFF",
@@ -23,16 +23,13 @@ const ButtonStyle = styled(Button)({
   },
 });
 const EmailVerificationAfterLogin = () => {
+  console.log("EmailVerificationAfterLogin");
   const params = useParams();
-  let [searchParams] = useSearchParams();
-  // const { id, token } = params;
-  const { id } = params;
-  const token = searchParams.get("token");
+  const { id, token } = params;
   const dispatch = useDispatch();
   const data = { id, token };
 
   useEffect(() => {
-    // dispatch(emailVerificationLink(params));
     dispatch(emailVerificationLink(data));
   }, []);
   const navigate = useNavigate();

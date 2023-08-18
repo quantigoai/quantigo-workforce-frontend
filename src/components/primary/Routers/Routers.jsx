@@ -54,15 +54,12 @@ const Routers = () => {
     <>
       <Routes>
         <Route path={"/"} element={<Dashboard />} />
-
-        {/*TODO Correction in this component */}
-        <Route path={"/emailVerification"} element={<EmailVerification />} />
-
         <Route
-          // path={"/verify-email/:id/:token"}
-          path={"/verify-email/:id"}
+          path={"/verify-email/:id/:token/"}
           element={<EmailVerificationAfterLogin />}
         />
+        {/*TODO Correction in this component */}
+        <Route path={"/emailVerification"} element={<EmailVerification />} />
 
         <Route path={"/dashboard"} element={<Dashboard />} />
 
@@ -170,6 +167,7 @@ const Routers = () => {
           element={<AllNotification />}
         ></Route>
         <Route path={"/projectDirectory"} element={<ProjectDirectoryIndex />} />
+
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>

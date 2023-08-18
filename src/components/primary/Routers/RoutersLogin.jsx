@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import ProjectDirectoryIndex from "../../ProjectDirectory/ProjectDirectoryIndex";
 import EmailVerification from "../Auth/EmailVerification/EmailVerification";
-import EmailVerificationConfarmation from "../Auth/EmailVerification/EmailVerificationConfarmation";
+import EmailVerificationConfirmation from "../Auth/EmailVerification/EmailVerificationConfirmation";
 import Faq from "../Auth/FAQ/Faq";
 import HowItWorkPage from "../Auth/HowItWorkPage/HowItWorkPage";
 import LoginPage from "../Auth/Login/LoginPage";
@@ -25,9 +25,10 @@ const RoutersLogin = () => {
 
         <Route path={"/loginpage"} element={<LoginPage />} />
         <Route path={"/emailVerification"} element={<EmailVerification />} />
+
         <Route
-          path={"/verify-email/:id/:token"}
-          element={<EmailVerificationConfarmation />}
+          path={"/verify-email/:id/:token/"}
+          element={ <EmailVerificationConfirmation />}
         />
         <Route path={"/reset-password"} element={<ResetPassword />} />
         <Route path={"/forgetpassword"} element={<ForgetPassword />} />

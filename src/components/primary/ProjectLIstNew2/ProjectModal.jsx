@@ -87,18 +87,27 @@ const ProjectModal = ({
       }
     });
   };
+  const [addDoc, setAddDoc] = useState([]);
 
   const handleChange = (event) => {
     setPlatform(event.target.value);
   };
 
   const handleAddDoc = () => {
-    console.log("clicked");
+    const newDoc = [...addDoc, []];
+    setAddDoc(newDoc);
+  };
+
+  const handleDeleteDoc = (id) => {
+    const deleteDoc = [...addDoc];
+    deleteDoc.splice(id, 1);
+    setAddDoc(deleteDoc);
   };
 
   const handleStatus = (event) => {
     setStatus(event.target.value);
   };
+
   const ProjectDrawerSchema = Yup.object().shape({
     project_drawer_name: Yup.string().required(" project name is required"),
     project_alias: Yup.string().required("alias is required"),
@@ -141,7 +150,12 @@ const ProjectModal = ({
               handleCreateProjectClose={handleCreateProjectClose}
             />
             <Box
-              sx={{ paddingLeft: "3%", paddingTop: "2%", paddingRight: "3%" }}
+              sx={{
+                paddingLeft: "3%",
+                paddingTop: "2%",
+                paddingRight: "3%",
+                position: "relative",
+              }}
             >
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <Stack direction="row" gap={2} sx={{ py: "2%" }}>
@@ -254,7 +268,7 @@ const ProjectModal = ({
                   }}
                   variant="h6"
                 >
-                  Guideline and Edge-case Document
+                  Relevant Documents
                 </Typography>
 
                 <Stack
@@ -263,12 +277,14 @@ const ProjectModal = ({
                     padding: "16px",
                     borderRadius: "8px",
                     background: "#FAFCFF",
+                    maxHeight: 300,
+                    overflowY: "auto",
                   }}
                 >
                   <Stack direction="row" gap={2} xs={12}>
                     <PDTextFIeld
                       name="guideline"
-                      label="Document"
+                      label="Document Name"
                       InputProps={{
                         disableUnderline: true,
                       }}
@@ -282,6 +298,49 @@ const ProjectModal = ({
                       }}
                     />
                   </Stack>
+                  {addDoc.map((doc, id) => {
+                    return (
+                      <Stack
+                        key={id}
+                        direction="row"
+                        gap={2}
+                        xs={12}
+                        sx={{ mt: 2, position: "relative" }}
+                      >
+                        <PDTextFIeld
+                          name={`guideline${id + 1}`}
+                          label="Document Name"
+                          InputProps={{
+                            disableUnderline: true,
+                          }}
+                        />
+
+                        <PDTextFIeld
+                          name={`link${id + 1}`}
+                          label="Link"
+                          InputProps={{
+                            disableUnderline: true,
+                          }}
+                        />
+                        <Button
+                          onClick={() => handleDeleteDoc(id)}
+                          sx={{
+                            mt: "30px",
+                            position: "absolute",
+                            left: 550,
+                            fontSize: "20px",
+                          }}
+                        >
+                          {" "}
+                          <i
+                            style={{ color: "red", cursor: "pointer" }}
+                            className="ri-delete-bin-line"
+                          ></i>
+                        </Button>
+                      </Stack>
+                    );
+                  })}
+
                   <Typography
                     sx={{
                       fontWeight: "600",
@@ -291,8 +350,8 @@ const ProjectModal = ({
                       color: "#2E58FF",
                       cursor: "pointer",
                     }}
-                    variant="h6"
-                    onClick={handleAddDoc}
+                    variant="p"
+                    onClick={() => handleAddDoc()}
                   >
                     <i className="ri-add-line"></i> Add another document
                   </Typography>

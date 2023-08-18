@@ -36,7 +36,7 @@ const fields = [
   // { field: "project_skills", width: 400, renderCell: "skills-chip" },
   { field: "pdr", width: 100 },
   {
-    field: "Actions",
+    field: "ACTIONS",
     renderCell: "button",
   },
 ];

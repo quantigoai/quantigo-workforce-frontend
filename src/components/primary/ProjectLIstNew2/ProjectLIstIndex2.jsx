@@ -45,6 +45,9 @@ import EditProjectModal from "./EditProjectModal";
 import ProjectModal from "./ProjectModal";
 import ProjectTable2 from "./ProjectTable2";
 
+/**
+ * @returns {JSX.Element} A table for rendering rows and columns items in the project list 2 page
+ */
 const ProjectLIstIndex2 = () => {
   const CustomFilterIcon = styled(SortIcon)({
     color: "#266AED",

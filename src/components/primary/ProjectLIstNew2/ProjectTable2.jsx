@@ -15,7 +15,18 @@ const colStyle = {
   position: "sticky",
   left: 0,
 };
-
+/**
+ * @param {object} pagination - pagination object
+ * @param {function} setPagination - set pagination
+ * @param {function} handleChangePagination - handle change pagination
+ * @param {array} myColumn - array of columns
+ * @param {array} myRows - array of rows
+ * @param {function} handleDelete - handle delete button
+ * @param {function} handleClick - handle click on edit button
+ * @param {number} totalItems - total number of items
+ * @returns {JSX.Element} A table for rendering rows and columns items
+ * 
+ */
 const ProjectTable2 = ({
   pagination,
   setPagination,

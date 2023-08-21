@@ -14,6 +14,25 @@ const paginationOptions = [
   { value: 50, label: 50 },
 ];
 
+/**
+ * Pagination component for managing table pagination.
+ *
+ * @component
+ * @example
+ * <Pagination
+ *   totalItems={totalItems}
+ *   pagination={pagination}
+ *   setPagination={setPagination}
+ *   handleChangePagination={handleChangePagination}
+ * />
+ *
+ * @param {Object} props - Component props
+ * @param {number} props.totalItems - Total number of items available from the data source.
+ * @param {Object} props.pagination - Pagination state.
+ * @param {Function} props.setPagination - A setState to update the pagination state.
+ * @param {Function} props.handleChangePagination - A callback function invoked when pagination changes.
+ * @returns {JSX.Element} - Pagination component for the table.
+ */
 const Pagination = ({
   totalItems,
   pagination,

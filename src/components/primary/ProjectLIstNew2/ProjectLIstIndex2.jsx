@@ -29,15 +29,16 @@ import "./index.css";
 
 const fields = [
   { field: "project_drawer_name", width: 200 },
-  { field: "project_alias" },
+  { field: "project_alias", width: 200 },
   { field: "project_platform" },
-  { field: "project_batch", width: 60 },
+  { field: "project_batch", width: 100 },
   { field: "project_status", renderCell: "chip" },
-  // { field: "project_skills", width: 400, renderCell: "skills-chip" },
+  { field: "project_skills", width: 430, renderCell: "skills-chip" },
   { field: "pdr", width: 100 },
   {
     field: "ACTIONS",
     renderCell: "button",
+    width: 80,
   },
 ];
 
@@ -87,7 +88,7 @@ const ProjectLIstIndex2 = () => {
   };
 
   const handleDelete = (e) => {
-    dispatch(deleteProjectDrawerById(e.row.id))
+    dispatch(deleteProjectDrawerById(e.id))
       .then((action) => {
         if (action.payload.status === 200) {
           alert.show(action.payload.data.message, { type: "success" });
@@ -105,11 +106,7 @@ const ProjectLIstIndex2 = () => {
 
   return (
     <>
-      <Box
-        sx={{
-          position: "relative",
-        }}
-      >
+      <Box>
         <Box
           sx={{
             display: "flex",
@@ -205,8 +202,7 @@ const ProjectLIstIndex2 = () => {
         <Box
           sx={{
             width: "100%",
-            my: "40px",
-            position: "absolute",
+            mt: "40px",
           }}
         >
           {/* <CustomTable
@@ -217,7 +213,13 @@ const ProjectLIstIndex2 = () => {
             setPaginationModel={setPaginationModel}
             isLoading={isLoading}
           /> */}
-          <ProjectTable2 myColumn={myColumn} myRows={myRows} />
+          <ProjectTable2
+            handleClick={handleClick}
+            handleDelete={handleDelete}
+            myColumn={myColumn}
+            myRows={myRows}
+          />
+          {/* <ProjectTable2Old /> */}
         </Box>
       </Box>
     </>

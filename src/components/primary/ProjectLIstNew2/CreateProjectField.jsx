@@ -11,7 +11,7 @@ const CreateProjectField = ({
   defaultValue,
 }) => {
   //   const { register, handleSubmit, reset } = useForm();
-  console.log(field)
+
   return (
     <Grid item xs={6}>
       <Typography

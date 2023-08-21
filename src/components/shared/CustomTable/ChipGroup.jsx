@@ -12,7 +12,8 @@ import Popper from "@mui/material/Popper";
 import * as React from "react";
 import ProjectDrawerStatusChip from "../FilterField/ProjectDrawerStatusChip";
 
-const ChipGroup = ({ params }) => {
+const ChipGroup = ({ value }) => {
+  const params = { value: value };
   const mouseOverEffect = (event) => {
     params.value.length === 3 && setSkillsAnchorEl(null);
     params.value.length > 3 && setSkillsAnchorEl(event.currentTarget);
@@ -40,11 +41,18 @@ const ChipGroup = ({ params }) => {
           ))}
         </AvatarGroup>
       </Box>
-      <Popper id={id} open={open} anchorEl={skillsAnchorEl}>
+      <Popper
+        sx={{ position: "absolute", zIndex: 44 }}
+        id={id}
+        open={open}
+        anchorEl={skillsAnchorEl}
+      >
         {/* TODO change the design */}
         <Box
           sx={{
-            border: 0,
+            textAlign: "center",
+            border: "2px solid #C4F5DF",
+            borderRadius: "15px",
             p: 2,
             bgcolor: "background.paper",
             display: "grid",

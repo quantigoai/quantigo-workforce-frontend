@@ -16,6 +16,9 @@ import { createProjectDrawer } from "../../../features/slice/projectDrawerSlice"
 import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
 import FormProvider from "../../shared/FormProvider/FormProvider";
 import ProjectModalHeader from "./ProjectModalHeader";
+import CreateProjectFieldSelect from "./CreateProjectFieldSelect";
+import CustomSelectField from "../../shared/CustomField/CustomSelectField";
+import PDSelectField from "../../shared/CustomField/PDSelectField";
 const style = {
   position: "absolute",
   top: "50%",
@@ -52,9 +55,6 @@ const ProjectModal = ({
   const [addSkills, setAddSkills] = useState([]);
   const [platform, setPlatform] = React.useState("");
   const [status, setStatus] = React.useState("");
-
-  // const { register, handleSubmit, reset } = useForm();
-  // const { error } = useSelector((state) => state.projectDrawer);
 
   const handleChangeSkill = (event) => {
     const {
@@ -108,6 +108,22 @@ const ProjectModal = ({
     setStatus(event.target.value);
   };
 
+  const platformOptions = [
+    { value: "supervisely", label: "supervisely" },
+    { value: "encord", label: "Encord" },
+    { value: "superb_ai", label: "Superb AI" },
+  ];
+  const projectTypeOptions = [
+    { value: "imgae", label: "Image" },
+    { value: "video", label: "Video" },
+  ];
+  const statusOptions = [
+    { value: "not-Started", label: "Not Started" },
+    { value: "in-Progress", label: "In Progress" },
+    { value: "completed", label: "Completed" },
+    { value: "hours-added", label: "Hours added" },
+  ];
+
   const ProjectDrawerSchema = Yup.object().shape({
     project_drawer_name: Yup.string().required(" project name is required"),
     project_alias: Yup.string().required("alias is required"),
@@ -158,7 +174,13 @@ const ProjectModal = ({
               }}
             >
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-                <Stack direction="row" gap={2} sx={{ py: "2%" }}>
+                <Stack direction="row" gap={2} sx={{ py: "0%" }}>
+                  <PDSelectField
+                    name={"project_platform"}
+                    label="Platform"
+                    options={platformOptions}
+                    defaultValue={"Select"}
+                  />
                   <PDTextFIeld
                     name="project_drawer_name"
                     label="Project Name"
@@ -166,7 +188,15 @@ const ProjectModal = ({
                       disableUnderline: true,
                     }}
                   />
-
+                </Stack>
+                <Stack direction="row" gap={2} sx={{ py: "0%" }}>
+                  {" "}
+                  <PDSelectField
+                    name={"project_type"}
+                    label="Project Type"
+                    options={projectTypeOptions}
+                    defaultValue={"Select"}
+                  />
                   <PDTextFIeld
                     name="project_batch"
                     label="Batch"
@@ -178,22 +208,7 @@ const ProjectModal = ({
                   />
                 </Stack>
 
-                {/* <CreateProjectFieldSelect
-                    field={"Platform"}
-                    // register={register}
-                    registerName={"project_platform"}
-                    defaultValue={platform}
-                    value_1={"supervisely"}
-                    value_2={"encord"}
-                    value_3={"superb_ai"}
-                    MenuItemValue_1={"Supervisely"}
-                    MenuItemValue_2={"Encord Server"}
-                    MenuItemValue_3={"Superb AI"}
-                    CustomDownArrow={CustomDownArrow}
-                    onChange={(e) => handleChange(e)}
-                  /> */}
-
-                <Stack direction="row" gap={2} sx={{ py: "2%" }}>
+                <Stack direction="row" gap={2} sx={{ py: "0%" }}>
                   <PDTextFIeld
                     name="project_alias"
                     label="Alias"
@@ -213,6 +228,7 @@ const ProjectModal = ({
                     isNumberPdr="true"
                   />
                 </Stack>
+
                 {/* <SkillField/> */}
 
                 {/* <Grid item xs={6}>
@@ -222,8 +238,13 @@ const ProjectModal = ({
                       handleChangeSkill={handleChangeSkill}
                     />
                   </Grid> */}
-
-                <Stack direction="row" gap={2} sx={{ py: "2%" }}>
+                <Stack direction="row" gap={2} sx={{ py: "0%" }}>
+                  <PDSelectField
+                    name={"project_skills"}
+                    label="Skills"
+                    options={skills}
+                    defaultValue={"Select"}
+                  />
                   <PDTextFIeld
                     name="benchmark"
                     label="Benchmark"
@@ -231,13 +252,21 @@ const ProjectModal = ({
                       disableUnderline: true,
                     }}
                   />
+                </Stack>
 
+                <Stack direction="row" gap={2} sx={{ py: "0%" }}>
                   <PDTextFIeld
                     name="end_time"
                     label="Estimated End Time"
                     InputProps={{
                       disableUnderline: true,
                     }}
+                  />
+                  <PDSelectField
+                    name={"project_status"}
+                    label="Status"
+                    options={statusOptions}
+                    defaultValue="Select"
                   />
                 </Stack>
 
@@ -277,7 +306,7 @@ const ProjectModal = ({
                     padding: "16px",
                     borderRadius: "8px",
                     background: "#FAFCFF",
-                    maxHeight: 300,
+                    maxHeight: 200,
                     overflowY: "auto",
                   }}
                 >

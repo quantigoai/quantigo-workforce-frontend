@@ -4,67 +4,35 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import PageinationTable from "./PageinationTable";
 import { Box, Typography } from "@mui/material";
-
-const getStatusStyle = (status) => {
-  switch (status) {
-    case "in-Progress":
-      return {
-        color: "#2E58FF",
-        backgroundColor: "#F4F7FE",
-        padding: "4px 12px",
-        border: "1px solid #2E58FF1F",
-        borderRadius: "32px",
-        fontWeight: "500",
-      };
-    case "hours-added":
-      return {
-        color: "#F79009",
-        backgroundColor: "#FAE4C3",
-        padding: "4px 12px",
-        border: "1px solid #FAE4C3",
-        borderRadius: "32px",
-        fontWeight: "500",
-      };
-    case "completed":
-      return {
-        color: "#12B76A",
-        backgroundColor: "#C4F5DF",
-        padding: "4px 12px",
-        border: " 1px solid #C4F5DF",
-        borderRadius: "32px",
-        fontWeight: "500",
-      };
-    case "not-Started":
-      return {
-        color: "#3C4D6B",
-        backgroundColor: "#F2F6FC",
-        padding: "4px 12px",
-        border: "1px solid #E6ECF5",
-        borderRadius: "32px",
-        fontWeight: "500",
-      };
-    default:
-      return {};
-  }
+import ProjectDrawerStatusChip from "../../shared/FilterField/ProjectDrawerStatusChip";
+import ChipGroup from "../../shared/CustomTable/ChipGroup";
+import CustomButton from "../../shared/CustomTable/CustomButton";
+import "./index.css";
+const colStyle = {
+  position: "sticky",
+  left: 0,
 };
 
-const ProjectTable2 = ({ myColumn, myRows }) => {
+const ProjectTable2 = ({ myColumn, myRows, handleDelete, handleClick }) => {
   return (
     <>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650, height: 700 }} aria-label="simple table">
+      {/* <TableContainer className="div1" component={Paper}> */}
+      <Box sx={{ height: "100vh" }} className="div1">
+        <Table aria-label="simple table" className="myTable">
           <TableHead>
             <TableRow>
               {myColumn.map((col) => (
                 <TableCell
-                  align="middle"
-                  sx={{
-                    minWidth: col.width || "140px",
-                    color: "#7B98BA",
-                  }}
+                  sx={
+                    (colStyle,
+                    {
+                      minWidth: col.width || "140px",
+                      color: "#7B98BA",
+                      textAlign: "center",
+                    })
+                  }
                   key={col.id}
                 >
                   {col.headerName}
@@ -75,34 +43,55 @@ const ProjectTable2 = ({ myColumn, myRows }) => {
           <TableBody>
             {myRows.map((row) => {
               return (
-                <TableRow
-                  key={row._id}
-                  sx={{
-                    color:
-                      row.project_status === "in-Progress" ? "red" : "green",
-                    "&:last-child td, &:last-child th": { border: 0 },
-                  }}
-                >
+                <TableRow key={row._id}>
                   {myColumn.map((col) => {
-                    const statusStyle = getStatusStyle(row[col?.field]);
-                    return (
-                      <TableCell
-                        align="middle"
-                        sx={
-                          {
-                            // width: col.width || 140,
-                          }
-                        }
-                        key={col.id}
-                        component="th"
-                        scope="row"
-                      >
-                        <Typography sx={statusStyle} variant="p">
-                          {" "}
-                          {row[col?.field]}
-                        </Typography>
-                      </TableCell>
-                    );
+                    if (col.field === "project_skills") {
+                      return (
+                        <TableCell
+                          sx={{ textAlign: "center", PaddingX: "20px" }}
+                          key={col.id}
+                          component="th"
+                          scope="row"
+                        >
+                          <ChipGroup value={row[col?.field]} />
+                        </TableCell>
+                      );
+                    }
+                    if (col.field === "project_status") {
+                      return (
+                        <TableCell
+                          sx={{ textAlign: "center" }}
+                          key={col.id}
+                          component="th"
+                          scope="row"
+                        >
+                          <ProjectDrawerStatusChip value={row[col?.field]} />
+                        </TableCell>
+                      );
+                    } else if (col.field === "ACTIONS") {
+                      return (
+                        <TableCell key={col.id} component="th" scope="row">
+                          <CustomButton
+                            params={row}
+                            handleClick={handleClick}
+                            handleDelete={handleDelete}
+                          />
+                        </TableCell>
+                      );
+                    } else {
+                      return (
+                        <TableCell
+                          sx={{ textAlign: "center" }}
+                          key={col.id}
+                          component="th"
+                          scope="row"
+                        >
+                          <Typography sx={{ color: "#253E5C" }} variant="p">
+                            {row[col?.field]}
+                          </Typography>
+                        </TableCell>
+                      );
+                    }
                   })}
                 </TableRow>
               );
@@ -110,15 +99,16 @@ const ProjectTable2 = ({ myColumn, myRows }) => {
           </TableBody>
         </Table>
         <Box
-          sx={{
-            display: "flex",
-            justifyContent: "flex-end",
-            width: "100%",
-          }}
+        // sx={{
+        //   display: "flex",
+        //   justifyContent: "flex-end",
+
+        //   mt: 60,
+        // }}
         >
           <PageinationTable />
         </Box>
-      </TableContainer>
+      </Box>
     </>
   );
 };

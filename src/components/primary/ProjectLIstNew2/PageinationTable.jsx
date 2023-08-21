@@ -53,7 +53,7 @@ const PageinationTable = () => {
         {pageNumber.map((page, id) => (
           <>
             <Button
-              key={id}
+              key={id + 1}
               variant="small"
               onClick={() => setSelectedPage(page)}
               sx={{

@@ -7,7 +7,7 @@ const ProjectModalHeader = ({ handleCreateProjectClose }) => {
     <Box
       sx={{
         paddingTop: "2%",
-        width: "695px",
+        width: "700px",
         background: "#F2F6FC",
       }}
     >

@@ -32,7 +32,6 @@ export default function PDTextFIeld({
   label,
   ...other
 }) {
-  console.log("🚀 ~ file: PDTextFIeld.jsx:35 ~ name:", name);
   const { control } = useFormContext();
 
   return (

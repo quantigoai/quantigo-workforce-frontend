@@ -57,6 +57,7 @@ const ProjectDrawerStatusChip = ({ value, isPopper = false }) => {
         };
       default:
         return {
+          textAlign: "center",
           backgroundColor: "rgba(242, 246, 252, 1)",
           color: "rgba(60, 77, 107, 1)",
           width: isPopper ? "220px" : "120px",

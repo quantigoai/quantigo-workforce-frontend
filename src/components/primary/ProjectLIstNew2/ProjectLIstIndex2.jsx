@@ -29,15 +29,16 @@ import "./index.css";
 
 const fields = [
   { field: "project_drawer_name", width: 200 },
-  { field: "project_alias" },
+  { field: "project_alias", width: 200 },
   { field: "project_platform" },
-  { field: "project_batch", width: 60 },
+  { field: "project_batch", width: 100 },
   { field: "project_status", renderCell: "chip" },
-  // { field: "project_skills", width: 400, renderCell: "skills-chip" },
+  { field: "project_skills", width: 430, renderCell: "skills-chip" },
   { field: "pdr", width: 100 },
   {
     field: "ACTIONS",
     renderCell: "button",
+    width: 80,
   },
 ];
 
@@ -45,6 +46,7 @@ import CustomTable from "../../shared/CustomTable/CustomTable";
 import EditProjectModal from "./EditProjectModal";
 import ProjectModal from "./ProjectModal";
 import ProjectTable2 from "./ProjectTable2";
+import ProjectTable2Old from "./ProjectTable2Old";
 
 const ProjectLIstIndex2 = () => {
   const CustomFilterIcon = styled(SortIcon)({
@@ -88,7 +90,7 @@ const ProjectLIstIndex2 = () => {
   };
 
   const handleDelete = (e) => {
-    dispatch(deleteProjectDrawerById(e.row.id))
+    dispatch(deleteProjectDrawerById(e.id))
       .then((action) => {
         if (action.payload.status === 200) {
           alert.show(action.payload.data.message, { type: "success" });
@@ -106,11 +108,7 @@ const ProjectLIstIndex2 = () => {
 
   return (
     <>
-      <Box
-        sx={{
-          position: "relative",
-        }}
-      >
+      <Box>
         <Box
           sx={{
             display: "flex",
@@ -207,7 +205,6 @@ const ProjectLIstIndex2 = () => {
           sx={{
             width: "100%",
             mt: "40px",
-            position: "absolute",
           }}
         >
           {/* <CustomTable
@@ -218,7 +215,13 @@ const ProjectLIstIndex2 = () => {
             setPaginationModel={setPaginationModel}
             isLoading={isLoading}
           /> */}
-          <ProjectTable2 myColumn={myColumn} myRows={myRows} />
+          <ProjectTable2
+            handleClick={handleClick}
+            handleDelete={handleDelete}
+            myColumn={myColumn}
+            myRows={myRows}
+          />
+          {/* <ProjectTable2Old /> */}
         </Box>
       </Box>
     </>

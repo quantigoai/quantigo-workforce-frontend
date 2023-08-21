@@ -30,9 +30,9 @@ export const getAllProjectDrawers = createAsyncThunk(
   "/project-drawer/",
   async (data) => {
     try {
-      const { paginationModel } = data;
-      let query = `limit=${paginationModel.pageSize}&skip=${
-        paginationModel.page * paginationModel.pageSize
+      const { pagination } = data;
+      let query = `limit=${pagination.pageSize}&skip=${
+        pagination.currentPage * pagination.pageSize
       }`;
       return await axios.get(`${url}/project-drawer?${query}`, {
         headers: {

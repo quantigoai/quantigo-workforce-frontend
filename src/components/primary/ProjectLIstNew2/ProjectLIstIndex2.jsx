@@ -12,11 +12,10 @@ import SortIcon from "@mui/icons-material/Sort";
 import { Box, Button, Grid, IconButton, Paper } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import { styled } from "@mui/material/styles";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import "remixicon/fonts/remixicon.css";
-import { setActivePath } from "../../../features/slice/activePathSlice";
 import {
   deleteProjectDrawerById,
   getAllProjectDrawers,
@@ -53,19 +52,15 @@ const ProjectLIstIndex2 = () => {
     borderRadius: "8px",
     padding: "10px",
   });
-
-  const { isLoading, projectDrawers, projectDrawer, total, error } =
-    useSelector((state) => state.projectDrawer);
-
-  const dispatch = useDispatch();
-  const [paginationModel, setPaginationModel] = React.useState({
-    page: 0,
+  const [pagination, setPagination] = useState({
+    currentPage: 0,
     pageSize: 10,
   });
-  useEffect(() => {
-    dispatch(setActivePath("All Projects2"));
-    dispatch(getAllProjectDrawers({ paginationModel }));
-  }, [paginationModel, total]);
+  const { projectDrawers, projectDrawer, total, error } = useSelector(
+    (state) => state.projectDrawer
+  );
+
+  const dispatch = useDispatch();
 
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
@@ -103,6 +98,10 @@ const ProjectLIstIndex2 = () => {
     setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
     setMyRows(dataBuilder(projectDrawers));
   }, [projectDrawers]);
+
+  const handleChangePagination = useCallback(() => {
+    dispatch(getAllProjectDrawers({ pagination }));
+  }, [dispatch, pagination]);
 
   return (
     <>
@@ -213,11 +212,16 @@ const ProjectLIstIndex2 = () => {
             setPaginationModel={setPaginationModel}
             isLoading={isLoading}
           /> */}
+
           <ProjectTable2
             handleClick={handleClick}
             handleDelete={handleDelete}
             myColumn={myColumn}
             myRows={myRows}
+            pagination={pagination}
+            setPagination={setPagination}
+            handleChangePagination={handleChangePagination}
+            totalItems={total}
           />
           {/* <ProjectTable2Old /> */}
         </Box>

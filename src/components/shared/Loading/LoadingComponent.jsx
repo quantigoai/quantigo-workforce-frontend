@@ -10,11 +10,11 @@
 import Box from "@mui/material/Box";
 import qaiLogo from "../../../assets/images/qai.png";
 import "./index.css";
-const LoadingComponent = () => {
+const LoadingComponent = ({height}) => {
   return (
     <Box
       sx={{
-        height: "90vh",
+        height: height || "90vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

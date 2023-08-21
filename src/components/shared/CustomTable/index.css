@@ -18,17 +18,17 @@
 
 .MuiAvatarGroup-avatar{
     background-color: rgb(171, 191, 228);
-    height: 30px;
-    width: 30px;
-    font-size: 14px;
+    height: 25px;
+    width: 25px;
+    font-size: 12px;
     color: rgb(4, 4, 86);
 }
 
 .MuiAvatarGroup-avatar:hover{
     background-color: rgb(150, 150, 155);
-    height: 30px;
-    width: 30px;
-    font-size: 14px;
+    height: 25px;
+    width: 25px;
+    font-size: 12px;
     color: rgb(25, 25, 26);
 }
 

@@ -41,7 +41,6 @@ const fields = [
   },
 ];
 
-import CustomTable from "../../shared/CustomTable/CustomTable";
 import EditProjectModal from "./EditProjectModal";
 import ProjectModal from "./ProjectModal";
 import ProjectTable2 from "./ProjectTable2";
@@ -206,7 +205,7 @@ const ProjectLIstIndex2 = () => {
         <Box
           sx={{
             width: "100%",
-            mt: "40px",
+            my: "40px",
             position: "absolute",
           }}
         >

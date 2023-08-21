@@ -1,12 +1,12 @@
+import { Box, Typography } from "@mui/material";
+import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import PageinationTable from "./PageinationTable";
-import { Box, Typography } from "@mui/material";
+import PaginationTable from "./PaginationTable";
 
 const getStatusStyle = (status) => {
   switch (status) {
@@ -114,9 +114,10 @@ const ProjectTable2 = ({ myColumn, myRows }) => {
             display: "flex",
             justifyContent: "flex-end",
             width: "100%",
+            my: "20px",
           }}
         >
-          <PageinationTable />
+          <PaginationTable />
         </Box>
       </TableContainer>
     </>

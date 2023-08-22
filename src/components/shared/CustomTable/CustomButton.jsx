@@ -20,7 +20,7 @@ const CustomButton = ({ params, handleClick, handleDelete }) => {
     <Box
       sx={{
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "flex-start",
       }}
     >
       <Button

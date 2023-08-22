@@ -26,8 +26,8 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 700,
   bgcolor: "background.paper",
-  border: "2px solid #000",
   boxShadow: 24,
+  borderRadius: "10px",
   p: 0,
 };
 
@@ -40,7 +40,6 @@ const EditProjectModal = ({
   const dispatch = useDispatch();
   const alert = useAlert();
   const [prevSkills, setPrevSkills] = useState(projectDrawer.project_skills);
-  console.log("🚀 ~ file: EditProjectModal.jsx:43 ~ prevSkills:", prevSkills);
 
   const [editSkills, setEditSkills] = useState([]);
 

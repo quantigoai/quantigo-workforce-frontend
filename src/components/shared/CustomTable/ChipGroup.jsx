@@ -42,7 +42,7 @@ const ChipGroup = ({ value }) => {
         </AvatarGroup>
       </Box>
       <Popper
-        sx={{ position: "absolute", zIndex: 4 }}
+        sx={{ position: "absolute", zIndex: 20 }}
         id={id}
         open={open}
         anchorEl={skillsAnchorEl}
@@ -50,14 +50,14 @@ const ChipGroup = ({ value }) => {
         {/* TODO change the design */}
         <Box
           sx={{
-            textAlign: "center",
+            textAlign: "left",
             border: "2px solid #C4F5DF",
             borderRadius: "15px",
             p: 2,
             bgcolor: "background.paper",
             display: "grid",
             gridTemplateColumns: "repeat(3,1fr)",
-            gap: "15px",
+            gap: "25px",
           }}
         >
           {params.value.map(

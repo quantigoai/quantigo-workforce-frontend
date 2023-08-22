@@ -32,6 +32,7 @@ export default function PDSelectField({
   ...other
 }) {
   const { control } = useFormContext();
+  console.log("🚀 ~ file: PDSelectField.jsx:35 ~ control:", control);
 
   return (
     <Controller

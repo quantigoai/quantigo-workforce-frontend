@@ -19,6 +19,7 @@ import ProjectModalHeader from "./ProjectModalHeader";
 import CreateProjectFieldSelect from "./CreateProjectFieldSelect";
 import CustomSelectField from "../../shared/CustomField/CustomSelectField";
 import PDSelectField from "../../shared/CustomField/PDSelectField";
+import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
 const style = {
   position: "absolute",
   top: "50%",
@@ -104,9 +105,7 @@ const ProjectModal = ({
     setAddDoc(deleteDoc);
   };
 
-  const handleStatus = (event) => {
-    setStatus(event.target.value);
-  };
+
 
   const platformOptions = [
     { value: "supervisely", label: "supervisely" },
@@ -239,11 +238,18 @@ const ProjectModal = ({
                     />
                   </Grid> */}
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  <PDSelectField
+                  {/* <PDSelectField
                     name={"project_skills"}
                     label="Skills"
                     options={skills}
                     defaultValue={"Select"}
+                  /> */}
+                  <PDskillFIeld
+                    name={"project_skills"}
+                    addSkills={addSkills}
+                    label="Skills"
+                    handleChangeSkill={handleChangeSkill}
+                    skills={skills}
                   />
                   <PDTextFIeld
                     name="benchmark"

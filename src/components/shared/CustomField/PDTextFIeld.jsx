@@ -30,6 +30,7 @@ export default function PDTextFIeld({
   isNumberPdr,
   InputProps,
   label,
+  defaultValue,
   ...other
 }) {
   const { control } = useFormContext();
@@ -52,6 +53,7 @@ export default function PDTextFIeld({
               fullWidth
               InputProps={{ disableUnderline: true }}
               inputProps={InputProps}
+              defaultValue={defaultValue}
               value={
                 typeof field.value === "number" && field.value === 0
                   ? ""

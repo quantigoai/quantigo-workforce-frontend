@@ -1,13 +1,4 @@
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import {
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-  styled,
-} from "@mui/material";
+import { Stack } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -18,16 +9,15 @@ import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import u_multiply from "../../../assets/images/u_multiply.png";
-import {
-  createProjectDrawer,
-  updateProjectDrawerById,
-} from "../../../features/slice/projectDrawerSlice";
-import SkillFieldProject from "./SkillFieldProject";
-import CreateProjectFieldSelect from "./CreateProjectFieldSelect";
-import CreateProjectField from "./CreateProjectField";
-import GuidelineField from "./GuidelineField";
+import { updateProjectDrawerById } from "../../../features/slice/projectDrawerSlice";
+
 import ProjectModalHeader from "./ProjectModalHeader";
+import FormProvider from "../../shared/FormProvider/FormProvider";
+import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
+import PDSelectField from "../../shared/CustomField/PDSelectField";
+import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
 
 const style = {
   position: "absolute",
@@ -40,46 +30,21 @@ const style = {
   boxShadow: 24,
   p: 0,
 };
-const CustomDownArrow = styled(KeyboardArrowDownIcon)({
-  color: "#667085",
-  marginRight: "10px",
-});
+
 const EditProjectModal = ({
   editModalOpen,
   handleEditProjectClose,
   projectDrawer,
   setEditModalOpen,
 }) => {
-  console.log(
-    "🚀 ~ file: EditProjectModal.jsx:41 ~ EditProjectModal ~ projectDrawer:",
-    projectDrawer
-  );
-  // console.log(
-  //   "🚀 ~ file: EditProjectModal.jsx:41 ~ EditProjectModal ~ projectDrawer:",
-  //   projectDrawer
-  // );
-  // console.log(
-  //   "🚀 ~ file: EditProjectModal.jsx:37 ~ EditProjectModal ~ open:",
-  //   open
-  // );
-
   const dispatch = useDispatch();
   const alert = useAlert();
-  const [platform, setPlatform] = React.useState("");
-  const [status, setStatus] = React.useState("");
-  const { register, handleSubmit, reset } = useForm();
-  const [selectedSkills, setSelectedSkills] = useState(
-    projectDrawer.project_skills
-  );
-  console.log(
-    "🚀 ~ file: EditProjectModal.jsx:70 ~ selectedSkills:",
-    selectedSkills
-  );
+  const [prevSkills, setPrevSkills] = useState(projectDrawer.project_skills);
+  console.log("🚀 ~ file: EditProjectModal.jsx:43 ~ prevSkills:", prevSkills);
+
   const [editSkills, setEditSkills] = useState([]);
 
   const { skills } = useSelector((state) => state.skill);
-  // const { isLoading, projectDrawer, projectDrawers, total, error } =
-  //   useSelector((state) => state.projectDrawer);
 
   const handleEditSkill = (event) => {
     const {
@@ -89,9 +54,7 @@ const EditProjectModal = ({
     const selectedSkills = value.map((skill) => {
       return skills.find((s) => s.name === skill);
     });
-
     setEditSkills(
-      // On autofill we get a stringified value.
       typeof selectedSkills === "string" ? value.split(",") : selectedSkills
     );
   };
@@ -100,13 +63,13 @@ const EditProjectModal = ({
     name: skill.name,
     id: skill._id,
   }));
-  console.log(
-    "🚀 ~ file: EditProjectModal.jsx:100 ~ filteredSkillInfo ~ filteredSkillInfo:",
-    filteredSkillInfo
-  );
 
   const onSubmit = (data) => {
-    const newData = { ...data, project_skills: filteredSkillInfo };
+    const newData = {
+      ...data,
+      project_skills:
+        filteredSkillInfo.length === 0 ? prevSkills : filteredSkillInfo,
+    };
     const allData = { id: projectDrawer._id, data: newData };
 
     dispatch(updateProjectDrawerById(allData)).then((action) => {
@@ -121,17 +84,55 @@ const EditProjectModal = ({
     });
   };
 
-  const handleChange = (event) => {
-    setPlatform(event.target.value);
-  };
+  const [addDoc, setAddDoc] = useState([]);
 
   const handleAddDoc = () => {
-    console.log("clicked");
+    const newDoc = [...addDoc, []];
+    setAddDoc(newDoc);
   };
 
-  const handleStatus = (event) => {
-    setStatus(event.target.value);
+  const handleDeleteDoc = (id) => {
+    const deleteDoc = [...addDoc];
+    deleteDoc.splice(id, 1);
+    setAddDoc(deleteDoc);
   };
+
+  const platformOptions = [
+    { value: "supervisely", label: "supervisely" },
+    { value: "encord", label: "Encord" },
+    { value: "superb_ai", label: "Superb AI" },
+  ];
+  const projectTypeOptions = [
+    { value: "imgae", label: "Image" },
+    { value: "video", label: "Video" },
+  ];
+  const statusOptions = [
+    { value: "not-Started", label: "Not Started" },
+    { value: "in-Progress", label: "In Progress" },
+    { value: "completed", label: "Completed" },
+    { value: "hours-added", label: "Hours added" },
+  ];
+
+  const ProjectDrawerSchema = Yup.object().shape({
+    // project_drawer_name: Yup.string().required(" project name is required"),
+    // project_alias: Yup.string().required("alias is required"),
+    // project_batch: Yup.string().required(" batch is required"),
+    // pdr: Yup.string().required(" pdr is required"),
+    // benchmark: Yup.string().required(" benchmark is required"),
+    // guideline: Yup.string().required(" document is required"),
+    // link: Yup.string().required("link is required"),
+  });
+
+  const methods = useForm({
+    resolver: yupResolver(ProjectDrawerSchema),
+  });
+
+  const {
+    reset,
+    setError,
+    handleSubmit,
+    formState: { errors },
+  } = methods;
 
   return (
     <>
@@ -156,108 +157,203 @@ const EditProjectModal = ({
             <Box
               sx={{ paddingLeft: "3%", paddingTop: "2%", paddingRight: "3%" }}
             >
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <Grid container>
-                  <CreateProjectFieldSelect
-                    field={"Platform"}
-                    register={register}
-                    registerName={"project_platform"}
+              <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+                <Stack direction="row" gap={2} sx={{ py: "0%" }}>
+                  <PDSelectField
+                    name={"project_platform"}
+                    label="Platform"
+                    options={platformOptions}
                     defaultValue={projectDrawer.project_platform}
-                    value_1={"supervisely"}
-                    value_2={"encord"}
-                    value_3={"superb_ai"}
-                    MenuItemValue_1={"Supervisely"}
-                    MenuItemValue_2={"Encord Server"}
-                    MenuItemValue_3={"Superb AI"}
-                    CustomDownArrow={CustomDownArrow}
-                    onChange={(e) => handleChange(e)}
                   />
-
-                  <CreateProjectField
-                    field={"Project Name"}
-                    registerName={"project_drawer_name"}
-                    register={register}
-                    type={"text"}
+                  <PDTextFIeld
+                    name="project_drawer_name"
+                    label="Project Name"
                     defaultValue={projectDrawer.project_drawer_name}
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
                   />
-
-                  <CreateProjectField
-                    field={"Batch"}
-                    registerName={"project_batch"}
-                    register={register}
-                    type={"number"}
-                    inputProps={{ min: "1" }}
+                </Stack>
+                <Stack direction="row" gap={2} sx={{ py: "0%" }}>
+                  {" "}
+                  <PDSelectField
+                    name={"project_type"}
+                    label="Project Type"
+                    options={projectTypeOptions}
+                    defaultValue={projectDrawer.project_type}
+                  />
+                  <PDTextFIeld
+                    name="project_batch"
+                    label="Batch"
                     defaultValue={projectDrawer.project_batch}
+                    InputProps={{
+                      disableUnderline: true,
+                      min: 1,
+                    }}
+                    isNumber="true"
                   />
+                </Stack>
 
-                  <CreateProjectField
-                    field={"Alias"}
-                    registerName={"project_alias"}
-                    register={register}
-                    type={"text"}
+                <Stack direction="row" gap={2} sx={{ py: "0%" }}>
+                  <PDTextFIeld
+                    name="project_alias"
+                    label="Alias"
                     defaultValue={projectDrawer.project_alias}
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
                   />
 
-                  <CreateProjectField
-                    field={"PDR"}
-                    registerName={"pdr"}
-                    register={register}
-                    type={"number"}
-                    inputProps={{ min: "1", max: "5" }}
+                  <PDTextFIeld
+                    name="pdr"
+                    label="PDR"
                     defaultValue={projectDrawer.pdr}
+                    InputProps={{
+                      disableUnderline: true,
+                      min: 1,
+                      max: 5,
+                    }}
+                    isNumberPdr="true"
                   />
-                  {/* <SkillField/> */}
+                </Stack>
 
-                  <Grid item xs={6}>
-                    <SkillFieldProject
-                      isEdit={true}
-                      selectedSkills={selectedSkills}
-                      skills={skills}
-                      editSkills={editSkills}
-                      handleChangeSkill={handleEditSkill}
-                    />
-                  </Grid>
-                  {/* benchmark goes here  */}
+                {/* <SkillField/> */}
 
-                  {/* estimated end date here  */}
+                <Stack direction="row" gap={2} sx={{ py: "0%" }}>
+                  <PDskillFIeld
+                    name={"project_skills"}
+                    addSkills={editSkills}
+                    selectedSkills={prevSkills}
+                    isEdit={true}
+                    label="Skills"
+                    handleChangeSkill={handleEditSkill}
+                    skills={skills}
+                  />
+                  <PDTextFIeld
+                    name="benchmark"
+                    label="Benchmark"
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
+                  />
+                </Stack>
 
-                  <CreateProjectFieldSelect
-                    field={"Status"}
-                    register={register}
-                    registerName={"project_status"}
+                <Stack direction="row" gap={2} sx={{ py: "0%" }}>
+                  <PDTextFIeld
+                    name="end_time"
+                    label="Estimated End Time"
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
+                  />
+                  <PDSelectField
+                    name={"project_status"}
+                    label="Status"
+                    options={statusOptions}
                     defaultValue={projectDrawer.project_status}
-                    value_1={"not-Started"}
-                    value_2={"completed"}
-                    value_3={"in-Progress"}
-                    value_4={"hours-added"}
-                    MenuItemValue_1={"Not Started"}
-                    MenuItemValue_2={"Completed"}
-                    MenuItemValue_3={"In Progress"}
-                    MenuItemValue_4={"Hours Added"}
-                    CustomDownArrow={CustomDownArrow}
-                    onChange={(e) => handleStatus(e)}
                   />
+                </Stack>
 
-                  <Grid item xs={12}>
-                    <Typography
-                      sx={{
-                        fontWeight: "500",
-                        mt: "55px",
-                        fontSize: "14px",
-                        mb: "10px",
+                <Typography
+                  sx={{
+                    fontWeight: "500",
+                    mt: "5px",
+                    fontSize: "14px",
+                    mb: "10px",
+                  }}
+                  variant="h6"
+                >
+                  Relevant Documents
+                </Typography>
+
+                <Stack
+                  sx={{
+                    border: "2px solid #E6ECF5",
+                    padding: "16px",
+                    borderRadius: "8px",
+                    background: "#FAFCFF",
+                    maxHeight: 200,
+                    overflowY: "auto",
+                  }}
+                >
+                  <Stack direction="row" gap={2} xs={12}>
+                    <PDTextFIeld
+                      name="guideline"
+                      label="Document Name"
+                      defaultValue={projectDrawer.guideline}
+                      InputProps={{
+                        disableUnderline: true,
                       }}
-                      variant="h6"
-                    >
-                      Guideline and Edge-case Document
-                    </Typography>
-                  </Grid>
+                    />
 
-                  <GuidelineField
-                    register={register}
-                    handleAddDoc={handleAddDoc}
-                    defaultValue={projectDrawer.guideline}
-                  />
-                </Grid>
+                    <PDTextFIeld
+                      name="link"
+                      label="Link"
+                      defaultValue={projectDrawer.link}
+                      InputProps={{
+                        disableUnderline: true,
+                      }}
+                    />
+                  </Stack>
+                  {addDoc.map((doc, id) => {
+                    return (
+                      <Stack
+                        key={id}
+                        direction="row"
+                        gap={2}
+                        xs={12}
+                        sx={{ mt: 2, position: "relative" }}
+                      >
+                        <PDTextFIeld
+                          name={`guideline${id + 1}`}
+                          label="Document Name"
+                          InputProps={{
+                            disableUnderline: true,
+                          }}
+                        />
+
+                        <PDTextFIeld
+                          name={`link${id + 1}`}
+                          label="Link"
+                          InputProps={{
+                            disableUnderline: true,
+                          }}
+                        />
+                        <Button
+                          onClick={() => handleDeleteDoc(id)}
+                          sx={{
+                            mt: "30px",
+                            position: "absolute",
+                            left: 550,
+                            fontSize: "20px",
+                          }}
+                        >
+                          {" "}
+                          <i
+                            style={{ color: "red", cursor: "pointer" }}
+                            className="ri-delete-bin-line"
+                          ></i>
+                        </Button>
+                      </Stack>
+                    );
+                  })}
+
+                  <Typography
+                    sx={{
+                      fontWeight: "600",
+                      mt: "15px",
+                      fontSize: "14px",
+                      mb: "0px",
+                      color: "#2E58FF",
+                      cursor: "pointer",
+                    }}
+                    variant="p"
+                    onClick={() => handleAddDoc()}
+                  >
+                    <i className="ri-add-line"></i> Add another document
+                  </Typography>
+                </Stack>
+
                 <hr
                   style={{
                     color: "#F2F6FC",
@@ -310,7 +406,7 @@ const EditProjectModal = ({
                     Save
                   </Button>
                 </Box>
-              </form>
+              </FormProvider>
             </Box>
           </Box>
         </Fade>

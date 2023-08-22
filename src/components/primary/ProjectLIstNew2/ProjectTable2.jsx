@@ -103,6 +103,20 @@ const ProjectTable2 = ({
                           </TableCell>
                         );
                       }
+                      if (col.field === "createdBy") {
+                        return (
+                          <TableCell
+                            sx={{ textAlign: "left" }}
+                            key={col.id}
+                            component="th"
+                            scope="row"
+                          >
+                            <Typography sx={{ color: "#253E5C" }} variant="p">
+                              {row[col?.field] || "Tanzim"}
+                            </Typography>
+                          </TableCell>
+                        );
+                      }
                       if (col.field === "project_status") {
                         return (
                           <TableCell

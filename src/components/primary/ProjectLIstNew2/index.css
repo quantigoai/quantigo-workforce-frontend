@@ -42,8 +42,6 @@
 .div1 th {
     border-left: none;
     padding: 5px;
-    position: sticky;
-    top: 0;
     font-weight: normal;
 }
 
@@ -81,6 +79,7 @@
     position: sticky;
     background-color: #ffffff;
     z-index: 30;
+   
 }
 
 .div1 th:nth-child(1),

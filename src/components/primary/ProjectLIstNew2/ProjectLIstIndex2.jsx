@@ -30,10 +30,11 @@ const fields = [
   { field: "project_drawer_name", width: 200 },
   { field: "project_alias", width: 200 },
   { field: "project_platform" },
-  { field: "project_batch", width: 100 },
+  { field: "project_batch", width: 150 },
   { field: "project_status", renderCell: "chip" },
-  { field: "project_skills", width: 430, renderCell: "skills-chip" },
+  { field: "project_skills", width: 530, renderCell: "skills-chip" },
   { field: "pdr", width: 100 },
+  { field: "createdBy", width: 150 },
   {
     field: "ACTIONS",
     renderCell: "button",

@@ -63,6 +63,8 @@ const customHeader = (params) => {
       return "STATUS";
     case "email":
       return "EMAIL";
+    case "createdBy":
+      return "CREATED BY";
     default:
       return params;
   }

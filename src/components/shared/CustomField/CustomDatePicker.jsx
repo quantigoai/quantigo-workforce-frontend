@@ -58,8 +58,8 @@ export default function CustomDatePicker({
     const x = convertDate(newValue);
     setValue("dob", x);
   };
-  const minDob = dayjs().subtract(13, "year");
-  const maxDob = dayjs().subtract(70, "year");
+  const maxDob = dayjs().subtract(13, "year");
+  const minDob = dayjs().subtract(70, "year");
   return (
     <Controller
       control={control}
@@ -72,8 +72,8 @@ export default function CustomDatePicker({
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <MyDatePicker
               inputFormat="DD-MM-YYYY"
-              minDate={maxDob}
-              maxDate={minDob}
+              minDate={minDob}
+              maxDate={maxDob}
               onChange={(newValue) => {
                 handleDate(newValue);
               }}

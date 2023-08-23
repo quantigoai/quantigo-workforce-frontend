@@ -21,19 +21,23 @@ import { styled as mstyled } from "@mui/material/styles";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import line from "../../../assets/images/Line 1.png";
-import backIcon from "../../../assets/images/backIcon.svg";
+import ProfileIcon from "../../../assets/images/profileIcon.svg";
+import logOutIcon from "../../../assets/images/logoutIcon.svg";
 import { setTheme } from "../../../features/slice/themeSlice";
 import { logout } from "../../../features/slice/userSlice";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import NotificationModal from "../Notification/NotificationModal";
-
+import menuIcon from "../../../assets/images/menuIcon.svg";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ContentCut from "@mui/icons-material/ContentCut";
 const NavBarFull = mstyled(AppBar)({
   height: "auto",
   width: "100%",
   display: "flex",
   margin: "0rem",
   color: "black",
+  borderBottom: "1px solid #E6ECF5",
   boxShadow: "0px 0px 0px rgba(31, 30, 120, 0.37)",
 });
 
@@ -86,7 +90,7 @@ const Header = () => {
     <>
       <NavBarFull
         sx={{
-          background: isLightTheme ? "#FFFFFF" : "#000c1f",
+          background: "#FFFFFF",
           color: isLightTheme ? "#000c1f" : "#F5F5F5",
         }}>
         <Box
@@ -107,7 +111,7 @@ const Header = () => {
                 Go Back
               </Button>
             </Box> */}
-            <Button>
+            {/* <Button>
               {isLightTheme ? (
                 <DarkModeIcon onClick={() => dispatch(setTheme(false))} />
               ) : (
@@ -132,23 +136,23 @@ const Header = () => {
                   </Badge>
                 </>
               )}
-            </Button>
+            </Button> */}
             <NotificationModal
               handleSeeAll={handleSeeAll}
               notificationOpen={notificationOpen}
               handleNotificationClose={handleNotificationClose}
             />
 
-            <Box xs={2} sx={{ px: 2 }}>
+            {/* <Box xs={2} sx={{ px: 2 }}>
               <img src={line} height="100%" />
-            </Box>
+            </Box> */}
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
               <Avatar
                 alt="Profile Picture"
                 src={image}
                 sx={{
                   bgcolor: "#D3ECFA",
-                  border: "1px solid #8394EA",
+                  // border: "1px solid #8394EA",
                 }}
               />
             </Box>
@@ -157,10 +161,10 @@ const Header = () => {
                 <Box>
                   <Typography
                     sx={{
-                      color: isLightTheme ? "#1D1D1D" : "#ffffff",
+                      color: "#0E243D",
                     }}
                     variant="body2">
-                    {name}
+                    <b>{name}</b>
                   </Typography>
                   <Typography sx={{ color: "#969CAF" }} variant="caption">
                     {role === "level_1_annotator"
@@ -188,20 +192,43 @@ const Header = () => {
                   <Menu
                     sx={{
                       "& .MuiPaper-root": {
-                        background: isLightTheme ? "#F5F5F5" : "#000c1f",
-                        color: isLightTheme ? "#000c1f" : "#F5F5F5",
+                        backgroundColor: "#FFFFFF",
+                        // color: isLightTheme ? "#000c1f" : "#F5F5F5",
+                        borderRadius: "5px",
                       },
                     }}
                     anchorEl={anchorEl}
                     open={open}
                     onClose={handleClose}>
-                    <MenuItem onClick={handleEditProfile}>
-                      Edit Profile
+                    <MenuItem
+                      sx={{
+                        backgroundColor: "#FFFFF",
+                        borderBottom: "1px solid #F0F5FA",
+                        width: "182px",
+                      }}
+                      onClick={handleEditProfile}>
+                      <ListItemIcon>
+                        <img src={ProfileIcon} />
+                      </ListItemIcon>
+                      <ListItemText sx={{ color: "#3C4D6B" }}>
+                        Edit Profile
+                      </ListItemText>
                     </MenuItem>
-                    <MenuItem onClick={handleLogOut}>Logout</MenuItem>
+                    <MenuItem onClick={handleLogOut} sx={{ width: "182px" }}>
+                      <ListItemIcon>
+                        <img src={logOutIcon} />
+                      </ListItemIcon>
+                      <ListItemText sx={{ color: "#3C4D6B" }}>
+                        LogOut
+                      </ListItemText>
+                    </MenuItem>
                   </Menu>
-                  <Button id="fade-button" onClick={handleClick}>
-                    <KeyboardArrowDownIcon />
+                  <Button
+                    id="fade-button"
+                    onClick={handleClick}
+                    sx={{ paddingTop: "20%" }}>
+                    <img src={menuIcon} />
+                    {/* <KeyboardArrowDownIcon /> */}
                   </Button>
                 </Box>
               </Box>

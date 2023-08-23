@@ -139,6 +139,7 @@ const ProjectModal = ({
           <Box sx={style}>
             <ProjectModalHeader
               handleCreateProjectClose={handleCreateProjectClose}
+              modalTitle={"Create Project"}
             />
             <Box
               sx={{ paddingLeft: "3%", paddingTop: "2%", paddingRight: "3%" }}

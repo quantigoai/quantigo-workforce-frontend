@@ -45,6 +45,7 @@ import CustomTable from "../../shared/CustomTable/CustomTable";
 import EditProjectModal from "./EditProjectModal";
 import ProjectModal from "./ProjectModal";
 import ProjectTable2 from "./ProjectTable2";
+import Project2DetailsModal from "./Project2Details/Project2DetailsModal";
 
 const ProjectLIstIndex2 = () => {
   const CustomFilterIcon = styled(SortIcon)({
@@ -72,7 +73,12 @@ const ProjectLIstIndex2 = () => {
   const alert = useAlert();
   const [editModalOpen, setEditModalOpen] = React.useState(false);
   const [createProjectOpen, setCreateProjectOpen] = React.useState(false);
+  const [detailsProjectOpen, setDetailsProjectOpen] = React.useState(false);
   const handleProjectCreateOpen = () => setCreateProjectOpen(true);
+  const handleProjectDetailsOpen = () => setDetailsProjectOpen(true);
+  const handleDetailsProjectClose = () => {
+    setDetailsProjectOpen(false);
+  };
 
   const handleCreateProjectClose = () => {
     setCreateProjectOpen(false);
@@ -103,21 +109,20 @@ const ProjectLIstIndex2 = () => {
     setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
     setMyRows(dataBuilder(projectDrawers));
   }, [projectDrawers]);
-
+  console.log(myColumn);
+  console.log(myRows);
   return (
     <>
       <Box
         sx={{
           position: "relative",
-        }}
-      >
+        }}>
         <Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
             width: "100%",
-          }}
-        >
+          }}>
           <Box sx={{ width: "30%" }}>
             <Grid
               container
@@ -126,8 +131,7 @@ const ProjectLIstIndex2 = () => {
                 display: "flex",
                 alignContent: "center",
                 alignItems: "center",
-              }}
-            >
+              }}>
               <CommonHeader title="Projects" customButton="Create User" />
             </Grid>
           </Box>
@@ -138,8 +142,7 @@ const ProjectLIstIndex2 = () => {
               justifyContent: "space-between",
               // width: "30%",
               alignItems: "center",
-            }}
-          >
+            }}>
             <Paper
               component="form"
               sx={{
@@ -148,14 +151,12 @@ const ProjectLIstIndex2 = () => {
                 alignItems: "center",
                 width: "240px",
                 background: "#F4F7FE",
-              }}
-            >
+              }}>
               <IconButton
                 disabled
                 type="button"
                 sx={{ p: "10px" }}
-                aria-label="search"
-              >
+                aria-label="search">
                 <SearchIcon />
               </IconButton>
               <InputBase sx={{ ml: 0, flex: 1 }} placeholder="Search" />
@@ -174,8 +175,7 @@ const ProjectLIstIndex2 = () => {
                 background: "#2E58FF",
               }}
               variant="contained"
-              onClick={handleProjectCreateOpen}
-            >
+              onClick={handleProjectCreateOpen}>
               Create Project
             </Button>
 
@@ -208,8 +208,7 @@ const ProjectLIstIndex2 = () => {
             width: "100%",
             mt: "40px",
             position: "absolute",
-          }}
-        >
+          }}>
           {/* <CustomTable
             myColumn={myColumn}
             myRows={myRows}
@@ -220,6 +219,28 @@ const ProjectLIstIndex2 = () => {
           /> */}
           <ProjectTable2 myColumn={myColumn} myRows={myRows} />
         </Box>
+
+        <Button
+          sx={{
+            textTransform: "none",
+            borderRadius: "8px",
+            background: "#2E58FF",
+          }}
+          variant="contained"
+          onClick={handleProjectDetailsOpen}>
+          details Project
+        </Button>
+
+        {detailsProjectOpen && (
+          <Box>
+            <Project2DetailsModal
+              detailsProjectOpen={detailsProjectOpen}
+              handleProjectDetailsOpen={handleProjectDetailsOpen}
+              handleDetailsProjectClose={handleDetailsProjectClose}
+              // setCreateProjectOpen={setCreateProjectOpen}
+            />
+          </Box>
+        )}
       </Box>
     </>
   );

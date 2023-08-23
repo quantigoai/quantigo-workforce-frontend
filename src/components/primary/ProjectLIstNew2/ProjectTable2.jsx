@@ -10,7 +10,7 @@ import PageinationTable from "./PageinationTable";
 import { Box } from "@mui/material";
 const ProjectTable2 = ({ myColumn, myRows }) => {
   //   const columns = Object.keys(myColumn[0] || {});
-console.log(myRows)
+
   return (
     <>
       {/* <TableContainer component={Paper}> */}

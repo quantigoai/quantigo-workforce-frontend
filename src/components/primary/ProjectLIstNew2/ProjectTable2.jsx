@@ -11,6 +11,8 @@ import ProjectDrawerStatusChip from "../../shared/FilterField/ProjectDrawerStatu
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import PaginationTable from "./PaginationTable";
 import "./index.css";
+import { useRef, useState } from "react";
+import "swiper/css";
 
 /**
  * @param {object} pagination - pagination object
@@ -24,6 +26,7 @@ import "./index.css";
  * @returns {JSX.Element} A table for rendering rows and columns items
  *
  */
+
 const ProjectTable2 = ({
   pagination,
   setPagination,
@@ -35,129 +38,176 @@ const ProjectTable2 = ({
   totalItems,
 }) => {
   const { isLoading } = useSelector((state) => state.projectDrawer);
+
   return (
     <>
       <Box sx={{ height: "100vh" }} className="div1">
         {isLoading ? (
           <LoadingComponent height="70vh" />
         ) : (
-          <Table aria-label="simple table" className="myTable">
-            <TableHead>
-              <TableRow className="custom-header">
-                {myColumn.map((col) => (
-                  <TableCell
-                    sx={{
-                      minWidth: col.width || "140px",
-                      color: "#7B98BA",
-                      textAlign: "left",
-                      // fontSize: "14px",
-                    }}
-                    key={col.id}
-                  >
-                    <Box sx={{ display: "flex", justifyContent: "start" }}>
-                      {col.headerName}
-                      <Box
-                        sx={{
-                          lineHeight: 0,
-                          display: "flex",
-                          flexDirection: "column",
-                          justifyContent: "start",
-                          alignItems: "center",
-                        }}
-                      >
-                        <Button
+          <>
+            <Table aria-label="simple table" className="myTable">
+              <TableHead>
+                <TableRow className="custom-header">
+                  {myColumn.map((col) => (
+                    <TableCell
+                      sx={{
+                        minWidth: col.width || "140px",
+                        color: "#7B98BA",
+                        textAlign: "left",
+                        fontSize: "14px",
+                      }}
+                      key={col.id}
+                    >
+                      <Box sx={{ display: "flex", justifyContent: "start" }}>
+                        {col.headerName}
+                        <Box
                           sx={{
-                            minWidth: "30px",
-                            padding: "15%",
                             lineHeight: 0,
-                            color: "#7B98BA",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "start",
+                            alignItems: "center",
                           }}
                         >
-                          <i className="ri-arrow-up-s-fill"></i>
-                        </Button>
-                        <Button
-                          sx={{ padding: 0, lineHeight: 0, color: "#7B98BA" }}
-                        >
-                          <i className="ri-arrow-down-s-fill"></i>
-                        </Button>
+                          <Button
+                            sx={{
+                              minWidth: "30px",
+                              padding: "15%",
+                              lineHeight: 0,
+                              color: "#7B98BA",
+                            }}
+                          >
+                            <i className="ri-arrow-up-s-fill"></i>
+                          </Button>
+                          <Button
+                            sx={{
+                              minWidth: "30px",
+                              padding: "15%",
+                              lineHeight: 0,
+                              color: "#7B98BA",
+                            }}
+                          >
+                            <i className="ri-arrow-down-s-fill"></i>
+                          </Button>
+                        </Box>
                       </Box>
-                    </Box>
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {myRows.map((row) => {
-                return (
-                  <TableRow className="tableRow" key={row._id}>
-                    {myColumn.map((col) => {
-                      if (col.field === "project_skills") {
-                        return (
-                          <TableCell
-                            sx={{ textAlign: "left" }}
-                            key={col.id}
-                            component="th"
-                            scope="row"
-                          >
-                            <ChipGroup value={row[col?.field]} />
-                          </TableCell>
-                        );
-                      }
-                      if (col.field === "createdBy") {
-                        return (
-                          <TableCell
-                            sx={{ textAlign: "left" }}
-                            key={col.id}
-                            component="th"
-                            scope="row"
-                          >
-                            <Typography sx={{ color: "#253E5C" }} variant="p">
-                              {row[col?.field] || "Tanzim"}
-                            </Typography>
-                          </TableCell>
-                        );
-                      }
-                      if (col.field === "project_status") {
-                        return (
-                          <TableCell
-                            sx={{ textAlign: "left" }}
-                            key={col.id}
-                            component="th"
-                            scope="row"
-                          >
-                            <ProjectDrawerStatusChip value={row[col?.field]} />
-                          </TableCell>
-                        );
-                      } else if (col.field === "ACTIONS") {
-                        return (
-                          <TableCell key={col.id} component="th" scope="row">
-                            <CustomButton
-                              params={row}
-                              handleClick={handleClick}
-                              handleDelete={handleDelete}
-                            />
-                          </TableCell>
-                        );
-                      } else {
-                        return (
-                          <TableCell
-                            sx={{ textAlign: "left" }}
-                            key={col.id}
-                            component="th"
-                            scope="row"
-                          >
-                            <Typography sx={{ color: "#253E5C" }} variant="p">
-                              {row[col?.field]}
-                            </Typography>
-                          </TableCell>
-                        );
-                      }
-                    })}
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody className="tableBody  ">
+                {myRows.map((row) => {
+                  return (
+                    <TableRow className="tableRow" key={row._id}>
+                      {myColumn.map((col) => {
+                        if (col.field === "project_skills") {
+                          return (
+                            <TableCell
+                              sx={{ textAlign: "left" }}
+                              key={col.id}
+                              component="th"
+                              scope="row"
+                            >
+                              <ChipGroup value={row[col?.field]} />
+                            </TableCell>
+                          );
+                        }
+                        if (col.field === "createdBy") {
+                          return (
+                            <TableCell
+                              sx={{ textAlign: "left" }}
+                              key={col.id}
+                              component="th"
+                              scope="row"
+                            >
+                              <Typography sx={{ color: "#253E5C" }} variant="p">
+                                {row[col?.field] || "Tanzim"}
+                              </Typography>
+                            </TableCell>
+                          );
+                        }
+                        if (col.field === "benchmark") {
+                          return (
+                            <TableCell
+                              sx={{ textAlign: "left" }}
+                              key={col.id}
+                              component="th"
+                              scope="row"
+                            >
+                              <Typography sx={{ color: "#253E5C" }} variant="p">
+                                {row[col?.field] || "10 sec"}
+                              </Typography>
+                            </TableCell>
+                          );
+                        }
+                        if (col.field === "estimated_end_date") {
+                          return (
+                            <TableCell
+                              sx={{ textAlign: "left" }}
+                              key={col.id}
+                              component="th"
+                              scope="row"
+                            >
+                              <Typography sx={{ color: "#253E5C" }} variant="p">
+                                {row[col?.field] || "20 july 2023"}
+                              </Typography>
+                            </TableCell>
+                          );
+                        }
+                        if (col.field === "guideline") {
+                          return (
+                            <TableCell
+                              sx={{ textAlign: "left" }}
+                              key={col.id}
+                              component="th"
+                              scope="row"
+                            >
+                              <Typography sx={{ color: "#253E5C" }} variant="p">
+                                {row[col?.field] || "click here"}
+                              </Typography>
+                            </TableCell>
+                          );
+                        }
+                        if (col.field === "project_status") {
+                          return (
+                            <TableCell key={col.id} component="th" scope="row">
+                              <ProjectDrawerStatusChip
+                                value={row[col?.field]}
+                              />
+                            </TableCell>
+                          );
+                        } else if (col.field === "ACTIONS") {
+                          return (
+                            <TableCell key={col.id} component="th" scope="row">
+                              <CustomButton
+                                params={row}
+                                handleClick={handleClick}
+                                handleDelete={handleDelete}
+                              />
+                            </TableCell>
+                          );
+                        } else {
+                          return (
+                            <TableCell
+                              sx={{ textAlign: "left" }}
+                              key={col.id}
+                              component="th"
+                              scope="row"
+                            >
+                              <Typography sx={{ color: "#253E5C" }} variant="p">
+                                {row[col?.field]}
+                              </Typography>
+                            </TableCell>
+                          );
+                        }
+                      })}
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </>
         )}
       </Box>
       <Box

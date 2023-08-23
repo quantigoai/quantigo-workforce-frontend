@@ -86,6 +86,7 @@ const Pagination = ({
       sx={{
         display: "flex",
         width: "100%",
+        padding: "10px",
         justifyContent: "space-between",
         alignItems: "center",
         alignContent: "center",
@@ -99,7 +100,7 @@ const Pagination = ({
           alignContent: "center",
         }}
       >
-        <Typography sx={{ fontSize: "16px", width: "200px" }} variant="p">
+        <Typography sx={{ fontSize: "14px", width: "200px" }} variant="p">
           Items per page
         </Typography>
         <Select
@@ -114,7 +115,7 @@ const Pagination = ({
             }));
           }}
           labelId="demo-simple-select-label"
-          sx={{ width: "100px", border: "1px solid #b9b9b9" }}
+          sx={{ width: "100px", height: "40px", border: "1px solid #b9b9b9" }}
           name="limit"
         >
           {/* Your paginationOptions.map() here */}
@@ -145,8 +146,8 @@ const Pagination = ({
               variant="small"
               sx={{
                 minWidth: "40px",
-                fontSize: "16px",
-                padding: "10px",
+                fontSize: "14px",
+                padding: "6px 2px",
                 color:
                   pagination.currentPage === pageNumberToShow
                     ? "white"

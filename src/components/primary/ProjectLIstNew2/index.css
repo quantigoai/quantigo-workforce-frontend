@@ -7,50 +7,73 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
- .test{
-     
-     color : rgb(192, 221, 26);
-     border: 1px solid black;
-    }
 
- .MuiAvatarGroup-root{
-        justify-content: start;
+.test{
+  
+    color : rgb(192, 221, 26);
+    border: 1px solid black;
 }
 
+.MuiAvatarGroup-root{
+    justify-content: start;
+}
+.MuiTableCell-root{
+    border-bottom: 1px solid #F2F6FC;
+}
 .div1 {
     width: 100%;
-    height: calc(80vh - 90px);
+    height: calc(79vh - 90px);
     position: relative;
-    overflow-x: scroll;
-    scroll-snap-type: mandatory;
+    /* overflow-x:scroll; */
+    overflow: scroll;
+    border: 1p solid #EBF0F5;
+    background-color: #fff;
 }
 
 
 .myTable{
     position: absolute;
     background-color: #ffffff;
-    height: 100%;
-    width: 100%;
     border-collapse: separate;
+    user-select: none;
+
 }
-
-
 .div1 table {
     border-spacing: 0;
+    /* cursor: grab; */
 }
+
+.div1::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    /* display: none; */
+    
+  }
+
+
+  .div1::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(38, 96, 204, 0.567); 
+    cursor: grab;
+  }
+
+  .div1::-webkit-scrollbar-track:hover {
+    background-color: rgb(213, 217, 245); 
+    cursor: grab;
+  }
 
 .div1 th {
     border-left: none;
     padding: 5px;
     font-weight: normal;
+    
 }
-
 .div1 td {
     border-left: none;
     padding: 5px;
     width: 80px;
     min-width: 80px;
 }
+
 
 .div1 th:nth-child(1),
 .div1 td:nth-child(1) {
@@ -63,6 +86,7 @@
     border-right: 1px solid #EBF0F5;
 }
 
+
 .div1 th:last-child,
 .div1 td:last-child {
     position: sticky;
@@ -70,8 +94,17 @@
     width: 80px;
     min-width: 80px;
     background-color: #FFFFFF;
-    border-left: 1px solid #EBF0F5; 
+    border-left: 1px solid #EBF0F5;
+   
 }
+
+
+.div1 th:nth-child(1),
+.div1 th:last-child
+ {    
+    z-index: 20;
+}
+
 
 .custom-header{
     top:0;
@@ -79,14 +112,13 @@
     position: sticky;
     background-color: #ffffff;
     z-index: 30;
+}
+
+
+.tableRow{
+    height:  calc(6.4vh);
    
 }
 
-.div1 th:nth-child(1),
-.div1 th:last-child{    
-    z-index: 20;
-}
 
-.tableRow{
-    scroll-snap-type: mandatory;
-} 
+

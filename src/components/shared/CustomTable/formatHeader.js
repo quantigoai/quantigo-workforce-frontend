@@ -35,6 +35,8 @@ const customHeader = (params) => {
       return "PLATFORM";
     case "project_status":
       return "STATUS";
+      case"benchmark":
+      return "BENCHMARK"
     case "estimated_end_date":
       return "ESTIMATED END DATE";
     case "checkedInUsers":

@@ -193,8 +193,8 @@ const projectDrawerSlice = createSlice({
       .addCase(createProjectDrawer.fulfilled, (state, action) => {
         state.error = null;
         state.projectDrawers = [
-          action.payload.data.projectDrawer,
           ...state.projectDrawers,
+          action.payload.data.projectDrawer,
         ];
         state.isLoading = false;
       })

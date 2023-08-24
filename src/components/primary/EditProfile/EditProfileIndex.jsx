@@ -26,7 +26,7 @@ import ChangePasswordIndex from "./Password/ChangePasswordIndex";
 import NagadPhoneNumberField from "./NagadPhoneNumberField";
 
 const paperStyle = {
-  width: "80vw",
+  width: "100%",
 };
 const EditProfileIndex = () => {
   const { register, handleSubmit } = useForm();

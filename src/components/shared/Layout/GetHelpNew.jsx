@@ -1,38 +1,35 @@
-import { Button, Grid, Paper, styled, Typography } from "@mui/material";
+import { Box, Button, Grid, Paper, styled, Typography } from "@mui/material";
 import React from "react";
 import HelpIcon from "../../../assets/images/IconHelp.svg";
 
 const ButtonStyleHelp = styled(Button)({
-  // backgroundColor: "#2D58FF",
-  // color: "#FFFFFF",
-  width: "100%",
-  borderRadius: "2px",
+  backgroundColor: "#FFFFFF",
+  color: "#2E58FF",
+  width: "50%",
+  borderRadius: "8px",
+  fontSize: "12px",
   "&:hover": {
     backgroundColor: "#FF9A45",
     color: "#1D1D1D",
   },
 });
-const GetHelp = () => {
+const GetHelpNew = () => {
   const handleHelp = () => {
     window.open("https://discord.gg/YarPssHr6y");
   };
 
   return (
     <>
-      <Paper sx={{ borderRadius: "2px" }}>
-        <Grid
-          container
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            position: "relative",
-            bottom: "20px",
-            justifyContent: "center",
-          }}>
-          <img src={HelpIcon} />
-        </Grid>
-        <Grid container sx={{ justifyContent: "center" }}>
-          <Typography variant="h7" sx={{ color: "#1D1D1D" }}>
+      <Grid
+        container
+        sx={{
+          borderRadius: "8px",
+          //   height: "157px",
+          backgroundColor: "#476CFF",
+          //   padding: "10%",
+        }}>
+        <Grid container sx={{ justifyContent: "center", paddingTop: "10%" }}>
+          <Typography variant="h6" sx={{ fontSize: "14px", color: "#FFFFFF" }}>
             Need Help?
           </Typography>
         </Grid>
@@ -41,31 +38,43 @@ const GetHelp = () => {
           sx={{
             justifyContent: "center",
             paddingLeft: "9%",
-            paddingRight: "5%",
+            paddingRight: "9%",
             paddingTop: "2%",
+            paddingBottom: "5%",
             textAlign: "center",
           }}>
           <Typography
             sx={{
-              color: "#969CAF",
+              color: "#E6ECF5",
               justifyContent: "center",
               textAlign: "center",
+              fontSize: "12px",
             }}
             variant="body2">
-            Our customer support is at your service.
+            Our customer support is at your
+          </Typography>
+          <Typography
+            sx={{
+              color: "#E6ECF5",
+              justifyContent: "center",
+              textAlign: "center",
+              fontSize: "12px",
+            }}
+            variant="body2">
+            service
           </Typography>
         </Grid>
         <Grid
           container
           sx={{
             justifyContent: "center",
-            paddingLeft: "7%",
-            paddingRight: "7%",
+            paddingLeft: "10%",
+            paddingRight: "10%",
             paddingTop: "2%",
-            paddingBottom: "5%",
+            paddingBottom: "10%",
           }}>
           <ButtonStyleHelp variant="outlined" onClick={handleHelp}>
-            Get Help
+            <b> Get Help</b>
           </ButtonStyleHelp>
 
           {/* <iframe
@@ -76,9 +85,9 @@ const GetHelp = () => {
             frameborder="0"
             sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe> */}
         </Grid>
-      </Paper>
+      </Grid>
     </>
   );
 };
 
-export default GetHelp;
+export default GetHelpNew;

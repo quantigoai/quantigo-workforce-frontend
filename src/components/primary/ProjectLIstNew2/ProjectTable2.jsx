@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Link, Typography } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -38,6 +38,34 @@ const ProjectTable2 = ({
   totalItems,
 }) => {
   const { isLoading } = useSelector((state) => state.projectDrawer);
+  // const [isDown, setIsDown] = useState(false);
+  // const tableRow = useRef(null);
+  // let startX;
+  // let scrollLeft;
+  // const handleMouseDown = (e) => {
+  //   setIsDown(true);
+  //   startX = e.pageX - tableRow.current.offsetLeft;
+  //   scrollLeft = tableRow.current.scrollLeft;
+  // };
+  // const handleMouseLeave = () => {
+  //   // setIsDown(false);
+  // };
+  // const handleMouseUp = () => {
+  //   // setIsDown(false);
+  // };
+  // const handleMouseMove = (e) => {
+  //   // if (!isDown) return;
+  //   // e.preventDefault();
+  //   const mouseMove = e.pageX - tableRow.current.offsetLeft;
+
+  //   const walkOver = (mouseMove - startX) * 3;
+
+  //   tableRow.current.scrollLeft = scrollLeft - walkOver;
+  //   console.log(
+  //     "🚀 ~ file: ProjectTable2.jsx:65 ~ handleMouseMove ~ tableRow.current.scrollLeft :",
+  //     tableRow.current.scrollLeft
+  //   );
+  // };
 
   return (
     <>
@@ -99,7 +127,15 @@ const ProjectTable2 = ({
               <TableBody className="tableBody  ">
                 {myRows.map((row) => {
                   return (
-                    <TableRow className="tableRow" key={row._id}>
+                    <TableRow
+                      // ref={tableRow}
+                      // onMouseDown={handleMouseDown}
+                      // onMouseLeave={handleMouseLeave}
+                      // onMouseMove={handleMouseMove}
+                      // onMouseUp={handleMouseUp}
+                      className="tableRow"
+                      key={row._id}
+                    >
                       {myColumn.map((col) => {
                         if (col.field === "project_skills") {
                           return (
@@ -164,7 +200,17 @@ const ProjectTable2 = ({
                               scope="row"
                             >
                               <Typography sx={{ color: "#253E5C" }} variant="p">
-                                {row[col?.field] || "click here"}
+                                <Link
+                                  sx={{
+                                    textDecoration: "none",
+                                    cursor: "pointer",
+                                    fontSize: "14px",
+                                  }}
+                                  href="#"
+                                >
+                                  click here{" "}
+                                  <i className="ri-arrow-right-up-line"></i>
+                                </Link>
                               </Typography>
                             </TableCell>
                           );

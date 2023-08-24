@@ -48,6 +48,7 @@ const fields = [
 import EditProjectModal from "./EditProjectModal";
 import ProjectModal from "./ProjectModal";
 import ProjectTable2 from "./ProjectTable2";
+import ProjectSelectFIlter from "./ProjectSelectFIlter";
 
 /**
  * @returns {JSX.Element} A table for rendering rows and columns items in the project list 2 page
@@ -118,6 +119,10 @@ const ProjectLIstIndex2 = () => {
             display: "flex",
             justifyContent: "space-between",
             width: "100%",
+            padding: ".5%",
+            background: "#FFFFFF",
+            borderTop: " 2px solid #E6ECF5",
+            borderBottom: " 2px solid #E6ECF5",
           }}
         >
           <Box sx={{ width: "30%" }}>
@@ -165,7 +170,6 @@ const ProjectLIstIndex2 = () => {
             <IconButton
               sx={{ px: "15px", background: "#F4F7FE" }}
               aria-label="menu"
-              //   onClick={handleClickFilter}
             >
               <CustomFilterIcon />
             </IconButton>
@@ -205,21 +209,16 @@ const ProjectLIstIndex2 = () => {
           </Box>
         )}
 
+        <Box sx={{ backgroundColor: "#FFFFFF", width: "100%", padding: "5px" }}>
+          <ProjectSelectFIlter />
+        </Box>
+
         <Box
           sx={{
             width: "100%",
-            mt: "40px",
+            mt: "10px",
           }}
         >
-          {/* <CustomTable
-            myColumn={myColumn}
-            myRows={myRows}
-            totalCount={total}
-            paginationModel={paginationModel}
-            setPaginationModel={setPaginationModel}
-            isLoading={isLoading}
-          /> */}
-
           <ProjectTable2
             handleClick={handleClick}
             handleDelete={handleDelete}
@@ -230,7 +229,6 @@ const ProjectLIstIndex2 = () => {
             handleChangePagination={handleChangePagination}
             totalItems={total}
           />
-          {/* <ProjectTable2Old /> */}
         </Box>
       </Box>
     </>

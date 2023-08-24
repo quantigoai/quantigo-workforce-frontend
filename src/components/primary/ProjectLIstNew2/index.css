@@ -1,18 +1,10 @@
-/*
- * Filename: /home/tanzim/OfficeWorkstation/quantigo-workforce-frontend/src/components/primary/ProjectLIstNew2/index.css
- * Path: /home/tanzim/OfficeWorkstation/quantigo-workforce-frontend
- * Created Date: Monday, August 7th 2023, 12:27:55 pm
- * Author: Tanzim Ahmed
- * 
- * Copyright (c) 2023 Tanzim Ahmed
- */
-
 
 .test{
   
     color : rgb(192, 221, 26);
     border: 1px solid black;
 }
+
 
 .MuiAvatarGroup-root{
     justify-content: start;
@@ -22,9 +14,8 @@
 }
 .div1 {
     width: 100%;
-    height: calc(79vh - 90px);
+    height: calc(72vh - 90px);
     position: relative;
-    /* overflow-x:scroll; */
     overflow: scroll;
     border: 1p solid #EBF0F5;
     background-color: #fff;
@@ -35,18 +26,16 @@
     position: absolute;
     background-color: #ffffff;
     border-collapse: separate;
-    user-select: none;
-
 }
 .div1 table {
     border-spacing: 0;
-    /* cursor: grab; */
+  
 }
 
 .div1::-webkit-scrollbar {
     width: 10px;
     height: 10px;
-    /* display: none; */
+
     
   }
 
@@ -69,7 +58,6 @@
 }
 .div1 td {
     border-left: none;
-    padding: 5px;
     width: 80px;
     min-width: 80px;
 }
@@ -90,7 +78,7 @@
 .div1 th:last-child,
 .div1 td:last-child {
     position: sticky;
-    right: -1px;
+    right: 0px;
     width: 80px;
     min-width: 80px;
     background-color: #FFFFFF;
@@ -116,7 +104,8 @@
 
 
 .tableRow{
-    height:  calc(6.4vh);
+    height:  calc(5.7vh);
+    cursor: grab;
    
 }
 

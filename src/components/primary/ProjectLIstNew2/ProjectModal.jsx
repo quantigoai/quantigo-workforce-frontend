@@ -90,10 +90,6 @@ const ProjectModal = ({
   };
   const [addDoc, setAddDoc] = useState([]);
 
-  const handleChange = (event) => {
-    setPlatform(event.target.value);
-  };
-
   const handleAddDoc = () => {
     const newDoc = [...addDoc, []];
     setAddDoc(newDoc);
@@ -104,8 +100,6 @@ const ProjectModal = ({
     deleteDoc.splice(id, 1);
     setAddDoc(deleteDoc);
   };
-
-
 
   const platformOptions = [
     { value: "supervisely", label: "supervisely" },
@@ -230,20 +224,7 @@ const ProjectModal = ({
 
                 {/* <SkillField/> */}
 
-                {/* <Grid item xs={6}>
-                    <SkillFieldProject
-                      skills={skills}
-                      addSkills={addSkills}
-                      handleChangeSkill={handleChangeSkill}
-                    />
-                  </Grid> */}
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  {/* <PDSelectField
-                    name={"project_skills"}
-                    label="Skills"
-                    options={skills}
-                    defaultValue={"Select"}
-                  /> */}
                   <PDskillFIeld
                     name={"project_skills"}
                     addSkills={addSkills}
@@ -276,24 +257,6 @@ const ProjectModal = ({
                   />
                 </Stack>
 
-                {/* 
-                  <CreateProjectFieldSelect
-                    field={"Status"}
-                    register={register}
-                    registerName={"project_status"}
-                    defaultValue={status}
-                    value_1={"not-Started"}
-                    value_2={"completed"}
-                    value_3={"in-Progress"}
-                    value_4={"hours-added"}
-                    MenuItemValue_1={"Not Started"}
-                    MenuItemValue_2={"Completed"}
-                    MenuItemValue_3={"In Progress"}
-                    MenuItemValue_4={"Hours Added"}
-                    CustomDownArrow={CustomDownArrow}
-                    onChange={(e) => handleStatus(e)}
-                  />
- */}
                 <Typography
                   sx={{
                     fontWeight: "500",

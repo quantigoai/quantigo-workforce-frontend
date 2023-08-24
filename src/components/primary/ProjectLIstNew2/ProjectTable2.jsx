@@ -8,6 +8,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import PageinationTable from "./PageinationTable";
 import { Box } from "@mui/material";
+
+//changed here 
 const ProjectTable2 = ({ myColumn, myRows }) => {
   //   const columns = Object.keys(myColumn[0] || {});
   // test commit 

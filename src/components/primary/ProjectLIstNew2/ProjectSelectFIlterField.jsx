@@ -5,7 +5,6 @@ import {
   Select,
   styled,
 } from "@mui/material";
-import React, { useState } from "react";
 import { MyFormControl } from "../../shared/CustomField/CustomDatePicker";
 import PropTypes from "prop-types";
 export const MySelect = styled(Select)(() => ({
@@ -23,15 +22,18 @@ export default function ProjectSelectFIlterField({
   options,
   label,
   handleChange,
+  name,
 }) {
   return (
-    <MyFormControl sx={{ m: 1, minWidth: 298 }} size="small">
+    <MyFormControl sx={{ m: 1, minWidth: 220 }} size="small">
       <InputLabel id="demo-select-small-label">{label}</InputLabel>
       <MySelect
         labelId="demo-select-small-label"
         id="demo-select-small"
+        defaultValue=""
         label={label}
         onChange={handleChange}
+        name={name}
       >
         {options.map((option) => (
           <MenuItem key={option.value} fullWidth value={option.value}>

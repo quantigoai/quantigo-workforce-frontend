@@ -32,7 +32,7 @@ const RoutersLogin = lazy(() =>
   import("./components/primary/Routers/RoutersLogin")
 );
 // import Layout from "./components/shared/Layout/Layout";
-const Layout = lazy(() => import("./components/shared/Layout/Layout"));
+// const Layout = lazy(() => import("./components/shared/Layout/Layout"));
 
 import CryptoJS from "crypto-js";
 import LoadingComponent from "./components/shared/Loading/LoadingComponent";
@@ -46,7 +46,8 @@ import { updateQuizData } from "./features/slice/quizSlice";
 import { updateSkillData } from "./features/slice/skillSlice";
 import { updateTeamData } from "./features/slice/teamSlice";
 import { updateWorkSpaceData } from "./features/slice/workSpaceSlice";
-import LayoutNew from "./components/shared/Layout/LayoutNew";
+// import LayoutNew from "./components/shared/Layout/LayoutNew";
+const LayoutNew = lazy(() => import("./components/shared/Layout/LayoutNew"));
 
 const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 export const socket = io(import.meta.env.VITE_APP_SOCKET_SERVER_URL);

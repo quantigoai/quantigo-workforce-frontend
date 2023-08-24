@@ -23,6 +23,7 @@ export default function ProjectSelectFIlterField({
   options,
   label,
   handleChange,
+  name,
 }) {
   return (
     <MyFormControl sx={{ m: 1, minWidth: 298 }} size="small">
@@ -32,9 +33,10 @@ export default function ProjectSelectFIlterField({
         id="demo-select-small"
         label={label}
         onChange={handleChange}
+        name={name}
       >
         {options.map((option) => (
-          <MenuItem key={option.value} fullWidth value={option.value}>
+          <MenuItem n key={option.value} fullWidth value={option.value}>
             {option.label}
           </MenuItem>
         ))}

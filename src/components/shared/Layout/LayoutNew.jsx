@@ -346,9 +346,8 @@ export default function LayoutNew({ children }) {
 
   return (
     <Box sx={{ display: "flex" }}>
-    
       <Header />
-      
+
       <Drawer
         PaperProps={{
           sx: {

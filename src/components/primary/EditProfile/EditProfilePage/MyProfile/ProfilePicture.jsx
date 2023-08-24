@@ -18,7 +18,7 @@ const ProfilePicture = () => {
               />
             </Grid>
             <Grid>
-              <Typography>name</Typography>
+              <Typography>ndsfdsfame</Typography>
             </Grid>
           </Grid>
           <Grid item xs={4}></Grid>

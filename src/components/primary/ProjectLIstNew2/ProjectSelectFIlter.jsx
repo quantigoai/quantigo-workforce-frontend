@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import ProjectSelectFIlterField from "./ProjectSelectFIlterField";
 import { useEffect, useState } from "react";
 
@@ -27,45 +27,56 @@ const ProjectSelectFIlter = () => {
     { value: "video", label: "video" },
     { value: "image", label: "image" },
   ];
-  const [value, setValue] = useState();
+  const [filterValue, setFilterValue] = useState({});
 
   const handleChange = (event) => {
-    // console.log(event.target);
     const field = event.target.name;
     const value = event.target.value;
-    const newVal = [...value];
+    const newVal = { ...filterValue };
     newVal[field] = value;
+    setFilterValue(newVal);
     console.log(newVal);
   };
 
   return (
-    <Box sx={{ mt: 1, width: "100%" }}>
-      <ProjectSelectFIlterField
-        label={"Pdr Options"}
-        name="pdr_Options"
-        options={filterPDR}
-        handleChange={handleChange}
-      />
-      <ProjectSelectFIlterField
-        label={"Industry Type"}
-        name="industry_type"
-        options={industryType}
-        handleChange={handleChange}
-      />
-      <ProjectSelectFIlterField label={"Client Alias"} options={clientFilter} />
-      <ProjectSelectFIlterField
-        label={"Annotation Type"}
-        name="annotation_type"
-        options={annotationFilter}
-        handleChange={handleChange}
-      />
-      <ProjectSelectFIlterField
-        label={"Data Type"}
-        name="data_type"
-        options={dataFilter}
-        handleChange={handleChange}
-      />
-    </Box>
+    <Grid container sx={{ mt: 1 }}>
+      <Grid items xs={10}>
+        <ProjectSelectFIlterField
+          label={"Pdr Options"}
+          name="pdr_Options"
+          options={filterPDR}
+          handleChange={handleChange}
+        />
+        <ProjectSelectFIlterField
+          label={"Industry Type"}
+          name="industry_type"
+          options={industryType}
+          handleChange={handleChange}
+        />
+        <ProjectSelectFIlterField
+          name="client_type"
+          label={"Client Alias"}
+          options={clientFilter}
+          handleChange={handleChange}
+        />
+        <ProjectSelectFIlterField
+          label={"Annotation Type"}
+          name="annotation_type"
+          options={annotationFilter}
+          handleChange={handleChange}
+        />
+        <ProjectSelectFIlterField
+          label={"Data Type"}
+          name="data_type"
+          options={dataFilter}
+          handleChange={handleChange}
+        />
+      </Grid>
+      <Grid  item xs={2}>
+        {" "}
+        <Button> Delete</Button>
+      </Grid>
+    </Grid>
   );
 };
 

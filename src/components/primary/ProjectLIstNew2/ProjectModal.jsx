@@ -157,6 +157,7 @@ const ProjectModal = ({
           <Box sx={style}>
             <ProjectModalHeader
               handleCreateProjectClose={handleCreateProjectClose}
+              modalTitle={"Create Project"}
             />
             <Box
               sx={{

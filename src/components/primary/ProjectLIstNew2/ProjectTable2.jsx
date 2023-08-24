@@ -5,14 +5,13 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { useSelector } from "react-redux";
+import "swiper/css";
 import ChipGroup from "../../shared/CustomTable/ChipGroup";
 import CustomButton from "../../shared/CustomTable/CustomButton";
 import ProjectDrawerStatusChip from "../../shared/FilterField/ProjectDrawerStatusChip";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import PaginationTable from "./PaginationTable";
 import "./index.css";
-import { useRef, useState } from "react";
-import "swiper/css";
 
 /**
  * @param {object} pagination - pagination object
@@ -66,6 +65,8 @@ const ProjectTable2 = ({
   //     tableRow.current.scrollLeft
   //   );
   // };
+
+  //   const columns = Object.keys(myColumn[0] || {});
 
   return (
     <>

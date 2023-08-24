@@ -46,6 +46,7 @@ import { updateQuizData } from "./features/slice/quizSlice";
 import { updateSkillData } from "./features/slice/skillSlice";
 import { updateTeamData } from "./features/slice/teamSlice";
 import { updateWorkSpaceData } from "./features/slice/workSpaceSlice";
+import LayoutNew from "./components/shared/Layout/LayoutNew";
 
 const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 export const socket = io(import.meta.env.VITE_APP_SOCKET_SERVER_URL);
@@ -200,9 +201,9 @@ function App() {
     <Box className="App">
       {isLoggedIn ? (
         <Suspense fallback={<LoadingComponent />}>
-          <Layout>
+          <LayoutNew>
             <Routers />
-          </Layout>
+          </LayoutNew>
         </Suspense>
       ) : (
         <Suspense fallback={<LoadingComponent />}>

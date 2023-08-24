@@ -46,9 +46,10 @@ const fields = [
 ];
 
 import EditProjectModal from "./EditProjectModal";
+import Project2DetailsModal from "./Project2Details/Project2DetailsModal";
 import ProjectModal from "./ProjectModal";
-import ProjectTable2 from "./ProjectTable2";
 import ProjectSelectFIlter from "./ProjectSelectFIlter";
+import ProjectTable2 from "./ProjectTable2";
 
 /**
  * @returns {JSX.Element} A table for rendering rows and columns items in the project list 2 page
@@ -75,7 +76,12 @@ const ProjectLIstIndex2 = () => {
   const alert = useAlert();
   const [editModalOpen, setEditModalOpen] = React.useState(false);
   const [createProjectOpen, setCreateProjectOpen] = React.useState(false);
+  const [detailsProjectOpen, setDetailsProjectOpen] = React.useState(false);
   const handleProjectCreateOpen = () => setCreateProjectOpen(true);
+  const handleProjectDetailsOpen = () => setDetailsProjectOpen(true);
+  const handleDetailsProjectClose = () => {
+    setDetailsProjectOpen(false);
+  };
 
   const handleCreateProjectClose = () => {
     setCreateProjectOpen(false);
@@ -230,6 +236,29 @@ const ProjectLIstIndex2 = () => {
             totalItems={total}
           />
         </Box>
+
+        {/* <Button
+          sx={{
+            textTransform: "none",
+            borderRadius: "8px",
+            background: "#2E58FF",
+          }}
+          variant="contained"
+          onClick={handleProjectDetailsOpen}
+        >
+          details Project
+        </Button> */}
+
+        {detailsProjectOpen && (
+          <Box>
+            <Project2DetailsModal
+              detailsProjectOpen={detailsProjectOpen}
+              handleProjectDetailsOpen={handleProjectDetailsOpen}
+              handleDetailsProjectClose={handleDetailsProjectClose}
+              // setCreateProjectOpen={setCreateProjectOpen}
+            />
+          </Box>
+        )}
       </Box>
     </>
   );

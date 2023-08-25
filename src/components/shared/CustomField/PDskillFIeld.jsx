@@ -51,13 +51,17 @@ const PDskillFIeld = ({
                 <Box
                   sx={{
                     display: "grid",
-                    gridTemplateColumns: "repeat(3,1fr)",
+                    gridTemplateColumns: "repeat(2,1fr)",
                     gap: 0.5,
                   }}
                 >
-                  {selected?.map((value) => (
-                    <Chip key={value} label={value} />
-                  ))}
+                  {selected?.map((value, i) =>
+                    [0, 1].includes(i) ? (
+                      <Chip key={value} label={value} />
+                    ) : (
+                      <p key={value}> +{i} more</p>
+                    )
+                  )}
                 </Box>
               )}
               MenuProps={MenuProps}

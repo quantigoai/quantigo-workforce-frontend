@@ -30,10 +30,16 @@ export const getAllProjectDrawers = createAsyncThunk(
   "/project-drawer/",
   async (data) => {
     try {
-      const { pagination } = data;
+      const { pagination,filteredData } = data;
       let query = `limit=${pagination.pageSize}&skip=${
         pagination.currentPage * pagination.pageSize
       }`;
+      
+      const filterOptions = Object.keys(filteredData);
+      filterOptions.map((f)=> query += `&${f}=${filteredData[f]}`)
+      
+
+
       return await axios.get(`${url}/project-drawer?${query}`, {
         headers: {
           Authorization: `Bearer ${realToken()}`,
@@ -180,7 +186,16 @@ const projectDrawerSlice = createSlice({
       .addCase(getAllProjectDrawers.fulfilled, (state, action) => {
         state.isLoading = false;
         state.projectDrawers = action.payload.data.projectDrawers;
-        state.total = action.payload.data.count;
+         
+        if(action.payload.data?.filteredTotalCount=== 0){
+          state.total =  action.payload.data.filteredTotalCount
+        } 
+        else if(action.payload.data?.filteredTotalCount){
+          state.total = action.payload.data.filteredTotalCount
+        } 
+        else{
+          state.total =  action.payload.data.count;
+        }
         state.error = null;
       })
       .addCase(getAllProjectDrawers.rejected, (state, action) => {

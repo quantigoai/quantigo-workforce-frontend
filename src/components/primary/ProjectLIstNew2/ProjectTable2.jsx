@@ -37,36 +37,6 @@ const ProjectTable2 = ({
   totalItems,
 }) => {
   const { isLoading } = useSelector((state) => state.projectDrawer);
-  // const [isDown, setIsDown] = useState(false);
-  // const tableRow = useRef(null);
-  // let startX;
-  // let scrollLeft;
-  // const handleMouseDown = (e) => {
-  //   setIsDown(true);
-  //   startX = e.pageX - tableRow.current.offsetLeft;
-  //   scrollLeft = tableRow.current.scrollLeft;
-  // };
-  // const handleMouseLeave = () => {
-  //   // setIsDown(false);
-  // };
-  // const handleMouseUp = () => {
-  //   // setIsDown(false);
-  // };
-  // const handleMouseMove = (e) => {
-  //   // if (!isDown) return;
-  //   // e.preventDefault();
-  //   const mouseMove = e.pageX - tableRow.current.offsetLeft;
-
-  //   const walkOver = (mouseMove - startX) * 3;
-
-  //   tableRow.current.scrollLeft = scrollLeft - walkOver;
-  //   console.log(
-  //     "🚀 ~ file: ProjectTable2.jsx:65 ~ handleMouseMove ~ tableRow.current.scrollLeft :",
-  //     tableRow.current.scrollLeft
-  //   );
-  // };
-
-  //   const columns = Object.keys(myColumn[0] || {});
 
   return (
     <>

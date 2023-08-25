@@ -107,7 +107,7 @@ const ProjectModal = ({
     { value: "superb_ai", label: "Superb AI" },
   ];
   const projectTypeOptions = [
-    { value: "imgae", label: "Image" },
+    { value: "image", label: "Image" },
     { value: "video", label: "Video" },
   ];
   const statusOptions = [

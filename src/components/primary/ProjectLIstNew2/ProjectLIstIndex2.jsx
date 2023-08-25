@@ -70,7 +70,7 @@ const ProjectLIstIndex2 = () => {
   );
 
   const dispatch = useDispatch();
-
+  const [filterValue, setFilterValue] = useState({});
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
   const alert = useAlert();
@@ -114,8 +114,50 @@ const ProjectLIstIndex2 = () => {
   }, [projectDrawers]);
 
   const handleChangePagination = useCallback(() => {
-    dispatch(getAllProjectDrawers({ pagination }));
-  }, [dispatch, pagination]);
+    dispatch(getAllProjectDrawers({ pagination, filteredData: filterValue }));
+  }, [dispatch, pagination, filterValue]);
+
+  const filterPDR = [
+    { value: "1", label: "1" },
+    { value: "2", label: "2" },
+    { value: "3", label: "3" },
+    { value: "4", label: "4" },
+    { value: "5", label: "5" },
+  ];
+
+  const platformOptions = [
+    { value: "supervisely", label: "supervisely" },
+    { value: "encord", label: "Encord" },
+    { value: "superb_ai", label: "Superb AI" },
+  ];
+  const statusOptions = [
+    { value: "not-Started", label: "Not Started" },
+    { value: "in-Progress", label: "In Progress" },
+    { value: "completed", label: "Completed" },
+    { value: "hours-added", label: "Hours added" },
+  ];
+  const projectTypeOptions = [
+    { value: "image", label: "Image" },
+    { value: "video", label: "Video" },
+  ];
+
+  const handleChange = (event) => {
+    const field = event.target.name;
+    const value = event.target.value;
+    const filteredData = { ...filterValue };
+    filteredData[field] = value;
+    setFilterValue(filteredData);
+    // dispatch(getAllProjectDrawers({ filteredData, pagination }));
+  };
+  const defaultState = {
+    pdr: "",
+    project_platform: "",
+    project_type: "",
+    project_status: "",
+  };
+  const handleClearFilter = () => {
+    setFilterValue(defaultState);
+  };
 
   return (
     <>
@@ -216,7 +258,15 @@ const ProjectLIstIndex2 = () => {
         )}
 
         <Box sx={{ backgroundColor: "#FFFFFF", width: "100%", padding: "5px" }}>
-          <ProjectSelectFIlter />
+          <ProjectSelectFIlter
+            filterPDR={filterPDR}
+            platformOptions={platformOptions}
+            statusOptions={statusOptions}
+            projectTypeOptions={projectTypeOptions}
+            handleChange={handleChange}
+            handleClearFilter={handleClearFilter}
+            filterValue={filterValue}
+          />
         </Box>
 
         <Box
@@ -237,25 +287,12 @@ const ProjectLIstIndex2 = () => {
           />
         </Box>
 
-        {/* <Button
-          sx={{
-            textTransform: "none",
-            borderRadius: "8px",
-            background: "#2E58FF",
-          }}
-          variant="contained"
-          onClick={handleProjectDetailsOpen}
-        >
-          details Project
-        </Button> */}
-
         {detailsProjectOpen && (
           <Box>
             <Project2DetailsModal
               detailsProjectOpen={detailsProjectOpen}
               handleProjectDetailsOpen={handleProjectDetailsOpen}
               handleDetailsProjectClose={handleDetailsProjectClose}
-              // setCreateProjectOpen={setCreateProjectOpen}
             />
           </Box>
         )}

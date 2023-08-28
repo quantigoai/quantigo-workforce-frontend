@@ -20,11 +20,12 @@ export default function ProjectSelectFIlterField({
 }) {
   return (
     <MyFormControl sx={{ m: 0.5, minWidth: "23%" }} size="medium">
-      <InputLabel id="demo-select-small-label">{label}</InputLabel>
+      <InputLabel>{label}</InputLabel>
       <MySelect
-        labelId="demo-select-small-label"
-        id="demo-select-small"
+        labelId="demo-simple-select-autowidth-label"
+        id="demo-simple-select-autowidth"
         defaultValue={""}
+        placeholder="Select"
         value={filterValue?.[name] ?? ""}
         label={label}
         onChange={handleChange}

@@ -1,13 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { Stack, styled } from "@mui/material";
+import { Stack } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Fade from "@mui/material/Fade";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,10 +15,9 @@ import { createProjectDrawer } from "../../../features/slice/projectDrawerSlice"
 import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
 import FormProvider from "../../shared/FormProvider/FormProvider";
 import ProjectModalHeader from "./ProjectModalHeader";
-import CreateProjectFieldSelect from "./CreateProjectFieldSelect";
-import CustomSelectField from "../../shared/CustomField/CustomSelectField";
 import PDSelectField from "../../shared/CustomField/PDSelectField";
 import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
+import useHandleChange from "./Hooks/useHandleChange";
 const style = {
   position: "absolute",
   top: "50%",
@@ -40,37 +38,21 @@ const style = {
   },
 };
 
-const CustomDownArrow = styled(KeyboardArrowDownIcon)({
-  color: "#667085",
-  marginRight: "10px",
-});
-
 const ProjectModal = ({
   createProjectOpen,
   handleCreateProjectClose,
   setCreateProjectOpen,
+  statusCreateOptions,
+  platformCreateOptions,
+  projectTypeCreateOptions,
 }) => {
   const { skills } = useSelector((state) => state.skill);
   const dispatch = useDispatch();
   const alert = useAlert();
-  const [addSkills, setAddSkills] = useState([]);
-  const [platform, setPlatform] = React.useState("");
-  const [status, setStatus] = React.useState("");
 
-  const handleChangeSkill = (event) => {
-    const {
-      target: { value },
-    } = event;
+  const inputRef = useRef(null);
 
-    const selectedSkills = value.map((skill) => {
-      return skills.find((s) => s.name === skill);
-    });
-
-    setAddSkills(
-      // On autofill we get a stringified value.
-      typeof selectedSkills === "string" ? value.split(",") : selectedSkills
-    );
-  };
+  const { handleChangeSkill, addSkills, count } = useHandleChange();
 
   const skillId = addSkills?.map((skill) => skill._id);
 
@@ -88,6 +70,7 @@ const ProjectModal = ({
       }
     });
   };
+
   const [addDoc, setAddDoc] = useState([]);
 
   const handleAddDoc = () => {
@@ -100,22 +83,6 @@ const ProjectModal = ({
     deleteDoc.splice(id, 1);
     setAddDoc(deleteDoc);
   };
-
-  const platformOptions = [
-    { value: "supervisely", label: "supervisely" },
-    { value: "encord", label: "Encord" },
-    { value: "superb_ai", label: "Superb AI" },
-  ];
-  const projectTypeOptions = [
-    { value: "image", label: "Image" },
-    { value: "video", label: "Video" },
-  ];
-  const statusOptions = [
-    { value: "not-Started", label: "Not Started" },
-    { value: "in-Progress", label: "In Progress" },
-    { value: "completed", label: "Completed" },
-    { value: "hours-added", label: "Hours added" },
-  ];
 
   const ProjectDrawerSchema = Yup.object().shape({
     project_drawer_name: Yup.string().required(" project name is required"),
@@ -131,12 +98,7 @@ const ProjectModal = ({
     resolver: yupResolver(ProjectDrawerSchema),
   });
 
-  const {
-    reset,
-    setError,
-    handleSubmit,
-    formState: { errors },
-  } = methods;
+  const { reset, handleSubmit } = methods;
 
   return (
     <>
@@ -172,7 +134,7 @@ const ProjectModal = ({
                   <PDSelectField
                     name={"project_platform"}
                     label="Platform"
-                    options={platformOptions}
+                    options={platformCreateOptions}
                     defaultValue={"Select"}
                   />
                   <PDTextFIeld
@@ -188,7 +150,7 @@ const ProjectModal = ({
                   <PDSelectField
                     name={"project_type"}
                     label="Project Type"
-                    options={projectTypeOptions}
+                    options={projectTypeCreateOptions}
                     defaultValue={"Select"}
                   />
                   <PDTextFIeld
@@ -232,6 +194,8 @@ const ProjectModal = ({
                     label="Skills"
                     handleChangeSkill={handleChangeSkill}
                     skills={skills}
+                    count={count}
+                    inputRef={inputRef}
                   />
                   <PDTextFIeld
                     name="benchmark"
@@ -253,7 +217,7 @@ const ProjectModal = ({
                   <PDSelectField
                     name={"project_status"}
                     label="Status"
-                    options={statusOptions}
+                    options={statusCreateOptions}
                     defaultValue="Select"
                   />
                 </Stack>

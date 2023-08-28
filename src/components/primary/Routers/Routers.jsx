@@ -48,6 +48,8 @@ import ShowResult from "../Quiz/QuizPage/ShowResult/ShowResult";
 import UpdateQuiz from "../Quiz/UpdateQuiz";
 import Skills from "../Skill/Skills";
 import UserListIndex from "../UserListNew/UserListIndex";
+import MyProfileIndex from "../EditProfile/EditProfilePage/MyProfile/MyProfileIndex";
+import EditProfilePageIndex from "../EditProfile/EditProfilePage/EditProfilePageIndex";
 
 const Routers = () => {
   return (
@@ -160,12 +162,12 @@ const Routers = () => {
         <Route path={"/serversync"} element={<ServerSync />} />
 
         {/* --------------- */}
-        <Route path={"/edit-profile"} element={<EditProfileIndex />}></Route>
+        {/* <Route path={"/edit-profile"} element={<EditProfileIndex />}></Route> */}
+        <Route path={"/edit-profile"} element={<EditProfilePageIndex />}></Route>
         <Route path={"/show-profile"} element={<EditProfileIndex />}></Route>
         <Route
           path={"/show-all-notification"}
-          element={<AllNotification />}
-        ></Route>
+          element={<AllNotification />}></Route>
         <Route path={"/projectDirectory"} element={<ProjectDirectoryIndex />} />
 
         <Route path="*" element={<ErrorPage />} />

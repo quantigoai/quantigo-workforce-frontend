@@ -1,4 +1,12 @@
-import { Avatar, Box, Button, Grid, Stack, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  Chip,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import editIcon from "../../../../../assets/images/EditIcon.svg";
 import EditIcon from "@mui/icons-material/Edit";
@@ -14,49 +22,42 @@ const ProfilePicture = ({ user, editAble, handleEditProfile }) => {
             // padding: "16px",
             borderRadius: "12px",
             background: "#F2F6FC",
-            // height: "12vh",
+            height: "112px",
             width: "100%",
           }}>
           <Grid container sx={{ padding: "1%" }}>
-            <Grid item xs={5}>
+            <Grid item xs={8}>
               <Grid container>
-                <Grid xs={2}>
-                  <div
-                    style={{ position: "relative", display: "inline-block" }}>
-                    <Avatar
-                      alt="User"
-                      src={image}
-                      sx={{ width: 100, height: 100 }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        bottom: 0,
-                        right: 0,
-                        backgroundColor: "white",
-                        borderRadius: "50%",
-                        padding: "4px",
-                        cursor: "pointer",
-                      }}>
-                      {editAble && <EditIcon />}
-                    </div>
-                  </div>
+                <Grid xs={1.5} sx={{ paddingLeft: "1%" }}>
+                  <Avatar
+                    alt="User"
+                    src={image}
+                    sx={{ width: "72px", height: "72px" }}
+                  />
                 </Grid>
-                <Grid xs={3} sx={{ paddingTop: "2%" }}>
+                <Grid xs={5} sx={{ paddingTop: "2%" }}>
                   <Typography
                     variant="h6"
                     sx={{ fontSize: "18px", color: "#091E42" }}>
                     <b>Zayed Islam</b>
+                    <Chip
+                      sx={{
+                        color: "#FFFFFF",
+                        background: "#2E58FF",
+                        height: "20px",
+                      }}
+                      label="QAI_DH34354"
+                      // label={capitalizeFirstLetter(user.qaiUserName || "")}
+                    />
                   </Typography>
                   <Typography sx={{ fontSize: "12px", color: "#253E5C" }}>
                     Level 0 Annotator
                   </Typography>
                 </Grid>
-                <Grid xs={3}>{/* <Typography>Name</Typography> */}</Grid>
               </Grid>
             </Grid>
 
-            <Grid item xs={7}>
+            <Grid item xs={4}>
               <Grid
                 container
                 sx={{ justifyContent: "right", paddingTop: "2%" }}>

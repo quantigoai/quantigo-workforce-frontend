@@ -1,6 +1,5 @@
-import { Box, Button, Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import ProjectSelectFIlterField from "./ProjectSelectFIlterField";
-import { useEffect, useState } from "react";
 
 const ProjectSelectFIlter = ({
   filterPDR,
@@ -21,12 +20,7 @@ const ProjectSelectFIlter = ({
           options={filterPDR}
           handleChange={handleChange}
         />
-        {/* <ProjectSelectFIlterField
-          label={"Industry Type"}
-          name="industry_type"
-          options={industryType}
-          handleChange={handleChange}
-        /> */}
+
         <ProjectSelectFIlterField
           name="project_platform"
           label={"project Platform"}

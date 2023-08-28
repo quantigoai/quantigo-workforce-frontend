@@ -141,6 +141,21 @@ const ProjectLIstIndex2 = () => {
     { value: "image", label: "Image" },
     { value: "video", label: "Video" },
   ];
+  const platformCreateOptions = [
+    { value: "supervisely", label: "supervisely" },
+    { value: "encord", label: "Encord" },
+    { value: "superb_ai", label: "Superb AI" },
+  ];
+  const projectTypeCreateOptions = [
+    { value: "image", label: "Image" },
+    { value: "video", label: "Video" },
+  ];
+  const statusCreateOptions = [
+    { value: "not-Started", label: "Not Started" },
+    { value: "in-Progress", label: "In Progress" },
+    { value: "completed", label: "Completed" },
+    { value: "hours-added", label: "Hours added" },
+  ];
 
   const handleChange = (event) => {
     const field = event.target.name;
@@ -241,6 +256,9 @@ const ProjectLIstIndex2 = () => {
                   handleProjectCreateOpen={handleProjectCreateOpen}
                   handleCreateProjectClose={handleCreateProjectClose}
                   setCreateProjectOpen={setCreateProjectOpen}
+                  platformCreateOptions={platformCreateOptions}
+                  projectTypeCreateOptions={projectTypeCreateOptions}
+                  statusCreateOptions={statusCreateOptions}
                 />
               </Box>
             )}
@@ -254,6 +272,9 @@ const ProjectLIstIndex2 = () => {
               handleClick={handleClick}
               setEditModalOpen={setEditModalOpen}
               handleEditProjectClose={handleEditProjectClose}
+              platformCreateOptions={platformCreateOptions}
+              projectTypeCreateOptions={projectTypeCreateOptions}
+              statusCreateOptions={statusCreateOptions}
             />
           </Box>
         )}

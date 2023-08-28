@@ -1,5 +1,5 @@
 import { Box, Chip, MenuItem, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { MySelect } from "./CustomSelectField";
 import { MyFormControl } from "./CustomDatePicker";
 import { Controller, useFormContext } from "react-hook-form";
@@ -22,10 +22,12 @@ const PDskillFIeld = ({
   selectedSkills,
   skills,
   isEdit,
-
+  count,
+  // inputRef,
   ...other
 }) => {
   const { control } = useFormContext();
+
   return (
     <Controller
       name={name}
@@ -51,17 +53,33 @@ const PDskillFIeld = ({
                 <Box
                   sx={{
                     display: "grid",
-                    gridTemplateColumns: "repeat(2,1fr)",
+                    gridTemplateColumns: "repeat(1,1fr)",
                     gap: 0.5,
+                    fontSize: "12px",
                   }}
                 >
-                  {selected?.map((value, i) =>
-                    [0, 1].includes(i) ? (
-                      <Chip key={value} label={value} />
-                    ) : (
-                      <p key={value}> +{i} more</p>
-                    )
+                  {selected?.map(
+                    (value, i) =>
+                      [0].includes(i) && <Chip key={value} label={value} />
                   )}
+                  {isEdit
+                    ? selectedSkills.length > 1 && (
+                        <Typography variant="h7" sx={{ ml: 2, mt: 0.5 }}>
+                          {" "}
+                          + {count} more
+                        </Typography>
+                      )
+                    : selected.length > 1 && (
+                        <Typography
+                          variant="h7"
+                          sx={{ ml: 2, mt: 0.5 }}
+                          // ref={inputRef}
+                        >
+                          {" "}
+                          + {count} more
+                          {/* {inputRef.current} */}
+                        </Typography>
+                      )}
                 </Box>
               )}
               MenuProps={MenuProps}

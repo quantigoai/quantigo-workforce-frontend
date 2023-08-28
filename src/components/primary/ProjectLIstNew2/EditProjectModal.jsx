@@ -5,12 +5,11 @@ import Button from "@mui/material/Button";
 import Fade from "@mui/material/Fade";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProjectDrawerById } from "../../../features/slice/projectDrawerSlice";
-
 import ProjectModalHeader from "./ProjectModalHeader";
 import FormProvider from "../../shared/FormProvider/FormProvider";
 import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
@@ -18,6 +17,7 @@ import PDSelectField from "../../shared/CustomField/PDSelectField";
 import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import useHandleEditChange from "./Hooks/useHandleEditChange";
 
 const style = {
   position: "absolute",
@@ -36,32 +36,21 @@ const EditProjectModal = ({
   handleEditProjectClose,
   projectDrawer,
   setEditModalOpen,
+  platformCreateOptions,
+  projectTypeCreateOptions,
+  statusCreateOptions,
 }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const [prevSkills, setPrevSkills] = useState(projectDrawer.project_skills);
 
-  const [editSkills, setEditSkills] = useState([]);
-
-  const { skills } = useSelector((state) => state.skill);
-
-  const handleEditSkill = (event) => {
-    const {
-      target: { value },
-    } = event;
-
-    const selectedSkills = value.map((skill) => {
-      return skills.find((s) => s.name === skill);
-    });
-    setEditSkills(
-      typeof selectedSkills === "string" ? value.split(",") : selectedSkills
-    );
-  };
-
-  const filteredSkillInfo = editSkills.map((skill) => ({
-    name: skill.name,
-    id: skill._id,
-  }));
+  const {
+    handleEditSkill,
+    filteredSkillInfo,
+    count,
+    prevSkills,
+    editSkills,
+    skills,
+  } = useHandleEditChange();
 
   const onSubmit = (data) => {
     const newData = {
@@ -95,22 +84,6 @@ const EditProjectModal = ({
     deleteDoc.splice(id, 1);
     setAddDoc(deleteDoc);
   };
-
-  const platformOptions = [
-    { value: "supervisely", label: "supervisely" },
-    { value: "encord", label: "Encord" },
-    { value: "superb_ai", label: "Superb AI" },
-  ];
-  const projectTypeOptions = [
-    { value: "imgae", label: "Image" },
-    { value: "video", label: "Video" },
-  ];
-  const statusOptions = [
-    { value: "not-Started", label: "Not Started" },
-    { value: "in-Progress", label: "In Progress" },
-    { value: "completed", label: "Completed" },
-    { value: "hours-added", label: "Hours added" },
-  ];
 
   const ProjectDrawerSchema = Yup.object().shape({
     // project_drawer_name: Yup.string().required(" project name is required"),
@@ -161,7 +134,7 @@ const EditProjectModal = ({
                   <PDSelectField
                     name={"project_platform"}
                     label="Platform"
-                    options={platformOptions}
+                    options={platformCreateOptions}
                     defaultValue={projectDrawer.project_platform}
                   />
                   <PDTextFIeld
@@ -178,7 +151,7 @@ const EditProjectModal = ({
                   <PDSelectField
                     name={"project_type"}
                     label="Project Type"
-                    options={projectTypeOptions}
+                    options={projectTypeCreateOptions}
                     defaultValue={projectDrawer.project_type}
                   />
                   <PDTextFIeld
@@ -227,6 +200,7 @@ const EditProjectModal = ({
                     label="Skills"
                     handleChangeSkill={handleEditSkill}
                     skills={skills}
+                    count={count}
                   />
                   <PDTextFIeld
                     name="benchmark"
@@ -248,7 +222,7 @@ const EditProjectModal = ({
                   <PDSelectField
                     name={"project_status"}
                     label="Status"
-                    options={statusOptions}
+                    options={statusCreateOptions}
                     defaultValue={projectDrawer.project_status}
                   />
                 </Stack>

@@ -45,13 +45,14 @@ const fields = [
   },
 ];
 
+import { setActivePath } from "../../../features/slice/activePathSlice";
 import EditProjectModal from "./EditProjectModal";
 import Project2DetailsModal from "./Project2Details/Project2DetailsModal";
 import ProjectModal from "./ProjectModal";
 import ProjectSelectFIlter from "./ProjectSelectFIlter";
 import ProjectTable2 from "./ProjectTable2";
 
-// test for commit 
+// test for commit
 /**
  * @returns {JSX.Element} A table for rendering rows and columns items in the project list 2 page
  */
@@ -62,6 +63,7 @@ const ProjectLIstIndex2 = () => {
     borderRadius: "8px",
     padding: "10px",
   });
+  
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
@@ -110,6 +112,7 @@ const ProjectLIstIndex2 = () => {
   };
 
   useEffect(() => {
+    dispatch(setActivePath("All Projects2"));
     setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
     setMyRows(dataBuilder(projectDrawers));
   }, [projectDrawers]);

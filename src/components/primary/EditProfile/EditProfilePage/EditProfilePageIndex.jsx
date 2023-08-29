@@ -7,6 +7,9 @@ import Box from "@mui/material/Box";
 import FirstPage from "../../Auth/HowItWorkPage/TabPages/FirstPage";
 import { Button, Grid, Paper } from "@mui/material";
 import MyProfileIndex from "./MyProfile/MyProfileIndex";
+import ActivateAccount from "./ActivateAccount";
+import MyCoursesIndex from "./MyCourses/MyCoursesIndex";
+import PasswordChangeIndex from "./PasswordChange/PasswordChangeIndex";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -122,20 +125,21 @@ export default function EditProfilePageIndex() {
               paddingLeft: "10%",
               paddingBottom: "5%",
             }}>
-            <Button sx={{ backgroundColor: "#FFF0F2", color: "#F04438" }}>
+            <ActivateAccount />
+            {/* <Button sx={{ backgroundColor: "#FFF0F2", color: "#F04438" }}>
               Deactivate Accounts
-            </Button>
+            </Button> */}
           </Box>
         </Grid>
         <Grid item xs={10}>
           <TabPanel value={value} index={0}>
             <MyProfileIndex />
           </TabPanel>
-          <TabPanel sx={{ position: "absolute" }} value={value} index={1}>
-            Item Two
+          <TabPanel value={value} index={1}>
+            <MyCoursesIndex />
           </TabPanel>
           <TabPanel sx={{ position: "absolute" }} value={value} index={2}>
-            Item Three
+            <PasswordChangeIndex />
           </TabPanel>
         </Grid>
       </Grid>

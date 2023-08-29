@@ -26,6 +26,12 @@ const PDskillFIeld = ({
   // inputRef,
   ...other
 }) => {
+  console.log("🚀 ~ file: PDskillFIeld.jsx:29 ~ count:", count);
+  console.log(
+    "🚀 ~ file: PDskillFIeld.jsx:29 ~ selectedSkills:",
+    selectedSkills
+  );
+
   const { control } = useFormContext();
 
   return (
@@ -46,7 +52,7 @@ const PDskillFIeld = ({
               variant="outlined"
               multiple
               defaultValue={
-                isEdit ? selectedSkills.map((skill) => skill.name) : addSkills
+                isEdit ? selectedSkills?.map((skill) => skill.name) : addSkills
               }
               onChange={handleChangeSkill}
               renderValue={(selected) => (

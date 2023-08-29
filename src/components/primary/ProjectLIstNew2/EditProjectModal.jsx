@@ -39,38 +39,16 @@ const EditProjectModal = ({
   platformCreateOptions,
   projectTypeCreateOptions,
   statusCreateOptions,
+  isEditModal,
+  handleEditSkill,
+  editCount,
+  editSkills,
+  skills,
+  onSubmit,
 }) => {
-  const dispatch = useDispatch();
-  const alert = useAlert();
+  console.log("🚀 ~ file: EditProjectModal.jsx:49 ~ isEditModal:", isEditModal);
 
-  const {
-    handleEditSkill,
-    filteredSkillInfo,
-    count,
-    prevSkills,
-    editSkills,
-    skills,
-  } = useHandleEditChange();
-
-  const onSubmit = (data) => {
-    const newData = {
-      ...data,
-      project_skills:
-        filteredSkillInfo.length === 0 ? prevSkills : filteredSkillInfo,
-    };
-    const allData = { id: projectDrawer._id, data: newData };
-
-    dispatch(updateProjectDrawerById(allData)).then((action) => {
-      if (action.error?.message) {
-        alert.show(action.error?.message, { type: "error" });
-      }
-      if (action.payload?.status === 200) {
-        alert.show(action.payload.data.message, { type: "success" });
-        reset();
-        setEditModalOpen(false);
-      }
-    });
-  };
+  const { prevSkills } = useHandleEditChange();
 
   const [addDoc, setAddDoc] = useState([]);
 
@@ -125,6 +103,7 @@ const EditProjectModal = ({
           <Box sx={style}>
             <ProjectModalHeader
               handleCreateProjectClose={handleEditProjectClose}
+              modalTitle={`Edit ${projectDrawer.project_drawer_name}`}
             />
             <Box
               sx={{ paddingLeft: "3%", paddingTop: "2%", paddingRight: "3%" }}
@@ -200,7 +179,7 @@ const EditProjectModal = ({
                     label="Skills"
                     handleChangeSkill={handleEditSkill}
                     skills={skills}
-                    count={count}
+                    count={editCount}
                   />
                   <PDTextFIeld
                     name="benchmark"

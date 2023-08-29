@@ -41,35 +41,16 @@ const style = {
 const ProjectModal = ({
   createProjectOpen,
   handleCreateProjectClose,
-  setCreateProjectOpen,
   statusCreateOptions,
   platformCreateOptions,
   projectTypeCreateOptions,
+  handleChangeSkill,
+  count,
+  onSubmit,
+  addSkills,
+  skills,
 }) => {
-  const { skills } = useSelector((state) => state.skill);
-  const dispatch = useDispatch();
-  const alert = useAlert();
-
   const inputRef = useRef(null);
-
-  const { handleChangeSkill, addSkills, count } = useHandleChange();
-
-  const skillId = addSkills?.map((skill) => skill._id);
-
-  const onSubmit = (data) => {
-    const newData = { ...data, project_skills: skillId };
-
-    dispatch(createProjectDrawer(newData)).then((action) => {
-      if (action.error?.message) {
-        alert.show(action.error?.message, { type: "error" });
-      }
-      if (action.payload?.status === 201) {
-        alert.show(action.payload.data.message, { type: "success" });
-        reset();
-        setCreateProjectOpen(false);
-      }
-    });
-  };
 
   const [addDoc, setAddDoc] = useState([]);
 

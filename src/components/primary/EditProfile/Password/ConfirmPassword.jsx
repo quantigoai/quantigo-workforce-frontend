@@ -1,7 +1,26 @@
-import {Visibility, VisibilityOff} from "@mui/icons-material";
-import {InputAdornment, TextField,} from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import PasswordIcon from "../../../../assets/images/dashboardIcon/PasswordIcon.svg";
+import {
+  FormControl,
+  Grid,
+  InputAdornment,
+  TextField,
+  Typography,
+  styled,
+} from "@mui/material";
 import React from "react";
-
+const MyTextField = styled(TextField)(() => ({
+  "& .MuiOutlinedInput-notchedOutline": {
+    border: "1px solid #E6ECF5 !important",
+    borderRadius: "8px",
+    // backgroundColor: "#F2F6FC",
+  },
+  "& .MuiInputBase-root": {
+    height: "42px",
+    fontSize: "14px",
+    // backgroundColor: editAble ? "" : "#F2F6FC",
+  },
+}));
 const ConfirmPassword = ({ setConfirmPassword, confirmPassword }) => {
   const [showPassword, setShowPassword] = React.useState(false);
   //   const [password, setPassword] = useState("");
@@ -13,9 +32,49 @@ const ConfirmPassword = ({ setConfirmPassword, confirmPassword }) => {
   const handlePassword = (e) => {
     setConfirmPassword(e);
   };
+
   return (
     <>
-      <TextField
+      <Grid item xs={12} sx={{ mb: 1 }}>
+        <FormControl fullWidth>
+          <Typography
+            sx={{
+              fontSize: "12px",
+              color: "#3C4D6B",
+              fontWeight: "500",
+              mb: 1,
+            }}>
+            Confirm New Password
+          </Typography>
+          <MyTextField
+            // type={isNumber || isNumberPdr ? "number" : "text"}
+
+            //   id="outlined-basic"
+            variant="outlined"
+            // {...field}
+            fullWidth
+            type={showPassword ? "text" : "password"}
+            id="filled-adornment-password"
+            value={confirmPassword}
+            required={true}
+            autoComplete="off"
+            onChange={(e) => handlePassword(e.target.value)}
+            // inputProps={{ minLength: 6 }}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  sx={{ cursor: "pointer" }}
+                  position="end">
+                  {!showPassword ? <img src={PasswordIcon} /> : <Visibility />}
+                </InputAdornment>
+              ),
+            }}
+          />
+        </FormControl>
+      </Grid>
+      {/* <TextField
         fullWidth
         label="Confirm Password"
         variant="filled"
@@ -38,7 +97,7 @@ const ConfirmPassword = ({ setConfirmPassword, confirmPassword }) => {
             </InputAdornment>
           ),
         }}
-      />
+      /> */}
     </>
   );
 };

@@ -246,7 +246,7 @@ const projectDrawerSlice = createSlice({
             (drawer) => drawer._id !== action.payload.data.projectDrawer._id
           ),
         ];
-        state.total = action.payload.data.count;
+        state.total = action.payload.data.count.total;
         state.isLoading = false;
       })
       .addCase(deleteProjectDrawerById.rejected, (state, action) => {

@@ -1,12 +1,23 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProjectDrawerById } from "../../../../features/slice/projectDrawerSlice";
+import useAllFunc from "./useAllFunc";
+import { useAlert } from "react-alert";
 
 const useHandleEditChange = () => {
   const { projectDrawer } = useSelector((state) => state.projectDrawer);
   const { skills } = useSelector((state) => state.skill);
+  const dispatch = useDispatch();
   const [prevSkills, setPrevSkills] = useState(projectDrawer.project_skills);
+
   const [editSkills, setEditSkills] = useState([]);
-  const [count, setCount] = useState(prevSkills.length - 1);
+  const [editCount, setEditCount] = useState();
+  const { setEditModalOpen } = useAllFunc();
+  const alert = useAlert();
+
+  useEffect(() => {
+    setEditCount(prevSkills?.length - 1);
+  }, [prevSkills, projectDrawer]);
 
   const handleEditSkill = (event) => {
     const {
@@ -16,7 +27,7 @@ const useHandleEditChange = () => {
       return skills.find((s) => s.name === skill);
     });
 
-    setCount(value.length);
+    setEditCount(value.length - 1);
 
     setEditSkills(
       typeof selectedSkills === "string" ? value.split(",") : selectedSkills
@@ -31,10 +42,11 @@ const useHandleEditChange = () => {
   return {
     handleEditSkill,
     filteredSkillInfo,
-    count,
+    editCount,
     prevSkills,
     editSkills,
     skills,
+    // onSubmit,
   };
 };
 

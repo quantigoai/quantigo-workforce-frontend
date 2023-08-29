@@ -13,7 +13,7 @@
  * ------------------------
  */
 
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLoading: false,
@@ -39,5 +39,6 @@ export const activePathSlice = createSlice({
   },
 });
 
-export const { setActivePath, setActiveChapterIndex, setActiveCourseId } = activePathSlice.actions;
+export const { setActivePath, setActiveChapterIndex, setActiveCourseId } =
+  activePathSlice.actions;
 export default activePathSlice.reducer;

@@ -12,58 +12,67 @@ import SortIcon from "@mui/icons-material/Sort";
 import { Box, Button, Grid, IconButton, Paper } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import { styled } from "@mui/material/styles";
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import "remixicon/fonts/remixicon.css";
+import { setActivePath } from "../../../features/slice/activePathSlice";
 import {
+  createProjectDrawer,
   deleteProjectDrawerById,
   getAllProjectDrawers,
   setCurrentProjectDrawer,
+  updateProjectDrawerById,
 } from "../../../features/slice/projectDrawerSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
-import "./index.css";
-
-const fields = [
-  { field: "project_drawer_name", width: 200 },
-  { field: "project_alias", width: 200 },
-  { field: "project_platform" },
-  { field: "project_batch", width: 150 },
-  { field: "project_status", renderCell: "chip" },
-  { field: "project_skills", width: 300, renderCell: "skills-chip" },
-  { field: "pdr", width: 100 },
-  { field: "createdBy", width: 150 },
-  { field: "benchmark", width: 150 },
-  { field: "estimated_end_date", width: 200 },
-  { field: "guideline", width: 150 },
-  {
-    field: "ACTIONS",
-    renderCell: "button",
-    width: 80,
-  },
-];
-
-import { setActivePath } from "../../../features/slice/activePathSlice";
 import EditProjectModal from "./EditProjectModal";
+import {
+  fields,
+  filterPDR,
+  platformCreateOptions,
+  platformOptions,
+  projectTypeCreateOptions,
+  projectTypeOptions,
+  statusCreateOptions,
+  statusOptions,
+} from "./FIlterOptions";
+import useAllFunc from "./Hooks/useAllFunc";
+import useHandleChange from "./Hooks/useHandleChange";
+import useHandleEditChange from "./Hooks/useHandleEditChange";
 import Project2DetailsModal from "./Project2Details/Project2DetailsModal";
 import ProjectModal from "./ProjectModal";
 import ProjectSelectFIlter from "./ProjectSelectFIlter";
 import ProjectTable2 from "./ProjectTable2";
+import "./index.css";
 
 // test for commit
 /**
  * @returns {JSX.Element} A table for rendering rows and columns items in the project list 2 page
  */
+
 const ProjectLIstIndex2 = () => {
+  const {
+    handleCreateProjectClose,
+    createProjectOpen,
+    detailsProjectOpen,
+    handleProjectCreateOpen,
+    handleProjectDetailsOpen,
+    handleDetailsProjectClose,
+    setCreateProjectOpen,
+    handleChange,
+    handleClearFilter,
+    filterValue,
+  } = useAllFunc();
+
   const CustomFilterIcon = styled(SortIcon)({
     color: "#266AED",
     background: "#EFF3FE",
     borderRadius: "8px",
     padding: "10px",
   });
-  
+
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
@@ -72,32 +81,23 @@ const ProjectLIstIndex2 = () => {
     (state) => state.projectDrawer
   );
 
+  const { skills } = useSelector((state) => state.skill);
   const dispatch = useDispatch();
-  const [filterValue, setFilterValue] = useState({});
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
+  const [isEditModal, setIsEditModal] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
   const alert = useAlert();
-  const [editModalOpen, setEditModalOpen] = React.useState(false);
-  const [createProjectOpen, setCreateProjectOpen] = React.useState(false);
-  const [detailsProjectOpen, setDetailsProjectOpen] = React.useState(false);
-  const handleProjectCreateOpen = () => setCreateProjectOpen(true);
-  const handleProjectDetailsOpen = () => setDetailsProjectOpen(true);
-  const handleDetailsProjectClose = () => {
-    setDetailsProjectOpen(false);
-  };
 
-  const handleCreateProjectClose = () => {
-    setCreateProjectOpen(false);
-  };
+  useEffect(() => {
+    dispatch(setActivePath("All Projects2"));
+    setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
+    setMyRows(dataBuilder(projectDrawers));
+  }, [projectDrawers]);
 
-  const handleEditProjectClose = () => {
-    setEditModalOpen(false);
-  };
-
-  const handleClick = (e) => {
-    dispatch(setCurrentProjectDrawer(e.id));
-    setEditModalOpen(true);
-  };
+  const handleChangePagination = useCallback(() => {
+    dispatch(getAllProjectDrawers({ pagination, filteredData: filterValue }));
+  }, [dispatch, pagination, filterValue]);
 
   const handleDelete = (e) => {
     dispatch(deleteProjectDrawerById(e.id))
@@ -110,72 +110,60 @@ const ProjectLIstIndex2 = () => {
         alert.show(error, { type: "error" });
       });
   };
+  //create and edit project submit
 
-  useEffect(() => {
-    dispatch(setActivePath("All Projects2"));
-    setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
-    setMyRows(dataBuilder(projectDrawers));
-  }, [projectDrawers]);
+  const { handleChangeSkill, addSkills, count } = useHandleChange();
 
-  const handleChangePagination = useCallback(() => {
-    dispatch(getAllProjectDrawers({ pagination, filteredData: filterValue }));
-  }, [dispatch, pagination, filterValue]);
+  const {
+    handleEditSkill,
+    filteredSkillInfo,
+    editCount,
+    prevSkills,
+    editSkills,
+  } = useHandleEditChange();
 
-  const filterPDR = [
-    { value: "1", label: "1" },
-    { value: "2", label: "2" },
-    { value: "3", label: "3" },
-    { value: "4", label: "4" },
-    { value: "5", label: "5" },
-  ];
-
-  const platformOptions = [
-    { value: "supervisely", label: "supervisely" },
-    { value: "encord", label: "Encord" },
-    { value: "superb_ai", label: "Superb AI" },
-  ];
-  const statusOptions = [
-    { value: "not-Started", label: "Not Started" },
-    { value: "in-Progress", label: "In Progress" },
-    { value: "completed", label: "Completed" },
-    { value: "hours-added", label: "Hours added" },
-  ];
-  const projectTypeOptions = [
-    { value: "image", label: "Image" },
-    { value: "video", label: "Video" },
-  ];
-  const platformCreateOptions = [
-    { value: "supervisely", label: "supervisely" },
-    { value: "encord", label: "Encord" },
-    { value: "superb_ai", label: "Superb AI" },
-  ];
-  const projectTypeCreateOptions = [
-    { value: "image", label: "Image" },
-    { value: "video", label: "Video" },
-  ];
-  const statusCreateOptions = [
-    { value: "not-Started", label: "Not Started" },
-    { value: "in-Progress", label: "In Progress" },
-    { value: "completed", label: "Completed" },
-    { value: "hours-added", label: "Hours added" },
-  ];
-
-  const handleChange = (event) => {
-    const field = event.target.name;
-    const value = event.target.value;
-    const filteredData = { ...filterValue };
-    filteredData[field] = value;
-    setFilterValue(filteredData);
-    // dispatch(getAllProjectDrawers({ filteredData, pagination }));
+  const handleEditProjectClose = () => {
+    setEditModalOpen(false);
   };
-  const defaultState = {
-    pdr: "",
-    project_platform: "",
-    project_type: "",
-    project_status: "",
+
+  const handleClick = (e) => {
+    dispatch(setCurrentProjectDrawer(e.id));
+    setEditModalOpen(true);
+    setIsEditModal(true);
   };
-  const handleClearFilter = () => {
-    setFilterValue(defaultState);
+  const skillId = addSkills?.map((skill) => skill._id);
+
+  const onSubmit = (data) => {
+    if (isEditModal) {
+      const newData = {
+        ...data,
+        project_skills:
+          filteredSkillInfo.length === 0 ? prevSkills : filteredSkillInfo,
+      };
+      const allData = { id: projectDrawer._id, data: newData };
+      dispatch(updateProjectDrawerById(allData)).then((action) => {
+        if (action.error?.message) {
+          alert.show(action.error?.message, { type: "error" });
+        }
+        if (action.payload?.status === 200) {
+          alert.show(action.payload.data.message, { type: "success" });
+
+          setEditModalOpen(false);
+        }
+      });
+    } else {
+      const newData = { ...data, project_skills: skillId };
+
+      dispatch(createProjectDrawer(newData)).then((action) => {
+        if (action.error?.message) {
+          alert.show(action.error?.message, { type: "error" });
+        }
+        if (action.payload?.status === 201) {
+          alert.show(action.payload.data.message, { type: "success" });
+          setCreateProjectOpen(false);
+        }
+      });
+    }
   };
 
   return (
@@ -210,7 +198,6 @@ const ProjectLIstIndex2 = () => {
             sx={{
               display: "flex",
               justifyContent: "space-between",
-              // width: "30%",
               alignItems: "center",
             }}
           >
@@ -262,6 +249,11 @@ const ProjectLIstIndex2 = () => {
                   platformCreateOptions={platformCreateOptions}
                   projectTypeCreateOptions={projectTypeCreateOptions}
                   statusCreateOptions={statusCreateOptions}
+                  handleChangeSkill={handleChangeSkill}
+                  count={count}
+                  onSubmit={onSubmit}
+                  addSkills={addSkills}
+                  skills={skills}
                 />
               </Box>
             )}
@@ -278,6 +270,13 @@ const ProjectLIstIndex2 = () => {
               platformCreateOptions={platformCreateOptions}
               projectTypeCreateOptions={projectTypeCreateOptions}
               statusCreateOptions={statusCreateOptions}
+              isEditModal={isEditModal}
+              handleEditSkill={handleEditSkill}
+              editCount={editCount}
+              editSkills={editSkills}
+              prevSkill={prevSkills}
+              skills={skills}
+              onSubmit={onSubmit}
             />
           </Box>
         )}
@@ -291,6 +290,8 @@ const ProjectLIstIndex2 = () => {
             handleChange={handleChange}
             handleClearFilter={handleClearFilter}
             filterValue={filterValue}
+            skills={skills}
+            onSubmit={onSubmit}
           />
         </Box>
 

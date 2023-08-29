@@ -1,15 +1,19 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { createProjectDrawer } from "../../../../features/slice/projectDrawerSlice";
+import useAllFunc from "./useAllFunc";
+import { useAlert } from "react-alert";
 
 const useHandleChange = () => {
   const { skills } = useSelector((state) => state.skill);
   const [addSkills, setAddSkills] = useState([]);
   const [count, setCount] = useState(0);
+
+  const alert = useAlert();
   const handleChangeSkill = (event) => {
     const {
       target: { value },
     } = event;
-
     const selectedSkills = value.map((skill) => {
       return skills.find((s) => s.name === skill);
     });
@@ -20,6 +24,7 @@ const useHandleChange = () => {
       typeof selectedSkills === "string" ? value.split(",") : selectedSkills
     );
   };
+
   return {
     handleChangeSkill,
     addSkills,

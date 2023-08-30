@@ -46,6 +46,7 @@ import ProjectModal from "./ProjectModal";
 import ProjectSelectFIlter from "./ProjectSelectFIlter";
 import ProjectTable2 from "./ProjectTable2";
 import "./index.css";
+import ProjectDetailsHeader from "./ProjectDetailsFull/ProjectDetailsHeader";
 
 // test for commit
 /**
@@ -293,6 +294,10 @@ const ProjectLIstIndex2 = () => {
             skills={skills}
             onSubmit={onSubmit}
           />
+        </Box>
+
+        <Box sx={{ backgroundColor: "#FFFFFF", width: "100%", padding: "5px" }}>
+          <ProjectDetailsHeader />
         </Box>
 
         <Box

@@ -1,5 +1,6 @@
 import { InputLabel, MenuItem, Select, styled } from "@mui/material";
 import { MyFormControl } from "../../shared/CustomField/CustomDatePicker";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PropTypes from "prop-types";
 ProjectSelectFIlterField.propTypes = {
   name: PropTypes.string,
@@ -25,6 +26,14 @@ export default function ProjectSelectFIlterField({
         labelId="demo-simple-select-autowidth-label"
         id="demo-simple-select-autowidth"
         defaultValue={""}
+        sx={{
+          height: "50px",
+          borderRadius: "8px",
+          "& svg": {
+            fill: "#667085", // Change the color as needed
+          },
+        }}
+        IconComponent={KeyboardArrowDownIcon}
         placeholder="Select"
         value={filterValue?.[name] ?? ""}
         label={label}

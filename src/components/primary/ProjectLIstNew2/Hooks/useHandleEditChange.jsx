@@ -9,7 +9,6 @@ const useHandleEditChange = () => {
   const { skills } = useSelector((state) => state.skill);
   const dispatch = useDispatch();
   const [prevSkills, setPrevSkills] = useState(projectDrawer.project_skills);
-
   const [editSkills, setEditSkills] = useState([]);
   const [editCount, setEditCount] = useState();
   const { setEditModalOpen } = useAllFunc();

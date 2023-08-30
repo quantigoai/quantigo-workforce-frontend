@@ -71,7 +71,7 @@ export default function EditProfilePageIndex() {
             aria-label="Vertical tabs example"
             sx={{
               height: "80vh",
-              width: "220px",
+              width: "90%",
               // borderRight: "1px solid #E1E8F5",
               // borderRight: 1,
               // borderColor: "divider",
@@ -119,16 +119,12 @@ export default function EditProfilePageIndex() {
               {...a11yProps(2)}
             />
           </Tabs>
-          <Box
-            sx={{
-              justifyContent: "center",
-              paddingLeft: "10%",
-              paddingBottom: "5%",
-            }}>
-            <ActivateAccount />
-            {/* <Button sx={{ backgroundColor: "#FFF0F2", color: "#F04438" }}>
-              Deactivate Accounts
-            </Button> */}
+          <Box>
+            <Grid
+              container
+              sx={{ justifyContent: "center", paddingBottom: "4%" }}>
+              <ActivateAccount />
+            </Grid>
           </Box>
         </Grid>
         <Grid item xs={10}>

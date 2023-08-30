@@ -8,8 +8,9 @@ import {
 import React from "react";
 
 const CommonField = ({
-  field,
+  label,
   editAble,
+  disableItem,
   registerName,
   register,
   type,
@@ -33,24 +34,25 @@ const CommonField = ({
       <Grid item xs={12} sx={{ mb: 1 }}>
         <FormControl fullWidth>
           <Typography sx={{ fontSize: "14px", fontWeight: "500", mb: 1 }}>
-            {field}
+            {label}
           </Typography>
           <MyTextField
             // type={isNumber || isNumberPdr ? "number" : "text"}
 
             //   id="outlined-basic"
             variant="outlined"
-            {...field}
+            // {...field}
             fullWidth
-            disabled={!editAble}
+            disabled={disableItem ? true : !editAble}
             InputProps={{ disableUnderline: true }}
             // inputProps={InputProps}
             defaultValue={defaultValue}
-            value={
-              typeof field.value === "number" && field.value === 0
-                ? ""
-                : field.value
-            }
+            // {...register("name")}
+            // value={
+            //   typeof field.value === "number" && field.value === 0
+            //     ? ""
+            //     : field.value
+            // }
             // error={!!error}
             // helperText={error ? error?.message : helperText}
             //   {...other}

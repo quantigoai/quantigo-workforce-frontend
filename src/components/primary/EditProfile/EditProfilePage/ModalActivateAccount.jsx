@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
+import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 import buttonIcon from "../../../../assets/images/Buttons.svg";
 const style = {
@@ -9,15 +10,17 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 350,
   textAlign: "center",
   bgcolor: "background.paper",
   borderRadius: "10px",
   boxShadow: 24,
-  p: 4,
+  p: 6,
 };
 
-const ModalActivateAccount = ({ open, handleDelete, params, handleClose }) => {
+const ModalActivateAccount = ({ open, handleChange, handleClose }) => {
+  const { user } = useSelector((state) => state.user);
+
   return (
     <>
       <Modal
@@ -26,32 +29,19 @@ const ModalActivateAccount = ({ open, handleDelete, params, handleClose }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-          <Box
-            sx={{
-              position: "absolute",
-              top: "10%",
-              left: "42%",
-              width: "32px",
-              textAlign: "center",
-              fontSize: "32px",
-              padding: "16px",
-              background: "#FF4757",
-              borderRadius: "80px",
-              color: "white",
-            }}>
-            {" "}
-            {/* <img src={buttonIcon} /> */}
-            <i className="ri-delete-bin-6-line"></i>
-          </Box>
+          <img src={buttonIcon} />
           <Typography
-            sx={{ mt: "28%" }}
+            sx={{ mt: "10%" }}
             id="modal-modal-title"
             variant="h6"
             component="h2">
-            Account Deactivation
+            <b>Account {user.active ? "Deactivation" : "Activation"}</b>
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Are you sure you want to deactivate your account?
+          <Typography
+            id="modal-modal-description"
+            sx={{ mt: 2, color: "#3C4D6B" }}>
+            Are you sure you want to {user.active ? "deactivate " : "activate "}
+            your account?
           </Typography>
           <Box
             sx={{
@@ -69,18 +59,25 @@ const ModalActivateAccount = ({ open, handleDelete, params, handleClose }) => {
                 color: "#253E5C",
                 padding: " 10px 16px",
                 width: "150px",
+                "&:hover": {
+                  background: "#F2F6FC",
+                },
               }}
               onClick={handleClose}
               variant="contained">
               Cancel
             </Button>
             <Button
-              //   onClick={() => handleDelete(params)}
+              onClick={() => handleChange()}
               sx={{
                 textTransform: "none",
-                background: "#FFAB00",
+                background: user.active ? "#FFAB00" : "#36B37E",
                 borderRadius: "10px",
                 width: "150px",
+                "&:hover": {
+                  background: user.active ? "#FFAB00" : "#36B37E",
+                  // color: user.active ? "#F04438" : "#36B37E",
+                },
               }}
               variant="contained">
               Confirm

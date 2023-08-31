@@ -320,6 +320,7 @@ export default function LayoutNew({ children }) {
         sx={{ paddingLeft: "8%", paddingRight: "8%" }}>
         <ListItemButton
           sx={{
+            fontSize: "12px",
             height: "40px",
             borderRadius: activePath === text.name && "8px",
             // justifyContent: "left",
@@ -336,8 +337,14 @@ export default function LayoutNew({ children }) {
             <img src={text.icon} />
           </ListItemIcon>
           <ListItemText
+            disableTypography
             primary={text.name}
-            sx={{ color: "#FFFFFF", fontSize: "14px", justifyContent: "right" }}
+            sx={{
+              color: "#FFFFFF",
+
+              fontSize: "14px",
+              justifyContent: "left",
+            }}
           />
         </ListItemButton>
       </ListItem>

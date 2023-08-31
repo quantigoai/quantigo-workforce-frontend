@@ -59,6 +59,7 @@ export default function EditProfilePageIndex() {
           backgroundColor: "#FFFFFF",
           // position: "absolute",
           width: "100%",
+          borderRadius: "8px",
         }}>
         <Grid item xs={2} sx={{ borderRight: "1px solid #E1E8F5" }}>
           <Tabs

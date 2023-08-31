@@ -1,22 +1,46 @@
 import { Avatar, Box, Button, Grid, Stack, Typography } from "@mui/material";
+
 import React from "react";
 import { useEffect, useState } from "react";
 import ProfilePicture from "./ProfilePicture";
 import CreateProjectField from "../../../ProjectLIstNew2/CreateProjectField";
 import CommonField from "../CommonField";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PDTextFIeld from "../../../../shared/CustomField/PDTextFIeld";
 import { useForm } from "react-hook-form";
+import CommonFieldTest from "../CommonFieldTest";
+import { useAlert } from "react-alert";
+import { myProfileEdit } from "../../../../../features/slice/userSlice";
 const MyProfileIndex = () => {
-  const { register, handleSubmit } = useForm();
   const { user, isLoading } = useSelector((state) => state.user);
   const [editAble, setEditAble] = useState(false);
+  const dispatch = useDispatch();
+  const alert = useAlert();
   const handleEditProfile = () => {
     setEditAble(true);
   };
+
+  const { handleSubmit, control, errors } = useForm();
+
   const onSubmit = (data) => {
     console.log(data);
+    const filteredData = Object.fromEntries(
+      Object.entries(data).filter(([_, value]) => value !== undefined)
+    );
+
+    console.log(filteredData);
+    const finalData = {
+      id: user._id,
+      data,
+    };
+    dispatch(myProfileEdit(finalData)).then((action) => {
+      if (action.payload.status === 200) {
+        alert.show("Profile Update Successfully", { type: "success" });
+        setEditAble(false);
+      }
+    });
   };
+
   return (
     <>
       <Box sx={{ padding: "0%" }}>
@@ -27,7 +51,7 @@ const MyProfileIndex = () => {
         />
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box sx={{ paddingLeft: "2%", paddingRight: "2%" }}>
-            <Grid container sx={{ paddingTop: "1%", paddingBottom: "1%" }}>
+            <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
               <Typography sx={{ fontSize: "12px", color: "#2E58FF" }}>
                 Personal Information
               </Typography>
@@ -35,72 +59,78 @@ const MyProfileIndex = () => {
 
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <CommonField
+                <CommonFieldTest
+                  name="firstName"
                   label={"First Name"}
-                  registerName={"firstName"}
-                  register={register}
-                  defaultValue={user.name}
-                  type={"text"}
+                  defaultValue={user.firstName}
                   disableItem={false}
+                  control={control}
+                  rules={{ required: false }}
+                  errors={errors}
                   editAble={editAble}
                 />
               </Grid>
               <Grid item xs={6}>
-                <CommonField
+                <CommonFieldTest
+                  name="lastName"
                   label={"Last Name"}
-                  registerName={"lastName"}
-                  register={register}
-                  defaultValue={user.name}
-                  type={"text"}
+                  defaultValue={user.lastName}
                   disableItem={false}
+                  control={control}
+                  rules={{ required: false }}
+                  errors={errors}
                   editAble={editAble}
                 />
               </Grid>
             </Grid>
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <CommonField
+                <CommonFieldTest
+                  name="gender"
                   label={"Gender"}
-                  registerName={"guideline"}
-                  register={register}
                   defaultValue={user.gender}
                   disableItem={true}
-                  type={"text"}
+                  control={control}
+                  rules={{ required: false }}
+                  errors={errors}
                   editAble={editAble}
                 />
               </Grid>
               <Grid item xs={6}>
-                <CommonField
+                <CommonFieldTest
+                  name="occupation"
                   label={"Occupation"}
-                  registerName={"occupation"}
-                  register={register}
                   defaultValue={user.occupation}
-                  type={"text"}
                   disableItem={false}
+                  control={control}
+                  rules={{ required: false }}
+                  errors={errors}
                   editAble={editAble}
                 />
               </Grid>
             </Grid>
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <CommonField
+                <CommonFieldTest
+                  name="dob"
                   label={"Date Of Birth"}
-                  registerName={"dob"}
-                  register={register}
                   defaultValue={user.dob}
-                  type={"text"}
-                  disableItem={false}
+                  disableItem={true}
+                  control={control}
+                  rules={{ required: false }}
+                  errors={errors}
                   editAble={editAble}
                 />
               </Grid>
               <Grid item xs={6}>
-                <CommonField
-                  label={"Blood Group "}
-                  registerName={"bloodGroup"}
-                  register={register}
+                <CommonFieldTest
+                  name="bloodGroup"
+                  label={"Blood Group"}
                   defaultValue={user.bloodGroup}
-                  type={"text"}
-                  disableItem={false}
+                  disableItem={true}
+                  control={control}
+                  rules={{ required: false }}
+                  errors={errors}
                   editAble={editAble}
                 />
               </Grid>
@@ -112,66 +142,71 @@ const MyProfileIndex = () => {
             </Grid>
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <CommonField
+                <CommonFieldTest
+                  name="phone"
                   label={"Phone No."}
-                  registerName={"phone"}
-                  // register={register}
                   defaultValue={user.phone}
-                  type={"text"}
                   disableItem={false}
+                  control={control}
+                  rules={{ required: false }}
+                  errors={errors}
                   editAble={editAble}
                 />
               </Grid>
               <Grid item xs={6}>
-                <CommonField
+                <CommonFieldTest
+                  name="billingAccountNo"
                   label={"Nagad No."}
-                  registerName={"billingAccountNo"}
-                  register={register}
                   defaultValue={user.billingAccountNo}
-                  type={"text"}
                   disableItem={false}
+                  control={control}
+                  rules={{ required: false }}
+                  errors={errors}
                   editAble={editAble}
                 />
               </Grid>
             </Grid>
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <CommonField
+                <CommonFieldTest
+                  name="email"
                   label={"Email"}
-                  registerName={"guideline"}
-                  // register={register}
                   defaultValue={user.email}
-                  type={"text"}
                   disableItem={true}
+                  control={control}
+                  rules={{ required: false }}
+                  errors={errors}
                   editAble={editAble}
                 />
               </Grid>
               <Grid item xs={6}>
-                <CommonField
+                <CommonFieldTest
+                  name="presentAddress"
                   label={"Present Address"}
-                  registerName={"presentAddress"}
-                  register={register}
                   defaultValue={user.presentAddress}
-                  type={"text"}
                   disableItem={false}
+                  control={control}
+                  rules={{ required: false }}
+                  errors={errors}
                   editAble={editAble}
                 />
               </Grid>
             </Grid>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <CommonField
+                <CommonFieldTest
+                  name="permanentAddress"
                   label={"Permanent Address"}
-                  registerName={"permanentAddress"}
-                  register={register}
                   defaultValue={user.permanentAddress}
-                  type={"text"}
                   disableItem={false}
+                  control={control}
+                  rules={{ required: false }}
+                  errors={errors}
                   editAble={editAble}
                 />
               </Grid>
             </Grid>
-            <Grid container sx={{ paddingTop: "1%" }}>
+            <Grid container sx={{ paddingTop: "2%" }}>
               {editAble && (
                 <Button
                   type="submit"
@@ -182,11 +217,18 @@ const MyProfileIndex = () => {
                     borderRadius: "8px",
                     textTransform: "none",
                     fontSize: "12px",
+                    width: "150px",
+
+                    "&:hover": {
+                      backgroundColor: "#2E58FF",
+                      color: "#FFFFF",
+                    },
                   }}>
                   Save Changes
                 </Button>
               )}
             </Grid>
+            {/* <button type="submit">Submit</button> */}
           </Box>
         </form>
       </Box>

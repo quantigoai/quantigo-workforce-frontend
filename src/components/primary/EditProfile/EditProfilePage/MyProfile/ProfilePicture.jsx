@@ -42,7 +42,9 @@ const ProfilePicture = ({ user, editAble, handleEditProfile }) => {
                       <Typography
                         variant="h6"
                         sx={{ fontSize: "18px", color: "#091E42" }}>
-                        <b>{user.name}</b>
+                        <b>
+                          {user.firstName} {user.lastName}
+                        </b>
                       </Typography>
                       <Typography sx={{ fontSize: "12px", color: "#253E5C" }}>
                         {capitalizeFirstLetter(user.role)}
@@ -83,17 +85,6 @@ const ProfilePicture = ({ user, editAble, handleEditProfile }) => {
                     </Grid>
                   </Grid>
                 </Grid>
-                {/* <Grid item xs={5} sx={{ paddingTop: "2%" }}>
-                  <Chip
-                    sx={{
-                      color: "#FFFFFF",
-                      background: "#2E58FF",
-                      height: "20px",
-                    }}
-                    label="QAI_DH34354"
-                    // label={capitalizeFirstLetter(user.qaiUserName || "")}
-                  />
-                </Grid> */}
               </Grid>
             </Grid>
 

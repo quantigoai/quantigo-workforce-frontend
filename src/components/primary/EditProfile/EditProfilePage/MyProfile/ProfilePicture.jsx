@@ -7,13 +7,22 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import React from "react";
+import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
+import React, { useState } from "react";
 import editIcon from "../../../../../assets/images/EditIcon.svg";
 import EditIcon from "@mui/icons-material/Edit";
 import IconButton from "@mui/material/IconButton";
+import EditIconProfile from "../../../../../assets/images/Group.svg";
 import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
-const ProfilePicture = ({ user, editAble, handleEditProfile }) => {
+const ProfilePicture = ({
+  user,
+  editAble,
+  handleEditProfile,
+  coverImage,
+  handleImage,
+}) => {
   const image = user.image;
+
   return (
     <>
       <Grid>
@@ -30,11 +39,44 @@ const ProfilePicture = ({ user, editAble, handleEditProfile }) => {
             <Grid item xs={8}>
               <Grid container>
                 <Grid item xs={1.5} sx={{ paddingLeft: "1%" }}>
-                  <Avatar
-                    alt="User"
-                    src={image}
-                    sx={{ width: "72px", height: "72px" }}
-                  />
+                  <Box sx={{ position: "relative" }}>
+                    <Avatar
+                      alt="Profile Picture"
+                      src={!coverImage ? image : coverImage}
+                      sx={{ width: "72px", height: "72px" }}
+                    />
+
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        top: 20,
+                        left: 15,
+                        // backgroundColor: "red",
+                      }}>
+                      {editAble && (
+                        <>
+                          <input
+                            style={{ display: "none" }}
+                            id="upload-photo"
+                            name="upload-photo"
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImage}
+                            // onchange="handleImageChange"
+                          />
+                          <label for="upload-photo">
+                            <IconButton
+                              color="primary"
+                              aria-label="upload picture"
+                              component="span">
+                              <img src={EditIconProfile} />
+                              {/* <PhotoCameraIcon /> */}
+                            </IconButton>
+                          </label>
+                        </>
+                      )}
+                    </Box>
+                  </Box>
                 </Grid>
                 <Grid item xs={7} sx={{ paddingTop: "2%" }}>
                   <Grid container>
@@ -42,9 +84,7 @@ const ProfilePicture = ({ user, editAble, handleEditProfile }) => {
                       <Typography
                         variant="h6"
                         sx={{ fontSize: "18px", color: "#091E42" }}>
-                        <b>
-                          {user.firstName} {user.lastName}
-                        </b>
+                        <b>{user.name}</b>
                       </Typography>
                       <Typography sx={{ fontSize: "12px", color: "#253E5C" }}>
                         {capitalizeFirstLetter(user.role)}

@@ -10,7 +10,12 @@ import PDTextFIeld from "../../../../shared/CustomField/PDTextFIeld";
 import { useForm } from "react-hook-form";
 import CommonFieldTest from "../CommonFieldTest";
 import { useAlert } from "react-alert";
-import { myProfileEdit } from "../../../../../features/slice/userSlice";
+import {
+  myProfileEdit,
+  uploadMyImage,
+} from "../../../../../features/slice/userSlice";
+import CommonSelectField from "../CommonSelectField";
+import moment from "moment/moment";
 const MyProfileIndex = () => {
   const { user, isLoading } = useSelector((state) => state.user);
   const [editAble, setEditAble] = useState(false);
@@ -19,7 +24,27 @@ const MyProfileIndex = () => {
   const handleEditProfile = () => {
     setEditAble(true);
   };
+  const [coverImageFile, setCoverImageFile] = useState(null);
+  const [coverImage, setCoverImage] = useState(null);
 
+  const handleImage = (e) => {
+    setCoverImageFile(e.target.files[0]);
+    const file = e.target.files[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setCoverImage(url);
+    }
+  };
+  // const removeImage = () => {
+  //   dispatch(removeMyImage(user._id)).then((action) => {
+  //     if (action.payload.status === 200) {
+  //       alert.show("Image remove Successfully", { type: "success" });
+  //       setCoverImageFile(null);
+  //       setCoverImage(null);
+  //       navigate("/edit-profile");
+  //     }
+  //   });
+  // };
   const { handleSubmit, control, errors } = useForm();
 
   const onSubmit = (data) => {
@@ -29,10 +54,28 @@ const MyProfileIndex = () => {
     );
 
     console.log(filteredData);
+    const name = filteredData.firstName.concat(" ", filteredData.lastName);
+    const dataAll = {
+      name,
+      ...filteredData,
+    };
     const finalData = {
       id: user._id,
-      data,
+      dataAll,
     };
+
+    console.log(
+      "🚀 ~ file: MyProfileIndex.jsx:44 ~ onSubmit ~ finalData:",
+      finalData
+    );
+    const formData = new FormData();
+    formData.append("image", coverImageFile);
+
+    const finalImageData = {
+      id: user._id,
+      formData,
+    };
+    dispatch(uploadMyImage(finalImageData));
     dispatch(myProfileEdit(finalData)).then((action) => {
       if (action.payload.status === 200) {
         alert.show("Profile Update Successfully", { type: "success" });
@@ -40,7 +83,7 @@ const MyProfileIndex = () => {
       }
     });
   };
-
+  const DOB = moment.utc(user.dob).format("MMM Do, YYYY");
   return (
     <>
       <Box sx={{ padding: "0%" }}>
@@ -48,6 +91,8 @@ const MyProfileIndex = () => {
           user={user}
           editAble={editAble}
           handleEditProfile={handleEditProfile}
+          coverImage={coverImage}
+          handleImage={handleImage}
         />
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box sx={{ paddingLeft: "2%", paddingRight: "2%" }}>
@@ -114,7 +159,7 @@ const MyProfileIndex = () => {
                 <CommonFieldTest
                   name="dob"
                   label={"Date Of Birth"}
-                  defaultValue={user.dob}
+                  defaultValue={DOB}
                   disableItem={true}
                   control={control}
                   rules={{ required: false }}
@@ -123,11 +168,11 @@ const MyProfileIndex = () => {
                 />
               </Grid>
               <Grid item xs={6}>
-                <CommonFieldTest
+                <CommonSelectField
                   name="bloodGroup"
                   label={"Blood Group"}
                   defaultValue={user.bloodGroup}
-                  disableItem={true}
+                  disableItem={false}
                   control={control}
                   rules={{ required: false }}
                   errors={errors}

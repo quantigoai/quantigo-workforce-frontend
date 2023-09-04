@@ -1,4 +1,4 @@
-import { Box, Button, Link, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -12,6 +12,7 @@ import ProjectDrawerStatusChip from "../../shared/FilterField/ProjectDrawerStatu
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import PaginationTable from "./PaginationTable";
 import "./index.css";
+import SortingButton from "./Project2Details/SortingButton";
 
 /**
  * @param {object} pagination - pagination object
@@ -35,6 +36,9 @@ const ProjectTable2 = ({
   handleDelete,
   handleClick,
   totalItems,
+  handleId,
+  filteredCol,
+  handleCount,
 }) => {
   const { isLoading } = useSelector((state) => state.projectDrawer);
 
@@ -58,38 +62,22 @@ const ProjectTable2 = ({
                       }}
                       key={col.id}
                     >
-                      <Box sx={{ display: "flex", justifyContent: "start" }}>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "start",
+                        }}
+                      >
                         {col.headerName}
-                        <Box
-                          sx={{
-                            lineHeight: 0,
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "start",
-                            alignItems: "center",
-                          }}
-                        >
-                          <Button
-                            sx={{
-                              minWidth: "30px",
-                              padding: "15%",
-                              lineHeight: 0,
-                              color: "#7B98BA",
-                            }}
-                          >
-                            <i className="ri-arrow-up-s-fill"></i>
-                          </Button>
-                          <Button
-                            sx={{
-                              minWidth: "30px",
-                              padding: "15%",
-                              lineHeight: 0,
-                              color: "#7B98BA",
-                            }}
-                          >
-                            <i className="ri-arrow-down-s-fill"></i>
-                          </Button>
-                        </Box>
+                        {col.headerName === "ACTIONS" ? null : (
+                          <Box onClick={() => handleId(col.field)}>
+                            <SortingButton
+                              handleCount={handleCount}
+                              col={col.field}
+                              filteredCol={filteredCol}
+                            />
+                          </Box>
+                        )}
                       </Box>
                     </TableCell>
                   ))}
@@ -98,15 +86,7 @@ const ProjectTable2 = ({
               <TableBody className="tableBody  ">
                 {myRows.map((row) => {
                   return (
-                    <TableRow
-                      // ref={tableRow}
-                      // onMouseDown={handleMouseDown}
-                      // onMouseLeave={handleMouseLeave}
-                      // onMouseMove={handleMouseMove}
-                      // onMouseUp={handleMouseUp}
-                      className="tableRow"
-                      key={row._id}
-                    >
+                    <TableRow className="tableRow" key={row._id}>
                       {myColumn.map((col) => {
                         if (col.field === "project_skills") {
                           return (

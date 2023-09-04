@@ -29,15 +29,20 @@ const initialState = {
 export const getAllProjectDrawers = createAsyncThunk(
   "/project-drawer/",
   async (data) => {
+ 
     try {
-      const { pagination,filteredData } = data;
+      const { pagination,filteredData,ascDescOption } = data;
+   
       let query = `limit=${pagination.pageSize}&skip=${
         pagination.currentPage * pagination.pageSize
       }`;
       
       const filterOptions = Object.keys(filteredData);
       filterOptions.map((f)=> query += `&${f}=${filteredData[f]}`)
+
       
+       const ascDescOptions=Object.keys(ascDescOption)
+        ascDescOptions.map((ad)=>query+=`&sortBy=${ad}:${ascDescOption[ad]}`)
 
 
       return await axios.get(`${url}/project-drawer?${query}`, {

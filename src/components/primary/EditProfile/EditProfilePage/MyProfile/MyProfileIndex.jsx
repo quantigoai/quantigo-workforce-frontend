@@ -1,21 +1,14 @@
-import { Avatar, Box, Button, Grid, Stack, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 
-import React from "react";
-import { useEffect, useState } from "react";
-import ProfilePicture from "./ProfilePicture";
-import CreateProjectField from "../../../ProjectLIstNew2/CreateProjectField";
-import CommonField from "../CommonField";
-import { useDispatch, useSelector } from "react-redux";
-import PDTextFIeld from "../../../../shared/CustomField/PDTextFIeld";
-import { useForm } from "react-hook-form";
-import CommonFieldTest from "../CommonFieldTest";
-import { useAlert } from "react-alert";
-import {
-  myProfileEdit,
-  uploadMyImage,
-} from "../../../../../features/slice/userSlice";
-import CommonSelectField from "../CommonSelectField";
 import moment from "moment/moment";
+import React, { useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { myProfileEdit, uploadMyImage } from "../../../../../features/slice/userSlice";
+import CommonFieldTest from "../CommonFieldTest";
+import CommonSelectField from "../CommonSelectField";
+import ProfilePicture from "./ProfilePicture";
 const MyProfileIndex = () => {
   const { user, isLoading } = useSelector((state) => state.user);
   const [editAble, setEditAble] = useState(false);
@@ -48,26 +41,24 @@ const MyProfileIndex = () => {
   const { handleSubmit, control, errors } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-    const filteredData = Object.fromEntries(
-      Object.entries(data).filter(([_, value]) => value !== undefined)
-    );
+    // console.log(data);
+    // const filteredData = Object.fromEntries(Object.entries(data).filter(([_, value]) => value !== undefined));
 
-    console.log(filteredData);
-    const name = filteredData.firstName.concat(" ", filteredData.lastName);
-    const dataAll = {
-      name,
-      ...filteredData,
-    };
-    const finalData = {
-      id: user._id,
-      dataAll,
-    };
+    // console.log(filteredData);
+    // let name;
+    
+    // filteredData.firstName || (filteredData.lastName && (name = filteredData.firstName.concat(" ", filteredData.lastName)));
 
-    console.log(
-      "🚀 ~ file: MyProfileIndex.jsx:44 ~ onSubmit ~ finalData:",
-      finalData
-    );
+    // const dataAll = {
+    //   name,
+    //   ...filteredData,
+    // };
+    // const finalData = {
+    //   id: user._id,
+    //   dataAll,
+    // };
+
+    // console.log("🚀 ~ file: MyProfileIndex.jsx:44 ~ onSubmit ~ finalData:", finalData);
     const formData = new FormData();
     formData.append("image", coverImageFile);
 
@@ -76,179 +67,70 @@ const MyProfileIndex = () => {
       formData,
     };
     dispatch(uploadMyImage(finalImageData));
-    dispatch(myProfileEdit(finalData)).then((action) => {
-      if (action.payload.status === 200) {
-        alert.show("Profile Update Successfully", { type: "success" });
-        setEditAble(false);
-      }
-    });
+    // dispatch(myProfileEdit(finalData)).then((action) => {
+    //   if (action.payload.status === 200) {
+    //     alert.show("Profile Update Successfully", { type: "success" });
+    //     setEditAble(false);
+    //   }
+    // });
   };
   const DOB = moment.utc(user.dob).format("MMM Do, YYYY");
   return (
     <>
       <Box sx={{ padding: "0%" }}>
-        <ProfilePicture
-          user={user}
-          editAble={editAble}
-          handleEditProfile={handleEditProfile}
-          coverImage={coverImage}
-          handleImage={handleImage}
-        />
+        <ProfilePicture user={user} editAble={editAble} handleEditProfile={handleEditProfile} coverImage={coverImage} handleImage={handleImage} />
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box sx={{ paddingLeft: "2%", paddingRight: "2%" }}>
             <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
-              <Typography sx={{ fontSize: "12px", color: "#2E58FF" }}>
-                Personal Information
-              </Typography>
+              <Typography sx={{ fontSize: "12px", color: "#2E58FF" }}>Personal Information</Typography>
             </Grid>
 
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <CommonFieldTest
-                  name="firstName"
-                  label={"First Name"}
-                  defaultValue={user.firstName}
-                  disableItem={false}
-                  control={control}
-                  rules={{ required: false }}
-                  errors={errors}
-                  editAble={editAble}
-                />
+                <CommonFieldTest name="firstName" label={"First Name"} defaultValue={user.firstName} disableItem={false} control={control} rules={{ required: false }} errors={errors} editAble={editAble} />
               </Grid>
               <Grid item xs={6}>
-                <CommonFieldTest
-                  name="lastName"
-                  label={"Last Name"}
-                  defaultValue={user.lastName}
-                  disableItem={false}
-                  control={control}
-                  rules={{ required: false }}
-                  errors={errors}
-                  editAble={editAble}
-                />
+                <CommonFieldTest name="lastName" label={"Last Name"} defaultValue={user.lastName} disableItem={false} control={control} rules={{ required: false }} errors={errors} editAble={editAble} />
               </Grid>
             </Grid>
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <CommonFieldTest
-                  name="gender"
-                  label={"Gender"}
-                  defaultValue={user.gender}
-                  disableItem={true}
-                  control={control}
-                  rules={{ required: false }}
-                  errors={errors}
-                  editAble={editAble}
-                />
+                <CommonFieldTest name="gender" label={"Gender"} defaultValue={user.gender} disableItem={true} control={control} rules={{ required: false }} errors={errors} editAble={editAble} />
               </Grid>
               <Grid item xs={6}>
-                <CommonFieldTest
-                  name="occupation"
-                  label={"Occupation"}
-                  defaultValue={user.occupation}
-                  disableItem={false}
-                  control={control}
-                  rules={{ required: false }}
-                  errors={errors}
-                  editAble={editAble}
-                />
+                <CommonFieldTest name="occupation" label={"Occupation"} defaultValue={user.occupation} disableItem={false} control={control} rules={{ required: false }} errors={errors} editAble={editAble} />
               </Grid>
             </Grid>
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <CommonFieldTest
-                  name="dob"
-                  label={"Date Of Birth"}
-                  defaultValue={DOB}
-                  disableItem={true}
-                  control={control}
-                  rules={{ required: false }}
-                  errors={errors}
-                  editAble={editAble}
-                />
+                <CommonFieldTest name="dob" label={"Date Of Birth"} defaultValue={DOB} disableItem={true} control={control} rules={{ required: false }} errors={errors} editAble={editAble} />
               </Grid>
               <Grid item xs={6}>
-                <CommonSelectField
-                  name="bloodGroup"
-                  label={"Blood Group"}
-                  defaultValue={user.bloodGroup}
-                  disableItem={false}
-                  control={control}
-                  rules={{ required: false }}
-                  errors={errors}
-                  editAble={editAble}
-                />
+                <CommonSelectField name="bloodGroup" label={"Blood Group"} defaultValue={user.bloodGroup} disableItem={false} control={control} rules={{ required: false }} errors={errors} editAble={editAble} />
               </Grid>
             </Grid>
             <Grid container sx={{ paddingTop: "1%", paddingBottom: "1%" }}>
-              <Typography sx={{ fontSize: "12px", color: "#2E58FF" }}>
-                Contact Information
-              </Typography>
+              <Typography sx={{ fontSize: "12px", color: "#2E58FF" }}>Contact Information</Typography>
             </Grid>
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <CommonFieldTest
-                  name="phone"
-                  label={"Phone No."}
-                  defaultValue={user.phone}
-                  disableItem={false}
-                  control={control}
-                  rules={{ required: false }}
-                  errors={errors}
-                  editAble={editAble}
-                />
+                <CommonFieldTest name="phone" label={"Phone No."} defaultValue={user.phone} disableItem={false} control={control} rules={{ required: false }} errors={errors} editAble={editAble} />
               </Grid>
               <Grid item xs={6}>
-                <CommonFieldTest
-                  name="billingAccountNo"
-                  label={"Nagad No."}
-                  defaultValue={user.billingAccountNo}
-                  disableItem={false}
-                  control={control}
-                  rules={{ required: false }}
-                  errors={errors}
-                  editAble={editAble}
-                />
+                <CommonFieldTest name="billingAccountNo" label={"Nagad No."} defaultValue={user.billingAccountNo} disableItem={false} control={control} rules={{ required: false }} errors={errors} editAble={editAble} />
               </Grid>
             </Grid>
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <CommonFieldTest
-                  name="email"
-                  label={"Email"}
-                  defaultValue={user.email}
-                  disableItem={true}
-                  control={control}
-                  rules={{ required: false }}
-                  errors={errors}
-                  editAble={editAble}
-                />
+                <CommonFieldTest name="email" label={"Email"} defaultValue={user.email} disableItem={true} control={control} rules={{ required: false }} errors={errors} editAble={editAble} />
               </Grid>
               <Grid item xs={6}>
-                <CommonFieldTest
-                  name="presentAddress"
-                  label={"Present Address"}
-                  defaultValue={user.presentAddress}
-                  disableItem={false}
-                  control={control}
-                  rules={{ required: false }}
-                  errors={errors}
-                  editAble={editAble}
-                />
+                <CommonFieldTest name="presentAddress" label={"Present Address"} defaultValue={user.presentAddress} disableItem={false} control={control} rules={{ required: false }} errors={errors} editAble={editAble} />
               </Grid>
             </Grid>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <CommonFieldTest
-                  name="permanentAddress"
-                  label={"Permanent Address"}
-                  defaultValue={user.permanentAddress}
-                  disableItem={false}
-                  control={control}
-                  rules={{ required: false }}
-                  errors={errors}
-                  editAble={editAble}
-                />
+                <CommonFieldTest name="permanentAddress" label={"Permanent Address"} defaultValue={user.permanentAddress} disableItem={false} control={control} rules={{ required: false }} errors={errors} editAble={editAble} />
               </Grid>
             </Grid>
             <Grid container sx={{ paddingTop: "2%" }}>
@@ -268,7 +150,8 @@ const MyProfileIndex = () => {
                       backgroundColor: "#2E58FF",
                       color: "#FFFFF",
                     },
-                  }}>
+                  }}
+                >
                   Save Changes
                 </Button>
               )}

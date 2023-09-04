@@ -1,26 +1,10 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Chip,
-  Grid,
-  Stack,
-  Typography,
-} from "@mui/material";
-import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
-import React, { useState } from "react";
-import editIcon from "../../../../../assets/images/EditIcon.svg";
-import EditIcon from "@mui/icons-material/Edit";
+import { Avatar, Box, Button, Chip, Grid, Stack, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
+import React from "react";
+import editIcon from "../../../../../assets/images/EditIcon.svg";
 import EditIconProfile from "../../../../../assets/images/Group.svg";
 import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
-const ProfilePicture = ({
-  user,
-  editAble,
-  handleEditProfile,
-  coverImage,
-  handleImage,
-}) => {
+const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleImage }) => {
   const image = user.image;
 
   return (
@@ -34,7 +18,8 @@ const ProfilePicture = ({
             background: user.active ? "#F2F6FC" : "#F5E1E3",
             height: "112px",
             width: "100%",
-          }}>
+          }}
+        >
           <Grid container sx={{ padding: "1%" }}>
             <Grid item xs={8}>
               <Grid container>
@@ -43,18 +28,23 @@ const ProfilePicture = ({
                     <Avatar
                       alt="Profile Picture"
                       src={!coverImage ? image : coverImage}
-                      sx={{ width: "72px", height: "72px" }}
+                      sx={{
+                        width: "72px",
+                        height: "72px",
+                        filter: editAble && "brightness(65%)",
+                        backgroundBlendMode: "luminosity",
+                      }}
                     />
 
                     <Box
                       sx={{
                         position: "absolute",
-                        // top: 20,?
-                        // left: 15,
-                        backgroundColor: "red",
-                        height: "100%",
-                        width: "100%",
-                      }}>
+                        top: 0,
+                        left: 0,
+                        width: "72px",
+                        height: "72px",
+                      }}
+                    >
                       {editAble && (
                         <>
                           <input
@@ -66,11 +56,23 @@ const ProfilePicture = ({
                             onChange={handleImage}
                             // onchange="handleImageChange"
                           />
-                          <label for="upload-photo">
+                          <label htmlFor="upload-photo">
                             <IconButton
+                              sx={{
+                                // backgroundColor: "blue",
+                                // position: "absolute",
+                                // top: "50%",
+                                // left: "50%",
+                                // transform: "translate(-50%, -50%)",
+                                height: "100%",
+                                width: "100%",
+                                opacity: editAble && 1,
+                                zIndex: 2,
+                              }}
                               color="primary"
                               aria-label="upload picture"
-                              component="span">
+                              component="span"
+                            >
                               <img src={EditIconProfile} />
                               {/* <PhotoCameraIcon /> */}
                             </IconButton>
@@ -83,14 +85,10 @@ const ProfilePicture = ({
                 <Grid item xs={7} sx={{ paddingTop: "2%" }}>
                   <Grid container>
                     <Grid item xs={3}>
-                      <Typography
-                        variant="h6"
-                        sx={{ fontSize: "18px", color: "#091E42" }}>
+                      <Typography variant="h6" sx={{ fontSize: "18px", color: "#091E42" }}>
                         <b>{user.name}</b>
                       </Typography>
-                      <Typography sx={{ fontSize: "12px", color: "#253E5C" }}>
-                        {capitalizeFirstLetter(user.role)}
-                      </Typography>
+                      <Typography sx={{ fontSize: "12px", color: "#253E5C" }}>{capitalizeFirstLetter(user.role)}</Typography>
                     </Grid>
                     <Grid item xs={9}>
                       <Grid container>
@@ -104,9 +102,7 @@ const ProfilePicture = ({
                               fontSize: "10px",
                             }}
                             // label="QAI_DK3454"
-                            label={capitalizeFirstLetter(
-                              user.qaiUserName || ""
-                            )}
+                            label={capitalizeFirstLetter(user.qaiUserName || "")}
                           />
                         </Box>
                         {!user.active && (
@@ -131,9 +127,7 @@ const ProfilePicture = ({
             </Grid>
 
             <Grid item xs={4}>
-              <Grid
-                container
-                sx={{ justifyContent: "right", paddingTop: "2%" }}>
+              <Grid container sx={{ justifyContent: "right", paddingTop: "2%" }}>
                 {!editAble && (
                   <Button
                     variant="outlined"
@@ -144,12 +138,10 @@ const ProfilePicture = ({
                       width: "121px",
                     }}
                     onClick={() => handleEditProfile()}
-                    disableRipple>
+                    disableRipple
+                  >
                     <Box sx={{ paddingRight: "10%" }}>
-                      <Typography sx={{ fontSize: "12px" }}>
-                        {" "}
-                        Edit Profile
-                      </Typography>
+                      <Typography sx={{ fontSize: "12px" }}> Edit Profile</Typography>
                     </Box>{" "}
                     <img src={editIcon} />{" "}
                   </Button>

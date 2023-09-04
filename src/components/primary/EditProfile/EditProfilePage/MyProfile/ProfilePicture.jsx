@@ -49,9 +49,11 @@ const ProfilePicture = ({
                     <Box
                       sx={{
                         position: "absolute",
-                        top: 20,
-                        left: 15,
-                        // backgroundColor: "red",
+                        // top: 20,?
+                        // left: 15,
+                        backgroundColor: "red",
+                        height: "100%",
+                        width: "100%",
                       }}>
                       {editAble && (
                         <>

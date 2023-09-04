@@ -71,11 +71,11 @@ const ModalActivateAccount = ({ open, handleChange, handleClose }) => {
               onClick={() => handleChange()}
               sx={{
                 textTransform: "none",
-                background: user.active ? "#FFAB00" : "#36B37E",
+                background: "#FFAB00",
                 borderRadius: "10px",
                 width: "150px",
                 "&:hover": {
-                  background: user.active ? "#FFAB00" : "#36B37E",
+                  background: "#FFAB00",
                   // color: user.active ? "#F04438" : "#36B37E",
                 },
               }}

@@ -1,10 +1,24 @@
-import { Avatar, Box, Button, Chip, Grid, Stack, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  Chip,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import React from "react";
 import editIcon from "../../../../../assets/images/EditIcon.svg";
 import EditIconProfile from "../../../../../assets/images/Group.svg";
 import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
-const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleImage }) => {
+const ProfilePicture = ({
+  user,
+  editAble,
+  handleEditProfile,
+  coverImage,
+  handleImage,
+}) => {
   const image = user.image;
 
   return (
@@ -18,8 +32,7 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
             background: user.active ? "#F2F6FC" : "#F5E1E3",
             height: "112px",
             width: "100%",
-          }}
-        >
+          }}>
           <Grid container sx={{ padding: "1%" }}>
             <Grid item xs={8}>
               <Grid container>
@@ -43,8 +56,7 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                         left: 0,
                         width: "72px",
                         height: "72px",
-                      }}
-                    >
+                      }}>
                       {editAble && (
                         <>
                           <input
@@ -71,8 +83,7 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                               }}
                               color="primary"
                               aria-label="upload picture"
-                              component="span"
-                            >
+                              component="span">
                               <img src={EditIconProfile} />
                               {/* <PhotoCameraIcon /> */}
                             </IconButton>
@@ -84,13 +95,19 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                 </Grid>
                 <Grid item xs={7} sx={{ paddingTop: "2%" }}>
                   <Grid container>
-                    <Grid item xs={3}>
-                      <Typography variant="h6" sx={{ fontSize: "18px", color: "#091E42" }}>
-                        <b>{user.name}</b>
+                    <Grid item xs={4} sx={{ backgroundColor: "" }}>
+                      <Typography
+                        variant="h6"
+                        sx={{ fontSize: "18px", color: "#091E42" }}>
+                        <b>
+                          {user.firstName} {user.lastName}{" "}
+                        </b>
                       </Typography>
-                      <Typography sx={{ fontSize: "12px", color: "#253E5C" }}>{capitalizeFirstLetter(user.role)}</Typography>
+                      <Typography sx={{ fontSize: "12px", color: "#253E5C" }}>
+                        {capitalizeFirstLetter(user.role)}
+                      </Typography>
                     </Grid>
-                    <Grid item xs={9}>
+                    <Grid item xs={8}>
                       <Grid container>
                         <Box sx={{ paddingRight: "1%" }}>
                           <Chip
@@ -102,7 +119,9 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                               fontSize: "10px",
                             }}
                             // label="QAI_DK3454"
-                            label={capitalizeFirstLetter(user.qaiUserName || "")}
+                            label={capitalizeFirstLetter(
+                              user.qaiUserName || ""
+                            )}
                           />
                         </Box>
                         {!user.active && (
@@ -127,7 +146,9 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
             </Grid>
 
             <Grid item xs={4}>
-              <Grid container sx={{ justifyContent: "right", paddingTop: "2%" }}>
+              <Grid
+                container
+                sx={{ justifyContent: "right", paddingTop: "2%" }}>
                 {!editAble && (
                   <Button
                     variant="outlined"
@@ -138,10 +159,12 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                       width: "121px",
                     }}
                     onClick={() => handleEditProfile()}
-                    disableRipple
-                  >
+                    disableRipple>
                     <Box sx={{ paddingRight: "10%" }}>
-                      <Typography sx={{ fontSize: "12px" }}> Edit Profile</Typography>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        {" "}
+                        Edit Profile
+                      </Typography>
                     </Box>{" "}
                     <img src={editIcon} />{" "}
                   </Button>

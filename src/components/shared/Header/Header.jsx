@@ -164,7 +164,9 @@ const Header = () => {
                       color: "#0E243D",
                     }}
                     variant="body2">
-                    <b>{name}</b>
+                    <b>
+                      {user.user.firstName} {user.user.lastName}
+                    </b>
                   </Typography>
                   <Typography sx={{ color: "#969CAF" }} variant="caption">
                     {role === "level_1_annotator"

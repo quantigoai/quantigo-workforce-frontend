@@ -54,6 +54,13 @@ import ProjectDetailsHeader from "./ProjectDetailsFull/ProjectDetailsHeader";
  */
 
 const ProjectLIstIndex2 = () => {
+  const { skills } = useSelector((state) => state.skill);
+  const dispatch = useDispatch();
+  const [myColumn, setMyColumn] = useState([]);
+  const [myRows, setMyRows] = useState([]);
+  const [isEditModal, setIsEditModal] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const alert = useAlert();
   const {
     handleCreateProjectClose,
     createProjectOpen,
@@ -65,7 +72,10 @@ const ProjectLIstIndex2 = () => {
     handleChange,
     handleClearFilter,
     filterValue,
-  } = useAllFunc();
+    handleCount,
+    handleId,
+    filteredCol,
+  } = useAllFunc(myColumn);
 
   const CustomFilterIcon = styled(SortIcon)({
     color: "#266AED",
@@ -82,14 +92,6 @@ const ProjectLIstIndex2 = () => {
     (state) => state.projectDrawer
   );
 
-  const { skills } = useSelector((state) => state.skill);
-  const dispatch = useDispatch();
-  const [myColumn, setMyColumn] = useState([]);
-  const [myRows, setMyRows] = useState([]);
-  const [isEditModal, setIsEditModal] = useState(false);
-  const [editModalOpen, setEditModalOpen] = useState(false);
-  const alert = useAlert();
-
   useEffect(() => {
     dispatch(setActivePath("All Projects2"));
     setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
@@ -97,8 +99,14 @@ const ProjectLIstIndex2 = () => {
   }, [projectDrawers]);
 
   const handleChangePagination = useCallback(() => {
-    dispatch(getAllProjectDrawers({ pagination, filteredData: filterValue }));
-  }, [dispatch, pagination, filterValue]);
+    dispatch(
+      getAllProjectDrawers({
+        pagination,
+        filteredData: filterValue,
+        ascDescOption: filteredCol,
+      })
+    );
+  }, [dispatch, pagination, filterValue, filteredCol]);
 
   const handleDelete = (e) => {
     dispatch(deleteProjectDrawerById(e.id))
@@ -311,10 +319,13 @@ const ProjectLIstIndex2 = () => {
             handleDelete={handleDelete}
             myColumn={myColumn}
             myRows={myRows}
+            handleCount={handleCount}
             pagination={pagination}
             setPagination={setPagination}
             handleChangePagination={handleChangePagination}
             totalItems={total}
+            handleId={handleId}
+            filteredCol={filteredCol}
           />
         </Box>
 

@@ -1,4 +1,10 @@
-
+.projectBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90vh ;
+    padding-right: 10px;
+}
 .test{
   
     color : rgb(192, 221, 26);
@@ -14,7 +20,8 @@
 }
 .div1 {
     width: 100%;
-    height: calc(72vh - 90px);
+    height: 92%;
+    /* height: calc(100% - 60px); */
     position: relative;
     overflow: scroll;
     border: 1p solid #EBF0F5;
@@ -26,6 +33,8 @@
     position: absolute;
     background-color: #ffffff;
     border-collapse: separate;
+    /* height: 100%; */
+
 }
 .div1 table {
     border-spacing: 0;
@@ -104,7 +113,7 @@
 
 
 .tableRow{
-    height:  calc(5.7vh);
+    height:  calc(6vh);
 
    
 }

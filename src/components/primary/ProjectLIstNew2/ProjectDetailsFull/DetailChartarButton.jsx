@@ -8,6 +8,8 @@ const DetailChartarButton = () => {
         fontSize: "14px",
         fontWeight: "bold",
         borderRadius: "8px",
+        mr: 2,
+        ml: 3,
       }}
       variant="contained"
     >

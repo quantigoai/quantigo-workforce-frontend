@@ -86,7 +86,7 @@ const Pagination = ({
       sx={{
         display: "flex",
         width: "100%",
-        padding: "10px",
+        padding: "5px",
         justifyContent: "space-between",
         alignItems: "center",
         alignContent: "center",

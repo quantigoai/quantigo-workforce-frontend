@@ -9,6 +9,8 @@ const DetailsUploadHourBUtton = () => {
         fontWeight: "bold",
         backgroundColor: "#FFAB00",
         borderRadius: "8px",
+        mr: 2,
+        ml: 3,
       }}
       variant="contained"
     >

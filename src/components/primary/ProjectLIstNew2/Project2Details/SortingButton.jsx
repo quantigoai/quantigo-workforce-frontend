@@ -10,8 +10,6 @@ const SortingButton = ({ handleCount, filteredCol, col }) => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        padding: "5px 5px",
-        minWidth: "30px",
         alignItems: "center",
         ":hover": {
           backgroundColor: "rgba(242, 246, 252, 1)",
@@ -19,15 +17,7 @@ const SortingButton = ({ handleCount, filteredCol, col }) => {
         },
       }}
     >
-      <Box
-        sx={{
-          minWidth: "20px",
-          fontSize: "17px",
-          ":hover": {
-            color: "gray",
-          },
-        }}
-      >
+      <Box>
         <Typography
           sx={{
             lineHeight: 0,
@@ -43,7 +33,8 @@ const SortingButton = ({ handleCount, filteredCol, col }) => {
         </Typography>
         <Typography
           sx={{
-            lineHeight: 1.5,
+            lineHeight: 0,
+            mt: 1.5,
             fontSize: "20px",
             color: val.includes(col)
               ? filteredCol[col] === "desc"

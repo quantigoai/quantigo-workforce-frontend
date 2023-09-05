@@ -69,7 +69,8 @@ const ProjectTable2 = ({
                         }}
                       >
                         {col.headerName}
-                        {col.headerName === "ACTIONS" ? null : (
+
+                        {col.headerName !== "ACTIONS" && (
                           <Box onClick={() => handleId(col.field)}>
                             <SortingButton
                               handleCount={handleCount}
@@ -83,7 +84,7 @@ const ProjectTable2 = ({
                   ))}
                 </TableRow>
               </TableHead>
-              <TableBody className="tableBody  ">
+              <TableBody className="tableBody">
                 {myRows.map((row) => {
                   return (
                     <TableRow className="tableRow" key={row._id}>

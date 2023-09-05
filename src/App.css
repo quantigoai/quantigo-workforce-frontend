@@ -1,9 +1,17 @@
 .App {
   font-family: 'Roboto', sans-serif;
+  height: 100vh !important ;
+  margin: 0px !important;
+  padding: 0px !important;
+  top: 0;
+  left: 0;
 }
 
 body {
   font-family: 'Roboto', sans-serif;
+  /* height: 10vh !important; */
+
+
 }
 
 .MyCustomCard {

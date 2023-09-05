@@ -75,6 +75,8 @@ const ProjectLIstIndex2 = () => {
     handleCount,
     handleId,
     filteredCol,
+    handleIsFilter,
+    isFilter,
   } = useAllFunc(myColumn);
 
   const CustomFilterIcon = styled(SortIcon)({
@@ -177,13 +179,15 @@ const ProjectLIstIndex2 = () => {
 
   return (
     <>
-      <Box>
+      <Box
+        className="projectBox"
+      >
         <Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
             width: "100%",
-            padding: ".5%",
+            // padding: ".5%",
             background: "#FFFFFF",
             borderTop: " 2px solid #E6ECF5",
             borderBottom: " 2px solid #E6ECF5",
@@ -231,10 +235,16 @@ const ProjectLIstIndex2 = () => {
               <InputBase sx={{ ml: 0, flex: 1 }} placeholder="Search" />
             </Paper>
             <IconButton
-              sx={{ px: "15px", background: "#F4F7FE" }}
+              onClick={handleIsFilter}
+              sx={{
+                px: "5px 0px",
+                background: "#F4F7FE",
+                mx: 2,
+                borderRadius: "8px",
+              }}
               aria-label="menu"
             >
-              <CustomFilterIcon />
+              <i style={{ color: "#266AED" }} className="ri-filter-3-line"></i>
             </IconButton>
             <Button
               sx={{
@@ -268,43 +278,26 @@ const ProjectLIstIndex2 = () => {
             )}
           </Box>
         </Box>
-        {editModalOpen && (
-          <Box sx={{ width: "100%" }}>
-            <EditProjectModal
-              projectDrawer={projectDrawer}
-              editModalOpen={editModalOpen}
-              handleClick={handleClick}
-              setEditModalOpen={setEditModalOpen}
-              handleEditProjectClose={handleEditProjectClose}
-              platformCreateOptions={platformCreateOptions}
-              projectTypeCreateOptions={projectTypeCreateOptions}
-              statusCreateOptions={statusCreateOptions}
-              isEditModal={isEditModal}
-              handleEditSkill={handleEditSkill}
-              editCount={editCount}
-              editSkills={editSkills}
-              prevSkill={prevSkills}
+
+        {isFilter && (
+          <Box
+            sx={{ backgroundColor: "#FFFFFF", width: "100%", padding: "5px" }}
+          >
+            <ProjectSelectFIlter
+              filterPDR={filterPDR}
+              platformOptions={platformOptions}
+              statusOptions={statusOptions}
+              projectTypeOptions={projectTypeOptions}
+              handleChange={handleChange}
+              handleClearFilter={handleClearFilter}
+              filterValue={filterValue}
               skills={skills}
               onSubmit={onSubmit}
             />
           </Box>
         )}
 
-        <Box sx={{ backgroundColor: "#FFFFFF", width: "100%", padding: "5px" }}>
-          <ProjectSelectFIlter
-            filterPDR={filterPDR}
-            platformOptions={platformOptions}
-            statusOptions={statusOptions}
-            projectTypeOptions={projectTypeOptions}
-            handleChange={handleChange}
-            handleClearFilter={handleClearFilter}
-            filterValue={filterValue}
-            skills={skills}
-            onSubmit={onSubmit}
-          />
-        </Box>
-
-        <Box sx={{ backgroundColor: "#FFFFFF", width: "100%", padding: "5px" }}>
+        <Box sx={{ backgroundColor: "#FFFFFF", width: "100%" }}>
           <ProjectDetailsHeader />
         </Box>
 
@@ -312,6 +305,7 @@ const ProjectLIstIndex2 = () => {
           sx={{
             width: "100%",
             mt: "10px",
+            height: "100%",
           }}
         >
           <ProjectTable2
@@ -335,6 +329,27 @@ const ProjectLIstIndex2 = () => {
               detailsProjectOpen={detailsProjectOpen}
               handleProjectDetailsOpen={handleProjectDetailsOpen}
               handleDetailsProjectClose={handleDetailsProjectClose}
+            />
+          </Box>
+        )}
+        {editModalOpen && (
+          <Box sx={{ width: "100%" }}>
+            <EditProjectModal
+              projectDrawer={projectDrawer}
+              editModalOpen={editModalOpen}
+              handleClick={handleClick}
+              setEditModalOpen={setEditModalOpen}
+              handleEditProjectClose={handleEditProjectClose}
+              platformCreateOptions={platformCreateOptions}
+              projectTypeCreateOptions={projectTypeCreateOptions}
+              statusCreateOptions={statusCreateOptions}
+              isEditModal={isEditModal}
+              handleEditSkill={handleEditSkill}
+              editCount={editCount}
+              editSkills={editSkills}
+              prevSkill={prevSkills}
+              skills={skills}
+              onSubmit={onSubmit}
             />
           </Box>
         )}

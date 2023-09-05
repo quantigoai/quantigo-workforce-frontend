@@ -20,15 +20,9 @@ const ProjectDetailsHeader = () => {
       alignItems={"center"}
       justifyContent={"space-between"}
       width={"100%"}
-      sx={{ p: 1 }}
     >
-      <Box
-        sx={{ width: "60%" }}
-        display={"flex"}
-        justifyContent={""}
-        alignItems={"Center"}
-      >
-        <Typography variant="h6"> Car Annotation</Typography>
+      <Box display={"flex"} justifyContent={""} alignItems={"Center"}>
+        <Typography variant="body"> Car Annotation</Typography>
 
         <Box sx={{ ml: 2 }}>
           <ProjectDetailSelect
@@ -41,15 +35,14 @@ const ProjectDetailsHeader = () => {
       </Box>
 
       <Box
-        sx={{ width: "38%" }}
         display={"flex"}
         alignItems={"center"}
         justifyContent={"space-between"}
       >
         {value === "not-Started" && (
-          <>
+          <Box sx={{ mr: 5 }}>
             <DetailsButton />
-          </>
+          </Box>
         )}
         {value === "in-Progress" && (
           <>

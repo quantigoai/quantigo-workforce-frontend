@@ -92,18 +92,21 @@ const Header = () => {
         sx={{
           background: "#FFFFFF",
           color: isLightTheme ? "#000c1f" : "#F5F5F5",
-        }}>
+        }}
+      >
         <Box
           sx={{
             mx: 0,
             py: 2,
             px: 0,
-          }}>
+          }}
+        >
           <Box
             sx={{
               display: "flex",
               justifyContent: "flex-end",
-            }}>
+            }}
+          >
             {/* Go Back button  */}
             {/* <Box>
               <Button onClick={() => handleGoBack()}>
@@ -163,7 +166,8 @@ const Header = () => {
                     sx={{
                       color: "#0E243D",
                     }}
-                    variant="body2">
+                    variant="body2"
+                  >
                     <b>{name}</b>
                   </Typography>
                   <Typography sx={{ color: "#969CAF" }} variant="caption">
@@ -199,14 +203,16 @@ const Header = () => {
                     }}
                     anchorEl={anchorEl}
                     open={open}
-                    onClose={handleClose}>
+                    onClose={handleClose}
+                  >
                     <MenuItem
                       sx={{
                         backgroundColor: "#FFFFF",
                         borderBottom: "1px solid #F0F5FA",
                         width: "182px",
                       }}
-                      onClick={handleEditProfile}>
+                      onClick={handleEditProfile}
+                    >
                       <ListItemIcon>
                         <img src={ProfileIcon} />
                       </ListItemIcon>
@@ -226,7 +232,8 @@ const Header = () => {
                   <Button
                     id="fade-button"
                     onClick={handleClick}
-                    sx={{ paddingTop: "20%" }}>
+                    sx={{ paddingTop: "20%" }}
+                  >
                     <img src={menuIcon} />
                     {/* <KeyboardArrowDownIcon /> */}
                   </Button>

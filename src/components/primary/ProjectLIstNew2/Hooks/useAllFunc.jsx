@@ -8,6 +8,7 @@ const useAllFunc = (myColumn) => {
   const [filteredCol, setFilteredCol] = useState({});
   const handleProjectCreateOpen = () => setCreateProjectOpen(true);
   const handleProjectDetailsOpen = () => setDetailsProjectOpen(true);
+  const [isFilter, setIsFilter] = useState(false);
   const handleDetailsProjectClose = () => {
     setDetailsProjectOpen(false);
   };
@@ -56,6 +57,9 @@ const useAllFunc = (myColumn) => {
       setFillCount(0);
     }
   };
+  const handleIsFilter = () => {
+    setIsFilter(!isFilter);
+  };
 
   return {
     handleCreateProjectClose,
@@ -73,6 +77,8 @@ const useAllFunc = (myColumn) => {
     handleId,
     filteredCol,
     fillCount,
+    handleIsFilter,
+    isFilter,
   };
 };
 

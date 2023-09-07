@@ -168,7 +168,7 @@ const Routers = () => {
         <Route
           path={"/show-all-notification"}
           element={<AllNotification />}></Route>
-        <Route path={"/projectDirectory"} element={<ProjectDirectoryIndex />} />
+       
 
         <Route path="*" element={<ErrorPage />} />
       </Routes>

@@ -14,6 +14,27 @@ const App = lazy(() => import("./App.jsx"));
 const theme = createTheme({
   typography: {
     fontFamily: ["Inter", "sans-serif"].join(","),
+    wf_h6: { //used in dashboard card
+      fontSize: "12px",
+      fontWeight: "500",
+      lineHeight: "18px",
+      letterSpacing: "0em",
+      textAlign: "left",
+    },
+    wf_h5: { //used in left side bar
+      fontSize: "14px",
+      fontWeight: "500",
+      lineHeight: "20px",
+      letterSpacing: "0em",
+      textAlign: "left",
+    },
+    wf_h4: {
+      fontSize: "20px",
+      fontWeight: "500",
+      lineHeight: "30px",
+      letterSpacing: "0em",
+      textAlign: "left",
+    },
   },
   select: {
     height: "58px",

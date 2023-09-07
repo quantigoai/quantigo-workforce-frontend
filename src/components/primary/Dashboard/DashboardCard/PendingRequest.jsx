@@ -15,7 +15,8 @@ const PendingRequest = () => {
             width: "100%",
             height: "100px",
             borderRadius: "8px",
-          }}>
+          }}
+        >
           <Box sx={{ padding: "4%", position: "relative" }}>
             <Grid container sx={{ paddingTop: "0%" }}>
               <Grid item xs={3}>
@@ -23,9 +24,8 @@ const PendingRequest = () => {
               </Grid>
               <Grid item xs={9}>
                 <Grid container>
-                  <Typography sx={{ color: "#3C4D6B" }}>
-                    Pending Request
-                  </Typography>
+                  {/* <Typography variant={"wf_h6"} sx={{ color: "#3C4D6B" }}> */}
+                  <Typography sx={{ color: "#3C4D6B" }}>Pending Request</Typography>
                 </Grid>
                 <Grid container sx={{ paddingTop: "4%" }}>
                   <Grid item xs={8}>

@@ -26,12 +26,6 @@ const PDskillFIeld = ({
   // inputRef,
   ...other
 }) => {
-  console.log("🚀 ~ file: PDskillFIeld.jsx:29 ~ count:", count);
-  console.log(
-    "🚀 ~ file: PDskillFIeld.jsx:29 ~ selectedSkills:",
-    selectedSkills
-  );
-
   const { control } = useFormContext();
 
   return (

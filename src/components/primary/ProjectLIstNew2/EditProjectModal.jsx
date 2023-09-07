@@ -46,8 +46,6 @@ const EditProjectModal = ({
   skills,
   onSubmit,
 }) => {
-  console.log("🚀 ~ file: EditProjectModal.jsx:49 ~ isEditModal:", isEditModal);
-
   const { prevSkills } = useHandleEditChange();
 
   const [addDoc, setAddDoc] = useState([]);
@@ -329,9 +327,11 @@ const EditProjectModal = ({
                       paddingX: "30px",
                       paddingY: "5px",
                       fontSize: "16px",
+                      border: "1px solid #F4F7FE",
+                      backgroundColor: "#F4F7FE",
                       "&:hover": {
-                        backgroundColor: "rgba(46, 88, 255, .81)",
-                        color: "white",
+                        border: " 1px solid #2E58FF",
+                        backgroundColor: "#F4F7FE",
                       },
                     }}
                     variant="filled"
@@ -346,10 +346,9 @@ const EditProjectModal = ({
                       paddingX: "30px",
                       paddingY: "5px",
                       fontSize: "16px",
-                      background: "#2E58FF",
+                      backgroundColor: "#2E58FF",
                       "&:hover": {
-                        backgroundColor: "rgba(46, 88, 255, .81)",
-                        color: "white",
+                        background: "#244EF5",
                       },
                     }}
                     variant="contained"

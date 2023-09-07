@@ -47,11 +47,16 @@ export const getASkill = createAsyncThunk("get/A/skill", async (id) => {
 
 // create skill
 export const createASkill = createAsyncThunk("create/A/skill", async (data) => {
-  return axios.post(`${url}/skills`, data, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
+  try{
+
+    return axios.post(`${url}/skills`, data, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch(error) {
+    throw new Error(error.response.data);
+  }
 });
 
 //validate skill
@@ -136,8 +141,9 @@ const skillSlice = createSlice({
           }
         });
       })
-      .addCase(createASkill.rejected, (state) => {
+      .addCase(createASkill.rejected, (state,action) => {
         state.isLoading = false;
+        state.error = action.error.data;
       })
 
       .addCase(validateSkill.pending, (state) => {

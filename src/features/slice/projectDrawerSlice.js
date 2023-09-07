@@ -59,7 +59,6 @@ export const getAllProjectDrawers = createAsyncThunk(
 export const createProjectDrawer = createAsyncThunk(
   "/project-drawer/create",
   async (data) => {
-    console.log(data);
     try {
       return await axios.post(`${url}/project-drawer`, data, {
         headers: {

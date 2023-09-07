@@ -94,11 +94,16 @@ const MainModal = ({
               <Button
                 sx={{
                   textTransform: "none",
-                  background: "#F2F6FC",
+                  backgroundColor: "#FFF0F2",
                   borderRadius: "10px",
-                  color: "#253E5C",
+                  border: "1px solid #FFF0F2",
+                  color: "black",
                   padding: " 10px 16px",
                   width: "150px",
+                  "&:hover": {
+                    border: "1px solid #FF4757",
+                    backgroundColor: "#FFF0F2",
+                  },
                 }}
                 onClick={handleClose}
                 variant="contained"
@@ -115,6 +120,9 @@ const MainModal = ({
                 background: isEdit ? "#FFAB00" : "#FF4757",
                 borderRadius: "10px",
                 width: "150px",
+                ":hover": {
+                  backgroundColor: isEdit ? "#F2A200" : "#F53142",
+                },
               }}
               variant="contained"
             >

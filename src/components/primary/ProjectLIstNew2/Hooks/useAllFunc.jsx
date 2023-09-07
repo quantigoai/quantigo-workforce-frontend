@@ -1,12 +1,19 @@
 import React, { useState } from "react";
+import { getAllSkills } from "../../../../features/slice/skillSlice";
+import { useDispatch } from "react-redux";
 
 const useAllFunc = (myColumn) => {
   const [filterValue, setFilterValue] = useState({});
+  const dispatch = useDispatch();
   const [createProjectOpen, setCreateProjectOpen] = React.useState(false);
   const [detailsProjectOpen, setDetailsProjectOpen] = React.useState(false);
   const [fillCount, setFillCount] = useState(0);
+
   const [filteredCol, setFilteredCol] = useState({});
-  const handleProjectCreateOpen = () => setCreateProjectOpen(true);
+
+  const handleProjectCreateOpen = () => {
+    setCreateProjectOpen(true), dispatch(getAllSkills());
+  };
   const handleProjectDetailsOpen = () => setDetailsProjectOpen(true);
   const [isFilter, setIsFilter] = useState(false);
   const handleDetailsProjectClose = () => {
@@ -28,12 +35,13 @@ const useAllFunc = (myColumn) => {
     project_type: "",
     project_status: "",
   };
+  let newVal;
   const handleClearFilter = () => {
     setFilterValue(defaultState);
     setFilteredCol({});
-    setFillCount(0);
+    // setFillCount(0);
+    newVal = "";
   };
-  let newVal;
 
   const handleId = (field) => {
     const filteredCol = myColumn.find((col) => col.field === field);

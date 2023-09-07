@@ -39,6 +39,7 @@ const ProjectTable2 = ({
   handleId,
   filteredCol,
   handleCount,
+  handleProjectDetailsOpen,
 }) => {
   const { isLoading } = useSelector((state) => state.projectDrawer);
 
@@ -58,7 +59,7 @@ const ProjectTable2 = ({
                         minWidth: col.width || "140px",
                         color: "#7B98BA",
                         textAlign: "left",
-                        fontSize: "14px",
+                        fontSize: "13px",
                       }}
                       key={col.id}
                     >
@@ -179,6 +180,9 @@ const ProjectTable2 = ({
                           return (
                             <TableCell key={col.id} component="th" scope="row">
                               <CustomButton
+                                handleProjectDetailsOpen={
+                                  handleProjectDetailsOpen
+                                }
                                 params={row}
                                 handleClick={handleClick}
                                 handleDelete={handleDelete}

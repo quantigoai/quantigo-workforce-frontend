@@ -20,6 +20,10 @@ const ProjectDetailsHeader = () => {
       alignItems={"center"}
       justifyContent={"space-between"}
       width={"100%"}
+      sx={{
+        backgroundColor: "#F2F6FC",
+        borderBottom: "2px solid #F2F6FC",
+      }}
     >
       <Box display={"flex"} justifyContent={""} alignItems={"Center"}>
         <Typography variant="body"> Car Annotation</Typography>

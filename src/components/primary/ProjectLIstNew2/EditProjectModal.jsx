@@ -1,3 +1,4 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Stack } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
@@ -6,18 +7,14 @@ import Fade from "@mui/material/Fade";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { updateProjectDrawerById } from "../../../features/slice/projectDrawerSlice";
-import ProjectModalHeader from "./ProjectModalHeader";
-import FormProvider from "../../shared/FormProvider/FormProvider";
-import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
-import PDSelectField from "../../shared/CustomField/PDSelectField";
-import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
-import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import PDSelectField from "../../shared/CustomField/PDSelectField";
+import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
+import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
+import FormProvider from "../../shared/FormProvider/FormProvider";
 import useHandleEditChange from "./Hooks/useHandleEditChange";
+import ProjectModalHeader from "./ProjectModalHeader";
 
 const style = {
   position: "absolute",
@@ -31,22 +28,7 @@ const style = {
   p: 0,
 };
 
-const EditProjectModal = ({
-  editModalOpen,
-  handleEditProjectClose,
-  projectDrawer,
-  setEditModalOpen,
-  platformCreateOptions,
-  projectTypeCreateOptions,
-  statusCreateOptions,
-  isEditModal,
-  handleEditSkill,
-  editCount,
-  editSkills,
-  skills,
-  onSubmit,
-}) => {
-
+const EditProjectModal = ({ editModalOpen, handleEditProjectClose, projectDrawer, setEditModalOpen, platformCreateOptions, projectTypeCreateOptions, statusCreateOptions, isEditModal, handleEditSkill, editCount, editSkills, skills, onSubmit }) => {
   const { prevSkills } = useHandleEditChange();
 
   const [addDoc, setAddDoc] = useState([]);
@@ -100,21 +82,11 @@ const EditProjectModal = ({
       >
         <Fade in={editModalOpen}>
           <Box sx={style}>
-            <ProjectModalHeader
-              handleCreateProjectClose={handleEditProjectClose}
-              modalTitle={`Edit ${projectDrawer.project_drawer_name}`}
-            />
-            <Box
-              sx={{ paddingLeft: "3%", paddingTop: "2%", paddingRight: "3%" }}
-            >
+            <ProjectModalHeader handleCreateProjectClose={handleEditProjectClose} modalTitle={`Edit ${projectDrawer.project_drawer_name}`} />
+            <Box sx={{ paddingLeft: "3%", paddingTop: "2%", paddingRight: "3%" }}>
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  <PDSelectField
-                    name={"project_platform"}
-                    label="Platform"
-                    options={platformCreateOptions}
-                    defaultValue={projectDrawer.project_platform}
-                  />
+                  <PDSelectField name={"project_platform"} label="Platform" options={platformCreateOptions} defaultValue={projectDrawer.project_platform} />
                   <PDTextFIeld
                     name="project_drawer_name"
                     label="Project Name"
@@ -126,12 +98,7 @@ const EditProjectModal = ({
                 </Stack>
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
                   {" "}
-                  <PDSelectField
-                    name={"project_type"}
-                    label="Project Type"
-                    options={projectTypeCreateOptions}
-                    defaultValue={projectDrawer.project_type}
-                  />
+                  <PDSelectField name={"project_type"} label="Project Type" options={projectTypeCreateOptions} defaultValue={projectDrawer.project_type} />
                   <PDTextFIeld
                     name="project_batch"
                     label="Batch"
@@ -170,16 +137,7 @@ const EditProjectModal = ({
                 {/* <SkillField/> */}
 
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  <PDskillFIeld
-                    name={"project_skills"}
-                    addSkills={editSkills}
-                    selectedSkills={prevSkills}
-                    isEdit={true}
-                    label="Skills"
-                    handleChangeSkill={handleEditSkill}
-                    skills={skills}
-                    count={editCount}
-                  />
+                  <PDskillFIeld name={"project_skills"} addSkills={editSkills} selectedSkills={prevSkills} isEdit={true} label="Skills" handleChangeSkill={handleEditSkill} skills={skills} count={editCount} />
                   <PDTextFIeld
                     name="benchmark"
                     label="Benchmark"
@@ -197,12 +155,7 @@ const EditProjectModal = ({
                       disableUnderline: true,
                     }}
                   />
-                  <PDSelectField
-                    name={"project_status"}
-                    label="Status"
-                    options={statusCreateOptions}
-                    defaultValue={projectDrawer.project_status}
-                  />
+                  <PDSelectField name={"project_status"} label="Status" options={statusCreateOptions} defaultValue={projectDrawer.project_status} />
                 </Stack>
 
                 <Typography
@@ -248,13 +201,7 @@ const EditProjectModal = ({
                   </Stack>
                   {addDoc.map((doc, id) => {
                     return (
-                      <Stack
-                        key={id}
-                        direction="row"
-                        gap={2}
-                        xs={12}
-                        sx={{ mt: 2, position: "relative" }}
-                      >
+                      <Stack key={id} direction="row" gap={2} xs={12} sx={{ mt: 2, position: "relative" }}>
                         <PDTextFIeld
                           name={`guideline${id + 1}`}
                           label="Document Name"
@@ -280,10 +227,7 @@ const EditProjectModal = ({
                           }}
                         >
                           {" "}
-                          <i
-                            style={{ color: "red", cursor: "pointer" }}
-                            className="ri-delete-bin-line"
-                          ></i>
+                          <i style={{ color: "red", cursor: "pointer" }} className="ri-delete-bin-line"></i>
                         </Button>
                       </Stack>
                     );
@@ -328,9 +272,11 @@ const EditProjectModal = ({
                       paddingX: "30px",
                       paddingY: "5px",
                       fontSize: "16px",
+                      border: "1px solid #F4F7FE",
+                      backgroundColor: "#F4F7FE",
                       "&:hover": {
-                        backgroundColor: "rgba(46, 88, 255, .81)",
-                        color: "white",
+                        border: " 1px solid #2E58FF",
+                        backgroundColor: "#F4F7FE",
                       },
                     }}
                     variant="filled"
@@ -345,10 +291,9 @@ const EditProjectModal = ({
                       paddingX: "30px",
                       paddingY: "5px",
                       fontSize: "16px",
-                      background: "#2E58FF",
+                      backgroundColor: "#2E58FF",
                       "&:hover": {
-                        backgroundColor: "rgba(46, 88, 255, .81)",
-                        color: "white",
+                        background: "#244EF5",
                       },
                     }}
                     variant="contained"

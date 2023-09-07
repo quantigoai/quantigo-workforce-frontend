@@ -8,10 +8,8 @@
  */
 
 import SearchIcon from "@mui/icons-material/Search";
-import SortIcon from "@mui/icons-material/Sort";
 import { Box, Button, Grid, IconButton, Paper } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
-import { styled } from "@mui/material/styles";
 import { useCallback, useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
@@ -46,7 +44,7 @@ import ProjectModal from "./ProjectModal";
 import ProjectSelectFIlter from "./ProjectSelectFIlter";
 import ProjectTable2 from "./ProjectTable2";
 import "./index.css";
-import ProjectDetailsHeader from "./ProjectDetailsFull/ProjectDetailsHeader";
+import { getAllSkills } from "../../../features/slice/skillSlice";
 
 // test for commit
 /**
@@ -60,6 +58,7 @@ const ProjectLIstIndex2 = () => {
   const [myRows, setMyRows] = useState([]);
   const [isEditModal, setIsEditModal] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
+
   const alert = useAlert();
   const {
     handleCreateProjectClose,
@@ -79,13 +78,6 @@ const ProjectLIstIndex2 = () => {
     isFilter,
   } = useAllFunc(myColumn);
 
-  const CustomFilterIcon = styled(SortIcon)({
-    color: "#266AED",
-    background: "#EFF3FE",
-    borderRadius: "8px",
-    padding: "10px",
-  });
-
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
@@ -101,6 +93,7 @@ const ProjectLIstIndex2 = () => {
   }, [projectDrawers]);
 
   const handleChangePagination = useCallback(() => {
+    dispatch(getAllSkills());
     dispatch(
       getAllProjectDrawers({
         pagination,
@@ -142,6 +135,7 @@ const ProjectLIstIndex2 = () => {
     setEditModalOpen(true);
     setIsEditModal(true);
   };
+
   const skillId = addSkills?.map((skill) => skill._id);
 
   const onSubmit = (data) => {
@@ -179,15 +173,12 @@ const ProjectLIstIndex2 = () => {
 
   return (
     <>
-      <Box
-        className="projectBox"
-      >
+      <Box className="projectBox">
         <Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
             width: "100%",
-            // padding: ".5%",
             background: "#FFFFFF",
             borderTop: " 2px solid #E6ECF5",
             borderBottom: " 2px solid #E6ECF5",
@@ -250,7 +241,10 @@ const ProjectLIstIndex2 = () => {
               sx={{
                 textTransform: "none",
                 borderRadius: "8px",
-                background: "#2E58FF",
+                backgroundColor: "#2E58FF",
+                "&:hover": {
+                  background: "#244EF5",
+                },
               }}
               variant="contained"
               onClick={handleProjectCreateOpen}
@@ -297,10 +291,6 @@ const ProjectLIstIndex2 = () => {
           </Box>
         )}
 
-        <Box sx={{ backgroundColor: "#FFFFFF", width: "100%" }}>
-          <ProjectDetailsHeader />
-        </Box>
-
         <Box
           sx={{
             width: "100%",
@@ -320,6 +310,8 @@ const ProjectLIstIndex2 = () => {
             totalItems={total}
             handleId={handleId}
             filteredCol={filteredCol}
+            handleProjectDetailsOpen={handleProjectDetailsOpen}
+    
           />
         </Box>
 

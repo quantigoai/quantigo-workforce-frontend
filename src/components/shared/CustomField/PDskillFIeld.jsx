@@ -26,7 +26,6 @@ const PDskillFIeld = ({
   // inputRef,
   ...other
 }) => {
- 
   const { control } = useFormContext();
 
   return (

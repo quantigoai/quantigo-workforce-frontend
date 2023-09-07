@@ -50,6 +50,7 @@ import Skills from "../Skill/Skills";
 import UserListIndex from "../UserListNew/UserListIndex";
 import MyProfileIndex from "../EditProfile/EditProfilePage/MyProfile/MyProfileIndex";
 import EditProfilePageIndex from "../EditProfile/EditProfilePage/EditProfilePageIndex";
+import FullProjectDetails from "../ProjectLIstNew2/ProjectDetailsFull/FullProjectDetails";
 
 const Routers = () => {
   return (
@@ -105,6 +106,10 @@ const Routers = () => {
         <Route
           path={"/allprojects"}
           element={<ProjectLIstIndex2 action={"allprojects"} />}
+        />
+        <Route
+          path={"/projectDetails"}
+          element={<FullProjectDetails action={"projectDetails"} />}
         />
 
         <Route
@@ -163,11 +168,15 @@ const Routers = () => {
 
         {/* --------------- */}
         {/* <Route path={"/edit-profile"} element={<EditProfileIndex />}></Route> */}
-        <Route path={"/edit-profile"} element={<EditProfilePageIndex />}></Route>
+        <Route
+          path={"/edit-profile"}
+          element={<EditProfilePageIndex />}
+        ></Route>
         <Route path={"/show-profile"} element={<EditProfileIndex />}></Route>
         <Route
           path={"/show-all-notification"}
-          element={<AllNotification />}></Route>
+          element={<AllNotification />}
+        ></Route>
         <Route path={"/projectDirectory"} element={<ProjectDirectoryIndex />} />
 
         <Route path="*" element={<ErrorPage />} />

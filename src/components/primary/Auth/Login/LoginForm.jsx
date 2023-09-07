@@ -45,14 +45,9 @@ const LoginForm = () => {
     password: Yup.string().required("Password is required"),
   });
 
-  const defaultValues = {
-    email: "tanzim.ahmed1@g.bracu.ac.bd",
-    password: "ta12345",
-  };
-
   const methods = useForm({
     resolver: yupResolver(LoginSchema),
-    defaultValues,
+    // defaultValues,
   });
   const {
     reset,

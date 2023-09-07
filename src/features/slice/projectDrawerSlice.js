@@ -253,5 +253,5 @@ const projectDrawerSlice = createSlice({
       });
   },
 });
-export const {resetProjectDrawerSlice, resetProjectDrawer, setCurrentProjectDrawer } = projectDrawerSlice.actions;
+export const { resetProjectDrawerSlice, resetProjectDrawer, setCurrentProjectDrawer } = projectDrawerSlice.actions;
 export default projectDrawerSlice.reducer;

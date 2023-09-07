@@ -50,8 +50,6 @@ const ProjectModal = ({
   addSkills,
   skills,
 }) => {
-  const inputRef = useRef(null);
-
   const [addDoc, setAddDoc] = useState([]);
 
   const handleAddDoc = () => {
@@ -171,12 +169,11 @@ const ProjectModal = ({
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
                   <PDskillFIeld
                     name={"project_skills"}
-                    addSkills={addSkills}
+                    addSkills={addSkills && addSkills}
                     label="Skills"
                     handleChangeSkill={handleChangeSkill}
                     skills={skills}
                     count={count}
-                    inputRef={inputRef}
                   />
                   <PDTextFIeld
                     name="benchmark"
@@ -324,9 +321,12 @@ const ProjectModal = ({
                       paddingX: "30px",
                       paddingY: "5px",
                       fontSize: "16px",
+                      color: "#2E58FF",
+                      border: "1px solid #F4F7FE",
+                      backgroundColor: "#F4F7FE",
                       "&:hover": {
-                        backgroundColor: "rgba(46, 88, 255, .81)",
-                        color: "white",
+                        border: " 1px solid #2E58FF",
+                        backgroundColor: "#F4F7FE",
                       },
                     }}
                     variant="filled"
@@ -341,10 +341,9 @@ const ProjectModal = ({
                       paddingX: "30px",
                       paddingY: "5px",
                       fontSize: "16px",
-                      background: "#2E58FF",
+                      backgroundColor: "#2E58FF",
                       "&:hover": {
-                        backgroundColor: "rgba(46, 88, 255, .81)",
-                        color: "white",
+                        background: "#244EF5",
                       },
                     }}
                     variant="contained"

@@ -10,7 +10,12 @@ import { Box, Button } from "@mui/material";
 import React from "react";
 import MainModal from "./MainModal";
 
-const CustomButton = ({ params, handleClick, handleDelete }) => {
+const CustomButton = ({
+  params,
+  handleClick,
+  handleDelete,
+  handleProjectDetailsOpen,
+}) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -30,10 +35,7 @@ const CustomButton = ({ params, handleClick, handleDelete }) => {
           handleClick(params);
         }}
       >
-        <i
-          className="ri-edit-line"
-          // onClick={handleOpen}
-        ></i>
+        <i className="ri-edit-line"></i>
       </Button>
 
       <Button
@@ -44,10 +46,16 @@ const CustomButton = ({ params, handleClick, handleDelete }) => {
       >
         <i onClick={handleOpen} className="ri-delete-bin-6-line"></i>
       </Button>
+      <Button
+        onClick={handleProjectDetailsOpen}
+        sx={{ color: "#2E58FF", padding: "0px", minWidth: "35px" }}
+      >
+        <i className="ri-eye-line"></i>
+      </Button>
+
       <MainModal
         open={open}
         handleClose={handleClose}
-        // handleClick={handleClick}
         handleDelete={handleDelete}
         params={params}
         isEdit={isEdit}

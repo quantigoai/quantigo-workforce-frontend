@@ -283,7 +283,7 @@ const Layout = ({ children }) => {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <Header />
+      {/* <Header /> */}
       <Drawer
         sx={{
           width: drawerWidth,

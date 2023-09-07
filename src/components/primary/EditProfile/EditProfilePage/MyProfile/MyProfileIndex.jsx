@@ -1,5 +1,4 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
-
 import moment from "moment/moment";
 import React, { useState } from "react";
 import { useAlert } from "react-alert";
@@ -31,16 +30,7 @@ const MyProfileIndex = () => {
       setCoverImage(url);
     }
   };
-  // const removeImage = () => {
-  //   dispatch(removeMyImage(user._id)).then((action) => {
-  //     if (action.payload.status === 200) {
-  //       alert.show("Image remove Successfully", { type: "success" });
-  //       setCoverImageFile(null);
-  //       setCoverImage(null);
-  //       navigate("/edit-profile");
-  //     }
-  //   });
-  // };
+ 
   const { handleSubmit, control, errors } = useForm();
 
   const onSubmit = (data) => {

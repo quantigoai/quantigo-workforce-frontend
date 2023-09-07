@@ -33,6 +33,7 @@ import QuizShow from "../CourseNew/QuizShow";
 import Dashboard from "../Dashboard/Dashboard";
 import UpdateDocument from "../Documents/UpdateDocument";
 import EditProfileIndex from "../EditProfile/EditProfileIndex";
+import EditProfilePageIndex from "../EditProfile/EditProfilePage/EditProfilePageIndex";
 import ForgetPassword from "../ForgetPassword/ForgetPassword";
 import ResetPassword from "../ForgetPassword/ResetPassword";
 import ActiveJobList from "../Job/ActiveJobList";
@@ -42,25 +43,20 @@ import CreateJob from "../Job/CreateJob";
 import Job from "../Job/Job";
 import OngoingJob from "../Job/OngoingJob";
 import ProjectList from "../Project/ProjectList";
+import FullProjectDetails from "../ProjectLIstNew2/ProjectDetailsFull/FullProjectDetails";
 import ProjectLIstIndex2 from "../ProjectLIstNew2/ProjectLIstIndex2";
 import CreateQuiz from "../Quiz/CreateQuiz";
 import ShowResult from "../Quiz/QuizPage/ShowResult/ShowResult";
 import UpdateQuiz from "../Quiz/UpdateQuiz";
 import Skills from "../Skill/Skills";
 import UserListIndex from "../UserListNew/UserListIndex";
-import MyProfileIndex from "../EditProfile/EditProfilePage/MyProfile/MyProfileIndex";
-import EditProfilePageIndex from "../EditProfile/EditProfilePage/EditProfilePageIndex";
-import FullProjectDetails from "../ProjectLIstNew2/ProjectDetailsFull/FullProjectDetails";
 
 const Routers = () => {
   return (
     <>
       <Routes>
         <Route path={"/"} element={<Dashboard />} />
-        <Route
-          path={"/verify-email/:id/:token/"}
-          element={<EmailVerificationAfterLogin />}
-        />
+        <Route path={"/verify-email/:id/:token/"} element={<EmailVerificationAfterLogin />} />
         {/*TODO Correction in this component */}
         <Route path={"/emailVerification"} element={<EmailVerification />} />
 
@@ -89,69 +85,30 @@ const Routers = () => {
         <Route path={"/payment"} element={<Payment />} />
         <Route path={"/forgetpassword"} element={<ForgetPassword />} />
         <Route path={"/skillcreate"} element={<Skills />} />
-        <Route
-          path={"/reset-password/:id/:token"}
-          element={<ResetPassword />}
-        />
+        <Route path={"/reset-password/:id/:token"} element={<ResetPassword />} />
         {/* TODO Check if iis really needed or not */}
-        <Route
-          path={"/annotators"}
-          element={<UserListIndex action={"annotator"} />}
-        />
+        <Route path={"/annotators"} element={<UserListIndex action={"annotator"} />} />
 
-        <Route
-          path={"/allusers"}
-          element={<UserListIndex action={"alluser"} />}
-        />
-        <Route
-          path={"/allprojects"}
-          element={<ProjectLIstIndex2 action={"allprojects"} />}
-        />
-        <Route
-          path={"/projectDetails"}
-          element={<FullProjectDetails action={"projectDetails"} />}
-        />
+        <Route path={"/allusers"} element={<UserListIndex action={"alluser"} />} />
+        <Route path={"/allprojects"} element={<ProjectLIstIndex2 action={"allprojects"} />} />
+        <Route path={"/projectDetails"} element={<FullProjectDetails action={"projectDetails"} />} />
 
-        <Route
-          path={"/users"}
-          element={<UserListIndex action={"recruitment_manager"} />}
-        />
-        <Route
-          path={"/reviewers"}
-          element={<UserListIndex action={"reviewer"} />}
-        />
+        <Route path={"/users"} element={<UserListIndex action={"recruitment_manager"} />} />
+        <Route path={"/reviewers"} element={<UserListIndex action={"reviewer"} />} />
 
         <Route path={"jobs"} element={<Job />}>
           <Route path={"create-job"} element={<CreateJob />} />
           <Route path={"alljobs"} element={<AllJobs />} />
           <Route path={"availablejobs"} element={<AllJobsForReviewer />} />
-          <Route
-            path={"ongoingjobs"}
-            element={<OngoingJob action={"jobs"} />}
-          />
-          <Route
-            path={"archivejob"}
-            element={<OngoingJob action={"archiveJob"} />}
-          />
-          <Route
-            path={"activejobs"}
-            element={<ActiveJobList action={"jobs"} />}
-          />
-          <Route
-            path={"archivejobs"}
-            element={<ActiveJobList action={"archivejobs"} />}
-          />
-          <Route
-            path={"reviwerJoblist"}
-            element={<ActiveJobList action={"jobs"} />}
-          />
+          <Route path={"ongoingjobs"} element={<OngoingJob action={"jobs"} />} />
+          <Route path={"archivejob"} element={<OngoingJob action={"archiveJob"} />} />
+          <Route path={"activejobs"} element={<ActiveJobList action={"jobs"} />} />
+          <Route path={"archivejobs"} element={<ActiveJobList action={"archivejobs"} />} />
+          <Route path={"reviwerJoblist"} element={<ActiveJobList action={"jobs"} />} />
         </Route>
 
         {/* TODO Need to fixed the skeleton */}
-        <Route
-          path={"/calculate-annotation"}
-          element={<CalculateAnnotations />}
-        />
+        <Route path={"/calculate-annotation"} element={<CalculateAnnotations />} />
 
         {/* TODO Apply this asap */}
         {/* New Version */}
@@ -168,15 +125,9 @@ const Routers = () => {
 
         {/* --------------- */}
         {/* <Route path={"/edit-profile"} element={<EditProfileIndex />}></Route> */}
-        <Route
-          path={"/edit-profile"}
-          element={<EditProfilePageIndex />}
-        ></Route>
+        <Route path={"/edit-profile"} element={<EditProfilePageIndex />}></Route>
         <Route path={"/show-profile"} element={<EditProfileIndex />}></Route>
-        <Route
-          path={"/show-all-notification"}
-          element={<AllNotification />}
-        ></Route>
+        <Route path={"/show-all-notification"} element={<AllNotification />}></Route>
         <Route path={"/projectDirectory"} element={<ProjectDirectoryIndex />} />
 
         <Route path="*" element={<ErrorPage />} />

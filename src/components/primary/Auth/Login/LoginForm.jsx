@@ -9,16 +9,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import {
-  Alert,
-  Box,
-  Grid,
-  IconButton,
-  InputAdornment,
-  Link,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Alert, Box, Grid, IconButton, InputAdornment, Link, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
@@ -39,9 +30,7 @@ const LoginForm = () => {
   const { error, isLoading } = useSelector((state) => state.user);
 
   const LoginSchema = Yup.object().shape({
-    email: Yup.string()
-      .required("Email is required")
-      .email("Email must be a valid email address"),
+    email: Yup.string().required("Email is required").email("Email must be a valid email address"),
     password: Yup.string().required("Password is required"),
   });
 
@@ -81,9 +70,7 @@ const LoginForm = () => {
       </Grid>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3} sx={{ width: "100%" }}>
-          {!!errors.afterSubmit && (
-            <Alert severity="error">{errors.afterSubmit.message}</Alert>
-          )}
+          {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
           <CustomTextField
             name="email"
             label="Email address"
@@ -105,10 +92,7 @@ const LoginForm = () => {
               disableUnderline: true,
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => setShowPassword(!showPassword)}
-                    edge="end"
-                  >
+                  <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
                     {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                   </IconButton>
                 </InputAdornment>
@@ -127,7 +111,7 @@ const LoginForm = () => {
                   color: "#FFFFFF",
                 }}
               >
-                Create New Account
+                <Typography sx={{ color: "#FFFFFF" }}>Create New Account</Typography>
               </Link>
             </Grid>
             <Grid
@@ -146,21 +130,13 @@ const LoginForm = () => {
                   color: "#FFFFFF",
                 }}
               >
-                Forget password?
+                <Typography sx={{ color: "#FFFFFF" }}>Forget password?</Typography>
               </Link>
             </Grid>
           </Grid>
         </Stack>
 
-        <LoadingButtonStyle
-          fullWidth
-          color="inherit"
-          size="large"
-          disabled={Object.keys(errors).length || false}
-          type="submit"
-          variant="contained"
-          loading={isLoading}
-        >
+        <LoadingButtonStyle fullWidth color="inherit" size="large" disabled={Object.keys(errors).length || false} type="submit" variant="contained" loading={isLoading}>
           Login
         </LoadingButtonStyle>
       </FormProvider>

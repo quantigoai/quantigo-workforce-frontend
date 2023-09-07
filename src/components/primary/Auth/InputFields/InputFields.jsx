@@ -7,16 +7,7 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 
-import {
-  CircularProgress,
-  FormControl,
-  FormHelperText,
-  Grid,
-  InputLabel,
-  Link,
-  Select,
-  TextField,
-} from "@mui/material";
+import { CircularProgress, FormControl, FormHelperText, Grid, InputLabel, Link, Select, TextField } from "@mui/material";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
@@ -95,11 +86,7 @@ const InputFields = ({
 
   const handleDate = (newValue) => {
     const today = new Date();
-    const minAgeDate = new Date(
-      today.getFullYear() - 13,
-      today.getMonth(),
-      today.getDate()
-    );
+    const minAgeDate = new Date(today.getFullYear() - 13, today.getMonth(), today.getDate());
     if (newValue <= minAgeDate) {
       setSelectedDate(newValue);
       setIsError(false);
@@ -143,10 +130,7 @@ const InputFields = ({
               <NameField name={name} handleFirstName={handleFirstName} />
             </Grid>
             <Grid item xs={6}>
-              <LastNameField
-                lastName={lastName}
-                handleLastName={handleLastName}
-              />
+              <LastNameField lastName={lastName} handleLastName={handleLastName} />
             </Grid>
           </Grid>
         )}
@@ -160,9 +144,7 @@ const InputFields = ({
           <>
             <Grid container>
               <Grid item xs={8}>
-                <Typography sx={{ color: "#FFFFFF" }}>
-                  * Required Field{" "}
-                </Typography>{" "}
+                <Typography sx={{ color: "#FFFFFF" }}>* Required Field </Typography>{" "}
               </Grid>
               <Grid item xs={4}>
                 <Link
@@ -175,7 +157,7 @@ const InputFields = ({
                     color: "#FFFFFF",
                   }}
                 >
-                  Already User? Login
+                  <Typography sx={{ color: "#FFFFFF" }}>Already User? Login</Typography>
                 </Link>
               </Grid>
             </Grid>
@@ -189,26 +171,10 @@ const InputFields = ({
         {isSignup && isRegister && (
           <>
             <Grid container item>
-              <Grid
-                item
-                xs={6}
-                sx={{ paddingBottom: "3%", paddingRight: "1%" }}
-              >
-                <FormControl
-                  variant="filled"
-                  required={true}
-                  fullWidth
-                  sx={{ backgroundColor: "#FFFFFF" }}
-                >
-                  <InputLabel id="demo-simple-select-filled-label">
-                    User Status
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-filled-label"
-                    id="demo-simple-select-filled"
-                    defaultValue={currentUserStatus}
-                    onChange={handleChange}
-                  >
+              <Grid item xs={6} sx={{ paddingBottom: "3%", paddingRight: "1%" }}>
+                <FormControl variant="filled" required={true} fullWidth sx={{ backgroundColor: "#FFFFFF" }}>
+                  <InputLabel id="demo-simple-select-filled-label">User Status</InputLabel>
+                  <Select labelId="demo-simple-select-filled-label" id="demo-simple-select-filled" defaultValue={currentUserStatus} onChange={handleChange}>
                     <MenuItem value={"newUser"}>New User</MenuItem>
                     <MenuItem value={"oldUser"}>Old User</MenuItem>
                   </Select>
@@ -216,23 +182,11 @@ const InputFields = ({
               </Grid>
               {checked === "oldUser" ? (
                 <Grid item xs={6}>
-                  <TextField
-                    fullWidth
-                    required={true}
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    id="filled-basic"
-                    label="Quantigo Username"
-                    variant="filled"
-                    defaultValue={qaiUserName}
-                    onBlur={(e) => handleQaiUserName(e.target.value)}
-                  />
+                  <TextField fullWidth required={true} sx={{ backgroundColor: "#FFFFFF" }} id="filled-basic" label="Quantigo Username" variant="filled" defaultValue={qaiUserName} onBlur={(e) => handleQaiUserName(e.target.value)} />
                   {!qaiErrorMessageCheck && (
                     <FormHelperText
                       sx={{
-                        color:
-                          qaiErrorMessage === "User Id is available"
-                            ? "green"
-                            : "red",
+                        color: qaiErrorMessage === "User Id is available" ? "green" : "red",
                       }}
                     >
                       {qaiErrorMessage}
@@ -240,32 +194,14 @@ const InputFields = ({
                   )}
                 </Grid>
               ) : (
-                <HubField
-                  setQaiID={setQaiID}
-                  setHub={setHub}
-                  setQaiUserName={setQaiUserName}
-                  setValidUserName={setValidUserName}
-                  hubSelect={hubSelect}
-                  setHubSelect={setHubSelect}
-                />
+                <HubField setQaiID={setQaiID} setHub={setHub} setQaiUserName={setQaiUserName} setValidUserName={setValidUserName} hubSelect={hubSelect} setHubSelect={setHubSelect} />
               )}
             </Grid>
-            {checked === "oldUser" ? (
-              <></>
-            ) : (
-              <UserNameField register={register} qaiID={qaiID} />
-            )}
+            {checked === "oldUser" ? <></> : <UserNameField register={register} qaiID={qaiID} />}
             <Grid container sx={{ paddingBottom: "2%" }}>
               <Grid item xs={6} sx={{ paddingRight: "1%" }}>
-                <FormControl
-                  variant="filled"
-                  fullWidth
-                  required={true}
-                  sx={{ backgroundColor: "#FFFFFF" }}
-                >
-                  <InputLabel id="demo-simple-select-filled-label">
-                    Gender
-                  </InputLabel>
+                <FormControl variant="filled" fullWidth required={true} sx={{ backgroundColor: "#FFFFFF" }}>
+                  <InputLabel id="demo-simple-select-filled-label">Gender</InputLabel>
                   <Select
                     labelId="demo-simple-select-filled-label"
                     id="demo-simple-select-filled"
@@ -282,13 +218,7 @@ const InputFields = ({
 
               {/* TODO Date of birth clear error */}
               <Grid item xs={6}>
-                <FormControl
-                  required={true}
-                  onClick={handleFocused}
-                  onBlur={handleFocusedOut}
-                  fullWidth
-                  sx={{ backgroundColor: "#FFFFFF" }}
-                >
+                <FormControl required={true} onClick={handleFocused} onBlur={handleFocusedOut} fullWidth sx={{ backgroundColor: "#FFFFFF" }}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                       disableFuture
@@ -303,37 +233,19 @@ const InputFields = ({
                     />
                   </LocalizationProvider>
                 </FormControl>
-                {isError && (
-                  <FormHelperText sx={{ color: "#FF0000" }}>
-                    You must be at least 13 years old.
-                  </FormHelperText>
-                )}
+                {isError && <FormHelperText sx={{ color: "#FF0000" }}>You must be at least 13 years old.</FormHelperText>}
               </Grid>
             </Grid>
 
             <Grid item xs={12}>
               <Grid item xs={12} sx={{ paddingBottom: "2%" }}>
-                <PhoneNumberfield
-                  phone={phone}
-                  handlePhoneNumber={handlePhoneNumber}
-                />
-                {!isPhoneNumberCheck && (
-                  <FormHelperText sx={{ color: "#FF0000" }}>
-                    Invalid phone number
-                  </FormHelperText>
-                )}
+                <PhoneNumberfield phone={phone} handlePhoneNumber={handlePhoneNumber} />
+                {!isPhoneNumberCheck && <FormHelperText sx={{ color: "#FF0000" }}>Invalid phone number</FormHelperText>}
               </Grid>
             </Grid>
             <Grid item xs={12} sx={{ paddingBottom: "2%" }}>
-              <UserPhoneNumberField
-                handleUserPhoneNumber={handleUserPhoneNumber}
-                userPhoneNumber={userPhoneNumber}
-              />
-              {!isUserPhoneNumberCheck && (
-                <FormHelperText sx={{ color: "#FF0000" }}>
-                  Invalid phone number
-                </FormHelperText>
-              )}
+              <UserPhoneNumberField handleUserPhoneNumber={handleUserPhoneNumber} userPhoneNumber={userPhoneNumber} />
+              {!isUserPhoneNumberCheck && <FormHelperText sx={{ color: "#FF0000" }}>Invalid phone number</FormHelperText>}
             </Grid>
           </>
         )}
@@ -353,21 +265,7 @@ const InputFields = ({
                 </Grid>
 
                 <Grid item xs={6}>
-                  <ButtonStyle
-                    disabled={
-                      isLoading ||
-                      !email ||
-                      !password ||
-                      !validUserName ||
-                      !isPhoneNumberCheck ||
-                      !phone ||
-                      !gender ||
-                      !isUserPhoneNumberCheck ||
-                      isError
-                    }
-                    fullWidth
-                    type="submit"
-                  >
+                  <ButtonStyle disabled={isLoading || !email || !password || !validUserName || !isPhoneNumberCheck || !phone || !gender || !isUserPhoneNumberCheck || isError} fullWidth type="submit">
                     Finish
                   </ButtonStyle>
                   {isLoading && (

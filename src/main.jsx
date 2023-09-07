@@ -13,7 +13,7 @@ const App = lazy(() => import("./App.jsx"));
 
 const theme = createTheme({
   typography: {
-    fontFamily: ["Roboto", "sans-serif"].join(","),
+    fontFamily: ["Inter", "sans-serif"].join(","),
   },
   select: {
     height: "58px",

@@ -32,7 +32,7 @@ const FooterInstruction = (props) => {
             color: "#FFFFFF",
           }}
         >
-          Already User? Login
+          <Typography sx={{ color: "#FFFFFF" }}>Already User? Login</Typography>
         </Link>
       </Grid>
     </Grid>

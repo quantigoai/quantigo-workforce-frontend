@@ -6,11 +6,11 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import React, {useEffect} from "react";
+import { Box, Grid, Paper } from "@mui/material";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setActivePath } from "../../../features/slice/activePathSlice";
 import CommonHeader from "../CustomComponenet/CommonHeader/CommonHeader";
-import {Box, Grid, Paper} from "@mui/material";
-import {setActivePath} from "../../../features/slice/activePathSlice";
-import {useDispatch} from "react-redux";
 import PaymentInfo from "./PaymentInfo";
 
 const Payment = () => {
@@ -36,11 +36,7 @@ const Payment = () => {
             alignItems: "center",
           }}
         >
-          <CommonHeader
-            title="Payment"
-            description="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "
-            customButton="Send Request"
-          />
+          <CommonHeader title="Payment" description="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum " customButton="Send Request" />
         </Grid>
       </Box>
 

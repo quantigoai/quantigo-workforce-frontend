@@ -1,12 +1,4 @@
-import {
-  FormControl,
-  Grid,
-  MenuItem,
-  Select,
-  TextField,
-  Typography,
-  styled,
-} from "@mui/material";
+import { FormControl, Grid, MenuItem, Select, Typography, styled } from "@mui/material";
 import React from "react";
 import { Controller } from "react-hook-form";
 export const MySelect = styled(Select)(() => ({
@@ -26,18 +18,7 @@ const options = [
   { value: "(AB+)", label: "AB+" },
   { value: "(AB-)", label: "AB-" },
 ];
-function CommonSelectField({
-  name,
-  label,
-  defaultValue,
-  disableItem,
-  control,
-  rules,
-  errors,
-  setValue,
-  editAble,
-}) {
-  console.log(defaultValue);
+function CommonSelectField({ name, label, defaultValue, disableItem, control, rules, errors, setValue, editAble }) {
   return (
     <Grid item xs={12} sx={{ mb: 1 }}>
       {/* <label>{name}</label> */}
@@ -54,7 +35,8 @@ function CommonSelectField({
                   color: "#3C4D6B",
                   fontWeight: "500",
                   mb: 1,
-                }}>
+                }}
+              >
                 {label}
               </Typography>
 
@@ -75,12 +57,7 @@ function CommonSelectField({
                 //   {...other}
               >
                 {options.map((option) => (
-                  <MenuItem
-                    key={option.value}
-                    fullWidth
-                    value={
-                      (() => setValue(field.name, field.value), option.value)
-                    }>
+                  <MenuItem key={option.value} fullWidth value={(() => setValue(field.name, field.value), option.value)}>
                     {option.label}
                   </MenuItem>
                 ))}

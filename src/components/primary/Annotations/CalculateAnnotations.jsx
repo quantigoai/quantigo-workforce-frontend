@@ -8,22 +8,7 @@
  */
 
 import DownloadIcon from "@mui/icons-material/Download";
-import {
-  Box,
-  Button,
-  Grid,
-  Paper,
-  Popper,
-  Skeleton,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-  styled,
-} from "@mui/material";
+import { Box, Button, Grid, Paper, Popper, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, styled } from "@mui/material";
 import { useEffect, useState } from "react";
 import { CSVLink } from "react-csv";
 import { useForm } from "react-hook-form";
@@ -72,9 +57,7 @@ const CalculateAnnotations = () => {
   };
 
   const { isLoading } = useSelector((state) => state.benchMark);
-  const { totalAnnotationsCount, totalTimeCalculation } = useSelector(
-    (state) => state.benchMark.annotationCalculation
-  );
+  const { totalAnnotationsCount, totalTimeCalculation } = useSelector((state) => state.benchMark.annotationCalculation);
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -129,13 +112,7 @@ const CalculateAnnotations = () => {
     totalTimeCalculation?.classes && setClasses(totalTimeCalculation.classes);
   }, [totalTimeCalculation]);
 
-  const filtered = annotationCsv[0]?.filter((entry) =>
-    Object.values(entry).some(
-      (val) =>
-        typeof val === "string" &&
-        val.toLowerCase().includes(search.toLowerCase())
-    )
-  );
+  const filtered = annotationCsv[0]?.filter((entry) => Object.values(entry).some((val) => typeof val === "string" && val.toLowerCase().includes(search.toLowerCase())));
   const [cvButton, setCsvButton] = useState(false);
   useEffect(() => {
     setAnnotationCsv([
@@ -157,14 +134,14 @@ const CalculateAnnotations = () => {
   };
   const popperOpen = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
-  // console.log(annotationCsv[0]?.length);
   return (
     <>
       <Box
         sx={{
           display: "flex",
           mb: "2%",
-        }}>
+        }}
+      >
         <Grid
           container
           sx={{
@@ -173,12 +150,14 @@ const CalculateAnnotations = () => {
             alignContent: "center",
             alignItems: "center",
             paddingLeft: "2%",
-          }}>
+          }}
+        >
           <Grid
             sx={{
               display: "flex",
             }}
-            container>
+            container
+          >
             <Typography variant="h4" style={{ color: "#090080" }}>
               Hour Calculation
             </Typography>
@@ -190,19 +169,7 @@ const CalculateAnnotations = () => {
         <Grid container sx={{ paddingBottom: "1%" }}>
           <Paper elevation={0} style={paperStyle} sx={{ paddingBottom: "0%" }}>
             <Grid container sx={{ padding: "0%" }}>
-              <SelectMenu
-                teams={teams}
-                workspaces={workspaces}
-                projects={projects}
-                datasets={datasets}
-                handleChangeTeam={handleChangeTeam}
-                handleChangeWorkspace={handleChangeWorkspace}
-                handleChangeProject={handleChangeProject}
-                handleChangeDataset={handleChangeDataset}
-                register={register}
-                calculateAnnotation={true}
-                handleChangeServer={handleChangeServer}
-              />
+              <SelectMenu teams={teams} workspaces={workspaces} projects={projects} datasets={datasets} handleChangeTeam={handleChangeTeam} handleChangeWorkspace={handleChangeWorkspace} handleChangeProject={handleChangeProject} handleChangeDataset={handleChangeDataset} register={register} calculateAnnotation={true} handleChangeServer={handleChangeServer} />
             </Grid>
           </Paper>
         </Grid>
@@ -215,7 +182,8 @@ const CalculateAnnotations = () => {
               paddingLeft: "3%",
               paddingRight: "3%",
               paddingBottom: "2%",
-            }}>
+            }}
+          >
             <Box sx={{ paddingBottom: "2%", width: "100%" }}>
               <Grid container>
                 <Grid
@@ -223,16 +191,15 @@ const CalculateAnnotations = () => {
                   xs={11}
                   sx={{
                     paddingRight: "2%",
-                  }}>
+                  }}
+                >
                   <SearchBarForAnnotation handleSearch={handleSearch} />
                 </Grid>
                 {/* <Grid item xs={1}></Grid> */}
                 <Grid item xs={1}>
                   {/* TODO Move this to a separate component */}
                   <Box>
-                    <CSVLink
-                      data={annotationCsv.length === 1 ? annotationCsv[0] : []}
-                      filename={"Annotation.csv"}>
+                    <CSVLink data={annotationCsv.length === 1 ? annotationCsv[0] : []} filename={"Annotation.csv"}>
                       <ButtonStyle
                         variant="outlined"
                         onClick={() => handlebuttoncsv()}
@@ -250,10 +217,7 @@ const CalculateAnnotations = () => {
                       </ButtonStyle>
                     </CSVLink>
                     <Popper id={id} open={popperOpen} anchorEl={anchorEl}>
-                      <Box
-                        sx={{ border: 1, p: 1, bgcolor: "background.paper" }}>
-                        Export the table into CSV.
-                      </Box>
+                      <Box sx={{ border: 1, p: 1, bgcolor: "background.paper" }}>Export the table into CSV.</Box>
                     </Popper>
                   </Box>
                 </Grid>
@@ -264,35 +228,23 @@ const CalculateAnnotations = () => {
               <Table sx={{ border: "1px solid #DADCDF" }}>
                 <TableHead sx={{ background: "#F8F8F8", height: "80px" }}>
                   <TableRow>
-                    <TableCell
-                      align="left"
-                      sx={{ color: "#969CAF", fontSize: "16px" }}>
+                    <TableCell align="left" sx={{ color: "#969CAF", fontSize: "16px" }}>
                       SL
                     </TableCell>
-                    <TableCell
-                      align="center"
-                      sx={{ color: "#969CAF", fontSize: "16px" }}>
+                    <TableCell align="center" sx={{ color: "#969CAF", fontSize: "16px" }}>
                       QAI ID
                     </TableCell>
                     {/* <TableCell align="left">No. of Images</TableCell> */}
-                    <TableCell
-                      align="center"
-                      sx={{ color: "#969CAF", fontSize: "16px" }}>
+                    <TableCell align="center" sx={{ color: "#969CAF", fontSize: "16px" }}>
                       NO .Of Tags
                     </TableCell>
-                    <TableCell
-                      align="center"
-                      sx={{ color: "#969CAF", fontSize: "16px" }}>
+                    <TableCell align="center" sx={{ color: "#969CAF", fontSize: "16px" }}>
                       No. of Objects
                     </TableCell>
-                    <TableCell
-                      align="center"
-                      sx={{ color: "#969CAF", fontSize: "16px" }}>
+                    <TableCell align="center" sx={{ color: "#969CAF", fontSize: "16px" }}>
                       Effective Work hour
                     </TableCell>
-                    <TableCell
-                      align="right"
-                      sx={{ color: "#969CAF", fontSize: "16px" }}>
+                    <TableCell align="right" sx={{ color: "#969CAF", fontSize: "16px" }}>
                       Effective Work Second
                     </TableCell>
                   </TableRow>
@@ -340,22 +292,10 @@ const CalculateAnnotations = () => {
                             <TableCell align="left"> {index + 1}</TableCell>
                             <TableCell align="center">{user}</TableCell>
                             {/* <TableCell align='left'> </TableCell> */}
-                            <TableCell align="center">
-                              {totalAnnotationsCount.tags
-                                ? totalAnnotationsCount.tags[user] || 0
-                                : 0}
-                            </TableCell>
-                            <TableCell align="center">
-                              {totalAnnotationsCount.classes
-                                ? totalAnnotationsCount.classes[user] || 0
-                                : 0}
-                            </TableCell>
-                            <TableCell align="center">
-                              {classes[user] / 3600}
-                            </TableCell>
-                            <TableCell align="center">
-                              {classes[user]}
-                            </TableCell>
+                            <TableCell align="center">{totalAnnotationsCount.tags ? totalAnnotationsCount.tags[user] || 0 : 0}</TableCell>
+                            <TableCell align="center">{totalAnnotationsCount.classes ? totalAnnotationsCount.classes[user] || 0 : 0}</TableCell>
+                            <TableCell align="center">{classes[user] / 3600}</TableCell>
+                            <TableCell align="center">{classes[user]}</TableCell>
                           </TableRow>
                         </TableBody>
                       </>

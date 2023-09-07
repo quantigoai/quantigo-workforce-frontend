@@ -26,149 +26,111 @@ const initialState = {
   error: null,
 };
 
-export const getAllProjectDrawers = createAsyncThunk(
-  "/project-drawer/",
-  async (data) => {
- 
-    try {
-      const { pagination,filteredData,ascDescOption } = data;
-   
-      let query = `limit=${pagination.pageSize}&skip=${
-        pagination.currentPage * pagination.pageSize
-      }`;
-      
-      const filterOptions = Object.keys(filteredData);
-      filterOptions.map((f)=> query += `&${f}=${filteredData[f]}`)
+export const getAllProjectDrawers = createAsyncThunk("/project-drawer/", async (data) => {
+  try {
+    const { pagination, filteredData, ascDescOption } = data;
 
-      
-       const ascDescOptions=Object.keys(ascDescOption)
-        ascDescOptions.map((ad)=>query+=`&sortBy=${ad}:${ascDescOption[ad]}`)
+    let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
 
+    const filterOptions = Object.keys(filteredData);
+    filterOptions.map((f) => (query += `&${f}=${filteredData[f]}`));
 
-      return await axios.get(`${url}/project-drawer?${query}`, {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      });
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
+    const ascDescOptions = Object.keys(ascDescOption);
+    ascDescOptions.map((ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`));
+
+    return await axios.get(`${url}/project-drawer?${query}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
   }
-);
+});
 
-export const createProjectDrawer = createAsyncThunk(
-  "/project-drawer/create",
-  async (data) => {
-    console.log(data);
-    try {
-      return await axios.post(`${url}/project-drawer`, data, {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      });
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
+export const createProjectDrawer = createAsyncThunk("/project-drawer/create", async (data) => {
+  try {
+    return await axios.post(`${url}/project-drawer`, data, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
   }
-);
+});
 
-export const updateProjectDrawerById = createAsyncThunk(
-  "/project-drawer/update",
-  async (data) => {
-    try {
-      return await axios.patch(`${url}/project-drawer/${data.id}`, data.data, {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      });
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
+export const updateProjectDrawerById = createAsyncThunk("/project-drawer/update", async (data) => {
+  try {
+    return await axios.patch(`${url}/project-drawer/${data.id}`, data.data, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
   }
-);
+});
 
-export const deleteProjectDrawerById = createAsyncThunk(
-  "/project-drawer/delete",
-  async (id) => {
-    try {
-      return await axios.delete(`${url}/project-drawer/${id}`, {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      });
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
+export const deleteProjectDrawerById = createAsyncThunk("/project-drawer/delete", async (id) => {
+  try {
+    return await axios.delete(`${url}/project-drawer/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
   }
-);
+});
 
-export const checkInProjectDrawerById = createAsyncThunk(
-  "/project-drawer/check-in",
-  async (data) => {
-    try {
-      return await axios.patch(`${url}/project-drawer/check-in/${data.id}`, {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      });
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
+export const checkInProjectDrawerById = createAsyncThunk("/project-drawer/check-in", async (data) => {
+  try {
+    return await axios.patch(`${url}/project-drawer/check-in/${data.id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
   }
-);
+});
 
-export const checkOutProjectDrawerById = createAsyncThunk(
-  "/project-drawer/check-out",
-  async (data) => {
-    try {
-      return await axios.patch(`${url}/project-drawer/check-out/${data.id}`, {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      });
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
+export const checkOutProjectDrawerById = createAsyncThunk("/project-drawer/check-out", async (data) => {
+  try {
+    return await axios.patch(`${url}/project-drawer/check-out/${data.id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
   }
-);
+});
 
-export const addSkillsToCheckInUser = createAsyncThunk(
-  "/project-drawer/add-skills",
-  async (data) => {
-    try {
-      return await axios.patch(
-        `${url}/project-drawer/assign-skills/${data.id}`,
-        data.data,
-        {
-          headers: {
-            Authorization: `Bearer ${realToken()}`,
-          },
-        }
-      );
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
+export const addSkillsToCheckInUser = createAsyncThunk("/project-drawer/add-skills", async (data) => {
+  try {
+    return await axios.patch(`${url}/project-drawer/assign-skills/${data.id}`, data.data, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
   }
-);
+});
 
-export const removeSkillsToCheckInUser = createAsyncThunk(
-  "/project-drawer/remove-skills",
-  async (data) => {
-    try {
-      return await axios.patch(
-        `${url}/project-drawer/remove-skills/${data.id}`,
-        data.data,
-        {
-          headers: {
-            Authorization: `Bearer ${realToken()}`,
-          },
-        }
-      );
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
+export const removeSkillsToCheckInUser = createAsyncThunk("/project-drawer/remove-skills", async (data) => {
+  try {
+    return await axios.patch(`${url}/project-drawer/remove-skills/${data.id}`, data.data, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
   }
-);
+});
 
 const projectDrawerSlice = createSlice({
   name: "projectDrawer",
@@ -178,9 +140,10 @@ const projectDrawerSlice = createSlice({
       state.projectDrawers = [];
     },
     setCurrentProjectDrawer: (state, action) => {
-      state.projectDrawer = state.projectDrawers.find(
-        (p) => p._id === action.payload
-      );
+      state.projectDrawer = state.projectDrawers.find((p) => p._id === action.payload);
+    },
+    resetProjectDrawerSlice: () => {
+      return initialState;
     },
   },
   extraReducers: (builder) => {
@@ -191,15 +154,13 @@ const projectDrawerSlice = createSlice({
       .addCase(getAllProjectDrawers.fulfilled, (state, action) => {
         state.isLoading = false;
         state.projectDrawers = action.payload.data.projectDrawers;
-         
-        if(action.payload.data?.filteredTotalCount=== 0){
-          state.total =  action.payload.data.filteredTotalCount
-        } 
-        else if(action.payload.data?.filteredTotalCount){
-          state.total = action.payload.data.filteredTotalCount
-        } 
-        else{
-          state.total =  action.payload.data.count;
+
+        if (action.payload.data?.filteredTotalCount === 0) {
+          state.total = action.payload.data.filteredTotalCount;
+        } else if (action.payload.data?.filteredTotalCount) {
+          state.total = action.payload.data.filteredTotalCount;
+        } else {
+          state.total = action.payload.data.count;
         }
         state.error = null;
       })
@@ -212,10 +173,7 @@ const projectDrawerSlice = createSlice({
       })
       .addCase(createProjectDrawer.fulfilled, (state, action) => {
         state.error = null;
-        state.projectDrawers = [
-          ...state.projectDrawers,
-          action.payload.data.projectDrawer,
-        ];
+        state.projectDrawers = [...state.projectDrawers, action.payload.data.projectDrawer];
         state.isLoading = false;
       })
       .addCase(createProjectDrawer.rejected, (state, action) => {
@@ -227,14 +185,7 @@ const projectDrawerSlice = createSlice({
       })
       .addCase(updateProjectDrawerById.fulfilled, (state, action) => {
         state.error = null;
-        state.projectDrawers = [
-          ...state.projectDrawers.map((drawer) =>
-            drawer._id.toString() ===
-            action.payload.data.projectDrawer._id.toString()
-              ? action.payload.data.projectDrawer
-              : drawer
-          ),
-        ];
+        state.projectDrawers = [...state.projectDrawers.map((drawer) => (drawer._id.toString() === action.payload.data.projectDrawer._id.toString() ? action.payload.data.projectDrawer : drawer))];
         state.isLoading = false;
       })
       .addCase(updateProjectDrawerById.rejected, (state, action) => {
@@ -246,11 +197,7 @@ const projectDrawerSlice = createSlice({
       })
       .addCase(deleteProjectDrawerById.fulfilled, (state, action) => {
         state.error = null;
-        state.projectDrawers = [
-          ...state.projectDrawers.filter(
-            (drawer) => drawer._id !== action.payload.data.projectDrawer._id
-          ),
-        ];
+        state.projectDrawers = [...state.projectDrawers.filter((drawer) => drawer._id !== action.payload.data.projectDrawer._id)];
         state.total = action.payload.data.count.total;
         state.isLoading = false;
       })
@@ -306,6 +253,5 @@ const projectDrawerSlice = createSlice({
       });
   },
 });
-export const { resetProjectDrawer, setCurrentProjectDrawer } =
-  projectDrawerSlice.actions;
+export const {resetProjectDrawerSlice, resetProjectDrawer, setCurrentProjectDrawer } = projectDrawerSlice.actions;
 export default projectDrawerSlice.reducer;

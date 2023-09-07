@@ -1,7 +1,7 @@
-import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import React from "react";
 
-const RoleField = ({handleChange ,setRoleFilter ,roleFilter}) => {
+const RoleField = ({ handleChange, setRoleFilter, roleFilter }) => {
   return (
     <>
       <FormControl variant="filled" fullWidth>
@@ -9,13 +9,14 @@ const RoleField = ({handleChange ,setRoleFilter ,roleFilter}) => {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          onChange={(e)=>setRoleFilter(e.target.value)}
+          onChange={(e) => setRoleFilter(e.target.value)}
           value={roleFilter || ""}
           sx={{
             backgroundColor: "#F8F8F8",
             border: "1px solid #DADCDF",
             borderRadius: "4px",
-          }}>
+          }}
+        >
           <MenuItem value={"level_0_annotator"}>Level 0 Annotator</MenuItem>
           <MenuItem value={"level_1_annotator"}>Level 1 Annotator</MenuItem>
           <MenuItem value={"level_2_annotator"}>Level 2 Annotator</MenuItem>

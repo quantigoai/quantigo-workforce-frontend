@@ -1,4 +1,4 @@
-import {Chip, Grid} from "@mui/material";
+import { Chip, Grid } from "@mui/material";
 import React from "react";
 
 let jobStatus = [
@@ -11,12 +11,7 @@ let jobStatus = [
     value: "inactive",
   },
 ];
-const StatusChipUserList = ({
-  statusType,
-  setStatusType,
-  isClicked,
-  setIsClicked,
-}) => {
+const StatusChipUserList = ({ statusType, setStatusType, isClicked, setIsClicked }) => {
   const [updatedStatus, setUpdatedStatus] = React.useState(jobStatus);
 
   const handleClick = (e) => {
@@ -58,13 +53,7 @@ const StatusChipUserList = ({
       <Grid container>
         {updatedStatus.map((status) => (
           <Grid key={status.value} item xs={5} sx={{ p: 1 }}>
-            <Chip
-              variant="outlined"
-              sx={style(status.value)}
-              label={status.label}
-              value={statusType}
-              onClick={() => handleClick(status.value)}
-            />
+            <Chip variant="outlined" sx={style(status.value)} label={status.label} value={statusType} onClick={() => handleClick(status.value)} />
           </Grid>
         ))}
       </Grid>

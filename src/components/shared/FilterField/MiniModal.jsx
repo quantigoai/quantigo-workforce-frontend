@@ -12,39 +12,14 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useOutletContext } from "react-router-dom";
+import SkillFieldForUserList from "../FilterFieldForUserList/SkillFieldForUserList";
 import AttemptLeftField from "./AttemptLeftField";
 import DateField from "./DateField";
 import StatusChip from "./StatusChip";
 import UsersRadioGroup from "./UsersRadioGroup";
-import ProjectIdField from "./ProjectIdField";
-import SkillFieldForUserList from "../FilterFieldForUserList/SkillFieldForUserList";
 
 const MiniModal = () => {
-  const [
-    statusType,
-    setStatusType,
-    annotator,
-    setAnnotator,
-    reviewer,
-    setReviewer,
-    attemptLeft,
-    setAttemptLeft,
-    date,
-    setDate,
-    handleFilter,
-    handleReset,
-    handleClose,
-    anchorEl,
-    setAnchorEl,
-    isClicked,
-    setIsClicked,
-    dateValue,
-    setDateValue,
-    setProjectIdFilter,
-    projectIdFilter,
-    handleChangeSkills,
-    skill,
-  ] = useOutletContext();
+  const [statusType, setStatusType, annotator, setAnnotator, reviewer, setReviewer, attemptLeft, setAttemptLeft, date, setDate, handleFilter, handleReset, handleClose, anchorEl, setAnchorEl, isClicked, setIsClicked, dateValue, setDateValue, setProjectIdFilter, projectIdFilter, handleChangeSkills, skill] = useOutletContext();
 
   const { users, user } = useSelector((state) => state.user);
   const [value, setValue] = useState(""); // initialize value as an empty string
@@ -73,10 +48,7 @@ const MiniModal = () => {
           }}
         >
           <Typography variant="h6">Filter by</Typography>
-          <CloseIcon
-            sx={{ color: "#2D58FF", cursor: "pointer", fontweight: "600 " }}
-            onClick={handleClose}
-          />
+          <CloseIcon sx={{ color: "#2D58FF", cursor: "pointer", fontweight: "600 " }} onClick={handleClose} />
         </Box>
         <br />
         <Box sx={{ px: 1 }}>
@@ -95,37 +67,22 @@ const MiniModal = () => {
             {location.pathname !== "/jobs/alljobs" && (
               <>
                 <Grid item xs={6}>
-                  {user.role === "level_1_annotator" ||
-                  user.role === "level_0_annotator" ||
-                  user.role === "level_2_annotator" ||
-                  user.role === "level_3_annotator" ||
-                  user.role === "reviewer" ? (
+                  {user.role === "level_1_annotator" || user.role === "level_0_annotator" || user.role === "level_2_annotator" || user.role === "level_3_annotator" || user.role === "reviewer" ? (
                     <></>
                   ) : (
                     <>
                       {" "}
-                      <UsersRadioGroup
-                        users={users.users}
-                        handleChange={handleChange}
-                      />
+                      <UsersRadioGroup users={users.users} handleChange={handleChange} />
                     </>
                   )}
                 </Grid>
                 <Grid item xs={6}>
-                  {user.role === "level_1_annotator" ||
-                  user.role === "level_0_annotator" ||
-                  user.role === "level_2_annotator" ||
-                  user.role === "level_3_annotator" ||
-                  user.role === "reviewer" ? (
+                  {user.role === "level_1_annotator" || user.role === "level_0_annotator" || user.role === "level_2_annotator" || user.role === "level_3_annotator" || user.role === "reviewer" ? (
                     <></>
                   ) : (
                     <>
                       {" "}
-                      <UsersRadioGroup
-                        users={users.users}
-                        handleChange={handleChange}
-                        isReviewers={true}
-                      />
+                      <UsersRadioGroup users={users.users} handleChange={handleChange} isReviewers={true} />
                     </>
                   )}
                 </Grid>
@@ -144,10 +101,7 @@ const MiniModal = () => {
 
             {location.pathname === "/jobs/alljobs" && (
               <Grid item xs={12}>
-                <SkillFieldForUserList
-                  handleChangeSkills={handleChangeSkills}
-                  skillSet={skill}
-                />
+                <SkillFieldForUserList handleChangeSkills={handleChangeSkills} skillSet={skill} />
               </Grid>
             )}
           </Grid>

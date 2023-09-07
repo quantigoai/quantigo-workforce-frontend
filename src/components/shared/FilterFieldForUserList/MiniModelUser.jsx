@@ -8,32 +8,16 @@
  */
 
 import CloseIcon from "@mui/icons-material/Close";
-import {Box, Button, Grid, Typography} from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
-import {useSelector} from "react-redux";
-import {useLocation} from "react-router-dom";
-import RoleField from "./RoleField";
+import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import HubField from "./HubField";
+import RoleField from "./RoleField";
 import SkillFieldForUserList from "./SkillFieldForUserList";
 import StatusChipUserList from "./StatusChipUserList";
 
-const MiniModelUser = ({
-  handleClick,
-  handleClose,
-  setValue,
-  setRoleFilter,
-  handleFilterUser,
-  handleResetUser,
-  setHubFilter,
-  handleChangeSkills,
-  skillSet,
-  hubFilter,
-  roleFilter,
-  isClicked,
-  setIsClicked,
-  statusType,
-  setStatusType,
-}) => {
+const MiniModelUser = ({ handleClick, handleClose, setValue, setRoleFilter, handleFilterUser, handleResetUser, setHubFilter, handleChangeSkills, skillSet, hubFilter, roleFilter, isClicked, setIsClicked, statusType, setStatusType }) => {
   const { users } = useSelector((state) => state.user.users);
   // initialize value as an empty string
 
@@ -51,54 +35,37 @@ const MiniModelUser = ({
           bgcolor: "background.paper",
           width: "570px",
           height: "350px",
-        }}>
+        }}
+      >
         <Box
           sx={{
             display: "flex",
             alignContent: "center",
             justifyContent: "space-between",
-          }}>
+          }}
+        >
           <Typography variant="h6">Filter by</Typography>
-          <CloseIcon
-            sx={{ color: "#2D58FF", cursor: "pointer", fontweight: "600 " }}
-            onClick={handleClose}
-          />
+          <CloseIcon sx={{ color: "#2D58FF", cursor: "pointer", fontweight: "600 " }} onClick={handleClose} />
         </Box>
         <br />
         <Box sx={{ px: 1 }}>
-          <StatusChipUserList
-            isClicked={isClicked}
-            setIsClicked={setIsClicked}
-            statusType={statusType}
-            setStatusType={setStatusType}
-          />
+          <StatusChipUserList isClicked={isClicked} setIsClicked={setIsClicked} statusType={statusType} setStatusType={setStatusType} />
         </Box>
         <br />
         <Box>
           <Grid container spacing={2}>
             <Grid item xs={6}>
-              <RoleField
-                handleChange={handleChange}
-                setRoleFilter={setRoleFilter}
-                roleFilter={roleFilter}
-              />
+              <RoleField handleChange={handleChange} setRoleFilter={setRoleFilter} roleFilter={roleFilter} />
             </Grid>
             <Grid item xs={6}>
-              <HubField
-                handleChange={handleChange}
-                setHubFilter={setHubFilter}
-                hubFilter={hubFilter}
-              />
+              <HubField handleChange={handleChange} setHubFilter={setHubFilter} hubFilter={hubFilter} />
             </Grid>
           </Grid>
         </Box>
         <Box sx={{ paddingTop: "3%" }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <SkillFieldForUserList
-                handleChangeSkills={handleChangeSkills}
-                skillSet={skillSet}
-              />
+              <SkillFieldForUserList handleChangeSkills={handleChangeSkills} skillSet={skillSet} />
             </Grid>
           </Grid>
         </Box>

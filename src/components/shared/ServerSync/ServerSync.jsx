@@ -7,15 +7,15 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Button, FormControl, Grid, InputLabel, MenuItem, Paper, Select, TextField,} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {setActivePath} from "../../../features/slice/activePathSlice";
-import {getAllTeams, resetTeams} from "../../../features/slice/teamSlice";
+import { Button, FormControl, Grid, InputLabel, MenuItem, Paper, Select, TextField } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { setActivePath } from "../../../features/slice/activePathSlice";
+import { resetUpdatedValue, syncATeam } from "../../../features/slice/syncServerSlice";
+import { getAllTeams, resetTeams } from "../../../features/slice/teamSlice";
 import CommonHeader from "../CustomComponenet/CommonHeader/CommonHeader";
 import Teams from "../SPV/Teams";
-import {resetUpdatedValue, syncATeam,} from "../../../features/slice/syncServerSlice";
-import {useAlert} from "react-alert";
 import ServerSyncBody from "./ServerSyncBody";
 
 const ServerSync = () => {
@@ -88,11 +88,7 @@ const ServerSync = () => {
   return (
     <>
       <Grid container sx={{ paddingBottom: "2%" }}>
-        <CommonHeader
-          title="Sync Server"
-          description="Sync Server based on the server agent"
-          customButton={"null"}
-        />
+        <CommonHeader title="Sync Server" description="Sync Server based on the server agent" customButton={"null"} />
       </Grid>
       <Paper elevation={0}>
         <Grid
@@ -103,7 +99,8 @@ const ServerSync = () => {
             paddingBottom: "1%",
             paddingLeft: "2%",
             paddingRight: "2%",
-          }}>
+          }}
+        >
           {/* server Field */}
           <Grid item xs={4} sx={{ pr: 2 }}>
             <FormControl
@@ -111,26 +108,17 @@ const ServerSync = () => {
               fullWidth
               sx={{
                 backgroundColor: "#F8F8F8",
-              }}>
-              <InputLabel id="demo-simple-select-filled-label">
-                Server
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-filled-label"
-                id="demo-simple-select-filled"
-                defaultValue={server}
-                onChange={(e) => handleChangeServer(e)}>
+              }}
+            >
+              <InputLabel id="demo-simple-select-filled-label">Server</InputLabel>
+              <Select labelId="demo-simple-select-filled-label" id="demo-simple-select-filled" defaultValue={server} onChange={(e) => handleChangeServer(e)}>
                 <MenuItem value={"quantigo"}>Quantigo Server</MenuItem>
                 <MenuItem value={"ag"}>Ag Server</MenuItem>
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={4} sx={{ pr: "1%" }}>
-            <Teams
-              isDisabled={isDisabled}
-              teams={teams}
-              handleChangeTeam={handleChangeTeam}
-            />
+            <Teams isDisabled={isDisabled} teams={teams} handleChangeTeam={handleChangeTeam} />
           </Grid>
           {/* TextField */}
           <Grid item xs={2} sx={{ pr: "1%" }}>
@@ -156,11 +144,7 @@ const ServerSync = () => {
             </Button>
           </Grid>
           <Grid item xs={1} sx={{ display: "flex" }}>
-            <Button
-              onClick={handleClear}
-              fullWidth
-              variant="outlined"
-              color="error">
+            <Button onClick={handleClear} fullWidth variant="outlined" color="error">
               Clear
             </Button>
           </Grid>

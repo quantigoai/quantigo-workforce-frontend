@@ -33,10 +33,11 @@ import themeReducer from "../slice/themeSlice";
 import userReducer from "../slice/userSlice";
 import workspaceReducer from "../slice/workSpaceSlice";
 import projectDrawerReducer from "./projectDrawerSlice";
+
 const rootPersistConfig = {
   key: "root",
   storage: storage,
-  blacklist: ["auth"],
+  blacklist: ["auth", "skill"],
 };
 
 const rootReducers = combineReducers({

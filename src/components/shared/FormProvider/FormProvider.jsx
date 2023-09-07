@@ -7,10 +7,8 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 import PropTypes from "prop-types";
-// form
-import { FormProvider as Form } from "react-hook-form";
 
-// ----------------------------------------------------------------------
+import { FormProvider as Form } from "react-hook-form";
 
 FormProvider.propTypes = {
   children: PropTypes.node,

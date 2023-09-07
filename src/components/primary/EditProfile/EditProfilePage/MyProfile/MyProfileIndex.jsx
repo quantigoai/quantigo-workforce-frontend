@@ -48,7 +48,6 @@ const MyProfileIndex = () => {
       Object.entries(data).filter(([_, value]) => value !== undefined)
     );
 
-    // console.log(filteredData);
     // let name =filteredData.firstName.concat(" ", filteredData.lastName);
 
     // filteredData.firstName ||
@@ -74,7 +73,6 @@ const MyProfileIndex = () => {
       dataAll,
     };
 
-    // console.log("🚀 ~ file: MyProfileIndex.jsx:44 ~ onSubmit ~ finalData:", finalData);
     const formData = new FormData();
     formData.append("image", coverImageFile);
 

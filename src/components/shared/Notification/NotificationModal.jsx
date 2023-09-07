@@ -6,20 +6,20 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Button, Grid} from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import SingleNotification from "./SingleNotification";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
 import {
-    getAllNotifications,
-    getAllUnreadNotifications,
-    getLatestNotifications,
-    readLatestNotification,
+  getAllNotifications,
+  getAllUnreadNotifications,
+  getLatestNotifications,
+  readLatestNotification,
 } from "../../../features/slice/notificationSlice";
-import {useAlert} from "react-alert";
+import SingleNotification from "./SingleNotification";
 
 const style = {
   position: "absolute",

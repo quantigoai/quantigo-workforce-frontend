@@ -69,12 +69,7 @@ const ProjectDrawerStatusChip = ({ value, isPopper = false }) => {
 
   return (
     <>
-      <Chip
-        variant="outlined"
-        sx={style(value)}
-        label={drawerStatus(value)}
-        value={value}
-      />
+      <Chip variant="outlined" sx={style(value)} label={drawerStatus(value)} value={value} />
     </>
   );
 };

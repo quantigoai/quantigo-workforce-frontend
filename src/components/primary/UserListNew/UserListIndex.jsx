@@ -1,13 +1,5 @@
 import DownloadIcon from "@mui/icons-material/Download";
-import {
-  Box,
-  Button,
-  Grid,
-  Popper,
-  Skeleton,
-  TablePagination,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Grid, Popper, Skeleton, TablePagination, Typography } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import TableContainer from "@mui/material/TableContainer";
 import { styled } from "@mui/material/styles";
@@ -34,19 +26,14 @@ const ButtonStyle = styled(Button)({
     color: "#1D1D1D",
   },
 });
-const annotatorRoles = [
-  "level_0_annotator",
-  "level_1_annotator",
-  "level_2_annotator",
-  "level_3_annotator",
-];
+const annotatorRoles = ["level_0_annotator", "level_1_annotator", "level_2_annotator", "level_3_annotator"];
 const reviewerRoles = ["reviewer"];
 
 const UserListIndex = ({ action }) => {
   const [csvUsers, setCsvUsers] = useState([]);
   const dispatch = useDispatch();
   const { users, totalUsers } = useSelector((state) => state.user.users);
-  const { user } = useSelector((state) => state);
+  const user = useSelector((state) => state.user);
   const { role } = user.user;
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
@@ -128,11 +115,7 @@ const UserListIndex = ({ action }) => {
           skip: page * rowsPerPage,
         })
       );
-    } else if (
-      role === "recruitment_manager" ||
-      role === "trainer" ||
-      action === "recruitment_manager"
-    ) {
+    } else if (role === "recruitment_manager" || role === "trainer" || action === "recruitment_manager") {
       dispatch(
         getAllUsers({
           role: [...annotatorRoles, ...reviewerRoles],
@@ -162,26 +145,7 @@ const UserListIndex = ({ action }) => {
 
   useEffect(() => {
     if (users && users.length > 0) {
-      const newArray = users.map(
-        ({
-          activeJobs,
-          completedCourses,
-          completedJobs,
-          documentsImage,
-          enrolledCourses,
-          image,
-          inCompletedJobs,
-          rejectedJobs,
-          skills,
-          submittedJobs,
-          emailToken,
-          signImage,
-          updatedAt,
-          qaiId,
-          __v,
-          ...rest
-        }) => rest
-      );
+      const newArray = users.map(({ activeJobs, completedCourses, completedJobs, documentsImage, enrolledCourses, image, inCompletedJobs, rejectedJobs, skills, submittedJobs, emailToken, signImage, updatedAt, qaiId, __v, ...rest }) => rest);
 
       const finalArray = newArray?.map((item) => {
         if (item) {
@@ -244,10 +208,7 @@ const UserListIndex = ({ action }) => {
   const popperOpen = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
   const skeletonCount = 5;
-  const skeletonArray = Array.from(
-    { length: skeletonCount },
-    (_, index) => index + 1
-  );
+  const skeletonArray = Array.from({ length: skeletonCount }, (_, index) => index + 1);
 
   return (
     <>
@@ -316,11 +277,7 @@ const UserListIndex = ({ action }) => {
                 {/* TODO Move this to a separate component */}
                 <Box>
                   <CSVLink data={csvUsers} filename={"users_List.csv"}>
-                    <ButtonStyle
-                      variant="outlined"
-                      onMouseOver={handleMouseOver}
-                      onMouseOut={handleMouseOut}
-                    >
+                    <ButtonStyle variant="outlined" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
                       <Grid container sx={{ paddingTop: "8%" }}>
                         <Grid item xs={4}>
                           <DownloadIcon />
@@ -332,9 +289,7 @@ const UserListIndex = ({ action }) => {
                     </ButtonStyle>
                   </CSVLink>
                   <Popper id={id} open={popperOpen} anchorEl={anchorEl}>
-                    <Box sx={{ border: 1, p: 1, bgcolor: "background.paper" }}>
-                      Export the table into CSV.
-                    </Box>
+                    <Box sx={{ border: 1, p: 1, bgcolor: "background.paper" }}>Export the table into CSV.</Box>
                   </Popper>
                 </Box>
               </Grid>
@@ -370,12 +325,7 @@ const UserListIndex = ({ action }) => {
               ) : (
                 <>
                   <TableContainer>
-                    <UsersTable
-                      role={role}
-                      rowsPerPage={rowsPerPage}
-                      page={page}
-                      users={users}
-                    />
+                    <UsersTable role={role} rowsPerPage={rowsPerPage} page={page} users={users} />
                   </TableContainer>
                 </>
               )}
@@ -385,20 +335,8 @@ const UserListIndex = ({ action }) => {
 
         <Box>
           <Paper elevation={0} style={paperStyle} sx={{ padding: "0%" }}>
-            <Grid
-              container
-              sx={{ justifyContent: "right", paddingRight: "3%" }}
-            >
-              <TablePagination
-                rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-                colSpan={3}
-                count={totalUsers}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-                ActionsComponent={TablePaginationActions}
-              />
+            <Grid container sx={{ justifyContent: "right", paddingRight: "3%" }}>
+              <TablePagination rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]} colSpan={3} count={totalUsers} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} ActionsComponent={TablePaginationActions} />
             </Grid>
           </Paper>
         </Box>

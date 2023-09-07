@@ -27,79 +27,61 @@ const initialState = {
   error: null,
 };
 
-export const getAllNotifications = createAsyncThunk(
-  "notification/getall",
-  async () => {
-    return axios.get(`${url}/notifications`, {
+export const getAllNotifications = createAsyncThunk("notification/getall", async () => {
+  return axios.get(`${url}/notifications`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
+
+export const getAllUnreadNotifications = createAsyncThunk("notification/getAllUnread", async () => {
+  return axios.get(`${url}/notifications/unread`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
+
+export const getLatestNotifications = createAsyncThunk("notification/getLatest", async () => {
+  return axios.get(`${url}/notifications/latest-unread`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
+
+export const readLatestNotification = createAsyncThunk("notification/readLatest", async (notificationsId) => {
+  return axios.post(
+    `${url}/notifications/read-latest`,
+    { notificationsId },
+    {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
-    });
-  }
-);
+    }
+  );
+});
 
-export const getAllUnreadNotifications = createAsyncThunk(
-  "notification/getAllUnread",
-  async () => {
-    return axios.get(`${url}/notifications/unread`, {
+export const readAllNotification = createAsyncThunk("notification/readAll", async () => {
+  return axios.post(
+    `${url}/notifications/read-all`,
+    {},
+    {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
-    });
-  }
-);
+    }
+  );
+});
 
-export const getLatestNotifications = createAsyncThunk(
-  "notification/getLatest",
-  async () => {
-    return axios.get(`${url}/notifications/latest-unread`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
-
-export const readLatestNotification = createAsyncThunk(
-  "notification/readLatest",
-  async (notificationsId) => {
-    return axios.post(
-      `${url}/notifications/read-latest`,
-      { notificationsId },
-      {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      }
-    );
-  }
-);
-
-export const readAllNotification = createAsyncThunk(
-  "notification/readAll",
-  async () => {
-    return axios.post(
-      `${url}/notifications/read-all`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      }
-    );
-  }
-);
-
-export const deleteBefore15DaysNotifications = createAsyncThunk(
-  "notification/deleteBefore15Days",
-  async () => {
-    return axios.delete(`${url}/notifications/delete-before-15days`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const deleteBefore15DaysNotifications = createAsyncThunk("notification/deleteBefore15Days", async () => {
+  return axios.delete(`${url}/notifications/delete-before-15days`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // Clear all teams data from state
 
@@ -112,14 +94,11 @@ const notificationSlice = createSlice({
     },
     setNewNotification: (state, action) => {
       state.notifications = [action.payload, ...state.notifications];
-      state.latestUnreadNotifications = [
-        action.payload,
-        ...state.latestUnreadNotifications,
-      ];
-      state.allUnreadNotifications = [
-        action.payload,
-        ...state.allUnreadNotifications,
-      ];
+      state.latestUnreadNotifications = [action.payload, ...state.latestUnreadNotifications];
+      state.allUnreadNotifications = [action.payload, ...state.allUnreadNotifications];
+    },
+    resetNotificationSlice: () => {
+      return initialState;
     },
   },
   extraReducers: (builder) => {
@@ -190,6 +169,5 @@ const notificationSlice = createSlice({
   },
 });
 
-export const { readAllNotifications, setNewNotification } =
-  notificationSlice.actions;
+export const { resetNotificationSlice, readAllNotifications, setNewNotification } = notificationSlice.actions;
 export default notificationSlice.reducer;

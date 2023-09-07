@@ -57,6 +57,9 @@ const dataSetSlice = createSlice({
   initialState: initialState,
   reducers: {
     updateDatasetData: () => initialState,
+    resetDataSetSlice: () => {
+      return initialState;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -83,5 +86,5 @@ const dataSetSlice = createSlice({
       });
   },
 });
-export const { updateDatasetData } = dataSetSlice.actions;
+export const { resetDataSetSlice, updateDatasetData } = dataSetSlice.actions;
 export default dataSetSlice.reducer;

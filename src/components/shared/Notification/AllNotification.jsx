@@ -6,17 +6,12 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Box, Button, Typography} from "@mui/material";
-import React from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { Box, Button, Typography } from "@mui/material";
 import dayjs from "dayjs";
-import {
-    getAllNotifications,
-    getAllUnreadNotifications,
-    getLatestNotifications,
-    readAllNotification,
-} from "../../../features/slice/notificationSlice";
-import {useAlert} from "react-alert";
+import React from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllNotifications, getAllUnreadNotifications, getLatestNotifications, readAllNotification } from "../../../features/slice/notificationSlice";
 
 const convertDate = (date) => {
   return dayjs(date).format("DD MMM hh:mm A");
@@ -40,7 +35,6 @@ const AllNotification = () => {
   const alert = useAlert();
 
   const markAllRead = () => {
-    
     dispatch(readAllNotification()).then(() => {
       dispatch(getAllNotifications());
       dispatch(getLatestNotifications());
@@ -57,20 +51,13 @@ const AllNotification = () => {
         <Typography sx={{ color: "#090080" }} variant="h4">
           All Notification
         </Typography>
-        <Button
-          variant="outlined"
-          onClick={markAllRead}
-          sx={{ color: "#090080" }}
-        >
+        <Button variant="outlined" onClick={markAllRead} sx={{ color: "#090080" }}>
           Mark All as Read
         </Button>
       </Box>
       <Box my={2}>
         {notifications.map((notification) => (
-          <Box
-            key={notification._id}
-            style={notification.isRead ? boxReadStyle : boxUnReadStyle}
-          >
+          <Box key={notification._id} style={notification.isRead ? boxReadStyle : boxUnReadStyle}>
             <Typography variant="body1" color="#090080">
               {notification.message}
             </Typography>

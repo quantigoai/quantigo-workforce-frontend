@@ -31,22 +31,13 @@ const ChipGroup = ({ value }) => {
   return (
     <div>
       <Box aria-describedby={id}>
-        <AvatarGroup
-          onMouseOver={(e) => mouseOverEffect(e)}
-          onMouseOut={(e) => mouseOutEffect(e)}
-          max={3}
-        >
+        <AvatarGroup onMouseOver={(e) => mouseOverEffect(e)} onMouseOut={(e) => mouseOutEffect(e)} max={3}>
           {params.value.map((p) => (
             <ProjectDrawerStatusChip key={p._id} value={p.name} />
           ))}
         </AvatarGroup>
       </Box>
-      <Popper
-        sx={{ position: "absolute", zIndex: 20 }}
-        id={id}
-        open={open}
-        anchorEl={skillsAnchorEl}
-      >
+      <Popper sx={{ position: "absolute", zIndex: 20 }} id={id} open={open} anchorEl={skillsAnchorEl}>
         {/* TODO change the design */}
         <Box
           sx={{
@@ -60,16 +51,7 @@ const ChipGroup = ({ value }) => {
             gap: "25px",
           }}
         >
-          {params.value.map(
-            (p, i) =>
-              ![0, 1].includes(i) && (
-                <ProjectDrawerStatusChip
-                  key={p._id}
-                  value={p.name}
-                  isPopper={true}
-                />
-              )
-          )}
+          {params.value.map((p, i) => ![0, 1].includes(i) && <ProjectDrawerStatusChip key={p._id} value={p.name} isPopper={true} />)}
         </Box>
       </Popper>
     </div>

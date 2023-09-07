@@ -13,9 +13,9 @@
  * ------------------------
  */
 
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {realToken} from "../../helper/lib";
+import { realToken } from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
@@ -26,47 +26,34 @@ const initialState = {
   error: "null",
 };
 
-export const updateTemporaryData = createAsyncThunk(
-  "resources/temporaryDatas",
-  async (data) => {
-    return axios.post(`${url}/courses/temporaryDataRouter/`, data, {
+export const updateTemporaryData = createAsyncThunk("resources/temporaryDatas", async (data) => {
+  return axios.post(`${url}/courses/temporaryDataRouter/`, data, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
+
+export const deleteTemporaryData = createAsyncThunk("resources/temporaryDatas/delete", async (data) => {
+  const { id, chapterNo } = data;
+  return axios.delete(
+    `${url}/courses/temporaryDataRouter/${id}/${chapterNo}`,
+
+    {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
-    });
-  }
-);
+    }
+  );
+});
 
-export const deleteTemporaryData = createAsyncThunk(
-  "resources/temporaryDatas/delete",
-  async (data) => {
-    const { id, chapterNo } = data;
-    return axios.delete(
-      `${url}/courses/temporaryDataRouter/${id}/${chapterNo}`,
-
-      {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      }
-    );
-  }
-);
-
-export const clearTemporaryData = createAsyncThunk(
-  "resources/temporaryDatas/clear",
-  async (data) => {
-    return axios.post(
-      `${url}/courses/temporaryDataRouter/cleartemporaryData`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      }
-    );
-  }
-);
+export const clearTemporaryData = createAsyncThunk("resources/temporaryDatas/clear", async (data) => {
+  return axios.post(`${url}/courses/temporaryDataRouter/cleartemporaryData`, data, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // Clear all temporaryDatas data from state
 
@@ -76,6 +63,9 @@ const temporaryDataSlice = createSlice({
   reducers: {
     resetTemporaryDatas: (state) => {
       state.temporaryDatas = [];
+    },
+    resetTemporaryDataSlice: () => {
+      return initialState;
     },
   },
   extraReducers: (builder) => {
@@ -113,6 +103,6 @@ const temporaryDataSlice = createSlice({
   },
 });
 
-export const { resetTemporaryDatas } = temporaryDataSlice.actions;
+export const { resetTemporaryDataSlice, resetTemporaryDatas } = temporaryDataSlice.actions;
 
 export default temporaryDataSlice.reducer;

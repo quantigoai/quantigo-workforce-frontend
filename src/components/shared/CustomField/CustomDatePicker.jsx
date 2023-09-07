@@ -31,27 +31,16 @@ export const MyInputLabel = styled(InputLabel)(() => ({
 export const MyFormControl = styled(FormControl)(() => ({
   borderRadius: "5px",
   padding: "2px 0px 0px 0px",
-  "& .css-1u3r4u7-MuiInputBase-root-MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
-    {
-      border: "0px",
-      borderColor: "#2D58FF",
-    },
-  "& .css-1u3r4u7-MuiInputBase-root-MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
-    {
-      border: "0px",
-      borderColor: "#2D58FF",
-    },
+  "& .css-1u3r4u7-MuiInputBase-root-MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+    border: "0px",
+    borderColor: "#2D58FF",
+  },
+  "& .css-1u3r4u7-MuiInputBase-root-MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
+    border: "0px",
+    borderColor: "#2D58FF",
+  },
 }));
-export default function CustomDatePicker({
-  name,
-  setValue,
-  setError,
-  helperText,
-  options,
-  label,
-  defaultValue,
-  ...other
-}) {
+export default function CustomDatePicker({ name, setValue, setError, helperText, options, label, defaultValue, ...other }) {
   const { control } = useFormContext();
 
   const handleDate = (newValue) => {
@@ -78,12 +67,7 @@ export default function CustomDatePicker({
                 handleDate(newValue);
               }}
             >
-              <TextField
-                sx={{ padding: "5px" }}
-                error={!!error}
-                helperText={error && error?.message}
-                id="date-picker"
-              />
+              <TextField sx={{ padding: "5px" }} error={!!error} helperText={error && error?.message} id="date-picker" />
             </MyDatePicker>
           </LocalizationProvider>
         </MyFormControl>

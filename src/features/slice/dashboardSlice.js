@@ -32,56 +32,47 @@ const initialState = {
 
 export const getDashboardData = createAsyncThunk("dashboard", async (data) => {
   const { startDate, endDate } = data;
-  return axios.get(
-    `${url}/dashboard?startDate=${startDate}&endDate=${endDate}`,
-    {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    }
-  );
+  return axios.get(`${url}/dashboard?startDate=${startDate}&endDate=${endDate}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
 });
 
-export const getDashboardDataWeekly = createAsyncThunk(
-  "dashboard/weekly",
-  async () => {
-    return axios.get(`${url}/dashboard/weeklydata`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const getDashboardDataWeekly = createAsyncThunk("dashboard/weekly", async () => {
+  return axios.get(`${url}/dashboard/weeklydata`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
-export const getDashboardDataHourly = createAsyncThunk(
-  "dashboard/hourly",
-  async () => {
-    return axios.get(`${url}/dashboard/hourlydata`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const getDashboardDataHourly = createAsyncThunk("dashboard/hourly", async () => {
+  return axios.get(`${url}/dashboard/hourlydata`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // total count Data
 
-export const getTotalCountData = createAsyncThunk(
-  "total/Count/data",
-  async () => {
-    return axios.get(`${url}/dashboard/totalcountdata`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const getTotalCountData = createAsyncThunk("total/Count/data", async () => {
+  return axios.get(`${url}/dashboard/totalcountdata`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 export const dashboardSlice = createSlice({
   name: "dashboard",
   initialState,
   reducers: {
     updateDashboardData: () => initialState,
+    resetDashboardSlice: () => {
+      return initialState;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -133,6 +124,6 @@ export const dashboardSlice = createSlice({
   },
 });
 
-export const { updateDashboardData } = dashboardSlice.actions;
+export const { resetDashboardSlice, updateDashboardData } = dashboardSlice.actions;
 
 export default dashboardSlice.reducer;

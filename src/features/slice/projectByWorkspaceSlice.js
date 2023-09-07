@@ -25,34 +25,24 @@ const initialState = {
   isCreated: false,
 };
 
-export const getProjectByWorkSpace = createAsyncThunk(
-  "/resources/projects/:id",
-  async (data) => {
-    const { id, server_agent } = data;
-    return axios.get(`${url}/resources/projects/${id}/${server_agent}`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const getProjectByWorkSpace = createAsyncThunk("/resources/projects/:id", async (data) => {
+  const { id, server_agent } = data;
+  return axios.get(`${url}/resources/projects/${id}/${server_agent}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // update project Status by project Id
-export const updateAProjectById = createAsyncThunk(
-  "update/project/statue",
-  async (finalData) => {
-    const { id, data, server_agent } = finalData;
-    return axios.patch(
-      `${url}/spv/projects/updateprojectstatus/${id}/${server_agent}`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      }
-    );
-  }
-);
+export const updateAProjectById = createAsyncThunk("update/project/statue", async (finalData) => {
+  const { id, data, server_agent } = finalData;
+  return axios.patch(`${url}/spv/projects/updateprojectstatus/${id}/${server_agent}`, data, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 const projectByWorkspaceSlice = createSlice({
   name: "project",
@@ -61,6 +51,9 @@ const projectByWorkspaceSlice = createSlice({
     updateProjectData: () => initialState,
     resetProjects: (state) => {
       state.projects = [];
+    },
+    resetProjectByWorkspaceSlice: () => {
+      return initialState;
     },
   },
   extraReducers: (builder) => {
@@ -98,6 +91,5 @@ const projectByWorkspaceSlice = createSlice({
       });
   },
 });
-export const { resetProjects, updateProjectData } =
-  projectByWorkspaceSlice.actions;
+export const { resetProjectByWorkspaceSlice, resetProjects, updateProjectData } = projectByWorkspaceSlice.actions;
 export default projectByWorkspaceSlice.reducer;

@@ -1,6 +1,6 @@
-import {FormControl, TextField} from "@mui/material";
+import { FormControl, TextField } from "@mui/material";
 import React from "react";
-import {useOutletContext} from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 const CategoryField = () => {
   const [

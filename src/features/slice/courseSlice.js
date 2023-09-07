@@ -45,164 +45,127 @@ export const getACourseByID = createAsyncThunk("course/:id", async (id) => {
     },
   });
 });
-export const createCourse = createAsyncThunk(
-  "courses/createCourse",
-  async (data) => {
-    return axios.post(`${url}/courses`, data, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-      content: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-  }
-);
+export const createCourse = createAsyncThunk("courses/createCourse", async (data) => {
+  return axios.post(`${url}/courses`, data, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+    content: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+});
 
 // validate course
-export const validateCourseName = createAsyncThunk(
-  "validate/A/course",
-  async (data) => {
-    try {
-      const response = await axios.post(
-        `${url}/courses/checkcoursename`,
-        data,
-        {
-          headers: {
-            Authorization: `Bearer ${realToken()}`,
-          },
-        }
-      );
-      return response;
-    } catch (error) {
-      throw new Error(error.response.data);
-    }
+export const validateCourseName = createAsyncThunk("validate/A/course", async (data) => {
+  try {
+    const response = await axios.post(`${url}/courses/checkcoursename`, data, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    throw new Error(error.response.data);
   }
-);
+});
 
 // Delate a course by Id
-export const deleteACourseById = createAsyncThunk(
-  "/courses/delete/:id",
-  async (id) => {
-    return axios.delete(`${url}/courses/${id}`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const deleteACourseById = createAsyncThunk("/courses/delete/:id", async (id) => {
+  return axios.delete(`${url}/courses/${id}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 //delete A Chapter by id
-export const deleteAChapterById = createAsyncThunk(
-  "/chapter/delete/:id",
-  async (id) => {
-    return axios.delete(`${url}/coursechapter/${id}`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const deleteAChapterById = createAsyncThunk("/chapter/delete/:id", async (id) => {
+  return axios.delete(`${url}/coursechapter/${id}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 // Update A Course
 
-export const updateACourseById = createAsyncThunk(
-  "/courses/update/:id",
-  async (data) => {
-    const { id, formData } = data;
-    return axios.patch(`${url}/courses/${id}`, formData, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-      content: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-  }
-);
+export const updateACourseById = createAsyncThunk("/courses/update/:id", async (data) => {
+  const { id, formData } = data;
+  return axios.patch(`${url}/courses/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+    content: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+});
 
 // update a chapter by chapter ID
-export const updateAChapterById = createAsyncThunk(
-  "/courses/chapter/update/:id",
-  async (newData) => {
-    const { id, formData } = newData;
-    return axios.patch(`${url}/coursechapter/${id}`, formData, {
+export const updateAChapterById = createAsyncThunk("/courses/chapter/update/:id", async (newData) => {
+  const { id, formData } = newData;
+  return axios.patch(`${url}/coursechapter/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
+
+export const enrollACourse = createAsyncThunk("/enroll/course", async (courseId) => {
+  return axios.patch(
+    `${url}/courses/enroll/${courseId}`,
+    {},
+    {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
-    });
-  }
-);
-
-export const enrollACourse = createAsyncThunk(
-  "/enroll/course",
-  async (courseId) => {
-    return axios.patch(
-      `${url}/courses/enroll/${courseId}`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      }
-    );
-  }
-);
+    }
+  );
+});
 
 // get All chapter from a course
 
-export const getAllChapterFromACourse = createAsyncThunk(
-  "course/chapters/:id",
-  async (id) => {
-    return axios.get(`${url}/coursechapter?rootCourse=${id}`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const getAllChapterFromACourse = createAsyncThunk("course/chapters/:id", async (id) => {
+  return axios.get(`${url}/coursechapter?rootCourse=${id}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // get a chapter by ID
 
-export const getAChapterById = createAsyncThunk(
-  "course/a/chapter/:id",
-  async (id) => {
-    return axios.get(`${url}/coursechapter/${id}`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const getAChapterById = createAsyncThunk("course/a/chapter/:id", async (id) => {
+  return axios.get(`${url}/coursechapter/${id}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // create Course Chapter
 
-export const createCourseChapter = createAsyncThunk(
-  "/createCourse/chapter",
-  async (data) => {
-    return axios.post(`${url}/coursechapter`, data, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-      content: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-  }
-);
+export const createCourseChapter = createAsyncThunk("/createCourse/chapter", async (data) => {
+  return axios.post(`${url}/coursechapter`, data, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+    content: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+});
 // Get quiz results of a coursr
-export const getCourseQuizzesResults = createAsyncThunk(
-  "/courses/quizzes/results",
-  async (courseId) => {
-    return axios.get(`${url}/courses/results/${courseId}`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-      content: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-  }
-);
+export const getCourseQuizzesResults = createAsyncThunk("/courses/quizzes/results", async (courseId) => {
+  return axios.get(`${url}/courses/results/${courseId}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+    content: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+});
 
 const courseSlice = createSlice({
   name: "course",
@@ -228,6 +191,10 @@ const courseSlice = createSlice({
         return chapter;
       });
     },
+
+    resetCourseSlice: () => {
+      return initialState;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -247,12 +214,8 @@ const courseSlice = createSlice({
       })
       .addCase(createCourseChapter.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.courseChapters = state.courseChapters
-          ? [...state.courseChapters, action.payload.data.courseChapter]
-          : [action.payload.data.courseChapter];
-        state.courseChapter = Object.keys(state.courseChapter).length
-          ? state.courseChapter
-          : action.payload.data.courseChapter;
+        state.courseChapters = state.courseChapters ? [...state.courseChapters, action.payload.data.courseChapter] : [action.payload.data.courseChapter];
+        state.courseChapter = Object.keys(state.courseChapter).length ? state.courseChapter : action.payload.data.courseChapter;
 
         // state.courses = [...state.courses, action.payload.data];
       })
@@ -298,11 +261,7 @@ const courseSlice = createSlice({
       })
       .addCase(deleteACourseById.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.courses = [
-          ...state.courses.filter(
-            (course) => course._id !== action.payload.data._id
-          ),
-        ];
+        state.courses = [...state.courses.filter((course) => course._id !== action.payload.data._id)];
       })
       .addCase(deleteACourseById.rejected, (state, action) => {
         state.isLoading = false;
@@ -341,13 +300,7 @@ const courseSlice = createSlice({
       .addCase(updateAChapterById.fulfilled, (state, action) => {
         state.isLoading = false;
         state.courseChapter = action.payload.data;
-        state.courseChapters = [
-          ...state.courseChapters.map((chapter) =>
-            chapter._id === action.payload.data._id
-              ? action.payload.data
-              : chapter
-          ),
-        ];
+        state.courseChapters = [...state.courseChapters.map((chapter) => (chapter._id === action.payload.data._id ? action.payload.data : chapter))];
       })
       .addCase(updateAChapterById.rejected, (state, action) => {
         state.isLoading = false;
@@ -370,9 +323,7 @@ const courseSlice = createSlice({
       .addCase(getAllChapterFromACourse.fulfilled, (state, action) => {
         state.isLoading = false;
         state.courseChapters = action.payload.data.courseChapters;
-        state.courseChapter = action.payload.data.courseChapters
-          ? action.payload.data.courseChapters[0]
-          : {};
+        state.courseChapter = action.payload.data.courseChapters ? action.payload.data.courseChapters[0] : {};
         state.course = {
           ...state.course,
           progress: calculateProgress(action.payload.data.courseChapters),
@@ -407,10 +358,5 @@ const courseSlice = createSlice({
   },
 });
 
-export const {
-  manuallyUpdateCourse,
-  manuallySetCourseChapter,
-  manuallySetCourseChapterResult,
-  updateCourseData,
-} = courseSlice.actions;
+export const {resetCourseSlice, manuallyUpdateCourse, manuallySetCourseChapter, manuallySetCourseChapterResult, updateCourseData } = courseSlice.actions;
 export default courseSlice.reducer;

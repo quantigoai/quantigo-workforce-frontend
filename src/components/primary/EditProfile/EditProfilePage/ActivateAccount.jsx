@@ -22,10 +22,7 @@ const ActivateAccount = () => {
       action: user.active ? "deactivate" : "activate",
     };
 
-    console.log(
-      "🚀 ~ file: ActivateAccount.jsx:26 ~ handleChange ~ finalData:",
-      finalData
-    );
+    
     dispatch(activateDeactivateUser(finalData)).then((action) => {
       if (action.payload?.status === 200) {
         if (user.active) {

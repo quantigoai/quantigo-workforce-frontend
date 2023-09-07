@@ -23,7 +23,6 @@ const ButtonStyle = styled(Button)({
   },
 });
 const EmailVerificationAfterLogin = () => {
-  console.log("EmailVerificationAfterLogin");
   const params = useParams();
   const { id, token } = params;
   const dispatch = useDispatch();

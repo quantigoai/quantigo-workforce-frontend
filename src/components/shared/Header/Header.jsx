@@ -6,31 +6,25 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import { Avatar, Badge, Typography } from "@mui/material";
+import { Avatar, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { styled as mstyled } from "@mui/material/styles";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import ProfileIcon from "../../../assets/images/profileIcon.svg";
 import logOutIcon from "../../../assets/images/logoutIcon.svg";
-import { setTheme } from "../../../features/slice/themeSlice";
+import menuIcon from "../../../assets/images/menuIcon.svg";
+import ProfileIcon from "../../../assets/images/profileIcon.svg";
+import useReset from "../../../customHooks/useReset";
 import { logout } from "../../../features/slice/userSlice";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import NotificationModal from "../Notification/NotificationModal";
-import menuIcon from "../../../assets/images/menuIcon.svg";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ContentCut from "@mui/icons-material/ContentCut";
 const NavBarFull = mstyled(AppBar)({
   height: "auto",
   width: "100%",
@@ -56,10 +50,14 @@ const Header = () => {
   const handleNotificationOpen = () => setNotificationOpen(true);
   const handleNotificationClose = () => setNotificationOpen(false);
   const { allUnreadNotifications } = useSelector((state) => state.notification);
+  const reset = useReset;
+
   const handleLogOut = () => {
+    const role = user.user.role;
     dispatch(logout()).then(() => {
       navigate("/");
       setAnchorEl(null);
+      reset(dispatch, role);
     });
   };
 
@@ -140,11 +138,7 @@ const Header = () => {
                 </>
               )}
             </Button> */}
-            <NotificationModal
-              handleSeeAll={handleSeeAll}
-              notificationOpen={notificationOpen}
-              handleNotificationClose={handleNotificationClose}
-            />
+            <NotificationModal handleSeeAll={handleSeeAll} notificationOpen={notificationOpen} handleNotificationClose={handleNotificationClose} />
 
             {/* <Box xs={2} sx={{ px: 2 }}>
               <img src={line} height="100%" />
@@ -166,7 +160,8 @@ const Header = () => {
                     sx={{
                       color: "#0E243D",
                     }}
-                    variant="body2">
+                    variant="body2"
+                  >
                     <b>
                       {user.user.firstName} {user.user.lastName}
                     </b>
@@ -217,24 +212,16 @@ const Header = () => {
                       <ListItemIcon>
                         <img src={ProfileIcon} />
                       </ListItemIcon>
-                      <ListItemText sx={{ color: "#3C4D6B" }}>
-                        Edit Profile
-                      </ListItemText>
+                      <ListItemText sx={{ color: "#3C4D6B" }}>Edit Profile</ListItemText>
                     </MenuItem>
                     <MenuItem onClick={handleLogOut} sx={{ width: "182px" }}>
                       <ListItemIcon>
                         <img src={logOutIcon} />
                       </ListItemIcon>
-                      <ListItemText sx={{ color: "#3C4D6B" }}>
-                        LogOut
-                      </ListItemText>
+                      <ListItemText sx={{ color: "#3C4D6B" }}>LogOut</ListItemText>
                     </MenuItem>
                   </Menu>
-                  <Button
-                    id="fade-button"
-                    onClick={handleClick}
-                    sx={{ paddingTop: "20%" }}
-                  >
+                  <Button id="fade-button" onClick={handleClick} sx={{ paddingTop: "20%" }}>
                     <img src={menuIcon} />
                     {/* <KeyboardArrowDownIcon /> */}
                   </Button>

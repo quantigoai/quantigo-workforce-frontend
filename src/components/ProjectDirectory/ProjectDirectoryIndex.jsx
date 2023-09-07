@@ -2,23 +2,7 @@ import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
-import {
-  Box,
-  Grid,
-  IconButton,
-  Paper,
-  Skeleton,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
-  Typography,
-  useTheme,
-  TableSortLabel,
-} from "@mui/material";
+import { Box, Grid, IconButton, Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TableSortLabel, Typography, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
@@ -57,36 +41,16 @@ function TablePaginationActions(props) {
 
   return (
     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-      <IconButton
-        onClick={handleFirstPageButtonClick}
-        disabled={page === 0}
-        aria-label="first page">
+      <IconButton onClick={handleFirstPageButtonClick} disabled={page === 0} aria-label="first page">
         {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
-      <IconButton
-        onClick={handleBackButtonClick}
-        disabled={page === 0}
-        aria-label="previous page">
-        {theme.direction === "rtl" ? (
-          <KeyboardArrowRight />
-        ) : (
-          <KeyboardArrowLeft />
-        )}
+      <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
+        {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
       </IconButton>
-      <IconButton
-        onClick={handleNextButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page">
-        {theme.direction === "rtl" ? (
-          <KeyboardArrowLeft />
-        ) : (
-          <KeyboardArrowRight />
-        )}
+      <IconButton onClick={handleNextButtonClick} disabled={page >= Math.ceil(count / rowsPerPage) - 1} aria-label="next page">
+        {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
       </IconButton>
-      <IconButton
-        onClick={handleLastPageButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page">
+      <IconButton onClick={handleLastPageButtonClick} disabled={page >= Math.ceil(count / rowsPerPage) - 1} aria-label="last page">
         {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
@@ -94,13 +58,11 @@ function TablePaginationActions(props) {
 }
 
 const ProjectDirectoryIndex = () => {
-  const { user } = useSelector((state) => state);
+  const user = useSelector((state) => state.user);
   const { role } = user.user;
   const [projectDirectorys, setProjectDirectory] = useState([]);
   const dispatch = useDispatch();
-  const { projectDirectory, isLoading } = useSelector(
-    (state) => state.projectDirectory
-  );
+  const { projectDirectory, isLoading } = useSelector((state) => state.projectDirectory);
   const [search, setSearch] = useState("");
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
@@ -125,12 +87,9 @@ const ProjectDirectoryIndex = () => {
   const [judgementTimeFieldFilter, setJudgementTimeFieldFilter] = useState("");
   const [skipImageFieldFilter, setSkipImageFieldFilter] = useState("");
   const [imageLoadingFieldFilter, setImageLoadingFieldFilter] = useState("");
-  const [objectSavingTimeFieldFilter, setobjectSavingTimeFieldFilter] =
-    useState("");
-  const [videoWatchTimeFieldFilter, setVideoWatchTimeFieldFilter] =
-    useState("");
-  const [taggingBenchMarkFieldFilter, setTaggingBenchMarkFieldFilter] =
-    useState("");
+  const [objectSavingTimeFieldFilter, setobjectSavingTimeFieldFilter] = useState("");
+  const [videoWatchTimeFieldFilter, setVideoWatchTimeFieldFilter] = useState("");
+  const [taggingBenchMarkFieldFilter, setTaggingBenchMarkFieldFilter] = useState("");
   const [date, setDate] = useState("");
 
   const [pdrSetFilter, setPdrSetFilter] = useState(false);
@@ -233,54 +192,24 @@ const ProjectDirectoryIndex = () => {
       ...(industryType ? { industryType: industryType } : {}),
       ...(clientAliasFilter ? { clientAliasFilter: clientAliasFilter } : {}),
       ...(dataTypeFilter ? { dataTypeFilter: dataTypeFilter } : {}),
-      ...(actionItemsFieldFilter
-        ? { actionItemsFieldFilter: actionItemsFieldFilter }
-        : {}),
+      ...(actionItemsFieldFilter ? { actionItemsFieldFilter: actionItemsFieldFilter } : {}),
       ...(qAFieldFilter ? { qAFieldFilter: qAFieldFilter } : {}),
-      ...(qABenchmarkFieldFilter
-        ? { qABenchmarkFieldFilter: qABenchmarkFieldFilter }
-        : {}),
-      ...(judgementTimeFieldFilter
-        ? { judgementTimeFieldFilter: judgementTimeFieldFilter }
-        : {}),
-      ...(skipImageFieldFilter
-        ? { skipImageFieldFilter: skipImageFieldFilter }
-        : {}),
-      ...(imageLoadingFieldFilter
-        ? { imageLoadingFieldFilter: imageLoadingFieldFilter }
-        : {}),
-      ...(objectSavingTimeFieldFilter
-        ? { objectSavingTimeFieldFilter: objectSavingTimeFieldFilter }
-        : {}),
-      ...(videoWatchTimeFieldFilter
-        ? { videoWatchTimeFieldFilter: videoWatchTimeFieldFilter }
-        : {}),
-      ...(toolTypeFieldFilter
-        ? { toolTypeFieldFilter: toolTypeFieldFilter }
-        : {}),
-      ...(deletionFieldFilter
-        ? { deletionFieldFilter: deletionFieldFilter }
-        : {}),
-      ...(platformFieldFilter
-        ? { platformFieldFilter: platformFieldFilter }
-        : {}),
-      ...(projectTypeFieldFilter
-        ? { projectTypeFieldFilter: projectTypeFieldFilter }
-        : {}),
+      ...(qABenchmarkFieldFilter ? { qABenchmarkFieldFilter: qABenchmarkFieldFilter } : {}),
+      ...(judgementTimeFieldFilter ? { judgementTimeFieldFilter: judgementTimeFieldFilter } : {}),
+      ...(skipImageFieldFilter ? { skipImageFieldFilter: skipImageFieldFilter } : {}),
+      ...(imageLoadingFieldFilter ? { imageLoadingFieldFilter: imageLoadingFieldFilter } : {}),
+      ...(objectSavingTimeFieldFilter ? { objectSavingTimeFieldFilter: objectSavingTimeFieldFilter } : {}),
+      ...(videoWatchTimeFieldFilter ? { videoWatchTimeFieldFilter: videoWatchTimeFieldFilter } : {}),
+      ...(toolTypeFieldFilter ? { toolTypeFieldFilter: toolTypeFieldFilter } : {}),
+      ...(deletionFieldFilter ? { deletionFieldFilter: deletionFieldFilter } : {}),
+      ...(platformFieldFilter ? { platformFieldFilter: platformFieldFilter } : {}),
+      ...(projectTypeFieldFilter ? { projectTypeFieldFilter: projectTypeFieldFilter } : {}),
       ...(annotationFilter ? { annotationFilter: annotationFilter } : {}),
       ...(pDRFilter ? { pdr: pDRFilter } : {}),
-      ...(qaCheckPointFieldFilter
-        ? { qaCheckPointFieldFilter: qaCheckPointFieldFilter }
-        : {}),
-      ...(imgBenchMarkFieldFilter
-        ? { imgBenchMarkFieldFilter: imgBenchMarkFieldFilter }
-        : {}),
-      ...(taggingBenchMarkFieldFilter
-        ? { taggingBenchMarkFieldFilter: taggingBenchMarkFieldFilter }
-        : {}),
-      ...(objBenchMarkFieldFilter
-        ? { objBenchMarkFieldFilter: objBenchMarkFieldFilter }
-        : {}),
+      ...(qaCheckPointFieldFilter ? { qaCheckPointFieldFilter: qaCheckPointFieldFilter } : {}),
+      ...(imgBenchMarkFieldFilter ? { imgBenchMarkFieldFilter: imgBenchMarkFieldFilter } : {}),
+      ...(taggingBenchMarkFieldFilter ? { taggingBenchMarkFieldFilter: taggingBenchMarkFieldFilter } : {}),
+      ...(objBenchMarkFieldFilter ? { objBenchMarkFieldFilter: objBenchMarkFieldFilter } : {}),
       ...(date ? { date } : {}),
     };
     dispatch(getProjectByDirectory(data)).then((action) => {
@@ -346,9 +275,7 @@ const ProjectDirectoryIndex = () => {
     setPage(0);
   };
   const [orderSortTimeLimit, setOrderSortTimeLimit] = React.useState(true);
-  const createSortHandler = () => {
-    console.log("hit");
-  };
+  const createSortHandler = () => {};
   const [arrayList, setArrayList] = useState(projectDirectory);
   const sortArray = (property, ascending = orderSortTimeLimit) => {
     const sortedArray = [...projectDirectory];
@@ -366,19 +293,10 @@ const ProjectDirectoryIndex = () => {
       }
     });
   }, []);
-  const filtered = projectDirectory.filter((entry) =>
-    Object.values(entry).some(
-      (val) =>
-        typeof val === "string" &&
-        val.toLowerCase().includes(search.toLowerCase())
-    )
-  );
+  const filtered = projectDirectory.filter((entry) => Object.values(entry).some((val) => typeof val === "string" && val.toLowerCase().includes(search.toLowerCase())));
 
   const skeletonCount = 5;
-  const skeletonArray = Array.from(
-    { length: skeletonCount },
-    (_, index) => index + 1
-  );
+  const skeletonArray = Array.from({ length: skeletonCount }, (_, index) => index + 1);
 
   return (
     <>
@@ -391,7 +309,8 @@ const ProjectDirectoryIndex = () => {
               marginLeft: "0%",
               display: "flex",
             }}
-            container>
+            container
+          >
             <Typography variant="h4" style={{ color: "#090080" }}>
               Projects Directory
             </Typography>
@@ -403,7 +322,8 @@ const ProjectDirectoryIndex = () => {
               textAlign: "right",
               justifyContent: "end",
               paddingLeft: "0%",
-            }}>
+            }}
+          >
             <Grid container>
               <Grid item xs={6}>
                 <Grid
@@ -412,7 +332,8 @@ const ProjectDirectoryIndex = () => {
                     textAlign: "right",
                     justifyContent: "end",
                     paddingLeft: "0%",
-                  }}>
+                  }}
+                >
                   {/* //! need to moved */}
                   {/* <Box>
                     <Button
@@ -463,7 +384,8 @@ const ProjectDirectoryIndex = () => {
               paddingLeft: "1%",
               paddingRight: "3%",
               paddingBottom: "0%",
-            }}>
+            }}
+          >
             <SearchProjectDirectory
               placeholder="Search "
               handleClickFilter={handleClickFilter}
@@ -547,7 +469,8 @@ const ProjectDirectoryIndex = () => {
               paddingLeft: "1%",
               paddingRight: "3%",
               // paddingBottom: "3%",
-            }}>
+            }}
+          >
             {isLoading ? (
               <>
                 <Grid container sx={{ paddingTop: "0%" }}>
@@ -567,9 +490,7 @@ const ProjectDirectoryIndex = () => {
               </>
             ) : projectDirectory.length === 0 ? (
               <>
-                <Grid
-                  container
-                  sx={{ paddingTop: "0%", justifyContent: "center" }}>
+                <Grid container sx={{ paddingTop: "0%", justifyContent: "center" }}>
                   {" "}
                   <Typography variant="h6" sx={{ justifyItems: "center" }}>
                     Project not found
@@ -580,43 +501,29 @@ const ProjectDirectoryIndex = () => {
               <>
                 {" "}
                 <TableContainer>
-                  <Table
-                    aria-label="simple table"
-                    sx={{ border: "1px solid #DADCDF" }}>
+                  <Table aria-label="simple table" sx={{ border: "1px solid #DADCDF" }}>
                     {/* TODO : Convert this in a separate component  */}
                     <TableHead sx={{ background: "#F8F8F8", height: "80px" }}>
                       <TableRow>
-                        <TableCell
-                          align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                           SL
                         </TableCell>
-                        <TableCell
-                          align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                           Project Name
                         </TableCell>
 
-                        <TableCell
-                          align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                           Client Alias
                         </TableCell>
 
-                        <TableCell
-                          align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                           Industry
                         </TableCell>
 
-                        <TableCell
-                          align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                           Tool Type
                         </TableCell>
-                        <TableCell
-                          align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                           Project Type
                         </TableCell>
 
@@ -637,9 +544,7 @@ const ProjectDirectoryIndex = () => {
                         {role === "admin" || role == "project_manager" ? (
                           <>
                             {" "}
-                            <TableCell
-                              align="center"
-                              sx={{ color: "#969CAF", fontSize: "20px" }}>
+                            <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                               Action
                             </TableCell>
                           </>
@@ -649,49 +554,30 @@ const ProjectDirectoryIndex = () => {
                         {role === "admin" || role == "project_manager" ? (
                           <>
                             {" "}
-                            <TableCell
-                              align="center"
-                              sx={{ color: "#969CAF", fontSize: "20px" }}>
+                            <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                               Update
                             </TableCell>
                           </>
                         ) : (
                           <></>
                         )}
-                        <TableCell
-                          align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                           Details
                         </TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {(rowsPerPage > 0
-                        ? filtered.slice(
-                            page * rowsPerPage,
-                            page * rowsPerPage + rowsPerPage
-                          )
-                        : filtered
-                      ).map((item, i) => (
+                      {(rowsPerPage > 0 ? filtered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : filtered).map((item, i) => (
                         <TableRow key={item._id}>
-                          <TableCell align="center">
-                            {" "}
-                            {page * rowsPerPage + i + 1}
-                          </TableCell>
-                          <TableCell align="center">
-                            {item.Project_Name}
-                          </TableCell>
+                          <TableCell align="center"> {page * rowsPerPage + i + 1}</TableCell>
+                          <TableCell align="center">{item.Project_Name}</TableCell>
 
-                          <TableCell align="center">
-                            {item.Client_Alias}
-                          </TableCell>
+                          <TableCell align="center">{item.Client_Alias}</TableCell>
 
                           <TableCell align="center">{item.Industry}</TableCell>
 
                           <TableCell align="center">{item.Tool_Type}</TableCell>
-                          <TableCell align="center">
-                            {item.Project_Type}
-                          </TableCell>
+                          <TableCell align="center">{item.Project_Type}</TableCell>
 
                           <TableCell align="center">{item.PDR}</TableCell>
                           {role === "admin" || role == "project_manager" ? (

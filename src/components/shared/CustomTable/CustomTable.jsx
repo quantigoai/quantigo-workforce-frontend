@@ -23,14 +23,7 @@ const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
   },
 }));
 
-const CustomTable = ({
-  myColumn,
-  myRows,
-  totalCount,
-  paginationModel,
-  setPaginationModel,
-  isLoading,
-}) => {
+const CustomTable = ({ myColumn, myRows, totalCount, paginationModel, setPaginationModel, isLoading }) => {
   return (
     <>
       <Box style={{ height: 750, width: "100%" }}>

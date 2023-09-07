@@ -37,55 +37,40 @@ const initialState = {
   annotationCalculation: {},
 };
 
-export const createBenchMark = createAsyncThunk(
-  "/createBenchMark",
-  async (finaldata) => {
-    const { data1, server_agent } = finaldata;
-    return axios.post(`${url}/benchmark/${server_agent}`, data1, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const createBenchMark = createAsyncThunk("/createBenchMark", async (finaldata) => {
+  const { data1, server_agent } = finaldata;
+  return axios.post(`${url}/benchmark/${server_agent}`, data1, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
-export const getProjectMeta = createAsyncThunk(
-  "/public/api/v3/projects",
-  async (id) => {
-    return axios.get(`${urlquantigo}/public/api/v3/projects.meta?id=${id}`, {
-      headers: {
-        "x-api-key": `${REACT_QUANTIGO_API_KEY}`,
-      },
-    });
-  }
-);
+export const getProjectMeta = createAsyncThunk("/public/api/v3/projects", async (id) => {
+  return axios.get(`${urlquantigo}/public/api/v3/projects.meta?id=${id}`, {
+    headers: {
+      "x-api-key": `${REACT_QUANTIGO_API_KEY}`,
+    },
+  });
+});
 
-export const getProjectMetaAg = createAsyncThunk(
-  "/public/api/v3/projects/agserver",
-  async (id) => {
-    return axios.get(`${urlag}/public/api/v3/projects.meta?id=${id}`, {
-      headers: {
-        "x-api-key": `${REACT_AG_API_KEY}`,
-      },
-    });
-  }
-);
+export const getProjectMetaAg = createAsyncThunk("/public/api/v3/projects/agserver", async (id) => {
+  return axios.get(`${urlag}/public/api/v3/projects.meta?id=${id}`, {
+    headers: {
+      "x-api-key": `${REACT_AG_API_KEY}`,
+    },
+  });
+});
 
 // calculate Annotation
-export const calculateAnnotation = createAsyncThunk(
-  "spv/annotations/calculateannotation/:datasetId",
-  async (data) => {
-    const { datasetId, server_agent } = data;
-    return axios.get(
-      `${url}/spv/annotations/calculateannotation/${datasetId}/${server_agent}`,
-      {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      }
-    );
-  }
-);
+export const calculateAnnotation = createAsyncThunk("spv/annotations/calculateannotation/:datasetId", async (data) => {
+  const { datasetId, server_agent } = data;
+  return axios.get(`${url}/spv/annotations/calculateannotation/${datasetId}/${server_agent}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 //  get All BenchMark
 export const getAllBenchMarks = createAsyncThunk("/benchmark", async (data) => {
@@ -98,45 +83,33 @@ export const getAllBenchMarks = createAsyncThunk("/benchmark", async (data) => {
 });
 
 // update A Benchmark By Id
-export const updateABenchMarkById = createAsyncThunk(
-  "/benchmark/update",
-  async (bulkData) => {
-    const { id, data, server_agent } = bulkData;
-    return axios.patch(`${url}/benchmark/${id}/${server_agent}`, data, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const updateABenchMarkById = createAsyncThunk("/benchmark/update", async (bulkData) => {
+  const { id, data, server_agent } = bulkData;
+  return axios.patch(`${url}/benchmark/${id}/${server_agent}`, data, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 //  Delete A BenchMark BY ID
-export const deleteABenchMarkById = createAsyncThunk(
-  "/benchmarkA/delete",
-  async (id) => {
-    return axios.delete(`${url}/benchmark/${id}`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const deleteABenchMarkById = createAsyncThunk("/benchmarkA/delete", async (id) => {
+  return axios.delete(`${url}/benchmark/${id}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 //  get A benchMark By Project Id
-export const getABenchMarkByProjectId = createAsyncThunk(
-  "/get/Abenchmark/projectId",
-  async (finalData) => {
-    const { id, category, server_agent } = finalData;
-    return axios.get(
-      `${url}/benchmark/project/${id}/${server_agent}?category=${category}`,
-      {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      }
-    );
-  }
-);
+export const getABenchMarkByProjectId = createAsyncThunk("/get/Abenchmark/projectId", async (finalData) => {
+  const { id, category, server_agent } = finalData;
+  return axios.get(`${url}/benchmark/project/${id}/${server_agent}?category=${category}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 const benchMarkSlice = createSlice({
   name: "benchMark",
@@ -152,6 +125,9 @@ const benchMarkSlice = createSlice({
     },
     resetCalculationData: (state) => {
       state.annotationCalculation = {};
+    },
+    resetBenchMarkSlice: () => {
+      return initialState;
     },
   },
   extraReducers: (builder) => {
@@ -248,10 +224,5 @@ const benchMarkSlice = createSlice({
   },
 });
 
-export const {
-  resetProjectMetas,
-  setBenchMarkLocal,
-  resetCalculationData,
-  updateBenchmarkData,
-} = benchMarkSlice.actions;
+export const { resetBenchMarkSlice, resetProjectMetas, setBenchMarkLocal, resetCalculationData, updateBenchmarkData } = benchMarkSlice.actions;
 export default benchMarkSlice.reducer;

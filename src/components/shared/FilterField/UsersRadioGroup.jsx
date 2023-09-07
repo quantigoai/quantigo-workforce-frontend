@@ -8,34 +8,12 @@
  */
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
-import React, {useState} from "react";
-import {useOutletContext} from "react-router-dom";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import React, { useState } from "react";
+import { useOutletContext } from "react-router-dom";
 
 const UsersRadioGroup = ({ users, isReviewers = false }) => {
-  const [
-    statusType,
-    setStatusType,
-    annotator,
-    setAnnotator,
-    reviewer,
-    setReviewer,
-    attemptLeft,
-    setAttemptLeft,
-    date,
-    setDate,
-    handleFilter,
-    handleReset,
-    handleClose,
-    anchorEl,
-    setAnchorEl,
-    isClicked,
-    setIsClicked,
-    dateValue,
-    setDateValue,
-    setProjectIdFilter,
-          projectIdFilter
-  ] = useOutletContext();
+  const [statusType, setStatusType, annotator, setAnnotator, reviewer, setReviewer, attemptLeft, setAttemptLeft, date, setDate, handleFilter, handleReset, handleClose, anchorEl, setAnchorEl, isClicked, setIsClicked, dateValue, setDateValue, setProjectIdFilter, projectIdFilter] = useOutletContext();
   const [isOpen, SetIsOpen] = useState(false);
   const handleOpenClose = () => {
     SetIsOpen(!isOpen);
@@ -49,30 +27,13 @@ const UsersRadioGroup = ({ users, isReviewers = false }) => {
   return (
     <>
       <FormControl fullWidth variant="filled">
-        <InputLabel id="demo-simple-select-label">
-          {!isReviewers ? "Annotators" : "Reviewers"}
-        </InputLabel>
-        <Select
-          IconComponent={() =>
-            isOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />
-          }
-          onOpen={handleOpenClose}
-          onClose={handleOpenClose}
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={!isReviewers ? annotator : reviewer}>
+        <InputLabel id="demo-simple-select-label">{!isReviewers ? "Annotators" : "Reviewers"}</InputLabel>
+        <Select IconComponent={() => (isOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />)} onOpen={handleOpenClose} onClose={handleOpenClose} labelId="demo-simple-select-label" id="demo-simple-select" value={!isReviewers ? annotator : reviewer}>
           {users.map((user) => {
             if (!isReviewers) {
-              if (
-                user.role === "level_1_annotator" ||
-                user.role === "level_2_annotator" ||
-                user.role === "level_3_annotator"
-              ) {
+              if (user.role === "level_1_annotator" || user.role === "level_2_annotator" || user.role === "level_3_annotator") {
                 return (
-                  <MenuItem
-                    key={user._id}
-                    onClick={() => setAnnotator(user._id)}
-                    value={user._id}>
+                  <MenuItem key={user._id} onClick={() => setAnnotator(user._id)} value={user._id}>
                     {user.qaiUserName || user.name}
                   </MenuItem>
                 );
@@ -82,11 +43,7 @@ const UsersRadioGroup = ({ users, isReviewers = false }) => {
             } else {
               if (user.role === "reviewer") {
                 return (
-                  <MenuItem
-                    key={user._id}
-                    onClick={() => setReviewer(user._id)}
-                    defaultValue={reviewer}
-                    value={user._id}>
+                  <MenuItem key={user._id} onClick={() => setReviewer(user._id)} defaultValue={reviewer} value={user._id}>
                     {user.qaiUserName || user.name}
                   </MenuItem>
                 );

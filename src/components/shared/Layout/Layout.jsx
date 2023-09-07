@@ -35,24 +35,22 @@ import GetHelp from "./GetHelp";
 
 const drawerWidth = "15%";
 
-const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(),
+const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(({ theme, open }) => ({
+  flexGrow: 1,
+  padding: theme.spacing(),
+  transition: theme.transitions.create("margin", {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  marginLeft: `-${drawerWidth}%`,
+  ...(open && {
     transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: `-${drawerWidth}%`,
-    ...(open && {
-      transition: theme.transitions.create("margin", {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    }),
-  })
-);
+    marginLeft: 0,
+  }),
+}));
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -83,9 +81,7 @@ const Layout = ({ children }) => {
 
   const { isBlocked } = useSelector((state) => state.user.user);
 
-  const { isVerified, role, isEmailVerified } = useSelector(
-    (state) => state.user.user
-  );
+  const { isVerified, role, isEmailVerified } = useSelector((state) => state.user.user);
   const [open, setOpen] = React.useState(true);
 
   const adminOptions = [
@@ -170,9 +166,7 @@ const Layout = ({ children }) => {
     { name: "Users", icon: UserSvg },
   ];
 
-  const unverifiedOptions = [
-    { name: "Account Activation", icon: DashboardSvg },
-  ];
+  const unverifiedOptions = [{ name: "Account Activation", icon: DashboardSvg }];
 
   const devOptions = [
     { name: "Account Activation", icon: DashboardSvg },
@@ -236,9 +230,7 @@ const Layout = ({ children }) => {
       case "Create Job":
         return navigate("/jobs/create-job");
       case "Jobs":
-        return role === "reviewer"
-          ? navigate("/jobs/availablejobs")
-          : navigate("/jobs/alljobs");
+        return role === "reviewer" ? navigate("/jobs/availablejobs") : navigate("/jobs/alljobs");
       case "On Going Job":
         return navigate("/jobs/activejobs");
       case "Archive Job":
@@ -272,8 +264,7 @@ const Layout = ({ children }) => {
             borderRadius: activePath === text.name && "4px",
             justifyContent: "left",
             borderLeft: activePath === text.name && "3px solid #FFFFFF",
-            backgroundColor:
-              activePath === text.name && "rgba(255, 255, 255, 0.15)",
+            backgroundColor: activePath === text.name && "rgba(255, 255, 255, 0.15)",
             "&:hover": {
               backgroundColor: "rgba(255, 154, 69, 0.1)",
               paddingLeft: "3%",
@@ -284,10 +275,7 @@ const Layout = ({ children }) => {
           <ListItemIcon sx={{ color: "#FFFFFF" }}>
             <img src={text.icon} />
           </ListItemIcon>
-          <ListItemText
-            primary={text.name}
-            sx={{ color: "#FFFFFF", fontSize: "16px", justifyContent: "left" }}
-          />
+          <ListItemText primary={text.name} sx={{ color: "#FFFFFF", fontSize: "16px", justifyContent: "left" }} />
         </ListItemButton>
       </ListItem>
     );
@@ -310,12 +298,7 @@ const Layout = ({ children }) => {
         anchor="left"
       >
         <DrawerHeader>
-          <img
-            onClick={() => navigate("/")}
-            src={logo}
-            alt="logo"
-            style={{ width: "148.65px", height: "28px", cursor: "pointer" }}
-          />
+          <img onClick={() => navigate("/")} src={logo} alt="logo" style={{ width: "148.65px", height: "28px", cursor: "pointer" }} />
         </DrawerHeader>
 
         {/*  SideBar Menu */}
@@ -324,52 +307,23 @@ const Layout = ({ children }) => {
           <List>{unverifiedOptions.map((text) => handleMenu(text))}</List>
         ) : (
           <List>
-            {isLoggedIn &&
-              role === "admin" &&
-              adminOptions.map((text) => handleMenu(text))}
-            {isLoggedIn &&
-              role === "delivery_manager" &&
-              dmOptions.map((text) => handleMenu(text))}
-            {isLoggedIn &&
-              role === "level_1_annotator" &&
-              anntatorOptions.map((text) => handleMenu(text))}
-            {isLoggedIn &&
-              role === "level_2_annotator" &&
-              anntatorOptions.map((text) => handleMenu(text))}
-            {isLoggedIn &&
-              role === "level_3_annotator" &&
-              anntatorOptions.map((text) => handleMenu(text))}
-            {isLoggedIn &&
-              role === "trainer" &&
-              trainerOptions.map((text) => handleMenu(text))}
-            {isLoggedIn &&
-              role === "reviewer" &&
-              reviewerOptions.map((text) => handleMenu(text))}
-            {isLoggedIn &&
-              role === "engineering_lead" &&
-              devOptions.map((text) => handleMenu(text))}
-            {isLoggedIn &&
-              role === "recruitment_manager" &&
-              recruitOptions.map((text) => handleMenu(text))}
-            {isLoggedIn &&
-              role === "project_lead" &&
-              projectLeadOptions.map((text) => handleMenu(text))}
-            {isLoggedIn &&
-              role === "project_coordinator" &&
-              projectCoordinatorOptions.map((text) => handleMenu(text))}
-            {isLoggedIn &&
-              role === "project_manager" &&
-              projectManagerOptions.map((text) => handleMenu(text))}
-            {isLoggedIn &&
-              isVerified &&
-              role === "level_0_annotator" &&
-              level0AnnotatorOptions.map((text) => handleMenu(text))}
+            {isLoggedIn && role === "admin" && adminOptions.map((text) => handleMenu(text))}
+            {isLoggedIn && role === "delivery_manager" && dmOptions.map((text) => handleMenu(text))}
+            {isLoggedIn && role === "level_1_annotator" && anntatorOptions.map((text) => handleMenu(text))}
+            {isLoggedIn && role === "level_2_annotator" && anntatorOptions.map((text) => handleMenu(text))}
+            {isLoggedIn && role === "level_3_annotator" && anntatorOptions.map((text) => handleMenu(text))}
+            {isLoggedIn && role === "trainer" && trainerOptions.map((text) => handleMenu(text))}
+            {isLoggedIn && role === "reviewer" && reviewerOptions.map((text) => handleMenu(text))}
+            {isLoggedIn && role === "engineering_lead" && devOptions.map((text) => handleMenu(text))}
+            {isLoggedIn && role === "recruitment_manager" && recruitOptions.map((text) => handleMenu(text))}
+            {isLoggedIn && role === "project_lead" && projectLeadOptions.map((text) => handleMenu(text))}
+            {isLoggedIn && role === "project_coordinator" && projectCoordinatorOptions.map((text) => handleMenu(text))}
+            {isLoggedIn && role === "project_manager" && projectManagerOptions.map((text) => handleMenu(text))}
+            {isLoggedIn && isVerified && role === "level_0_annotator" && level0AnnotatorOptions.map((text) => handleMenu(text))}
           </List>
         )}
 
-        <DrawerFooter
-          sx={{ paddingLeft: "8%", paddingRight: "5%", paddingBottom: "5%" }}
-        >
+        <DrawerFooter sx={{ paddingLeft: "8%", paddingRight: "5%", paddingBottom: "5%" }}>
           <GetHelp />
         </DrawerFooter>
       </Drawer>

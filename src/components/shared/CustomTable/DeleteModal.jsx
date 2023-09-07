@@ -18,12 +18,7 @@ const style = {
 const DeleteModal = ({ open, handleDelete, params, handleClose }) => {
   return (
     <>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
         <Box sx={style}>
           <Box
             sx={{
@@ -42,17 +37,11 @@ const DeleteModal = ({ open, handleDelete, params, handleClose }) => {
             {" "}
             <i className="ri-delete-bin-6-line"></i>
           </Box>
-          <Typography
-            sx={{ mt: "28%" }}
-            id="modal-modal-title"
-            variant="h6"
-            component="h2"
-          >
+          <Typography sx={{ mt: "28%" }} id="modal-modal-title" variant="h6" component="h2">
             Delete Project
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Are you sure you want to delete your Project? If you delete your
-            project, you will lose all the charter information
+            Are you sure you want to delete your Project? If you delete your project, you will lose all the charter information
           </Typography>
           <Box
             sx={{

@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import ProjectDirectoryIndex from "../../ProjectDirectory/ProjectDirectoryIndex";
 import EmailVerification from "../Auth/EmailVerification/EmailVerification";
 import EmailVerificationConfirmation from "../Auth/EmailVerification/EmailVerificationConfirmation";
 import Faq from "../Auth/FAQ/Faq";
@@ -26,10 +25,7 @@ const RoutersLogin = () => {
         <Route path={"/loginpage"} element={<LoginPage />} />
         <Route path={"/emailVerification"} element={<EmailVerification />} />
 
-        <Route
-          path={"/verify-email/:id/:token/"}
-          element={ <EmailVerificationConfirmation />}
-        />
+        <Route path={"/verify-email/:id/:token/"} element={<EmailVerificationConfirmation />} />
         <Route path={"/reset-password"} element={<ResetPassword />} />
         <Route path={"/forgetpassword"} element={<ForgetPassword />} />
         <Route path={"/register"} element={<RegisterHomePage />} />
@@ -37,11 +33,7 @@ const RoutersLogin = () => {
         <Route path={"/updatedocument"} element={<UpdateDocument />} />
         <Route path={"/ndamodal"} element={<NDAuploadModal />} />
         <Route path={"/howitworks"} element={<HowItWorkPage />} />
-        <Route path={"/projectDirectory"} element={<ProjectDirectoryIndex />} />
-        <Route
-          path={"/reset-password/:id/:token"}
-          element={<ResetPassword />}
-        />
+        <Route path={"/reset-password/:id/:token"} element={<ResetPassword />} />
       </Routes>
     </>
   );

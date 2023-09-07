@@ -6,10 +6,10 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Box, Button, Paper, Typography} from "@mui/material";
-import React from "react";
 import PendingIcon from "@mui/icons-material/Pending";
-import {useAlert} from "react-alert";
+import { Box, Button, Paper, Typography } from "@mui/material";
+import React from "react";
+import { useAlert } from "react-alert";
 
 const boxStyle = {
   display: "flex",

@@ -11,17 +11,14 @@ const initialState = {
   isCreated: false,
 };
 
-export const getWorkSpaceById = createAsyncThunk(
-  "/resources/workspaces/:id",
-  async (data) => {
-    const { id, server_agent } = data;
-    return axios.get(`${url}/resources/workspaces/${id}/${server_agent}`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const getWorkSpaceById = createAsyncThunk("/resources/workspaces/:id", async (data) => {
+  const { id, server_agent } = data;
+  return axios.get(`${url}/resources/workspaces/${id}/${server_agent}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 const workSpaceSlice = createSlice({
   name: "workspace",
@@ -30,6 +27,9 @@ const workSpaceSlice = createSlice({
     updateWorkSpaceData: () => initialState,
     resetWorkspaces: (state) => {
       state.workspaces = [];
+    },
+    resetWorkspaceSlice: () => {
+      return initialState;
     },
   },
   extraReducers: (builder) => {
@@ -48,5 +48,5 @@ const workSpaceSlice = createSlice({
   },
 });
 
-export const { resetWorkspaces, updateWorkSpaceData } = workSpaceSlice.actions;
+export const { resetWorkspaceSlice, resetWorkspaces, updateWorkSpaceData } = workSpaceSlice.actions;
 export default workSpaceSlice.reducer;

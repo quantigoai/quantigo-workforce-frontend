@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Alert, AlertTitle} from "@mui/material";
+import { Alert, AlertTitle } from "@mui/material";
 import React from "react";
 
 const UserBlocked = () => {
@@ -15,8 +15,7 @@ const UserBlocked = () => {
     <>
       <Alert severity="error">
         <AlertTitle>Account Blocked</AlertTitle>
-        Your account has been blocked —{" "}
-        <strong>contact in discord for more details!</strong>
+        Your account has been blocked — <strong>contact in discord for more details!</strong>
       </Alert>
     </>
   );

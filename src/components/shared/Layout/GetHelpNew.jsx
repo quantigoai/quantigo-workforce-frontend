@@ -1,6 +1,5 @@
-import { Box, Button, Grid, Paper, styled, Typography } from "@mui/material";
+import { Button, Grid, styled, Typography } from "@mui/material";
 import React from "react";
-import HelpIcon from "../../../assets/images/IconHelp.svg";
 
 const ButtonStyleHelp = styled(Button)({
   backgroundColor: "#FFFFFF",
@@ -27,7 +26,8 @@ const GetHelpNew = () => {
           //   height: "157px",
           backgroundColor: "#476CFF",
           //   padding: "10%",
-        }}>
+        }}
+      >
         <Grid container sx={{ justifyContent: "center", paddingTop: "10%" }}>
           <Typography variant="h6" sx={{ fontSize: "14px", color: "#FFFFFF" }}>
             Need Help?
@@ -42,7 +42,8 @@ const GetHelpNew = () => {
             paddingTop: "2%",
             paddingBottom: "5%",
             textAlign: "center",
-          }}>
+          }}
+        >
           <Typography
             sx={{
               color: "#E6ECF5",
@@ -50,7 +51,8 @@ const GetHelpNew = () => {
               textAlign: "center",
               fontSize: "12px",
             }}
-            variant="body2">
+            variant="body2"
+          >
             Our customer support is at your
           </Typography>
           <Typography
@@ -60,7 +62,8 @@ const GetHelpNew = () => {
               textAlign: "center",
               fontSize: "12px",
             }}
-            variant="body2">
+            variant="body2"
+          >
             service
           </Typography>
         </Grid>
@@ -72,7 +75,8 @@ const GetHelpNew = () => {
             paddingRight: "10%",
             paddingTop: "2%",
             paddingBottom: "10%",
-          }}>
+          }}
+        >
           <ButtonStyleHelp variant="outlined" onClick={handleHelp}>
             <b> Get Help</b>
           </ButtonStyleHelp>

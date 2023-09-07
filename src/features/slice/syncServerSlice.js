@@ -47,6 +47,9 @@ const syncServerSlice = createSlice({
     resetUpdatedValue: (state) => {
       state.updatedValue = {};
     },
+    resetSyncServerSlice: () => {
+      return initialState;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -64,5 +67,5 @@ const syncServerSlice = createSlice({
   },
 });
 
-export const { resetUpdatedValue } = syncServerSlice.actions;
+export const { resetSyncServerSlice, resetUpdatedValue } = syncServerSlice.actions;
 export default syncServerSlice.reducer;

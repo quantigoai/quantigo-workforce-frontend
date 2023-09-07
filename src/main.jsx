@@ -5,8 +5,9 @@ import AlertTemplate from "react-alert-template-basic";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { PersistGate } from "redux-persist/integration/react";
 import LoadingComponent from "./components/shared/Loading/LoadingComponent";
-import { store } from "./features/store/store";
+import { persistor, store } from "./features/store/store";
 import "./index.css";
 const App = lazy(() => import("./App.jsx"));
 
@@ -83,11 +84,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
       <AlertProvider template={AlertTemplate} {...options}>
         <Provider store={store}>
-          <BrowserRouter>
-            <Suspense fallback={<LoadingComponent />}>
-              <App />
-            </Suspense>
-          </BrowserRouter>
+          <PersistGate loading={null} persistor={persistor}>
+            <BrowserRouter>
+              <Suspense fallback={<LoadingComponent />}>
+                <App />
+              </Suspense>
+            </BrowserRouter>
+          </PersistGate>
         </Provider>
       </AlertProvider>
     </React.StrictMode>

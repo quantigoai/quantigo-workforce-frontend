@@ -7,9 +7,9 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import React from "react";
-import {FormControl, InputLabel, MenuItem, Select, styled,} from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { FormControl, InputLabel, MenuItem, Select, styled, } from "@mui/material";
+import React from "react";
 
 const CustomDownArrow = styled(KeyboardArrowDownIcon)({
   color: "rgba(45, 88, 255, 1)",

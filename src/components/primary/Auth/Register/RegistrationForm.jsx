@@ -120,7 +120,6 @@ const RegistrationForm = () => {
 
   const onSubmitRegData = async (data) => {
     data.isNewUser = isNewUser;
-    console.log({ data });
     const { hub, ...rest } = data;
     dispatch(signup(rest)).then((action) => {
       if (action.error) {

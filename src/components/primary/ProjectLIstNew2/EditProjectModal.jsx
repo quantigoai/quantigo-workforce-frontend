@@ -46,7 +46,6 @@ const EditProjectModal = ({
   skills,
   onSubmit,
 }) => {
-  console.log("🚀 ~ file: EditProjectModal.jsx:49 ~ isEditModal:", isEditModal);
 
   const { prevSkills } = useHandleEditChange();
 

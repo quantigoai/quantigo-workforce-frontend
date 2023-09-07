@@ -1,14 +1,4 @@
-import { FormatColorFill } from "@mui/icons-material";
-import {
-  FormControl,
-  FormHelperText,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-  TextField,
-  Typography,
-  styled,
-} from "@mui/material";
+import { FormControl, TextField, Typography, styled } from "@mui/material";
 import PropTypes from "prop-types";
 import { Controller, useFormContext } from "react-hook-form";
 
@@ -23,16 +13,7 @@ const MyTextField = styled(TextField)(() => ({
   },
   "& .MuiInputBase-root": { height: "90%", fontSize: "14px" },
 }));
-export default function PDTextFIeld({
-  name,
-  helperText,
-  isNumber,
-  isNumberPdr,
-  InputProps,
-  label,
-  defaultValue,
-  ...other
-}) {
+export default function PDTextFIeld({ name, helperText, isNumber, isNumberPdr, InputProps, label, defaultValue, ...other }) {
   const { control } = useFormContext();
 
   return (
@@ -42,9 +23,7 @@ export default function PDTextFIeld({
       render={({ field, fieldState: { error } }) => {
         return (
           <FormControl fullWidth>
-            <Typography sx={{ fontSize: "14px", fontWeight: "500", mb: 1 }}>
-              {label}
-            </Typography>
+            <Typography sx={{ fontSize: "14px", fontWeight: "500", mb: 1 }}>{label}</Typography>
             <MyTextField
               type={isNumber || isNumberPdr ? "number" : "text"}
               //   id="outlined-basic"
@@ -54,11 +33,7 @@ export default function PDTextFIeld({
               InputProps={{ disableUnderline: true }}
               inputProps={InputProps}
               defaultValue={defaultValue}
-              value={
-                typeof field.value === "number" && field.value === 0
-                  ? ""
-                  : field.value
-              }
+              value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
               error={!!error}
               helperText={error ? error?.message : helperText}
               //   {...other}

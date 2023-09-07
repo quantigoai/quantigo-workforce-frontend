@@ -70,17 +70,14 @@ export const validateSkill = createAsyncThunk("check/A/skill", async (data) => {
 });
 
 // update A Skill
-export const updateASkill = createAsyncThunk(
-  "update/A/skill",
-  async (finalData) => {
-    const { data, id } = finalData;
-    return axios.patch(`${url}/skills/${id}`, data, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const updateASkill = createAsyncThunk("update/A/skill", async (finalData) => {
+  const { data, id } = finalData;
+  return axios.patch(`${url}/skills/${id}`, data, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 // delete A skill
 export const deleteASkill = createAsyncThunk("delete/A/skill", async (id) => {
   return axios.delete(`${url}/skills/${id}`, {
@@ -96,6 +93,9 @@ const skillSlice = createSlice({
     updateSkillData: () => initialState,
     resetSkills: (state) => {
       state.skills = [];
+    },
+    resetSkillSlice: () => {
+      return initialState;
     },
   },
   extraReducers: (builder) => {
@@ -182,5 +182,5 @@ const skillSlice = createSlice({
   },
 });
 
-export const { resetSkills, updateSkillData } = skillSlice.actions;
+export const { resetSkillSlice, resetSkills, updateSkillData } = skillSlice.actions;
 export default skillSlice.reducer;

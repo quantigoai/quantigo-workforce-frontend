@@ -1,8 +1,8 @@
 import { Box, Chip, MenuItem, Typography } from "@mui/material";
-import React, { useState } from "react";
-import { MySelect } from "./CustomSelectField";
-import { MyFormControl } from "./CustomDatePicker";
+import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
+import { MyFormControl } from "./CustomDatePicker";
+import { MySelect } from "./CustomSelectField";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -26,12 +26,7 @@ const PDskillFIeld = ({
   // inputRef,
   ...other
 }) => {
-  console.log("🚀 ~ file: PDskillFIeld.jsx:29 ~ count:", count);
-  console.log(
-    "🚀 ~ file: PDskillFIeld.jsx:29 ~ selectedSkills:",
-    selectedSkills
-  );
-
+ 
   const { control } = useFormContext();
 
   return (
@@ -41,9 +36,7 @@ const PDskillFIeld = ({
       render={({ field, fieldState: { error } }) => (
         <>
           <MyFormControl fullWidth>
-            <Typography sx={{ fontSize: "14px", fontWeight: "500", mb: 1 }}>
-              {label}
-            </Typography>
+            <Typography sx={{ fontSize: "14px", fontWeight: "500", mb: 1 }}>{label}</Typography>
 
             <MySelect
               labelId="demo-simple-select-autowidth-label"
@@ -51,9 +44,7 @@ const PDskillFIeld = ({
               {...field}
               variant="outlined"
               multiple
-              defaultValue={
-                isEdit ? selectedSkills?.map((skill) => skill.name) : addSkills
-              }
+              defaultValue={isEdit ? selectedSkills?.map((skill) => skill.name) : addSkills}
               onChange={handleChangeSkill}
               renderValue={(selected) => (
                 <Box
@@ -64,10 +55,7 @@ const PDskillFIeld = ({
                     fontSize: "12px",
                   }}
                 >
-                  {selected?.map(
-                    (value, i) =>
-                      [0].includes(i) && <Chip key={value} label={value} />
-                  )}
+                  {selected?.map((value, i) => [0].includes(i) && <Chip key={value} label={value} />)}
                   {isEdit
                     ? selectedSkills.length > 1 && (
                         <Typography variant="h7" sx={{ ml: 2, mt: 0.5 }}>

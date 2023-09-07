@@ -7,9 +7,9 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Chip, Grid} from "@mui/material";
-import React, {useEffect} from "react";
-import {useLocation, useOutletContext} from "react-router-dom";
+import { Chip, Grid } from "@mui/material";
+import React, { useEffect } from "react";
+import { useLocation, useOutletContext } from "react-router-dom";
 
 let jobStatus = [
   {
@@ -47,71 +47,29 @@ let jobStatus = [
 ];
 
 const StatusChip = () => {
-  const [
-    statusType,
-    setStatusType,
-    annotator,
-    setAnnotator,
-    reviewer,
-    setReviewer,
-    attemptLeft,
-    setAttemptLeft,
-    date,
-    setDate,
-    handleFilter,
-    handleReset,
-    handleClose,
-    anchorEl,
-    setAnchorEl,
-    isClicked,
-    setIsClicked,
-    dateValue,
-    setDateValue,
-    setProjectIdFilter,
-    projectIdFilter,
-  ] = useOutletContext();
+  const [statusType, setStatusType, annotator, setAnnotator, reviewer, setReviewer, attemptLeft, setAttemptLeft, date, setDate, handleFilter, handleReset, handleClose, anchorEl, setAnchorEl, isClicked, setIsClicked, dateValue, setDateValue, setProjectIdFilter, projectIdFilter] = useOutletContext();
   const [updatedStatus, setUpdatedStatus] = React.useState(jobStatus);
   const location = useLocation();
 
   useEffect(() => {
-    if (
-      location.pathname === "/jobs/activejobs" ||
-      location.pathname === "/jobs/ongoingjobs"
-    ) {
+    if (location.pathname === "/jobs/activejobs" || location.pathname === "/jobs/ongoingjobs") {
       const x = jobStatus.filter((status) => {
-        return (
-          status.value !== "pending" &&
-          status.value !== "completed" &&
-          status.value !== "expired" &&
-          status.value !== "rejected"
-        );
+        return status.value !== "pending" && status.value !== "completed" && status.value !== "expired" && status.value !== "rejected";
       });
       setUpdatedStatus(x);
     }
     if (location.pathname === "/jobs/archivejob") {
       const x = jobStatus.filter((status) => {
-        return (
-          status.value !== "pending" &&
-          status.value !== "inProgress" &&
-          status.value !== "paused" &&
-          status.value !== "rechecked" &&
-          status.value !== "reviewing"
-        );
+        return status.value !== "pending" && status.value !== "inProgress" && status.value !== "paused" && status.value !== "rechecked" && status.value !== "reviewing";
       });
-   
+
       setUpdatedStatus(x);
     }
     if (location.pathname === "/jobs/archivejobs") {
       const x = jobStatus.filter((status) => {
-        return (
-          status.value !== "pending" &&
-          status.value !== "inProgress" &&
-          status.value !== "paused" &&
-          status.value !== "rechecked" &&
-          status.value !== "reviewing"
-        );
+        return status.value !== "pending" && status.value !== "inProgress" && status.value !== "paused" && status.value !== "rechecked" && status.value !== "reviewing";
       });
-   
+
       setUpdatedStatus(x);
     }
   }, [location.pathname]);
@@ -156,13 +114,7 @@ const StatusChip = () => {
       <Grid container>
         {updatedStatus.map((status) => (
           <Grid key={status.value} item xs={3} sx={{ p: 1 }}>
-            <Chip
-              variant="outlined"
-              sx={style(status.value)}
-              label={status.label}
-              value={statusType}
-              onClick={() => handleClick(status.value)}
-            />
+            <Chip variant="outlined" sx={style(status.value)} label={status.label} value={statusType} onClick={() => handleClick(status.value)} />
           </Grid>
         ))}
       </Grid>

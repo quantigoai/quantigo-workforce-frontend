@@ -12,12 +12,11 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {realToken} from "../../helper/lib";
+import { realToken } from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
-
 
 const initialState = {
   isLoading: false,
@@ -27,7 +26,7 @@ const initialState = {
   isCreated: false,
 };
 
-export const getAllTeams = createAsyncThunk("resources/teams", async ({server_agent}) => {
+export const getAllTeams = createAsyncThunk("resources/teams", async ({ server_agent }) => {
   return axios.get(`${url}/resources/teams/${server_agent}`, {
     headers: {
       Authorization: `Bearer ${realToken()}`,
@@ -44,6 +43,9 @@ const teamSlice = createSlice({
     updateTeamData: () => initialState,
     resetTeams: (state) => {
       state.teams = [];
+    },
+    resetTeamSlice: () => {
+      return initialState;
     },
   },
   extraReducers: (builder) => {
@@ -62,5 +64,5 @@ const teamSlice = createSlice({
   },
 });
 
-export const { resetTeams ,updateTeamData } = teamSlice.actions;
+export const { resetTeamSlice, resetTeams, updateTeamData } = teamSlice.actions;
 export default teamSlice.reducer;

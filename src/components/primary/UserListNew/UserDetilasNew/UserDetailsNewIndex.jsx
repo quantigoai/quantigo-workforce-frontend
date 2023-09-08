@@ -6,13 +6,16 @@ import * as React from "react";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 import DetailsTab from "./DetailsTab";
 const style = {
-  position: "absolute",
+  display: "flex",
+  flexDirection: "column",
+  // height: '100vh', // Set the container height to 100% of the viewport height
+  position: "relative",
+  // position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 600,
+  // width: 600,
   // height: "90%",
-  // height: "1000",
   bgcolor: "background.paper",
   border: "none",
   borderRadius: "8px",
@@ -38,23 +41,43 @@ export default function UserDetailsNewIndex({ user }) {
         <Box
           sx={{
             ...style,
-            height: { xl: "70%", lg: "90%" },
+            height: { xl: "80%", lg: "90%" },
+            width: { xl: "40%", lg: "50%" },
           }}
         >
-          <Box sx={{ height: "5%" }}>
+          <Box sx={{ flex: "0 0 5%" }}>
             <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Details"} />
           </Box>
 
-          <Box sx={{ padding: "3%" }}>
+          <Box
+            sx={{
+              flex: "1", // Let the middle box take the remaining available space
+              overflowY: "auto", // Enable vertical scrolling for the middle box when content exceeds its height
+              padding: "3%",
+              "&::-webkit-scrollbar": {
+                width: "0", // Hide the scrollbar
+              },
+            }}
+          >
             <DetailsTab user={user} />
           </Box>
           <Box
             sx={{
-              position: "absolute",
-              bottom: "0px",
+              flex: "0 0 64px", // Set the last box to be a fixed height of 64px
               borderTop: "2px solid #F2F6FC",
-              width: "100%",
-              height: "64px",
+              backgroundColor: "#FFFFFF",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              padding: "0 2%",
+              // position: "sticky", // Make the last box sticky at the bottom
+              bottom: "0px",
+              // position: "absolute",
+              // bottom: "0px",
+              // borderTop: "2px solid #F2F6FC",
+              // width: "100%",
+              // height: "64px",
+              borderRadius: "8px",
             }}
           >
             <Grid container sx={{ padding: "2%" }}>

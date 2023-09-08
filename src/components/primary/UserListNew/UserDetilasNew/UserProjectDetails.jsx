@@ -8,8 +8,36 @@ import {
   TableHead,
   TableRow,
   Typography,
+  styled,
+  tableCellClasses,
 } from "@mui/material";
 import React from "react";
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: "#FAFCFF",
+    color: "#5A6B89",
+    padding: "8px",
+    // height: "0px",
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+    padding: "8px",
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: "#FFFFFF",
+  },
+  "&:nth-of-type(even)": {
+    backgroundColor: "#FFFFFF",
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
+
 const projectList = [
   {
     name: "Document 01",
@@ -40,9 +68,7 @@ const UserProjectDetails = () => {
   return (
     <>
       <Box sx={{ paddingTop: "2%", paddingBottom: "2%" }}>
-        <Typography sx={{ fontSize: "14px" }}>
-          <b>List of Projects</b>
-        </Typography>
+        <Typography variant="wf_h5_bold">List of Projects</Typography>
       </Box>
       <Box sx={{}}>
         <Stack
@@ -54,49 +80,51 @@ const UserProjectDetails = () => {
           }}>
           <TableContainer>
             <Table aria-label="simple table">
-              <TableHead sx={{ backgroundColor: "#FAFCFF" }}>
+              <TableHead>
                 <TableRow>
-                  <TableCell sx={{ height: "15px" }}>Name</TableCell>
-                  <TableCell align="left" sx={{ height: "15px" }}>
-                    End Date
-                  </TableCell>
-                  <TableCell align="left" sx={{ height: "15px" }}>
-                    House
-                  </TableCell>
-                  <TableCell align="left" sx={{ height: "15px" }}>
-                    Rating
-                  </TableCell>
-                  <TableCell align="left" sx={{ height: "15px" }}>
-                    Status
-                  </TableCell>
+                  <StyledTableCell>Name</StyledTableCell>
+                  <StyledTableCell align="left">End Date</StyledTableCell>
+                  <StyledTableCell align="left">House</StyledTableCell>
+                  <StyledTableCell align="left">Rating</StyledTableCell>
+                  <StyledTableCell align="left">Status</StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {projectList.map((row) => (
-                  <TableRow
+                  <StyledTableRow
                     key={row._id}
                     sx={{
                       height: "34px",
                       backgroundColor: "#FAFCFF",
                     }}>
-                    <TableCell component="th" scope="row">
-                      {row.name}
-                    </TableCell>
-                    <TableCell align="left">{row.endName}</TableCell>
-                    <TableCell align="left">{row.hours}</TableCell>
-                    <TableCell align="left">{row.rating}</TableCell>
-                    <TableCell align="left">{row.status}</TableCell>
-                  </TableRow>
+                    <StyledTableCell component="th" scope="row">
+                      <Typography variant="wf_h6">{row.name}</Typography>
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {" "}
+                      <Typography variant="wf_h6">{row.endName}</Typography>
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {" "}
+                      <Typography variant="wf_h6">{row.hours}</Typography>
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {" "}
+                      <Typography variant="wf_h6">{row.rating}</Typography>
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {" "}
+                      <Typography variant="wf_h6">{row.status}</Typography>
+                    </StyledTableCell>
+                  </StyledTableRow>
                 ))}
               </TableBody>
             </Table>
           </TableContainer>
         </Stack>
       </Box>
-      <Box  sx={{ paddingTop: "2%" ,paddingBottom:"2%"}}>
-        <Typography sx={{ fontSize: "14px" }}>
-          <b>List of Annotation</b>
-        </Typography>
+      <Box sx={{ paddingTop: "2%", paddingBottom: "2%" }}>
+        <Typography variant="wf_h5_bold">List of Annotation</Typography>
       </Box>
     </>
   );

@@ -125,7 +125,7 @@ theme.typography.wf_h6 = {
     fontSize: "12px",
   },
   [theme.breakpoints.up("xl")]: {
-    fontSize: "16px",
+    fontSize: "14px",
   },
 };
 

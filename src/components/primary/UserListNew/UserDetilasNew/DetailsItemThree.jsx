@@ -11,7 +11,7 @@ const DetailsItemThree = ({ Item1Title, Item1, Item2Title, Item2, Item3Title, It
               {Item1Title}
             </Typography>
             <br />
-            <Typography variant="wf_h5_bold" sx={{ color: "#091E42" }}>
+            <Typography variant="wf_h5_bold" sx={{ color: "#091E42", overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}>
               {Item1}
             </Typography>
           </Grid>

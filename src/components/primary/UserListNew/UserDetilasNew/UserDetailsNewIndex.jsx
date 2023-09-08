@@ -8,14 +8,10 @@ import DetailsTab from "./DetailsTab";
 const style = {
   display: "flex",
   flexDirection: "column",
-  // height: '100vh', // Set the container height to 100% of the viewport height
   position: "relative",
-  // position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  // width: 600,
-  // height: "90%",
   bgcolor: "background.paper",
   border: "none",
   borderRadius: "8px",
@@ -43,43 +39,35 @@ export default function UserDetailsNewIndex({ user }) {
             ...style,
             height: { xl: "80%", lg: "90%" },
             width: { xl: "40%", lg: "50%" },
-          }}
-        >
+          }}>
           <Box sx={{ flex: "0 0 5%" }}>
             <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Details"} />
           </Box>
 
           <Box
             sx={{
-              flex: "1", // Let the middle box take the remaining available space
-              overflowY: "auto", // Enable vertical scrolling for the middle box when content exceeds its height
+              flex: "1",
+              overflowY: "auto",
               padding: "3%",
               "&::-webkit-scrollbar": {
                 width: "0", // Hide the scrollbar
               },
-            }}
-          >
+            }}>
             <DetailsTab user={user} />
           </Box>
           <Box
             sx={{
-              flex: "0 0 64px", // Set the last box to be a fixed height of 64px
+              flex: "0 0 64px",
               borderTop: "2px solid #F2F6FC",
               backgroundColor: "#FFFFFF",
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
               padding: "0 2%",
-              // position: "sticky", // Make the last box sticky at the bottom
+
               bottom: "0px",
-              // position: "absolute",
-              // bottom: "0px",
-              // borderTop: "2px solid #F2F6FC",
-              // width: "100%",
-              // height: "64px",
               borderRadius: "8px",
-            }}
-          >
+            }}>
             <Grid container sx={{ padding: "2%" }}>
               <Grid item xs={6}>
                 <Button
@@ -94,8 +82,7 @@ export default function UserDetailsNewIndex({ user }) {
                       color: "#62728F",
                       border: "1px solid #F4F7FE",
                     },
-                  }}
-                >
+                  }}>
                   Cancel
                 </Button>
               </Grid>
@@ -113,8 +100,7 @@ export default function UserDetailsNewIndex({ user }) {
                         color: "#FFFFFF",
                         // border: "1px solid #2E58FF",
                       },
-                    }}
-                  >
+                    }}>
                     Save Changes
                   </Button>
                 </Grid>

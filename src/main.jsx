@@ -14,17 +14,35 @@ const App = lazy(() => import("./App.jsx"));
 const theme = createTheme({
   typography: {
     fontFamily: ["Inter", "sans-serif"].join(","),
-    wf_h6: { //used in dashboard card
+    wf_h6: {
+      //used in dashboard card
       fontSize: "12px",
       fontWeight: "500",
       lineHeight: "18px",
       letterSpacing: "0em",
       textAlign: "left",
     },
-    wf_h5: { //used in left side bar
+    wf_h6_light: {
+      //used in dashboard card
+      fontSize: "12px",
+      fontWeight: "400",
+      lineHeight: "16px",
+      letterSpacing: "0em",
+      textAlign: "left",
+    },
+    wf_h5: {
+      //used in left side bar
       fontSize: "14px",
       fontWeight: "500",
       lineHeight: "20px",
+      letterSpacing: "0em",
+      textAlign: "left",
+    },
+    wf_h5_bold: {
+      //used in left side bar
+      fontSize: "14px",
+      fontWeight: "500",
+      lineHeight: "24px",
       letterSpacing: "0em",
       textAlign: "left",
     },
@@ -81,7 +99,7 @@ const theme = createTheme({
 
   breakpoints: {
     values: {
-      xs: 0,
+      xs: 360,
       sm: 600,
       md: 960,
       lg: 1280,

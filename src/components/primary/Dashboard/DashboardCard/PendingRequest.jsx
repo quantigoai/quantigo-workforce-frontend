@@ -24,8 +24,10 @@ const PendingRequest = () => {
               </Grid>
               <Grid item xs={9}>
                 <Grid container>
-                  {/* <Typography variant={"wf_h6"} sx={{ color: "#3C4D6B" }}> */}
-                  <Typography sx={{ color: "#3C4D6B" }}>Pending Request</Typography>
+                  <Typography variant={"wf_h6"} sx={{ color: "#3C4D6B" }}>
+                    {/* <Typography sx={{ color: "#3C4D6B" }}> */}
+                    Pending Request
+                  </Typography>
                 </Grid>
                 <Grid container sx={{ paddingTop: "4%" }}>
                   <Grid item xs={8}>

@@ -1,10 +1,8 @@
-import * as React from "react";
+import { Grid } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Fade, Grid } from "@mui/material";
-import Backdrop from "@mui/material/Backdrop";
+import * as React from "react";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 import DetailsTab from "./DetailsTab";
 const style = {
@@ -13,7 +11,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 600,
-  height: "90%",
+  // height: "90%",
   // height: "1000",
   bgcolor: "background.paper",
   border: "none",
@@ -36,17 +34,15 @@ export default function UserDetailsNewIndex({ user }) {
   return (
     <>
       <Button onClick={handleOpen}>Open modal</Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
-        <Box sx={style}>
+      <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+        <Box
+          sx={{
+            ...style,
+            height: { xl: "70%", lg: "90%" },
+          }}
+        >
           <Box sx={{ height: "5%" }}>
-            <ProjectModalHeader
-              handleCreateProjectClose={handleClose}
-              modalTitle={"Details"}
-            />
+            <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Details"} />
           </Box>
 
           <Box sx={{ padding: "3%" }}>
@@ -59,7 +55,8 @@ export default function UserDetailsNewIndex({ user }) {
               borderTop: "2px solid #F2F6FC",
               width: "100%",
               height: "64px",
-            }}>
+            }}
+          >
             <Grid container sx={{ padding: "2%" }}>
               <Grid item xs={6}>
                 <Button
@@ -74,7 +71,8 @@ export default function UserDetailsNewIndex({ user }) {
                       color: "#62728F",
                       border: "1px solid #F4F7FE",
                     },
-                  }}>
+                  }}
+                >
                   Cancel
                 </Button>
               </Grid>
@@ -92,7 +90,8 @@ export default function UserDetailsNewIndex({ user }) {
                         color: "#FFFFFF",
                         // border: "1px solid #2E58FF",
                       },
-                    }}>
+                    }}
+                  >
                     Save Changes
                   </Button>
                 </Grid>

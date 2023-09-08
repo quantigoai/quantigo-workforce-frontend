@@ -16,7 +16,8 @@ const TotalAnnotator = () => {
             width: "100%",
             height: "100px",
             borderRadius: "8px",
-          }}>
+          }}
+        >
           <Box sx={{ padding: "4%", position: "relative" }}>
             <Grid container sx={{ paddingTop: "0%" }}>
               <Grid item xs={3}>
@@ -24,20 +25,14 @@ const TotalAnnotator = () => {
               </Grid>
               <Grid item xs={9}>
                 <Grid container>
-                  <Typography sx={{ color: "#3C4D6B" }}>
+                  <Typography variant={"wf_h6"} sx={{ color: "#3C4D6B" }}>
                     Total Annotators
                   </Typography>
                 </Grid>
                 <Grid container sx={{ paddingTop: "4%" }}>
                   <Grid item xs={8}>
                     <Typography sx={{ color: "#091E42" }} variant="h5">
-                      <b>
-                        {" "}
-                        {totalCountData.level_0_annotator +
-                          totalCountData.level_1_annotator +
-                          totalCountData.level_2_annotator +
-                          totalCountData.level_3_annotator || 0}
-                      </b>
+                      <b> {totalCountData.level_0_annotator + totalCountData.level_1_annotator + totalCountData.level_2_annotator + totalCountData.level_3_annotator || 0}</b>
                     </Typography>
                   </Grid>
                 </Grid>

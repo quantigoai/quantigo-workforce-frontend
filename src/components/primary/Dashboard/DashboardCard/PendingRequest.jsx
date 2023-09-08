@@ -25,7 +25,6 @@ const PendingRequest = () => {
               <Grid item xs={9}>
                 <Grid container>
                   <Typography variant={"wf_h6"} sx={{ color: "#3C4D6B" }}>
-                    {/* <Typography sx={{ color: "#3C4D6B" }}> */}
                     Pending Request
                   </Typography>
                 </Grid>

@@ -10,12 +10,7 @@ const InActiveRequest = () => {
   return (
     <>
       <Grid container>
-        <Paper
-          elevation={0}
-          sx={{ padding: "0%",
-          width: "100%",
-          height: "100px",
-          borderRadius: "8px",}}>
+        <Paper elevation={0} sx={{ padding: "0%", width: "100%", height: "100px", borderRadius: "8px" }}>
           <Box sx={{ padding: "4%", position: "relative" }}>
             <Grid container sx={{ paddingTop: "0%" }}>
               <Grid item xs={3}>
@@ -23,7 +18,7 @@ const InActiveRequest = () => {
               </Grid>
               <Grid item xs={9}>
                 <Grid container>
-                  <Typography sx={{ color: "#3C4D6B" }}>
+                  <Typography variant={"wf_h6"} sx={{ color: "#3C4D6B" }}>
                     Inactive Annotators
                   </Typography>
                 </Grid>

@@ -17,13 +17,12 @@ const TotalUser = () => {
     !isLoading && (
       <>
         <Grid container>
-          <Paper
-            elevation={0}
-            sx={{ padding: "0%", width: "100%", height: "100px" }}
-          >
+          <Paper elevation={0} sx={{ padding: "0%", width: "100%", height: "100px" }}>
             <Box sx={{ padding: "4%" }}>
               <Grid container>
-                <Typography sx={{ color: "#969CAF" }}>Total Users</Typography>
+                <Typography variant={"wf_h6"} sx={{ color: "#3C4D6B" }}>
+                  Total Users
+                </Typography>
               </Grid>
               <Grid container sx={{ paddingTop: "4%" }}>
                 <Grid item xs={8}>

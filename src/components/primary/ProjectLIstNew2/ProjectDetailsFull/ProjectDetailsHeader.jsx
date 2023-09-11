@@ -7,7 +7,6 @@ import DetailChartarButton from "./DetailChartarButton";
 import DetailsUploadHourBUtton from "./DetailsUploadHourBUtton";
 
 const ProjectDetailsHeader = ({ value, setValue, handleChange, selectedProjects, handleProjectDetailsOpen }) => {
-  console.log("🚀 ~ file: ProjectDetailsHeader.jsx:10 ~ ProjectDetailsHeader ~ selectedProjects:", selectedProjects);
   return (
     <Box
       display={"flex"}

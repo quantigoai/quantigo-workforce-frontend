@@ -8,6 +8,7 @@ const SortingButton = ({ handleCount, filteredCol, col }) => {
       onClick={() => handleCount()}
       sx={{
         display: "flex",
+        minWidth: "25px",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
@@ -22,11 +23,7 @@ const SortingButton = ({ handleCount, filteredCol, col }) => {
           sx={{
             lineHeight: 0,
             fontSize: "20px",
-            color: val.includes(col)
-              ? filteredCol[col] === "asc"
-                ? "blue"
-                : "#7B98BA"
-              : "#7B98BA",
+            color: val.includes(col) ? (filteredCol[col] === "asc" ? "blue" : "#7B98BA") : "#7B98BA",
           }}
         >
           <i className="ri-arrow-up-s-fill"></i>
@@ -36,11 +33,7 @@ const SortingButton = ({ handleCount, filteredCol, col }) => {
             lineHeight: 0,
             mt: 1.5,
             fontSize: "20px",
-            color: val.includes(col)
-              ? filteredCol[col] === "desc"
-                ? "blue"
-                : "#7B98BA"
-              : "#7B98BA",
+            color: val.includes(col) ? (filteredCol[col] === "desc" ? "blue" : "#7B98BA") : "#7B98BA",
           }}
         >
           <i className="ri-arrow-down-s-fill"></i>

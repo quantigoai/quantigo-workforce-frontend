@@ -12,34 +12,28 @@ export const MySelect = styled(Select)(() => ({
   background: "white",
 }));
 
-export default function ProjectSelectFIlterField({
-  options,
-  label,
-  handleChange,
-  name,
-  filterValue,
-}) {
+export default function ProjectSelectFIlterField({ options, label, handleChange, name, filterValue }) {
   return (
     <MyFormControl sx={{ m: 0.5, minWidth: "23%" }} size="medium">
-      <InputLabel>{label}</InputLabel>
       <MySelect
-        labelId="demo-simple-select-autowidth-label"
-        id="demo-simple-select-autowidth"
+        displayEmpty
         defaultValue={""}
         sx={{
           height: "50px",
           borderRadius: "8px",
           "& svg": {
-            fill: "#667085", // Change the color as needed
+            fill: "#667085",
           },
         }}
         IconComponent={KeyboardArrowDownIcon}
-        placeholder="Select"
         value={filterValue?.[name] ?? ""}
         label={label}
         onChange={handleChange}
         name={name}
       >
+        <MenuItem disabled value="">
+          <span style={{ color: "grey" }}>{label}</span>
+        </MenuItem>
         {options.map((option) => (
           <MenuItem key={option.value} fullWidth value={option.value}>
             {option.label}

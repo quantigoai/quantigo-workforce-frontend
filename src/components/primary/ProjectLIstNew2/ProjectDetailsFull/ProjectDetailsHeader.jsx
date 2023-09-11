@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
 import { statusCreateOptions } from "../FIlterOptions";
 import ProjectDetailSelect from "./ProjectDetailSelect";
 import DatePickerProgress from "./DatePickerProgress";
@@ -7,7 +6,8 @@ import DetailsButton from "./DetailsButton";
 import DetailChartarButton from "./DetailChartarButton";
 import DetailsUploadHourBUtton from "./DetailsUploadHourBUtton";
 
-const ProjectDetailsHeader = ({ value, setValue, handleChange, selectedProjects }) => {
+const ProjectDetailsHeader = ({ value, setValue, handleChange, selectedProjects, handleProjectDetailsOpen }) => {
+  console.log("🚀 ~ file: ProjectDetailsHeader.jsx:10 ~ ProjectDetailsHeader ~ selectedProjects:", selectedProjects);
   return (
     <Box
       display={"flex"}
@@ -27,39 +27,36 @@ const ProjectDetailsHeader = ({ value, setValue, handleChange, selectedProjects 
         </Box>
       </Box>
 
-      <Box display={"flex"} alignItems={"center"} justifyContent={"space-between"}>
-        {value === "not-Started" && (
-          <Box sx={{ mr: 5 }}>
-            <DetailsButton />
-          </Box>
-        )}
-        {value === "in-Progress" && (
-          <>
-            <DatePickerProgress />
-            <DetailsButton />
-            <DetailChartarButton />
-          </>
-        )}
-        {value === "completed" && (
-          <>
-            <DetailsButton />
-            <DetailsUploadHourBUtton />
-            <DetailChartarButton />
-          </>
-        )}
-        {value === "hours-added" && (
-          <>
-            <DetailsButton />
-            <DetailsUploadHourBUtton />
-            <DetailChartarButton />
-          </>
-        )}
-        {value === "" && (
-          <>
-            <DetailsButton />
-          </>
-        )}
-      </Box>
+      {selectedProjects.project_status && (
+        <Box display={"flex"} alignItems={"center"} justifyContent={"space-between"}>
+          {value === "not-Started" && (
+            <Box sx={{ mr: 5 }}>
+              <DetailsButton handleProjectDetailsOpen={handleProjectDetailsOpen} />
+            </Box>
+          )}
+          {value === "in-Progress" && (
+            <>
+              <DatePickerProgress />
+              <DetailsButton handleProjectDetailsOpen={handleProjectDetailsOpen} />
+              <DetailChartarButton />
+            </>
+          )}
+          {value === "completed" && (
+            <>
+              <DetailsButton handleProjectDetailsOpen={handleProjectDetailsOpen} />
+              <DetailsUploadHourBUtton />
+              <DetailChartarButton />
+            </>
+          )}
+          {value === "hours-added" && (
+            <>
+              <DetailsButton handleProjectDetailsOpen={handleProjectDetailsOpen} />
+              <DetailsUploadHourBUtton />
+              <DetailChartarButton />
+            </>
+          )}
+        </Box>
+      )}
     </Box>
   );
 };

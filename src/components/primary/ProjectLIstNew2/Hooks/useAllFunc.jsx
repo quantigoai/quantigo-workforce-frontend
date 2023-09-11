@@ -10,12 +10,12 @@ const useAllFunc = (myColumn) => {
   const [fillCount, setFillCount] = useState(0);
 
   const [filteredCol, setFilteredCol] = useState({});
+  const [isFilter, setIsFilter] = useState(false);
 
   const handleProjectCreateOpen = () => {
     setCreateProjectOpen(true), dispatch(getAllSkills());
   };
   const handleProjectDetailsOpen = () => setDetailsProjectOpen(true);
-  const [isFilter, setIsFilter] = useState(false);
   const handleDetailsProjectClose = () => {
     setDetailsProjectOpen(false);
   };

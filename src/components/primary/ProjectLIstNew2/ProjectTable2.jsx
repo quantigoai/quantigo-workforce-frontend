@@ -71,7 +71,7 @@ const ProjectTable2 = ({ pagination, handleDetailsPage, setPagination, handleCha
               <TableBody className="tableBody">
                 {myRows.map((row) => {
                   return (
-                    <TableRow onClick={() => handleDetailsPage(row)} className="tableRow" key={row._id}>
+                    <TableRow className="tableRow" key={row._id}>
                       {myColumn.map((col) => {
                         if (col.field === "project_skills") {
                           return (
@@ -135,6 +135,14 @@ const ProjectTable2 = ({ pagination, handleDetailsPage, setPagination, handleCha
                           return (
                             <TableCell key={col.id} component="th" scope="row">
                               <CustomButton handleProjectDetailsOpen={handleProjectDetailsOpen} params={row} handleClick={handleClick} handleDelete={handleDelete} />
+                            </TableCell>
+                          );
+                        } else if (col.field === "project_drawer_name") {
+                          return (
+                            <TableCell onClick={() => handleDetailsPage(row)} sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
+                              <Typography sx={{ color: "#253E5C", cursor: "grab" }} variant="p">
+                                {row[col?.field]}
+                              </Typography>
                             </TableCell>
                           );
                         } else {

@@ -27,20 +27,7 @@ import SortingButton from "./Project2Details/SortingButton";
  *
  */
 
-const ProjectTable2 = ({
-  pagination,
-  setPagination,
-  handleChangePagination,
-  myColumn,
-  myRows,
-  handleDelete,
-  handleClick,
-  totalItems,
-  handleId,
-  filteredCol,
-  handleCount,
-  handleProjectDetailsOpen,
-}) => {
+const ProjectTable2 = ({ pagination, handleDetailsPage, setPagination, handleChangePagination, myColumn, myRows, handleDelete, handleClick, totalItems, handleId, filteredCol, handleCount, handleProjectDetailsOpen }) => {
   const { isLoading } = useSelector((state) => state.projectDrawer);
 
   return (
@@ -73,11 +60,7 @@ const ProjectTable2 = ({
 
                         {col.headerName !== "ACTIONS" && (
                           <Box onClick={() => handleId(col.field)}>
-                            <SortingButton
-                              handleCount={handleCount}
-                              col={col.field}
-                              filteredCol={filteredCol}
-                            />
+                            <SortingButton handleCount={handleCount} col={col.field} filteredCol={filteredCol} />
                           </Box>
                         )}
                       </Box>
@@ -88,28 +71,18 @@ const ProjectTable2 = ({
               <TableBody className="tableBody">
                 {myRows.map((row) => {
                   return (
-                    <TableRow className="tableRow" key={row._id}>
+                    <TableRow onClick={() => handleDetailsPage(row)} className="tableRow" key={row._id}>
                       {myColumn.map((col) => {
                         if (col.field === "project_skills") {
                           return (
-                            <TableCell
-                              sx={{ textAlign: "left" }}
-                              key={col.id}
-                              component="th"
-                              scope="row"
-                            >
+                            <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
                               <ChipGroup value={row[col?.field]} />
                             </TableCell>
                           );
                         }
                         if (col.field === "createdBy") {
                           return (
-                            <TableCell
-                              sx={{ textAlign: "left" }}
-                              key={col.id}
-                              component="th"
-                              scope="row"
-                            >
+                            <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
                               <Typography sx={{ color: "#253E5C" }} variant="p">
                                 {row[col?.field] || "Tanzim"}
                               </Typography>
@@ -118,12 +91,7 @@ const ProjectTable2 = ({
                         }
                         if (col.field === "benchmark") {
                           return (
-                            <TableCell
-                              sx={{ textAlign: "left" }}
-                              key={col.id}
-                              component="th"
-                              scope="row"
-                            >
+                            <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
                               <Typography sx={{ color: "#253E5C" }} variant="p">
                                 {row[col?.field] || "10 sec"}
                               </Typography>
@@ -132,12 +100,7 @@ const ProjectTable2 = ({
                         }
                         if (col.field === "estimated_end_date") {
                           return (
-                            <TableCell
-                              sx={{ textAlign: "left" }}
-                              key={col.id}
-                              component="th"
-                              scope="row"
-                            >
+                            <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
                               <Typography sx={{ color: "#253E5C" }} variant="p">
                                 {row[col?.field] || "20 july 2023"}
                               </Typography>
@@ -146,12 +109,7 @@ const ProjectTable2 = ({
                         }
                         if (col.field === "guideline") {
                           return (
-                            <TableCell
-                              sx={{ textAlign: "left" }}
-                              key={col.id}
-                              component="th"
-                              scope="row"
-                            >
+                            <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
                               <Typography sx={{ color: "#253E5C" }} variant="p">
                                 <Link
                                   sx={{
@@ -161,8 +119,7 @@ const ProjectTable2 = ({
                                   }}
                                   href="#"
                                 >
-                                  click here{" "}
-                                  <i className="ri-arrow-right-up-line"></i>
+                                  click here <i className="ri-arrow-right-up-line"></i>
                                 </Link>
                               </Typography>
                             </TableCell>
@@ -171,32 +128,18 @@ const ProjectTable2 = ({
                         if (col.field === "project_status") {
                           return (
                             <TableCell key={col.id} component="th" scope="row">
-                              <ProjectDrawerStatusChip
-                                value={row[col?.field]}
-                              />
+                              <ProjectDrawerStatusChip value={row[col?.field]} />
                             </TableCell>
                           );
                         } else if (col.field === "ACTIONS") {
                           return (
                             <TableCell key={col.id} component="th" scope="row">
-                              <CustomButton
-                                handleProjectDetailsOpen={
-                                  handleProjectDetailsOpen
-                                }
-                                params={row}
-                                handleClick={handleClick}
-                                handleDelete={handleDelete}
-                              />
+                              <CustomButton handleProjectDetailsOpen={handleProjectDetailsOpen} params={row} handleClick={handleClick} handleDelete={handleDelete} />
                             </TableCell>
                           );
                         } else {
                           return (
-                            <TableCell
-                              sx={{ textAlign: "left" }}
-                              key={col.id}
-                              component="th"
-                              scope="row"
-                            >
+                            <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
                               <Typography sx={{ color: "#253E5C" }} variant="p">
                                 {row[col?.field]}
                               </Typography>
@@ -218,12 +161,7 @@ const ProjectTable2 = ({
           justifyContent: "flex-end",
         }}
       >
-        <PaginationTable
-          pagination={pagination}
-          setPagination={setPagination}
-          handleChangePagination={handleChangePagination}
-          totalItems={totalItems}
-        />
+        <PaginationTable pagination={pagination} setPagination={setPagination} handleChangePagination={handleChangePagination} totalItems={totalItems} />
       </Box>
     </>
   );

@@ -15,27 +15,12 @@ import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import "remixicon/fonts/remixicon.css";
 import { setActivePath } from "../../../features/slice/activePathSlice";
-import {
-  createProjectDrawer,
-  deleteProjectDrawerById,
-  getAllProjectDrawers,
-  setCurrentProjectDrawer,
-  updateProjectDrawerById,
-} from "../../../features/slice/projectDrawerSlice";
+import { createProjectDrawer, deleteProjectDrawerById, getAllProjectDrawers, setCurrentProjectDrawer, updateProjectDrawerById } from "../../../features/slice/projectDrawerSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 import EditProjectModal from "./EditProjectModal";
-import {
-  fields,
-  filterPDR,
-  platformCreateOptions,
-  platformOptions,
-  projectTypeCreateOptions,
-  projectTypeOptions,
-  statusCreateOptions,
-  statusOptions,
-} from "./FIlterOptions";
+import { fields, filterPDR, platformCreateOptions, platformOptions, projectTypeCreateOptions, projectTypeOptions, statusCreateOptions, statusOptions } from "./FIlterOptions";
 import useAllFunc from "./Hooks/useAllFunc";
 import useHandleChange from "./Hooks/useHandleChange";
 import useHandleEditChange from "./Hooks/useHandleEditChange";
@@ -45,6 +30,7 @@ import ProjectSelectFIlter from "./ProjectSelectFIlter";
 import ProjectTable2 from "./ProjectTable2";
 import "./index.css";
 import { getAllSkills } from "../../../features/slice/skillSlice";
+import { useNavigate } from "react-router-dom";
 
 // test for commit
 /**
@@ -54,37 +40,20 @@ import { getAllSkills } from "../../../features/slice/skillSlice";
 const ProjectLIstIndex2 = () => {
   const { skills } = useSelector((state) => state.skill);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
   const [isEditModal, setIsEditModal] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
 
   const alert = useAlert();
-  const {
-    handleCreateProjectClose,
-    createProjectOpen,
-    detailsProjectOpen,
-    handleProjectCreateOpen,
-    handleProjectDetailsOpen,
-    handleDetailsProjectClose,
-    setCreateProjectOpen,
-    handleChange,
-    handleClearFilter,
-    filterValue,
-    handleCount,
-    handleId,
-    filteredCol,
-    handleIsFilter,
-    isFilter,
-  } = useAllFunc(myColumn);
+  const { handleCreateProjectClose, createProjectOpen, detailsProjectOpen, handleProjectCreateOpen, handleProjectDetailsOpen, handleDetailsProjectClose, setCreateProjectOpen, handleChange, handleClearFilter, filterValue, handleCount, handleId, filteredCol, handleIsFilter, isFilter } = useAllFunc(myColumn);
 
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
   });
-  const { projectDrawers, projectDrawer, total, error } = useSelector(
-    (state) => state.projectDrawer
-  );
+  const { projectDrawers, projectDrawer, total, error } = useSelector((state) => state.projectDrawer);
 
   useEffect(() => {
     dispatch(setActivePath("All Projects2"));
@@ -118,13 +87,7 @@ const ProjectLIstIndex2 = () => {
 
   const { handleChangeSkill, addSkills, count } = useHandleChange();
 
-  const {
-    handleEditSkill,
-    filteredSkillInfo,
-    editCount,
-    prevSkills,
-    editSkills,
-  } = useHandleEditChange();
+  const { handleEditSkill, filteredSkillInfo, editCount, prevSkills, editSkills } = useHandleEditChange();
 
   const handleEditProjectClose = () => {
     setEditModalOpen(false);
@@ -142,8 +105,7 @@ const ProjectLIstIndex2 = () => {
     if (isEditModal) {
       const newData = {
         ...data,
-        project_skills:
-          filteredSkillInfo.length === 0 ? prevSkills : filteredSkillInfo,
+        project_skills: filteredSkillInfo.length === 0 ? prevSkills : filteredSkillInfo,
       };
       const allData = { id: projectDrawer._id, data: newData };
       dispatch(updateProjectDrawerById(allData)).then((action) => {
@@ -169,6 +131,9 @@ const ProjectLIstIndex2 = () => {
         }
       });
     }
+  };
+  const handleDetailsPage = (data) => {
+    navigate(`/projectDetails/${data._id}`);
   };
 
   return (
@@ -215,12 +180,7 @@ const ProjectLIstIndex2 = () => {
                 background: "#F4F7FE",
               }}
             >
-              <IconButton
-                disabled
-                type="button"
-                sx={{ p: "10px" }}
-                aria-label="search"
-              >
+              <IconButton disabled type="button" sx={{ p: "10px" }} aria-label="search">
                 <SearchIcon />
               </IconButton>
               <InputBase sx={{ ml: 0, flex: 1 }} placeholder="Search" />
@@ -274,20 +234,8 @@ const ProjectLIstIndex2 = () => {
         </Box>
 
         {isFilter && (
-          <Box
-            sx={{ backgroundColor: "#FFFFFF", width: "100%", padding: "5px" }}
-          >
-            <ProjectSelectFIlter
-              filterPDR={filterPDR}
-              platformOptions={platformOptions}
-              statusOptions={statusOptions}
-              projectTypeOptions={projectTypeOptions}
-              handleChange={handleChange}
-              handleClearFilter={handleClearFilter}
-              filterValue={filterValue}
-              skills={skills}
-              onSubmit={onSubmit}
-            />
+          <Box sx={{ backgroundColor: "#FFFFFF", width: "100%", padding: "5px" }}>
+            <ProjectSelectFIlter filterPDR={filterPDR} platformOptions={platformOptions} statusOptions={statusOptions} projectTypeOptions={projectTypeOptions} handleChange={handleChange} handleClearFilter={handleClearFilter} filterValue={filterValue} skills={skills} onSubmit={onSubmit} />
           </Box>
         )}
 
@@ -298,30 +246,12 @@ const ProjectLIstIndex2 = () => {
             height: "100%",
           }}
         >
-          <ProjectTable2
-            handleClick={handleClick}
-            handleDelete={handleDelete}
-            myColumn={myColumn}
-            myRows={myRows}
-            handleCount={handleCount}
-            pagination={pagination}
-            setPagination={setPagination}
-            handleChangePagination={handleChangePagination}
-            totalItems={total}
-            handleId={handleId}
-            filteredCol={filteredCol}
-            handleProjectDetailsOpen={handleProjectDetailsOpen}
-    
-          />
+          <ProjectTable2 handleDetailsPage={handleDetailsPage} handleClick={handleClick} handleDelete={handleDelete} myColumn={myColumn} myRows={myRows} handleCount={handleCount} pagination={pagination} setPagination={setPagination} handleChangePagination={handleChangePagination} totalItems={total} handleId={handleId} filteredCol={filteredCol} handleProjectDetailsOpen={handleProjectDetailsOpen} />
         </Box>
 
         {detailsProjectOpen && (
           <Box>
-            <Project2DetailsModal
-              detailsProjectOpen={detailsProjectOpen}
-              handleProjectDetailsOpen={handleProjectDetailsOpen}
-              handleDetailsProjectClose={handleDetailsProjectClose}
-            />
+            <Project2DetailsModal detailsProjectOpen={detailsProjectOpen} handleProjectDetailsOpen={handleProjectDetailsOpen} handleDetailsProjectClose={handleDetailsProjectClose} />
           </Box>
         )}
         {editModalOpen && (

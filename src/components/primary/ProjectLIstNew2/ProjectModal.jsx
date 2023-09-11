@@ -38,18 +38,7 @@ const style = {
   },
 };
 
-const ProjectModal = ({
-  createProjectOpen,
-  handleCreateProjectClose,
-  statusCreateOptions,
-  platformCreateOptions,
-  projectTypeCreateOptions,
-  handleChangeSkill,
-  count,
-  onSubmit,
-  addSkills,
-  skills,
-}) => {
+const ProjectModal = ({ createProjectOpen, handleCreateProjectClose, statusCreateOptions, platformCreateOptions, projectTypeCreateOptions, handleChangeSkill, count, onSubmit, addSkills, skills }) => {
   const [addDoc, setAddDoc] = useState([]);
 
   const handleAddDoc = () => {
@@ -96,10 +85,7 @@ const ProjectModal = ({
       >
         <Fade in={createProjectOpen}>
           <Box sx={style}>
-            <ProjectModalHeader
-              handleCreateProjectClose={handleCreateProjectClose}
-              modalTitle={"Create Project"}
-            />
+            <ProjectModalHeader handleCreateProjectClose={handleCreateProjectClose} modalTitle={"Create Project"} />
             <Box
               sx={{
                 paddingLeft: "3%",
@@ -110,12 +96,7 @@ const ProjectModal = ({
             >
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  <PDSelectField
-                    name={"project_platform"}
-                    label="Platform"
-                    options={platformCreateOptions}
-                    defaultValue={"Select"}
-                  />
+                  <PDSelectField name={"project_platform"} label="Platform" options={platformCreateOptions} defaultValue={"Select"} />
                   <PDTextFIeld
                     name="project_drawer_name"
                     label="Project Name"
@@ -126,12 +107,7 @@ const ProjectModal = ({
                 </Stack>
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
                   {" "}
-                  <PDSelectField
-                    name={"project_type"}
-                    label="Project Type"
-                    options={projectTypeCreateOptions}
-                    defaultValue={"Select"}
-                  />
+                  <PDSelectField name={"project_type"} label="Project Type" options={projectTypeCreateOptions} defaultValue={"Select"} />
                   <PDTextFIeld
                     name="project_batch"
                     label="Batch"
@@ -167,14 +143,7 @@ const ProjectModal = ({
                 {/* <SkillField/> */}
 
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  <PDskillFIeld
-                    name={"project_skills"}
-                    addSkills={addSkills && addSkills}
-                    label="Skills"
-                    handleChangeSkill={handleChangeSkill}
-                    skills={skills}
-                    count={count}
-                  />
+                  <PDskillFIeld name={"project_skills"} addSkills={addSkills && addSkills} label="Skills" handleChangeSkill={handleChangeSkill} skills={skills} count={count} />
                   <PDTextFIeld
                     name="benchmark"
                     label="Benchmark"
@@ -192,12 +161,7 @@ const ProjectModal = ({
                       disableUnderline: true,
                     }}
                   />
-                  <PDSelectField
-                    name={"project_status"}
-                    label="Status"
-                    options={statusCreateOptions}
-                    defaultValue="Select"
-                  />
+                  <PDSelectField name={"project_status"} label="Status" options={statusCreateOptions} defaultValue="Select" />
                 </Stack>
 
                 <Typography
@@ -241,13 +205,7 @@ const ProjectModal = ({
                   </Stack>
                   {addDoc.map((doc, id) => {
                     return (
-                      <Stack
-                        key={id}
-                        direction="row"
-                        gap={2}
-                        xs={12}
-                        sx={{ mt: 2, position: "relative" }}
-                      >
+                      <Stack key={id} direction="row" gap={2} xs={12} sx={{ mt: 2, position: "relative" }}>
                         <PDTextFIeld
                           name={`guideline${id + 1}`}
                           label="Document Name"
@@ -273,10 +231,7 @@ const ProjectModal = ({
                           }}
                         >
                           {" "}
-                          <i
-                            style={{ color: "red", cursor: "pointer" }}
-                            className="ri-delete-bin-line"
-                          ></i>
+                          <i style={{ color: "red", cursor: "pointer" }} className="ri-delete-bin-line"></i>
                         </Button>
                       </Stack>
                     );

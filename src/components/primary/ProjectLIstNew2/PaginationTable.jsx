@@ -60,7 +60,7 @@ const Pagination = ({
   }, []);
 
   useEffect(() => {
-    handleChangePagination();
+    handleChangePagination(); 
   }, [handleChangePagination, pagination]);
 
   const totalPages = Math.ceil(totalItems / pagination.pageSize);

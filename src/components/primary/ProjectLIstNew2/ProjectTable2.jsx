@@ -6,13 +6,14 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { useSelector } from "react-redux";
 import "swiper/css";
+import { calculateTimeDifference, formatDate, formatTime } from "../../../helper/dateConverter";
 import ChipGroup from "../../shared/CustomTable/ChipGroup";
 import CustomButton from "../../shared/CustomTable/CustomButton";
 import ProjectDrawerStatusChip from "../../shared/FilterField/ProjectDrawerStatusChip";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import PaginationTable from "./PaginationTable";
-import "./index.css";
 import SortingButton from "./Project2Details/SortingButton";
+import "./index.css";
 
 /**
  * @param {object} pagination - pagination object
@@ -27,7 +28,21 @@ import SortingButton from "./Project2Details/SortingButton";
  *
  */
 
-const ProjectTable2 = ({ pagination, handleDetailsPage, setPagination, handleChangePagination, myColumn, myRows, handleDelete, handleClick, totalItems, handleId, filteredCol, handleCount, handleProjectDetailsOpen }) => {
+const ProjectTable2 = ({
+  pagination,
+  handleDetailsPage,
+  setPagination,
+  handleChangePagination,
+  myColumn,
+  myRows,
+  handleDelete,
+  handleClick,
+  totalItems,
+  handleId,
+  filteredCol,
+  handleCount,
+  handleProjectDetailsOpen,
+}) => {
   const { isLoading } = useSelector((state) => state.projectDrawer);
 
   return (
@@ -136,12 +151,23 @@ const ProjectTable2 = ({ pagination, handleDetailsPage, setPagination, handleCha
                           } else if (col.field === "ACTIONS") {
                             return (
                               <TableCell key={col.id} component="th" scope="row">
-                                <CustomButton handleProjectDetailsOpen={handleProjectDetailsOpen} params={row} handleClick={handleClick} handleDelete={handleDelete} />
+                                <CustomButton
+                                  handleProjectDetailsOpen={handleProjectDetailsOpen}
+                                  params={row}
+                                  handleClick={handleClick}
+                                  handleDelete={handleDelete}
+                                />
                               </TableCell>
                             );
                           } else if (col.field === "project_drawer_name") {
                             return (
-                              <TableCell onClick={() => handleDetailsPage(row)} sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
+                              <TableCell
+                                onClick={() => handleDetailsPage(row)}
+                                sx={{ textAlign: "left" }}
+                                key={col.id}
+                                component="th"
+                                scope="row"
+                              >
                                 <Typography sx={{ color: "#253E5C", cursor: "pointer" }} variant="p">
                                   {row[col?.field]}
                                 </Typography>
@@ -151,7 +177,23 @@ const ProjectTable2 = ({ pagination, handleDetailsPage, setPagination, handleCha
                             return (
                               <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
                                 <Typography sx={{ color: "#253E5C" }} variant="p">
-                                  {row[col?.field] || "3hrs 52 minutes "}
+                                  {calculateTimeDifference(row)}
+                                </Typography>
+                              </TableCell>
+                            );
+                          } else if (col.field === "checkedInDate" || col.field === "checkedOutDate") {
+                            return (
+                              <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
+                                <Typography sx={{ color: "#253E5C" }} variant="p">
+                                  {formatDate(row[col?.field])}
+                                </Typography>
+                              </TableCell>
+                            );
+                          } else if (col.field === "checkedInTime" || col.field === "checkedOutTime") {
+                            return (
+                              <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
+                                <Typography sx={{ color: "#253E5C" }} variant="p">
+                                  {formatTime(row[col?.field])}
                                 </Typography>
                               </TableCell>
                             );
@@ -184,7 +226,12 @@ const ProjectTable2 = ({ pagination, handleDetailsPage, setPagination, handleCha
           justifyContent: "flex-end",
         }}
       >
-        <PaginationTable pagination={pagination} setPagination={setPagination} handleChangePagination={handleChangePagination} totalItems={totalItems} />
+        <PaginationTable
+          pagination={pagination}
+          setPagination={setPagination}
+          handleChangePagination={handleChangePagination}
+          totalItems={totalItems}
+        />
       </Box>
     </>
   );

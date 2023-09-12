@@ -142,7 +142,7 @@ const ProjectTable2 = ({ pagination, handleDetailsPage, setPagination, handleCha
                           } else if (col.field === "project_drawer_name") {
                             return (
                               <TableCell onClick={() => handleDetailsPage(row)} sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                                <Typography sx={{ color: "#253E5C", cursor: "grab" }} variant="p">
+                                <Typography sx={{ color: "#253E5C", cursor: "pointer" }} variant="p">
                                   {row[col?.field]}
                                 </Typography>
                               </TableCell>
@@ -150,7 +150,7 @@ const ProjectTable2 = ({ pagination, handleDetailsPage, setPagination, handleCha
                           } else if (col.field === "total_time") {
                             return (
                               <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                                <Typography sx={{ color: "#253E5C", cursor: "grab" }} variant="p">
+                                <Typography sx={{ color: "#253E5C" }} variant="p">
                                   {row[col?.field] || "3hrs 52 minutes "}
                                 </Typography>
                               </TableCell>

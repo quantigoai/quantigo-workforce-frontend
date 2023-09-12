@@ -1,5 +1,6 @@
 import {
   Box,
+  Grid,
   Stack,
   Table,
   TableBody,
@@ -20,18 +21,18 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     // height: "0px",
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
+    // fontSize: 14,
     padding: "8px",
   },
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: "#FFFFFF",
-  },
-  "&:nth-of-type(even)": {
-    backgroundColor: "#FFFFFF",
-  },
+  // "&:nth-of-type(odd)": {
+  //   backgroundColor: "#FFFFFF",
+  // },
+  // "&:nth-of-type(even)": {
+  //   backgroundColor: "#FFFFFF",
+  // },
   // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
@@ -44,7 +45,7 @@ const projectList = [
     endName: " 23 May 2022",
     hours: "15 hrs",
     Rating: "5",
-    status: "Completed",
+    status: "Working",
     _id: 1,
   },
   {
@@ -62,6 +63,56 @@ const projectList = [
     Rating: "5",
     status: "Completed",
     _id: 3,
+  },
+];
+const annotationList = [
+  {
+    name: "Document 01",
+
+    hours: "15 hrs",
+    _id: 1,
+  },
+  {
+    name: "Document 01",
+
+    hours: "15 hrs",
+    _id: 2,
+  },
+  {
+    name: "Document 01",
+
+    hours: "15 hrs",
+    _id: 3,
+  },
+  {
+    name: "Document 01",
+
+    hours: "15 hrs",
+    _id: 4,
+  },
+  {
+    name: "Document 01",
+
+    hours: "15 hrs",
+    _id: 5,
+  },
+  {
+    name: "Document 01",
+
+    hours: "15 hrs",
+    _id: 6,
+  },
+  {
+    name: "Document 01",
+
+    hours: "15 hrs",
+    _id: 6,
+  },
+  {
+    name: "Document 01",
+
+    hours: "15 hrs",
+    _id: 6,
   },
 ];
 const UserProjectDetails = () => {
@@ -95,7 +146,7 @@ const UserProjectDetails = () => {
                     key={row._id}
                     sx={{
                       height: "34px",
-                      backgroundColor: "#FAFCFF",
+                      backgroundColor: row.status === "Working" ? "#EFF9F5" : "",
                     }}>
                     <StyledTableCell component="th" scope="row">
                       <Typography variant="wf_h6">{row.name}</Typography>
@@ -114,7 +165,11 @@ const UserProjectDetails = () => {
                     </StyledTableCell>
                     <StyledTableCell align="left">
                       {" "}
-                      <Typography variant="wf_h6">{row.status}</Typography>
+                      <Typography
+                        variant="wf_h6"
+                        sx={{ color: row.status === "Working" ? "#36B37E" : "" }}>
+                        {row.status}
+                      </Typography>
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}
@@ -124,7 +179,42 @@ const UserProjectDetails = () => {
         </Stack>
       </Box>
       <Box sx={{ paddingTop: "2%", paddingBottom: "2%" }}>
-        <Typography variant="wf_h5_bold">List of Annotation</Typography>
+        <Grid container>
+          <Typography variant="wf_h5_bold">List of Annotation</Typography>
+        </Grid>
+        <Box sx={{ paddingLeft: "1%", paddingTop: "2%", paddingBottom: "2%" }}>
+          <Grid
+            container
+            spacing={0.5}
+            sx={{
+              // backgroundColor: "blue",
+              border: "1px solid #E6ECF5",
+
+              borderRadius: "8px",
+            }}>
+            {annotationList.map((item) => (
+              <Grid
+                key={item._id}
+                item
+                xs={4}
+                // gap={1}
+                sx={{ borderBottom: "1px solid #E6ECF5", borderRight: "1px solid #E6ECF5" }}>
+                <Grid container sx={{ padding: "1%" }}>
+                  <Grid item xs={7}>
+                    <Typography variant="wf_h6" sx={{ color: "#5A6B89" }}>
+                      {item.name}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={5}>
+                    <Typography variant="wf_h6" sx={{ color: "#091E42" }}>
+                      : {item.hours}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
       </Box>
     </>
   );

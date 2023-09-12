@@ -14,6 +14,10 @@ const ButtonStyle = styled(Button)({
   },
 });
 const NdaDocumentSection = ({ user }) => {
+  const handleClick = (signNda) => {
+    window.open(signNda);
+  };
+
   return (
     <>
       <Grid container sx={{ padding: "2%" }}>
@@ -24,7 +28,7 @@ const NdaDocumentSection = ({ user }) => {
           </ButtonStyle>
         </Grid>
         <Grid item xs={6}>
-          <ButtonStyle>
+          <ButtonStyle disabled={!user.signImage} onClick={() => handleClick(user.signImage)}>
             <Typography sx={{ paddingRight: "4%" }}> NDA</Typography>
             <img src={ArrowIcon} />
           </ButtonStyle>

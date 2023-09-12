@@ -2,8 +2,9 @@ import { Box, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import CommonSelectField from "../../EditProfile/EditProfilePage/CommonSelectField";
 import SelectFieldCommon from "./SelectFieldCommon";
+import UserStatusChangeFiled from "./UserStatusChangeFiled";
 
-const ChangeInfoIndex = () => {
+const ChangeInfoIndex = ({user ,handleSetRole ,handleSetStatus}) => {
   return (
     <>
       <Box sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
@@ -22,7 +23,7 @@ const ChangeInfoIndex = () => {
           <Grid container>
             <Grid item xs={6}>
               {" "}
-              <SelectFieldCommon label={"Role Change"} />
+              <SelectFieldCommon label={"Role Change"} user={user} handleSetRole={handleSetRole}/>
             </Grid>
             <Grid item xs={6}>
               {" "}
@@ -32,7 +33,7 @@ const ChangeInfoIndex = () => {
           <Grid container>
             <Grid item xs={12}>
            
-              <SelectFieldCommon label={"Status"}/>
+              <UserStatusChangeFiled label={"Status"} handleSetStatus={handleSetStatus} />
             </Grid>
           </Grid>
         </Stack>

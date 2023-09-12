@@ -5,6 +5,9 @@ import Modal from "@mui/material/Modal";
 import * as React from "react";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 import DetailsTab from "./DetailsTab";
+import { useDispatch, useSelector } from "react-redux";
+import { changeRole, deleteOrActivateUser } from "../../../../features/slice/userSlice";
+import { useAlert } from "react-alert";
 const style = {
   display: "flex",
   flexDirection: "column",
@@ -29,11 +32,74 @@ export default function UserDetailsNewIndex({ user }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [roleValue, setRole] = React.useState("");
+
+  const [actionStatus, setActionStatus] = React.useState("");
+  const [disabledButton, setDisabledButton] = React.useState(false);
+  const dispatch = useDispatch();
+  const alert = useAlert();
+  const handleSetStatus = (e) => {
+    setActionStatus(e.target.value);
+    setDisabledButton(true);
+  };
+  const handleSetRole = (e) => {
+    setRole(e.target.value);
+    setDisabledButton(true);
+  };
+  const handleChange = () => {
+    const data = {
+      role: roleValue,
+    };
+    const finalData = {
+      id: user._id,
+      data,
+    };
+    const finalStatusData = {
+      id: user._id,
+      action: actionStatus,
+    };
+    console.log(finalData);
+    console.log(finalStatusData);
+    roleValue &&
+      dispatch(changeRole(finalData)).then((action) => {
+        if (action.payload?.status === 200) {
+          alert.show("Role Change Successfully", { type: "success" });
+        } else {
+          alert.show("Role can not Change", { type: "error" });
+        }
+      });
+
+    actionStatus &&
+      dispatch(deleteOrActivateUser(finalData)).then((action) => {
+        if (action.payload?.status === 200) {
+          if (actionStatus === "delete") {
+            window.location.reload(false);
+            alert.show(
+              "User Delete Successfully",
+
+              { type: "success" }
+            );
+          } else {
+            alert.show(
+              "Status change Successfully",
+
+              { type: "success" }
+            );
+          }
+        } else {
+          alert.show("Status can not Change", { type: "error" });
+        }
+      });
+  };
 
   return (
     <>
       <Button onClick={handleOpen}>Open modal</Button>
-      <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
         <Box
           sx={{
             ...style,
@@ -53,7 +119,11 @@ export default function UserDetailsNewIndex({ user }) {
                 width: "0", // Hide the scrollbar
               },
             }}>
-            <DetailsTab user={user} />
+            <DetailsTab
+              user={user}
+              handleSetRole={handleSetRole}
+              handleSetStatus={handleSetStatus}
+            />
           </Box>
           <Box
             sx={{
@@ -89,18 +159,25 @@ export default function UserDetailsNewIndex({ user }) {
               <Grid item xs={6}>
                 <Grid container sx={{ justifyContent: "right" }}>
                   <Button
+                    disabled={!disabledButton}
                     sx={{
                       width: "128px",
                       textTransform: "none",
                       backgroundColor: "#2E58FF",
                       color: "#FFFFFF",
+
                       borderRadius: "8px",
+                      "&.Mui-disabled": {
+                        // background: "#eaeaea",
+                        color: "#FFFFFF",
+                      },
                       "&:hover": {
                         backgroundColor: "#2E58FF",
                         color: "#FFFFFF",
                         // border: "1px solid #2E58FF",
                       },
-                    }}>
+                    }}
+                    onClick={() => handleChange()}>
                     Save Changes
                   </Button>
                 </Grid>

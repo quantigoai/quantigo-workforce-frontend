@@ -6,7 +6,7 @@ import DetailsItemThree from "./DetailsItemThree";
 import NdaDocumentSection from "./NdaDocumentSection";
 import moment from "moment/moment";
 
-const UserInfoIndex = ({ user }) => {
+const UserInfoIndex = ({ user,handleSetRole ,handleSetStatus }) => {
   const DOB = moment.utc(user.dob).format("MMM Do, YYYY");
   return (
     <>
@@ -47,7 +47,7 @@ const UserInfoIndex = ({ user }) => {
       </Box>
 
       <Box>
-        <ChangeInfoIndex />
+        <ChangeInfoIndex user={user} handleSetRole={handleSetRole} handleSetStatus={handleSetStatus} />
       </Box>
     </>
   );

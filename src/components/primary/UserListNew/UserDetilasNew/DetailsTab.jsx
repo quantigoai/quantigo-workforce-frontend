@@ -41,7 +41,7 @@ function a11yProps(index) {
   };
 }
 
-export default function DetailsTab({ user }) {
+export default function DetailsTab({ user, handleSetRole ,handleSetStatus }) {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -92,7 +92,7 @@ export default function DetailsTab({ user }) {
       </Tabs>
 
       <TabPanel value={value} index={0} dir={theme.direction}>
-        <UserInfoIndex user={user} />
+        <UserInfoIndex user={user} handleSetRole={handleSetRole} handleSetStatus={handleSetStatus} />
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
         <UserProjectDetails />

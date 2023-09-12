@@ -35,8 +35,8 @@ const customHeader = (params) => {
       return "PLATFORM";
     case "project_status":
       return "STATUS";
-      case"benchmark":
-      return "BENCHMARK"
+    case "benchmark":
+      return "BENCHMARK";
     case "estimated_end_date":
       return "ESTIMATED END DATE";
     case "checkedInUsers":
@@ -67,6 +67,18 @@ const customHeader = (params) => {
       return "EMAIL";
     case "createdBy":
       return "CREATED BY";
+    case "userQaiID":
+      return "QAI ID";
+    case "checkedInDate":
+      return "CHECK IN DATE";
+    case "checkedInTime":
+      return "CHECK IN TIME";
+    case "checkedOutDate":
+      return "CHECK OUT DATE";
+    case "checkedOutTime":
+      return "CHECK OUT TIME";
+    case "total_time":
+      return "TOTAL TIME";
     default:
       return params;
   }

@@ -23,6 +23,7 @@ const initialState = {
   projectDrawers: [],
   projectDrawer: {},
   total: 0,
+  usersWorkHistory: [],
   error: null,
 };
 
@@ -122,7 +123,19 @@ export const addSkillsToCheckInUser = createAsyncThunk("/project-drawer/add-skil
 
 export const removeSkillsToCheckInUser = createAsyncThunk("/project-drawer/remove-skills", async (data) => {
   try {
-    return await axios.patch(`${url}/project-drawer/remove-skills/${data.id}`, data.data, {
+    return await axios.patch(`${url}/project-drawer/remove-skills/${data.id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
+export const getProjectDetailsById = createAsyncThunk("/project-drawer/details/getDetails", async (id) => {
+  try {
+    return await axios.get(`${url}/project-drawer/work-history/${id}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -248,6 +261,18 @@ const projectDrawerSlice = createSlice({
         state.error = null;
       })
       .addCase(removeSkillsToCheckInUser.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.isLoading = false;
+      })
+      .addCase(getProjectDetailsById.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getProjectDetailsById.fulfilled, (state, action) => {
+        state.usersWorkHistory = action.payload.data.projectDrawer.checkedInUsersHistory;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getProjectDetailsById.rejected, (state, action) => {
         state.error = action.error.message;
         state.isLoading = false;
       });

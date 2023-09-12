@@ -77,8 +77,8 @@
     position: sticky;
     padding-right: 40px;
     left: 0;
-    width: 180px;
-    min-width: 190px;
+    width: 150px;
+    min-width: 150px;
     background-color: #ffffff;
     border-right: 1px solid #EBF0F5;
 }
@@ -88,8 +88,8 @@
 .div1 td:last-child {
     position: sticky;
     right: 0px;
-    width: 80px;
-    min-width: 80px;
+    width: 150px;
+    min-width: 150px;
     background-color: #FFFFFF;
     border-left: 1px solid #EBF0F5;
    

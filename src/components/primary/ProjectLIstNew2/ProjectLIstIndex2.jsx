@@ -15,7 +15,7 @@ import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import "remixicon/fonts/remixicon.css";
 import { setActivePath } from "../../../features/slice/activePathSlice";
-import { createProjectDrawer, deleteProjectDrawerById, getAllProjectDrawers, setCurrentProjectDrawer, updateProjectDrawerById } from "../../../features/slice/projectDrawerSlice";
+import { createProjectDrawer, deleteProjectDrawerById, getAllProjectDrawers, getProjectDetailsById, setCurrentProjectDrawer, updateProjectDrawerById } from "../../../features/slice/projectDrawerSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
@@ -133,6 +133,8 @@ const ProjectLIstIndex2 = () => {
     }
   };
   const handleDetailsPage = (data) => {
+    dispatch(setCurrentProjectDrawer(data._id));
+    dispatch(getProjectDetailsById(data._id));
     navigate(`/projectDetails/${data._id}`);
   };
 

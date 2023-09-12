@@ -1,45 +1,63 @@
 import { Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import ProjectDetailsHeader from "./ProjectDetailsHeader";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Project2DetailsModal from "../Project2Details/Project2DetailsModal";
 import ProjectTable2 from "../ProjectTable2";
+import fieldBuilder from "../../../shared/CustomTable/fieldBuilder";
+import { singleDetailsFields } from "../FIlterOptions";
+import dataBuilder from "../../../shared/CustomTable/dataBuilder";
+import useAllFunc from "../Hooks/useAllFunc";
 
 const FullProjectDetails = () => {
-  const [selectedProjects, setSelectedProjects] = useState({});
-  const [value, setValue] = React.useState("");
-
+  const { projectDrawer, usersWorkHistory } = useSelector((state) => state.projectDrawer);
+  const [value, setValue] = React.useState(projectDrawer.project_status);
+  const [detailCol, setDetailCol] = useState([]);
+  const [detailRow, setDetailRow] = useState([]);
   const handleChange = (event) => {
     setValue(event.target.value);
   };
-  const { projectDrawer, projectDrawers } = useSelector((state) => state.projectDrawer);
-  const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
-  // const { detailsProjectOpen, handleProjectDetailsOpen, handleDetailsProjectClose } = useAllFunc();
+  const [pagination, setPagination] = useState({
+    currentPage: 0,
+    pageSize: 10,
+  });
 
-  const [detailsProjectOpen, setDetailsProjectOpen] = React.useState(false);
-  const handleProjectDetailsOpen = () => setDetailsProjectOpen(true);
-  const handleDetailsProjectClose = () => {
-    setDetailsProjectOpen(false);
-  };
+  const handleChangePagination = useCallback(() => {}, []);
 
   useEffect(() => {
-    const projectDetails = projectDrawers.find((p) => p._id === id);
-    setSelectedProjects(projectDetails);
     setIsLoading(false);
-  }, []);
+  }, [projectDrawer]);
+
+  useEffect(() => {
+    setIsLoading(false);
+    if (!isLoading) {
+      setDetailCol(fieldBuilder(singleDetailsFields));
+      setDetailRow(dataBuilder(usersWorkHistory));
+    }
+  }, [isLoading, usersWorkHistory]);
+
+  const handleClick = (e) => {};
+  const handleDelete = (e) => {};
+  const { handleCreateProjectClose, createProjectOpen, detailsProjectOpen, handleProjectCreateOpen, handleProjectDetailsOpen, handleDetailsProjectClose, setCreateProjectOpen, handleClearFilter, filterValue, handleCount, handleId, filteredCol, handleIsFilter, isFilter } = useAllFunc(detailCol);
   return (
-    <Box>
-      <Box sx={{ backgroundColor: "#F2F6FC", width: "100%" }}>{!isLoading && <ProjectDetailsHeader handleProjectDetailsOpen={handleProjectDetailsOpen} value={value} setValue={setValue} handleChange={handleChange} selectedProjects={selectedProjects} />}</Box>
+    <Box className="projectBox">
+      <Box sx={{ backgroundColor: "#F2F6FC", width: "100%" }}>{!isLoading && <ProjectDetailsHeader handleProjectDetailsOpen={handleProjectDetailsOpen} value={value} setValue={setValue} handleChange={handleChange} projectDrawer={projectDrawer} />}</Box>
 
       {detailsProjectOpen && (
         <Box>
           <Project2DetailsModal detailsProjectOpen={detailsProjectOpen} handleProjectDetailsOpen={handleProjectDetailsOpen} handleDetailsProjectClose={handleDetailsProjectClose} />
         </Box>
       )}
-      <Box>
-        <ProjectTable2 />
+      <Box
+        sx={{
+          width: "100%",
+          mt: "10px",
+          height: "100%",
+        }}
+      >
+        <ProjectTable2 myColumn={detailCol} myRows={detailRow} handleCount={handleCount} pagination={pagination} setPagination={setPagination} handleChangePagination={handleChangePagination} totalItems={10} handleId={handleId} filteredCol={filteredCol} handleProjectDetailsOpen={handleProjectDetailsOpen} />
       </Box>
     </Box>
   );

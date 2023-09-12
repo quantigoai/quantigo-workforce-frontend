@@ -6,7 +6,7 @@ import DetailsButton from "./DetailsButton";
 import DetailChartarButton from "./DetailChartarButton";
 import DetailsUploadHourBUtton from "./DetailsUploadHourBUtton";
 
-const ProjectDetailsHeader = ({ value, setValue, handleChange, selectedProjects, handleProjectDetailsOpen }) => {
+const ProjectDetailsHeader = ({ value, setValue, handleChange, projectDrawer, handleProjectDetailsOpen }) => {
   return (
     <Box
       display={"flex"}
@@ -19,14 +19,14 @@ const ProjectDetailsHeader = ({ value, setValue, handleChange, selectedProjects,
       }}
     >
       <Box display={"flex"} justifyContent={""} alignItems={"Center"}>
-        <Typography variant="body">{selectedProjects?.project_drawer_name} </Typography>
+        <Typography variant="body">{projectDrawer.project_drawer_name} </Typography>
 
         <Box sx={{ ml: 2 }}>
-          <ProjectDetailSelect defaultVal={selectedProjects?.project_status} value={value} setValue={setValue} options={statusCreateOptions} handleChange={handleChange} />
+          <ProjectDetailSelect defaultVal={projectDrawer.project_status} value={value} setValue={setValue} options={statusCreateOptions} handleChange={handleChange} />
         </Box>
       </Box>
 
-      {selectedProjects.project_status && (
+      {projectDrawer.project_status && (
         <Box display={"flex"} alignItems={"center"} justifyContent={"space-between"}>
           {value === "not-Started" && (
             <Box sx={{ mr: 5 }}>

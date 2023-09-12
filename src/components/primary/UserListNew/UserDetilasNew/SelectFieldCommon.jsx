@@ -1,12 +1,6 @@
-import {
-  FormControl,
-  Grid,
-  MenuItem,
-  Select,
-  Typography,
-  styled,
-} from "@mui/material";
+import { FormControl, Grid, MenuItem, Select, Typography, styled } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 export const MySelect = styled(Select)(() => ({
   border: "1px solid #E6ECF5",
   borderRadius: "8px",
@@ -24,7 +18,11 @@ const options = [
   { value: "(AB+)", label: "AB+" },
   { value: "(AB-)", label: "AB-" },
 ];
-const SelectFieldCommon = ({ label }) => {
+const SelectFieldCommon = ({ label, user, handleSetRole }) => {
+  const { role } = useSelector((state) => state.user.user);
+  const menuItemStyle = {
+    fontSize: "14px", // You can adjust the font size as needed
+  };
   return (
     <>
       <Grid item xs={12} sx={{ mb: 1 }}>
@@ -46,20 +44,68 @@ const SelectFieldCommon = ({ label }) => {
             variant="outlined"
             placeholder="Select"
             sx={{
-              height: "36px",
+              // height: "36px",
               backgroundColor: "#FFFFFF",
+              fontSize: "14px",
             }}
-            // disabled={disableItem ? true : !editAble}
-            // defaultValue={defaultValue}
-            //   error={!!error}
-            //   helperText={error ? error?.message : helperText}
-            //   {...other}
-          >
-            {options.map((option) => (
+            onChange={handleSetRole}
+            defaultValue={user.role}>
+            <MenuItem value={"level_0_annotator"} sx={menuItemStyle}>
+              {" "}
+              Level 0 Annotator
+            </MenuItem>
+            <MenuItem value={"level_1_annotator"} sx={menuItemStyle}>
+              Level 1 Annotator
+            </MenuItem>
+            <MenuItem value={"level_2_annotator"} sx={menuItemStyle}>
+              Level 2 Annotator
+            </MenuItem>
+            <MenuItem value={"level_3_annotator"} sx={menuItemStyle}>
+              Level 3 Annotator
+            </MenuItem>
+            <MenuItem value={"reviewer"} sx={menuItemStyle}>
+              Reviewer
+            </MenuItem>
+            <MenuItem value={"trainer"} sx={menuItemStyle}>
+              Trainer
+            </MenuItem>
+            <MenuItem value={"project_lead"} sx={menuItemStyle}>
+              Delivery Lead
+            </MenuItem>
+            <MenuItem value={"project_coordinator"} sx={menuItemStyle}></MenuItem>
+            <MenuItem value={"project_coordinator"} sx={menuItemStyle}>
+              Project Coordinator
+            </MenuItem>
+            {(role === "admin" || role === "recruitment_manager") && (
+              <MenuItem value={"delivery_manager"} sx={menuItemStyle}>
+                Project Delivery Lead
+              </MenuItem>
+            )}
+            {(role === "admin" || role === "recruitment_manager") && (
+              <MenuItem value={"project_manager"} sx={menuItemStyle}>
+                Project Manager
+              </MenuItem>
+            )}
+            {role === "admin" && (
+              <MenuItem value={"recruitment_manager"} sx={menuItemStyle}>
+                Recruitment Manager
+              </MenuItem>
+            )}
+            {role === "admin" && (
+              <MenuItem value={"engineering_lead"} sx={menuItemStyle}>
+                Engineering Lead
+              </MenuItem>
+            )}
+            {role === "admin" && (
+              <MenuItem value={"admin"} sx={menuItemStyle}>
+                Admin
+              </MenuItem>
+            )}
+            {/* {options.map((option) => (
               <MenuItem key={option.value} fullWidth>
                 {option.label}
               </MenuItem>
-            ))}
+            ))} */}
           </MySelect>
         </FormControl>
       </Grid>

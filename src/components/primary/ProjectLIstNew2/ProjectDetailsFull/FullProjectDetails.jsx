@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import ProjectDetailsHeader from "./ProjectDetailsHeader";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import useAllFunc from "../Hooks/useAllFunc";
 import Project2DetailsModal from "../Project2Details/Project2DetailsModal";
+import ProjectTable2 from "../ProjectTable2";
 
 const FullProjectDetails = () => {
   const [selectedProjects, setSelectedProjects] = useState({});
@@ -38,6 +38,9 @@ const FullProjectDetails = () => {
           <Project2DetailsModal detailsProjectOpen={detailsProjectOpen} handleProjectDetailsOpen={handleProjectDetailsOpen} handleDetailsProjectClose={handleDetailsProjectClose} />
         </Box>
       )}
+      <Box>
+        <ProjectTable2 />
+      </Box>
     </Box>
   );
 };

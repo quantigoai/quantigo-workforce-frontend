@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Avatar, Grid, Typography } from "@mui/material";
+import { Avatar, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -18,6 +18,7 @@ import { styled as mstyled } from "@mui/material/styles";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import backIcon from "../../../assets/images/dashboardIcon/GoBackIcon.svg";
 import logOutIcon from "../../../assets/images/logoutIcon.svg";
 import menuIcon from "../../../assets/images/menuIcon.svg";
 import ProfileIcon from "../../../assets/images/profileIcon.svg";
@@ -25,7 +26,6 @@ import useReset from "../../../customHooks/useReset";
 import { logout } from "../../../features/slice/userSlice";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import NotificationModal from "../Notification/NotificationModal";
-import backIcon from "../../../assets/images/dashboardIcon/GoBackIcon.svg";
 const NavBarFull = mstyled(AppBar)({
   height: "auto",
   width: "100%",
@@ -91,7 +91,8 @@ const Header = ({ openDrawer }) => {
         sx={{
           background: "#FFFFFF",
           color: isLightTheme ? "#000c1f" : "#F5F5F5",
-        }}>
+        }}
+      >
         <Box
           sx={{
             mx: 0,
@@ -99,21 +100,24 @@ const Header = ({ openDrawer }) => {
             px: 0,
             paddingLeft: openDrawer ? "16%" : "5%",
             // backgroundColor: "green",
-          }}>
+          }}
+        >
           <Box
             sx={{
               display: "flex",
               justifyContent: "space-between",
               // backgroundColor: "blue",
-            }}>
+            }}
+          >
             {/* Go Back button  */}
             <Box
               sx={{
                 display: "flex",
                 // backgroundColor: "blue",
                 // paddingLeft:"10%"
-              }}>
-              <Button sx={{ width: "88px", textTransform: "none" }} onClick={() => handleGoBack()}>
+              }}
+            >
+              <Button sx={{ width: "100px", textTransform: "none" }} onClick={() => handleGoBack()}>
                 <img src={backIcon} />
 
                 <Typography variant="wf_h5_bold" sx={{ color: "#3C4D6B", paddingLeft: "12%" }}>
@@ -175,7 +179,8 @@ const Header = ({ openDrawer }) => {
                       sx={{
                         color: "#0E243D",
                       }}
-                      variant="body2">
+                      variant="body2"
+                    >
                       <b>
                         {user.user.firstName} {user.user.lastName}
                       </b>
@@ -213,14 +218,16 @@ const Header = ({ openDrawer }) => {
                       }}
                       anchorEl={anchorEl}
                       open={open}
-                      onClose={handleClose}>
+                      onClose={handleClose}
+                    >
                       <MenuItem
                         sx={{
                           backgroundColor: "#FFFFF",
                           borderBottom: "1px solid #F0F5FA",
                           width: "182px",
                         }}
-                        onClick={handleEditProfile}>
+                        onClick={handleEditProfile}
+                      >
                         <ListItemIcon>
                           <img src={ProfileIcon} />
                         </ListItemIcon>

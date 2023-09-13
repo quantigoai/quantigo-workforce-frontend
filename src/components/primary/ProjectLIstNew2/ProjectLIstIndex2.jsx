@@ -13,14 +13,32 @@ import InputBase from "@mui/material/InputBase";
 import { useCallback, useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import "remixicon/fonts/remixicon.css";
 import { setActivePath } from "../../../features/slice/activePathSlice";
-import { createProjectDrawer, deleteProjectDrawerById, getAllProjectDrawers, getProjectDetailsById, setCurrentProjectDrawer, updateProjectDrawerById } from "../../../features/slice/projectDrawerSlice";
+import {
+  createProjectDrawer,
+  deleteProjectDrawerById,
+  getAllProjectDrawers,
+  getProjectDetailsById,
+  setCurrentProjectDrawer,
+  updateProjectDrawerById,
+} from "../../../features/slice/projectDrawerSlice";
+import { getAllSkills } from "../../../features/slice/skillSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 import EditProjectModal from "./EditProjectModal";
-import { fields, filterPDR, platformCreateOptions, platformOptions, projectTypeCreateOptions, projectTypeOptions, statusCreateOptions, statusOptions } from "./FIlterOptions";
+import {
+  fields,
+  filterPDR,
+  platformCreateOptions,
+  platformOptions,
+  projectTypeCreateOptions,
+  projectTypeOptions,
+  statusCreateOptions,
+  statusOptions,
+} from "./FIlterOptions";
 import useAllFunc from "./Hooks/useAllFunc";
 import useHandleChange from "./Hooks/useHandleChange";
 import useHandleEditChange from "./Hooks/useHandleEditChange";
@@ -29,8 +47,6 @@ import ProjectModal from "./ProjectModal";
 import ProjectSelectFIlter from "./ProjectSelectFIlter";
 import ProjectTable2 from "./ProjectTable2";
 import "./index.css";
-import { getAllSkills } from "../../../features/slice/skillSlice";
-import { useNavigate } from "react-router-dom";
 
 // test for commit
 /**
@@ -47,7 +63,23 @@ const ProjectLIstIndex2 = () => {
   const [editModalOpen, setEditModalOpen] = useState(false);
 
   const alert = useAlert();
-  const { handleCreateProjectClose, createProjectOpen, detailsProjectOpen, handleProjectCreateOpen, handleProjectDetailsOpen, handleDetailsProjectClose, setCreateProjectOpen, handleChange, handleClearFilter, filterValue, handleCount, handleId, filteredCol, handleIsFilter, isFilter } = useAllFunc(myColumn);
+  const {
+    handleCreateProjectClose,
+    createProjectOpen,
+    detailsProjectOpen,
+    handleProjectCreateOpen,
+    handleProjectDetailsOpen,
+    handleDetailsProjectClose,
+    setCreateProjectOpen,
+    handleChange,
+    handleClearFilter,
+    filterValue,
+    handleCount,
+    handleId,
+    filteredCol,
+    handleIsFilter,
+    isFilter,
+  } = useAllFunc(myColumn);
 
   const [pagination, setPagination] = useState({
     currentPage: 0,
@@ -237,7 +269,17 @@ const ProjectLIstIndex2 = () => {
 
         {isFilter && (
           <Box sx={{ backgroundColor: "#FFFFFF", width: "100%", padding: "5px" }}>
-            <ProjectSelectFIlter filterPDR={filterPDR} platformOptions={platformOptions} statusOptions={statusOptions} projectTypeOptions={projectTypeOptions} handleChange={handleChange} handleClearFilter={handleClearFilter} filterValue={filterValue} skills={skills} onSubmit={onSubmit} />
+            <ProjectSelectFIlter
+              filterPDR={filterPDR}
+              platformOptions={platformOptions}
+              statusOptions={statusOptions}
+              projectTypeOptions={projectTypeOptions}
+              handleChange={handleChange}
+              handleClearFilter={handleClearFilter}
+              filterValue={filterValue}
+              skills={skills}
+              onSubmit={onSubmit}
+            />
           </Box>
         )}
 
@@ -248,12 +290,30 @@ const ProjectLIstIndex2 = () => {
             height: "100%",
           }}
         >
-          <ProjectTable2 handleDetailsPage={handleDetailsPage} handleClick={handleClick} handleDelete={handleDelete} myColumn={myColumn} myRows={myRows} handleCount={handleCount} pagination={pagination} setPagination={setPagination} handleChangePagination={handleChangePagination} totalItems={total} handleId={handleId} filteredCol={filteredCol} handleProjectDetailsOpen={handleProjectDetailsOpen} />
+          <ProjectTable2
+            handleDetailsPage={handleDetailsPage}
+            handleClick={handleClick}
+            handleDelete={handleDelete}
+            myColumn={myColumn}
+            myRows={myRows}
+            handleCount={handleCount}
+            pagination={pagination}
+            setPagination={setPagination}
+            handleChangePagination={handleChangePagination}
+            totalItems={total}
+            handleId={handleId}
+            filteredCol={filteredCol}
+            handleProjectDetailsOpen={handleProjectDetailsOpen}
+          />
         </Box>
 
         {detailsProjectOpen && (
           <Box>
-            <Project2DetailsModal detailsProjectOpen={detailsProjectOpen} handleProjectDetailsOpen={handleProjectDetailsOpen} handleDetailsProjectClose={handleDetailsProjectClose} />
+            <Project2DetailsModal
+              detailsProjectOpen={detailsProjectOpen}
+              handleProjectDetailsOpen={handleProjectDetailsOpen}
+              handleDetailsProjectClose={handleDetailsProjectClose}
+            />
           </Box>
         )}
         {editModalOpen && (

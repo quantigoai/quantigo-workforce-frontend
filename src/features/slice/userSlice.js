@@ -356,6 +356,14 @@ const userSlice = createSlice({
       state.user.enrolledCourses = action.payload.enrolledCourses;
       // state.user.completedCourses.push(action.payload);
     },
+    updateUserWorkingProject: (state, action) => {
+      state.user.currentlyCheckedInProject = action.payload;
+      // state.user.completedCourses.push(action.payload);
+    },
+    clearUserWorkingProject: (state, action) => {
+      state.user.currentlyCheckedInProject = null;
+      // state.user.completedCourses.push(action.payload);
+    },
     resetUserSlice: () => {
       return initialState;
     },
@@ -731,5 +739,13 @@ const userSlice = createSlice({
       });
   },
 });
-export const { resetUserSlice, updateLoggedInUserManually, updateSingleUserManually, updateUserEnrollCourse, updateUserCompletedCourse } = userSlice.actions;
+export const {
+  clearUserWorkingProject,
+  updateUserWorkingProject,
+  resetUserSlice,
+  updateLoggedInUserManually,
+  updateSingleUserManually,
+  updateUserEnrollCourse,
+  updateUserCompletedCourse,
+} = userSlice.actions;
 export default userSlice.reducer;

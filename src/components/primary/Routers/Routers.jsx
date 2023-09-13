@@ -92,7 +92,7 @@ const Routers = () => {
 
         <Route path={"/allusers"} element={<UserListIndex action={"alluser"} />} />
         <Route path={"/allprojects"} element={<ProjectLIstIndex2 action={"allprojects"} />} />
-        <Route path={"/detailsInfo"} element={<DetailsPage action={"detailsInfo"} />} />
+        <Route path={"/detailsInfo/:id"} element={<DetailsPage action={"detailsInfo"} />} />
         <Route path={"/projectDetails/:id"} element={<FullProjectDetails action={"projectDetails"} />} />
 
         <Route path={"/users"} element={<UserListIndex action={"recruitment_manager"} />} />

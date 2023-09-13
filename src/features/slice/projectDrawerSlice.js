@@ -89,11 +89,15 @@ export const deleteProjectDrawerById = createAsyncThunk("/project-drawer/delete"
 
 export const checkInProjectDrawerById = createAsyncThunk("/project-drawer/check-in", async (data) => {
   try {
-    return await axios.patch(`${url}/project-drawer/check-in/${data.id}`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
+    return await axios.patch(
+      `${url}/project-drawer/check-in/${data.id}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+      }
+    );
   } catch (error) {
     throw new Error(error.response.data.message);
   }
@@ -101,11 +105,15 @@ export const checkInProjectDrawerById = createAsyncThunk("/project-drawer/check-
 
 export const checkOutProjectDrawerById = createAsyncThunk("/project-drawer/check-out", async (data) => {
   try {
-    return await axios.patch(`${url}/project-drawer/check-out/${data.id}`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
+    return await axios.patch(
+      `${url}/project-drawer/check-out/${data.id}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+      }
+    );
   } catch (error) {
     throw new Error(error.response.data.message);
   }
@@ -243,7 +251,7 @@ const projectDrawerSlice = createSlice({
       .addCase(checkInProjectDrawerById.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.projectDrawer = action.payload.data.projectDrawer;
+        // state.projectDrawer = action.payload.data.projectDrawer;
       })
       .addCase(checkInProjectDrawerById.rejected, (state, action) => {
         state.error = action.error.message;
@@ -255,7 +263,6 @@ const projectDrawerSlice = createSlice({
       .addCase(checkOutProjectDrawerById.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
-        state.projectDrawer = {};
       })
       .addCase(checkOutProjectDrawerById.rejected, (state, action) => {
         state.error = action.error.message;

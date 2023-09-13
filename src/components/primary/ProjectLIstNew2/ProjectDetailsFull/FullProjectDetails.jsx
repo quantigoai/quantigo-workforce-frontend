@@ -11,8 +11,7 @@ import dataBuilder from "../../../shared/CustomTable/dataBuilder";
 import useAllFunc from "../Hooks/useAllFunc";
 import { checkInProjectDrawerById, checkOutProjectDrawerById } from "../../../../features/slice/projectDrawerSlice";
 import { useAlert } from "react-alert";
-import { clearUserWorkingProject, readMyProfile, updateUserWorkingProject } from "../../../../features/slice/userSlice";
-import DetailsPage from "./DetailsPage";
+import { clearUserWorkingProject, updateUserWorkingProject } from "../../../../features/slice/userSlice";
 
 const FullProjectDetails = () => {
   const { projectDrawer, usersWorkHistory } = useSelector((state) => state.projectDrawer);

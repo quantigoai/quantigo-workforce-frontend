@@ -12,6 +12,7 @@ import {
   PointElement,
   Filler,
 } from "chart.js";
+import { Box } from "@mui/material";
 ChartJS.register(
   Title,
   Tooltip,
@@ -57,7 +58,6 @@ const LineChartExple = () => {
           gradient.addColorStop(1, "rgba(250,174,50,0)");
           return gradient;
         },
-       
       },
     ],
   });
@@ -100,11 +100,11 @@ const LineChartExple = () => {
     },
   };
   return (
-    <div className="App" style={{ width: "800px", height: "100%" }}>
+    <Box  sx={{ width: "95%" }}>
       <Line options={options} data={data}>
         Hello
       </Line>
-    </div>
+    </Box>
   );
 };
 

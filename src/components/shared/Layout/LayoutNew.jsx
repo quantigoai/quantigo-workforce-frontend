@@ -23,16 +23,18 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import logo from "../../../assets/images/logo.png";
-import BenchmarkSvg from "../../../assets/images/wmp_svg/drawer/benchMarknew.svg";
+import BenchmarkSvg from "../../../assets/images/wmp_svg/drawer/banchmarkIcon.svg";
 import CourseSvg from "../../../assets/images/wmp_svg/drawer/courseNew.svg";
+import SkillIcon from "../../../assets/images/wmp_svg/drawer/skillIcon.svg";
 // import DashboardSvg from "../../../assets/images/wmp_svg/drawer/dashboard.svg";
-import DashboardSvg from "../../../assets/images/wmp_svg/drawer/u_apps.svg";
+import DashboardSvg from "../../../assets/images/wmp_svg/drawer/DashboardIcon.svg";
 import menuFoldLine from "../../../assets/images/menu-fold-line.svg";
 import menuUnfoldLne from "../../../assets/images/menu-unfold-line.svg";
 import JobSvg from "../../../assets/images/wmp_svg/drawer/jobsNew.svg";
 // import LogoutSvg from "../../../assets/images/wmp_svg/drawer/logout.svg";
 import ProjectSvg from "../../../assets/images/wmp_svg/drawer/projectNew.svg";
 import PaymentSvg from "../../../assets/images/wmp_svg/drawer/u_credit-card.svg";
+import SyncIcon from "../../../assets/images/wmp_svg/drawer/syncIcon.svg";
 import UserSvg from "../../../assets/images/wmp_svg/drawer/userNew.svg";
 import GetHelp from "./GetHelp";
 import GetHelpNew from "./GetHelpNew";
@@ -65,7 +67,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  paddingLeft: "1%",
+  // paddingLeft: "1%",
   // padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
@@ -139,12 +141,12 @@ export default function LayoutNew({ children }) {
     { name: "Dashboard", icon: DashboardSvg },
     { name: "All Users", icon: UserSvg },
     { name: "All Projects2", icon: ProjectSvg },
-    { name: "Skill", icon: CourseSvg },
+    { name: "Skill", icon: SkillIcon },
     { name: "Projects", icon: ProjectSvg },
     { name: "Course", icon: CourseSvg },
     { name: "Jobs", icon: JobSvg },
     { name: "Benchmark", icon: BenchmarkSvg },
-    { name: "Sync Server", icon: BenchmarkSvg },
+    { name: "Sync Server", icon: SyncIcon },
     { name: "Project Directory", icon: ProjectSvg },
     // { name: "Hour Calculation", icon: HourSvg },
   ];
@@ -155,24 +157,24 @@ export default function LayoutNew({ children }) {
     { name: "Projects", icon: ProjectSvg },
     { name: "Jobs", icon: JobSvg },
     { name: "Benchmark", icon: BenchmarkSvg },
-    { name: "Sync Server", icon: BenchmarkSvg },
+    { name: "Sync Server", icon: SyncIcon },
     { name: "Project Directory", icon: ProjectSvg },
   ];
   const projectLeadOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "All Users", icon: UserSvg },
-    { name: "Skill", icon: CourseSvg },
+    { name: "Skill", icon: SkillIcon },
     { name: "Projects", icon: ProjectSvg },
     { name: "Jobs", icon: JobSvg },
     { name: "Benchmark", icon: BenchmarkSvg },
     { name: "Project Directory", icon: ProjectSvg },
-    { name: "Sync Server", icon: BenchmarkSvg },
+    { name: "Sync Server", icon: SyncIcon },
   ];
   const projectCoordinatorOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "Projects", icon: ProjectSvg },
     { name: "Jobs", icon: JobSvg },
-    { name: "Sync Server", icon: BenchmarkSvg },
+    { name: "Sync Server", icon: SyncIcon },
     { name: "Project Directory", icon: ProjectSvg },
   ];
 
@@ -180,12 +182,12 @@ export default function LayoutNew({ children }) {
     { name: "Dashboard", icon: DashboardSvg },
     { name: "Annotator List", icon: UserSvg },
     { name: "Reviewer List", icon: UserSvg },
-    { name: "Skill", icon: CourseSvg },
+    { name: "Skill", icon: SkillIcon },
     { name: "Projects", icon: ProjectSvg },
     { name: "Jobs", icon: JobSvg },
     { name: "Benchmark", icon: BenchmarkSvg },
     { name: "Project Directory", icon: ProjectSvg },
-    { name: "Sync Server", icon: BenchmarkSvg },
+    { name: "Sync Server", icon: SyncIcon },
   ];
 
   const anntatorOptions = [
@@ -203,7 +205,7 @@ export default function LayoutNew({ children }) {
     { name: "Dashboard", icon: DashboardSvg },
     { name: "All Users", icon: UserSvg },
     { name: "Course", icon: CourseSvg },
-    { name: "Skill", icon: CourseSvg },
+    { name: "Skill", icon: SkillIcon },
   ];
 
   const reviewerOptions = [
@@ -309,11 +311,9 @@ export default function LayoutNew({ children }) {
 
   const handleMenu = (text) => {
     return (
-      <ListItem key={text.name} disablePadding sx={{ paddingLeft: "8%", paddingRight: "8%" }}>
+      <ListItem key={text.name} disablePadding sx={{ paddingLeft: "7%", paddingRight: "7%" }}>
         <ListItemButton
           sx={{
-            fontSize: "12px",
-            height: "40px",
             borderRadius: activePath === text.name && "8px",
             // justifyContent: "left",
             // border: activePath === text.name && "3px solid #FFFFFF",
@@ -323,8 +323,9 @@ export default function LayoutNew({ children }) {
               // paddingLeft: "3%",
             },
           }}
+          className="responsive-drawer"
           onClick={() => handleOptionClick(text.name)}>
-          <ListItemIcon sx={{ color: "#FFFFFF" }}>
+          <ListItemIcon sx={{ color: "#FFFFFF", minWidth: "45px" }}>
             <img src={text.icon} />
           </ListItemIcon>
           <ListItemText
@@ -332,8 +333,9 @@ export default function LayoutNew({ children }) {
             primary={text.name}
             sx={{
               color: "#FFFFFF",
-
-              fontSize: "14px",
+              // backgroundColor: "red",
+              // fontSize: "14px",
+              fontSize: { xl: "14px", lg: "12px", md: "12px" },
               justifyContent: "left",
             }}
           />
@@ -341,7 +343,7 @@ export default function LayoutNew({ children }) {
       </ListItem>
     );
   };
-  
+
   return (
     <Box
       sx={{
@@ -363,19 +365,25 @@ export default function LayoutNew({ children }) {
           variant="permanent"
           open={open}>
           <DrawerHeader>
-            <img
-              onClick={() => navigate("/")}
-              src={logo}
-              alt="logo"
-              style={{
-                width: "136.26px",
-                height: "24px",
-                cursor: "pointer",
-                ...(!open && { display: "none" }),
-              }}
-            />
+            <Box sx={{}}>
+              <img
+                onClick={() => navigate("/")}
+                src={logo}
+                alt="logo"
+                style={{
+                  // width: "110px",
+                  // width: { xl: "140px", lg: "110px", md: "110px" },
+                  // // height: { xl: "27px", lg: "24px", md: "24px" },
+                  // height: "25px",
+                  cursor: "pointer",
+                  ...(!open && { display: "none" }),
+                }}
+                className="responsive-logo"
+              />
+            </Box>
+
             {open && (
-              <Box sx={{ justifyContent: "left", paddingLeft: "15%" }}>
+              <Box sx={{ justifyContent: "left", paddingLeft: { xl: "20%", lg: "1%", md: "1%" } }}>
                 <IconButton onClick={handleDrawerClose}>
                   {theme.direction === "rtl" ? (
                     <img src={menuFoldLine} />
@@ -391,7 +399,7 @@ export default function LayoutNew({ children }) {
               </IconButton>
             )}
           </DrawerHeader>
-          <Box sx={{ paddingLeft: "14%" }}>
+          <Box sx={{ paddingLeft: "11%" }}>
             {open && (
               <Typography variant="caption" sx={{ color: "#B6C9F0" }}>
                 <b>MAIN MENU</b>
@@ -445,7 +453,7 @@ export default function LayoutNew({ children }) {
             </List>
           )}
 
-          <DrawerFooter sx={{ paddingLeft: "8%", paddingRight: "5%", paddingBottom: "5%" }}>
+          <DrawerFooter sx={{ paddingLeft: "5%", paddingRight: "5%", paddingBottom: "5%" }}>
             {open && <GetHelpNew />}
           </DrawerFooter>
         </Drawer>

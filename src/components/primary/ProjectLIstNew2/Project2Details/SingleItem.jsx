@@ -3,20 +3,6 @@ import React from "react";
 import ProjectDrawerStatusChip from "../../../shared/FilterField/ProjectDrawerStatusChip";
 
 const SingleItem = ({ ItemTitle, Item }) => {
-  const documentList = [
-    {
-      name: "Document 01",
-      _id: 1,
-    },
-    {
-      name: "Document 02",
-      _id: 2,
-    },
-    {
-      name: "Document 03",
-      _id: 3,
-    },
-  ];
   return (
     <>
       <Stack sx={{ borderBottom: "1px solid #E6ECF5" }}>
@@ -30,10 +16,10 @@ const SingleItem = ({ ItemTitle, Item }) => {
             {ItemTitle === "Skills" ? (
               <>
                 <Grid container>
-                  {documentList.map((p) => (
+                  {Item.map((p) => (
                     <>
-                      <Box sx={{ paddingRight: "1%" }}>
-                        <ProjectDrawerStatusChip key={p._id} value={p.name} />
+                      <Box sx={{ paddingRight: "1%", paddingBottom: "1%" }}>
+                        <ProjectDrawerStatusChip key={p._id} value={p.name} isPopper={true} />
                       </Box>
                     </>
                   ))}

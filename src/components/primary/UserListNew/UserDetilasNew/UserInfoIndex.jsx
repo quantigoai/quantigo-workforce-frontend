@@ -1,13 +1,19 @@
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
 import SingleItem from "../../ProjectLIstNew2/Project2Details/SingleItem";
 import ChangeInfoIndex from "./ChangeInfoIndex";
 import DetailsItemThree from "./DetailsItemThree";
 import NdaDocumentSection from "./NdaDocumentSection";
 import moment from "moment/moment";
+import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 
-const UserInfoIndex = ({ user,handleSetRole ,handleSetStatus }) => {
+const UserInfoIndex = ({ user, handleSetRole, handleSetStatus }) => {
   const DOB = moment.utc(user.dob).format("MMM Do, YYYY");
+  const dateObj = new Date(user.lastJobTakenAt);
+  const today = new Date();
+  const diffInMs = Math.abs(today - dateObj);
+  const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+
   return (
     <>
       <Box sx={{}}>
@@ -22,13 +28,44 @@ const UserInfoIndex = ({ user,handleSetRole ,handleSetStatus }) => {
             Item2Title={"Id"}
             Item2={user.qaiUserName}
             Item3Title={"Role"}
-            Item3={user.role}
+            Item3={
+              user.role === "level_1_annotator"
+                ? "Level 1 Annotator"
+                : user.role === "level_2_annotator"
+                ? "Level 2 Annotator"
+                : user.role === "level_0_annotator"
+                ? "Level 0 Annotator"
+                : user.role === "level_3_annotator"
+                ? "Level 3 Annotator"
+                : user.role === "delivery_manager"
+                ? "Project Delivery Lead"
+                : user.role === "project_lead"
+                ? "Delivery Lead"
+                : user.role === "project_coordinator"
+                ? "Project Coordinator"
+                : user.role === "project_manager"
+                ? "Project Manager"
+                : user.role === "recruitment_manager"
+                ? "Recruitment Manager"
+                : capitalizeFirstLetter(user?.role)
+            }
           />
           <DetailsItemThree
             Item1Title={"Email"}
             Item1={user.email}
             Item2Title={"Annotation Status"}
-            Item2={"Active"}
+            Item2={
+              user.role === "delivery_manager" ||
+              user.role === "project_lead" ||
+              user.role === "recruitment_manager" ||
+              user.role === "admin" ||
+              user.role === "trainer" ||
+              user.role === "reviewer"
+                ? "Active"
+                : user.lastJobTakenAt && diffInDays <= 15
+                ? "Active"
+                : "Inactive"
+            }
             Item3Title={"Rating"}
             Item3={5}
           />
@@ -41,13 +78,17 @@ const UserInfoIndex = ({ user,handleSetRole ,handleSetStatus }) => {
             Item3={"No Course Completed"}
           />
           <SingleItem ItemTitle={"Address"} Item={user.presentAddress} />
-          <SingleItem ItemTitle={"Skills"} Item={"bsjkdfsaf"} />
+          <SingleItem ItemTitle={"Skills"} Item={user.skills} />
           <NdaDocumentSection user={user} />
         </Stack>
       </Box>
 
       <Box>
-        <ChangeInfoIndex user={user} handleSetRole={handleSetRole} handleSetStatus={handleSetStatus} />
+        <ChangeInfoIndex
+          user={user}
+          handleSetRole={handleSetRole}
+          handleSetStatus={handleSetStatus}
+        />
       </Box>
     </>
   );

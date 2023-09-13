@@ -7,9 +7,10 @@ const ButtonStyleHelp = styled(Button)({
   width: "50%",
   borderRadius: "8px",
   fontSize: "12px",
+  textTransform: "none",
   "&:hover": {
-    backgroundColor: "#FF9A45",
-    color: "#1D1D1D",
+    backgroundColor: "#FFFFFF",
+    color: "#2E58FF",
   },
 });
 const GetHelpNew = () => {
@@ -23,13 +24,12 @@ const GetHelpNew = () => {
         container
         sx={{
           borderRadius: "8px",
-          //   height: "157px",
+          // height: "157px",
           backgroundColor: "#476CFF",
           //   padding: "10%",
-        }}
-      >
-        <Grid container sx={{ justifyContent: "center", paddingTop: "10%" }}>
-          <Typography variant="h6" sx={{ fontSize: "14px", color: "#FFFFFF" }}>
+        }}>
+        <Grid container sx={{ justifyContent: "center", paddingTop: "9%" }}>
+          <Typography variant="wf_h5_bold" sx={{ color: "#FFFFFF" }}>
             Need Help?
           </Typography>
         </Grid>
@@ -42,8 +42,7 @@ const GetHelpNew = () => {
             paddingTop: "2%",
             paddingBottom: "5%",
             textAlign: "center",
-          }}
-        >
+          }}>
           <Typography
             sx={{
               color: "#E6ECF5",
@@ -51,8 +50,7 @@ const GetHelpNew = () => {
               textAlign: "center",
               fontSize: "12px",
             }}
-            variant="body2"
-          >
+            variant="wf_h6_light">
             Our customer support is at your
           </Typography>
           <Typography
@@ -62,8 +60,7 @@ const GetHelpNew = () => {
               textAlign: "center",
               fontSize: "12px",
             }}
-            variant="body2"
-          >
+            variant="wf_h6_light">
             service
           </Typography>
         </Grid>
@@ -75,8 +72,7 @@ const GetHelpNew = () => {
             paddingRight: "10%",
             paddingTop: "2%",
             paddingBottom: "10%",
-          }}
-        >
+          }}>
           <ButtonStyleHelp variant="outlined" onClick={handleHelp}>
             <b> Get Help</b>
           </ButtonStyleHelp>

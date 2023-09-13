@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Avatar, Typography } from "@mui/material";
+import { Avatar, Grid, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -25,6 +25,7 @@ import useReset from "../../../customHooks/useReset";
 import { logout } from "../../../features/slice/userSlice";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import NotificationModal from "../Notification/NotificationModal";
+import backIcon from "../../../assets/images/dashboardIcon/GoBackIcon.svg";
 const NavBarFull = mstyled(AppBar)({
   height: "auto",
   width: "100%",
@@ -35,7 +36,7 @@ const NavBarFull = mstyled(AppBar)({
   boxShadow: "0px 0px 0px rgba(31, 30, 120, 0.37)",
 });
 
-const Header = () => {
+const Header = ({ openDrawer }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -90,28 +91,37 @@ const Header = () => {
         sx={{
           background: "#FFFFFF",
           color: isLightTheme ? "#000c1f" : "#F5F5F5",
-        }}
-      >
+        }}>
         <Box
           sx={{
             mx: 0,
             py: 2,
             px: 0,
-          }}
-        >
+            paddingLeft: openDrawer ? "16%" : "5%",
+            // backgroundColor: "green",
+          }}>
           <Box
             sx={{
               display: "flex",
-              justifyContent: "flex-end",
-            }}
-          >
+              justifyContent: "space-between",
+              // backgroundColor: "blue",
+            }}>
             {/* Go Back button  */}
-            {/* <Box>
-              <Button onClick={() => handleGoBack()}>
+            <Box
+              sx={{
+                display: "flex",
+                // backgroundColor: "blue",
+                // paddingLeft:"10%"
+              }}>
+              <Button sx={{ width: "88px", textTransform: "none" }} onClick={() => handleGoBack()}>
                 <img src={backIcon} />
-                Go Back
+
+                <Typography variant="wf_h5_bold" sx={{ color: "#3C4D6B", paddingLeft: "12%" }}>
+                  {" "}
+                  Go Back
+                </Typography>
               </Button>
-            </Box> */}
+            </Box>
             {/* <Button>
               {isLightTheme ? (
                 <DarkModeIcon onClick={() => dispatch(setTheme(false))} />
@@ -138,93 +148,96 @@ const Header = () => {
                 </>
               )}
             </Button> */}
-            <NotificationModal handleSeeAll={handleSeeAll} notificationOpen={notificationOpen} handleNotificationClose={handleNotificationClose} />
+            <NotificationModal
+              handleSeeAll={handleSeeAll}
+              notificationOpen={notificationOpen}
+              handleNotificationClose={handleNotificationClose}
+            />
 
             {/* <Box xs={2} sx={{ px: 2 }}>
               <img src={line} height="100%" />
             </Box> */}
-            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-              <Avatar
-                alt="Profile Picture"
-                src={image}
-                sx={{
-                  bgcolor: "#D3ECFA",
-                  // border: "1px solid #8394EA",
-                }}
-              />
-            </Box>
-            <Box>
-              <Box sx={{ display: "flex", px: 2, justifyContent: "flex-end" }}>
-                <Box>
-                  <Typography
-                    sx={{
-                      color: "#0E243D",
-                    }}
-                    variant="body2"
-                  >
-                    <b>
-                      {user.user.firstName} {user.user.lastName}
-                    </b>
-                  </Typography>
-                  <Typography sx={{ color: "#969CAF" }} variant="caption">
-                    {role === "level_1_annotator"
-                      ? "Level 1 Annotator"
-                      : role === "level_2_annotator"
-                      ? "Level 2 Annotator"
-                      : role === "level_0_annotator"
-                      ? "Level 0 Annotator"
-                      : role === "level_3_annotator"
-                      ? "Level 3 Annotator"
-                      : role === "delivery_manager"
-                      ? "Project Delivery Lead"
-                      : role === "project_lead"
-                      ? "Delivery Lead"
-                      : role === "project_coordinator"
-                      ? "Project Coordinator"
-                      : role === "project_manager"
-                      ? "Project Manager"
-                      : role === "recruitment_manager"
-                      ? "Recruitment Manager"
-                      : capitalizeFirstLetter(role)}
-                  </Typography>
-                </Box>
-                <Box>
-                  <Menu
-                    sx={{
-                      "& .MuiPaper-root": {
-                        backgroundColor: "#FFFFFF",
-                        // color: isLightTheme ? "#000c1f" : "#F5F5F5",
-                        borderRadius: "5px",
-                      },
-                    }}
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                  >
-                    <MenuItem
+            <Box sx={{ display: "flex" }}>
+              <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+                <Avatar
+                  alt="Profile Picture"
+                  src={image}
+                  sx={{
+                    bgcolor: "#D3ECFA",
+                    // border: "1px solid #8394EA",
+                  }}
+                />
+              </Box>
+              <Box>
+                <Box sx={{ display: "flex", px: 2, justifyContent: "flex-end" }}>
+                  <Box>
+                    <Typography
                       sx={{
-                        backgroundColor: "#FFFFF",
-                        borderBottom: "1px solid #F0F5FA",
-                        width: "182px",
+                        color: "#0E243D",
                       }}
-                      onClick={handleEditProfile}
-                    >
-                      <ListItemIcon>
-                        <img src={ProfileIcon} />
-                      </ListItemIcon>
-                      <ListItemText sx={{ color: "#3C4D6B" }}>Edit Profile</ListItemText>
-                    </MenuItem>
-                    <MenuItem onClick={handleLogOut} sx={{ width: "182px" }}>
-                      <ListItemIcon>
-                        <img src={logOutIcon} />
-                      </ListItemIcon>
-                      <ListItemText sx={{ color: "#3C4D6B" }}>LogOut</ListItemText>
-                    </MenuItem>
-                  </Menu>
-                  <Button id="fade-button" onClick={handleClick} sx={{ paddingTop: "20%" }}>
-                    <img src={menuIcon} />
-                    {/* <KeyboardArrowDownIcon /> */}
-                  </Button>
+                      variant="body2">
+                      <b>
+                        {user.user.firstName} {user.user.lastName}
+                      </b>
+                    </Typography>
+                    <Typography sx={{ color: "#969CAF" }} variant="caption">
+                      {role === "level_1_annotator"
+                        ? "Level 1 Annotator"
+                        : role === "level_2_annotator"
+                        ? "Level 2 Annotator"
+                        : role === "level_0_annotator"
+                        ? "Level 0 Annotator"
+                        : role === "level_3_annotator"
+                        ? "Level 3 Annotator"
+                        : role === "delivery_manager"
+                        ? "Project Delivery Lead"
+                        : role === "project_lead"
+                        ? "Delivery Lead"
+                        : role === "project_coordinator"
+                        ? "Project Coordinator"
+                        : role === "project_manager"
+                        ? "Project Manager"
+                        : role === "recruitment_manager"
+                        ? "Recruitment Manager"
+                        : capitalizeFirstLetter(role)}
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Menu
+                      sx={{
+                        "& .MuiPaper-root": {
+                          backgroundColor: "#FFFFFF",
+                          // color: isLightTheme ? "#000c1f" : "#F5F5F5",
+                          borderRadius: "5px",
+                        },
+                      }}
+                      anchorEl={anchorEl}
+                      open={open}
+                      onClose={handleClose}>
+                      <MenuItem
+                        sx={{
+                          backgroundColor: "#FFFFF",
+                          borderBottom: "1px solid #F0F5FA",
+                          width: "182px",
+                        }}
+                        onClick={handleEditProfile}>
+                        <ListItemIcon>
+                          <img src={ProfileIcon} />
+                        </ListItemIcon>
+                        <ListItemText sx={{ color: "#3C4D6B" }}>Edit Profile</ListItemText>
+                      </MenuItem>
+                      <MenuItem onClick={handleLogOut} sx={{ width: "182px" }}>
+                        <ListItemIcon>
+                          <img src={logOutIcon} />
+                        </ListItemIcon>
+                        <ListItemText sx={{ color: "#3C4D6B" }}>LogOut</ListItemText>
+                      </MenuItem>
+                    </Menu>
+                    <Button id="fade-button" onClick={handleClick} sx={{ paddingTop: "20%" }}>
+                      <img src={menuIcon} />
+                      {/* <KeyboardArrowDownIcon /> */}
+                    </Button>
+                  </Box>
                 </Box>
               </Box>
             </Box>

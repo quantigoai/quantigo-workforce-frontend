@@ -124,9 +124,7 @@ export default function LayoutNew({ children }) {
 
   const { isBlocked } = useSelector((state) => state.user.user);
 
-  const { isVerified, role, isEmailVerified } = useSelector(
-    (state) => state.user.user
-  );
+  const { isVerified, role, isEmailVerified } = useSelector((state) => state.user.user);
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
 
@@ -219,9 +217,7 @@ export default function LayoutNew({ children }) {
     { name: "Users", icon: UserSvg },
   ];
 
-  const unverifiedOptions = [
-    { name: "Account Activation", icon: DashboardSvg },
-  ];
+  const unverifiedOptions = [{ name: "Account Activation", icon: DashboardSvg }];
 
   const devOptions = [
     { name: "Account Activation", icon: DashboardSvg },
@@ -285,9 +281,7 @@ export default function LayoutNew({ children }) {
       case "Create Job":
         return navigate("/jobs/create-job");
       case "Jobs":
-        return role === "reviewer"
-          ? navigate("/jobs/availablejobs")
-          : navigate("/jobs/alljobs");
+        return role === "reviewer" ? navigate("/jobs/availablejobs") : navigate("/jobs/alljobs");
       case "On Going Job":
         return navigate("/jobs/activejobs");
       case "Archive Job":
@@ -315,11 +309,7 @@ export default function LayoutNew({ children }) {
 
   const handleMenu = (text) => {
     return (
-      <ListItem
-        key={text.name}
-        disablePadding
-        sx={{ paddingLeft: "8%", paddingRight: "8%" }}
-      >
+      <ListItem key={text.name} disablePadding sx={{ paddingLeft: "8%", paddingRight: "8%" }}>
         <ListItemButton
           sx={{
             fontSize: "12px",
@@ -327,15 +317,13 @@ export default function LayoutNew({ children }) {
             borderRadius: activePath === text.name && "8px",
             // justifyContent: "left",
             // border: activePath === text.name && "3px solid #FFFFFF",
-            backgroundColor:
-              activePath === text.name && "rgba(255, 255, 255, 0.15)",
+            backgroundColor: activePath === text.name && "rgba(255, 255, 255, 0.15)",
             "&:hover": {
               backgroundColor: "rgba(255, 154, 69, 0.1)",
               // paddingLeft: "3%",
             },
           }}
-          onClick={() => handleOptionClick(text.name)}
-        >
+          onClick={() => handleOptionClick(text.name)}>
           <ListItemIcon sx={{ color: "#FFFFFF" }}>
             <img src={text.icon} />
           </ListItemIcon>
@@ -353,20 +341,19 @@ export default function LayoutNew({ children }) {
       </ListItem>
     );
   };
+  
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "row",
         gap: 2,
-      }}
-    >
+      }}>
       <Box
         sx={{
           height: "100vh",
           width: open ? "15%" : "4%",
-        }}
-      >
+        }}>
         <Drawer
           PaperProps={{
             sx: {
@@ -374,8 +361,7 @@ export default function LayoutNew({ children }) {
             },
           }}
           variant="permanent"
-          open={open}
-        >
+          open={open}>
           <DrawerHeader>
             <img
               onClick={() => navigate("/")}
@@ -412,10 +398,7 @@ export default function LayoutNew({ children }) {
               </Typography>
             )}
             {!open && (
-              <Typography
-                variant="caption"
-                sx={{ color: "#B6C9F0", paddingLeft: "10%" }}
-              >
+              <Typography variant="caption" sx={{ color: "#B6C9F0", paddingLeft: "10%" }}>
                 <b>MENU</b>
               </Typography>
             )}
@@ -425,9 +408,7 @@ export default function LayoutNew({ children }) {
             <List>{unverifiedOptions.map((text) => handleMenu(text))}</List>
           ) : (
             <List>
-              {isLoggedIn &&
-                role === "admin" &&
-                adminOptions.map((text) => handleMenu(text))}
+              {isLoggedIn && role === "admin" && adminOptions.map((text) => handleMenu(text))}
               {isLoggedIn &&
                 role === "delivery_manager" &&
                 dmOptions.map((text) => handleMenu(text))}
@@ -440,12 +421,8 @@ export default function LayoutNew({ children }) {
               {isLoggedIn &&
                 role === "level_3_annotator" &&
                 anntatorOptions.map((text) => handleMenu(text))}
-              {isLoggedIn &&
-                role === "trainer" &&
-                trainerOptions.map((text) => handleMenu(text))}
-              {isLoggedIn &&
-                role === "reviewer" &&
-                reviewerOptions.map((text) => handleMenu(text))}
+              {isLoggedIn && role === "trainer" && trainerOptions.map((text) => handleMenu(text))}
+              {isLoggedIn && role === "reviewer" && reviewerOptions.map((text) => handleMenu(text))}
               {isLoggedIn &&
                 role === "engineering_lead" &&
                 devOptions.map((text) => handleMenu(text))}
@@ -468,9 +445,7 @@ export default function LayoutNew({ children }) {
             </List>
           )}
 
-          <DrawerFooter
-            sx={{ paddingLeft: "8%", paddingRight: "5%", paddingBottom: "5%" }}
-          >
+          <DrawerFooter sx={{ paddingLeft: "8%", paddingRight: "5%", paddingBottom: "5%" }}>
             {open && <GetHelpNew />}
           </DrawerFooter>
         </Drawer>
@@ -484,28 +459,21 @@ export default function LayoutNew({ children }) {
           width: open ? "85%" : "96%",
           flexDirection: "column",
           ps: 2,
-        }}
-      >
+        }}>
         <Box
           sx={{
             height: "7vh",
             width: "100%",
-          }}
-        >
-          <Header />
+          }}>
+          <Header openDrawer={open} />
         </Box>
         <Box
           sx={{
             height: "90vh",
             width: "100%",
             overflowY: "auto",
-          }}
-        >
-          {isLoggedIn && !isBlocked ? (
-            <Box>{children}</Box>
-          ) : (
-            <UserBlocked />
-          )}
+          }}>
+          {isLoggedIn && !isBlocked ? <Box>{children}</Box> : <UserBlocked />}
         </Box>
 
         {/* TODO Fix this */}

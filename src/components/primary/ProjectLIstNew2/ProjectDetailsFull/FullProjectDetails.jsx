@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import ProjectDetailsHeader from "./ProjectDetailsHeader";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import Project2DetailsModal from "../Project2Details/Project2DetailsModal";
 import ProjectTable2 from "../ProjectTable2";
 import fieldBuilder from "../../../shared/CustomTable/fieldBuilder";
@@ -15,6 +15,7 @@ const FullProjectDetails = () => {
   const [value, setValue] = React.useState(projectDrawer.project_status);
   const [detailCol, setDetailCol] = useState([]);
   const [detailRow, setDetailRow] = useState([]);
+  const navigate = useNavigate();
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -41,10 +42,14 @@ const FullProjectDetails = () => {
   const handleClick = (e) => {};
   const handleDelete = (e) => {};
   const { handleCreateProjectClose, createProjectOpen, detailsProjectOpen, handleProjectCreateOpen, handleProjectDetailsOpen, handleDetailsProjectClose, setCreateProjectOpen, handleClearFilter, filterValue, handleCount, handleId, filteredCol, handleIsFilter, isFilter } = useAllFunc(detailCol);
+
+  const handleDetailButton = () => {
+    console.log("clicked");
+    navigate("/detailsInfo");
+  };
   return (
     <Box className="projectBox">
-      <Box sx={{ backgroundColor: "#F2F6FC", width: "100%" }}>{!isLoading && <ProjectDetailsHeader handleProjectDetailsOpen={handleProjectDetailsOpen} value={value} setValue={setValue} handleChange={handleChange} projectDrawer={projectDrawer} />}</Box>
-
+      <Box sx={{ backgroundColor: "#F2F6FC", width: "100%" }}>{!isLoading && <ProjectDetailsHeader handleProjectDetailsOpen={handleProjectDetailsOpen} value={value} setValue={setValue} handleChange={handleChange} projectDrawer={projectDrawer} handleDetailButton={handleDetailButton} />}</Box>
       {detailsProjectOpen && (
         <Box>
           <Project2DetailsModal detailsProjectOpen={detailsProjectOpen} handleProjectDetailsOpen={handleProjectDetailsOpen} handleDetailsProjectClose={handleDetailsProjectClose} />

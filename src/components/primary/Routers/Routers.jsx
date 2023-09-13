@@ -50,6 +50,7 @@ import ShowResult from "../Quiz/QuizPage/ShowResult/ShowResult";
 import UpdateQuiz from "../Quiz/UpdateQuiz";
 import Skills from "../Skill/Skills";
 import UserListIndex from "../UserListNew/UserListIndex";
+import DetailsPage from "../ProjectLIstNew2/ProjectDetailsFull/DetailsPage";
 
 const Routers = () => {
   return (
@@ -91,6 +92,7 @@ const Routers = () => {
 
         <Route path={"/allusers"} element={<UserListIndex action={"alluser"} />} />
         <Route path={"/allprojects"} element={<ProjectLIstIndex2 action={"allprojects"} />} />
+        <Route path={"/detailsInfo"} element={<DetailsPage action={"detailsInfo"} />} />
         <Route path={"/projectDetails/:id"} element={<FullProjectDetails action={"projectDetails"} />} />
 
         <Route path={"/users"} element={<UserListIndex action={"recruitment_manager"} />} />

@@ -20,7 +20,6 @@ import {
   createProjectDrawer,
   deleteProjectDrawerById,
   getAllProjectDrawers,
-  getProjectDetailsById,
   setCurrentProjectDrawer,
   updateProjectDrawerById,
 } from "../../../features/slice/projectDrawerSlice";
@@ -164,10 +163,14 @@ const ProjectLIstIndex2 = () => {
       });
     }
   };
+
   const handleDetailsPage = (data) => {
-    dispatch(setCurrentProjectDrawer(data._id));
-    dispatch(getProjectDetailsById(data._id));
-    navigate(`/projectDetails/${data._id}`);
+    const myData = {
+      id: data._id,
+    };
+    dispatch(setCurrentProjectDrawer(myData.id));
+    // dispatch(getUsersWorkHistoryById(myData));
+    navigate(`/projectDetails/${myData.id}`);
   };
 
   return (

@@ -1,4 +1,4 @@
-import { Box, Link, Typography } from "@mui/material";
+import { Alert, Box, Link, Typography } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -52,41 +52,41 @@ const ProjectTable2 = ({
           <LoadingComponent height="70vh" />
         ) : (
           <>
-            <Table aria-label="simple table" className="myTable">
-              <TableHead>
-                <TableRow className="custom-header">
-                  {myColumn.map((col) => (
-                    <TableCell
-                      sx={{
-                        minWidth: col.width || "140px",
-                        color: "#7B98BA",
-                        textAlign: "left",
-                        fontSize: "13px",
-                      }}
-                      key={col.id}
-                    >
-                      <Box
+            {myRows.length > 0 ? (
+              <Table aria-label="simple table" className="myTable">
+                <TableHead>
+                  <TableRow className="custom-header">
+                    {myColumn.map((col) => (
+                      <TableCell
                         sx={{
-                          display: "flex",
-                          justifyContent: "start",
+                          minWidth: col.width || "140px",
+                          color: "#7B98BA",
+                          textAlign: "left",
+                          fontSize: "13px",
                         }}
+                        key={col.id}
                       >
-                        {col.headerName}
+                        <Box
+                          sx={{
+                            display: "flex",
+                            justifyContent: "start",
+                          }}
+                        >
+                          {col.headerName}
 
-                        {col.headerName !== "ACTIONS" && (
-                          <Box onClick={() => handleId(col.field)}>
-                            <SortingButton handleCount={handleCount} col={col.field} filteredCol={filteredCol} />
-                          </Box>
-                        )}
-                      </Box>
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
+                          {col.headerName !== "ACTIONS" && (
+                            <Box onClick={() => handleId(col.field)}>
+                              <SortingButton handleCount={handleCount} col={col.field} filteredCol={filteredCol} />
+                            </Box>
+                          )}
+                        </Box>
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
 
-              <TableBody className="tableBody">
-                {myRows.length > 0 ? (
-                  myRows.map((row) => {
+                <TableBody className="tableBody">
+                  {myRows.map((row) => {
                     return (
                       <TableRow className="tableRow" key={row._id}>
                         {myColumn.map((col) => {
@@ -185,15 +185,17 @@ const ProjectTable2 = ({
                             return (
                               <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
                                 <Typography sx={{ color: "#253E5C" }} variant="p">
-                                  {formatDate(row[col?.field])}
+                                  {/* TODO Add working chip here */}
+                                  {row[col?.field] ? formatDate(row[col?.field]) : "Working ⛑️"}
                                 </Typography>
                               </TableCell>
                             );
                           } else if (col.field === "checkedInTime" || col.field === "checkedOutTime") {
                             return (
                               <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
+                                {/* TODO Add working chip here  */}
                                 <Typography sx={{ color: "#253E5C" }} variant="p">
-                                  {formatTime(row[col?.field])}
+                                  {row[col?.field] ? formatTime(row[col?.field]) : "Working ⛑️"}
                                 </Typography>
                               </TableCell>
                             );
@@ -209,14 +211,14 @@ const ProjectTable2 = ({
                         })}
                       </TableRow>
                     );
-                  })
-                ) : (
-                  <Typography sx={{ textAlign: "center" }} variant="p">
-                    No Checked in user found
-                  </Typography>
-                )}
-              </TableBody>
-            </Table>
+                  })}
+                </TableBody>
+              </Table>
+            ) : (
+              <Alert Alert severity="error">
+                No Users history found for this project!
+              </Alert>
+            )}
           </>
         )}
       </Box>

@@ -24,6 +24,8 @@ const initialState = {
   projectDrawer: {},
   total: 0,
   usersWorkHistory: [],
+  usersWorkHistoryCount: 0,
+  myWorkHistoryCount: 0,
   error: null,
 };
 
@@ -133,9 +135,18 @@ export const removeSkillsToCheckInUser = createAsyncThunk("/project-drawer/remov
   }
 });
 
-export const getProjectDetailsById = createAsyncThunk("/project-drawer/details/getDetails", async (id) => {
+export const getUsersWorkHistoryById = createAsyncThunk("/project-drawer/details/getDetails", async (data) => {
   try {
-    return await axios.get(`${url}/project-drawer/work-history/${id}`, {
+    const { pagination, filteredData, ascDescOption, id } = data;
+    let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
+
+    const ascDescOptions = Object.keys(ascDescOption);
+    if (ascDescOptions.length === 0) {
+      query += `&sortBy=checkedInDate:desc&sortBy=checkedInTime:desc`;
+    }
+    ascDescOptions.map((ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`));
+
+    return await axios.get(`${url}/project-drawer/work-history/${id}?${query}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -198,7 +209,13 @@ const projectDrawerSlice = createSlice({
       })
       .addCase(updateProjectDrawerById.fulfilled, (state, action) => {
         state.error = null;
-        state.projectDrawers = [...state.projectDrawers.map((drawer) => (drawer._id.toString() === action.payload.data.projectDrawer._id.toString() ? action.payload.data.projectDrawer : drawer))];
+        state.projectDrawers = [
+          ...state.projectDrawers.map((drawer) =>
+            drawer._id.toString() === action.payload.data.projectDrawer._id.toString()
+              ? action.payload.data.projectDrawer
+              : drawer
+          ),
+        ];
         state.isLoading = false;
       })
       .addCase(updateProjectDrawerById.rejected, (state, action) => {
@@ -210,7 +227,9 @@ const projectDrawerSlice = createSlice({
       })
       .addCase(deleteProjectDrawerById.fulfilled, (state, action) => {
         state.error = null;
-        state.projectDrawers = [...state.projectDrawers.filter((drawer) => drawer._id !== action.payload.data.projectDrawer._id)];
+        state.projectDrawers = [
+          ...state.projectDrawers.filter((drawer) => drawer._id !== action.payload.data.projectDrawer._id),
+        ];
         state.total = action.payload.data.count.total;
         state.isLoading = false;
       })
@@ -264,16 +283,20 @@ const projectDrawerSlice = createSlice({
         state.error = action.error.message;
         state.isLoading = false;
       })
-      .addCase(getProjectDetailsById.pending, (state) => {
+      .addCase(getUsersWorkHistoryById.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getProjectDetailsById.fulfilled, (state, action) => {
+      .addCase(getUsersWorkHistoryById.fulfilled, (state, action) => {
+        state.usersWorkHistoryCount = action.payload.data.projectDrawer.totalCount;
         state.usersWorkHistory = action.payload.data.projectDrawer.checkedInUsersHistory;
+
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(getProjectDetailsById.rejected, (state, action) => {
+      .addCase(getUsersWorkHistoryById.rejected, (state, action) => {
         state.error = action.error.message;
+        state.usersWorkHistoryCount = 0;
+        state.usersWorkHistory = [];
         state.isLoading = false;
       });
   },

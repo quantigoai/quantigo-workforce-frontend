@@ -53,7 +53,9 @@ export const formatTime = (inputTime) => {
 
 export const calculateTimeDifference = (checkInData) => {
   const { checkedInDate, checkedInTime, checkedOutDate, checkedOutTime } = checkInData;
-
+  if (!checkedOutDate && !checkedOutTime) {
+    return "Not Checked Out";
+  }
   const checkInDateTime = new Date(`${checkedInDate}T${checkedInTime}`);
   const checkOutDateTime = new Date(`${checkedOutDate}T${checkedOutTime}`);
 

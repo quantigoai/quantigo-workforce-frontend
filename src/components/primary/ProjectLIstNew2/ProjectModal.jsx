@@ -143,7 +143,8 @@ const ProjectModal = ({ createProjectOpen, handleCreateProjectClose, statusCreat
                 {/* <SkillField/> */}
 
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  <PDskillFIeld name={"project_skills"} addSkills={addSkills && addSkills} label="Skills" handleChangeSkill={handleChangeSkill} skills={skills} count={count} />
+                {/* TODO Need to fix this  */}
+                  {/* <PDskillFIeld name={"project_skills"} addSkills={addSkills && addSkills} label="Skills" handleChangeSkill={handleChangeSkill} skills={skills} count={count} /> */}
                   <PDTextFIeld
                     name="benchmark"
                     label="Benchmark"

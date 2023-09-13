@@ -3,7 +3,7 @@ import { statusCreateOptions } from "../FIlterOptions";
 import ProjectDetailSelect from "./ProjectDetailSelect";
 import CheckINOutButton from "./CheckInOutButton";
 
-const ProjectDetailsHeader = ({ value, setValue, handleChange, projectDrawer, handleProjectDetailsOpen, handleDetailButton }) => {
+const ProjectDetailsHeader = ({ value, setValue, handleChange, projectDrawer, handleProjectDetailsOpen, handleDetailButton, handleCheckInButton, isDisable, handleCheckOutButton }) => {
   return (
     <Box
       display={"flex"}
@@ -24,7 +24,7 @@ const ProjectDetailsHeader = ({ value, setValue, handleChange, projectDrawer, ha
       </Box>
       {/* 
       {projectDrawer.project_status && <ProjectDetailsButton value={value} handleProjectDetailsOpen={handleProjectDetailsOpen} /> } */}
-      <CheckINOutButton handleDetailButton={handleDetailButton} />
+      <CheckINOutButton handleCheckOutButton={handleCheckOutButton} isDisable={isDisable} handleCheckInButton={handleCheckInButton} handleDetailButton={handleDetailButton} />
     </Box>
   );
 };

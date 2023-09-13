@@ -3,7 +3,7 @@ import React from "react";
 import u_multiply from "../../../assets/images/crosIcon.svg";
 import CheckINOutButton from "./ProjectDetailsFull/CheckInOutButton";
 
-const ProjectModalHeader = ({ handleCreateProjectClose, modalTitle, isPageDetail }) => {
+const ProjectModalHeader = ({ handleCreateProjectClose, modalTitle, isPageDetail, handleCheckInButton, isDisable, handleCheckOutButton }) => {
   return (
     <Box
       sx={{
@@ -48,7 +48,7 @@ const ProjectModalHeader = ({ handleCreateProjectClose, modalTitle, isPageDetail
         </Grid>
         <Grid item xs={2} sx={{ justifyContent: "right", paddingRight: "2%" }}>
           {isPageDetail ? (
-            <CheckINOutButton fromDetails={"true"} />
+            <CheckINOutButton handleCheckOutButton={handleCheckOutButton} isDisable={isDisable} handleCheckInButton={handleCheckInButton} fromDetails={"true"} />
           ) : (
             <Button onClick={handleCreateProjectClose}>
               <img style={{ width: "20px" }} alt="cross" src={u_multiply} />

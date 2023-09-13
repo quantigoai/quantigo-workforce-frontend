@@ -1,16 +1,17 @@
 import { Button, Typography } from "@mui/material";
 import React from "react";
 
-const DetailsButton = ({ handleProjectDetailsOpen }) => {
+const DetailsButton = ({ handleProjectDetailsOpen, handleDetailButton }) => {
   return (
     <Button
-      onClick={handleProjectDetailsOpen}
+      onClick={handleDetailButton}
       sx={{
         backgroundColor: "#F2F6FC",
         color: "black",
         fontSize: "14px",
         border: "1px solid #E6ECF5",
         "&:hover": { border: "1px solid #E6ECF5" },
+        mr: 2,
       }}
       variant="outlined"
     >

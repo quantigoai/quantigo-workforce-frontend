@@ -96,7 +96,7 @@ const Header = ({ openDrawer }) => {
         <Box
           sx={{
             mx: 0,
-            py: 2,
+            py: 1,
             px: 0,
             paddingLeft: openDrawer ? "16%" : "5%",
             // backgroundColor: "green",

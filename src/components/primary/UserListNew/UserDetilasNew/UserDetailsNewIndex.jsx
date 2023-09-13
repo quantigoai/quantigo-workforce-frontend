@@ -58,8 +58,7 @@ export default function UserDetailsNewIndex({ user }) {
       id: user._id,
       action: actionStatus,
     };
-    console.log(finalData);
-    console.log(finalStatusData);
+    
     roleValue &&
       dispatch(changeRole(finalData)).then((action) => {
         if (action.payload?.status === 200) {
@@ -94,7 +93,7 @@ export default function UserDetailsNewIndex({ user }) {
 
   return (
     <>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button onClick={handleOpen}>Details</Button>
       <Modal
         open={open}
         onClose={handleClose}

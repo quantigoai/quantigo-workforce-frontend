@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { getAllSkills } from "../../../../features/slice/skillSlice";
 import { useDispatch } from "react-redux";
+import { getAllSkills } from "../../../../features/slice/skillSlice";
 
 const useAllFunc = (myColumn) => {
   const [filterValue, setFilterValue] = useState({});

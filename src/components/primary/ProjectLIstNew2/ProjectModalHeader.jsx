@@ -11,8 +11,7 @@ const ProjectModalHeader = ({ handleCreateProjectClose, modalTitle, isPageDetail
         width: "100%",
         background: isPageDetail ? "white" : "#F2F6FC",
         borderRadius: "8px",
-      }}
-    >
+      }}>
       <Grid
         container
         sx={{
@@ -20,17 +19,15 @@ const ProjectModalHeader = ({ handleCreateProjectClose, modalTitle, isPageDetail
           display: "flex",
           alignItems: "center",
           borderRadius: "8px",
-        }}
-      >
-        <Grid item xs={10} sx={{ paddingLeft: "3%" }}>
+        }}>
+        <Grid item xs={11} sx={{ paddingLeft: "3%" }}>
           <Typography
             variant="h6"
             sx={{
               color: "#3C4D6B",
               fontSize: "16px",
               fontWeight: "600",
-            }}
-          >
+            }}>
             {modalTitle}
           </Typography>
           {isPageDetail && (
@@ -40,13 +37,12 @@ const ProjectModalHeader = ({ handleCreateProjectClose, modalTitle, isPageDetail
                 color: "#091E42",
                 fontSize: "12px",
                 fontWeight: "400",
-              }}
-            >
+              }}>
               Available for you
             </Typography>
           )}
         </Grid>
-        <Grid item xs={2} sx={{ justifyContent: "right", paddingRight: "2%" }}>
+        <Grid item xs={1} sx={{ justifyContent: "right" }}>
           {isPageDetail ? (
             <CheckINOutButton fromDetails={"true"} />
           ) : (

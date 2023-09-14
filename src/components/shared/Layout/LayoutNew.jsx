@@ -335,7 +335,7 @@ export default function LayoutNew({ children }) {
               color: "#FFFFFF",
               // backgroundColor: "red",
               // fontSize: "14px",
-              fontSize: { xl: "14px", lg: "12px", md: "12px" },
+              fontSize: { xl: "14px", lg: "13px", md: "12px" },
               justifyContent: "left",
             }}
           />

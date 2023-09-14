@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import * as React from "react";
 import { useAlert } from "react-alert";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changeRole, deleteOrActivateUser } from "../../../../features/slice/userSlice";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 import DetailsTab from "./DetailsTab";
@@ -36,6 +36,7 @@ export default function UserDetailsNewIndex({ user }) {
 
   const [actionStatus, setActionStatus] = React.useState("");
   const [disabledButton, setDisabledButton] = React.useState(false);
+  const { isLoading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const alert = useAlert();
   const handleSetStatus = (e) => {
@@ -90,7 +91,7 @@ export default function UserDetailsNewIndex({ user }) {
         }
       });
   };
-  console.log("test");
+
   return (
     <>
       <Button onClick={handleOpen}>Details</Button>
@@ -118,11 +119,7 @@ export default function UserDetailsNewIndex({ user }) {
                 width: "0", // Hide the scrollbar
               },
             }}>
-            <DetailsTab
-              user={user}
-              handleSetRole={handleSetRole}
-              handleSetStatus={handleSetStatus}
-            />
+            <DetailsTab user={user} handleSetRole={handleSetRole} handleSetStatus={handleSetStatus} />
           </Box>
           <Box
             sx={{
@@ -158,7 +155,7 @@ export default function UserDetailsNewIndex({ user }) {
               <Grid item xs={6}>
                 <Grid container sx={{ justifyContent: "right" }}>
                   <Button
-                    disabled={!disabledButton}
+                    disabled={isLoading || !disabledButton}
                     sx={{
                       width: "128px",
                       textTransform: "none",

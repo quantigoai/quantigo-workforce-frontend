@@ -100,7 +100,7 @@ const LineChartExple = () => {
     },
   };
   return (
-    <Box  sx={{ width: "95%" }}>
+    <Box  sx={{ width: "100%" }}>
       <Line options={options} data={data}>
         Hello
       </Line>

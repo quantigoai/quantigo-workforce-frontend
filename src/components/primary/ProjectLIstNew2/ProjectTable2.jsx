@@ -100,7 +100,7 @@ const ProjectTable2 = ({
                           if (col.field === "createdBy") {
                             return (
                               <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                                <Typography sx={{ color: "#253E5C" }} variant="p">
+                                <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
                                   {row[col?.field] || "Tanzim"}
                                 </Typography>
                               </TableCell>
@@ -109,7 +109,7 @@ const ProjectTable2 = ({
                           if (col.field === "benchmark") {
                             return (
                               <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                                <Typography sx={{ color: "#253E5C" }} variant="p">
+                                <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
                                   {row[col?.field] || "10 sec"}
                                 </Typography>
                               </TableCell>
@@ -118,7 +118,7 @@ const ProjectTable2 = ({
                           if (col.field === "estimated_end_date") {
                             return (
                               <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                                <Typography sx={{ color: "#253E5C" }} variant="p">
+                                <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
                                   {row[col?.field] || "20 july 2023"}
                                 </Typography>
                               </TableCell>
@@ -127,7 +127,7 @@ const ProjectTable2 = ({
                           if (col.field === "guideline") {
                             return (
                               <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                                <Typography sx={{ color: "#253E5C" }} variant="p">
+                                <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
                                   <Link
                                     sx={{
                                       textDecoration: "none",
@@ -168,7 +168,7 @@ const ProjectTable2 = ({
                                 component="th"
                                 scope="row"
                               >
-                                <Typography sx={{ color: "#253E5C", cursor: "pointer" }} variant="p">
+                                <Typography sx={{ color: "#253E5C", cursor: "pointer" }} variant="wf_p2_semiBold">
                                   {row[col?.field]}
                                 </Typography>
                               </TableCell>
@@ -176,7 +176,7 @@ const ProjectTable2 = ({
                           } else if (col.field === "total_time") {
                             return (
                               <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                                <Typography sx={{ color: "#253E5C" }} variant="p">
+                                <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
                                   {calculateTimeDifference(row)}
                                 </Typography>
                               </TableCell>
@@ -184,7 +184,7 @@ const ProjectTable2 = ({
                           } else if (col.field === "checkedInDate" || col.field === "checkedOutDate") {
                             return (
                               <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                                <Typography sx={{ color: "#253E5C" }} variant="p">
+                                <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
                                   {/* TODO Add working chip here */}
                                   {row[col?.field] ? formatDate(row[col?.field]) : "Working ⛑️"}
                                 </Typography>
@@ -194,7 +194,7 @@ const ProjectTable2 = ({
                             return (
                               <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
                                 {/* TODO Add working chip here  */}
-                                <Typography sx={{ color: "#253E5C" }} variant="p">
+                                <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
                                   {row[col?.field] ? formatTime(row[col?.field]) : "Working ⛑️"}
                                 </Typography>
                               </TableCell>
@@ -202,7 +202,7 @@ const ProjectTable2 = ({
                           } else {
                             return (
                               <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                                <Typography sx={{ color: "#253E5C" }} variant="p">
+                                <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
                                   {row[col?.field]}
                                 </Typography>
                               </TableCell>

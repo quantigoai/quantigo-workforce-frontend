@@ -15,16 +15,7 @@ export const MySelect = styled(Select)(() => ({
   background: "none",
 }));
 
-export default function PDSelectField({
-  name,
-  helperText,
-  options,
-  label,
-  setValue,
-  defaultValue,
-
-  ...other
-}) {
+export default function PDSelectField({ name, helperText, options, label, setValue, defaultValue, ...other }) {
   const { control } = useFormContext();
 
   return (
@@ -36,7 +27,18 @@ export default function PDSelectField({
           <MyFormControl fullWidth>
             <Typography sx={{ fontSize: "14px", fontWeight: "500", mb: 1 }}>{label}</Typography>
 
-            <MySelect labelId="demo-simple-select-autowidth-label" id="demo-simple-select-autowidth" {...field} variant="outlined" placeholder="Select" sx={{ height: "50%", backgroundColor: "none" }} defaultValue={defaultValue} error={!!error} helperText={error ? error?.message : helperText} {...other}>
+            <MySelect
+              labelId="demo-simple-select-autowidth-label"
+              id="demo-simple-select-autowidth"
+              {...field}
+              variant="outlined"
+              placeholder="Select"
+              sx={{ height: "50%", backgroundColor: "none" }}
+              defaultValue={defaultValue}
+              error={!!error}
+              helperText={error ? error?.message : helperText}
+              {...other}
+            >
               {options.map((option) => (
                 <MenuItem key={option.value} fullWidth value={(() => setValue(field.name, field.value), option.value)}>
                   {option.label}

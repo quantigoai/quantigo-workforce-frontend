@@ -107,7 +107,7 @@ const ProjectModal = ({
                     name={"project_platform"}
                     label="Platform"
                     options={platformCreateOptions}
-                    defaultValue={"Select"}
+                    defaultValue={""}
                   />
                   <PDTextFIeld
                     name="project_drawer_name"
@@ -123,7 +123,7 @@ const ProjectModal = ({
                     name={"project_type"}
                     label="Project Type"
                     options={projectTypeCreateOptions}
-                    defaultValue={"Select"}
+                    defaultValue={""}
                   />
                   <PDTextFIeld
                     name="project_batch"
@@ -190,7 +190,7 @@ const ProjectModal = ({
                     name={"project_status"}
                     label="Status"
                     options={statusCreateOptions}
-                    defaultValue="Select"
+                    defaultValue={""}
                   />
                 </Stack>
 

@@ -66,6 +66,13 @@ const theme = createTheme({
       letterSpacing: "0em",
       textAlign: "left",
     },
+    wf_p2_semiBold: {
+      fontWeight: "500",
+      fontSize: "14px",
+      lineHeight: "16px",
+      letterSpacing: "0em",
+      textAlign: "left",
+    },
   },
   select: {
     height: "58px",
@@ -121,6 +128,15 @@ const theme = createTheme({
 });
 
 theme.typography.wf_h6 = {
+  [theme.breakpoints.up("lg")]: {
+    fontSize: "12px",
+  },
+  [theme.breakpoints.up("xl")]: {
+    fontSize: "14px",
+  },
+};
+
+theme.typography.wf_p2_semiBold = {
   [theme.breakpoints.up("lg")]: {
     fontSize: "12px",
   },

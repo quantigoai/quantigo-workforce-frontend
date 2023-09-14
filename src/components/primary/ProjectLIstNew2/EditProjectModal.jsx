@@ -28,7 +28,21 @@ const style = {
   p: 0,
 };
 
-const EditProjectModal = ({ editModalOpen, handleEditProjectClose, projectDrawer, setEditModalOpen, platformCreateOptions, projectTypeCreateOptions, statusCreateOptions, isEditModal, handleEditSkill, editCount, editSkills, skills, onSubmit }) => {
+const EditProjectModal = ({
+  editModalOpen,
+  handleEditProjectClose,
+  projectDrawer,
+  setEditModalOpen,
+  platformCreateOptions,
+  projectTypeCreateOptions,
+  statusCreateOptions,
+  isEditModal,
+  handleEditSkill,
+  editCount,
+  editSkills,
+  skills,
+  onSubmit,
+}) => {
   const { prevSkills } = useHandleEditChange();
 
   const [addDoc, setAddDoc] = useState([]);
@@ -82,11 +96,19 @@ const EditProjectModal = ({ editModalOpen, handleEditProjectClose, projectDrawer
       >
         <Fade in={editModalOpen}>
           <Box sx={style}>
-            <ProjectModalHeader handleCreateProjectClose={handleEditProjectClose} modalTitle={`Edit ${projectDrawer.project_drawer_name}`} />
+            <ProjectModalHeader
+              handleCreateProjectClose={handleEditProjectClose}
+              modalTitle={`Edit ${projectDrawer.project_drawer_name}`}
+            />
             <Box sx={{ paddingLeft: "3%", paddingTop: "2%", paddingRight: "3%" }}>
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  <PDSelectField name={"project_platform"} label="Platform" options={platformCreateOptions} defaultValue={projectDrawer.project_platform} />
+                  <PDSelectField
+                    name={"project_platform"}
+                    label="Platform"
+                    options={platformCreateOptions}
+                    defaultValue={projectDrawer.project_platform}
+                  />
                   <PDTextFIeld
                     name="project_drawer_name"
                     label="Project Name"
@@ -98,7 +120,12 @@ const EditProjectModal = ({ editModalOpen, handleEditProjectClose, projectDrawer
                 </Stack>
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
                   {" "}
-                  <PDSelectField name={"project_type"} label="Project Type" options={projectTypeCreateOptions} defaultValue={projectDrawer.project_type} />
+                  <PDSelectField
+                    name={"project_type"}
+                    label="Project Type"
+                    options={projectTypeCreateOptions}
+                    defaultValue={projectDrawer.project_type}
+                  />
                   <PDTextFIeld
                     name="project_batch"
                     label="Batch"
@@ -137,7 +164,16 @@ const EditProjectModal = ({ editModalOpen, handleEditProjectClose, projectDrawer
                 {/* <SkillField/> */}
 
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  <PDskillFIeld name={"project_skills"} addSkills={editSkills} selectedSkills={prevSkills} isEdit={true} label="Skills" handleChangeSkill={handleEditSkill} skills={skills} count={editCount} />
+                  <PDskillFIeld
+                    name={"project_skills"}
+                    addSkills={editSkills}
+                    selectedSkills={prevSkills}
+                    isEdit={true}
+                    label="Skills"
+                    handleChangeSkill={handleEditSkill}
+                    skills={skills}
+                    count={editCount}
+                  />
                   <PDTextFIeld
                     name="benchmark"
                     label="Benchmark"
@@ -155,7 +191,12 @@ const EditProjectModal = ({ editModalOpen, handleEditProjectClose, projectDrawer
                       disableUnderline: true,
                     }}
                   />
-                  <PDSelectField name={"project_status"} label="Status" options={statusCreateOptions} defaultValue={projectDrawer.project_status} />
+                  <PDSelectField
+                    name={"project_status"}
+                    label="Status"
+                    options={statusCreateOptions}
+                    defaultValue={projectDrawer.project_status}
+                  />
                 </Stack>
 
                 <Typography

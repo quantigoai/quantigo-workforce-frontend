@@ -38,7 +38,18 @@ const style = {
   },
 };
 
-const ProjectModal = ({ createProjectOpen, handleCreateProjectClose, statusCreateOptions, platformCreateOptions, projectTypeCreateOptions, handleChangeSkill, count, onSubmit, addSkills, skills }) => {
+const ProjectModal = ({
+  createProjectOpen,
+  handleCreateProjectClose,
+  statusCreateOptions,
+  platformCreateOptions,
+  projectTypeCreateOptions,
+  handleChangeSkill,
+  count,
+  onSubmit,
+  addSkills,
+  skills,
+}) => {
   const [addDoc, setAddDoc] = useState([]);
 
   const handleAddDoc = () => {
@@ -96,7 +107,12 @@ const ProjectModal = ({ createProjectOpen, handleCreateProjectClose, statusCreat
             >
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  <PDSelectField name={"project_platform"} label="Platform" options={platformCreateOptions} defaultValue={"Select"} />
+                  <PDSelectField
+                    name={"project_platform"}
+                    label="Platform"
+                    options={platformCreateOptions}
+                    defaultValue={"Select"}
+                  />
                   <PDTextFIeld
                     name="project_drawer_name"
                     label="Project Name"
@@ -107,7 +123,12 @@ const ProjectModal = ({ createProjectOpen, handleCreateProjectClose, statusCreat
                 </Stack>
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
                   {" "}
-                  <PDSelectField name={"project_type"} label="Project Type" options={projectTypeCreateOptions} defaultValue={"Select"} />
+                  <PDSelectField
+                    name={"project_type"}
+                    label="Project Type"
+                    options={projectTypeCreateOptions}
+                    defaultValue={"Select"}
+                  />
                   <PDTextFIeld
                     name="project_batch"
                     label="Batch"
@@ -143,7 +164,15 @@ const ProjectModal = ({ createProjectOpen, handleCreateProjectClose, statusCreat
                 {/* <SkillField/> */}
 
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  <PDskillFIeld name={"project_skills"} addSkills={addSkills && addSkills} label="Skills" handleChangeSkill={handleChangeSkill} skills={skills} count={count} />
+                  {/* need to fix this */}
+                  <PDskillFIeld
+                    name={"project_skills"}
+                    addSkills={addSkills && addSkills}
+                    label="Skills"
+                    handleChangeSkill={handleChangeSkill}
+                    skills={skills}
+                    count={count}
+                  />
                   <PDTextFIeld
                     name="benchmark"
                     label="Benchmark"
@@ -161,7 +190,12 @@ const ProjectModal = ({ createProjectOpen, handleCreateProjectClose, statusCreat
                       disableUnderline: true,
                     }}
                   />
-                  <PDSelectField name={"project_status"} label="Status" options={statusCreateOptions} defaultValue="Select" />
+                  <PDSelectField
+                    name={"project_status"}
+                    label="Status"
+                    options={statusCreateOptions}
+                    defaultValue="Select"
+                  />
                 </Stack>
 
                 <Typography

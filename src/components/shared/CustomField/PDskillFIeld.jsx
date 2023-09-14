@@ -1,11 +1,17 @@
-import { Box, Chip, MenuItem, Typography } from "@mui/material";
+import { Box, Chip, MenuItem, Select, Typography, styled } from "@mui/material";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { MyFormControl } from "./CustomDatePicker";
-import { MySelect } from "./CustomSelectField";
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
+export const MySelect = styled(Select)(() => ({
+  border: "1px solid #E0E0E0 ",
+  padding: "5px 0px 0px 0px",
+  background: "white",
+  height: "50%",
+  borderRadius: "8px",
+}));
+const ITEM_HEIGHT = 40;
+const ITEM_PADDING_TOP = 2;
 const MenuProps = {
   PaperProps: {
     style: {

@@ -3,7 +3,15 @@ import React from "react";
 import u_multiply from "../../../assets/images/crosIcon.svg";
 import CheckINOutButton from "./ProjectDetailsFull/CheckInOutButton";
 
-const ProjectModalHeader = ({ handleCreateProjectClose, modalTitle, isPageDetail }) => {
+const ProjectModalHeader = ({
+  handleCreateProjectClose,
+  modalTitle,
+  isPageDetail,
+  isDisable,
+  checkOutDisable,
+  handleCheckInButton,
+  handleCheckOutButton,
+}) => {
   return (
     <Box
       sx={{
@@ -22,7 +30,7 @@ const ProjectModalHeader = ({ handleCreateProjectClose, modalTitle, isPageDetail
           borderRadius: "8px",
         }}
       >
-        <Grid item xs={10} sx={{ paddingLeft: "3%" }}>
+        <Grid item xs={isPageDetail ? 10 : 11} sx={{ paddingLeft: "3%" }}>
           <Typography
             variant="h6"
             sx={{
@@ -46,15 +54,23 @@ const ProjectModalHeader = ({ handleCreateProjectClose, modalTitle, isPageDetail
             </Typography>
           )}
         </Grid>
-        <Grid item xs={2} sx={{ justifyContent: "right", paddingRight: "2%" }}>
-          {isPageDetail ? (
-            <CheckINOutButton fromDetails={"true"} />
-          ) : (
+        {isPageDetail ? (
+          <Grid item xs={2} sx={{ justifyContent: "right", paddingRight: "2%" }}>
+            <CheckINOutButton
+              handleCheckInButton={handleCheckInButton}
+              handleCheckOutButton={handleCheckOutButton}
+              isDisable={isDisable}
+              checkOutDisable={checkOutDisable}
+              fromDetails={"true"}
+            />
+          </Grid>
+        ) : (
+          <Grid item xs={1} sx={{ justifyContent: "right", paddingRight: "2%" }}>
             <Button onClick={handleCreateProjectClose}>
               <img style={{ width: "20px" }} alt="cross" src={u_multiply} />
             </Button>
-          )}
-        </Grid>
+          </Grid>
+        )}
       </Grid>
     </Box>
   );

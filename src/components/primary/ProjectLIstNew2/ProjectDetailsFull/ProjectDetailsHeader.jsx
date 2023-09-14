@@ -3,7 +3,18 @@ import { statusCreateOptions } from "../FIlterOptions";
 import ProjectDetailSelect from "./ProjectDetailSelect";
 import CheckINOutButton from "./CheckInOutButton";
 
-const ProjectDetailsHeader = ({ value, setValue, handleChange, projectDrawer, handleProjectDetailsOpen, handleDetailButton, handleCheckInButton, isDisable, handleCheckOutButton }) => {
+const ProjectDetailsHeader = ({
+  value,
+  setValue,
+  handleChange,
+  projectDrawer,
+  handleProjectDetailsOpen,
+  handleDetailButton,
+  handleCheckInButton,
+  isDisable,
+  handleCheckOutButton,
+  checkOutDisable,
+}) => {
   return (
     <Box
       display={"flex"}
@@ -19,12 +30,24 @@ const ProjectDetailsHeader = ({ value, setValue, handleChange, projectDrawer, ha
         <Typography variant="body">{projectDrawer.project_drawer_name} </Typography>
 
         <Box sx={{ ml: 2 }}>
-          <ProjectDetailSelect defaultVal={projectDrawer.project_status} value={value} setValue={setValue} options={statusCreateOptions} handleChange={handleChange} />
+          <ProjectDetailSelect
+            defaultVal={projectDrawer.project_status}
+            value={value}
+            setValue={setValue}
+            options={statusCreateOptions}
+            handleChange={handleChange}
+          />
         </Box>
       </Box>
       {/* 
       {projectDrawer.project_status && <ProjectDetailsButton value={value} handleProjectDetailsOpen={handleProjectDetailsOpen} /> } */}
-      <CheckINOutButton handleCheckOutButton={handleCheckOutButton} isDisable={isDisable} handleCheckInButton={handleCheckInButton} handleDetailButton={handleDetailButton} />
+      <CheckINOutButton
+        checkOutDisable={checkOutDisable}
+        handleCheckOutButton={handleCheckOutButton}
+        isDisable={isDisable}
+        handleCheckInButton={handleCheckInButton}
+        handleDetailButton={handleDetailButton}
+      />
     </Box>
   );
 };

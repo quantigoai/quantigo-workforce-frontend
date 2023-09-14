@@ -6,18 +6,14 @@ import Button from "@mui/material/Button";
 import Fade from "@mui/material/Fade";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import React, { useRef, useState } from "react";
-import { useAlert } from "react-alert";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
-import { createProjectDrawer } from "../../../features/slice/projectDrawerSlice";
+import PDSelectField from "../../shared/CustomField/PDSelectField";
 import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
+import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
 import FormProvider from "../../shared/FormProvider/FormProvider";
 import ProjectModalHeader from "./ProjectModalHeader";
-import PDSelectField from "../../shared/CustomField/PDSelectField";
-import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
-import useHandleChange from "./Hooks/useHandleChange";
 const style = {
   position: "absolute",
   top: "50%",
@@ -38,7 +34,18 @@ const style = {
   },
 };
 
-const ProjectModal = ({ createProjectOpen, handleCreateProjectClose, statusCreateOptions, platformCreateOptions, projectTypeCreateOptions, handleChangeSkill, count, onSubmit, addSkills, skills }) => {
+const ProjectModal = ({
+  createProjectOpen,
+  handleCreateProjectClose,
+  statusCreateOptions,
+  platformCreateOptions,
+  projectTypeCreateOptions,
+  handleChangeSkill,
+  count,
+  onSubmit,
+  addSkills,
+  skills,
+}) => {
   const [addDoc, setAddDoc] = useState([]);
 
   const handleAddDoc = () => {
@@ -96,7 +103,12 @@ const ProjectModal = ({ createProjectOpen, handleCreateProjectClose, statusCreat
             >
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  <PDSelectField name={"project_platform"} label="Platform" options={platformCreateOptions} defaultValue={"Select"} />
+                  <PDSelectField
+                    name={"project_platform"}
+                    label="Platform"
+                    options={platformCreateOptions}
+                    defaultValue={"Select"}
+                  />
                   <PDTextFIeld
                     name="project_drawer_name"
                     label="Project Name"
@@ -107,7 +119,12 @@ const ProjectModal = ({ createProjectOpen, handleCreateProjectClose, statusCreat
                 </Stack>
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
                   {" "}
-                  <PDSelectField name={"project_type"} label="Project Type" options={projectTypeCreateOptions} defaultValue={"Select"} />
+                  <PDSelectField
+                    name={"project_type"}
+                    label="Project Type"
+                    options={projectTypeCreateOptions}
+                    defaultValue={"Select"}
+                  />
                   <PDTextFIeld
                     name="project_batch"
                     label="Batch"
@@ -143,8 +160,15 @@ const ProjectModal = ({ createProjectOpen, handleCreateProjectClose, statusCreat
                 {/* <SkillField/> */}
 
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                {/* TODO Need to fix this  */}
-                  {/* <PDskillFIeld name={"project_skills"} addSkills={addSkills && addSkills} label="Skills" handleChangeSkill={handleChangeSkill} skills={skills} count={count} /> */}
+                  {/* TODO  need to fix this */}
+                  <PDskillFIeld
+                    name={"project_skills"}
+                    addSkills={addSkills && addSkills}
+                    label="Skills"
+                    handleChangeSkill={handleChangeSkill}
+                    skills={skills}
+                    count={count}
+                  />
                   <PDTextFIeld
                     name="benchmark"
                     label="Benchmark"
@@ -162,7 +186,12 @@ const ProjectModal = ({ createProjectOpen, handleCreateProjectClose, statusCreat
                       disableUnderline: true,
                     }}
                   />
-                  <PDSelectField name={"project_status"} label="Status" options={statusCreateOptions} defaultValue="Select" />
+                  <PDSelectField
+                    name={"project_status"}
+                    label="Status"
+                    options={statusCreateOptions}
+                    defaultValue="Select"
+                  />
                 </Stack>
 
                 <Typography

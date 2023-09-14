@@ -20,7 +20,9 @@ import { useAlert } from "react-alert";
 
 const FullProjectDetails = () => {
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
-  const { projectDrawer, usersWorkHistory, usersWorkHistoryCount } = useSelector((state) => state.projectDrawer);
+  const { isLoading, projectDrawer, usersWorkHistory, usersWorkHistoryCount } = useSelector(
+    (state) => state.projectDrawer
+  );
   const [value, setValue] = React.useState(projectDrawer.project_status);
   const [detailCol, setDetailCol] = useState([]);
   const [detailRow, setDetailRow] = useState([]);
@@ -30,11 +32,12 @@ const FullProjectDetails = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
   const [isDisable, setIsDisable] = useState(false);
+  const [checkOutDisable, setCheckOutDisable] = useState(false);
   const navigate = useNavigate();
   const handleChange = (event) => {
     setValue(event.target.value);
   };
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingDetails, setIsLoadingDetails] = useState(true);
 
   const [pagination, setPagination] = useState({
     currentPage: 0,
@@ -42,8 +45,8 @@ const FullProjectDetails = () => {
   });
 
   useEffect(() => {
-    setIsLoading(false);
-    if (!isLoading) {
+    setIsLoadingDetails(false);
+    if (!isLoadingDetails) {
       setDetailCol(fieldBuilder(singleDetailsFields));
       setDetailRow(dataBuilder(usersWorkHistory));
       if (currentlyCheckedInProject === id || currentlyCheckedInProject !== null) {
@@ -52,7 +55,7 @@ const FullProjectDetails = () => {
         setIsDisable(false);
       }
     }
-  }, [usersWorkHistory, currentlyCheckedInProject, pagination, id, isLoading]);
+  }, [usersWorkHistory, currentlyCheckedInProject, pagination, id, isLoadingDetails]);
 
   const {
     handleCreateProjectClose,
@@ -77,6 +80,9 @@ const FullProjectDetails = () => {
 
   const handleCheckInButton = () => {
     const data = { id: id };
+    if (!isLoading) {
+      setIsDisable(true);
+    }
     dispatch(checkInProjectDrawerById(data)).then((action) => {
       if (action.payload?.status === 200) {
         dispatch(updateUserWorkingProject(data.id));
@@ -90,17 +96,23 @@ const FullProjectDetails = () => {
   };
   const handleCheckOutButton = () => {
     const data = { id: id };
+    if (!isLoading) {
+      setCheckOutDisable(true);
+    }
     dispatch(checkOutProjectDrawerById(data)).then((action) => {
       if (action.payload?.status === 200) {
         dispatch(clearUserWorkingProject());
         alert.show(action.payload.data.message, { type: "success" });
         setIsDisable(false);
+        setCheckOutDisable(false);
       } else if (action.error) {
         alert.show(action.error.message, { type: "error" });
         setIsDisable(true);
+        setCheckOutDisable(false);
       } else {
         alert.show(action.error.message, { type: "error" });
         setIsDisable(true);
+        setCheckOutDisable(false);
       }
     });
   };
@@ -118,7 +130,7 @@ const FullProjectDetails = () => {
   return (
     <Box className="projectBox">
       <Box sx={{ backgroundColor: "#F2F6FC", width: "100%" }}>
-        {!isLoading && (
+        {!isLoadingDetails && (
           <ProjectDetailsHeader
             handleProjectDetailsOpen={handleProjectDetailsOpen}
             value={value}
@@ -126,6 +138,7 @@ const FullProjectDetails = () => {
             handleChange={handleChange}
             projectDrawer={projectDrawer}
             isDisable={isDisable}
+            checkOutDisable={checkOutDisable}
             handleDetailButton={handleDetailButton}
             handleCheckInButton={handleCheckInButton}
             handleCheckOutButton={handleCheckOutButton}
@@ -148,7 +161,7 @@ const FullProjectDetails = () => {
           height: "100%",
         }}
       >
-        {!isLoading && (
+        {!isLoadingDetails && (
           <ProjectTable2
             myColumn={detailCol}
             myRows={detailRow}

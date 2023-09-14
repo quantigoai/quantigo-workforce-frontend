@@ -27,30 +27,37 @@ const style = {
 };
 const DetailsPage = () => {
   const [isDisable, setIsDisable] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingDetails, setIsLoadingDetails] = useState(true);
+  const { isLoading, projectDrawer, usersWorkHistory, usersWorkHistoryCount } = useSelector(
+    (state) => state.projectDrawer
+  );
   const alert = useAlert();
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { projectDrawer } = useSelector((state) => state.projectDrawer);
+  const [checkOutDisable, setCheckOutDisable] = useState(false);
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
+  console.log("🚀 ~ file: DetailsPage.jsx:39 ~ DetailsPage ~ currentlyCheckedInProject:", currentlyCheckedInProject);
 
   useEffect(() => {
-    setIsLoading(false);
+    setIsLoadingDetails(false);
   }, [projectDrawer]);
 
   useEffect(() => {
-    setIsLoading(false);
-    if (isLoading) {
+    setIsLoadingDetails(false);
+    if (isLoadingDetails) {
       if (currentlyCheckedInProject === id || currentlyCheckedInProject !== null) {
         setIsDisable(true);
       } else if (currentlyCheckedInProject === null) {
         setIsDisable(false);
       }
     }
-  }, [isLoading, currentlyCheckedInProject]);
+  }, [isLoadingDetails, currentlyCheckedInProject]);
 
   const handleCheckInButton = () => {
     const data = { id: id };
+    if (!isLoading) {
+      setIsDisable(true);
+    }
     dispatch(checkInProjectDrawerById(data)).then((action) => {
       if (action.payload?.status === 200) {
         dispatch(updateUserWorkingProject(data.id));
@@ -64,24 +71,37 @@ const DetailsPage = () => {
   };
   const handleCheckOutButton = () => {
     const data = { id: id };
+    if (!isLoading) {
+      setCheckOutDisable(true);
+    }
     dispatch(checkOutProjectDrawerById(data)).then((action) => {
       if (action.payload?.status === 200) {
         dispatch(clearUserWorkingProject());
         alert.show(action.payload.data.message, { type: "success" });
         setIsDisable(false);
+        setCheckOutDisable(false);
       } else if (action.error) {
         alert.show(action.error.message, { type: "error" });
         setIsDisable(true);
+        setCheckOutDisable(false);
       } else {
         // dispatch(clearUserWorkingProject());
         alert.show(action.error.message, { type: "error" });
         setIsDisable(true);
+        setCheckOutDisable(false);
       }
     });
   };
   return (
     <Box sx={style}>
-      <ProjectModalHeader handleCheckInButton={handleCheckInButton} isDisable={isDisable} handleCheckOutButton={handleCheckOutButton} isPageDetail={"true"} modalTitle={"Project Details"} />
+      <ProjectModalHeader
+        isDisable={isDisable}
+        checkOutDisable={checkOutDisable}
+        handleCheckInButton={handleCheckInButton}
+        handleCheckOutButton={handleCheckOutButton}
+        isPageDetail={"true"}
+        modalTitle={"Project Details"}
+      />
       <Alert
         sx={{
           borderRadius: "8px",
@@ -97,7 +117,8 @@ const DetailsPage = () => {
         variant="filled"
         severity="info"
       >
-        You need to have these skills to work on this project. Complete these courses to get the required skills and come back
+        You need to have these skills to work on this project. Complete these courses to get the required skills and
+        come back
       </Alert>
       <Box sx={{ padding: "1%" }}>
         <Stack
@@ -112,7 +133,12 @@ const DetailsPage = () => {
           <DetailsItem Item1Title={"Alias"} Item1={"Qai_Bone"} Item2Title={"Project Type"} Item2={"Video"} />
 
           <DetailsItem Item1Title={"PDR"} Item1={2} Item2Title={"Completed Course"} Item2={"No Course"} />
-          <DetailsItem Item1Title={"Benchmark"} Item1={"10 sec/object, 5 sec/tag"} Item2Title={"Estimated end Time"} Item2={"No Course"} />
+          <DetailsItem
+            Item1Title={"Benchmark"}
+            Item1={"10 sec/object, 5 sec/tag"}
+            Item2Title={"Estimated end Time"}
+            Item2={"No Course"}
+          />
           <SingleItem ItemTitle={"Status"} Item={"Pending"} />
           <SingleItem ItemTitle={"Skills"} Item={"bsjkdfsaf"} />
           {/* document Item List */}

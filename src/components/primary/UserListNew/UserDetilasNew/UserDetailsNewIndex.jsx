@@ -90,7 +90,7 @@ export default function UserDetailsNewIndex({ user }) {
         }
       });
   };
-  console.log("test");
+
   return (
     <>
       <Button onClick={handleOpen}>Details</Button>
@@ -98,13 +98,15 @@ export default function UserDetailsNewIndex({ user }) {
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
+        aria-describedby="modal-modal-description"
+      >
         <Box
           sx={{
             ...style,
             height: { xl: "80%", lg: "90%" },
             width: { xl: "40%", lg: "50%" },
-          }}>
+          }}
+        >
           <Box sx={{ flex: "0 0 5%" }}>
             <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Details"} />
           </Box>
@@ -117,12 +119,9 @@ export default function UserDetailsNewIndex({ user }) {
               "&::-webkit-scrollbar": {
                 width: "0", // Hide the scrollbar
               },
-            }}>
-            <DetailsTab
-              user={user}
-              handleSetRole={handleSetRole}
-              handleSetStatus={handleSetStatus}
-            />
+            }}
+          >
+            <DetailsTab user={user} handleSetRole={handleSetRole} handleSetStatus={handleSetStatus} />
           </Box>
           <Box
             sx={{
@@ -136,7 +135,8 @@ export default function UserDetailsNewIndex({ user }) {
 
               bottom: "0px",
               borderRadius: "8px",
-            }}>
+            }}
+          >
             <Grid container sx={{ padding: "2%" }}>
               <Grid item xs={6}>
                 <Button
@@ -151,7 +151,8 @@ export default function UserDetailsNewIndex({ user }) {
                       color: "#62728F",
                       border: "1px solid #F4F7FE",
                     },
-                  }}>
+                  }}
+                >
                   Cancel
                 </Button>
               </Grid>
@@ -176,7 +177,8 @@ export default function UserDetailsNewIndex({ user }) {
                         // border: "1px solid #2E58FF",
                       },
                     }}
-                    onClick={() => handleChange()}>
+                    onClick={() => handleChange()}
+                  >
                     Save Changes
                   </Button>
                 </Grid>

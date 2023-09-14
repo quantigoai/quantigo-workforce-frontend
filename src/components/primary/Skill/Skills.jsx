@@ -90,7 +90,7 @@ const Skills = () => {
     data.description = description;
 
     dispatch(createASkill(data)).then((action) => {
-      if (action.error.message) {
+      if (action.error) {
         alert.show(action.error.message, { type: "error" });
       }
       if (action.payload.status === 200 || action.payload.status === 201) {

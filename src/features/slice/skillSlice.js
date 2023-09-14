@@ -47,14 +47,13 @@ export const getASkill = createAsyncThunk("get/A/skill", async (id) => {
 
 // create skill
 export const createASkill = createAsyncThunk("create/A/skill", async (data) => {
-  try{
-
+  try {
     return axios.post(`${url}/skills`, data, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
     });
-  } catch(error) {
+  } catch (error) {
     throw new Error(error.response.data);
   }
 });
@@ -131,7 +130,6 @@ const skillSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(createASkill.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.error = null;
         state.skills = state.skills.map((skill) => {
           if (skill._id !== action.payload.data._id) {
@@ -140,8 +138,9 @@ const skillSlice = createSlice({
             return action.payload.data;
           }
         });
+        state.isLoading = false;
       })
-      .addCase(createASkill.rejected, (state,action) => {
+      .addCase(createASkill.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.data;
       })

@@ -60,5 +60,5 @@ export const singleDetailsFields = [
   { field: "checkedInTime", width: 200 },
   { field: "checkedOutDate", width: 200 },
   { field: "checkedOutTime", width: 200 },
-  { field: "total_time", width: 400 },
+  { field: "workingTimeInMs", width: 400 },
 ];

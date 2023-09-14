@@ -51,22 +51,20 @@ export const formatTime = (inputTime) => {
   return formattedTime;
 };
 
-export const calculateTimeDifference = (checkInData) => {
-  const { checkedInDate, checkedInTime, checkedOutDate, checkedOutTime } = checkInData;
-  if (!checkedOutDate && !checkedOutTime) {
+export const calculateTimeDifference = (timeDifferenceMs) => {
+  if (!timeDifferenceMs) {
     return "Not Checked Out";
   }
-  const checkInDateTime = new Date(`${checkedInDate}T${checkedInTime}`);
-  const checkOutDateTime = new Date(`${checkedOutDate}T${checkedOutTime}`);
-
-  // Calculate the time difference in milliseconds
-  const timeDifferenceMs = checkOutDateTime - checkInDateTime;
 
   const totalSeconds = Math.floor(timeDifferenceMs / 1000);
   const hours = Math.floor(totalSeconds / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
 
-  const formattedTimeDifference = `${hours} hrs ${minutes} mins`;
+  // TODO  remove comments  from time difference
+  // const seconds = Math.floor((totalSeconds % 3600) % 60);
+  // const formattedTimeDifference = `${hours} hrs ${minutes} mins ${seconds} secs`;
+
+  const formattedTimeDifference = `${hours} hrs ${minutes} mins `;
 
   return formattedTimeDifference;
 };

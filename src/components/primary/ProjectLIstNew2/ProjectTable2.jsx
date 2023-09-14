@@ -173,11 +173,11 @@ const ProjectTable2 = ({
                                 </Typography>
                               </TableCell>
                             );
-                          } else if (col.field === "total_time") {
+                          } else if (col.field === "workingTimeInMs") {
                             return (
                               <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
                                 <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
-                                  {calculateTimeDifference(row)}
+                                  {calculateTimeDifference(row[col?.field])}
                                 </Typography>
                               </TableCell>
                             );

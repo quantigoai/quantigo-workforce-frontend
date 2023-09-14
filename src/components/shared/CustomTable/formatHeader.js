@@ -77,7 +77,7 @@ const customHeader = (params) => {
       return "CHECK OUT DATE";
     case "checkedOutTime":
       return "CHECK OUT TIME";
-    case "total_time":
+    case "workingTimeInMs":
       return "TOTAL TIME";
     default:
       return params;

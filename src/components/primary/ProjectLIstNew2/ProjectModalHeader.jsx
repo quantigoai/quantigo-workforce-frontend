@@ -1,5 +1,4 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
-import React from "react";
 import u_multiply from "../../../assets/images/crosIcon.svg";
 import CheckINOutButton from "./ProjectDetailsFull/CheckInOutButton";
 

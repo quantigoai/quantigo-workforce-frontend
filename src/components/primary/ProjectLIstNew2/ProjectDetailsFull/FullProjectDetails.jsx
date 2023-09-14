@@ -58,20 +58,14 @@ const FullProjectDetails = () => {
   }, [usersWorkHistory, currentlyCheckedInProject, pagination, id, isLoadingDetails]);
 
   const {
-    handleCreateProjectClose,
-    createProjectOpen,
     detailsProjectOpen,
-    handleProjectCreateOpen,
+
     handleProjectDetailsOpen,
     handleDetailsProjectClose,
-    setCreateProjectOpen,
-    handleClearFilter,
-    filterValue,
+
     handleCount,
     handleId,
     filteredCol,
-    handleIsFilter,
-    isFilter,
   } = useAllFunc(detailCol);
 
   const handleDetailButton = () => {

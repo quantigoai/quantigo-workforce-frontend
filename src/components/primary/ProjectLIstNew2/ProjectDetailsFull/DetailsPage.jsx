@@ -1,5 +1,5 @@
 import { Alert, Box, Stack } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import BoxItem from "../Project2Details/BoxItem";
 import DetailsItem from "../Project2Details/DetailsItem";
 import SingleItem from "../Project2Details/SingleItem";
@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { checkInProjectDrawerById, checkOutProjectDrawerById } from "../../../../features/slice/projectDrawerSlice";
-import { clearUserWorkingProject, readMyProfile, updateUserWorkingProject } from "../../../../features/slice/userSlice";
+import { clearUserWorkingProject, updateUserWorkingProject } from "../../../../features/slice/userSlice";
 
 const style = {
   width: "100%",
@@ -28,9 +28,7 @@ const style = {
 const DetailsPage = () => {
   const [isDisable, setIsDisable] = useState(false);
   const [isLoadingDetails, setIsLoadingDetails] = useState(true);
-  const { isLoading, projectDrawer, usersWorkHistory, usersWorkHistoryCount } = useSelector(
-    (state) => state.projectDrawer
-  );
+  const { isLoading, projectDrawer } = useSelector((state) => state.projectDrawer);
 
   const alert = useAlert();
   const dispatch = useDispatch();

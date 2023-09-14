@@ -1,5 +1,4 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
-import React from "react";
 import ProjectDrawerStatusChip from "../../../shared/FilterField/ProjectDrawerStatusChip";
 
 const SingleItem = ({ ItemTitle, Item }) => {

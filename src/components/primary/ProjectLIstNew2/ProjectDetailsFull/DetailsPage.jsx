@@ -31,12 +31,12 @@ const DetailsPage = () => {
   const { isLoading, projectDrawer, usersWorkHistory, usersWorkHistoryCount } = useSelector(
     (state) => state.projectDrawer
   );
+
   const alert = useAlert();
   const dispatch = useDispatch();
   const { id } = useParams();
   const [checkOutDisable, setCheckOutDisable] = useState(false);
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
-  console.log("🚀 ~ file: DetailsPage.jsx:39 ~ DetailsPage ~ currentlyCheckedInProject:", currentlyCheckedInProject);
 
   useEffect(() => {
     setIsLoadingDetails(false);
@@ -129,18 +129,33 @@ const DetailsPage = () => {
             //   background: "#FAFCFF",
           }}
         >
-          <DetailsItem Item1Title={"Project Name"} Item1={"Car Annotation"} Item2Title={"Batch"} Item2={3} />
-          <DetailsItem Item1Title={"Alias"} Item1={"Qai_Bone"} Item2Title={"Project Type"} Item2={"Video"} />
+          <DetailsItem
+            Item1Title={"Project Name"}
+            Item1={projectDrawer.project_drawer_name}
+            Item2Title={"Batch"}
+            Item2={projectDrawer.project_batch}
+          />
+          <DetailsItem
+            Item1Title={"Alias"}
+            Item1={projectDrawer.project_alias}
+            Item2Title={"Project Type"}
+            Item2={projectDrawer.project_type}
+          />
 
-          <DetailsItem Item1Title={"PDR"} Item1={2} Item2Title={"Completed Course"} Item2={"No Course"} />
+          <DetailsItem
+            Item1Title={"PDR"}
+            Item1={projectDrawer.pdr}
+            Item2Title={"Completed Course"}
+            Item2={"No Course"}
+          />
           <DetailsItem
             Item1Title={"Benchmark"}
             Item1={"10 sec/object, 5 sec/tag"}
             Item2Title={"Estimated end Time"}
             Item2={"No Course"}
           />
-          <SingleItem ItemTitle={"Status"} Item={"Pending"} />
-          <SingleItem ItemTitle={"Skills"} Item={"bsjkdfsaf"} />
+          <SingleItem ItemTitle={"Status"} Item={projectDrawer.project_status} />
+          <SingleItem ItemTitle={"Skills"} Item={projectDrawer.project_skills} />
           {/* document Item List */}
           <BoxItem />
         </Stack>

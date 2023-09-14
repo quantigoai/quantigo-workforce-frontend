@@ -116,7 +116,7 @@ const ProjectLIstIndex2 = () => {
   };
   //create and edit project submit
 
-  const { handleChangeSkill, addSkills, count } = useHandleChange();
+  const { handleChangeSkill, addSkills, setAddSkills, count } = useHandleChange();
 
   const { handleEditSkill, filteredSkillInfo, editCount, prevSkills, editSkills } = useHandleEditChange();
 
@@ -153,12 +153,13 @@ const ProjectLIstIndex2 = () => {
       const newData = { ...data, project_skills: skillId };
 
       dispatch(createProjectDrawer(newData)).then((action) => {
-        if (action.error?.message) {
-          alert.show(action.error?.message, { type: "error" });
+        if (action.error) {
+          alert.show(action.error.message, { type: "error" });
         }
         if (action.payload?.status === 201) {
           alert.show(action.payload.data.message, { type: "success" });
           setCreateProjectOpen(false);
+          setAddSkills([]);
         }
       });
     }

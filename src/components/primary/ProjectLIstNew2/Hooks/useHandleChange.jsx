@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { createProjectDrawer } from "../../../../features/slice/projectDrawerSlice";
-import useAllFunc from "./useAllFunc";
 import { useAlert } from "react-alert";
+import { useSelector } from "react-redux";
 
 const useHandleChange = () => {
   const { skills } = useSelector((state) => state.skill);
@@ -28,6 +26,7 @@ const useHandleChange = () => {
   return {
     handleChangeSkill,
     addSkills,
+    setAddSkills,
     count,
   };
 };

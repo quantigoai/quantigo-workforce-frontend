@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   checkInProjectDrawerById,
   checkOutProjectDrawerById,
+  getMyWorkHistoryById,
   getUsersWorkHistoryById,
 } from "../../../../features/slice/projectDrawerSlice";
 import { clearUserWorkingProject, updateUserWorkingProject } from "../../../../features/slice/userSlice";
@@ -112,13 +113,23 @@ const FullProjectDetails = () => {
   };
 
   const handleChangePagination = useCallback(() => {
-    dispatch(
-      getUsersWorkHistoryById({
-        pagination,
-        ascDescOption: filteredCol,
-        id: projectDrawer._id,
-      })
-    );
+    if (role === "admin") {
+      dispatch(
+        getUsersWorkHistoryById({
+          pagination,
+          ascDescOption: filteredCol,
+          id: projectDrawer._id,
+        })
+      );
+    } else {
+      dispatch(
+        getMyWorkHistoryById({
+          pagination,
+          ascDescOption: filteredCol,
+          id: projectDrawer._id,
+        })
+      );
+    }
   }, [dispatch, pagination, filteredCol, projectDrawer._id]);
 
   return (
@@ -134,7 +145,6 @@ const FullProjectDetails = () => {
             projectDrawer={projectDrawer}
             isDisable={isDisable}
             checkOutDisable={checkOutDisable}
-            
             handleDetailButton={handleDetailButton}
             handleCheckInButton={handleCheckInButton}
             handleCheckOutButton={handleCheckOutButton}

@@ -164,6 +164,27 @@ export const getUsersWorkHistoryById = createAsyncThunk("/project-drawer/details
   }
 });
 
+export const getMyWorkHistoryById = createAsyncThunk("/project-drawer/details/get-my-work-history", async (data) => {
+  try {
+    const { pagination, filteredData, ascDescOption, id } = data;
+    let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
+
+    const ascDescOptions = Object.keys(ascDescOption);
+    if (ascDescOptions.length === 0) {
+      query += `&sortBy=checkedInDate:desc&sortBy=checkedInTime:desc`;
+    }
+    ascDescOptions.map((ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`));
+
+    return await axios.get(`${url}/project-drawer/my-work-history/${id}?${query}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
 const projectDrawerSlice = createSlice({
   name: "projectDrawer",
   initialState: initialState,
@@ -301,6 +322,22 @@ const projectDrawerSlice = createSlice({
         state.error = null;
       })
       .addCase(getUsersWorkHistoryById.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.usersWorkHistoryCount = 0;
+        state.usersWorkHistory = [];
+        state.isLoading = false;
+      })
+      .addCase(getMyWorkHistoryById.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getMyWorkHistoryById.fulfilled, (state, action) => {
+        state.usersWorkHistoryCount = action.payload.data.projectDrawer.totalCount;
+        state.usersWorkHistory = action.payload.data.projectDrawer.checkedInUsersHistory;
+
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getMyWorkHistoryById.rejected, (state, action) => {
         state.error = action.error.message;
         state.usersWorkHistoryCount = 0;
         state.usersWorkHistory = [];

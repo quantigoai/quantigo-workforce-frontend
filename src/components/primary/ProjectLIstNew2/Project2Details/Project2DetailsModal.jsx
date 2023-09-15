@@ -79,7 +79,7 @@ const Project2DetailsModal = ({ detailsProjectOpen, handleProjectDetailsOpen, ha
                   Item2Title={"Estimated end Time"}
                   Item2={"No Course"}
                 />
-                <SingleItem ItemTitle={"Status"} Item={projectDrawer.project_status} />
+                <SingleItem ItemTitle={"Status"} Item={projectDrawer?.project_status} />
                 <SingleItem ItemTitle={"Skills"} Item={projectDrawer.project_skills} />
                 {/* document Item List */}
                 <BoxItem />

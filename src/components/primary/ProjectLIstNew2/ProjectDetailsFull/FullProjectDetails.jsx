@@ -129,7 +129,7 @@ const FullProjectDetails = () => {
   return (
     <Box className="projectBox">
       <Box sx={{ backgroundColor: "#F2F6FC", width: "100%" }}>
-        {!isLoadingDetails && (
+        {!isLoadingDetails && detailRow.length > 0 && (
           <ProjectDetailsHeader
             role={role}
             handleProjectDetailsOpen={handleProjectDetailsOpen}
@@ -154,27 +154,29 @@ const FullProjectDetails = () => {
           />
         </Box>
       )}
-      <Box
-        sx={{
-          width: "100%",
-          mt: "10px",
-          height: "100%",
-        }}
-      >
-        {!isLoadingDetails && (
-          <ProjectTable2
-            myColumn={detailCol}
-            myRows={detailRow}
-            pagination={pagination}
-            setPagination={setPagination}
-            handleChangePagination={handleChangePagination}
-            totalItems={usersWorkHistoryCount}
-            handleId={handleId}
-            filteredCol={filteredCol}
-            handleProjectDetailsOpen={handleProjectDetailsOpen}
-          />
-        )}
-      </Box>
+      {!isLoadingDetails && (
+        <Box
+          sx={{
+            width: "100%",
+            mt: "10px",
+            height: "100%",
+          }}
+        >
+          {
+            <ProjectTable2
+              myColumn={detailCol}
+              myRows={detailRow}
+              pagination={pagination}
+              setPagination={setPagination}
+              handleChangePagination={handleChangePagination}
+              totalItems={usersWorkHistoryCount}
+              handleId={handleId}
+              filteredCol={filteredCol}
+              handleProjectDetailsOpen={handleProjectDetailsOpen}
+            />
+          }
+        </Box>
+      )}
     </Box>
   );
 };

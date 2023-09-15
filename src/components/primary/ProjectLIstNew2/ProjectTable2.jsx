@@ -42,6 +42,7 @@ const ProjectTable2 = ({
   filteredCol,
   handleCount,
   handleProjectDetailsOpen,
+  role,
 }) => {
   const { isLoading } = useSelector((state) => state.projectDrawer);
 
@@ -152,6 +153,7 @@ const ProjectTable2 = ({
                             return (
                               <TableCell key={col.id} component="th" scope="row">
                                 <CustomButton
+                                  role={role}
                                   handleProjectDetailsOpen={handleProjectDetailsOpen}
                                   params={row}
                                   handleClick={handleClick}

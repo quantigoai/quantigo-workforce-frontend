@@ -60,6 +60,7 @@ const ProjectLIstIndex2 = () => {
   const [myRows, setMyRows] = useState([]);
   const [isEditModal, setIsEditModal] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
+  const [annotatorPlatform, setAnnotatorPlatform] = useState();
 
   const alert = useAlert();
   const {
@@ -85,6 +86,7 @@ const ProjectLIstIndex2 = () => {
     pageSize: 10,
   });
   const { projectDrawers, projectDrawer, total, error } = useSelector((state) => state.projectDrawer);
+  const { role } = useSelector((state) => state.user.user);
 
   useEffect(() => {
     dispatch(setActivePath("All Projects2"));
@@ -171,6 +173,16 @@ const ProjectLIstIndex2 = () => {
     };
     dispatch(setCurrentProjectDrawer(myData.id));
     navigate(`/projectDetails/${myData.id}`);
+  };
+
+  const handleChangeAnnotatorFilter = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setAnnotatorPlatform(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
   };
 
   return (
@@ -273,6 +285,8 @@ const ProjectLIstIndex2 = () => {
         {isFilter && (
           <Box sx={{ backgroundColor: "#FFFFFF", width: "100%", padding: "5px" }}>
             <ProjectSelectFIlter
+            handleChangeAnnotatorFilter={handleChangeAnnotatorFilter}
+              role={role}
               filterPDR={filterPDR}
               platformOptions={platformOptions}
               statusOptions={statusOptions}
@@ -294,6 +308,7 @@ const ProjectLIstIndex2 = () => {
           }}
         >
           <ProjectTable2
+            role={role}
             handleDetailsPage={handleDetailsPage}
             handleClick={handleClick}
             handleDelete={handleDelete}

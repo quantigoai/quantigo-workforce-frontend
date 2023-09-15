@@ -14,6 +14,7 @@ import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import PaginationTable from "./PaginationTable";
 import SortingButton from "./Project2Details/SortingButton";
 import "./index.css";
+import DetailsPage from "./ProjectDetailsFull/DetailsPage";
 
 /**
  * @param {object} pagination - pagination object
@@ -43,6 +44,7 @@ const ProjectTable2 = ({
   handleProjectDetailsOpen,
   role,
 }) => {
+  console.log("🚀 ~ file: ProjectTable2.jsx:47 ~ role:", role);
   const { isLoading } = useSelector((state) => state.projectDrawer);
 
   return (
@@ -215,10 +217,12 @@ const ProjectTable2 = ({
                   })}
                 </TableBody>
               </Table>
-            ) : (
+            ) : role === "admin" ? (
               <Alert Alert severity="error">
                 No Users history found for this project!
               </Alert>
+            ) : (
+              <DetailsPage />
             )}
           </>
         )}

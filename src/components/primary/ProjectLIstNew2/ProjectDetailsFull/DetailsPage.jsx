@@ -43,13 +43,16 @@ const DetailsPage = () => {
   useEffect(() => {
     setIsLoadingDetails(false);
     if (isLoadingDetails) {
-      if (currentlyCheckedInProject === id || currentlyCheckedInProject !== null) {
-        setIsDisable(true);
-      } else if (currentlyCheckedInProject === null) {
+      if (!currentlyCheckedInProject || currentlyCheckedInProject === null) {
         setIsDisable(false);
       }
+      // user  currentlyCheckedInProject field match with id
+
+      if (currentlyCheckedInProject) {
+        setIsDisable(true);
+      }
     }
-  }, [isLoadingDetails, currentlyCheckedInProject]);
+  }, [isLoadingDetails, currentlyCheckedInProject, id]);
 
   const handleCheckInButton = () => {
     const data = { id: id };

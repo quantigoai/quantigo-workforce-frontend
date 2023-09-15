@@ -15,7 +15,7 @@ const SingleItem = ({ ItemTitle, Item }) => {
             {ItemTitle === "Skills" ? (
               <>
                 <Grid container>
-                  {Item.map((p) => (
+                  {Item?.map((p) => (
                     <>
                       <Box key={p._id} sx={{ paddingRight: "1%" }}>
                         <ProjectDrawerStatusChip key={p._id} value={p.name} />

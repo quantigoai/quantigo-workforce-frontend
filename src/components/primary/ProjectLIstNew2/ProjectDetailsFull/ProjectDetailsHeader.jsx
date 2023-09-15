@@ -16,6 +16,7 @@ const ProjectDetailsHeader = ({
   handleCheckOutButton,
   checkOutDisable,
   role,
+  handleOpen,
 }) => {
   return (
     <Box
@@ -48,6 +49,7 @@ const ProjectDetailsHeader = ({
         <ProjectDetailsButton role={role} value={value} handleProjectDetailsOpen={handleProjectDetailsOpen} />
       ) : (
         <CheckINOutButton
+          handleOpen={handleOpen}
           checkOutDisable={checkOutDisable}
           handleCheckOutButton={handleCheckOutButton}
           isDisable={isDisable}

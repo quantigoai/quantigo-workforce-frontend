@@ -18,6 +18,8 @@ import ProjectTable2 from "../ProjectTable2";
 import ProjectDetailsHeader from "./ProjectDetailsHeader";
 
 import { useAlert } from "react-alert";
+import CheckOutModal from "./CheckOutModal";
+import DetailsPage from "./DetailsPage";
 
 const FullProjectDetails = () => {
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
@@ -29,8 +31,13 @@ const FullProjectDetails = () => {
   const [value, setValue] = React.useState(projectDrawer.project_status);
   const [detailCol, setDetailCol] = useState([]);
   const [detailRow, setDetailRow] = useState([]);
+  console.log("🚀 ~ file: FullProjectDetails.jsx:34 ~ FullProjectDetails ~ detailRow:", detailRow);
 
   const { id } = useParams();
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -52,10 +59,15 @@ const FullProjectDetails = () => {
     if (!isLoadingDetails) {
       setDetailCol(fieldBuilder(singleDetailsFields));
       setDetailRow(dataBuilder(usersWorkHistory));
-      if (currentlyCheckedInProject === id || currentlyCheckedInProject !== null) {
-        setIsDisable(true);
-      } else if (currentlyCheckedInProject === null) {
+
+      // user  currentlyCheckedInProject field not available
+      if (!currentlyCheckedInProject || currentlyCheckedInProject === null) {
         setIsDisable(false);
+      }
+      // user  currentlyCheckedInProject field match with id
+
+      if (currentlyCheckedInProject) {
+        setIsDisable(true);
       }
     }
   }, [usersWorkHistory, currentlyCheckedInProject, pagination, id, isLoadingDetails]);
@@ -94,14 +106,17 @@ const FullProjectDetails = () => {
         alert.show(action.payload.data.message, { type: "success" });
         setIsDisable(false);
         setCheckOutDisable(false);
+        setOpen(false);
       } else if (action.error) {
         alert.show(action.error.message, { type: "error" });
         setIsDisable(true);
         setCheckOutDisable(false);
+        setOpen(false);
       } else {
         alert.show(action.error.message, { type: "error" });
         setIsDisable(true);
         setCheckOutDisable(false);
+        setOpen(false);
       }
     });
   };
@@ -129,8 +144,9 @@ const FullProjectDetails = () => {
   return (
     <Box className="projectBox">
       <Box sx={{ backgroundColor: "#F2F6FC", width: "100%" }}>
-        {!isLoadingDetails && detailRow.length > 0 && (
+        {!isLoadingDetails && detailRow?.length > 0 && (
           <ProjectDetailsHeader
+            handleOpen={handleOpen}
             role={role}
             handleProjectDetailsOpen={handleProjectDetailsOpen}
             value={value}
@@ -141,7 +157,6 @@ const FullProjectDetails = () => {
             checkOutDisable={checkOutDisable}
             handleDetailButton={handleDetailButton}
             handleCheckInButton={handleCheckInButton}
-            handleCheckOutButton={handleCheckOutButton}
           />
         )}
       </Box>
@@ -164,6 +179,7 @@ const FullProjectDetails = () => {
         >
           {
             <ProjectTable2
+              role={role}
               myColumn={detailCol}
               myRows={detailRow}
               pagination={pagination}
@@ -177,6 +193,9 @@ const FullProjectDetails = () => {
           }
         </Box>
       )}
+      <Box>
+        <CheckOutModal handleCheckOutButton={handleCheckOutButton} open={open} handleClose={handleClose} />
+      </Box>
     </Box>
   );
 };

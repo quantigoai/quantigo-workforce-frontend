@@ -11,12 +11,17 @@ const CheckINOutButton = ({
   isDisable,
   handleCheckOutButton,
   checkOutDisable,
+  handleOpen,
 }) => {
   return (
     <Box display={"flex"} alignItems={"center"} justifyContent={"space-between"}>
       {!fromDetails && <DetailsButton handleDetailButton={handleDetailButton} />}
       <CheckInButton isDisable={isDisable} handleCheckInButton={handleCheckInButton} />
-      <CheckOutButton checkOutDisable={checkOutDisable} handleCheckOutButton={handleCheckOutButton} />
+      <CheckOutButton
+        handleOpen={handleOpen}
+        checkOutDisable={checkOutDisable}
+        handleCheckOutButton={handleCheckOutButton}
+      />
     </Box>
   );
 };

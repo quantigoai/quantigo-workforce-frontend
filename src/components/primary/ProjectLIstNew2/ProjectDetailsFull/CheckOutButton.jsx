@@ -1,11 +1,11 @@
 import { Button } from "@mui/material";
 import React from "react";
 
-const CheckOutButton = ({ checkOutDisable, handleCheckOutButton }) => {
+const CheckOutButton = ({ checkOutDisable, handleCheckOutButton, handleOpen }) => {
   return (
     <Button
       disabled={checkOutDisable}
-      onClick={handleCheckOutButton}
+      onClick={handleOpen}
       sx={{
         border: "1px solid rgba(255, 71, 87, 0.12)",
         background: "rgba(255, 71, 87, 0.12)",

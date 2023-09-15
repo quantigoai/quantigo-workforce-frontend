@@ -47,6 +47,7 @@ const ProjectModal = ({
   skills,
 }) => {
   const [addDoc, setAddDoc] = useState([]);
+  console.log("🚀 ~ file: ProjectModal.jsx:50 ~ addDoc:", addDoc);
 
   const handleAddDoc = () => {
     const newDoc = [...addDoc, []];

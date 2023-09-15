@@ -1,10 +1,10 @@
 import { Button, Typography } from "@mui/material";
 import React from "react";
 
-const DetailsButton = ({ handleProjectDetailsOpen, handleDetailButton }) => {
+const DetailsButton = ({ handleProjectDetailsOpen, handleDetailButton, role }) => {
   return (
     <Button
-      onClick={handleDetailButton}
+      onClick={role === "admin" ? handleProjectDetailsOpen : handleDetailButton}
       sx={{
         backgroundColor: "#F2F6FC",
         color: "black",

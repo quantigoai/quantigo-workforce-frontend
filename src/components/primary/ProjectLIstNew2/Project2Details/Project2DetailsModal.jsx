@@ -5,6 +5,7 @@ import ProjectModalHeader from "../ProjectModalHeader";
 import DetailsItem from "./DetailsItem";
 import SingleItem from "./SingleItem";
 import BoxItem from "./BoxItem";
+import { useSelector } from "react-redux";
 const style = {
   position: "absolute",
   top: "50%",
@@ -24,11 +25,8 @@ const style = {
     height: "20px",
   },
 };
-const Project2DetailsModal = ({
-  detailsProjectOpen,
-  handleProjectDetailsOpen,
-  handleDetailsProjectClose,
-}) => {
+const Project2DetailsModal = ({ detailsProjectOpen, handleProjectDetailsOpen, handleDetailsProjectClose }) => {
+  const { isLoading, projectDrawer } = useSelector((state) => state.projectDrawer);
   return (
     <>
       <Modal
@@ -42,13 +40,11 @@ const Project2DetailsModal = ({
           backdrop: {
             timeout: 500,
           },
-        }}>
+        }}
+      >
         <Fade in={detailsProjectOpen}>
           <Box sx={style}>
-            <ProjectModalHeader
-              handleCreateProjectClose={handleDetailsProjectClose}
-              modalTitle={"Project Details"}
-            />
+            <ProjectModalHeader handleCreateProjectClose={handleDetailsProjectClose} modalTitle={"Project Details"} />
             <Box sx={{ padding: "3%" }}>
               <Stack
                 sx={{
@@ -56,34 +52,35 @@ const Project2DetailsModal = ({
                   //   padding: "16px",
                   borderRadius: "8px",
                   //   background: "#FAFCFF",
-                }}>
+                }}
+              >
                 <DetailsItem
                   Item1Title={"Project Name"}
-                  Item1={"Car Annotation"}
+                  Item1={projectDrawer.project_drawer_name}
                   Item2Title={"Batch"}
-                  Item2={3}
+                  Item2={projectDrawer.project_batch}
                 />
                 <DetailsItem
                   Item1Title={"Alias"}
-                  Item1={"Qai_Bone"}
+                  Item1={projectDrawer.project_alias}
                   Item2Title={"Project Type"}
-                  Item2={"Video"}
+                  Item2={projectDrawer.project_type}
                 />
 
                 <DetailsItem
                   Item1Title={"PDR"}
-                  Item1={2}
+                  Item1={projectDrawer.pdr}
                   Item2Title={"Completed Course"}
                   Item2={"No Course"}
                 />
                 <DetailsItem
                   Item1Title={"Benchmark"}
-                  Item1={"10 sec/object, 5 sec/tag"}
+                  Item1={projectDrawer.benchMark ? projectDrawer.benchMark : "10 sec/object, 5 sec/tag"}
                   Item2Title={"Estimated end Time"}
                   Item2={"No Course"}
                 />
-                <SingleItem ItemTitle={"Status"} Item={"Pending"} />
-                <SingleItem ItemTitle={"Skills"} Item={"bsjkdfsaf"} />
+                <SingleItem ItemTitle={"Status"} Item={projectDrawer.project_status} />
+                <SingleItem ItemTitle={"Skills"} Item={projectDrawer.project_skills} />
                 {/* document Item List */}
                 <BoxItem />
               </Stack>

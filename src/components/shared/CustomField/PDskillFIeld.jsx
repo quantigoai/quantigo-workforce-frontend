@@ -63,7 +63,7 @@ const PDskillFIeld = ({
                   {selected?.map((value, i) => [0].includes(i) && <Chip key={value} label={value} />)}
                   {isEdit
                     ? selectedSkills.length > 1 && (
-                        <Typography variant="h7" sx={{ ml: 2, mt: 0.5 }}>
+                        <Typography variant="p" sx={{ ml: 2, mt: 0.5 }}>
                           {" "}
                           + {count} more
                         </Typography>

@@ -7,16 +7,17 @@ import { useAlert } from "react-alert";
 const useHandleEditChange = () => {
   const { projectDrawer } = useSelector((state) => state.projectDrawer);
   const { skills } = useSelector((state) => state.skill);
-  const dispatch = useDispatch();
   const [prevSkills, setPrevSkills] = useState(projectDrawer.project_skills);
   const [editSkills, setEditSkills] = useState([]);
   const [editCount, setEditCount] = useState();
+
   const { setEditModalOpen } = useAllFunc();
   const alert = useAlert();
 
   useEffect(() => {
     setEditCount(prevSkills?.length - 1);
-  }, [prevSkills, projectDrawer]);
+    setPrevSkills(projectDrawer.project_skills);
+  }, [prevSkills?.length, projectDrawer.project_skills]);
 
   const handleEditSkill = (event) => {
     const {
@@ -28,9 +29,7 @@ const useHandleEditChange = () => {
 
     setEditCount(value.length - 1);
 
-    setEditSkills(
-      typeof selectedSkills === "string" ? value.split(",") : selectedSkills
-    );
+    setEditSkills(typeof selectedSkills === "string" ? value.split(",") : selectedSkills);
   };
 
   const filteredSkillInfo = editSkills.map((skill) => ({

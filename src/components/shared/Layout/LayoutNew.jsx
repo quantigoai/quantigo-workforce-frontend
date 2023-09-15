@@ -192,6 +192,7 @@ export default function LayoutNew({ children }) {
 
   const anntatorOptions = [
     { name: "Dashboard", icon: DashboardSvg },
+    { name: "All Projects2", icon: ProjectSvg },
     { name: "Course", icon: CourseSvg },
     { name: "Jobs", icon: JobSvg },
     // { name: "Payment", icon: PaymentSvg },
@@ -324,7 +325,8 @@ export default function LayoutNew({ children }) {
             },
           }}
           className="responsive-drawer"
-          onClick={() => handleOptionClick(text.name)}>
+          onClick={() => handleOptionClick(text.name)}
+        >
           <ListItemIcon sx={{ color: "#FFFFFF", minWidth: "45px" }}>
             <img src={text.icon} />
           </ListItemIcon>
@@ -350,12 +352,14 @@ export default function LayoutNew({ children }) {
         display: "flex",
         flexDirection: "row",
         gap: 2,
-      }}>
+      }}
+    >
       <Box
         sx={{
           height: "100vh",
           width: open ? "15%" : "4%",
-        }}>
+        }}
+      >
         <Drawer
           PaperProps={{
             sx: {
@@ -363,7 +367,8 @@ export default function LayoutNew({ children }) {
             },
           }}
           variant="permanent"
-          open={open}>
+          open={open}
+        >
           <DrawerHeader>
             <Box sx={{}}>
               <img
@@ -385,11 +390,7 @@ export default function LayoutNew({ children }) {
             {open && (
               <Box sx={{ justifyContent: "left", paddingLeft: { xl: "20%", lg: "1%", md: "1%" } }}>
                 <IconButton onClick={handleDrawerClose}>
-                  {theme.direction === "rtl" ? (
-                    <img src={menuFoldLine} />
-                  ) : (
-                    <img src={menuFoldLine} />
-                  )}
+                  {theme.direction === "rtl" ? <img src={menuFoldLine} /> : <img src={menuFoldLine} />}
                 </IconButton>
               </Box>
             )}
@@ -417,35 +418,19 @@ export default function LayoutNew({ children }) {
           ) : (
             <List>
               {isLoggedIn && role === "admin" && adminOptions.map((text) => handleMenu(text))}
-              {isLoggedIn &&
-                role === "delivery_manager" &&
-                dmOptions.map((text) => handleMenu(text))}
-              {isLoggedIn &&
-                role === "level_1_annotator" &&
-                anntatorOptions.map((text) => handleMenu(text))}
-              {isLoggedIn &&
-                role === "level_2_annotator" &&
-                anntatorOptions.map((text) => handleMenu(text))}
-              {isLoggedIn &&
-                role === "level_3_annotator" &&
-                anntatorOptions.map((text) => handleMenu(text))}
+              {isLoggedIn && role === "delivery_manager" && dmOptions.map((text) => handleMenu(text))}
+              {isLoggedIn && role === "level_1_annotator" && anntatorOptions.map((text) => handleMenu(text))}
+              {isLoggedIn && role === "level_2_annotator" && anntatorOptions.map((text) => handleMenu(text))}
+              {isLoggedIn && role === "level_3_annotator" && anntatorOptions.map((text) => handleMenu(text))}
               {isLoggedIn && role === "trainer" && trainerOptions.map((text) => handleMenu(text))}
               {isLoggedIn && role === "reviewer" && reviewerOptions.map((text) => handleMenu(text))}
-              {isLoggedIn &&
-                role === "engineering_lead" &&
-                devOptions.map((text) => handleMenu(text))}
-              {isLoggedIn &&
-                role === "recruitment_manager" &&
-                recruitOptions.map((text) => handleMenu(text))}
-              {isLoggedIn &&
-                role === "project_lead" &&
-                projectLeadOptions.map((text) => handleMenu(text))}
+              {isLoggedIn && role === "engineering_lead" && devOptions.map((text) => handleMenu(text))}
+              {isLoggedIn && role === "recruitment_manager" && recruitOptions.map((text) => handleMenu(text))}
+              {isLoggedIn && role === "project_lead" && projectLeadOptions.map((text) => handleMenu(text))}
               {isLoggedIn &&
                 role === "project_coordinator" &&
                 projectCoordinatorOptions.map((text) => handleMenu(text))}
-              {isLoggedIn &&
-                role === "project_manager" &&
-                projectManagerOptions.map((text) => handleMenu(text))}
+              {isLoggedIn && role === "project_manager" && projectManagerOptions.map((text) => handleMenu(text))}
               {isLoggedIn &&
                 isVerified &&
                 role === "level_0_annotator" &&
@@ -467,12 +452,14 @@ export default function LayoutNew({ children }) {
           width: open ? "85%" : "96%",
           flexDirection: "column",
           ps: 2,
-        }}>
+        }}
+      >
         <Box
           sx={{
             height: "7vh",
             width: "100%",
-          }}>
+          }}
+        >
           <Header openDrawer={open} />
         </Box>
         <Box
@@ -480,7 +467,8 @@ export default function LayoutNew({ children }) {
             height: "90vh",
             width: "100%",
             overflowY: "auto",
-          }}>
+          }}
+        >
           {isLoggedIn && !isBlocked ? <Box>{children}</Box> : <UserBlocked />}
         </Box>
 

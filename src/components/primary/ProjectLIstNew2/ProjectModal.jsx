@@ -64,7 +64,7 @@ const ProjectModal = ({
     project_alias: Yup.string().required("alias is required"),
     project_batch: Yup.string().required(" batch is required"),
     pdr: Yup.string().required(" pdr is required"),
-    benchmark: Yup.string().required(" benchmark is required"),
+    benchMark: Yup.string().required(" benchMark is required"),
     guideline: Yup.string().required(" document is required"),
     link: Yup.string().required("link is required"),
   });
@@ -160,7 +160,6 @@ const ProjectModal = ({
                 {/* <SkillField/> */}
 
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  {/* TODO  need to fix this */}
                   <PDskillFIeld
                     name={"project_skills"}
                     addSkills={addSkills && addSkills}
@@ -170,7 +169,7 @@ const ProjectModal = ({
                     count={count}
                   />
                   <PDTextFIeld
-                    name="benchmark"
+                    name="benchMark"
                     label="Benchmark"
                     InputProps={{
                       disableUnderline: true,

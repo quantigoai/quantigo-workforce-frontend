@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { statusCreateOptions } from "../FIlterOptions";
 import ProjectDetailSelect from "./ProjectDetailSelect";
 import CheckINOutButton from "./CheckInOutButton";
+import ProjectDetailsButton from "./ProjectDetailsButton";
 
 const ProjectDetailsHeader = ({
   value,
@@ -14,6 +15,7 @@ const ProjectDetailsHeader = ({
   isDisable,
   handleCheckOutButton,
   checkOutDisable,
+  role,
 }) => {
   return (
     <Box
@@ -30,24 +32,29 @@ const ProjectDetailsHeader = ({
         <Typography variant="body">{projectDrawer.project_drawer_name} </Typography>
 
         <Box sx={{ ml: 2 }}>
-          <ProjectDetailSelect
-            defaultVal={projectDrawer.project_status}
-            value={value}
-            setValue={setValue}
-            options={statusCreateOptions}
-            handleChange={handleChange}
-          />
+          {role === "admin" && (
+            <ProjectDetailSelect
+              defaultVal={projectDrawer.project_status}
+              value={value}
+              setValue={setValue}
+              options={statusCreateOptions}
+              handleChange={handleChange}
+            />
+          )}
         </Box>
       </Box>
-      {/* 
-      {projectDrawer.project_status && <ProjectDetailsButton value={value} handleProjectDetailsOpen={handleProjectDetailsOpen} /> } */}
-      <CheckINOutButton
-        checkOutDisable={checkOutDisable}
-        handleCheckOutButton={handleCheckOutButton}
-        isDisable={isDisable}
-        handleCheckInButton={handleCheckInButton}
-        handleDetailButton={handleDetailButton}
-      />
+
+      {projectDrawer.project_status && role === "admin" ? (
+        <ProjectDetailsButton role={role} value={value} handleProjectDetailsOpen={handleProjectDetailsOpen} />
+      ) : (
+        <CheckINOutButton
+          checkOutDisable={checkOutDisable}
+          handleCheckOutButton={handleCheckOutButton}
+          isDisable={isDisable}
+          handleCheckInButton={handleCheckInButton}
+          handleDetailButton={handleDetailButton}
+        />
+      )}
     </Box>
   );
 };

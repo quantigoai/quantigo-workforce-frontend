@@ -23,6 +23,8 @@ const FullProjectDetails = () => {
   const { isLoading, projectDrawer, usersWorkHistory, usersWorkHistoryCount } = useSelector(
     (state) => state.projectDrawer
   );
+  const { role } = useSelector((state) => state.user.user);
+
   const [value, setValue] = React.useState(projectDrawer.project_status);
   const [detailCol, setDetailCol] = useState([]);
   const [detailRow, setDetailRow] = useState([]);
@@ -59,10 +61,8 @@ const FullProjectDetails = () => {
 
   const {
     detailsProjectOpen,
-
     handleProjectDetailsOpen,
     handleDetailsProjectClose,
-
     handleCount,
     handleId,
     filteredCol,
@@ -126,6 +126,7 @@ const FullProjectDetails = () => {
       <Box sx={{ backgroundColor: "#F2F6FC", width: "100%" }}>
         {!isLoadingDetails && (
           <ProjectDetailsHeader
+            role={role}
             handleProjectDetailsOpen={handleProjectDetailsOpen}
             value={value}
             setValue={setValue}
@@ -133,6 +134,7 @@ const FullProjectDetails = () => {
             projectDrawer={projectDrawer}
             isDisable={isDisable}
             checkOutDisable={checkOutDisable}
+            
             handleDetailButton={handleDetailButton}
             handleCheckInButton={handleCheckInButton}
             handleCheckOutButton={handleCheckOutButton}

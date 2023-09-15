@@ -148,7 +148,7 @@ const DetailsPage = () => {
           />
           <DetailsItem
             Item1Title={"Benchmark"}
-            Item1={"10 sec/object, 5 sec/tag"}
+            Item1={projectDrawer.benchMark ? projectDrawer.benchMark : "10 sec/object, 5 sec/tag"}
             Item2Title={"Estimated end Time"}
             Item2={"No Course"}
           />

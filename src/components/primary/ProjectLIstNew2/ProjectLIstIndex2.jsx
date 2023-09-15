@@ -151,6 +151,7 @@ const ProjectLIstIndex2 = () => {
       });
     } else {
       const newData = { ...data, project_skills: skillId };
+      console.log("🚀 ~ file: ProjectLIstIndex2.jsx:154 ~ onSubmit ~ newData:", newData);
 
       dispatch(createProjectDrawer(newData)).then((action) => {
         if (action.error) {
@@ -170,7 +171,6 @@ const ProjectLIstIndex2 = () => {
       id: data._id,
     };
     dispatch(setCurrentProjectDrawer(myData.id));
-    // dispatch(getUsersWorkHistoryById(myData));
     navigate(`/projectDetails/${myData.id}`);
   };
 

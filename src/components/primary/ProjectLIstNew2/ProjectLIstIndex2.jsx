@@ -73,12 +73,11 @@ const ProjectLIstIndex2 = () => {
     handleChange,
     handleClearFilter,
     filterValue,
-    handleCount,
     handleId,
     filteredCol,
     handleIsFilter,
     isFilter,
-  } = useAllFunc(myColumn);
+  } = useAllFunc();
 
   const [pagination, setPagination] = useState({
     currentPage: 0,
@@ -299,7 +298,6 @@ const ProjectLIstIndex2 = () => {
             handleDelete={handleDelete}
             myColumn={myColumn}
             myRows={myRows}
-            handleCount={handleCount}
             pagination={pagination}
             setPagination={setPagination}
             handleChangePagination={handleChangePagination}

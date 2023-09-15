@@ -60,14 +60,8 @@ const FullProjectDetails = () => {
     }
   }, [usersWorkHistory, currentlyCheckedInProject, pagination, id, isLoadingDetails]);
 
-  const {
-    detailsProjectOpen,
-    handleProjectDetailsOpen,
-    handleDetailsProjectClose,
-    handleCount,
-    handleId,
-    filteredCol,
-  } = useAllFunc(detailCol);
+  const { detailsProjectOpen, handleProjectDetailsOpen, handleDetailsProjectClose, handleId, filteredCol } =
+    useAllFunc();
 
   const handleDetailButton = () => {
     navigate(`/detailsInfo/${id}`);
@@ -171,7 +165,6 @@ const FullProjectDetails = () => {
           <ProjectTable2
             myColumn={detailCol}
             myRows={detailRow}
-            handleCount={handleCount}
             pagination={pagination}
             setPagination={setPagination}
             handleChangePagination={handleChangePagination}

@@ -1,13 +1,13 @@
+/* eslint-disable no-prototype-builtins */
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAllSkills } from "../../../../features/slice/skillSlice";
 
-const useAllFunc = (myColumn) => {
+const useAllFunc = () => {
   const [filterValue, setFilterValue] = useState({});
   const dispatch = useDispatch();
   const [createProjectOpen, setCreateProjectOpen] = React.useState(false);
   const [detailsProjectOpen, setDetailsProjectOpen] = React.useState(false);
-  const [fillCount, setFillCount] = useState(0);
 
   const [filteredCol, setFilteredCol] = useState({});
   const [isFilter, setIsFilter] = useState(false);
@@ -35,36 +35,34 @@ const useAllFunc = (myColumn) => {
     project_type: "",
     project_status: "",
   };
-  let newVal;
+
   const handleClearFilter = () => {
     setFilterValue(defaultState);
     setFilteredCol({});
-    // setFillCount(0);
-    newVal = "";
   };
 
   const handleId = (field) => {
-    const filteredCol = myColumn.find((col) => col.field === field);
-    const filteredHeader = filteredCol.field;
-    setFilteredCol((prev) => ({
-      ...prev,
-      [filteredHeader]: newVal,
-    }));
+    setFilteredCol((prev) => {
+      if (prev.hasOwnProperty(field)) {
+        if (prev[field] === "asc") {
+          return {
+            ...prev,
+            [field]: "desc",
+          };
+        } else {
+          delete prev[field];
+          return {
+            ...prev,
+          };
+        }
+      }
+      return {
+        ...prev,
+        [field]: "asc",
+      };
+    });
   };
 
-  const handleCount = () => {
-    setFillCount((prev) => prev + 1);
-    if (fillCount === 0) {
-      newVal = "asc";
-    }
-    if (fillCount === 1) {
-      newVal = "desc";
-    }
-    if (fillCount === 2) {
-      newVal = "";
-      setFillCount(0);
-    }
-  };
   const handleIsFilter = () => {
     setIsFilter(!isFilter);
   };
@@ -81,10 +79,8 @@ const useAllFunc = (myColumn) => {
     handleChange,
     handleClearFilter,
     filterValue,
-    handleCount,
     handleId,
     filteredCol,
-    fillCount,
     handleIsFilter,
     isFilter,
   };

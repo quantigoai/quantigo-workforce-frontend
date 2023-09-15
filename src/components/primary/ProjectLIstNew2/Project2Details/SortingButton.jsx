@@ -1,11 +1,10 @@
 import { Box, Button, Typography } from "@mui/material";
 
-const SortingButton = ({ handleCount, filteredCol, col }) => {
+const SortingButton = ({ filteredCol, col }) => {
   const val = Object.keys(filteredCol);
 
   return (
     <Button
-      onClick={() => handleCount()}
       sx={{
         display: "flex",
         minWidth: "25px",

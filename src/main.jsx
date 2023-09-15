@@ -24,7 +24,7 @@ const options = {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ThemeProvider theme={theme}>
-    <React.StrictMode>
+    {/* <React.StrictMode> */}
       <AlertProvider template={AlertTemplate} {...options}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
@@ -36,6 +36,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           </PersistGate>
         </Provider>
       </AlertProvider>
-    </React.StrictMode>
+    {/* </React.StrictMode> */}
   </ThemeProvider>
 );

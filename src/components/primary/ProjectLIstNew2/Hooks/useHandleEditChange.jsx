@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateProjectDrawerById } from "../../../../features/slice/projectDrawerSlice";
-import useAllFunc from "./useAllFunc";
+import { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
+import { useSelector } from "react-redux";
+import useAllFunc from "./useAllFunc";
 
 const useHandleEditChange = () => {
   const { projectDrawer } = useSelector((state) => state.projectDrawer);

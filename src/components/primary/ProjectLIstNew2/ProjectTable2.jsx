@@ -40,7 +40,6 @@ const ProjectTable2 = ({
   totalItems,
   handleId,
   filteredCol,
-  handleCount,
   handleProjectDetailsOpen,
 }) => {
   const { isLoading } = useSelector((state) => state.projectDrawer);
@@ -76,7 +75,7 @@ const ProjectTable2 = ({
 
                           {col.headerName !== "ACTIONS" && (
                             <Box onClick={() => handleId(col.field)}>
-                              <SortingButton handleCount={handleCount} col={col.field} filteredCol={filteredCol} />
+                              <SortingButton col={col.field} filteredCol={filteredCol} />
                             </Box>
                           )}
                         </Box>

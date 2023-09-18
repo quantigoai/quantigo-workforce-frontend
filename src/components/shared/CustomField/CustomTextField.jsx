@@ -15,7 +15,7 @@ CustomTextField.propTypes = {
   name: PropTypes.string,
   helperText: PropTypes.node,
 };
-const MyTextField = styled(TextField)(() => ({
+export const MyTextField = styled(TextField)(() => ({
   borderRadius: "5px",
   "& .MuiInputBase-root": { height: "100%" },
 }));

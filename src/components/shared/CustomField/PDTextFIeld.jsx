@@ -6,13 +6,14 @@ PDTextFIeld.propTypes = {
   name: PropTypes.string,
   helperText: PropTypes.node,
 };
-const MyTextField = styled(TextField)(() => ({
+export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "2px solid #E6ECF5 !important",
     borderRadius: "10px",
   },
   "& .MuiInputBase-root": { height: "90%", fontSize: "14px" },
 }));
+
 export default function PDTextFIeld({ name, helperText, isNumber, isNumberPdr, InputProps, label, defaultValue, ...other }) {
   const { control } = useFormContext();
 

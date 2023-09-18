@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import React from "react";
-import DateRangePicker from "./DateRangePicker";
+import DateRangeComponent from "./DateRangePicker/DateRangeComponent";
 import DetailChartarButton from "./DetailChartarButton";
 import DetailsButton from "./DetailsButton";
 import DetailsUploadHourBUtton from "./DetailsUploadHourBUtton";
@@ -16,7 +16,8 @@ const ProjectDetailsButton = ({ value, handleProjectDetailsOpen, role }) => {
       {value === "in-Progress" && (
         <>
           {/* <DatePickerProgress /> */}
-          <DateRangePicker />
+
+          <DateRangeComponent />
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
           <DetailChartarButton />
         </>

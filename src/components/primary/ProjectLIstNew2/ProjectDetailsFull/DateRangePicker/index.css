@@ -1,0 +1,32 @@
+/*
+ * Filename: /home/tanzim/workstation/Office/quantigo-workforce-frontend/src/components/primary/ProjectLIstNew2/ProjectDetailsFull/DateRangePicker/index.css
+ * Path: /home/tanzim/workstation/Office/quantigo-workforce-frontend
+ * Created Date: Monday, September 18th 2023, 11:55:44 pm
+ * Author: Tanzim Ahmed
+ * 
+ * Copyright (c) 2023 Tanzim Ahmed
+ */
+
+
+input.inputBox {
+    font-size: 14px;
+  padding: 10px;
+  background-color: #F2F6FC;
+  border: 1px solid #E6ECF5;
+  border-radius: 6px;
+}
+
+
+.calendarWrap {
+  display: inline-block;
+  position: relative;
+}
+
+.calendarElement {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 40px;
+  border: 1px solid #ccc;
+  z-index: 999;
+}

@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { statusCreateOptions } from "../FIlterOptions";
-import ProjectDetailSelect from "./ProjectDetailSelect";
 import CheckINOutButton from "./CheckInOutButton";
+import ProjectDetailSelect from "./ProjectDetailSelect";
 import ProjectDetailsButton from "./ProjectDetailsButton";
 
 const ProjectDetailsHeader = ({
@@ -21,42 +21,62 @@ const ProjectDetailsHeader = ({
   return (
     <Box
       display={"flex"}
-      alignItems={"center"}
+      // alignItems={"center"}
       justifyContent={"space-between"}
       width={"100%"}
       sx={{
+        // backgroundColor: "red",
         backgroundColor: "#F2F6FC",
         borderBottom: "2px solid #F2F6FC",
+        borderRadius: "8px 8px 0px 0px",
       }}
     >
-      <Box display={"flex"} justifyContent={""} alignItems={"Center"}>
-        <Typography variant="body">{projectDrawer.project_drawer_name} </Typography>
+      <Box
+        sx={{
+          // backgroundColor: "green",
+          // backgroundColor: "#F2F6FC",
+          width: "100%",
+          padding: "10px 20px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "Center",
+        }}
+      >
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Typography variant="wpf_p1_semiBold" color="#091E42">
+            {projectDrawer.project_drawer_name}{" "}
+          </Typography>
 
-        <Box sx={{ ml: 2 }}>
-          {role === "admin" && (
-            <ProjectDetailSelect
-              defaultVal={projectDrawer.project_status}
-              value={value}
-              setValue={setValue}
-              options={statusCreateOptions}
-              handleChange={handleChange}
-            />
-          )}
+          <Box sx={{ ml: 2 }}>
+            {role === "admin" && (
+              <ProjectDetailSelect
+                defaultVal={projectDrawer.project_status}
+                value={value}
+                setValue={setValue}
+                options={statusCreateOptions}
+                handleChange={handleChange}
+              />
+            )}
+          </Box>
+        </Box>
+
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <Box>
+            {projectDrawer.project_status && role === "admin" ? (
+              <ProjectDetailsButton role={role} value={value} handleProjectDetailsOpen={handleProjectDetailsOpen} />
+            ) : (
+              <CheckINOutButton
+                handleOpen={handleOpen}
+                checkOutDisable={checkOutDisable}
+                handleCheckOutButton={handleCheckOutButton}
+                isDisable={isDisable}
+                handleCheckInButton={handleCheckInButton}
+                handleDetailButton={handleDetailButton}
+              />
+            )}
+          </Box>
         </Box>
       </Box>
-
-      {projectDrawer.project_status && role === "admin" ? (
-        <ProjectDetailsButton role={role} value={value} handleProjectDetailsOpen={handleProjectDetailsOpen} />
-      ) : (
-        <CheckINOutButton
-          handleOpen={handleOpen}
-          checkOutDisable={checkOutDisable}
-          handleCheckOutButton={handleCheckOutButton}
-          isDisable={isDisable}
-          handleCheckInButton={handleCheckInButton}
-          handleDetailButton={handleDetailButton}
-        />
-      )}
     </Box>
   );
 };

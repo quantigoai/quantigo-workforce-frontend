@@ -148,7 +148,7 @@ const theme = createTheme({
     },
     wpf_h5_medium: {
       fontFamily: "Inter",
-      fontSize: "20px",,
+      fontSize: "20px",
       fontWeight: "500",
       lineHeight: "28px",
       letterSpacing: "0em",

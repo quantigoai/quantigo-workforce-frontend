@@ -41,6 +41,7 @@ const EditProjectModal = ({
   editCount,
   editSkills,
   skills,
+  isEdit,
   onSubmit,
 }) => {
   const { prevSkills } = useHandleEditChange();
@@ -168,8 +169,8 @@ const EditProjectModal = ({
                     name={"project_skills"}
                     addSkills={editSkills}
                     selectedSkills={prevSkills}
-                    isEdit={true}
                     label="Skills"
+                    isEdit={isEdit}
                     handleChangeSkill={handleEditSkill}
                     skills={skills}
                     count={editCount}

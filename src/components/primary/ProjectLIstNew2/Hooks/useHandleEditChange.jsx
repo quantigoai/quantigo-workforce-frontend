@@ -6,9 +6,13 @@ import useAllFunc from "./useAllFunc";
 const useHandleEditChange = () => {
   const { projectDrawer } = useSelector((state) => state.projectDrawer);
   const { skills } = useSelector((state) => state.skill);
+  const [isEdit, setIsEdit] = useState(false);
   const [prevSkills, setPrevSkills] = useState(projectDrawer.project_skills);
+
   const [editSkills, setEditSkills] = useState([]);
-  const [editCount, setEditCount] = useState();
+  const [editCount, setEditCount] = useState(
+    projectDrawer.project_skills.length > 0 ? projectDrawer.project_skills.length : 0
+  );
 
   const { setEditModalOpen } = useAllFunc();
   const alert = useAlert();
@@ -16,7 +20,7 @@ const useHandleEditChange = () => {
   useEffect(() => {
     setEditCount(prevSkills?.length - 1);
     setPrevSkills(projectDrawer.project_skills);
-  }, [prevSkills?.length, projectDrawer.project_skills]);
+  }, [prevSkills?.length, projectDrawer.project_skills, isEdit]);
 
   const handleEditSkill = (event) => {
     const {
@@ -43,7 +47,8 @@ const useHandleEditChange = () => {
     prevSkills,
     editSkills,
     skills,
-    // onSubmit,
+    isEdit,
+    setIsEdit,
   };
 };
 

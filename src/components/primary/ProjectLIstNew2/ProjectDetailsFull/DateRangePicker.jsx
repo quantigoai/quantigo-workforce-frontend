@@ -20,12 +20,11 @@ const DateRangePicker = () => {
             sx={{
               display: "flex",
               alignItems: "center",
-              //   width: "300px",
               width: "55%",
               backgroundColor: "#F2F6FC",
               border: "1px solid #E6ECF5",
               borderRadius: "6px",
-                fontSize: "14px",
+              fontSize: "14px",
             }}
           >
             <DatePicker />

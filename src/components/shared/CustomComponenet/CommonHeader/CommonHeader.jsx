@@ -8,25 +8,12 @@
  */
 import AddIcon from "@mui/icons-material/Add";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import {
-  Alert,
-  AlertTitle,
-  Box,
-  Button,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { Alert, AlertTitle, Box, Button, Grid, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CourseDeleteModal from "../../../primary/Course/CourseDetailsPage/CourseDeleteModal";
 
-const CommonHeader = ({
-  isLoading,
-  title,
-  description,
-  customButton,
-  handleCancel,
-}) => {
+const CommonHeader = ({ isLoading, title, description, customButton, handleCancel }) => {
   const navigate = useNavigate();
   const { course } = useSelector((state) => state.course);
   const { user } = useSelector((state) => state.user);
@@ -90,7 +77,17 @@ const CommonHeader = ({
             }}
             container
           >
-            <Typography variant="h4" style={{ color: "#090080" }}>
+            <Typography
+              sx={{
+                fontSize: "20px",
+                fontWeight: "600",
+                lineHeight: "28px",
+                color: "#3C4D6B",
+                mt: 0.7,
+                fontStyle: "normal",
+              }}
+              variant="h4"
+            >
               {title}
             </Typography>
           </Grid>
@@ -102,9 +99,7 @@ const CommonHeader = ({
                   textAlign: "justify",
                 }}
               >
-                {description?.length > 500
-                  ? description?.substring(0, 500) + "....."
-                  : description}
+                {description?.length > 500 ? description?.substring(0, 500) + "....." : description}
               </Typography>
             </Grid>
           ) : (
@@ -127,24 +122,16 @@ const CommonHeader = ({
               paddingLeft: "0%",
             }}
           >
-            {customButton === "dashboard" ||
-            customButton === "Create User" ||
-            customButton === "null" ? (
+            {customButton === "dashboard" || customButton === "Create User" || customButton === "null" ? (
               <></>
             ) : customButton ? (
               <Grid item xs={6}>
                 {/* {user.role === "trainer" || user.role === "admin" ? ( */}
                 <>
-                  {user.role === "trainer" ||
-                  user.role === "admin" ||
-                  user.role === "delivery_manager" ? (
+                  {user.role === "trainer" || user.role === "admin" || user.role === "delivery_manager" ? (
                     <>
                       <Grid container>
-                        <Grid
-                          item
-                          xs={customButton === "Edit Course" ? 8 : 12}
-                          sx={{ paddingRight: "2%" }}
-                        >
+                        <Grid item xs={customButton === "Edit Course" ? 8 : 12} sx={{ paddingRight: "2%" }}>
                           <Button
                             variant="contained"
                             disabled={isLoading}
@@ -169,11 +156,7 @@ const CommonHeader = ({
                                 justifyContent: "center",
                               }}
                             >
-                              {customButton === "Edit Course" ? (
-                                <ModeEditIcon />
-                              ) : (
-                                <AddIcon />
-                              )}
+                              {customButton === "Edit Course" ? <ModeEditIcon /> : <AddIcon />}
                               {customButton}
                             </Box>
                           </Button>
@@ -213,8 +196,7 @@ const CommonHeader = ({
                 </Grid>
 
                 <Grid item xs={3}>
-                  {title === "Create Job Pool" ||
-                  title === "Create a Benchmark" ? (
+                  {title === "Create Job Pool" || title === "Create a Benchmark" ? (
                     <>
                       <Button
                         variant="contained"

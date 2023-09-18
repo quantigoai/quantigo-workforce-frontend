@@ -449,7 +449,7 @@ export default function LayoutNew({ children }) {
         sx={{
           display: "flex",
           gap: 2,
-          width: open ? "85%" : "96%",
+          width: open ? "88%" : "96%",
           flexDirection: "column",
           ps: 2,
         }}

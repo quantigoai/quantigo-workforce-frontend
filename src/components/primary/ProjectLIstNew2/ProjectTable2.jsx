@@ -44,7 +44,6 @@ const ProjectTable2 = ({
   handleProjectDetailsOpen,
   role,
 }) => {
-  console.log("🚀 ~ file: ProjectTable2.jsx:47 ~ role:", role);
   const { isLoading } = useSelector((state) => state.projectDrawer);
 
   return (
@@ -74,7 +73,9 @@ const ProjectTable2 = ({
                             justifyContent: "start",
                           }}
                         >
-                          {col.headerName}
+                          <Typography sx={{ fontWeight: "600", color: "#7B98BA", fontSize: "12px" }} variant={"p"}>
+                            {col.headerName}
+                          </Typography>
 
                           {col.headerName !== "ACTIONS" && (
                             <Box onClick={() => handleId(col.field)}>

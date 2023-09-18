@@ -9,17 +9,19 @@ ProjectSelectFIlterField.propTypes = {
 export const MySelect = styled(Select)(() => ({
   border: "1px solid #E0E0E0",
   padding: "5px 0px 0px 0px",
-  background: "#F4F7FE",
+  background: "#FFF",
 }));
 
 export default function ProjectSelectFIlterField({ options, label, handleChange, name, filterValue }) {
   return (
-    <MyFormControl sx={{ m: 0.5, minWidth: "23%" }} size="medium">
+    <MyFormControl sx={{ m: 0.5, minWidth: "22%" }} size="small">
       <MySelect
         displayEmpty
         defaultValue={""}
         sx={{
-          height: "50px",
+          height: "36px",
+          padding: "10px 14px",
+          fontSize: "14px",
           borderRadius: "8px",
           "& svg": {
             fill: "#667085",

@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  MenuItem,
-  Select,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Button, MenuItem, Select, Stack, Typography } from "@mui/material";
 import { useCallback, useEffect } from "react";
 
 const paginationOptions = [
@@ -23,12 +16,7 @@ const paginationOptions = [
  * @param {function} handleChangePagination - A callback function invoked when pagination changes.
  * @returns {JSX.Element} - Pagination component for the table.
  */
-const Pagination = ({
-  totalItems,
-  pagination,
-  setPagination,
-  handleChangePagination,
-}) => {
+const Pagination = ({ totalItems, pagination, setPagination, handleChangePagination }) => {
   const itemsPerPage = pagination.pageSize;
 
   useEffect(() => {
@@ -60,19 +48,13 @@ const Pagination = ({
   }, []);
 
   useEffect(() => {
-    handleChangePagination(); 
+    handleChangePagination();
   }, [handleChangePagination, pagination]);
 
   const totalPages = Math.ceil(totalItems / pagination.pageSize);
   const visiblePageCount = 5;
-  const firstVisiblePage = Math.max(
-    0,
-    pagination.currentPage - Math.floor(visiblePageCount / 2)
-  );
-  const lastVisiblePage = Math.min(
-    totalPages - 1,
-    firstVisiblePage + visiblePageCount - 1
-  );
+  const firstVisiblePage = Math.max(0, pagination.currentPage - Math.floor(visiblePageCount / 2));
+  const lastVisiblePage = Math.min(totalPages - 1, firstVisiblePage + visiblePageCount - 1);
   const visiblePageNumbers = Array.from(
     { length: lastVisiblePage - firstVisiblePage + 1 },
     (_, index) => firstVisiblePage + index
@@ -86,7 +68,8 @@ const Pagination = ({
       sx={{
         display: "flex",
         width: "100%",
-        padding: "5px",
+        paddingX: "30px",
+        paddingY: "10px",
         justifyContent: "space-between",
         alignItems: "center",
         alignContent: "center",
@@ -129,12 +112,7 @@ const Pagination = ({
 
       {/* Buttons */}
       <Box sx={{ display: "flex" }}>
-        <Button
-          disabled={disablePrev}
-          sx={{ minWidth: "30px" }}
-          onClick={handlePrevPage}
-          variant="none"
-        >
+        <Button disabled={disablePrev} sx={{ minWidth: "30px" }} onClick={handlePrevPage} variant="none">
           <i className="ri-arrow-left-s-line"></i>
         </Button>
         <Box>
@@ -148,14 +126,8 @@ const Pagination = ({
                 minWidth: "40px",
                 fontSize: "14px",
                 padding: "6px 2px",
-                color:
-                  pagination.currentPage === pageNumberToShow
-                    ? "white"
-                    : "#62728F",
-                backgroundColor:
-                  pagination.currentPage === pageNumberToShow
-                    ? "#2E58FF"
-                    : "transparent",
+                color: pagination.currentPage === pageNumberToShow ? "white" : "#62728F",
+                backgroundColor: pagination.currentPage === pageNumberToShow ? "#2E58FF" : "transparent",
                 "&:focus": {
                   color: "white",
                   backgroundColor: "#2E58FF",
@@ -166,12 +138,7 @@ const Pagination = ({
             </Button>
           ))}
         </Box>
-        <Button
-          sx={{ minWidth: "40px" }}
-          disabled={disableNext}
-          variant="none"
-          onClick={handleNextPage}
-        >
+        <Button sx={{ minWidth: "40px" }} disabled={disableNext} variant="none" onClick={handleNextPage}>
           <i className="ri-arrow-right-s-line"></i>
         </Button>
       </Box>

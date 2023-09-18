@@ -119,7 +119,8 @@ const ProjectLIstIndex2 = () => {
 
   const { handleChangeSkill, addSkills, setAddSkills, count } = useHandleChange();
 
-  const { handleEditSkill, filteredSkillInfo, editCount, prevSkills, editSkills } = useHandleEditChange();
+  const { handleEditSkill, filteredSkillInfo, editCount, prevSkills, editSkills, isEdit, setIsEdit } =
+    useHandleEditChange();
 
   const handleEditProjectClose = () => {
     setEditModalOpen(false);
@@ -128,16 +129,17 @@ const ProjectLIstIndex2 = () => {
   const handleClick = (e) => {
     dispatch(setCurrentProjectDrawer(e.id));
     setEditModalOpen(true);
+    setIsEdit(true);
     setIsEditModal(true);
   };
 
-  const skillId = addSkills?.map((skill) => skill._id);
+  const skillId = editSkills?.map((skill) => skill._id);
 
   const onSubmit = (data) => {
     if (isEditModal) {
       const newData = {
         ...data,
-        project_skills: filteredSkillInfo.length === 0 ? prevSkills : filteredSkillInfo,
+        project_skills: filteredSkillInfo,
       };
       const allData = { id: projectDrawer._id, data: newData };
       dispatch(updateProjectDrawerById(allData)).then((action) => {
@@ -193,15 +195,14 @@ const ProjectLIstIndex2 = () => {
             justifyContent: "space-between",
             width: "100%",
             background: "#FFFFFF",
-            borderTop: " 2px solid #E6ECF5",
-            borderBottom: " 2px solid #E6ECF5",
+            borderBottom: "1px solid #E6ECF5",
+            borderTop: "1px solid #E6ECF5",
           }}
         >
-          <Box sx={{ width: "30%" }}>
+          <Box sx={{ width: "30%", padding: "12px 35px" }}>
             <Grid
               container
               sx={{
-                paddingBottom: "0%",
                 display: "flex",
                 alignContent: "center",
                 alignItems: "center",
@@ -216,6 +217,7 @@ const ProjectLIstIndex2 = () => {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
+              padding: "12px 20px",
             }}
           >
             <Paper
@@ -226,9 +228,13 @@ const ProjectLIstIndex2 = () => {
                 alignItems: "center",
                 width: "240px",
                 background: "#F4F7FE",
+                border: "1px solid #EFF3FE",
+                borderRadius: "8px",
+                outline: "none",
+                boxShadow: "none",
               }}
             >
-              <IconButton disabled type="button" sx={{ p: "10px" }} aria-label="search">
+              <IconButton disabled type="button" sx={{ p: "5px" }} aria-label="search">
                 <SearchIcon />
               </IconButton>
               <InputBase sx={{ ml: 0, flex: 1 }} placeholder="Search" />
@@ -259,32 +265,13 @@ const ProjectLIstIndex2 = () => {
             >
               Create Project
             </Button>
-
-            {createProjectOpen && (
-              <Box>
-                <ProjectModal
-                  createProjectOpen={createProjectOpen}
-                  handleProjectCreateOpen={handleProjectCreateOpen}
-                  handleCreateProjectClose={handleCreateProjectClose}
-                  setCreateProjectOpen={setCreateProjectOpen}
-                  platformCreateOptions={platformCreateOptions}
-                  projectTypeCreateOptions={projectTypeCreateOptions}
-                  statusCreateOptions={statusCreateOptions}
-                  handleChangeSkill={handleChangeSkill}
-                  count={count}
-                  onSubmit={onSubmit}
-                  addSkills={addSkills}
-                  skills={skills}
-                />
-              </Box>
-            )}
           </Box>
         </Box>
 
         {isFilter && (
-          <Box sx={{ backgroundColor: "#FFFFFF", width: "100%", padding: "5px" }}>
+          <Box sx={{ backgroundColor: "#FFFFFF", width: "100%", paddingY: "5px" }}>
             <ProjectSelectFIlter
-            handleChangeAnnotatorFilter={handleChangeAnnotatorFilter}
+              handleChangeAnnotatorFilter={handleChangeAnnotatorFilter}
               role={role}
               filterPDR={filterPDR}
               platformOptions={platformOptions}
@@ -344,12 +331,32 @@ const ProjectLIstIndex2 = () => {
               projectTypeCreateOptions={projectTypeCreateOptions}
               statusCreateOptions={statusCreateOptions}
               isEditModal={isEditModal}
+              isEdit={isEdit}
               handleEditSkill={handleEditSkill}
               editCount={editCount}
               editSkills={editSkills}
               prevSkill={prevSkills}
               skills={skills}
               onSubmit={onSubmit}
+            />
+          </Box>
+        )}
+
+        {createProjectOpen && (
+          <Box>
+            <ProjectModal
+              createProjectOpen={createProjectOpen}
+              handleProjectCreateOpen={handleProjectCreateOpen}
+              handleCreateProjectClose={handleCreateProjectClose}
+              setCreateProjectOpen={setCreateProjectOpen}
+              platformCreateOptions={platformCreateOptions}
+              projectTypeCreateOptions={projectTypeCreateOptions}
+              statusCreateOptions={statusCreateOptions}
+              handleChangeSkill={handleChangeSkill}
+              count={count}
+              onSubmit={onSubmit}
+              addSkills={addSkills}
+              skills={skills}
             />
           </Box>
         )}

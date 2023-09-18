@@ -7,7 +7,7 @@ const SortingButton = ({ filteredCol, col }) => {
     <Button
       sx={{
         display: "flex",
-        minWidth: "25px",
+        minWidth: "15px",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
@@ -21,7 +21,8 @@ const SortingButton = ({ filteredCol, col }) => {
         <Typography
           sx={{
             lineHeight: 0,
-            fontSize: "20px",
+            fontSize: "15px",
+            mt: 0.3,
             color: val.includes(col) ? (filteredCol[col] === "asc" ? "blue" : "#7B98BA") : "#7B98BA",
           }}
         >
@@ -30,8 +31,8 @@ const SortingButton = ({ filteredCol, col }) => {
         <Typography
           sx={{
             lineHeight: 0,
-            mt: 1.5,
-            fontSize: "20px",
+            mt: 1,
+            fontSize: "15px",
             color: val.includes(col) ? (filteredCol[col] === "desc" ? "blue" : "#7B98BA") : "#7B98BA",
           }}
         >

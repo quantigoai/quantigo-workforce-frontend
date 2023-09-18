@@ -9,13 +9,14 @@ export const MySelect = styled(Select)(() => ({ width: "100%" }));
 
 const PlatformSelectAnnotator = ({ handleChangeAnnotatorFilter, name, label, options }) => {
   return (
-    <MyFormControl sx={{ m: 0.5, minWidth: "23%" }} size="medium">
+    <MyFormControl sx={{ m: 0.5, minWidth: "15%" }} size="medium">
       <MySelect
         displayEmpty
         defaultValue={""}
         sx={{
           height: "30px",
           borderRadius: "8px",
+
           "& svg": {
             fill: "#667085",
           },

@@ -61,24 +61,32 @@ const PDskillFIeld = ({
                   }}
                 >
                   {selected?.map((value, i) => [0].includes(i) && <Chip key={value} label={value} />)}
-                  {isEdit
-                    ? selectedSkills.length > 1 && (
+                  {isEdit ? (
+                    selectedSkills.length > 1 ? (
+                      <Typography variant="p" sx={{ ml: 2, mt: 0.5 }}>
+                        {" "}
+                        + {count} more
+                      </Typography>
+                    ) : (
+                      selected.length > 1 && (
                         <Typography variant="p" sx={{ ml: 2, mt: 0.5 }}>
                           {" "}
                           + {count} more
                         </Typography>
                       )
-                    : selected.length > 1 && (
-                        <Typography
-                          variant="h7"
-                          sx={{ ml: 2, mt: 0.5 }}
-                          // ref={inputRef}
-                        >
-                          {" "}
-                          + {count} more
-                          {/* {inputRef.current} */}
-                        </Typography>
-                      )}
+                    )
+                  ) : (
+                    selected.length > 1 && (
+                      <Typography
+                        variant="h7"
+                        sx={{ ml: 2, mt: 0.5 }}
+                        // ref={inputRef}
+                      >
+                        {" "}
+                        + {count} more
+                      </Typography>
+                    )
+                  )}
                 </Box>
               )}
               MenuProps={MenuProps}

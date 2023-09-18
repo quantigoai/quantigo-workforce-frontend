@@ -54,6 +54,7 @@ const FullProjectDetails = () => {
     pageSize: 10,
   });
 
+  console.log(usersWorkHistory);
   useEffect(() => {
     setIsLoadingDetails(false);
     if (!isLoadingDetails) {
@@ -175,8 +176,7 @@ const FullProjectDetails = () => {
             width: "100%",
             mt: "10px",
             height: "100%",
-          }}
-        >
+          }}>
           {
             <ProjectTable2
               role={role}

@@ -2,8 +2,8 @@ body {
   margin: 0 !important;
   padding: 0 !important;
   box-sizing: border-box;
-  background-color: #F5F5F5;
-  height: 100vh !important; 
+  background-color: #f2f6fc;
+  height: 100vh !important;
   position: relative;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }

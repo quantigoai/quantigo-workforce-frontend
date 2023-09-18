@@ -145,7 +145,26 @@ const UserListIndex = ({ action }) => {
 
   useEffect(() => {
     if (users && users.length > 0) {
-      const newArray = users.map(({ activeJobs, completedCourses, completedJobs, documentsImage, enrolledCourses, image, inCompletedJobs, rejectedJobs, skills, submittedJobs, emailToken, signImage, updatedAt, qaiId, __v, ...rest }) => rest);
+      const newArray = users.map(
+        ({
+          activeJobs,
+          completedCourses,
+          completedJobs,
+          documentsImage,
+          enrolledCourses,
+          image,
+          inCompletedJobs,
+          rejectedJobs,
+          skills,
+          submittedJobs,
+          emailToken,
+          signImage,
+          updatedAt,
+          qaiId,
+          __v,
+          ...rest
+        }) => rest
+      );
 
       const finalArray = newArray?.map((item) => {
         if (item) {
@@ -153,7 +172,7 @@ const UserListIndex = ({ action }) => {
         }
         return item;
       });
-
+      console.log(finalArray);
       setCsvUsers(finalArray);
       if (location.pathname === "/annotators") {
         dispatch(setActivePath("Annotator List"));
@@ -217,8 +236,7 @@ const UserListIndex = ({ action }) => {
           sx={{
             display: "flex",
             mb: "2%",
-          }}
-        >
+          }}>
           <Grid
             container
             sx={{
@@ -226,8 +244,7 @@ const UserListIndex = ({ action }) => {
               display: "flex",
               alignContent: "center",
               alignItems: "center",
-            }}
-          >
+            }}>
             <CommonHeader title="User Management" customButton="Create User" />
           </Grid>
         </Box>
@@ -241,8 +258,7 @@ const UserListIndex = ({ action }) => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "0%",
-              }}
-            >
+              }}>
               <Grid
                 item
                 xs={11}
@@ -250,8 +266,7 @@ const UserListIndex = ({ action }) => {
                   display: "flex",
                   alignItems: "center",
                   paddingRight: "1%",
-                }}
-              >
+                }}>
                 <SearchBarforUserList
                   placeholder="Search User"
                   handleChange={handleChange}
@@ -301,8 +316,7 @@ const UserListIndex = ({ action }) => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "3%",
-              }}
-            >
+              }}>
               {user.isLoading ? (
                 <>
                   {" "}
@@ -336,7 +350,16 @@ const UserListIndex = ({ action }) => {
         <Box>
           <Paper elevation={0} style={paperStyle} sx={{ padding: "0%" }}>
             <Grid container sx={{ justifyContent: "right", paddingRight: "3%" }}>
-              <TablePagination rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]} colSpan={3} count={totalUsers} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} ActionsComponent={TablePaginationActions} />
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+                colSpan={3}
+                count={totalUsers}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+              />
             </Grid>
           </Paper>
         </Box>

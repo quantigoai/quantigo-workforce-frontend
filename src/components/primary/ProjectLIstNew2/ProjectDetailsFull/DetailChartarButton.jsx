@@ -1,16 +1,14 @@
 import { Button, Typography } from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CSVDownload } from "react-csv";
 import { useSelector } from "react-redux";
 import { calculateTimeDifference } from "../../../../helper/dateConverter";
 import { realToken } from "../../../../helper/lib";
-// import json2csv from "json2csv";
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
 const DetailChartarButton = () => {
   const { projectDrawer, usersWorkHistoryCount } = useSelector((state) => state.projectDrawer);
-  const csvLink = useRef();
   const [jsonData, setJsonData] = useState([]);
   const csvHeader = [
     { label: "Name", key: "userName" },
@@ -21,36 +19,8 @@ const DetailChartarButton = () => {
     { label: "Check Out Time", key: "checkedOutTime" },
     { label: "Working Time", key: "workingTimeInMs" },
   ];
-  // Function to fetch JSON data from the endpoint
-  // const fetchData = async () => {
-  //   try {
-  //     return await axios
-  //       .get(
-  //         `${url}/project-drawer/work-history/${projectDrawer._id}?limit=${usersWorkHistoryCount}&sortBy=userQaiID:desc`,
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${realToken()}`,
-  //           },
-  //         }
-  //       )
-  //       .then((res) => {
-  //         setJsonData(res.data.projectDrawer.checkedInUsersHistory);
-  //         return jsonData.length ? true : false;
-  //       });
-
-  //     // setJsonData(response.data.projectDrawer.checkedInUsersHistory);
-  //     // await csvLink.current.link.click();
-
-  //     // setJsonData(response.data.projectDrawer.checkedInUsersHistory);
-  //     // setTimeout(() => {
-  //     // });
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //   }
-  // };
 
   const [initiateDownload, setInitiateDownload] = useState(false);
-  const [headers, setHeaders] = useState([]);
 
   useEffect(() => {
     if (jsonData.length) {

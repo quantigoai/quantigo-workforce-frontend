@@ -16,7 +16,6 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { IconButton, InputAdornment, TextField, styled } from "@mui/material";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import { useDispatch, useSelector } from "react-redux";
 
 const MyInputField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
@@ -31,9 +30,14 @@ const MyInputField = styled(TextField)(() => ({
 }));
 
 const DateRangeComponent = ({ range, setRange }) => {
-  const { projectDrawer } = useSelector((state) => state.projectDrawer);
-
   const [open, setOpen] = useState(false);
+  const [dummyRange, setDummyRange] = useState([
+    {
+      startDate: new Date(),
+      endDate: addDays(new Date(), 0),
+      key: "selection",
+    },
+  ]);
 
   const refOne = useRef(null);
   const refTwo = useRef(null);
@@ -69,11 +73,17 @@ const DateRangeComponent = ({ range, setRange }) => {
         key: "selection",
       },
     ]);
+    setDummyRange([
+      {
+        startDate: new Date(),
+        endDate: addDays(new Date(), 0),
+        key: "selection",
+      },
+    ]);
     setOpen(false);
   };
-  const dispatch = useDispatch();
   const [isRangeSelect, setIsRangeSelect] = useState(false);
-  
+
   useEffect(() => {
     if (range[0].startDate.getTime() !== range[0].endDate.getTime()) {
       setIsRangeSelect(true);
@@ -81,7 +91,14 @@ const DateRangeComponent = ({ range, setRange }) => {
       setIsRangeSelect(false);
     }
   }, [range]);
-
+  const handleChange = (item) => {
+    if (item.selection.startDate.getTime() !== item.selection.endDate.getTime()) {
+      setRange([item.selection]);
+      setDummyRange([item.selection]);
+    } else {
+      setDummyRange([item.selection]);
+    }
+  };
   return (
     <div className="calendarWrap">
       <MyInputField
@@ -110,10 +127,10 @@ const DateRangeComponent = ({ range, setRange }) => {
       <div ref={refOne}>
         {open && (
           <DateRange
-            onChange={(item) => setRange([item.selection])}
+            onChange={(item) => handleChange(item)}
             editableDateInputs={true}
             moveRangeOnFirstSelection={false}
-            ranges={range}
+            ranges={dummyRange}
             months={1}
             direction="horizontal"
             className="calendarElement"

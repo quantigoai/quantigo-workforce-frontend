@@ -318,13 +318,14 @@ const projectDrawerSlice = createSlice({
       })
       .addCase(getUsersWorkHistoryById.pending, (state) => {
         state.isLoading = true;
+        state.usersWorkHistory = [];
+        state.usersWorkHistoryCount = 0;
       })
       .addCase(getUsersWorkHistoryById.fulfilled, (state, action) => {
         state.usersWorkHistoryCount = action.payload.data.projectDrawer.totalCount;
         state.usersWorkHistory = action.payload.data.projectDrawer.checkedInUsersHistory;
-
-        state.isLoading = false;
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(getUsersWorkHistoryById.rejected, (state, action) => {
         state.error = action.error.message;

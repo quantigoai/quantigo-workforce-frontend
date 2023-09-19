@@ -124,8 +124,10 @@ const FullProjectDetails = () => {
       startDate: new Date(),
       endDate: addDays(new Date(), 0),
       key: "selection",
+      isRangeSelected: false,
     },
   ]);
+ 
   // TODO Need to solve this issue
   const handleChangePagination = useCallback(() => {
     if (role === "admin") {

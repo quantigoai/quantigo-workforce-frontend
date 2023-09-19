@@ -17,7 +17,7 @@ const SingleItem = ({ ItemTitle, Item }) => {
                 <Grid container>
                   {Item?.map((p) => (
                     <>
-                      <Box key={p._id} sx={{ paddingRight: "1%" }}>
+                      <Box key={p._id} sx={{ paddingRight: "1%", paddingBottom: "1%" }}>
                         <ProjectDrawerStatusChip key={p._id} value={p.name} />
                       </Box>
                     </>

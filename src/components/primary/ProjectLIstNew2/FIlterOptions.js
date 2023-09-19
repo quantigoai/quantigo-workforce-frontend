@@ -7,7 +7,7 @@ export const filterPDR = [
 ];
 
 export const platformOptions = [
-  { value: "supervisely", label: "supervisely" },
+  { value: "supervisely", label: "Supervisely" },
   { value: "encord", label: "Encord" },
   { value: "superb_ai", label: "Superb AI" },
 ];
@@ -22,7 +22,7 @@ export const projectTypeOptions = [
   { value: "video", label: "Video" },
 ];
 export const platformCreateOptions = [
-  { value: "supervisely", label: "supervisely" },
+  { value: "supervisely", label: "Supervisely" },
   { value: "encord", label: "Encord" },
   { value: "superb_ai", label: "Superb AI" },
 ];

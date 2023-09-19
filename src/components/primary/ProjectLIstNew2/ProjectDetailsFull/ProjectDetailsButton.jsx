@@ -5,7 +5,7 @@ import DetailChartarButton from "./DetailChartarButton";
 import DetailsButton from "./DetailsButton";
 import DetailsUploadHourBUtton from "./DetailsUploadHourBUtton";
 
-const ProjectDetailsButton = ({ value, handleProjectDetailsOpen, role }) => {
+const ProjectDetailsButton = ({ range, setRange, value, handleProjectDetailsOpen, role }) => {
   return (
     <Box display={"flex"} alignItems={"center"} justifyContent={"space-between"}>
       {value === "not-Started" && (
@@ -17,7 +17,7 @@ const ProjectDetailsButton = ({ value, handleProjectDetailsOpen, role }) => {
         <>
           {/* <DatePickerProgress /> */}
 
-          <DateRangeComponent />
+          <DateRangeComponent range={range} setRange={setRange} />
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
           <DetailChartarButton />
         </>

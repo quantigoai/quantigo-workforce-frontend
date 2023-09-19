@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Alert, Box } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -17,20 +17,22 @@ import Project2DetailsModal from "../Project2Details/Project2DetailsModal";
 import ProjectTable2 from "../ProjectTable2";
 import ProjectDetailsHeader from "./ProjectDetailsHeader";
 
+import { addDays } from "date-fns";
 import { useAlert } from "react-alert";
 import CheckOutModal from "./CheckOutModal";
-import DetailsPage from "./DetailsPage";
 
 const FullProjectDetails = () => {
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
   const { isLoading, projectDrawer, usersWorkHistory, usersWorkHistoryCount } = useSelector(
     (state) => state.projectDrawer
   );
+  console.log("🚀 ~ file: FullProjectDetails.jsx:27 ~ FullProjectDetails ~ usersWorkHistory:", usersWorkHistory);
   const { role } = useSelector((state) => state.user.user);
 
   const [value, setValue] = React.useState(projectDrawer.project_status);
   const [detailCol, setDetailCol] = useState([]);
   const [detailRow, setDetailRow] = useState([]);
+  console.log("🚀 ~ file: FullProjectDetails.jsx:34 ~ FullProjectDetails ~ detailRow:", detailRow);
 
   const { id } = useParams();
 
@@ -119,17 +121,38 @@ const FullProjectDetails = () => {
       }
     });
   };
-
+  const [range, setRange] = useState([
+    {
+      startDate: new Date(),
+      endDate: addDays(new Date(), 0),
+      key: "selection",
+    },
+  ]);
+  // TODO Need to solve this issue
   const handleChangePagination = useCallback(() => {
+    console.log("1");
     if (role === "admin") {
-      dispatch(
-        getUsersWorkHistoryById({
-          pagination,
-          ascDescOption: filteredCol,
-          id: projectDrawer._id,
-        })
-      );
+      if (range[0].startDate.getTime() !== range[0].endDate.getTime()) {
+        dispatch(
+          getUsersWorkHistoryById({
+            pagination,
+            ascDescOption: filteredCol,
+            id: projectDrawer._id,
+            range,
+          })
+        );
+      } else {
+        console.log("hit here");
+        dispatch(
+          getUsersWorkHistoryById({
+            pagination,
+            ascDescOption: filteredCol,
+            id: projectDrawer._id,
+          })
+        );
+      }
     } else {
+      console.log("hit user");
       dispatch(
         getMyWorkHistoryById({
           pagination,
@@ -138,8 +161,8 @@ const FullProjectDetails = () => {
         })
       );
     }
-  }, [dispatch, pagination, filteredCol, projectDrawer._id]);
-
+  }, [role, range, dispatch, pagination, filteredCol, projectDrawer._id]);
+  console.log(detailRow?.length);
   return (
     <Box
       sx={{
@@ -153,8 +176,10 @@ const FullProjectDetails = () => {
       }}
     >
       <Box sx={{}}>
-        {!isLoadingDetails && detailRow?.length > 0 && (
+        {!isLoadingDetails && (
           <ProjectDetailsHeader
+            range={range}
+            setRange={setRange}
             handleOpen={handleOpen}
             role={role}
             handleProjectDetailsOpen={handleProjectDetailsOpen}
@@ -174,25 +199,28 @@ const FullProjectDetails = () => {
         <Box
           sx={{
             width: "100%",
-            // mt: "10px",
-
             height: "100%",
           }}
         >
-          {
-            <ProjectTable2
-              role={role}
-              myColumn={detailCol}
-              myRows={detailRow}
-              pagination={pagination}
-              setPagination={setPagination}
-              handleChangePagination={handleChangePagination}
-              totalItems={usersWorkHistoryCount}
-              handleId={handleId}
-              filteredCol={filteredCol}
-              handleProjectDetailsOpen={handleProjectDetailsOpen}
-            />
-          }
+          <ProjectTable2
+            role={role}
+            myColumn={detailCol}
+            myRows={detailRow}
+            pagination={pagination}
+            setPagination={setPagination}
+            handleChangePagination={handleChangePagination}
+            totalItems={usersWorkHistoryCount}
+            handleId={handleId}
+            filteredCol={filteredCol}
+            handleProjectDetailsOpen={handleProjectDetailsOpen}
+          />
+          {/* {usersWorkHistory?.length ? (
+            
+          ) : (
+            <Alert Alert severity="error">
+              No Users history found for this project!
+            </Alert>
+          )} */}
         </Box>
       )}
 

@@ -17,6 +17,7 @@ const ProjectDetailsHeader = ({
   checkOutDisable,
   role,
   handleOpen,
+  range, setRange
 }) => {
   return (
     <Box
@@ -62,7 +63,13 @@ const ProjectDetailsHeader = ({
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
           <Box>
             {projectDrawer.project_status && role === "admin" ? (
-              <ProjectDetailsButton role={role} value={value} handleProjectDetailsOpen={handleProjectDetailsOpen} />
+              <ProjectDetailsButton
+                range={range}
+                setRange={setRange}
+                role={role}
+                value={value}
+                handleProjectDetailsOpen={handleProjectDetailsOpen}
+              />
             ) : (
               <CheckINOutButton
                 handleOpen={handleOpen}

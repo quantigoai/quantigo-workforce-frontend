@@ -30,7 +30,6 @@ const DetailsPage = () => {
   const [isDisable, setIsDisable] = useState(false);
   const [isLoadingDetails, setIsLoadingDetails] = useState(true);
   const { isLoading, projectDrawer } = useSelector((state) => state.projectDrawer);
-  console.log("🚀 ~ file: DetailsPage.jsx:32 ~ DetailsPage ~ projectDrawer:", projectDrawer);
 
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -97,14 +96,14 @@ const DetailsPage = () => {
   };
   return (
     <Box sx={style}>
-      <ProjectModalHeader
+      {/* <ProjectModalHeader
         isDisable={isDisable}
         checkOutDisable={checkOutDisable}
         handleCheckInButton={handleCheckInButton}
         handleCheckOutButton={handleCheckOutButton}
         isPageDetail={"true"}
         modalTitle={"Project Details"}
-      />
+      /> */}
       <Alert
         sx={{
           borderRadius: "8px",

@@ -14,6 +14,7 @@
  */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { rangeDateFormatter } from "../../helper/dateConverter";
 import { realToken } from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
@@ -145,7 +146,7 @@ export const removeSkillsToCheckInUser = createAsyncThunk("/project-drawer/remov
 
 export const getUsersWorkHistoryById = createAsyncThunk("/project-drawer/details/getDetails", async (data) => {
   try {
-    const { pagination, filteredData, ascDescOption, id } = data;
+    const { pagination, range, filteredData, ascDescOption, id } = data;
     let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
 
     const ascDescOptions = Object.keys(ascDescOption);
@@ -153,7 +154,11 @@ export const getUsersWorkHistoryById = createAsyncThunk("/project-drawer/details
       query += `&sortBy=checkedInDate:desc&sortBy=checkedInTime:desc`;
     }
     ascDescOptions.map((ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`));
-
+    if (range) {
+      const startDate = rangeDateFormatter(range[0].startDate);
+      const endDate = rangeDateFormatter(range[0].endDate);
+      query += `&startDate=${startDate}&endDate=${endDate}`;
+    }
     return await axios.get(`${url}/project-drawer/work-history/${id}?${query}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,

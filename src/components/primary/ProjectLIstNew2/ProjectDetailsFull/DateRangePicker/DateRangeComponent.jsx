@@ -16,6 +16,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { IconButton, InputAdornment, TextField, styled } from "@mui/material";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+import { useDispatch, useSelector } from "react-redux";
 
 const MyInputField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
@@ -29,14 +30,8 @@ const MyInputField = styled(TextField)(() => ({
   },
 }));
 
-const DateRangeComponent = () => {
-  const [range, setRange] = useState([
-    {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 7),
-      key: "selection",
-    },
-  ]);
+const DateRangeComponent = ({ range, setRange }) => {
+  const { projectDrawer } = useSelector((state) => state.projectDrawer);
 
   const [open, setOpen] = useState(false);
 
@@ -70,18 +65,32 @@ const DateRangeComponent = () => {
     setRange([
       {
         startDate: new Date(),
-        endDate: addDays(new Date(), 7),
+        endDate: addDays(new Date(), 0),
         key: "selection",
       },
     ]);
     setOpen(false);
   };
+  const dispatch = useDispatch();
+  const [isRangeSelect, setIsRangeSelect] = useState(false);
+  
+  useEffect(() => {
+    if (range[0].startDate.getTime() !== range[0].endDate.getTime()) {
+      setIsRangeSelect(true);
+    } else {
+      setIsRangeSelect(false);
+    }
+  }, [range]);
 
   return (
     <div className="calendarWrap">
       <MyInputField
         type={"text"}
-        value={`${format(range[0].startDate, "dd/MM/yyyy")} - ${format(range[0].endDate, "dd/MM/yyyy")}`}
+        value={
+          isRangeSelect
+            ? `${format(range[0].startDate, "dd/MM/yyyy")} - ${format(range[0].endDate, "dd/MM/yyyy")}`
+            : "DD/MM/YYYY - DD/MM/YYYY "
+        }
         InputProps={{
           disableUnderline: true,
           endAdornment: (

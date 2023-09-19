@@ -68,3 +68,12 @@ export const calculateTimeDifference = (timeDifferenceMs) => {
 
   return formattedTimeDifference;
 };
+
+export const rangeDateFormatter = (date) => {
+  const originalDate = new Date(date);
+  const year = originalDate.getFullYear();
+  const month = String(originalDate.getMonth() + 1).padStart(2, "0"); // Months are 0-based, so add 1 and pad with zeros
+  const day = String(originalDate.getDate()).padStart(2, "0");
+  const formattedDate = `${year}-${month}-${day}`;
+  return formattedDate;
+};

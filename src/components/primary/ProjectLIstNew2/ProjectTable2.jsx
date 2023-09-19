@@ -1,4 +1,4 @@
-import { Alert, Box, Link, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -13,8 +13,8 @@ import ProjectDrawerStatusChip from "../../shared/FilterField/ProjectDrawerStatu
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import PaginationTable from "./PaginationTable";
 import SortingButton from "./Project2Details/SortingButton";
-import "./index.css";
 import DetailsPage from "./ProjectDetailsFull/DetailsPage";
+import "./index.css";
 
 /**
  * @param {object} pagination - pagination object
@@ -219,12 +219,15 @@ const ProjectTable2 = ({
                   })}
                 </TableBody>
               </Table>
-            ) : role === "admin" ? (
-              <Alert Alert severity="error">
-                No Users history found for this project!
-              </Alert>
             ) : (
-              <DetailsPage />
+              role !== "admin" && (
+                //   (
+                // <Alert Alert severity="error">
+                //   No Users history found for this project!
+                // </Alert>
+                //   ) :
+                <DetailsPage />
+              )
             )}
           </>
         )}

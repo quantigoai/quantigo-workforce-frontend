@@ -25,6 +25,7 @@ const ProjectDetailsHeader = ({
       // alignItems={"center"}
       justifyContent={"space-between"}
       width={"100%"}
+      margin="auto"
       sx={{
         // backgroundColor: "red",
         backgroundColor: "white",

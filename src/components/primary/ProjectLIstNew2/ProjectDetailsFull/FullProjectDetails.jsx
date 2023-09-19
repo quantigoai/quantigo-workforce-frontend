@@ -26,14 +26,12 @@ const FullProjectDetails = () => {
   const { isLoading, projectDrawer, usersWorkHistory, usersWorkHistoryCount } = useSelector(
     (state) => state.projectDrawer
   );
-  console.log("🚀 ~ file: FullProjectDetails.jsx:27 ~ FullProjectDetails ~ usersWorkHistory:", usersWorkHistory);
-  const { role } = useSelector((state) => state.user.user);
+ const { role } = useSelector((state) => state.user.user);
 
   const [value, setValue] = React.useState(projectDrawer.project_status);
   const [detailCol, setDetailCol] = useState([]);
   const [detailRow, setDetailRow] = useState([]);
-  console.log("🚀 ~ file: FullProjectDetails.jsx:34 ~ FullProjectDetails ~ detailRow:", detailRow);
-
+  
   const { id } = useParams();
 
   const [open, setOpen] = React.useState(false);
@@ -170,13 +168,12 @@ const FullProjectDetails = () => {
         flexDirection: "column",
         justifyContent: "space-between",
         height: "85vh",
-        // marginTop: "5px",
-        paddingX: "25px",
-        paddingY: "20px",
+        // paddingX: "25px",
+        // paddingY: "20px",
       }}
     >
-      <Box sx={{}}>
-        {!isLoadingDetails && (
+      <Box sx={{ width: "97%", margin: "auto" }}>
+        {!isLoadingDetails && detailRow?.length > 0 && (
           <ProjectDetailsHeader
             range={range}
             setRange={setRange}

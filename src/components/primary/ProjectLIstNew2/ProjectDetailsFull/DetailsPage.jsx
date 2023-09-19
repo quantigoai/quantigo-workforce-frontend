@@ -155,7 +155,7 @@ const DetailsPage = () => {
           />
           <SingleItem ItemTitle={"Skills"} Item={projectDrawer?.project_skills} />
           {/* document Item List */}
-          {/* <BoxItem /> */}
+          <BoxItem />
         </Stack>
       </Box>
     </Box>

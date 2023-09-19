@@ -46,6 +46,7 @@ import ProjectModal from "./ProjectModal";
 import ProjectSelectFIlter from "./ProjectSelectFIlter";
 import ProjectTable2 from "./ProjectTable2";
 import "./index.css";
+import { useFieldArray, useForm } from "react-hook-form";
 
 // test for commit
 /**
@@ -64,7 +65,6 @@ const ProjectLIstIndex2 = () => {
 
   const alert = useAlert();
   const {
-    handleCreateProjectClose,
     createProjectOpen,
     detailsProjectOpen,
     handleProjectCreateOpen,
@@ -103,6 +103,11 @@ const ProjectLIstIndex2 = () => {
       })
     );
   }, [dispatch, pagination, filterValue, filteredCol]);
+  const { handleChangeSkill, addSkills, setAddSkills, count } = useHandleChange();
+  const handleCreateProjectClose = () => {
+    setCreateProjectOpen(false);
+    setAddSkills([]);
+  };
 
   const handleDelete = (e) => {
     dispatch(deleteProjectDrawerById(e.id))
@@ -117,13 +122,12 @@ const ProjectLIstIndex2 = () => {
   };
   //create and edit project submit
 
-  const { handleChangeSkill, addSkills, setAddSkills, count } = useHandleChange();
-
   const { handleEditSkill, filteredSkillInfo, editCount, prevSkills, editSkills, isEdit, setIsEdit } =
     useHandleEditChange();
 
   const handleEditProjectClose = () => {
     setEditModalOpen(false);
+    setIsEditModal(false);
   };
 
   const handleClick = (e) => {
@@ -189,102 +193,113 @@ const ProjectLIstIndex2 = () => {
   return (
     <>
       <Box className="projectBox">
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "100%",
-            background: "#FFFFFF",
-            borderBottom: "1px solid #E6ECF5",
-            borderTop: "1px solid #E6ECF5",
-          }}
-        >
-          <Box sx={{ width: "30%", padding: "12px 35px" }}>
-            <Grid
-              container
-              sx={{
-                display: "flex",
-                alignContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <CommonHeader title="Projects" customButton="Create User" />
-            </Grid>
-          </Box>
-
+        <Box>
           <Box
             sx={{
               display: "flex",
               justifyContent: "space-between",
-              alignItems: "center",
-              padding: "12px 20px",
+              width: "100%",
+              background: "#FFFFFF",
+              borderBottom: "1px solid #E6ECF5",
+              borderTop: "1px solid #E6ECF5",
             }}
           >
-            <Paper
-              component="form"
-              sx={{
-                p: "2px 4px",
-                display: "flex",
-                alignItems: "center",
-                width: "240px",
-                background: "#F4F7FE",
-                border: "1px solid #EFF3FE",
-                borderRadius: "8px",
-                outline: "none",
-                boxShadow: "none",
-              }}
-            >
-              <IconButton disabled type="button" sx={{ p: "5px" }} aria-label="search">
-                <SearchIcon />
-              </IconButton>
-              <InputBase sx={{ ml: 0, flex: 1 }} placeholder="Search" />
-            </Paper>
-            <IconButton
-              onClick={handleIsFilter}
-              sx={{
-                px: "5px 0px",
-                background: "#F4F7FE",
-                mx: 2,
-                borderRadius: "8px",
-              }}
-              aria-label="menu"
-            >
-              <i style={{ color: "#266AED" }} className="ri-filter-3-line"></i>
-            </IconButton>
-            <Button
-              sx={{
-                textTransform: "none",
-                borderRadius: "8px",
-                backgroundColor: "#2E58FF",
-                "&:hover": {
-                  background: "#244EF5",
-                },
-              }}
-              variant="contained"
-              onClick={handleProjectCreateOpen}
-            >
-              Create Project
-            </Button>
-          </Box>
-        </Box>
+            <Box sx={{ width: "30%", padding: "12px 35px" }}>
+              <Grid
+                container
+                sx={{
+                  display: "flex",
+                  alignContent: "center",
+                  alignItems: "center",
+                  paddingX: "10px",
+                }}
+              >
+                <CommonHeader title="Projects" customButton="Create User" />
+              </Grid>
+            </Box>
 
-        {isFilter && (
-          <Box sx={{ backgroundColor: "#FFFFFF", width: "100%", paddingY: "5px" }}>
-            <ProjectSelectFIlter
-              handleChangeAnnotatorFilter={handleChangeAnnotatorFilter}
-              role={role}
-              filterPDR={filterPDR}
-              platformOptions={platformOptions}
-              statusOptions={statusOptions}
-              projectTypeOptions={projectTypeOptions}
-              handleChange={handleChange}
-              handleClearFilter={handleClearFilter}
-              filterValue={filterValue}
-              skills={skills}
-              onSubmit={onSubmit}
-            />
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "12px 20px",
+              }}
+            >
+              <Paper
+                component="form"
+                sx={{
+                  p: "2px 4px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "240px",
+                  background: "#F4F7FE",
+                  border: "1px solid #EFF3FE",
+                  borderRadius: "8px",
+                  outline: "none",
+                  boxShadow: "none",
+                }}
+              >
+                <IconButton disabled type="button" sx={{ p: "5px" }} aria-label="search">
+                  <SearchIcon />
+                </IconButton>
+                <InputBase sx={{ ml: 0, flex: 1 }} placeholder="Search" />
+              </Paper>
+              <IconButton
+                onClick={handleIsFilter}
+                sx={{
+                  px: "5px 0px",
+                  background: "#F4F7FE",
+                  mx: 2,
+                  borderRadius: "8px",
+                }}
+                aria-label="menu"
+              >
+                <i style={{ color: "#266AED" }} className="ri-filter-3-line"></i>
+              </IconButton>
+              <Button
+                sx={{
+                  textTransform: "none",
+                  borderRadius: "8px",
+                  backgroundColor: "#2E58FF",
+                  "&:hover": {
+                    background: "#244EF5",
+                  },
+                }}
+                variant="contained"
+                onClick={handleProjectCreateOpen}
+              >
+                Create Project
+              </Button>
+            </Box>
           </Box>
-        )}
+          {/* {isFilter && ( */}
+          {
+            <Box
+              sx={{
+                backgroundColor: "#FFFFFF",
+                width: "100%",
+                paddingY: "10px",
+                visibility: isFilter ? "visible" : "hidden",
+                // display: isFilter ? "block" : "none",
+              }}
+            >
+              <ProjectSelectFIlter
+                handleChangeAnnotatorFilter={handleChangeAnnotatorFilter}
+                role={role}
+                filterPDR={filterPDR}
+                platformOptions={platformOptions}
+                statusOptions={statusOptions}
+                projectTypeOptions={projectTypeOptions}
+                handleChange={handleChange}
+                handleClearFilter={handleClearFilter}
+                filterValue={filterValue}
+                skills={skills}
+                onSubmit={onSubmit}
+              />
+            </Box>
+          }
+        </Box>
 
         <Box
           sx={{

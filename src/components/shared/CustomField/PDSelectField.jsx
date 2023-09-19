@@ -10,8 +10,9 @@ PDSelectField.propTypes = {
 };
 
 export const MySelect = styled(Select)(() => ({
-  border: "1px solid #E0E0E0",
+  border: "2px solid #E6ECF5",
   padding: "5px 0px 0px 0px",
+  borderRadius: "8px",
   background: "none",
 }));
 
@@ -33,7 +34,7 @@ export default function PDSelectField({ name, helperText, options, label, setVal
               {...field}
               variant="outlined"
               placeholder="Select"
-              sx={{ height: "50%", backgroundColor: "none" }}
+              sx={{ height: "51%", backgroundColor: "none" }}
               defaultValue={defaultValue}
               error={!!error}
               helperText={error ? error?.message : helperText}

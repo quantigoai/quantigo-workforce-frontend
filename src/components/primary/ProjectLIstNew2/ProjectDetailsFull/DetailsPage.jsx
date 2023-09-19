@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { checkInProjectDrawerById, checkOutProjectDrawerById } from "../../../../features/slice/projectDrawerSlice";
 import { clearUserWorkingProject, updateUserWorkingProject } from "../../../../features/slice/userSlice";
+import DetailsItemSIngle from "../Project2Details/DetailsItemSIngle";
 
 const style = {
   width: "100%",
@@ -29,6 +30,7 @@ const DetailsPage = () => {
   const [isDisable, setIsDisable] = useState(false);
   const [isLoadingDetails, setIsLoadingDetails] = useState(true);
   const { isLoading, projectDrawer } = useSelector((state) => state.projectDrawer);
+  console.log("🚀 ~ file: DetailsPage.jsx:32 ~ DetailsPage ~ projectDrawer:", projectDrawer);
 
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -125,40 +127,36 @@ const DetailsPage = () => {
         <Stack
           sx={{
             border: "1px solid #E6ECF5",
-            //   padding: "16px",
             borderRadius: "8px",
-            //   background: "#FAFCFF",
           }}
         >
-          <DetailsItem
+          <DetailsItemSIngle
             Item1Title={"Project Name"}
             Item1={projectDrawer.project_drawer_name}
             Item2Title={"Batch"}
             Item2={projectDrawer.project_batch}
+            Item3Title={"Alias"}
+            Item3={projectDrawer.project_alias}
           />
-          <DetailsItem
-            Item1Title={"Alias"}
-            Item1={projectDrawer.project_alias}
-            Item2Title={"Project Type"}
-            Item2={projectDrawer.project_type}
+          <DetailsItemSIngle
+            Item1Title={"Project Type"}
+            Item1={projectDrawer.project_type}
+            Item2Title={"PDR"}
+            Item2={projectDrawer.pdr}
+            Item3Title={"Completed Course"}
+            Item3={"No Course"}
           />
-
-          <DetailsItem
-            Item1Title={"PDR"}
-            Item1={projectDrawer.pdr}
-            Item2Title={"Completed Course"}
-            Item2={"No Course"}
-          />
-          <DetailsItem
+          <DetailsItemSIngle
             Item1Title={"Benchmark"}
             Item1={projectDrawer.benchMark ? projectDrawer.benchMark : "10 sec/object, 5 sec/tag"}
             Item2Title={"Estimated end Time"}
             Item2={"No Course"}
+            Item3Title={"Status"}
+            Item3={projectDrawer?.project_status}
           />
-          <SingleItem ItemTitle={"Status"} Item={projectDrawer.project_status} />
-          <SingleItem ItemTitle={"Skills"} Item={projectDrawer.project_skills} />
+          <SingleItem ItemTitle={"Skills"} Item={projectDrawer?.project_skills} />
           {/* document Item List */}
-          <BoxItem />
+          {/* <BoxItem /> */}
         </Stack>
       </Box>
     </Box>

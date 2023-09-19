@@ -19,9 +19,7 @@ const useAllFunc = () => {
   const handleDetailsProjectClose = () => {
     setDetailsProjectOpen(false);
   };
-  const handleCreateProjectClose = () => {
-    setCreateProjectOpen(false);
-  };
+
   const handleChange = (event) => {
     const field = event.target.name;
     const value = event.target.value;
@@ -68,7 +66,6 @@ const useAllFunc = () => {
   };
 
   return {
-    handleCreateProjectClose,
     createProjectOpen,
     detailsProjectOpen,
     handleProjectCreateOpen,

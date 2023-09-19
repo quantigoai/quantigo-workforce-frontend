@@ -19,13 +19,13 @@ import ProjectDetailsHeader from "./ProjectDetailsHeader";
 
 import { useAlert } from "react-alert";
 import CheckOutModal from "./CheckOutModal";
-import DetailsPage from "./DetailsPage";
 
 const FullProjectDetails = () => {
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
   const { isLoading, projectDrawer, usersWorkHistory, usersWorkHistoryCount } = useSelector(
     (state) => state.projectDrawer
   );
+  console.log("🚀 ~ file: FullProjectDetails.jsx:26 ~ FullProjectDetails ~ isLoading:", isLoading);
   const { role } = useSelector((state) => state.user.user);
 
   const [value, setValue] = React.useState(projectDrawer.project_status);
@@ -138,7 +138,7 @@ const FullProjectDetails = () => {
         })
       );
     }
-  }, [dispatch, pagination, filteredCol, projectDrawer._id]);
+  }, [dispatch, pagination, filteredCol, projectDrawer._id, role]);
 
   return (
     <Box
@@ -147,12 +147,11 @@ const FullProjectDetails = () => {
         flexDirection: "column",
         justifyContent: "space-between",
         height: "85vh",
-        // marginTop: "5px",
-        paddingX: "25px",
-        paddingY: "20px",
+        // paddingX: "25px",
+        // paddingY: "20px",
       }}
     >
-      <Box sx={{}}>
+      <Box sx={{ width: "97%", margin: "auto" }}>
         {!isLoadingDetails && detailRow?.length > 0 && (
           <ProjectDetailsHeader
             handleOpen={handleOpen}

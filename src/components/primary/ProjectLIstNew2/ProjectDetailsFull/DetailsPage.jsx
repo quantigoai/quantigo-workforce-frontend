@@ -30,7 +30,6 @@ const DetailsPage = () => {
   const [isDisable, setIsDisable] = useState(false);
   const [isLoadingDetails, setIsLoadingDetails] = useState(true);
   const { isLoading, projectDrawer } = useSelector((state) => state.projectDrawer);
-  console.log("🚀 ~ file: DetailsPage.jsx:32 ~ DetailsPage ~ projectDrawer:", projectDrawer);
 
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -156,7 +155,7 @@ const DetailsPage = () => {
           />
           <SingleItem ItemTitle={"Skills"} Item={projectDrawer?.project_skills} />
           {/* document Item List */}
-          {/* <BoxItem /> */}
+          <BoxItem />
         </Stack>
       </Box>
     </Box>

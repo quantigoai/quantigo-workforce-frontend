@@ -29,7 +29,6 @@ const PDskillFIeld = ({
   skills,
   isEdit,
   count,
-  // inputRef,
   ...other
 }) => {
   const { control } = useFormContext();
@@ -49,26 +48,26 @@ const PDskillFIeld = ({
               {...field}
               variant="outlined"
               multiple
-              defaultValue={isEdit ? selectedSkills?.map((skill) => skill.name) : addSkills}
+              defaultValue={isEdit ? selectedSkills?.map((skill) => skill.name) : addSkills?.map((skill) => skill.name)}
               onChange={handleChangeSkill}
               renderValue={(selected) => (
                 <Box
                   sx={{
                     display: "grid",
-                    gridTemplateColumns: "repeat(1,1fr)",
+                    gridTemplateColumns: "repeat(2,1fr)",
                     gap: 0.5,
                     fontSize: "12px",
                   }}
                 >
                   {selected?.map((value, i) => [0].includes(i) && <Chip key={value} label={value} />)}
                   {isEdit ? (
-                    selectedSkills.length > 1 ? (
+                    selectedSkills?.length > 1 ? (
                       <Typography variant="p" sx={{ ml: 2, mt: 0.5 }}>
                         {" "}
                         + {count} more
                       </Typography>
                     ) : (
-                      selected.length > 1 && (
+                      selected?.length > 1 && (
                         <Typography variant="p" sx={{ ml: 2, mt: 0.5 }}>
                           {" "}
                           + {count} more
@@ -76,7 +75,7 @@ const PDskillFIeld = ({
                       )
                     )
                   ) : (
-                    selected.length > 1 && (
+                    selected?.length > 1 && (
                       <Typography
                         variant="h7"
                         sx={{ ml: 2, mt: 0.5 }}

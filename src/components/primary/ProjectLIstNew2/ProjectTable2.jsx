@@ -56,7 +56,7 @@ const ProjectTable2 = ({
             {myRows.length > 0 ? (
               <Table aria-label="simple table" className="myTable">
                 <TableHead>
-                  <TableRow sx={{ backgroundColor: "#F4F7FE" }} className="custom-header">
+                  <TableRow sx={{ backgroundColor: "#fff" }} className="custom-header">
                     {myColumn.map((col) => (
                       <TableCell
                         sx={{
@@ -64,7 +64,6 @@ const ProjectTable2 = ({
                           color: "#7B98BA",
                           textAlign: "left",
                           fontSize: "13px",
-                          backgroundColor: "#F4F7FE",
                         }}
                         key={col.id}
                       >
@@ -219,29 +218,32 @@ const ProjectTable2 = ({
                   })}
                 </TableBody>
               </Table>
-            ) : role === "admin" ? (
+            ) : (
               <Alert Alert severity="error">
                 No Users history found for this project!
               </Alert>
-            ) : (
-              <DetailsPage />
             )}
           </>
         )}
       </Box>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "flex-end",
-        }}
-      >
-        <PaginationTable
-          pagination={pagination}
-          setPagination={setPagination}
-          handleChangePagination={handleChangePagination}
-          totalItems={totalItems}
-        />
-      </Box>
+      {
+        <Box
+          sx={{
+            display: "flex",
+            backgroundColor: "white",
+            width: "97%",
+            margin: "auto",
+            justifyContent: "flex-end",
+          }}
+        >
+          <PaginationTable
+            pagination={pagination}
+            setPagination={setPagination}
+            handleChangePagination={handleChangePagination}
+            totalItems={totalItems}
+          />
+        </Box>
+      }
     </>
   );
 };

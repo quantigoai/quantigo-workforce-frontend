@@ -34,7 +34,7 @@ const ProjectSelectFIlter = ({
                 alignItems: "center",
                 flexDirection: "row",
                 width: "90%",
-                paddingX: "20px",
+                paddingX: "40px",
               }}
             >
               <ProjectSelectFIlterField
@@ -68,7 +68,7 @@ const ProjectSelectFIlter = ({
             </Stack>
           </>
         ) : (
-          <Box sx={{ display: "flex", alignItems: "center", paddingX: "20px", width: "60%" }}>
+          <Box sx={{ display: "flex", alignItems: "center", paddingX: "40px", width: "70%" }}>
             <Box
               sx={{
                 display: "flex",
@@ -79,7 +79,7 @@ const ProjectSelectFIlter = ({
                 width: "30%",
               }}
             >
-              <Typography sx={{ color: "#3C4D6B", opacity: "0.7" }} variant="p">
+              <Typography sx={{ color: "#3C4D6B", opacity: "0.7", paddingX: "10px" }} variant="p">
                 {" "}
                 Choose Platform:
               </Typography>

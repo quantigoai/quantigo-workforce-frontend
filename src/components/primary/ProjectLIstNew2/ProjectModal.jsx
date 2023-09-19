@@ -14,6 +14,7 @@ import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
 import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
 import FormProvider from "../../shared/FormProvider/FormProvider";
 import ProjectModalHeader from "./ProjectModalHeader";
+import PDDateField from "../../shared/CustomField/PDDateField";
 const style = {
   position: "absolute",
   top: "50%",
@@ -88,8 +89,7 @@ const ProjectModal = ({
           backdrop: {
             timeout: 500,
           },
-        }}
-      >
+        }}>
         <Fade in={createProjectOpen}>
           <Box sx={style}>
             <ProjectModalHeader handleCreateProjectClose={handleCreateProjectClose} modalTitle={"Create Project"} />
@@ -99,8 +99,7 @@ const ProjectModal = ({
                 paddingTop: "2%",
                 paddingRight: "3%",
                 position: "relative",
-              }}
-            >
+              }}>
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
                   <PDSelectField
@@ -178,8 +177,9 @@ const ProjectModal = ({
                 </Stack>
 
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  <PDTextFIeld
-                    name="end_time"
+                
+                  <PDDateField
+                    name="estimated_end_date"
                     label="Estimated End Time"
                     InputProps={{
                       disableUnderline: true,
@@ -200,8 +200,7 @@ const ProjectModal = ({
                     fontSize: "14px",
                     mb: "10px",
                   }}
-                  variant="h6"
-                >
+                  variant="h6">
                   Relevant Documents
                 </Typography>
 
@@ -213,8 +212,7 @@ const ProjectModal = ({
                     background: "#FAFCFF",
                     maxHeight: 200,
                     overflowY: "auto",
-                  }}
-                >
+                  }}>
                   <Stack direction="row" gap={2} xs={12}>
                     <PDTextFIeld
                       name="guideline"
@@ -257,8 +255,7 @@ const ProjectModal = ({
                             position: "absolute",
                             left: 550,
                             fontSize: "20px",
-                          }}
-                        >
+                          }}>
                           {" "}
                           <i style={{ color: "red", cursor: "pointer" }} className="ri-delete-bin-line"></i>
                         </Button>
@@ -276,8 +273,7 @@ const ProjectModal = ({
                       cursor: "pointer",
                     }}
                     variant="p"
-                    onClick={() => handleAddDoc()}
-                  >
+                    onClick={() => handleAddDoc()}>
                     <i className="ri-add-line"></i> Add another document
                   </Typography>
                 </Stack>
@@ -296,8 +292,7 @@ const ProjectModal = ({
                     justifyContent: "space-between",
                     alignItems: "center",
                     padding: "20px",
-                  }}
-                >
+                  }}>
                   <Button
                     onClick={handleCreateProjectClose}
                     sx={{
@@ -314,8 +309,7 @@ const ProjectModal = ({
                       },
                     }}
                     variant="filled"
-                    size="large"
-                  >
+                    size="large">
                     Cancel
                   </Button>
                   <Button
@@ -331,8 +325,7 @@ const ProjectModal = ({
                       },
                     }}
                     variant="contained"
-                    size="large"
-                  >
+                    size="large">
                     Save
                   </Button>
                 </Box>

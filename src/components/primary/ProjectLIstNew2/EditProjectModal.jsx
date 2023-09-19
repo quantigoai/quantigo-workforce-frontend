@@ -15,6 +15,7 @@ import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
 import FormProvider from "../../shared/FormProvider/FormProvider";
 import useHandleEditChange from "./Hooks/useHandleEditChange";
 import ProjectModalHeader from "./ProjectModalHeader";
+import PDDateField from "../../shared/CustomField/PDDateField";
 
 const style = {
   position: "absolute",
@@ -185,9 +186,17 @@ const EditProjectModal = ({
                 </Stack>
 
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  <PDTextFIeld
+                  {/* <PDTextFIeld
                     name="end_time"
                     label="Estimated End Time"
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
+                  /> */}
+                  <PDDateField
+                    name="estimated_end_date"
+                    label="Estimated End Time"
+                    defaultValue={projectDrawer.estimated_end_date}
                     InputProps={{
                       disableUnderline: true,
                     }}

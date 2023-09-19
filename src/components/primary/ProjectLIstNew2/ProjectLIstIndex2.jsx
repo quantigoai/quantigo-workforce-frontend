@@ -46,7 +46,6 @@ import ProjectModal from "./ProjectModal";
 import ProjectSelectFIlter from "./ProjectSelectFIlter";
 import ProjectTable2 from "./ProjectTable2";
 import "./index.css";
-import { useFieldArray, useForm } from "react-hook-form";
 
 // test for commit
 /**
@@ -140,6 +139,7 @@ const ProjectLIstIndex2 = () => {
   const skillId = editSkills?.map((skill) => skill._id);
 
   const onSubmit = (data) => {
+    console.log("🚀 ~ file: ProjectLIstIndex2.jsx:139 ~ onSubmit ~ data:", isEditModal);
     if (isEditModal) {
       const newData = {
         ...data,
@@ -158,6 +158,7 @@ const ProjectLIstIndex2 = () => {
       });
     } else {
       const newData = { ...data, project_skills: skillId };
+      console.log("🚀 ~ file: ProjectLIstIndex2.jsx:157 ~ onSubmit ~ newData:", newData);
 
       dispatch(createProjectDrawer(newData)).then((action) => {
         if (action.error) {

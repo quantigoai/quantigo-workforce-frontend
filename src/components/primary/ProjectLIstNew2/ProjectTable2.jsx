@@ -3,12 +3,11 @@
  * Path: /home/tanzim/workstation/Office/quantigo-workforce-frontend
  * Created Date: Tuesday, September 19th 2023, 3:20:38 pm
  * Author: Tanzim Ahmed
- * 
+ *
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-
-import { Box, Link, Typography } from "@mui/material";
+import { Alert, Box, Link, Typography } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -228,15 +227,12 @@ const ProjectTable2 = ({
                   })}
                 </TableBody>
               </Table>
+            ) : role !== "admin" ? (
+              <DetailsPage />
             ) : (
-              role !== "admin" && (
-                //   (
-                // <Alert Alert severity="error">
-                //   No Users history found for this project!
-                // </Alert>
-                //   ) :
-                <DetailsPage />
-              )
+              <Alert Alert severity="error">
+                No Users history found for this project!
+              </Alert>
             )}
           </>
         )}

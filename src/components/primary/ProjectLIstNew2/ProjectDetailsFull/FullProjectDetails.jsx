@@ -1,4 +1,4 @@
-import { Alert, Box } from "@mui/material";
+import { Box } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -26,12 +26,12 @@ const FullProjectDetails = () => {
   const { isLoading, projectDrawer, usersWorkHistory, usersWorkHistoryCount } = useSelector(
     (state) => state.projectDrawer
   );
- const { role } = useSelector((state) => state.user.user);
+  const { role } = useSelector((state) => state.user.user);
 
   const [value, setValue] = React.useState(projectDrawer.project_status);
   const [detailCol, setDetailCol] = useState([]);
   const [detailRow, setDetailRow] = useState([]);
-  
+
   const { id } = useParams();
 
   const [open, setOpen] = React.useState(false);
@@ -128,7 +128,6 @@ const FullProjectDetails = () => {
   ]);
   // TODO Need to solve this issue
   const handleChangePagination = useCallback(() => {
-    console.log("1");
     if (role === "admin") {
       if (range[0].startDate.getTime() !== range[0].endDate.getTime()) {
         dispatch(
@@ -140,7 +139,6 @@ const FullProjectDetails = () => {
           })
         );
       } else {
-        console.log("hit here");
         dispatch(
           getUsersWorkHistoryById({
             pagination,
@@ -150,7 +148,6 @@ const FullProjectDetails = () => {
         );
       }
     } else {
-      console.log("hit user");
       dispatch(
         getMyWorkHistoryById({
           pagination,
@@ -160,7 +157,6 @@ const FullProjectDetails = () => {
       );
     }
   }, [role, range, dispatch, pagination, filteredCol, projectDrawer._id]);
-  console.log(detailRow?.length);
   return (
     <Box
       sx={{
@@ -173,7 +169,7 @@ const FullProjectDetails = () => {
       }}
     >
       <Box sx={{ width: "97%", margin: "auto" }}>
-        {!isLoadingDetails && detailRow?.length > 0 && (
+        {!isLoadingDetails && (
           <ProjectDetailsHeader
             range={range}
             setRange={setRange}

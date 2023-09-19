@@ -27,7 +27,7 @@ const SingleItem = ({ ItemTitle, Item }) => {
             ) : (
               <>
                 <Typography variant="wf_h5_bold" sx={{ color: "#091E42" }}>
-                  {Item}
+                  {Item ?? Item}
                 </Typography>
               </>
             )}

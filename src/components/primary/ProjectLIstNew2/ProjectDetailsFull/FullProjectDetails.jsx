@@ -31,7 +31,6 @@ const FullProjectDetails = () => {
   const [value, setValue] = React.useState(projectDrawer.project_status);
   const [detailCol, setDetailCol] = useState([]);
   const [detailRow, setDetailRow] = useState([]);
-  console.log("🚀 ~ file: FullProjectDetails.jsx:34 ~ FullProjectDetails ~ detailRow:", detailRow);
 
   const { id } = useParams();
 
@@ -54,7 +53,6 @@ const FullProjectDetails = () => {
     pageSize: 10,
   });
 
-  console.log(usersWorkHistory);
   useEffect(() => {
     setIsLoadingDetails(false);
     if (!isLoadingDetails) {
@@ -143,8 +141,18 @@ const FullProjectDetails = () => {
   }, [dispatch, pagination, filteredCol, projectDrawer._id]);
 
   return (
-    <Box className="projectBox">
-      <Box sx={{ backgroundColor: "#F2F6FC", width: "100%" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        height: "85vh",
+        // marginTop: "5px",
+        paddingX: "25px",
+        paddingY: "20px",
+      }}
+    >
+      <Box sx={{}}>
         {!isLoadingDetails && detailRow?.length > 0 && (
           <ProjectDetailsHeader
             handleOpen={handleOpen}
@@ -161,22 +169,16 @@ const FullProjectDetails = () => {
           />
         )}
       </Box>
-      {detailsProjectOpen && (
-        <Box>
-          <Project2DetailsModal
-            detailsProjectOpen={detailsProjectOpen}
-            handleProjectDetailsOpen={handleProjectDetailsOpen}
-            handleDetailsProjectClose={handleDetailsProjectClose}
-          />
-        </Box>
-      )}
+
       {!isLoadingDetails && (
         <Box
           sx={{
             width: "100%",
-            mt: "10px",
+            // mt: "10px",
+
             height: "100%",
-          }}>
+          }}
+        >
           {
             <ProjectTable2
               role={role}
@@ -193,9 +195,20 @@ const FullProjectDetails = () => {
           }
         </Box>
       )}
+
       <Box>
         <CheckOutModal handleCheckOutButton={handleCheckOutButton} open={open} handleClose={handleClose} />
       </Box>
+
+      {detailsProjectOpen && (
+        <Box>
+          <Project2DetailsModal
+            detailsProjectOpen={detailsProjectOpen}
+            handleProjectDetailsOpen={handleProjectDetailsOpen}
+            handleDetailsProjectClose={handleDetailsProjectClose}
+          />
+        </Box>
+      )}
     </Box>
   );
 };

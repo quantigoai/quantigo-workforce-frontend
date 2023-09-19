@@ -6,6 +6,7 @@
   justify-content: space-between;
   height: 90vh;
 font-family: 'Inter', sans-serif;
+/* margin-top: 20px; */
 
 }
 .test {
@@ -25,10 +26,10 @@ font-family: 'Inter', sans-serif;
   border-bottom: 1px solid #f2f6fc;
 }
 .div1 {
-  width: 97%;
+  width: 100%;
   margin: auto;
   height: 90%;
-  margin-top: 5px;
+  /* margin-top: 5px; */
   /* height: calc(100% - 60px); */
   position: relative;
   overflow: scroll;
@@ -41,7 +42,7 @@ font-family: 'Inter', sans-serif;
 
 .myTable {
   position: absolute;
-  background-color: #ffffff;
+  background-color: #ffffff ;
   border-collapse: separate;
 
  
@@ -71,6 +72,7 @@ font-family: 'Inter', sans-serif;
 .div1 th {
   border-left: none;
   padding: 10px 16px 10px 20px;
+  
 
  
 }
@@ -78,7 +80,10 @@ font-family: 'Inter', sans-serif;
   border-left: none;
   width: 80px;
   min-width: 80px;
+  border: 2px solid red;
 }
+
+
 
 .div1 th:nth-child(1),
 .div1 td:nth-child(1) {
@@ -89,7 +94,10 @@ font-family: 'Inter', sans-serif;
   min-width: 150px;
   background-color: #ffffff;
   border-right: 1px solid #ebf0f5;
+  /* border-right: 1px solid red; */
+ 
 }
+
 
 .div1 th:last-child,
 .div1 td:last-child {
@@ -104,15 +112,17 @@ font-family: 'Inter', sans-serif;
 .div1 th:nth-child(1),
 .div1 th:last-child {
   z-index: 20;
+  background-color: #F4F7FE;
 }
 
 .custom-header {
   top: 0;
   left: 200;
   position: sticky;
-  background-color: #ffffff;
   z-index: 30;
+  
 }
+
 
 .tableRow {
   height: calc(6vh);

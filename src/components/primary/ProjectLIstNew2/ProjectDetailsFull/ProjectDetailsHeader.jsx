@@ -26,8 +26,7 @@ const ProjectDetailsHeader = ({
       width={"100%"}
       sx={{
         // backgroundColor: "red",
-        backgroundColor: "#F2F6FC",
-        borderBottom: "2px solid #F2F6FC",
+        backgroundColor: "white",
         borderRadius: "8px 8px 0px 0px",
       }}
     >

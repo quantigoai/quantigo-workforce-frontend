@@ -14,10 +14,11 @@ const ProjectModalHeader = ({
   return (
     <Box
       sx={{
-        paddingTop: "2%",
+        paddingTop: "20px",
         width: "100%",
         background: isPageDetail ? "white" : "#F2F6FC",
-        borderRadius: "8px",
+        borderRadius: "8px 0px 0px 0px",
+        borderBottom: "2px solid #EBF0F5",
       }}
     >
       <Grid

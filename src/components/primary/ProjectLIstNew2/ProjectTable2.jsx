@@ -56,7 +56,7 @@ const ProjectTable2 = ({
             {myRows.length > 0 ? (
               <Table aria-label="simple table" className="myTable">
                 <TableHead>
-                  <TableRow className="custom-header">
+                  <TableRow sx={{ backgroundColor: "#F4F7FE" }} className="custom-header">
                     {myColumn.map((col) => (
                       <TableCell
                         sx={{
@@ -64,6 +64,7 @@ const ProjectTable2 = ({
                           color: "#7B98BA",
                           textAlign: "left",
                           fontSize: "13px",
+                          backgroundColor: "#F4F7FE",
                         }}
                         key={col.id}
                       >

@@ -14,7 +14,7 @@ PDDateField.propTypes = {
 const MyDatePicker = styled(DatePicker)(() => ({
   border: "2px solid #E6ECF5 !important",
   borderRadius: "10px",
-  height: "50%",
+  height: "47%",
   fontSize: "14px",
 }));
 
@@ -44,7 +44,8 @@ export default function PDDateField({
             <Typography sx={{ fontSize: "12px", fontWeight: "500", mb: 1 }}>{label}</Typography>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <MyDatePicker
-                inputFormat="DD-MM-YYYY"
+                // inputFormat="DD-MM-YYYY"
+                format="DD MMM YYYY"
                 defaultValue={defaultValue ? dayjs(defaultValue) : field.value}
                 onChange={handleChange}
               >

@@ -17,7 +17,7 @@ const ProjectModalHeader = ({
         paddingTop: "20px",
         width: "100%",
         background: isPageDetail ? "white" : "#F2F6FC",
-        borderRadius: "8px 0px 0px 0px",
+        borderRadius: "8px",
         borderBottom: "2px solid #EBF0F5",
       }}
     >

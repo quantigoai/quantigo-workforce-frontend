@@ -12,7 +12,11 @@ import React, { useEffect } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivePath } from "../../../features/slice/activePathSlice";
-import { getDashboardData, getDashboardDataHourly, getDashboardDataWeekly } from "../../../features/slice/dashboardSlice";
+import {
+  getDashboardData,
+  getDashboardDataHourly,
+  getDashboardDataWeekly,
+} from "../../../features/slice/dashboardSlice";
 import { resendEmailVarification } from "../../../features/slice/userSlice";
 import { convertDate } from "../../../helper/customData";
 import BarChart from "./BarChart/BarChart";
@@ -23,6 +27,7 @@ import LineChart from "./LineChart/LineChart";
 import LineChartDaily from "./LineChart/LineChartDaily";
 import PieChart from "./PieChart/PieChart";
 import PieChartForUser from "./PieChart/PieChartForUser";
+import Testfield from "./Testfield";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -84,8 +89,7 @@ const Dashboard = () => {
         <>
           <Box
             // sx={{ backgroundColor: "#F5F5F5", height: "100%", width: "100%" }}>
-            sx={{ height: "100%" }}
-          >
+            sx={{ padding: "1.5%" }}>
             {role === "level_0_annotator" ? (
               <>
                 {user.user.isVerified ? <CongratulationComponents /> : <DashboardDocument />}
@@ -95,7 +99,11 @@ const Dashboard = () => {
             ) : (
               <>
                 <DashboardIndex />
-                {role === "level_0_annotator" || role === "level_1_annotator" || role === "level_2_annotator" || role === "level_3_annotator" || role === "reviewer" ? (
+                {role === "level_0_annotator" ||
+                role === "level_1_annotator" ||
+                role === "level_2_annotator" ||
+                role === "level_3_annotator" ||
+                role === "reviewer" ? (
                   <>
                     <Box
                       container
@@ -103,17 +111,23 @@ const Dashboard = () => {
                         paddingRight: "2%",
                         width: "100%",
                         height: "20%",
-                      }}
-                    >
+                      }}>
                       <Paper
                         elevation={0}
                         sx={{
                           borderRadius: "8px",
                           // width: "100%",
                           // height: "100%",
-                        }}
-                      >
-                        {!projectLoading && <BarChart startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate} loading={projectLoading} />}
+                        }}>
+                        {!projectLoading && (
+                          <BarChart
+                            startDate={startDate}
+                            setStartDate={setStartDate}
+                            endDate={endDate}
+                            setEndDate={setEndDate}
+                            loading={projectLoading}
+                          />
+                        )}
                       </Paper>
                     </Box>
                   </>
@@ -122,7 +136,15 @@ const Dashboard = () => {
                     <Grid container sx={{ paddingBottom: "2%" }}>
                       <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                         <Paper elevation={0} sx={{ borderRadius: "8px" }}>
-                          {!projectLoading && <BarChart startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate} loading={projectLoading} />}
+                          {!projectLoading && (
+                            <BarChart
+                              startDate={startDate}
+                              setStartDate={setStartDate}
+                              endDate={endDate}
+                              setEndDate={setEndDate}
+                              loading={projectLoading}
+                            />
+                          )}
                         </Paper>
                       </Grid>
                       <Grid item xs={3} sx={{ paddingRight: "2%" }}>
@@ -133,8 +155,7 @@ const Dashboard = () => {
                             height: "99%",
                             borderRadius: "8px",
                             paddingLeft: "3%",
-                          }}
-                        >
+                          }}>
                           {/* <Grid sx={{ paddingTop: "5%" }}></Grid> */}
                           <PieChartForUser />
                         </Paper>
@@ -147,8 +168,7 @@ const Dashboard = () => {
                             height: "99%",
                             borderRadius: "8px",
                             paddingLeft: "3%",
-                          }}
-                        >
+                          }}>
                           <PieChart />
                         </Paper>
                       </Grid>
@@ -180,8 +200,7 @@ const Dashboard = () => {
               height: "100%",
               // width: "100%",
               padding: "1%",
-            }}
-          >
+            }}>
             <Paper elevation={0} style={paperstyleResendEmail}>
               <Grid container sx={{ justifyContent: "center", paddingTop: "7%" }}>
                 <Typography variant="h4" sx={{ color: "#090080" }}>
@@ -195,8 +214,7 @@ const Dashboard = () => {
                   justifyContent: "center",
                   paddingTop: "2%",
                   position: "relative",
-                }}
-              >
+                }}>
                 <Button
                   disabled={isLoading}
                   sx={{
@@ -207,8 +225,7 @@ const Dashboard = () => {
                       color: "#1D1D1D",
                     },
                   }}
-                  onClick={() => handleresendEmail()}
-                >
+                  onClick={() => handleresendEmail()}>
                   Resend Email
                 </Button>
                 {isLoading && (
@@ -231,6 +248,8 @@ const Dashboard = () => {
           </Box>
         </>
       )}
+
+      {/* <Testfield /> */}
     </>
   );
 };

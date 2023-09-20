@@ -127,7 +127,7 @@ const FullProjectDetails = () => {
       isRangeSelected: false,
     },
   ]);
- 
+
   // TODO Need to solve this issue
   const handleChangePagination = useCallback(() => {
     if (role === "admin") {
@@ -171,6 +171,7 @@ const FullProjectDetails = () => {
       }}
     >
       <Box sx={{ width: "97%", margin: "auto" }}>
+        {/* {!isLoadingDetails && detailRow.length > 0 && ( */}
         {!isLoadingDetails && (
           <ProjectDetailsHeader
             range={range}

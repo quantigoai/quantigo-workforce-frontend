@@ -1,18 +1,21 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
 .projectBox {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 88vh;
-font-family: 'Inter', sans-serif;
+  height: 88vh; 
+  /* width: 100%; */
+  /* width: 100%;
+  background-color: chartreuse;
+  */
+  /* height: 100vh; */
+  font-family: 'Inter', sans-serif;
 /* margin-top: 20px; */
 
 }
-.test {
-  color: rgb(192, 221, 26);
-  border: 1px solid black;
-}
+
 .css-ong8cm{
   height: 4vh;
 }
@@ -36,7 +39,7 @@ font-family: 'Inter', sans-serif;
 
   background-color: #fff;
   box-shadow: 0px 1px 3px 0px rgba(9, 0, 128, 0.08);
-  border-radius: 8px;
+  border-radius: 8px 8px 0px 0px;
   font-family: 'Inter', sans-serif;
 }
 
@@ -172,4 +175,8 @@ font-family: 'Inter', sans-serif;
     }
   
     /* Define more media queries for smaller screen sizes if needed */
+  }
+
+  .test{
+    transition: all 1.3s ease-in-out;
   }

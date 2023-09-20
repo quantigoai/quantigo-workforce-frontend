@@ -352,12 +352,15 @@ export default function LayoutNew({ children }) {
         display: "flex",
         flexDirection: "row",
         gap: 2,
+        // backgroundColor: "blue",
+        // width: "100%",
       }}
     >
       <Box
         sx={{
           height: "100vh",
           width: open ? "15%" : "4%",
+          // backgroundColor: "red",
         }}
       >
         <Drawer
@@ -445,13 +448,14 @@ export default function LayoutNew({ children }) {
       </Box>
 
       <Box
-        component="main"
+        // component="main"
         sx={{
           display: "flex",
           gap: 2,
           width: open ? "88%" : "96%",
           flexDirection: "column",
-          ps: 2,
+          // backgroundColor: "green",
+          // pl: 2,
         }}
       >
         <Box

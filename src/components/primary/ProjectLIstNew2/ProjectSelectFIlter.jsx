@@ -26,7 +26,7 @@ const ProjectSelectFIlter = ({
       <Stack sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexDirection: "row" }}>
         {role === "admin" ? (
           <>
-            {" "}
+
             <Stack
               sx={{
                 display: "flex",
@@ -108,7 +108,7 @@ const ProjectSelectFIlter = ({
         )}
 
         <Stack sx={{ width: "10%" }}>
-          {" "}
+ 
           {role === "admin" && (
             <Button
               onClick={() => handleClearFilter()}

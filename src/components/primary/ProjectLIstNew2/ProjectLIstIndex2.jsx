@@ -198,7 +198,7 @@ const ProjectLIstIndex2 = () => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            height: "15vh",
+            height: "15%",
             alignItems: "center",
             backgroundColor: "#fff",
           }}
@@ -208,10 +208,9 @@ const ProjectLIstIndex2 = () => {
               display: "flex",
               justifyContent: "space-between",
               width: "100%",
-              height: "12vh",
+              height: isFilter ? "70%" : "100%",
               alignItems: "center",
               background: "#FFFFFF",
-              // borderBottom: "1px solid #E6ECF5",
               borderTop: "1px solid #E6ECF5",
             }}
           >
@@ -284,15 +283,16 @@ const ProjectLIstIndex2 = () => {
               </Button>
             </Box>
           </Box>
+
           <Box
             sx={{
               backgroundColor: "#FFFFFF",
               width: "100%",
-              height: "8vh",
+              height: isFilter ? "30%" : "0%",
               paddingY: "10px",
-              // visibility: isFilter ? "visible" : "hidden",
               display: isFilter ? "block" : "none",
-              transition: "margin-top 0.3s ease-in-out",
+              borderTop: "1px solid #E6ECF5",
+              transition: "margin-top 1.3s ease-in-out",
             }}
           >
             <ProjectSelectFIlter
@@ -315,7 +315,9 @@ const ProjectLIstIndex2 = () => {
           sx={{
             width: "100%",
             mt: "10px",
-            height: "100%",
+            // height: "100%",
+            height: "84%",
+            // backgroundColor: "violet",
           }}
         >
           <ProjectTable2

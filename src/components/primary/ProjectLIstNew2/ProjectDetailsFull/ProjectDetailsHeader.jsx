@@ -17,8 +17,10 @@ const ProjectDetailsHeader = ({
   checkOutDisable,
   role,
   handleOpen,
-  range, setRange
+  range,
+  setRange,
 }) => {
+  console.log("🚀 ~ file: ProjectDetailsHeader.jsx:22 ~ role:", role);
   return (
     <Box
       display={"flex"}
@@ -63,7 +65,7 @@ const ProjectDetailsHeader = ({
 
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
           <Box>
-            {projectDrawer.project_status && role === "admin" ? (
+            {role === "admin" ? (
               <ProjectDetailsButton
                 range={range}
                 setRange={setRange}
@@ -74,6 +76,7 @@ const ProjectDetailsHeader = ({
             ) : (
               <CheckINOutButton
                 handleOpen={handleOpen}
+                handleProjectDetailsOpen={handleProjectDetailsOpen}
                 checkOutDisable={checkOutDisable}
                 handleCheckOutButton={handleCheckOutButton}
                 isDisable={isDisable}

@@ -6,6 +6,7 @@ import DetailsButton from "./DetailsButton";
 
 const CheckINOutButton = ({
   handleDetailButton,
+  handleProjectDetailsOpen,
   fromDetails,
   handleCheckInButton,
   isDisable,
@@ -15,7 +16,7 @@ const CheckINOutButton = ({
 }) => {
   return (
     <Box display={"flex"} alignItems={"center"} justifyContent={"space-between"}>
-      {!fromDetails && <DetailsButton handleDetailButton={handleDetailButton} />}
+      {!fromDetails && <DetailsButton handleProjectDetailsOpen={handleProjectDetailsOpen} />}
       <CheckInButton isDisable={isDisable} handleCheckInButton={handleCheckInButton} />
       <CheckOutButton
         handleOpen={handleOpen}

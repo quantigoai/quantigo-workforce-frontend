@@ -59,7 +59,7 @@ const ProjectTable2 = ({
     <>
       <Box sx={{ height: "100vh" }} className="div1">
         {isLoading ? (
-          <LoadingComponent height="70vh" />
+          <LoadingComponent height="50vh" />
         ) : (
           <>
             {myRows.length > 0 ? (

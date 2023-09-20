@@ -36,6 +36,7 @@ export const daysAndMonths = (date) => {
 };
 
 export const formatDate = (inputDate) => {
+  if(!inputDate) return "Date is not available"
   const options = { weekday: "short", month: "short", day: "numeric", year: "numeric" };
   const date = new Date(inputDate);
   return date.toLocaleDateString("en-US", options);

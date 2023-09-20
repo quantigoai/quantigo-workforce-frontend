@@ -132,7 +132,7 @@ const ProjectTable2 = ({
                             return (
                               <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
                                 <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
-                                  {row[col?.field] || "20 july 2023"}
+                                  {formatDate(row[col?.field]) || "20 july 2023"}
                                 </Typography>
                               </TableCell>
                             );

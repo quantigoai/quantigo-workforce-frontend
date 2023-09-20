@@ -6,6 +6,7 @@ import DetailsItem from "./DetailsItem";
 import SingleItem from "./SingleItem";
 import BoxItem from "./BoxItem";
 import { useSelector } from "react-redux";
+import { formatDate } from "../../../../helper/dateConverter";
 const style = {
   position: "absolute",
   top: "50%",
@@ -81,7 +82,7 @@ const Project2DetailsModal = ({
                   Item1Title={"Benchmark"}
                   Item1={projectDrawer?.benchMark ? projectDrawer.benchMark : "10 sec/object, 5 sec/tag"}
                   Item2Title={"Estimated end Time"}
-                  Item2={projectDrawer?.estimated_end_date}
+                  Item2={formatDate(projectDrawer?.estimated_end_date)}
                 />
                 <SingleItem ItemTitle={"Status"} Item={projectDrawer?.project_status} />
                 <SingleItem ItemTitle={"Skills"} Item={projectDrawer?.project_skills} />

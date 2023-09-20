@@ -277,7 +277,10 @@ const projectDrawerSlice = createSlice({
       .addCase(checkInProjectDrawerById.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        // state.projectDrawer = action.payload.data.projectDrawer;
+        state.usersWorkHistory = [
+          action.payload.data.projectDrawer.checkedInUsersHistory[0],
+          ...state.usersWorkHistory,
+        ];
       })
       .addCase(checkInProjectDrawerById.rejected, (state, action) => {
         state.error = action.error.message;
@@ -286,9 +289,15 @@ const projectDrawerSlice = createSlice({
       .addCase(checkOutProjectDrawerById.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(checkOutProjectDrawerById.fulfilled, (state) => {
+      .addCase(checkOutProjectDrawerById.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
+        state.usersWorkHistory = state.usersWorkHistory.map((history) => {
+          if (history._id === action.payload.data.projectDrawer.checkedInUsersHistory[0]._id) {
+            return action.payload.data.projectDrawer.checkedInUsersHistory[0];
+          }
+          return history;
+        });
       })
       .addCase(checkOutProjectDrawerById.rejected, (state, action) => {
         state.error = action.error.message;

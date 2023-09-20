@@ -348,6 +348,9 @@ const userSlice = createSlice({
         return item;
       });
     },
+    updateUserField: (state, action) => { 
+      state.user[action.payload.field] = action.payload.value;
+    },
     updateUserEnrollCourse: (state, action) => {
       state.user.enrolledCourses.push(action.payload);
     },
@@ -747,5 +750,6 @@ export const {
   updateSingleUserManually,
   updateUserEnrollCourse,
   updateUserCompletedCourse,
+  updateUserField,
 } = userSlice.actions;
 export default userSlice.reducer;

@@ -1,6 +1,7 @@
 import { Box, Button, MenuItem, Select, Stack, Typography } from "@mui/material";
 import { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 const paginationOptions = [
   { value: 10, label: 10 },
@@ -63,90 +64,91 @@ const Pagination = ({ totalItems, pagination, setPagination, handleChangePaginat
 
   const disablePrev = pagination.currentPage === 0;
   const disableNext = pagination.currentPage >= totalPages - 1;
+  const location = useLocation();
+  const { pathname } = location;
 
-  return (
-    myWorkHistoryCount > 0 ||
-    (usersWorkHistoryCount > 0 && (
-      <Box
+  return pathname === "/allprojects" || myWorkHistoryCount > 0 || usersWorkHistoryCount > 0 ? (
+    <Box
+      sx={{
+        display: "flex",
+        width: "100%",
+        paddingX: "30px",
+        paddingY: "10px",
+        justifyContent: "space-between",
+        alignItems: "center",
+        alignContent: "center",
+      }}
+    >
+      <Stack
+        direction="row"
         sx={{
-          display: "flex",
-          width: "100%",
-          paddingX: "30px",
-          paddingY: "10px",
-          justifyContent: "space-between",
+          justifyContent: "center",
           alignItems: "center",
           alignContent: "center",
         }}
       >
-        <Stack
-          direction="row"
-          sx={{
-            justifyContent: "center",
-            alignItems: "center",
-            alignContent: "center",
+        <Typography sx={{ fontSize: "14px", width: "200px" }} variant="p">
+          Items per page
+        </Typography>
+        <Select
+          id="demo-simple-select"
+          value={pagination.pageSize}
+          onChange={(e) => {
+            const newSize = parseInt(e.target.value);
+            setPagination((prevPagination) => ({
+              ...prevPagination,
+              pageSize: newSize,
+              currentPage: 0, // Reset to the first page when changing pageSize
+            }));
           }}
+          labelId="demo-simple-select-label"
+          sx={{ width: "100px", height: "40px", border: "1px solid #b9b9b9" }}
+          name="limit"
         >
-          <Typography sx={{ fontSize: "14px", width: "200px" }} variant="p">
-            Items per page
-          </Typography>
-          <Select
-            id="demo-simple-select"
-            value={pagination.pageSize}
-            onChange={(e) => {
-              const newSize = parseInt(e.target.value);
-              setPagination((prevPagination) => ({
-                ...prevPagination,
-                pageSize: newSize,
-                currentPage: 0, // Reset to the first page when changing pageSize
-              }));
-            }}
-            labelId="demo-simple-select-label"
-            sx={{ width: "100px", height: "40px", border: "1px solid #b9b9b9" }}
-            name="limit"
-          >
-            {/* Your paginationOptions.map() here */}
-            {paginationOptions.map((p) => (
-              <MenuItem key={p.value} value={p.value}>
-                {p.label}
-              </MenuItem>
-            ))}
-          </Select>
-        </Stack>
+          {/* Your paginationOptions.map() here */}
+          {paginationOptions.map((p) => (
+            <MenuItem key={p.value} value={p.value}>
+              {p.label}
+            </MenuItem>
+          ))}
+        </Select>
+      </Stack>
 
-        {/* Buttons */}
-        <Box sx={{ display: "flex" }}>
-          <Button disabled={disablePrev} sx={{ minWidth: "30px" }} onClick={handlePrevPage} variant="none">
-            <i className="ri-arrow-left-s-line"></i>
-          </Button>
-          <Box>
-            {visiblePageNumbers.map((pageNumberToShow) => (
-              <Button
-                onClick={() => handleJumpToPage(pageNumberToShow)}
-                key={pageNumberToShow}
-                name="page"
-                variant="small"
-                sx={{
-                  minWidth: "40px",
-                  fontSize: "14px",
-                  padding: "6px 2px",
-                  color: pagination.currentPage === pageNumberToShow ? "white" : "#62728F",
-                  backgroundColor: pagination.currentPage === pageNumberToShow ? "#2E58FF" : "transparent",
-                  "&:focus": {
-                    color: "white",
-                    backgroundColor: "#2E58FF",
-                  },
-                }}
-              >
-                {pageNumberToShow + 1}
-              </Button>
-            ))}
-          </Box>
-          <Button sx={{ minWidth: "40px" }} disabled={disableNext} variant="none" onClick={handleNextPage}>
-            <i className="ri-arrow-right-s-line"></i>
-          </Button>
+      {/* Buttons */}
+      <Box sx={{ display: "flex" }}>
+        <Button disabled={disablePrev} sx={{ minWidth: "30px" }} onClick={handlePrevPage} variant="none">
+          <i className="ri-arrow-left-s-line"></i>
+        </Button>
+        <Box>
+          {visiblePageNumbers.map((pageNumberToShow) => (
+            <Button
+              onClick={() => handleJumpToPage(pageNumberToShow)}
+              key={pageNumberToShow}
+              name="page"
+              variant="small"
+              sx={{
+                minWidth: "40px",
+                fontSize: "14px",
+                padding: "6px 2px",
+                color: pagination.currentPage === pageNumberToShow ? "white" : "#62728F",
+                backgroundColor: pagination.currentPage === pageNumberToShow ? "#2E58FF" : "transparent",
+                "&:focus": {
+                  color: "white",
+                  backgroundColor: "#2E58FF",
+                },
+              }}
+            >
+              {pageNumberToShow + 1}
+            </Button>
+          ))}
         </Box>
+        <Button sx={{ minWidth: "40px" }} disabled={disableNext} variant="none" onClick={handleNextPage}>
+          <i className="ri-arrow-right-s-line"></i>
+        </Button>
       </Box>
-    ))
+    </Box>
+  ) : (
+    <></>
   );
 };
 

@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Alert, Box, Link, Typography } from "@mui/material";
+import { Alert, Badge, Box, Link, Typography, styled } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -38,6 +38,14 @@ import "./index.css";
  *
  */
 
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    right: -8,
+    top: 10,
+    padding: "0 2px",
+  },
+}));
+
 const ProjectTable2 = ({
   pagination,
   handleDetailsPage,
@@ -55,7 +63,8 @@ const ProjectTable2 = ({
   skillAlert,
 }) => {
   const { isLoading } = useSelector((state) => state.projectDrawer);
-
+  const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
+  console.log("🚀 ~ file: ProjectTable2.jsx:68 ~ currentlyCheckedInProject:", currentlyCheckedInProject);
   return (
     <>
       <Box sx={{ height: "100vh" }} className="div1">
@@ -182,9 +191,17 @@ const ProjectTable2 = ({
                                 component="th"
                                 scope="row"
                               >
-                                <Typography sx={{ color: "#253E5C", cursor: "pointer" }} variant="wf_p2_semiBold">
-                                  {row[col?.field]}
-                                </Typography>
+                                {currentlyCheckedInProject === row._id ? (
+                                  <StyledBadge variant="dot" color="success">
+                                    <Typography sx={{ color: "#253E5C", cursor: "pointer" }} variant="wf_p2_semiBold">
+                                      {row[col?.field]}
+                                    </Typography>
+                                  </StyledBadge>
+                                ) : (
+                                  <Typography sx={{ color: "#253E5C", cursor: "pointer" }} variant="wf_p2_semiBold">
+                                    {row[col?.field]}
+                                  </Typography>
+                                )}
                               </TableCell>
                             );
                           } else if (col.field === "workingTimeInMs") {

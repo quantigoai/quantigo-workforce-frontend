@@ -15,6 +15,7 @@ import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
 import FormProvider from "../../shared/FormProvider/FormProvider";
 import ProjectModalHeader from "./ProjectModalHeader";
 import PDDateField from "../../shared/CustomField/PDDateField";
+import PDReleventField from "../../shared/CustomField/PDReleventField";
 const style = {
   position: "absolute",
   top: "50%",
@@ -66,8 +67,9 @@ const ProjectModal = ({
     project_batch: Yup.string().required(" batch is required"),
     pdr: Yup.string().required(" pdr is required"),
     benchMark: Yup.string().required(" benchMark is required"),
-    guideline: Yup.string().required(" document is required"),
-    link: Yup.string().required("link is required"),
+    // relevantDocuments: Yup.string().required(" document is required"),
+    // guideline: Yup.string().required(" document is required"),
+    // link: Yup.string().required("link is required"),
   });
 
   const methods = useForm({
@@ -177,7 +179,6 @@ const ProjectModal = ({
                 </Stack>
 
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                
                   <PDDateField
                     name="estimated_end_date"
                     label="Estimated End Time"
@@ -203,7 +204,7 @@ const ProjectModal = ({
                   variant="h6">
                   Relevant Documents
                 </Typography>
-
+                {/* <PDReleventField /> */}
                 <Stack
                   sx={{
                     border: "2px solid #E6ECF5",
@@ -213,7 +214,8 @@ const ProjectModal = ({
                     maxHeight: 200,
                     overflowY: "auto",
                   }}>
-                  <Stack direction="row" gap={2} xs={12}>
+                  <PDReleventField name={"relevantDocuments"} />
+                  {/* <Stack direction="row" gap={2} xs={12}>
                     <PDTextFIeld
                       name="guideline"
                       label="Document Name"
@@ -229,8 +231,8 @@ const ProjectModal = ({
                         disableUnderline: true,
                       }}
                     />
-                  </Stack>
-                  {addDoc.map((doc, id) => {
+                  </Stack> */}
+                  {/* {addDoc.map((doc, id) => {
                     return (
                       <Stack key={id} direction="row" gap={2} xs={12} sx={{ mt: 2, position: "relative" }}>
                         <PDTextFIeld
@@ -261,9 +263,9 @@ const ProjectModal = ({
                         </Button>
                       </Stack>
                     );
-                  })}
+                  })} */}
 
-                  <Typography
+                  {/* <Typography
                     sx={{
                       fontWeight: "600",
                       mt: "15px",
@@ -275,7 +277,7 @@ const ProjectModal = ({
                     variant="p"
                     onClick={() => handleAddDoc()}>
                     <i className="ri-add-line"></i> Add another document
-                  </Typography>
+                  </Typography> */}
                 </Stack>
 
                 <hr

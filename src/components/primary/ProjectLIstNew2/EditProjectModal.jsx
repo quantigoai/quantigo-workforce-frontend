@@ -16,6 +16,7 @@ import FormProvider from "../../shared/FormProvider/FormProvider";
 import useHandleEditChange from "./Hooks/useHandleEditChange";
 import ProjectModalHeader from "./ProjectModalHeader";
 import PDDateField from "../../shared/CustomField/PDDateField";
+import PDReleventField from "../../shared/CustomField/PDReleventField";
 
 const style = {
   position: "absolute",
@@ -231,7 +232,8 @@ const EditProjectModal = ({
                     overflowY: "auto",
                   }}
                 >
-                  <Stack direction="row" gap={2} xs={12}>
+                    <PDReleventField   defaultValue={projectDrawer.relevantDocuments} name={"relevantDocuments"} />
+                  {/* <Stack direction="row" gap={2} xs={12}>
                     <PDTextFIeld
                       name="guideline"
                       label="Document Name"
@@ -282,9 +284,9 @@ const EditProjectModal = ({
                         </Button>
                       </Stack>
                     );
-                  })}
+                  })} */}
 
-                  <Typography
+                  {/* <Typography
                     sx={{
                       fontWeight: "600",
                       mt: "15px",
@@ -297,7 +299,7 @@ const EditProjectModal = ({
                     onClick={() => handleAddDoc()}
                   >
                     <i className="ri-add-line"></i> Add another document
-                  </Typography>
+                  </Typography> */}
                 </Stack>
 
                 <hr

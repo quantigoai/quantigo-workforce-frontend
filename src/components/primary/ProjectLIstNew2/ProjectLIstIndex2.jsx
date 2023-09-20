@@ -139,7 +139,7 @@ const ProjectLIstIndex2 = () => {
   const skillId = editSkills?.map((skill) => skill._id);
 
   const onSubmit = (data) => {
-    console.log("🚀 ~ file: ProjectLIstIndex2.jsx:139 ~ onSubmit ~ data:", isEditModal);
+    console.log("🚀 ~ file: ProjectLIstIndex2.jsx:139 ~ onSubmit ~ data:", data);
     if (isEditModal) {
       const newData = {
         ...data,
@@ -203,8 +203,7 @@ const ProjectLIstIndex2 = () => {
               background: "#FFFFFF",
               borderBottom: "1px solid #E6ECF5",
               borderTop: "1px solid #E6ECF5",
-            }}
-          >
+            }}>
             <Box sx={{ width: "30%", padding: "12px 35px" }}>
               <Grid
                 container
@@ -213,8 +212,7 @@ const ProjectLIstIndex2 = () => {
                   alignContent: "center",
                   alignItems: "center",
                   paddingX: "10px",
-                }}
-              >
+                }}>
                 <CommonHeader title="Projects" customButton="Create User" />
               </Grid>
             </Box>
@@ -225,8 +223,7 @@ const ProjectLIstIndex2 = () => {
                 justifyContent: "space-between",
                 alignItems: "center",
                 padding: "12px 20px",
-              }}
-            >
+              }}>
               <Paper
                 component="form"
                 sx={{
@@ -239,8 +236,7 @@ const ProjectLIstIndex2 = () => {
                   borderRadius: "8px",
                   outline: "none",
                   boxShadow: "none",
-                }}
-              >
+                }}>
                 <IconButton disabled type="button" sx={{ p: "5px" }} aria-label="search">
                   <SearchIcon />
                 </IconButton>
@@ -254,8 +250,7 @@ const ProjectLIstIndex2 = () => {
                   mx: 2,
                   borderRadius: "8px",
                 }}
-                aria-label="menu"
-              >
+                aria-label="menu">
                 <i style={{ color: "#266AED" }} className="ri-filter-3-line"></i>
               </IconButton>
               <Button
@@ -268,8 +263,7 @@ const ProjectLIstIndex2 = () => {
                   },
                 }}
                 variant="contained"
-                onClick={handleProjectCreateOpen}
-              >
+                onClick={handleProjectCreateOpen}>
                 Create Project
               </Button>
             </Box>
@@ -283,8 +277,7 @@ const ProjectLIstIndex2 = () => {
                 paddingY: "10px",
                 visibility: isFilter ? "visible" : "hidden",
                 // display: isFilter ? "block" : "none",
-              }}
-            >
+              }}>
               <ProjectSelectFIlter
                 handleChangeAnnotatorFilter={handleChangeAnnotatorFilter}
                 role={role}
@@ -307,8 +300,7 @@ const ProjectLIstIndex2 = () => {
             width: "100%",
             mt: "10px",
             height: "100%",
-          }}
-        >
+          }}>
           <ProjectTable2
             role={role}
             handleDetailsPage={handleDetailsPage}

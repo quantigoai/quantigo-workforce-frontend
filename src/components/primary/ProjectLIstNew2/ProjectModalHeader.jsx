@@ -54,7 +54,7 @@ const ProjectModalHeader = ({
             </Typography>
           )}
         </Grid>
-        {isPageDetail ? (
+        {/* {isPageDetail ? (
           <Grid item xs={2} sx={{ justifyContent: "right", paddingRight: "2%" }}>
             <CheckINOutButton
               handleCheckInButton={handleCheckInButton}
@@ -64,13 +64,13 @@ const ProjectModalHeader = ({
               fromDetails={"true"}
             />
           </Grid>
-        ) : (
-          <Grid item xs={1} sx={{ justifyContent: "right", paddingRight: "2%" }}>
-            <Button onClick={handleCreateProjectClose}>
-              <img style={{ width: "20px" }} alt="cross" src={u_multiply} />
-            </Button>
-          </Grid>
-        )}
+        ) : */}
+
+        <Grid item xs={1} sx={{ justifyContent: "right", paddingRight: "2%" }}>
+          <Button onClick={handleCreateProjectClose}>
+            <img style={{ width: "20px" }} alt="cross" src={u_multiply} />
+          </Button>
+        </Grid>
       </Grid>
     </Box>
   );

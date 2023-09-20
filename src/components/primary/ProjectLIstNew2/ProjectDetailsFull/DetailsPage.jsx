@@ -1,14 +1,8 @@
 import { Alert, Box, Stack } from "@mui/material";
-import { useEffect, useState } from "react";
 import BoxItem from "../Project2Details/BoxItem";
-import DetailsItem from "../Project2Details/DetailsItem";
 import SingleItem from "../Project2Details/SingleItem";
-import ProjectModalHeader from "../ProjectModalHeader";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { useAlert } from "react-alert";
-import { checkInProjectDrawerById, checkOutProjectDrawerById } from "../../../../features/slice/projectDrawerSlice";
-import { clearUserWorkingProject, updateUserWorkingProject } from "../../../../features/slice/userSlice";
+import { useSelector } from "react-redux";
+
 import DetailsItemSIngle from "../Project2Details/DetailsItemSIngle";
 
 const style = {
@@ -26,102 +20,31 @@ const style = {
     height: "20px",
   },
 };
-const DetailsPage = () => {
-  const [isDisable, setIsDisable] = useState(false);
-  const [isLoadingDetails, setIsLoadingDetails] = useState(true);
+const DetailsPage = ({ skillAlert }) => {
   const { isLoading, projectDrawer } = useSelector((state) => state.projectDrawer);
 
-  const alert = useAlert();
-  const dispatch = useDispatch();
-  const { id } = useParams();
-  const [checkOutDisable, setCheckOutDisable] = useState(false);
-  const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
-
-  useEffect(() => {
-    setIsLoadingDetails(false);
-  }, [projectDrawer]);
-
-  useEffect(() => {
-    setIsLoadingDetails(false);
-    if (isLoadingDetails) {
-      if (!currentlyCheckedInProject || currentlyCheckedInProject === null) {
-        setIsDisable(false);
-      }
-      // user  currentlyCheckedInProject field match with id
-
-      if (currentlyCheckedInProject) {
-        setIsDisable(true);
-      }
-    }
-  }, [isLoadingDetails, currentlyCheckedInProject, id]);
-
-  const handleCheckInButton = () => {
-    const data = { id: id };
-    if (!isLoading) {
-      setIsDisable(true);
-    }
-    dispatch(checkInProjectDrawerById(data)).then((action) => {
-      if (action.payload?.status === 200) {
-        dispatch(updateUserWorkingProject(data.id));
-        alert.show(action.payload.data.message, { type: "success" });
-        setIsDisable(true);
-      } else {
-        alert.show(action.error.message, { type: "error" });
-        setIsDisable(false);
-      }
-    });
-  };
-  const handleCheckOutButton = () => {
-    const data = { id: id };
-    if (!isLoading) {
-      setCheckOutDisable(true);
-    }
-    dispatch(checkOutProjectDrawerById(data)).then((action) => {
-      if (action.payload?.status === 200) {
-        dispatch(clearUserWorkingProject());
-        alert.show(action.payload.data.message, { type: "success" });
-        setIsDisable(false);
-        setCheckOutDisable(false);
-      } else if (action.error) {
-        alert.show(action.error.message, { type: "error" });
-        setIsDisable(true);
-        setCheckOutDisable(false);
-      } else {
-        // dispatch(clearUserWorkingProject());
-        alert.show(action.error.message, { type: "error" });
-        setIsDisable(true);
-        setCheckOutDisable(false);
-      }
-    });
-  };
   return (
     <Box sx={style}>
-      {/* <ProjectModalHeader
-        isDisable={isDisable}
-        checkOutDisable={checkOutDisable}
-        handleCheckInButton={handleCheckInButton}
-        handleCheckOutButton={handleCheckOutButton}
-        isPageDetail={"true"}
-        modalTitle={"Project Details"}
-      /> */}
-      <Alert
-        sx={{
-          borderRadius: "8px",
-          width: "50%",
-          border: "1px solid #F0D8A8",
-          background: "#FFF8EB",
-          mt: 2,
-          color: "#FFAB00",
-          fontSize: "12px",
-          fontWeight: "500",
-          ml: 3,
-        }}
-        variant="filled"
-        severity="info"
-      >
-        You need to have these  skills to work on this project. Complete these courses to get the required skills and
-        come back
-      </Alert>
+      {skillAlert && (
+        <Alert
+          sx={{
+            borderRadius: "8px",
+            width: "50%",
+            border: "1px solid #F0D8A8",
+            background: "#FFF8EB",
+            mt: 2,
+            color: "#FFAB00",
+            fontSize: "12px",
+            fontWeight: "500",
+            ml: 3,
+          }}
+          variant="filled"
+          severity="info"
+        >
+          You need to have these skills to work on this project. Complete these courses to get the required skills and
+          come back
+        </Alert>
+      )}
       <Box sx={{ padding: "2%" }}>
         <Stack
           sx={{
@@ -149,7 +72,7 @@ const DetailsPage = () => {
             Item1Title={"Benchmark"}
             Item1={projectDrawer.benchMark ? projectDrawer.benchMark : "10 sec/object, 5 sec/tag"}
             Item2Title={"Estimated end Time"}
-            Item2={"No Course"}
+            Item2={projectDrawer.estimated_end_date}
             Item3Title={"Status"}
             Item3={projectDrawer?.project_status}
           />

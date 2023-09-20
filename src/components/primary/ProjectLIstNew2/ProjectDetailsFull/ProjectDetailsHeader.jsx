@@ -19,6 +19,7 @@ const ProjectDetailsHeader = ({
   handleOpen,
   range,
   setRange,
+  usersWorkHistoryCount,
 }) => {
   return (
     <Box
@@ -74,6 +75,7 @@ const ProjectDetailsHeader = ({
               />
             ) : (
               <CheckINOutButton
+              usersWorkHistoryCount={usersWorkHistoryCount}
                 handleOpen={handleOpen}
                 handleProjectDetailsOpen={handleProjectDetailsOpen}
                 checkOutDisable={checkOutDisable}

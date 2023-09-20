@@ -52,6 +52,7 @@ const ProjectTable2 = ({
   filteredCol,
   handleProjectDetailsOpen,
   role,
+  skillAlert,
 }) => {
   const { isLoading } = useSelector((state) => state.projectDrawer);
 
@@ -228,7 +229,7 @@ const ProjectTable2 = ({
                 </TableBody>
               </Table>
             ) : role !== "admin" ? (
-              <DetailsPage />
+              <DetailsPage skillAlert={skillAlert} />
             ) : (
               <Alert Alert severity="error">
                 No Users history found for this project!

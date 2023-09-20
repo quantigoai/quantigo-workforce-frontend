@@ -51,7 +51,9 @@ const ChipGroup = ({ value }) => {
             gap: "25px",
           }}
         >
-          {params.value.map((p, i) => ![0, 1].includes(i) && <ProjectDrawerStatusChip key={p._id} value={p.name} isPopper={true} />)}
+          {params.value.map(
+            (p, i) => ![0, 1].includes(i) && <ProjectDrawerStatusChip key={p._id} value={p.name} isPopper={true} />
+          )}
         </Box>
       </Popper>
     </div>

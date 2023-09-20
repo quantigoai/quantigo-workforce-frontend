@@ -96,14 +96,14 @@ const DetailsPage = () => {
   };
   return (
     <Box sx={style}>
-      {/* <ProjectModalHeader
+      <ProjectModalHeader
         isDisable={isDisable}
         checkOutDisable={checkOutDisable}
         handleCheckInButton={handleCheckInButton}
         handleCheckOutButton={handleCheckOutButton}
         isPageDetail={"true"}
         modalTitle={"Project Details"}
-      /> */}
+      />
       <Alert
         sx={{
           borderRadius: "8px",
@@ -122,7 +122,7 @@ const DetailsPage = () => {
         You need to have these skills to work on this project. Complete these courses to get the required skills and
         come back
       </Alert>
-      <Box sx={{ padding: "1%" }}>
+      <Box sx={{ padding: "2%" }}>
         <Stack
           sx={{
             border: "1px solid #E6ECF5",

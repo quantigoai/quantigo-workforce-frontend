@@ -6,7 +6,7 @@ const DetailsItemSIngle = ({ Item1Title, Item1, Item2Title, Item2, Item3Title, I
     <>
       <Stack sx={{ borderBottom: "1px solid #E6ECF5" }}>
         <Grid container>
-          <Grid xs={4} sx={{ borderRight: "1px solid #E6ECF5", padding: "5px" }}>
+          <Grid xs={4} sx={{ borderRight: "1px solid #E6ECF5", padding: "20px" }}>
             <Typography variant="wf_h6_light" sx={{ color: "#7B98BA" }}>
               {Item1Title}
             </Typography>
@@ -15,7 +15,7 @@ const DetailsItemSIngle = ({ Item1Title, Item1, Item2Title, Item2, Item3Title, I
               {Item1}
             </Typography>
           </Grid>
-          <Grid xs={4} sx={{ borderRight: "1px solid #E6ECF5", padding: "5px" }}>
+          <Grid xs={4} sx={{ borderRight: "1px solid #E6ECF5", padding: "20px" }}>
             <Typography variant="wf_h6_light" sx={{ color: "#7B98BA" }}>
               {Item2Title}
             </Typography>
@@ -24,7 +24,7 @@ const DetailsItemSIngle = ({ Item1Title, Item1, Item2Title, Item2, Item3Title, I
               {Item2}
             </Typography>
           </Grid>
-          <Grid xs={4} sx={{ padding: "5px" }}>
+          <Grid xs={4} sx={{ padding: "20px" }}>
             <Typography variant="wf_h6_light" sx={{ color: "#7B98BA" }}>
               {Item3Title}
             </Typography>

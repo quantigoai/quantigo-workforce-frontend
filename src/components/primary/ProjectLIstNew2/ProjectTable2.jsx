@@ -3,10 +3,9 @@
  * Path: /home/tanzim/workstation/Office/quantigo-workforce-frontend
  * Created Date: Tuesday, September 19th 2023, 3:20:38 pm
  * Author: Tanzim Ahmed
- * 
+ *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-
 
 import { Box, Link, Typography } from "@mui/material";
 import Table from "@mui/material/Table";
@@ -60,7 +59,7 @@ const ProjectTable2 = ({
     <>
       <Box sx={{ height: "100vh" }} className="div1">
         {isLoading ? (
-          <LoadingComponent height="70vh" />
+          <LoadingComponent height="50vh" />
         ) : (
           <>
             {myRows.length > 0 ? (

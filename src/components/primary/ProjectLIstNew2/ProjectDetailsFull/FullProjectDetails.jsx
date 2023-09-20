@@ -26,12 +26,12 @@ const FullProjectDetails = () => {
   const { isLoading, projectDrawer, usersWorkHistory, usersWorkHistoryCount } = useSelector(
     (state) => state.projectDrawer
   );
- const { role } = useSelector((state) => state.user.user);
+  const { role } = useSelector((state) => state.user.user);
 
   const [value, setValue] = React.useState(projectDrawer.project_status);
   const [detailCol, setDetailCol] = useState([]);
   const [detailRow, setDetailRow] = useState([]);
-  
+
   const { id } = useParams();
 
   const [open, setOpen] = React.useState(false);
@@ -160,7 +160,7 @@ const FullProjectDetails = () => {
       );
     }
   }, [role, range, dispatch, pagination, filteredCol, projectDrawer._id]);
-  console.log(detailRow?.length);
+
   return (
     <Box
       sx={{

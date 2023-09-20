@@ -4,7 +4,7 @@ import React from "react";
 const DetailsButton = ({ handleProjectDetailsOpen, handleDetailButton, role }) => {
   return (
     <Button
-      onClick={role === "admin" ? handleProjectDetailsOpen : handleDetailButton}
+      onClick={handleProjectDetailsOpen}
       sx={{
         backgroundColor: "#F2F6FC",
         color: "black",

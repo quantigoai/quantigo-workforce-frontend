@@ -194,14 +194,24 @@ const ProjectLIstIndex2 = () => {
   return (
     <>
       <Box className="projectBox">
-        <Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            height: "15vh",
+            alignItems: "center",
+            backgroundColor: "#fff",
+          }}
+        >
           <Box
             sx={{
               display: "flex",
               justifyContent: "space-between",
               width: "100%",
+              height: "12vh",
+              alignItems: "center",
               background: "#FFFFFF",
-              borderBottom: "1px solid #E6ECF5",
+              // borderBottom: "1px solid #E6ECF5",
               borderTop: "1px solid #E6ECF5",
             }}
           >
@@ -274,32 +284,31 @@ const ProjectLIstIndex2 = () => {
               </Button>
             </Box>
           </Box>
-          {/* {isFilter && ( */}
-          {
-            <Box
-              sx={{
-                backgroundColor: "#FFFFFF",
-                width: "100%",
-                paddingY: "10px",
-                visibility: isFilter ? "visible" : "hidden",
-                // display: isFilter ? "block" : "none",
-              }}
-            >
-              <ProjectSelectFIlter
-                handleChangeAnnotatorFilter={handleChangeAnnotatorFilter}
-                role={role}
-                filterPDR={filterPDR}
-                platformOptions={platformOptions}
-                statusOptions={statusOptions}
-                projectTypeOptions={projectTypeOptions}
-                handleChange={handleChange}
-                handleClearFilter={handleClearFilter}
-                filterValue={filterValue}
-                skills={skills}
-                onSubmit={onSubmit}
-              />
-            </Box>
-          }
+          <Box
+            sx={{
+              backgroundColor: "#FFFFFF",
+              width: "100%",
+              height: "8vh",
+              paddingY: "10px",
+              // visibility: isFilter ? "visible" : "hidden",
+              display: isFilter ? "block" : "none",
+              transition: "margin-top 0.3s ease-in-out",
+            }}
+          >
+            <ProjectSelectFIlter
+              handleChangeAnnotatorFilter={handleChangeAnnotatorFilter}
+              role={role}
+              filterPDR={filterPDR}
+              platformOptions={platformOptions}
+              statusOptions={statusOptions}
+              projectTypeOptions={projectTypeOptions}
+              handleChange={handleChange}
+              handleClearFilter={handleClearFilter}
+              filterValue={filterValue}
+              skills={skills}
+              onSubmit={onSubmit}
+            />
+          </Box>
         </Box>
 
         <Box

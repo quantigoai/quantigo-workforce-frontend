@@ -61,13 +61,13 @@ const ProjectLIstIndex2 = () => {
   const [isEditModal, setIsEditModal] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [annotatorPlatform, setAnnotatorPlatform] = useState();
+  const [detailProject, setDetailProject] = useState({});
 
   const alert = useAlert();
   const {
     createProjectOpen,
     detailsProjectOpen,
     handleProjectCreateOpen,
-    handleProjectDetailsOpen,
     handleDetailsProjectClose,
     setCreateProjectOpen,
     handleChange,
@@ -77,6 +77,7 @@ const ProjectLIstIndex2 = () => {
     filteredCol,
     handleIsFilter,
     isFilter,
+    setDetailsProjectOpen,
   } = useAllFunc();
 
   const [pagination, setPagination] = useState({
@@ -85,6 +86,11 @@ const ProjectLIstIndex2 = () => {
   });
   const { projectDrawers, projectDrawer, total, error } = useSelector((state) => state.projectDrawer);
   const { role } = useSelector((state) => state.user.user);
+
+  const handleProjectDetailsOpen = (project) => {
+    setDetailsProjectOpen(true);
+    setDetailProject(project);
+  };
 
   useEffect(() => {
     dispatch(setActivePath("All Projects2"));
@@ -103,6 +109,7 @@ const ProjectLIstIndex2 = () => {
     );
   }, [dispatch, pagination, filterValue, filteredCol]);
   const { handleChangeSkill, addSkills, setAddSkills, count } = useHandleChange();
+
   const handleCreateProjectClose = () => {
     setCreateProjectOpen(false);
     setAddSkills([]);
@@ -136,10 +143,9 @@ const ProjectLIstIndex2 = () => {
     setIsEditModal(true);
   };
 
-  const skillId = editSkills?.map((skill) => skill._id);
+  const skillId = addSkills?.map((skill) => skill._id);
 
   const onSubmit = (data) => {
-    console.log("🚀 ~ file: ProjectLIstIndex2.jsx:139 ~ onSubmit ~ data:", isEditModal);
     if (isEditModal) {
       const newData = {
         ...data,
@@ -158,7 +164,6 @@ const ProjectLIstIndex2 = () => {
       });
     } else {
       const newData = { ...data, project_skills: skillId };
-      console.log("🚀 ~ file: ProjectLIstIndex2.jsx:157 ~ onSubmit ~ newData:", newData);
 
       dispatch(createProjectDrawer(newData)).then((action) => {
         if (action.error) {
@@ -167,7 +172,6 @@ const ProjectLIstIndex2 = () => {
         if (action.payload?.status === 201) {
           alert.show(action.payload.data.message, { type: "success" });
           setCreateProjectOpen(false);
-          setAddSkills([]);
         }
       });
     }
@@ -338,6 +342,7 @@ const ProjectLIstIndex2 = () => {
         {detailsProjectOpen && (
           <Box>
             <Project2DetailsModal
+              projectDrawer={detailProject}
               detailsProjectOpen={detailsProjectOpen}
               handleProjectDetailsOpen={handleProjectDetailsOpen}
               handleDetailsProjectClose={handleDetailsProjectClose}

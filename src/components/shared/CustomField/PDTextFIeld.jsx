@@ -14,7 +14,16 @@ export const MyTextField = styled(TextField)(() => ({
   "& .MuiInputBase-root": { height: "90%", fontSize: "14px" },
 }));
 
-export default function PDTextFIeld({ name, helperText, isNumber, isNumberPdr, InputProps, label, defaultValue, ...other }) {
+export default function PDTextFIeld({
+  name,
+  helperText,
+  isNumber,
+  isNumberPdr,
+  InputProps,
+  label,
+  defaultValue,
+  ...other
+}) {
   const { control } = useFormContext();
 
   return (
@@ -24,7 +33,7 @@ export default function PDTextFIeld({ name, helperText, isNumber, isNumberPdr, I
       render={({ field, fieldState: { error } }) => {
         return (
           <FormControl fullWidth>
-            <Typography sx={{ fontSize: "14px", fontWeight: "500", mb: 1 }}>{label}</Typography>
+            <Typography sx={{ fontSize: "12px", fontWeight: "500", mb: 1 }}>{label}</Typography>
             <MyTextField
               type={isNumber || isNumberPdr ? "number" : "text"}
               //   id="outlined-basic"

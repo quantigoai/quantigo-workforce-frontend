@@ -179,6 +179,7 @@ const EditProjectModal = ({
                   <PDTextFIeld
                     name="benchmark"
                     label="Benchmark"
+                    defaultValue={projectDrawer.benchMark}
                     InputProps={{
                       disableUnderline: true,
                     }}

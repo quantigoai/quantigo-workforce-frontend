@@ -20,7 +20,6 @@ const ProjectDetailsHeader = ({
   range,
   setRange,
 }) => {
-  console.log("🚀 ~ file: ProjectDetailsHeader.jsx:22 ~ role:", role);
   return (
     <Box
       display={"flex"}

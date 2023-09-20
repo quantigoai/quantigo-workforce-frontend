@@ -7,8 +7,9 @@ const DetailsButton = ({ handleProjectDetailsOpen, handleDetailButton, role }) =
       onClick={handleProjectDetailsOpen}
       sx={{
         backgroundColor: "#F2F6FC",
-        color: "black",
+        color: "#3C4D6B",
         fontSize: "14px",
+        fontWeight: "500",
         border: "1px solid #E6ECF5",
         "&:hover": { border: "1px solid #E6ECF5" },
         mr: 2,

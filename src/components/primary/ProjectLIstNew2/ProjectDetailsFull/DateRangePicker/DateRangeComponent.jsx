@@ -24,8 +24,8 @@ const MyInputField = styled(TextField)(() => ({
     borderRadius: "6px",
   },
   "& .MuiInputBase-root": {
-    height: "90%",
-    fontSize: "14px",
+    height: "38px",
+    fontSize: "12px",
     backgroundColor: "#F2F6FC",
   },
 }));
@@ -73,7 +73,7 @@ const DateRangeComponent = ({ range, setRange }) => {
   };
   const dispatch = useDispatch();
   const [isRangeSelect, setIsRangeSelect] = useState(false);
-  
+
   useEffect(() => {
     if (range[0].startDate.getTime() !== range[0].endDate.getTime()) {
       setIsRangeSelect(true);

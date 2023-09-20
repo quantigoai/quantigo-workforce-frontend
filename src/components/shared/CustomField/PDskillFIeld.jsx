@@ -49,6 +49,7 @@ const PDskillFIeld = ({
               variant="outlined"
               multiple
               defaultValue={isEdit ? selectedSkills?.map((skill) => skill.name) : addSkills?.map((skill) => skill.name)}
+              // defaultValue={isEdit ? selectedSkills?.map((skill) => skill.name) : addSkills}
               onChange={handleChangeSkill}
               renderValue={(selected) => (
                 <Box

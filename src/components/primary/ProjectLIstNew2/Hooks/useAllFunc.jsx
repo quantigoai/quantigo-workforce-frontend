@@ -15,7 +15,7 @@ const useAllFunc = () => {
   const handleProjectCreateOpen = () => {
     setCreateProjectOpen(true), dispatch(getAllSkills());
   };
-  const handleProjectDetailsOpen = () => setDetailsProjectOpen(true);
+
   const handleDetailsProjectClose = () => {
     setDetailsProjectOpen(false);
   };
@@ -69,7 +69,7 @@ const useAllFunc = () => {
     createProjectOpen,
     detailsProjectOpen,
     handleProjectCreateOpen,
-    handleProjectDetailsOpen,
+
     handleDetailsProjectClose,
     setCreateProjectOpen,
     setDetailsProjectOpen,

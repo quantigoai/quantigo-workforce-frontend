@@ -10,16 +10,18 @@
 
 input.inputBox {
     font-size: 14px;
-  padding: 10px;
+  padding: 5px;
   background-color: #F2F6FC;
   border: 1px solid #E6ECF5;
   border-radius: 6px;
+  
 }
 
 
 .calendarWrap {
   display: inline-block;
   position: relative;
+  margin-right: 20px;
 }
 
 .calendarElement {

@@ -41,12 +41,13 @@ export default function PDDateField({
         };
         return (
           <FormControl fullWidth>
-            <Typography sx={{ fontSize: "14px", fontWeight: "500", mb: 1 }}>{label}</Typography>
+            <Typography sx={{ fontSize: "12px", fontWeight: "500", mb: 1 }}>{label}</Typography>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <MyDatePicker
                 inputFormat="DD-MM-YYYY"
                 defaultValue={defaultValue ? dayjs(defaultValue) : field.value}
-                onChange={handleChange}>
+                onChange={handleChange}
+              >
                 <TextField sx={{}} error={!!error} helperText={error && error?.message} id="date-picker" />
               </MyDatePicker>
             </LocalizationProvider>

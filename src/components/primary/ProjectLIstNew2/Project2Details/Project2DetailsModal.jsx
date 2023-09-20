@@ -25,8 +25,12 @@ const style = {
     height: "20px",
   },
 };
-const Project2DetailsModal = ({ detailsProjectOpen, handleProjectDetailsOpen, handleDetailsProjectClose }) => {
-  const { isLoading, projectDrawer } = useSelector((state) => state.projectDrawer);
+const Project2DetailsModal = ({
+  detailsProjectOpen,
+  handleProjectDetailsOpen,
+  handleDetailsProjectClose,
+  projectDrawer,
+}) => {
   return (
     <>
       <Modal

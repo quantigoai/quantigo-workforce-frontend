@@ -23,8 +23,8 @@ const MyInputField = styled(TextField)(() => ({
     borderRadius: "6px",
   },
   "& .MuiInputBase-root": {
-    height: "90%",
-    fontSize: "14px",
+    height: "38px",
+    fontSize: "12px",
     backgroundColor: "#F2F6FC",
   },
 }));

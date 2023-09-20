@@ -227,6 +227,7 @@ const FullProjectDetails = () => {
       {detailsProjectOpen && (
         <Box>
           <Project2DetailsModal
+          
             detailsProjectOpen={detailsProjectOpen}
             handleProjectDetailsOpen={handleProjectDetailsOpen}
             handleDetailsProjectClose={handleDetailsProjectClose}

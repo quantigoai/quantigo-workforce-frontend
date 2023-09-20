@@ -45,7 +45,10 @@ const CustomButton = ({ params, handleClick, handleDelete, handleProjectDetailsO
           </Button>
         </>
       )}
-      <Button onClick={handleProjectDetailsOpen} sx={{ color: "#2E58FF", padding: "0px", minWidth: "35px" }}>
+      <Button
+        onClick={() => handleProjectDetailsOpen(params)}
+        sx={{ color: "#2E58FF", padding: "0px", minWidth: "35px" }}
+      >
         <i className="ri-eye-line"></i>
       </Button>
 

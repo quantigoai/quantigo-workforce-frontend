@@ -26,6 +26,7 @@ const FullProjectDetails = () => {
   const { isLoading, projectDrawer, usersWorkHistory, usersWorkHistoryCount } = useSelector(
     (state) => state.projectDrawer
   );
+  console.log("🚀 ~ file: FullProjectDetails.jsx:27 ~ usersWorkHistoryCount:", usersWorkHistoryCount);
   const { role } = useSelector((state) => state.user.user);
 
   const [value, setValue] = React.useState(projectDrawer.project_status);
@@ -37,6 +38,7 @@ const FullProjectDetails = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [skillAlert, setSkillAlert] = useState(false);
 
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -91,6 +93,7 @@ const FullProjectDetails = () => {
       } else {
         alert.show(action.error.message, { type: "error" });
         setIsDisable(false);
+        setSkillAlert(true);
       }
     });
   };
@@ -108,12 +111,12 @@ const FullProjectDetails = () => {
         setOpen(false);
       } else if (action.error) {
         alert.show(action.error.message, { type: "error" });
-        setIsDisable(true);
+
         setCheckOutDisable(false);
         setOpen(false);
       } else {
         alert.show(action.error.message, { type: "error" });
-        setIsDisable(true);
+
         setCheckOutDisable(false);
         setOpen(false);
       }
@@ -174,6 +177,7 @@ const FullProjectDetails = () => {
         {/* {!isLoadingDetails && detailRow.length > 0 && ( */}
         {!isLoadingDetails && (
           <ProjectDetailsHeader
+            usersWorkHistoryCount={usersWorkHistoryCount}
             range={range}
             setRange={setRange}
             handleOpen={handleOpen}
@@ -199,6 +203,7 @@ const FullProjectDetails = () => {
           }}
         >
           <ProjectTable2
+            skillAlert={skillAlert}
             role={role}
             myColumn={detailCol}
             myRows={detailRow}
@@ -227,7 +232,7 @@ const FullProjectDetails = () => {
       {detailsProjectOpen && (
         <Box>
           <Project2DetailsModal
-          
+            projectDrawer={projectDrawer}
             detailsProjectOpen={detailsProjectOpen}
             handleProjectDetailsOpen={handleProjectDetailsOpen}
             handleDetailsProjectClose={handleDetailsProjectClose}

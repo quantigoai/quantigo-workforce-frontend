@@ -60,31 +60,31 @@ const Project2DetailsModal = ({
               >
                 <DetailsItem
                   Item1Title={"Project Name"}
-                  Item1={projectDrawer.project_drawer_name}
+                  Item1={projectDrawer?.project_drawer_name}
                   Item2Title={"Batch"}
-                  Item2={projectDrawer.project_batch}
+                  Item2={projectDrawer?.project_batch}
                 />
                 <DetailsItem
                   Item1Title={"Alias"}
-                  Item1={projectDrawer.project_alias}
+                  Item1={projectDrawer?.project_alias}
                   Item2Title={"Project Type"}
-                  Item2={projectDrawer.project_type}
+                  Item2={projectDrawer?.project_type}
                 />
 
                 <DetailsItem
                   Item1Title={"PDR"}
-                  Item1={projectDrawer.pdr}
+                  Item1={projectDrawer?.pdr}
                   Item2Title={"Completed Course"}
                   Item2={"No Course"}
                 />
                 <DetailsItem
                   Item1Title={"Benchmark"}
-                  Item1={projectDrawer.benchMark ? projectDrawer.benchMark : "10 sec/object, 5 sec/tag"}
+                  Item1={projectDrawer?.benchMark ? projectDrawer.benchMark : "10 sec/object, 5 sec/tag"}
                   Item2Title={"Estimated end Time"}
-                  Item2={"No Course"}
+                  Item2={projectDrawer?.estimated_end_date}
                 />
                 <SingleItem ItemTitle={"Status"} Item={projectDrawer?.project_status} />
-                <SingleItem ItemTitle={"Skills"} Item={projectDrawer.project_skills} />
+                <SingleItem ItemTitle={"Skills"} Item={projectDrawer?.project_skills} />
                 {/* document Item List */}
                 <BoxItem />
               </Stack>

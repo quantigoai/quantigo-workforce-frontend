@@ -63,6 +63,7 @@ const ProjectDrawerStatusChip = ({ value, isPopper = false }) => {
           width: isPopper ? "220px" : "120px",
           padding: "0px",
           border: "1px solid rgba(230, 236, 245, 1)",
+          marginLeft: "10px",
         };
     }
   };

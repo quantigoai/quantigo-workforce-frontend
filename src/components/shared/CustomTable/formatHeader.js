@@ -29,7 +29,7 @@ const customHeader = (params) => {
       return "ALIAS";
     case "pdr":
       return "PDR";
-    case "guideline":
+    case "relevantDocuments":
       return "GUIDELINE";
     case "project_platform":
       return "PLATFORM";

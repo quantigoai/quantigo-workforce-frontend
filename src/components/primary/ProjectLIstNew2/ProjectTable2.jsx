@@ -64,7 +64,6 @@ const ProjectTable2 = ({
 }) => {
   const { isLoading } = useSelector((state) => state.projectDrawer);
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
-  console.log("🚀 ~ file: ProjectTable2.jsx:68 ~ currentlyCheckedInProject:", currentlyCheckedInProject);
   return (
     <>
       <Box sx={{ height: "100vh" }} className="div1">
@@ -146,7 +145,7 @@ const ProjectTable2 = ({
                               </TableCell>
                             );
                           }
-                          if (col.field === "guideline") {
+                          if (col.field === "relevantDocuments") {
                             return (
                               <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
                                 <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">

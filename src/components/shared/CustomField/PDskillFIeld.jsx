@@ -31,6 +31,7 @@ const PDskillFIeld = ({
   count,
   ...other
 }) => {
+  console.log("🚀 ~ file: PDskillFIeld.jsx:34 ~ count:", count);
   const { control } = useFormContext();
 
   return (
@@ -62,7 +63,7 @@ const PDskillFIeld = ({
                 >
                   {selected?.map((value, i) => [0].includes(i) && <Chip key={value} label={value} />)}
                   {isEdit ? (
-                    selectedSkills?.length > 1 ? (
+                    selectedSkills?.length > 1 && selected?.length > 1 ? (
                       <Typography variant="p" sx={{ ml: 2, mt: 0.5 }}>
                         {" "}
                         + {count} more

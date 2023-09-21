@@ -12,6 +12,8 @@ function PDReleventField({ name, defaultValueItems }) {
   React.useEffect(() => {
     if (defaultValueItems && defaultValueItems.length > 0) {
       setValue(name, defaultValueItems);
+    } else if (fields.length === 0) {
+      append({ documentName: "", documentUrl: "" });
     }
   }, [defaultValueItems, setValue, name]);
 
@@ -23,7 +25,7 @@ function PDReleventField({ name, defaultValueItems }) {
     },
     "& .MuiInputBase-root": { height: "90%", fontSize: "14px" },
   }));
-  console.log(fields);
+
   return (
     <>
       {" "}

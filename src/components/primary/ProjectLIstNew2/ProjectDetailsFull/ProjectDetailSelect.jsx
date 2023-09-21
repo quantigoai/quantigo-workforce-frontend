@@ -7,11 +7,12 @@ const style = (value) => {
       return {
         backgroundColor: "rgba(242, 246, 252, 1)",
         color: "rgba(60, 77, 107, 1)",
-        width: "160px",
+        width: "145px",
         border: "2px solid rgba(230, 236, 245, 1)",
-        height: "40px",
+        height: "35px",
         borderRadius: "8px",
-        fontWeight: "bold",
+        fontWeight: "600",
+        fontSize: "14px",
         "& svg": {
           fill: "#3C4D6B",
         },
@@ -20,11 +21,12 @@ const style = (value) => {
       return {
         backgroundColor: "rgba(244, 247, 254, 1)",
         color: "rgba(46, 88, 255, 1)",
-        width: "150px",
+        width: "145px",
         border: "2px solid rgba(230, 236, 245, 1)",
-        height: "40px",
+        height: "35px",
         borderRadius: "8px",
-        fontWeight: "bold",
+        fontWeight: "600",
+        fontSize: "14px",
         "& svg": {
           fill: "#2E58FF",
         },
@@ -33,11 +35,12 @@ const style = (value) => {
       return {
         backgroundColor: "rgba(250, 228, 195, 1)",
         color: "rgba(247, 144, 9, 1)",
-        width: "160px",
+        width: "145px",
         border: "2px solid rgba(250, 228, 195, 1)",
-        height: "40px",
+        height: "35px",
         borderRadius: "8px",
-        fontWeight: "bold",
+        fontWeight: "600",
+        fontSize: "14px",
         "& svg": {
           fill: "#F2A200",
         },
@@ -46,11 +49,12 @@ const style = (value) => {
       return {
         backgroundColor: "#C4F5DF",
         color: "#12B76A",
-        width: "160px",
+        width: "145px",
         border: "2px solid #C4F5DF",
-        height: "40px",
+        height: "35px",
         borderRadius: "8px",
-        fontWeight: "bold",
+        fontWeight: "600",
+        fontSize: "14px",
         "& svg": {
           fill: "#36B37E",
         },
@@ -60,10 +64,10 @@ const style = (value) => {
         textAlign: "center",
         backgroundColor: "rgba(242, 246, 252, 1)",
         color: "rgba(60, 77, 107, 1)",
-        width: "160px",
+        width: "145px",
         padding: "0px",
         border: "2px solid rgba(230, 236, 245, 1)",
-        height: "40px",
+        height: "35px",
         borderRadius: "8px",
         "& svg": {
           fill: "#3C4D6B ",
@@ -77,11 +81,16 @@ const ProjectDetailSelect = ({ options, handleChange, value, setValue, defaultVa
       <FormControl
         sx={{
           m: 1,
-          minWidth: 170,
+          minWidth: 140,
           borderRadius: "6px",
         }}
       >
-        <Select sx={style(value || defaultVal)} defaultValue={defaultVal} onChange={handleChange} IconComponent={ArrowDropDownIcon}>
+        <Select
+          sx={style(value || defaultVal)}
+          defaultValue={defaultVal}
+          onChange={handleChange}
+          IconComponent={ArrowDropDownIcon}
+        >
           {options.map((option) => (
             <MenuItem key={option.value} fullWidth value={(() => setValue(option.name, option.value), option.value)}>
               {option.label}

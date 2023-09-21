@@ -68,11 +68,13 @@ const DetailChartarButton = () => {
     <>
       <Button
         sx={{
+          backgroundColor: "#2E58FF",
+          color: "#FFF",
           fontSize: "14px",
-          fontWeight: "bold",
-          borderRadius: "8px",
+          fontWeight: "500",
+          borderRadius: "6px",
+          "&:hover": {},
           mr: 2,
-          ml: 3,
         }}
         variant="contained"
         onClick={fetchData}

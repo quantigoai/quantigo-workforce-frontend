@@ -10,6 +10,7 @@ const DetailsButton = ({ handleProjectDetailsOpen, handleDetailButton, role }) =
         color: "#3C4D6B",
         fontSize: "14px",
         fontWeight: "500",
+        borderRadius: "6px",
         border: "1px solid #E6ECF5",
         "&:hover": { border: "1px solid #E6ECF5" },
         mr: 2,

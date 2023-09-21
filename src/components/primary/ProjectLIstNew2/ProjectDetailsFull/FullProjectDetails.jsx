@@ -173,7 +173,7 @@ const FullProjectDetails = () => {
         // paddingY: "20px",
       }}
     >
-      <Box sx={{ width: "97%", margin: "auto" }}>
+      <Box sx={{ width: "97%", margin: "auto", mt: 3 }}>
         {/* {!isLoadingDetails && detailRow.length > 0 && ( */}
         {!isLoadingDetails && (
           <ProjectDetailsHeader
@@ -226,7 +226,12 @@ const FullProjectDetails = () => {
       )}
 
       <Box>
-        <CheckOutModal handleCheckOutButton={handleCheckOutButton} open={open} handleClose={handleClose} />
+        <CheckOutModal
+          projectDrawer={projectDrawer}
+          handleCheckOutButton={handleCheckOutButton}
+          open={open}
+          handleClose={handleClose}
+        />
       </Box>
 
       {detailsProjectOpen && (

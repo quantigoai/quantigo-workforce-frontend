@@ -14,7 +14,7 @@ export const MySelect = styled(Select)(() => ({
 
 export default function ProjectSelectFIlterField({ options, label, handleChange, name, filterValue }) {
   return (
-    <MyFormControl sx={{ m: 0.5, minWidth: "22%" }} size="small">
+    <MyFormControl sx={{ m: 0.5, minWidth: "25%" }} size="small">
       <MySelect
         displayEmpty
         defaultValue={""}

@@ -233,7 +233,7 @@ const EditProjectModal = ({
                     overflowY: "auto",
                   }}
                 >
-                    <PDReleventField   defaultValue={projectDrawer.relevantDocuments} name={"relevantDocuments"} />
+                    <PDReleventField   defaultValueItems={projectDrawer.relevantDocuments} name={"relevantDocuments"} />
                   {/* <Stack direction="row" gap={2} xs={12}>
                     <PDTextFIeld
                       name="guideline"

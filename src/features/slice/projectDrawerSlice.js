@@ -281,6 +281,7 @@ const projectDrawerSlice = createSlice({
           action.payload.data.projectDrawer.checkedInUsersHistory[0],
           ...state.usersWorkHistory,
         ];
+        state.myWorkHistoryCount = state.myWorkHistoryCount + 1;
       })
       .addCase(checkInProjectDrawerById.rejected, (state, action) => {
         state.error = action.error.message;

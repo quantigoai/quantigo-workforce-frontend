@@ -120,3 +120,34 @@ export default function useClearReduxData(dispatch, activePath) {
     dispatch(updateProjectData());
   }
 }
+
+// const allPath = []
+// const allowedPath = {
+//   "All Users": ["All Users"],
+
+// }
+// export default function useClearReduxData(dispatch, activePath, allpath, allowedPath) {
+//   // Check if the activePath is in the allowedPath configuration
+//   const isAllowed = Object.values(allowedPath).some((paths) => paths.includes(activePath));
+
+//   if (!isAllowed) {
+//     // Dispatch updates if the activePath is not in the allowedPath
+//     const updatesToDispatch = [
+//       updateDashboardData(),
+//       updateJobData(),
+//       updateBenchmarkData(),
+//       updateCourseData(),
+//       updateTeamData(),
+//       updateDatasetData(),
+//       updateWorkSpaceData(),
+//       updateProjectDirectoryData(),
+//       updateQuizData(),
+//       updateProjectData(),
+//       updateSkillData(),
+//     ];
+
+//     updatesToDispatch.forEach((update) => {
+//       dispatch(update);
+//     });
+//   }
+// }

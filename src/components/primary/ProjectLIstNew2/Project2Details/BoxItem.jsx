@@ -1,25 +1,7 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 
-const BoxItem = () => {
-  const documentList = [
-    {
-      name: "Document 01",
-      link: " https://qaiworkforce.netlify.app/projectDirectory",
-    },
-    {
-      name: "Document 02",
-      link: " https://qaiworkforce.netlify.app/projectDirectory",
-    },
-    {
-      name: "Document 03",
-      link: " https://qaiworkforce.netlify.app/projectDirectory",
-    },
-    {
-      name: "Document 04",
-      link: " https://qaiworkforce.netlify.app/projectDirectory",
-    },
-  ];
+const BoxItem = ({ Item }) => {
   return (
     <>
       <Stack sx={{ borderBottom: "1px solid #E6ECF5" }}>
@@ -34,7 +16,7 @@ const BoxItem = () => {
                 // padding: "16px",
                 borderRadius: "8px",
                 background: "#FAFCFF",
-                height: documentList.length === 1 ? "8vh" : "20vh",
+                height: Item.length === 1 ? "8vh" : Item.length === 0 ? "14vh" : "20vh",
                 scrollBehavior: "smooth",
                 overflow: "auto",
                 scrollbarWidth: "thin",
@@ -50,21 +32,21 @@ const BoxItem = () => {
                 "&::-webkit-scrollbar-thumb:hover": {
                   background: "#555",
                 },
-              }}
-            >
-              {documentList.map((item) => (
+              }}>
+              {Item.map((item) => (
                 <>
                   <Box
                     key={item.name}
                     sx={{
-                      borderBottom: documentList.length === 1 ? "0px solid #E6ECF5" : "1px solid #E6ECF5",
+                      borderBottom: Item.length === 1 ? "0px solid #E6ECF5" : "1px solid #E6ECF5",
                       padding: "2%",
-                    }}
-                  >
+                    }}>
                     <Typography sx={{ color: "#091E42", fontSize: "12px", fontWeight: "500" }} variant="caption">
-                      {item.name}
+                      {item.documentName}
                     </Typography>
-                    <Typography sx={{ fontSize: "14px", color: "#091E42", fontWeight: "500" }}>{item.link}</Typography>
+                    <Typography sx={{ fontSize: "14px", color: "#091E42", fontWeight: "500" }}>
+                      {item.documentUrl}
+                    </Typography>
                   </Box>
                 </>
               ))}

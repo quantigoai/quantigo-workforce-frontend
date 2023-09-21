@@ -21,9 +21,9 @@ function PDReleventField({ name, defaultValueItems }) {
     backgroundColor: "#FFFFFF",
     "& .MuiOutlinedInput-notchedOutline": {
       border: "2px solid #E6ECF5 !important",
-      borderRadius: "10px",
+      borderRadius: "8px",
     },
-    "& .MuiInputBase-root": { height: "90%", fontSize: "14px" },
+    "& .MuiInputBase-root": { height: "88%", fontSize: "14px" },
   }));
 
   return (

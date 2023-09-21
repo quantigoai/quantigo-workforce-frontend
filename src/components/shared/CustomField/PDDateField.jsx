@@ -12,10 +12,15 @@ PDDateField.propTypes = {
   helperText: PropTypes.node,
 };
 const MyDatePicker = styled(DatePicker)(() => ({
-  border: "2px solid #E6ECF5 !important",
-  borderRadius: "10px",
-  height: "47%",
-  fontSize: "14px",
+  // border: "2px solid #E6ECF5 !important",
+  // borderRadius: "10px",
+  // height: "47%",
+  // fontSize: "14px",
+  "& .MuiOutlinedInput-notchedOutline": {
+    border: "2px solid #E6ECF5 !important",
+    borderRadius: "10px",
+  },
+  "& .MuiInputBase-root": { height: "84%", fontSize: "14px" },
 }));
 
 export default function PDDateField({

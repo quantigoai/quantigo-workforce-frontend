@@ -2,16 +2,19 @@ import { Box, Button, FormControl, Stack, TextField, Typography, styled } from "
 import React from "react";
 import { useForm, Controller, useFieldArray, useFormContext } from "react-hook-form";
 
-function PDReleventField({ name, defaultValue }) {
-  console.log("🚀 ~ file: PDReleventField.jsx:6 ~ PDReleventField ~ defaultValue:", defaultValue);
-  //   const { control, handleSubmit } = useForm();
-  const { control } = useFormContext();
+function PDReleventField({ name, defaultValueItems }) {
+  const { control, setValue } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     control,
     name,
     // name: "relevantDocuments",
   });
-  console.log("🚀 ~ file: PDReleventField.jsx:12 ~ PDReleventField ~ fields:", fields);
+  React.useEffect(() => {
+    if (defaultValueItems && defaultValueItems.length > 0) {
+      setValue(name, defaultValueItems);
+    }
+  }, [defaultValueItems, setValue, name]);
+
   const MyTextField = styled(TextField)(() => ({
     backgroundColor: "#FFFFFF",
     "& .MuiOutlinedInput-notchedOutline": {
@@ -20,6 +23,7 @@ function PDReleventField({ name, defaultValue }) {
     },
     "& .MuiInputBase-root": { height: "90%", fontSize: "14px" },
   }));
+  console.log(fields);
   return (
     <>
       {" "}

@@ -9,9 +9,9 @@ PDTextFIeld.propTypes = {
 export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "2px solid #E6ECF5 !important",
-    borderRadius: "10px",
+    borderRadius: "8px",
   },
-  "& .MuiInputBase-root": { height: "90%", fontSize: "14px" },
+  "& .MuiInputBase-root": { height: "84%", fontSize: "14px" },
 }));
 
 export default function PDTextFIeld({

@@ -40,8 +40,7 @@ const DetailsPage = ({ skillAlert }) => {
             ml: 3,
           }}
           variant="filled"
-          severity="info"
-        >
+          severity="info">
           You need to have these skills to work on this project. Complete these courses to get the required skills and
           come back
         </Alert>
@@ -51,8 +50,7 @@ const DetailsPage = ({ skillAlert }) => {
           sx={{
             border: "1px solid #E6ECF5",
             borderRadius: "8px",
-          }}
-        >
+          }}>
           <DetailsItemSIngle
             Item1Title={"Project Name"}
             Item1={projectDrawer.project_drawer_name}
@@ -79,7 +77,7 @@ const DetailsPage = ({ skillAlert }) => {
           />
           <SingleItem ItemTitle={"Skills"} Item={projectDrawer?.project_skills} />
           {/* document Item List */}
-          <BoxItem />
+          <BoxItem Item={projectDrawer?.relevantDocuments} />
         </Stack>
       </Box>
     </Box>

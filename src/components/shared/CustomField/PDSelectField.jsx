@@ -11,7 +11,7 @@ PDSelectField.propTypes = {
 
 export const MySelect = styled(Select)(() => ({
   border: "2px solid #E6ECF5",
-  padding: "5px 0px 0px 0px",
+  // padding: "5px 0px 0px 0px",
   borderRadius: "8px",
   background: "none",
   fontSize: "14px",
@@ -42,7 +42,7 @@ export default function PDSelectField({ name, helperText, options, label, setVal
               {...other}
             >
               {options.map((option) => (
-                <MenuItem key={option.value} fullWidth value={(() => setValue(field.name, field.value), option.value)}>
+                <MenuItem sx={{fontSize: "14px"}} key={option.value} fullWidth value={(() => setValue(field.name, field.value), option.value)}>
                   {option.label}
                 </MenuItem>
               ))}

@@ -91,8 +91,7 @@ const ProjectModal = ({
           backdrop: {
             timeout: 500,
           },
-        }}
-      >
+        }}>
         <Fade in={createProjectOpen}>
           <Box sx={style}>
             <ProjectModalHeader handleCreateProjectClose={handleCreateProjectClose} modalTitle={"Create Project"} />
@@ -102,8 +101,7 @@ const ProjectModal = ({
                 paddingTop: "2%",
                 paddingRight: "3%",
                 position: "relative",
-              }}
-            >
+              }}>
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
                   <PDSelectField
@@ -203,8 +201,7 @@ const ProjectModal = ({
                     fontSize: "14px",
                     mb: "10px",
                   }}
-                  variant="h6"
-                >
+                  variant="h6">
                   Relevant Documents
                 </Typography>
                 {/* <PDReleventField /> */}
@@ -216,8 +213,7 @@ const ProjectModal = ({
                     background: "#FAFCFF",
                     maxHeight: 200,
                     overflowY: "auto",
-                  }}
-                >
+                  }}>
                   <PDReleventField name={"relevantDocuments"} />
                   {/* <Stack direction="row" gap={2} xs={12}>
                     <PDTextFIeld
@@ -288,7 +284,7 @@ const ProjectModal = ({
 
                 <hr
                   style={{
-                    color: "#E6ECF5",
+                    color: "#F2F6FC",
                     marginTop: "16px",
                     width: "670px",
                     paddingLeft: "0px",
@@ -297,11 +293,11 @@ const ProjectModal = ({
                 <Box
                   sx={{
                     display: "flex",
+                    // borderTop: "2px solid #F2F6FC",
                     justifyContent: "space-between",
                     alignItems: "center",
                     padding: "20px",
-                  }}
-                >
+                  }}>
                   <Button
                     onClick={handleCreateProjectClose}
                     sx={{
@@ -318,8 +314,7 @@ const ProjectModal = ({
                       },
                     }}
                     variant="filled"
-                    size="large"
-                  >
+                    size="large">
                     Cancel
                   </Button>
                   <Button
@@ -335,8 +330,7 @@ const ProjectModal = ({
                       },
                     }}
                     variant="contained"
-                    size="large"
-                  >
+                    size="large">
                     Save
                   </Button>
                 </Box>

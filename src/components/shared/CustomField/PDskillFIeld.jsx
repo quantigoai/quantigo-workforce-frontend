@@ -4,8 +4,8 @@ import { Controller, useFormContext } from "react-hook-form";
 import { MyFormControl } from "./CustomDatePicker";
 
 export const MySelect = styled(Select)(() => ({
-  border: "1px solid #E0E0E0 ",
-  padding: "5px 0px 0px 0px",
+  border: "2px solid #E6ECF5",
+  // padding: "5px 0px 0px 0px",
   background: "white",
   height: "50%",
   borderRadius: "8px",
@@ -59,9 +59,10 @@ const PDskillFIeld = ({
                     gridTemplateColumns: "repeat(2,1fr)",
                     gap: 0.5,
                     fontSize: "12px",
+                    // height:"50%"
                   }}
                 >
-                  {selected?.map((value, i) => [0].includes(i) && <Chip key={value} label={value} />)}
+                  {selected?.map((value, i) => [0].includes(i) && <Chip sx={{  fontSize: "12px",}} key={value} label={value} />)}
                   {isEdit ? (
                     selectedSkills?.length > 1 && selected?.length > 1 ? (
                       <Typography variant="p" sx={{ ml: 2, mt: 0.5 }}>
@@ -93,7 +94,7 @@ const PDskillFIeld = ({
               MenuProps={MenuProps}
             >
               {skills?.map((skill) => (
-                <MenuItem key={skill._id} value={skill.name}>
+                <MenuItem sx={{fontSize: "14px"}} key={skill._id} value={skill.name}>
                   {skill.name}
                 </MenuItem>
               ))}

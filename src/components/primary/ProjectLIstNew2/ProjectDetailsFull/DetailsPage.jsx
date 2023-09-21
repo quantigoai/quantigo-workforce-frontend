@@ -4,6 +4,7 @@ import SingleItem from "../Project2Details/SingleItem";
 import { useSelector } from "react-redux";
 
 import DetailsItemSIngle from "../Project2Details/DetailsItemSIngle";
+import { formatDate } from "../../../../helper/dateConverter";
 
 const style = {
   width: "100%",
@@ -72,7 +73,7 @@ const DetailsPage = ({ skillAlert }) => {
             Item1Title={"Benchmark"}
             Item1={projectDrawer.benchMark ? projectDrawer.benchMark : "10 sec/object, 5 sec/tag"}
             Item2Title={"Estimated end Time"}
-            Item2={projectDrawer.estimated_end_date}
+            Item2={formatDate(projectDrawer?.estimated_end_date)}
             Item3Title={"Status"}
             Item3={projectDrawer?.project_status}
           />

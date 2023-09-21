@@ -40,7 +40,7 @@ const PDskillFIeld = ({
       render={({ field, fieldState: { error } }) => (
         <>
           <MyFormControl fullWidth>
-            <Typography sx={{ fontSize: "14px", fontWeight: "500", mb: 1 }}>{label}</Typography>
+            <Typography sx={{ fontSize: "12px", fontWeight: "500", mb: 1 }}>{label}</Typography>
 
             <MySelect
               labelId="demo-simple-select-autowidth-label"

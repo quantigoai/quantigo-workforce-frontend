@@ -21,12 +21,11 @@ const ProjectSelectFIlter = ({
   };
   return (
     // <Grid container sx={{ mt: 1 }}>
-    <Stack>
+    <Stack sx={{ width: "100%" }}>
       {/* <Grid items xs={9}> */}
       <Stack sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexDirection: "row" }}>
         {role === "admin" ? (
           <>
-
             <Stack
               sx={{
                 display: "flex",
@@ -108,7 +107,6 @@ const ProjectSelectFIlter = ({
         )}
 
         <Stack sx={{ width: "10%" }}>
- 
           {role === "admin" && (
             <Button
               onClick={() => handleClearFilter()}
@@ -117,9 +115,8 @@ const ProjectSelectFIlter = ({
                 borderRadius: "8px",
                 backgroundColor: "#FF4757",
                 color: "white",
-                padding: "10px 12px",
-                width: "100px",
-                height: "40px",
+                width: "140px",
+                height: "35 px",
                 "&:hover": {
                   backgroundColor: "#F53142",
                 },

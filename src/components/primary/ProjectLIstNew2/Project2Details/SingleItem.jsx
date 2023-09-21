@@ -8,7 +8,7 @@ const SingleItem = ({ ItemTitle, Item }) => {
         <Grid container>
           <Grid xs={12} sx={{ padding: "2%" }}>
             <Grid container>
-              <Typography variant="caption" sx={{ color: "#7B98BA" }}>
+              <Typography variant="caption" sx={{ color: "#091E42", opacity: "0.7", fontWeight: "400" }}>
                 {ItemTitle}
               </Typography>
             </Grid>
@@ -26,7 +26,7 @@ const SingleItem = ({ ItemTitle, Item }) => {
               </>
             ) : (
               <>
-                <Typography variant="wf_h5_bold" sx={{ color: "#091E42" }}>
+                <Typography variant="wf_h5_bold" sx={{ color: "#091E42", fontWeight: "500" }}>
                   {Item ?? Item}
                 </Typography>
               </>

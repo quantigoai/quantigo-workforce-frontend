@@ -7,9 +7,9 @@ import DetailsUploadHourBUtton from "./DetailsUploadHourBUtton";
 
 const ProjectDetailsButton = ({ range, setRange, value, handleProjectDetailsOpen, role }) => {
   return (
-    <Box display={"flex"} alignItems={"center"} justifyContent={"space-between"}>
+    <Box display={"flex"} alignItems={"center"} justifyContent={"space-evenly"}>
       {value === "not-Started" && (
-        <Box sx={{ mr: 5 }}>
+        <Box>
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
         </Box>
       )}
@@ -24,15 +24,15 @@ const ProjectDetailsButton = ({ range, setRange, value, handleProjectDetailsOpen
       )}
       {value === "completed" && (
         <>
-          <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
           <DetailsUploadHourBUtton />
+          <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
           <DetailChartarButton />
         </>
       )}
       {value === "hours-added" && (
         <>
-          <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
           <DetailsUploadHourBUtton />
+          <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
           <DetailChartarButton />
         </>
       )}

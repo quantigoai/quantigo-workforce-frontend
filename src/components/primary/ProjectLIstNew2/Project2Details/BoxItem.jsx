@@ -24,8 +24,8 @@ const BoxItem = () => {
     <>
       <Stack sx={{ borderBottom: "1px solid #E6ECF5" }}>
         <Grid container>
-          <Grid xs={12} sx={{ padding: "2%" }}>
-            <Typography variant="caption" sx={{ color: "#7B98BA" }}>
+          <Grid xs={12} sx={{ padding: "1%" }}>
+            <Typography variant="caption" sx={{ color: "#091E42", opacity: "0.7" }}>
               Guideline and Edge-case Document
             </Typography>
             <Stack
@@ -34,7 +34,7 @@ const BoxItem = () => {
                 // padding: "16px",
                 borderRadius: "8px",
                 background: "#FAFCFF",
-                height: documentList.length === 1 ? "8vh" : "14vh",
+                height: documentList.length === 1 ? "8vh" : "20vh",
                 scrollBehavior: "smooth",
                 overflow: "auto",
                 scrollbarWidth: "thin",
@@ -50,22 +50,21 @@ const BoxItem = () => {
                 "&::-webkit-scrollbar-thumb:hover": {
                   background: "#555",
                 },
-              }}>
+              }}
+            >
               {documentList.map((item) => (
                 <>
                   <Box
                     key={item.name}
                     sx={{
-                      borderBottom:
-                        documentList.length === 1
-                          ? "0px solid #E6ECF5"
-                          : "1px solid #E6ECF5",
+                      borderBottom: documentList.length === 1 ? "0px solid #E6ECF5" : "1px solid #E6ECF5",
                       padding: "2%",
-                    }}>
-                    <Typography variant="caption">{item.name}</Typography>
-                    <Typography sx={{ fontSize: "14px" }}>
-                      {item.link}
+                    }}
+                  >
+                    <Typography sx={{ color: "#091E42", fontSize: "12px", fontWeight: "500" }} variant="caption">
+                      {item.name}
                     </Typography>
+                    <Typography sx={{ fontSize: "14px", color: "#091E42", fontWeight: "500" }}>{item.link}</Typography>
                   </Box>
                 </>
               ))}

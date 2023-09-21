@@ -13,7 +13,7 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-const CheckOutModal = ({ open, handleClose, handleCheckOutButton }) => {
+const CheckOutModal = ({ open, handleClose, handleCheckOutButton, projectDrawer }) => {
   return (
     <Modal
       open={open}
@@ -26,25 +26,24 @@ const CheckOutModal = ({ open, handleClose, handleCheckOutButton }) => {
           sx={{
             position: "absolute",
             top: "10%",
-            left: "42%",
-            width: "32px",
+            left: "45%",
             textAlign: "center",
-            fontSize: "32px",
-            padding: "16px",
+            padding: "15px",
+            fontSize: "25px",
             background: "#FFAB00",
-            borderRadius: "80px",
+            borderRadius: "100px",
             color: "white",
           }}
         >
           {" "}
-          <i className="ri-delete-bin-6-line"></i>
+          <i style={{ marginBottom: "4px" }} className="ri-alert-line"></i>
         </Box>
-        <Typography sx={{ mt: "28%" }} id="modal-modal-title" variant="h6" component="h2">
+        <Typography sx={{ mt: "15%" }} id="modal-modal-title" variant="h6" component="h2">
           Stop
         </Typography>
 
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Are you sure you want to CheckOut of this Project ?
+          Are you sure you want to checkout of this project {projectDrawer.project_drawer_name} ?
         </Typography>
 
         <Box
@@ -59,15 +58,13 @@ const CheckOutModal = ({ open, handleClose, handleCheckOutButton }) => {
             <Button
               sx={{
                 textTransform: "none",
-                backgroundColor: "#FFF0F2",
+                backgroundColor: "#FFAB00",
                 borderRadius: "10px",
-                border: "1px solid #FFF0F2",
-                color: "black",
+                color: "white",
                 padding: " 10px 16px",
                 width: "150px",
                 "&:hover": {
-                  border: "1px solid #FF4757",
-                  backgroundColor: "#FFF0F2",
+                  backgroundColor: "#F2A200",
                 },
               }}
               onClick={handleCheckOutButton}

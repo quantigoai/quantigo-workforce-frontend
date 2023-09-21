@@ -2,6 +2,8 @@ import { Box, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 
 const BoxItem = ({ Item }) => {
+  console.log("🚀 ~ file: BoxItem.jsx:62 ~ BoxItem ~ Item:", Item);
+
   return (
     <>
       <Stack sx={{ borderBottom: "1px solid #E6ECF5" }}>
@@ -16,7 +18,7 @@ const BoxItem = ({ Item }) => {
                 // padding: "16px",
                 borderRadius: "8px",
                 background: "#FAFCFF",
-                height: Item.length === 1 ? "8vh" : Item.length === 0 ? "14vh" : "20vh",
+                height: Item?.length === 1 ? "8vh" : Item?.length === 0 ? "14vh" : "20vh",
                 scrollBehavior: "smooth",
                 overflow: "auto",
                 scrollbarWidth: "thin",
@@ -32,7 +34,8 @@ const BoxItem = ({ Item }) => {
                 "&::-webkit-scrollbar-thumb:hover": {
                   background: "#555",
                 },
-              }}>
+              }}
+            >
               {Item.map((item) => (
                 <>
                   <Box
@@ -40,7 +43,8 @@ const BoxItem = ({ Item }) => {
                     sx={{
                       borderBottom: Item.length === 1 ? "0px solid #E6ECF5" : "1px solid #E6ECF5",
                       padding: "2%",
-                    }}>
+                    }}
+                  >
                     <Typography sx={{ color: "#091E42", fontSize: "12px", fontWeight: "500" }} variant="caption">
                       {item.documentName}
                     </Typography>

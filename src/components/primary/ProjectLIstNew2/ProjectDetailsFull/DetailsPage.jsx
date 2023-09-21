@@ -1,10 +1,10 @@
 import { Alert, Box, Stack } from "@mui/material";
+import { useSelector } from "react-redux";
 import BoxItem from "../Project2Details/BoxItem";
 import SingleItem from "../Project2Details/SingleItem";
-import { useSelector } from "react-redux";
 
-import DetailsItemSIngle from "../Project2Details/DetailsItemSIngle";
 import { formatDate } from "../../../../helper/dateConverter";
+import DetailsItemSIngle from "../Project2Details/DetailsItemSIngle";
 
 const style = {
   width: "100%",
@@ -40,7 +40,8 @@ const DetailsPage = ({ skillAlert }) => {
             ml: 3,
           }}
           variant="filled"
-          severity="info">
+          severity="info"
+        >
           You need to have these skills to work on this project. Complete these courses to get the required skills and
           come back
         </Alert>
@@ -50,7 +51,8 @@ const DetailsPage = ({ skillAlert }) => {
           sx={{
             border: "1px solid #E6ECF5",
             borderRadius: "8px",
-          }}>
+          }}
+        >
           <DetailsItemSIngle
             Item1Title={"Project Name"}
             Item1={projectDrawer.project_drawer_name}
@@ -77,7 +79,7 @@ const DetailsPage = ({ skillAlert }) => {
           />
           <SingleItem ItemTitle={"Skills"} Item={projectDrawer?.project_skills} />
           {/* document Item List */}
-          <BoxItem Item={projectDrawer?.relevantDocuments} />
+          {projectDrawer.relevantDocuments && <BoxItem Item={projectDrawer?.relevantDocuments} />}
         </Stack>
       </Box>
     </Box>

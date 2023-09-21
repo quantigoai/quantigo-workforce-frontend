@@ -50,7 +50,7 @@ const TableComponent = ({
               <TableCell
                 sx={{
                   minWidth: col.width || "140px",
-                  color: "#7B98BA",
+                  color: "#3C4D6B",
                   textAlign: "left",
                   fontSize: "13px",
                 }}
@@ -62,7 +62,7 @@ const TableComponent = ({
                     justifyContent: "start",
                   }}
                 >
-                  <Typography sx={{ fontWeight: "600", color: "#7B98BA", fontSize: "12px" }} variant={"p"}>
+                  <Typography sx={{ fontWeight: "600", color: "#3C4D6B", fontSize: "12px" }} variant={"p"}>
                     {col.headerName}
                   </Typography>
 
@@ -92,8 +92,8 @@ const TableComponent = ({
                   if (col.field === "createdBy") {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
-                          {row[col?.field] || "Tanzim"}
+                        <Typography sx={{ color: "#3C4D6B" }} variant="wf_p2_semiBold">
+                          {row[col?.field] || "Admin"}
                         </Typography>
                       </TableCell>
                     );
@@ -101,7 +101,7 @@ const TableComponent = ({
                   if (col.field === "benchmark") {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
+                        <Typography sx={{ color: "#3C4D6B" }} variant="wf_p2_semiBold">
                           {row[col?.field] || "10 sec"}
                         </Typography>
                       </TableCell>
@@ -110,7 +110,7 @@ const TableComponent = ({
                   if (col.field === "estimated_end_date") {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
+                        <Typography sx={{ color: "#3C4D6B" }} variant="wf_p2_semiBold">
                           {formatDate(row[col?.field]) || "20 july 2023"}
                         </Typography>
                       </TableCell>
@@ -163,12 +163,12 @@ const TableComponent = ({
                       >
                         {currentlyCheckedInProject === row._id ? (
                           <StyledBadge variant="dot" color="success">
-                            <Typography sx={{ color: "#253E5C", cursor: "pointer" }} variant="wf_p2_semiBold">
+                            <Typography sx={{ color: "#3C4D6B", cursor: "pointer" }} variant="wf_p2_semiBold">
                               {row[col?.field]}
                             </Typography>
                           </StyledBadge>
                         ) : (
-                          <Typography sx={{ color: "#253E5C", cursor: "pointer" }} variant="wf_p2_semiBold">
+                          <Typography sx={{ color: "#3C4D6B", cursor: "pointer" }} variant="wf_p2_semiBold">
                             {row[col?.field]}
                           </Typography>
                         )}
@@ -177,7 +177,7 @@ const TableComponent = ({
                   } else if (col.field === "workingTimeInMs") {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
+                        <Typography sx={{ color: "#3C4D6B" }} variant="wf_p2_semiBold">
                           {calculateTimeDifference(row[col?.field])}
                         </Typography>
                       </TableCell>
@@ -185,7 +185,7 @@ const TableComponent = ({
                   } else if (col.field === "checkedInDate" || col.field === "checkedOutDate") {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
+                        <Typography sx={{ color: "#3C4D6B" }} variant="wf_p2_semiBold">
                           {/* TODO Add working chip here */}
                           {row[col?.field] ? formatDate(row[col?.field]) : "Working ⛑️"}
                         </Typography>
@@ -195,7 +195,7 @@ const TableComponent = ({
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
                         {/* TODO Add working chip here  */}
-                        <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
+                        <Typography sx={{ color: "#3C4D6B" }} variant="wf_p2_semiBold">
                           {row[col?.field] ? formatTime(row[col?.field]) : "Working ⛑️"}
                         </Typography>
                       </TableCell>
@@ -203,7 +203,7 @@ const TableComponent = ({
                   } else {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
+                        <Typography sx={{ color: "#3C4D6B" }} variant="wf_p2_semiBold">
                           {row[col?.field]}
                         </Typography>
                       </TableCell>

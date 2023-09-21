@@ -5,7 +5,7 @@ import ProjectModalHeader from "../ProjectModalHeader";
 import DetailsItem from "./DetailsItem";
 import SingleItem from "./SingleItem";
 import BoxItem from "./BoxItem";
-import { useSelector } from "react-redux";
+
 import { formatDate } from "../../../../helper/dateConverter";
 const style = {
   position: "absolute",

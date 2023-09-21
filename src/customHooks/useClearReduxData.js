@@ -20,134 +20,62 @@ import { updateDashboardData } from "../features/slice/dashboardSlice";
 import { updateDatasetData } from "../features/slice/datasetSlice";
 import { updateJobData } from "../features/slice/jobSlice";
 import { updateProjectData } from "../features/slice/projectByWorkspaceSlice";
+import { clearProjectDrawerData } from "../features/slice/projectDrawerSlice";
 import { updateQuizData } from "../features/slice/quizSlice";
 import { updateSkillData } from "../features/slice/skillSlice";
 import { updateTeamData } from "../features/slice/teamSlice";
 import { updateWorkSpaceData } from "../features/slice/workSpaceSlice";
 
-export default function useClearReduxData(dispatch, activePath) {
-  if (activePath === "All Users") {
-    dispatch(updateDashboardData());
-    dispatch(updateJobData());
-    dispatch(updateBenchmarkData());
-    dispatch(updateCourseData());
-    dispatch(updateTeamData());
-    dispatch(updateDatasetData());
-    dispatch(updateWorkSpaceData());
-    dispatch(updateProjectDirectoryData());
-    dispatch(updateQuizData());
-    dispatch(updateProjectData());
-  }
-  if (activePath === "Project Directory") {
-    dispatch(updateDashboardData());
-    dispatch(updateJobData());
-    dispatch(updateBenchmarkData());
-    dispatch(updateCourseData());
-    dispatch(updateTeamData());
-    dispatch(updateDatasetData());
-    dispatch(updateWorkSpaceData());
-    dispatch(updateQuizData());
-    dispatch(updateProjectData());
-    dispatch(updateSkillData());
-  }
-  if (activePath === "Sync Server") {
-    dispatch(updateDashboardData());
-    dispatch(updateJobData());
-    dispatch(updateBenchmarkData());
-    dispatch(updateCourseData());
-    dispatch(updateTeamData());
-    dispatch(updateDatasetData());
-    dispatch(updateWorkSpaceData());
-    dispatch(updateProjectDirectoryData());
-    dispatch(updateQuizData());
-    dispatch(updateProjectData());
-    dispatch(updateSkillData());
-  }
-  if (activePath === "Benchmark") {
-    dispatch(updateDashboardData());
-    dispatch(updateJobData());
-    dispatch(updateCourseData());
-    dispatch(updateProjectDirectoryData());
-    dispatch(updateQuizData());
-    dispatch(updateSkillData());
-  }
-  if (activePath === "Jobs") {
-    dispatch(updateDashboardData());
-    dispatch(updateBenchmarkData());
-    dispatch(updateCourseData());
-    dispatch(updateProjectDirectoryData());
-    dispatch(updateQuizData());
-  }
-  if (activePath === "Course") {
-    dispatch(updateDashboardData());
-    dispatch(updateJobData());
-    dispatch(updateBenchmarkData());
-    dispatch(updateTeamData());
-    dispatch(updateDatasetData());
-    dispatch(updateWorkSpaceData());
-    dispatch(updateProjectDirectoryData());
-    dispatch(updateProjectData());
-  }
-  if (activePath === "Projects") {
-    dispatch(updateDashboardData());
-    dispatch(updateJobData());
-    dispatch(updateBenchmarkData());
-    dispatch(updateCourseData());
-    dispatch(updateProjectDirectoryData());
-    dispatch(updateQuizData());
-  }
-  if (activePath === "Skill") {
-    dispatch(updateDashboardData());
-    dispatch(updateJobData());
-    dispatch(updateBenchmarkData());
-    dispatch(updateCourseData());
-    dispatch(updateTeamData());
-    dispatch(updateDatasetData());
-    dispatch(updateWorkSpaceData());
-    dispatch(updateProjectDirectoryData());
-    dispatch(updateQuizData());
-    dispatch(updateProjectData());
-  }
-  if (activePath === "Dashboard") {
-    dispatch(updateJobData());
-    dispatch(updateBenchmarkData());
-    dispatch(updateCourseData());
-    dispatch(updateTeamData());
-    dispatch(updateDatasetData());
-    dispatch(updateWorkSpaceData());
-    dispatch(updateProjectDirectoryData());
-    dispatch(updateQuizData());
-    dispatch(updateProjectData());
+export default function useClearReduxData(dispatch, activePath, id = null) {
+  const dispatchFunctions = [
+    updateProjectDirectoryData,
+    updateBenchmarkData,
+    updateCourseData,
+    updateDashboardData,
+    updateDatasetData,
+    updateJobData,
+    updateProjectData,
+    updateQuizData,
+    updateSkillData,
+    updateTeamData,
+    updateWorkSpaceData,
+    clearProjectDrawerData,
+  ];
+
+  const allPath = [
+    "All Users",
+    "Project Directory",
+    "Sync Server",
+    "Benchmark",
+    "Jobs",
+    "Course",
+    "Projects",
+    "Skill",
+    "Dashboard",
+    "All Projects2",
+  ];
+
+  const allowedPath = {
+    updateDashboardData: ["Dashboard"], //clear
+    updateJobData: ["Jobs"],
+    updateBenchmarkData: ["Benchmark"],
+    updateCourseData: ["Course"],
+    updateTeamData: ["Benchmark", "Jobs", "Projects"],
+    updateDatasetData: ["Benchmark", "Jobs", "Projects"],
+    updateWorkSpaceData: ["Benchmark", "Jobs", "Projects"],
+    updateProjectDirectoryData: ["Project Directory"],
+    updateQuizData: ["Course"],
+    updateProjectData: ["Benchmark", "Jobs", "Projects"],
+    updateSkillData: ["All Users", "Jobs", "Course", "Projects", "Skill", "Dashboard", "All Projects2"],
+    clearProjectDrawerData: [],
+  };
+  const allowedPathKeys = Object.keys(allowedPath);
+
+  if (allPath.includes(activePath)) {
+    allowedPathKeys.forEach((key) => {
+      if (!allowedPath[key].includes(activePath)) {
+        dispatch(eval(key)());
+      }
+    });
   }
 }
-
-// const allPath = []
-// const allowedPath = {
-//   "All Users": ["All Users"],
-
-// }
-// export default function useClearReduxData(dispatch, activePath, allpath, allowedPath) {
-//   // Check if the activePath is in the allowedPath configuration
-//   const isAllowed = Object.values(allowedPath).some((paths) => paths.includes(activePath));
-
-//   if (!isAllowed) {
-//     // Dispatch updates if the activePath is not in the allowedPath
-//     const updatesToDispatch = [
-//       updateDashboardData(),
-//       updateJobData(),
-//       updateBenchmarkData(),
-//       updateCourseData(),
-//       updateTeamData(),
-//       updateDatasetData(),
-//       updateWorkSpaceData(),
-//       updateProjectDirectoryData(),
-//       updateQuizData(),
-//       updateProjectData(),
-//       updateSkillData(),
-//     ];
-
-//     updatesToDispatch.forEach((update) => {
-//       dispatch(update);
-//     });
-//   }
-// }

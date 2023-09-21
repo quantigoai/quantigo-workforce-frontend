@@ -203,6 +203,12 @@ const projectDrawerSlice = createSlice({
     resetProjectDrawerSlice: () => {
       return initialState;
     },
+    clearProjectDrawerData: (state) => {
+      state.total = 0;
+      state.usersWorkHistory = [];
+      state.usersWorkHistoryCount = 0;
+      state.myWorkHistoryCount = 0;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -361,5 +367,6 @@ const projectDrawerSlice = createSlice({
       });
   },
 });
-export const { resetProjectDrawerSlice, resetProjectDrawer, setCurrentProjectDrawer } = projectDrawerSlice.actions;
+export const { clearProjectDrawerData, resetProjectDrawerSlice, resetProjectDrawer, setCurrentProjectDrawer } =
+  projectDrawerSlice.actions;
 export default projectDrawerSlice.reducer;

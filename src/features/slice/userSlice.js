@@ -156,8 +156,11 @@ export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
   } else {
     query += `&skip=0`;
   }
+
   if (role) {
-    query += `&role=${role}`;
+    for (let x in role) {
+      query += `&role=${role[x]}`;
+    }
   }
   if (hub) {
     query += `&hub=${hub}`;

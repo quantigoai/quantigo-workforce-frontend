@@ -11,7 +11,7 @@ const useHandleEditChange = () => {
 
   const [editSkills, setEditSkills] = useState([]);
   const [editCount, setEditCount] = useState(
-    projectDrawer?.project_skills?.length > 0 ? projectDrawer?.project_skills?.length : 
+    projectDrawer?.project_skills?.length > 0 ? projectDrawer?.project_skills?.length : 0
   );
 
   const { setEditModalOpen } = useAllFunc();

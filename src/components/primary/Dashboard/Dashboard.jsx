@@ -109,8 +109,8 @@ const Dashboard = () => {
                       container
                       sx={{
                         paddingRight: "2%",
-                        width: "100%",
-                        height: "20%",
+                        width: "99%",
+                        // height: "100%",
                       }}>
                       <Paper
                         elevation={0}
@@ -118,6 +118,7 @@ const Dashboard = () => {
                           borderRadius: "8px",
                           // width: "100%",
                           // height: "100%",
+                          // height: "90px",
                         }}>
                         {!projectLoading && (
                           <BarChart

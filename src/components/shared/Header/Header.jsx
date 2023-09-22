@@ -6,15 +6,13 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Avatar, Typography } from "@mui/material";
-import AppBar from "@mui/material/AppBar";
+import { Avatar, Stack, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { styled as mstyled } from "@mui/material/styles";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -26,17 +24,8 @@ import useReset from "../../../customHooks/useReset";
 import { logout } from "../../../features/slice/userSlice";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import NotificationModal from "../Notification/NotificationModal";
-const NavBarFull = mstyled(AppBar)({
-  height: "auto",
-  width: "100%",
-  display: "flex",
-  margin: "0rem",
-  color: "black",
-  borderBottom: "1px solid #E6ECF5",
-  boxShadow: "0px 0px 0px rgba(31, 30, 120, 0.37)",
-});
 
-const Header = ({ openDrawer }) => {
+const Header = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -87,7 +76,7 @@ const Header = ({ openDrawer }) => {
 
   return (
     <>
-      <NavBarFull
+      <Box
         sx={{
           background: "#FFFFFF",
           color: isLightTheme ? "#000c1f" : "#F5F5F5",
@@ -98,30 +87,39 @@ const Header = ({ openDrawer }) => {
             mx: 0,
             py: 1,
             px: 0,
-            paddingLeft: openDrawer ? "16%" : "5%",
-            // backgroundColor: "green",
+            paddingLeft: "2%",
           }}
         >
           <Box
             sx={{
               display: "flex",
               justifyContent: "space-between",
-              // backgroundColor: "blue",
             }}
           >
             {/* Go Back button  */}
             <Box
               sx={{
                 display: "flex",
-                // backgroundColor: "blue",
-                // paddingLeft:"10%"
               }}
             >
-              <Button sx={{ width: "100px", textTransform: "none" }} onClick={() => handleGoBack()}>
+              <Button
+                sx={{
+                  // backgroundColor: "red",
+                  width: {
+                    xl: "100px",
+                    lg: "100px",
+                  },
+                  height: {
+                    xl: "100%",
+                    lg: "100%",
+                  },
+                  textTransform: "none",
+                }}
+                onClick={() => handleGoBack()}
+              >
                 <img src={backIcon} />
 
-                <Typography variant="wf_h5_bold" sx={{ color: "#3C4D6B", paddingLeft: "12%" }}>
-                  {" "}
+                <Typography variant="wpf_p3_semiBold" sx={{ color: "#3C4D6B", paddingLeft: "12%" }}>
                   Go Back
                 </Typography>
               </Button>
@@ -162,30 +160,32 @@ const Header = ({ openDrawer }) => {
               <img src={line} height="100%" />
             </Box> */}
             <Box sx={{ display: "flex" }}>
-              <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <Box sx={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
                 <Avatar
                   alt="Profile Picture"
                   src={image}
                   sx={{
                     bgcolor: "#D3ECFA",
-                    // border: "1px solid #8394EA",
+                    height: { xl: 40, lg: 34 },
+                    width: { xl: 40, lg: 34 },
                   }}
                 />
               </Box>
               <Box>
-                <Box sx={{ display: "flex", px: 2, justifyContent: "flex-end" }}>
-                  <Box>
+                <Box sx={{ display: "flex", px: 2 }}>
+                  <Stack>
                     <Typography
                       sx={{
                         color: "#0E243D",
                       }}
-                      variant="body2"
+                      variant="wpf_p3_semiBold"
                     >
                       <b>
                         {user.user.firstName} {user.user.lastName}
                       </b>
                     </Typography>
-                    <Typography sx={{ color: "#969CAF" }} variant="caption">
+
+                    <Typography sx={{ color: "#969CAF" }} variant="wpf_p4_regular">
                       {role === "level_1_annotator"
                         ? "Level 1 Annotator"
                         : role === "level_2_annotator"
@@ -206,7 +206,8 @@ const Header = ({ openDrawer }) => {
                         ? "Recruitment Manager"
                         : capitalizeFirstLetter(role)}
                     </Typography>
-                  </Box>
+                  </Stack>
+
                   <Box>
                     <Menu
                       sx={{
@@ -250,7 +251,7 @@ const Header = ({ openDrawer }) => {
             </Box>
           </Box>
         </Box>
-      </NavBarFull>
+      </Box>
     </>
   );
 };

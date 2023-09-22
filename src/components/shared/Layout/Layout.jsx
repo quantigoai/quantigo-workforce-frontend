@@ -29,7 +29,6 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
-import Header from "../Header/Header";
 import UserBlocked from "../UserBlocked/UserBlocked";
 import GetHelp from "./GetHelp";
 
@@ -298,7 +297,12 @@ const Layout = ({ children }) => {
         anchor="left"
       >
         <DrawerHeader>
-          <img onClick={() => navigate("/")} src={logo} alt="logo" style={{ width: "148.65px", height: "28px", cursor: "pointer" }} />
+          <img
+            onClick={() => navigate("/")}
+            src={logo}
+            alt="logo"
+            style={{ width: "148.65px", height: "28px", cursor: "pointer" }}
+          />
         </DrawerHeader>
 
         {/*  SideBar Menu */}
@@ -319,7 +323,10 @@ const Layout = ({ children }) => {
             {isLoggedIn && role === "project_lead" && projectLeadOptions.map((text) => handleMenu(text))}
             {isLoggedIn && role === "project_coordinator" && projectCoordinatorOptions.map((text) => handleMenu(text))}
             {isLoggedIn && role === "project_manager" && projectManagerOptions.map((text) => handleMenu(text))}
-            {isLoggedIn && isVerified && role === "level_0_annotator" && level0AnnotatorOptions.map((text) => handleMenu(text))}
+            {isLoggedIn &&
+              isVerified &&
+              role === "level_0_annotator" &&
+              level0AnnotatorOptions.map((text) => handleMenu(text))}
           </List>
         )}
 

@@ -322,5 +322,21 @@ theme.typography.wf_p2_semiBold = {
     fontSize: "14px",
   },
 };
+theme.typography.wpf_p3_semiBold = {
+  [theme.breakpoints.up("md")]: {
+    fontSize: "12px",
+  },
+  [theme.breakpoints.up("xl")]: {
+    fontSize: "14px",
+  },
+};
+theme.typography.wpf_p4_semiBold = {
+  [theme.breakpoints.up("lg")]: {
+    fontSize: "1px",
+  },
+  [theme.breakpoints.up("xl")]: {
+    fontSize: "12px",
+  },
+};
 
 export default theme;

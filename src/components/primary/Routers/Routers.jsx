@@ -43,6 +43,7 @@ import CreateJob from "../Job/CreateJob";
 import Job from "../Job/Job";
 import OngoingJob from "../Job/OngoingJob";
 import ProjectList from "../Project/ProjectList";
+import DetailsPage from "../ProjectLIstNew2/ProjectDetailsFull/DetailsPage";
 import FullProjectDetails from "../ProjectLIstNew2/ProjectDetailsFull/FullProjectDetails";
 import ProjectLIstIndex2 from "../ProjectLIstNew2/ProjectLIstIndex2";
 import CreateQuiz from "../Quiz/CreateQuiz";
@@ -50,7 +51,6 @@ import ShowResult from "../Quiz/QuizPage/ShowResult/ShowResult";
 import UpdateQuiz from "../Quiz/UpdateQuiz";
 import Skills from "../Skill/Skills";
 import UserListIndex from "../UserListNew/UserListIndex";
-import DetailsPage from "../ProjectLIstNew2/ProjectDetailsFull/DetailsPage";
 
 const Routers = () => {
   return (

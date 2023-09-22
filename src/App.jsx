@@ -5,9 +5,14 @@ import { Suspense, lazy, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import io from "socket.io-client";
 import "./App.css";
-import Routers from "./components/primary/Routers/Routers";
 import { availableJobsForReviewer, getAllAssignedJob, getAllJobs, getMyJobs } from "./features/slice/jobSlice";
-import { deleteBefore15DaysNotifications, getAllNotifications, getAllUnreadNotifications, getLatestNotifications, setNewNotification } from "./features/slice/notificationSlice";
+import {
+  deleteBefore15DaysNotifications,
+  getAllNotifications,
+  getAllUnreadNotifications,
+  getLatestNotifications,
+  setNewNotification,
+} from "./features/slice/notificationSlice";
 import { setFromPreviousTheme } from "./features/slice/themeSlice";
 import { alreadyLogin, updateLoggedInUserManually, updateSingleUserManually } from "./features/slice/userSlice";
 import socketHandlers from "./socketHandlers";
@@ -19,6 +24,7 @@ const RoutersLogin = lazy(() => import("./components/primary/Routers/RoutersLogi
 import CryptoJS from "crypto-js";
 import LoadingComponent from "./components/shared/Loading/LoadingComponent";
 import useClearReduxData from "./customHooks/useClearReduxData";
+import Routers from "./components/primary/Routers/Routers";
 // import LayoutNew from "./components/shared/Layout/LayoutNew";
 const LayoutNew = lazy(() => import("./components/shared/Layout/LayoutNew"));
 
@@ -80,19 +86,19 @@ function App() {
   }, [storedUser.user.role]);
 
   return (
-    <Box className="App">
-      {isLoggedIn ? (
-        <Suspense fallback={<LoadingComponent />}>
-          <LayoutNew>
-            <Routers />
-          </LayoutNew>
-        </Suspense>
-      ) : (
-        <Suspense fallback={<LoadingComponent />}>
-          <RoutersLogin />
-        </Suspense>
-      )}
-    </Box>
+    <>
+      {/* <Box className="App"> */}
+        {isLoggedIn ? (
+          <Suspense fallback={<LoadingComponent />}>
+            <LayoutNew>{<Routers /> }</LayoutNew>
+          </Suspense>
+        ) : (
+          <Suspense fallback={<LoadingComponent />}>
+            <RoutersLogin />
+          </Suspense>
+        )}
+      {/* </Box> */}
+    </>
   );
 }
 

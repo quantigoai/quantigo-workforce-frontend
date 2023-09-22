@@ -54,7 +54,7 @@ const ProjectTable2 = ({
 
   return (
     <>
-      <Box sx={{ height: "100vh" }} className="div1">
+      <Box sx={{ height: "100vh",backgroundColor:"red" }} className="div1">
         {isLoading ? (
           <LoadingComponent height="50vh" />
         ) : (
@@ -119,6 +119,7 @@ const ProjectTable2 = ({
           backgroundColor: "white",
           width: "97%",
           margin: "auto",
+          // height: "100%",
           justifyContent: "flex-end",
         }}
       >

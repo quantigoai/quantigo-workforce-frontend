@@ -1,5 +1,5 @@
-import { ThemeProvider } from "@mui/material";
-import React, { lazy, Suspense } from "react";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import React, { Suspense, lazy } from "react";
 import { Provider as AlertProvider, positions, transitions } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 import ReactDOM from "react-dom/client";
@@ -24,18 +24,19 @@ const options = {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ThemeProvider theme={theme}>
+    <CssBaseline />
     {/* <React.StrictMode> */}
-      <AlertProvider template={AlertTemplate} {...options}>
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-            <BrowserRouter>
-              <Suspense fallback={<LoadingComponent />}>
-                <App />
-              </Suspense>
-            </BrowserRouter>
-          </PersistGate>
-        </Provider>
-      </AlertProvider>
+    <AlertProvider template={AlertTemplate} {...options}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <BrowserRouter>
+            <Suspense fallback={<LoadingComponent />}>
+              <App />
+            </Suspense>
+          </BrowserRouter>
+        </PersistGate>
+      </Provider>
+    </AlertProvider>
     {/* </React.StrictMode> */}
   </ThemeProvider>
 );

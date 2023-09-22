@@ -1,44 +1,35 @@
-import * as React from "react";
-import { styled, useTheme } from "@mui/material/styles";
+import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
-import MuiAppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
-import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import UserBlocked from "../UserBlocked/UserBlocked";
+import Typography from "@mui/material/Typography";
+import { styled, useTheme } from "@mui/material/styles";
+import * as React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Header from "../Header/Header";
 import logo from "../../../assets/images/logo.png";
 import BenchmarkSvg from "../../../assets/images/wmp_svg/drawer/banchmarkIcon.svg";
 import CourseSvg from "../../../assets/images/wmp_svg/drawer/courseNew.svg";
 import SkillIcon from "../../../assets/images/wmp_svg/drawer/skillIcon.svg";
+import UserBlocked from "../UserBlocked/UserBlocked";
 // import DashboardSvg from "../../../assets/images/wmp_svg/drawer/dashboard.svg";
-import DashboardSvg from "../../../assets/images/wmp_svg/drawer/DashboardIcon.svg";
 import menuFoldLine from "../../../assets/images/menu-fold-line.svg";
 import menuUnfoldLne from "../../../assets/images/menu-unfold-line.svg";
+import DashboardSvg from "../../../assets/images/wmp_svg/drawer/DashboardIcon.svg";
 import JobSvg from "../../../assets/images/wmp_svg/drawer/jobsNew.svg";
 // import LogoutSvg from "../../../assets/images/wmp_svg/drawer/logout.svg";
+import { Stack } from "@mui/material";
 import ProjectSvg from "../../../assets/images/wmp_svg/drawer/projectNew.svg";
-import PaymentSvg from "../../../assets/images/wmp_svg/drawer/u_credit-card.svg";
 import SyncIcon from "../../../assets/images/wmp_svg/drawer/syncIcon.svg";
+import PaymentSvg from "../../../assets/images/wmp_svg/drawer/u_credit-card.svg";
 import UserSvg from "../../../assets/images/wmp_svg/drawer/userNew.svg";
-import GetHelp from "./GetHelp";
+import Header from "../Header/Header";
 import GetHelpNew from "./GetHelpNew";
-import { useState } from "react";
 
 const drawerWidth = "15%";
 
@@ -347,20 +338,12 @@ export default function LayoutNew({ children }) {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "row",
-        gap: 2,
-        // backgroundColor: "blue",
-        // width: "100%",
-      }}
-    >
+    <Stack direction={"row"}>
       <Box
         sx={{
+          width: open ? "15%" : "3%",
           height: "100vh",
-          width: open ? "15%" : "4%",
-          // backgroundColor: "red",
+          backgroundColor: "F2F6FC",
         }}
       >
         <Drawer
@@ -379,10 +362,6 @@ export default function LayoutNew({ children }) {
                 src={logo}
                 alt="logo"
                 style={{
-                  // width: "110px",
-                  // width: { xl: "140px", lg: "110px", md: "110px" },
-                  // // height: { xl: "27px", lg: "24px", md: "24px" },
-                  // height: "25px",
                   cursor: "pointer",
                   ...(!open && { display: "none" }),
                 }}
@@ -448,36 +427,50 @@ export default function LayoutNew({ children }) {
       </Box>
 
       <Box
-        // component="main"
         sx={{
-          display: "flex",
-          gap: 2,
-          width: open ? "88%" : "96%",
-          flexDirection: "column",
-          // backgroundColor: "green",
-          // pl: 2,
+          width: open ? "88%" : "97%",
+          height: "100vh",
         }}
       >
+        {/* navbar */}
         <Box
           sx={{
-            height: "7vh",
+            height: { xl: "6%", lg: "7%", md: "8%" },
             width: "100%",
+            backgroundColor: "#FFFFFF",
+            borderBottom: "1px solid #E6ECF5",
           }}
         >
           <Header openDrawer={open} />
         </Box>
+
+        {/* body */}
         <Box
           sx={{
-            height: "90vh",
+            height: { xl: "94%", lg: "93%", md: "92%" },
+
+            paddingBottom: "1%",
             width: "100%",
+            backgroundColor: "#F2F6FC",
             overflowY: "auto",
           }}
         >
-          {isLoggedIn && !isBlocked ? <Box>{children}</Box> : <UserBlocked />}
+          {isLoggedIn && !isBlocked ? (
+            <Box
+              sx={{
+                height: "100%",
+                overflowY: "auto",
+              }}
+            >
+              {children}
+            </Box>
+          ) : (
+            <UserBlocked />
+          )}
         </Box>
 
         {/* TODO Fix this */}
       </Box>
-    </Box>
+    </Stack>
   );
 }

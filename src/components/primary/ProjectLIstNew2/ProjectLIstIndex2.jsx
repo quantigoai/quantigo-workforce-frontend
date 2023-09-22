@@ -60,7 +60,7 @@ const ProjectLIstIndex2 = () => {
   const [myRows, setMyRows] = useState([]);
   const [isEditModal, setIsEditModal] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
-  const [annotatorPlatform, setAnnotatorPlatform] = useState();
+  const [setAnnotatorPlatform] = useState();
   const [detailProject, setDetailProject] = useState({});
 
   const alert = useAlert();
@@ -296,7 +296,7 @@ const ProjectLIstIndex2 = () => {
               paddingY: "10px",
               display: isFilter ? "block" : "none",
               borderTop: "1px solid #E6ECF5",
-              transition: "margin-top 1.3s ease-in-out",
+              transition: isFilter && "all 0.3s ease-in-out",
             }}
           >
             <ProjectSelectFIlter

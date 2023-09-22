@@ -13,7 +13,6 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import React from "react";
 import "swiper/css";
 import { calculateTimeDifference, formatDate, formatTime } from "../../../helper/dateConverter";
 import ChipGroup from "../../shared/CustomTable/ChipGroup";
@@ -116,21 +115,26 @@ const TableComponent = ({
                       </TableCell>
                     );
                   }
-                  if (col.field === "guideline") {
+                  if (col.field === "relevantDocuments") {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
-                          <Link
-                            sx={{
-                              textDecoration: "none",
-                              cursor: "pointer",
-                              fontSize: "14px",
-                            }}
-                            href="#"
-                          >
-                            click here <i className="ri-arrow-right-up-line"></i>
-                          </Link>
-                        </Typography>
+                        {row?.[col.field]?.length > 0 ? (
+                          <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
+                            <Link
+                              sx={{
+                                textDecoration: "none",
+                                cursor: "pointer",
+                                fontSize: "14px",
+                              }}
+                              href="#"
+                            >
+                              {row?.[col.field]?.[0].documentUrl}
+                              <i className="ri-arrow-right-up-line"></i>
+                            </Link>
+                          </Typography>
+                        ) : (
+                          ""
+                        )}
                       </TableCell>
                     );
                   }

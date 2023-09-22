@@ -47,7 +47,7 @@ export const fields = [
   { field: "createdBy", width: 150 },
   { field: "benchmark", width: 150 },
   { field: "estimated_end_date", width: 200 },
-  { field: "guideline", width: 150 },
+  { field: "relevantDocuments", width: 150 },
   {
     field: "ACTIONS",
     renderCell: "button",

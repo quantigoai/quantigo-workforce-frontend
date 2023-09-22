@@ -6,7 +6,6 @@ import Button from "@mui/material/Button";
 import Fade from "@mui/material/Fade";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import PDDateField from "../../shared/CustomField/PDDateField";
@@ -48,24 +47,11 @@ const ProjectModal = ({
   addSkills,
   skills,
 }) => {
-  const [addDoc, setAddDoc] = useState([]);
-
-  const handleAddDoc = () => {
-    const newDoc = [...addDoc, []];
-    setAddDoc(newDoc);
-  };
-
-  const handleDeleteDoc = (id) => {
-    const deleteDoc = [...addDoc];
-    deleteDoc.splice(id, 1);
-    setAddDoc(deleteDoc);
-  };
-
   const ProjectDrawerSchema = Yup.object().shape({
-    project_drawer_name: Yup.string().required(" project name is required"),
+    project_drawer_name: Yup.string().required("project name is required"),
     project_alias: Yup.string().required("alias is required"),
-    project_batch: Yup.string().required(" batch is required"),
-    pdr: Yup.string().required(" pdr is required"),
+    project_batch: Yup.string().required("batch is required"),
+    pdr: Yup.string().required("pdr is required"),
     benchMark: Yup.string().required(" benchMark is required"),
     // relevantDocuments: Yup.string().required(" document is required"),
     // guideline: Yup.string().required(" document is required"),
@@ -76,7 +62,7 @@ const ProjectModal = ({
     resolver: yupResolver(ProjectDrawerSchema),
   });
 
-  const { reset, handleSubmit } = methods;
+  const { handleSubmit } = methods;
 
   return (
     <>
@@ -91,7 +77,8 @@ const ProjectModal = ({
           backdrop: {
             timeout: 500,
           },
-        }}>
+        }}
+      >
         <Fade in={createProjectOpen}>
           <Box sx={style}>
             <ProjectModalHeader handleCreateProjectClose={handleCreateProjectClose} modalTitle={"Create Project"} />
@@ -101,7 +88,8 @@ const ProjectModal = ({
                 paddingTop: "2%",
                 paddingRight: "3%",
                 position: "relative",
-              }}>
+              }}
+            >
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <Stack direction="row" gap={2} sx={{ py: "0%" }}>
                   <PDSelectField
@@ -201,7 +189,8 @@ const ProjectModal = ({
                     fontSize: "14px",
                     mb: "10px",
                   }}
-                  variant="h6">
+                  variant="h6"
+                >
                   Relevant Documents
                 </Typography>
                 {/* <PDReleventField /> */}
@@ -213,80 +202,16 @@ const ProjectModal = ({
                     background: "#FAFCFF",
                     maxHeight: 200,
                     overflowY: "auto",
-                  }}>
+                  }}
+                >
                   <PDReleventField name={"relevantDocuments"} />
-                  {/* <Stack direction="row" gap={2} xs={12}>
-                    <PDTextFIeld
-                      name="guideline"
-                      label="Document Name"
-                      InputProps={{
-                        disableUnderline: true,
-                      }}
-                    />
-
-                    <PDTextFIeld
-                      name="link"
-                      label="Link"
-                      InputProps={{
-                        disableUnderline: true,
-                      }}
-                    />
-                  </Stack> */}
-                  {/* {addDoc.map((doc, id) => {
-                    return (
-                      <Stack key={id} direction="row" gap={2} xs={12} sx={{ mt: 2, position: "relative" }}>
-                        <PDTextFIeld
-                          name={`guideline${id + 1}`}
-                          label="Document Name"
-                          InputProps={{
-                            disableUnderline: true,
-                          }}
-                        />
-
-                        <PDTextFIeld
-                          name={`link${id + 1}`}
-                          label="Link"
-                          InputProps={{
-                            disableUnderline: true,
-                          }}
-                        />
-                        <Button
-                          onClick={() => handleDeleteDoc(id)}
-                          sx={{
-                            mt: "30px",
-                            position: "absolute",
-                            left: 550,
-                            fontSize: "20px",
-                          }}
-                        >
-                          {" "}
-                          <i style={{ color: "red", cursor: "pointer" }} className="ri-delete-bin-line"></i>
-                        </Button>
-                      </Stack>
-                    );
-                  })} */}
-
-                  {/* <Typography
-                    sx={{
-                      fontWeight: "600",
-                      mt: "15px",
-                      fontSize: "14px",
-                      mb: "0px",
-                      color: "#2E58FF",
-                      cursor: "pointer",
-                    }}
-                    variant="p"
-                    onClick={() => handleAddDoc()}
-                  >
-                    <i className="ri-add-line"></i> Add another document
-                  </Typography> */}
                 </Stack>
 
                 <hr
                   style={{
                     color: "#F2F6FC",
                     marginTop: "16px",
-                    width: "670px",
+                    width: "650px",
                     paddingLeft: "0px",
                   }}
                 />
@@ -297,7 +222,8 @@ const ProjectModal = ({
                     justifyContent: "space-between",
                     alignItems: "center",
                     padding: "20px",
-                  }}>
+                  }}
+                >
                   <Button
                     onClick={handleCreateProjectClose}
                     sx={{
@@ -314,7 +240,8 @@ const ProjectModal = ({
                       },
                     }}
                     variant="filled"
-                    size="large">
+                    size="large"
+                  >
                     Cancel
                   </Button>
                   <Button
@@ -330,7 +257,8 @@ const ProjectModal = ({
                       },
                     }}
                     variant="contained"
-                    size="large">
+                    size="large"
+                  >
                     Save
                   </Button>
                 </Box>

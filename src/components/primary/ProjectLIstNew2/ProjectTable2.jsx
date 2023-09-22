@@ -9,7 +9,7 @@
 
 import { Alert, Box } from "@mui/material";
 import { useSelector } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "swiper/css";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import PaginationTable from "./PaginationTable";
@@ -50,7 +50,6 @@ const ProjectTable2 = ({
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
   const location = useLocation();
   const { pathname } = location;
-  const { id } = useParams();
 
   return (
     <>

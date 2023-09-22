@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import React from "react";
 import DateRangeComponent from "./DateRangePicker/DateRangeComponent";
 import DetailChartarButton from "./DetailChartarButton";
 import DetailsButton from "./DetailsButton";

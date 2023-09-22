@@ -22,7 +22,7 @@ const style = {
   },
 };
 const DetailsPage = ({ skillAlert }) => {
-  const { isLoading, projectDrawer } = useSelector((state) => state.projectDrawer);
+  const { projectDrawer } = useSelector((state) => state.projectDrawer);
 
   return (
     <Box sx={style}>

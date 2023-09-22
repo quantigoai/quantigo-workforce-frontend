@@ -126,9 +126,9 @@ const TableComponent = ({
                                 cursor: "pointer",
                                 fontSize: "14px",
                               }}
-                              href="#"
+                              href={row?.[col.field]?.[0].documentUrl}
                             >
-                              {row?.[col.field]?.[0].documentUrl}
+                              click here
                               <i className="ri-arrow-right-up-line"></i>
                             </Link>
                           </Typography>

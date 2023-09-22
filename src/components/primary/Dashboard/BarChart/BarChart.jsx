@@ -7,15 +7,7 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 import { Box, Grid, TextField, Typography } from "@mui/material";
-import {
-  BarElement,
-  CategoryScale,
-  Chart as ChartJS,
-  Legend,
-  LinearScale,
-  Title,
-  Tooltip,
-} from "chart.js";
+import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip } from "chart.js";
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { useSelector } from "react-redux";
@@ -23,14 +15,7 @@ import { chartValues, labelsData } from "../../../../helper/customData";
 import DateField from "../DatePicker/DateField";
 import DateRangeField from "../DatePicker/DateRangeField";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export const options = {
   responsive: true,
@@ -79,13 +64,7 @@ export const options = {
   },
 };
 
-const BarChart = ({
-  startDate,
-  setStartDate,
-  endDate,
-  setEndDate,
-  loading,
-}) => {
+const BarChart = ({ startDate, setStartDate, endDate, setEndDate, loading }) => {
   const { activeJobs, takenJobs } = useSelector((state) => state.dashboard);
   const [customData, setCustomData] = React.useState({});
   const [isDataUpdate, setIsDataUpdate] = React.useState(true);
@@ -95,18 +74,18 @@ const BarChart = ({
     setDateRange(event.target.value);
   };
   const sampleData = {
-    labels: [1, 2, 3, 4],
+    labels: [1, 2, 3, 4, 6, 7, 8, 9],
     datasets: [
       {
         label: "dataset1",
-        data: [1, 2, 3, 4],
+        data: [6, 7, 8, 9, 6, 7, 8, 9],
         backgroundColor: "#B6C9F0",
         borderWidth: 1,
         borderRadius: 10,
       },
       {
         label: "dataset2",
-        data: [1, 2, 5, 4],
+        data: [3, 4, 6, 4, 6, 7, 1, 3],
         backgroundColor: "#2E58FF",
         borderWidth: 1,
         borderRadius: 10,
@@ -128,11 +107,7 @@ const BarChart = ({
       //   "June",
       //   "July",
       // ];
-      const { activeJobValues, blockedJobValues } = chartValues(
-        uniqueIds,
-        activeJobs,
-        takenJobs
-      );
+      const { activeJobValues, blockedJobValues } = chartValues(uniqueIds, activeJobs, takenJobs);
 
       setCustomData({
         labels: label,
@@ -164,16 +139,23 @@ const BarChart = ({
           </Grid>
           <Grid xs={6}>
             <Grid container sx={{ justifyContent: "right" }}>
-              <DateRangeField
-                setStartDate={setStartDate}
-                setEndDate={setEndDate}
-              />
+              <DateRangeField setStartDate={setStartDate} setEndDate={setEndDate} />
             </Grid>
           </Grid>
         </Grid>
 
         <Grid container sx={{ padding: "2%" }}>
-          {!isDataUpdate && <Bar options={options} data={sampleData} />}
+          {!isDataUpdate && (
+            <Bar
+              options={{
+                ...options,
+                maintainAspectRatio: false, // This allows you to set a custom height
+              }}
+              data={sampleData}
+              style={{ height: "250px" }}
+              // data={sampleData}
+            />
+          )}
         </Grid>
       </Box>
     </>

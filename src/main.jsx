@@ -9,7 +9,8 @@ import { PersistGate } from "redux-persist/integration/react";
 import LoadingComponent from "./components/shared/Loading/LoadingComponent";
 import { persistor, store } from "./features/store/store";
 import "./index.css";
-import theme from "./mui.theme";
+import theme from "./theme.config/mui.theme";
+
 const App = lazy(() => import("./App.jsx"));
 
 const options = {

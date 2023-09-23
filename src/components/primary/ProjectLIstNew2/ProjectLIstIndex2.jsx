@@ -54,6 +54,7 @@ import "./index.css";
 
 const ProjectLIstIndex2 = () => {
   const { skills } = useSelector((state) => state.skill);
+  const { isLightTheme } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [myColumn, setMyColumn] = useState([]);
@@ -197,28 +198,21 @@ const ProjectLIstIndex2 = () => {
 
   return (
     <>
-      <Box className="projectBox">
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            height: "15%",
-            alignItems: "center",
-            backgroundColor: "#fff",
-          }}
-        >
+      <Paper className="projectBox">
+        {/* TODO Filter functionality need to be checked for last page  */}
+        <Box className="projectHeader">
           <Box
             sx={{
               display: "flex",
               justifyContent: "space-between",
               width: "100%",
-              height: isFilter ? "70%" : "100%",
+              height: isFilter ? "55%" : "100%",
               alignItems: "center",
-              background: "#FFFFFF",
+              background: isLightTheme ? "#FFFFFF" : "#1E1E1E",
               borderTop: "1px solid #E6ECF5",
             }}
           >
-            <Box sx={{ width: "30%", padding: "12px 35px" }}>
+            <Box sx={{ width: "30%", padding: "12px 16px" }}>
               <Grid
                 container
                 sx={{
@@ -290,10 +284,10 @@ const ProjectLIstIndex2 = () => {
 
           <Box
             sx={{
-              backgroundColor: "#FFFFFF",
+              background: isLightTheme ? "#FFFFFF" : "#1E1E1E",
               width: "100%",
-              height: isFilter ? "30%" : "0%",
-              paddingY: "10px",
+              height: isFilter ? "45%" : "0%",
+              paddingY: "5px",
               display: isFilter ? "block" : "none",
               borderTop: "1px solid #E6ECF5",
               transition: isFilter && "all 0.3s ease-in-out",
@@ -315,15 +309,7 @@ const ProjectLIstIndex2 = () => {
           </Box>
         </Box>
 
-        <Box
-          sx={{
-            width: "100%",
-            mt: "10px",
-            // height: "100%",
-            height: "84%",
-            // backgroundColor: "violet",
-          }}
-        >
+        <Box className="tableContent">
           <ProjectTable2
             role={role}
             handleDetailsPage={handleDetailsPage}
@@ -340,7 +326,6 @@ const ProjectLIstIndex2 = () => {
             handleProjectDetailsOpen={handleProjectDetailsOpen}
           />
         </Box>
-
         {detailsProjectOpen && (
           <Box>
             <Project2DetailsModal
@@ -373,7 +358,6 @@ const ProjectLIstIndex2 = () => {
             />
           </Box>
         )}
-
         {createProjectOpen && (
           <Box>
             <ProjectModal
@@ -392,7 +376,7 @@ const ProjectLIstIndex2 = () => {
             />
           </Box>
         )}
-      </Box>
+      </Paper>
     </>
   );
 };

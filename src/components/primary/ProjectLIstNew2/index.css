@@ -4,117 +4,123 @@
 .projectBox {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 88vh; 
-  /* width: 100%; */
-  /* width: 100%;
-  background-color: chartreuse;
-  */
-  /* height: 100vh; */
-  font-family: 'Inter', sans-serif;
-/* margin-top: 20px; */
-
+  height: 100%;
+  /* background-color: yellow;  */
 }
 
+.projectHeader{
+    display: flex;
+    flex-direction: column;
+    height: 15%;
+    align-items: center;
+}
+
+.tableContent{
+   width: 100%;
+   padding: 16px;
+   height: 85%;
+}
+
+
+.mainTableBox {
+  height: 94%;
+  position: relative;
+  overflow: scroll;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0px 1px 3px 0px rgba(9, 0, 128, 0.08);
+  border-radius: 8px 8px 0px 0px;
+  /* background-color: #fff; */
+}
+
+.myTable {
+  /* position: absolute; */
+  /* height: 100%; */
+  border-collapse: separate;
+}
+
+.pagination{
+    display: flex;
+    width: 100%;
+    margin: auto;
+    height: 7%;
+    justify-content: flex-end;
+}
 .css-ong8cm{
   height: 4vh;
 }
 .css-lgk7oi{
   gap:0px;
 }
+
 .MuiAvatarGroup-root {
   justify-content: start;
 }
-.MuiTableCell-root {
-  border-bottom: 1px solid #f2f6fc;
-}
-.div1 {
-  width: 97%;
-  margin: auto;
-  height: 93%;
-  margin-top: 5px;
-  /* height: calc(100% - 60px); */
-  position: relative;
-  overflow: scroll;
 
-  background-color: #fff;
-  box-shadow: 0px 1px 3px 0px rgba(9, 0, 128, 0.08);
-  border-radius: 8px 8px 0px 0px;
-  font-family: 'Inter', sans-serif;
-}
 
-.myTable {
-  position: absolute;
-  background-color: #ffffff ;
-  border-collapse: separate;
 
- 
-  
-  
-  /* height: 100%; */
-}
-.div1 table {
+.mainTableBox table {
   border-spacing: 0;
 }
 
-.div1::-webkit-scrollbar {
+
+
+.mainTableBox::-webkit-scrollbar {
   width: 10px;
   height: 10px;
+  /* background-color: rgb(255, 255, 255);  */
+  background-color: transparent; 
 }
 
-.div1::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(38, 96, 204, 0.567);
+.mainTableBox::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(69, 88, 123, 0.567);
   cursor: grab;
 }
 
-.div1::-webkit-scrollbar-track:hover {
-  background-color: rgb(213, 217, 245);
+.mainTableBox::-webkit-scrollbar-track:hover {
+  background-color: rgb(255, 255, 255);
   cursor: grab;
 }
 
-.div1 th {
+::-webkit-scrollbar-corner {
+    background-color: transparent; /* Corner color */
+}
+
+.mainTableBox th {
   border-left: none;
-  padding: 10px 16px 10px 20px;
+  padding: 10px 16px 10px 16px;
   
 
  
 }
-.div1 td {
+.mainTableBox td {
   border-left: none;
   width: 80px;
   min-width: 80px;
-  border: 2px solid red;
 }
 
 
 
-.div1 th:nth-child(1),
-.div1 td:nth-child(1) {
+.mainTableBox th:nth-child(1),
+.mainTableBox td:nth-child(1) {
   position: sticky;
   padding-right: 40px;
   left: 0;
-  width: 150px;
-  min-width: 150px;
-  background-color: #ffffff;
   border-right: 1px solid #ebf0f5;
-  /* border-right: 1px solid red; */
  
 }
 
-.div1 th:last-child,
-.div1 td:last-child {
+.mainTableBox th:last-child,
+.mainTableBox td:last-child {
   position: sticky;
   right: 0px; 
   width: 10%;
   min-width: 50%;
-  background-color: #ffffff;
   border-left: 1px solid #ebf0f5;
 }
 
-.div1 th:nth-child(1),
-.div1 th:last-child {
+.mainTableBox th:nth-child(1),
+.mainTableBox th:last-child {
   z-index: 20;
-  background-color: #fff;
 }
 
 .custom-header {
@@ -127,7 +133,12 @@
 
 
 .tableRow {
-  height: calc(6vh);
+  height: calc(6.35vh);
+}
+@media screen and ( max-width: 800px ) {
+.tableRow {
+  height: calc(4.35vh);
+}
 }
 
 .responsive-logo {
@@ -180,3 +191,38 @@
   .test{
     transition: all 1.3s ease-in-out;
   }
+
+/* ================== Experimental Table ======================== */
+  .stickyHeader {
+      position: sticky;
+      top: 0;
+      background: white;
+      box-shadow: 5px 2px 5px grey;
+    }
+
+  .leftStickyColumn {
+      position: sticky;
+      left: 0;
+      background: rgb(9, 9, 156);
+      box-shadow: 5px 2px 5px grey;
+      border-right: 2px solid black;
+    }
+
+  .rightStickyHeader {
+      position: sticky;
+      right: 0;
+      background: rgb(153, 15, 15);
+      box-shadow: 5px 2px 5px grey;
+      border-right: 2px solid black;
+      z-index: 5;
+    }
+
+    .rightStickyColumn {
+      position: sticky;
+      top:0;
+      right: 0;
+      background: rgb(212, 126, 35);
+      box-shadow: 5px 2px 5px grey;
+      border-right: 2px solid black;
+      z-index: 4;
+    }

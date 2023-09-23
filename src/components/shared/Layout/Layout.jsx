@@ -340,7 +340,6 @@ const Layout = ({ children }) => {
         sx={{
           flexGrow: 1,
           p: 2,
-          // bgcolor: isLightTheme ? "#F5F5F5" : "#000c1f",
           bgcolor: "#F5F5F5",
           height: "100%",
         }}

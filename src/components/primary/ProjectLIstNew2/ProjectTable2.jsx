@@ -16,7 +16,6 @@ import PaginationTable from "./PaginationTable";
 import DetailsPage from "./ProjectDetailsFull/DetailsPage";
 import TableComponent from "./TableComponent";
 import "./index.css";
-
 /**
  * @param {object} pagination - pagination object
  * @param {function} setPagination - set pagination
@@ -47,13 +46,15 @@ const ProjectTable2 = ({
   skillAlert,
 }) => {
   const { usersWorkHistory, isLoading, projectDrawers } = useSelector((state) => state.projectDrawer);
+  const { isLightTheme } = useSelector((state) => state.theme);
+
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
   const location = useLocation();
   const { pathname } = location;
 
   return (
     <>
-      <Box sx={{ height: "100vh",backgroundColor:"red" }} className="div1">
+      <Box className="mainTableBox">
         {isLoading ? (
           <LoadingComponent height="50vh" />
         ) : (
@@ -112,15 +113,12 @@ const ProjectTable2 = ({
           </>
         )}
       </Box>
+
       <Box
         sx={{
-          display: "flex",
-          backgroundColor: "white",
-          width: "97%",
-          margin: "auto",
-          // height: "100%",
-          justifyContent: "flex-end",
+          backgroundColor: isLightTheme ? "#fff" : "#1c1c1c",
         }}
+        className="pagination"
       >
         <PaginationTable
           pagination={pagination}

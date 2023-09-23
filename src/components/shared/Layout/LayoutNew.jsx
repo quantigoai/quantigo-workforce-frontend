@@ -28,8 +28,8 @@ import ProjectSvg from "../../../assets/images/wmp_svg/drawer/projectNew.svg";
 import SyncIcon from "../../../assets/images/wmp_svg/drawer/syncIcon.svg";
 import PaymentSvg from "../../../assets/images/wmp_svg/drawer/u_credit-card.svg";
 import UserSvg from "../../../assets/images/wmp_svg/drawer/userNew.svg";
-import Header from "../Header/Header";
 import GetHelpNew from "./GetHelpNew";
+import Header from "../Header/Header";
 
 const drawerWidth = "15%";
 
@@ -120,6 +120,7 @@ export default function LayoutNew({ children }) {
   const { isVerified, role, isEmailVerified } = useSelector((state) => state.user.user);
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
+  const { isLightTheme } = useSelector((state) => state.theme);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -343,13 +344,12 @@ export default function LayoutNew({ children }) {
         sx={{
           width: open ? "15%" : "3%",
           height: "100vh",
-          backgroundColor: "F2F6FC",
         }}
       >
         <Drawer
           PaperProps={{
             sx: {
-              backgroundColor: "#2D58FF",
+              backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
             },
           }}
           variant="permanent"
@@ -428,17 +428,15 @@ export default function LayoutNew({ children }) {
 
       <Box
         sx={{
-          width: open ? "88%" : "97%",
+          width: open ? "85%" : "97%",
           height: "100vh",
         }}
       >
         {/* navbar */}
         <Box
           sx={{
-            height: { xl: "6%", lg: "7%", md: "8%" },
+            height: { xl: "7%", lg: "9%", md: "10%" },
             width: "100%",
-            backgroundColor: "#FFFFFF",
-            borderBottom: "1px solid #E6ECF5",
           }}
         >
           <Header openDrawer={open} />
@@ -447,11 +445,10 @@ export default function LayoutNew({ children }) {
         {/* body */}
         <Box
           sx={{
-            height: { xl: "94%", lg: "93%", md: "92%" },
-
+            height: { xl: "93%", lg: "91%", md: "90%" },
             paddingBottom: "1%",
+            backgroundColor: isLightTheme ? "#F2F6FC" : "#121212",
             width: "100%",
-            backgroundColor: "#F2F6FC",
             overflowY: "auto",
           }}
         >

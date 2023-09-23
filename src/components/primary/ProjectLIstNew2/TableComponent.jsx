@@ -44,14 +44,12 @@ const TableComponent = ({
     <>
       <Table aria-label="simple table" className="myTable">
         <TableHead>
-          <TableRow sx={{ backgroundColor: "#fff" }} className="custom-header">
+          <TableRow className="custom-header">
             {myColumn.map((col) => (
               <TableCell
                 sx={{
                   minWidth: col.width || "140px",
-                  color: "#3C4D6B",
                   textAlign: "left",
-                  fontSize: "13px",
                 }}
                 key={col.id}
               >
@@ -61,7 +59,7 @@ const TableComponent = ({
                     justifyContent: "start",
                   }}
                 >
-                  <Typography sx={{ fontWeight: "600", color: "#3C4D6B", fontSize: "12px" }} variant={"p"}>
+                  <Typography sx={{ fontWeight: "600", fontSize: "12px" }} variant={"p"}>
                     {col.headerName}
                   </Typography>
 
@@ -87,35 +85,29 @@ const TableComponent = ({
                         <ChipGroup value={row[col?.field]} />
                       </TableCell>
                     );
-                  }
-                  if (col.field === "createdBy") {
+                  } else if (col.field === "createdBy") {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography sx={{ color: "#3C4D6B" }} variant="wf_p2_semiBold">
-                          {row[col?.field] || "Admin"}
-                        </Typography>
+                        <Typography variant="wf_p2_semiBold">{row[col?.field] || "Admin"}</Typography>
                       </TableCell>
                     );
-                  }
-                  if (col.field === "benchmark") {
+                  } else if (col.field === "benchmark") {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography sx={{ color: "#3C4D6B" }} variant="wf_p2_semiBold">
+                        <Typography  variant="wf_p2_semiBold">
                           {row[col?.field] || "10 sec"}
                         </Typography>
                       </TableCell>
                     );
-                  }
-                  if (col.field === "estimated_end_date") {
+                  } else if (col.field === "estimated_end_date") {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography sx={{ color: "#3C4D6B" }} variant="wf_p2_semiBold">
+                        <Typography  variant="wf_p2_semiBold">
                           {formatDate(row[col?.field]) || "20 july 2023"}
                         </Typography>
                       </TableCell>
                     );
-                  }
-                  if (col.field === "relevantDocuments") {
+                  } else if (col.field === "relevantDocuments") {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
                         {row?.[col.field]?.length > 0 ? (
@@ -137,8 +129,7 @@ const TableComponent = ({
                         )}
                       </TableCell>
                     );
-                  }
-                  if (col.field === "project_status") {
+                  } else if (col.field === "project_status") {
                     return (
                       <TableCell key={col.id} component="th" scope="row">
                         <ProjectDrawerStatusChip value={row[col?.field]} />
@@ -167,12 +158,12 @@ const TableComponent = ({
                       >
                         {currentlyCheckedInProject === row._id ? (
                           <StyledBadge variant="dot" color="success">
-                            <Typography sx={{ color: "#3C4D6B", cursor: "pointer" }} variant="wf_p2_semiBold">
+                            <Typography sx={{ cursor: "pointer" }} variant="wf_p2_semiBold">
                               {row[col?.field]}
                             </Typography>
                           </StyledBadge>
                         ) : (
-                          <Typography sx={{ color: "#3C4D6B", cursor: "pointer" }} variant="wf_p2_semiBold">
+                          <Typography sx={{ cursor: "pointer" }} variant="wf_p2_semiBold">
                             {row[col?.field]}
                           </Typography>
                         )}
@@ -181,15 +172,13 @@ const TableComponent = ({
                   } else if (col.field === "workingTimeInMs") {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography sx={{ color: "#3C4D6B" }} variant="wf_p2_semiBold">
-                          {calculateTimeDifference(row[col?.field])}
-                        </Typography>
+                        <Typography variant="wf_p2_semiBold">{calculateTimeDifference(row[col?.field])}</Typography>
                       </TableCell>
                     );
                   } else if (col.field === "checkedInDate" || col.field === "checkedOutDate") {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography sx={{ color: "#3C4D6B" }} variant="wf_p2_semiBold">
+                        <Typography variant="wf_p2_semiBold">
                           {/* TODO Add working chip here */}
                           {row[col?.field] ? formatDate(row[col?.field]) : "Working ⛑️"}
                         </Typography>
@@ -199,7 +188,7 @@ const TableComponent = ({
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
                         {/* TODO Add working chip here  */}
-                        <Typography sx={{ color: "#3C4D6B" }} variant="wf_p2_semiBold">
+                        <Typography variant="wf_p2_semiBold">
                           {row[col?.field] ? formatTime(row[col?.field]) : "Working ⛑️"}
                         </Typography>
                       </TableCell>
@@ -207,9 +196,7 @@ const TableComponent = ({
                   } else {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography sx={{ color: "#3C4D6B" }} variant="wf_p2_semiBold">
-                          {row[col?.field]}
-                        </Typography>
+                        <Typography variant="wf_p2_semiBold">{row[col?.field]}</Typography>
                       </TableCell>
                     );
                   }

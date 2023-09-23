@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
 import { Suspense, lazy, useEffect } from "react";
@@ -22,9 +21,10 @@ const RoutersLogin = lazy(() => import("./components/primary/Routers/RoutersLogi
 // const Layout = lazy(() => import("./components/shared/Layout/Layout"));
 
 import CryptoJS from "crypto-js";
+import Routers from "./components/primary/Routers/Routers";
 import LoadingComponent from "./components/shared/Loading/LoadingComponent";
 import useClearReduxData from "./customHooks/useClearReduxData";
-import Routers from "./components/primary/Routers/Routers";
+import ThemeProviderWrapper from "./theme.config/ThemeProviderWrapper";
 // import LayoutNew from "./components/shared/Layout/LayoutNew";
 const LayoutNew = lazy(() => import("./components/shared/Layout/LayoutNew"));
 
@@ -87,17 +87,17 @@ function App() {
 
   return (
     <>
-      {/* <Box className="App"> */}
+      <ThemeProviderWrapper>
         {isLoggedIn ? (
           <Suspense fallback={<LoadingComponent />}>
-            <LayoutNew>{<Routers /> }</LayoutNew>
+            <LayoutNew>{<Routers />}</LayoutNew>
           </Suspense>
         ) : (
           <Suspense fallback={<LoadingComponent />}>
             <RoutersLogin />
           </Suspense>
         )}
-      {/* </Box> */}
+      </ThemeProviderWrapper>
     </>
   );
 }

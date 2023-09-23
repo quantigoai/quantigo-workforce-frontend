@@ -7,9 +7,9 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Box, Grid, Link, Typography} from "@mui/material";
+import { Box, Grid, Link, Typography } from "@mui/material";
 import React from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
 import logoBlue from "../../../assets/images/rsz_logoblue.png";
 
@@ -27,7 +27,8 @@ const HeaderNav = () => {
           alignItems: "center",
           alignContent: "center",
           paddingX: "5%",
-        }}>
+        }}
+      >
         <Grid
           sx={
             {
@@ -37,7 +38,8 @@ const HeaderNav = () => {
           item
           xs={6}
           lg={6}
-          xl={6}>
+          xl={6}
+        >
           <img
             onClick={() => navigate("/")}
             src={location.pathname === "/howitworks" ? logoBlue : logo}
@@ -61,7 +63,8 @@ const HeaderNav = () => {
               display: "flex",
               justifyContent: "flex-end",
               textAlign: "right",
-            }}>
+            }}
+          >
             <Grid item xs={4}></Grid>
             <Grid item xs={7}>
               <Box sx={{ display: "flex", justifyContent: "flex-end" }} gap={3}>
@@ -70,12 +73,10 @@ const HeaderNav = () => {
                     // onClick={() => navigate("/faq")}
                     underline="hover"
                     sx={{
-                      color:
-                        location.pathname === "/howitworks"
-                          ? " #47536B"
-                          : "#FFFFFF",
+                      color: location.pathname === "/howitworks" ? " #47536B" : "#FFFFFF",
                       cursor: "pointer",
-                    }}>
+                    }}
+                  >
                     FAQ
                   </Link>
                 </Typography>
@@ -84,12 +85,10 @@ const HeaderNav = () => {
                     onClick={() => navigate("/howitworks")}
                     underline="hover"
                     sx={{
-                      color:
-                        location.pathname === "/howitworks"
-                          ? " #47536B"
-                          : "#FFFFFF",
+                      color: location.pathname === "/howitworks" ? " #47536B" : "#FFFFFF",
                       cursor: "pointer",
-                    }}>
+                    }}
+                  >
                     How it works
                   </Link>
                 </Typography>
@@ -98,12 +97,10 @@ const HeaderNav = () => {
                 </Typography> */}
                 <Typography
                   sx={{
-                    color:
-                      location.pathname === "/howitworks"
-                        ? " #47536B"
-                        : "#FFFFFF",
+                    color: location.pathname === "/howitworks" ? " #47536B" : "#FFFFFF",
                   }}
-                  variant="body1">
+                  variant="body1"
+                >
                   About Us
                 </Typography>
               </Box>

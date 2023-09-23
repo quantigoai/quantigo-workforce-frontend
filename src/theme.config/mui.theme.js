@@ -16,8 +16,25 @@
 import { createTheme } from "@mui/material";
 
 const theme = createTheme({
+  palette: {
+    mode: "light",
+    background: {
+      default: "#F2F6FC",
+      paper: "#ffffff",
+    },
+  },
+  darkTheme: {
+    palette: {
+      mode: "dark",
+      background: {
+        default: "#121212",
+        paper: "#1e1e1e",
+      },
+    },
+  },
   typography: {
     fontFamily: ["Inter", "sans-serif"].join(","),
+    color: "#F2F6FC",
     wf_h6: {
       //used in dashboard card
       fontSize: "12px",
@@ -252,11 +269,6 @@ const theme = createTheme({
       textAlign: "left",
     },
   },
-  select: {
-    height: "58px",
-    background: "#000",
-  },
-
   components: {
     MuiSelect: {
       styleOverrides: {
@@ -294,15 +306,6 @@ const theme = createTheme({
       },
     },
   },
-  breakpoints: {
-    values: {
-      xs: 360,
-      sm: 600,
-      md: 960,
-      lg: 1280,
-      xl: 1920,
-    },
-  },
 });
 
 theme.typography.wf_h6 = {
@@ -338,5 +341,4 @@ theme.typography.wpf_p4_semiBold = {
     fontSize: "12px",
   },
 };
-
 export default theme;

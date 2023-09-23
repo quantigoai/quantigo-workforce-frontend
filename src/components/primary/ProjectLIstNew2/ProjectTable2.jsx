@@ -56,7 +56,7 @@ const ProjectTable2 = ({
     <>
       <Box className="mainTableBox">
         {isLoading ? (
-          <LoadingComponent height="50vh" />
+          <LoadingComponent height="100%" />
         ) : (
           <>
             {pathname === "/allprojects" ? (

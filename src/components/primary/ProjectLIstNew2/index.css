@@ -190,37 +190,3 @@
     transition: all 1.3s ease-in-out;
   }
 
-/* ================== Experimental Table ======================== */
-  .stickyHeader {
-      position: sticky;
-      top: 0;
-      background: white;
-      box-shadow: 5px 2px 5px grey;
-    }
-
-  .leftStickyColumn {
-      position: sticky;
-      left: 0;
-      background: rgb(9, 9, 156);
-      box-shadow: 5px 2px 5px grey;
-      border-right: 2px solid black;
-    }
-
-  .rightStickyHeader {
-      position: sticky;
-      right: 0;
-      background: rgb(153, 15, 15);
-      box-shadow: 5px 2px 5px grey;
-      border-right: 2px solid black;
-      z-index: 5;
-    }
-
-    .rightStickyColumn {
-      position: sticky;
-      top:0;
-      right: 0;
-      background: rgb(212, 126, 35);
-      box-shadow: 5px 2px 5px grey;
-      border-right: 2px solid black;
-      z-index: 4;
-    }

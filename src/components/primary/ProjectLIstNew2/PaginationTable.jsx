@@ -1,4 +1,4 @@
-import { Box, Button, MenuItem, Select, Stack, Typography } from "@mui/material";
+import { Box, Button, MenuItem, Select, Typography } from "@mui/material";
 import { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -66,31 +66,42 @@ const Pagination = ({ totalItems, pagination, setPagination, handleChangePaginat
   const disableNext = pagination.currentPage >= totalPages - 1;
   const location = useLocation();
   const { pathname } = location;
+  const { isLightTheme } = useSelector((state) => state.theme);
 
   return pathname === "/allprojects" || myWorkHistoryCount > 0 || usersWorkHistoryCount > 0 ? (
     <Box
       sx={{
         display: "flex",
         width: "100%",
-        paddingX: "30px",
+        paddingX: "16px",
         paddingY: "10px",
         justifyContent: "space-between",
         alignItems: "center",
         alignContent: "center",
       }}
     >
-      <Stack
-        direction="row"
+      <Box
+        gap={0}
         sx={{
-          justifyContent: "center",
+          display: "flex",
+          justifyContent: "flex-start",
           alignItems: "center",
           alignContent: "center",
         }}
       >
-        <Typography sx={{ fontSize: "14px", width: "200px" }} variant="p">
+        <Typography sx={{ fontSize: "14px", width: "120px", color: isLightTheme ? "#62728F" : "#fff" }} variant="p">
           Items per page
         </Typography>
         <Select
+          sx={{
+            width: "70px",
+            height: "30px",
+            border: "1px solid #b9b9b9",
+            "& .MuiSelect-select": {
+              fontSize: "14px",
+              color: isLightTheme ? "#62728F" : "#fff",
+            },
+          }}
           id="demo-simple-select"
           value={pagination.pageSize}
           onChange={(e) => {
@@ -102,7 +113,7 @@ const Pagination = ({ totalItems, pagination, setPagination, handleChangePaginat
             }));
           }}
           labelId="demo-simple-select-label"
-          sx={{ width: "100px", height: "40px", border: "1px solid #b9b9b9" }}
+          // sx={{ width: "100px", height: "40px", border: "1px solid #b9b9b9" }}
           name="limit"
         >
           {/* Your paginationOptions.map() here */}
@@ -112,7 +123,7 @@ const Pagination = ({ totalItems, pagination, setPagination, handleChangePaginat
             </MenuItem>
           ))}
         </Select>
-      </Stack>
+      </Box>
 
       {/* Buttons */}
       <Box sx={{ display: "flex" }}>

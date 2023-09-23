@@ -26,7 +26,6 @@ const FullProjectDetails = () => {
   const { isLoading, projectDrawer, usersWorkHistory, usersWorkHistoryCount } = useSelector(
     (state) => state.projectDrawer
   );
-  console.log("🚀 ~ file: FullProjectDetails.jsx:27 ~ usersWorkHistoryCount:", usersWorkHistoryCount);
   const { role } = useSelector((state) => state.user.user);
 
   const [value, setValue] = React.useState(projectDrawer.project_status);
@@ -163,17 +162,8 @@ const FullProjectDetails = () => {
     }
   }, [role, range, dispatch, pagination, filteredCol, projectDrawer._id]);
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        height: "85vh",
-        // paddingX: "25px",
-        // paddingY: "20px",
-      }}
-    >
-      <Box sx={{ width: "97%", margin: "auto", mt: 3 }}>
+    <Box className="projectBox">
+      <Box sx={{ padding: "16px" }}>
         {/* {!isLoadingDetails && detailRow.length > 0 && ( */}
         {!isLoadingDetails && (
           <ProjectDetailsHeader
@@ -197,10 +187,11 @@ const FullProjectDetails = () => {
 
       {!isLoadingDetails && (
         <Box
-          sx={{
-            width: "100%",
-            height: "100%",
-          }}
+          className="tableContent"
+          // sx={{
+          //   width: "100%",
+          //   height: "100%",
+          // }}
         >
           <ProjectTable2
             skillAlert={skillAlert}

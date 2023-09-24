@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
 import u_multiply from "../../../assets/images/crosIcon.svg";
-import CheckINOutButton from "./ProjectDetailsFull/CheckInOutButton";
 
 const ProjectModalHeader = ({
   handleCreateProjectClose,
@@ -11,14 +11,15 @@ const ProjectModalHeader = ({
   handleCheckInButton,
   handleCheckOutButton,
 }) => {
+  const { isLightTheme } = useSelector((state) => state.theme);
   return (
     <Box
       sx={{
         paddingTop: "20px",
         width: "100%",
-        background: isPageDetail ? "white" : "#F2F6FC",
+        background: isLightTheme ? (isPageDetail ? "white" : "#F2F6FC") : isPageDetail ? "#1E1E1E" : "#2A2A2A",
         borderRadius: "8px",
-        borderBottom: "2px solid #EBF0F5",
+        borderBottom: "1px solid #EBF0F5",
       }}
     >
       <Grid
@@ -34,7 +35,7 @@ const ProjectModalHeader = ({
           <Typography
             variant="h6"
             sx={{
-              color: "#3C4D6B",
+              color: isLightTheme ? "#3C4D6B" : "#FFFFFF",
               fontSize: "16px",
               fontWeight: "600",
             }}
@@ -45,7 +46,7 @@ const ProjectModalHeader = ({
             <Typography
               variant="div"
               sx={{
-                color: "#091E42",
+                color: isLightTheme ? "#091E42" : "#FFFFFF",
                 fontSize: "12px",
                 fontWeight: "400",
               }}

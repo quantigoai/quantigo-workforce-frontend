@@ -1,12 +1,13 @@
 import { Box, Chip, MenuItem, Select, Typography, styled } from "@mui/material";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
+import { useSelector } from "react-redux";
 import { MyFormControl } from "./CustomDatePicker";
 
 export const MySelect = styled(Select)(() => ({
   border: "2px solid #E6ECF5",
   // padding: "5px 0px 0px 0px",
-  background: "white",
+  // background: "white",
   height: "50%",
   borderRadius: "8px",
 }));
@@ -31,8 +32,8 @@ const PDskillFIeld = ({
   count,
   ...other
 }) => {
-  console.log("🚀 ~ file: PDskillFIeld.jsx:34 ~ count:", count);
   const { control } = useFormContext();
+  const { isLightTheme } = useSelector((state) => state.theme);
 
   return (
     <Controller
@@ -41,9 +42,21 @@ const PDskillFIeld = ({
       render={({ field, fieldState: { error } }) => (
         <>
           <MyFormControl fullWidth>
-            <Typography sx={{ fontSize: "12px", fontWeight: "500", mb: 1 }}>{label}</Typography>
+            <Typography
+              sx={{
+                fontSize: "12px",
+                fontWeight: "500",
+                mb: 1,
+                color: isLightTheme ? "#091E42" : "#FFFFFF",
+              }}
+            >
+              {label}
+            </Typography>
 
             <MySelect
+              sx={{
+                background: isLightTheme && "#FFFFFF",
+              }}
               labelId="demo-simple-select-autowidth-label"
               id="demo-simple-select-autowidth"
               {...field}
@@ -62,7 +75,9 @@ const PDskillFIeld = ({
                     // height:"50%"
                   }}
                 >
-                  {selected?.map((value, i) => [0].includes(i) && <Chip sx={{  fontSize: "12px",}} key={value} label={value} />)}
+                  {selected?.map(
+                    (value, i) => [0].includes(i) && <Chip sx={{ fontSize: "12px" }} key={value} label={value} />
+                  )}
                   {isEdit ? (
                     selectedSkills?.length > 1 && selected?.length > 1 ? (
                       <Typography variant="p" sx={{ ml: 2, mt: 0.5 }}>
@@ -94,7 +109,7 @@ const PDskillFIeld = ({
               MenuProps={MenuProps}
             >
               {skills?.map((skill) => (
-                <MenuItem sx={{fontSize: "14px"}} key={skill._id} value={skill.name}>
+                <MenuItem sx={{ fontSize: "14px" }} key={skill._id} value={skill.name}>
                   {skill.name}
                 </MenuItem>
               ))}

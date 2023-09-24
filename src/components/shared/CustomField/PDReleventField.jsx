@@ -1,9 +1,12 @@
 import { Box, Button, FormControl, Stack, TextField, Typography, styled } from "@mui/material";
 import React from "react";
-import { useForm, Controller, useFieldArray, useFormContext } from "react-hook-form";
+import { Controller, useFieldArray, useFormContext } from "react-hook-form";
+import { useSelector } from "react-redux";
 
 function PDReleventField({ name, defaultValueItems }) {
   const { control, setValue } = useFormContext();
+  const { isLightTheme } = useSelector((state) => state.theme);
+
   const { fields, append, remove } = useFieldArray({
     control,
     name,
@@ -18,12 +21,12 @@ function PDReleventField({ name, defaultValueItems }) {
   }, [defaultValueItems, setValue, name]);
 
   const MyTextField = styled(TextField)(() => ({
-    backgroundColor: "#FFFFFF",
+    backgroundColor: isLightTheme ? "#FFFFFF" : "#091E42",
     "& .MuiOutlinedInput-notchedOutline": {
       border: "2px solid #E6ECF5 !important",
       borderRadius: "8px",
     },
-    "& .MuiInputBase-root": { height: "88%", fontSize: "14px" },
+    // "& .MuiInputBase-root": { height: "88%", fontSize: "14px" },
   }));
 
   return (
@@ -57,7 +60,8 @@ function PDReleventField({ name, defaultValueItems }) {
                   left: 240,
                   fontSize: "20px",
                 }}
-                onClick={() => remove(index)}>
+                onClick={() => remove(index)}
+              >
                 <i style={{ color: "red", cursor: "pointer" }} className="ri-delete-bin-line"></i>
               </Button>
             </FormControl>
@@ -75,7 +79,8 @@ function PDReleventField({ name, defaultValueItems }) {
         }}
         variant="p"
         type="button"
-        onClick={() => append({ documentName: "", documentUrl: "" })}>
+        onClick={() => append({ documentName: "", documentUrl: "" })}
+      >
         <i className="ri-add-line"></i> Add another document
       </Typography>
     </>

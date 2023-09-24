@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { MyFormControl } from "./CustomDatePicker";
+import { useSelector } from "react-redux";
 
 PDSelectField.propTypes = {
   name: PropTypes.string,
@@ -19,7 +20,7 @@ export const MySelect = styled(Select)(() => ({
 
 export default function PDSelectField({ name, helperText, options, label, setValue, defaultValue, ...other }) {
   const { control } = useFormContext();
-
+  const { isLightTheme } = useSelector((state) => state.theme);
   return (
     <Controller
       name={name}
@@ -27,7 +28,16 @@ export default function PDSelectField({ name, helperText, options, label, setVal
       render={({ field, fieldState: { error } }) => (
         <>
           <MyFormControl fullWidth>
-            <Typography sx={{ fontSize: "12px", fontWeight: "500", mb: 1 }}>{label}</Typography>
+            <Typography
+              sx={{
+                fontSize: "12px",
+                fontWeight: "500",
+                mb: 1,
+                color: isLightTheme ? "#091E42" : "#FFFFFF",
+              }}
+            >
+              {label}
+            </Typography>
 
             <MySelect
               labelId="demo-simple-select-autowidth-label"
@@ -42,7 +52,12 @@ export default function PDSelectField({ name, helperText, options, label, setVal
               {...other}
             >
               {options.map((option) => (
-                <MenuItem sx={{fontSize: "14px"}} key={option.value} fullWidth value={(() => setValue(field.name, field.value), option.value)}>
+                <MenuItem
+                  sx={{ fontSize: "14px" }}
+                  key={option.value}
+                  fullWidth
+                  value={(() => setValue(field.name, field.value), option.value)}
+                >
                   {option.label}
                 </MenuItem>
               ))}

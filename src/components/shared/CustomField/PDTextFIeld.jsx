@@ -1,6 +1,7 @@
 import { FormControl, TextField, Typography, styled } from "@mui/material";
 import PropTypes from "prop-types";
 import { Controller, useFormContext } from "react-hook-form";
+import { useSelector } from "react-redux";
 
 PDTextFIeld.propTypes = {
   name: PropTypes.string,
@@ -25,6 +26,7 @@ export default function PDTextFIeld({
   ...other
 }) {
   const { control } = useFormContext();
+  const { isLightTheme } = useSelector((state) => state.theme);
 
   return (
     <Controller
@@ -33,7 +35,16 @@ export default function PDTextFIeld({
       render={({ field, fieldState: { error } }) => {
         return (
           <FormControl fullWidth>
-            <Typography sx={{ fontSize: "12px", fontWeight: "500", mb: 1 }}>{label}</Typography>
+            <Typography
+              sx={{
+                fontSize: "12px",
+                fontWeight: "500",
+                mb: 1,
+                color: isLightTheme ? "#091E42" : "#FFFFFF",
+              }}
+            >
+              {label}
+            </Typography>
             <MyTextField
               type={isNumber || isNumberPdr ? "number" : "text"}
               //   id="outlined-basic"

@@ -75,18 +75,18 @@ const CommonHeader = ({ isLoading, title, description, customButton, handleCance
             sx={{
               display: "flex",
             }}
-            container
+            // container
           >
             <Typography
+              variant="wpf_h5_semiBold"
               sx={{
-                fontSize: "20px",
-                fontWeight: "600",
-                lineHeight: "28px",
-                color: "#3C4D6B",
-                mt: 0.7,
-                fontStyle: "normal",
-              }}
-              variant="h4"
+                  fontSize: "20px",
+                  fontWeight: "600",
+                  lineHeight: "28px",
+                  color: "#3C4D6B",
+                  mt: 0.7,
+                  fontStyle: "normal",
+                }}
             >
               {title}
             </Typography>

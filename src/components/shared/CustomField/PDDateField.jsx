@@ -1,11 +1,11 @@
 import { FormControl, TextField, Typography, styled } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from "dayjs";
 import PropTypes from "prop-types";
 import { Controller, useFormContext } from "react-hook-form";
-import calenderIcon from "../../../assets/images/dashboardIcon/calendar-line.svg";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { useSelector } from "react-redux";
 import { convertDate } from "../../../helper/customData";
-import dayjs from "dayjs";
 
 PDDateField.propTypes = {
   name: PropTypes.string,
@@ -34,6 +34,7 @@ export default function PDDateField({
   ...other
 }) {
   const { control } = useFormContext();
+  const { isLightTheme } = useSelector((state) => state.theme);
 
   return (
     <Controller
@@ -46,7 +47,16 @@ export default function PDDateField({
         };
         return (
           <FormControl fullWidth>
-            <Typography sx={{ fontSize: "12px", fontWeight: "500", mb: 1 }}>{label}</Typography>
+            <Typography
+              sx={{
+                fontSize: "12px",
+                fontWeight: "500",
+                mb: 1,
+                color: isLightTheme ? "#091E42" : "#FFFFFF",
+              }}
+            >
+              {label}
+            </Typography>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <MyDatePicker
                 // inputFormat="DD-MM-YYYY"

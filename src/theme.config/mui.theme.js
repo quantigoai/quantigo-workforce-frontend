@@ -34,7 +34,7 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: ["Inter", "sans-serif"].join(","),
-    color: "#F2F6FC",
+    // color: "#F2F6FC",
     wf_h6: {
       //used in dashboard card
       fontSize: "12px",
@@ -51,7 +51,6 @@ const theme = createTheme({
       letterSpacing: "0em",
       textAlign: "left",
     },
-
     wf_h6_light: {
       //used in dashboard card
       fontSize: "12px",
@@ -90,7 +89,6 @@ const theme = createTheme({
       letterSpacing: "0em",
       textAlign: "left",
     },
-
     wpf_h1_semiBold: {
       fontFamily: "Inter",
       fontSize: "40px",
@@ -124,7 +122,7 @@ const theme = createTheme({
       textAlign: "left",
     },
     wpf_h5_semiBold: {
-      fontFamily: "Inter",
+      color: "#2D58FF",
       fontSize: "20px",
       fontWeight: "600",
       lineHeight: "28px",
@@ -273,7 +271,8 @@ const theme = createTheme({
     MuiSelect: {
       styleOverrides: {
         root: {
-          background: "#F8F8F8",
+          // background: "#F8F8F8",
+          background: "#",
           borderRadius: "4px",
           flex: "none",
           order: 0,
@@ -335,10 +334,11 @@ theme.typography.wpf_p3_semiBold = {
 };
 theme.typography.wpf_p4_semiBold = {
   [theme.breakpoints.up("lg")]: {
-    fontSize: "1px",
+    fontSize: "12px",
   },
   [theme.breakpoints.up("xl")]: {
     fontSize: "12px",
   },
 };
+
 export default theme;

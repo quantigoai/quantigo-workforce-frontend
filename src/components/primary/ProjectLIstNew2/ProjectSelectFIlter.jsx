@@ -32,8 +32,8 @@ const ProjectSelectFIlter = ({
                 justifyContent: "start",
                 alignItems: "center",
                 flexDirection: "row",
-                width: "90%",
-                paddingX: "40px",
+                width: "100%",
+                paddingX: "16px",
               }}
             >
               <ProjectSelectFIlterField
@@ -63,7 +63,7 @@ const ProjectSelectFIlter = ({
                 options={statusOptions}
                 filterValue={filterValue}
                 handleChange={handleChange}
-              />{" "}
+              />
             </Stack>
           </>
         ) : (

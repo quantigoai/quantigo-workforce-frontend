@@ -222,6 +222,7 @@ const ProjectLIstIndex2 = () => {
                   paddingX: "10px",
                 }}
               >
+                {/* TODO Need to remove the unnecessary custom button */}
                 <CommonHeader title="Projects" customButton="Create User" />
               </Grid>
             </Box>
@@ -241,7 +242,7 @@ const ProjectLIstIndex2 = () => {
                   display: "flex",
                   alignItems: "center",
                   width: "240px",
-                  background: "#F4F7FE",
+                  background: isLightTheme ? "#F4F7FE" : "#1E1E1E",
                   border: "1px solid #EFF3FE",
                   borderRadius: "8px",
                   outline: "none",
@@ -290,7 +291,7 @@ const ProjectLIstIndex2 = () => {
               paddingY: "5px",
               display: isFilter ? "block" : "none",
               borderTop: "1px solid #E6ECF5",
-              transition: isFilter && "all 0.3s ease-in-out",
+              transition: isFilter && "all 0.2s ease-in-out",
             }}
           >
             <ProjectSelectFIlter

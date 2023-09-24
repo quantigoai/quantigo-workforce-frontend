@@ -344,6 +344,7 @@ export default function LayoutNew({ children }) {
         sx={{
           width: open ? "15%" : "3%",
           height: "100vh",
+          backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
         }}
       >
         <Drawer

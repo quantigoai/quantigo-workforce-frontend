@@ -20,7 +20,7 @@ const MyDatePicker = styled(DatePicker)(() => ({
     border: "2px solid #E6ECF5 !important",
     borderRadius: "10px",
   },
-  "& .MuiInputBase-root": { height: "84%", fontSize: "14px" },
+  "& .MuiInputBase-root": { height: "78%", fontSize: "14px" },
 }));
 
 export default function PDDateField({
@@ -53,6 +53,7 @@ export default function PDDateField({
                 fontWeight: "500",
                 mb: 1,
                 color: isLightTheme ? "#091E42" : "#FFFFFF",
+                paddingBottom:"1%"
               }}
             >
               {label}

@@ -174,7 +174,7 @@ const ProjectModal = ({
                   <Stack direction="row" gap={2} sx={{ py: "0%" }}>
                     <PDDateField
                       name="estimated_end_date"
-                      label="Estimated End Time"
+                      label="Estimated End Date"
                       InputProps={{
                         disableUnderline: true,
                       }}

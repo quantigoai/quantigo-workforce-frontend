@@ -26,7 +26,7 @@ function PDReleventField({ name, defaultValueItems }) {
       border: "2px solid #E6ECF5 !important",
       borderRadius: "8px",
     },
-    // "& .MuiInputBase-root": { height: "88%", fontSize: "14px" },
+    "& .MuiInputBase-root": { height: "78%", fontSize: "14px" },
   }));
 
   return (
@@ -36,7 +36,7 @@ function PDReleventField({ name, defaultValueItems }) {
         <Box key={field.id}>
           <Stack direction="row" gap={2} xs={12}>
             <FormControl fullWidth>
-              <Typography sx={{ fontSize: "14px", fontWeight: "500", mb: 1 }}>Document Name</Typography>
+              <Typography sx={{ fontSize: "12px", fontWeight: "500", mb: 1 }}>Document Name</Typography>
               <Controller
                 name={`relevantDocuments[${index}].documentName`}
                 control={control}
@@ -45,7 +45,7 @@ function PDReleventField({ name, defaultValueItems }) {
               />
             </FormControl>
             <FormControl fullWidth>
-              <Typography sx={{ fontSize: "14px", fontWeight: "500", mb: 1 }}>Link</Typography>
+              <Typography sx={{ fontSize: "12px", fontWeight: "500", mb: 1 }}>Link</Typography>
               <Controller
                 name={`relevantDocuments[${index}].documentUrl`}
                 control={control}
@@ -55,9 +55,9 @@ function PDReleventField({ name, defaultValueItems }) {
               <Button
                 type="button"
                 sx={{
-                  mt: "30px",
+                  mt: "25px",
                   position: "absolute",
-                  left: 240,
+                  left: 245,
                   fontSize: "20px",
                 }}
                 onClick={() => remove(index)}

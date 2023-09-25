@@ -48,6 +48,7 @@ const ProjectModal = ({
   skills,
 }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
+  console.log("🚀 ~ file: ProjectModal.jsx:51 ~ h:", isLightTheme);
 
   const ProjectDrawerSchema = Yup.object().shape({
     project_drawer_name: Yup.string().required("project name is required"),
@@ -150,7 +151,7 @@ const ProjectModal = ({
                   </Stack>
 
                   {/* <SkillField/> */}
-                  
+
                   {/* TODO Style change for dark mode */}
                   <Stack direction="row" gap={2} sx={{ py: "0%" }}>
                     <PDskillFIeld
@@ -202,7 +203,7 @@ const ProjectModal = ({
                   {/* <PDReleventField /> */}
                   <Stack
                     sx={{
-                      border: "2px solid #E6ECF5",
+                      border: "1px solid #E6ECF5",
                       padding: "16px",
                       borderRadius: "8px",
                       background: isLightTheme ? "#FAFCFF" : "#1E2A41",
@@ -215,21 +216,14 @@ const ProjectModal = ({
                   </Stack>
                 </Box>
 
-                <hr
-                  style={{
-                    color: "#F2F6FC",
-                    marginTop: "16px",
-                    width: "100%",
-                    padding: "0px",
-                  }}
-                />
                 <Box
                   sx={{
                     display: "flex",
-                    // borderTop: "2px solid #F2F6FC",
                     justifyContent: "space-between",
                     alignItems: "center",
                     padding: "20px",
+                    mt: 2,
+                    borderTop: "2px solid #F2F6FC",
                   }}
                 >
                   <Button
@@ -239,7 +233,7 @@ const ProjectModal = ({
                       paddingX: "30px",
                       paddingY: "5px",
                       fontSize: "16px",
-                      color: "#2E58FF",
+                      color: "#62728F",
                       border: "1px solid #F4F7FE",
                       backgroundColor: "#F4F7FE",
                       "&:hover": {
@@ -259,6 +253,7 @@ const ProjectModal = ({
                       paddingX: "30px",
                       paddingY: "5px",
                       fontSize: "16px",
+                      borderRadius: "10px",
                       backgroundColor: "#2E58FF",
                       "&:hover": {
                         background: "#244EF5",

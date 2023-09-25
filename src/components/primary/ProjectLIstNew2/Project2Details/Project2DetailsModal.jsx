@@ -8,6 +8,7 @@ import BoxItem from "./BoxItem";
 
 import { formatDate } from "../../../../helper/dateConverter";
 import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
+import { useSelector } from "react-redux";
 const style = {
   display: "flex",
   flexDirection: "column",
@@ -34,6 +35,7 @@ const Project2DetailsModal = ({
   handleDetailsProjectClose,
   projectDrawer,
 }) => {
+  const { isLightTheme } = useSelector((state) => state.theme);
   return (
     <>
       <Modal
@@ -47,14 +49,16 @@ const Project2DetailsModal = ({
           backdrop: {
             timeout: 500,
           },
-        }}>
+        }}
+      >
         <Fade in={detailsProjectOpen}>
           <Box
             sx={{
               ...style,
               height: { xl: "80%", lg: "90%" },
               width: { xl: "40%", lg: "50%" },
-            }}>
+            }}
+          >
             <Box sx={{ flex: "0 0 5%" }}>
               <ProjectModalHeader handleCreateProjectClose={handleDetailsProjectClose} modalTitle={"Project Details"} />
             </Box>
@@ -66,21 +70,25 @@ const Project2DetailsModal = ({
                 "&::-webkit-scrollbar": {
                   width: "0", // Hide the scrollbar
                 },
-              }}>
+              }}
+            >
               <Stack
                 sx={{
                   border: "1px solid #E6ECF5",
                   //   padding: "16px",
                   borderRadius: "8px",
                   //   background: "#FAFCFF",
-                }}>
+                }}
+              >
                 <DetailsItem
                   Item1Title={"Project Name"}
+                  isLightTheme={isLightTheme}
                   Item1={projectDrawer?.project_drawer_name}
                   Item2Title={"Batch"}
                   Item2={projectDrawer?.project_batch}
                 />
                 <DetailsItem
+                  isLightTheme={isLightTheme}
                   Item1Title={"Alias"}
                   Item1={projectDrawer?.project_alias}
                   Item2Title={"Project Type"}
@@ -88,36 +96,29 @@ const Project2DetailsModal = ({
                 />
 
                 <DetailsItem
+                  isLightTheme={isLightTheme}
                   Item1Title={"PDR"}
                   Item1={projectDrawer?.pdr}
                   Item2Title={"Completed Course"}
                   Item2={"No Course"}
                 />
                 <DetailsItem
+                  isLightTheme={isLightTheme}
                   Item1Title={"Benchmark"}
                   Item1={projectDrawer?.benchMark ? projectDrawer.benchMark : "10 sec/object, 5 sec/tag"}
                   Item2Title={"Estimated end Time"}
                   Item2={formatDate(projectDrawer?.estimated_end_date)}
                 />
-                <SingleItem ItemTitle={"Status"} Item={capitalizeFirstLetter(projectDrawer?.project_status)} />
-                <SingleItem ItemTitle={"Skills"} Item={projectDrawer?.project_skills} />
+                <SingleItem
+                  isLightTheme={isLightTheme}
+                  ItemTitle={"Status"}
+                  Item={capitalizeFirstLetter(projectDrawer?.project_status)}
+                />
+                <SingleItem isLightTheme={isLightTheme} ItemTitle={"Skills"} Item={projectDrawer?.project_skills} />
                 {/* document Item List */}
-                <BoxItem Item={projectDrawer?.relevantDocuments} />
+                <BoxItem isLightTheme={isLightTheme} Item={projectDrawer?.relevantDocuments} />
               </Stack>
             </Box>
-            <Box
-              sx={{
-                flex: "0 0 20x",
-                // borderTop: "2px solid #F2F6FC",
-                backgroundColor: "#FFFFFF",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "2%",
-
-                bottom: "0px",
-                borderRadius: "8px",
-              }}></Box>
           </Box>
         </Fade>
       </Modal>

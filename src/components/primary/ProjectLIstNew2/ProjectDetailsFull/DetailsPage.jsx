@@ -23,7 +23,7 @@ const style = {
 };
 const DetailsPage = ({ skillAlert }) => {
   const { projectDrawer } = useSelector((state) => state.projectDrawer);
-
+  const { isLightTheme } = useSelector((state) => state.theme);
   return (
     <Box sx={style}>
       {skillAlert && (

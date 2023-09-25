@@ -1,14 +1,17 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import ProjectDrawerStatusChip from "../../../shared/FilterField/ProjectDrawerStatusChip";
 
-const SingleItem = ({ ItemTitle, Item }) => {
+const SingleItem = ({ ItemTitle, Item, isLightTheme }) => {
   return (
     <>
       <Stack sx={{ borderBottom: "1px solid #E6ECF5" }}>
         <Grid container>
           <Grid xs={12} sx={{ padding: "2%" }}>
             <Grid container>
-              <Typography variant="caption" sx={{ color: "#091E42", opacity: "0.7", fontWeight: "400" }}>
+              <Typography
+                variant="caption"
+                sx={{ color: isLightTheme ? "#091E42" : "#fff", opacity: isLightTheme && "0.7", fontWeight: "400" }}
+              >
                 {ItemTitle}
               </Typography>
             </Grid>
@@ -26,7 +29,7 @@ const SingleItem = ({ ItemTitle, Item }) => {
               </>
             ) : (
               <>
-                <Typography variant="wf_h5_bold" sx={{ color: "#091E42", fontWeight: "500" }}>
+                <Typography variant="wf_h5_bold" sx={{ color: isLightTheme ? "#091E42" : "#fff", fontWeight: "500" }}>
                   {Item ?? Item}
                 </Typography>
               </>

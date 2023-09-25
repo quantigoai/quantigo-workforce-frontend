@@ -2,15 +2,7 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import u_multiply from "../../../assets/images/crosIcon.svg";
 
-const ProjectModalHeader = ({
-  handleCreateProjectClose,
-  modalTitle,
-  isPageDetail,
-  isDisable,
-  checkOutDisable,
-  handleCheckInButton,
-  handleCheckOutButton,
-}) => {
+const ProjectModalHeader = ({ handleCreateProjectClose, modalTitle, isPageDetail }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   return (
     <Box
@@ -55,21 +47,10 @@ const ProjectModalHeader = ({
             </Typography>
           )}
         </Grid>
-        {/* {isPageDetail ? (
-          <Grid item xs={2} sx={{ justifyContent: "right", paddingRight: "2%" }}>
-            <CheckINOutButton
-              handleCheckInButton={handleCheckInButton}
-              handleCheckOutButton={handleCheckOutButton}
-              isDisable={isDisable}
-              checkOutDisable={checkOutDisable}
-              fromDetails={"true"}
-            />
-          </Grid>
-        ) : */}
 
         <Grid item xs={1} sx={{ justifyContent: "right", paddingRight: "2%" }}>
           <Button onClick={handleCreateProjectClose}>
-            <img style={{ width: "20px" }} alt="cross" src={u_multiply} />
+            <img style={{ width: "22px" }} alt="cross" src={u_multiply} />
           </Button>
         </Grid>
       </Grid>

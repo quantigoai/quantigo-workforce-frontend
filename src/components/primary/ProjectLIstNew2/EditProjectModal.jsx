@@ -6,7 +6,6 @@ import Button from "@mui/material/Button";
 import Fade from "@mui/material/Fade";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import PDSelectField from "../../shared/CustomField/PDSelectField";
@@ -17,6 +16,7 @@ import useHandleEditChange from "./Hooks/useHandleEditChange";
 import ProjectModalHeader from "./ProjectModalHeader";
 import PDDateField from "../../shared/CustomField/PDDateField";
 import PDReleventField from "../../shared/CustomField/PDReleventField";
+import { useSelector } from "react-redux";
 
 const style = {
   position: "absolute",
@@ -34,11 +34,9 @@ const EditProjectModal = ({
   editModalOpen,
   handleEditProjectClose,
   projectDrawer,
-  setEditModalOpen,
   platformCreateOptions,
   projectTypeCreateOptions,
   statusCreateOptions,
-  isEditModal,
   handleEditSkill,
   editCount,
   editSkills,
@@ -47,19 +45,7 @@ const EditProjectModal = ({
   onSubmit,
 }) => {
   const { prevSkills } = useHandleEditChange();
-
-  const [addDoc, setAddDoc] = useState([]);
-
-  const handleAddDoc = () => {
-    const newDoc = [...addDoc, []];
-    setAddDoc(newDoc);
-  };
-
-  const handleDeleteDoc = (id) => {
-    const deleteDoc = [...addDoc];
-    deleteDoc.splice(id, 1);
-    setAddDoc(deleteDoc);
-  };
+  const { isLightTheme } = useSelector((state) => state.theme);
 
   const ProjectDrawerSchema = Yup.object().shape({
     // project_drawer_name: Yup.string().required(" project name is required"),
@@ -75,12 +61,7 @@ const EditProjectModal = ({
     resolver: yupResolver(ProjectDrawerSchema),
   });
 
-  const {
-    reset,
-    setError,
-    handleSubmit,
-    formState: { errors },
-  } = methods;
+  const { handleSubmit } = methods;
 
   return (
     <>
@@ -103,220 +84,151 @@ const EditProjectModal = ({
               handleCreateProjectClose={handleEditProjectClose}
               modalTitle={`Edit ${projectDrawer.project_drawer_name}`}
             />
-            <Box sx={{ paddingLeft: "3%", paddingTop: "2%", paddingRight: "3%" }}>
+            <Box>
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-                <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  <PDSelectField
-                    name={"project_platform"}
-                    label="Platform"
-                    options={platformCreateOptions}
-                    defaultValue={projectDrawer.project_platform}
-                  />
-                  <PDTextFIeld
-                    name="project_drawer_name"
-                    label="Project Name"
-                    defaultValue={projectDrawer.project_drawer_name}
-                    InputProps={{
-                      disableUnderline: true,
-                    }}
-                  />
-                </Stack>
-                <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  {" "}
-                  <PDSelectField
-                    name={"project_type"}
-                    label="Project Type"
-                    options={projectTypeCreateOptions}
-                    defaultValue={projectDrawer.project_type}
-                  />
-                  <PDTextFIeld
-                    name="project_batch"
-                    label="Batch"
-                    defaultValue={projectDrawer.project_batch}
-                    InputProps={{
-                      disableUnderline: true,
-                      min: 1,
-                    }}
-                    isNumber="true"
-                  />
-                </Stack>
-
-                <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  <PDTextFIeld
-                    name="project_alias"
-                    label="Alias"
-                    defaultValue={projectDrawer.project_alias}
-                    InputProps={{
-                      disableUnderline: true,
-                    }}
-                  />
-
-                  <PDTextFIeld
-                    name="pdr"
-                    label="PDR"
-                    defaultValue={projectDrawer.pdr}
-                    InputProps={{
-                      disableUnderline: true,
-                      min: 1,
-                      max: 5,
-                    }}
-                    isNumberPdr="true"
-                  />
-                </Stack>
-
-                {/* <SkillField/> */}
-
-                <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  <PDskillFIeld
-                    name={"project_skills"}
-                    addSkills={editSkills}
-                    selectedSkills={prevSkills}
-                    label="Skills"
-                    isEdit={isEdit}
-                    handleChangeSkill={handleEditSkill}
-                    skills={skills}
-                    count={editCount}
-                  />
-                  <PDTextFIeld
-                    name="benchmark"
-                    label="Benchmark"
-                    defaultValue={projectDrawer.benchMark}
-                    InputProps={{
-                      disableUnderline: true,
-                    }}
-                  />
-                </Stack>
-
-                <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                  {/* <PDTextFIeld
-                    name="end_time"
-                    label="Estimated End Time"
-                    InputProps={{
-                      disableUnderline: true,
-                    }}
-                  /> */}
-                  <PDDateField
-                    name="estimated_end_date"
-                    label="Estimated End Time"
-                    defaultValue={projectDrawer.estimated_end_date}
-                    InputProps={{
-                      disableUnderline: true,
-                    }}
-                  />
-                  <PDSelectField
-                    name={"project_status"}
-                    label="Status"
-                    options={statusCreateOptions}
-                    defaultValue={projectDrawer.project_status}
-                  />
-                </Stack>
-
-                <Typography
+                <Box
                   sx={{
-                    fontWeight: "500",
-                    mt: "5px",
-                    fontSize: "14px",
-                    mb: "10px",
-                  }}
-                  variant="h6"
-                >
-                  Relevant Documents
-                </Typography>
-
-                <Stack
-                  sx={{
-                    border: "2px solid #E6ECF5",
-                    padding: "16px",
-                    borderRadius: "8px",
-                    background: "#FAFCFF",
-                    maxHeight: 200,
-                    overflowY: "auto",
+                    paddingLeft: "3%",
+                    paddingTop: "2%",
+                    paddingRight: "3%",
+                    position: "relative",
                   }}
                 >
-                    <PDReleventField   defaultValueItems={projectDrawer.relevantDocuments} name={"relevantDocuments"} />
-                  {/* <Stack direction="row" gap={2} xs={12}>
-                    <PDTextFIeld
-                      name="guideline"
-                      label="Document Name"
-                      defaultValue={projectDrawer.guideline}
-                      InputProps={{
-                        disableUnderline: true,
-                      }}
+                  <Stack direction="row" gap={2} sx={{ py: "0%" }}>
+                    <PDSelectField
+                      name={"project_platform"}
+                      label="Platform"
+                      options={platformCreateOptions}
+                      defaultValue={projectDrawer.project_platform}
                     />
-
                     <PDTextFIeld
-                      name="link"
-                      label="Link"
-                      defaultValue={projectDrawer.link}
+                      name="project_drawer_name"
+                      label="Project Name"
+                      defaultValue={projectDrawer.project_drawer_name}
                       InputProps={{
                         disableUnderline: true,
                       }}
                     />
                   </Stack>
-                  {addDoc.map((doc, id) => {
-                    return (
-                      <Stack key={id} direction="row" gap={2} xs={12} sx={{ mt: 2, position: "relative" }}>
-                        <PDTextFIeld
-                          name={`guideline${id + 1}`}
-                          label="Document Name"
-                          InputProps={{
-                            disableUnderline: true,
-                          }}
-                        />
+                  <Stack direction="row" gap={2} sx={{ py: "0%" }}>
+                    {" "}
+                    <PDSelectField
+                      name={"project_type"}
+                      label="Project Type"
+                      options={projectTypeCreateOptions}
+                      defaultValue={projectDrawer.project_type}
+                    />
+                    <PDTextFIeld
+                      name="project_batch"
+                      label="Batch"
+                      defaultValue={projectDrawer.project_batch}
+                      InputProps={{
+                        disableUnderline: true,
+                        min: 1,
+                      }}
+                      isNumber="true"
+                    />
+                  </Stack>
 
-                        <PDTextFIeld
-                          name={`link${id + 1}`}
-                          label="Link"
-                          InputProps={{
-                            disableUnderline: true,
-                          }}
-                        />
-                        <Button
-                          onClick={() => handleDeleteDoc(id)}
-                          sx={{
-                            mt: "30px",
-                            position: "absolute",
-                            left: 550,
-                            fontSize: "20px",
-                          }}
-                        >
-                          {" "}
-                          <i style={{ color: "red", cursor: "pointer" }} className="ri-delete-bin-line"></i>
-                        </Button>
-                      </Stack>
-                    );
-                  })} */}
+                  <Stack direction="row" gap={2} sx={{ py: "0%" }}>
+                    <PDTextFIeld
+                      name="project_alias"
+                      label="Alias"
+                      defaultValue={projectDrawer.project_alias}
+                      InputProps={{
+                        disableUnderline: true,
+                      }}
+                    />
 
-                  {/* <Typography
+                    <PDTextFIeld
+                      name="pdr"
+                      label="PDR"
+                      defaultValue={projectDrawer.pdr}
+                      InputProps={{
+                        disableUnderline: true,
+                        min: 1,
+                        max: 5,
+                      }}
+                      isNumberPdr="true"
+                    />
+                  </Stack>
+
+                  {/* <SkillField/> */}
+
+                  <Stack direction="row" gap={2} sx={{ py: "0%" }}>
+                    <PDskillFIeld
+                      name={"project_skills"}
+                      addSkills={editSkills}
+                      selectedSkills={prevSkills}
+                      label="Skills"
+                      isEdit={isEdit}
+                      handleChangeSkill={handleEditSkill}
+                      skills={skills}
+                      count={editCount}
+                    />
+                    <PDTextFIeld
+                      name="benchmark"
+                      label="Benchmark"
+                      defaultValue={projectDrawer.benchMark}
+                      InputProps={{
+                        disableUnderline: true,
+                      }}
+                    />
+                  </Stack>
+
+                  <Stack direction="row" gap={2} sx={{ py: "0%" }}>
+                    <PDDateField
+                      name="estimated_end_date"
+                      label="Estimated End Time"
+                      defaultValue={projectDrawer.estimated_end_date}
+                      InputProps={{
+                        disableUnderline: true,
+                      }}
+                    />
+                    <PDSelectField
+                      name={"project_status"}
+                      label="Status"
+                      options={statusCreateOptions}
+                      defaultValue={projectDrawer.project_status}
+                    />
+                  </Stack>
+
+                  <Typography
                     sx={{
-                      fontWeight: "600",
-                      mt: "15px",
+                      fontWeight: "500",
+                      mt: "5px",
                       fontSize: "14px",
-                      mb: "0px",
-                      color: "#2E58FF",
-                      cursor: "pointer",
+                      mb: "10px",
+                      color: isLightTheme ? "#091E42" : "#fff",
                     }}
-                    variant="p"
-                    onClick={() => handleAddDoc()}
+                    variant="h6"
                   >
-                    <i className="ri-add-line"></i> Add another document
-                  </Typography> */}
-                </Stack>
+                    Relevant Documents
+                  </Typography>
 
-                <hr
-                  style={{
-                    color: "#F2F6FC",
-                    marginTop: "16px",
-                    width: "650px",
-                    paddingLeft: "0px",
-                  }}
-                />
+                  <Stack
+                    sx={{
+                      border: "1px solid #E6ECF5",
+                      padding: "16px",
+                      borderRadius: "8px",
+                      background: isLightTheme ? "#FAFCFF" : "#1E2A41",
+                      maxHeight: 200,
+                      color: isLightTheme ? "#091E42" : "#FFFFFF",
+                      overflowY: "auto",
+                    }}
+                  >
+                    <PDReleventField defaultValueItems={projectDrawer.relevantDocuments} name={"relevantDocuments"} />
+                  </Stack>
+                </Box>
+
                 <Box
                   sx={{
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
                     padding: "20px",
+                    mt: 2,
+                    borderTop: "2px solid #F2F6FC",
                   }}
                 >
                   <Button

@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
+import { useSelector } from "react-redux";
 
 const style = {
   position: "absolute",
@@ -15,14 +16,8 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-const MainModal = ({
-  open,
-  handleDelete,
-  params,
-  handleClose,
-  isEdit,
-  handleClick,
-}) => {
+const MainModal = ({ open, handleDelete, params, handleClose, isEdit }) => {
+  const { isLightTheme } = useSelector((state) => state.theme);
   return (
     <>
       <Modal
@@ -35,27 +30,28 @@ const MainModal = ({
           <Box
             sx={{
               position: "absolute",
-              top: "10%",
+              top: "12%",
               left: "42%",
-              width: "32px",
+              width: "60px",
               textAlign: "center",
               fontSize: "32px",
-              padding: "16px",
               background: isEdit ? "#FFAB00" : "#FF4757",
-              borderRadius: "80px",
+              borderRadius: "55%",
+              height: "60px",
+              paddingTop: "4px",
               color: "white",
             }}
           >
             {" "}
             {isEdit ? (
-              <i className="ri-alert-line"></i>
+              <i style={{ width: "60px", height: "60px" }} className="ri-alert-line"></i>
             ) : (
-              <i className="ri-delete-bin-6-line"></i>
+              <i style={{ width: "60px", height: "60px" }} className="ri-delete-bin-6-line"></i>
             )}
           </Box>
           {isEdit ? (
             <Typography
-              sx={{ mt: "28%" }}
+              sx={{ mt: "28%", color: isLightTheme ? "#091E42" : "#fff" }}
               id="modal-modal-title"
               variant="h6"
               component="h2"
@@ -64,7 +60,7 @@ const MainModal = ({
             </Typography>
           ) : (
             <Typography
-              sx={{ mt: "28%" }}
+              sx={{ mt: "30%", color: isLightTheme ? "#091E42" : "#fff", fontSize: "18px", fontWeight: "600" }}
               id="modal-modal-title"
               variant="h6"
               component="h2"
@@ -73,13 +69,16 @@ const MainModal = ({
             </Typography>
           )}
           {isEdit ? (
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            <Typography id="modal-modal-description" sx={{ mt: 2, color: isLightTheme ? "#3C4D6B" : "#fff" }}>
               Are you sure you want to change your Project status?
             </Typography>
           ) : (
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Are you sure you want to delete your Project? If you delete your
-              project, you will lose all the charter information
+            <Typography
+              id="modal-modal-description"
+              sx={{ fontSize: "14px", color: isLightTheme ? "#3C4D6B" : "#fff", fontWeight: "400", lineHeight: "20px" }}
+            >
+              Are you sure you want to delete your Project? If you delete your project, you will lose all the charter
+              information
             </Typography>
           )}
           <Box
@@ -101,7 +100,6 @@ const MainModal = ({
                   padding: " 10px 16px",
                   width: "150px",
                   "&:hover": {
-                    border: "1px solid #FF4757",
                     backgroundColor: "#FFF0F2",
                   },
                 }}

@@ -1,5 +1,6 @@
 import { Box, Button, Modal, Typography } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const style = {
   position: "absolute",
@@ -14,6 +15,7 @@ const style = {
   p: 4,
 };
 const CheckOutModal = ({ open, handleClose, handleCheckOutButton, projectDrawer }) => {
+  const { isLightTheme } = useSelector((state) => state.theme);
   return (
     <Modal
       open={open}
@@ -25,24 +27,39 @@ const CheckOutModal = ({ open, handleClose, handleCheckOutButton, projectDrawer 
         <Box
           sx={{
             position: "absolute",
-            top: "10%",
-            left: "45%",
+            top: "12%",
+            left: "42%",
             textAlign: "center",
-            padding: "15px",
-            fontSize: "25px",
+            fontSize: "35px",
+            width: "60px",
+            height: "60px",
             background: "#FFAB00",
-            borderRadius: "100px",
+            borderRadius: "50%",
             color: "white",
           }}
         >
           {" "}
-          <i style={{ marginBottom: "4px" }} className="ri-alert-line"></i>
+          <i style={{ width: "29px", height: "20px" }} className="ri-alert-line"></i>
         </Box>
-        <Typography sx={{ mt: "15%" }} id="modal-modal-title" variant="h6" component="h2">
+        <Typography
+          sx={{
+            mt: "27%",
+            color: isLightTheme ? "#3C4D6B" : "#fff",
+            fontSize: "18px",
+            fontWeight: "600",
+            lineHeight: "28px",
+          }}
+          id="modal-modal-title"
+          variant="h6"
+          component="h2"
+        >
           Stop
         </Typography>
 
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+        <Typography
+          id="modal-modal-description"
+          sx={{ color: isLightTheme ? "#3C4D6B" : "#fff", fontSize: "14px", fontWeight: "400", lineHeight: "20px" }}
+        >
           Are you sure you want to checkout of this project {projectDrawer.project_drawer_name} ?
         </Typography>
 
@@ -61,6 +78,7 @@ const CheckOutModal = ({ open, handleClose, handleCheckOutButton, projectDrawer 
                 backgroundColor: "#FFAB00",
                 borderRadius: "10px",
                 color: "white",
+                marginTop: "28px",
                 padding: " 10px 16px",
                 width: "150px",
                 "&:hover": {

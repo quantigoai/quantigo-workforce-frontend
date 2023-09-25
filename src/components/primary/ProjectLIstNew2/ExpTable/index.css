@@ -1,0 +1,76 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    /* height: 100%; */
+    margin: 0;
+    font-size: 14px;
+    /* overflow: auto; */
+}
+
+.common-head{
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    border-bottom: 2px solid #F2F6FC;
+    /* background-color: blueviolet; */
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.thead{
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+/* First left cell header */
+.first-head {
+    border-right: 1px solid #EBF0F5;
+    border-bottom: 2px solid #F2F6FC;
+    position: sticky;
+    top: 0;
+    left :0;
+    padding: auto;
+    /* background-color: rgb(122, 8, 8); */
+    z-index: 2;
+    
+}
+
+/* Last right cell header */
+.last-head {
+    border-left: 1px solid #EBF0F5;
+    position: sticky;
+    top: 0;
+    right :0;
+    z-index: 233;
+}
+
+/* table left column */
+tbody td:first-child {
+    border-right: 1px solid #EBF0F5;
+
+    /* background-color: yellow; */
+    position: sticky;
+    left: 0;
+    /* z-index: 1; */
+}
+
+/* table right column */
+tbody td:last-child {
+    border-left: 1px solid #EBF0F5;
+    position: sticky;
+    right: 0;
+}
+
+/* individual table td */
+table td {
+    border-bottom: 1px solid #F2F6FC;
+    padding: 8px;
+    min-width: 100px;
+}
+
+

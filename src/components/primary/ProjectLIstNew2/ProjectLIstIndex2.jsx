@@ -28,6 +28,7 @@ import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeade
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 import EditProjectModal from "./EditProjectModal";
+import WPFTable from "./ExpTable/WPFTable";
 import {
   fields,
   filterPDR,
@@ -44,7 +45,6 @@ import useHandleEditChange from "./Hooks/useHandleEditChange";
 import Project2DetailsModal from "./Project2Details/Project2DetailsModal";
 import ProjectModal from "./ProjectModal";
 import ProjectSelectFIlter from "./ProjectSelectFIlter";
-import ProjectTable2 from "./ProjectTable2";
 import "./index.css";
 
 // test for commit
@@ -311,7 +311,8 @@ const ProjectLIstIndex2 = () => {
         </Box>
 
         <Box className="tableContent">
-          <ProjectTable2
+          <WPFTable />
+          {/* <ProjectTable2
             role={role}
             handleDetailsPage={handleDetailsPage}
             handleClick={handleClick}
@@ -325,7 +326,7 @@ const ProjectLIstIndex2 = () => {
             handleId={handleId}
             filteredCol={filteredCol}
             handleProjectDetailsOpen={handleProjectDetailsOpen}
-          />
+          /> */}
           {/* <ExpTable /> */}
         </Box>
         {detailsProjectOpen && (

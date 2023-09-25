@@ -38,7 +38,6 @@ const DetailsPage = ({ skillAlert }) => {
             fontSize: "12px",
             fontWeight: "500",
             ml: 3,
-            color: isLightTheme ? "" : "",
           }}
           variant="filled"
           severity="info"

@@ -56,15 +56,13 @@ const lightTheme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          backgroundColor: "#F2F6FC",
+          // backgroundColor: "#F2F6FC",
         },
       },
     },
     MuiTableHead: {
       styleOverrides: {
-        root: {
-          backgroundColor: "blue",
-        },
+        root: {},
       },
     },
     MuiTableCell: {

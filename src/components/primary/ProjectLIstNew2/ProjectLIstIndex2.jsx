@@ -198,7 +198,7 @@ const ProjectLIstIndex2 = () => {
 
   return (
     <>
-      <Paper className="projectBox">
+      <Box className="projectBox">
         {/* TODO Filter functionality need to be checked for last page  */}
         <Box className="projectHeader">
           <Box
@@ -377,7 +377,7 @@ const ProjectLIstIndex2 = () => {
             />
           </Box>
         )}
-      </Paper>
+      </Box>
     </>
   );
 };

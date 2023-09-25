@@ -41,7 +41,7 @@ function a11yProps(index) {
   };
 }
 
-export default function DetailsTab({ user, handleSetRole ,handleSetStatus }) {
+export default function DetailsTab({ user, handleSetRole, handleSetStatus }) {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -67,7 +67,7 @@ export default function DetailsTab({ user, handleSetRole ,handleSetStatus }) {
           backgroundColor: "#E6ECF5",
           padding: "1%",
           minHeight: "36px",
-          height: "36px",
+          height: "50px",
         }}>
         <Tab
           sx={{

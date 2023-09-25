@@ -1,5 +1,6 @@
 import { Button, Grid, Typography, styled } from "@mui/material";
 import ArrowIcon from "../../../../assets/images/dashboardIcon/ArrowIcon.svg";
+import ViewIcon from "../../../../assets/images/dashboardIcon/ViewIcon.svg";
 import React, { useState } from "react";
 import NidDetails from "../../Users/NidDetals/NidDetails";
 import axios from "axios";
@@ -52,7 +53,7 @@ const NdaDocumentSection = ({ user }) => {
             disabled={!user.documentNo}
             onClick={() => handleDetailNid(user.documentsImage, user.documentNo, user.documentsType, user.name)}>
             <Typography sx={{ paddingRight: "4%" }}> Document </Typography>
-            <img src={ArrowIcon} />
+            <img src={ViewIcon} />
           </ButtonStyle>
         </Grid>
         <Grid item xs={6}>

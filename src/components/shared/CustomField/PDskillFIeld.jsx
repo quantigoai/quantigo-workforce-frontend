@@ -3,6 +3,7 @@ import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { MyFormControl } from "./CustomDatePicker";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export const MySelect = styled(Select)(() => ({
   border: "2px solid #E6ECF5",
@@ -65,6 +66,7 @@ const PDskillFIeld = ({
               defaultValue={isEdit ? selectedSkills?.map((skill) => skill.name) : addSkills?.map((skill) => skill.name)}
               // defaultValue={isEdit ? selectedSkills?.map((skill) => skill.name) : addSkills}
               onChange={handleChangeSkill}
+              IconComponent={KeyboardArrowDownIcon}
               renderValue={(selected) => (
                 <Box
                   sx={{
@@ -72,21 +74,21 @@ const PDskillFIeld = ({
                     gridTemplateColumns: "repeat(2,1fr)",
                     gap: 0.5,
                     fontSize: "12px",
-                    // height:"50%"
+                    height:"20px"
                   }}
                 >
                   {selected?.map(
-                    (value, i) => [0].includes(i) && <Chip sx={{ fontSize: "12px" }} key={value} label={value} />
+                    (value, i) => [0].includes(i) && <Chip sx={{ fontSize: "12px",height:"95%"}} key={value} label={value} />
                   )}
                   {isEdit ? (
                     selectedSkills?.length > 1 && selected?.length > 1 ? (
-                      <Typography variant="p" sx={{ ml: 2, mt: 0.5 }}>
+                      <Typography variant="p" sx={{ ml: 2, mt: 0 }}>
                         {" "}
                         + {count} more
                       </Typography>
                     ) : (
                       selected?.length > 1 && (
-                        <Typography variant="p" sx={{ ml: 2, mt: 0.5 }}>
+                        <Typography variant="p" sx={{ ml: 2, mt: 0 }}>
                           {" "}
                           + {count} more
                         </Typography>
@@ -96,7 +98,7 @@ const PDskillFIeld = ({
                     selected?.length > 1 && (
                       <Typography
                         variant="h7"
-                        sx={{ ml: 2, mt: 0.5 }}
+                        sx={{ ml: 2, mt: 0 }}
                         // ref={inputRef}
                       >
                         {" "}

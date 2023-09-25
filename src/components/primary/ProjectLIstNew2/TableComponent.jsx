@@ -94,15 +94,13 @@ const TableComponent = ({
                   } else if (col.field === "benchmark") {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography  variant="wf_p2_semiBold">
-                          {row[col?.field] || "10 sec"}
-                        </Typography>
+                        <Typography variant="wf_p2_semiBold">{row[col?.field] || "10 sec"}</Typography>
                       </TableCell>
                     );
                   } else if (col.field === "estimated_end_date") {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography  variant="wf_p2_semiBold">
+                        <Typography variant="wf_p2_semiBold">
                           {formatDate(row[col?.field]) || "20 july 2023"}
                         </Typography>
                       </TableCell>

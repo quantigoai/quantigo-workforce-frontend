@@ -28,7 +28,7 @@ import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeade
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 import EditProjectModal from "./EditProjectModal";
-import WPFTable from "./ExpTable/WPFTable";
+import TableWrapper from "./ExpTable/TableWrapper";
 import {
   fields,
   filterPDR,
@@ -311,7 +311,21 @@ const ProjectLIstIndex2 = () => {
         </Box>
 
         <Box className="tableContent">
-          <WPFTable />
+          <TableWrapper
+            role={role}
+            handleDetailsPage={handleDetailsPage}
+            handleClick={handleClick}
+            handleDelete={handleDelete}
+            myColumn={myColumn}
+            myRows={myRows}
+            pagination={pagination}
+            setPagination={setPagination}
+            handleChangePagination={handleChangePagination}
+            totalItems={total}
+            handleId={handleId}
+            filteredCol={filteredCol}
+            handleProjectDetailsOpen={handleProjectDetailsOpen}
+          />
           {/* <ProjectTable2
             role={role}
             handleDetailsPage={handleDetailsPage}

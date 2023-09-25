@@ -6,13 +6,13 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import React from "react";
-import WPFTable from "./WPFTable";
-import DetailsPage from "../ProjectDetailsFull/DetailsPage";
 import { Alert } from "@mui/material";
-import { useLocation } from "react-router-dom";
+import React from "react";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
+import DetailsPage from "../ProjectDetailsFull/DetailsPage";
+import WPFTable from "./WPFTable";
 
 const TableWrapper = ({
   pagination,
@@ -30,48 +30,26 @@ const TableWrapper = ({
   role,
   skillAlert,
 }) => {
-      const { usersWorkHistory, isLoading, projectDrawers } = useSelector((state) => state.projectDrawer);
-      const { isLightTheme } = useSelector((state) => state.theme);
+  const { usersWorkHistory, isLoading, projectDrawers } = useSelector((state) => state.projectDrawer);
+  const { isLightTheme } = useSelector((state) => state.theme);
 
-      const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
-      const location = useLocation();
-      const { pathname } = location;
+  const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
+  const location = useLocation();
+  const { pathname } = location;
 
-    
+  const stickyFirstColumn = [myColumn[0]];
+  const stickyLastColumn = [myColumn[myColumn.length - 1]];
+  const columns = myColumn.slice(1, myColumn.length - 1);
+
   return (
     <>
       {/* <Box className="mainTableBox"> */}
-        {isLoading ? (
-          <LoadingComponent height="100%" />
-        ) : (
-          <>
-            {pathname === "/allprojects" ? (
-              projectDrawers.length > 0 ? (
-                <WPFTable
-                  pagination={pagination}
-                  handleDetailsPage={handleDetailsPage}
-                  setPagination={setPagination}
-                  handleChangePagination={handleChangePagination}
-                  myColumn={myColumn}
-                  myRows={myRows}
-                  handleDelete={handleDelete}
-                  handleClick={handleClick}
-                  totalItems={totalItems}
-                  handleId={handleId}
-                  filteredCol={filteredCol}
-                  handleProjectDetailsOpen={handleProjectDetailsOpen}
-                  role={role}
-                  skillAlert={skillAlert}
-                  currentlyCheckedInProject={currentlyCheckedInProject}
-                />
-              ) : role !== "admin" ? (
-                <DetailsPage skillAlert={skillAlert} />
-              ) : (
-                <Alert Alert severity="error">
-                  No Users history found for this project!
-                </Alert>
-              )
-            ) : usersWorkHistory.length > 0 ? (
+      {isLoading ? (
+        <LoadingComponent height="100%" />
+      ) : (
+        <>
+          {pathname === "/allprojects" ? (
+            projectDrawers.length > 0 ? (
               <WPFTable
                 pagination={pagination}
                 handleDetailsPage={handleDetailsPage}
@@ -88,6 +66,9 @@ const TableWrapper = ({
                 role={role}
                 skillAlert={skillAlert}
                 currentlyCheckedInProject={currentlyCheckedInProject}
+                stickyFirstColumn={stickyFirstColumn}
+                stickyLastColumn={stickyLastColumn}
+                columns={columns}
               />
             ) : role !== "admin" ? (
               <DetailsPage skillAlert={skillAlert} />
@@ -95,9 +76,34 @@ const TableWrapper = ({
               <Alert Alert severity="error">
                 No Users history found for this project!
               </Alert>
-            )}
-          </>
-        )}
+            )
+          ) : usersWorkHistory.length > 0 ? (
+            <WPFTable
+              pagination={pagination}
+              handleDetailsPage={handleDetailsPage}
+              setPagination={setPagination}
+              handleChangePagination={handleChangePagination}
+              myColumn={myColumn}
+              myRows={myRows}
+              handleDelete={handleDelete}
+              handleClick={handleClick}
+              totalItems={totalItems}
+              handleId={handleId}
+              filteredCol={filteredCol}
+              handleProjectDetailsOpen={handleProjectDetailsOpen}
+              role={role}
+              skillAlert={skillAlert}
+              currentlyCheckedInProject={currentlyCheckedInProject}
+            />
+          ) : role !== "admin" ? (
+            <DetailsPage skillAlert={skillAlert} />
+          ) : (
+            <Alert Alert severity="error">
+              No Users history found for this project!
+            </Alert>
+          )}
+        </>
+      )}
       {/* </Box> */}
 
       {/* <Box

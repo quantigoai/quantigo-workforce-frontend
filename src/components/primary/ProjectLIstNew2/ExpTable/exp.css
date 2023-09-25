@@ -1,0 +1,48 @@
+/*
+ * Filename: /home/tanzim/workstation/Office/quantigo-workforce-frontend/src/components/primary/ProjectLIstNew2/ExpTable/exp.css
+ * Path: /home/tanzim/workstation/Office/quantigo-workforce-frontend
+ * Created Date: Monday, September 25th 2023, 1:05:41 pm
+ * Author: Tanzim Ahmed
+ * 
+ * Copyright (c) 2023 Tanzim Ahmed
+ */
+
+  .stickyHeader {
+      position: sticky;
+      top: 0;
+      background: white;
+      /* box-shadow: 5px 2px 5px grey; */
+      /* border:none */
+    }
+  .leftStickyHeader {
+      position: fixed;
+      top: 0;
+      background: white;
+      box-shadow: 5px 2px 5px grey;
+    }
+
+  .leftStickyColumn {
+      position: sticky;
+      left: 0;
+      box-shadow: 5px 2px 5px grey;
+      border-right: 2px solid black;
+      background: rgb(228, 156, 156);
+    }
+
+  .rightStickyHeader {
+      position: sticky;
+      right: 0;
+      background: rgb(153, 15, 15);
+      box-shadow: 5px 2px 5px rgb(73, 18, 200);
+      border-right: 2px solid black;
+    }
+
+    .rightStickyColumn {
+      position: sticky;
+      top:0;
+      right: 0;
+      background: rgb(205, 174, 141);
+      box-shadow: 5px 2px 5px grey;
+      border-right: 2px solid black;
+
+    }

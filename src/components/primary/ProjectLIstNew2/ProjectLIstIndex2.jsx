@@ -326,6 +326,7 @@ const ProjectLIstIndex2 = () => {
             filteredCol={filteredCol}
             handleProjectDetailsOpen={handleProjectDetailsOpen}
           />
+          {/* <ExpTable /> */}
         </Box>
         {detailsProjectOpen && (
           <Box>

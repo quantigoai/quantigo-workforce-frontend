@@ -8,14 +8,17 @@
  */
 
 import { createTheme } from "@mui/material";
+import theme from "./mui.theme";
+import typography from "./typography";
+
 
 const lightTheme = createTheme({
+  ...theme,
   palette: {
     mode: "light",
   },
   typography: {
-    fontFamily: ["Inter", "sans-serif"].join(","),
-    color: "#3C4D6B",
+    ...typography,
   },
   components: {
     MuiSelect: {

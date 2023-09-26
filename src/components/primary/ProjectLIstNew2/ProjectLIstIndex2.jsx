@@ -28,7 +28,6 @@ import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeade
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 import EditProjectModal from "./EditProjectModal";
-import TableWrapper from "./ExpTable/TableWrapper";
 import {
   fields,
   filterPDR,
@@ -45,8 +44,8 @@ import useHandleEditChange from "./Hooks/useHandleEditChange";
 import Project2DetailsModal from "./Project2Details/Project2DetailsModal";
 import ProjectModal from "./ProjectModal";
 import ProjectSelectFIlter from "./ProjectSelectFIlter";
-import "./index.css";
 import ProjectTable2 from "./ProjectTable2";
+import "./index.css";
 
 // test for commit
 /**

@@ -14,21 +14,13 @@
  */
 
 import { ThemeProvider } from "@mui/material/styles";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setTheme } from "../features/slice/themeSlice";
+import React from "react";
+import { useSelector } from "react-redux";
 import darkTheme from "./dark.mui.theme";
 import lightTheme from "./light.mui.theme";
 
 const ThemeProviderWrapper = ({ children }) => {
-  // const [isDarkMode, setIsDarkMode] = useState(false);
-  const dispatch = useDispatch();
   const { isLightTheme } = useSelector((state) => state.theme);
-
-  const toggleDarkMode = () => {
-    // setIsDarkMode((prevMode) => !prevMode);
-    isLightTheme ? dispatch(setTheme(false)) : dispatch(setTheme(false));
-  };
 
   return (
     // <ThemeProvider theme={isLightTheme ? lightTheme : darkTheme}>{children(isDarkMode, toggleDarkMode)}</ThemeProvider>

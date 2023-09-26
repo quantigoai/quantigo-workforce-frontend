@@ -4,31 +4,23 @@ import React, { useEffect, useState } from "react";
 import { useRef } from "react";
 import { DateRange } from "react-date-range";
 import BackspaceIcon from "@mui/icons-material/Backspace";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import calenderIcon from "../../../../assets/images/dashboardIcon/calendar-line.svg";
 const MyInputField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     // border: "1px solid #E6ECF5 !important",
-    border: "2px solid #E6ECF5  !important",
+    border: "1px solid #E6ECF5  !important",
     borderRadius: "10px",
   },
   "& .MuiInputBase-root": {
     width: "100%",
     height: "45PX",
-    fontSize: "12px",
+    fontSize: "13px",
+    color: "#3C4D6B",
     backgroundColor: "#FFFFFF",
   },
 }));
 
-const DateRangeComponent = () => {
-  const [range, setRange] = useState([
-    {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 0),
-      key: "selection",
-      isRangeSelected: false,
-    },
-  ]);
+const DateRangeComponentForDashboard = ({ setRange, range }) => {
   const [open, setOpen] = useState(false);
   const [dummyRange, setDummyRange] = useState([
     {
@@ -91,6 +83,7 @@ const DateRangeComponent = () => {
     }
   }, [range]);
   const handleChange = (item) => {
+    console.log(item)
     if (item.selection.startDate.getTime() !== item.selection.endDate.getTime()) {
       setRange([item.selection]);
       setDummyRange([item.selection]);
@@ -98,9 +91,9 @@ const DateRangeComponent = () => {
       setDummyRange([item.selection]);
     }
   };
-  console.log(range);
+
   return (
-    <Box sx={{}}>
+    <Box sx={{ display: "inline-block", position: "relative" }}>
       <MyInputField
         type={"text"}
         value={
@@ -143,4 +136,4 @@ const DateRangeComponent = () => {
   );
 };
 
-export default DateRangeComponent;
+export default DateRangeComponentForDashboard;

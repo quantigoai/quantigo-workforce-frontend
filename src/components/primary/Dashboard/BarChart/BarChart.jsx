@@ -10,11 +10,14 @@ import { Box, Grid, TextField, Typography } from "@mui/material";
 import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip } from "chart.js";
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { chartValues, labelsData } from "../../../../helper/customData";
 import DateField from "../DatePicker/DateField";
 import DateRangeField from "../DatePicker/DateRangeField";
 import DateRangeComponent from "../DatePicker/DateRangeComponent";
+import { addDays } from "date-fns";
+import { getDashboardData } from "../../../../features/slice/dashboardSlice";
+import DateRangeComponentForDashboard from "../DatePicker/DateRangeComponent";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -70,6 +73,27 @@ const BarChart = ({ startDate, setStartDate, endDate, setEndDate, loading }) => 
   const [customData, setCustomData] = React.useState({});
   const [isDataUpdate, setIsDataUpdate] = React.useState(true);
   const [dateRange, setDateRange] = useState("");
+  const dispatch = useDispatch();
+  const [range, setRange] = useState([
+    {
+      startDate: addDays(new Date(), -15),
+      endDate: new Date(),
+      key: "selection",
+      isRangeSelected: false,
+    },
+  ]);
+
+  useEffect(() => {
+    // setProjectLoading(true);
+    const data = {
+      startDate: range[0].startDate,
+      endDate: range[0].endDate,
+    };
+
+    dispatch(getDashboardData(data)).then(() => {
+      // setProjectLoading(false);
+    });
+  }, [range]);
 
   const handleDateChange = (event) => {
     setDateRange(event.target.value);
@@ -94,41 +118,31 @@ const BarChart = ({ startDate, setStartDate, endDate, setEndDate, loading }) => 
     ],
   };
   useEffect(() => {
-    if (!loading) {
-      const activeProjectIds = Object.keys(activeJobs);
-      const takenProjectIds = Object.keys(takenJobs);
-      const uniqueIds = new Set([...activeProjectIds, ...takenProjectIds]);
-      const label = labelsData(uniqueIds, activeJobs, takenJobs);
-      // const label = [
-      //   "January",
-      //   "February",
-      //   "March",
-      //   "April",
-      //   "May",
-      //   "June",
-      //   "July",
-      // ];
-      const { activeJobValues, blockedJobValues } = chartValues(uniqueIds, activeJobs, takenJobs);
+    const activeProjectIds = Object.keys(activeJobs);
+    const takenProjectIds = Object.keys(takenJobs);
+    const uniqueIds = new Set([...activeProjectIds, ...takenProjectIds]);
+    const label = labelsData(uniqueIds, activeJobs, takenJobs);
+    const { activeJobValues, blockedJobValues } = chartValues(uniqueIds, activeJobs, takenJobs);
 
-      setCustomData({
-        labels: label,
-        datasets: [
-          {
-            label: "Available Jobs",
-            data: activeJobValues,
+    setCustomData({
+      labels: label,
+      datasets: [
+        {
+          label: "Available Jobs",
+          data: activeJobValues,
 
-            backgroundColor: "#B6C9F0",
-          },
-          {
-            label: "Active Jobs",
-            data: blockedJobValues,
-            backgroundColor: "#2E58FF",
-          },
-        ],
-      });
-      setIsDataUpdate(false);
-    }
-  }, [loading]);
+          backgroundColor: "#B6C9F0",
+        },
+        {
+          label: "Active Jobs",
+          data: blockedJobValues,
+          backgroundColor: "#2E58FF",
+        },
+      ],
+    });
+    setIsDataUpdate(false);
+  }, [activeJobs, takenJobs]);
+
   return (
     <>
       <Box sx={{ padding: "2%" }}>
@@ -139,9 +153,9 @@ const BarChart = ({ startDate, setStartDate, endDate, setEndDate, loading }) => 
             </Typography>
           </Grid>
           <Grid xs={6}>
-            <Grid container sx={{ justifyContent: "right",}}>
+            <Grid container sx={{ justifyContent: "right" }}>
               {/* <DateRangeField setStartDate={setStartDate} setEndDate={setEndDate} /> */}
-              <DateRangeComponent />
+              <DateRangeComponentForDashboard setRange={setRange} range={range} />
             </Grid>
           </Grid>
         </Grid>
@@ -151,65 +165,16 @@ const BarChart = ({ startDate, setStartDate, endDate, setEndDate, loading }) => 
             <Bar
               options={{
                 ...options,
-                maintainAspectRatio: false, // This allows you to set a custom height
+                maintainAspectRatio: false,
               }}
-              data={sampleData}
-              style={{ height: "250px" }}
               // data={sampleData}
+              style={{ height: "250px" }}
+              data={customData}
             />
           )}
         </Grid>
       </Box>
     </>
-    // <>
-    //   {/* //! Fix this in inline  */}
-    //   <Grid container sx={{ padding: "0%" }}>
-    //     <Grid item xs={6}>
-    //       <Typography sx={{ color: "#091E42" }}>
-    //         <b>Project based Annotators/Reviewers</b>
-    //       </Typography>
-    //     </Grid>
-    //     <Grid item xs={6}>
-    //       {/* <Grid item xs={12} md={6} lg={3} sx={{ paddingTop: "2%" }}>
-    //         <DateField dateValue={startDate} setDateValue={setStartDate} />
-    //       </Grid> */}
-    //       <Grid container sx={{ justifyContent: "right" }} >
-    //         <DateRangeField />
-    //       </Grid>
-
-    //       {/* <TextField
-    //         label="Date Range"
-    //         type="text"
-    //         value={dateRange}
-    //         onChange={handleDateChange}
-    //         placeholder="YYYY-MM-DD to YYYY-MM-DD"
-    //         InputLabelProps={{
-    //           shrink: true,
-    //         }}
-    //       /> */}
-    //       {/* <DateField dateValue={endDate} setDateValue={setEndDate} /> */}
-    //     </Grid>
-    //   </Grid>
-
-    //   {/* <Grid container item xs={12} sx={{ padding: "2%" }}>
-    //     <Grid container item xs={12} md={6} lg={6}>
-    //       <Grid item xs={12} md={6} lg={3} sx={{ paddingTop: "2%" }}>
-    //         <Typography>Project based Annotators/Reviewers</Typography>
-    //       </Grid>
-    //     </Grid>
-    //     <Grid container item xs={12} md={6} lg={6}>
-    //       <Grid item xs={12} md={6} lg={3} sx={{ paddingTop: "2%" }}>
-    //         <DateField dateValue={startDate} setDateValue={setStartDate} />
-    //       </Grid>
-    //       <Grid item xs={12} md={6} lg={9}>
-    //         <DateField dateValue={endDate} setDateValue={setEndDate} />
-    //       </Grid>
-    //     </Grid>
-    //   </Grid> */}
-    //   {/* <Grid container sx={{ padding: "2%" }}>
-    //     {!isDataUpdate && <Bar options={options} data={sampleData} />}
-    //   </Grid> */}
-    // </>
   );
 };
 

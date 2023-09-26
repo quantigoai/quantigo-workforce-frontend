@@ -24,7 +24,6 @@ const ThemeProviderWrapper = ({ children }) => {
   // const [isDarkMode, setIsDarkMode] = useState(false);
   const dispatch = useDispatch();
   const { isLightTheme } = useSelector((state) => state.theme);
-  console.log("🚀 ~ file: ThemeProviderWrapper.jsx:27 ~ ThemeProviderWrapper ~ isLightTheme:", isLightTheme);
 
   const toggleDarkMode = () => {
     // setIsDarkMode((prevMode) => !prevMode);

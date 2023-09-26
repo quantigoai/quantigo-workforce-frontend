@@ -63,8 +63,6 @@ const customHeader = (params) => {
       return "COMPLETED JOBS";
     case "status":
       return "STATUS";
-    case "email":
-      return "EMAIL";
     case "createdBy":
       return "CREATED BY";
     case "userQaiID":
@@ -79,6 +77,43 @@ const customHeader = (params) => {
       return "CHECK OUT TIME";
     case "workingTimeInMs":
       return "TOTAL TIME";
+    case "name":
+      return "NAME";
+    case "email":
+      return "EMAIL";
+    case "gender":
+      return "GENDER";
+    case "phone":
+      return "PHONE";
+    case "isVerified":
+      return "VERIFIED";
+    case "documentsType":
+      return "DOCUMENT";
+    case "active":
+      return "ACTIVE";
+    case "isBlocked":
+      return "BLOCKED";
+    case "activeJobs":
+      return "ACTIVE JOBS";
+    case "submittedJobs":
+      return "SUBMITTED JOBS";
+
+    case "jobLimit":
+      return "JOB LIMITS ";
+    case "signImage":
+      return "SIGN IMAGE";
+    case "isJobBlocked":
+      return " JOB BLOCKED";
+    case "jobLimitLeft":
+      return " JOB LIMIT LEFT";
+    case "paymentRate":
+      return " PAYMENT";
+    case "totalWorkingHours":
+      return "TOTAL WORKING HOURS";
+    case "bloodGroup":
+      return "BLOOD GROUP";
+    case "billingAccountNo":
+      return "BILLING ACCOUNTS";
     default:
       return params;
   }

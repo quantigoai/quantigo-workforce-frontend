@@ -8,7 +8,7 @@
  */
 
 import SearchIcon from "@mui/icons-material/Search";
-import { Box, Button, Grid, IconButton, Paper } from "@mui/material";
+import { Box, Button, Grid, IconButton, Paper, Typography } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import { useCallback, useEffect, useState } from "react";
 import { useAlert } from "react-alert";
@@ -110,6 +110,7 @@ const ProjectLIstIndex2 = () => {
       })
     );
   }, [dispatch, pagination, filterValue, filteredCol]);
+
   const { handleChangeSkill, addSkills, setAddSkills, count } = useHandleChange();
 
   const handleCreateProjectClose = () => {
@@ -223,6 +224,7 @@ const ProjectLIstIndex2 = () => {
                   paddingX: "10px",
                 }}
               >
+                {/* <Typography variant="wpf_p4_semiBold">hello</Typography> */}
                 {/* TODO Need to remove the unnecessary custom button */}
                 <CommonHeader title="Projects" customButton="Create User" />
               </Grid>

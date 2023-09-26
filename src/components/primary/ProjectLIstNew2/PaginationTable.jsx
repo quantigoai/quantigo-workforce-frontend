@@ -18,7 +18,7 @@ const paginationOptions = [
  * @param {function} handleChangePagination - A callback function invoked when pagination changes.
  * @returns {JSX.Element} - Pagination component for the table.
  */
-const Pagination = ({ totalItems, pagination, setPagination, handleChangePagination }) => {
+const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePagination }) => {
   const itemsPerPage = pagination.pageSize;
   const { myWorkHistoryCount, usersWorkHistoryCount } = useSelector((state) => state.projectDrawer);
   useEffect(() => {
@@ -163,4 +163,4 @@ const Pagination = ({ totalItems, pagination, setPagination, handleChangePaginat
   );
 };
 
-export default Pagination;
+export default PaginationTable;

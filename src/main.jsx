@@ -26,18 +26,18 @@ const options = {
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    {/* <React.StrictMode> */}
-    <AlertProvider template={AlertTemplate} {...options}>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <BrowserRouter>
-            <Suspense fallback={<LoadingComponent />}>
-              <App />
-            </Suspense>
-          </BrowserRouter>
-        </PersistGate>
-      </Provider>
-    </AlertProvider>
-    {/* </React.StrictMode> */}
+    <React.StrictMode>
+      <AlertProvider template={AlertTemplate} {...options}>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <BrowserRouter>
+              <Suspense fallback={<LoadingComponent />}>
+                <App />
+              </Suspense>
+            </BrowserRouter>
+          </PersistGate>
+        </Provider>
+      </AlertProvider>
+    </React.StrictMode>
   </ThemeProvider>
 );

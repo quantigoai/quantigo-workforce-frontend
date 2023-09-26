@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 import { Alert } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
@@ -40,11 +40,19 @@ const TableWrapper = ({
   const stickyFirstColumn = [myColumn[0]];
   const stickyLastColumn = [myColumn[myColumn.length - 1]];
   const columns = myColumn.slice(1, myColumn.length - 1);
+  const [isColumSet, setIsColumnSet] = useState(false);
+
+  useEffect(() => {
+    console.log("1");
+    if (stickyFirstColumn.length > 0 && stickyLastColumn.length > 0 && columns.length > 0) {
+      setIsColumnSet(true);
+    }
+  }, []);
 
   return (
     <>
       {/* <Box className="mainTableBox"> */}
-      {isLoading ? (
+      {isLoading && isColumSet ? (
         <LoadingComponent height="100%" />
       ) : (
         <>
@@ -105,20 +113,6 @@ const TableWrapper = ({
         </>
       )}
       {/* </Box> */}
-
-      {/* <Box
-        sx={{
-          backgroundColor: isLightTheme ? "#fff" : "#1c1c1c",
-        }}
-        className="pagination"
-      >
-        <PaginationTable
-          pagination={pagination}
-          setPagination={setPagination}
-          handleChangePagination={handleChangePagination}
-          totalItems={totalItems}
-        />
-      </Box> */}
     </>
   );
 };

@@ -1,7 +1,9 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 
-const BoxItem = ({ Item, isLightTheme }) => {
+const BoxItem = ({ Item }) => {
+  const { isLightTheme } = useSelector((state) => state.theme);
   return (
     <>
       <Stack sx={{ borderBottom: "1px solid #E6ECF5" }}>

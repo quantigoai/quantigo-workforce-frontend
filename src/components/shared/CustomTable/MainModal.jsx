@@ -16,7 +16,7 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-const MainModal = ({ open, handleDelete, params, handleClose, isEdit }) => {
+const MainModal = ({ open, handleDelete, params, handleClose, isEdit, handleClick }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   return (
     <>
@@ -94,10 +94,9 @@ const MainModal = ({ open, handleDelete, params, handleClose, isEdit }) => {
                 sx={{
                   textTransform: "none",
                   backgroundColor: "#FFF0F2",
-                  borderRadius: "10px",
                   border: "1px solid #FFF0F2",
                   color: "black",
-                  padding: " 10px 16px",
+                  borderRadius: "10px",
                   width: "150px",
                   "&:hover": {
                     backgroundColor: "#FFF0F2",

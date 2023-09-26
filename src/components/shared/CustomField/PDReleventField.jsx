@@ -21,7 +21,7 @@ function PDReleventField({ name, defaultValueItems }) {
   }, [defaultValueItems, setValue, name]);
 
   const MyTextField = styled(TextField)(() => ({
-    backgroundColor: isLightTheme ? "#FFF" : "#091E42",
+    backgroundColor: isLightTheme && "#FFF",
     "& .MuiOutlinedInput-notchedOutline": {
       border: "2px solid #E6ECF5 !important",
       borderRadius: "8px",

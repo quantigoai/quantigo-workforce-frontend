@@ -172,7 +172,7 @@ const UserListIndex = ({ action }) => {
         }
         return item;
       });
-      console.log(finalArray);
+
       setCsvUsers(finalArray);
       if (location.pathname === "/annotators") {
         dispatch(setActivePath("Annotator List"));
@@ -236,7 +236,8 @@ const UserListIndex = ({ action }) => {
           sx={{
             display: "flex",
             mb: "2%",
-          }}>
+          }}
+        >
           <Grid
             container
             sx={{
@@ -244,7 +245,8 @@ const UserListIndex = ({ action }) => {
               display: "flex",
               alignContent: "center",
               alignItems: "center",
-            }}>
+            }}
+          >
             <CommonHeader title="User Management" customButton="Create User" />
           </Grid>
         </Box>
@@ -258,7 +260,8 @@ const UserListIndex = ({ action }) => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "0%",
-              }}>
+              }}
+            >
               <Grid
                 item
                 xs={11}
@@ -266,7 +269,8 @@ const UserListIndex = ({ action }) => {
                   display: "flex",
                   alignItems: "center",
                   paddingRight: "1%",
-                }}>
+                }}
+              >
                 <SearchBarforUserList
                   placeholder="Search User"
                   handleChange={handleChange}
@@ -316,7 +320,8 @@ const UserListIndex = ({ action }) => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "3%",
-              }}>
+              }}
+            >
               {user.isLoading ? (
                 <>
                   {" "}

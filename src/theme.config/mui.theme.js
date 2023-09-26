@@ -95,4 +95,13 @@ theme.typography.wpf_p4_semiBold = {
   },
 };
 
+theme.typography.wpf_h5_semiBold = {
+  [theme.breakpoints.up("lg")]: {
+    fontSize: "22px",
+  },
+  [theme.breakpoints.up("xl")]: {
+    fontSize: "42px",
+  },
+};
+
 export default theme;

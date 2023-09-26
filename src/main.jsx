@@ -1,4 +1,4 @@
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { CssBaseline } from "@mui/material";
 import React, { Suspense, lazy } from "react";
 import { Provider as AlertProvider, positions, transitions } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
@@ -9,7 +9,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import LoadingComponent from "./components/shared/Loading/LoadingComponent";
 import { persistor, store } from "./features/store/store";
 import "./index.css";
-import theme from "./theme.config/mui.theme";
+import ThemeProviderWrapper from "./theme.config/ThemeProviderWrapper";
 
 const App = lazy(() => import("./App.jsx"));
 
@@ -24,20 +24,24 @@ const options = {
 };
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
+  <>
+    {/* <ThemeProvider theme={theme}> */}
     <React.StrictMode>
-      <AlertProvider template={AlertTemplate} {...options}>
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-            <BrowserRouter>
-              <Suspense fallback={<LoadingComponent />}>
-                <App />
-              </Suspense>
-            </BrowserRouter>
-          </PersistGate>
-        </Provider>
-      </AlertProvider>
+      <Provider store={store}>
+        <ThemeProviderWrapper>
+          <CssBaseline />
+          <AlertProvider template={AlertTemplate} {...options}>
+            <PersistGate loading={null} persistor={persistor}>
+              <BrowserRouter>
+                <Suspense fallback={<LoadingComponent />}>
+                  <App />
+                </Suspense>
+              </BrowserRouter>
+            </PersistGate>
+          </AlertProvider>
+        </ThemeProviderWrapper>
+      </Provider>
     </React.StrictMode>
-  </ThemeProvider>
+    {/* </ThemeProvider> */}
+  </>
 );

@@ -87,7 +87,7 @@ function App() {
 
   return (
     <>
-      <ThemeProviderWrapper>
+      {/* <ThemeProviderWrapper> */}
         {isLoggedIn ? (
           <Suspense fallback={<LoadingComponent />}>
             <LayoutNew>{<Routers />}</LayoutNew>
@@ -97,7 +97,7 @@ function App() {
             <RoutersLogin />
           </Suspense>
         )}
-      </ThemeProviderWrapper>
+      {/* </ThemeProviderWrapper> */}
     </>
   );
 }

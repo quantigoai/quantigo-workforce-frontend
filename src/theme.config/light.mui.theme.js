@@ -8,12 +8,10 @@
  */
 
 import { createTheme } from "@mui/material";
-import theme from "./mui.theme";
 import typography from "./typography";
 
-
 const lightTheme = createTheme({
-  ...theme,
+  // ...theme,
   palette: {
     mode: "light",
   },
@@ -80,4 +78,46 @@ const lightTheme = createTheme({
   },
 });
 
+lightTheme.typography.wf_h6 = {
+  [lightTheme.breakpoints.up("lg")]: {
+    fontSize: "12px",
+  },
+  [lightTheme.breakpoints.up("xl")]: {
+    fontSize: "14px",
+  },
+};
+
+lightTheme.typography.wf_p2_semiBold = {
+  [lightTheme.breakpoints.up("lg")]: {
+    fontSize: "12px",
+  },
+  [lightTheme.breakpoints.up("xl")]: {
+    fontSize: "14px",
+  },
+};
+lightTheme.typography.wpf_p3_semiBold = {
+  [lightTheme.breakpoints.up("md")]: {
+    fontSize: "12px",
+  },
+  [lightTheme.breakpoints.up("xl")]: {
+    fontSize: "14px",
+  },
+};
+lightTheme.typography.wpf_p4_semiBold = {
+  [lightTheme.breakpoints.up("lg")]: {
+    fontSize: "12px",
+  },
+  [lightTheme.breakpoints.up("xl")]: {
+    fontSize: "12px",
+  },
+};
+
+// lightTheme.typography.wpf_h5_semiBold = {
+//   [lightTheme.breakpoints.up("lg")]: {
+//     fontSize: "12px",
+//   },
+//   [lightTheme.breakpoints.up("xl")]: {
+//     fontSize: "12px",
+//   },
+// };
 export default lightTheme;

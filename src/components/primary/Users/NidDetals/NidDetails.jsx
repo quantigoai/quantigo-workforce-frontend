@@ -21,7 +21,7 @@ const style = {
   bgcolor: "background.paper",
   border: "none",
   borderRadius: "8px",
-  // boxShadow: 30,
+  boxShadow: '0px 0px 10px 2px black',
   p: 0,
   width: { xl: "30%", lg: "40%" },
   input: {

@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import { chartValues, labelsData } from "../../../../helper/customData";
 import DateField from "../DatePicker/DateField";
 import DateRangeField from "../DatePicker/DateRangeField";
+import DateRangeComponent from "../DatePicker/DateRangeComponent";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -138,8 +139,9 @@ const BarChart = ({ startDate, setStartDate, endDate, setEndDate, loading }) => 
             </Typography>
           </Grid>
           <Grid xs={6}>
-            <Grid container sx={{ justifyContent: "right" }}>
-              <DateRangeField setStartDate={setStartDate} setEndDate={setEndDate} />
+            <Grid container sx={{ justifyContent: "right",}}>
+              {/* <DateRangeField setStartDate={setStartDate} setEndDate={setEndDate} /> */}
+              <DateRangeComponent />
             </Grid>
           </Grid>
         </Grid>

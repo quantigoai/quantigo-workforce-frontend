@@ -153,6 +153,7 @@ export default function UserDetailsNewIndex({ user }) {
                       border: "1px solid #F4F7FE",
                     },
                   }}
+                  onClick={() => handleClose()}
                 >
                   Cancel
                 </Button>

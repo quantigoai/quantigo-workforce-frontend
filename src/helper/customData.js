@@ -18,16 +18,21 @@ export const convertDate = (date) => {
     const cDate = new Date(date["$d"]);
     const currentDate = cDate && new Date(cDate)?.setHours(6);
     const newDate = currentDate && new Date(currentDate)?.toISOString();
-    return newDate || "2000-01-01T00:00:00.000Z";    
+    return newDate || "2000-01-01T00:00:00.000Z";
   }
 };
 
 export const labelsData = (idCollection, primaryDataset, secondaryDataset) => {
   return [...idCollection].map((id) => {
+    // if (primaryDataset[id]) {
+    //   return `${primaryDataset[id].teamName}/${primaryDataset[id].projectName}`;
+    // } else {
+    //   return `${secondaryDataset[id].teamName}/${secondaryDataset[id].projectName}`;
+    // }
     if (primaryDataset[id]) {
-      return `${primaryDataset[id].teamName}/${primaryDataset[id].projectName}`;
+      return `${primaryDataset[id].teamName}`;
     } else {
-      return `${secondaryDataset[id].teamName}/${secondaryDataset[id].projectName}`;
+      return `${secondaryDataset[id].teamName}`;
     }
   });
 };
@@ -51,5 +56,3 @@ export const chartValues = (idCollection, primaryDataset, secondaryDataset) => {
 
   return { activeJobValues, blockedJobValues };
 };
-
-

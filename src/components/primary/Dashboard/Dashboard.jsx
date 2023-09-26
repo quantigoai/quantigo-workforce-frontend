@@ -108,8 +108,8 @@ const Dashboard = () => {
                     <Box
                       container
                       sx={{
-                        paddingRight: "2%",
-                        width: "99%",
+                        paddingRight: "%",
+                        width: "100%",
                         // height: "100%",
                       }}>
                       <Paper

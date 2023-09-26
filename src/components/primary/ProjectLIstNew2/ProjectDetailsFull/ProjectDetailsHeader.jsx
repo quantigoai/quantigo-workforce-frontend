@@ -3,6 +3,7 @@ import { statusCreateOptions } from "../FIlterOptions";
 import CheckINOutButton from "./CheckInOutButton";
 import ProjectDetailSelect from "./ProjectDetailSelect";
 import ProjectDetailsButton from "./ProjectDetailsButton";
+import { useSelector } from "react-redux";
 
 const ProjectDetailsHeader = ({
   value,
@@ -21,6 +22,7 @@ const ProjectDetailsHeader = ({
   setRange,
   usersWorkHistoryCount,
 }) => {
+  const { isLightTheme } = useSelector((state) => state.theme);
   return (
     <Box
       display={"flex"}
@@ -30,14 +32,12 @@ const ProjectDetailsHeader = ({
       margin="auto"
       sx={{
         // backgroundColor: "red",
-        backgroundColor: "white",
+        backgroundColor: isLightTheme ? "white" : "#121212",
         borderRadius: "8px 8px 0px 0px",
       }}
     >
       <Box
         sx={{
-          // backgroundColor: "green",
-          // backgroundColor: "#F2F6FC",
           width: "100%",
           padding: "10px 20px",
           display: "flex",
@@ -46,7 +46,7 @@ const ProjectDetailsHeader = ({
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography variant="wpf_p1_semiBold" color="#091E42">
+          <Typography variant="wpf_p1_semiBold" color={isLightTheme ? "#091E42" : "white"}>
             {projectDrawer.project_drawer_name}{" "}
           </Typography>
 
@@ -75,7 +75,7 @@ const ProjectDetailsHeader = ({
               />
             ) : (
               <CheckINOutButton
-              usersWorkHistoryCount={usersWorkHistoryCount}
+                usersWorkHistoryCount={usersWorkHistoryCount}
                 handleOpen={handleOpen}
                 handleProjectDetailsOpen={handleProjectDetailsOpen}
                 checkOutDisable={checkOutDisable}

@@ -259,7 +259,7 @@ const ProjectLIstIndex2 = () => {
                 onClick={handleIsFilter}
                 sx={{
                   px: "5px 0px",
-                  background: "#F4F7FE",
+                  background: isLightTheme ? "#F4F7FE" : "black",
                   mx: 2,
                   borderRadius: "8px",
                 }}
@@ -272,6 +272,7 @@ const ProjectLIstIndex2 = () => {
                   textTransform: "none",
                   borderRadius: "8px",
                   backgroundColor: "#2E58FF",
+                  color: "white",
                   "&:hover": {
                     background: "#244EF5",
                   },

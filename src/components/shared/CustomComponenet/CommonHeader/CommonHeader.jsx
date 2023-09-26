@@ -17,7 +17,7 @@ const CommonHeader = ({ isLoading, title, description, customButton, handleCance
   const navigate = useNavigate();
   const { course } = useSelector((state) => state.course);
   const { user } = useSelector((state) => state.user);
-
+  const { isLightTheme } = useSelector((state) => state.theme);
   const handleNavigation = (navigateLink) => {
     switch (navigateLink) {
       case "Create Course":
@@ -80,13 +80,13 @@ const CommonHeader = ({ isLoading, title, description, customButton, handleCance
             <Typography
               variant="wpf_h5_semiBold"
               sx={{
-                  fontSize: "20px",
-                  fontWeight: "600",
-                  lineHeight: "28px",
-                  color: "#3C4D6B",
-                  mt: 0.7,
-                  fontStyle: "normal",
-                }}
+                fontSize: "20px",
+                fontWeight: "600",
+                lineHeight: "28px",
+                color: isLightTheme ? " #3C4D6B" : "white",
+                mt: 0.7,
+                fontStyle: "normal",
+              }}
             >
               {title}
             </Typography>

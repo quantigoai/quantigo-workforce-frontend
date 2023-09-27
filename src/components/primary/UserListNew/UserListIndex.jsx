@@ -15,6 +15,8 @@ import SearchBarforUserList from "../../shared/SearchBar/SearchBarforUserList";
 import NidDetails from "../Users/NidDetals/NidDetails";
 import TablePaginationActions from "./TablePaginationActions";
 import UsersTable from "./UsersTable";
+import AllUsers from "./AllUsers/AllUsers";
+import "../ProjectLIstNew2/index.css";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -342,11 +344,14 @@ const UserListIndex = ({ action }) => {
                   </Grid>
                 </>
               ) : (
-                <>
-                  <TableContainer>
+                <Box className="projectBox">
+                  {/* <TableContainer>
                     <UsersTable role={role} rowsPerPage={rowsPerPage} page={page} users={users} />
-                  </TableContainer>
-                </>
+                  </TableContainer> */}
+                  <Box className="tableContent">
+                    <AllUsers />
+                  </Box>
+                </Box>
               )}
             </Grid>
           </Paper>

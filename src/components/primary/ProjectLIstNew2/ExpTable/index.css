@@ -3,14 +3,18 @@ table {
     width: 100%;
     margin: 0;
 }
-
+.tableColumn1st{
+    cursor: pointer;
+}
 .common-head{
     border-bottom: 2px solid #F2F6FC;
     position: sticky;
     top: 0;
     z-index: 1;
 }
-
+.tableHeader, .tableBody{
+    cursor :default
+}
 .thead{
     position: sticky;
     top: 0;

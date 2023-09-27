@@ -49,7 +49,7 @@ export default function WPFTable({
         >
           <TableContainer sx={{ height: "100%" }}>
             <Table stickyHeader aria-label="sticky table">
-              <TableHead>
+              <TableHead className="tableHeader">
                 <TableRow>
                   {stickyFirstColumn.map((column) => (
                     <TableCell className="first-head" key={column.id} style={{ minWidth: column.width || "140px" }}>
@@ -95,7 +95,7 @@ export default function WPFTable({
                 </TableRow>
               </TableHead>
 
-              <TableBody>
+              <TableBody className="tableBody">
                 {myRows.map((row) => {
                   return (
                     <TableRow
@@ -111,8 +111,9 @@ export default function WPFTable({
                             sx={{
                               minWidth: column.minWidth,
                             }}
-                            className="tablerow1st"
+                            className="tableColumn1st"
                             key={column.id}
+                            onClick={() => handleDetailsPage(row)}
                           >
                             <Typography variant="wpf_p4_medium" color="neutral.700">
                               {column.format && typeof value === "number"

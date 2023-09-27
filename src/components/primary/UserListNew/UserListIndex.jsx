@@ -345,12 +345,12 @@ const UserListIndex = ({ action }) => {
                 </>
               ) : (
                 <Box className="projectBox">
-                  {/* <TableContainer>
+                  <TableContainer>
                     <UsersTable role={role} rowsPerPage={rowsPerPage} page={page} users={users} />
-                  </TableContainer> */}
-                  <Box className="tableContent">
+                  </TableContainer>
+                  {/* <Box className="tableContent">
                     <AllUsers />
-                  </Box>
+                  </Box> */}
                 </Box>
               )}
             </Grid>

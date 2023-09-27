@@ -51,6 +51,7 @@ import ShowResult from "../Quiz/QuizPage/ShowResult/ShowResult";
 import UpdateQuiz from "../Quiz/UpdateQuiz";
 import Skills from "../Skill/Skills";
 import UserListIndex from "../UserListNew/UserListIndex";
+import PrivateRoute from "./PrivateRoute";
 
 const Routers = () => {
   return (
@@ -65,8 +66,24 @@ const Routers = () => {
 
         {/* ---------- Course and chapter related routes ------------ */}
         <Route path={"/course"} element={<Course />} />
-        <Route path={"/create-course"} element={<CreateCourse />} />
-        <Route path={"/edit-course/:id"} element={<UpdateCourse />} />
+        <Route
+          path={"/create-course"}
+          element={
+            <PrivateRoute>
+              {" "}
+              <CreateCourse />{" "}
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={"/edit-course/:id"}
+          element={
+            <PrivateRoute>
+              {" "}
+              <UpdateCourse />{" "}
+            </PrivateRoute>
+          }
+        />
         <Route path={"/update-chapter/:id"} element={<UpdateChapter />} />
 
         <Route path={"/course-details/:id"} element={<CourseDetails />}>
@@ -90,7 +107,14 @@ const Routers = () => {
         {/* TODO Check if iis really needed or not */}
         <Route path={"/annotators"} element={<UserListIndex action={"annotator"} />} />
 
-        <Route path={"/allusers"} element={<UserListIndex action={"alluser"} />} />
+        <Route
+          path={"/allusers"}
+          element={
+            <PrivateRoute>
+              <UserListIndex action={"alluser"} />
+            </PrivateRoute>
+          }
+        />
         <Route path={"/allprojects"} element={<ProjectLIstIndex2 action={"allprojects"} />} />
         <Route path={"/detailsInfo/:id"} element={<DetailsPage action={"detailsInfo"} />} />
         <Route path={"/projectDetails/:id"} element={<FullProjectDetails action={"projectDetails"} />} />
@@ -115,7 +139,15 @@ const Routers = () => {
         {/* TODO Apply this asap */}
         {/* New Version */}
 
-        <Route path={"/benchmarknew"} element={<BenchMarkIndex />}>
+        <Route
+          path={"/benchmarknew"}
+          element={
+            <PrivateRoute>
+              {" "}
+              <BenchMarkIndex />{" "}
+            </PrivateRoute>
+          }
+        >
           <Route path={"list"} element={<BenchmarkList />} />
           <Route path={":id"} element={<SingleBenchmarkNew />} />
           <Route path={"update"} element={<UpdateBenchMarkNew />} />
@@ -123,7 +155,15 @@ const Routers = () => {
         </Route>
 
         {/* --------Server Sync ---------- */}
-        <Route path={"/serversync"} element={<ServerSync />} />
+        <Route
+          path={"/serversync"}
+          element={
+            <PrivateRoute>
+              {" "}
+              <ServerSync />{" "}
+            </PrivateRoute>
+          }
+        />
 
         {/* --------------- */}
         {/* <Route path={"/edit-profile"} element={<EditProfileIndex />}></Route> */}

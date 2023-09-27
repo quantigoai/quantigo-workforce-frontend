@@ -64,3 +64,26 @@ table td {
     padding: 0;
     min-width: 100px;
 }
+
+
+.tableContainer::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /* background-color: rgb(255, 255, 255);  */
+  background-color: transparent; 
+  /* cursor: grab; */
+}
+
+.tableContainer::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(69, 88, 123, 0.567);
+  cursor: grab;
+}
+
+.tableContainer::-webkit-scrollbar-track:hover {
+  background-color: rgb(255, 255, 255);
+  cursor: grab;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: transparent; /* Corner color */
+}

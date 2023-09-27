@@ -8,7 +8,7 @@
  */
 
 import SearchIcon from "@mui/icons-material/Search";
-import { Box, Button, Grid, IconButton, Paper, Typography } from "@mui/material";
+import { Box, Button, Grid, IconButton, Paper } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import { useCallback, useEffect, useState } from "react";
 import { useAlert } from "react-alert";
@@ -28,6 +28,7 @@ import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeade
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 import EditProjectModal from "./EditProjectModal";
+import TableWrapper from "./ExpTable/TableWrapper";
 import {
   fields,
   filterPDR,
@@ -44,9 +45,8 @@ import useHandleEditChange from "./Hooks/useHandleEditChange";
 import Project2DetailsModal from "./Project2Details/Project2DetailsModal";
 import ProjectModal from "./ProjectModal";
 import ProjectSelectFIlter from "./ProjectSelectFIlter";
-import ProjectTable2 from "./ProjectTable2";
 import "./index.css";
-import TableWrapper from "./ExpTable/TableWrapper";
+import ProjectTable2 from "./ProjectTable2";
 
 // test for commit
 /**
@@ -224,7 +224,6 @@ const ProjectLIstIndex2 = () => {
                   paddingX: "10px",
                 }}
               >
-                {/* <Typography variant="wpf_p4_semiBold">hello</Typography> */}
                 {/* TODO Need to remove the unnecessary custom button */}
                 <CommonHeader title="Projects" customButton="Create User" />
               </Grid>
@@ -315,22 +314,7 @@ const ProjectLIstIndex2 = () => {
         </Box>
 
         <Box className="tableContent">
-          <TableWrapper
-            role={role}
-            handleDetailsPage={handleDetailsPage}
-            handleClick={handleClick}
-            handleDelete={handleDelete}
-            myColumn={myColumn}
-            myRows={myRows}
-            pagination={pagination}
-            setPagination={setPagination}
-            handleChangePagination={handleChangePagination}
-            totalItems={total}
-            handleId={handleId}
-            filteredCol={filteredCol}
-            handleProjectDetailsOpen={handleProjectDetailsOpen}
-          />
-          {/* <ProjectTable2
+          {/* <TableWrapper
             role={role}
             handleDetailsPage={handleDetailsPage}
             handleClick={handleClick}
@@ -345,6 +329,21 @@ const ProjectLIstIndex2 = () => {
             filteredCol={filteredCol}
             handleProjectDetailsOpen={handleProjectDetailsOpen}
           /> */}
+          <ProjectTable2
+            role={role}
+            handleDetailsPage={handleDetailsPage}
+            handleClick={handleClick}
+            handleDelete={handleDelete}
+            myColumn={myColumn}
+            myRows={myRows}
+            pagination={pagination}
+            setPagination={setPagination}
+            handleChangePagination={handleChangePagination}
+            totalItems={total}
+            handleId={handleId}
+            filteredCol={filteredCol}
+            handleProjectDetailsOpen={handleProjectDetailsOpen}
+          />
           {/* <ExpTable /> */}
         </Box>
         {detailsProjectOpen && (

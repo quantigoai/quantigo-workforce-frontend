@@ -31,7 +31,7 @@ const TableWrapper = ({
   skillAlert,
 }) => {
   const { usersWorkHistory, isLoading, projectDrawers } = useSelector((state) => state.projectDrawer);
-  const { isLightTheme } = useSelector((state) => state.theme);
+    const { isLightTheme } = useSelector((state) => state.theme);
 
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
   const location = useLocation();
@@ -57,7 +57,35 @@ const TableWrapper = ({
         <>
           {pathname === "/allprojects" ? (
             projectDrawers.length > 0 ? (
-              <WPFTable
+                              <WPFTable
+                  pagination={pagination}
+                  handleDetailsPage={handleDetailsPage}
+                  setPagination={setPagination}
+                  handleChangePagination={handleChangePagination}
+                  myColumn={myColumn}
+                  myRows={myRows}
+                  handleDelete={handleDelete}
+                  handleClick={handleClick}
+                  totalItems={totalItems}
+                  handleId={handleId}
+                  filteredCol={filteredCol}
+                  handleProjectDetailsOpen={handleProjectDetailsOpen}
+                  role={role}
+                  skillAlert={skillAlert}
+                  currentlyCheckedInProject={currentlyCheckedInProject}
+                  stickyFirstColumn={stickyFirstColumn}
+                  stickyLastColumn={stickyLastColumn}
+                  columns={columns}
+                />
+                            ) : role !== "admin" ? (
+              <DetailsPage skillAlert={skillAlert} />
+            ) : (
+              <Alert Alert severity="error">
+                No Users history found for this project!
+              </Alert>
+            )
+          ) : usersWorkHistory.length > 0 ? (
+                          <WPFTable
                 pagination={pagination}
                 handleDetailsPage={handleDetailsPage}
                 setPagination={setPagination}
@@ -73,36 +101,8 @@ const TableWrapper = ({
                 role={role}
                 skillAlert={skillAlert}
                 currentlyCheckedInProject={currentlyCheckedInProject}
-                stickyFirstColumn={stickyFirstColumn}
-                stickyLastColumn={stickyLastColumn}
-                columns={columns}
               />
-            ) : role !== "admin" ? (
-              <DetailsPage skillAlert={skillAlert} />
-            ) : (
-              <Alert Alert severity="error">
-                No Users history found for this project!
-              </Alert>
-            )
-          ) : usersWorkHistory.length > 0 ? (
-            <WPFTable
-              pagination={pagination}
-              handleDetailsPage={handleDetailsPage}
-              setPagination={setPagination}
-              handleChangePagination={handleChangePagination}
-              myColumn={myColumn}
-              myRows={myRows}
-              handleDelete={handleDelete}
-              handleClick={handleClick}
-              totalItems={totalItems}
-              handleId={handleId}
-              filteredCol={filteredCol}
-              handleProjectDetailsOpen={handleProjectDetailsOpen}
-              role={role}
-              skillAlert={skillAlert}
-              currentlyCheckedInProject={currentlyCheckedInProject}
-            />
-          ) : role !== "admin" ? (
+                        ) : role !== "admin" ? (
             <DetailsPage skillAlert={skillAlert} />
           ) : (
             <Alert Alert severity="error">
@@ -111,7 +111,7 @@ const TableWrapper = ({
           )}
         </>
       )}
-      {/* </Box> */}
+{/* </Box> */}
     </>
   );
 };

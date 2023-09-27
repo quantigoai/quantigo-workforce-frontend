@@ -12,12 +12,8 @@ import { lightCustomColors } from "./color";
 import typography from "./typography";
 
 const lightTheme = createTheme({
-  // ...theme,
   palette: {
     mode: "light",
-    text: {
-      // primary: "#3C4D6B", // Primary text color
-    },
     ...lightCustomColors,
   },
   typography: {
@@ -115,7 +111,8 @@ const lightTheme = createTheme({
           borderBottom: "1px solid #f2f6fc",
           backgroundColor: "#fff",
           color: "#3C4D6B",
-          padding: "13px",
+          height: "40px",
+          padding: "10px 16px",
           margin: "0",
         },
       },
@@ -170,5 +167,4 @@ lightTheme.typography.wpf_p4_semiBold = {
 //     fontSize: "12px",
 //   },
 // };
-console.log("🚀 ~ file: light.mui.theme.js:168 ~ lightTheme:", lightTheme);
 export default lightTheme;

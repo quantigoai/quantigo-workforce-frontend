@@ -28,7 +28,6 @@ import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeade
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 import EditProjectModal from "./EditProjectModal";
-import TableWrapper from "./ExpTable/TableWrapper";
 import {
   fields,
   filterPDR,

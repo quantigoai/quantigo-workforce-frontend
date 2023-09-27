@@ -66,7 +66,7 @@ const Routers = () => {
 
         {/* ---------- Course and chapter related routes ------------ */}
         <Route path={"/course"} element={<Course />} />
-        <Route
+        {/* <Route
           path={"/create-course"}
           element={
             <PrivateRoute>
@@ -74,7 +74,7 @@ const Routers = () => {
               <CreateCourse />{" "}
             </PrivateRoute>
           }
-        />
+        /> */}
         <Route
           path={"/edit-course/:id"}
           element={

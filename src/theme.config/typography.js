@@ -24,12 +24,12 @@ const createTypography = (fontSize, fontWeight, lineHeight) => ({
 });
 
 const typography = {
-  wf_h6: createTypography("12px", "500", "18px"),
-  wf_h6_xl: createTypography("15px", "500", "18px"),
-  wf_h6_light: createTypography("12px", "400", "16px"),
-  wf_h5: createTypography("14px", "500", "20px"),
-  wf_h5_bold: createTypography("14px", "500", "24px"),
-  wf_h4: createTypography("20px", "500", "30px"),
+  wf_h6: createTypography("12px", "500", "18px"),  // our own typography
+  wf_h6_xl: createTypography("15px", "500", "18px"),  // our own typography
+  wf_h6_light: createTypography("12px", "400", "16px"),  // our own typography
+  wf_h5: createTypography("14px", "500", "20px"),  // our own typography
+  wf_h5_bold: createTypography("14px", "500", "24px"),  // our own typography
+  wf_h4: createTypography("20px", "500", "30px"),  // our own typography
   wf_p2_semiBold: createTypography("14px", "500", "16px"),
   wpf_h1_semiBold: createTypography("40px", "600", "48px"),
   wpf_h2_semiBold: createTypography("36px", "600", "44px"),

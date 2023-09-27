@@ -1,0 +1,210 @@
+/*
+ * Filename: /home/tanzim/workstation/Office/quantigo-workforce-frontend/src/components/primary/AllUsers/index.css
+ * Path: /home/tanzim/workstation/Office/quantigo-workforce-frontend
+ * Created Date: Thursday, September 28th 2023, 12:26:40 am
+ * Author: Tanzim Ahmed
+ * 
+ * Copyright (c) 2023 Tanzim Ahmed
+ */
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+.projectBox {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /* background-color: yellow;  */
+}
+
+.projectHeader{
+    display: flex;
+    flex-direction: column;
+    height: 15%;
+    align-items: center;
+}
+
+.headerBox{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    border-top: 1px solid #E6ECF5;
+}
+
+.tableContent{
+   width: 100%;
+   padding: 16px;
+   height: 85%;
+}
+
+
+.mainTableBox {
+  height: 94%;
+  position: relative;
+  overflow: scroll;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0px 1px 3px 0px rgba(9, 0, 128, 0.08);
+  border-radius: 8px 8px 0px 0px;
+  /* background-color: #fff; */
+}
+
+.myTable {
+  /* position: absolute; */
+  /* height: 100%; */
+  border-collapse: separate;
+}
+
+.pagination{
+    display: flex;
+    height: 7%;
+    margin-right: 8px;
+}
+.css-ong8cm{
+  height: 4vh;
+}
+.css-lgk7oi{
+  gap:0px;
+}
+
+.MuiAvatarGroup-root {
+  justify-content: start;
+}
+
+
+
+.mainTableBox table {
+  border-spacing: 0;
+}
+
+
+
+.mainTableBox::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /* background-color: rgb(255, 255, 255);  */
+  background-color: transparent; 
+}
+
+.mainTableBox::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(69, 88, 123, 0.567);
+  cursor: grab;
+}
+
+.mainTableBox::-webkit-scrollbar-track:hover {
+  background-color: rgb(255, 255, 255);
+  cursor: grab;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: transparent; /* Corner color */
+}
+
+.mainTableBox th {
+  border-left: none;
+  padding: 10px 16px 10px 16px;
+  
+
+ 
+}
+.mainTableBox td {
+  border-left: none;
+  width: 80px;
+  min-width: 80px;
+}
+
+
+
+.mainTableBox th:nth-child(1),
+.mainTableBox td:nth-child(1) {
+  position: sticky;
+  padding-right: 40px;
+  left: 0;
+  border-right: 1px solid #ebf0f5;
+ 
+}
+
+.mainTableBox th:last-child,
+.mainTableBox td:last-child {
+  position: sticky;
+  right: 0px; 
+  width: 10%;
+  min-width: 50%;
+  border-left: 1px solid #ebf0f5;
+}
+
+.mainTableBox th:nth-child(1),
+.mainTableBox th:last-child {
+  z-index: 20;
+}
+
+.custom-header {
+  top: 0;
+  left: 200;
+  position: sticky;
+  z-index: 30;
+  
+}
+
+
+.tableRow {
+  height: calc(6.35vh);
+}
+@media screen and ( max-width: 800px ) {
+.tableRow {
+  height: calc(4.35vh);
+}
+}
+
+.responsive-logo {
+  width: 110px; /* Default width for all screen sizes */
+
+  @media (max-width: 1920px) {
+    /* Large screens (xl) */
+    width: 137px;
+    height: 27px;
+  }
+
+  @media (max-width: 1360px) {
+    /* Large screens (lg) */
+    width: 121px;
+    height: 24px;
+  }
+
+  @media (max-width: 960px) {
+    /* Medium screens (md) */
+    width: 100px;
+    height: 24px;
+  }
+
+  /* Define more media queries for smaller screen sizes if needed */
+}
+.responsive-drawer {
+    width: 110px; /* Default width for all screen sizes */
+  
+    @media (max-width: 1920px) {
+      /* Large screens (xl) */
+      width: 145px;
+      height: 40px;
+    }
+  
+    @media (max-width: 1360px) {
+      /* Large screens (lg) */
+      /* width: 121px; */
+      height: 35px;
+    }
+  
+    @media (max-width: 960px) {
+      /* Medium screens (md) */
+      /* width: 100px; */
+      height: 35px;
+    }
+  
+    /* Define more media queries for smaller screen sizes if needed */
+  }
+
+  .test{
+    transition: all 1.3s ease-in-out;
+  }
+

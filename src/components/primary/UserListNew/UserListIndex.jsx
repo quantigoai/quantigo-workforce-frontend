@@ -12,15 +12,12 @@ import { getAllSkills } from "../../../features/slice/skillSlice";
 import { getAllUsers } from "../../../features/slice/userSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import SearchBarforUserList from "../../shared/SearchBar/SearchBarforUserList";
+import "../ProjectLIstNew2/index.css";
 import NidDetails from "../Users/NidDetals/NidDetails";
 import TablePaginationActions from "./TablePaginationActions";
 import UsersTable from "./UsersTable";
-import AllUsers from "./AllUsers/AllUsers";
-import "../ProjectLIstNew2/index.css";
 
 const ButtonStyle = styled(Button)({
-  // backgroundColor: "#2D58FF",
-  // color: "#FFFFFF",
   width: "100%",
   height: "100%",
   "&:hover": {

@@ -16,6 +16,7 @@ const lightTheme = createTheme({
     mode: "light",
     text: {
       primary: "#3C4D6B", // Primary text color
+      secondary: "#3C4D6B", // Primary text color
     },
   },
   typography: {

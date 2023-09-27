@@ -351,7 +351,7 @@ const userSlice = createSlice({
         return item;
       });
     },
-    updateUserField: (state, action) => { 
+    updateUserField: (state, action) => {
       state.user[action.payload.field] = action.payload.value;
     },
     updateUserEnrollCourse: (state, action) => {

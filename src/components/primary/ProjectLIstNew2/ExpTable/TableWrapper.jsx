@@ -43,7 +43,6 @@ const TableWrapper = ({
   const [isColumSet, setIsColumnSet] = useState(false);
 
   useEffect(() => {
-    console.log("1");
     if (stickyFirstColumn.length > 0 && stickyLastColumn.length > 0 && columns.length > 0) {
       setIsColumnSet(true);
     }

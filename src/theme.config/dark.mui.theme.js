@@ -30,24 +30,33 @@ const darkTheme = createTheme({
     ...(typography.wf_h5_bold.color = "#fff"),
     ...(typography.wf_h4.color = "#fff"),
     ...(typography.wf_p2_semiBold.color = "#fff"),
+
     ...(typography.wpf_h1_semiBold.color = "#fff"),
     ...(typography.wpf_h2_semiBold.color = "#fff"),
     ...(typography.wpf_h3_semiBold.color = "#fff"),
     ...(typography.wpf_h4_semiBold.color = "#fff"),
     ...(typography.wpf_h5_semiBold.color = "#fff"),
+    ...(typography.wpf_h6_semiBold.color = "#fff"),
+    ...(typography.wpf_h7_semiBold.color = "#fff"),
+
     ...(typography.wpf_h1_medium.color = "#fff"),
     ...(typography.wpf_h2_medium.color = "#fff"),
     ...(typography.wpf_h3_medium.color = "#fff"),
     ...(typography.wpf_h4_medium.color = "#fff"),
     ...(typography.wpf_h5_medium.color = "#fff"),
+    ...(typography.wpf_h6_medium.color = "#fff"),
+    ...(typography.wpf_h7_medium.color = "#fff"),
+    
     ...(typography.wpf_p1_semiBold.color = "#fff"),
     ...(typography.wpf_p2_semiBold.color = "#fff"),
     ...(typography.wpf_p3_semiBold.color = "#fff"),
     ...(typography.wpf_p4_semiBold.color = "#fff"),
+    
     ...(typography.wpf_p1_medium.color = "#fff"),
     ...(typography.wpf_p2_medium.color = "#fff"),
     ...(typography.wpf_p3_medium.color = "#fff"),
     ...(typography.wpf_p4_medium.color = "#fff"),
+    
     ...(typography.wpf_p1_regular.color = "#fff"),
     ...(typography.wpf_p2_regular.color = "#fff"),
     ...(typography.wpf_p3_regular.color = "#fff"),

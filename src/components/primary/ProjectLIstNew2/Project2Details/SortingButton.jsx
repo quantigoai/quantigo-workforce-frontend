@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 
-const SortingButton = ({ filteredCol, col }) => {
+const SortingButton = ({ filteredCol, column }) => {
   const val = Object.keys(filteredCol);
 
   return (
@@ -12,7 +12,7 @@ const SortingButton = ({ filteredCol, col }) => {
         justifyContent: "center",
         alignItems: "center",
         ":hover": {
-          backgroundColor: "rgba(242, 246, 252, 1)",
+          backgroundColor: "transparent",
           color: "black",
         },
       }}
@@ -22,9 +22,8 @@ const SortingButton = ({ filteredCol, col }) => {
           sx={{
             lineHeight: 0,
             fontSize: "15px",
-            mt: 0.3,
-            color: val.includes(col) ? (filteredCol[col] === "asc" ? "blue" : "#7B98BA") : "#7B98BA",
           }}
+          color={val.includes(column) ? (filteredCol[column] === "asc" ? "blue" : "#7B98BA") : "#7B98BA"}
         >
           <i className="ri-arrow-up-s-fill"></i>
         </Typography>
@@ -33,8 +32,8 @@ const SortingButton = ({ filteredCol, col }) => {
             lineHeight: 0,
             mt: 1,
             fontSize: "15px",
-            color: val.includes(col) ? (filteredCol[col] === "desc" ? "blue" : "#7B98BA") : "#7B98BA",
           }}
+          color={val.includes(column) ? (filteredCol[column] === "desc" ? "blue" : "#7B98BA") : "#7B98BA"}
         >
           <i className="ri-arrow-down-s-fill"></i>
         </Typography>

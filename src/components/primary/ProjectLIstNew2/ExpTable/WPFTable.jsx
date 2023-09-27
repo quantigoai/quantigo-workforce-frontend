@@ -47,19 +47,21 @@ export default function WPFTable({
             justifyContent: "space-between",
           }}
         >
-          <TableContainer
-            sx={{
-              height: "100%",
-            }}
-          >
+          <TableContainer sx={{ height: "100%" }}>
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
                   {stickyFirstColumn.map((column) => (
                     <TableCell className="first-head" key={column.id} style={{ minWidth: column.width || "140px" }}>
-                      <Stack flexDirection={"row"}>
-                        {/* <Typography variant="wpf_p4_semiBold">{column.headerName}</Typography> */}
-                        <Typography variant="wf_h6_xl">{column.headerName}</Typography>
+                      <Stack
+                        flexDirection={"row"}
+                        sx={{
+                          alignItems: "center",
+                        }}
+                      >
+                        <Typography variant="wpf_h7_semiBold" color="neutral.550">
+                          {column.headerName}
+                        </Typography>
                         <Box onClick={() => handleId(column.field)}>
                           <SortingButton column={column.field} filteredCol={filteredCol} />
                         </Box>
@@ -68,8 +70,15 @@ export default function WPFTable({
                   ))}
                   {columns.map((column) => (
                     <TableCell className="common-head" key={column.id} style={{ minWidth: column.width || "140px" }}>
-                      <Stack flexDirection={"row"}>
-                        {column.headerName}
+                      <Stack
+                        flexDirection={"row"}
+                        sx={{
+                          alignItems: "center",
+                        }}
+                      >
+                        <Typography variant="wpf_h7_semiBold" color="neutral.550">
+                          {column.headerName}
+                        </Typography>
                         <Box onClick={() => handleId(column.field)}>
                           <SortingButton column={column.field} filteredCol={filteredCol} />
                         </Box>
@@ -78,7 +87,9 @@ export default function WPFTable({
                   ))}
                   {stickyLastColumn.map((column) => (
                     <TableCell className="last-head" key={column.id} style={{ minWidth: column.width || "140px" }}>
-                      {column.headerName}
+                      <Typography variant="wpf_h7_semiBold" color="neutral.550">
+                        {column.headerName}
+                      </Typography>
                     </TableCell>
                   ))}
                 </TableRow>
@@ -87,7 +98,12 @@ export default function WPFTable({
               <TableBody>
                 {myRows.map((row) => {
                   return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                    <TableRow
+                      hover
+                      // role="checkbox"
+                      // tabIndex={-1}
+                      key={row.id}
+                    >
                       {stickyFirstColumn.map((column) => {
                         const value = row[column.id];
                         return (
@@ -98,9 +114,11 @@ export default function WPFTable({
                             className="tablerow1st"
                             key={column.id}
                           >
-                            {column.format && typeof value === "number"
-                              ? column.format(row[column?.field])
-                              : row[column?.field]}
+                            <Typography variant="wpf_p4_medium" color="neutral.700">
+                              {column.format && typeof value === "number"
+                                ? column.format(row[column?.field])
+                                : row[column?.field]}
+                            </Typography>
                           </TableCell>
                         );
                       })}
@@ -116,19 +134,23 @@ export default function WPFTable({
                         } else if (column.field === "createdBy") {
                           return (
                             <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
-                              <Typography variant="wf_p2_semiBold">{row[column?.field] || "Admin"}</Typography>
+                              <Typography variant="wpf_p4_regular" color="neutral.700">
+                                {row[column?.field] || "Admin"}
+                              </Typography>
                             </TableCell>
                           );
                         } else if (column.field === "benchmark") {
                           return (
                             <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
-                              <Typography variant="wf_p2_semiBold">{row[column?.field] || "10 sec"}</Typography>
+                              <Typography variant="wpf_p4_regular" color="neutral.700">
+                                {row[column?.field] || "10 sec"}
+                              </Typography>
                             </TableCell>
                           );
                         } else if (column.field === "estimated_end_date") {
                           return (
                             <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
-                              <Typography variant="wf_p2_semiBold">
+                              <Typography variant="wpf_p4_regular" color="neutral.700">
                                 {formatDate(row[column?.field]) || "20 july 2023"}
                               </Typography>
                             </TableCell>
@@ -137,7 +159,7 @@ export default function WPFTable({
                           return (
                             <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
                               {row?.[column.field]?.length > 0 ? (
-                                <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
+                                <Typography sx={{ color: "#253E5C" }} variant="wf_p4_regular">
                                   <Link
                                     sx={{
                                       textDecoration: "none",
@@ -164,7 +186,7 @@ export default function WPFTable({
                         } else if (column.field === "workingTimeInMs") {
                           return (
                             <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
-                              <Typography variant="wf_p2_semiBold">
+                              <Typography variant="wpf_p4_regular" color="neutral.700">
                                 {calculateTimeDifference(row[column?.field])}
                               </Typography>
                             </TableCell>
@@ -172,7 +194,7 @@ export default function WPFTable({
                         } else if (column.field === "checkedInDate" || column.field === "checkedOutDate") {
                           return (
                             <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
-                              <Typography variant="wf_p2_semiBold">
+                              <Typography variant="wpf_p4_regular" color="neutral.700">
                                 {/* TODO Add working chip here */}
                                 {row[column?.field] ? formatDate(row[column?.field]) : "Working ⛑️"}
                               </Typography>
@@ -182,7 +204,7 @@ export default function WPFTable({
                           return (
                             <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
                               {/* TODO Add working chip here  */}
-                              <Typography variant="wf_p2_semiBold">
+                              <Typography variant="wpf_p4_regular" color="neutral.700">
                                 {row[column?.field] ? formatTime(row[column?.field]) : "Working ⛑️"}
                               </Typography>
                             </TableCell>
@@ -191,9 +213,11 @@ export default function WPFTable({
 
                         return (
                           <TableCell key={column.id}>
-                            {column.format && typeof value === "number"
-                              ? column.format(row[column?.field])
-                              : row[column?.field]}
+                            <Typography variant="wpf_p4_regular" color="neutral.700">
+                              {column.format && typeof value === "number"
+                                ? column.format(row[column?.field])
+                                : row[column?.field]}
+                            </Typography>
                           </TableCell>
                         );
                       })}

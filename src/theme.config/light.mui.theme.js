@@ -8,6 +8,7 @@
  */
 
 import { createTheme } from "@mui/material";
+import { lightCustomColors } from "./color";
 import typography from "./typography";
 
 const lightTheme = createTheme({
@@ -15,8 +16,9 @@ const lightTheme = createTheme({
   palette: {
     mode: "light",
     text: {
-      primary: "#3C4D6B", // Primary text color
+      // primary: "#3C4D6B", // Primary text color
     },
+    ...lightCustomColors,
   },
   typography: {
     ...typography,
@@ -27,24 +29,33 @@ const lightTheme = createTheme({
     ...(typography.wf_h5_bold.color = "#3C4D6B"),
     ...(typography.wf_h4.color = "#3C4D6B"),
     ...(typography.wf_p2_semiBold.color = "#3C4D6B"),
+
     ...(typography.wpf_h1_semiBold.color = "#3C4D6B"),
     ...(typography.wpf_h2_semiBold.color = "#3C4D6B"),
     ...(typography.wpf_h3_semiBold.color = "#3C4D6B"),
     ...(typography.wpf_h4_semiBold.color = "#3C4D6B"),
     ...(typography.wpf_h5_semiBold.color = "#3C4D6B"),
+    ...(typography.wpf_h6_semiBold.color = "#3C4D6B"),
+    ...(typography.wpf_h7_semiBold.color = "#3C4D6B"),
+
     ...(typography.wpf_h1_medium.color = "#3C4D6B"),
     ...(typography.wpf_h2_medium.color = "#3C4D6B"),
     ...(typography.wpf_h3_medium.color = "#3C4D6B"),
     ...(typography.wpf_h4_medium.color = "#3C4D6B"),
     ...(typography.wpf_h5_medium.color = "#3C4D6B"),
+    ...(typography.wpf_h6_medium.color = "#3C4D6B"),
+    ...(typography.wpf_h7_medium.color = "#3C4D6B"),
+
     ...(typography.wpf_p1_semiBold.color = "#3C4D6B"),
     ...(typography.wpf_p2_semiBold.color = "#3C4D6B"),
     ...(typography.wpf_p3_semiBold.color = "#3C4D6B"),
     ...(typography.wpf_p4_semiBold.color = "#3C4D6B"),
+
     ...(typography.wpf_p1_medium.color = "#3C4D6B"),
     ...(typography.wpf_p2_medium.color = "#3C4D6B"),
     ...(typography.wpf_p3_medium.color = "#3C4D6B"),
     ...(typography.wpf_p4_medium.color = "#3C4D6B"),
+
     ...(typography.wpf_p1_regular.color = "#3C4D6B"),
     ...(typography.wpf_p2_regular.color = "#3C4D6B"),
     ...(typography.wpf_p3_regular.color = "#3C4D6B"),
@@ -104,7 +115,14 @@ const lightTheme = createTheme({
           borderBottom: "1px solid #f2f6fc",
           backgroundColor: "#fff",
           color: "#3C4D6B",
+          padding: "13px",
+          margin: "0",
         },
+      },
+    },
+    MuiTableRow: {
+      styleOverrides: {
+        root: {},
       },
     },
   },
@@ -152,4 +170,5 @@ lightTheme.typography.wpf_p4_semiBold = {
 //     fontSize: "12px",
 //   },
 // };
+console.log("🚀 ~ file: light.mui.theme.js:168 ~ lightTheme:", lightTheme);
 export default lightTheme;

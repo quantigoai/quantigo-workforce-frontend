@@ -1,6 +1,6 @@
-import {Box, keyframes, styled} from "@mui/material";
+import { Box, keyframes, styled } from "@mui/material";
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Login from "../Auth/Login/Login";
 import "./bd.css";
 import HeaderNav from "./HeaderNav";
@@ -20,7 +20,7 @@ const colorbg = keyframes`
 
 const Keyframes = styled("div")({
   height: "100vh",
-  width: "100%",
+  // width: "100%",
   //   animation: "${colorbg} 7s ease infinite",
   //   background:
   //     "linear-gradient(90deg, #090080, #2D58FF,#FF9A45, #090080,#2D58FF)",

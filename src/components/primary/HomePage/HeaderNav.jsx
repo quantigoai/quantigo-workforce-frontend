@@ -22,11 +22,12 @@ const HeaderNav = () => {
         container
         sx={{
           // backgroundColor: "rgba(45, 88, 255, 1)",
-          height: "100px",
+          // height: "100px",
           display: "flex",
           alignItems: "center",
           alignContent: "center",
-          paddingX: "5%",
+          // paddingX: "5%",
+          // paddingX: "1%",
         }}
       >
         <Grid
@@ -65,15 +66,14 @@ const HeaderNav = () => {
               textAlign: "right",
             }}
           >
-            <Grid item xs={4}></Grid>
-            <Grid item xs={7}>
-              <Box sx={{ display: "flex", justifyContent: "flex-end" }} gap={3}>
+            <Grid item xs={12}>
+              <Box sx={{ display: "flex", justifyContent: "flex-end", backgroundColor: "#fff", p: 4 }} gap={3}>
                 <Typography sx={{ color: "#FFFFFF" }} variant="body1">
                   <Link
                     // onClick={() => navigate("/faq")}
                     underline="hover"
                     sx={{
-                      color: location.pathname === "/howitworks" ? " #47536B" : "#FFFFFF",
+                      color: location.pathname === "/howitworks" && " #47536B",
                       cursor: "pointer",
                     }}
                   >
@@ -85,7 +85,7 @@ const HeaderNav = () => {
                     onClick={() => navigate("/howitworks")}
                     underline="hover"
                     sx={{
-                      color: location.pathname === "/howitworks" ? " #47536B" : "#FFFFFF",
+                      color: location.pathname === "/howitworks" && "#47536B",
                       cursor: "pointer",
                     }}
                   >
@@ -97,7 +97,7 @@ const HeaderNav = () => {
                 </Typography> */}
                 <Typography
                   sx={{
-                    color: location.pathname === "/howitworks" ? " #47536B" : "#FFFFFF",
+                    color: location.pathname === "/howitworks" && " #47536B",
                   }}
                   variant="body1"
                 >

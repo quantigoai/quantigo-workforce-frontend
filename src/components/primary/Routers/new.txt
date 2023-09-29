@@ -1,0 +1,77 @@
+<Route path={"/"} element={<Dashboard />} />  --> all 
+<Route path={"/dashboard"} element={<Dashboard />} />  --> all
+
+
+<Route path={"/verify-email/:id/:token/"} element={<EmailVerificationAfterLogin />} /> --> requested users
+<Route path={"/emailVerification"} element={<EmailVerification />} />  --> requested users
+
+
+
+<Route path={"/course"} element={<Course />} />     --> 
+<Route path={"/create-course"} element={<CreateCourse />} />         --> admin,trainer
+<Route path={"/edit-course/:id"} element={<UpdateCourse />} />       --> admin, trainer
+<Route path={"/update-chapter/:id"} element={<UpdateChapter />} />   --> admin,trainer
+
+<Route path={"/course-details/:id"} element={<CourseDetails />}>        --> all
+    <Route path="index" element={<CourseDetailsIndex />} />
+    <Route path="content" element={<CourseMainContent />} />
+    <Route path="show-quiz" element={<QuizShow />} />
+    <Route path={"quiz-result"} element={<ShowResult />} />
+</Route>
+
+    <Route path={"/create-quiz"} element={<CreateQuiz />} />           --> admin,trainer
+    <Route path={"/edit-quiz"} element={<UpdateQuiz />} />             --> admin, trainer
+    <Route path={"/create-chapter/:id"} element={<CreateChapter />} /> -->admin, trainer
+
+<Route path={"/updatedocument"} element={<UpdateDocument />} />     -->
+<Route path={"/projectlist"} element={<ProjectList />} />            -->  engineering lead,admin, proj lead, proj coord, proj manag,deliv manag,recruitment_manager
+<Route path={"/payment"} element={<Payment />} />                    --> all
+<Route path={"/forgetpassword"} element={<ForgetPassword />} />       --> requested users
+
+
+<Route path={"/skillcreate"} element={<Skills />} />    -->  admin,trainer,eng lead, proj lead, proj coord, proj manag,deliv manag,recruitment_manager
+<Route path={"/reset-password/:id/:token"} element={<ResetPassword />} />       --> requested users
+
+<Route path={"/annotators"} element={<UserListIndex action={"annotator"} />} />   --> 
+
+    <Route path={"/allusers"} element={<UserListIndex action={"alluser"} />} />    -->  admin,trainer,eng lead, proj lead, proj coord, proj manag,deliv manag,recruitment_manager
+    <Route path={"/allprojects"} element={<ProjectLIstIndex2 action={"allprojects"} />} />   --> engineering lead,admin, proj lead, proj coord, proj manag,deliv manag,recruitment_manager
+
+<Route path={"/detailsInfo/:id"} element={<DetailsPage action={"detailsInfo"} />} />   -->  engineering lead,admin, proj lead, proj coord, proj manag,deliv manag,recruitment_manager
+     
+<Route path={"/projectDetails/:id"} element={<FullProjectDetails action={"projectDetails"} />} /> --> engineering lead,admin, proj lead, proj coord, proj manag,deliv manag,recruitment_manager
+
+<Route path={"/users"} element={<UserListIndex action={"recruitment_manager"} />} />  --> X
+<Route path={"/reviewers"} element={<UserListIndex action={"reviewer"} />} />     --> X
+
+<Route path={"jobs"} element={<Job />}>  -->   
+    <Route path={"create-job"} element={<CreateJob />} />  -->   engineering lead,admin, proj lead, proj coord, proj manag,deliv manag,
+    <Route path={"alljobs"} element={<AllJobs />} />   -->  engineering lead,admin, proj lead, proj coord, proj manag,deliv manag,recruitment_manager ,with lvl1 lvl2 lvl3
+
+    <Route path={"availablejobs"} element={<AllJobsForReviewer />} />  --> engineering lead,admin, proj lead, proj coord, proj manag,deliv manag,recruitment_manager ,with lvl1 lvl2 lvl3
+    <Route path={"ongoingjobs"} element={<OngoingJob action={"jobs"} />} /> --> engineering lead,admin, proj lead, proj coord, proj manag,deliv manag,recruitment_manager ,with lvl1 lvl2 lvl3
+    <Route path={"archivejob"} element={<OngoingJob action={"archiveJob"} />} />  -->  engineering lead,admin, proj lead, proj coord, proj manag,deliv manag,recruitment_manager ,with lvl1 lvl2 lvl3
+ 
+    <Route path={"activejobs"} element={<ActiveJobList action={"jobs"} />} /> -->  engineering lead,admin, proj lead, proj coord, proj manag,deliv manag,recruitment_manager ,with lvl1 lvl2 lvl3
+    <Route path={"archivejobs"} element={<ActiveJobList action={"archivejobs"} />} />  -->engineering lead,admin, proj lead, proj coord, proj manag,deliv manag,recruitment_manager ,with lvl1 lvl2 lvl3
+    <Route path={"reviwerJoblist"} element={<ActiveJobList action={"jobs"} />} /> --> reviewer
+</Route>
+
+<Route path={"/calculate-annotation"} element={<CalculateAnnotations />} />  --> admin
+
+<Route path={"/benchmarknew"} element={<BenchMarkIndex />}>
+    <Route path={"list"} element={<BenchmarkList />} />   --> admin , engineering lead, proj lead, proj coord, proj manag,deliv manag
+    <Route path={":id"} element={<SingleBenchmarkNew />} />  --> admin , engineering lead,admin, proj lead, proj coord, proj manag,deliv manag
+    <Route path={"update"} element={<UpdateBenchMarkNew />} /> -->admin , engineering lead,admin, proj lead, proj coord, proj manag,deliv manag
+    <Route path={"create"} element={<CreateBenchMarkNew />} />  -->admin , engineering lead,admin, proj lead, proj coord, proj manag,deliv manag
+</Route> 
+
+<Route path={"/serversync"} element={<ServerSync />} />    -->admin , engineering lead,admin, proj lead, proj coord, proj manag,deliv manag
+
+<Route path={"/edit-profile"} element={<EditProfilePageIndex />}></Route>  -->all
+<Route path={"/show-profile"} element={<EditProfileIndex />}></Route>   -->all
+<Route path={"/show-all-notification"} element={<AllNotification />}></Route> -->all
+<Route path={"/projectDirectory"} element={<ProjectDirectoryIndex />} />  --> >admin , engineering lead,admin, proj lead, proj coord, proj manag,deliv manag
+
+
+<Route path="*" element={<ErrorPage />} />

@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Grid, Typography} from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 
 const CommonDesign = ({ children }) => {
@@ -15,45 +15,68 @@ const CommonDesign = ({ children }) => {
       <Grid
         container
         sx={{
-          height: "85vh",
+          height: "90vh",
         }}
       >
         <Grid
           item
-          xs={5}
-          sm={5}
-          md={5}
-          lg={5}
+          xs={6}
+          sm={6}
+          md={6}
+          lg={6}
           sx={{
             // backgroundColor: "rgba(45, 88, 255, 1)",
+
             display: "flex",
-            alignItems: "center",
+            alignItems: "flex-end",
             alignContent: "center",
             paddingRight: { sm: "0%", lg: "2%", md: "4%", xl: "7%" },
             paddingLeft: { lg: "6%", md: "4%", sm: "4%" },
           }}
         >
-          <Typography
-            variant="h2"
-            sx={{
-              color: "#FFFFFF",
-              align: "left",
-              fontSize: { lg: "3.5rem", md: "3rem", sm: "2rem", xl: "4rem" },
-            }}
-          >
-            Take your Productivity to the next level
-          </Typography>
+          <Box sx={{ display: "flex", flexDirection: "column", mb: "100px" }}>
+            <Typography
+              variant="wpf_h1_regular"
+              sx={{
+                color: "#FFFFFF",
+                align: "left",
+              }}
+            >
+              Take your{" "}
+              <Typography sx={{ color: "#fff" }} variant="wpf_h1_semiBold">
+                Productivity
+              </Typography>
+              <Typography sx={{ color: "#fff", ml: 1 }} variant="wpf_h1_regular">
+                to
+              </Typography>
+            </Typography>
+
+            <Typography
+              variant="wpf_h1_regular"
+              sx={{
+                color: "#FFFFFF",
+                align: "left",
+              }}
+            >
+              the{" "}
+              <Typography sx={{ color: "#fff" }} variant="wpf_h1_semiBold">
+                Next Level
+              </Typography>
+            </Typography>
+          </Box>
         </Grid>
         <Grid
           item
-          xs={7}
+          xs={6}
           sx={{
             // backgroundColor: "red",
             display: "flex",
+
             alignItems: "center",
             justifyContent: "flex-end",
             paddingRight: { sm: "0%", lg: "8%", md: "4%", xl: "8%" },
             alignContent: "center",
+            backgroundColor: "#fff",
           }}
         >
           {children}

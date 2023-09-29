@@ -70,7 +70,7 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit }) => {
             sx={{
               flex: "1",
               overflowY: "auto",
-              padding: "3%",
+              padding: "2%",
              
             }}>
          

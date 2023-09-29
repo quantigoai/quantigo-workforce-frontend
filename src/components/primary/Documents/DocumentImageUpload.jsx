@@ -1,8 +1,8 @@
-import {Box, Grid} from "@mui/material";
-import React, {useMemo} from "react";
+import { Box, Button, Grid } from "@mui/material";
+import React, { useMemo, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 // import dragiconplus from "../../../../assets/images/dragiconplus.svg";
-import {useDropzone} from "react-dropzone";
+import { useDropzone } from "react-dropzone";
 import ctaImage from "../../../assets/images/CTA.png";
 import IconImage from "../../../assets/images/Icon.png";
 
@@ -11,15 +11,15 @@ const baseStyle = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  padding: "20px",
-  borderWidth: 2,
+  // padding: "20px",
+  // borderWidth: 2,
   borderRadius: 2,
-  height: "150px",
+  height: "180px",
   borderColor: "rgba(70, 70, 70, 0.2)",
   borderStyle: "dashed",
   backgroundColor: "#fafafa",
   color: "#1D1D1D",
-  outline: "none",
+  // outline: "none",
   transition: "border .24s ease-in-out",
 };
 
@@ -35,20 +35,17 @@ const rejectStyle = {
   borderColor: "#ff1744",
 };
 
-const DocumentImageUpload = ({
-  coverImageFile,
-  coverImage,
-  removeImage,
-  handleImage,
-}) => {
-  const {
-    acceptedFiles,
-    getRootProps,
-    getInputProps,
-    isFocused,
-    isDragAccept,
-    isDragReject,
-  } = useDropzone({
+const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleImage }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+  const { acceptedFiles, getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({
     accept: { "image/jpeg": [], "image/png": [], "image/jpg": [] },
     onDrop: handleImage,
   });
@@ -77,11 +74,31 @@ const DocumentImageUpload = ({
       <Grid container>
         <Box {...getRootProps({ style })}>
           {acceptedFiles.length ? (
-            <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-              <img width={250} height={150} src={coverImage} alt="" />
-              <p>File : {files}</p>
+            <Box sx={{ position: "relative" }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+              <img width={630} height={175} src={coverImage} alt="" />
+              {/* <p>File : {files}</p> */}
+              {isHovered && (
+                <Box sx={{ color: "red", cursor: "pointer", position: "absolute", top: "45%", right: "43%" }}>
+                  <Button
+                    onClick={removeImage}
+                    sx={{
+                      width: "100px",
+                      textTransform: "none",
+                      backgroundColor: "#FFFFFF",
+                      color: "#2E58FF",
+                      borderRadius: "20px",
 
-              <DeleteIcon onClick={removeImage} sx={{ color: "red" }} />
+                      "&:hover": {
+                        backgroundColor: "#FFFFFF",
+                        color: "#2E58FF",
+                        // border: "1px solid #2E58FF",
+                      },
+                    }}>
+                    Replace
+                  </Button>
+                  {/* <DeleteIcon onClick={removeImage} sx={{ color: "red" }} /> */}
+                </Box>
+              )}
             </Box>
           ) : (
             <>

@@ -9,9 +9,11 @@
 
 import { Link, TableCell, Typography } from "@mui/material";
 import React from "react";
-import { calculateTimeDifference, formatDate, formatTime } from "../../../../../helper/dateConverter";
+import { calculateTimeDifference, formatDate, formatDateDob, formatTime } from "../../../../../helper/dateConverter";
 import ChipGroup from "../../../../shared/CustomTable/ChipGroup";
 import ProjectDrawerStatusChip from "../../../../shared/FilterField/ProjectDrawerStatusChip";
+import UserBasicInfoCell from "../CustomTableCell/UserBasicInfoCell";
+import UserRoleCell from "../CustomTableCell/UserRoleCell";
 
 const MiddleTableColumn = ({ row, column }) => {
   const value = row[column.id];
@@ -20,6 +22,22 @@ const MiddleTableColumn = ({ row, column }) => {
       return (
         <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
           <ChipGroup value={row[column?.field]} />
+        </TableCell>
+      );
+    } else if (column.field === "role") {
+      return (
+        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+          <Typography variant="wpf_p4_regular" color="neutral.700">
+            <UserRoleCell role={row[column?.field]} />
+          </Typography>
+        </TableCell>
+      );
+    } else if (column.field === "name") {
+      return (
+        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+          <Typography variant="wpf_p4_regular" color="neutral.700">
+            <UserBasicInfoCell name={row[column?.field]} email={row?.email} image={row?.image} />
+          </Typography>
         </TableCell>
       );
     } else if (column.field === "createdBy") {
@@ -88,6 +106,15 @@ const MiddleTableColumn = ({ row, column }) => {
           <Typography variant="wpf_p4_regular" color="neutral.700">
             {/* TODO Add working chip here */}
             {row[column?.field] ? formatDate(row[column?.field]) : "Working ⛑️"}
+          </Typography>
+        </TableCell>
+      );
+    } else if (column.field === "dob") {
+      return (
+        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+          <Typography variant="wpf_p4_regular" color="neutral.700">
+            {/* TODO Add working chip here */}
+            {row[column?.field] && formatDateDob(row[column?.field])}
           </Typography>
         </TableCell>
       );

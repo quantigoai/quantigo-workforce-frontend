@@ -7,17 +7,9 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Badge, TableCell, styled } from "@mui/material";
+import { TableCell } from "@mui/material";
 import React from "react";
 import CustomButton from "../../../../shared/CustomTable/CustomButton";
-
-const StyledBadge = styled(Badge)(() => ({
-  "& .MuiBadge-badge": {
-    right: -8,
-    top: 10,
-    padding: "0 2px",
-  },
-}));
 
 const LastTableColumn = ({ role, handleProjectDetailsOpen, row, handleClick, handleDelete }) => {
   return (

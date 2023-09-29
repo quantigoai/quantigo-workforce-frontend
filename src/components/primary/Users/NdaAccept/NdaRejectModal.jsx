@@ -63,7 +63,7 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit }) => {
           }}>
              <form onSubmit={handleSubmit(onSubmit)}>
           <Box sx={{ flex: "0 0 5%" }}>
-            <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Action"} />
+            <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Confirm Rejection"} />
           </Box>
 
           <Box
@@ -95,7 +95,7 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit }) => {
                     defaultValue={"reject"}
                     placeholder="Select"
                     sx={{ height: "51%" }}>
-                    <MenuItem sx={{ fontSize: "14px" }} value={"reject"} fullWidth>
+                    <MenuItem disabled sx={{ fontSize: "14px" }} value={"reject"} fullWidth>
                       Reject
                     </MenuItem>
                   </MySelect>

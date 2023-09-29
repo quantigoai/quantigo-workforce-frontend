@@ -48,7 +48,6 @@ const ProjectModal = ({
   skills,
 }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
-  console.log("🚀 ~ file: ProjectModal.jsx:51 ~ h:", isLightTheme);
 
   const ProjectDrawerSchema = Yup.object().shape({
     project_drawer_name: Yup.string().required("project name is required"),

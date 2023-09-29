@@ -85,7 +85,7 @@ const ProjectLIstIndex2 = () => {
     currentPage: 0,
     pageSize: 10,
   });
-  const { projectDrawers, projectDrawer, total, error } = useSelector((state) => state.projectDrawer);
+  const { isLoading, projectDrawers, projectDrawer, total, error } = useSelector((state) => state.projectDrawer);
   const { role } = useSelector((state) => state.user.user);
 
   const handleProjectDetailsOpen = (project) => {
@@ -327,6 +327,8 @@ const ProjectLIstIndex2 = () => {
             handleId={handleId}
             filteredCol={filteredCol}
             handleProjectDetailsOpen={handleProjectDetailsOpen}
+            data={projectDrawers}
+            isLoading={isLoading}
           />
           {/* <ProjectTable2
             role={role}

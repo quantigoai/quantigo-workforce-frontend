@@ -4,6 +4,8 @@ import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
 
 function PDReleventField({ name, defaultValueItems }) {
+  console.log("🚀 ~ file: PDReleventField.jsx:7 ~ PDReleventField ~ defaultValueItems:", defaultValueItems);
+  console.log("🚀 ~ file: PDReleventField.jsx:7 ~ PDReleventField ~ name:", name);
   const { control, setValue } = useFormContext();
   const { isLightTheme } = useSelector((state) => state.theme);
 
@@ -12,6 +14,7 @@ function PDReleventField({ name, defaultValueItems }) {
     name,
     // name: "relevantDocuments",
   });
+
   React.useEffect(() => {
     if (defaultValueItems && defaultValueItems.length > 0) {
       setValue(name, defaultValueItems);
@@ -31,7 +34,6 @@ function PDReleventField({ name, defaultValueItems }) {
 
   return (
     <>
-      {" "}
       {fields.map((field, index) => (
         <Box key={field.id}>
           <Stack direction="row" gap={2} xs={12}>

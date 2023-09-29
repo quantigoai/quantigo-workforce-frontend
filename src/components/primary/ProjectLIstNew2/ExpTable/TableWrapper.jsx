@@ -30,10 +30,10 @@ const TableWrapper = ({
   handleProjectDetailsOpen,
   role,
   skillAlert,
+  data,
+  isLoading,
 }) => {
-  console.log("🚀 ~ file: TableWrapper.jsx:34 ~ myColumn:", myColumn)
-  console.log("🚀 ~ file: TableWrapper.jsx:34 ~ myRows:", myRows)
-  const { usersWorkHistory, isLoading, projectDrawers } = useSelector((state) => state.projectDrawer);
+  // const { usersWorkHistory, isLoading, projectDrawers } = useSelector((state) => state.projectDrawer);
   const { isLightTheme } = useSelector((state) => state.theme);
 
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
@@ -44,7 +44,7 @@ const TableWrapper = ({
   const stickyLastColumn = [myColumn[myColumn.length - 1]];
   const columns = myColumn.slice(1, myColumn.length - 1);
   const [isColumSet, setIsColumnSet] = useState(false);
-
+  const approvedPaths = ["/allprojects", "/all-users"];
   useEffect(() => {
     if (stickyFirstColumn.length > 0 && stickyLastColumn.length > 0 && columns.length > 0) {
       setIsColumnSet(true);
@@ -68,8 +68,9 @@ const TableWrapper = ({
           <LoadingComponent height="100%" />
         ) : (
           <>
-            {pathname === "/allprojects" ? (
-              projectDrawers.length > 0 ? (
+            {approvedPaths.includes(pathname) ? (
+              // projectDrawers.length > 0 ? (
+              data.length > 0 ? (
                 <WPFTable
                   handleDetailsPage={handleDetailsPage}
                   myColumn={myColumn}
@@ -93,7 +94,8 @@ const TableWrapper = ({
                   No Users history found for this project!
                 </Alert>
               )
-            ) : usersWorkHistory.length > 0 ? (
+            ) : // usersWorkHistory.length > 0 ? (
+            data.length > 0 ? (
               <WPFTable
                 handleDetailsPage={handleDetailsPage}
                 myColumn={myColumn}
@@ -110,8 +112,9 @@ const TableWrapper = ({
             ) : role !== "admin" ? (
               <DetailsPage skillAlert={skillAlert} />
             ) : (
+              // TODO Dynamically sent a message for alert
               <Alert Alert severity="error">
-                No Users history found for this project!
+                No Users history found for this projects!
               </Alert>
             )}
           </>

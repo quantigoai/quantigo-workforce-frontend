@@ -18,6 +18,7 @@ const CommonHeader = ({ isLoading, title, description, customButton, handleCance
   const { course } = useSelector((state) => state.course);
   const { user } = useSelector((state) => state.user);
   const { isLightTheme } = useSelector((state) => state.theme);
+  
   const handleNavigation = (navigateLink) => {
     switch (navigateLink) {
       case "Create Course":

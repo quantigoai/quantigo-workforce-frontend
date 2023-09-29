@@ -54,7 +54,7 @@ const customHeader = (params) => {
     case "updatedAt":
       return "UPDATED AT";
     case "qaiUserName":
-      return "QAI USER NAME";
+      return "QAI ID";
     case "title":
       return "TITLE";
     case "role":
@@ -97,9 +97,10 @@ const customHeader = (params) => {
       return "ACTIVE JOBS";
     case "submittedJobs":
       return "SUBMITTED JOBS";
-
+    case "dob":
+      return "DOB";
     case "jobLimit":
-      return "JOB LIMITS ";
+      return "JOB LIMIT";
     case "signImage":
       return "SIGN IMAGE";
     case "isJobBlocked":
@@ -107,13 +108,17 @@ const customHeader = (params) => {
     case "jobLimitLeft":
       return " JOB LIMIT LEFT";
     case "paymentRate":
-      return " PAYMENT";
+      return " PAYMENT RATE";
     case "totalWorkingHours":
-      return "TOTAL WORKING HOURS";
+      return "WORKING HOURS";
     case "bloodGroup":
       return "BLOOD GROUP";
+    case "hub":
+      return "HUB";
     case "billingAccountNo":
-      return "BILLING ACCOUNTS";
+      return "Nagad No";
+    case "currentlyCheckedInProject":
+      return "PROJECT ENROLLED";
     default:
       return params;
   }

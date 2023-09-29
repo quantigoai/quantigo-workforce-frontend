@@ -21,6 +21,8 @@ const paginationOptions = [
 const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePagination }) => {
   const itemsPerPage = pagination.pageSize;
   const { myWorkHistoryCount, usersWorkHistoryCount } = useSelector((state) => state.projectDrawer);
+  const { users } = useSelector((state) => state.user.users);
+
   useEffect(() => {
     setPagination((prevPagination) => ({
       ...prevPagination,
@@ -67,8 +69,11 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
   const location = useLocation();
   const { pathname } = location;
   const { isLightTheme } = useSelector((state) => state.theme);
+  const approvedPaths = ["/allprojects", "/all-users"];
 
-  return pathname === "/allprojects" || myWorkHistoryCount > 0 || usersWorkHistoryCount > 0 ? (
+  const approvedData = [myWorkHistoryCount, usersWorkHistoryCount, users?.length];
+
+  return approvedPaths.includes(pathname) || approvedData.some((s) => s > 0) ? (
     <Box
       sx={{
         display: "flex",

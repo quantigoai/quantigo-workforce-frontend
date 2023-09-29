@@ -14,6 +14,7 @@ import { useLocation } from "react-router-dom";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import { getAllSkills } from "../../../features/slice/skillSlice";
 import { getAllUsers } from "../../../features/slice/userSlice";
+import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import useAllFunc from "../ProjectLIstNew2/Hooks/useAllFunc";
 import "../ProjectLIstNew2/index.css";
 import AllUsersTable from "./AllUsersTable";
@@ -26,11 +27,11 @@ const reviewerRoles = ["reviewer"];
 
 const AllUserListIndex = ({ action }) => {
   const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state.user);
   const { users, totalUsers } = useSelector((state) => state.user.users);
   const user = useSelector((state) => state.user);
   const { role } = user.user;
   const url = import.meta.env.VITE_APP_SERVER_URL;
-
   const location = useLocation();
 
   const {
@@ -95,6 +96,7 @@ const AllUserListIndex = ({ action }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
+  
   const handleClick = (e) => {
     console.log("🚀 ~ file: AllUserListIndex.jsx:101 ~ handleClick ~ e:", e);
   };
@@ -102,8 +104,9 @@ const AllUserListIndex = ({ action }) => {
   const handleDelete = (e) => {
     console.log("🚀 ~ file: AllUserListIndex.jsx:103 ~ handleDelete ~ e:", e);
   };
+  
   const handleDetailsPage = (e) => {};
-  const total = 10;
+
   const handleProjectDetailsOpen = (e) => {};
   const handleChangePagination = (e) => {};
   // --------------------------------
@@ -120,22 +123,27 @@ const AllUserListIndex = ({ action }) => {
         <UsersFilter isFilter={isFilter} isLightTheme={isLightTheme} />
       </Box>
       <Box className="tableContent">
-        <AllUsersTable
-          handleClick={handleClick}
-          handleDelete={handleDelete}
-          myColumn={myColumn}
-          setMyColumn={setMyColumn}
-          myRows={myRows}
-          handleId={handleId}
-          setMyRows={setMyRows}
-          pagination={pagination}
-          filteredCol={filteredCol}
-          setPagination={setPagination}
-          handleDetailsPage={handleDetailsPage}
-          handleChangePagination={handleChangePagination}
-          total={total}
-          handleProjectDetailsOpen={handleProjectDetailsOpen}
-        />
+        {!isLoading && users && users.length > 0 ? (
+          <AllUsersTable
+            handleClick={handleClick}
+            handleDelete={handleDelete}
+            myColumn={myColumn}
+            setMyColumn={setMyColumn}
+            myRows={myRows}
+            handleId={handleId}
+            setMyRows={setMyRows}
+            pagination={pagination}
+            filteredCol={filteredCol}
+            setPagination={setPagination}
+            handleDetailsPage={handleDetailsPage}
+            handleChangePagination={handleChangePagination}
+            total={totalUsers}
+            handleProjectDetailsOpen={handleProjectDetailsOpen}
+            data={users}
+          />
+        ) : (
+          <LoadingComponent height="100%" />
+        )}
       </Box>
     </Box>
   );

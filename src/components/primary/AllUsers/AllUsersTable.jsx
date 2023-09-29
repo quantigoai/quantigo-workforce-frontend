@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 import TableWrapper from "../ProjectLIstNew2/ExpTable/TableWrapper";
-import { fields } from "./tableFiels";
+import { fields } from "./tableFields";
 
 const AllUsersTable = ({
   handleClick,
@@ -29,33 +29,42 @@ const AllUsersTable = ({
   handleId,
   filteredCol,
   handleProjectDetailsOpen,
+  data,
 }) => {
+  const { isLoading, user } = useSelector((state) => {
+    return state.user;
+  });
   const { users } = useSelector((state) => state.user.users);
-  const user = useSelector((state) => state.user);
-  const { role } = user.user;
+  const { role } = user;
 
   useEffect(() => {
-    setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
-    setMyRows(dataBuilder(users));
-  }, [users]);
+    if (data.length) {
+      setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
+      setMyRows(dataBuilder(users));
+    }
+  }, [data]);
 
   return (
     <>
-      <TableWrapper
-        role={role}
-        handleDetailsPage={handleDetailsPage}
-        handleClick={handleClick}
-        handleDelete={handleDelete}
-        myColumn={myColumn}
-        myRows={myRows}
-        pagination={pagination}
-        setPagination={setPagination}
-        handleChangePagination={handleChangePagination}
-        totalItems={total}
-        handleId={handleId}
-        filteredCol={filteredCol}
-        handleProjectDetailsOpen={handleProjectDetailsOpen}
-      />
+      {!isLoading && data.length && (
+        <TableWrapper
+          role={role}
+          handleDetailsPage={handleDetailsPage}
+          handleClick={handleClick}
+          handleDelete={handleDelete}
+          myColumn={myColumn}
+          myRows={myRows}
+          pagination={pagination}
+          setPagination={setPagination}
+          handleChangePagination={handleChangePagination}
+          totalItems={total}
+          handleId={handleId}
+          filteredCol={filteredCol}
+          handleProjectDetailsOpen={handleProjectDetailsOpen}
+          data={data}
+          isLoading={isLoading}
+        />
+      )}
     </>
   );
 };

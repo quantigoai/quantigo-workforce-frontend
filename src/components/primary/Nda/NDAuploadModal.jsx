@@ -85,7 +85,12 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
 
   const [coverImageFile, setCoverImageFile] = useState(null);
+  const [stepper, setStepper] = useState(0);
   const [coverImage, setCoverImage] = useState(null);
+  const handleDowload = () => {
+    setStepper(1);
+    console.log("hittt");
+  };
   const handleImage = (e) => {
     setCoverImageFile(e[0]);
     setSelectedFile(e[0]);
@@ -95,11 +100,13 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
       const url = URL.createObjectURL(file);
       setCoverImage(url);
     }
+    setStepper(3);
   };
   const removeImage = () => {
     setCoverImageFile([]);
     setSelectedFile([]);
     setCoverImage(null);
+    setStepper(1);
   };
   useEffect(() => {}, [acceptedFiles]);
   const files = acceptedFiles.map((file) => (
@@ -110,9 +117,6 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
       <img src={pdfSvg} /> {file.path}
     </>
   ));
-  function deleteNda() {
-    acceptedFiles.length = 0;
-  }
 
   // function handleClickOpen() {
   //   setOpen(true);
@@ -122,9 +126,6 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
   //   setOpen(false);
   // }
 
-  function handleClick() {
-    setClicked(true);
-  }
   const handleSubmission = () => {
     const formData = new FormData();
     formData.append("signImage", selectedFile);
@@ -154,7 +155,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
         <Box
           sx={{
             ...style,
-            height: { xl: "55%", lg: "90%" },
+            height: { xl: "54%", lg: "75%" },
             width: { xl: "35%", lg: "40%" },
           }}>
           <Box sx={{ flex: "0 0 5%" }}>
@@ -168,7 +169,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
               padding: "3%",
             }}>
             <Box sx={{ width: "100%", paddingTop: "1%", paddingBottom: "3%" }}>
-              <Stepper activeStep={3}>
+              <Stepper activeStep={stepper}>
                 {steps.map((label) => (
                   <Step key={label}>
                     <StepLabel>{label}</StepLabel>
@@ -178,7 +179,11 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
             </Box>
             <Box sx={{ width: "100%", paddingTop: "1%", paddingBottom: "3%", paddingLeft: "1%", paddingRight: "1%" }}>
               <Grid container>
-                <a href={Ndafile} download="Nda_File.pdf" style={{ textDecoration: "none" }}>
+                <a
+                  href={Ndafile}
+                  download="Nda_File.pdf"
+                  onClick={() => handleDowload()}
+                  style={{ textDecoration: "none", color: "#266AED" }}>
                   <i className="ri-download-2-line"></i>
                   {/* <img src={downloadIcon} style={{ marginRight: "12px",marginTop:"5px" }}/> */}
                   <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
@@ -190,33 +195,35 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
             <Box sx={{ paddingLeft: "1%", paddingRight: "1%" }}>
               <PdfNdaUploadField handleImage={handleImage} selectedFile={selectedFile} />
             </Box>
-            {!selectedFile?.name ? (
-              <></>
-            ) : (
-              <>
-                <Box sx={{ paddingLeft: "1%", paddingRight: "1%" }}>
-                  <Typography
-                    sx={{
-                      fontWeight: "500",
-                      mt: "5px",
-                      fontSize: "14px",
-                      mb: "10px",
-                      // color: isLightTheme ? "#091E42" : "#fff",
-                    }}
-                    variant="h6">
-                    Attachment
-                  </Typography>
 
-                  <Stack
-                    sx={{
-                      border: "1px solid #E6ECF5",
-                      padding: "16px",
-                      borderRadius: "8px",
-                      background: isLightTheme ? "#FAFCFF" : "#1E2A41",
-                      maxHeight: 100,
-                      color: isLightTheme ? "#091E42" : "#FFFFFF",
-                      overflowY: "auto",
-                    }}>
+            <Box sx={{ paddingLeft: "1%", paddingRight: "1%" }}>
+              <Typography
+                sx={{
+                  fontWeight: "500",
+                  mt: "5px",
+                  fontSize: "14px",
+                  mb: "7px",
+                  // color: isLightTheme ? "#091E42" : "#fff",
+                }}
+                variant="h6">
+                Attachment
+              </Typography>
+
+              <Stack
+                sx={{
+                  border: "1px solid #E6ECF5",
+                  padding: "16px",
+                  borderRadius: "8px",
+                  background: isLightTheme ? "#FAFCFF" : "#1E2A41",
+                  // maxHeight: 200,
+                  height: "75px",
+                  color: isLightTheme ? "#091E42" : "#FFFFFF",
+                  // overflowY: "auto",
+                }}>
+                {!selectedFile?.name ? (
+                  <></>
+                ) : (
+                  <>
                     <Grid item xs={12} sx={{}}>
                       <Grid container>
                         <Grid item xs={1} sx={{ paddingTop: "1%" }}>
@@ -239,10 +246,11 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
                         </Grid>
                       </Grid>
                     </Grid>
-                  </Stack>
-                </Box>
-              </>
-            )}
+                  </>
+                )}
+              </Stack>
+            </Box>
+
             {/* <>
               {!selectedFile?.name ? (
                 <></>
@@ -348,7 +356,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
                     }}
                     // onClick={() => handleChange()}
                   >
-                    Save Changes
+                    Upload
                   </Button>
                 </Grid>
               </Grid>
@@ -356,148 +364,6 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
           </Box>
         </Box>
       </Modal>
-
-      {/* <Dialog
-        PaperProps={{
-          sx: {
-            width: "80vh",
-            maxHeight: 700,
-          },
-        }}
-        open={openModal}
-        onClose={handleClose}
-        aria-labelledby="dialog-title"
-        aria-describedby="dialog-description">
-        <Grid container>
-          <Grid xs={10}>
-            <DialogTitle id="dialog-title" sx={{ color: "#090080" }}>
-              {"Upload NDA Form"}
-            </DialogTitle>
-          </Grid>
-          <Grid xs={2}>
-            <DialogTitle id="dialog-title">
-              <Button
-                onClick={() => {
-                  handleClose();
-                }}>
-                <img src={croxButton} />
-              </Button>
-            </DialogTitle>
-          </Grid>
-        </Grid>
-        <DialogContent>
-          <Grid container>
-            <Typography variant="h6" sx={{ color: "#090080" }}>
-              Steps
-            </Typography>
-          </Grid>
-          <Grid container>
-            <Typography variant=" subtitle1" sx={{ color: "#090080" }}>
-              1. Downlaod NDA form.
-            </Typography>
-          </Grid>
-          <Grid container>
-            <Typography variant=" subtitle1" sx={{ color: "#090080" }}>
-              2. Sign the form.
-            </Typography>
-          </Grid>
-          <Grid container>
-            <Typography variant=" subtitle1" sx={{ color: "#090080" }}>
-              3. Upload the signed document.
-            </Typography>
-          </Grid>
-        </DialogContent>
-        <DialogContent>
-          <Grid>
-            <PdfNdaUploadField handleImage={handleImage} selectedFile={selectedFile} />
-          </Grid>
-        </DialogContent>
-        <DialogContent>
-          <Grid container sx={{ paddingBottom: "1%" }}>
-            <Grid xs={1} sx={{ paddingTop: "1%" }}>
-              <a href={Ndafile} download="Nda_File.pdf">
-                <img src={downloadIcon} />
-              </a>
-            </Grid>
-            <Grid xs={11}>
-              <a href={Ndafile} download="Nda_File.pdf">
-                <Typography variant="h5" sx={{ color: "#2D58FF" }}>
-                  Download NDA Form
-                </Typography>
-              </a>
-            </Grid>
-          </Grid>
-          <>
-            {!selectedFile?.name ? (
-              <></>
-            ) : (
-              <>
-                <Grid container sx={{ paddingBottom: "1%" }}>
-                  <Grid xs={12} sx={{ paddingBottom: "1%" }}>
-                    <Typography variant="h5" sx={{ color: "" }}>
-                      Attachment
-                    </Typography>
-                  </Grid>
-                  <Grid container>
-                    <Grid item xs={1} sx={{ paddingTop: "3%" }}>
-                      <img src={actionIcon} />
-                    </Grid>
-                    <Grid
-                      item
-                      xs={11}
-                      sx={{
-                        border: "1px solid #DADCDF",
-                        borderRadius: "2px",
-                        padding: "2%",
-                      }}>
-                      <Grid container>
-                        <Grid item xs={1} sx={{ paddingTop: "1%" }}>
-                          <img src={pdfSvg} />
-                        </Grid>
-                        <Grid
-                          item
-                          xs={10}
-                          sx={{
-                            paddingTop: "2%",
-                            textAlign: "left",
-                            paddingRight: "2%",
-                          }}>
-                          <Typography>{selectedFile?.name}</Typography>
-                        </Grid>
-                        <Grid item xs={1}>
-                          <Button onClick={removeImage}>
-                            <img src={deleteIcon} />
-                          </Button>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </>
-            )}
-          </>
-        </DialogContent>
-
-        <DialogActions>
-          <Grid
-            container
-            sx={{
-              paddingLeft: "2%",
-              paddingRight: "2%",
-              paddingBottom: "1%",
-            }}>
-            {!selectedFile?.name ? (
-              <ButtonStyle disabled variant="contained">
-                SUBMIT
-              </ButtonStyle>
-            ) : (
-              <ButtonStyle variant="contained" disabled={isLoading} onClick={handleSubmission}>
-                SUBMIT
-              </ButtonStyle>
-            )}
-          </Grid>
-        </DialogActions>
-      </Dialog> */}
     </>
   );
 };

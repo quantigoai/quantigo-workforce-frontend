@@ -1,14 +1,16 @@
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import CancelIcon from "@mui/icons-material/Cancel";
-import {Button} from "@mui/material";
-import React, {useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {updateAUserById} from "../../../../features/slice/userSlice";
+import { Button } from "@mui/material";
+import React, { useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { updateAUserById } from "../../../../features/slice/userSlice";
 import NdaRejectModal from "./NdaRejectModal";
+import AcceptModal from "./AcceptModal";
 
-const NdaAccept = ({ signNda, userId, isNDASigned, signImage }) => {
+const NdaAccept = ({ signNda, user, isNDASigned, signImage }) => {
+  console.log("🚀 ~ file: NdaAccept.jsx:13 ~ NdaAccept ~ userId:", user);
   const alert = useAlert();
   const serverLink = "https://wmpserver.onrender.com/api/v1/";
   const pdfLink = serverLink.concat(signNda);
@@ -17,34 +19,36 @@ const NdaAccept = ({ signNda, userId, isNDASigned, signImage }) => {
   const [openModal, setOpenModal] = useState(false);
   const { register, handleSubmit } = useForm();
   const [open, setOpen] = useState(false);
-
+  const [openAccepet, setOpenAccepet] = React.useState(false);
+  const handleOpen = () => setOpenAccepet(true);
+  const handleCloseModal = () => setOpenAccepet(false);
   const { isLoading } = useSelector((state) => state.user);
 
   const handleClick = (pdfLink) => {
     window.open(pdfLink);
   };
-  const handleAccept = (userId) => {
+  const handleAccept = () => {
     const data = {
-      id: userId,
+      id: user._id,
       varifiedData: {
         isVerified: true,
       },
     };
-    dispatch(updateAUserById(data)).then((action) => {
-      if (action.payload?.status === 200) {
-        alert.show("User Verified successfully", { type: "success" });
-      } else {
-        alert.show("User not Verified ", { type: "error" });
-      }
-    });
+    // dispatch(updateAUserById(data)).then((action) => {
+    //   if (action.payload?.status === 200) {
+    //     alert.show("User Verified successfully", { type: "success" });
+    //   } else {
+    //     alert.show("User not Verified ", { type: "error" });
+    //   }
+    // });
   };
-  const handleReject = (userId) => {
+  const handleReject = () => {
     setOpenModal(true);
   };
 
   const onSubmit = (data) => {
     const finalData = {
-      id: userId,
+      id: user._id,
       varifiedData: {
         isVerified: false,
         rejectionCause: data.rejectionCause,
@@ -67,19 +71,15 @@ const NdaAccept = ({ signNda, userId, isNDASigned, signImage }) => {
     <>
       <spam>
         <Button disabled={isLoading}>
-          <AssignmentTurnedInIcon onClick={() => handleAccept(userId)} />
+          <AssignmentTurnedInIcon onClick={() => handleOpen()} />
         </Button>
 
         <Button disabled={isLoading}>
-          <CancelIcon onClick={() => handleReject(userId)} />
+          <CancelIcon onClick={() => handleReject()} />
         </Button>
       </spam>
-      <NdaRejectModal
-        openModal={openModal}
-        handleClose={handleClose}
-        register={register}
-        onSubmit={onSubmit}
-      />
+      <NdaRejectModal openModal={openModal} handleClose={handleClose} register={register} onSubmit={onSubmit} />
+      <AcceptModal open={openAccepet} handleClose={handleCloseModal} handleAccept={handleAccept} user={user} />
     </>
   );
 };

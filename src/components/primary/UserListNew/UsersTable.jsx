@@ -176,7 +176,7 @@ const UsersTable = (props) => {
                         <StyledTableCell align="center">
                           <NdaAccept
                             signNda={user.signImage}
-                            userId={user._id}
+                            user={user}
                             isNDASigned={user.isNDASigned}
                             signImage={user.signImage}
                           />

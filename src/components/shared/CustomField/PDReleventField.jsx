@@ -4,9 +4,7 @@ import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
 
 function PDReleventField({ name, defaultValueItems }) {
-  console.log("🚀 ~ file: PDReleventField.jsx:7 ~ PDReleventField ~ defaultValueItems:", defaultValueItems);
-  console.log("🚀 ~ file: PDReleventField.jsx:7 ~ PDReleventField ~ name:", name);
-  const { control, setValue } = useFormContext();
+   const { control, setValue } = useFormContext();
   const { isLightTheme } = useSelector((state) => state.theme);
 
   const { fields, append, remove } = useFieldArray({
@@ -14,14 +12,18 @@ function PDReleventField({ name, defaultValueItems }) {
     name,
     // name: "relevantDocuments",
   });
-
-  React.useEffect(() => {
-    if (defaultValueItems && defaultValueItems.length > 0) {
-      setValue(name, defaultValueItems);
-    } else if (fields.length === 0) {
-      append({ documentName: "", documentUrl: "" });
-    }
-  }, [defaultValueItems, setValue, name]);
+  if (defaultValueItems && defaultValueItems.length > 0 && fields.length === 0) {
+    setValue(name, defaultValueItems);
+  } else if (fields.length === 0) {
+    append({ documentName: "", documentUrl: "" });
+  }
+  // React.useEffect(() => {
+  //   if (defaultValueItems && defaultValueItems.length > 0) {
+  //     setValue(name, defaultValueItems);
+  //   } else if (fields.length === 0) {
+  //     append({ documentName: "", documentUrl: "" });
+  //   }
+  // }, [defaultValueItems, setValue, name]);
 
   const MyTextField = styled(TextField)(() => ({
     backgroundColor: isLightTheme && "#FFF",
@@ -62,8 +64,7 @@ function PDReleventField({ name, defaultValueItems }) {
                   left: 245,
                   fontSize: "20px",
                 }}
-                onClick={() => remove(index)}
-              >
+                onClick={() => remove(index)}>
                 <i style={{ color: "red", cursor: "pointer" }} className="ri-delete-bin-line"></i>
               </Button>
             </FormControl>
@@ -81,8 +82,7 @@ function PDReleventField({ name, defaultValueItems }) {
         }}
         variant="p"
         type="button"
-        onClick={() => append({ documentName: "", documentUrl: "" })}
-      >
+        onClick={() => append({ documentName: "", documentUrl: "" })}>
         <i className="ri-add-line"></i> Add another document
       </Typography>
     </>

@@ -28,8 +28,8 @@ import ProjectSvg from "../../../assets/images/wmp_svg/drawer/projectNew.svg";
 import SyncIcon from "../../../assets/images/wmp_svg/drawer/syncIcon.svg";
 import PaymentSvg from "../../../assets/images/wmp_svg/drawer/u_credit-card.svg";
 import UserSvg from "../../../assets/images/wmp_svg/drawer/userNew.svg";
-import GetHelpNew from "./GetHelpNew";
 import Header from "../Header/Header";
+import GetHelpNew from "./GetHelpNew";
 
 const drawerWidth = "15%";
 
@@ -132,6 +132,7 @@ export default function LayoutNew({ children }) {
   const adminOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "All Users", icon: UserSvg },
+    { name: "All Users 2", icon: UserSvg },
     { name: "All Projects2", icon: ProjectSvg },
     { name: "Skill", icon: SkillIcon },
     { name: "Projects", icon: ProjectSvg },
@@ -247,6 +248,8 @@ export default function LayoutNew({ children }) {
         return navigate("/dashboard");
       case "All Users":
         return navigate("/allusers");
+      case "All Users 2":
+        return navigate("/all-users");
       case "All Projects2":
         return navigate("/allprojects");
       case "Project Directory":

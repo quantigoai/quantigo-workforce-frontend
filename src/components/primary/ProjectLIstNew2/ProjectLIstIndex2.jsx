@@ -8,7 +8,7 @@
  */
 
 import SearchIcon from "@mui/icons-material/Search";
-import { Box, Button, Grid, IconButton, Paper, Typography } from "@mui/material";
+import { Box, Button, Grid, IconButton, Paper } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import { useCallback, useEffect, useState } from "react";
 import { useAlert } from "react-alert";
@@ -28,6 +28,7 @@ import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeade
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 import EditProjectModal from "./EditProjectModal";
+import TableWrapper from "./ExpTable/TableWrapper";
 import {
   fields,
   filterPDR,
@@ -44,9 +45,7 @@ import useHandleEditChange from "./Hooks/useHandleEditChange";
 import Project2DetailsModal from "./Project2Details/Project2DetailsModal";
 import ProjectModal from "./ProjectModal";
 import ProjectSelectFIlter from "./ProjectSelectFIlter";
-import ProjectTable2 from "./ProjectTable2";
 import "./index.css";
-import TableWrapper from "./ExpTable/TableWrapper";
 
 // test for commit
 /**
@@ -224,7 +223,6 @@ const ProjectLIstIndex2 = () => {
                   paddingX: "10px",
                 }}
               >
-                {/* <Typography variant="wpf_p4_semiBold">hello</Typography> */}
                 {/* TODO Need to remove the unnecessary custom button */}
                 <CommonHeader title="Projects" customButton="Create User" />
               </Grid>

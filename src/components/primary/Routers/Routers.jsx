@@ -18,6 +18,7 @@ import ErrorPage from "../../shared/Error/ErrorPage";
 import AllNotification from "../../shared/Notification/AllNotification";
 import Payment from "../../shared/Payment/Payment";
 import ServerSync from "../../shared/ServerSync/ServerSync";
+import AllUserListIndex from "../AllUsers/AllUserListIndex";
 import CalculateAnnotations from "../Annotations/CalculateAnnotations";
 import EmailVerification from "../Auth/EmailVerification/EmailVerification";
 import EmailVerificationAfterLogin from "../Auth/EmailVerification/EmailVerificationAfterLogin";
@@ -112,6 +113,14 @@ const Routers = () => {
           element={
             <PrivateRoute>
               <UserListIndex action={"alluser"} />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={"/all-users"}
+          element={
+            <PrivateRoute>
+              <AllUserListIndex action={"admin"} />
             </PrivateRoute>
           }
         />

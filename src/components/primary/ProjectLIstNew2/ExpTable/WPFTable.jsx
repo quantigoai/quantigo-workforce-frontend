@@ -1,5 +1,4 @@
-import { Box, Link, Stack, Typography } from "@mui/material";
-import Paper from "@mui/material/Paper";
+import { Badge, Box, Link, Paper, Stack, Typography, styled } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -11,9 +10,16 @@ import { calculateTimeDifference, formatDate, formatTime } from "../../../../hel
 import ChipGroup from "../../../shared/CustomTable/ChipGroup";
 import CustomButton from "../../../shared/CustomTable/CustomButton";
 import ProjectDrawerStatusChip from "../../../shared/FilterField/ProjectDrawerStatusChip";
-import PaginationTable from "../PaginationTable";
 import SortingButton from "../Project2Details/SortingButton";
 import "./index.css";
+
+const StyledBadge = styled(Badge)(() => ({
+  "& .MuiBadge-badge": {
+    right: -8,
+    top: 10,
+    padding: "0 2px",
+  },
+}));
 
 export default function WPFTable({
   handleDetailsPage,
@@ -29,25 +35,21 @@ export default function WPFTable({
   stickyFirstColumn,
   stickyLastColumn,
   columns,
-  pagination,
-  setPagination,
-  handleChangePagination,
-  totalItems,
 }) {
   return (
     myColumn.length > 0 && (
       <>
-        <Paper
+        {/* <Paper
           sx={{
             width: "100%",
-            height: "100%",
+            height: "92%",
             overflow: "auto",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
           }}
-        >
-          <TableContainer sx={{ height: "100%" }}>
+        > */}
+          <TableContainer className="tableContainer" sx={{ height: "100%" }}>
             <Table stickyHeader aria-label="sticky table">
               <TableHead className="tableHeader">
                 <TableRow>
@@ -115,11 +117,21 @@ export default function WPFTable({
                             key={column.id}
                             onClick={() => handleDetailsPage(row)}
                           >
-                            <Typography variant="wpf_p4_medium" color="neutral.700">
-                              {column.format && typeof value === "number"
-                                ? column.format(row[column?.field])
-                                : row[column?.field]}
-                            </Typography>
+                            {currentlyCheckedInProject === row._id ? (
+                              <StyledBadge variant="dot" color="success">
+                                <Typography variant="wpf_p4_medium" color="neutral.700">
+                                  {column.format && typeof value === "number"
+                                    ? column.format(row[column?.field])
+                                    : row[column?.field]}
+                                </Typography>
+                              </StyledBadge>
+                            ) : (
+                              <Typography variant="wpf_p4_medium" color="neutral.700">
+                                {column.format && typeof value === "number"
+                                  ? column.format(row[column?.field])
+                                  : row[column?.field]}
+                              </Typography>
+                            )}
                           </TableCell>
                         );
                       })}
@@ -242,14 +254,7 @@ export default function WPFTable({
               </TableBody>
             </Table>
           </TableContainer>
-
-          <PaginationTable
-            pagination={pagination}
-            setPagination={setPagination}
-            handleChangePagination={handleChangePagination}
-            totalItems={totalItems}
-          />
-        </Paper>
+        {/* </Paper> */}
       </>
     )
   );

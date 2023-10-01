@@ -178,7 +178,7 @@ const Routers = () => {
           }
         >
           <Route path={"/allusers"} element={<UserListIndex action={"alluser"} />} />
-          <Route path={"/all-users"} element={<AllUserListIndex action={"alluser"} />} />
+          <Route path={"/all-users"} element={<AllUserListIndex action={"admin"} />} />
         </Route>
         <Route
           element={

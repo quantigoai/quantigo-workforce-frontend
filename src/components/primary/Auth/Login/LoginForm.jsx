@@ -58,13 +58,7 @@ const LoginForm = () => {
   return (
     <Box sx={{ width: "100%" }}>
       <Grid container item xs={12} sx={{ paddingBottom: "4%" }}>
-        <Typography
-          variant="h3"
-          style={{
-            color: "#FFFFFF",
-            fontSize: "40px",
-          }}
-        >
+        <Typography variant="wpf_h1_semiBold" color="neutral.850">
           {"Login"}
         </Typography>
       </Grid>
@@ -136,7 +130,15 @@ const LoginForm = () => {
           </Grid>
         </Stack>
 
-        <LoadingButtonStyle fullWidth color="inherit" size="large" disabled={Object.keys(errors).length || false} type="submit" variant="contained" loading={isLoading}>
+        <LoadingButtonStyle
+          fullWidth
+          color="inherit"
+          size="large"
+          disabled={Object.keys(errors).length || false}
+          type="submit"
+          variant="contained"
+          loading={isLoading}
+        >
           Login
         </LoadingButtonStyle>
       </FormProvider>

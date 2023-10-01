@@ -8,13 +8,13 @@
  */
 
 import { createTheme } from "@mui/material";
-import { lightCustomColors } from "./color";
+import { lightColors } from "./lightColor";
 import typography from "./typography";
 
 const lightTheme = createTheme({
   palette: {
     mode: "light",
-    ...lightCustomColors,
+    ...lightColors,
   },
   typography: {
     ...typography,

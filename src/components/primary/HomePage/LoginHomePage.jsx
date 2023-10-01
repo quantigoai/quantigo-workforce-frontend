@@ -2,9 +2,9 @@ import { Box, keyframes, styled } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Login from "../Auth/Login/Login";
-import "./bd.css";
-import HeaderNav from "./HeaderNav";
 import CommonDesign from "./CommonDesign";
+import HeaderNav from "./HeaderNav";
+import "./bd.css";
 
 const colorbg = keyframes`
         "0%": {

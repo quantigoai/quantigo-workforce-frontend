@@ -13,6 +13,7 @@ import { useLocation } from "react-router-dom";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import PaginationTable from "../PaginationTable";
 import DetailsPage from "../ProjectDetailsFull/DetailsPage";
+import WPFPagination from "./WPFPagination/WPFPagination";
 import WPFTable from "./WPFTable";
 
 const TableWrapper = ({
@@ -45,6 +46,7 @@ const TableWrapper = ({
   const columns = myColumn.slice(1, myColumn.length - 1);
   const [isColumSet, setIsColumnSet] = useState(false);
   const approvedPaths = ["/allprojects", "/all-users"];
+
   useEffect(() => {
     if (stickyFirstColumn.length > 0 && stickyLastColumn.length > 0 && columns.length > 0) {
       setIsColumnSet(true);
@@ -126,6 +128,12 @@ const TableWrapper = ({
           handleChangePagination={handleChangePagination}
           totalItems={totalItems}
         />
+        {/* <WPFPagination
+          pagination={pagination}
+          setPagination={setPagination}
+          handleChangePagination={handleChangePagination}
+          totalItems={totalItems}
+        /> */}
       </Paper>
     </>
   );

@@ -10,6 +10,7 @@
 import { TextField, styled } from "@mui/material";
 import PropTypes from "prop-types";
 import { Controller, useFormContext } from "react-hook-form";
+import { useSelector } from "react-redux";
 
 CustomTextField.propTypes = {
   name: PropTypes.string,
@@ -21,7 +22,7 @@ export const MyTextField = styled(TextField)(() => ({
 }));
 export default function CustomTextField({ name, helperText, ...other }) {
   const { control } = useFormContext();
-
+  const { isLightTheme } = useSelector((state) => state.theme);
   return (
     <Controller
       name={name}
@@ -35,7 +36,7 @@ export default function CustomTextField({ name, helperText, ...other }) {
             InputProps={{ disableUnderline: true }}
             variant="filled"
             sx={{
-              backgroundColor: "#FFFFFF",
+              backgroundColor: isLightTheme ? "#FFFFFF" : "#1D1D1D",
             }}
             value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
             error={!!error}

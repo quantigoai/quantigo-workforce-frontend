@@ -9,6 +9,7 @@
 
 import { Box, Grid, Link, Typography } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
 import logoBlue from "../../../assets/images/rsz_logoblue.png";
@@ -16,6 +17,9 @@ import logoBlue from "../../../assets/images/rsz_logoblue.png";
 const HeaderNav = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { isLightTheme } = useSelector((state) => state.theme);
+  console.log("🚀 ~ file: LoginPage.jsx:19 ~ LoginPage ~ isLightTheme:", isLightTheme);
+
   return (
     <>
       <Grid
@@ -67,38 +71,46 @@ const HeaderNav = () => {
             }}
           >
             <Grid item xs={12}>
-              <Box sx={{ display: "flex", justifyContent: "flex-end", backgroundColor: "#fff", p: 4 }} gap={3}>
-                <Typography sx={{ color: "#FFFFFF" }} variant="body1">
-                  <Link
-                    // onClick={() => navigate("/faq")}
-                    underline="hover"
-                    sx={{
-                      color: location.pathname === "/howitworks" && " #47536B",
-                      cursor: "pointer",
-                    }}
-                  >
-                    FAQ
-                  </Link>
-                </Typography>
-                <Typography sx={{ color: "#FFFFFF" }} variant="body1">
-                  <Link
-                    onClick={() => navigate("/howitworks")}
-                    underline="hover"
-                    sx={{
-                      color: location.pathname === "/howitworks" && "#47536B",
-                      cursor: "pointer",
-                    }}
-                  >
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  // backgroundColor: isLightTheme ? "#fff" : "#000",
+                  backgroundColor: "#fff",
+                  p: 4,
+                }}
+                gap={3}
+              >
+                <Link
+                  color="neutral.850"
+                  // onClick={() => navigate("/faq")}
+                  underline="hover"
+                  sx={{
+                    cursor: "pointer",
+                  }}
+                >
+                  <Typography color="neutral.850">FAQ</Typography>
+                </Link>
+                <Link
+                  onClick={() => navigate("/howitworks")}
+                  underline="hover"
+                  sx={{
+                    color: location.pathname === "/howitworks" && "#47536B",
+                    cursor: "pointer",
+                  }}
+                >
+                  <Typography color="neutral.850" variant="body1">
                     How it works
-                  </Link>
-                </Typography>
+                  </Typography>
+                </Link>
                 {/* <Typography sx={{ color: "#FFFFFF" }} variant="body1">
                   How it work
                 </Typography> */}
                 <Typography
-                  sx={{
-                    color: location.pathname === "/howitworks" && " #47536B",
-                  }}
+                  color="neutral.850"
+                  // sx={{
+                  //   color: location.pathname === "/howitworks" && " #47536B",
+                  // }}
                   variant="body1"
                 >
                   About Us

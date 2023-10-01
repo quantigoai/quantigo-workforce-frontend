@@ -13,7 +13,7 @@
  * ------------------------
  */
 
-export const lightCustomColors = {
+export const lightColors = {
   neutral: {
     N000: "#FFFFFF",
     N300: "#3C4D6B",
@@ -27,6 +27,7 @@ export const lightCustomColors = {
     700: "#253E5C",
     750: "#091E42",
     800: "#0E243D",
+    850: "#47536B",
   },
   primary: {
     main: "#266AED",

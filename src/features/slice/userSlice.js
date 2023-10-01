@@ -139,44 +139,54 @@ export const updateMyDocuments = createAsyncThunk("users/my-documents", async (f
 // filter User
 
 export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
-  const { role, hub, active, limit, skip, skills } = data || {};
-  const todayDate = new Date().toISOString().slice(0, 10);
-  let query = `sortBy=createdAt:asc`;
-  if (limit) {
-    if (limit === -1) {
-      query += ``;
-    } else {
-      query += `&limit=${limit}`;
-    }
-  } else {
-    query += `&limit=10`;
-  }
-  if (skip) {
-    query += `&skip=${skip}`;
-  } else {
-    query += `&skip=0`;
-  }
+  const { pagination, filteredData, ascDescOption, role, hub, active, limit, skip, skills } = data || {};
 
-  if (role) {
-    for (let x in role) {
-      query += `&role=${role[x]}`;
-    }
-  }
-  if (hub) {
-    query += `&hub=${hub}`;
-  }
-  if (active) {
-    if (active === "active") {
-      query += `&activeAnnotator=${todayDate}`;
-    } else {
-      query += `&activeAnnotator=empty`;
-    }
-  }
-  if (skills) {
-    for (let x in skills) {
-      query += `&skills=${skills[x]}`;
-    }
-  }
+  const todayDate = new Date().toISOString().slice(0, 10);
+
+  // let query = `sortBy=createdAt:asc`;
+  let query = `sortBy=createdAt:asc&limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
+
+  const filterOptions = Object.keys(filteredData);
+  filterOptions.map((f) => (query += `&${f}=${filteredData[f]}`));
+
+  const ascDescOptions = Object.keys(ascDescOption);
+  ascDescOptions.map((ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`));
+
+  // if (limit) {
+  //   if (limit === -1) {
+  //     query += ``;
+  //   } else {
+  //     query += `&limit=${limit}`;
+  //   }
+  // } else {
+  //   query += `&limit=10`;
+  // }
+  // if (skip) {
+  //   query += `&skip=${skip}`;
+  // } else {
+  //   query += `&skip=0`;
+  // }
+
+  // if (role) {
+  //   for (let x in role) {
+  //     query += `&role=${role[x]}`;
+  //   }
+  // }
+  // if (hub) {
+  //   query += `&hub=${hub}`;
+  // }
+  // if (active) {
+  //   if (active === "active") {
+  //     query += `&activeAnnotator=${todayDate}`;
+  //   } else {
+  //     query += `&activeAnnotator=empty`;
+  //   }
+  // }
+  // if (skills) {
+  //   for (let x in skills) {
+  //     query += `&skills=${skills[x]}`;
+  //   }
+  // }
   return axios.get(`${url}/users?${query}`, {
     headers: {
       Authorization: `Bearer ${realToken()}`,

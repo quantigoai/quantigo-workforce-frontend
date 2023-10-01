@@ -14,11 +14,13 @@
  */
 
 import { createTheme } from "@mui/material";
+import { darkColors } from "./darkColor";
 import typography from "./typography";
 
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
+    ...darkColors,
   },
   typography: {
     ...typography,
@@ -46,17 +48,17 @@ const darkTheme = createTheme({
     ...(typography.wpf_h5_medium.color = "#fff"),
     ...(typography.wpf_h6_medium.color = "#fff"),
     ...(typography.wpf_h7_medium.color = "#fff"),
-    
+
     ...(typography.wpf_p1_semiBold.color = "#fff"),
     ...(typography.wpf_p2_semiBold.color = "#fff"),
     ...(typography.wpf_p3_semiBold.color = "#fff"),
     ...(typography.wpf_p4_semiBold.color = "#fff"),
-    
+
     ...(typography.wpf_p1_medium.color = "#fff"),
     ...(typography.wpf_p2_medium.color = "#fff"),
     ...(typography.wpf_p3_medium.color = "#fff"),
     ...(typography.wpf_p4_medium.color = "#fff"),
-    
+
     ...(typography.wpf_p1_regular.color = "#fff"),
     ...(typography.wpf_p2_regular.color = "#fff"),
     ...(typography.wpf_p3_regular.color = "#fff"),

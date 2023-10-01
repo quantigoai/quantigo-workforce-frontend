@@ -8,11 +8,9 @@
  */
 
 import { Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 import { setActivePath } from "../../../features/slice/activePathSlice";
-import { getAllSkills } from "../../../features/slice/skillSlice";
 import { getAllUsers } from "../../../features/slice/userSlice";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import useAllFunc from "../ProjectLIstNew2/Hooks/useAllFunc";
@@ -21,18 +19,19 @@ import AllUsersTable from "./AllUsersTable";
 import UsersFilter from "./UsersFilter";
 import UsersHeader from "./UsersHeader";
 import "./index.css";
+import { getAllSkills } from "../../../features/slice/skillSlice";
 
 const annotatorRoles = ["level_0_annotator", "level_1_annotator", "level_2_annotator", "level_3_annotator"];
 const reviewerRoles = ["reviewer"];
 
 const AllUserListIndex = ({ action }) => {
   const dispatch = useDispatch();
-  const { isLoading } = useSelector((state) => state.user);
+  const { isLightTheme } = useSelector((state) => state.theme);
   const { users, totalUsers } = useSelector((state) => state.user.users);
-  const user = useSelector((state) => state.user);
-  const { role } = user.user;
-  const url = import.meta.env.VITE_APP_SERVER_URL;
-  const location = useLocation();
+  const { isLoading, user } = useSelector((state) => state.user);
+  const { role } = user;
+  const [myColumn, setMyColumn] = useState([]);
+  const [myRows, setMyRows] = useState([]);
 
   const {
     createProjectOpen,
@@ -56,7 +55,7 @@ const AllUserListIndex = ({ action }) => {
   });
 
   useEffect(() => {
-    dispatch(setActivePath("All Users 2"));
+        dispatch(setActivePath("All Users 2"));
     if (action === "annotator") {
       dispatch(
         getAllUsers({
@@ -85,18 +84,15 @@ const AllUserListIndex = ({ action }) => {
       dispatch(
         getAllUsers({
           limit: pagination.pageSize,
-          skip: pagination.pageSize * pagination.currentPage,
-        })
-      );
+    skip: pagination.pageSize * pagination.currentPage,
+    })
+    );
     }
     dispatch(getAllSkills());
   }, [action, role, dispatch, pagination.currentPage, pagination.pageSize]);
 
   //   -------------------------------
-  const { isLightTheme } = useSelector((state) => state.theme);
-  const [myColumn, setMyColumn] = useState([]);
-  const [myRows, setMyRows] = useState([]);
-  
+
   const handleClick = (e) => {
     console.log("🚀 ~ file: AllUserListIndex.jsx:101 ~ handleClick ~ e:", e);
   };
@@ -104,11 +100,22 @@ const AllUserListIndex = ({ action }) => {
   const handleDelete = (e) => {
     console.log("🚀 ~ file: AllUserListIndex.jsx:103 ~ handleDelete ~ e:", e);
   };
-  
-  const handleDetailsPage = (e) => {};
 
-  const handleProjectDetailsOpen = (e) => {};
-  const handleChangePagination = (e) => {};
+  const handleDetailsPage = (e) => {
+    console.log("🚀 ~ file: AllUserListIndex.jsx:105 ~ handleDetailsPage ~ e:", e);
+  };
+
+  const handleChangePagination = useCallback(() => {
+    console.log("render here handleChangePagination");
+    dispatch(
+      getAllUsers({
+        pagination,
+        filteredData: filterValue,
+        ascDescOption: filteredCol,
+      })
+    );
+  }, [dispatch, pagination, filterValue, filteredCol]);
+
   // --------------------------------
   return (
     <Box className="projectBox">
@@ -138,7 +145,7 @@ const AllUserListIndex = ({ action }) => {
             handleDetailsPage={handleDetailsPage}
             handleChangePagination={handleChangePagination}
             total={totalUsers}
-            handleProjectDetailsOpen={handleProjectDetailsOpen}
+            handleProjectDetailsOpen={handleDetailsPage}
             data={users}
           />
         ) : (

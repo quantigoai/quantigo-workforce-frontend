@@ -1,7 +1,8 @@
-import {Box, Grid, Link, Typography} from "@mui/material";
-import {styled} from "@mui/material/styles";
+import { Box, Grid, Link, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import bgimg from "../../../../assets/images/LoginBG.png";
 import logo from "../../../../assets/images/logo.png";
 import Login from "./Login";
@@ -14,7 +15,6 @@ const BgBox = styled(Box)({
 });
 const LoginPage = () => {
   const navigate = useNavigate();
-
   return (
     <>
       <BgBox>
@@ -43,10 +43,7 @@ const LoginPage = () => {
           >
             <Grid xs={4}>
               <Typography sx={{ color: "#FFFFFF" }} variant="body2">
-                <Link
-                  onClick={() => navigate("/faq")}
-                  sx={{ borderRadius: 1, marginTop: 3, cursor: "pointer" }}
-                >
+                <Link onClick={() => navigate("/faq")} sx={{ borderRadius: 1, marginTop: 3, cursor: "pointer" }}>
                   FAQ
                 </Link>
               </Typography>

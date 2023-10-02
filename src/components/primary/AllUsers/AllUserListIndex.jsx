@@ -23,7 +23,12 @@ import UsersHeader from "./UsersHeader";
 import "./index.css";
 import { fields } from "./tableFields";
 
-const annotatorRoles = ["level_0_annotator", "level_1_annotator", "level_2_annotator", "level_3_annotator"];
+const annotatorRoles = [
+  "level_0_annotator",
+  "level_1_annotator",
+  "level_2_annotator",
+  "level_3_annotator",
+];
 const reviewerRoles = ["reviewer"];
 
 const AllUserListIndex = ({ action }) => {
@@ -41,10 +46,17 @@ const AllUserListIndex = ({ action }) => {
   });
 
   useEffect(() => {
+    console.log("effect");
     dispatch(setActivePath("All Users 2"));
     setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
     users && users.length > 0 && setMyRows(dataBuilder(users));
   }, [dispatch, users]);
+
+  
+  useEffect(() => {
+    console.log("hit single");
+    dispatch(getAllUsers({ pagination }));
+  }, []);
 
   //   -------------------------------
 
@@ -57,10 +69,14 @@ const AllUserListIndex = ({ action }) => {
   };
 
   const handleDetailsPage = (e) => {
-    console.log("🚀 ~ file: AllUserListIndex.jsx:105 ~ handleDetailsPage ~ e:", e);
+    console.log(
+      "🚀 ~ file: AllUserListIndex.jsx:105 ~ handleDetailsPage ~ e:",
+      e
+    );
   };
 
   const handleChangePagination = useCallback(() => {
+    console.log("hit");
     dispatch(getAllSkills());
     dispatch(getAllUsers({ pagination }));
   }, [dispatch, pagination]);
@@ -110,7 +126,9 @@ const AllUserListIndex = ({ action }) => {
             totalItems={totalUsers}
             handleId={handleId}
             filteredCol={filteredCol}
-            handleProjectDetailsOpen={() => console.log("handleProjectDetailsOpen")}
+            handleProjectDetailsOpen={() =>
+              console.log("handleProjectDetailsOpen")
+            }
             data={users}
             isLoading={isLoading}
           />

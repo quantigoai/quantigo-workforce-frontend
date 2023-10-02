@@ -23,7 +23,8 @@ export const darkColors = {
     N650: "#303030", // Border color
     500: "#8C8C8C", // Secondary text color
     550: "#737373", // Darker secondary text color
-    600: "#EAEAEA", // Very light text color
+    // 600: "#EAEAEA", // Very light text color
+    600: "#000", // Very light text color
     700: "#FFFFFF", // Light text color
     750: "#3A3A3A", // Darker background color
     800: "#000000", // Darkest background color

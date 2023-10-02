@@ -18,9 +18,21 @@ CustomTextField.propTypes = {
 };
 export const MyTextField = styled(TextField)(() => ({
   borderRadius: "5px",
-  backgroundColor: "red ",
-  "& .MuiInputBase-root": { height: "100%" },
+  backgroundColor: "#fff",
+  "& .MuiOutlinedInput-notchedOutline": {
+    border: "2px solid #F2F6FC !important",
+    borderRadius: "8px",
+  },
+  "&:hover .MuiOutlinedInput-notchedOutline": {
+    height: "100%",
+    backgroundColor: "transparent",
+  },
+  "& .MuiFilledInput-root": {
+    height: "100%",
+    backgroundColor: "transparent",
+  },
 }));
+
 export default function CustomTextField({ name, helperText, ...other }) {
   const { control } = useFormContext();
   const { isLightTheme } = useSelector((state) => state.theme);
@@ -30,20 +42,22 @@ export default function CustomTextField({ name, helperText, ...other }) {
       control={control}
       render={({ field, fieldState: { error } }) => {
         return (
-          <MyTextField
-            id="input-with-icon-textfield"
-            {...field}
-            fullWidth
-            InputProps={{ disableUnderline: true }}
-            variant="filled"
-            sx={{
-              backgroundColor: isLightTheme ? "#FFFFFF" : "#1D1D1D",
-            }}
-            value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
-            error={!!error}
-            helperText={error ? error?.message : helperText}
-            {...other}
-          />
+          <>
+            <MyTextField
+              id="input-with-icon-textfield"
+              {...field}
+              fullWidth
+              InputProps={{ disableUnderline: true }}
+              variant="outlined"
+              sx={{
+                backgroundColor: isLightTheme ? "#FFFFFF" : "#1D1D1D",
+              }}
+              value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
+              error={!!error}
+              helperText={error ? error?.message : helperText}
+              {...other}
+            />
+          </>
         );
       }}
     />

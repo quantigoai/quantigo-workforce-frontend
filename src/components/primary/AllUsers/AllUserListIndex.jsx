@@ -8,14 +8,17 @@
  */
 
 import { Box } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { Suspense, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import { getAllSkills } from "../../../features/slice/skillSlice";
 import { getAllUsers } from "../../../features/slice/userSlice";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
-import TableWrapper from "../ProjectLIstNew2/ExpTable/TableWrapper";
+// import TableWrapper from "../ProjectLIstNew2/ExpTable/TableWrapper";
+const TableWrapper = React.lazy(() => import("../ProjectLIstNew2/ExpTable/TableWrapper"));
+
+import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import useAllFunc from "../ProjectLIstNew2/Hooks/useAllFunc";
 import "../ProjectLIstNew2/index.css";
 import UsersFilter from "./UsersFilter";
@@ -23,12 +26,7 @@ import UsersHeader from "./UsersHeader";
 import "./index.css";
 import { fields } from "./tableFields";
 
-const annotatorRoles = [
-  "level_0_annotator",
-  "level_1_annotator",
-  "level_2_annotator",
-  "level_3_annotator",
-];
+const annotatorRoles = ["level_0_annotator", "level_1_annotator", "level_2_annotator", "level_3_annotator"];
 const reviewerRoles = ["reviewer"];
 
 const AllUserListIndex = ({ action }) => {
@@ -46,15 +44,12 @@ const AllUserListIndex = ({ action }) => {
   });
 
   useEffect(() => {
-    console.log("effect");
     dispatch(setActivePath("All Users 2"));
     setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
     users && users.length > 0 && setMyRows(dataBuilder(users));
   }, [dispatch, users]);
 
-  
   useEffect(() => {
-    console.log("hit single");
     dispatch(getAllUsers({ pagination }));
   }, []);
 
@@ -69,17 +64,8 @@ const AllUserListIndex = ({ action }) => {
   };
 
   const handleDetailsPage = (e) => {
-    console.log(
-      "🚀 ~ file: AllUserListIndex.jsx:105 ~ handleDetailsPage ~ e:",
-      e
-    );
+    console.log("🚀 ~ file: AllUserListIndex.jsx:105 ~ handleDetailsPage ~ e:", e);
   };
-
-  const handleChangePagination = useCallback(() => {
-    console.log("hit");
-    dispatch(getAllSkills());
-    dispatch(getAllUsers({ pagination }));
-  }, [dispatch, pagination]);
 
   const {
     createProjectOpen,
@@ -97,6 +83,18 @@ const AllUserListIndex = ({ action }) => {
     setDetailsProjectOpen,
   } = useAllFunc();
 
+  const handleChangePagination = useCallback(() => {
+    console.log("hit inside pagination");
+    dispatch(getAllSkills());
+    dispatch(
+      getAllUsers({
+        pagination,
+        filteredData: filterValue,
+        ascDescOption: filteredCol,
+      })
+    );
+  }, [dispatch, pagination, filterValue, filteredCol]);
+
   // --------------------------------
   return (
     <Box className="projectBox">
@@ -112,7 +110,8 @@ const AllUserListIndex = ({ action }) => {
       </Box>
 
       <Box className="tableContent">
-        {users && users.length > 0 && (
+        {/* {users && users.length > 0 && ( */}
+        <Suspense fallback={<LoadingComponent height={"100%"} />}>
           <TableWrapper
             role={role}
             handleDetailsPage={handleDetailsPage}
@@ -126,13 +125,12 @@ const AllUserListIndex = ({ action }) => {
             totalItems={totalUsers}
             handleId={handleId}
             filteredCol={filteredCol}
-            handleProjectDetailsOpen={() =>
-              console.log("handleProjectDetailsOpen")
-            }
+            handleProjectDetailsOpen={() => console.log("handleProjectDetailsOpen")}
             data={users}
             isLoading={isLoading}
           />
-        )}
+        </Suspense>
+        {/* )} */}
       </Box>
     </Box>
   );

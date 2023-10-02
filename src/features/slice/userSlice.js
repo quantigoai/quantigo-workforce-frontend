@@ -41,12 +41,9 @@ export const login = createAsyncThunk("user/login", async (data) => {
 });
 
 //social login
-export const socialLogin = createAsyncThunk(
-  "users/sociallogin",
-  async (data) => {
-    return await axios.post(`${url}/users/sociallogin`, data);
-  }
-);
+export const socialLogin = createAsyncThunk("users/sociallogin", async (data) => {
+  return await axios.post(`${url}/users/sociallogin`, data);
+});
 
 export const signup = createAsyncThunk("user/users", async (data) => {
   try {
@@ -69,12 +66,9 @@ export const logout = createAsyncThunk("user/logout", async () => {
   );
 });
 
-export const alreadyLogin = createAsyncThunk(
-  "user/alreadyLogin",
-  async (id) => {
-    return axios.get(`${url}/users/${id}`);
-  }
-);
+export const alreadyLogin = createAsyncThunk("user/alreadyLogin", async (id) => {
+  return axios.get(`${url}/users/${id}`);
+});
 
 // read My Profile
 export const readMyProfile = createAsyncThunk("read/myProfile", async () => {
@@ -85,34 +79,28 @@ export const readMyProfile = createAsyncThunk("read/myProfile", async () => {
   });
 });
 
-export const myProfileEdit = createAsyncThunk(
-  "user/myProfileEdit",
-  async (finalData) => {
-    const { id, dataAll } = finalData;
-    return axios.patch(`${url}/users/my-profile/${id}`, dataAll, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const myProfileEdit = createAsyncThunk("user/myProfileEdit", async (finalData) => {
+  const { id, dataAll } = finalData;
+  return axios.patch(`${url}/users/my-profile/${id}`, dataAll, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // upload My Image
 
-export const uploadMyImage = createAsyncThunk(
-  "upload/my/image",
-  async (finalImageData) => {
-    const { formData, id } = finalImageData;
-    return axios.patch(`${url}/users/my-image/${id}`, formData, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-      content: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-  }
-);
+export const uploadMyImage = createAsyncThunk("upload/my/image", async (finalImageData) => {
+  const { formData, id } = finalImageData;
+  return axios.patch(`${url}/users/my-image/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+    content: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+});
 
 export const removeMyImage = createAsyncThunk("remove/my/image", async (id) => {
   return axios.delete(`${url}/users/my-image/${id}`, {
@@ -123,17 +111,14 @@ export const removeMyImage = createAsyncThunk("remove/my/image", async (id) => {
 });
 
 //Update My Documents
-export const updateMyDocuments = createAsyncThunk(
-  "users/my-documents",
-  async (finalData) => {
-    const { id, formData } = finalData;
-    return axios.patch(`${url}/users/my-documents/${id}`, formData, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const updateMyDocuments = createAsyncThunk("users/my-documents", async (finalData) => {
+  const { id, formData } = finalData;
+  return axios.patch(`${url}/users/my-documents/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // export const verifyUser = createAsyncThunk("user/verifyUser", async () => {
 //     return axios.get(`${url}/users`, {
@@ -154,25 +139,15 @@ export const updateMyDocuments = createAsyncThunk(
 // filter User
 
 export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
-  const {
-    pagination,
-    filteredData,
-    ascDescOption,
-    role,
-    hub,
-    active,
-    limit,
-    skip,
-    skills,
-  } = data || {};
+  const { pagination, filteredData, ascDescOption, role, hub, active, limit, skip, skills } = data || {};
 
   const todayDate = new Date().toISOString().slice(0, 10);
   let query;
   if (pagination) {
-    query = `sortBy=createdAt:asc&limit=${pagination.pageSize}&skip=${
-      pagination.currentPage * pagination.pageSize
-    }`;
-  } else query = `sortBy=createdAt:asc`;
+    query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
+  } else {
+    query = `sortBy=createdAt:asc`;
+  }
 
   if (filteredData) {
     const filterOptions = Object.keys(filteredData);
@@ -183,41 +158,41 @@ export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
     ascDescOptions.map((ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`));
   }
 
-  if (limit) {
-    if (limit === -1) {
-      query += ``;
-    } else {
-      query += `&limit=${limit}`;
-    }
-  } else {
-    query += `&limit=10`;
-  }
-  if (skip) {
-    query += `&skip=${skip}`;
-  } else {
-    query += `&skip=0`;
-  }
+  // if (limit) {
+  //   if (limit === -1) {
+  //     query += ``;
+  //   } else {
+  //     query += `&limit=${limit}`;
+  //   }
+  // } else {
+  //   query += `&limit=10`;
+  // }
+  // if (skip) {
+  //   query += `&skip=${skip}`;
+  // } else {
+  //   query += `&skip=0`;
+  // }
 
-  if (role) {
-    for (let x in role) {
-      query += `&role=${role[x]}`;
-    }
-  }
-  if (hub) {
-    query += `&hub=${hub}`;
-  }
-  if (active) {
-    if (active === "active") {
-      query += `&activeAnnotator=${todayDate}`;
-    } else {
-      query += `&activeAnnotator=empty`;
-    }
-  }
-  if (skills) {
-    for (let x in skills) {
-      query += `&skills=${skills[x]}`;
-    }
-  }
+  // if (role) {
+  //   for (let x in role) {
+  //     query += `&role=${role[x]}`;
+  //   }
+  // }
+  // if (hub) {
+  //   query += `&hub=${hub}`;
+  // }
+  // if (active) {
+  //   if (active === "active") {
+  //     query += `&activeAnnotator=${todayDate}`;
+  //   } else {
+  //     query += `&activeAnnotator=empty`;
+  //   }
+  // }
+  // if (skills) {
+  //   for (let x in skills) {
+  //     query += `&skills=${skills[x]}`;
+  //   }
+  // }
   return axios.get(`${url}/users?${query}`, {
     headers: {
       Authorization: `Bearer ${realToken()}`,
@@ -226,84 +201,63 @@ export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
 });
 
 //forget password
-export const forgetPasswordSlice = createAsyncThunk(
-  "users/forget-password",
-  async (data) => {
-    return axios.post(`${url}/users/forgot-password`, data);
-  }
-);
+export const forgetPasswordSlice = createAsyncThunk("users/forget-password", async (data) => {
+  return axios.post(`${url}/users/forgot-password`, data);
+});
 //set new password
-export const setNewPassword = createAsyncThunk(
-  "users/reset-password/:id/:token",
-  async (resetdata) => {
-    const { id, token, data } = resetdata;
+export const setNewPassword = createAsyncThunk("users/reset-password/:id/:token", async (resetdata) => {
+  const { id, token, data } = resetdata;
 
-    return axios.post(`${url}/users/reset-password/${id}/${token}`, data);
-  }
-);
+  return axios.post(`${url}/users/reset-password/${id}/${token}`, data);
+});
 
 // qui database
 export const getAUserQuiId = createAsyncThunk("qaiusers/:id", async (id) => {
   return axios.get(`${url}/qaiusers/${id}`);
 });
 
-export const generateQuiId = createAsyncThunk(
-  "qaiusers/hubs/:hub",
-  async (hub) => {
-    return axios.get(`${url}/qaiusers/hubs/${hub}`);
-  }
-);
+export const generateQuiId = createAsyncThunk("qaiusers/hubs/:hub", async (hub) => {
+  return axios.get(`${url}/qaiusers/hubs/${hub}`);
+});
 
 //  create Qai User
 
-export const createQaiUser = createAsyncThunk(
-  "qaiusers/createqaiuser",
-  async (data) => {
-    try {
-      return axios.post(`${url}/qaiusers/createqaiuser`, data);
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
+export const createQaiUser = createAsyncThunk("qaiusers/createqaiuser", async (data) => {
+  try {
+    return axios.post(`${url}/qaiusers/createqaiuser`, data);
+  } catch (error) {
+    throw new Error(error.response.data.message);
   }
-);
+});
 
-export const createAgUser = createAsyncThunk(
-  "agusers/createaguser",
-  async (data) => {
-    return axios.post(`${url}/agusers/createaguser`, data);
-  }
-);
+export const createAgUser = createAsyncThunk("agusers/createaguser", async (data) => {
+  return axios.post(`${url}/agusers/createaguser`, data);
+});
 
 // NDA Signing upload
 
-export const signingNda = createAsyncThunk(
-  "user/myNda/userID",
-  async (data) => {
-    const { id, signImage } = data;
+export const signingNda = createAsyncThunk("user/myNda/userID", async (data) => {
+  const { id, signImage } = data;
 
-    return axios.patch(`${url}/users/my-nda/${id}`, signImage, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-      content: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-  }
-);
+  return axios.patch(`${url}/users/my-nda/${id}`, signImage, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+    content: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+});
 
 // update a user by id
-export const updateAUserById = createAsyncThunk(
-  "updateA/user/Id",
-  async (data) => {
-    const { id, varifiedData } = data;
-    return axios.patch(`${url}/users/${id}`, varifiedData, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const updateAUserById = createAsyncThunk("updateA/user/Id", async (data) => {
+  const { id, varifiedData } = data;
+  return axios.patch(`${url}/users/${id}`, varifiedData, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 export const getAUserById = createAsyncThunk("getUser/user/Id", async (id) => {
   return axios.get(`${url}/users/${id}`, {
@@ -325,101 +279,77 @@ export const changeRole = createAsyncThunk("change/role", async (finalData) => {
 
 // user Action
 
-export const deleteOrActivateUser = createAsyncThunk(
-  "user/id/action",
-  async (finalData) => {
-    const { id, action } = finalData;
-    return axios.delete(`${url}/users/${id}/${action}`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const deleteOrActivateUser = createAsyncThunk("user/id/action", async (finalData) => {
+  const { id, action } = finalData;
+  return axios.delete(`${url}/users/${id}/${action}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // Unblock Job For user
 
-export const UnblockJobsForUser = createAsyncThunk(
-  "user/Jov/Unblock/id/action",
-  async (data) => {
-    const { id, updatedJobLimit } = data;
-    return axios.post(`${url}/users/unblockjob/${id}`, updatedJobLimit, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const UnblockJobsForUser = createAsyncThunk("user/Jov/Unblock/id/action", async (data) => {
+  const { id, updatedJobLimit } = data;
+  return axios.post(`${url}/users/unblockjob/${id}`, updatedJobLimit, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // user Activate deactivate account
 
-export const activateDeactivateUser = createAsyncThunk(
-  "user/id/activate/deactivate",
-  async (finalData) => {
-    const { id, action } = finalData;
-    return axios.delete(`${url}/users/${id}/${action}`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const activateDeactivateUser = createAsyncThunk("user/id/activate/deactivate", async (finalData) => {
+  const { id, action } = finalData;
+  return axios.delete(`${url}/users/${id}/${action}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 // email verification check
-export const emailVerificationCheck = createAsyncThunk(
-  "/users/verificationcheck",
-  async () => {
-    return axios.post(`${url}/users/verificationcheck`);
-  }
-);
+export const emailVerificationCheck = createAsyncThunk("/users/verificationcheck", async () => {
+  return axios.post(`${url}/users/verificationcheck`);
+});
 
 // verified email Link
-export const emailVerificationLink = createAsyncThunk(
-  "/users/verify-email/:id/:token",
-  async (resetdata) => {
-    try {
-      const { id, token } = resetdata;
-      return await axios.post(`${url}/users/verify-email/${id}/${token}`, {});
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
+export const emailVerificationLink = createAsyncThunk("/users/verify-email/:id/:token", async (resetdata) => {
+  try {
+    const { id, token } = resetdata;
+    return await axios.post(`${url}/users/verify-email/${id}/${token}`, {});
+  } catch (error) {
+    throw new Error(error.response.data.message);
   }
-);
+});
 
 // resend email
 
-export const resendEmailVarification = createAsyncThunk(
-  "resend/email/verification",
-  async () => {
-    return axios.get(`${url}/users/resendverificationemail`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const resendEmailVarification = createAsyncThunk("resend/email/verification", async () => {
+  return axios.get(`${url}/users/resendverificationemail`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // change Password
-export const changePassword = createAsyncThunk(
-  "change/password",
-  async (data) => {
-    return axios.post(`${url}/users/change-password`, data, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
-);
+export const changePassword = createAsyncThunk("change/password", async (data) => {
+  return axios.post(`${url}/users/change-password`, data, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
-export const checkUserByUserName = createAsyncThunk(
-  "check/user/userName",
-  async (qaiUserName) => {
-    try {
-      return await axios.get(`${url}/qaiusers/checkuser/${qaiUserName}`);
-    } catch (err) {
-      throw new Error(err.response.data.message);
-    }
+export const checkUserByUserName = createAsyncThunk("check/user/userName", async (qaiUserName) => {
+  try {
+    return await axios.get(`${url}/qaiusers/checkuser/${qaiUserName}`);
+  } catch (err) {
+    throw new Error(err.response.data.message);
   }
-);
+});
 
 const userSlice = createSlice({
   name: "user",
@@ -498,10 +428,7 @@ const userSlice = createSlice({
         state.user = action.payload.data.user;
         state.isLoggedIn = true;
         const token = action.payload.data.token;
-        var encryptedToken = CryptoJS.AES.encrypt(
-          JSON.stringify(token),
-          jwtSecret
-        ).toString();
+        var encryptedToken = CryptoJS.AES.encrypt(JSON.stringify(token), jwtSecret).toString();
         Cookies.set("token", encryptedToken, { expires: 10 });
         state.isLoading = false;
       })
@@ -637,10 +564,7 @@ const userSlice = createSlice({
         state.user = action.payload.data.user;
         state.isLoggedIn = true;
         const token = action.payload.data.token;
-        var encryptedToken = CryptoJS.AES.encrypt(
-          JSON.stringify(token),
-          jwtSecret
-        ).toString();
+        var encryptedToken = CryptoJS.AES.encrypt(JSON.stringify(token), jwtSecret).toString();
         Cookies.set("token", encryptedToken, { expires: 10 });
       })
       .addCase(socialLogin.rejected, (state, action) => {

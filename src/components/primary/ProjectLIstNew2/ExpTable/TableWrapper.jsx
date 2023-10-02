@@ -46,6 +46,9 @@ const TableWrapper = ({
   const [isColumSet, setIsColumnSet] = useState(false);
   const approvedPaths = ["/allprojects", "/all-users"];
 
+  
+
+
   useEffect(() => {
     if (stickyFirstColumn.length > 0 && stickyLastColumn.length > 0 && columns.length > 0) {
       setIsColumnSet(true);

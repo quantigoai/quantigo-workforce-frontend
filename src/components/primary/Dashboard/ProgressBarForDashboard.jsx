@@ -1,6 +1,6 @@
-import {Box, CircularProgress, Grid, Typography} from "@mui/material";
-import React, {useEffect} from "react";
-import {useSelector} from "react-redux";
+import { Box, CircularProgress, Grid, Typography } from "@mui/material";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const ProgressBarForDashboard = () => {
   const [progress, setProgress] = React.useState(80);
@@ -11,20 +11,11 @@ const ProgressBarForDashboard = () => {
     },
   };
   useEffect(() => {
-    if (
-      user.user.isNDASigned &&
-      user.user.isDocumentsSubmitted === "submitted"
-    ) {
+    if (user.user.isNDASigned && user.user.isDocumentsSubmitted === "submitted") {
       setProgress(100);
-    } else if (
-      !user.user.isNDASigned &&
-      user.user.isDocumentsSubmitted === "submitted"
-    ) {
+    } else if (!user.user.isNDASigned && user.user.isDocumentsSubmitted === "submitted") {
       setProgress(90);
-    } else if (
-      user.user.isNDASigned &&
-      user.user.isDocumentsSubmitted === "pending"
-    ) {
+    } else if (user.user.isNDASigned && user.user.isDocumentsSubmitted === "pending") {
       setProgress(90);
     }
   }, [user]);
@@ -34,11 +25,11 @@ const ProgressBarForDashboard = () => {
         <CircularProgress
           variant="determinate"
           sx={{
-            color: (theme) =>
-              theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
+            color: (theme) => theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
+            // backgroundColor: "red",
           }}
-          size="18vh"
-          thickness={4}
+          size="5vh"
+          thickness={5}
           // {...props}
           value={100}
         />
@@ -49,40 +40,31 @@ const ProgressBarForDashboard = () => {
           sx={{
             strokeLinecap: "round",
             strokeLinejoin: "round",
-            color: (theme) =>
-              theme.palette.mode === "light" ? "#2D58FF" : "#2D58FF",
+            color: (theme) => (theme.palette.mode === "light" ? "#2D58FF" : "#2D58FF"),
             animationDuration: "550ms",
             position: "absolute",
             left: 0,
           }}
-          size="18vh"
+          size="5vh"
           value={progress}
-          // thickness={4}
+          thickness={5}
           // {...props}
         />
         <Box
           sx={{
             top: 0,
             left: 0,
-            bottom: 0,
+            bottom: 4,
             right: 0,
             position: "absolute",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            // backgroundColor: "blue",
           }}>
-          <Grid container>
-            <Grid container sx={{ paddingLeft: "20%" }}>
-              <Typography variant="h7" color="#2D58FF">
-                {progress}%
-              </Typography>
-            </Grid>
-            <Grid container sx={{ paddingLeft: "15%" }}>
-              <Typography variant="h7" color="#2D58FF">
-                Complete
-              </Typography>
-            </Grid>
-          </Grid>
+          <Typography variant="wpf_h7_semiBold">
+            <b> {progress}%</b>
+          </Typography>
         </Box>
       </Box>
 

@@ -75,7 +75,12 @@ const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleIm
         <Box {...getRootProps({ style })}>
           {acceptedFiles.length ? (
             <Box sx={{ position: "relative" }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-              <img width={630} height={175} src={coverImage} alt="" />
+              <img
+                height={175}
+                src={coverImage}
+                alt=""
+                width={630}
+              />
               {/* <p>File : {files}</p> */}
               {isHovered && (
                 <Box sx={{ color: "red", cursor: "pointer", position: "absolute", top: "45%", right: "43%" }}>

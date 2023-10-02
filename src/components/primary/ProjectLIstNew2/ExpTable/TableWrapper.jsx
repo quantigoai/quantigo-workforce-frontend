@@ -31,9 +31,10 @@ const TableWrapper = ({
   role,
   skillAlert,
   data,
-  isLoading,
+  // isLoading,
 }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
+  const { isLoading } = useSelector((state) => state.user);
 
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
   const location = useLocation();
@@ -125,12 +126,6 @@ const TableWrapper = ({
           handleChangePagination={handleChangePagination}
           totalItems={totalItems}
         />
-        {/* <WPFPagination
-          pagination={pagination}
-          setPagination={setPagination}
-          handleChangePagination={handleChangePagination}
-          totalItems={totalItems}
-        /> */}
       </Paper>
     </>
   );

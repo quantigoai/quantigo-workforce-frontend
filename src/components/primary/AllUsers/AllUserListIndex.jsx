@@ -15,7 +15,6 @@ import { getAllSkills } from "../../../features/slice/skillSlice";
 import { getAllUsers } from "../../../features/slice/userSlice";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
-import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import TableWrapper from "../ProjectLIstNew2/ExpTable/TableWrapper";
 import useAllFunc from "../ProjectLIstNew2/Hooks/useAllFunc";
 import "../ProjectLIstNew2/index.css";
@@ -61,7 +60,6 @@ const AllUserListIndex = ({ action }) => {
     console.log("🚀 ~ file: AllUserListIndex.jsx:105 ~ handleDetailsPage ~ e:", e);
   };
 
-  console.log(pagination);
   const handleChangePagination = useCallback(() => {
     dispatch(getAllSkills());
     dispatch(getAllUsers({ pagination }));
@@ -96,8 +94,8 @@ const AllUserListIndex = ({ action }) => {
 
         <UsersFilter isFilter={false} isLightTheme={isLightTheme} />
       </Box>
+
       <Box className="tableContent">
-        {isLoading && <LoadingComponent widtjh={"100%"} height="90%" />}
         {users && users.length > 0 && (
           <TableWrapper
             role={role}

@@ -14,11 +14,11 @@ import RegistrationForm from "./RegistrationForm";
 const BgBox = styled(Box)({
   display: "flex",
   color: "#fffff",
-  width: "70.11%",
-  backgroundColor: "rgba(255, 255, 255, 0.34)",
-  backdropFilter: "blur(8px)",
-  borderRadius: "36px",
-  boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+  width: "75.11%",
+  // backgroundColor: "rgba(255, 255, 255, 0.34)",
+  // backdropFilter: "blur(8px)",
+  // borderRadius: "36px",
+  // boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
 });
 
 const Register = () => {

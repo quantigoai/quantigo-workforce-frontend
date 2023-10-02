@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { TextField, styled } from "@mui/material";
+import { TextField, Typography, styled } from "@mui/material";
 import PropTypes from "prop-types";
 import { Controller, useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
@@ -19,21 +19,17 @@ CustomTextField.propTypes = {
 export const MyTextField = styled(TextField)(() => ({
   borderRadius: "5px",
   backgroundColor: "#fff",
-  "& .MuiOutlinedInput-notchedOutline": {
-    border: "2px solid #F2F6FC !important",
+  "& .MuiOutlinedInput-notchedOutline ": {
+    border: "1.2px solid #E6ECF5 !important",
     borderRadius: "8px",
   },
-  "&:hover .MuiOutlinedInput-notchedOutline": {
-    height: "100%",
-    backgroundColor: "transparent",
-  },
-  "& .MuiFilledInput-root": {
-    height: "100%",
-    backgroundColor: "transparent",
-  },
+
+  // ".css-nxo287-MuiInputBase-input-MuiOutlinedInput-input": {
+  //   border: "2px solid blue ",
+  // },
 }));
 
-export default function CustomTextField({ name, helperText, ...other }) {
+export default function CustomTextField({ name, label, helperText, ...other }) {
   const { control } = useFormContext();
   const { isLightTheme } = useSelector((state) => state.theme);
   return (
@@ -43,12 +39,25 @@ export default function CustomTextField({ name, helperText, ...other }) {
       render={({ field, fieldState: { error } }) => {
         return (
           <>
+            <Typography
+              variant="wpf_p3_regular"
+              color={"neutral.N700"}
+              sx={{
+                fontSize: "12px",
+                fontWeight: "500",
+                mb: 0,
+                lineHeight: "0px",
+              }}
+            >
+              {label}
+            </Typography>
             <MyTextField
-              id="input-with-icon-textfield"
+              id="outlined-basic"
               {...field}
               fullWidth
-              InputProps={{ disableUnderline: true }}
+              // InputProps={{ disableUnderline: true }}
               variant="outlined"
+              placeholder={label === "Email" ? "email#123@gmail.com" : "example#123"}
               sx={{
                 backgroundColor: isLightTheme ? "#FFFFFF" : "#1D1D1D",
               }}

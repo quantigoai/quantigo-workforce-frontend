@@ -90,7 +90,7 @@ const LoginForm = () => {
           {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
           <CustomTextField
             name="email"
-            label="Email address"
+            label="Email"
             InputProps={{
               disableUnderline: true,
               endAdornment: (
@@ -181,7 +181,7 @@ const LoginForm = () => {
           Sign In
         </LoadingButtonStyle>
       </FormProvider>
-      <Box sx={{ display: "flex", alignItems: "center", textAlign: "center", justifyContent: "center" }}>
+      <Box sx={{ display: "flex", alignItems: "center", textAlign: "center", justifyContent: "center", mt: 2 }}>
         <Typography variant="wpf_p3_regular" color="neutral.700">
           Don&apos;t have an account ?
         </Typography>
@@ -195,8 +195,8 @@ const LoginForm = () => {
             color: "#FFFFFF",
           }}
         >
-          <Typography color={"primary.main"} sx={{ textAlign: "center" }}>
-            Sign up
+          <Typography variant="wpf_p3_medium" color={"primary.main"} sx={{ textAlign: "center", ml: 1 }}>
+            Sign Up
           </Typography>
         </Link>
       </Box>

@@ -12,15 +12,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import CheckIcon from "@mui/icons-material/Check";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import {
-  Alert,
-  Box,
-  Grid,
-  IconButton,
-  InputAdornment,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Alert, Box, Grid, IconButton, InputAdornment, Link, Stack, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
@@ -29,10 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import emailIcon from "../../../../assets/images/IconEmail.png";
 import phoneicon from "../../../../assets/images/IconPhone.png";
-import {
-  checkUserByUserName,
-  signup,
-} from "../../../../features/slice/userSlice";
+import { checkUserByUserName, signup } from "../../../../features/slice/userSlice";
 import CustomDatePicker from "../../../shared/CustomField/CustomDatePicker";
 import CustomSelectField from "../../../shared/CustomField/CustomSelectField";
 import CustomTextField from "../../../shared/CustomField/CustomTextField";
@@ -40,12 +29,7 @@ import FormProvider from "../../../shared/FormProvider/FormProvider";
 import FinalButton from "./FinalButton";
 import FooterInstruction from "./FooterInstruction";
 import PrimaryButton from "./PrimaryButton";
-import {
-  RegistrationSchema,
-  genderOptions,
-  hubOptions,
-  userStatusOptions,
-} from "./RegistrationFormHelper";
+import { RegistrationSchema, genderOptions, hubOptions, userStatusOptions } from "./RegistrationFormHelper";
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -85,30 +69,15 @@ const RegistrationForm = () => {
     formState: { errors },
   } = methods;
 
-  const {
-    firstName,
-    lastName,
-    email,
-    password,
-    qaiUserName,
-    contactNo,
-    billingAccountNo,
-  } = watch();
+  const { firstName, lastName, email, password, qaiUserName, contactNo, billingAccountNo } = watch();
 
-  const isFieldsNotEmptyFirstPage =
-    !!firstName && !!lastName && !!email && !!password;
+  const isFieldsNotEmptyFirstPage = !!firstName && !!lastName && !!email && !!password;
 
-  const isFieldsNotEmptyFinalPage =
-    !!qaiUserName && !!contactNo && !!billingAccountNo;
+  const isFieldsNotEmptyFinalPage = !!qaiUserName && !!contactNo && !!billingAccountNo;
 
-  const disableButtonCheck =
-    !!errors.firstName ||
-    !!errors.lastName ||
-    !!errors.email ||
-    !!errors.password;
+  const disableButtonCheck = !!errors.firstName || !!errors.lastName || !!errors.email || !!errors.password;
 
-  const disableFinishButtonCheck =
-    !!errors.qaiUserName || !!errors.contactNo || !!errors.billingAccountNo;
+  const disableFinishButtonCheck = !!errors.qaiUserName || !!errors.contactNo || !!errors.billingAccountNo;
 
   useEffect(() => {
     if (isFieldsNotEmptyFirstPage) {
@@ -124,10 +93,7 @@ const RegistrationForm = () => {
     dispatch(signup(rest)).then((action) => {
       if (action.error) {
         alert.show(action.error.message, { type: "error" });
-      } else if (
-        action.payload?.status === 200 ||
-        action.payload?.status === 201
-      ) {
+      } else if (action.payload?.status === 200 || action.payload?.status === 201) {
         alert.show("User Registered Successfully", { type: "success" });
         navigate("/emailVerification");
       }
@@ -187,23 +153,31 @@ const RegistrationForm = () => {
           {showOtherField ? "Setup Profile" : "Create New Account"}
         </Typography>
       </Grid>
+      <Grid container item xs={12} sx={{ paddingBottom: "8%" }}>
+        <Box sx={{ display: "flex", flexDirection: "column" }}>
+          <Typography variant="wpf_h1_semiBold" color="neutral.800">
+            {"Create Account"}
+          </Typography>
+          <Typography sx={{ mt: 2 }} variant="wpf_p3_regular" color="neutral.600">
+            Please fill-up all the credentials
+          </Typography>
+        </Box>
+      </Grid>
 
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitRegData)}>
         <Box sx={{ paddingBottom: "5%" }}>
           <Stack spacing={3} sx={{ width: "100%" }}>
-            {!!errors.afterSubmit && (
-              <Alert severity="error">{errors.afterSubmit.message}</Alert>
-            )}
+            {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
             {!showOtherField && (
               <>
-                <Stack direction="row" spacing={2}>
+                <Stack direction="row" spacing={1}>
                   <CustomTextField name="firstName" label="First Name" />
                   <CustomTextField name="lastName" label="Last Name" />
                 </Stack>
                 {/* Email */}
                 <CustomTextField
                   name="email"
-                  label="Email address"
+                  label="Email"
                   InputProps={{
                     disableUnderline: true,
                     endAdornment: (
@@ -222,22 +196,15 @@ const RegistrationForm = () => {
                     disableUnderline: true,
                     endAdornment: (
                       <InputAdornment position="end">
-                        <IconButton
-                          onClick={() => setShowPassword(!showPassword)}
-                          edge="end"
-                        >
-                          {showPassword ? (
-                            <VisibilityIcon />
-                          ) : (
-                            <VisibilityOffIcon />
-                          )}
+                        <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                          {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                         </IconButton>
                       </InputAdornment>
                     ),
                   }}
                 />
                 {/* Footer navigate  */}
-                <FooterInstruction navigate={navigate}></FooterInstruction>
+                {/* <FooterInstruction navigate={navigate}></FooterInstruction> */}
               </>
             )}
             {showOtherField && (
@@ -248,11 +215,7 @@ const RegistrationForm = () => {
                     name="currentUserStatus"
                     helperText="Select an option"
                     options={userStatusOptions}
-                    defaultValue={
-                      isNewUser
-                        ? userStatusOptions[0].value
-                        : userStatusOptions[1].value
-                    }
+                    defaultValue={isNewUser ? userStatusOptions[0].value : userStatusOptions[1].value}
                     label={"User Status"}
                     onChange={handleChangeUserType}
                   />
@@ -276,16 +239,8 @@ const RegistrationForm = () => {
                         disableUnderline: true,
                         endAdornment: (
                           <InputAdornment position="end">
-                            {helperMessage && (
-                              <CheckIcon
-                                sx={{ color: "green", fontWeight: 700 }}
-                              />
-                            )}
-                            {errors.qaiUserName && (
-                              <CancelIcon
-                                sx={{ color: "red", fontWeight: 700 }}
-                              />
-                            )}
+                            {helperMessage && <CheckIcon sx={{ color: "green", fontWeight: 700 }} />}
+                            {errors.qaiUserName && <CancelIcon sx={{ color: "red", fontWeight: 700 }} />}
                           </InputAdornment>
                         ),
                       }}
@@ -294,12 +249,7 @@ const RegistrationForm = () => {
                 </Stack>
                 {isNewUser && (
                   // Generated QAI Username Field
-                  <CustomTextField
-                    disabled
-                    name="qaiUserName"
-                    label="Quantigo Username"
-                    value={generatedHubId}
-                  />
+                  <CustomTextField disabled name="qaiUserName" label="Quantigo Username" value={generatedHubId} />
                 )}
                 <Stack direction="row" spacing={2}>
                   {/* Gender field */}
@@ -312,11 +262,7 @@ const RegistrationForm = () => {
                     setValue={setValue}
                   />
                   {/* Date Picker */}
-                  <CustomDatePicker
-                    setError={setError}
-                    setValue={setValue}
-                    name="dob"
-                  />
+                  <CustomDatePicker setError={setError} setValue={setValue} name="dob" />
                 </Stack>
                 {/* Nagad Number  */}
                 <CustomTextField
@@ -364,6 +310,26 @@ const RegistrationForm = () => {
           />
         )}
       </FormProvider>
+      <Box sx={{ display: "flex", alignItems: "center", textAlign: "center", justifyContent: "center", mt: 2 }}>
+        <Typography variant="wpf_p3_regular" color="neutral.700">
+          Already have an account ?
+        </Typography>
+        <Link
+          onClick={() => {
+            navigate("/login");
+            // console.log("clicked");
+          }}
+          underline="hover"
+          sx={{
+            cursor: "pointer",
+            color: "#FFFFFF",
+          }}
+        >
+          <Typography variant="wpf_p3_medium" color={"primary.main"} sx={{ textAlign: "center", ml: 1 }}>
+            Log In
+          </Typography>
+        </Link>
+      </Box>
     </Box>
   );
 };

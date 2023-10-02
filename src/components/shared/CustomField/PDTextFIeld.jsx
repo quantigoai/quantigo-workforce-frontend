@@ -12,7 +12,7 @@ export const MyTextField = styled(TextField)(() => ({
     border: "2px solid #E6ECF5 !important",
     borderRadius: "8px",
   },
-  "& .MuiInputBase-root": { height: "78%", fontSize: "14px"},
+  "& .MuiInputBase-root": { height: "78%", fontSize: "14px" },
 }));
 
 export default function PDTextFIeld({
@@ -34,14 +34,14 @@ export default function PDTextFIeld({
       control={control}
       render={({ field, fieldState: { error } }) => {
         return (
-          <FormControl fullWidth >
+          <FormControl fullWidth>
             <Typography
               sx={{
                 fontSize: "12px",
                 fontWeight: "500",
                 mb: 1,
                 color: isLightTheme ? "#091E42" : "#FFFFFF",
-                paddingBottom:"1%"
+                paddingBottom: "1%",
               }}
             >
               {label}
@@ -52,6 +52,7 @@ export default function PDTextFIeld({
               variant="outlined"
               {...field}
               fullWidth
+              required
               InputProps={{ disableUnderline: true }}
               inputProps={InputProps}
               defaultValue={defaultValue}

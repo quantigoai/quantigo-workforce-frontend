@@ -18,7 +18,6 @@ const HeaderNav = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { isLightTheme } = useSelector((state) => state.theme);
-  console.log("🚀 ~ file: LoginPage.jsx:19 ~ LoginPage ~ isLightTheme:", isLightTheme);
 
   return (
     <>
@@ -53,7 +52,7 @@ const HeaderNav = () => {
               // width: "175px",
               // height: "33px",
               // paddingTop: "52px",
-              // paddingLeft: "64px",
+              paddingLeft: "5%",
               // position: "absolute",
               cursor: "pointer",
             }}
@@ -112,6 +111,7 @@ const HeaderNav = () => {
                   //   color: location.pathname === "/howitworks" && " #47536B",
                   // }}
                   variant="body1"
+                  sx={{ pr: 5 }}
                 >
                   About Us
                 </Typography>

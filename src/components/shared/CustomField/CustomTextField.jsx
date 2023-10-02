@@ -18,6 +18,7 @@ CustomTextField.propTypes = {
 };
 export const MyTextField = styled(TextField)(() => ({
   borderRadius: "5px",
+  backgroundColor: "red ",
   "& .MuiInputBase-root": { height: "100%" },
 }));
 export default function CustomTextField({ name, helperText, ...other }) {

@@ -9,7 +9,19 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { Alert, Box, Grid, IconButton, InputAdornment, Link, Stack, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  Grid,
+  IconButton,
+  InputAdornment,
+  Link,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
@@ -55,12 +67,23 @@ const LoginForm = () => {
       }
     });
   };
+
+  const [checked, setChecked] = useState(false);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
   return (
     <Box sx={{ width: "100%" }}>
-      <Grid container item xs={12} sx={{ paddingBottom: "4%" }}>
-        <Typography variant="wpf_h1_semiBold" color="neutral.850">
-          {"Login"}
-        </Typography>
+      <Grid container item xs={12} sx={{ paddingBottom: "8%" }}>
+        <Box sx={{ display: "flex", flexDirection: "column" }}>
+          <Typography variant="wpf_h1_semiBold" color="neutral.800">
+            {"Welcome Back"}
+          </Typography>
+          <Typography sx={{ mt: 2 }} variant="wpf_p3_regular" color="neutral.600">
+            Please fill-up all the credentials
+          </Typography>
+        </Box>
       </Grid>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3} sx={{ width: "100%" }}>
@@ -93,9 +116,9 @@ const LoginForm = () => {
               ),
             }}
           />
-          <Grid container sx={{ display: "flex", paddingBottom: "5%" }}>
+          <Grid container sx={{ display: "flex", paddingBottom: "2%", alignItems: "center" }}>
             <Grid item xs={6}>
-              <Link
+              {/* <Link
                 onClick={() => {
                   navigate("/register");
                 }}
@@ -105,8 +128,19 @@ const LoginForm = () => {
                   color: "#FFFFFF",
                 }}
               >
-                <Typography sx={{ color: "#FFFFFF" }}>Create New Account</Typography>
-              </Link>
+                <Typography sx={{ color: "black" }}>Create New Account</Typography>
+              </Link> */}
+              <FormGroup>
+                <FormControlLabel
+                  sx={{
+                    color: "#47536B",
+                  }}
+                  control={
+                    <Checkbox checked={checked} onChange={handleChange} inputProps={{ "aria-label": "controlled" }} />
+                  }
+                  label="Remember me"
+                ></FormControlLabel>
+              </FormGroup>
             </Grid>
             <Grid
               item
@@ -121,14 +155,18 @@ const LoginForm = () => {
                 underline="hover"
                 sx={{
                   cursor: "pointer",
-                  color: "#FFFFFF",
+                  color: "black",
                 }}
               >
-                <Typography sx={{ color: "#FFFFFF" }}>Forget password?</Typography>
+                <Typography variant="wpf_p3_regular" color="neutral.700">
+                  Forgot password?
+                </Typography>
               </Link>
             </Grid>
           </Grid>
         </Stack>
+
+        <Box></Box>
 
         <LoadingButtonStyle
           fullWidth
@@ -138,10 +176,30 @@ const LoginForm = () => {
           type="submit"
           variant="contained"
           loading={isLoading}
+          sx={{ textTransform: "none" }}
         >
-          Login
+          Sign In
         </LoadingButtonStyle>
       </FormProvider>
+      <Box sx={{ display: "flex", alignItems: "center", textAlign: "center", justifyContent: "center" }}>
+        <Typography variant="wpf_p3_regular" color="neutral.700">
+          Don&apos;t have an account ?
+        </Typography>
+        <Link
+          onClick={() => {
+            navigate("/register");
+          }}
+          underline="hover"
+          sx={{
+            cursor: "pointer",
+            color: "#FFFFFF",
+          }}
+        >
+          <Typography color={"primary.main"} sx={{ textAlign: "center" }}>
+            Sign up
+          </Typography>
+        </Link>
+      </Box>
     </Box>
   );
 };

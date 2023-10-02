@@ -15,7 +15,7 @@ const CommonDesign = ({ children }) => {
       <Grid
         container
         sx={{
-          height: "90vh",
+          height: "90.5vh",
         }}
       >
         <Grid
@@ -72,7 +72,7 @@ const CommonDesign = ({ children }) => {
             // backgroundColor: "red",
             display: "flex",
 
-            alignItems: "center",
+            alignItems: "start",
             justifyContent: "flex-end",
             paddingRight: { sm: "0%", lg: "8%", md: "4%", xl: "8%" },
             alignContent: "center",

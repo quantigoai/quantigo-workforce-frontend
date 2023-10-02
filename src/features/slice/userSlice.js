@@ -512,13 +512,13 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getAllUsers.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.error = null;
         state.users = action.payload.data;
-        state.isLoading = false;
       })
       .addCase(getAllUsers.rejected, (state, action) => {
-        state.error = action.error.message;
         state.isLoading = false;
+        state.error = action.error.message;
       })
       .addCase(updateMyDocuments.pending, (state) => {
         state.isLoading = true;

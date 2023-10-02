@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 import { Alert, Paper } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
@@ -46,14 +46,62 @@ const TableWrapper = ({
   const [isColumSet, setIsColumnSet] = useState(false);
   const approvedPaths = ["/allprojects", "/all-users"];
 
-  
-
-
-  useEffect(() => {
-    if (stickyFirstColumn.length > 0 && stickyLastColumn.length > 0 && columns.length > 0) {
-      setIsColumnSet(true);
+  const renderMainContent = () => {
+    if (isLoading) {
+      return <LoadingComponent height="100%" />;
     }
-  }, []);
+
+    if (approvedPaths.includes(pathname)) {
+      if (data && data.length > 0) {
+        return (
+          <WPFTable
+            handleDetailsPage={handleDetailsPage}
+            myColumn={myColumn}
+            myRows={myRows}
+            handleDelete={handleDelete}
+            handleClick={handleClick}
+            handleId={handleId}
+            filteredCol={filteredCol}
+            handleProjectDetailsOpen={handleProjectDetailsOpen}
+            role={role}
+            skillAlert={skillAlert}
+            currentlyCheckedInProject={currentlyCheckedInProject}
+            stickyFirstColumn={stickyFirstColumn}
+            stickyLastColumn={stickyLastColumn}
+            columns={columns}
+          />
+        );
+      } else if (role !== "admin") {
+        return <DetailsPage skillAlert={skillAlert} />;
+      } else {
+        return <Alert severity="error">No Users history found for this project!</Alert>;
+      }
+    } else {
+      if (data.length > 0) {
+        return (
+          <WPFTable
+            handleDetailsPage={handleDetailsPage}
+            myColumn={myColumn}
+            myRows={myRows}
+            handleDelete={handleDelete}
+            handleClick={handleClick}
+            handleId={handleId}
+            filteredCol={filteredCol}
+            handleProjectDetailsOpen={handleProjectDetailsOpen}
+            role={role}
+            skillAlert={skillAlert}
+            currentlyCheckedInProject={currentlyCheckedInProject}
+          />
+        );
+      } else if (role !== "admin") {
+        return <DetailsPage skillAlert={skillAlert} />;
+      } else {
+        // Dynamic message for the alert
+        const message = "No Users history found for this projects!";
+        return <Alert severity="error">{message}</Alert>;
+      }
+    }
+  };
 
   return (
     <>
@@ -67,62 +115,7 @@ const TableWrapper = ({
           justifyContent: "space-between",
         }}
       >
-        {/* <Box className="mainTableBox"> */}
-        {isLoading && isColumSet ? (
-          <LoadingComponent height="100%" />
-        ) : (
-          <>
-            {approvedPaths.includes(pathname) ? (
-              data && data.length > 0 ? (
-                <WPFTable
-                  handleDetailsPage={handleDetailsPage}
-                  myColumn={myColumn}
-                  myRows={myRows}
-                  handleDelete={handleDelete}
-                  handleClick={handleClick}
-                  handleId={handleId}
-                  filteredCol={filteredCol}
-                  handleProjectDetailsOpen={handleProjectDetailsOpen}
-                  role={role}
-                  skillAlert={skillAlert}
-                  currentlyCheckedInProject={currentlyCheckedInProject}
-                  stickyFirstColumn={stickyFirstColumn}
-                  stickyLastColumn={stickyLastColumn}
-                  columns={columns}
-                />
-              ) : role !== "admin" ? (
-                <DetailsPage skillAlert={skillAlert} />
-              ) : (
-                <Alert Alert severity="error">
-                  No Users history found for this project!
-                </Alert>
-              )
-            ) : // usersWorkHistory.length > 0 ? (
-            data.length > 0 ? (
-              <WPFTable
-                handleDetailsPage={handleDetailsPage}
-                myColumn={myColumn}
-                myRows={myRows}
-                handleDelete={handleDelete}
-                handleClick={handleClick}
-                handleId={handleId}
-                filteredCol={filteredCol}
-                handleProjectDetailsOpen={handleProjectDetailsOpen}
-                role={role}
-                skillAlert={skillAlert}
-                currentlyCheckedInProject={currentlyCheckedInProject}
-              />
-            ) : role !== "admin" ? (
-              <DetailsPage skillAlert={skillAlert} />
-            ) : (
-              // TODO Dynamically sent a message for alert
-              <Alert Alert severity="error">
-                No Users history found for this projects!
-              </Alert>
-            )}
-          </>
-        )}
-        {/* </Box> */}
+        {renderMainContent()}
         <PaginationTable
           pagination={pagination}
           setPagination={setPagination}

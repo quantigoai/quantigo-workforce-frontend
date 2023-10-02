@@ -29,6 +29,7 @@ import { fields } from "./tableFields";
 const annotatorRoles = ["level_0_annotator", "level_1_annotator", "level_2_annotator", "level_3_annotator"];
 const reviewerRoles = ["reviewer"];
 
+// TODO NEED TO FIX LOADING ISSUE
 const AllUserListIndex = ({ action }) => {
   const dispatch = useDispatch();
   const { isLightTheme } = useSelector((state) => state.theme);
@@ -110,7 +111,6 @@ const AllUserListIndex = ({ action }) => {
       </Box>
 
       <Box className="tableContent">
-        {/* {users && users.length > 0 && ( */}
         <Suspense fallback={<LoadingComponent height={"100%"} />}>
           <TableWrapper
             role={role}
@@ -127,10 +127,8 @@ const AllUserListIndex = ({ action }) => {
             filteredCol={filteredCol}
             handleProjectDetailsOpen={() => console.log("handleProjectDetailsOpen")}
             data={users}
-            isLoading={isLoading}
           />
         </Suspense>
-        {/* )} */}
       </Box>
     </Box>
   );

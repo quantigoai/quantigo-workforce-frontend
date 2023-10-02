@@ -58,16 +58,11 @@ const AllUserListIndex = ({ action }) => {
     console.log("🚀 ~ file: AllUserListIndex.jsx:105 ~ handleDetailsPage ~ e:", e);
   };
 
+  console.log(pagination);
   const handleChangePagination = useCallback(() => {
     console.log("render here handleChangePagination");
-    dispatch(
-      getAllUsers({
-        pagination,
-        filteredData: null,
-        ascDescOption: null,
-      })
-    );
-  }, [pagination.currentPage, pagination.pageSize]);
+    console.log(pagination);
+  }, []);
 
   const {
     createProjectOpen,

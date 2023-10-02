@@ -140,17 +140,22 @@ export const updateMyDocuments = createAsyncThunk("users/my-documents", async (f
 
 export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
   const { pagination, filteredData, ascDescOption, role, hub, active, limit, skip, skills } = data || {};
+  console.log("🚀 ~ file: userSlice.js:143 ~ getAllUsers ~ pagination:", pagination);
 
   const todayDate = new Date().toISOString().slice(0, 10);
 
   // let query = `sortBy=createdAt:asc`;
   let query = `sortBy=createdAt:asc&limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
 
-  const filterOptions = Object.keys(filteredData);
-  filterOptions.map((f) => (query += `&${f}=${filteredData[f]}`));
-
-  const ascDescOptions = Object.keys(ascDescOption);
-  ascDescOptions.map((ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`));
+  console.log("🚀 ~ file: userSlice.js:150 ~ getAllUsers ~ query:", query);
+  if (filteredData) {
+    const filterOptions = Object.keys(filteredData);
+    filterOptions.map((f) => (query += `&${f}=${filteredData[f]}`));
+  }
+  if (ascDescOption) {
+    const ascDescOptions = Object.keys(ascDescOption);
+    ascDescOptions.map((ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`));
+  }
 
   // if (limit) {
   //   if (limit === -1) {

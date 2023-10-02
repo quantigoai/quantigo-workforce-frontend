@@ -13,7 +13,6 @@ import { useLocation } from "react-router-dom";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import PaginationTable from "../PaginationTable";
 import DetailsPage from "../ProjectDetailsFull/DetailsPage";
-import WPFPagination from "./WPFPagination/WPFPagination";
 import WPFTable from "./WPFTable";
 
 const TableWrapper = ({

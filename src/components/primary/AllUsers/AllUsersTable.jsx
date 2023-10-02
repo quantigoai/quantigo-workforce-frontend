@@ -15,7 +15,7 @@ import TableWrapper from "../ProjectLIstNew2/ExpTable/TableWrapper";
 import { fields } from "./tableFields";
 
 const AllUsersTable = ({
-    handleClick,
+  handleClick,
   handleDelete,
   myColumn,
   setMyColumn,

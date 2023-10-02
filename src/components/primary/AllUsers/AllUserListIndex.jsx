@@ -11,6 +11,7 @@ import { Box } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivePath } from "../../../features/slice/activePathSlice";
+import { getAllSkills } from "../../../features/slice/skillSlice";
 import { getAllUsers } from "../../../features/slice/userSlice";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import useAllFunc from "../ProjectLIstNew2/Hooks/useAllFunc";
@@ -19,7 +20,6 @@ import AllUsersTable from "./AllUsersTable";
 import UsersFilter from "./UsersFilter";
 import UsersHeader from "./UsersHeader";
 import "./index.css";
-import { getAllSkills } from "../../../features/slice/skillSlice";
 
 const annotatorRoles = ["level_0_annotator", "level_1_annotator", "level_2_annotator", "level_3_annotator"];
 const reviewerRoles = ["reviewer"];
@@ -33,63 +33,16 @@ const AllUserListIndex = ({ action }) => {
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
 
-  const {
-    createProjectOpen,
-    detailsProjectOpen,
-    handleProjectCreateOpen,
-    handleDetailsProjectClose,
-    setCreateProjectOpen,
-    handleChange,
-    handleClearFilter,
-    filterValue,
-    handleId,
-    filteredCol,
-    handleIsFilter,
-    isFilter,
-    setDetailsProjectOpen,
-  } = useAllFunc();
-
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
   });
 
   useEffect(() => {
-        dispatch(setActivePath("All Users 2"));
-    if (action === "annotator") {
-      dispatch(
-        getAllUsers({
-          role: annotatorRoles,
-          limit: pagination.pageSize,
-          skip: pagination.pageSize * pagination.currentPage,
-        })
-      );
-    } else if (role === "recruitment_manager" || role === "trainer" || action === "recruitment_manager") {
-      dispatch(
-        getAllUsers({
-          role: [...annotatorRoles, ...reviewerRoles],
-          limit: pagination.pageSize,
-          skip: pagination.pageSize * pagination.currentPage,
-        })
-      );
-    } else if (action === "reviewer") {
-      dispatch(
-        getAllUsers({
-          role: reviewerRoles,
-          limit: pagination.pageSize,
-          skip: pagination.pageSize * pagination.currentPage,
-        })
-      );
-    } else {
-      dispatch(
-        getAllUsers({
-          limit: pagination.pageSize,
-    skip: pagination.pageSize * pagination.currentPage,
-    })
-    );
-    }
+    dispatch(setActivePath("All Users 2"));
     dispatch(getAllSkills());
-  }, [action, role, dispatch, pagination.currentPage, pagination.pageSize]);
+    dispatch(getAllUsers({ pagination }));
+  }, []);
 
   //   -------------------------------
 
@@ -110,24 +63,40 @@ const AllUserListIndex = ({ action }) => {
     dispatch(
       getAllUsers({
         pagination,
-        filteredData: filterValue,
-        ascDescOption: filteredCol,
+        filteredData: null,
+        ascDescOption: null,
       })
     );
-  }, [dispatch, pagination, filterValue, filteredCol]);
+  }, [pagination.currentPage, pagination.pageSize]);
+
+  const {
+    createProjectOpen,
+    detailsProjectOpen,
+    handleProjectCreateOpen,
+    handleDetailsProjectClose,
+    setCreateProjectOpen,
+    handleChange,
+    handleClearFilter,
+    filterValue,
+    handleId,
+    filteredCol,
+    handleIsFilter,
+    isFilter,
+    setDetailsProjectOpen,
+  } = useAllFunc();
 
   // --------------------------------
   return (
     <Box className="projectBox">
       <Box className="projectHeader">
         <UsersHeader
-          isFilter={isFilter}
+          isFilter={false}
           isLightTheme={isLightTheme}
-          handleIsFilter={handleIsFilter}
-          handleProjectCreateOpen={handleProjectCreateOpen}
+          handleIsFilter={() => console.log("handleIsFilter")}
+          handleProjectCreateOpen={() => console.log("handleProjectCreateOpen")}
         />
 
-        <UsersFilter isFilter={isFilter} isLightTheme={isLightTheme} />
+        <UsersFilter isFilter={false} isLightTheme={isLightTheme} />
       </Box>
       <Box className="tableContent">
         {!isLoading && users && users.length > 0 ? (
@@ -137,9 +106,9 @@ const AllUserListIndex = ({ action }) => {
             myColumn={myColumn}
             setMyColumn={setMyColumn}
             myRows={myRows}
-            handleId={handleId}
             setMyRows={setMyRows}
             pagination={pagination}
+            handleId={handleId}
             filteredCol={filteredCol}
             setPagination={setPagination}
             handleDetailsPage={handleDetailsPage}

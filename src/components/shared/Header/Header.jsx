@@ -32,10 +32,8 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state);
+  const { role, name, image, firstName, lastName } = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
-  const { role } = user.user;
-  const { name } = user.user;
 
   const [notificationOpen, setNotificationOpen] = React.useState(false);
   const handleNotificationOpen = () => setNotificationOpen(true);
@@ -44,7 +42,7 @@ const Header = () => {
   const reset = useReset;
 
   const handleLogOut = () => {
-    const role = user.user.role;
+    // const role = user.user.role;
     dispatch(logout()).then(() => {
       navigate("/");
       setAnchorEl(null);
@@ -73,7 +71,6 @@ const Header = () => {
     navigate(-1);
   };
 
-  const image = user.user.image;
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
     height: 34,
@@ -152,7 +149,7 @@ const Header = () => {
             >
               <Button
                 sx={{
-                  color : isLightTheme ? "#0E243D" : "#FFFFFF",
+                  color: isLightTheme ? "#0E243D" : "#FFFFFF",
                   width: {
                     xl: "100px",
                     lg: "100px",
@@ -228,12 +225,12 @@ const Header = () => {
                   <Stack>
                     <Typography
                       sx={{
-                        color: isLightTheme ?  "#0E243D" : "#FFFFFF",
+                        color: isLightTheme ? "#0E243D" : "#FFFFFF",
                       }}
                       variant="wpf_p3_semiBold"
                     >
                       <b>
-                        {user.user.firstName} {user.user.lastName}
+                        {firstName} {lastName}
                       </b>
                     </Typography>
 

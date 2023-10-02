@@ -64,7 +64,13 @@ const ProjectLIstIndex2 = () => {
   const [setAnnotatorPlatform] = useState();
   const [detailProject, setDetailProject] = useState({});
 
+  const [pagination, setPagination] = useState({
+    currentPage: 0,
+    pageSize: 10,
+  });
+
   const alert = useAlert();
+  
   const {
     createProjectOpen,
     detailsProjectOpen,
@@ -81,10 +87,6 @@ const ProjectLIstIndex2 = () => {
     setDetailsProjectOpen,
   } = useAllFunc();
 
-  const [pagination, setPagination] = useState({
-    currentPage: 0,
-    pageSize: 10,
-  });
   const { isLoading, projectDrawers, projectDrawer, total, error } = useSelector((state) => state.projectDrawer);
   const { role } = useSelector((state) => state.user.user);
 

@@ -19,19 +19,19 @@ import LoginForm from "./LoginForm";
 const BgBox = styled(Box)({
   display: "flex",
   color: "#fffff",
-  width: "70.11%",
-  backgroundColor: "rgba(255, 255, 255, 0.34)",
-  backdropFilter: "blur(8px)",
-  borderRadius: "36px",
-  boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+  width: "75.11%",
+  // backgroundColor: "rgba(255, 255, 255, 0.34)",
+  // backdropFilter: "blur(8px)",
+  // borderRadius: "36px",
+  // boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
 });
 
 export const LoadingButtonStyle = styled(LoadingButton)({
-  backgroundColor: "#2D58FF",
+  backgroundColor: "#2E58FF",
   color: "#FFFFFF",
   "&:hover": {
-    backgroundColor: "#FF9A45",
-    color: "#1D1D1D",
+    backgroundColor: "#244EF5",
+    color: "#fff",
   },
   "&:disabled": {
     backgroundColor: "#7c91df",
@@ -69,7 +69,7 @@ const Login = () => {
   return (
     <>
       <BgBox>
-        <Grid container sx={{ padding: "6%" }}>
+        <Grid container sx={{ marginTop: "130px" }}>
           <LoginForm />
         </Grid>
         {/* <form onSubmit={handleSubmit(onSubmit)}>

@@ -13,13 +13,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import { getAllSkills } from "../../../features/slice/skillSlice";
 import { getAllUsers } from "../../../features/slice/userSlice";
+import dataBuilder from "../../shared/CustomTable/dataBuilder";
+import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
+import TableWrapper from "../ProjectLIstNew2/ExpTable/TableWrapper";
 import useAllFunc from "../ProjectLIstNew2/Hooks/useAllFunc";
 import "../ProjectLIstNew2/index.css";
-import AllUsersTable from "./AllUsersTable";
 import UsersFilter from "./UsersFilter";
 import UsersHeader from "./UsersHeader";
 import "./index.css";
+import { fields } from "./tableFields";
 
 const annotatorRoles = ["level_0_annotator", "level_1_annotator", "level_2_annotator", "level_3_annotator"];
 const reviewerRoles = ["reviewer"];
@@ -40,9 +43,9 @@ const AllUserListIndex = ({ action }) => {
 
   useEffect(() => {
     dispatch(setActivePath("All Users 2"));
-    dispatch(getAllSkills());
-    dispatch(getAllUsers({ pagination }));
-  }, []);
+    setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
+    users && users.length > 0 && setMyRows(dataBuilder(users));
+  }, [dispatch, users]);
 
   //   -------------------------------
 
@@ -60,9 +63,9 @@ const AllUserListIndex = ({ action }) => {
 
   console.log(pagination);
   const handleChangePagination = useCallback(() => {
-    console.log("render here handleChangePagination");
-    console.log(pagination);
-  }, []);
+    dispatch(getAllSkills());
+    dispatch(getAllUsers({ pagination }));
+  }, [dispatch, pagination]);
 
   const {
     createProjectOpen,
@@ -94,26 +97,25 @@ const AllUserListIndex = ({ action }) => {
         <UsersFilter isFilter={false} isLightTheme={isLightTheme} />
       </Box>
       <Box className="tableContent">
-        {!isLoading && users && users.length > 0 ? (
-          <AllUsersTable
+        {isLoading && <LoadingComponent widtjh={"100%"} height="90%" />}
+        {users && users.length > 0 && (
+          <TableWrapper
+            role={role}
+            handleDetailsPage={handleDetailsPage}
             handleClick={handleClick}
             handleDelete={handleDelete}
             myColumn={myColumn}
-            setMyColumn={setMyColumn}
             myRows={myRows}
-            setMyRows={setMyRows}
             pagination={pagination}
+            setPagination={setPagination}
+            handleChangePagination={handleChangePagination}
+            totalItems={totalUsers}
             handleId={handleId}
             filteredCol={filteredCol}
-            setPagination={setPagination}
-            handleDetailsPage={handleDetailsPage}
-            handleChangePagination={handleChangePagination}
-            total={totalUsers}
-            handleProjectDetailsOpen={handleDetailsPage}
+            handleProjectDetailsOpen={() => console.log("handleProjectDetailsOpen")}
             data={users}
+            isLoading={isLoading}
           />
-        ) : (
-          <LoadingComponent height="100%" />
         )}
       </Box>
     </Box>

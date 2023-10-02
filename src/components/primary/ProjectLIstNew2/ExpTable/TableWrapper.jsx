@@ -33,7 +33,6 @@ const TableWrapper = ({
   data,
   isLoading,
 }) => {
-  // const { usersWorkHistory, isLoading, projectDrawers } = useSelector((state) => state.projectDrawer);
   const { isLightTheme } = useSelector((state) => state.theme);
 
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
@@ -70,8 +69,7 @@ const TableWrapper = ({
         ) : (
           <>
             {approvedPaths.includes(pathname) ? (
-              // projectDrawers.length > 0 ? (
-              data.length > 0 ? (
+              data && data.length > 0 ? (
                 <WPFTable
                   handleDetailsPage={handleDetailsPage}
                   myColumn={myColumn}

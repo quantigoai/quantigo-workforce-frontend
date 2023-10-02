@@ -16,7 +16,7 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-const AcceptModal = ({ open, handleDelete, handleClose, handleAccept, isEdit, user }) => {
+const AcceptModal = ({ open, handleClose, handleAccept, user }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   return (
     <>

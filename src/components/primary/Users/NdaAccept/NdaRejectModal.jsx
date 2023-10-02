@@ -59,7 +59,7 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit }) => {
           sx={{
             ...style,
             height: { xl: "40%", lg: "50%" },
-            width: { xl: "35%", lg: "40%" },
+            width: { xl: "35%", lg: "60%" },
           }}>
              <form onSubmit={handleSubmit(onSubmit)}>
           <Box sx={{ flex: "0 0 5%" }}>

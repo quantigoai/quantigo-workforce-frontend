@@ -10,7 +10,6 @@ import NdaRejectModal from "./NdaRejectModal";
 import AcceptModal from "./AcceptModal";
 
 const NdaAccept = ({ signNda, user, isNDASigned, signImage }) => {
-  console.log("🚀 ~ file: NdaAccept.jsx:13 ~ NdaAccept ~ userId:", user);
   const alert = useAlert();
   const serverLink = "https://wmpserver.onrender.com/api/v1/";
   const pdfLink = serverLink.concat(signNda);

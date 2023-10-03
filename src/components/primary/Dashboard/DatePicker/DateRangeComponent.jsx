@@ -83,7 +83,6 @@ const DateRangeComponentForDashboard = ({ setRange, range }) => {
     }
   }, [range]);
   const handleChange = (item) => {
-    console.log(item)
     if (item.selection.startDate.getTime() !== item.selection.endDate.getTime()) {
       setRange([item.selection]);
       setDummyRange([item.selection]);

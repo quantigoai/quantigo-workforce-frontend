@@ -79,27 +79,27 @@ const lightTheme = createTheme({
         },
       },
     },
-    MuiTab: {
-      styleOverrides: {
-        root: {
-          textTransform: "none",
-          fontSize: "14px",
-          fontWeight: 600,
-          color: "##969CAF",
-          width: "100%",
-          "& .Mui-selected": {
-            color: "#2D58FF",
-          },
-        },
-      },
-    },
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          // backgroundColor: "#F2F6FC",
-        },
-      },
-    },
+    // MuiTab: {
+    //   styleOverrides: {
+    //     root: {
+    //       textTransform: "none",
+    //       fontSize: "14px",
+    //       fontWeight: 600,
+    //       // color: "##969CAF",
+    //       width: "100%",
+    //       "& .Mui-selected": {
+    //         color: "#2D58FF",
+    //       },
+    //     },
+    //   },
+    // },
+    // MuiPaper: {
+    //   styleOverrides: {
+    //     root: {
+    //       // backgroundColor: "#F2F6FC",
+    //     },
+    //   },
+    // },
     MuiTableHead: {
       styleOverrides: {
         root: {},
@@ -142,14 +142,15 @@ lightTheme.typography.wf_p2_semiBold = {
     fontSize: "14px",
   },
 };
-lightTheme.typography.wpf_p3_semiBold = {
-  [lightTheme.breakpoints.up("md")]: {
-    fontSize: "12px",
-  },
-  [lightTheme.breakpoints.up("xl")]: {
-    fontSize: "14px",
-  },
-};
+// lightTheme.typography.wpf_p3_semiBold = {
+//   [lightTheme.breakpoints.up("md")]: {
+//     ...typography.wpf_p3_semiBold,
+//     fontSize: "12px",
+//   },
+//   [lightTheme.breakpoints.up("xl")]: {
+//     fontSize: "14px",
+//   },
+// };
 lightTheme.typography.wpf_p4_semiBold = {
   [lightTheme.breakpoints.up("lg")]: {
     fontSize: "12px",

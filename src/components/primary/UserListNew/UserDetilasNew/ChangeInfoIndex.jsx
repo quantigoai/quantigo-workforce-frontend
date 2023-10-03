@@ -19,19 +19,20 @@ const ChangeInfoIndex = ({ user, handleSetRole, handleSetStatus }) => {
             padding: "2%",
             borderRadius: "8px",
             background: "#F2F6FC",
-          }}>
+          }}
+        >
           <Grid container>
             <Grid item xs={6}>
               {" "}
               <SelectFieldCommon label={"Role Change"} user={user} handleSetRole={handleSetRole} />
             </Grid>
-            <Grid item xs={6}></Grid>
-          </Grid>
-          <Grid container>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <UserStatusChangeFiled label={"Status"} handleSetStatus={handleSetStatus} />
             </Grid>
           </Grid>
+          {/* <Grid container>
+            <Grid item xs={12}></Grid>
+          </Grid> */}
         </Stack>
       </Box>
     </>

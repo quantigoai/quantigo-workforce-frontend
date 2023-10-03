@@ -1,7 +1,9 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import ProjectDrawerStatusChip from "../../../shared/FilterField/ProjectDrawerStatusChip";
+import { useSelector } from "react-redux";
 
-const SingleItem = ({ ItemTitle, Item, isLightTheme }) => {
+const SingleItem = ({ ItemTitle, Item }) => {
+  const { isLightTheme } = useSelector((state) => state.theme);
   return (
     <>
       <Stack sx={{ borderBottom: "1px solid #E6ECF5" }}>

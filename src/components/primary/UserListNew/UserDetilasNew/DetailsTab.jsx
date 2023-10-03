@@ -8,10 +8,10 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import UserInfoIndex from "./UserInfoIndex";
 import UserProjectDetails from "./UserProjectDetails";
+import { useSelector } from "react-redux";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -45,7 +45,7 @@ function a11yProps(index) {
 export default function DetailsTab({ user, handleSetRole, handleSetStatus }) {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
-
+  const { isLightTheme } = useSelector((state) => state.theme);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -60,12 +60,10 @@ export default function DetailsTab({ user, handleSetRole, handleSetStatus }) {
         value={value}
         onChange={handleChange}
         indicatorColor=""
-        //   textColor="inherit"
         variant="fullWidth"
-        aria-label="full width tabs example"
         sx={{
           borderRadius: "8px",
-          backgroundColor: "#E6ECF5",
+          backgroundColor: "neutral.N600",
           padding: "1%",
           minHeight: "36px",
           height: "50px",
@@ -74,26 +72,44 @@ export default function DetailsTab({ user, handleSetRole, handleSetStatus }) {
         <Tab
           sx={{
             borderRadius: value === 0 ? "8px" : "none",
-            backgroundColor: value === 0 ? "#FFFFFF" : "",
+            backgroundColor: value === 0 ? "neutral.N000" : "",
             minHeight: "36px",
             height: "36px",
+            // color: "#000",
           }}
-          label="User Info."
+          label={
+            <Typography
+              sx={{ textTransform: "none" }}
+              variant="wpf_p3_semiBold"
+              color={value === 0 ? "primary.B200" : "neutral.700"}
+            >
+              User Info.
+            </Typography>
+          }
           {...a11yProps(0)}
         />
         <Tab
           sx={{
             borderRadius: value === 1 ? "8px" : "none",
-            backgroundColor: value === 1 ? "#FFFFFF" : "",
+            backgroundColor: value === 1 ? "neutral.N000" : "",
             minHeight: "36px",
             height: "36px",
+            color: "#000",
           }}
-          label="Project Details"
+          label={
+            <Typography
+              sx={{ textTransform: "none" }}
+              variant="wpf_p3_semiBold"
+              color={value === 1 ? "primary.B200" : "neutral.700"}
+            >
+              Project Details
+            </Typography>
+          }
           {...a11yProps(1)}
         />
       </Tabs>
 
-      <Box sx={{ height: "500px", overflowY: "auto" }}>
+      <Box sx={{ height: "620px", overflowY: "auto" }}>
         <TabPanel value={value} index={0} dir={theme.direction}>
           <UserInfoIndex user={user} handleSetRole={handleSetRole} handleSetStatus={handleSetStatus} />
         </TabPanel>

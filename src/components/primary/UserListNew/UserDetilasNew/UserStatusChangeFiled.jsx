@@ -32,7 +32,8 @@ const UserStatusChangeFiled = ({ label, user, handleSetStatus }) => {
               color: "#3C4D6B",
               fontWeight: "500",
               mb: 1,
-            }}>
+            }}
+          >
             {label}
           </Typography>
 
@@ -43,12 +44,13 @@ const UserStatusChangeFiled = ({ label, user, handleSetStatus }) => {
             variant="outlined"
             placeholder="Select"
             sx={{
-              height: "36px",
+              height: "40px",
               backgroundColor: "#FFFFFF",
               fontSize: "14px",
             }}
             onChange={handleSetStatus}
-            defaultValue={user?.isBlocked ? "block" : ""}>
+            defaultValue={user?.isBlocked ? "block" : ""}
+          >
             <MenuItem value={"delete"} style={menuItemStyle}>
               Delete
             </MenuItem>

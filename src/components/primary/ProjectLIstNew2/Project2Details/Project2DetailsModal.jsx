@@ -114,7 +114,7 @@ const Project2DetailsModal = ({
                   ItemTitle={"Status"}
                   Item={capitalizeFirstLetter(projectDrawer?.project_status)}
                 />
-                <SingleItem isLightTheme={isLightTheme} ItemTitle={"Skills"} Item={projectDrawer?.project_skills} />
+                <SingleItem ItemTitle={"Skills"} Item={projectDrawer?.project_skills} />
                 {/* document Item List */}
                 <BoxItem isLightTheme={isLightTheme} Item={projectDrawer?.relevantDocuments} />
               </Stack>

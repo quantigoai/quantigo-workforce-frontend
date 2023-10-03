@@ -1,27 +1,11 @@
 import { Box, Button, Grid } from "@mui/material";
 import React, { useMemo, useState } from "react";
-import DeleteIcon from "@mui/icons-material/Delete";
 // import dragiconplus from "../../../../assets/images/dragiconplus.svg";
 import { useDropzone } from "react-dropzone";
+import { useSelector } from "react-redux";
 import ctaImage from "../../../assets/images/CTA.png";
 import IconImage from "../../../assets/images/Icon.png";
-import { useTheme } from "@mui/material/styles";
-const baseStyle = {
-  flex: 1,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  // padding: "20px",
-  // borderWidth: 2,
-  borderRadius: 2,
-  height: "180px",
-  borderColor: "rgba(70, 70, 70, 0.2)",
-  borderStyle: "dashed",
-  backgroundColor: "#fafafa",
-  color: "#1D1D1D",
-  // outline: "none",
-  transition: "border .24s ease-in-out",
-};
+import ndaUploadStyle from "../Nda/ndaUploadStyle";
 
 const focusedStyle = {
   borderColor: "#2196f3",
@@ -37,9 +21,10 @@ const rejectStyle = {
 
 const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleImage }) => {
   const screenSize = window.innerWidth;
-  console.log("🚀 ~ file: DocumentImageUpload.jsx:40 ~ DocumentImageUpload ~ screenSize:", screenSize)
+  const { isLightTheme } = useSelector((state) => state.theme);
+  const { baseUploadBoxStyle } = ndaUploadStyle(isLightTheme);
+
   const [isHovered, setIsHovered] = useState(false);
-  const theme = useTheme();
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
@@ -54,7 +39,7 @@ const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleIm
 
   const style = useMemo(
     () => ({
-      ...baseStyle,
+      ...baseUploadBoxStyle,
       ...(isFocused ? focusedStyle : {}),
       ...(isDragAccept ? acceptStyle : {}),
       ...(isDragReject ? rejectStyle : {}),
@@ -90,15 +75,9 @@ const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleIm
                 position: "relative",
               }}
               onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}>
-              <img
-                height={175}
-                src={coverImage}
-                alt=""
-                style={{ width }}
-                // width={630}
-                // width= { xl: "35%", lg: "40%" },
-              />
+              onMouseLeave={handleMouseLeave}
+            >
+              <img height={175} src={coverImage} alt="" style={{ width }} />
               {/* <p>File : {files}</p> */}
               {isHovered && (
                 <Box sx={{ color: "red", cursor: "pointer", position: "absolute", top: "45%", right: "43%" }}>
@@ -116,7 +95,8 @@ const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleIm
                         color: "#2E58FF",
                         // border: "1px solid #2E58FF",
                       },
-                    }}>
+                    }}
+                  >
                     Replace
                   </Button>
                   {/* <DeleteIcon onClick={removeImage} sx={{ color: "red" }} /> */}

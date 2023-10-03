@@ -6,29 +6,14 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Box, Grid} from "@mui/material";
-import React, {useMemo} from "react";
+import { Box, Grid } from "@mui/material";
+import React, { useMemo } from "react";
 // import dragiconplus from "../../../../assets/images/dragiconplus.svg";
-import {useDropzone} from "react-dropzone";
+import { useDropzone } from "react-dropzone";
+import { useSelector } from "react-redux";
 import ctaImage from "../../../assets/images/CTA.png";
 import IconImage from "../../../assets/images/Icon.png";
-
-const baseStyle = {
-  flex: 1,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  padding: "20px",
-  borderWidth: 2,
-  borderRadius: 2,
-  height: "150px",
-  borderColor: "rgba(70, 70, 70, 0.2)",
-  borderStyle: "dashed",
-  backgroundColor: "#fafafa",
-  color: "#1D1D1D",
-  outline: "none",
-  transition: "border .24s ease-in-out",
-};
+import ndaUploadStyle from "./ndaUploadStyle";
 
 const focusedStyle = {
   borderColor: "#266AED",
@@ -43,21 +28,17 @@ const rejectStyle = {
 };
 
 const PdfNdaUploadField = ({ handleImage, selectedFile }) => {
-  const {
-    acceptedFiles,
-    getRootProps,
-    getInputProps,
-    isFocused,
-    isDragAccept,
-    isDragReject,
-  } = useDropzone({
+  const { isLightTheme } = useSelector((state) => state.theme);
+  const { baseUploadBoxStyle } = ndaUploadStyle(isLightTheme);
+
+  const { acceptedFiles, getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({
     accept: { "application/pdf": [".pdf"] },
     onDrop: handleImage,
   });
 
   const style = useMemo(
     () => ({
-      ...baseStyle,
+      ...baseUploadBoxStyle,
       ...(isFocused ? focusedStyle : {}),
       ...(isDragAccept ? acceptStyle : {}),
       ...(isDragReject ? rejectStyle : {}),

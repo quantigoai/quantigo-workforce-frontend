@@ -20,7 +20,7 @@ export const darkColors = {
     N400: "#1E1E1E", // Card/background color
     N500: "#2C2C2C", // Content background color
     N600: "#586069", // Subtle text color
-    N650: "#303030", // Border color
+    N650: "#f2fed2", // Border color
     500: "#8C8C8C", // Secondary text color
     550: "#737373", // Darker secondary text color
     // 600: "#EAEAEA", // Very light text color

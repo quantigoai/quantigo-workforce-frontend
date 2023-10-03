@@ -48,6 +48,8 @@ export const lightColors = {
   warning: {
     200: "#FAE4C3",
     50: "#FCF4E8",
+    100: "#FFF8EB",
+    400: "#F2A200",
     500: "#F79009",
     800: "#F79009",
   },

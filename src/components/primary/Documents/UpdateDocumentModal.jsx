@@ -5,23 +5,25 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { socket } from "../../../App";
-import croxButton from "../../../assets/images/u_multiply.png";
 import { updateMyDocuments } from "../../../features/slice/userSlice";
-import DocumentImageUpload from "./DocumentImageUpload";
 import ProjectModalHeader from "../ProjectLIstNew2/ProjectModalHeader";
+import DocumentImageUpload from "./DocumentImageUpload";
+
 export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "2px solid #E6ECF5 !important",
     borderRadius: "8px",
   },
-  "& .MuiInputBase-root": { height: "80%", fontSize: "14px" },
+  "& .MuiInputBase-root": {
+    height: "80%",
+    fontSize: "14px",
+    color: "neutral.N000",
+  },
 }));
 export const MySelect = styled(Select)(() => ({
   border: "2px solid #E6ECF5",
-  // padding: "5px 0px 0px 0px",
   borderRadius: "8px",
   background: "none",
-  // backgroundColor:"red",
   fontSize: "14px",
   height: "7%",
 }));
@@ -37,7 +39,6 @@ const style = {
   borderRadius: "8px",
   p: 0,
   input: {
-    color: "black",
     height: "20px",
     borderRadius: "8px",
   },
@@ -46,7 +47,6 @@ const style = {
   },
 };
 const ButtonStyle = styled(Button)({
-  // backgroundColor: "#2D58FF",
   borderRadius: "2px",
   width: "100%",
   height: "30px",
@@ -105,13 +105,15 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
         open={openModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
+        aria-describedby="modal-modal-description"
+      >
         <Box
           sx={{
             ...style,
-            height: { xl: "53%", lg: "75%" },
+            height: { xl: "56%", lg: "75%" },
             width: { xl: "35%", lg: "40%" },
-          }}>
+          }}
+        >
           <Box sx={{ flex: "0 0 5%" }}>
             <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Upload Document"} />
           </Box>
@@ -121,17 +123,16 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
               flex: "1",
               overflowY: "auto",
               padding: "3%",
-            }}>
-            <Box sx={{}}>
+            }}
+          >
+            <Box>
               <Grid container sx={{ padding: "0%", paddingLeft: "0%" }}>
                 <Typography
+                  variant={"wpf_p4_semiBold"}
                   sx={{
-                    fontSize: "12px",
-                    fontWeight: "500",
                     mb: 1,
-                    // color: isLightTheme ? "#091E42" : "#FFFFFF",
-                    // paddingBottom:"1%"
-                  }}>
+                  }}
+                >
                   Document Type
                 </Typography>
 
@@ -140,18 +141,16 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                   id="demo-simple-select-autowidth"
                   variant="outlined"
                   fullWidth
-                  // defaultValue={"reject"}
                   placeholder="Select"
                   sx={{
                     border: "2px solid #E6ECF5",
-                    // padding: "5px 0px 0px 0px",
                     borderRadius: "8px",
                     background: "none",
-                    // backgroundColor:"red",
                     fontSize: "14px",
                     height: "43px",
                   }}
-                  {...register("documentsType", { required: true })}>
+                  {...register("documentsType", { required: true })}
+                >
                   <MenuItem value={"NID"} sx={{ fontSize: "14px" }}>
                     NID
                   </MenuItem>
@@ -159,62 +158,23 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                     Passport
                   </MenuItem>
                 </Select>
-                {/* <FormControl
-                  variant="filled"
-                  fullWidth
-                  sx={{
-                    backgroundColor: "#F8F8F8",
-                    border: "1px solid #DADCDF",
-                    borderRadius: "4px",
-                    // width: "238.5px",
-                    height: "58px",
-                  }}>
-                  <InputLabel id="demo-simple-select-filled-label">Document Type</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-filled-label"
-                    id="demo-simple-select-filled"
-                    {...register("documentsType", { required: true })}>
-                    <MenuItem value={"NID"}>NID</MenuItem>
-                    <MenuItem value={"passport"}>Passport</MenuItem>
-                  </Select>
-                </FormControl> */}
               </Grid>
 
               <Grid container sx={{ padding: "0%", paddingTop: "2%", paddingBottom: "1%" }}>
                 <Typography
+                  variant={"wpf_p4_semiBold"}
                   sx={{
-                    fontSize: "12px",
-                    fontWeight: "500",
                     mb: 1,
-                    // color: isLightTheme ? "#091E42" : "#FFFFFF",
-                    paddingBottom: "0%",
-                  }}>
+                  }}
+                >
                   Document NO
                 </Typography>
                 <MyTextField
-                  // type={isNumber || isNumberPdr ? "number" : "text"}
-                  //   id="outlined-basic"
                   variant="outlined"
-                  // {...field}
                   fullWidth
-                  // multiline
-                  // rows={5}
                   InputProps={{ disableUnderline: true }}
                   {...register("documentNo", { required: true })}
                 />
-
-                {/* <TextField
-                  id="input-with-icon-textfield"
-                  fullWidth
-                  label="Document NO"
-                  variant="filled"
-                  sx={{
-                    backgroundColor: "#F8F8F8",
-                    border: "1px solid #DADCDF",
-                    borderRadius: "4px",
-                  }}
-                  {...register("documentNo", { required: true })}
-                /> */}
               </Grid>
 
               <Grid container>
@@ -231,31 +191,31 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
             sx={{
               flex: "0 0 64px",
               borderTop: "2px solid #F2F6FC",
-              backgroundColor: "#FFFFFF",
+              backgroundColor: "neutral.N000",
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
               padding: "0 2%",
-
               bottom: "0px",
               borderRadius: "8px",
-            }}>
+            }}
+          >
             <Grid container sx={{ padding: "2%" }}>
               <Grid item xs={6}>
                 <Button
                   sx={{
                     width: "120px",
                     textTransform: "none",
-                    backgroundColor: "#F4F7FE",
-                    color: "#62728F",
+                    backgroundColor: "primary.B008",
+                    color: "neutral.N650",
                     borderRadius: "8px",
                     "&:hover": {
-                      backgroundColor: "#F4F7FE",
-                      color: "#62728F",
-                      border: "1px solid #F4F7FE",
+                      backgroundColor: "neutral.N600",
+                      color: "neutral.N650",
                     },
                   }}
-                  onClick={() => handleClose()}>
+                  onClick={() => handleClose()}
+                >
                   Cancel
                 </Button>
               </Grid>

@@ -29,7 +29,9 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
         // width: field.width || 140,
         width: field.width,
         headerName: customHeader(field.field),
-        renderCell: (params) => <CustomButton params={params} handleClick={handleClick} handleDelete={handleDelete} />,
+        renderCell: (params) => (
+          <CustomButton pathname={pathname} params={params} handleClick={handleClick} handleDelete={handleDelete} />
+        ),
         editable: field.editable || false,
         cellClassName: field.cellClassName || "",
       };

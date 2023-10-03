@@ -22,13 +22,11 @@ import UsersFilter from "./UsersFilter";
 import UsersHeader from "./UsersHeader";
 import "./index.css";
 import { fields } from "./tableFields";
+import { useLocation } from "react-router-dom";
+import UserListIndex from "../UserListNew/UserListIndex";
+import UserDetailsNewIndex from "../UserListNew/UserDetilasNew/UserDetailsNewIndex";
 
-const annotatorRoles = [
-  "level_0_annotator",
-  "level_1_annotator",
-  "level_2_annotator",
-  "level_3_annotator",
-];
+const annotatorRoles = ["level_0_annotator", "level_1_annotator", "level_2_annotator", "level_3_annotator"];
 const reviewerRoles = ["reviewer"];
 
 const AllUserListIndex = ({ action }) => {
@@ -37,22 +35,24 @@ const AllUserListIndex = ({ action }) => {
   const { users, totalUsers } = useSelector((state) => state.user.users);
   const { isLoading, user } = useSelector((state) => state.user);
   const { role } = user;
+
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
-
+  const [selectedUser, setSelectedUser] = useState({});
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => setOpen(false);
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
   });
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    console.log("effect");
     dispatch(setActivePath("All Users 2"));
     setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
     users && users.length > 0 && setMyRows(dataBuilder(users));
   }, [dispatch, users]);
 
-  
   useEffect(() => {
     console.log("hit single");
     dispatch(getAllUsers({ pagination }));
@@ -61,18 +61,19 @@ const AllUserListIndex = ({ action }) => {
   //   -------------------------------
 
   const handleClick = (e) => {
-    console.log("🚀 ~ file: AllUserListIndex.jsx:101 ~ handleClick ~ e:", e);
+    console.log("handleclick");
   };
 
   const handleDelete = (e) => {
     console.log("🚀 ~ file: AllUserListIndex.jsx:103 ~ handleDelete ~ e:", e);
   };
+  const handleProjectDetailsOpen = (params) => {
+    setSelectedUser(params);
+    setOpen(true);
+  };
 
   const handleDetailsPage = (e) => {
-    console.log(
-      "🚀 ~ file: AllUserListIndex.jsx:105 ~ handleDetailsPage ~ e:",
-      e
-    );
+    console.log("handledetail");
   };
 
   const handleChangePagination = useCallback(() => {
@@ -126,14 +127,18 @@ const AllUserListIndex = ({ action }) => {
             totalItems={totalUsers}
             handleId={handleId}
             filteredCol={filteredCol}
-            handleProjectDetailsOpen={() =>
-              console.log("handleProjectDetailsOpen")
-            }
+            handleProjectDetailsOpen={handleProjectDetailsOpen}
             data={users}
             isLoading={isLoading}
           />
         )}
       </Box>
+      <UserDetailsNewIndex
+        user={selectedUser}
+        open={open}
+        handleProjectDetailsOpen={handleProjectDetailsOpen}
+        handleClose={handleClose}
+      />
     </Box>
   );
 };

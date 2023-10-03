@@ -28,12 +28,8 @@ const style = {
     height: "20px",
   },
 };
-export default function UserDetailsNewIndex({ user }) {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+export default function UserDetailsNewIndex({ user, open, handleProjectDetailsOpen, handleClose }) {
   const [roleValue, setRole] = React.useState("");
-
   const [actionStatus, setActionStatus] = React.useState("");
   const [disabledButton, setDisabledButton] = React.useState(false);
   const { isLoading } = useSelector((state) => state.user);
@@ -94,7 +90,6 @@ export default function UserDetailsNewIndex({ user }) {
 
   return (
     <>
-      <Button onClick={handleOpen}>Details</Button>
       <Modal
         open={open}
         onClose={handleClose}

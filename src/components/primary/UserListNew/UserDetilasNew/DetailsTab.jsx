@@ -18,7 +18,8 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
-      {...other}>
+      {...other}
+    >
       {value === index && (
         <Box sx={{ paddingTop: 1 }}>
           <Typography>{children}</Typography>
@@ -68,7 +69,8 @@ export default function DetailsTab({ user, handleSetRole, handleSetStatus }) {
           padding: "1%",
           minHeight: "36px",
           height: "50px",
-        }}>
+        }}
+      >
         <Tab
           sx={{
             borderRadius: value === 0 ? "8px" : "none",
@@ -91,12 +93,14 @@ export default function DetailsTab({ user, handleSetRole, handleSetStatus }) {
         />
       </Tabs>
 
-      <TabPanel value={value} index={0} dir={theme.direction}>
-        <UserInfoIndex user={user} handleSetRole={handleSetRole} handleSetStatus={handleSetStatus} />
-      </TabPanel>
-      <TabPanel value={value} index={1} dir={theme.direction}>
-        <UserProjectDetails />
-      </TabPanel>
+      <Box sx={{ height: "500px", overflowY: "auto" }}>
+        <TabPanel value={value} index={0} dir={theme.direction}>
+          <UserInfoIndex user={user} handleSetRole={handleSetRole} handleSetStatus={handleSetStatus} />
+        </TabPanel>
+        <TabPanel value={value} index={1} dir={theme.direction}>
+          <UserProjectDetails />
+        </TabPanel>
+      </Box>
     </Box>
   );
 }

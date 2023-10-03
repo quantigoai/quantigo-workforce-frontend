@@ -5,7 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useDropzone } from "react-dropzone";
 import ctaImage from "../../../assets/images/CTA.png";
 import IconImage from "../../../assets/images/Icon.png";
-
+import { useTheme } from "@mui/material/styles"; 
 const baseStyle = {
   flex: 1,
   display: "flex",
@@ -37,7 +37,7 @@ const rejectStyle = {
 
 const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleImage }) => {
   const [isHovered, setIsHovered] = useState(false);
-
+  const theme = useTheme();
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
@@ -74,7 +74,18 @@ const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleIm
       <Grid container>
         <Box {...getRootProps({ style })}>
           {acceptedFiles.length ? (
-            <Box sx={{ position: "relative" }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <Box  sx={{
+              position: "relative",
+              "& img": {
+                width: "100%", // Set the width of the image
+                [theme.breakpoints.up("sm")]: {
+                  width: "100%", // Adjust for larger screens
+                },
+                [theme.breakpoints.up("md")]: {
+                  width: "90%", // Adjust for even larger screens
+                },
+              },
+            }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
               <img
                 height={175}
                 src={coverImage}

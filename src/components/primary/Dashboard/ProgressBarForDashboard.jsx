@@ -28,7 +28,7 @@ const ProgressBarForDashboard = () => {
             color: (theme) => theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
             // backgroundColor: "red",
           }}
-          size="5vh"
+          size="50px"
           thickness={5}
           // {...props}
           value={100}
@@ -45,7 +45,7 @@ const ProgressBarForDashboard = () => {
             position: "absolute",
             left: 0,
           }}
-          size="5vh"
+          size="50px"
           value={progress}
           thickness={5}
           // {...props}
@@ -68,43 +68,6 @@ const ProgressBarForDashboard = () => {
         </Box>
       </Box>
 
-      {/* <Box sx={{ position: "relative" }}>
-        <CircularProgress
-          variant="determinate"
-          sx={{
-            color: (theme) =>
-              theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
-          }}
-          value={100}
-          size="30vh"
-        />
-        <CircularProgress
-          variant="determinate"
-          value={progress}
-          size="30vh"
-          sx={{
-            color: (theme) =>
-              theme.palette.mode === "light" ? "#1a90ff" : "#308fe8",
-            animationDuration: "550ms",
-            position: "absolute",
-          }}
-        />
-        <Box
-          sx={{
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 0,
-            position: "absolute",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}>
-          <Typography variant="caption" component="div" color="text.secondary">
-            {progress}%
-          </Typography>
-        </Box>
-      </Box>  */}
     </>
   );
 };

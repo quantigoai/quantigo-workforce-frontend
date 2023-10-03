@@ -89,7 +89,7 @@ const Dashboard = () => {
         <>
           <Box
             // sx={{ backgroundColor: "#F5F5F5", height: "100%", width: "100%" }}>
-            sx={{ padding: "1%" }}>
+            sx={{ padding: "1%" ,height:"100%"}}>
             {role === "level_0_annotator" ? (
               <>
                 {user.user.isVerified ? <CongratulationComponents /> : <DashboardDocument />}

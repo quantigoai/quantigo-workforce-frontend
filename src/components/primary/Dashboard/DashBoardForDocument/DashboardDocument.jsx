@@ -20,6 +20,7 @@ const ButtonStyle = styled(Button)({
   // mr: 1,
 });
 const DashboardDocument = () => {
+  const { isLightTheme } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const [openModalNid, setOpenModalNid] = useState(false);
@@ -33,16 +34,7 @@ const DashboardDocument = () => {
     setAnchorEl(null);
   };
 
-  const paperstyle = {
-    backgroundColor: "#FFFFFF",
-    // padding: "2%",
-    // width: "100%",
-    height: "100%",
-    borderRadius: "8px",
-  };
-
-  const teamicondiv = { paddingLeft: "1%", paddingTop: "0%" };
-
+  
   const handleNDAModal = () => {
     setOpenModal(true);
   };
@@ -54,8 +46,18 @@ const DashboardDocument = () => {
   const handleCloseNid = () => setOpenModalNid(false);
   return (
     <>
-      <Box>
-        <Paper elevation={0} sx={paperstyle}>
+      
+      <Box className="projectBox">
+        {/* TODO Filter functionality need to be checked for last page  */}
+
+        <Box
+          sx={{
+        
+            width: "100%",
+            height: "100%",
+            borderRadius: "8px",
+            background: isLightTheme ? "#FFFFFF" : "#1E1E1E",
+          }}>
           <Box sx={{ borderBottom: "1px solid #F2F4F7" }}>
             <Grid container sx={{ justifyContent: "space-between", padding: "1%" }}>
               <Grid xs={8}>
@@ -174,8 +176,9 @@ const DashboardDocument = () => {
               <></>
             )}
           </Box>
-        </Paper>
+        </Box>
       </Box>
+    
 
       <NDAuploadModal openModal={openModal} handleClose={handleClose} />
       <UpdateDocumentModal openModal={openModalNid} handleClose={handleCloseNid} />

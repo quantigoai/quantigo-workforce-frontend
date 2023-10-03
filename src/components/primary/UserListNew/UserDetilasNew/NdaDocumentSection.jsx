@@ -11,6 +11,7 @@ const ButtonStyle = styled(Button)({
   backgroundColor: "#F4F7FE",
   color: "#2E58FF",
   borderRadius: "8px",
+  border: "1px solid #F4F7FE",
   "&:hover": {
     backgroundColor: "#F4F7FE",
     color: "#2E58FF",
@@ -51,14 +52,21 @@ const NdaDocumentSection = ({ user }) => {
         <Grid item xs={6} sx={{ paddingRight: "2%" }}>
           <ButtonStyle
             disabled={!user.documentNo}
-            onClick={() => handleDetailNid(user.documentsImage, user.documentNo, user.documentsType, user.name)}>
-            <Typography sx={{ paddingRight: "4%" }}> Document </Typography>
+            onClick={() => handleDetailNid(user.documentsImage, user.documentNo, user.documentsType, user.name)}
+          >
+            <Typography variant="wpf_p3_medium" color={"primary.B200"} sx={{ paddingRight: "4%" }}>
+              {" "}
+              Document{" "}
+            </Typography>
             <img src={ViewIcon} />
           </ButtonStyle>
         </Grid>
         <Grid item xs={6}>
           <ButtonStyle disabled={!user.signImage} onClick={() => handleClick(user.signImage)}>
-            <Typography sx={{ paddingRight: "4%" }}> NDA</Typography>
+            <Typography variant="wpf_p3_medium" color={"primary.B200"} sx={{ paddingRight: "4%" }}>
+              {" "}
+              NDA
+            </Typography>
             <img src={ArrowIcon} />
           </ButtonStyle>
         </Grid>

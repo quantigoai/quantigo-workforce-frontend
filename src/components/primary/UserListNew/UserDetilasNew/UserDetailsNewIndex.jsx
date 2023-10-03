@@ -8,33 +8,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeRole, deleteOrActivateUser } from "../../../../features/slice/userSlice";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 import DetailsTab from "./DetailsTab";
-const style = {
-  display: "flex",
-  flexDirection: "column",
-  position: "relative",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  bgcolor: "background.paper",
-  border: "none",
-  borderRadius: "8px",
-  p: 0,
-  input: {
-    color: "black",
-    height: "20px",
-    borderRadius: "8px",
-  },
-  select: {
-    height: "20px",
-  },
-};
+import styled from "./testDrawer";
+
 export default function UserDetailsNewIndex({ user, open, handleProjectDetailsOpen, handleClose }) {
   const [roleValue, setRole] = React.useState("");
   const [actionStatus, setActionStatus] = React.useState("");
   const [disabledButton, setDisabledButton] = React.useState(false);
   const { isLoading } = useSelector((state) => state.user);
+  const { isLightTheme } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
   const alert = useAlert();
+  const { buttonStyle, BoxStyle } = styled(isLightTheme);
   const handleSetStatus = (e) => {
     setActionStatus(e.target.value);
     setDisabledButton(true);
@@ -98,8 +82,8 @@ export default function UserDetailsNewIndex({ user, open, handleProjectDetailsOp
       >
         <Box
           sx={{
-            ...style,
-            height: { xl: "80%", lg: "90%" },
+            ...BoxStyle,
+            height: { xl: "90%", lg: "90%" },
             width: { xl: "40%", lg: "50%" },
           }}
         >
@@ -135,21 +119,7 @@ export default function UserDetailsNewIndex({ user, open, handleProjectDetailsOp
           >
             <Grid container sx={{ padding: "2%" }}>
               <Grid item xs={6}>
-                <Button
-                  sx={{
-                    width: "120px",
-                    textTransform: "none",
-                    backgroundColor: "#F4F7FE",
-                    color: "#62728F",
-                    borderRadius: "8px",
-                    "&:hover": {
-                      backgroundColor: "#F4F7FE",
-                      color: "#62728F",
-                      border: "1px solid #F4F7FE",
-                    },
-                  }}
-                  onClick={() => handleClose()}
-                >
+                <Button sx={buttonStyle} onClick={() => handleClose()}>
                   Cancel
                 </Button>
               </Grid>

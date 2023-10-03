@@ -89,7 +89,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
   const [coverImage, setCoverImage] = useState(null);
   const handleDowload = () => {
     setStepper(1);
-    console.log("hittt");
+   
   };
   const handleImage = (e) => {
     setCoverImageFile(e[0]);

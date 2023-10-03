@@ -5,7 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useDropzone } from "react-dropzone";
 import ctaImage from "../../../assets/images/CTA.png";
 import IconImage from "../../../assets/images/Icon.png";
-
+import { useTheme } from "@mui/material/styles";
 const baseStyle = {
   flex: 1,
   display: "flex",
@@ -36,8 +36,10 @@ const rejectStyle = {
 };
 
 const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleImage }) => {
+  const screenSize = window.innerWidth;
+  console.log("🚀 ~ file: DocumentImageUpload.jsx:40 ~ DocumentImageUpload ~ screenSize:", screenSize)
   const [isHovered, setIsHovered] = useState(false);
-
+  const theme = useTheme();
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
@@ -69,17 +71,33 @@ const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleIm
   //   // Do something with the files
   // }, []);
 
+  let width = "90%"; // Default width for large screens
+
+  if (screenSize >= 1500) {
+    // Extra-large screens
+    width = 630;
+  } else if (screenSize >= 992) {
+    // Large screens
+    width = 510;
+  }
   return (
     <>
       <Grid container>
         <Box {...getRootProps({ style })}>
           {acceptedFiles.length ? (
-            <Box sx={{ position: "relative" }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <Box
+              sx={{
+                position: "relative",
+              }}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}>
               <img
                 height={175}
                 src={coverImage}
                 alt=""
-                width={630}
+                style={{ width }}
+                // width={630}
+                // width= { xl: "35%", lg: "40%" },
               />
               {/* <p>File : {files}</p> */}
               {isHovered && (

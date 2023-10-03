@@ -49,9 +49,8 @@ const CustomButton = ({ params, handleClick, handleDelete, handleProjectDetailsO
         onClick={() => handleProjectDetailsOpen(params)}
         sx={{
           color: "#2E58FF",
-          paddingX: pathname === "/all-users" && "20px",
+          paddingX: "20px",
           minWidth: "35px",
-          backgroundColor: pathname === "/all-users" && "#F4F7FE",
           textTransform: "none",
         }}
       >

@@ -21,9 +21,11 @@ const ProjectModalHeader = ({ handleCreateProjectClose, modalTitle, isPageDetail
           display: "flex",
           alignItems: "center",
           borderRadius: "8px",
+          paddingLeft: "3%",
+          paddingRight:"2%"
         }}
       >
-        <Grid item xs={isPageDetail ? 10 : 11} sx={{ paddingLeft: "3%" }}>
+        <Grid item xs={isPageDetail ? 10 : 11} >
           <Typography
             variant="h6"
             sx={{
@@ -48,9 +50,9 @@ const ProjectModalHeader = ({ handleCreateProjectClose, modalTitle, isPageDetail
           )}
         </Grid>
 
-        <Grid item xs={1} sx={{ justifyContent: "right", paddingRight: "2%" }}>
+        <Grid item xs={1} sx={{ justifyContent: "right",  }}>
           <Button onClick={handleCreateProjectClose}>
-            <img style={{ width: "22px" }} alt="cross" src={u_multiply} />
+            <img style={{ width: "20px" }} alt="cross" src={u_multiply} />
           </Button>
         </Grid>
       </Grid>

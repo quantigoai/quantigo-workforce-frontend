@@ -10,6 +10,7 @@ import MyProfileIndex from "./MyProfile/MyProfileIndex";
 import ActivateAccount from "./ActivateAccount";
 import MyCoursesIndex from "./MyCourses/MyCoursesIndex";
 import PasswordChangeIndex from "./PasswordChange/PasswordChangeIndex";
+import { useSelector } from "react-redux";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -45,101 +46,110 @@ function a11yProps(index) {
 
 export default function EditProfilePageIndex() {
   const [value, setValue] = React.useState(0);
-
+  const { isLightTheme } = useSelector((state) => state.theme);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
     <>
-      <Grid
-        container
-        sx={{
-          // borderTop: "1px solid #E1E8F5",
-          backgroundColor: "#FFFFFF",
-          // position: "absolute",
-          width: "100%",
-          borderRadius: "8px",
-        }}>
-        <Grid item xs={2} sx={{ borderRight: "1px solid #E1E8F5" }}>
-          <Tabs
-            orientation="vertical"
-            variant="scrollable"
-            indicatorColor=""
-            // textColor="red"
-            value={value}
-            onChange={handleChange}
-            aria-label="Vertical tabs example"
+      <Box sx={{ padding: "1%", height: "100%" }}>
+        <Box
+          sx={{
+            width: "100%",
+            height: "100%",
+            borderRadius: "8px",
+            background: isLightTheme ? "#FFFFFF" : "#1E1E1E",
+          }}>
+          <Grid
+            container
             sx={{
-              height: "80vh",
-              width: "90%",
-              // borderRight: "1px solid #E1E8F5",
-              // borderRight: 1,
-              // borderColor: "divider",
-              paddingTop: "5%",
-              textAlign: "right",
-              paddingLeft: "5%",
-              // PaddingRight: "5%",
-              // border: "1px solid #E1E8F5",
+              // borderTop: "1px solid #E1E8F5",
+              backgroundColor: "#FFFFFF",
+              // position: "absolute",
+              width: "100%",
+              height: "100%",
+              borderRadius: "8px",
             }}>
-            <Tab
-              sx={{
-                alignItems: "flex-start",
-                // border: value === 0 ? "2px solid blue" : "none",
-                borderRadius: value === 0 ? "8px" : "none",
-                backgroundColor: value === 0 ? "#F4F7FE" : "",
+            <Grid item xs={2} sx={{ borderRight: "1px solid #E1E8F5",display: "flex", flexDirection: "column" }}>
+              <Tabs
+                orientation="vertical"
+                variant="scrollable"
+                indicatorColor=""
+                // textColor="red"
+                value={value}
+                onChange={handleChange}
+                aria-label="Vertical tabs example"
+                sx={{
+                  // height: "100%",
+                  width: "95%",
+                  // borderRight: "1px solid #E1E8F5",
+                  // borderRight: 1,
+                  // borderColor: "divider",
+                  paddingTop: "5%",
+                  textAlign: "right",
+                  paddingLeft: "5%",
+                  // PaddingRight: "5%",
+                  // border: "1px solid #E1E8F5",
+                }}>
+                <Tab
+                  sx={{
+                    alignItems: "flex-start",
+                    // border: value === 0 ? "2px solid blue" : "none",
+                    borderRadius: value === 0 ? "8px" : "none",
+                    backgroundColor: value === 0 ? "#F4F7FE" : "",
 
-                // padding: value === 0 ? "2%":"",
-                // Add other styles as needed
-              }}
-              label="My Profile"
-              {...a11yProps(0)}
-            />
-            <Tab
-              sx={{
-                alignItems: "flex-start",
-                // border: value === 1 ? "2px solid blue" : "none",
-                borderRadius: value === 1 ? "8px" : "none",
-                backgroundColor: value === 1 ? "#F4F7FE" : "",
-                // padding: value === 0 ? "2%":"",
-                // Add other styles as needed
-              }}
-              label="Courses"
-              {...a11yProps(1)}
-            />
-            <Tab
-              sx={{
-                alignItems: "flex-start",
-                // border: value === 2 ? "2px solid blue" : "none",
-                borderRadius: value === 2 ? "8px" : "none",
-                backgroundColor: value === 2 ? "#F4F7FE" : "",
-                // padding: value === 0 ? "2%":"",
-                // Add other styles as needed
-              }}
-              label="Password & Security"
-              {...a11yProps(2)}
-            />
-          </Tabs>
-          <Box>
-            <Grid
-              container
-              sx={{ justifyContent: "center", paddingBottom: "4%" }}>
-              <ActivateAccount />
+                    // padding: value === 0 ? "2%":"",
+                    // Add other styles as needed
+                  }}
+                  label="My Profile"
+                  {...a11yProps(0)}
+                />
+                <Tab
+                  sx={{
+                    alignItems: "flex-start",
+                    // border: value === 1 ? "2px solid blue" : "none",
+                    borderRadius: value === 1 ? "8px" : "none",
+                    backgroundColor: value === 1 ? "#F4F7FE" : "",
+                    // padding: value === 0 ? "2%":"",
+                    // Add other styles as needed
+                  }}
+                  label="Courses"
+                  {...a11yProps(1)}
+                />
+                <Tab
+                  sx={{
+                    alignItems: "flex-start",
+                    // border: value === 2 ? "2px solid blue" : "none",
+                    borderRadius: value === 2 ? "8px" : "none",
+                    backgroundColor: value === 2 ? "#F4F7FE" : "",
+                    // padding: value === 0 ? "2%":"",
+                    // Add other styles as needed
+                  }}
+                  label="Password & Security"
+                  {...a11yProps(2)}
+                />
+              </Tabs>
+              <Box sx={{ marginTop: "auto" }}>
+                <Grid container sx={{ justifyContent: "center", paddingBottom: "3%" }}>
+                  <ActivateAccount />
+                </Grid>
+              </Box>
             </Grid>
-          </Box>
-        </Grid>
-        <Grid item xs={10}>
-          <TabPanel value={value} index={0}>
-            <MyProfileIndex />
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            <MyCoursesIndex />
-          </TabPanel>
-          <TabPanel sx={{ position: "absolute" }} value={value} index={2}>
-            <PasswordChangeIndex />
-          </TabPanel>
-        </Grid>
-      </Grid>
+            <Grid item xs={10}>
+              <TabPanel value={value} index={0}>
+                <MyProfileIndex />
+              </TabPanel>
+              <TabPanel value={value} index={1}>
+                <MyCoursesIndex />
+              </TabPanel>
+              <TabPanel sx={{ position: "absolute" }} value={value} index={2}>
+                <PasswordChangeIndex />
+              </TabPanel>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
     </>
   );
 }

@@ -10,13 +10,17 @@
 import { TableCell } from "@mui/material";
 import React from "react";
 import CustomButton from "../../../../shared/CustomTable/CustomButton";
+import { useLocation } from "react-router-dom";
 
 const LastTableColumn = ({ role, handleProjectDetailsOpen, row, handleClick, handleDelete }) => {
+  const { pathname } = useLocation();
+
   return (
     <>
       <TableCell className="tablerowlast">
         <CustomButton
           role={role}
+          pathname={pathname}
           handleProjectDetailsOpen={handleProjectDetailsOpen}
           params={row}
           handleClick={handleClick}

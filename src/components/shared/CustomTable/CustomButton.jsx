@@ -6,11 +6,11 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import MainModal from "./MainModal";
 
-const CustomButton = ({ params, handleClick, handleDelete, handleProjectDetailsOpen, role }) => {
+const CustomButton = ({ params, handleClick, handleDelete, handleProjectDetailsOpen, role, pathname }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -23,7 +23,7 @@ const CustomButton = ({ params, handleClick, handleDelete, handleProjectDetailsO
         justifyContent: "flex-start",
       }}
     >
-      {role === "admin" && (
+      {role === "admin" && pathname === "/allprojects" && (
         <>
           {" "}
           <Button
@@ -47,7 +47,13 @@ const CustomButton = ({ params, handleClick, handleDelete, handleProjectDetailsO
       )}
       <Button
         onClick={() => handleProjectDetailsOpen(params)}
-        sx={{ color: "#2E58FF", padding: "0px", minWidth: "35px" }}
+        sx={{
+          color: "#2E58FF",
+          paddingX: pathname === "/all-users" && "20px",
+          minWidth: "35px",
+          backgroundColor: pathname === "/all-users" && "#F4F7FE",
+          textTransform: "none",
+        }}
       >
         <i className="ri-eye-line"></i>
       </Button>

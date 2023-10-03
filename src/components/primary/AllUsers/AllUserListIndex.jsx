@@ -18,9 +18,11 @@ import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 // import TableWrapper from "../ProjectLIstNew2/ExpTable/TableWrapper";
 const TableWrapper = React.lazy(() => import("../ProjectLIstNew2/ExpTable/TableWrapper"));
 
+import { useLocation } from "react-router-dom";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import useAllFunc from "../ProjectLIstNew2/Hooks/useAllFunc";
 import "../ProjectLIstNew2/index.css";
+import UserDetailsNewIndex from "../UserListNew/UserDetilasNew/UserDetailsNewIndex";
 import UsersFilter from "./UsersFilter";
 import UsersHeader from "./UsersHeader";
 import "./index.css";
@@ -36,13 +38,17 @@ const AllUserListIndex = ({ action }) => {
   const { users, totalUsers } = useSelector((state) => state.user.users);
   const { isLoading, user } = useSelector((state) => state.user);
   const { role } = user;
+
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
-
+  const [selectedUser, setSelectedUser] = useState({});
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => setOpen(false);
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
   });
+  const { pathname } = useLocation();
 
   useEffect(() => {
     dispatch(setActivePath("All Users 2"));
@@ -57,15 +63,19 @@ const AllUserListIndex = ({ action }) => {
   //   -------------------------------
 
   const handleClick = (e) => {
-    console.log("🚀 ~ file: AllUserListIndex.jsx:101 ~ handleClick ~ e:", e);
+    console.log("handleclick");
   };
 
   const handleDelete = (e) => {
     console.log("🚀 ~ file: AllUserListIndex.jsx:103 ~ handleDelete ~ e:", e);
   };
+  const handleProjectDetailsOpen = (params) => {
+    setSelectedUser(params);
+    setOpen(true);
+  };
 
   const handleDetailsPage = (e) => {
-    console.log("🚀 ~ file: AllUserListIndex.jsx:105 ~ handleDetailsPage ~ e:", e);
+    console.log("handledetail");
   };
 
   const {
@@ -125,11 +135,17 @@ const AllUserListIndex = ({ action }) => {
             totalItems={totalUsers}
             handleId={handleId}
             filteredCol={filteredCol}
-            handleProjectDetailsOpen={() => console.log("handleProjectDetailsOpen")}
+            handleProjectDetailsOpen={handleProjectDetailsOpen}
             data={users}
           />
         </Suspense>
       </Box>
+      <UserDetailsNewIndex
+        user={selectedUser}
+        open={open}
+        handleProjectDetailsOpen={handleProjectDetailsOpen}
+        handleClose={handleClose}
+      />
     </Box>
   );
 };

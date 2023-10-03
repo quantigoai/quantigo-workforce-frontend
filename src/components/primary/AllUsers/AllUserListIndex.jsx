@@ -19,14 +19,15 @@ import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 const TableWrapper = React.lazy(() => import("../ProjectLIstNew2/ExpTable/TableWrapper"));
 
 import { useLocation } from "react-router-dom";
+import useAllUsers from "../../../customHooks/useAllUsers";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
-import useAllFunc from "../ProjectLIstNew2/Hooks/useAllFunc";
 import "../ProjectLIstNew2/index.css";
 import UserDetailsNewIndex from "../UserListNew/UserDetilasNew/UserDetailsNewIndex";
 import UsersFilter from "./UsersFilter";
 import UsersHeader from "./UsersHeader";
 import "./index.css";
 import { fields } from "./tableFields";
+import { hubOptions, roleOptions, userStatusOptions } from "./userFilterOptions";
 
 const annotatorRoles = ["level_0_annotator", "level_1_annotator", "level_2_annotator", "level_3_annotator"];
 const reviewerRoles = ["reviewer"];
@@ -49,6 +50,8 @@ const AllUserListIndex = ({ action }) => {
     pageSize: 10,
   });
   const { pathname } = useLocation();
+  const { filterValue, handleId, filteredCol, handleIsFilter, isFilter, handleChange, handleClearFilter } =
+    useAllUsers();
 
   useEffect(() => {
     dispatch(setActivePath("All Users 2"));
@@ -78,22 +81,6 @@ const AllUserListIndex = ({ action }) => {
     console.log("handledetail");
   };
 
-  const {
-    createProjectOpen,
-    detailsProjectOpen,
-    handleProjectCreateOpen,
-    handleDetailsProjectClose,
-    setCreateProjectOpen,
-    handleChange,
-    handleClearFilter,
-    filterValue,
-    handleId,
-    filteredCol,
-    handleIsFilter,
-    isFilter,
-    setDetailsProjectOpen,
-  } = useAllFunc();
-
   const handleChangePagination = useCallback(() => {
     dispatch(getAllSkills());
     dispatch(
@@ -112,11 +99,23 @@ const AllUserListIndex = ({ action }) => {
         <UsersHeader
           isFilter={false}
           isLightTheme={isLightTheme}
-          handleIsFilter={() => console.log("handleIsFilter")}
+          handleIsFilter={handleIsFilter}
           handleProjectCreateOpen={() => console.log("handleProjectCreateOpen")}
         />
 
-        <UsersFilter isFilter={false} isLightTheme={isLightTheme} />
+        <UsersFilter
+          isFilter={isFilter}
+          isLightTheme={isLightTheme}
+          role={role}
+          handleChange={handleChange}
+          handleClearFilter={handleClearFilter}
+          filterValue={filterValue}
+          roleOptions={roleOptions}
+          hubOptions={hubOptions}
+          skillOptions={hubOptions}
+          
+          userStatusOptions={userStatusOptions}
+        />
       </Box>
 
       <Box className="tableContent">

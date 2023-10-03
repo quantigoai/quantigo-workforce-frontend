@@ -7,10 +7,26 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import React from "react";
+import ProjectSelectFIlterField from "../ProjectLIstNew2/ProjectSelectFIlterField";
 
-const UsersFilter = ({ isFilter, isLightTheme }) => {
+const UsersFilter = ({
+  role,
+  roleOptions,
+  isFilter,
+  isLightTheme,
+  filterPDR,
+  platformOptions,
+  statusOptions,
+  projectTypeOptions,
+  handleChange,
+  handleClearFilter,
+  filterValue,
+  userStatusOptions,
+  hubOptions,
+  handleChangeAnnotatorFilter,
+}) => {
   return (
     <>
       <Box
@@ -25,7 +41,80 @@ const UsersFilter = ({ isFilter, isLightTheme }) => {
         }}
       >
         {/* Implement users filter  */}
-        <Typography variant="wpf_h4_regular">Implement users filter</Typography>
+        <Stack sx={{ width: "100%" }}>
+          {/* <Grid items xs={9}> */}
+          <Stack sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexDirection: "row" }}>
+            {role === "admin" ? (
+              <>
+                <Stack
+                  sx={{
+                    display: "flex",
+                    justifyContent: "start",
+                    alignItems: "center",
+                    flexDirection: "row",
+                    width: "100%",
+                    paddingX: "16px",
+                  }}
+                >
+                  <ProjectSelectFIlterField
+                    label={"Users Role"}
+                    name="role"
+                    filterValue={filterValue}
+                    options={roleOptions}
+                    handleChange={handleChange}
+                  />
+                  <ProjectSelectFIlterField
+                    label={"Users Hub"}
+                    name="hub"
+                    filterValue={filterValue}
+                    options={hubOptions}
+                    handleChange={handleChange}
+                  />
+                  <ProjectSelectFIlterField
+                    label={"Users Skills"}
+                    name="skills"
+                    filterValue={filterValue}
+                    options={roleOptions}
+                    handleChange={handleChange}
+                  />
+                  <ProjectSelectFIlterField
+                    label={"Users Status"}
+                    name=""
+                    filterValue={filterValue}
+                    options={userStatusOptions}
+                    handleChange={handleChange}
+                  />
+                </Stack>
+              </>
+            ) : (
+              <Box sx={{ display: "flex", alignItems: "center", paddingX: "40px", width: "70%" }}></Box>
+            )}
+
+            <Stack sx={{ width: "10%" }}>
+              {role === "admin" && (
+                <Button
+                  onClick={() => handleClearFilter()}
+                  sx={{
+                    textTransform: "none",
+                    borderRadius: "8px",
+                    backgroundColor: "#FF4757",
+                    color: "white",
+                    width: "140px",
+                    height: "35 px",
+                    "&:hover": {
+                      backgroundColor: "#F53142",
+                    },
+                  }}
+                  size="medium"
+                  color="error"
+                >
+                  {" "}
+                  Clear Filter
+                </Button>
+              )}
+            </Stack>
+          </Stack>
+        </Stack>
       </Box>
     </>
   );

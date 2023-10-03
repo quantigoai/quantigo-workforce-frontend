@@ -1,5 +1,5 @@
-import { Alert, Box, Button, Grid, Paper, Typography, styled } from "@mui/material";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { Alert, Box, Button, Grid, Typography, styled } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import UpdateDocumentModal from "../../Documents/UpdateDocumentModal";
@@ -34,7 +34,6 @@ const DashboardDocument = () => {
     setAnchorEl(null);
   };
 
-  
   const handleNDAModal = () => {
     setOpenModal(true);
   };
@@ -46,18 +45,18 @@ const DashboardDocument = () => {
   const handleCloseNid = () => setOpenModalNid(false);
   return (
     <>
-      
       <Box className="projectBox">
         {/* TODO Filter functionality need to be checked for last page  */}
 
         <Box
           sx={{
-        
             width: "100%",
             height: "100%",
             borderRadius: "8px",
-            background: isLightTheme ? "#FFFFFF" : "#1E1E1E",
-          }}>
+            backgroundColor: "neutral.N000",
+            
+          }}
+        >
           <Box sx={{ borderBottom: "1px solid #F2F4F7" }}>
             <Grid container sx={{ justifyContent: "space-between", padding: "1%" }}>
               <Grid xs={8}>
@@ -74,16 +73,17 @@ const DashboardDocument = () => {
               </Grid>
             </Grid>
           </Box>
+
           <Box sx={{}}>
             <Grid container sx={{ padding: "1%" }}>
               <Grid xs={6} sx={{ backgroundColor: "", paddingRight: "1%" }}>
-                <Box sx={{ backgroundColor: "#F2F4F7", borderRadius: "8px", padding: "2%" }}>
+                <Box sx={{ backgroundColor: "primary.B008", borderRadius: "8px", padding: "2%" }}>
                   <Grid xs={12}>
-                    <Typography variant="wpf_h6_semiBold" sx={{ color: "#090080" }}>
+                    <Typography variant="wpf_h6_semiBold" sx={{ color: "primary.B300" }}>
                       NDA Upload
                     </Typography>
                     <br />
-                    <Typography variant="wpf_h7_regular" sx={{ color: "#090080" }}>
+                    <Typography variant="wpf_h7_regular" sx={{ color: "primary.B300" }}>
                       Please download, sign and upload the NDA form.
                     </Typography>
                   </Grid>
@@ -163,7 +163,8 @@ const DashboardDocument = () => {
                     borderRadius: "6px",
                     // height:"45px"
                   }}
-                  icon={<InfoOutlinedIcon />}>
+                  icon={<InfoOutlinedIcon />}
+                >
                   Rejection Cause: {user.user.rejectionCause}
                 </Alert>
                 {/* <Alert severity="error">Rejection Cause: {user.user.rejectionCause}</Alert> */}
@@ -178,7 +179,6 @@ const DashboardDocument = () => {
           </Box>
         </Box>
       </Box>
-    
 
       <NDAuploadModal openModal={openModal} handleClose={handleClose} />
       <UpdateDocumentModal openModal={openModalNid} handleClose={handleCloseNid} />

@@ -33,6 +33,7 @@ export const lightColors = {
     main: "#266AED",
     B100: "#266AED",
     B200: "#2E58FF",
+    B300: "#090080",
     B008: "#F4F7FE",
   },
   error: {

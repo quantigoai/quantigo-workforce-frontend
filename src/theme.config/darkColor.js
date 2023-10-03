@@ -34,7 +34,8 @@ export const darkColors = {
     main: "#266AED", // Primary color
     B100: "#266AED", // Lighter primary color
     B200: "#2E58FF", // Darker primary color
-    B008: "#F4F7FE", // Lighter background for primary
+    B300: "#fff",
+    B008: "#2C2C2C", // Lighter background for primary
   },
   error: {
     500: "#F04438", // Error color

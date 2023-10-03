@@ -5,11 +5,7 @@ import { useSelector } from "react-redux";
 const ProgressBarForDashboard = () => {
   const [progress, setProgress] = React.useState(80);
   const { user } = useSelector((state) => state);
-  const styles = {
-    progress: {
-      borderRadius: "50%",
-    },
-  };
+ 
   useEffect(() => {
     if (user.user.isNDASigned && user.user.isDocumentsSubmitted === "submitted") {
       setProgress(100);

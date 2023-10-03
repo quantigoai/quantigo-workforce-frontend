@@ -95,7 +95,6 @@ const AllUserListIndex = ({ action }) => {
   } = useAllFunc();
 
   const handleChangePagination = useCallback(() => {
-    console.log("hit inside pagination");
     dispatch(getAllSkills());
     dispatch(
       getAllUsers({

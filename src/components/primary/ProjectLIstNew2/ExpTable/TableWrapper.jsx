@@ -31,7 +31,6 @@ const TableWrapper = ({
   role,
   skillAlert,
   data,
-  // isLoading,
 }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { isLoading } = useSelector((state) => state.user);

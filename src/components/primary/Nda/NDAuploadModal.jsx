@@ -92,6 +92,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
     setStepper(1);
   };
   useEffect(() => {}, [acceptedFiles]);
+
   const files = acceptedFiles.map((file) => (
     // <li key={file.path}>
     //   {file.path} - {file.size} bytes
@@ -295,6 +296,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
                       },
                     }}
                     // onClick={() => handleChange()}
+                    onClick={handleSubmission}
                   >
                     Upload
                   </Button>

@@ -131,7 +131,7 @@ export default function LayoutNew({ children }) {
   };
   const adminOptions = [
     { name: "Dashboard", icon: DashboardSvg },
-    { name: "All Users", icon: UserSvg },
+    // { name: "All Users", icon: UserSvg },
     { name: "All Users 2", icon: UserSvg },
     { name: "All Projects2", icon: ProjectSvg },
     { name: "Skill", icon: SkillIcon },
@@ -210,7 +210,8 @@ export default function LayoutNew({ children }) {
 
   const recruitOptions = [
     { name: "Dashboard", icon: DashboardSvg },
-    { name: "Users", icon: UserSvg },
+    // { name: "Users", icon: UserSvg },
+    { name: "All Users 2", icon: UserSvg },
   ];
 
   const unverifiedOptions = [{ name: "Account Activation", icon: DashboardSvg }];

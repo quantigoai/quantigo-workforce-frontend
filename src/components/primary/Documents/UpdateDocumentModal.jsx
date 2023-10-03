@@ -117,7 +117,6 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
           <Box sx={{ flex: "0 0 5%" }}>
             <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Upload Document"} />
           </Box>
-
           <Box
             sx={{
               flex: "1",

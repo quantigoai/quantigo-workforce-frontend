@@ -138,6 +138,7 @@ const AllUserListIndex = ({ action }) => {
           />
         </Suspense>
       </Box>
+     
       <UserDetailsNewIndex
         user={selectedUser}
         open={open}

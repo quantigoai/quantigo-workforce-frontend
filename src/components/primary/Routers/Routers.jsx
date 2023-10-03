@@ -52,6 +52,7 @@ import UpdateQuiz from "../Quiz/UpdateQuiz";
 import Skills from "../Skill/Skills";
 import UserListIndex from "../UserListNew/UserListIndex";
 import PrivateRoute from "./PrivateRoute";
+import Home from "../Home/Home";
 
 const roles = {
   admin: "admin",
@@ -81,6 +82,7 @@ const Routers = () => {
     <>
       <Routes>
         <Route path={"/"} element={<Dashboard />} />
+        <Route path={"/home"} element={<Home />} />
         <Route path={"/verify-email/:id/:token/"} element={<EmailVerificationAfterLogin />} />
         {/*TODO Correction in this component */}
         <Route path={"/emailVerification"} element={<EmailVerification />} />

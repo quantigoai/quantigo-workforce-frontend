@@ -4,7 +4,7 @@ import * as React from "react";
 import { useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { updateAUserById } from "../../../../features/slice/userSlice";
+import { changeRole, deleteOrActivateUser, updateAUserById } from "../../../../features/slice/userSlice";
 import CommonModalFooter from "../../../shared/CommonModal/CommonModalFooter";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 import DetailsTab from "./DetailsTab";
@@ -25,10 +25,12 @@ export default function UserDetailsNewIndex({ user, open, handleProjectDetailsOp
   const [isEditSkill, setIsEditSkill] = useState(false);
   const alert = useAlert();
   const { buttonStyle, BoxStyle } = styled(isLightTheme);
+
   const handleSetStatus = (e) => {
     setActionStatus(e.target.value);
     setDisabledButton(true);
   };
+
   const handleSetRole = (e) => {
     setRole(e.target.value);
     setDisabledButton(true);
@@ -90,8 +92,9 @@ export default function UserDetailsNewIndex({ user, open, handleProjectDetailsOp
       action: actionStatus,
     };
 
+    // TODO Call this when skill change
     // skill Change
-    dispatch(updateAUserById(skillData)).then((action) => {
+    isEditSkill && dispatch(updateAUserById(skillData)).then((action) => {
       if (action.payload?.status === 200) {
         alert.show("Skill Update successfully", { type: "success" });
         setIsEditSkill(false);
@@ -99,36 +102,36 @@ export default function UserDetailsNewIndex({ user, open, handleProjectDetailsOp
         alert.show("Skill can not updated ", { type: "error" });
       }
     });
-    // roleValue &&
-    //   dispatch(changeRole(finalData)).then((action) => {
-    //     if (action.payload?.status === 200) {
-    //       alert.show("Role Change Successfully", { type: "success" });
-    //     } else {
-    //       alert.show("Role can not Change", { type: "error" });
-    //     }
-    //   });
+    roleValue &&
+      dispatch(changeRole(finalData)).then((action) => {
+        if (action.payload?.status === 200) {
+          alert.show("Role Change Successfully", { type: "success" });
+        } else {
+          alert.show("Role can not Change", { type: "error" });
+        }
+      });
 
-    // actionStatus &&
-    //   dispatch(deleteOrActivateUser(finalData)).then((action) => {
-    //     if (action.payload?.status === 200) {
-    //       if (actionStatus === "delete") {
-    //         window.location.reload(false);
-    //         alert.show(
-    //           "User Delete Successfully",
+    actionStatus &&
+      dispatch(deleteOrActivateUser(finalData)).then((action) => {
+        if (action.payload?.status === 200) {
+          if (actionStatus === "delete") {
+            window.location.reload(false);
+            alert.show(
+              "User Delete Successfully",
 
-    //           { type: "success" }
-    //         );
-    //       } else {
-    //         alert.show(
-    //           "Status change Successfully",
+              { type: "success" }
+            );
+          } else {
+            alert.show(
+              "Status change Successfully",
 
-    //           { type: "success" }
-    //         );
-    //       }
-    //     } else {
-    //       alert.show("Status can not Change", { type: "error" });
-    //     }
-    //   });
+              { type: "success" }
+            );
+          }
+        } else {
+          alert.show("Status can not Change", { type: "error" });
+        }
+      });
   };
 
   return (

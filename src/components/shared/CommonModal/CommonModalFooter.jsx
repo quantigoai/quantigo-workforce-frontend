@@ -56,7 +56,6 @@ const CommonModalFooter = ({
             <Grid container sx={{ justifyContent: "right" }}>
               <Button
                 // disabled={isLoading || !disabledButton}
-                disabled={isLoading || disabledButton}
                 sx={{
                   width: "128px",
                   textTransform: "none",

@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { socket } from "../../../App";
+import { updateMyDocuments } from "../../../features/slice/userSlice";
 import ProjectModalHeader from "../ProjectLIstNew2/ProjectModalHeader";
 import DocumentImageUpload from "./DocumentImageUpload";
 
@@ -86,21 +88,20 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
       id: user._id,
       formData: formData,
     };
-    console.log("🚀 ~ file: UpdateDocumentModal.jsx:86 ~ onSubmit ~ finalData:", finalData);
-    // dispatch(updateMyDocuments(finalData)).then((action) => {
-    //   if (action.payload?.status === 200 || action.payload?.status === 201) {
-    //     if (
-    //       action.payload.data.isNDAApproved !== "rejected" &&
-    //       action.payload.data.isDocumentsSubmitted !== "rejected"
-    //     ) {
-    //       socket.emit("uploadNDAOrDocuments", user);
-    //     }
-    //     alert.show("User Documents update successfully", { type: "success" });
-    //     handleClose();
-    //   } else {
-    //     alert.show("Failed to update User Documents", { type: "error" });
-    //   }
-    // });
+    dispatch(updateMyDocuments(finalData)).then((action) => {
+      if (action.payload?.status === 200 || action.payload?.status === 201) {
+        if (
+          action.payload.data.isNDAApproved !== "rejected" &&
+          action.payload.data.isDocumentsSubmitted !== "rejected"
+        ) {
+          socket.emit("uploadNDAOrDocuments", user);
+        }
+        alert.show("User Documents update successfully", { type: "success" });
+        handleClose();
+      } else {
+        alert.show("Failed to update User Documents", { type: "error" });
+      }
+    });
   };
 
   return (
@@ -121,6 +122,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
           <Box sx={{ flex: "0 0 5%" }}>
             <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Upload Document"} />
           </Box>
+
           <Box
             sx={{
               flex: "1",
@@ -178,8 +180,6 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                   InputProps={{ disableUnderline: true }}
                   placeholder="Enter Document No"
                   onChange={(e) => setDocumentNo(e.target.value)}
-
-                  // {...register("documentNo", { required: true })}
                 />
               </Grid>
 
@@ -193,63 +193,65 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
               </Grid>
             </Box>
           </Box>
-        </Box>
-        <Box
-          sx={{
-            flex: "0 0 64px",
-            borderTop: "2px solid #F2F6FC",
-            backgroundColor: "neutral.N000",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            padding: "0 2%",
-            bottom: "0px",
-            borderRadius: "8px",
-          }}
-        >
-          <Grid container sx={{ padding: "2%" }}>
-            <Grid item xs={6}>
-              <Button
-                sx={{
-                  width: "120px",
-                  textTransform: "none",
-                  backgroundColor: "primary.B008",
-                  color: "neutral.N650",
-                  borderRadius: "8px",
-                  "&:hover": {
-                    backgroundColor: "neutral.N600",
-                    color: "neutral.N650",
-                  },
-                }}
-                onClick={() => handleClose()}
-              >
-                Cancel
-              </Button>
-            </Grid>
-            <Grid item xs={6}>
-              <Grid container sx={{ justifyContent: "right" }}>
+
+          <Box
+            sx={{
+              flex: "0 0 64px",
+              borderTop: "2px solid #F2F6FC",
+              backgroundColor: "neutral.N000",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              padding: "0 2%",
+              bottom: "0px",
+              borderRadius: "8px",
+            }}
+          >
+            <Grid container sx={{ padding: "2%" }}>
+              <Grid item xs={6}>
                 <Button
-                  type="submit"
-                  disabled={isLoading}
                   sx={{
-                    width: "128px",
+                    width: "120px",
                     textTransform: "none",
-                    backgroundColor: "#2E58FF",
-                    color: "#FFFFFF",
+                    backgroundColor: "primary.B008",
+                    color: "neutral.N650",
                     borderRadius: "8px",
                     "&:hover": {
-                      backgroundColor: "#F4F7FE",
-                      color: "#62728F",
-                      border: "1px solid #F4F7FE",
+                      backgroundColor: "neutral.N600",
+                      color: "neutral.N650",
                     },
                   }}
-                  onClick={handleChange}
+                  onClick={() => handleClose()}
                 >
-                  Upload
+                  Cancel
                 </Button>
               </Grid>
+
+              <Grid item xs={6}>
+                <Grid container sx={{ justifyContent: "right" }}>
+                  <Button
+                    type="submit"
+                    disabled={isLoading}
+                    sx={{
+                      width: "128px",
+                      textTransform: "none",
+                      backgroundColor: "#2E58FF",
+                      color: "#FFFFFF",
+                      borderRadius: "8px",
+                      "&:hover": {
+                        backgroundColor: "#F4F7FE",
+                        color: "#62728F",
+                        border: "1px solid #F4F7FE",
+                      },
+                    }}
+                    onClick={handleChange}
+                  >
+                    Upload
+                  </Button>
+                </Grid>
+              </Grid>
             </Grid>
-          </Grid>
+          </Box>
         </Box>
       </Modal>
     </>

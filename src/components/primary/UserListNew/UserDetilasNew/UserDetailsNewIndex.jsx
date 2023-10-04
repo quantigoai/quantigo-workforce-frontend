@@ -83,7 +83,8 @@ export default function UserDetailsNewIndex({ user, open, handleProjectDetailsOp
         <Box
           sx={{
             ...BoxStyle,
-            height: { xl: "90%", lg: "90%" },
+            height: { xl: "80%", lg: "90%" },
+            // height: "80%",
             width: { xl: "40%", lg: "50%" },
           }}
         >
@@ -96,8 +97,10 @@ export default function UserDetailsNewIndex({ user, open, handleProjectDetailsOp
               flex: "1",
               overflowY: "auto",
               padding: "3%",
+              height: "60%",
+              // backgroundColor: "blue",
               "&::-webkit-scrollbar": {
-                width: "0", // Hide the scrollbar
+                width: "0",
               },
             }}
           >
@@ -108,6 +111,7 @@ export default function UserDetailsNewIndex({ user, open, handleProjectDetailsOp
               flex: "0 0 64px",
               borderTop: "2px solid #F2F6FC",
               backgroundColor: "#FFFFFF",
+              // backgroundColor: "yellow",
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",

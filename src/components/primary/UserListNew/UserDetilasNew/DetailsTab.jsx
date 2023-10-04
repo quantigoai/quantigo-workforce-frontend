@@ -55,61 +55,77 @@ export default function DetailsTab({ user, handleSetRole, handleSetStatus }) {
   };
 
   return (
-    <Box sx={{ bgcolor: "background.paper", width: "100%" }}>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        indicatorColor=""
-        variant="fullWidth"
+    <Box
+      sx={{
+        bgcolor: "background.paper",
+        width: "100%",
+        height: "100%",
+        "&::-webkit-scrollbar": {
+          width: "0",
+        },
+        overflow: "hidden",
+      }}
+    >
+      <Box
         sx={{
-          borderRadius: "8px",
-          backgroundColor: "neutral.N600",
-          padding: "1%",
-          minHeight: "36px",
-          height: "50px",
+          height: "10%",
         }}
       >
-        <Tab
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor=""
+          variant="fullWidth"
           sx={{
-            borderRadius: value === 0 ? "8px" : "none",
-            backgroundColor: value === 0 ? "neutral.N000" : "",
+            borderRadius: "8px",
+            backgroundColor: "neutral.N600",
+            padding: "1%",
             minHeight: "36px",
-            height: "36px",
-            // color: "#000",
+            height: "50px",
           }}
-          label={
-            <Typography
-              sx={{ textTransform: "none" }}
-              variant="wpf_p3_semiBold"
-              color={value === 0 ? "primary.B200" : "neutral.700"}
-            >
-              User Info.
-            </Typography>
-          }
-          {...a11yProps(0)}
-        />
-        <Tab
-          sx={{
-            borderRadius: value === 1 ? "8px" : "none",
-            backgroundColor: value === 1 ? "neutral.N000" : "",
-            minHeight: "36px",
-            height: "36px",
-            color: "#000",
-          }}
-          label={
-            <Typography
-              sx={{ textTransform: "none" }}
-              variant="wpf_p3_semiBold"
-              color={value === 1 ? "primary.B200" : "neutral.700"}
-            >
-              Project Details
-            </Typography>
-          }
-          {...a11yProps(1)}
-        />
-      </Tabs>
+        >
+          <Tab
+            sx={{
+              borderRadius: value === 0 ? "8px" : "none",
+              backgroundColor: value === 0 ? "neutral.N000" : "",
+              minHeight: "36px",
+              height: "36px",
+              // color: "#000",
+            }}
+            label={
+              <Typography
+                sx={{ textTransform: "none" }}
+                variant="wpf_p3_semiBold"
+                color={value === 0 ? "primary.B200" : "neutral.700"}
+              >
+                User Info.
+              </Typography>
+            }
+            {...a11yProps(0)}
+          />
+          <Tab
+            sx={{
+              borderRadius: value === 1 ? "8px" : "none",
+              backgroundColor: value === 1 ? "neutral.N000" : "",
+              minHeight: "36px",
+              height: "36px",
+              color: "#000",
+            }}
+            label={
+              <Typography
+                sx={{ textTransform: "none" }}
+                variant="wpf_p3_semiBold"
+                color={value === 1 ? "primary.B200" : "neutral.700"}
+              >
+                Project Details
+              </Typography>
+            }
+            {...a11yProps(1)}
+          />
+        </Tabs>
+      </Box>
 
-      <Box sx={{ height: "620px", overflowY: "auto" }}>
+      <Box sx={{ overflowY: "auto", height: "95%" }}>
         <TabPanel value={value} index={0} dir={theme.direction}>
           <UserInfoIndex user={user} handleSetRole={handleSetRole} handleSetStatus={handleSetStatus} />
         </TabPanel>

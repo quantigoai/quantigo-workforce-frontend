@@ -49,7 +49,7 @@ const AllUserListIndex = ({ action }) => {
     currentPage: 0,
     pageSize: 10,
   });
-  const { pathname } = useLocation();
+
   const { filterValue, handleId, filteredCol, handleIsFilter, isFilter, handleChange, handleClearFilter } =
     useAllUsers();
 
@@ -113,7 +113,6 @@ const AllUserListIndex = ({ action }) => {
           roleOptions={roleOptions}
           hubOptions={hubOptions}
           skillOptions={hubOptions}
-          
           userStatusOptions={userStatusOptions}
         />
       </Box>

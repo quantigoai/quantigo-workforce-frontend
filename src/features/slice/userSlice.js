@@ -150,7 +150,13 @@ export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
   }
 
   if (filteredData) {
-    const filterOptions = Object.keys(filteredData);
+    const { skills, ...rest } = filteredData;
+    if (skills) {
+      for (let x in skills) {
+        query += `&skills=${skills[x]}`;
+      }
+    }
+    const filterOptions = Object.keys(rest);
     filterOptions.map((f) => (query += `&${f}=${filteredData[f]}`));
   }
   if (ascDescOption) {

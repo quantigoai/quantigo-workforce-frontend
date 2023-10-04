@@ -74,11 +74,12 @@ const PDskillFIeld = ({
                     gridTemplateColumns: "repeat(2,1fr)",
                     gap: 0.5,
                     fontSize: "12px",
-                    height:"20px"
+                    height: "20px",
                   }}
                 >
                   {selected?.map(
-                    (value, i) => [0].includes(i) && <Chip sx={{ fontSize: "12px",height:"95%"}} key={value} label={value} />
+                    (value, i) =>
+                      [0].includes(i) && <Chip sx={{ fontSize: "12px", height: "95%" }} key={value} label={value} />
                   )}
                   {isEdit ? (
                     selectedSkills?.length > 1 && selected?.length > 1 ? (

@@ -38,13 +38,23 @@ const useAllUsers = () => {
     setDetailsUserOpen(false);
   };
 
-  const handleChange = (event) => {
-    console.log("🚀 ~ file: useAllUsers.js:42 ~ handleChange ~ event:", event.target.name);
-    const field = event.target.name;
-    const value = event.target.value;
-    const filteredData = { ...filterValue };
-    filteredData[field] = value;
-    setFilterValue(filteredData);
+  const handleChange = (event, skillsId=[]) => {
+    console.log("🚀 ~ file: useAllUsers.js:42 ~ handleChange ~ skillsId:", skillsId)
+    console.log("🚀 ~ file: useAllUsers.js:42 ~ handleChange ~ event:", event)
+    if (skillsId.length) {
+      const field = "skills";
+      const value = skillsId;
+      const filteredData = { ...filterValue };
+      filteredData[field] = value;
+      setFilterValue(filteredData);
+    } else {
+      console.log("🚀 ~ file: useAllUsers.js:42 ~ handleChange ~ event:", event.target.name);
+      const field = event.target.name;
+      const value = event.target.value;
+      const filteredData = { ...filterValue };
+      filteredData[field] = value;
+      setFilterValue(filteredData);
+    }
   };
   const defaultState = {
     role: "",

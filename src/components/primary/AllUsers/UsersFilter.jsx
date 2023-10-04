@@ -10,6 +10,10 @@
 import { Box, Button, Stack } from "@mui/material";
 import React from "react";
 import ProjectSelectFIlterField from "../ProjectLIstNew2/ProjectSelectFIlterField";
+import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
+import useHandleChange from "../ProjectLIstNew2/Hooks/useHandleChange";
+import { useSelector } from "react-redux";
+import UserSkillFieldSelect from "./UserSkillFieldSelect";
 
 const UsersFilter = ({
   role,
@@ -26,7 +30,14 @@ const UsersFilter = ({
   userStatusOptions,
   hubOptions,
   handleChangeAnnotatorFilter,
+  skillOptions,
+  handleChangeSkill,
+  addSkills,
+  count,
+  handleClickAway,
 }) => {
+  const { skills } = useSelector((state) => state.skill);
+
   return (
     <>
       <Box
@@ -70,16 +81,19 @@ const UsersFilter = ({
                     options={hubOptions}
                     handleChange={handleChange}
                   />
-                  <ProjectSelectFIlterField
+
+                  <UserSkillFieldSelect
+                    name={"skills"}
+                    addSkills={addSkills}
                     label={"Users Skills"}
-                    name="skills"
-                    filterValue={filterValue}
-                    options={roleOptions}
-                    handleChange={handleChange}
+                    handleChangeSkill={handleChangeSkill}
+                    skills={skills}
+                    count={count}
+                    handleClickAway={handleClickAway}
                   />
                   <ProjectSelectFIlterField
                     label={"Users Status"}
-                    name=""
+                    name="activeAnnotator"
                     filterValue={filterValue}
                     options={userStatusOptions}
                     handleChange={handleChange}

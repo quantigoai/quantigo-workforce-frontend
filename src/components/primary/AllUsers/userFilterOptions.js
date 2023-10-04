@@ -13,6 +13,8 @@
  * ------------------------
  */
 
+import dayjs from "dayjs";
+import { useEffect, useState } from "react";
 export const roleOptions = [
   { value: "level_0_annotator", label: "level_0_annotator" },
   { value: "level_1_annotator", label: "level_1_annotator" },
@@ -37,7 +39,7 @@ export const hubOptions = [
   { value: "Chuadanga", label: "Chuadanga" },
 ];
 export const userStatusOptions = [
-  { value: new Date(), label: "Active" },
+  { value: new Date().toISOString(), label: "Active" },
   { value: "empty", label: "Not Active" },
 ];
 

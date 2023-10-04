@@ -51,15 +51,21 @@ const AllUserListIndex = ({ action }) => {
     pageSize: 10,
   });
 
-  const { filterValue, handleId, filteredCol, handleIsFilter, isFilter, handleChange, handleClearFilter } =
-    useAllUsers();
   const { handleChangeSkill, addSkills, setAddSkills, count } = useHandleChange();
+  const { filterValue, handleId, filteredCol, handleIsFilter, isFilter, handleChange, handleClearFilter } =
+    useAllUsers(setAddSkills);
 
   const { skills } = useSelector((state) => state.skill);
 
   const handleClickAway = () => {
-    const x = addSkills.map((skill) => skill._id);
-    handleChange({}, x);
+    const skillsId = addSkills.map((skill) => skill._id);
+    if (skillsId.length > 0) {
+      handleChange({}, skillsId);
+    }
+    if (skillsId.length === 0) {
+      console.log("0 ");
+      handleChange({}, []);
+    }
   };
 
   useEffect(() => {
@@ -81,7 +87,7 @@ const AllUserListIndex = ({ action }) => {
   const handleDelete = (e) => {
     console.log("🚀 ~ file: AllUserListIndex.jsx:103 ~ handleDelete ~ e:", e);
   };
-  
+
   const handleProjectDetailsOpen = (params) => {
     setSelectedUser(params);
     setOpen(true);
@@ -92,7 +98,6 @@ const AllUserListIndex = ({ action }) => {
   };
 
   const handleChangePagination = useCallback(() => {
-    console.log(filterValue);
     dispatch(getAllSkills());
     dispatch(
       getAllUsers({
@@ -154,7 +159,7 @@ const AllUserListIndex = ({ action }) => {
           />
         </Suspense>
       </Box>
-     
+
       <UserDetailsNewIndex
         user={selectedUser}
         open={open}

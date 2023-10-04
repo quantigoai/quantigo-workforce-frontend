@@ -98,6 +98,15 @@ const UsersFilter = ({
                     options={userStatusOptions}
                     handleChange={handleChange}
                   />
+                  <UserSkillFieldSelect
+                    label={"Users Status"}
+                    name="role"
+                    addSkills={addSkills}
+                    handleChangeSkill={handleChangeSkill}
+                    skills={roleOptions}
+                    count={count}
+                    handleClickAway={handleClickAway}
+                  />
                 </Stack>
               </>
             ) : (

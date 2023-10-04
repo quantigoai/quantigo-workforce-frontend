@@ -14,11 +14,12 @@
  */
 
 /* eslint-disable no-prototype-builtins */
+
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAllSkills } from "../features/slice/skillSlice";
 
-const useAllUsers = () => {
+const useAllUsers = (setAddSkills) => {
   const [filterValue, setFilterValue] = useState({});
   const dispatch = useDispatch();
   const [downLoadExportOpen, setDownloadExportOpen] = React.useState(false);
@@ -38,17 +39,21 @@ const useAllUsers = () => {
     setDetailsUserOpen(false);
   };
 
-  const handleChange = (event, skillsId=[]) => {
-    console.log("🚀 ~ file: useAllUsers.js:42 ~ handleChange ~ skillsId:", skillsId)
-    console.log("🚀 ~ file: useAllUsers.js:42 ~ handleChange ~ event:", event)
+  const handleChange = (event, skillsId = []) => {
     if (skillsId.length) {
       const field = "skills";
       const value = skillsId;
       const filteredData = { ...filterValue };
       filteredData[field] = value;
       setFilterValue(filteredData);
+    } else if (skillsId.length === 0 && Object.keys(event).length === 0) {
+      console.log("1");
+      const field = "skills";
+      const value = [];
+      const filteredData = { ...filterValue };
+      filteredData[field] = value;
+      setFilterValue(filteredData);
     } else {
-      console.log("🚀 ~ file: useAllUsers.js:42 ~ handleChange ~ event:", event.target.name);
       const field = event.target.name;
       const value = event.target.value;
       const filteredData = { ...filterValue };
@@ -66,6 +71,7 @@ const useAllUsers = () => {
   const handleClearFilter = () => {
     setFilterValue(defaultState);
     setFilteredCol({});
+    setAddSkills([]);
   };
 
   const handleId = (field) => {

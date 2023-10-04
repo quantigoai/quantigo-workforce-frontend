@@ -24,7 +24,7 @@ const SkillFieldForUserDetails = ({
   const handleEditSkill = () => {
     setIsEditSkill(true);
   };
-
+console.log(Item)
   return (
     <>
       {!isEditSkill && (

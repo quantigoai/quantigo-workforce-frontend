@@ -39,6 +39,7 @@ export const lightColors = {
   error: {
     500: "#F04438",
     800: "#F04438",
+    R001:"#FF4757"
   },
   green: {
     200: "#C4F5DF",

@@ -55,7 +55,8 @@ const CommonModalFooter = ({
           <Grid item xs={6}>
             <Grid container sx={{ justifyContent: "right" }}>
               <Button
-                disabled={isLoading || !disabledButton}
+                // disabled={isLoading || !disabledButton}
+                disabled={isLoading || disabledButton}
                 sx={{
                   width: "128px",
                   textTransform: "none",
@@ -68,9 +69,10 @@ const CommonModalFooter = ({
                   "&:hover": {
                     backgroundColor: "primary.B100",
                     color: "neutral.N000",
+                    cursor: "pointer",
                   },
                 }}
-                onClick={() => handleChange()}
+                onClick={handleChange}
               >
                 {rightButtonTitle}
               </Button>

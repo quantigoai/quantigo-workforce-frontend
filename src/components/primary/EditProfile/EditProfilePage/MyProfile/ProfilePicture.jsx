@@ -1,24 +1,10 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Chip,
-  Grid,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Avatar, Box, Button, Chip, Grid, Stack, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import React from "react";
 import editIcon from "../../../../../assets/images/EditIcon.svg";
 import EditIconProfile from "../../../../../assets/images/Group.svg";
 import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
-const ProfilePicture = ({
-  user,
-  editAble,
-  handleEditProfile,
-  coverImage,
-  handleImage,
-}) => {
+const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleImage }) => {
   const image = user.image;
 
   return (
@@ -29,7 +15,7 @@ const ProfilePicture = ({
             // border: "1px solid #E6ECF5",
             // padding: "16px",
             borderRadius: "12px",
-            background: user.active ? "#F2F6FC" : "#F5E1E3",
+            background: user.active ? "neutral.N400" : "#F5E1E3",
             height: "112px",
             width: "100%",
           }}>
@@ -96,14 +82,12 @@ const ProfilePicture = ({
                 <Grid item xs={7} sx={{ paddingTop: "2%" }}>
                   <Grid container>
                     <Grid item xs={4} sx={{ backgroundColor: "" }}>
-                      <Typography
-                        variant="h6"
-                        sx={{ fontSize: "18px", color: "#091E42" }}>
+                      <Typography variant="h6" sx={{ fontSize: "18px", color: "neutral.750" }}>
                         <b>
                           {user.firstName} {user.lastName}{" "}
                         </b>
                       </Typography>
-                      <Typography sx={{ fontSize: "12px", color: "#253E5C" }}>
+                      <Typography sx={{ fontSize: "12px", color: "neutral.700" }}>
                         {capitalizeFirstLetter(user.role)}
                       </Typography>
                     </Grid>
@@ -112,24 +96,22 @@ const ProfilePicture = ({
                         <Box sx={{ paddingRight: "1%" }}>
                           <Chip
                             sx={{
-                              color: "#FFFFFF",
-                              background: "#2E58FF",
+                              color: "neutral.N000",
+                              backgroundColor: "neutral.700",
                               height: "20px",
                               borderRadius: "32px",
                               fontSize: "10px",
                             }}
                             // label="QAI_DK3454"
-                            label={capitalizeFirstLetter(
-                              user.qaiUserName || ""
-                            )}
+                            label={capitalizeFirstLetter(user.qaiUserName || "")}
                           />
                         </Box>
                         {!user.active && (
                           <Box>
                             <Chip
                               sx={{
-                                color: "#FFFFFF",
-                                background: "#FF4757",
+                                color: "neutral.N000",
+                                backgroundColor: "neutral.700",
                                 height: "20px",
                                 fontSize: "10px",
                               }}
@@ -146,9 +128,7 @@ const ProfilePicture = ({
             </Grid>
 
             <Grid item xs={4}>
-              <Grid
-                container
-                sx={{ justifyContent: "right", paddingTop: "2%" }}>
+              <Grid container sx={{ justifyContent: "right", paddingTop: "2%" }}>
                 {!editAble && (
                   <Button
                     variant="outlined"
@@ -161,10 +141,7 @@ const ProfilePicture = ({
                     onClick={() => handleEditProfile()}
                     disableRipple>
                     <Box sx={{ paddingRight: "10%" }}>
-                      <Typography sx={{ fontSize: "12px" }}>
-                        {" "}
-                        Edit Profile
-                      </Typography>
+                      <Typography sx={{ fontSize: "12px" }}> Edit Profile</Typography>
                     </Box>{" "}
                     <img src={editIcon} />{" "}
                   </Button>

@@ -4,8 +4,6 @@ import { useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { socket } from "../../../App";
-import { updateMyDocuments } from "../../../features/slice/userSlice";
 import ProjectModalHeader from "../ProjectLIstNew2/ProjectModalHeader";
 import DocumentImageUpload from "./DocumentImageUpload";
 
@@ -88,20 +86,21 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
       id: user._id,
       formData: formData,
     };
-    dispatch(updateMyDocuments(finalData)).then((action) => {
-      if (action.payload?.status === 200 || action.payload?.status === 201) {
-        if (
-          action.payload.data.isNDAApproved !== "rejected" &&
-          action.payload.data.isDocumentsSubmitted !== "rejected"
-        ) {
-          socket.emit("uploadNDAOrDocuments", user);
-        }
-        alert.show("User Documents update successfully", { type: "success" });
-        handleClose();
-      } else {
-        alert.show("Failed to update User Documents", { type: "error" });
-      }
-    });
+    console.log("🚀 ~ file: UpdateDocumentModal.jsx:86 ~ onSubmit ~ finalData:", finalData);
+    // dispatch(updateMyDocuments(finalData)).then((action) => {
+    //   if (action.payload?.status === 200 || action.payload?.status === 201) {
+    //     if (
+    //       action.payload.data.isNDAApproved !== "rejected" &&
+    //       action.payload.data.isDocumentsSubmitted !== "rejected"
+    //     ) {
+    //       socket.emit("uploadNDAOrDocuments", user);
+    //     }
+    //     alert.show("User Documents update successfully", { type: "success" });
+    //     handleClose();
+    //   } else {
+    //     alert.show("Failed to update User Documents", { type: "error" });
+    //   }
+    // });
   };
 
   return (
@@ -194,188 +193,65 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
               </Grid>
             </Box>
           </Box>
-          <Box
-            sx={{
-              flex: "0 0 64px",
-              borderTop: "2px solid #F2F6FC",
-              backgroundColor: "neutral.N000",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "0 2%",
-              bottom: "0px",
-              borderRadius: "8px",
-            }}
-          >
-            <Grid container sx={{ padding: "2%" }}>
-              <Grid item xs={6}>
-                <Button
-                  sx={{
-                    width: "120px",
-                    textTransform: "none",
-                    backgroundColor: "primary.B008",
+        </Box>
+        <Box
+          sx={{
+            flex: "0 0 64px",
+            borderTop: "2px solid #F2F6FC",
+            backgroundColor: "neutral.N000",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "0 2%",
+            bottom: "0px",
+            borderRadius: "8px",
+          }}
+        >
+          <Grid container sx={{ padding: "2%" }}>
+            <Grid item xs={6}>
+              <Button
+                sx={{
+                  width: "120px",
+                  textTransform: "none",
+                  backgroundColor: "primary.B008",
+                  color: "neutral.N650",
+                  borderRadius: "8px",
+                  "&:hover": {
+                    backgroundColor: "neutral.N600",
                     color: "neutral.N650",
+                  },
+                }}
+                onClick={() => handleClose()}
+              >
+                Cancel
+              </Button>
+            </Grid>
+            <Grid item xs={6}>
+              <Grid container sx={{ justifyContent: "right" }}>
+                <Button
+                  type="submit"
+                  disabled={isLoading}
+                  sx={{
+                    width: "128px",
+                    textTransform: "none",
+                    backgroundColor: "#2E58FF",
+                    color: "#FFFFFF",
                     borderRadius: "8px",
                     "&:hover": {
-                      backgroundColor: "neutral.N600",
-                      color: "neutral.N650",
+                      backgroundColor: "#F4F7FE",
+                      color: "#62728F",
+                      border: "1px solid #F4F7FE",
                     },
                   }}
-                  onClick={() => handleClose()}
+                  onClick={handleChange}
                 >
-                  Cancel
+                  Upload
                 </Button>
               </Grid>
-              <Grid item xs={6}>
-                <Grid container sx={{ justifyContent: "right" }}>
-                  <Button
-                    type="submit"
-                    disabled={isLoading}
-                    sx={{
-                      width: "128px",
-                      textTransform: "none",
-                      backgroundColor: "#2E58FF",
-                      color: "#FFFFFF",
-
-                      borderRadius: "8px",
-                      "&.Mui-disabled": {
-                        // background: "#eaeaea",
-                        color: "#FFFFFF",
-                      },
-                      "&:hover": {
-                        backgroundColor: "#2E58FF",
-                        color: "#FFFFFF",
-                        // border: "1px solid #2E58FF",
-                      },
-                    }}
-                    onClick={handleChange}
-                  >
-                    Upload
-                  </Button>
-                </Grid>
-              </Grid>
             </Grid>
-          </Box>
+          </Grid>
         </Box>
       </Modal>
-
-      {/* <Dialog
-        PaperProps={{
-          sx: {
-            width: "80vh",
-            // maxHeight: 500,
-          },
-        }}
-        open={openModal}
-        onClose={handleClose}
-        aria-labelledby="dialog-title"
-        aria-describedby="dialog-description"
-      >
-        <Grid container>
-          <Grid xs={10}>
-            <DialogTitle id="dialog-title" sx={{ color: "#090080" }}>
-              {"Upload Document"}
-            </DialogTitle>
-          </Grid>
-          <Grid xs={2}>
-            <DialogTitle id="dialog-title">
-              <Button
-                onClick={() => {
-                  handleClose();
-                }}
-              >
-                <img src={croxButton} />
-              </Button>
-            </DialogTitle>
-          </Grid>
-        </Grid>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <DialogContent>
-            <Grid container>
-              <DocumentImageUpload
-                coverImageFile={coverImageFile}
-                coverImage={coverImage}
-                removeImage={removeImage}
-                handleImage={handleImage}
-              />
-            </Grid>
-          </DialogContent>
-          <DialogContent>
-            <Grid container sx={{ padding: "0%", paddingLeft: "0%" }}>
-              <FormControl
-                variant="filled"
-                fullWidth
-                sx={{
-                  backgroundColor: "#F8F8F8",
-                  border: "1px solid #DADCDF",
-                  borderRadius: "4px",
-                  // width: "238.5px",
-                  height: "58px",
-                }}
-              >
-                <InputLabel id="demo-simple-select-filled-label">
-                  Document Type
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-filled-label"
-                  id="demo-simple-select-filled"
-                  {...register("documentsType", { required: true })}
-                >
-                  <MenuItem value={"NID"}>NID</MenuItem>
-                  <MenuItem value={"passport"}>Passport</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-          </DialogContent>
-          <DialogContent>
-            <Grid container sx={{ padding: "0%", paddingLeft: "0%" }}>
-              <TextField
-                id="input-with-icon-textfield"
-                fullWidth
-                label="Document NO"
-                variant="filled"
-                sx={{
-                  backgroundColor: "#F8F8F8",
-                  border: "1px solid #DADCDF",
-                  borderRadius: "4px",
-                }}
-                {...register("documentNo", { required: true })}
-              />
-            </Grid>
-          </DialogContent>
-
-          <DialogActions>
-            <Grid
-              container
-              sx={{
-                paddingLeft: "2%",
-                paddingRight: "2%",
-                paddingBottom: "1%",
-              }}
-            >
-              {!coverImageFile?.name ? (
-                <>
-                  {" "}
-                  <ButtonStyle variant="contained" disabled type="submit">
-                    SUBMIT
-                  </ButtonStyle>
-                </>
-              ) : (
-                <>
-                  {" "}
-                  <ButtonStyle
-                    variant="contained"
-                    disabled={isLoading}
-                    type="submit"
-                  >
-                    SUBMIT
-                  </ButtonStyle>
-                </>
-              )}
-            </Grid>
-          </DialogActions>
-        </form>
-      </Dialog> */}
     </>
   );
 };

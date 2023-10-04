@@ -59,19 +59,19 @@ export default function EditProfilePageIndex() {
             width: "100%",
             height: "100%",
             borderRadius: "8px",
-            background: isLightTheme ? "#FFFFFF" : "#1E1E1E",
+            backgroundColor: "neutral.N000",
           }}>
           <Grid
             container
             sx={{
               // borderTop: "1px solid #E1E8F5",
-              backgroundColor: "#FFFFFF",
+              backgroundColor: "neutral.N000",
               // position: "absolute",
               width: "100%",
               height: "100%",
               borderRadius: "8px",
             }}>
-            <Grid item xs={2} sx={{ borderRight: "1px solid #E1E8F5",display: "flex", flexDirection: "column" }}>
+            <Grid item xs={2} sx={{ borderRight: "1px solid #E1E8F5", display: "flex", flexDirection: "column" }}>
               <Tabs
                 orientation="vertical"
                 variant="scrollable"

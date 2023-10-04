@@ -28,7 +28,8 @@ import UsersHeader from "./UsersHeader";
 import "./index.css";
 import { fields } from "./tableFields";
 import { hubOptions, roleOptions, userStatusOptions } from "./userFilterOptions";
-
+import dayjs from "dayjs";
+import useHandleChange from "../ProjectLIstNew2/Hooks/useHandleChange";
 const annotatorRoles = ["level_0_annotator", "level_1_annotator", "level_2_annotator", "level_3_annotator"];
 const reviewerRoles = ["reviewer"];
 
@@ -52,6 +53,14 @@ const AllUserListIndex = ({ action }) => {
 
   const { filterValue, handleId, filteredCol, handleIsFilter, isFilter, handleChange, handleClearFilter } =
     useAllUsers();
+  const { handleChangeSkill, addSkills, setAddSkills, count } = useHandleChange();
+
+  const { skills } = useSelector((state) => state.skill);
+
+  const handleClickAway = () => {
+    const x = addSkills.map((skill) => skill._id);
+    handleChange({}, x);
+  };
 
   useEffect(() => {
     dispatch(setActivePath("All Users 2"));
@@ -62,7 +71,7 @@ const AllUserListIndex = ({ action }) => {
   useEffect(() => {
     dispatch(getAllUsers({ pagination }));
   }, []);
-
+  //  const
   //   -------------------------------
 
   const handleClick = (e) => {
@@ -83,6 +92,7 @@ const AllUserListIndex = ({ action }) => {
   };
 
   const handleChangePagination = useCallback(() => {
+    console.log(filterValue);
     dispatch(getAllSkills());
     dispatch(
       getAllUsers({
@@ -92,6 +102,8 @@ const AllUserListIndex = ({ action }) => {
       })
     );
   }, [dispatch, pagination, filterValue, filteredCol]);
+
+  const skillsOptions = skills.map((skill) => ({ value: skill._id, label: skill.name }));
 
   // --------------------------------
   return (
@@ -113,8 +125,12 @@ const AllUserListIndex = ({ action }) => {
           filterValue={filterValue}
           roleOptions={roleOptions}
           hubOptions={hubOptions}
-          skillOptions={hubOptions}
+          skillOptions={skillsOptions}
           userStatusOptions={userStatusOptions}
+          handleChangeSkill={handleChangeSkill}
+          addSkills={addSkills}
+          count={count}
+          handleClickAway={handleClickAway}
         />
       </Box>
 

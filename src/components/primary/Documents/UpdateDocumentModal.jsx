@@ -74,11 +74,16 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
     setCoverImageFile([]);
     setCoverImage(null);
   };
-  const onSubmit = (data) => {
+  const [documentsType, setDocumentsType] = useState("");
+  const [documentNo, setDocumentNo] = useState("");
+
+  // const onSubmit = (data) => {
+  const handleChange = (data) => {
     const formData = new FormData();
     formData.append("documentsImage", coverImageFile);
-    formData.append("documentsType", data.documentsType);
-    formData.append("documentNo", data.documentNo);
+    formData.append("documentsType", documentsType);
+    formData.append("documentNo", documentNo);
+
     const finalData = {
       id: user._id,
       formData: formData,
@@ -148,7 +153,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                     fontSize: "14px",
                     height: "43px",
                   }}
-                  {...register("documentsType", { required: true })}
+                  onChange={(e) => setDocumentsType(e.target.value)}
                 >
                   <MenuItem value={"NID"} sx={{ fontSize: "14px" }}>
                     NID
@@ -172,7 +177,10 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                   variant="outlined"
                   fullWidth
                   InputProps={{ disableUnderline: true }}
-                  {...register("documentNo", { required: true })}
+                  placeholder="Enter Document No"
+                  onChange={(e) => setDocumentNo(e.target.value)}
+
+                  // {...register("documentNo", { required: true })}
                 />
               </Grid>
 
@@ -240,7 +248,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                         // border: "1px solid #2E58FF",
                       },
                     }}
-                    // onClick={() => handleChange()}
+                    onClick={handleChange}
                   >
                     Upload
                   </Button>

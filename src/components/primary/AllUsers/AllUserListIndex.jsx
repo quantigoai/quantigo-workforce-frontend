@@ -72,6 +72,7 @@ const AllUserListIndex = ({ action }) => {
   const handleDelete = (e) => {
     console.log("🚀 ~ file: AllUserListIndex.jsx:103 ~ handleDelete ~ e:", e);
   };
+  
   const handleProjectDetailsOpen = (params) => {
     setSelectedUser(params);
     setOpen(true);

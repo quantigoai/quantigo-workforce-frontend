@@ -1,5 +1,4 @@
-import { Box, Button, Grid, IconButton, Modal, Paper, Skeleton, Typography } from "@mui/material";
-import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
+import { Box, Grid, IconButton, Modal, Paper, Skeleton, Stack, Typography } from "@mui/material";
 import u_multiply from "../../../../assets/images/crosIcon.svg"; // Import your close (cross) button icon here
 
 const style = {
@@ -32,9 +31,10 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
         open={openModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
+        aria-describedby="modal-modal-description"
+      >
         <Box sx={style}>
-          <Grid container sx={{  }}>
+          <Grid container sx={{}}>
             <Paper sx={{ borderRadius: "10px" }}>
               <Box sx={{ position: "relative", borderRadius: "10px" }}>
                 <Grid
@@ -47,7 +47,8 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                     // right: "0px",
                     left: "8px",
                     justifyContent: "right",
-                  }}>
+                  }}
+                >
                   <IconButton
                     // variant="outlined"
                     onClick={handleClose}
@@ -66,17 +67,21 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                         color: "#62728F",
                         // border: "1px solid #F4F7FE",
                       },
-                    }}>
+                    }}
+                  >
                     <img style={{}} alt="cross" src={u_multiply} />
                   </IconButton>
                 </Grid>
 
-                <Grid
-                  container
+                <Box
+                  // container
                   sx={{
+                    width: "600px",
                     justifyContent: "center",
                     borderRadius: "10px",
-                  }}>
+                    padding: "2%",
+                  }}
+                >
                   {documentImage?.length === 0 ? (
                     <>
                       <Box sx={{ width: 600 }}>
@@ -89,18 +94,43 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                       </Box>
                     </>
                   ) : (
-                    <>
+                    <Box
+                      sx={{
+                        padding: "2%",
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          alignConyent: "center",
+                          paddingBottom: "20px",
+                          backgroundColor: "neutral.N600",
+                          borderRadius: "10px",
+                        }}
+                      >
+                        <Stack direction="row">
+                          <Typography>Document Type : </Typography>
+                          <Typography>{documentsType}</Typography>
+                        </Stack>
+                        <Stack direction="row">
+                          <Typography>Document No : </Typography>
+                          <Typography>{documentsNo}</Typography>
+                        </Stack>
+                      </Box>
+
                       <img
                         src={`data:image/jpeg;base64,${documentImage}`}
                         style={{
                           height: documentsType === "NID" ? 300 : 500,
-                          width: 600,
+                          width: "100%",
                           borderRadius: "10px",
                         }}
                       />
-                    </>
+                    </Box>
                   )}
-                </Grid>
+                </Box>
               </Box>
             </Paper>
           </Grid>

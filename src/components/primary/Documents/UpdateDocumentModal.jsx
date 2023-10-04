@@ -83,20 +83,21 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
       id: user._id,
       formData: formData,
     };
-    dispatch(updateMyDocuments(finalData)).then((action) => {
-      if (action.payload?.status === 200 || action.payload?.status === 201) {
-        if (
-          action.payload.data.isNDAApproved !== "rejected" &&
-          action.payload.data.isDocumentsSubmitted !== "rejected"
-        ) {
-          socket.emit("uploadNDAOrDocuments", user);
-        }
-        alert.show("User Documents update successfully", { type: "success" });
-        handleClose();
-      } else {
-        alert.show("Failed to update User Documents", { type: "error" });
-      }
-    });
+    console.log("🚀 ~ file: UpdateDocumentModal.jsx:86 ~ onSubmit ~ finalData:", finalData)
+    // dispatch(updateMyDocuments(finalData)).then((action) => {
+    //   if (action.payload?.status === 200 || action.payload?.status === 201) {
+    //     if (
+    //       action.payload.data.isNDAApproved !== "rejected" &&
+    //       action.payload.data.isDocumentsSubmitted !== "rejected"
+    //     ) {
+    //       socket.emit("uploadNDAOrDocuments", user);
+    //     }
+    //     alert.show("User Documents update successfully", { type: "success" });
+    //     handleClose();
+    //   } else {
+    //     alert.show("Failed to update User Documents", { type: "error" });
+    //   }
+    // });
   };
 
   return (
@@ -112,54 +113,55 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
             height: { xl: "53%", lg: "75%" },
             width: { xl: "35%", lg: "40%" },
           }}>
-          <Box sx={{ flex: "0 0 5%" }}>
-            <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Upload Document"} />
-          </Box>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Box sx={{ flex: "0 0 5%" }}>
+              <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Upload Document"} />
+            </Box>
 
-          <Box
-            sx={{
-              flex: "1",
-              overflowY: "auto",
-              padding: "3%",
-            }}>
-            <Box sx={{}}>
-              <Grid container sx={{ padding: "0%", paddingLeft: "0%" }}>
-                <Typography
-                  sx={{
-                    fontSize: "12px",
-                    fontWeight: "500",
-                    mb: 1,
-                    // color: isLightTheme ? "#091E42" : "#FFFFFF",
-                    // paddingBottom:"1%"
-                  }}>
-                  Document Type
-                </Typography>
+            <Box
+              sx={{
+                flex: "1",
+                overflowY: "auto",
+                padding: "3%",
+              }}>
+              <Box sx={{}}>
+                <Grid container sx={{ padding: "0%", paddingLeft: "0%" }}>
+                  <Typography
+                    sx={{
+                      fontSize: "12px",
+                      fontWeight: "500",
+                      mb: 1,
+                      // color: isLightTheme ? "#091E42" : "#FFFFFF",
+                      // paddingBottom:"1%"
+                    }}>
+                    Document Type
+                  </Typography>
 
-                <Select
-                  labelId="demo-simple-select-autowidth-label"
-                  id="demo-simple-select-autowidth"
-                  variant="outlined"
-                  fullWidth
-                  // defaultValue={"reject"}
-                  placeholder="Select"
-                  sx={{
-                    border: "2px solid #E6ECF5",
-                    // padding: "5px 0px 0px 0px",
-                    borderRadius: "8px",
-                    background: "none",
-                    // backgroundColor:"red",
-                    fontSize: "14px",
-                    height: "43px",
-                  }}
-                  {...register("documentsType", { required: true })}>
-                  <MenuItem value={"NID"} sx={{ fontSize: "14px" }}>
-                    NID
-                  </MenuItem>
-                  <MenuItem value={"passport"} sx={{ fontSize: "14px" }}>
-                    Passport
-                  </MenuItem>
-                </Select>
-                {/* <FormControl
+                  <Select
+                    labelId="demo-simple-select-autowidth-label"
+                    id="demo-simple-select-autowidth"
+                    variant="outlined"
+                    fullWidth
+                    // defaultValue={"reject"}
+                    placeholder="Select"
+                    sx={{
+                      border: "2px solid #E6ECF5",
+                      // padding: "5px 0px 0px 0px",
+                      borderRadius: "8px",
+                      background: "none",
+                      // backgroundColor:"red",
+                      fontSize: "14px",
+                      height: "43px",
+                    }}
+                    {...register("documentsType", { required: true })}>
+                    <MenuItem value={"NID"} sx={{ fontSize: "14px" }}>
+                      NID
+                    </MenuItem>
+                    <MenuItem value={"passport"} sx={{ fontSize: "14px" }}>
+                      Passport
+                    </MenuItem>
+                  </Select>
+                  {/* <FormControl
                   variant="filled"
                   fullWidth
                   sx={{
@@ -178,32 +180,32 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                     <MenuItem value={"passport"}>Passport</MenuItem>
                   </Select>
                 </FormControl> */}
-              </Grid>
+                </Grid>
 
-              <Grid container sx={{ padding: "0%", paddingTop: "2%", paddingBottom: "1%" }}>
-                <Typography
-                  sx={{
-                    fontSize: "12px",
-                    fontWeight: "500",
-                    mb: 1,
-                    // color: isLightTheme ? "#091E42" : "#FFFFFF",
-                    paddingBottom: "0%",
-                  }}>
-                  Document NO
-                </Typography>
-                <MyTextField
-                  // type={isNumber || isNumberPdr ? "number" : "text"}
-                  //   id="outlined-basic"
-                  variant="outlined"
-                  // {...field}
-                  fullWidth
-                  // multiline
-                  // rows={5}
-                  InputProps={{ disableUnderline: true }}
-                  {...register("documentNo", { required: true })}
-                />
+                <Grid container sx={{ padding: "0%", paddingTop: "2%", paddingBottom: "1%" }}>
+                  <Typography
+                    sx={{
+                      fontSize: "12px",
+                      fontWeight: "500",
+                      mb: 1,
+                      // color: isLightTheme ? "#091E42" : "#FFFFFF",
+                      paddingBottom: "0%",
+                    }}>
+                    Document NO
+                  </Typography>
+                  <MyTextField
+                    // type={isNumber || isNumberPdr ? "number" : "text"}
+                    //   id="outlined-basic"
+                    variant="outlined"
+                    // {...field}
+                    fullWidth
+                    // multiline
+                    // rows={5}
+                    InputProps={{ disableUnderline: true }}
+                    {...register("documentNo", { required: true })}
+                  />
 
-                {/* <TextField
+                  {/* <TextField
                   id="input-with-icon-textfield"
                   fullWidth
                   label="Document NO"
@@ -215,80 +217,81 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                   }}
                   {...register("documentNo", { required: true })}
                 /> */}
-              </Grid>
+                </Grid>
 
-              <Grid container>
-                <DocumentImageUpload
-                  coverImageFile={coverImageFile}
-                  coverImage={coverImage}
-                  removeImage={removeImage}
-                  handleImage={handleImage}
-                />
-              </Grid>
+                <Grid container>
+                  <DocumentImageUpload
+                    coverImageFile={coverImageFile}
+                    coverImage={coverImage}
+                    removeImage={removeImage}
+                    handleImage={handleImage}
+                  />
+                </Grid>
+              </Box>
             </Box>
-          </Box>
-          <Box
-            sx={{
-              flex: "0 0 64px",
-              borderTop: "2px solid #F2F6FC",
-              backgroundColor: "#FFFFFF",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "0 2%",
+            <Box
+              sx={{
+                flex: "0 0 64px",
+                borderTop: "2px solid #F2F6FC",
+                backgroundColor: "#FFFFFF",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "0 2%",
 
-              bottom: "0px",
-              borderRadius: "8px",
-            }}>
-            <Grid container sx={{ padding: "2%" }}>
-              <Grid item xs={6}>
-                <Button
-                  sx={{
-                    width: "120px",
-                    textTransform: "none",
-                    backgroundColor: "#F4F7FE",
-                    color: "#62728F",
-                    borderRadius: "8px",
-                    "&:hover": {
+                bottom: "0px",
+                borderRadius: "8px",
+              }}>
+              <Grid container sx={{ padding: "2%" }}>
+                <Grid item xs={6}>
+                  <Button
+                    sx={{
+                      width: "120px",
+                      textTransform: "none",
                       backgroundColor: "#F4F7FE",
                       color: "#62728F",
-                      border: "1px solid #F4F7FE",
-                    },
-                  }}
-                  onClick={() => handleClose()}>
-                  Cancel
-                </Button>
-              </Grid>
-              <Grid item xs={6}>
-                <Grid container sx={{ justifyContent: "right" }}>
-                  <Button
-                    type="submit"
-                    disabled={isLoading}
-                    sx={{
-                      width: "128px",
-                      textTransform: "none",
-                      backgroundColor: "#2E58FF",
-                      color: "#FFFFFF",
-
                       borderRadius: "8px",
-                      "&.Mui-disabled": {
-                        // background: "#eaeaea",
-                        color: "#FFFFFF",
-                      },
                       "&:hover": {
-                        backgroundColor: "#2E58FF",
-                        color: "#FFFFFF",
-                        // border: "1px solid #2E58FF",
+                        backgroundColor: "#F4F7FE",
+                        color: "#62728F",
+                        border: "1px solid #F4F7FE",
                       },
                     }}
-                    // onClick={() => handleChange()}
-                  >
-                    Upload
+                    onClick={() => handleClose()}>
+                    Cancel
                   </Button>
                 </Grid>
+                <Grid item xs={6}>
+                  <Grid container sx={{ justifyContent: "right" }}>
+                    <Button
+                      type="submit"
+                      disabled={isLoading}
+                      sx={{
+                        width: "128px",
+                        textTransform: "none",
+                        backgroundColor: "#2E58FF",
+                        color: "#FFFFFF",
+
+                        borderRadius: "8px",
+                        "&.Mui-disabled": {
+                          // background: "#eaeaea",
+                          color: "#FFFFFF",
+                        },
+                        "&:hover": {
+                          backgroundColor: "#2E58FF",
+                          color: "#FFFFFF",
+                          // border: "1px solid #2E58FF",
+                        },
+                      }}
+                      // onClick={() => handleChange()}
+                    >
+                      Upload
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
-            </Grid>
-          </Box>
+            </Box>
+          </form>
         </Box>
       </Modal>
 

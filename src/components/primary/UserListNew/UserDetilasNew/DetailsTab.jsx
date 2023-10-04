@@ -18,8 +18,7 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
-      {...other}
-    >
+      {...other}>
       {value === index && (
         <Box sx={{ paddingTop: 1 }}>
           <Typography>{children}</Typography>
@@ -42,7 +41,15 @@ function a11yProps(index) {
   };
 }
 
-export default function DetailsTab({ user, handleSetRole, handleSetStatus }) {
+export default function DetailsTab({
+  user,
+  handleSetRole,
+  handleSetStatus,
+  skillSet,
+  handleChangeSkills,
+  setIsEditSkill,
+  isEditSkill,
+}) {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
   const { isLightTheme } = useSelector((state) => state.theme);
@@ -67,8 +74,7 @@ export default function DetailsTab({ user, handleSetRole, handleSetStatus }) {
           padding: "1%",
           minHeight: "36px",
           height: "50px",
-        }}
-      >
+        }}>
         <Tab
           sx={{
             borderRadius: value === 0 ? "8px" : "none",
@@ -81,8 +87,7 @@ export default function DetailsTab({ user, handleSetRole, handleSetStatus }) {
             <Typography
               sx={{ textTransform: "none" }}
               variant="wpf_p3_semiBold"
-              color={value === 0 ? "primary.B200" : "neutral.700"}
-            >
+              color={value === 0 ? "primary.B200" : "neutral.700"}>
               User Info.
             </Typography>
           }
@@ -100,8 +105,7 @@ export default function DetailsTab({ user, handleSetRole, handleSetStatus }) {
             <Typography
               sx={{ textTransform: "none" }}
               variant="wpf_p3_semiBold"
-              color={value === 1 ? "primary.B200" : "neutral.700"}
-            >
+              color={value === 1 ? "primary.B200" : "neutral.700"}>
               Project Details
             </Typography>
           }
@@ -111,7 +115,15 @@ export default function DetailsTab({ user, handleSetRole, handleSetStatus }) {
 
       <Box sx={{ height: "620px", overflowY: "auto" }}>
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <UserInfoIndex user={user} handleSetRole={handleSetRole} handleSetStatus={handleSetStatus} />
+          <UserInfoIndex
+            user={user}
+            handleSetRole={handleSetRole}
+            handleSetStatus={handleSetStatus}
+            skillSet={skillSet}
+            handleChangeSkills={handleChangeSkills}
+            setIsEditSkill={setIsEditSkill}
+            isEditSkill={isEditSkill}
+          />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <UserProjectDetails />

@@ -6,8 +6,17 @@ import DetailsItemThree from "./DetailsItemThree";
 import NdaDocumentSection from "./NdaDocumentSection";
 import moment from "moment/moment";
 import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
+import SkillFieldForUserDetails from "./SkillFieldForUserDetails";
 
-const UserInfoIndex = ({ user, handleSetRole, handleSetStatus }) => {
+const UserInfoIndex = ({
+  user,
+  handleSetRole,
+  handleSetStatus,
+  skillSet,
+  handleChangeSkills,
+  setIsEditSkill,
+  isEditSkill,
+}) => {
   const DOB = moment.utc(user.dob).format("MMM Do, YYYY");
   const dateObj = new Date(user.lastJobTakenAt);
   const today = new Date();
@@ -78,17 +87,22 @@ const UserInfoIndex = ({ user, handleSetRole, handleSetStatus }) => {
             Item3={"No Course Completed"}
           />
           <SingleItem ItemTitle={"Address"} Item={user.presentAddress} />
-          <SingleItem ItemTitle={"Skills"} Item={user.skills} />
+          {/* <SingleItem ItemTitle={"Skills"} Item={user.skills} /> */}
+          <SkillFieldForUserDetails
+            ItemTitle={"Skills"}
+            Item={user.skills}
+            user={user}
+            skillSet={skillSet}
+            handleChangeSkills={handleChangeSkills}
+            setIsEditSkill={setIsEditSkill}
+            isEditSkill={isEditSkill}
+          />
           <NdaDocumentSection user={user} />
         </Stack>
       </Box>
 
       <Box>
-        <ChangeInfoIndex
-          user={user}
-          handleSetRole={handleSetRole}
-          handleSetStatus={handleSetStatus}
-        />
+        <ChangeInfoIndex user={user} handleSetRole={handleSetRole} handleSetStatus={handleSetStatus} />
       </Box>
     </>
   );

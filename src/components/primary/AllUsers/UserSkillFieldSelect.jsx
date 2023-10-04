@@ -21,18 +21,16 @@ const MenuProps = {
   },
 };
 const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, count, handleClickAway, label }) => {
-  const { isLightTheme } = useSelector((state) => state.theme);
-
   return (
     <>
       <MyFormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Age</InputLabel>
         <MySelect
           sx={{
             backgroundColor: "neutral.N000",
             height: "40px",
           }}
           displayEmpty
-          variant="outlined"
           multiple
           value={addSkills?.map((skill) => skill.name) || ""}
           onChange={handleChangeSkill}
@@ -66,9 +64,13 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
               )}
             </Box>
           )}
+          name={name}
           MenuProps={MenuProps}
           onClose={handleClickAway}
         >
+          <MenuItem disabled value="">
+            <span style={{ color: "grey" }}>{label}</span>
+          </MenuItem>
           {skills?.map((skill) => (
             <MenuItem sx={{ fontSize: "14px" }} key={skill._id} value={skill.name || ""}>
               {skill.name}

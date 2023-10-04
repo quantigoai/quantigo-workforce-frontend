@@ -1,14 +1,13 @@
-import * as React from "react";
-import PropTypes from "prop-types";
-import { useTheme } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
+import PropTypes from "prop-types";
+import * as React from "react";
+import { useSelector } from "react-redux";
 import UserInfoIndex from "./UserInfoIndex";
 import UserProjectDetails from "./UserProjectDetails";
-import { useSelector } from "react-redux";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -57,18 +56,19 @@ export default function DetailsTab({ user, handleSetRole, handleSetStatus }) {
   return (
     <Box
       sx={{
-        bgcolor: "background.paper",
+        backgroundColor: "background.paper",
         width: "100%",
         height: "100%",
         "&::-webkit-scrollbar": {
           width: "0",
         },
-        overflow: "hidden",
+        overflowY: "hidden",
       }}
     >
       <Box
         sx={{
-          height: "10%",
+          padding: "1% 3%",
+          backgroundColor: "background.paper",
         }}
       >
         <Tabs
@@ -90,7 +90,6 @@ export default function DetailsTab({ user, handleSetRole, handleSetStatus }) {
               backgroundColor: value === 0 ? "neutral.N000" : "",
               minHeight: "36px",
               height: "36px",
-              // color: "#000",
             }}
             label={
               <Typography
@@ -109,7 +108,6 @@ export default function DetailsTab({ user, handleSetRole, handleSetStatus }) {
               backgroundColor: value === 1 ? "neutral.N000" : "",
               minHeight: "36px",
               height: "36px",
-              color: "#000",
             }}
             label={
               <Typography
@@ -125,7 +123,16 @@ export default function DetailsTab({ user, handleSetRole, handleSetStatus }) {
         </Tabs>
       </Box>
 
-      <Box sx={{ overflowY: "auto", height: "95%" }}>
+      <Box
+        sx={{
+          overflowY: "scroll",
+          height: "90%",
+          padding: "1% 3%",
+          "&::-webkit-scrollbar": {
+            width: "0",
+          },
+        }}
+      >
         <TabPanel value={value} index={0} dir={theme.direction}>
           <UserInfoIndex user={user} handleSetRole={handleSetRole} handleSetStatus={handleSetStatus} />
         </TabPanel>

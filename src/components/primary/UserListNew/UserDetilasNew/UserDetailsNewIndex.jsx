@@ -1,11 +1,10 @@
-import { Grid } from "@mui/material";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import * as React from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { changeRole, deleteOrActivateUser } from "../../../../features/slice/userSlice";
+import CommonModalFooter from "../../../shared/CommonModal/CommonModalFooter";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 import DetailsTab from "./DetailsTab";
 import styled from "./testDrawer";
@@ -84,77 +83,25 @@ export default function UserDetailsNewIndex({ user, open, handleProjectDetailsOp
           sx={{
             ...BoxStyle,
             height: { xl: "80%", lg: "90%" },
-            // height: "80%",
             width: { xl: "40%", lg: "50%" },
           }}
         >
-          <Box sx={{ flex: "0 0 5%" }}>
+          <Box sx={{ height: "8%" }}>
             <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Details"} />
           </Box>
 
-          <Box
-            sx={{
-              flex: "1",
-              overflowY: "auto",
-              padding: "3%",
-              height: "60%",
-              // backgroundColor: "blue",
-              "&::-webkit-scrollbar": {
-                width: "0",
-              },
-            }}
-          >
+          <Box sx={{ height: "86%" }}>
             <DetailsTab user={user} handleSetRole={handleSetRole} handleSetStatus={handleSetStatus} />
           </Box>
-          <Box
-            sx={{
-              flex: "0 0 64px",
-              borderTop: "2px solid #F2F6FC",
-              backgroundColor: "#FFFFFF",
-              // backgroundColor: "yellow",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "0 2%",
-
-              bottom: "0px",
-              borderRadius: "8px",
-            }}
-          >
-            <Grid container sx={{ padding: "2%" }}>
-              <Grid item xs={6}>
-                <Button sx={buttonStyle} onClick={() => handleClose()}>
-                  Cancel
-                </Button>
-              </Grid>
-              <Grid item xs={6}>
-                <Grid container sx={{ justifyContent: "right" }}>
-                  <Button
-                    disabled={isLoading || !disabledButton}
-                    sx={{
-                      width: "128px",
-                      textTransform: "none",
-                      backgroundColor: "#2E58FF",
-                      color: "#FFFFFF",
-
-                      borderRadius: "8px",
-                      "&.Mui-disabled": {
-                        // background: "#eaeaea",
-                        color: "#FFFFFF",
-                      },
-                      "&:hover": {
-                        backgroundColor: "#2E58FF",
-                        color: "#FFFFFF",
-                        // border: "1px solid #2E58FF",
-                      },
-                    }}
-                    onClick={() => handleChange()}
-                  >
-                    Save Changes
-                  </Button>
-                </Grid>
-              </Grid>
-            </Grid>
+          <Box sx={{ height: "7%" }}>
+            <CommonModalFooter
+              isLoading={isLoading}
+              leftButtonTitle={"Cancel"}
+              rightButtonTitle={"Save Changes"}
+              disabledButton={disabledButton}
+              handleClose={handleClose}
+              handleChange={handleChange}
+            />
           </Box>
         </Box>
       </Modal>

@@ -12,13 +12,11 @@ const styled = (isLightTheme) => {
     },
   };
   const BoxStyle = {
-    display: "flex",
-    flexDirection: "column",
     position: "relative",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    bgcolor: "background.paper",
+    backgroundColor: "background.paper",
     border: "none",
     borderRadius: "8px",
     p: 0,

@@ -100,14 +100,14 @@ export default function UserDetailsNewIndex({ user, open, handleProjectDetailsOp
         alert.show("Skill can not updated ", { type: "error" });
       }
     });
-    // roleValue &&
-    //   dispatch(changeRole(finalData)).then((action) => {
-    //     if (action.payload?.status === 200) {
-    //       alert.show("Role Change Successfully", { type: "success" });
-    //     } else {
-    //       alert.show("Role can not Change", { type: "error" });
-    //     }
-    //   });
+    roleValue &&
+      dispatch(changeRole(finalData)).then((action) => {
+        if (action.payload?.status === 200) {
+          alert.show("Role Change Successfully", { type: "success" });
+        } else {
+          alert.show("Role can not Change", { type: "error" });
+        }
+      });
 
     // actionStatus &&
     //   dispatch(deleteOrActivateUser(finalData)).then((action) => {

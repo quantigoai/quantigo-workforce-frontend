@@ -60,12 +60,13 @@ export default function EditProfilePageIndex() {
             height: "100%",
             borderRadius: "8px",
             backgroundColor: "neutral.N000",
+            // backgroundColor:"red"
           }}>
           <Grid
             container
             sx={{
               // borderTop: "1px solid #E1E8F5",
-              backgroundColor: "neutral.N000",
+              // backgroundColor: "neutral.N000",
               // position: "absolute",
               width: "100%",
               height: "100%",
@@ -81,7 +82,7 @@ export default function EditProfilePageIndex() {
                 onChange={handleChange}
                 aria-label="Vertical tabs example"
                 sx={{
-                  // height: "100%",
+                  height: "100%",
                   width: "95%",
                   // borderRight: "1px solid #E1E8F5",
                   // borderRight: 1,
@@ -102,7 +103,15 @@ export default function EditProfilePageIndex() {
                     // padding: value === 0 ? "2%":"",
                     // Add other styles as needed
                   }}
-                  label="My Profile"
+                  label={
+                    <Typography
+                      sx={{ textTransform: "none" }}
+                      variant="wpf_p3_semiBold"
+                      color={value === 0 ? "primary.B200" : "neutral.700"}>
+                      My Profile
+                    </Typography>
+                  }
+                  // label="My Profile"
                   {...a11yProps(0)}
                 />
                 <Tab
@@ -114,7 +123,14 @@ export default function EditProfilePageIndex() {
                     // padding: value === 0 ? "2%":"",
                     // Add other styles as needed
                   }}
-                  label="Courses"
+                  label={
+                    <Typography
+                      sx={{ textTransform: "none" }}
+                      variant="wpf_p3_semiBold"
+                      color={value === 1 ? "primary.B200" : "neutral.700"}>
+                      Courses
+                    </Typography>
+                  }
                   {...a11yProps(1)}
                 />
                 <Tab
@@ -126,7 +142,14 @@ export default function EditProfilePageIndex() {
                     // padding: value === 0 ? "2%":"",
                     // Add other styles as needed
                   }}
-                  label="Password & Security"
+                  label={
+                    <Typography
+                      sx={{ textTransform: "none" }}
+                      variant="wpf_p3_semiBold"
+                      color={value === 2 ? "primary.B200" : "neutral.700"}>
+                      Password & Security
+                    </Typography>
+                  }
                   {...a11yProps(2)}
                 />
               </Tabs>
@@ -136,16 +159,18 @@ export default function EditProfilePageIndex() {
                 </Grid>
               </Box>
             </Grid>
-            <Grid item xs={10}>
-              <TabPanel value={value} index={0}>
-                <MyProfileIndex />
-              </TabPanel>
-              <TabPanel value={value} index={1}>
-                <MyCoursesIndex />
-              </TabPanel>
-              <TabPanel sx={{ position: "absolute" }} value={value} index={2}>
-                <PasswordChangeIndex />
-              </TabPanel>
+            <Grid item xs={10} sx={{  height: "100%" }}>
+              <Box>
+                <TabPanel value={value} index={0}>
+                  <MyProfileIndex />
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                  <MyCoursesIndex />
+                </TabPanel>
+                <TabPanel sx={{ position: "absolute" }} value={value} index={2}>
+                  <PasswordChangeIndex />
+                </TabPanel>
+              </Box>
             </Grid>
           </Grid>
         </Box>

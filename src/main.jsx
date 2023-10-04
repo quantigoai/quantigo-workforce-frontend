@@ -25,7 +25,7 @@ const options = {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
-    <React.StrictMode>
+    {/* <React.StrictMode> */}
       <Provider store={store}>
         <ThemeProviderWrapper>
           <CssBaseline />
@@ -40,6 +40,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           </AlertProvider>
         </ThemeProviderWrapper>
       </Provider>
-    </React.StrictMode>
+    {/* </React.StrictMode> */}
   </>
 );

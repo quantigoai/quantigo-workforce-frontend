@@ -10,7 +10,8 @@ import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 import DetailsTab from "./DetailsTab";
 import styled from "./testDrawer";
 
-export default function UserDetailsNewIndex({ user, open, handleProjectDetailsOpen, handleClose }) {
+export default function UserDetailsNewIndex({ open, handleProjectDetailsOpen, handleClose }) {
+  const {targetedUser: user} = useSelector((state) => state.user);
   const [roleValue, setRole] = React.useState("");
   const [actionStatus, setActionStatus] = React.useState("");
   const [disabledButton, setDisabledButton] = React.useState(false);
@@ -69,7 +70,6 @@ export default function UserDetailsNewIndex({ user, open, handleProjectDetailsOp
   };
 
   const handleChange = () => {
-    console.log(skill);
     const skillColl = skill.map((skill) => {
       return skill._id;
     });
@@ -79,7 +79,6 @@ export default function UserDetailsNewIndex({ user, open, handleProjectDetailsOp
         skills: skillColl,
       },
     };
-    console.log(skillData);
     const data = {
       role: roleValue,
     };
@@ -94,14 +93,15 @@ export default function UserDetailsNewIndex({ user, open, handleProjectDetailsOp
 
     // TODO Call this when skill change
     // skill Change
-    isEditSkill && dispatch(updateAUserById(skillData)).then((action) => {
-      if (action.payload?.status === 200) {
-        alert.show("Skill Update successfully", { type: "success" });
-        setIsEditSkill(false);
-      } else {
-        alert.show("Skill can not updated ", { type: "error" });
-      }
-    });
+    isEditSkill &&
+      dispatch(updateAUserById(skillData)).then((action) => {
+        if (action.payload?.status === 200) {
+          alert.show("Skill Update successfully", { type: "success" });
+          setIsEditSkill(false);
+        } else {
+          alert.show("Skill can not updated ", { type: "error" });
+        }
+      });
     roleValue &&
       dispatch(changeRole(finalData)).then((action) => {
         if (action.payload?.status === 200) {

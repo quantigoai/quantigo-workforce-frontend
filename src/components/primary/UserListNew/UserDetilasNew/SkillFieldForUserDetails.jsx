@@ -1,11 +1,8 @@
-import { Box, Button, Grid, MenuItem, Stack, Typography } from "@mui/material";
-import ProjectDrawerStatusChip from "../../../shared/FilterField/ProjectDrawerStatusChip";
-import { useDispatch, useSelector } from "react-redux";
+import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import { useState } from "react"; // Import useState
-import UserSkillChange from "../../Users/SkillChange/UserSkillChange";
-import PDskillFIeld from "../../../shared/CustomField/PDskillFIeld";
+import { useSelector } from "react-redux";
+import ProjectDrawerStatusChip from "../../../shared/FilterField/ProjectDrawerStatusChip";
 import SkillField from "./SkillField";
-import { useAlert } from "react-alert";
 
 const SkillFieldForUserDetails = ({
   ItemTitle,
@@ -20,11 +17,10 @@ const SkillFieldForUserDetails = ({
   const { skills } = useSelector((state) => state.skill);
   // Add a state variable to track hover state
   const [isHovered, setIsHovered] = useState(false);
- 
+
   const handleEditSkill = () => {
     setIsEditSkill(true);
   };
-console.log(Item)
   return (
     <>
       {!isEditSkill && (
@@ -45,7 +41,8 @@ console.log(Item)
                     color: isLightTheme ? "#091E42" : "#fff",
                     opacity: isLightTheme && "0.7",
                     fontWeight: "400",
-                  }}>
+                  }}
+                >
                   {ItemTitle}
                 </Typography>
                 {isHovered && (
@@ -59,7 +56,8 @@ console.log(Item)
                       //   opacity: 0, // Initially, the button is hidden
                       //   transition: "opacity 0.3s ease-in-out",
                     }}
-                    onClick={() => handleEditSkill()}>
+                    onClick={() => handleEditSkill()}
+                  >
                     <i className="ri-edit-line"></i>
                   </Button>
                 )}

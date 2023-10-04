@@ -12,15 +12,15 @@ import React, { Suspense, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import { getAllSkills } from "../../../features/slice/skillSlice";
-import { getAllUsers } from "../../../features/slice/userSlice";
+import { getAllUsers, setTargetedUser } from "../../../features/slice/userSlice";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 // import TableWrapper from "../ProjectLIstNew2/ExpTable/TableWrapper";
 const TableWrapper = React.lazy(() => import("../ProjectLIstNew2/ExpTable/TableWrapper"));
 
-import { useLocation } from "react-router-dom";
 import useAllUsers from "../../../customHooks/useAllUsers";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
+import useHandleChange from "../ProjectLIstNew2/Hooks/useHandleChange";
 import "../ProjectLIstNew2/index.css";
 import UserDetailsNewIndex from "../UserListNew/UserDetilasNew/UserDetailsNewIndex";
 import UsersFilter from "./UsersFilter";
@@ -28,8 +28,6 @@ import UsersHeader from "./UsersHeader";
 import "./index.css";
 import { fields } from "./tableFields";
 import { hubOptions, roleOptions, userStatusOptions } from "./userFilterOptions";
-import dayjs from "dayjs";
-import useHandleChange from "../ProjectLIstNew2/Hooks/useHandleChange";
 const annotatorRoles = ["level_0_annotator", "level_1_annotator", "level_2_annotator", "level_3_annotator"];
 const reviewerRoles = ["reviewer"];
 
@@ -38,6 +36,8 @@ const AllUserListIndex = ({ action }) => {
   const dispatch = useDispatch();
   const { isLightTheme } = useSelector((state) => state.theme);
   const { users, totalUsers } = useSelector((state) => state.user.users);
+
+  console.log("🚀 ~ file: AllUserListIndex.jsx:39 ~ AllUserListIndex ~ users:", users);
   const { isLoading, user } = useSelector((state) => state.user);
   const { role } = user;
 
@@ -81,9 +81,11 @@ const AllUserListIndex = ({ action }) => {
   const handleDelete = (e) => {
     console.log("🚀 ~ file: AllUserListIndex.jsx:103 ~ handleDelete ~ e:", e);
   };
-  
+
   const handleProjectDetailsOpen = (params) => {
+    console.log("🚀 ~AllUserListIndex handleProjectDetailsOpen ~ params:", params.skills);
     setSelectedUser(params);
+    dispatch(setTargetedUser(params));
     setOpen(true);
   };
 
@@ -92,7 +94,6 @@ const AllUserListIndex = ({ action }) => {
   };
 
   const handleChangePagination = useCallback(() => {
-    console.log(filterValue);
     dispatch(getAllSkills());
     dispatch(
       getAllUsers({
@@ -154,9 +155,9 @@ const AllUserListIndex = ({ action }) => {
           />
         </Suspense>
       </Box>
-     
+
       <UserDetailsNewIndex
-        user={selectedUser}
+        // user={selectedUser}
         open={open}
         handleProjectDetailsOpen={handleProjectDetailsOpen}
         handleClose={handleClose}

@@ -9,10 +9,8 @@
 
 import { Box, Button, Stack } from "@mui/material";
 import React from "react";
-import ProjectSelectFIlterField from "../ProjectLIstNew2/ProjectSelectFIlterField";
-import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
-import useHandleChange from "../ProjectLIstNew2/Hooks/useHandleChange";
 import { useSelector } from "react-redux";
+import ProjectSelectFIlterField from "../ProjectLIstNew2/ProjectSelectFIlterField";
 import UserSkillFieldSelect from "./UserSkillFieldSelect";
 
 const UsersFilter = ({
@@ -122,7 +120,6 @@ const UsersFilter = ({
                   size="medium"
                   color="error"
                 >
-                  {" "}
                   Clear Filter
                 </Button>
               )}

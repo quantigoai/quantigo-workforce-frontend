@@ -27,6 +27,7 @@ const initialState = {
   isLoading: false,
   user: {},
   users: {},
+  targetedUser: {},
   error: "null",
   isCreated: false,
   isLoggedIn: false,
@@ -364,9 +365,13 @@ const userSlice = createSlice({
     updateLoggedInUserManually: (state, action) => {
       state.user = action.payload;
     },
+    setTargetedUser: (state, action) => {
+      state.targetedUser = action.payload;
+    },
+
     updateSingleUserManually: (state, action) => {
       const { user } = action.payload;
-      console.log("🚀 ~ file: userSlice.js:369 ~ state.users.users=state.users.users.map ~ state.users:", state.users);
+      state.targetedUser = user;
       state.users.users = state.users.users.map((item) => {
         if (item._id === user._id) {
           return user;
@@ -662,6 +667,7 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(updateAUserById.fulfilled, (state, action) => {
+        state.targetedUser = action.payload.data;
         state.users.users = state.users.users.map((user) => {
           if (user._id === action.payload.data._id) {
             return action.payload.data;
@@ -771,6 +777,7 @@ const userSlice = createSlice({
 export const {
   clearUserWorkingProject,
   updateUserWorkingProject,
+  setTargetedUser,
   resetUserSlice,
   updateLoggedInUserManually,
   updateSingleUserManually,

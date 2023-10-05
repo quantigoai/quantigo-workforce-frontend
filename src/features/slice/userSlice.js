@@ -684,6 +684,7 @@ const userSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(changeRole.fulfilled, (state, action) => {
+        state.targetedUser = action.payload.data;
         state.users.users = state.users.users.map((user) => {
           if (user._id === action.payload.data._id) {
             return action.payload.data;
@@ -700,6 +701,7 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(deleteOrActivateUser.fulfilled, (state, action) => {
+        state.targetedUser = action.payload.data;
         state.users.users = state.users.users.map((user) => {
           if (user._id === action.payload.data._id) {
             return action.payload.data;
@@ -727,6 +729,7 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(UnblockJobsForUser.fulfilled, (state, action) => {
+        state.targetedUser = action.payload.data;
         state.users.users = state.users.users.map((user) => {
           if (user._id === action.payload.data.user._id) {
             return action.payload.data.user;

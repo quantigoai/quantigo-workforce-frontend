@@ -1,7 +1,5 @@
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { Box, Chip, ClickAwayListener, InputLabel, MenuItem, Select, Typography, styled } from "@mui/material";
-import React from "react";
-import { useSelector } from "react-redux";
+import { Box, Chip, MenuItem, Select, Typography, styled } from "@mui/material";
 import { MyFormControl } from "../../shared/CustomField/CustomDatePicker";
 
 export const MySelect = styled(Select)(() => ({

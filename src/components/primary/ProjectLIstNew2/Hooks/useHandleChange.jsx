@@ -11,6 +11,7 @@ const useHandleChange = () => {
   const alert = useAlert();
 
   const handleChangeSkill = (event) => {
+    console.log("2");
     const {
       target: { value },
     } = event;
@@ -21,10 +22,11 @@ const useHandleChange = () => {
 
     setCount(value.length - 1);
     // inputRef.current = ` ${value.length - 2} more`;
-    setAddSkills(
+    setAddSkills((s) => {
+      console.log(s);
       // On autofill we get a stringified value.
-      typeof selectedSkills === "string" ? value.split(",") : selectedSkills
-    );
+      return typeof selectedSkills === "string" ? value.split(",") : selectedSkills;
+    });
   };
   const handleChangeRoles = (event) => {
     const {

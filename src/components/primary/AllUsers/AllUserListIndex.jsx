@@ -38,6 +38,8 @@ const AllUserListIndex = ({ action }) => {
   const { users, totalUsers } = useSelector((state) => state.user.users);
   const { isLoading, user } = useSelector((state) => state.user);
   const { role } = user;
+  const [prevSkills, setPrevSkills] = useState([]);
+  const [prevRoles, setPrevRoles] = useState([]);
 
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
@@ -56,30 +58,88 @@ const AllUserListIndex = ({ action }) => {
     useAllUsers(setAddSkills);
 
   const { skills } = useSelector((state) => state.skill);
+  
+  const arraysAreEqual = (arr1, arr2) => {
+    // Check if the arrays have the same length
+    if (arr1.length !== arr2.length) {
+      return false;
+    }
 
+    // Sort the arrays to ensure order doesn't matter
+    arr1.sort();
+    arr2.sort();
+
+    // Compare each element of the arrays
+    for (let i = 0; i < arr1.length; i++) {
+      if (arr1[i] !== arr2[i]) {
+        return false;
+      }
+    }
+
+    // If all elements are the same, the arrays are equal
+    return true;
+  };
   const handleClickAway = () => {
-    console.log("2");
     const skillsId = addSkills.map((skill) => skill._id);
-    console.log("🚀 ~ file: AllUserListIndex.jsx:63 ~ handleClickAway ~ skillsId:", skillsId)
+
+    // ! not call api skills id or role not change
+
+    // * not  call api skills id and role is empty
+
+    // not call api skills id, role any  empty
+    if ((skillsId.length || addRoles.length) && (!skillsId.length || !addRoles.length)) {
+      // handleChange({}, [], "unchanged");
+      if (skillsId.length === 0) {
+        handleChange({}, [], "noCall");
+      } else {
+        handleChange({}, [], "callOne");
+        // handleChange({}, skillsId, "null", addRoles);
+      }
+
+      if (addRoles.length === 0) {
+        console.log("hit addRoles ");
+        handleChange({}, [], "noCall");
+      } else {
+        handleChange({}, [], "callOne");
+
+        // handleChange({}, skillsId, "null", addRoles);
+      }
+    } else {
+      if (skillsId.length && addRoles.length) {
+        setPrevSkills(skillsId);
+        setPrevRoles(addRoles);
+
+        const currentSkills = addSkills.map((skill) => skill._id);
+
+        const isSkillsSame = arraysAreEqual(prevSkills, currentSkills);
+        const isRolesSame = arraysAreEqual(prevRoles, addRoles);
+        console.log("🚀 ~ file: AllUserListIndex.jsx:110 ~ handleClickAway ~ isSkillsSame:", isSkillsSame);
+        console.log("🚀 ~ file: AllUserListIndex.jsx:116 ~ handleClickAway ~ isRolesSame:", isRolesSame)
+        
+        addSkills.map((skill) => {
+          if (!prevSkills.includes(skill._id)) {
+            console.log("changed");
+            handleChange({}, skillsId, "callTwo");
+          }
+        });
+
+        // handleChange({}, skillsId, "null", addRoles);
+      } else {
+        handleChange({}, skillsId, "noCall");
+        handleChange({}, []);
+      }
+
+      // both empty  not  call
+    }
 
     if (Object.keys(filterValue).length === 0 && skillsId.length === 0 && addRoles.length === 0) {
       handleChange({}, [], "default");
     }
-    if (skillsId.length > 0) {
-      handleChange({}, skillsId, "null", addRoles);
-    }
-    if (addRoles.length > 0) {
-      handleChange({}, skillsId, "null", addRoles);
-    }
-    if (skillsId.length === 0) {
-      console.log("hit outside 1");
-      handleChange({}, []);
-    }
-    if (addRoles.length === 0) {
-      console.log("hit outside 2");
-      handleChange({}, []);
-      console.log("0 ");
-    }
+    // if (skillsId.length > 0) {
+    //
+    // }
+    // if (addRoles.length > 0) {
+    // }
   };
 
   useEffect(() => {

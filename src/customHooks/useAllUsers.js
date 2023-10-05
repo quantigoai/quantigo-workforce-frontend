@@ -39,21 +39,51 @@ const useAllUsers = (setAddSkills) => {
     setDetailsUserOpen(false);
   };
 
-  const handleChange = (event, skillsId = []) => {
-    if (skillsId.length) {
-      const field = "skills";
-      const value = skillsId;
-      const filteredData = { ...filterValue };
-      filteredData[field] = value;
-      setFilterValue(filteredData);
-    } else if (skillsId.length === 0 && Object.keys(event).length === 0) {
-      console.log("1");
-      const field = "skills";
-      const value = [];
-      const filteredData = { ...filterValue };
-      filteredData[field] = value;
-      setFilterValue(filteredData);
+  const handleChange = (event, skillsId = [], def, addRoles = []) => {
+    // check if thats not empty and render
+    if (skillsId.length || addRoles.length) {
+      if (skillsId.length) {
+        const field = "skills";
+        const value = skillsId;
+        const filteredData = { ...filterValue };
+        filteredData[field] = value;
+        setFilterValue(filteredData);
+      }
+      if (addRoles.length) {
+        const field = "role";
+        const value = addRoles;
+        const filteredData = { ...filterValue };
+        filteredData[field] = value;
+        setFilterValue(filteredData);
+      }
+    }
+    //check if all empty and control render
+    else if (skillsId.length === 0 && addRoles.length === 0 && Object.keys(event).length === 0) {
+      console.log("🚀 ~ file: rrrr   length:", addRoles.length);
+      console.log("🚀 ~ file: useAllUsers.js:65 ~ handleChange ~ (def:", def);
+      // do nothing
+      if (def === "default") {
+        return true;
+      }
+      // render
+      else if (def === "null") {
+        console.log("1");
+        const field = "skills";
+        const value = [];
+        const filteredData = { ...filterValue };
+        filteredData[field] = value;
+        setFilterValue(filteredData);
+      }
+      //do nothing
+      else {
+        return true;
+      }
+    } 
+    else if (skillsId.length > 0 && addRoles.length === 0 && Object.keys(event).length === 0) {
+      console.log("ewewe");
     } else {
+      console.log('wewewweew');
+      console.log("2");
       const field = event.target.name;
       const value = event.target.value;
       const filteredData = { ...filterValue };

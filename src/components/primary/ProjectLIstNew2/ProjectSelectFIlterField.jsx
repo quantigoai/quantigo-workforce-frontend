@@ -14,7 +14,7 @@ export const MySelect = styled(Select)(() => ({
 
 export default function ProjectSelectFIlterField({ options, label, handleChange, name, filterValue }) {
   return (
-    <MyFormControl sx={{ p: 0.7, minWidth: "25%" }} size="small">
+    <MyFormControl sx={{ p: 0.7, minWidth: "20%" }} size="small">
       <MySelect
         displayEmpty
         defaultValue={""}
@@ -30,7 +30,7 @@ export default function ProjectSelectFIlterField({ options, label, handleChange,
         IconComponent={KeyboardArrowDownIcon}
         value={filterValue?.[name] ?? ""}
         label={label}
-        onChange={(e) => handleChange(e)}
+        onChange={(e) => handleChange(e, [], "null")}
         name={name}
       >
         <MenuItem disabled value="">

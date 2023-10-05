@@ -12,6 +12,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import ProjectSelectFIlterField from "../ProjectLIstNew2/ProjectSelectFIlterField";
 import UserSkillFieldSelect from "./UserSkillFieldSelect";
+import ProjectMultipleSelectRole from "./ProjectMultipleSelectRole";
 
 const UsersFilter = ({
   role,
@@ -33,6 +34,8 @@ const UsersFilter = ({
   addSkills,
   count,
   handleClickAway,
+  addRoles,
+  handleChangeRoles,
 }) => {
   const { skills } = useSelector((state) => state.skill);
 
@@ -96,12 +99,22 @@ const UsersFilter = ({
                     options={userStatusOptions}
                     handleChange={handleChange}
                   />
-                  <UserSkillFieldSelect
-                    label={"Users Status"}
-                    name="role"
+                  {/* <UserSkillFieldSelect
+                    name={"roles"}
                     addSkills={addSkills}
+                    label={"Users Skills"}
                     handleChangeSkill={handleChangeSkill}
                     skills={roleOptions}
+                    isRole={true}
+                    count={count}
+                    handleClickAway={handleClickAway}
+                  /> */}
+                  <ProjectMultipleSelectRole
+                    name={"Roles"}
+                    label={"Users Roles"}
+                    addRoles={addRoles}
+                    handleChangeRoles={handleChangeRoles}
+                    roles={roleOptions}
                     count={count}
                     handleClickAway={handleClickAway}
                   />

@@ -50,7 +50,7 @@ const AllUserListIndex = ({ action }) => {
     pageSize: 10,
   });
 
-  const { handleChangeSkill, addSkills, setAddSkills, count } = useHandleChange();
+  const { handleChangeSkill, addSkills, setAddSkills, count, addRoles, handleChangeRoles } = useHandleChange();
 
   const { filterValue, handleId, filteredCol, handleIsFilter, isFilter, handleChange, handleClearFilter } =
     useAllUsers(setAddSkills);
@@ -58,13 +58,27 @@ const AllUserListIndex = ({ action }) => {
   const { skills } = useSelector((state) => state.skill);
 
   const handleClickAway = () => {
+    console.log("2");
     const skillsId = addSkills.map((skill) => skill._id);
+    console.log("🚀 ~ file: AllUserListIndex.jsx:63 ~ handleClickAway ~ skillsId:", skillsId)
+
+    if (Object.keys(filterValue).length === 0 && skillsId.length === 0 && addRoles.length === 0) {
+      handleChange({}, [], "default");
+    }
     if (skillsId.length > 0) {
-      handleChange({}, skillsId);
+      handleChange({}, skillsId, "null", addRoles);
+    }
+    if (addRoles.length > 0) {
+      handleChange({}, skillsId, "null", addRoles);
     }
     if (skillsId.length === 0) {
-      console.log("0 ");
+      console.log("hit outside 1");
       handleChange({}, []);
+    }
+    if (addRoles.length === 0) {
+      console.log("hit outside 2");
+      handleChange({}, []);
+      console.log("0 ");
     }
   };
 
@@ -137,6 +151,8 @@ const AllUserListIndex = ({ action }) => {
           addSkills={addSkills}
           count={count}
           handleClickAway={handleClickAway}
+          addRoles={addRoles}
+          handleChangeRoles={handleChangeRoles}
         />
       </Box>
 

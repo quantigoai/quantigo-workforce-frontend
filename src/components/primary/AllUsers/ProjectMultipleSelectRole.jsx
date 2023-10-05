@@ -20,7 +20,8 @@ const MenuProps = {
     },
   },
 };
-const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, count, handleClickAway, label }) => {
+
+const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, roles, count, handleClickAway }) => {
   return (
     <>
       <MyFormControl fullWidth>
@@ -31,13 +32,14 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
           }}
           displayEmpty
           multiple
-          value={addSkills?.map((skill) => skill.name) || ""}
-          onChange={handleChangeSkill}
+          value={addRoles?.map((role) => role) || ""}
+          onChange={handleChangeRoles}
           label={label}
           IconComponent={KeyboardArrowDownIcon}
           renderValue={(selected) => {
             return (
               <Box
+                key={selected}
                 sx={{
                   display: "grid",
                   gridTemplateColumns: "repeat(2,1fr)",
@@ -72,9 +74,9 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
           <MenuItem disabled value="">
             <span style={{ color: "grey" }}>{label}</span>
           </MenuItem>
-          {skills?.map((skill) => (
-            <MenuItem sx={{ fontSize: "14px" }} key={skill._id} value={skill.name || ""}>
-              {skill.name}
+          {roles?.map((role) => (
+            <MenuItem sx={{ fontSize: "14px" }} key={role.label} value={role.label || ""}>
+              {role.label}
             </MenuItem>
           ))}
         </MySelect>
@@ -83,4 +85,4 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
   );
 };
 
-export default UserSkillFieldSelect;
+export default ProjectMultipleSelectRole;

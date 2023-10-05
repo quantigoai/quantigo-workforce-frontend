@@ -39,7 +39,7 @@ export const lightColors = {
   error: {
     500: "#F04438",
     800: "#F04438",
-    R001:"#FF4757"
+    R001: "#FF4757",
   },
   green: {
     200: "#C4F5DF",
@@ -53,5 +53,12 @@ export const lightColors = {
     400: "#F2A200",
     500: "#F79009",
     800: "#F79009",
+  },
+  chip: {
+    500: "#d9d9d9",
+    600: "#ccffb3",
+    700: "#ffd9b3",
+    800: "#b3e0ff",
+    900: "#ffcccc",
   },
 };

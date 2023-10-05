@@ -7,13 +7,19 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Link, TableCell, Typography } from "@mui/material";
+import { TableCell, Typography } from "@mui/material";
 import React from "react";
+import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
 import { calculateTimeDifference, formatDate, formatDateDob, formatTime } from "../../../../../helper/dateConverter";
 import ChipGroup from "../../../../shared/CustomTable/ChipGroup";
 import ProjectDrawerStatusChip from "../../../../shared/FilterField/ProjectDrawerStatusChip";
+import BloodGroupCell from "../CustomTableCell/BloodGroupCell";
+import LinkCell from "../CustomTableCell/LinkCell";
+import PaymentRateCell from "../CustomTableCell/PaymentRateCell";
+import TotalWorkingHoursCell from "../CustomTableCell/TotalWorkingHoursCell";
 import UserBasicInfoCell from "../CustomTableCell/UserBasicInfoCell";
 import UserRoleCell from "../CustomTableCell/UserRoleCell";
+import MobileNoCell from "../CustomTableCell/MobileNoCell";
 
 const MiddleTableColumn = ({ row, column }) => {
   const value = row[column.id];
@@ -67,23 +73,7 @@ const MiddleTableColumn = ({ row, column }) => {
     } else if (column.field === "relevantDocuments") {
       return (
         <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
-          {row?.[column.field]?.length > 0 ? (
-            <Typography sx={{ color: "#253E5C" }} variant="wf_p4_regular">
-              <Link
-                sx={{
-                  textDecoration: "none",
-                  cursor: "pointer",
-                  fontSize: "14px",
-                }}
-                href={row?.[column.field]?.[0].documentUrl}
-              >
-                click here
-                <i className="ri-arrow-right-up-line"></i>
-              </Link>
-            </Typography>
-          ) : (
-            ""
-          )}
+          <LinkCell data={row[column?.field]} />
         </TableCell>
       );
     } else if (column.field === "project_status") {
@@ -100,11 +90,22 @@ const MiddleTableColumn = ({ row, column }) => {
           </Typography>
         </TableCell>
       );
+    } else if (column.field === "totalWorkingHours") {
+      return (
+        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+          <TotalWorkingHoursCell data={row[column?.field]} />
+        </TableCell>
+      );
+    } else if (column.field === "billingAccountNo") {
+      return (
+        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+          <MobileNoCell data={row[column?.field]} />
+        </TableCell>
+      );
     } else if (column.field === "checkedInDate" || column.field === "checkedOutDate") {
       return (
         <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
           <Typography variant="wpf_p4_regular" color="neutral.700">
-            {/* TODO Add working chip here */}
             {row[column?.field] ? formatDate(row[column?.field]) : "Working ⛑️"}
           </Typography>
         </TableCell>
@@ -113,15 +114,33 @@ const MiddleTableColumn = ({ row, column }) => {
       return (
         <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
           <Typography variant="wpf_p4_regular" color="neutral.700">
-            {/* TODO Add working chip here */}
             {row[column?.field] && formatDateDob(row[column?.field])}
           </Typography>
+        </TableCell>
+      );
+    } else if (column.field === "gender") {
+      return (
+        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+          <Typography variant="wpf_p4_regular" color="neutral.700">
+            {row[column?.field] ? capitalizeFirstLetter(row[column?.field]) : ""}
+          </Typography>
+        </TableCell>
+      );
+    } else if (column.field === "bloodGroup") {
+      return (
+        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+          <BloodGroupCell data={row[column?.field]} />
+        </TableCell>
+      );
+    } else if (column.field === "paymentRate") {
+      return (
+        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+          <PaymentRateCell data={row[column?.field]} />
         </TableCell>
       );
     } else if (column.field === "checkedInTime" || column.field === "checkedOutTime") {
       return (
         <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
-          {/* TODO Add working chip here  */}
           <Typography variant="wpf_p4_regular" color="neutral.700">
             {row[column?.field] ? formatTime(row[column?.field]) : "Working ⛑️"}
           </Typography>

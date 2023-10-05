@@ -79,6 +79,7 @@ const AllUserListIndex = ({ action }) => {
     // If all elements are the same, the arrays are equal
     return true;
   };
+  
   const handleClickAway = () => {
     const skillsId = addSkills.map((skill) => skill._id);
 

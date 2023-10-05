@@ -15,17 +15,17 @@ const App = lazy(() => import("./App.jsx"));
 
 const options = {
   position: positions.BOTTOM_RIGHT,
-  timeout: 6500,
+  timeout: 4500,
   offset: "30px",
   transition: transitions.SCALE,
   containerStyle: {
-    zIndex: 1500,
+    zIndex: 1500000,
   },
 };
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
-    {/* <React.StrictMode> */}
+    <React.StrictMode>
       <Provider store={store}>
         <ThemeProviderWrapper>
           <CssBaseline />
@@ -40,6 +40,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           </AlertProvider>
         </ThemeProviderWrapper>
       </Provider>
-    {/* </React.StrictMode> */}
+    </React.StrictMode>
   </>
 );

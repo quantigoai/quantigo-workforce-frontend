@@ -24,7 +24,6 @@ import CryptoJS from "crypto-js";
 import Routers from "./components/primary/Routers/Routers";
 import LoadingComponent from "./components/shared/Loading/LoadingComponent";
 import useClearReduxData from "./customHooks/useClearReduxData";
-import ThemeProviderWrapper from "./theme.config/ThemeProviderWrapper";
 // import LayoutNew from "./components/shared/Layout/LayoutNew";
 const LayoutNew = lazy(() => import("./components/shared/Layout/LayoutNew"));
 
@@ -87,17 +86,15 @@ function App() {
 
   return (
     <>
-      {/* <ThemeProviderWrapper> */}
-        {isLoggedIn ? (
-          <Suspense fallback={<LoadingComponent />}>
-            <LayoutNew>{<Routers />}</LayoutNew>
-          </Suspense>
-        ) : (
-          <Suspense fallback={<LoadingComponent />}>
-            <RoutersLogin />
-          </Suspense>
-        )}
-      {/* </ThemeProviderWrapper> */}
+      {isLoggedIn ? (
+        <Suspense fallback={<LoadingComponent />}>
+          <LayoutNew>{<Routers />}</LayoutNew>
+        </Suspense>
+      ) : (
+        <Suspense fallback={<LoadingComponent />}>
+          <RoutersLogin />
+        </Suspense>
+      )}
     </>
   );
 }

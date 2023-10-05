@@ -36,8 +36,6 @@ const AllUserListIndex = ({ action }) => {
   const dispatch = useDispatch();
   const { isLightTheme } = useSelector((state) => state.theme);
   const { users, totalUsers } = useSelector((state) => state.user.users);
-
-  console.log("🚀 ~ file: AllUserListIndex.jsx:39 ~ AllUserListIndex ~ users:", users);
   const { isLoading, user } = useSelector((state) => state.user);
   const { role } = user;
 
@@ -46,12 +44,14 @@ const AllUserListIndex = ({ action }) => {
   const [selectedUser, setSelectedUser] = useState({});
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
+
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
   });
 
   const { handleChangeSkill, addSkills, setAddSkills, count } = useHandleChange();
+
   const { filterValue, handleId, filteredCol, handleIsFilter, isFilter, handleChange, handleClearFilter } =
     useAllUsers(setAddSkills);
 
@@ -88,8 +88,7 @@ const AllUserListIndex = ({ action }) => {
     console.log("🚀 ~ file: AllUserListIndex.jsx:103 ~ handleDelete ~ e:", e);
   };
 
-  const handleProjectDetailsOpen = (params) => {
-    console.log("🚀 ~AllUserListIndex handleProjectDetailsOpen ~ params:", params.skills);
+  const handleUserDetailsOpen = (params) => {
     setSelectedUser(params);
     dispatch(setTargetedUser(params));
     setOpen(true);
@@ -156,18 +155,13 @@ const AllUserListIndex = ({ action }) => {
             totalItems={totalUsers}
             handleId={handleId}
             filteredCol={filteredCol}
-            handleProjectDetailsOpen={handleProjectDetailsOpen}
+            handleProjectDetailsOpen={handleUserDetailsOpen}
             data={users}
           />
         </Suspense>
       </Box>
 
-      <UserDetailsNewIndex
-        // user={selectedUser}
-        open={open}
-        handleProjectDetailsOpen={handleProjectDetailsOpen}
-        handleClose={handleClose}
-      />
+      <UserDetailsNewIndex open={open} handleProjectDetailsOpen={handleUserDetailsOpen} handleClose={handleClose} />
     </Box>
   );
 };

@@ -10,8 +10,9 @@ import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 import DetailsTab from "./DetailsTab";
 import styled from "./testDrawer";
 
-export default function UserDetailsNewIndex({ open, handleProjectDetailsOpen, handleClose }) {
-  const {targetedUser: user} = useSelector((state) => state.user);
+export default function UserDetailsNewIndex({ open, handleClose }) {
+  const alert = useAlert();
+  const { targetedUser: user } = useSelector((state) => state.user);
   const [roleValue, setRole] = React.useState("");
   const [actionStatus, setActionStatus] = React.useState("");
   const [disabledButton, setDisabledButton] = React.useState(false);
@@ -24,7 +25,13 @@ export default function UserDetailsNewIndex({ open, handleProjectDetailsOpen, ha
   const [isSkillEmpty, setIsSkillEmpty] = useState(false);
   const dispatch = useDispatch();
   const [isEditSkill, setIsEditSkill] = useState(false);
-  const alert = useAlert();
+
+  React.useEffect(() => {
+    !open && setIsEditSkill(false);
+    !open && setRole("");
+    !open && setActionStatus("");
+  }, [open]);
+
   const { buttonStyle, BoxStyle } = styled(isLightTheme);
 
   const handleSetStatus = (e) => {
@@ -107,7 +114,7 @@ export default function UserDetailsNewIndex({ open, handleProjectDetailsOpen, ha
         if (action.payload?.status === 200) {
           alert.show("Role Change Successfully", { type: "success" });
         } else {
-          alert.show("Role can not Change", { type: "error" });
+          alert.show("Unable to Change the Role", { type: "error" });
         }
       });
 
@@ -116,20 +123,12 @@ export default function UserDetailsNewIndex({ open, handleProjectDetailsOpen, ha
         if (action.payload?.status === 200) {
           if (actionStatus === "delete") {
             window.location.reload(false);
-            alert.show(
-              "User Delete Successfully",
-
-              { type: "success" }
-            );
+            alert.show("User Deleted Successfully", { type: "success" });
           } else {
-            alert.show(
-              "Status change Successfully",
-
-              { type: "success" }
-            );
+            alert.show("Status change Successfully", { type: "success" });
           }
         } else {
-          alert.show("Status can not Change", { type: "error" });
+          alert.show("Unable to Change the Status", { type: "error" });
         }
       });
   };

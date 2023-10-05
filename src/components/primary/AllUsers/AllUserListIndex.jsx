@@ -51,7 +51,8 @@ const AllUserListIndex = ({ action }) => {
     pageSize: 10,
   });
 
-  const { handleChangeSkill, addSkills, setAddSkills, count } = useHandleChange();
+  const { handleChangeSkill, addSkills, setAddSkills, count, addRoles, handleChangeRoles } = useHandleChange();
+
   const { filterValue, handleId, filteredCol, handleIsFilter, isFilter, handleChange, handleClearFilter } =
     useAllUsers(setAddSkills);
 
@@ -59,14 +60,40 @@ const AllUserListIndex = ({ action }) => {
 
   const handleClickAway = () => {
     const skillsId = addSkills.map((skill) => skill._id);
+
+    if (Object.keys(filterValue).length === 0 && skillsId.length === 0 && addRoles.length === 0) {
+      handleChange({}, [], "default");
+    }
     if (skillsId.length > 0) {
-      handleChange({}, skillsId);
+      handleChange({}, skillsId, "null", addRoles);
+    }
+    if (addRoles.length > 0) {
+      handleChange({}, skillsId, "null", addRoles);
     }
     if (skillsId.length === 0) {
-      console.log("0 ");
+      console.log("hit outside 1");
       handleChange({}, []);
     }
+    if (addRoles.length === 0) {
+      console.log("hit outside 2");
+      handleChange({}, []);
+      console.log("0 ");
+    }
   };
+  // const handleClickAwayRoles = () => {
+  //   const skillsId = addSkills.map((skill) => skill._id);
+
+  //   if (Object.keys(filterValue).length === 0 && skillsId.length === 0) {
+  //     handleChange({}, [], "default");
+  //   }
+  //   if (skillsId.length > 0) {
+  //     handleChange({}, skillsId);
+  //   }
+  //   if (skillsId.length === 0) {
+  //     console.log("0 ");
+  //     handleChange({}, []);
+  //   }
+  // };
 
   useEffect(() => {
     dispatch(setActivePath("All Users 2"));
@@ -136,6 +163,8 @@ const AllUserListIndex = ({ action }) => {
           addSkills={addSkills}
           count={count}
           handleClickAway={handleClickAway}
+          addRoles={addRoles}
+          handleChangeRoles={handleChangeRoles}
         />
       </Box>
 

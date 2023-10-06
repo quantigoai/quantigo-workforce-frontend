@@ -32,7 +32,7 @@ const MobileNoCell = ({ data }) => {
   return (
     <>
       <Typography variant="wpf_p4_regular" color="neutral.700">
-        {formatPhoneNumber(data)}
+        {data ? formatPhoneNumber(data) : data}
       </Typography>
     </>
   );

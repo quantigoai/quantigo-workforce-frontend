@@ -12,7 +12,6 @@ import { LoadingButtonStyle } from "../Login/Login";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function PrimaryButton(props) {
-  console.log("🚀 ~ file: PrimaryButton.jsx:15 ~ PrimaryButton ~ props:", props);
   // const navigate = useNavigate();
   return (
     <Box>
@@ -25,7 +24,7 @@ export default function PrimaryButton(props) {
         loading={props.isLoading}
         onClick={() => props.setShowOtherField(true)}
       >
-        Create New Account
+        Continue
       </LoadingButtonStyle>
     </Box>
   );

@@ -47,6 +47,7 @@ import Project2DetailsModal from "./Project2Details/Project2DetailsModal";
 import ProjectModal from "./ProjectModal";
 import ProjectSelectFIlter from "./ProjectSelectFIlter";
 import "./index.css";
+import LoadingComponent from "../../shared/Loading/LoadingComponent";
 
 // test for commit
 /**
@@ -90,19 +91,20 @@ const ProjectLIstIndex2 = () => {
 
   const { isLoading, projectDrawers, projectDrawer, total, error } = useSelector((state) => state.projectDrawer);
   const { role } = useSelector((state) => state.user.user);
+  const [isDataLoading, setIsDataLoading] = useState(true);
+  const [isChildDataLoading, setIsChildDataLoading] = useState(false);
 
   const handleProjectDetailsOpen = (project) => {
     setDetailsProjectOpen(true);
     setDetailProject(project);
   };
-
   useEffect(() => {
-    dispatch(setActivePath("All Projects2"));
-    setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
-    setMyRows(dataBuilder(projectDrawers));
-  }, [projectDrawers]);
+    dispatch(getAllSkills());
+    dispatch(getAllProjectDrawers({ pagination })).then(() => setIsDataLoading(false));
+  }, []);
 
   const handleChangePagination = useCallback(() => {
+    setIsChildDataLoading(true);
     dispatch(getAllSkills());
     dispatch(
       getAllProjectDrawers({
@@ -110,7 +112,9 @@ const ProjectLIstIndex2 = () => {
         filteredData: filterValue,
         ascDescOption: filteredCol,
       })
-    );
+    ).then(() => {
+      setIsChildDataLoading(false);
+    });
   }, [dispatch, pagination, filterValue, filteredCol]);
 
   const { handleChangeSkill, addSkills, setAddSkills, count } = useHandleChange();
@@ -199,6 +203,11 @@ const ProjectLIstIndex2 = () => {
       typeof value === "string" ? value.split(",") : value
     );
   };
+  useEffect(() => {
+    dispatch(setActivePath("All Projects2"));
+    setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
+    projectDrawers && projectDrawers.length > 0 && setMyRows(dataBuilder(projectDrawers));
+  }, [dispatch, handleClick, handleDelete, projectDrawers]);
 
   return (
     <>
@@ -326,7 +335,9 @@ const ProjectLIstIndex2 = () => {
               justifyContent: "space-between",
             }}
           >
-            {!isLoading && (
+            {isDataLoading ? (
+              <LoadingComponent />
+            ) : (
               <>
                 <TableWrapper
                   role={role}
@@ -343,10 +354,12 @@ const ProjectLIstIndex2 = () => {
                   filteredCol={filteredCol}
                   handleProjectDetailsOpen={handleProjectDetailsOpen}
                   data={projectDrawers}
-                  isLoading={isLoading}
+                  isChildDataLoading={isChildDataLoading}
+                  setIsChildDataLoading={setIsChildDataLoading}
                 />
               </>
             )}
+
             <PaginationTable
               pagination={pagination}
               setPagination={setPagination}

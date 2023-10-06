@@ -100,7 +100,6 @@ const AllUserListIndex = ({ action }) => {
   };
 
   useEffect(() => {
-    console.log("hit");
     dispatch(setActivePath("All Users 2"));
     setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
     users && users.length > 0 && setMyRows(dataBuilder(users));
@@ -142,7 +141,6 @@ const AllUserListIndex = ({ action }) => {
       setIsChildDataLoading(false);
     });
   }, [dispatch, pagination, filterValue, filteredCol]);
-  // }, []);
 
   const skillsOptions = skills.map((skill) => ({ value: skill._id, label: skill.name }));
 

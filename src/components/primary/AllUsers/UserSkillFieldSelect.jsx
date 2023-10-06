@@ -1,7 +1,6 @@
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { Box, Chip, ClickAwayListener, InputLabel, MenuItem, Select, Typography, styled } from "@mui/material";
+import { Box, Chip, MenuItem, Select, Typography, styled } from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
 import { MyFormControl } from "../../shared/CustomField/CustomDatePicker";
 
 export const MySelect = styled(Select)(() => ({
@@ -27,15 +26,21 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
         <MySelect
           sx={{
             backgroundColor: "neutral.N000",
-            height: "40px",
+            height: "36px",
           }}
           displayEmpty
           multiple
           value={addSkills?.map((skill) => skill.name) || ""}
           onChange={handleChangeSkill}
-          label={label}
           IconComponent={KeyboardArrowDownIcon}
           renderValue={(selected) => {
+            if (selected.length === 0) {
+              return (
+                <Typography variant="h7" color="neutral.600">
+                  {label}
+                </Typography>
+              );
+            }
             return (
               <Box
                 sx={{
@@ -44,21 +49,16 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
                   alignItems: "center",
                   gap: 0.5,
                   fontSize: "12px",
-                  height: "35px",
                 }}
               >
                 {selected?.map(
                   (value, i) =>
                     [0].includes(i) && (
-                      <Chip sx={{ fontSize: "12px", height: "95%", color: "neutral.N300" }} key={value} label={value} />
+                      <Chip sx={{ fontSize: "12px", height: "95%", color: "neutral.750" }} key={value} label={value} />
                     )
                 )}
                 {selected?.length > 1 && (
-                  <Typography
-                    variant="h7"
-                    sx={{ ml: 2, mt: 0 }}
-                    // ref={inputRef}
-                  >
+                  <Typography variant="h7" sx={{ ml: 2, mt: 0, color: "neutral.850" }}>
                     + {count} more
                   </Typography>
                 )}
@@ -69,9 +69,6 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
           MenuProps={MenuProps}
           onClose={handleClickAway}
         >
-          <MenuItem disabled value="">
-            <span style={{ color: "grey" }}>{label}</span>
-          </MenuItem>
           {skills?.map((skill) => (
             <MenuItem sx={{ fontSize: "14px" }} key={skill._id} value={skill.name || ""}>
               {skill.name}

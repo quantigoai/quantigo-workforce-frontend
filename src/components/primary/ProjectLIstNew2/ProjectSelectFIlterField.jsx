@@ -1,7 +1,7 @@
-import { MenuItem, Select, styled } from "@mui/material";
-import { MyFormControl } from "../../shared/CustomField/CustomDatePicker";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { MenuItem, Select, Typography, styled } from "@mui/material";
 import PropTypes from "prop-types";
+import { MyFormControl } from "../../shared/CustomField/CustomDatePicker";
 ProjectSelectFIlterField.propTypes = {
   name: PropTypes.string,
   helperText: PropTypes.node,
@@ -14,15 +14,16 @@ export const MySelect = styled(Select)(() => ({
 
 export default function ProjectSelectFIlterField({ options, label, handleChange, name, filterValue }) {
   return (
-    <MyFormControl sx={{ p: 0.7, minWidth: "25%" }} size="small">
+    // <MyFormControl sx={{ p: 0.7, minWidth: "25%" }} size="small">
+    <MyFormControl sx={{ px: 0.7, minWidth: "25%" }} size="small">
       <MySelect
         displayEmpty
-        defaultValue={""}
+        // defaultValue={""}
         sx={{
           height: "36px",
           padding: "10px 14px",
-          fontSize: "14px",
           borderRadius: "8px",
+          // color: "neutral.750",
           "& svg": {
             fill: "#667085",
           },
@@ -34,11 +35,15 @@ export default function ProjectSelectFIlterField({ options, label, handleChange,
         name={name}
       >
         <MenuItem disabled value="">
-          <span style={{ color: "grey" }}>{label}</span>
+          <Typography variant="h7" color="neutral.600">
+            {label}
+          </Typography>
         </MenuItem>
         {options.map((option) => (
           <MenuItem key={option.value} fullWidth value={option.value}>
-            {option.label}
+            <Typography variant="h7" color="neutral.850">
+              {option.label}
+            </Typography>
           </MenuItem>
         ))}
       </MySelect>

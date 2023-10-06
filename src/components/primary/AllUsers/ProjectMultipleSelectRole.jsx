@@ -21,65 +21,62 @@ const MenuProps = {
 
 const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, roles, count, handleClickAway }) => {
   return (
-    <>
-      <MyFormControl fullWidth>
-        <MySelect
-          sx={{
-            backgroundColor: "neutral.N000",
-            height: "40px",
-          }}
-          displayEmpty
-          multiple
-          value={addRoles?.map((role) => role) || ""}
-          onChange={handleChangeRoles}
-          label={label}
-          IconComponent={KeyboardArrowDownIcon}
-          renderValue={(selected) => {
+    <MyFormControl fullWidth>
+      <MySelect
+        sx={{
+          backgroundColor: "neutral.N000",
+          height: "36px",
+        }}
+        displayEmpty
+        multiple
+        value={addRoles?.map((role) => role)}
+        onChange={handleChangeRoles}
+        IconComponent={KeyboardArrowDownIcon}
+        renderValue={(selected) => {
+          if (selected.length === 0) {
             return (
-              <Box
-                key={selected}
-                sx={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(2,1fr)",
-                  alignItems: "center",
-                  gap: 0.5,
-                  fontSize: "12px",
-                  height: "35px",
-                }}
-              >
-                {selected?.map(
-                  (value, i) =>
-                    [0].includes(i) && (
-                      <Chip sx={{ fontSize: "12px", height: "95%", color: "neutral.N300" }} key={value} label={value} />
-                    )
-                )}
-                {selected?.length > 1 && (
-                  <Typography
-                    variant="h7"
-                    sx={{ ml: 2, mt: 0 }}
-                    // ref={inputRef}
-                  >
-                    + {count} more
-                  </Typography>
-                )}
-              </Box>
+              <Typography variant="h7" color="neutral.600">
+                {label}
+              </Typography>
             );
-          }}
-          name={name}
-          MenuProps={MenuProps}
-          onClose={handleClickAway}
-        >
-          <MenuItem disabled value="">
-            <span style={{ color: "grey" }}>{label}</span>
+          }
+          return (
+            <Box
+              key={selected}
+              sx={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2,1fr)",
+                alignItems: "center",
+                gap: 0.5,
+                fontSize: "12px",
+                // height: "35px",
+              }}
+            >
+              {selected.map(
+                (value, i) =>
+                  [0].includes(i) && (
+                    <Chip sx={{ fontSize: "12px", height: "95%", color: "neutral.750" }} key={value} label={value} />
+                  )
+              )}
+              {selected.length > 1 && (
+                <Typography variant="h7" sx={{ ml: 2, mt: 0, color: "neutral.850" }}>
+                  + {count} more
+                </Typography>
+              )}
+            </Box>
+          );
+        }}
+        name={name}
+        MenuProps={MenuProps}
+        onClose={handleClickAway}
+      >
+        {roles?.map((role) => (
+          <MenuItem sx={{ fontSize: "14px" }} key={role.label} value={role.label || ""}>
+            {role.label}
           </MenuItem>
-          {roles?.map((role) => (
-            <MenuItem sx={{ fontSize: "14px" }} key={role.label} value={role.label || ""}>
-              {role.label}
-            </MenuItem>
-          ))}
-        </MySelect>
-      </MyFormControl>
-    </>
+        ))}
+      </MySelect>
+    </MyFormControl>
   );
 };
 

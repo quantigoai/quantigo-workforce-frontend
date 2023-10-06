@@ -29,8 +29,6 @@ import UsersHeader from "./UsersHeader";
 import "./index.css";
 import { fields } from "./tableFields";
 import { hubOptions, roleOptions, userStatusOptions } from "./userFilterOptions";
-const annotatorRoles = ["level_0_annotator", "level_1_annotator", "level_2_annotator", "level_3_annotator"];
-const reviewerRoles = ["reviewer"];
 
 // TODO NEED TO FIX LOADING ISSUE
 const AllUserListIndex = ({ action }) => {
@@ -53,95 +51,52 @@ const AllUserListIndex = ({ action }) => {
     pageSize: 10,
   });
 
-  const { handleChangeSkill, addSkills, setAddSkills, count, addRoles, handleChangeRoles } = useHandleChange();
+  const { handleChangeSkill, addSkills, setAddSkills, count, addRoles, handleChangeRoles, setAddRoles } =
+    useHandleChange();
 
-  const { filterValue, handleId, filteredCol, handleIsFilter, isFilter, handleChange, handleClearFilter } =
-    useAllUsers(setAddSkills);
+  const { filterValue, handleId, filteredCol, handleIsFilter, isFilter, handleChange, handleClearFilter } = useAllUsers(
+    setAddSkills,
+    setAddRoles,
+    setPrevSkills,
+    setPrevRoles
+  );
 
   const { skills } = useSelector((state) => state.skill);
 
   const arraysAreEqual = (arr1, arr2) => {
-    // Check if the arrays have the same length
     if (arr1.length !== arr2.length) {
       return false;
     }
 
-    // Sort the arrays to ensure order doesn't matter
     arr1.sort();
     arr2.sort();
 
-    // Compare each element of the arrays
     for (let i = 0; i < arr1.length; i++) {
       if (arr1[i] !== arr2[i]) {
         return false;
       }
     }
 
-    // If all elements are the same, the arrays are equal
     return true;
   };
 
   const handleClickAway = () => {
     const skillsId = addSkills.map((skill) => skill._id);
 
-    // ! not call api skills id or role not change
+    const isSkillsSame = arraysAreEqual(prevSkills, skillsId);
 
-    // * not  call api skills id and role is empty
+    const isRolesSame = arraysAreEqual(prevRoles, addRoles);
 
-    // not call api skills id, role any  empty
-    if ((skillsId.length || addRoles.length) && (!skillsId.length || !addRoles.length)) {
-      // handleChange({}, [], "unchanged");
-      if (skillsId.length === 0) {
-        handleChange({}, [], "noCall");
-      } else {
-        handleChange({}, [], "callOne");
-        // handleChange({}, skillsId, "null", addRoles);
-      }
+    setPrevSkills(skillsId);
+    setPrevRoles(addRoles);
 
-      if (addRoles.length === 0) {
-        console.log("hit addRoles ");
-        handleChange({}, [], "noCall");
-      } else {
-        handleChange({}, [], "callOne");
-
-        // handleChange({}, skillsId, "null", addRoles);
-      }
+    if (!isSkillsSame) {
+      handleChange({}, skillsId, addRoles, isSkillsSame, isRolesSame);
+    } else if (!isRolesSame) {
+      handleChange({}, skillsId, addRoles, isSkillsSame, isRolesSame);
     } else {
-      if (skillsId.length && addRoles.length) {
-        setPrevSkills(skillsId);
-        setPrevRoles(addRoles);
-
-        const currentSkills = addSkills.map((skill) => skill._id);
-
-        const isSkillsSame = arraysAreEqual(prevSkills, currentSkills);
-        const isRolesSame = arraysAreEqual(prevRoles, addRoles);
-        console.log("🚀 ~ file: AllUserListIndex.jsx:110 ~ handleClickAway ~ isSkillsSame:", isSkillsSame);
-        console.log("🚀 ~ file: AllUserListIndex.jsx:116 ~ handleClickAway ~ isRolesSame:", isRolesSame);
-
-        addSkills.map((skill) => {
-          if (!prevSkills.includes(skill._id)) {
-            console.log("changed");
-            handleChange({}, skillsId, "callTwo");
-          }
-        });
-
-        // handleChange({}, skillsId, "null", addRoles);
-      } else {
-        handleChange({}, skillsId, "noCall");
-        handleChange({}, []);
-      }
-
-      // both empty  not  call
+      return;
     }
-
-    if (Object.keys(filterValue).length === 0 && skillsId.length === 0 && addRoles.length === 0) {
-      handleChange({}, [], "default");
-    }
-    // if (skillsId.length > 0) {
-    //
-    // }
-    // if (addRoles.length > 0) {
-    // }
   };
 
   useEffect(() => {
@@ -163,9 +118,7 @@ const AllUserListIndex = ({ action }) => {
     console.log("handleclick");
   };
 
-  const handleDelete = (e) => {
-    console.log("🚀 ~ file: AllUserListIndex.jsx:103 ~ handleDelete ~ e:", e);
-  };
+  const handleDelete = (e) => {};
 
   const handleUserDetailsOpen = (params) => {
     setSelectedUser(params);
@@ -176,7 +129,7 @@ const AllUserListIndex = ({ action }) => {
   const handleDetailsPage = (e) => {
     console.log("handledetail");
   };
- 
+
   const handleChangePagination = useCallback(() => {
     setIsChildDataLoading(true);
     dispatch(

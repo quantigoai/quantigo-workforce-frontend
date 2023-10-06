@@ -19,7 +19,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAllSkills } from "../features/slice/skillSlice";
 
-const useAllUsers = (setAddSkills) => {
+const useAllUsers = (setAddSkills, setAddRoles, setPrevSkills, setPrevRoles) => {
   const [filterValue, setFilterValue] = useState({});
   const dispatch = useDispatch();
   const [downLoadExportOpen, setDownloadExportOpen] = React.useState(false);
@@ -39,88 +39,40 @@ const useAllUsers = (setAddSkills) => {
     setDetailsUserOpen(false);
   };
 
-  // type1 --> default call
-  // type2  --> call one
-  // type3 --> call two
-  // type4  --> no call
-  const handleChange = (event, skillsId = [], def, addRoles = []) => {
-    // console.log("🚀 ~ file: useAllUsers.js:43 ~ handleChange ~ def:", def);
-    // check if thats not empty and render
-
-    switch (def) {
-      case "defaultCall":
-        console.log("defaultCall");
-        break;
-      case "callOne":
-        console.log("callOne");
-        break;
-      case "callTwo":
-        console.log("callTwo");
-        break;
-      default:
-        console.log("noCall");
-        break;
+  const handleChange = (event, skillsId = [], addRoles = [], isSkillsSame = true, isRolesSame = true) => {
+    if (!isSkillsSame) {
+      const field = "skills";
+      const value = skillsId;
+      const filteredData = { ...filterValue };
+      filteredData[field] = value;
+      setFilterValue(filteredData);
+    } else if (!isRolesSame) {
+      const field = "role";
+      const value = addRoles;
+      const filteredData = { ...filterValue };
+      filteredData[field] = value;
+      setFilterValue(filteredData);
+    } else {
+      const field = event.target.name;
+      const value = event.target.value;
+      const filteredData = { ...filterValue };
+      filteredData[field] = value;
+      setFilterValue(filteredData);
     }
-    
-    // -------------
-    // if (skillsId.length || addRoles.length) {
-    //   if (skillsId.length) {
-    //     const field = "skills";
-    //     const value = skillsId;
-    //     const filteredData = { ...filterValue };
-    //     filteredData[field] = value;
-    //     setFilterValue(filteredData);
-    //   }
-    //   if (addRoles.length) {
-    //     const field = "role";
-    //     const value = addRoles;
-    //     const filteredData = { ...filterValue };
-    //     filteredData[field] = value;
-    //     setFilterValue(filteredData);
-    //   }
-    // }
-
-    // else if (skillsId.length === 0 && addRoles.length === 0 && Object.keys(event).length === 0) {
-    //   // do nothing
-    //   if (def === "default") {
-    //     return true;
-    //   }
-    //   // render
-    //   else if (def === "null") {
-    //     console.log("1");
-    //     const field = "skills";
-    //     const value = [];
-    //     const filteredData = { ...filterValue };
-    //     filteredData[field] = value;
-    //     setFilterValue(filteredData);
-    //   }
-    //   //do nothing
-    //   else {
-    //     return true;
-    //   }
-    // } else {
-    //   console.log("wewewweew");
-    //   console.log("2");
-    //   const field = event.target.name;
-    //   const value = event.target.value;
-    //   const filteredData = { ...filterValue };
-    //   filteredData[field] = value;
-    //   setFilterValue(filteredData);
-    // }
-    // -------------
   };
 
   const defaultState = {
-    role: "",
-    hub: "",
-    isVerified: "",
-    employeeType: "",
+    // role: "",
+    // hub: "",
   };
 
   const handleClearFilter = () => {
     setFilterValue(defaultState);
     setFilteredCol({});
     setAddSkills([]);
+    setAddRoles([]);
+    setPrevSkills([]);
+    setPrevRoles([]);
   };
 
   const handleId = (field) => {

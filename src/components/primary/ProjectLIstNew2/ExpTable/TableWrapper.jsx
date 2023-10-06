@@ -32,7 +32,6 @@ const TableWrapper = ({
   isChildDataLoading,
   setIsChildDataLoading,
 }) => {
-  console.log("🚀 ~ file: TableWrapper.jsx:35 ~ data:", data[0]._id);
   const { isLightTheme } = useSelector((state) => state.theme);
   // const { isLoading } = useSelector((state) => state.user);
 
@@ -47,9 +46,6 @@ const TableWrapper = ({
   const approvedPaths = ["/allprojects", "/all-users"];
 
   const renderMainContent = () => {
-    // if (isLoading) {
-    //   return <LoadingComponent height="100%" />;
-    // } else if
     if (approvedPaths.includes(pathname)) {
       if (data && data.length > 0) {
         return (

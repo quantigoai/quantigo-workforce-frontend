@@ -11,8 +11,8 @@ import { Box, Button, Stack } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import ProjectSelectFIlterField from "../ProjectLIstNew2/ProjectSelectFIlterField";
-import UserSkillFieldSelect from "./UserSkillFieldSelect";
 import ProjectMultipleSelectRole from "./ProjectMultipleSelectRole";
+import UserSkillFieldSelect from "./UserSkillFieldSelect";
 
 const UsersFilter = ({
   role,
@@ -43,7 +43,7 @@ const UsersFilter = ({
     <>
       <Box
         sx={{
-          background: isLightTheme ? "#FFFFFF" : "#1E1E1E",
+          backgroundColor: "neutral.N000",
           width: "100%",
           height: isFilter ? "45%" : "0%",
           paddingY: "5px",
@@ -52,9 +52,7 @@ const UsersFilter = ({
           transition: isFilter && "all 0.2s ease-in-out",
         }}
       >
-        {/* Implement users filter  */}
         <Stack sx={{ width: "100%" }}>
-          {/* <Grid items xs={9}> */}
           <Stack sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexDirection: "row" }}>
             {role === "admin" ? (
               <>

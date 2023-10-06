@@ -35,7 +35,7 @@ const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, r
         renderValue={(selected) => {
           if (selected.length === 0) {
             return (
-              <Typography variant="h7" color="neutral.600">
+              <Typography variant="h7" color="neutral.N300">
                 {label}
               </Typography>
             );
@@ -48,18 +48,14 @@ const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, r
                 gridTemplateColumns: "repeat(2,1fr)",
                 alignItems: "center",
                 gap: 0.5,
-                fontSize: "12px",
-                // height: "35px",
               }}
             >
               {selected.map(
                 (value, i) =>
-                  [0].includes(i) && (
-                    <Chip sx={{ fontSize: "12px", height: "95%", color: "neutral.750" }} key={value} label={value} />
-                  )
+                  [0].includes(i) && <Chip sx={{ height: "100%", color: "neutral.700" }} key={value} label={value} />
               )}
               {selected.length > 1 && (
-                <Typography variant="h7" sx={{ ml: 2, mt: 0, color: "neutral.850" }}>
+                <Typography variant="h7" sx={{ ml: 2, mt: 0, color: "neutral.700" }}>
                   + {count} more
                 </Typography>
               )}

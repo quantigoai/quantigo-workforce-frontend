@@ -9,21 +9,18 @@ ProjectSelectFIlterField.propTypes = {
 export const MySelect = styled(Select)(() => ({
   border: "1px solid #E0E0E0",
   padding: "5px 0px 0px 0px",
-  background: "#FFF",
+  backgroundColor: "neutral.N000",
 }));
 
 export default function ProjectSelectFIlterField({ options, label, handleChange, name, filterValue }) {
   return (
-    // <MyFormControl sx={{ p: 0.7, minWidth: "25%" }} size="small">
     <MyFormControl sx={{ px: 0.7, minWidth: "25%" }} size="small">
       <MySelect
         displayEmpty
-        // defaultValue={""}
         sx={{
           height: "36px",
-          padding: "10px 14px",
+          padding: "8px 1px",
           borderRadius: "8px",
-          // color: "neutral.750",
           "& svg": {
             fill: "#667085",
           },
@@ -35,13 +32,13 @@ export default function ProjectSelectFIlterField({ options, label, handleChange,
         name={name}
       >
         <MenuItem disabled value="">
-          <Typography variant="h7" color="neutral.600">
+          <Typography variant="h7" color="neutral.N300">
             {label}
           </Typography>
         </MenuItem>
         {options.map((option) => (
           <MenuItem key={option.value} fullWidth value={option.value}>
-            <Typography variant="h7" color="neutral.850">
+            <Typography variant="h7" color="neutral.700">
               {option.label}
             </Typography>
           </MenuItem>

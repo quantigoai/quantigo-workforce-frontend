@@ -7,8 +7,8 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box } from "@mui/material";
-import React, { Suspense, useCallback, useEffect, useState } from "react";
+import { Box, Paper } from "@mui/material";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import { getAllSkills } from "../../../features/slice/skillSlice";
@@ -21,6 +21,7 @@ const TableWrapper = React.lazy(() => import("../ProjectLIstNew2/ExpTable/TableW
 import useAllUsers from "../../../customHooks/useAllUsers";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import useHandleChange from "../ProjectLIstNew2/Hooks/useHandleChange";
+import PaginationTable from "../ProjectLIstNew2/PaginationTable";
 import "../ProjectLIstNew2/index.css";
 import UserDetailsNewIndex from "../UserListNew/UserDetilasNew/UserDetailsNewIndex";
 import UsersFilter from "./UsersFilter";
@@ -58,7 +59,7 @@ const AllUserListIndex = ({ action }) => {
     useAllUsers(setAddSkills);
 
   const { skills } = useSelector((state) => state.skill);
-  
+
   const arraysAreEqual = (arr1, arr2) => {
     // Check if the arrays have the same length
     if (arr1.length !== arr2.length) {
@@ -79,7 +80,7 @@ const AllUserListIndex = ({ action }) => {
     // If all elements are the same, the arrays are equal
     return true;
   };
-  
+
   const handleClickAway = () => {
     const skillsId = addSkills.map((skill) => skill._id);
 
@@ -115,8 +116,8 @@ const AllUserListIndex = ({ action }) => {
         const isSkillsSame = arraysAreEqual(prevSkills, currentSkills);
         const isRolesSame = arraysAreEqual(prevRoles, addRoles);
         console.log("🚀 ~ file: AllUserListIndex.jsx:110 ~ handleClickAway ~ isSkillsSame:", isSkillsSame);
-        console.log("🚀 ~ file: AllUserListIndex.jsx:116 ~ handleClickAway ~ isRolesSame:", isRolesSame)
-        
+        console.log("🚀 ~ file: AllUserListIndex.jsx:116 ~ handleClickAway ~ isRolesSame:", isRolesSame);
+
         addSkills.map((skill) => {
           if (!prevSkills.includes(skill._id)) {
             console.log("changed");
@@ -144,16 +145,19 @@ const AllUserListIndex = ({ action }) => {
   };
 
   useEffect(() => {
+    console.log("hit");
     dispatch(setActivePath("All Users 2"));
     setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
     users && users.length > 0 && setMyRows(dataBuilder(users));
   }, [dispatch, users]);
 
+  const [isDataLoading, setIsDataLoading] = useState(true);
+  const [isChildDataLoading, setIsChildDataLoading] = useState(false);
+
   useEffect(() => {
-    dispatch(getAllUsers({ pagination }));
+    dispatch(getAllSkills());
+    dispatch(getAllUsers({ pagination })).then(() => setIsDataLoading(false));
   }, []);
-  //  const
-  //   -------------------------------
 
   const handleClick = (e) => {
     console.log("handleclick");
@@ -172,17 +176,20 @@ const AllUserListIndex = ({ action }) => {
   const handleDetailsPage = (e) => {
     console.log("handledetail");
   };
-
+ 
   const handleChangePagination = useCallback(() => {
-    dispatch(getAllSkills());
+    setIsChildDataLoading(true);
     dispatch(
       getAllUsers({
         pagination,
         filteredData: filterValue,
         ascDescOption: filteredCol,
       })
-    );
+    ).then(() => {
+      setIsChildDataLoading(false);
+    });
   }, [dispatch, pagination, filterValue, filteredCol]);
+  // }, []);
 
   const skillsOptions = skills.map((skill) => ({ value: skill._id, label: skill.name }));
 
@@ -218,24 +225,45 @@ const AllUserListIndex = ({ action }) => {
       </Box>
 
       <Box className="tableContent">
-        <Suspense fallback={<LoadingComponent height={"100%"} />}>
-          <TableWrapper
-            role={role}
-            handleDetailsPage={handleDetailsPage}
-            handleClick={handleClick}
-            handleDelete={handleDelete}
-            myColumn={myColumn}
-            myRows={myRows}
+        <Paper
+          sx={{
+            width: "100%",
+            height: "100%",
+            overflow: "auto",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          {isDataLoading ? (
+            <LoadingComponent />
+          ) : (
+            <TableWrapper
+              role={role}
+              handleDetailsPage={handleDetailsPage}
+              handleClick={handleClick}
+              handleDelete={handleDelete}
+              myColumn={myColumn}
+              myRows={myRows}
+              pagination={pagination}
+              setPagination={setPagination}
+              handleChangePagination={handleChangePagination}
+              totalItems={totalUsers}
+              handleId={handleId}
+              filteredCol={filteredCol}
+              handleProjectDetailsOpen={handleUserDetailsOpen}
+              data={users}
+              isChildDataLoading={isChildDataLoading}
+              setIsChildDataLoading={setIsChildDataLoading}
+            />
+          )}
+          <PaginationTable
             pagination={pagination}
             setPagination={setPagination}
             handleChangePagination={handleChangePagination}
             totalItems={totalUsers}
-            handleId={handleId}
-            filteredCol={filteredCol}
-            handleProjectDetailsOpen={handleUserDetailsOpen}
-            data={users}
           />
-        </Suspense>
+        </Paper>
       </Box>
 
       <UserDetailsNewIndex open={open} handleProjectDetailsOpen={handleUserDetailsOpen} handleClose={handleClose} />

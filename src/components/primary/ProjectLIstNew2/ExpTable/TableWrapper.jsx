@@ -6,12 +6,10 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Alert, Paper } from "@mui/material";
+import { Alert } from "@mui/material";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import LoadingComponent from "../../../shared/Loading/LoadingComponent";
-import PaginationTable from "../PaginationTable";
 import DetailsPage from "../ProjectDetailsFull/DetailsPage";
 import WPFTable from "./WPFTable";
 
@@ -31,9 +29,12 @@ const TableWrapper = ({
   role,
   skillAlert,
   data,
+  isChildDataLoading,
+  setIsChildDataLoading,
 }) => {
+  console.log("🚀 ~ file: TableWrapper.jsx:35 ~ data:", data[0]._id);
   const { isLightTheme } = useSelector((state) => state.theme);
-  const { isLoading } = useSelector((state) => state.user);
+  // const { isLoading } = useSelector((state) => state.user);
 
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
   const location = useLocation();
@@ -46,10 +47,9 @@ const TableWrapper = ({
   const approvedPaths = ["/allprojects", "/all-users"];
 
   const renderMainContent = () => {
-    if (isLoading) {
-      return <LoadingComponent height="100%" />;
-    }
-
+    // if (isLoading) {
+    //   return <LoadingComponent height="100%" />;
+    // } else if
     if (approvedPaths.includes(pathname)) {
       if (data && data.length > 0) {
         return (
@@ -68,6 +68,7 @@ const TableWrapper = ({
             stickyFirstColumn={stickyFirstColumn}
             stickyLastColumn={stickyLastColumn}
             columns={columns}
+            isChildDataLoading={isChildDataLoading}
           />
         );
       } else if (role !== "admin") {
@@ -102,28 +103,7 @@ const TableWrapper = ({
     }
   };
 
-  return (
-    <>
-      <Paper
-        sx={{
-          width: "100%",
-          height: "100%",
-          overflow: "auto",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-        }}
-      >
-        {renderMainContent()}
-        <PaginationTable
-          pagination={pagination}
-          setPagination={setPagination}
-          handleChangePagination={handleChangePagination}
-          totalItems={totalItems}
-        />
-      </Paper>
-    </>
-  );
+  return <>{renderMainContent()}</>;
 };
 
 export default TableWrapper;

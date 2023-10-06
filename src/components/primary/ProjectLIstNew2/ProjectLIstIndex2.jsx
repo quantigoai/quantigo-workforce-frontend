@@ -42,6 +42,7 @@ import {
 import useAllFunc from "./Hooks/useAllFunc";
 import useHandleChange from "./Hooks/useHandleChange";
 import useHandleEditChange from "./Hooks/useHandleEditChange";
+import PaginationTable from "./PaginationTable";
 import Project2DetailsModal from "./Project2Details/Project2DetailsModal";
 import ProjectModal from "./ProjectModal";
 import ProjectSelectFIlter from "./ProjectSelectFIlter";
@@ -70,7 +71,7 @@ const ProjectLIstIndex2 = () => {
   });
 
   const alert = useAlert();
-  
+
   const {
     createProjectOpen,
     detailsProjectOpen,
@@ -315,39 +316,44 @@ const ProjectLIstIndex2 = () => {
         </Box>
 
         <Box className="tableContent">
-          <TableWrapper
-            role={role}
-            handleDetailsPage={handleDetailsPage}
-            handleClick={handleClick}
-            handleDelete={handleDelete}
-            myColumn={myColumn}
-            myRows={myRows}
-            pagination={pagination}
-            setPagination={setPagination}
-            handleChangePagination={handleChangePagination}
-            totalItems={total}
-            handleId={handleId}
-            filteredCol={filteredCol}
-            handleProjectDetailsOpen={handleProjectDetailsOpen}
-            data={projectDrawers}
-            isLoading={isLoading}
-          />
-          {/* <ProjectTable2
-            role={role}
-            handleDetailsPage={handleDetailsPage}
-            handleClick={handleClick}
-            handleDelete={handleDelete}
-            myColumn={myColumn}
-            myRows={myRows}
-            pagination={pagination}
-            setPagination={setPagination}
-            handleChangePagination={handleChangePagination}
-            totalItems={total}
-            handleId={handleId}
-            filteredCol={filteredCol}
-            handleProjectDetailsOpen={handleProjectDetailsOpen}
-          /> */}
-          {/* <ExpTable /> */}
+          <Paper
+            sx={{
+              width: "100%",
+              height: "100%",
+              overflow: "auto",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+            }}
+          >
+            {!isLoading && (
+              <>
+                <TableWrapper
+                  role={role}
+                  handleDetailsPage={handleDetailsPage}
+                  handleClick={handleClick}
+                  handleDelete={handleDelete}
+                  myColumn={myColumn}
+                  myRows={myRows}
+                  pagination={pagination}
+                  setPagination={setPagination}
+                  handleChangePagination={handleChangePagination}
+                  totalItems={total}
+                  handleId={handleId}
+                  filteredCol={filteredCol}
+                  handleProjectDetailsOpen={handleProjectDetailsOpen}
+                  data={projectDrawers}
+                  isLoading={isLoading}
+                />
+              </>
+            )}
+            <PaginationTable
+              pagination={pagination}
+              setPagination={setPagination}
+              handleChangePagination={handleChangePagination}
+              totalItems={total}
+            />
+          </Paper>
         </Box>
         {detailsProjectOpen && (
           <Box>

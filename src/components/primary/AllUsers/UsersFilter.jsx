@@ -68,12 +68,21 @@ const UsersFilter = ({
                     paddingX: "16px",
                   }}
                 >
-                  <ProjectSelectFIlterField
+                  {/* <ProjectSelectFIlterField
                     label={"Users Role"}
                     name="role"
                     filterValue={filterValue}
                     options={roleOptions}
                     handleChange={handleChange}
+                  /> */}
+                  <ProjectMultipleSelectRole
+                    name={"Roles"}
+                    label={"Users Roles"}
+                    addRoles={addRoles}
+                    handleChangeRoles={handleChangeRoles}
+                    roles={roleOptions}
+                    count={count}
+                    handleClickAway={handleClickAway}
                   />
                   <ProjectSelectFIlterField
                     label={"Users Hub"}
@@ -109,15 +118,6 @@ const UsersFilter = ({
                     count={count}
                     handleClickAway={handleClickAway}
                   /> */}
-                  <ProjectMultipleSelectRole
-                    name={"Roles"}
-                    label={"Users Roles"}
-                    addRoles={addRoles}
-                    handleChangeRoles={handleChangeRoles}
-                    roles={roleOptions}
-                    count={count}
-                    handleClickAway={handleClickAway}
-                  />
                 </Stack>
               </>
             ) : (

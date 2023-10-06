@@ -11,7 +11,6 @@ const useHandleChange = () => {
   const alert = useAlert();
 
   const handleChangeSkill = (event) => {
-    console.log("2");
     const {
       target: { value },
     } = event;
@@ -23,7 +22,6 @@ const useHandleChange = () => {
     setCount(value.length - 1);
     // inputRef.current = ` ${value.length - 2} more`;
     setAddSkills((s) => {
-      console.log(s);
       // On autofill we get a stringified value.
       return typeof selectedSkills === "string" ? value.split(",") : selectedSkills;
     });
@@ -32,7 +30,6 @@ const useHandleChange = () => {
     const {
       target: { value },
     } = event;
-    console.log("🚀 ~ file: useHandleChange.jsx:14 ~ handleChangeSkill ~ value:", value);
     setCount(value.length - 1);
     setAddRoles(
       // On autofill we get a stringified value.
@@ -46,6 +43,7 @@ const useHandleChange = () => {
     setAddSkills,
     count,
     addRoles,
+    setAddRoles,
     handleChangeRoles,
   };
 };

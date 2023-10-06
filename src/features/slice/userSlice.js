@@ -152,6 +152,7 @@ export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
 
   if (filteredData) {
     const { skills, role, ...rest } = filteredData;
+    console.log("🚀 ~ file: userSlice.js:155 ~ getAllUsers ~ role:", role);
     if (skills) {
       for (let x in skills) {
         query += `&skills=${skills[x]}`;

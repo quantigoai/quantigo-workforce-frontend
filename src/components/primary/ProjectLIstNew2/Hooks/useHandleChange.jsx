@@ -20,9 +20,7 @@ const useHandleChange = () => {
     });
 
     setCount(value.length - 1);
-    // inputRef.current = ` ${value.length - 2} more`;
     setAddSkills((s) => {
-      // On autofill we get a stringified value.
       return typeof selectedSkills === "string" ? value.split(",") : selectedSkills;
     });
   };
@@ -31,10 +29,7 @@ const useHandleChange = () => {
       target: { value },
     } = event;
     setCount(value.length - 1);
-    setAddRoles(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+    setAddRoles(typeof value === "string" ? value.split(",") : value);
   };
 
   return {

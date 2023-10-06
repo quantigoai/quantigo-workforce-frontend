@@ -25,7 +25,7 @@ export default function PrimaryButton(props) {
         loading={props.isLoading}
         onClick={() => props.setShowOtherField(true)}
       >
-        Create New Account
+        Continue
       </LoadingButtonStyle>
     </Box>
   );

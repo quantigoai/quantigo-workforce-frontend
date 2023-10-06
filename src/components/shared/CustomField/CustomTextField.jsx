@@ -39,16 +39,7 @@ export default function CustomTextField({ name, label, helperText, ...other }) {
       render={({ field, fieldState: { error } }) => {
         return (
           <>
-            <Typography
-              variant="wpf_p3_regular"
-              color={"neutral.N700"}
-              sx={{
-                fontSize: "12px",
-                fontWeight: "500",
-                mb: 0,
-                lineHeight: "0px",
-              }}
-            >
+            <Typography variant="wpf_p3_regular" color={"neutral.N700"}>
               {label}
             </Typography>
             <MyTextField

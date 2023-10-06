@@ -170,7 +170,7 @@ const RegistrationForm = () => {
             {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
             {!showOtherField && (
               <>
-                <Stack direction="row" spacing={1}>
+                <Stack direction="column" spacing={1}>
                   <CustomTextField name="firstName" label="First Name" />
                   <CustomTextField name="lastName" label="Last Name" />
                 </Stack>

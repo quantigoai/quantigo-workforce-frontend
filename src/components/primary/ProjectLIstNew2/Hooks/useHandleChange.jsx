@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 // import { roleOptions } from "./userFilterOptions";
 const useHandleChange = () => {
   const { skills } = useSelector((state) => state.skill);
+  const [search, setSearch] = useState("");
   const [addSkills, setAddSkills] = useState([]);
   const [count, setCount] = useState(0);
   const [addRoles, setAddRoles] = useState([]);
@@ -38,6 +39,8 @@ const useHandleChange = () => {
     setAddSkills,
     count,
     addRoles,
+    search,
+    setSearch,
     setAddRoles,
     handleChangeRoles,
   };

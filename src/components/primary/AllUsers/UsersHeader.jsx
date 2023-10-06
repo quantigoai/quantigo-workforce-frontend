@@ -7,13 +7,24 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
+import ClearIcon from "@mui/icons-material/Clear";
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, Button, Grid, IconButton, InputBase, Paper } from "@mui/material";
 import React from "react";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import "../ProjectLIstNew2/index.css";
 import "./index.css";
-const UsersHeader = ({ isFilter, isLightTheme, handleIsFilter, handleProjectCreateOpen }) => {
+
+const UsersHeader = ({
+  isFilter,
+  isLightTheme,
+  handleIsFilter,
+  handleProjectCreateOpen,
+  handleSearch,
+  search,
+  searchRef,
+  clearSearch,
+}) => {
   return (
     <>
       <Box
@@ -52,7 +63,7 @@ const UsersHeader = ({ isFilter, isLightTheme, handleIsFilter, handleProjectCrea
               display: "flex",
               alignItems: "center",
               width: "240px",
-              background: isLightTheme ? "#F4F7FE" : "#1E1E1E",
+              backgroundColor: "primary.B008",
               border: "1px solid #EFF3FE",
               borderRadius: "8px",
               outline: "none",
@@ -62,8 +73,22 @@ const UsersHeader = ({ isFilter, isLightTheme, handleIsFilter, handleProjectCrea
             <IconButton disabled type="button" sx={{ p: "5px" }} aria-label="search">
               <SearchIcon />
             </IconButton>
-            <InputBase sx={{ ml: 0, flex: 1 }} placeholder="Search" />
+            <InputBase
+              inputRef={searchRef}
+              onBlur={(e) => handleSearch(e)}
+              sx={{ ml: 0, flex: 1 }}
+              placeholder="Search"
+            />
+            {search && (
+              <ClearIcon
+                sx={{
+                  color: "neutral.N300",
+                }}
+                onClick={clearSearch}
+              />
+            )}
           </Paper>
+
           <IconButton
             onClick={handleIsFilter}
             sx={{

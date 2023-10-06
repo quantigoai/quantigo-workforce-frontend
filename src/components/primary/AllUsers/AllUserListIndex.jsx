@@ -51,14 +51,30 @@ const AllUserListIndex = ({ action }) => {
     pageSize: 10,
   });
 
-  const { handleChangeSkill, addSkills, setAddSkills, count, addRoles, handleChangeRoles, setAddRoles } =
-    useHandleChange();
+  const {
+    handleChangeSkill,
+    addSkills,
+    setAddSkills,
+    count,
+    addRoles,
+    handleChangeRoles,
+    setAddRoles,
+    search,
+    setSearch,
+  } = useHandleChange();
+
+  const searchRef = React.useRef(null);
+  const clearSearch = () => {
+    setSearch("");
+    searchRef.current.value = "";
+  };
 
   const { filterValue, handleId, filteredCol, handleIsFilter, isFilter, handleChange, handleClearFilter } = useAllUsers(
     setAddSkills,
     setAddRoles,
     setPrevSkills,
-    setPrevRoles
+    setPrevRoles,
+    clearSearch
   );
 
   const { skills } = useSelector((state) => state.skill);
@@ -128,6 +144,9 @@ const AllUserListIndex = ({ action }) => {
   const handleDetailsPage = (e) => {
     console.log("handledetail");
   };
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
 
   const handleChangePagination = useCallback(() => {
     setIsChildDataLoading(true);
@@ -136,11 +155,12 @@ const AllUserListIndex = ({ action }) => {
         pagination,
         filteredData: filterValue,
         ascDescOption: filteredCol,
+        search,
       })
     ).then(() => {
       setIsChildDataLoading(false);
     });
-  }, [dispatch, pagination, filterValue, filteredCol]);
+  }, [dispatch, pagination, filterValue, filteredCol, search]);
 
   const skillsOptions = skills.map((skill) => ({ value: skill._id, label: skill.name }));
 
@@ -153,6 +173,11 @@ const AllUserListIndex = ({ action }) => {
           isLightTheme={isLightTheme}
           handleIsFilter={handleIsFilter}
           handleProjectCreateOpen={() => console.log("handleProjectCreateOpen")}
+          handleSearch={handleSearch}
+          setSearch={setSearch}
+          search={search}
+          searchRef={searchRef}
+          clearSearch={clearSearch}
         />
 
         <UsersFilter

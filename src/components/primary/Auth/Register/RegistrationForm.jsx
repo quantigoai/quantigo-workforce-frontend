@@ -27,7 +27,6 @@ import CustomSelectField from "../../../shared/CustomField/CustomSelectField";
 import CustomTextField from "../../../shared/CustomField/CustomTextField";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
 import FinalButton from "./FinalButton";
-import FooterInstruction from "./FooterInstruction";
 import PrimaryButton from "./PrimaryButton";
 import { RegistrationSchema, genderOptions, hubOptions, userStatusOptions } from "./RegistrationFormHelper";
 
@@ -317,7 +316,6 @@ const RegistrationForm = () => {
         <Link
           onClick={() => {
             navigate("/login");
-            // console.log("clicked");
           }}
           underline="hover"
           sx={{

@@ -140,7 +140,7 @@ export const updateMyDocuments = createAsyncThunk("users/my-documents", async (f
 // filter User
 
 export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
-  const { pagination, filteredData, ascDescOption, role, hub, active, limit, skip, skills } = data || {};
+  const { search, pagination, filteredData, ascDescOption, role, hub, active, limit, skip, skills } = data || {};
 
   const todayDate = new Date().toISOString().slice(0, 10);
   let query;
@@ -152,7 +152,6 @@ export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
 
   if (filteredData) {
     const { skills, role, ...rest } = filteredData;
-    console.log("🚀 ~ file: userSlice.js:155 ~ getAllUsers ~ role:", role);
     if (skills) {
       for (let x in skills) {
         query += `&skills=${skills[x]}`;
@@ -170,7 +169,9 @@ export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
     const ascDescOptions = Object.keys(ascDescOption);
     ascDescOptions.map((ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`));
   }
-
+  if (search) {
+    query += `&search=${search}`;
+  }
   // if (limit) {
   //   if (limit === -1) {
   //     query += ``;

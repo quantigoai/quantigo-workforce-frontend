@@ -19,7 +19,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAllSkills } from "../features/slice/skillSlice";
 
-const useAllUsers = (setAddSkills, setAddRoles, setPrevSkills, setPrevRoles) => {
+const useAllUsers = (setAddSkills, setAddRoles, setPrevSkills, setPrevRoles, clearSearch) => {
   const [filterValue, setFilterValue] = useState({});
   const dispatch = useDispatch();
   const [downLoadExportOpen, setDownloadExportOpen] = React.useState(false);
@@ -73,6 +73,7 @@ const useAllUsers = (setAddSkills, setAddRoles, setPrevSkills, setPrevRoles) => 
     setAddRoles([]);
     setPrevSkills([]);
     setPrevRoles([]);
+    clearSearch();
   };
 
   const handleId = (field) => {

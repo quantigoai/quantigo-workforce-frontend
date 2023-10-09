@@ -271,7 +271,7 @@ const RegistrationForm = () => {
             </Stack>
             {/* Nagad Number  */}
 
-            <Stack sx={{ display: isNewUser && "flex", flexDirection: isNewUser && "row" }} gap={2}>
+            <Stack sx={{ display: isNewUser && "flex", flexDirection: isNewUser && "row" }} gap={isNewUser && 2}>
               <Box sx={{ width: isNewUser ? "50%" : "100%", height: "120px" }}>
                 <CustomTextField
                   name="billingAccountNo"
@@ -337,7 +337,7 @@ const RegistrationForm = () => {
             color: "#FFFFFF",
           }}
         >
-          <Typography variant="wpf_p3_medium" color={"primary.main"} sx={{ textAlign: "center", ml: 1 }}>
+          <Typography variant="wpf_p3_medium" color={"primary.B009"} sx={{ textAlign: "center", ml: 1 }}>
             Log In
           </Typography>
         </Link>

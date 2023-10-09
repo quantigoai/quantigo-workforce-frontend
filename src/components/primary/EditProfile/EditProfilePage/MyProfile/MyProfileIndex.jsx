@@ -85,14 +85,9 @@ const MyProfileIndex = () => {
   };
   const DOB = moment.utc(user.dob).format("MMM Do, YYYY");
   return (
-    // <>
-    //   <Box sx={{ backgroundColor: "red", height: "100%" }}>
-    //     <Typography>sfsaf</Typography>
-    //   </Box>
-    // </>
     <>
-      <Box sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
-        <Box sx={{ flex: "0 0 auto" }}>
+      <Box sx={{ flex: "1", overflowY: "auto", backgroundColor: "", height: "80vh" }}>
+        <Box sx={{ flex: "0 0 auto", height: { xl: "16%", lg: "20%" } }}>
           <ProfilePicture
             user={user}
             editAble={editAble}
@@ -101,7 +96,15 @@ const MyProfileIndex = () => {
             handleImage={handleImage}
           />
         </Box>
-        <Box sx={{ flex: "1", overflowY: "auto", padding: "20px" }}>
+        <Box
+          sx={{
+            flex: "1",
+            overflowY: "auto",
+            "&::-webkit-scrollbar": {
+              width: "0",
+            },
+            height: { xl: "84%", lg: "80%" },
+          }}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Box sx={{ paddingLeft: "2%", paddingRight: "2%" }}>
               <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>

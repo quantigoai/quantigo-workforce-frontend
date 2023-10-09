@@ -72,7 +72,11 @@ export default function EditProfilePageIndex() {
               height: "100%",
               borderRadius: "8px",
             }}>
-            <Grid item xs={2} sx={{ borderRight: "1px solid #E1E8F5", display: "flex", flexDirection: "column" }}>
+            <Grid
+              item
+              xs={2.5}
+              xl={2}
+              sx={{ borderRight: "1px solid #E1E8F5", display: "flex", flexDirection: "column", paddingTop: "1%" }}>
               <Tabs
                 orientation="vertical"
                 variant="scrollable"
@@ -154,12 +158,12 @@ export default function EditProfilePageIndex() {
                 />
               </Tabs>
               <Box sx={{ marginTop: "auto" }}>
-                <Grid container sx={{ justifyContent: "center", paddingBottom: "3%" }}>
+                <Grid container sx={{ justifyContent: "center", paddingBottom: "4%" }}>
                   <ActivateAccount />
                 </Grid>
               </Box>
             </Grid>
-            <Grid item xs={10} sx={{  height: "100%" }}>
+            <Grid item xs={9.5} xl={10} sx={{ height: "100%", backgroundColor: "" }}>
               <Box>
                 <TabPanel value={value} index={0}>
                   <MyProfileIndex />

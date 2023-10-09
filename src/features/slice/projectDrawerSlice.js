@@ -75,6 +75,17 @@ export const updateProjectDrawerById = createAsyncThunk("/project-drawer/update"
     throw new Error(error.response.data.message);
   }
 });
+export const getProjectDrawerById = createAsyncThunk("/project-drawer/projectDrawer/id", async (data) => {
+  try {
+    return await axios.get(`${url}/project-drawer/${data}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
 
 export const deleteProjectDrawerById = createAsyncThunk("/project-drawer/delete", async (id) => {
   try {
@@ -329,6 +340,17 @@ const projectDrawerSlice = createSlice({
         state.error = null;
       })
       .addCase(removeSkillsToCheckInUser.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.isLoading = false;
+      })
+      .addCase(getProjectDrawerById.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getProjectDrawerById.fulfilled, (state) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getProjectDrawerById.rejected, (state, action) => {
         state.error = action.error.message;
         state.isLoading = false;
       })

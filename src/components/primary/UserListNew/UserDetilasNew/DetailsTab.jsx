@@ -17,7 +17,8 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
-      {...other}>
+      {...other}
+    >
       {value === index && (
         <Box sx={{ paddingTop: 1 }}>
           <Typography>{children}</Typography>
@@ -42,6 +43,7 @@ function a11yProps(index) {
 
 export default function DetailsTab({
   user,
+  role,
   handleSetRole,
   handleSetStatus,
   skillSet,
@@ -142,6 +144,7 @@ export default function DetailsTab({
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
           <UserInfoIndex
+            role={role}
             user={user}
             handleSetRole={handleSetRole}
             handleSetStatus={handleSetStatus}

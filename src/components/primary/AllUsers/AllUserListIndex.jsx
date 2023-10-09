@@ -37,6 +37,7 @@ const AllUserListIndex = ({ action }) => {
   const { users, totalUsers } = useSelector((state) => state.user.users);
   const { isLoading, user } = useSelector((state) => state.user);
   const { role } = user;
+
   const [prevSkills, setPrevSkills] = useState([]);
   const [prevRoles, setPrevRoles] = useState([]);
 
@@ -217,7 +218,7 @@ const AllUserListIndex = ({ action }) => {
         </Paper>
       </Box>
 
-      <UserDetailsNewIndex open={open} handleProjectDetailsOpen={handleUserDetailsOpen} handleClose={handleClose} />
+      <UserDetailsNewIndex role={role} open={open} handleProjectDetailsOpen={handleUserDetailsOpen} handleClose={handleClose} />
     </Box>
   );
 };

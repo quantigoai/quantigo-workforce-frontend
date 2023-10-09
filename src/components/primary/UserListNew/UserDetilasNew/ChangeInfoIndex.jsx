@@ -4,7 +4,8 @@ import CommonSelectField from "../../EditProfile/EditProfilePage/CommonSelectFie
 import SelectFieldCommon from "./SelectFieldCommon";
 import UserStatusChangeFiled from "./UserStatusChangeFiled";
 
-const ChangeInfoIndex = ({ user, handleSetRole, handleSetStatus }) => {
+const ChangeInfoIndex = ({ user, handleSetRole, handleSetStatus, role }) => {
+  console.log("🚀 ~ file: ChangeInfoIndex.jsx:8 ~ ChangeInfoIndex ~ role:", role);
   return (
     <>
       <Box sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
@@ -22,13 +23,17 @@ const ChangeInfoIndex = ({ user, handleSetRole, handleSetStatus }) => {
           }}
         >
           <Grid container>
-            <Grid item xs={6}>
+            <Grid item xs={role === "recruitment_manager" ? 12 : 6}>
               {" "}
               <SelectFieldCommon label={"Role Change"} user={user} handleSetRole={handleSetRole} />
             </Grid>
-            <Grid item xs={6}>
-              <UserStatusChangeFiled label={"Status"} handleSetStatus={handleSetStatus} />
-            </Grid>
+            {role === "recruitment_manager" ? (
+              <></>
+            ) : (
+              <Grid item xs={6}>
+                <UserStatusChangeFiled label={"Status"} handleSetStatus={handleSetStatus} />
+              </Grid>
+            )}
           </Grid>
           {/* <Grid container>
             <Grid item xs={12}></Grid>

@@ -10,6 +10,7 @@ import SkillFieldForUserDetails from "./SkillFieldForUserDetails";
 
 const UserInfoIndex = ({
   user,
+  role,
   handleSetRole,
   handleSetStatus,
   skillSet,
@@ -30,7 +31,8 @@ const UserInfoIndex = ({
           sx={{
             border: "1px solid #E6ECF5",
             borderRadius: "8px",
-          }}>
+          }}
+        >
           <DetailsItemThree
             Item1Title={"Name"}
             Item1={user.name}
@@ -102,7 +104,7 @@ const UserInfoIndex = ({
       </Box>
 
       <Box>
-        <ChangeInfoIndex user={user} handleSetRole={handleSetRole} handleSetStatus={handleSetStatus} />
+        <ChangeInfoIndex role={role} user={user} handleSetRole={handleSetRole} handleSetStatus={handleSetStatus} />
       </Box>
     </>
   );

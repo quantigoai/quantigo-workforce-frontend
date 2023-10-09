@@ -10,7 +10,7 @@ import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 import DetailsTab from "./DetailsTab";
 import styled from "./testDrawer";
 
-export default function UserDetailsNewIndex({ open, handleClose }) {
+export default function UserDetailsNewIndex({ open, handleClose, role }) {
   const alert = useAlert();
   const { targetedUser: user } = useSelector((state) => state.user);
   const [roleValue, setRole] = React.useState("");
@@ -154,6 +154,7 @@ export default function UserDetailsNewIndex({ open, handleClose }) {
 
           <Box sx={{ height: "86%" }}>
             <DetailsTab
+              role={role}
               user={user}
               handleSetRole={handleSetRole}
               handleSetStatus={handleSetStatus}

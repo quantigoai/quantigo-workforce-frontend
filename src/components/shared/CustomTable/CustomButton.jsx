@@ -45,17 +45,40 @@ const CustomButton = ({ params, handleClick, handleDelete, handleProjectDetailsO
           </Button>
         </>
       )}
-      <Button
-        onClick={() => handleProjectDetailsOpen(params)}
-        sx={{
-          color: "#2E58FF",
-          paddingX: "20px",
-          minWidth: "35px",
-          textTransform: "none",
-        }}
-      >
-        <i className="ri-eye-line"></i>
-      </Button>
+      {role === "recruitment_manager" ? (
+        <>
+          <Button sx={{ padding: "0px", minWidth: "35px", fontSize: "16px" }}>
+            <i className="ri-checkbox-circle-fill"></i>
+          </Button>
+          <Button sx={{ padding: "0px", minWidth: "35px", fontSize: "16px" }}>
+            <i className="ri-close-circle-fill"></i>
+          </Button>
+          <Button
+            onClick={() => handleProjectDetailsOpen(params)}
+            sx={{
+              color: "#2E58FF",
+              paddingX: "20px",
+              minWidth: "35px",
+              textTransform: "none",
+              // fontSize: "15px",
+            }}
+          >
+            <i className="ri-eye-line"></i>
+          </Button>
+        </>
+      ) : (
+        <Button
+          onClick={() => handleProjectDetailsOpen(params)}
+          sx={{
+            color: "#2E58FF",
+            paddingX: "20px",
+            minWidth: "35px",
+            textTransform: "none",
+          }}
+        >
+          <i className="ri-eye-line"></i>
+        </Button>
+      )}
 
       <MainModal open={open} handleClose={handleClose} handleDelete={handleDelete} params={params} isEdit={isEdit} />
     </Box>

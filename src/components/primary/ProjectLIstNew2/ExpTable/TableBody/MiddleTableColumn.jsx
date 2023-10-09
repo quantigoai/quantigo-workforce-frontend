@@ -21,6 +21,7 @@ import UserBasicInfoCell from "../CustomTableCell/UserBasicInfoCell";
 import UserRoleCell from "../CustomTableCell/UserRoleCell";
 import MobileNoCell from "../CustomTableCell/MobileNoCell";
 import ActiveJobsCell from "../CustomTableCell/ActiveJobsCell";
+import ProjectEnroll from "../CustomTableCell/ProjectEnroll";
 
 const MiddleTableColumn = ({ row, column }) => {
   const value = row[column.id];
@@ -97,16 +98,13 @@ const MiddleTableColumn = ({ row, column }) => {
           <TotalWorkingHoursCell data={row[column?.field]} />
         </TableCell>
       );
-    }
-     else if (column.field === "activeJobs") {
+    } else if (column.field === "activeJobs") {
       return (
         <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
           <ActiveJobsCell data={row[column?.field]} />
         </TableCell>
       );
-    }
-    
-    else if (column.field === "billingAccountNo") {
+    } else if (column.field === "billingAccountNo") {
       return (
         <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
           <MobileNoCell data={row[column?.field]} />
@@ -146,6 +144,12 @@ const MiddleTableColumn = ({ row, column }) => {
       return (
         <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
           <PaymentRateCell data={row[column?.field]} />
+        </TableCell>
+      );
+    } else if (column.field === "currentlyCheckedInProject") {
+      return (
+        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+          <ProjectEnroll data={row[column?.field]} />
         </TableCell>
       );
     } else if (column.field === "checkedInTime" || column.field === "checkedOutTime") {

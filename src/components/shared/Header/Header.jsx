@@ -287,7 +287,7 @@ const Header = () => {
                         <ListItemIcon>
                           <img src={logOutIcon} />
                         </ListItemIcon>
-                        <ListItemText sx={{ color: "#3C4D6B" }}>LogOut</ListItemText>
+                        <ListItemText sx={{ color: "#3C4D6B" }}>Logout</ListItemText>
                       </MenuItem>
                     </Menu>
                     <Button id="fade-button" onClick={handleClick} sx={{ paddingTop: "20%" }}>

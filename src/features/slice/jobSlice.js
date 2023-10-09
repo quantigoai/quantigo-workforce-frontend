@@ -38,7 +38,8 @@ const initialState = {
 // All Courses get request
 // TODO Handle the limit in dynamic way
 export const getAllJobs = createAsyncThunk("job/getAlljobs", async (data) => {
-  const { limit, skip, status, annotator, reviewerId, attemptLeft, projectIdFilter, skills, timeLimit, date } = data || {};
+  const { limit, skip, status, annotator, reviewerId, attemptLeft, projectIdFilter, skills, timeLimit, date } =
+    data || {};
   let query = `isActive=true&sortBy=createdAt:desc&sortBy=title:asc`;
 
   if (status) {
@@ -443,7 +444,10 @@ const jobSlice = createSlice({
       .addCase(submitAJob.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.myJobs = [action.payload.data.data.assignedJob, ...state.myJobs.filter((myJob) => myJob._id !== action.payload.data.data.assignedJob._id)];
+        state.myJobs = [
+          action.payload.data.data.assignedJob,
+          ...state.myJobs.filter((myJob) => myJob._id !== action.payload.data.data.assignedJob._id),
+        ];
       })
       .addCase(submitAJob.rejected, (state) => {
         state.isLoading = false;
@@ -497,7 +501,9 @@ const jobSlice = createSlice({
       .addCase(pauseResumeJobs.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.assignedJob = state.assignedJob.map((job) => (job._id === action.payload.data[0]._id ? action.payload.data[0] : job));
+        state.assignedJob = state.assignedJob.map((job) =>
+          job._id === action.payload.data[0]._id ? action.payload.data[0] : job
+        );
       })
       .addCase(pauseResumeJobs.rejected, (state) => {
         state.isLoading = false;

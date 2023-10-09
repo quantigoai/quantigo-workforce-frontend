@@ -10,7 +10,7 @@
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, Button, Grid, IconButton, Paper } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +28,9 @@ import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeade
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 import EditProjectModal from "./EditProjectModal";
-import TableWrapper from "./ExpTable/TableWrapper";
+// import TableWrapper from "./ExpTable/TableWrapper";
+const TableWrapper = React.lazy(() => import("./ExpTable/TableWrapper"));
+
 import {
   fields,
   filterPDR,

@@ -16,7 +16,6 @@ const ThirdPageProfileSetup = () => {
 
           height: "82vh",
           scrollBehavior: "smooth",
-          scrollBehavior: "smooth",
           overflow: "auto",
           scrollbarWidth: "thin",
           "&::-webkit-scrollbar": {

@@ -43,7 +43,8 @@ export default function useClearReduxData(dispatch, activePath, id = null) {
   ];
 
   const allPath = [
-    "All Users",
+    "All Users 2",
+    "All Projects 2",
     "Project Directory",
     "Sync Server",
     "Benchmark",
@@ -74,7 +75,46 @@ export default function useClearReduxData(dispatch, activePath, id = null) {
   if (allPath.includes(activePath)) {
     allowedPathKeys.forEach((key) => {
       if (!allowedPath[key].includes(activePath)) {
-        dispatch(eval(key)());
+        switch (key) {
+          case "updateProjectDirectoryData":
+            dispatch(updateProjectDirectoryData());
+            break;
+          case "updateBenchmarkData":
+            dispatch(updateBenchmarkData());
+            break;
+          case "updateCourseData":
+            dispatch(updateCourseData());
+            break;
+          case "updateDashboardData":
+            dispatch(updateDashboardData());
+            break;
+          case "updateDatasetData":
+            dispatch(updateDatasetData());
+            break;
+          case "updateJobData":
+            dispatch(updateJobData());
+            break;
+          case "updateProjectData":
+            dispatch(updateProjectData());
+            break;
+          case "updateQuizData":
+            dispatch(updateQuizData());
+            break;
+          case "updateSkillData":
+            dispatch(updateSkillData());
+            break;
+          case "updateTeamData":
+            dispatch(updateTeamData());
+            break;
+          case "updateWorkSpaceData":
+            dispatch(updateWorkSpaceData());
+            break;
+          case "clearProjectDrawerData":
+            dispatch(clearProjectDrawerData());
+            break;
+          default:
+            break;
+        }
       }
     });
   }

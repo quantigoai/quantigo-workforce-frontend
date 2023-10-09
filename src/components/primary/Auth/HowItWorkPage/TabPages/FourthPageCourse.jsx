@@ -13,7 +13,6 @@ const FourthPageCourse = () => {
           paddingRight: "5%",
           height: "82vh",
           scrollBehavior: "smooth",
-          scrollBehavior: "smooth",
           overflow: "auto",
           scrollbarWidth: "thin",
           "&::-webkit-scrollbar": {

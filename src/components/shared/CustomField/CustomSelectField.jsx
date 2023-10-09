@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { MenuItem, Select, styled } from "@mui/material";
+import { MenuItem, Select, Typography, styled } from "@mui/material";
 import PropTypes from "prop-types";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
@@ -18,18 +18,11 @@ CustomSelectField.propTypes = {
 };
 
 export const MySelect = styled(Select)(() => ({
-  border: "0px solid #E0E0E0",
-  padding: "5px 0px 0px 0px",
+  border: "1px solid #E0E0E0",
+  // padding: "0px 0px 0px 0px",
+  backgroundColor: "white",
 }));
-export default function CustomSelectField({
-  name,
-  helperText,
-  options,
-  label,
-  setValue,
-  defaultValue,
-  ...other
-}) {
+export default function CustomSelectField({ name, helperText, options, label, setValue, defaultValue, ...other }) {
   const { control } = useFormContext();
 
   return (
@@ -39,10 +32,9 @@ export default function CustomSelectField({
       render={({ field, fieldState: { error } }) => (
         <>
           <MyFormControl fullWidth>
-            <MyInputLabel id="demo-simple-select-autowidth-label" shrink>
+            <Typography sx={{ mb: 2 }} variant="wpf_p4_medium">
               {label}
-            </MyInputLabel>
-
+            </Typography>
             <MySelect
               labelId="demo-simple-select-autowidth-label"
               id="demo-simple-select-autowidth"
@@ -54,13 +46,7 @@ export default function CustomSelectField({
               {...other}
             >
               {options.map((option) => (
-                <MenuItem
-                  key={option.value}
-                  fullWidth
-                  value={
-                    (() => setValue(field.name, field.value), option.value)
-                  }
-                >
+                <MenuItem key={option.value} fullWidth value={(() => setValue(field.name, field.value), option.value)}>
                   {option.label}
                 </MenuItem>
               ))}

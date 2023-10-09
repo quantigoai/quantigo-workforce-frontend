@@ -211,40 +211,46 @@ const RegistrationForm = () => {
               <>
                 <Stack direction="row" spacing={2}>
                   {/* User Type */}
-                  <CustomSelectField
-                    name="currentUserStatus"
-                    helperText="Select an option"
-                    options={userStatusOptions}
-                    defaultValue={isNewUser ? userStatusOptions[0].value : userStatusOptions[1].value}
-                    label={"User Status"}
-                    onChange={handleChangeUserType}
-                  />
+                  <Box sx={{ width: "50%" }}>
+                    <CustomSelectField
+                      name="currentUserStatus"
+                      helperText="Select an option"
+                      options={userStatusOptions}
+                      defaultValue={isNewUser ? userStatusOptions[0].value : userStatusOptions[1].value}
+                      label={"User Status"}
+                      onChange={handleChangeUserType}
+                    />
+                  </Box>
                   {isNewUser ? (
                     // Hub Field
-                    <CustomSelectField
-                      name="hub"
-                      helperText="Select a hub"
-                      options={hubOptions}
-                      label={"User Hub"}
-                      onChange={handleChangeHub}
-                      setValue={setValue}
-                    />
+                    <Box sx={{ width: "50%" }}>
+                      <CustomSelectField
+                        name="hub"
+                        helperText="Select a hub"
+                        options={hubOptions}
+                        label={"User Hub"}
+                        onChange={handleChangeHub}
+                        setValue={setValue}
+                      />
+                    </Box>
                   ) : (
                     // QAI Username Field
-                    <CustomTextField
-                      name="qaiUserName"
-                      label="Quantigo Username"
-                      onBlur={handleCheckQaiUserName}
-                      InputProps={{
-                        disableUnderline: true,
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            {helperMessage && <CheckIcon sx={{ color: "green", fontWeight: 700 }} />}
-                            {errors.qaiUserName && <CancelIcon sx={{ color: "red", fontWeight: 700 }} />}
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
+                    <Box sx={{ width: "50%" }}>
+                      <CustomTextField
+                        name="qaiUserName"
+                        label="Quantigo Username"
+                        onBlur={handleCheckQaiUserName}
+                        InputProps={{
+                          disableUnderline: true,
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              {helperMessage && <CheckIcon sx={{ color: "green", fontWeight: 700 }} />}
+                              {errors.qaiUserName && <CancelIcon sx={{ color: "red", fontWeight: 700 }} />}
+                            </InputAdornment>
+                          ),
+                        }}
+                      />
+                    </Box>
                   )}
                 </Stack>
                 {isNewUser && (
@@ -253,43 +259,55 @@ const RegistrationForm = () => {
                 )}
                 <Stack direction="row" spacing={2}>
                   {/* Gender field */}
-                  <CustomSelectField
-                    name="gender"
-                    defaultValue={genderOptions[0].value}
-                    helperText="Select an option"
-                    options={genderOptions}
-                    label={"Gender"}
-                    setValue={setValue}
-                  />
+                  <Box sx={{ width: "50%" }}>
+                    <CustomSelectField
+                      name="gender"
+                      defaultValue={genderOptions[0].value}
+                      helperText="Select an option"
+                      options={genderOptions}
+                      label={"Gender"}
+                      setValue={setValue}
+                    />
+                  </Box>
                   {/* Date Picker */}
-                  <CustomDatePicker setError={setError} setValue={setValue} name="dob" />
+                  <Box sx={{ width: "50%" }}>
+                    <CustomDatePicker setError={setError} setValue={setValue} name="dob" />
+                  </Box>
                 </Stack>
                 {/* Nagad Number  */}
-                <CustomTextField
-                  name="billingAccountNo"
-                  label="Nagad Account No"
-                  InputProps={{
-                    disableUnderline: true,
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <img src={phoneicon} />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                {/* Contact Number */}
-                <CustomTextField
-                  name="contactNo"
-                  label="Phone Number"
-                  InputProps={{
-                    disableUnderline: true,
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <img src={phoneicon} />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
+
+                <Stack sx={{ display: isNewUser && "flex", flexDirection: isNewUser && "row" }}>
+                  <Box sx={{ width: isNewUser ? "50%" : "100%" }}>
+                    <CustomTextField
+                      name="billingAccountNo"
+                      label="Nagad Account No"
+                      InputProps={{
+                        disableUnderline: true,
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <img src={phoneicon} />
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  </Box>
+                  {/* Contact Number */}
+                  <Box sx={{ width: isNewUser ? "50%" : "100%" }}>
+                    <CustomTextField
+                      // sx={{ mr: isNewUser &&  }}
+                      name="contactNo"
+                      label="Phone Number"
+                      InputProps={{
+                        disableUnderline: true,
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <img src={phoneicon} />
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  </Box>
+                </Stack>
               </>
             )}
           </Stack>

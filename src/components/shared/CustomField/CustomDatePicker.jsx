@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { FormControl, InputLabel, TextField, styled } from "@mui/material";
+import { FormControl, InputLabel, TextField, Typography, styled } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
@@ -40,7 +40,16 @@ export const MyFormControl = styled(FormControl)(() => ({
     borderColor: "#2D58FF",
   },
 }));
-export default function CustomDatePicker({ name, setValue, setError, helperText, options, label, defaultValue, ...other }) {
+export default function CustomDatePicker({
+  name,
+  setValue,
+  setError,
+  helperText,
+  options,
+  label,
+  defaultValue,
+  ...other
+}) {
   const { control } = useFormContext();
 
   const handleDate = (newValue) => {
@@ -54,23 +63,31 @@ export default function CustomDatePicker({ name, setValue, setError, helperText,
       control={control}
       name={name}
       render={({ field: { onChange, onBlur, value, ref, error } }) => (
-        <MyFormControl fullWidth sx={{ backgroundColor: "#FFFFFF" }}>
-          <MyInputLabel htmlFor="date-picker" shrink>
-            Date of Birth
-          </MyInputLabel>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <MyDatePicker
-              inputFormat="DD-MM-YYYY"
-              minDate={minDob}
-              maxDate={maxDob}
-              onChange={(newValue) => {
-                handleDate(newValue);
-              }}
-            >
-              <TextField sx={{ padding: "5px" }} error={!!error} helperText={error && error?.message} id="date-picker" />
-            </MyDatePicker>
-          </LocalizationProvider>
-        </MyFormControl>
+        <>
+          <Typography variant="wpf_p4_medium">Date of Birth</Typography>
+          <MyFormControl
+            fullWidth
+            sx={{ backgroundColor: "#FFFFFF", border: "2px solid #E0E0E0", height: "60px", mt: 1.5 }}
+          >
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <MyDatePicker
+                inputFormat="DD-MM-YYYY"
+                minDate={minDob}
+                maxDate={maxDob}
+                onChange={(newValue) => {
+                  handleDate(newValue);
+                }}
+              >
+                <TextField
+                  sx={{ padding: "5px" }}
+                  error={!!error}
+                  helperText={error && error?.message}
+                  id="date-picker"
+                />
+              </MyDatePicker>
+            </LocalizationProvider>
+          </MyFormControl>
+        </>
       )}
     />
   );

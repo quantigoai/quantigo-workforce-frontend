@@ -12,7 +12,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import CheckIcon from "@mui/icons-material/Check";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { Alert, Box, Grid, IconButton, InputAdornment, Link, Stack, Typography } from "@mui/material";
+import { Box, Grid, IconButton, InputAdornment, Link, Stack, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
@@ -140,178 +140,171 @@ const RegistrationForm = () => {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Grid container item xs={12} sx={{ paddingBottom: "4%" }}>
-        <Typography
-          variant="h3"
-          style={{
-            color: "#FFFFFF",
-            fontSize: "40px",
-          }}
-        >
-          {showOtherField ? "Setup Profile" : "Create New Account"}
-        </Typography>
-      </Grid>
-      
-      <Grid container item xs={12} sx={{ paddingBottom: "8%" }}>
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <Typography variant="wpf_h1_semiBold" color="neutral.800">
+    <Box sx={{ width: "100%", height: "100%" }}>
+      <Grid container item xs={12}>
+        <Box>
+          <Typography variant="wpf_h1_semiBold" color="neutral.900">
             {"Create Account"}
           </Typography>
-          <Typography sx={{ mt: 1 }} variant="wpf_p3_regular" color="neutral.600">
+          <br />
+          <Typography sx={{ mt: 1 }} variant="wpf_p3_regular" color="neutral.920">
             Please fill-up all the credentials
           </Typography>
         </Box>
       </Grid>
 
-      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitRegData)}>
-        <Box sx={{ paddingBottom: "5%" }}>
-          <Stack spacing={3} sx={{ width: "100%" }}>
-            {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
-            {!showOtherField && (
-              <>
-                <Stack direction="column" spacing={1}>
-                  <CustomTextField name="firstName" label="First Name" />
-                  <CustomTextField name="lastName" label="Last Name" />
-                </Stack>
-                {/* Email */}
-                <CustomTextField
-                  name="email"
-                  label="Email"
-                  InputProps={{
-                    disableUnderline: true,
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <img src={emailIcon} />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                {/* Password */}
-                <CustomTextField
-                  name="password"
-                  label="Password"
-                  type={showPassword ? "text" : "password"}
-                  InputProps={{
-                    disableUnderline: true,
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                          {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                {/* Footer navigate  */}
-                {/* <FooterInstruction navigate={navigate}></FooterInstruction> */}
-              </>
-            )}
-            {showOtherField && (
-              <>
-                <Stack direction="row" spacing={2}>
-                  {/* User Type */}
-                  <Box sx={{ width: "50%" }}>
-                    <CustomSelectField
-                      name="currentUserStatus"
-                      helperText="Select an option"
-                      options={userStatusOptions}
-                      defaultValue={isNewUser ? userStatusOptions[0].value : userStatusOptions[1].value}
-                      label={"User Status"}
-                      onChange={handleChangeUserType}
-                    />
-                  </Box>
-                  {isNewUser ? (
-                    // Hub Field
-                    <Box sx={{ width: "50%" }}>
-                      <CustomSelectField
-                        name="hub"
-                        helperText="Select a hub"
-                        options={hubOptions}
-                        label={"User Hub"}
-                        onChange={handleChangeHub}
-                        setValue={setValue}
-                      />
-                    </Box>
-                  ) : (
-                    // QAI Username Field
-                    <Box sx={{ width: "50%" }}>
-                      <CustomTextField
-                        name="qaiUserName"
-                        label="Quantigo Username"
-                        onBlur={handleCheckQaiUserName}
-                        InputProps={{
-                          disableUnderline: true,
-                          endAdornment: (
-                            <InputAdornment position="end">
-                              {helperMessage && <CheckIcon sx={{ color: "green", fontWeight: 700 }} />}
-                              {errors.qaiUserName && <CancelIcon sx={{ color: "red", fontWeight: 700 }} />}
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                    </Box>
-                  )}
-                </Stack>
-                {isNewUser && (
-                  // Generated QAI Username Field
-                  <CustomTextField disabled name="qaiUserName" label="Quantigo Username" value={generatedHubId} />
-                )}
-                <Stack direction="row" spacing={2}>
-                  {/* Gender field */}
-                  <Box sx={{ width: "50%" }}>
-                    <CustomSelectField
-                      name="gender"
-                      defaultValue={genderOptions[0].value}
-                      helperText="Select an option"
-                      options={genderOptions}
-                      label={"Gender"}
-                      setValue={setValue}
-                    />
-                  </Box>
-                  {/* Date Picker */}
-                  <Box sx={{ width: "50%" }}>
-                    <CustomDatePicker setError={setError} setValue={setValue} name="dob" />
-                  </Box>
-                </Stack>
-                {/* Nagad Number  */}
+      <br />
 
-                <Stack sx={{ display: isNewUser && "flex", flexDirection: isNewUser && "row" }}>
-                  <Box sx={{ width: isNewUser ? "50%" : "100%" }}>
-                    <CustomTextField
-                      name="billingAccountNo"
-                      label="Nagad Account No"
-                      InputProps={{
-                        disableUnderline: true,
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <img src={phoneicon} />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </Box>
-                  {/* Contact Number */}
-                  <Box sx={{ width: isNewUser ? "50%" : "100%" }}>
-                    <CustomTextField
-                      // sx={{ mr: isNewUser &&  }}
-                      name="contactNo"
-                      label="Phone Number"
-                      InputProps={{
-                        disableUnderline: true,
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <img src={phoneicon} />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </Box>
-                </Stack>
-              </>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitRegData)}>
+        {!showOtherField && (
+          <>
+            <Box sx={{ height: "120px" }}>
+              <CustomTextField name="firstName" label="First Name" />
+            </Box>
+            <Box sx={{ height: "120px" }}>
+              <CustomTextField name="lastName" label="Last Name" />
+            </Box>
+            {/* Email */}
+
+            <Box sx={{ height: "120px" }}>
+              <CustomTextField
+                name="email"
+                label="Email"
+                InputProps={{
+                  disableUnderline: true,
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <img src={emailIcon} />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Box>
+            {/* Password */}
+            <Box sx={{ height: "120px" }}>
+              <CustomTextField
+                name="password"
+                label="Password"
+                type={showPassword ? "text" : "password"}
+                InputProps={{
+                  disableUnderline: true,
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                        {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Box>
+          </>
+        )}
+        {showOtherField && (
+          <>
+            <Stack direction="row" spacing={2}>
+              {/* User Type */}
+              <Box sx={{ width: "50%", height: "120px" }}>
+                <CustomSelectField
+                  name="currentUserStatus"
+                  helperText="Select an option"
+                  options={userStatusOptions}
+                  defaultValue={isNewUser ? userStatusOptions[0].value : userStatusOptions[1].value}
+                  label={"User Status"}
+                  onChange={handleChangeUserType}
+                />
+              </Box>
+              {isNewUser ? (
+                // Hub Field
+                <Box sx={{ width: "50%", height: "120px" }}>
+                  <CustomSelectField
+                    name="hub"
+                    helperText="Select a hub"
+                    options={hubOptions}
+                    label={"User Hub"}
+                    onChange={handleChangeHub}
+                    setValue={setValue}
+                  />
+                </Box>
+              ) : (
+                // QAI Username Field
+                <Box sx={{ width: "50%", height: "120px" }}>
+                  <CustomTextField
+                    name="qaiUserName"
+                    label="Quantigo Username"
+                    onBlur={handleCheckQaiUserName}
+                    InputProps={{
+                      disableUnderline: true,
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          {helperMessage && <CheckIcon sx={{ color: "green", fontWeight: 700 }} />}
+                          {errors.qaiUserName && <CancelIcon sx={{ color: "red", fontWeight: 700 }} />}
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Box>
+              )}
+            </Stack>
+            {isNewUser && (
+              // Generated QAI Username Field
+              <Box sx={{ height: "120px" }}>
+                <CustomTextField disabled name="qaiUserName" label="Quantigo Username" value={generatedHubId} />
+              </Box>
             )}
-          </Stack>
-        </Box>
+            <Stack direction="row" spacing={2}>
+              {/* Gender field */}
+              <Box sx={{ width: "50%", height: "120px" }}>
+                <CustomSelectField
+                  name="gender"
+                  defaultValue={genderOptions[0].value}
+                  helperText="Select an option"
+                  options={genderOptions}
+                  label={"Gender"}
+                  setValue={setValue}
+                />
+              </Box>
+              {/* Date Picker */}
+              <Box sx={{ width: "50%", height: "120px" }}>
+                <CustomDatePicker setError={setError} setValue={setValue} name="dob" />
+              </Box>
+            </Stack>
+            {/* Nagad Number  */}
+
+            <Stack sx={{ display: isNewUser && "flex", flexDirection: isNewUser && "row" }} gap={2}>
+              <Box sx={{ width: isNewUser ? "50%" : "100%", height: "120px" }}>
+                <CustomTextField
+                  name="billingAccountNo"
+                  label="Nagad Account No"
+                  InputProps={{
+                    disableUnderline: true,
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <img src={phoneicon} />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Box>
+              {/* Contact Number */}
+              <Box sx={{ width: isNewUser ? "50%" : "100%", height: "120px" }}>
+                <CustomTextField
+                  // sx={{ mr: isNewUser &&  }}
+                  name="contactNo"
+                  label="Phone Number"
+                  InputProps={{
+                    disableUnderline: true,
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <img src={phoneicon} />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Box>
+            </Stack>
+          </>
+        )}
 
         {showOtherField ? (
           <FinalButton

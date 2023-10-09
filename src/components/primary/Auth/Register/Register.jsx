@@ -6,31 +6,19 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Box, Grid } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Grid } from "@mui/material";
 
+import { BgBox } from "../Login/Login";
 import RegistrationForm from "./RegistrationForm";
-
-const BgBox = styled(Box)({
-  display: "flex",
-  color: "#fffff",
-  width: "75.11%",
-  // backgroundColor: "rgba(255, 255, 255, 0.34)",
-  // backdropFilter: "blur(8px)",
-  // borderRadius: "36px",
-  // boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-});
 
 const Register = () => {
   return (
     <>
-      <>
-        <BgBox>
-          <Grid container sx={{ padding: "6%" }}>
-            <RegistrationForm />
-          </Grid>
-        </BgBox>
-      </>
+      <BgBox>
+        <Grid container>
+          <RegistrationForm />
+        </Grid>
+      </BgBox>
     </>
   );
 };

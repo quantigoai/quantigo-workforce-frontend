@@ -9,16 +9,12 @@
 import { LoadingButton } from "@mui/lab";
 import { Box, Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { React, useState } from "react";
-import { useAlert } from "react-alert";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { React } from "react";
 import LoginForm from "./LoginForm";
 
-const BgBox = styled(Box)({
+export const BgBox = styled(Box)({
   display: "flex",
-  color: "#fffff",
+
   width: "75.11%",
   height: "100%",
   justifyContent: "center",
@@ -40,19 +36,6 @@ export const LoadingButtonStyle = styled(LoadingButton)({
 });
 
 const Login = () => {
-  const { error } = useSelector((state) => state.user);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const alert = useAlert();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
   return (
     <>
       <BgBox>

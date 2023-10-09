@@ -73,7 +73,7 @@ const LoginForm = () => {
   };
   return (
     <Box sx={{ width: "100%", height: "100%" }}>
-      <Grid container item xs={12} sx={{ paddingBottom: "0%" }}>
+      <Grid container item xs={12}>
         <Box>
           <Typography variant="wpf_h1_semiBold" color="neutral.900">
             {"Welcome Back"}
@@ -88,13 +88,7 @@ const LoginForm = () => {
       <br />
 
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-        <Box
-          sx={{
-            width: "100%",
-            height: "120px",
-          }}
-        >
-          {/* {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>} */}
+        <Box sx={{ height: "120px" }}>
           <CustomTextField
             name="email"
             label="Email"

@@ -15,20 +15,24 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
           // padding: "16px",
           borderRadius: "12px",
           backgroundColor: user.active ? "neutral.N400" : "#F5E1E3",
-          height: "112px",
+          // backgroundColor:"blue",
+          height: "90%",
           width: "100%",
+          justifyContent:"center"
         }}>
-        <Grid container sx={{ padding: "1%" }}>
-          <Grid item xs={8}>
+        <Grid container sx={{ padding: "1%",backgroundColor:"", }}>
+          <Grid item xs={10}>
             <Grid container>
-              <Grid item xs={1.5} sx={{ paddingLeft: "1%" }}>
+              <Grid item xs={1.5} sx={{ paddingLeft: "%" }}>
                 <Box sx={{ position: "relative" }}>
                   <Avatar
                     alt="Profile Picture"
                     src={!coverImage ? image : coverImage}
                     sx={{
-                      width: "72px",
-                      height: "72px",
+                      height: { xl: "100px", lg: "75px" },
+                      width: { xl: "100px", lg: "75px" },
+                      // width: "100px",
+                      // height: "100px",
                       filter: editAble && "brightness(65%)",
                       backgroundBlendMode: "luminosity",
                     }}
@@ -39,8 +43,10 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                       position: "absolute",
                       top: 0,
                       left: 0,
-                      width: "72px",
-                      height: "72px",
+                      height: { xl: "100px", lg: "75px" },
+                      width: { xl: "100px", lg: "75px" },
+                      // width: "100px",
+                      // height: "100px",
                     }}>
                     {editAble && (
                       <>
@@ -78,9 +84,9 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                   </Box>
                 </Box>
               </Grid>
-              <Grid item xs={7} sx={{ paddingTop: "2%" }}>
+              <Grid item xs={7} sx={{ paddingTop: "2%" ,}}>
                 <Grid container>
-                  <Grid item xs={4} sx={{ backgroundColor: "" }}>
+                  <Grid item xs={4} xl={3} sx={{ backgroundColor: "" }}>
                     <Typography variant="wpf_p1_semiBold" sx={{ color: "neutral.750" }}>
                       <b>
                         {user.firstName} {user.lastName}{" "}
@@ -91,7 +97,7 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                       {capitalizeFirstLetter(user.role)}
                     </Typography>
                   </Grid>
-                  <Grid item xs={8}>
+                  <Grid item xs={8} xl={9}>
                     <Grid container>
                       <Box sx={{ paddingRight: "1%" }}>
                         <Chip
@@ -127,8 +133,8 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
             </Grid>
           </Grid>
 
-          <Grid item xs={4}>
-            <Grid container sx={{ justifyContent: "right", paddingTop: "5%" }}>
+          <Grid item xs={2} sx={{justifyContent: "center",}}>
+            <Grid container sx={{ justifyContent: "right", paddingTop: "14%" }}>
               {!editAble && (
                 <Button
                   variant="outlined"

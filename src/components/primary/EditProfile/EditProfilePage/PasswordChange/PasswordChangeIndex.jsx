@@ -42,7 +42,7 @@ const PasswordChangeIndex = () => {
     <>
       <Box
         sx={{
-          width: "40%",
+          width: "50%",
           padding: "2%",
         }}>
         <Grid container sx={{ padding: "1%" }}>

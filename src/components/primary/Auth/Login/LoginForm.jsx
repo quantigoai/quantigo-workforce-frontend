@@ -7,10 +7,10 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 import { yupResolver } from "@hookform/resolvers/yup";
+import EmailIcon from "@mui/icons-material/Email";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import {
-  Alert,
   Box,
   Checkbox,
   FormControlLabel,
@@ -19,7 +19,6 @@ import {
   IconButton,
   InputAdornment,
   Link,
-  Stack,
   Typography,
 } from "@mui/material";
 import { useState } from "react";
@@ -28,7 +27,6 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import emailIcon from "../../../../assets/images/IconEmail.png";
 import { login } from "../../../../features/slice/userSlice";
 import CustomTextField from "../../../shared/CustomField/CustomTextField";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
@@ -74,107 +72,102 @@ const LoginForm = () => {
     setChecked(event.target.checked);
   };
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%", height: "100%" }}>
       <Grid container item xs={12} sx={{ paddingBottom: "0%" }}>
         <Box>
-          <Typography variant="wpf_h1_semiBold" color="neutral.800">
+          <Typography variant="wpf_h1_semiBold" color="neutral.900">
             {"Welcome Back"}
           </Typography>
           <br />
-          <Typography sx={{ mt: 1 }} variant="wpf_p3_regular" color="neutral.600">
+          <Typography sx={{ mt: 1 }} variant="wpf_p3_regular" color="neutral.920">
             Please fill-up all the credentials
           </Typography>
         </Box>
       </Grid>
 
+      <br />
+
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-        <Stack
-          spacing={1}
+        <Box
           sx={{
             width: "100%",
+            height: "120px",
           }}
         >
-          <Box
+          {/* {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>} */}
+          <CustomTextField
+            name="email"
+            label="Email"
+            InputProps={{
+              disableUnderline: true,
+              endAdornment: (
+                <InputAdornment position="end">
+                  <EmailIcon sx={{ color: "neutral.500" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
+
+        <Box
+          sx={{
+            width: "100%",
+            height: "110px",
+          }}
+        >
+          <CustomTextField
+            name="password"
+            label="Password"
+            type={showPassword ? "text" : "password"}
+            InputProps={{
+              disableUnderline: true,
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton sx={{ color: "neutral.500" }} onClick={() => setShowPassword(!showPassword)} edge="end">
+                    {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
+
+        <Grid container sx={{ display: "flex", paddingBottom: "2%", alignItems: "center" }}>
+          <Grid item xs={6}>
+            <FormGroup>
+              <FormControlLabel
+                sx={{
+                  color: "#47536B",
+                }}
+                control={
+                  <Checkbox checked={checked} onChange={handleChange} inputProps={{ "aria-label": "controlled" }} />
+                }
+                label="Remember me"
+              ></FormControlLabel>
+            </FormGroup>
+          </Grid>
+          <Grid
+            item
+            xs={6}
             sx={{
-              width: "100%",
-              height: "50%",
+              display: "flex",
+              justifyContent: "flex-end",
             }}
           >
-            {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
-            <CustomTextField
-              name="email"
-              label="Email"
-              InputProps={{
-                disableUnderline: true,
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <img src={emailIcon} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Box>
-
-          <Box
-            sx={{
-              width: "100%",
-              height: "50%",
-            }}
-          >
-            <CustomTextField
-              name="password"
-              label="Password"
-              type={showPassword ? "text" : "password"}
-              InputProps={{
-                disableUnderline: true,
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                      {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Box>
-
-          <Grid container sx={{ display: "flex", paddingBottom: "2%", alignItems: "center" }}>
-            <Grid item xs={6}>
-              <FormGroup>
-                <FormControlLabel
-                  sx={{
-                    color: "#47536B",
-                  }}
-                  control={
-                    <Checkbox checked={checked} onChange={handleChange} inputProps={{ "aria-label": "controlled" }} />
-                  }
-                  label="Remember me"
-                ></FormControlLabel>
-              </FormGroup>
-            </Grid>
-            <Grid
-              item
-              xs={6}
+            <Link
+              onClick={() => navigate("/forgetpassword")}
+              underline="hover"
               sx={{
-                display: "flex",
-                justifyContent: "flex-end",
+                cursor: "pointer",
+                color: "black",
               }}
             >
-              <Link
-                onClick={() => navigate("/forgetpassword")}
-                underline="hover"
-                sx={{
-                  cursor: "pointer",
-                  color: "black",
-                }}
-              >
-                <Typography variant="wpf_p3_regular" color="neutral.850">
-                  Forgot password?
-                </Typography>
-              </Link>
-            </Grid>
+              <Typography variant="wpf_p3_regular" color="neutral.850">
+                Forgot password?
+              </Typography>
+            </Link>
           </Grid>
-        </Stack>
+        </Grid>
 
         <LoadingButtonStyle
           fullWidth
@@ -189,6 +182,7 @@ const LoginForm = () => {
           Sign In
         </LoadingButtonStyle>
       </FormProvider>
+
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center", justifyContent: "center", mt: 2 }}>
         <Typography variant="wpf_p3_regular" color="neutral.850">
           Don&apos;t have an account ?

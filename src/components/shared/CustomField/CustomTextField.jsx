@@ -39,7 +39,9 @@ export default function CustomTextField({ name, label, helperText, ...other }) {
       render={({ field, fieldState: { error } }) => {
         return (
           <Box>
-            <Typography variant="wpf_p4_medium">{label}</Typography>
+            <Typography variant="wpf_p4_medium" color="neutral.N300">
+              {label}
+            </Typography>
             <MyTextField
               id="outlined-basic"
               {...field}

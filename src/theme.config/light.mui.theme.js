@@ -122,6 +122,15 @@ const lightTheme = createTheme({
         root: {},
       },
     },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          fontSize: "11px",
+          fontStyle: "italic",
+          marginLeft: "0",
+        },
+      },
+    },
   },
 });
 

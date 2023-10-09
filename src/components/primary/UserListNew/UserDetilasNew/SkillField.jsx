@@ -19,16 +19,12 @@ const SkillField = ({ skills, skillSet, handleChangeSkills, MenuProps, user }) =
     <>
       <Grid>
         <FormControl fullWidth variant="filled">
-          <InputLabel id="demo-simple-select-label" >
-            Skills
-          </InputLabel>
+          <InputLabel id="demo-simple-select-label">Skills</InputLabel>
           <Select
             labelId="demo-multiple-chip-label"
             id="demo-multiple-chip"
             multiple
-            IconComponent={() =>
-              isOpen ? <KeyboardArrowUpIcon style={iconStyle} /> : <KeyboardArrowDownIcon style={iconStyle} />
-            }
+            IconComponent={KeyboardArrowDownIcon}
             sx={{ backgroundColor: "#FFFFFF" }}
             onOpen={handleOpenClose}
             onClose={handleOpenClose}

@@ -10,7 +10,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 350,
+  width: 400,
   textAlign: "center",
   bgcolor: "background.paper",
   borderRadius: "10px",
@@ -51,13 +51,14 @@ const ModalActivateAccount = ({ open, handleChange, handleClose }) => {
               marginTop: "20px",
             }}>
             {/* #F2F6FC */}
+            <Box  sx={{paddingRight:"2%"}}>
             <Button
               sx={{
                 textTransform: "none",
                 background: "#F2F6FC",
                 borderRadius: "10px",
                 color: "#253E5C",
-                padding: " 10px 16px",
+                // padding: " 10px 16px",
                 width: "150px",
                 "&:hover": {
                   background: "#F2F6FC",
@@ -67,6 +68,8 @@ const ModalActivateAccount = ({ open, handleChange, handleClose }) => {
               variant="contained">
               Cancel
             </Button>
+            </Box>
+           
             <Button
               onClick={() => handleChange()}
               sx={{

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 export const MySelect = styled(Select)(() => ({
   border: "1px solid #E6ECF5",
   borderRadius: "8px",
-  padding: "5px 0px 0px 0px",
+  padding: "0px 0px 0px 0px",
   //   background: "none",
   height: "42px",
 }));
@@ -72,7 +72,7 @@ const SelectFieldCommon = ({ label, user, handleSetRole }) => {
             <MenuItem value={"project_lead"} sx={menuItemStyle}>
               Delivery Lead
             </MenuItem>
-            <MenuItem value={"project_coordinator"} sx={menuItemStyle}></MenuItem>
+            {/* <MenuItem value={"project_coordinator"} sx={menuItemStyle}></MenuItem> */}
             <MenuItem value={"project_coordinator"} sx={menuItemStyle}>
               Project Coordinator
             </MenuItem>

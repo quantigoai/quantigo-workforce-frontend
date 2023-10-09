@@ -207,7 +207,7 @@ const MyProfileIndex = () => {
                 </Grid>
                 <Grid item xs={6}>
                   <CommonFieldTest
-                    name="billingAccountNo"
+                  name="billingAccountNo"
                     label={"Nagad No."}
                     defaultValue={user.billingAccountNo}
                     disableItem={false}

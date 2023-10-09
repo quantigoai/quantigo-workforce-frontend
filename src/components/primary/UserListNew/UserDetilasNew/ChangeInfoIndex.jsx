@@ -22,7 +22,7 @@ const ChangeInfoIndex = ({ user, handleSetRole, handleSetStatus }) => {
           }}
         >
           <Grid container>
-            <Grid item xs={6}>
+            <Grid item xs={6} sx={{paddingRight:"2%"}}> 
               {" "}
               <SelectFieldCommon label={"Role Change"} user={user} handleSetRole={handleSetRole} />
             </Grid>

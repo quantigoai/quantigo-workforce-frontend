@@ -191,7 +191,7 @@ const LoginForm = () => {
             color: "#FFFFFF",
           }}
         >
-          <Typography variant="wpf_p3_medium" color={"primary.main"} sx={{ textAlign: "center", ml: 1 }}>
+          <Typography variant="wpf_p3_medium" color={"primary.B009"} sx={{ textAlign: "center", ml: 1 }}>
             Sign Up
           </Typography>
         </Link>

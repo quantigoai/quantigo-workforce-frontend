@@ -21,11 +21,11 @@ CustomDatePicker.propTypes = {
 
 export const MyDatePicker = styled(DatePicker)(() => ({
   border: "0px solid #E0E0E0",
-  padding: "5px 0px 0px 0px",
+  // padding: "5px 0px 0px 0px",
 }));
 
 export const MyInputLabel = styled(InputLabel)(() => ({
-  padding: "20px 0px 0px 0px",
+  // padding: "20px 0px 0px 0px",
 }));
 
 export const MyFormControl = styled(FormControl)(() => ({
@@ -65,10 +65,7 @@ export default function CustomDatePicker({
       render={({ field: { onChange, onBlur, value, ref, error } }) => (
         <>
           <Typography variant="wpf_p4_medium">Date of Birth</Typography>
-          <MyFormControl
-            fullWidth
-            sx={{ backgroundColor: "#FFFFFF", border: "1.2px solid #E6ECF5", height: "60px", mt: 1.5 }}
-          >
+          <MyFormControl fullWidth sx={{ backgroundColor: "#FFFFFF", border: "1.2px solid #E6ECF5", mt: 1.5 }}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <MyDatePicker
                 inputFormat="DD-MM-YYYY"

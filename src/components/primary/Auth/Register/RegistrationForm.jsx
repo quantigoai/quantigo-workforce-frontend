@@ -10,6 +10,8 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CheckIcon from "@mui/icons-material/Check";
+import EmailIcon from "@mui/icons-material/Email";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { Box, Grid, IconButton, InputAdornment, Link, Stack, Typography } from "@mui/material";
@@ -19,8 +21,6 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import emailIcon from "../../../../assets/images/IconEmail.png";
-import phoneicon from "../../../../assets/images/IconPhone.png";
 import { checkUserByUserName, signup } from "../../../../features/slice/userSlice";
 import CustomDatePicker from "../../../shared/CustomField/CustomDatePicker";
 import CustomSelectField from "../../../shared/CustomField/CustomSelectField";
@@ -158,15 +158,15 @@ const RegistrationForm = () => {
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitRegData)}>
         {!showOtherField && (
           <>
-            <Box sx={{ height: "120px" }}>
+            <Box sx={{ height: "100px" }}>
               <CustomTextField name="firstName" label="First Name" />
             </Box>
-            <Box sx={{ height: "120px" }}>
+            <Box sx={{ height: "100px" }}>
               <CustomTextField name="lastName" label="Last Name" />
             </Box>
             {/* Email */}
 
-            <Box sx={{ height: "120px" }}>
+            <Box sx={{ height: "100px" }}>
               <CustomTextField
                 name="email"
                 label="Email"
@@ -174,14 +174,14 @@ const RegistrationForm = () => {
                   disableUnderline: true,
                   endAdornment: (
                     <InputAdornment position="end">
-                      <img src={emailIcon} />
+                      <EmailIcon />
                     </InputAdornment>
                   ),
                 }}
               />
             </Box>
             {/* Password */}
-            <Box sx={{ height: "120px" }}>
+            <Box sx={{ height: "100px" }}>
               <CustomTextField
                 name="password"
                 label="Password"
@@ -204,7 +204,7 @@ const RegistrationForm = () => {
           <>
             <Stack direction="row" spacing={2}>
               {/* User Type */}
-              <Box sx={{ width: "50%", height: "120px" }}>
+              <Box sx={{ width: "50%", height: "100px" }}>
                 <CustomSelectField
                   name="currentUserStatus"
                   helperText="Select an option"
@@ -216,7 +216,7 @@ const RegistrationForm = () => {
               </Box>
               {isNewUser ? (
                 // Hub Field
-                <Box sx={{ width: "50%", height: "120px" }}>
+                <Box sx={{ width: "50%", height: "100px" }}>
                   <CustomSelectField
                     name="hub"
                     helperText="Select a hub"
@@ -228,7 +228,7 @@ const RegistrationForm = () => {
                 </Box>
               ) : (
                 // QAI Username Field
-                <Box sx={{ width: "50%", height: "120px" }}>
+                <Box sx={{ width: "50%", height: "100px" }}>
                   <CustomTextField
                     name="qaiUserName"
                     label="Quantigo Username"
@@ -248,13 +248,13 @@ const RegistrationForm = () => {
             </Stack>
             {isNewUser && (
               // Generated QAI Username Field
-              <Box sx={{ height: "120px" }}>
+              <Box sx={{ height: "100px" }}>
                 <CustomTextField disabled name="qaiUserName" label="Quantigo Username" value={generatedHubId} />
               </Box>
             )}
             <Stack direction="row" spacing={2}>
               {/* Gender field */}
-              <Box sx={{ width: "50%", height: "120px" }}>
+              <Box sx={{ width: "50%", height: "100px" }}>
                 <CustomSelectField
                   name="gender"
                   defaultValue={genderOptions[0].value}
@@ -265,14 +265,14 @@ const RegistrationForm = () => {
                 />
               </Box>
               {/* Date Picker */}
-              <Box sx={{ width: "50%", height: "120px" }}>
+              <Box sx={{ width: "50%", height: "100px" }}>
                 <CustomDatePicker setError={setError} setValue={setValue} name="dob" />
               </Box>
             </Stack>
             {/* Nagad Number  */}
 
             <Stack sx={{ display: isNewUser && "flex", flexDirection: isNewUser && "row" }} gap={isNewUser && 2}>
-              <Box sx={{ width: isNewUser ? "50%" : "100%", height: "120px" }}>
+              <Box sx={{ width: isNewUser ? "50%" : "100%", height: "100px" }}>
                 <CustomTextField
                   name="billingAccountNo"
                   label="Nagad Account No"
@@ -280,14 +280,15 @@ const RegistrationForm = () => {
                     disableUnderline: true,
                     endAdornment: (
                       <InputAdornment position="end">
-                        <img src={phoneicon} />
+                        <LocalPhoneIcon />
+                        {/* <img src={phoneicon} /> */}
                       </InputAdornment>
                     ),
                   }}
                 />
               </Box>
               {/* Contact Number */}
-              <Box sx={{ width: isNewUser ? "50%" : "100%", height: "120px" }}>
+              <Box sx={{ width: isNewUser ? "50%" : "100%", height: "100px" }}>
                 <CustomTextField
                   // sx={{ mr: isNewUser &&  }}
                   name="contactNo"
@@ -296,7 +297,7 @@ const RegistrationForm = () => {
                     disableUnderline: true,
                     endAdornment: (
                       <InputAdornment position="end">
-                        <img src={phoneicon} />
+                        <LocalPhoneIcon />
                       </InputAdornment>
                     ),
                   }}

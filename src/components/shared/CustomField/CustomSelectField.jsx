@@ -18,7 +18,7 @@ CustomSelectField.propTypes = {
 };
 
 export const MySelect = styled(Select)(() => ({
-  border: "1.2px solid #E6ECF5",
+  border: "2px solid #E6ECF5",
   // padding: "0px 0px 0px 0px",
   backgroundColor: "white",
 }));
@@ -36,6 +36,7 @@ export default function CustomSelectField({ name, helperText, options, label, se
               {label}
             </Typography>
             <MySelect
+              size="small"
               labelId="demo-simple-select-autowidth-label"
               id="demo-simple-select-autowidth"
               {...field}

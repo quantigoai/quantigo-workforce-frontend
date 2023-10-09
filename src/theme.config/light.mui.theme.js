@@ -131,6 +131,13 @@ const lightTheme = createTheme({
         },
       },
     },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          color: "#7D89A3",
+        },
+      },
+    },
   },
 });
 

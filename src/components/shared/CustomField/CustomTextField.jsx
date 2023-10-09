@@ -20,7 +20,8 @@ export const MyTextField = styled(TextField)(() => ({
   borderRadius: "5px",
   backgroundColor: "#fff",
   "& .MuiOutlinedInput-notchedOutline ": {
-    border: "1.2px solid #E6ECF5 !important",
+    border: "2px solid #E6ECF5 !important",
+    // border: "2px solid #dce2ea !important",
     borderRadius: "8px",
   },
 
@@ -43,6 +44,7 @@ export default function CustomTextField({ name, label, helperText, ...other }) {
               {label}
             </Typography>
             <MyTextField
+              size="small"
               id="outlined-basic"
               {...field}
               fullWidth

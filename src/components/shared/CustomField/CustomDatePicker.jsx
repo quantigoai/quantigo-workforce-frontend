@@ -21,7 +21,13 @@ CustomDatePicker.propTypes = {
 
 export const MyDatePicker = styled(DatePicker)(() => ({
   border: "0px solid #E0E0E0",
-  // padding: "5px 0px 0px 0px",
+  "& .MuiOutlinedInput-input": {
+    padding: "12px",
+    height: "100%",
+  },
+  "& .MuiIconButton-root": {
+    color: "neutral.500",
+  },
 }));
 
 export const MyInputLabel = styled(InputLabel)(() => ({
@@ -31,11 +37,11 @@ export const MyInputLabel = styled(InputLabel)(() => ({
 export const MyFormControl = styled(FormControl)(() => ({
   borderRadius: "5px",
   padding: "2px 0px 0px 0px",
-  "& .css-1u3r4u7-MuiInputBase-root-MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+  "& MuiInputBase-root-MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
     border: "0px",
     borderColor: "#2D58FF",
   },
-  "& .css-1u3r4u7-MuiInputBase-root-MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
+  "& MuiInputBase-root-MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
     border: "0px",
     borderColor: "#2D58FF",
   },
@@ -65,9 +71,23 @@ export default function CustomDatePicker({
       render={({ field: { onChange, onBlur, value, ref, error } }) => (
         <>
           <Typography variant="wpf_p4_medium">Date of Birth</Typography>
-          <MyFormControl fullWidth sx={{ backgroundColor: "#FFFFFF", border: "1.2px solid #E6ECF5", mt: 1.5 }}>
+          <MyFormControl
+            fullWidth
+            sx={{
+              backgroundColor: "#FFFFFF",
+              border: "2px solid #E6ECF5",
+              mt: "10px",
+            }}
+          >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <MyDatePicker
+                size="small"
+                sx={{
+                  // backgroundColor: "red",
+                  height: "40px",
+                  padding: "0px",
+                  color: "#000000",
+                }}
                 inputFormat="DD-MM-YYYY"
                 minDate={minDob}
                 maxDate={maxDob}
@@ -76,7 +96,14 @@ export default function CustomDatePicker({
                 }}
               >
                 <TextField
-                  sx={{ padding: "5px" }}
+                  size="small"
+                  sx={{
+                    mt: 0,
+                    backgroundColor: "green",
+                    padding: "0px",
+                    height: "40px",
+                    color: "#000000",
+                  }}
                   error={!!error}
                   helperText={error && error?.message}
                   id="date-picker"

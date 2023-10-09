@@ -13,7 +13,7 @@ import { Box, TableCell } from "@mui/material";
 import React from "react";
 
 const StickyDocViewTableColumn = ({ column }) => {
-  console.log("🚀 ~ file: StickyDocViewTableColumn.jsx:16 ~ StickyDocViewTableColumn ~ column:", column);
+//   console.log("🚀 ~ file: StickyDocViewTableColumn.jsx:16 ~ StickyDocViewTableColumn ~ column:", column);
   return (
     <>
       <TableCell className="docrow">

@@ -80,12 +80,21 @@ const UsersHeader = ({
               placeholder="Search"
             />
             {search && (
-              <ClearIcon
+              <Button
                 sx={{
-                  color: "neutral.N300",
+                  minWidth: "40px",
                 }}
-                onClick={clearSearch}
-              />
+              >
+                <ClearIcon
+                  sx={{
+                    color: "neutral.N300",
+                    "&:hover": {
+                      color: "#F04438",
+                    },
+                  }}
+                  onClick={clearSearch}
+                />
+              </Button>
             )}
           </Paper>
 

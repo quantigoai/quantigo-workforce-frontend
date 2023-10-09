@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import React from "react";
 import MainModal from "./MainModal";
 
@@ -51,7 +51,7 @@ const CustomButton = ({ params, handleClick, handleDelete, handleProjectDetailsO
             <i className="ri-checkbox-circle-fill"></i>
           </Button>
           <Button sx={{ padding: "0px", minWidth: "35px", fontSize: "16px" }}>
-            <i className="ri-close-circle-fill"></i>
+            <i style={{ color: "#F04438" }} className="ri-close-circle-fill"></i>
           </Button>
           <Button
             onClick={() => handleProjectDetailsOpen(params)}

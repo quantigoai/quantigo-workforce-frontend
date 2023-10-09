@@ -158,7 +158,7 @@ const LoginForm = () => {
                   color: "black",
                 }}
               >
-                <Typography variant="wpf_p3_regular" color="neutral.700">
+                <Typography variant="wpf_p3_regular" color="neutral.850">
                   Forgot password?
                 </Typography>
               </Link>
@@ -182,7 +182,7 @@ const LoginForm = () => {
         </LoadingButtonStyle>
       </FormProvider>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center", justifyContent: "center", mt: 2 }}>
-        <Typography variant="wpf_p3_regular" color="neutral.700">
+        <Typography variant="wpf_p3_regular" color="neutral.850">
           Don&apos;t have an account ?
         </Typography>
         <Link

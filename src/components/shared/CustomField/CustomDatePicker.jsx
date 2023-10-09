@@ -67,7 +67,7 @@ export default function CustomDatePicker({
           <Typography variant="wpf_p4_medium">Date of Birth</Typography>
           <MyFormControl
             fullWidth
-            sx={{ backgroundColor: "#FFFFFF", border: "2px solid #E0E0E0", height: "60px", mt: 1.5 }}
+            sx={{ backgroundColor: "#FFFFFF", border: "1.2px solid #E6ECF5", height: "60px", mt: 1.5 }}
           >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <MyDatePicker

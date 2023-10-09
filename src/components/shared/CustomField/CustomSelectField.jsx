@@ -18,7 +18,7 @@ CustomSelectField.propTypes = {
 };
 
 export const MySelect = styled(Select)(() => ({
-  border: "1px solid #E0E0E0",
+  border: "1.2px solid #E6ECF5",
   // padding: "0px 0px 0px 0px",
   backgroundColor: "white",
 }));

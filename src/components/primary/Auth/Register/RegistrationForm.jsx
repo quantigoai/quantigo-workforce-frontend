@@ -328,7 +328,7 @@ const RegistrationForm = () => {
         )}
       </FormProvider>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center", justifyContent: "center", mt: 2 }}>
-        <Typography variant="wpf_p3_regular" color="neutral.700">
+        <Typography variant="wpf_p3_regular" color="neutral.850">
           Already have an account ?
         </Typography>
         <Link

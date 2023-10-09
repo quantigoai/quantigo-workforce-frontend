@@ -44,6 +44,15 @@ table {
     z-index: 233;
 }
 
+.doccolhead{
+    border-left: 1px solid #EBF0F5;
+    position: sticky;
+    top: 0;
+    right :158px;
+    /* background-color: aqua; */
+    z-index: 231;
+}
+
 /* table left column */
 tbody td:first-child {
     border-right: 1px solid #EBF0F5;
@@ -56,6 +65,13 @@ tbody td:last-child {
     border-left: 1px solid #EBF0F5;
     position: sticky;
     right: 0;
+}
+
+.docrow {
+    border-left: 1px solid #EBF0F5;
+    position: sticky;
+    right :158px;
+    font-size: 10px;
 }
 
 /* individual table td */

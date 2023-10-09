@@ -10,6 +10,8 @@ import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import FirstTableColumn from "./TableBody/FirstTableColumn";
 import LastTableColumn from "./TableBody/LastTableCoulmn";
 import MiddleTableColumn from "./TableBody/MiddleTableColumn";
+import StickyDocViewTableColumn from "./TableBody/StickyDocViewTableColumn";
+import StickyDocViewTableHead from "./TableHeader/StickyDocViewTableHead";
 import StickyFirstTableHead from "./TableHeader/StickyFirstTableHead";
 import StickyLastTableHead from "./TableHeader/StickyLastTableHead";
 import StickyMiddleHead from "./TableHeader/StickyMiddleHead";
@@ -44,6 +46,9 @@ export default function WPFTable({
                 {columns.map((column) => (
                   <StickyMiddleHead key={column.id} column={column} handleId={handleId} filteredCol={filteredCol} />
                 ))}
+
+                {role === "recruitment_manager" && <StickyDocViewTableHead column={{ width: "40px" }} />}
+
                 {stickyLastColumn.map((column) => (
                   <StickyLastTableHead key={column.id} column={column} />
                 ))}
@@ -78,11 +83,13 @@ export default function WPFTable({
                         currentlyCheckedInProject={currentlyCheckedInProject}
                       />
                     ))}
-
+                  
                     {columns.map((column) => (
                       <MiddleTableColumn key={column.id} row={row} column={column} />
                     ))}
-
+                  
+                    {role === "recruitment_manager" && <StickyDocViewTableColumn column={row} />}
+                  
                     {stickyLastColumn.map((column) => (
                       <LastTableColumn
                         key={column.id}

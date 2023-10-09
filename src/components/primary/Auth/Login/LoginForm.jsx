@@ -75,61 +75,71 @@ const LoginForm = () => {
   };
   return (
     <Box sx={{ width: "100%" }}>
-      <Grid container item xs={12} sx={{ paddingBottom: "8%" }}>
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
+      <Grid container item xs={12} sx={{ paddingBottom: "0%" }}>
+        <Box>
           <Typography variant="wpf_h1_semiBold" color="neutral.800">
             {"Welcome Back"}
           </Typography>
-          <Typography sx={{ mt: 2 }} variant="wpf_p3_regular" color="neutral.600">
+          <br />
+          <Typography sx={{ mt: 1 }} variant="wpf_p3_regular" color="neutral.600">
             Please fill-up all the credentials
           </Typography>
         </Box>
       </Grid>
-      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={3} sx={{ width: "100%" }}>
-          {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
-          <CustomTextField
-            name="email"
-            label="Email"
-            InputProps={{
-              disableUnderline: true,
-              endAdornment: (
-                <InputAdornment position="end">
-                  <img src={emailIcon} />
-                </InputAdornment>
-              ),
-            }}
-          />
 
-          <CustomTextField
-            name="password"
-            label="Password"
-            type={showPassword ? "text" : "password"}
-            InputProps={{
-              disableUnderline: true,
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                    {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                  </IconButton>
-                </InputAdornment>
-              ),
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <Stack
+          spacing={1}
+          sx={{
+            width: "100%",
+          }}
+        >
+          <Box
+            sx={{
+              width: "100%",
+              height: "50%",
             }}
-          />
+          >
+            {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
+            <CustomTextField
+              name="email"
+              label="Email"
+              InputProps={{
+                disableUnderline: true,
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <img src={emailIcon} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+
+          <Box
+            sx={{
+              width: "100%",
+              height: "50%",
+            }}
+          >
+            <CustomTextField
+              name="password"
+              label="Password"
+              type={showPassword ? "text" : "password"}
+              InputProps={{
+                disableUnderline: true,
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                      {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+
           <Grid container sx={{ display: "flex", paddingBottom: "2%", alignItems: "center" }}>
             <Grid item xs={6}>
-              {/* <Link
-                onClick={() => {
-                  navigate("/register");
-                }}
-                underline="hover"
-                sx={{
-                  cursor: "pointer",
-                  color: "#FFFFFF",
-                }}
-              >
-                <Typography sx={{ color: "black" }}>Create New Account</Typography>
-              </Link> */}
               <FormGroup>
                 <FormControlLabel
                   sx={{
@@ -165,8 +175,6 @@ const LoginForm = () => {
             </Grid>
           </Grid>
         </Stack>
-
-        <Box></Box>
 
         <LoadingButtonStyle
           fullWidth

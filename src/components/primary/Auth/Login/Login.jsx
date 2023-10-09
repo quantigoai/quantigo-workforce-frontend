@@ -20,10 +20,10 @@ const BgBox = styled(Box)({
   display: "flex",
   color: "#fffff",
   width: "75.11%",
-  // backgroundColor: "rgba(255, 255, 255, 0.34)",
-  // backdropFilter: "blur(8px)",
-  // borderRadius: "36px",
-  // boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+  height: "100%",
+  justifyContent: "center",
+  alignItems: "center",
+  alignContent: "center",
 });
 
 export const LoadingButtonStyle = styled(LoadingButton)({
@@ -53,34 +53,12 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  // const onSubmit = (data) => {
-  //   data.email = email;
-  //   data.password = password;
-
-  //   dispatch(login(data)).then((action) => {
-  //     if (action.payload?.status === 200) {
-  //       alert.show("Login Successful", { type: "success" });
-  //       navigate("/dashboard");
-  //     } else {
-  //       alert.show(error, { type: "error" });
-  //     }
-  //   });
-  // };
   return (
     <>
       <BgBox>
-        <Grid container sx={{ marginTop: "130px" }}>
+        <Grid container>
           <LoginForm />
         </Grid>
-        {/* <form onSubmit={handleSubmit(onSubmit)}>
-          <InputFields
-            register={register}
-            email={email}
-            setEmail={setEmail}
-            password={password}
-            setPassword={setPassword}
-          />
-        </form> */}
       </BgBox>
     </>
   );

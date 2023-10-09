@@ -15,7 +15,7 @@ const CommonDesign = ({ children }) => {
       <Grid
         container
         sx={{
-          height: "90.5vh",
+          height: "100%",
         }}
       >
         <Grid

@@ -42,20 +42,18 @@ const LoginHomePage = () => {
 
   return (
     <>
-      {/* <Box className="container"></Box> */}
-      {/* <Box className="container1"></Box>
-      <Box className="container2"></Box>
-      <Box className="container3"></Box>
-      <Box className="container4"> </Box> */}
       {/* <Keyframes> */}
       <Box className="container">
-        <HeaderNav />
-        <CommonDesign>
-          <Login />
-        </CommonDesign>
+        <Box sx={{ height: "8%" }}>
+          <HeaderNav />
+        </Box>
+        <Box sx={{ height: "92%" }}>
+          <CommonDesign>
+            <Login />
+          </CommonDesign>
+        </Box>
       </Box>
       {/* </Keyframes> */}
-      {/* </Box> */}
     </>
   );
 };

@@ -1,7 +1,6 @@
 import { Box, Grid, Link, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import React from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import bgimg from "../../../../assets/images/LoginBG.png";
 import logo from "../../../../assets/images/logo.png";
@@ -10,7 +9,7 @@ import Login from "./Login";
 const BgBox = styled(Box)({
   backgroundImage: `url(${bgimg})`,
   width: "100vw",
-  height: "120vh",
+  // height: "100%",
   backgroundRepeat: "no-repeat",
 });
 const LoginPage = () => {
@@ -60,6 +59,7 @@ const LoginPage = () => {
             </Grid>
           </Grid>
         </Grid>
+
         <Grid container>
           <Grid container>
             <Grid xs={6} style={{ paddingTop: "20%", paddingBottom: "10%" }}>

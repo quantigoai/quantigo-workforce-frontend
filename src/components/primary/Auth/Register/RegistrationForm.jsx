@@ -152,12 +152,13 @@ const RegistrationForm = () => {
           {showOtherField ? "Setup Profile" : "Create New Account"}
         </Typography>
       </Grid>
+      
       <Grid container item xs={12} sx={{ paddingBottom: "8%" }}>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
           <Typography variant="wpf_h1_semiBold" color="neutral.800">
             {"Create Account"}
           </Typography>
-          <Typography sx={{ mt: 2 }} variant="wpf_p3_regular" color="neutral.600">
+          <Typography sx={{ mt: 1 }} variant="wpf_p3_regular" color="neutral.600">
             Please fill-up all the credentials
           </Typography>
         </Box>
@@ -327,10 +328,12 @@ const RegistrationForm = () => {
           />
         )}
       </FormProvider>
+
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center", justifyContent: "center", mt: 2 }}>
         <Typography variant="wpf_p3_regular" color="neutral.850">
           Already have an account ?
         </Typography>
+
         <Link
           onClick={() => {
             navigate("/login");

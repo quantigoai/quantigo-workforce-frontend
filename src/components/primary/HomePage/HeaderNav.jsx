@@ -24,13 +24,9 @@ const HeaderNav = () => {
       <Grid
         container
         sx={{
-          // backgroundColor: "rgba(45, 88, 255, 1)",
-          // height: "100px",
           display: "flex",
           alignItems: "center",
           alignContent: "center",
-          // paddingX: "5%",
-          // paddingX: "1%",
         }}
       >
         <Grid
@@ -61,9 +57,9 @@ const HeaderNav = () => {
 
         <Grid container item xs={6} md={6} lg={6}>
           <Grid
-            container
             sx={{
-              // backgroundColor: "green",
+              width: "100%",
+              height: "100%",
               display: "flex",
               justifyContent: "flex-end",
               textAlign: "right",
@@ -73,8 +69,8 @@ const HeaderNav = () => {
               <Box
                 sx={{
                   display: "flex",
+                  height: "100%",
                   justifyContent: "flex-end",
-                  // backgroundColor: isLightTheme ? "#fff" : "#000",
                   backgroundColor: "#fff",
                   p: 4,
                 }}
@@ -117,7 +113,6 @@ const HeaderNav = () => {
                 </Typography>
               </Box>
             </Grid>
-            <Grid item xs={1}></Grid>
           </Grid>
         </Grid>
       </Grid>

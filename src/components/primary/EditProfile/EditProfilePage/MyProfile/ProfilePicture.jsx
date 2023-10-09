@@ -29,8 +29,8 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                     alt="Profile Picture"
                     src={!coverImage ? image : coverImage}
                     sx={{
-                      height: { xl: "100px", lg: "75px" },
-                      width: { xl: "100px", lg: "75px" },
+                      height: { xl: "95px", lg: "75px" },
+                      width: { xl: "95px", lg: "75px" },
                       // width: "100px",
                       // height: "100px",
                       filter: editAble && "brightness(65%)",
@@ -43,8 +43,8 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                       position: "absolute",
                       top: 0,
                       left: 0,
-                      height: { xl: "100px", lg: "75px" },
-                      width: { xl: "100px", lg: "75px" },
+                      height: { xl: "95px", lg: "75px" },
+                      width: { xl: "95px", lg: "75px" },
                       // width: "100px",
                       // height: "100px",
                     }}>

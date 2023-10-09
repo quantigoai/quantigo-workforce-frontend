@@ -46,28 +46,44 @@ const NdaDocumentSection = ({ user }) => {
       });
   };
   const handleClose = () => setOpenModal(false);
+  const isDisabled = !user.documentNo;
   return (
     <>
       <Grid container sx={{ padding: "2%" }}>
         <Grid item xs={6} sx={{ paddingRight: "2%" }}>
           <ButtonStyle
-            disabled={!user.documentNo}
-            onClick={() => handleDetailNid(user.documentsImage, user.documentNo, user.documentsType, user.name)}
-          >
-            <Typography variant="wpf_p3_medium" color={"primary.B200"} sx={{ paddingRight: "4%" }}>
+            disabled={isDisabled}
+            onClick={() => handleDetailNid(user.documentsImage, user.documentNo, user.documentsType, user.name)}>
+            <Typography
+              variant="wpf_p3_medium"
+              color={user.documentNo ? "primary.B200" : ""}
+              sx={{ paddingRight: "4%", filter: isDisabled ? "grayscale(100%) opacity(50%)" : "" }}>
               {" "}
               Document{" "}
             </Typography>
-            <img src={ViewIcon} />
+            <img
+              style={{
+                filter: isDisabled ? "grayscale(100%) opacity(50%)" : "",
+              }}
+              src={ViewIcon}
+            />
           </ButtonStyle>
         </Grid>
         <Grid item xs={6}>
           <ButtonStyle disabled={!user.signImage} onClick={() => handleClick(user.signImage)}>
-            <Typography variant="wpf_p3_medium" color={"primary.B200"} sx={{ paddingRight: "4%" }}>
+            <Typography
+              variant="wpf_p3_medium"
+              color={user.documentNo ? "primary.B200" : ""}
+              sx={{ paddingRight: "4%", filter: isDisabled ? "grayscale(100%) opacity(50%)" : "" }}>
               {" "}
               NDA
             </Typography>
-            <img src={ArrowIcon} />
+            <img
+              style={{
+                filter: isDisabled ? "grayscale(100%) opacity(50%)" : "",
+              }}
+              src={ArrowIcon}
+            />
           </ButtonStyle>
         </Grid>
       </Grid>

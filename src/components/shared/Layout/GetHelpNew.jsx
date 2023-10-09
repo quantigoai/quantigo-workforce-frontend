@@ -29,7 +29,7 @@ const GetHelpNew = () => {
           //   padding: "10%",
         }}>
         <Grid container sx={{ justifyContent: "center", paddingTop: "9%" }}>
-          <Typography variant="wf_h5_bold" sx={{ color: "#FFFFFF" }}>
+          <Typography variant="wf_h5_bold" sx={{ color: "neutral.N000" }}>
             Need Help?
           </Typography>
         </Grid>
@@ -42,25 +42,29 @@ const GetHelpNew = () => {
             paddingTop: "2%",
             paddingBottom: "5%",
             textAlign: "center",
+            // backgroundColor:"red"
           }}>
           <Typography
             sx={{
-              color: "#E6ECF5",
+              color: "neutral.N600",
               justifyContent: "center",
               textAlign: "center",
-              fontSize: "12px",
+            //  fontSize:"11px"
             }}
-            variant="wf_h6_light">
+            // variant="caption"
+            variant="wpf_p4_regular"
+          >
             Our customer support is at your
           </Typography>
+          
           <Typography
             sx={{
-              color: "#E6ECF5",
+              color: "neutral.N600",
               justifyContent: "center",
               textAlign: "center",
-              fontSize: "12px",
+           
             }}
-            variant="wf_h6_light">
+            variant="wpf_p4_regular">
             service
           </Typography>
         </Grid>

@@ -13,15 +13,17 @@ import {
   tableCellClasses,
 } from "@mui/material";
 import React from "react";
+import starIcon from "../../../../assets/images/StarIcon.svg";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#FAFCFF",
+    // backgroundColor: "#FAFCFF",
     color: "#5A6B89",
     padding: "8px",
     // height: "0px",
   },
   [`&.${tableCellClasses.body}`]: {
     // fontSize: 14,
+    // backgroundColor: "#EFF9F5",
     padding: "8px",
   },
 }));
@@ -146,28 +148,50 @@ const UserProjectDetails = () => {
                     key={row._id}
                     sx={{
                       height: "34px",
-                      backgroundColor: row.status === "Working" ? "#EFF9F5" : "",
+                      // backgroundColor: row.status === "Working" ? "#EFF9F5" : "",
+                      // backgroundColor:"red"
                     }}>
-                    <StyledTableCell component="th" scope="row">
+                    <StyledTableCell
+                      component="th"
+                      scope="row"
+                      sx={{
+                        backgroundColor: row.status === "Working" ? "#EFF9F5" : "", 
+                      }}>
                       <Typography variant="wf_h6">{row.name}</Typography>
                     </StyledTableCell>
-                    <StyledTableCell align="left">
+                    <StyledTableCell
+                      align="left"
+                      sx={{
+                        backgroundColor: row.status === "Working" ? "#EFF9F5" : "", 
+                      }}>
                       {" "}
                       <Typography variant="wf_h6">{row.endName}</Typography>
                     </StyledTableCell>
-                    <StyledTableCell align="left">
+                    <StyledTableCell
+                      align="left"
+                      sx={{
+                        backgroundColor: row.status === "Working" ? "#EFF9F5" : "", 
+                      }}>
                       {" "}
                       <Typography variant="wf_h6">{row.hours}</Typography>
                     </StyledTableCell>
-                    <StyledTableCell align="left">
+                    <StyledTableCell
+                      align="left"
+                      sx={{
+                        backgroundColor: row.status === "Working" ? "#EFF9F5" : "", 
+                      }}>
                       {" "}
-                      <Typography variant="wf_h6">{row.rating}</Typography>
+                      <Typography variant="wf_h6">
+                        <img src={starIcon} /> {row.Rating} Star
+                      </Typography>
                     </StyledTableCell>
-                    <StyledTableCell align="left">
+                    <StyledTableCell
+                      align="left"
+                      sx={{
+                        backgroundColor: row.status === "Working" ? "#EFF9F5" : "", 
+                      }}>
                       {" "}
-                      <Typography
-                        variant="wf_h6"
-                        sx={{ color: row.status === "Working" ? "#36B37E" : "" }}>
+                      <Typography variant="wf_h6" sx={{ color: row.status === "Working" ? "#36B37E" : "" }}>
                         {row.status}
                       </Typography>
                     </StyledTableCell>

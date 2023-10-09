@@ -14,3 +14,7 @@ body {
   overflow-y: auto;
   height: 100%;
 }
+.css-b8pm7-MuiStack-root>:not(style)~:not(style) {
+  margin-top: 0px;
+}
+

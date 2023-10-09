@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { TextField, Typography, styled } from "@mui/material";
+import { Box, TextField, Typography, styled } from "@mui/material";
 import PropTypes from "prop-types";
 import { Controller, useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
@@ -38,10 +38,8 @@ export default function CustomTextField({ name, label, helperText, ...other }) {
       control={control}
       render={({ field, fieldState: { error } }) => {
         return (
-          <>
-            <Typography variant="wpf_p3_regular" color={"neutral.N700"}>
-              {label}
-            </Typography>
+          <Box>
+            <Typography variant="wpf_p4_medium">{label}</Typography>
             <MyTextField
               id="outlined-basic"
               {...field}
@@ -51,13 +49,14 @@ export default function CustomTextField({ name, label, helperText, ...other }) {
               placeholder={label === "Email" ? "email#123@gmail.com" : "example#123"}
               sx={{
                 backgroundColor: isLightTheme ? "#FFFFFF" : "#1D1D1D",
+                mt: 1.5,
               }}
               value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
               error={!!error}
               helperText={error ? error?.message : helperText}
               {...other}
             />
-          </>
+          </Box>
         );
       }}
     />

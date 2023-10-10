@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Avatar, FormControlLabel, Stack, Switch, Typography, styled } from "@mui/material";
+import { Avatar, Badge, FormControlLabel, Stack, Switch, Typography, styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -25,6 +25,8 @@ import { setTheme } from "../../../features/slice/themeSlice";
 import { logout } from "../../../features/slice/userSlice";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import NotificationModal from "../Notification/NotificationModal";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 
 const Header = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
@@ -35,9 +37,11 @@ const Header = () => {
   const { role, name, image, firstName, lastName } = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
 
-  const [notificationOpen, setNotificationOpen] = React.useState(false);
-  const handleNotificationOpen = () => setNotificationOpen(true);
-  const handleNotificationClose = () => setNotificationOpen(false);
+  const [notificationOpen, setNotificationOpen] = React.useState(null);
+  const handleNotificationOpen = (e) => {
+    setNotificationOpen(e.currentTarget);
+  };
+  const handleNotificationClose = () => setNotificationOpen(null);
   const { allUnreadNotifications } = useSelector((state) => state.notification);
   const reset = useReset;
 
@@ -70,6 +74,8 @@ const Header = () => {
   const handleGoBack = () => {
     navigate(-1);
   };
+  const openPopover = Boolean(notificationOpen);
+  const id = openPopover ? "simple-popover" : undefined;
 
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
@@ -131,7 +137,7 @@ const Header = () => {
             mx: 0,
             py: 1,
             px: 0,
-            paddingLeft: "16px",
+            // paddingLeft: "16px",
           }}
         >
           <Box
@@ -169,46 +175,43 @@ const Header = () => {
                 </Typography>
               </Button>
             </Box>
-            {/* <Button>
-              {isLightTheme ? (
-                <DarkModeIcon onClick={() => dispatch(setTheme(false))} />
-              ) : (
-                <LightModeIcon onClick={() => dispatch(setTheme(true))} />
-              )}
-            </Button>
-            <Button
-              sx={{
-                display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "center",
-              }}
-              onClick={handleNotificationOpen}>
-              {allUnreadNotifications.length === 0 ? (
-                <NotificationsNoneIcon sx={{ color: "#1976d2" }} />
-              ) : (
-                <>
-                  <Badge
-                    badgeContent={allUnreadNotifications.length}
-                    color="primary">
-                    <NotificationsActiveIcon sx={{ color: "#1976d2" }} />
-                  </Badge>
-                </>
-              )}
-            </Button> */}
-            <NotificationModal
-              handleSeeAll={handleSeeAll}
-              notificationOpen={notificationOpen}
-              handleNotificationClose={handleNotificationClose}
-            />
 
             {/* <Box xs={2} sx={{ px: 2 }}>
               <img src={line} height="100%" />
             </Box> */}
-            <Box sx={{ display: "flex" }}>
+            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
               <FormControlLabel
                 onClick={() => dispatch(setTheme(!isLightTheme))}
                 control={<MaterialUISwitch sx={{ m: 1 }} checked={isLightTheme ? false : true} />}
               />
+              <Button
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  alignItems: "center",
+                  mr: 3,
+                }}
+                aria-describedby={id}
+                onClick={handleNotificationOpen}
+              >
+                {allUnreadNotifications.length === 0 ? (
+                  <NotificationsNoneIcon sx={{ color: "#1976d2" }} />
+                ) : (
+                  <>
+                    <Badge badgeContent={allUnreadNotifications.length} color="primary">
+                      <NotificationsActiveIcon sx={{ color: "#1976d2" }} />
+                    </Badge>
+                  </>
+                )}
+              </Button>
+              <NotificationModal
+                openPopover={openPopover}
+                id={id}
+                handleSeeAll={handleSeeAll}
+                notificationOpen={notificationOpen}
+                handleNotificationClose={handleNotificationClose}
+              />
+
               <Box sx={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
                 <Avatar
                   alt="Profile Picture"

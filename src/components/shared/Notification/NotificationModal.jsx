@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Popover } from "@mui/material";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
@@ -23,45 +23,52 @@ import SingleNotification from "./SingleNotification";
 
 const style = {
   position: "absolute",
-  top: "15%",
-  left: "69%",
+  top: "9%",
+  left: "71%",
   transform: "translate(-50%, -15%)",
   width: 600,
   bgcolor: "background.paper",
-  boxShadow: 24,
+  boxShadow: 0,
+  overlayStyle: "white",
+  border: "1px solid gray",
+  // opacity: "0.9",
+  // zIndex: -2,
 };
-
+const PopoverStyle = {
+  position: "absolute",
+  top: "9%",
+  left: "71%",
+  transform: "translate(-50%, -15%)",
+  width: 600,
+  bgcolor: "background.paper",
+  boxShadow: 0,
+  border: "1px solid gray",
+  // opacity: "0.9",
+  // zIndex: -2,
+};
 const boxStyle = {
   borderTop: "1px solid #E5E5E5",
   borderRadius: "5px",
-  padding: "10px",
+  padding: "2px",
 };
 
-const NotificationModal = ({
-  handleSeeAll,
-  notificationOpen,
-  handleNotificationClose,
-}) => {
-  const { notifications, latestUnreadNotifications, allUnreadNotifications } =
-    useSelector((state) => state.notification);
+const NotificationModal = ({ handleSeeAll, notificationOpen, handleNotificationClose, id, openPopover }) => {
+  const { notifications, latestUnreadNotifications, allUnreadNotifications } = useSelector(
+    (state) => state.notification
+  );
   const dispatch = useDispatch();
   const alert = useAlert();
 
   const markReadLatest = () => {
-    const notificationsId = latestUnreadNotifications.map(
-      (unreadNotification) => unreadNotification._id
-    );
+    const notificationsId = latestUnreadNotifications.map((unreadNotification) => unreadNotification._id);
     if (notificationsId.length > 0) {
       dispatch(readLatestNotification(notificationsId)).then(() => {
         dispatch(getAllNotifications());
         dispatch(getLatestNotifications());
         dispatch(getAllUnreadNotifications());
-        alert.show(
-          `Marked last ${notificationsId.length} notifications as read`,
-          {
-            type: "success",
-          }
-        );
+        alert.show(`Marked last ${notificationsId.length} notifications as read`, {
+          type: "success",
+        });
         handleNotificationClose();
       });
     } else {
@@ -73,22 +80,29 @@ const NotificationModal = ({
 
   return (
     <>
-      <Modal
-        open={notificationOpen}
+      <Popover
+        sx={{ width: "100%" }}
+        id={id}
+        open={openPopover}
+        anchorEl={notificationOpen}
         onClose={handleNotificationClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        // aria-labelledby="modal-modal-title"
+        // aria-describedby="modal-modal-description"
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
       >
-        <Box sx={style}>
-          <Box sx={{ py: 2, px: 2 }}>
-            <Grid container spacing={2}>
+        <Box sx={{ width: "450px" }}>
+          <Box sx={{ py: 1.5, px: 2 }}>
+            <Grid container spacing={2} gap={2}>
               <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                  <Typography
-                    variant="h6"
-                    sx={{ fontWeight: "bold" }}
-                    color="#090080"
-                  >
+                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <Typography variant="wpf_p3_semiBold" color="neutral.700">
                     Notifications ({allUnreadNotifications.length} New)
                   </Typography>
                   <Button
@@ -96,12 +110,13 @@ const NotificationModal = ({
                     sx={{
                       cursor: "pointer",
                       color: "#2D58FF",
+                      fontSize: "12px",
                       borderRadius: "5px",
                       textTransform: "none",
                     }}
                     onClick={markReadLatest}
                   >
-                    MARK READ LATEST
+                    Mark Read Latest
                   </Button>
                 </Box>
               </Grid>
@@ -109,10 +124,7 @@ const NotificationModal = ({
           </Box>
           <Box sx={boxStyle}>
             {latestUnreadNotifications.slice(0, 10).map((notification) => (
-              <SingleNotification
-                key={notification._id}
-                notification={notification}
-              />
+              <SingleNotification key={notification._id} notification={notification} />
             ))}
             <Box
               sx={{
@@ -120,14 +132,16 @@ const NotificationModal = ({
               }}
               onClick={handleSeeAll}
             >
-              <Typography mx={2} variant="body2" color="#5a4fc4">
+              {/* <Typography mx={2} variant="wpf_p2_semiBold" color="neutral.700">
+                Click here to sell all...
+              </Typography> */}
+              <Typography sx={{ ml: 2 }} variant="wpf_p4_medium" color="neutral.700">
                 Click here to sell all...
               </Typography>
             </Box>
           </Box>
-          <Box></Box>
         </Box>
-      </Modal>
+      </Popover>
     </>
   );
 };

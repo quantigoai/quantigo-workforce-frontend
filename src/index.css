@@ -18,3 +18,8 @@ body {
   margin-top: 0px;
 }
 
+
+.MuiBackdrop-root-MuiModal-backdrop{
+  background-color: "transparent"
+}
+

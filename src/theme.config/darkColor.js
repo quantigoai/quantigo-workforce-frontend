@@ -28,14 +28,19 @@ export const darkColors = {
     700: "#FFFFFF", // Light text color
     750: "#3A3A3A", // Darker background color
     800: "#000000", // Darkest background color
-    850: "#444444", // Lighter border color
+    850: "#444444",
+    900: "#23314D",
+    920: "#56627A",
+    950:"#FFF" // Lighter border color
   },
   primary: {
     main: "#266AED", // Primary color
     B100: "#266AED", // Lighter primary color
     B200: "#2E58FF", // Darker primary color
     B300: "#fff",
-    B008: "#2C2C2C", // Lighter background for primary
+    B007: "#2C2C2C",
+    B008: "#F4F7FE",
+    B009: "#2D58FF", // Lighter background for primary
   },
   error: {
     500: "#F04438", // Error color

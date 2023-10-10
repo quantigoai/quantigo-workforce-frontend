@@ -31,6 +31,8 @@ const TableWrapper = ({
   data,
   isChildDataLoading,
   setIsChildDataLoading,
+  handleReject,
+  handleOpenNDA,
 }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   // const { isLoading } = useSelector((state) => state.user);
@@ -65,6 +67,8 @@ const TableWrapper = ({
             stickyLastColumn={stickyLastColumn}
             columns={columns}
             isChildDataLoading={isChildDataLoading}
+            handleReject={handleReject}
+            handleOpenNDA={handleOpenNDA}
           />
         );
       } else if (role === "recruitment_manager") {
@@ -90,6 +94,8 @@ const TableWrapper = ({
             role={role}
             skillAlert={skillAlert}
             currentlyCheckedInProject={currentlyCheckedInProject}
+            handleReject={handleReject}
+            handleOpenNDA={handleOpenNDA}
           />
         );
       } else if (role === "recruitment_manager") {

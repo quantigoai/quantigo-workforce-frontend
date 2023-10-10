@@ -7,7 +7,7 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 import { Box, Button, Grid, MenuItem, Modal, Paper, Select, TextField, Typography, styled } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 export const MyTextField = styled(TextField)(() => ({
@@ -48,6 +48,7 @@ const style = {
 
 const NdaRejectModal = ({ openModal, handleClose, onSubmit }) => {
   const { register, handleSubmit } = useForm();
+  
   return (
     <>
       <Modal
@@ -61,19 +62,17 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit }) => {
             height: { xl: "40%", lg: "50%" },
             width: { xl: "35%", lg: "60%" },
           }}>
-             <form onSubmit={handleSubmit(onSubmit)}>
-          <Box sx={{ flex: "0 0 5%" }}>
-            <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Confirm Rejection"} />
-          </Box>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Box sx={{ flex: "0 0 5%" }}>
+              <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Confirm Rejection"} />
+            </Box>
 
-          <Box
-            sx={{
-              flex: "1",
-              overflowY: "auto",
-              padding: "2%",
-             
-            }}>
-         
+            <Box
+              sx={{
+                flex: "1",
+                overflowY: "auto",
+                padding: "2%",
+              }}>
               <Grid container style={{ padding: "1%" }}>
                 <Grid container sx={{ paddingBottom: "1%" }}>
                   <Typography
@@ -112,89 +111,82 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit }) => {
                     Rejection Cause
                   </Typography>
                   <MyTextField
-                    // type={isNumber || isNumberPdr ? "number" : "text"}
-                    //   id="outlined-basic"
                     variant="outlined"
-                    // {...field}
                     fullWidth
                     multiline
                     rows={5}
                     InputProps={{ disableUnderline: true }}
+                   
                     {...register("rejectionCause", {
                       required: false,
                     })}
                   />
-
-              
                 </Grid>
-               
               </Grid>
-         
-          </Box>
-          <Box
-            sx={{
-              flex: "0 0 64px",
-              borderTop: "2px solid #F2F6FC",
-              backgroundColor: "#FFFFFF",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "0 2%",
+            </Box>
+            <Box
+              sx={{
+                flex: "0 0 64px",
+                borderTop: "2px solid #F2F6FC",
+                backgroundColor: "#FFFFFF",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "0 2%",
 
-              bottom: "0px",
-              borderRadius: "8px",
-            }}>
-            <Grid container sx={{ padding: "2%" }}>
-              <Grid item xs={6}>
-                <Button
-                  sx={{
-                    width: "120px",
-                    textTransform: "none",
-                    backgroundColor: "#F4F7FE",
-                    color: "#62728F",
-                    borderRadius: "8px",
-                    "&:hover": {
+                bottom: "0px",
+                borderRadius: "8px",
+              }}>
+              <Grid container sx={{ padding: "2%" }}>
+                <Grid item xs={6}>
+                  <Button
+                    sx={{
+                      width: "120px",
+                      textTransform: "none",
                       backgroundColor: "#F4F7FE",
                       color: "#62728F",
-                      border: "1px solid #F4F7FE",
-                    },
-                  }}
-                  onClick={() => handleClose()}>
-                  Cancel
-                </Button>
-              </Grid>
-              <Grid item xs={6}>
-                <Grid container sx={{ justifyContent: "right" }}>
-                  <Button
-                    type="submit"
-                    sx={{
-                      width: "128px",
-                      textTransform: "none",
-                      backgroundColor: "#2E58FF",
-                      color: "#FFFFFF",
-
                       borderRadius: "8px",
-                      "&.Mui-disabled": {
-                        // background: "#eaeaea",
-                        color: "#FFFFFF",
-                      },
                       "&:hover": {
-                        backgroundColor: "#2E58FF",
-                        color: "#FFFFFF",
-                        // border: "1px solid #2E58FF",
+                        backgroundColor: "#F4F7FE",
+                        color: "#62728F",
+                        border: "1px solid #F4F7FE",
                       },
                     }}
-                    // onClick={() => handleChange()}
-                  >
-                    Save Changes
+                    onClick={() => handleClose()}>
+                    Cancel
                   </Button>
                 </Grid>
+                <Grid item xs={6}>
+                  <Grid container sx={{ justifyContent: "right" }}>
+                    <Button
+                      type="submit"
+                      sx={{
+                        width: "128px",
+                        textTransform: "none",
+                        backgroundColor: "#2E58FF",
+                        color: "#FFFFFF",
+
+                        borderRadius: "8px",
+                        "&.Mui-disabled": {
+                          // background: "#eaeaea",
+                          color: "#FFFFFF",
+                        },
+                        "&:hover": {
+                          backgroundColor: "#2E58FF",
+                          color: "#FFFFFF",
+                          // border: "1px solid #2E58FF",
+                        },
+                      }}
+                      // onClick={() => handleChange()}
+                    >
+                      Save Changes
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
-            </Grid>
             </Box>
-            </form>
+          </form>
         </Box>
-      
       </Modal>
     </>
   );

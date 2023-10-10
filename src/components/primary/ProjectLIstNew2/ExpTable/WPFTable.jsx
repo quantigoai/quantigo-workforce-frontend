@@ -32,6 +32,8 @@ export default function WPFTable({
   stickyLastColumn,
   columns,
   isChildDataLoading,
+  handleReject,
+  handleOpenNDA,
 }) {
   return (
     myColumn.length > 0 && (
@@ -61,8 +63,7 @@ export default function WPFTable({
                   position: "absolute",
                   top: "50%",
                   left: "50%",
-                }}
-              >
+                }}>
                 <LoadingComponent height="100%" />
               </Box>
             ) : (
@@ -98,6 +99,8 @@ export default function WPFTable({
                         row={row}
                         handleClick={handleClick}
                         handleDelete={handleDelete}
+                        handleReject={handleReject}
+                        handleOpenNDA={handleOpenNDA}
                       />
                     ))}
                   </TableRow>

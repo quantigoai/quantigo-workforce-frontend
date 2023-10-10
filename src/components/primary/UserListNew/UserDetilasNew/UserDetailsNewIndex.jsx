@@ -9,9 +9,12 @@ import CommonModalFooter from "../../../shared/CommonModal/CommonModalFooter";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 import DetailsTab from "./DetailsTab";
 import styled from "./testDrawer";
+import useToaster from "../../../../customHooks/useToaster";
 
 export default function UserDetailsNewIndex({ open, handleClose, role }) {
   const alert = useAlert();
+
+  const toast = useToaster();
   const { targetedUser: user } = useSelector((state) => state.user);
   const [roleValue, setRole] = React.useState("");
   const [actionStatus, setActionStatus] = React.useState("");

@@ -1,21 +1,22 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
-import {Box, Button, Grid, Paper, Table, TableBody, TableContainer, TableHead, TableRow,} from "@mui/material";
-import TableCell, {tableCellClasses} from "@mui/material/TableCell";
-import {styled} from "@mui/material/styles";
-import {useDispatch, useSelector} from "react-redux";
 import MoveUpIcon from "@mui/icons-material/MoveUp";
 import SwipeRightIcon from "@mui/icons-material/SwipeRight";
+import { Box, Button, Grid, Paper, Table, TableBody, TableContainer, TableHead, TableRow } from "@mui/material";
+import TableCell from "@mui/material/TableCell";
+import { styled } from "@mui/material/styles";
+import { useDispatch, useSelector } from "react-redux";
 
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {setActivePath} from "../../../features/slice/activePathSlice";
-import {getAjobInfoById, submitAJob, superJobSetStatus, updateReviewerStatus,} from "../../../features/slice/jobSlice";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { setActivePath } from "../../../features/slice/activePathSlice";
+import { getAjobInfoById, submitAJob, superJobSetStatus, updateReviewerStatus } from "../../../features/slice/jobSlice";
 import CountDown from "../../shared/CountDown/CountDown";
 import SearchBar from "../../shared/SearchBar/SearchBar";
 import ActiveJobAnnotatorDetails from "./JobDetails/ActiveJobAnnotatorDetails";
 import JobStatusField from "./JobStatusBox/JobStatusField";
 import RejectModal from "./RejectModal/RejectModal";
+import useToaster from "../../../customHooks/useToaster";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -25,7 +26,6 @@ const ButtonStyle = styled(Button)({
     color: "#1D1D1D",
   },
 });
-
 
 const ActiveJobList = ({ action }) => {
   const [open, setOpen] = useState(false);
@@ -49,23 +49,18 @@ const ActiveJobList = ({ action }) => {
 
   const alert = useAlert();
 
+  const toast = useToaster();
+
   useEffect(() => {
     if (action === "archivejobs") {
       setFilterMyJobs(
-        myJobs.filter(
-          (job) =>
-            job.status === "rejected" ||
-            job.status === "completed" ||
-            job.status === "expired"
-        )
+        myJobs.filter((job) => job.status === "rejected" || job.status === "completed" || job.status === "expired")
       );
     } else if (action === "jobs") {
       setFilterMyJobs(
         myJobs.filter(
           (job) =>
-            !job.status.includes("rejected") &&
-            !job.status.includes("completed") &&
-            !job.status.includes("expired")
+            !job.status.includes("rejected") && !job.status.includes("completed") && !job.status.includes("expired")
         )
       );
     } else {
@@ -79,11 +74,7 @@ const ActiveJobList = ({ action }) => {
     setSearch(e.target.value);
   };
   const filtered = filterMyJobs.filter((entry) =>
-    Object.values(entry).some(
-      (val) =>
-        typeof val === "string" &&
-        val.toLowerCase().includes(search.toLowerCase())
-    )
+    Object.values(entry).some((val) => typeof val === "string" && val.toLowerCase().includes(search.toLowerCase()))
   );
   const handleRejectJob = (id, name) => {
     setOpenModal(true);
@@ -99,15 +90,9 @@ const ActiveJobList = ({ action }) => {
     };
 
     dispatch(getAjobInfoById(data)).then((action) => {
-      if (
-        action.payload.data.status === "in_progress" ||
-        action.payload.data.status === "on_review"
-      ) {
+      if (action.payload.data.status === "in_progress" || action.payload.data.status === "on_review") {
         dispatch(submitAJob(id)).then((action) => {
-          if (
-            action.payload?.status === 200 ||
-            action.payload?.status === 201
-          ) {
+          if (action.payload?.status === 200 || action.payload?.status === 201) {
             alert.show(action.payload.data.message, { type: "success" });
           } else if (action.payload?.status === 206) {
             alert.show(action.payload?.data.message, { type: "error" });
@@ -171,7 +156,8 @@ const ActiveJobList = ({ action }) => {
               paddingLeft: "3%",
               paddingRight: "3%",
               paddingBottom: "0%",
-            }}>
+            }}
+          >
             <SearchBar placeholder="Search a Job" func={handleChange} />
           </Grid>
           <Grid
@@ -181,72 +167,55 @@ const ActiveJobList = ({ action }) => {
               paddingLeft: "3%",
               paddingRight: "3%",
               paddingBottom: "3%",
-            }}>
+            }}
+          >
             <TableContainer>
               <Table sx={{ border: "1px solid #DADCDF" }}>
                 <TableHead sx={{ background: "#F8F8F8", height: "80px" }}>
                   <TableRow>
-                    <TableCell
-                      align="left"
-                      sx={{ color: "#969CAF", fontSize: "20px" }}>
+                    <TableCell align="left" sx={{ color: "#969CAF", fontSize: "20px" }}>
                       No
                     </TableCell>
 
-                    <TableCell sx={{ color: "#969CAF", fontSize: "20px" }}>
-                      Title
-                    </TableCell>
+                    <TableCell sx={{ color: "#969CAF", fontSize: "20px" }}>Title</TableCell>
 
                     {role === "reviewer" ? (
-                      <TableCell
-                        align="left"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      <TableCell align="left" sx={{ color: "#969CAF", fontSize: "20px" }}>
                         Status{" "}
                       </TableCell>
                     ) : (
-                      <TableCell
-                        align="left"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      <TableCell align="left" sx={{ color: "#969CAF", fontSize: "20px" }}>
                         Status
                       </TableCell>
                     )}
                     {role === "reviewer" || action === "archivejobs" ? (
                       <></>
                     ) : (
-                      <TableCell
-                        align="left"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      <TableCell align="left" sx={{ color: "#969CAF", fontSize: "20px" }}>
                         Time Left
                       </TableCell>
                     )}
                     {role === "reviewer" ? (
-                      <TableCell
-                        align="left"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      <TableCell align="left" sx={{ color: "#969CAF", fontSize: "20px" }}>
                         Action
                       </TableCell>
                     ) : action === "archivejobs" ? (
                       <></>
                     ) : (
                       <>
-                        <TableCell
-                          align="left"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        <TableCell align="left" sx={{ color: "#969CAF", fontSize: "20px" }}>
                           {" "}
                           Submit job
                         </TableCell>
                       </>
                     )}
 
-                    <TableCell
-                      align="left"
-                      sx={{ color: "#969CAF", fontSize: "20px" }}>
+                    <TableCell align="left" sx={{ color: "#969CAF", fontSize: "20px" }}>
                       {" "}
                       Job Link
                     </TableCell>
 
-                    <TableCell
-                      align="left"
-                      sx={{ color: "#969CAF", fontSize: "20px" }}>
+                    <TableCell align="left" sx={{ color: "#969CAF", fontSize: "20px" }}>
                       {" "}
                       Details
                     </TableCell>
@@ -276,10 +245,7 @@ const ActiveJobList = ({ action }) => {
                         <TableCell align="left">
                           {job.status === "reviewing" ? (
                             <>
-                              <Button
-                                onClick={() =>
-                                  handleRejectJob(job._id, job.job.name)
-                                }>
+                              <Button onClick={() => handleRejectJob(job._id, job.job.name)}>
                                 <SwipeRightIcon />
                                 Action
                               </Button>
@@ -298,7 +264,8 @@ const ActiveJobList = ({ action }) => {
                               <ButtonStyle
                                 variant="outlined"
                                 disabled={isLoading}
-                                onClick={() => handleSubmitJob(job, job._id)}>
+                                onClick={() => handleSubmitJob(job, job._id)}
+                              >
                                 Submit
                               </ButtonStyle>
                             ) : (
@@ -324,10 +291,7 @@ const ActiveJobList = ({ action }) => {
                           {" "}
                           <TableCell>
                             {" "}
-                            <Button
-                              onClick={() =>
-                                handleClick(job.reviewerJobLink, job.spvJobId)
-                              }>
+                            <Button onClick={() => handleClick(job.reviewerJobLink, job.spvJobId)}>
                               <MoveUpIcon />
                             </Button>
                           </TableCell>
@@ -337,10 +301,7 @@ const ActiveJobList = ({ action }) => {
                           {" "}
                           <TableCell>
                             {" "}
-                            <Button
-                              onClick={() =>
-                                handleClick(job.jobLink, job.spvJobId)
-                              }>
+                            <Button onClick={() => handleClick(job.jobLink, job.spvJobId)}>
                               <MoveUpIcon />
                             </Button>
                           </TableCell>

@@ -6,11 +6,14 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAUserById } from "../../../../features/slice/userSlice";
-import NdaRejectModal from "./NdaRejectModal";
 import AcceptModal from "./AcceptModal";
+import NdaRejectModal from "./NdaRejectModal";
+import useToaster from "../../../../customHooks/useToaster";
 
 const NdaAccept = ({ signNda, user, isNDASigned, signImage }) => {
   const alert = useAlert();
+
+  const toast = useToaster();
   const serverLink = "https://wmpserver.onrender.com/api/v1/";
   const pdfLink = serverLink.concat(signNda);
   const [isVerified, setIsVerified] = useState();

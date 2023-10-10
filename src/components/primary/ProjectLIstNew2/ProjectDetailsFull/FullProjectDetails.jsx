@@ -20,6 +20,7 @@ import ProjectDetailsHeader from "./ProjectDetailsHeader";
 import { addDays } from "date-fns";
 import { useAlert } from "react-alert";
 import CheckOutModal from "./CheckOutModal";
+import useToaster from "../../../../customHooks/useToaster";
 
 const FullProjectDetails = () => {
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
@@ -40,6 +41,8 @@ const FullProjectDetails = () => {
   const [skillAlert, setSkillAlert] = useState(false);
 
   const alert = useAlert();
+
+  const toast = useToaster();
   const dispatch = useDispatch();
   const [isDisable, setIsDisable] = useState(false);
   const [checkOutDisable, setCheckOutDisable] = useState(false);

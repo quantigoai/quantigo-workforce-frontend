@@ -5,10 +5,13 @@ import { useAlert } from "react-alert";
 import { useDispatch } from "react-redux";
 import { createProjectDirectory } from "../../../features/slice/ProjectDirectorySlice";
 import CreateProjectDirectoryModal from "./CreateProjectDirectoryModal";
+import useToaster from "../../../customHooks/useToaster";
 
 const CreateProjectDirectory = () => {
   const [open, setOpen] = useState(false);
   const alert = useAlert();
+
+  const toast = useToaster();
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const handleCreateModal = () => {
@@ -60,11 +63,7 @@ const CreateProjectDirectory = () => {
           </Box>
         </Button>
       </Box>
-      <CreateProjectDirectoryModal
-        openModal={openModal}
-        handleClose={handleClose}
-        onSubmit={onSubmit}
-      />
+      <CreateProjectDirectoryModal openModal={openModal} handleClose={handleClose} onSubmit={onSubmit} />
     </>
   );
 };

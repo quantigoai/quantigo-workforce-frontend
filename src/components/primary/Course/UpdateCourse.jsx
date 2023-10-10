@@ -12,7 +12,8 @@ import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import useToaster from "../../../customHooks/useToaster";
 import { updateACourseById } from "../../../features/slice/courseSlice";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
@@ -58,17 +59,14 @@ const UpdateCourse = () => {
   const [name, setName] = useState(course.name);
   const [error, setError] = useState(false);
 
-  const [isPreRequisiteCourseEmpty, setIsPreRequisiteCourseEmpty] =
-    useState(false);
+  const [isPreRequisiteCourseEmpty, setIsPreRequisiteCourseEmpty] = useState(false);
   const alert = useAlert();
+
+  const toast = useToaster();
 
   useEffect(() => {
     setContent(course?.content);
-    setCourseName(
-      courses.map(
-        (item) => item.name !== course.name && item.name.toLowerCase()
-      )
-    );
+    setCourseName(courses.map((item) => item.name !== course.name && item.name.toLowerCase()));
   }, [course]);
 
   const [coverImageFile, setCoverImageFile] = useState(null);
@@ -153,9 +151,7 @@ const UpdateCourse = () => {
     ]);
     !selectedPreRequisiteCourses.length && setIsPreRequisiteCourseEmpty(true);
     setPreRequisiteCourses(
-      typeof selectedPreRequisiteCourses === "string"
-        ? value.split(",")
-        : selectedPreRequisiteCourses
+      typeof selectedPreRequisiteCourses === "string" ? value.split(",") : selectedPreRequisiteCourses
     );
   };
 
@@ -188,8 +184,7 @@ const UpdateCourse = () => {
     formData.append("liveSessionLink", data.liveSessionLink);
     liveSessionTime && formData.append("liveSessionStartedAt", liveSessionTime);
 
-    preRequisiteCourses.length &&
-      formData.append("prerequisiteCourses", preRequisiteCoursesColl);
+    preRequisiteCourses.length && formData.append("prerequisiteCourses", preRequisiteCoursesColl);
     isPreRequisiteCourseEmpty && formData.append("prerequisiteCourses", []);
     skill.length && formData.append("skills", skillColl);
     isSkillEmpty && formData.append("skills", []);
@@ -203,10 +198,10 @@ const UpdateCourse = () => {
     dispatch(updateACourseById(newData)).then((action) => {
       if (action.payload?.status === 200) {
         const id = action.payload.data._id;
-        alert.show("Course updated successfully", { type: "success" });
+        toast.trigger("Course updated successfully", "success");
         navigate(`/course-details/${id}`);
       } else {
-        alert.show("Can not update course", { type: "error" });
+        toast.trigger("Can not update course", "error");
       }
     });
   };
@@ -241,11 +236,7 @@ const UpdateCourse = () => {
                     <Stack direction="column" spacing={3}>
                       <Grid container spacing={2}>
                         <Grid item xs={6}>
-                          <NameField
-                            course={course}
-                            register={register}
-                            nameValidation={nameValidation}
-                          />
+                          <NameField course={course} register={register} nameValidation={nameValidation} />
                           {error && (
                             <Box
                               style={{
@@ -261,18 +252,13 @@ const UpdateCourse = () => {
                         </Grid>
 
                         <Grid item xs={6}>
-                          <DescriptionField
-                            course={course}
-                            register={register}
-                          />
+                          <DescriptionField course={course} register={register} />
                         </Grid>
                       </Grid>
                       <PreRequisiteCourse
                         course={course}
                         courses={courses}
-                        handleChange_Pre_Requisite_Course={
-                          handleChange_Pre_Requisite_Course
-                        }
+                        handleChange_Pre_Requisite_Course={handleChange_Pre_Requisite_Course}
                         perRequisiteCourses={preRequisiteCourses}
                         MenuProps={MenuProps}
                       />
@@ -315,11 +301,7 @@ const UpdateCourse = () => {
                     <Typography>Course Cover Image</Typography>
                   </Grid>
 
-                  <CoverImageField
-                    coverImage={coverImage}
-                    removeImage={removeImage}
-                    handleImage={handleImage}
-                  />
+                  <CoverImageField coverImage={coverImage} removeImage={removeImage} handleImage={handleImage} />
                 </Grid>
               </Grid>
             </Grid>

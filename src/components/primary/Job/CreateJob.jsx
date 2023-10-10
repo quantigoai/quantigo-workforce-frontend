@@ -14,17 +14,14 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getDataSetByProjectID } from "../../../features/slice/datasetSlice";
-import {
-  createJob,
-  getVideoId,
-  videoJobCreate,
-} from "../../../features/slice/jobSlice";
+import { createJob, getVideoId, videoJobCreate } from "../../../features/slice/jobSlice";
 import { getProjectByWorkSpace } from "../../../features/slice/projectByWorkspaceSlice";
 import { getAllTeams } from "../../../features/slice/teamSlice";
 import { getWorkSpaceById } from "../../../features/slice/workSpaceSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import SelectMenu from "../BenchMark/SelectMenu";
 import OptionalFields from "./SharedComponents/OptionalFields";
+import useToaster from "../../../customHooks/useToaster";
 
 const paperstyle = {
   width: "80vw",
@@ -43,6 +40,8 @@ const CreateJob = () => {
   const [skills, setSkills] = useState([]);
   const { skills: rootSkills } = useSelector((state) => state.skill);
   const alert = useAlert();
+
+  const toast = useToaster();
   const [server, setServer] = useState("ag");
   const navigate = useNavigate();
   const handleChangeServer = (e) => {
@@ -190,11 +189,7 @@ const CreateJob = () => {
                 jobCreate={true}
                 handleChangeServer={handleChangeServer}
               />
-              <OptionalFields
-                register={register}
-                setSkills={setSkills}
-                projectType={projectType}
-              />
+              <OptionalFields register={register} setSkills={setSkills} projectType={projectType} />
             </Grid>
           </Paper>
         </Box>

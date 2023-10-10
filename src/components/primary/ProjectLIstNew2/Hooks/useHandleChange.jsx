@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAlert } from "react-alert";
 import { useSelector } from "react-redux";
+import useToaster from "../../../../customHooks/useToaster";
 // import { roleOptions } from "./userFilterOptions";
 const useHandleChange = () => {
   const { skills } = useSelector((state) => state.skill);
@@ -10,6 +11,8 @@ const useHandleChange = () => {
   const [addRoles, setAddRoles] = useState([]);
 
   const alert = useAlert();
+
+  const toast = useToaster();
 
   const handleChangeSkill = (event) => {
     const {

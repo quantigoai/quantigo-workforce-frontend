@@ -27,7 +27,7 @@ import LineChart from "./LineChart/LineChart";
 import LineChartDaily from "./LineChart/LineChartDaily";
 import PieChart from "./PieChart/PieChart";
 import PieChartForUser from "./PieChart/PieChartForUser";
-import Testfield from "./Testfield";
+import useToaster from "../../../customHooks/useToaster";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -41,6 +41,8 @@ const Dashboard = () => {
   const { isLoading } = useSelector((state) => state.user);
   const { role } = user.user;
   const alert = useAlert();
+
+  const toast = useToaster();
   // ! TODO Configure it later
   useEffect(() => {
     setProjectLoading(true);
@@ -89,7 +91,8 @@ const Dashboard = () => {
         <>
           <Box
             // sx={{ backgroundColor: "#F5F5F5", height: "100%", width: "100%" }}>
-            sx={{ padding: "1%" ,height:"100%"}}>
+            sx={{ padding: "1%", height: "100%" }}
+          >
             {role === "level_0_annotator" ? (
               <>
                 {user.user.isVerified ? <CongratulationComponents /> : <DashboardDocument />}
@@ -111,7 +114,8 @@ const Dashboard = () => {
                         paddingRight: "%",
                         width: "100%",
                         // height: "100%",
-                      }}>
+                      }}
+                    >
                       <Paper
                         elevation={0}
                         sx={{
@@ -119,7 +123,8 @@ const Dashboard = () => {
                           // width: "100%",
                           // height: "100%",
                           // height: "90px",
-                        }}>
+                        }}
+                      >
                         {!projectLoading && (
                           <BarChart
                             startDate={startDate}
@@ -156,7 +161,8 @@ const Dashboard = () => {
                             height: "99%",
                             borderRadius: "8px",
                             paddingLeft: "3%",
-                          }}>
+                          }}
+                        >
                           {/* <Grid sx={{ paddingTop: "5%" }}></Grid> */}
                           <PieChartForUser />
                         </Paper>
@@ -169,7 +175,8 @@ const Dashboard = () => {
                             height: "99%",
                             borderRadius: "8px",
                             paddingLeft: "3%",
-                          }}>
+                          }}
+                        >
                           <PieChart />
                         </Paper>
                       </Grid>
@@ -201,7 +208,8 @@ const Dashboard = () => {
               height: "100%",
               // width: "100%",
               padding: "1%",
-            }}>
+            }}
+          >
             <Paper elevation={0} style={paperstyleResendEmail}>
               <Grid container sx={{ justifyContent: "center", paddingTop: "7%" }}>
                 <Typography variant="h4" sx={{ color: "#090080" }}>
@@ -215,7 +223,8 @@ const Dashboard = () => {
                   justifyContent: "center",
                   paddingTop: "2%",
                   position: "relative",
-                }}>
+                }}
+              >
                 <Button
                   disabled={isLoading}
                   sx={{
@@ -226,7 +235,8 @@ const Dashboard = () => {
                       color: "#1D1D1D",
                     },
                   }}
-                  onClick={() => handleresendEmail()}>
+                  onClick={() => handleresendEmail()}
+                >
                   Resend Email
                 </Button>
                 {isLoading && (

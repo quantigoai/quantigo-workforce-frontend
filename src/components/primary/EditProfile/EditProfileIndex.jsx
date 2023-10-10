@@ -4,26 +4,23 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import {
-  myProfileEdit,
-  removeMyImage,
-  uploadMyImage,
-} from "../../../features/slice/userSlice";
+import { myProfileEdit, removeMyImage, uploadMyImage } from "../../../features/slice/userSlice";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
+import ActivateDeactivateStatus from "./ActivateDeactivateStatus";
 import AddressField from "./AddressField";
 import CityField from "./CityField";
 import DobField from "./DobField";
 import EmailField from "./EmailField";
 import GenderField from "./GenderField";
+import NagadPhoneNumberField from "./NagadPhoneNumberField";
 import NameFiled from "./NameFiled";
 import OccupationField from "./OccupationField";
+import ChangePasswordIndex from "./Password/ChangePasswordIndex";
 import PhoneNumberField from "./PhoneNumberField";
 import ProfilePictureIndex from "./ProfilePicture/ProfilePictureIndex";
 import SkillShowUser from "./SkillShowUser";
-import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
-import ActivateDeactivateStatus from "./ActivateDeactivateStatus";
-import ChangePasswordIndex from "./Password/ChangePasswordIndex";
-import NagadPhoneNumberField from "./NagadPhoneNumberField";
+import useToaster from "../../../customHooks/useToaster";
 
 const paperStyle = {
   width: "100%",
@@ -32,6 +29,8 @@ const EditProfileIndex = () => {
   const { register, handleSubmit } = useForm();
   const location = useLocation();
   const alert = useAlert();
+
+  const toast = useToaster();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, isLoading } = useSelector((state) => state.user);
@@ -101,7 +100,8 @@ const EditProfileIndex = () => {
               container
               sx={{
                 paddingBottom: "2%",
-              }}>
+              }}
+            >
               <CommonHeader
                 title="Profile"
                 // description={}
@@ -114,7 +114,8 @@ const EditProfileIndex = () => {
               container
               sx={{
                 paddingBottom: "2%",
-              }}>
+              }}
+            >
               <CommonHeader
                 title="Show Profile"
                 // description={}
@@ -178,11 +179,7 @@ const EditProfileIndex = () => {
             </Grid>
             <Grid container sx={{ paddingBottom: "1%" }}>
               <Grid item xs={6} sx={{ paddingRight: "1%" }}>
-                <NameFiled
-                  editAble={editAble}
-                  user={user}
-                  register={register}
-                />
+                <NameFiled editAble={editAble} user={user} register={register} />
               </Grid>
               <Grid item xs={6}>
                 <GenderField user={user} />
@@ -190,11 +187,7 @@ const EditProfileIndex = () => {
             </Grid>
             <Grid container>
               <Grid item xs={6} sx={{ paddingRight: "1%" }}>
-                <OccupationField
-                  editAble={editAble}
-                  user={user}
-                  register={register}
-                />
+                <OccupationField editAble={editAble} user={user} register={register} />
               </Grid>
               <Grid item xs={6}>
                 <DobField user={user} />
@@ -209,11 +202,7 @@ const EditProfileIndex = () => {
             </Grid>
             <Grid container sx={{ paddingBottom: "1%" }}>
               <Grid item xs={6} sx={{ paddingRight: "1%" }}>
-                <PhoneNumberField
-                  editAble={editAble}
-                  user={user}
-                  register={register}
-                />
+                <PhoneNumberField editAble={editAble} user={user} register={register} />
               </Grid>
               <Grid item xs={6}>
                 <EmailField user={user} />
@@ -221,27 +210,15 @@ const EditProfileIndex = () => {
             </Grid>
             <Grid container sx={{ paddingBottom: "1%" }}>
               <Grid item xs={6} sx={{ paddingRight: "1%" }}>
-                <AddressField
-                  editAble={editAble}
-                  user={user}
-                  register={register}
-                />
+                <AddressField editAble={editAble} user={user} register={register} />
               </Grid>
               <Grid item xs={6}>
-                <CityField
-                  editAble={editAble}
-                  user={user}
-                  register={register}
-                />
+                <CityField editAble={editAble} user={user} register={register} />
               </Grid>
             </Grid>
             <Grid container>
               <Grid item xs={6} sx={{ paddingRight: "1%" }}>
-                <NagadPhoneNumberField
-                  editAble={editAble}
-                  user={user}
-                  register={register}
-                />
+                <NagadPhoneNumberField editAble={editAble} user={user} register={register} />
               </Grid>
               <Grid item xs={6}></Grid>
             </Grid>

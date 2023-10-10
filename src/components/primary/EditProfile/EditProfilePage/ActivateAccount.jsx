@@ -1,9 +1,10 @@
 import { Button } from "@mui/material";
 import React from "react";
-import ModalActivateAccount from "./ModalActivateAccount";
-import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
 import { activateDeactivateUser } from "../../../../features/slice/userSlice";
+import ModalActivateAccount from "./ModalActivateAccount";
+import useToaster from "../../../../customHooks/useToaster";
 
 const ActivateAccount = () => {
   const [open, setOpen] = React.useState(false);
@@ -11,6 +12,8 @@ const ActivateAccount = () => {
 
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
   const handleOpen = () => {
     setOpen(true);
   };
@@ -22,7 +25,6 @@ const ActivateAccount = () => {
       action: user.active ? "deactivate" : "activate",
     };
 
-    
     dispatch(activateDeactivateUser(finalData)).then((action) => {
       if (action.payload?.status === 200) {
         if (user.active) {
@@ -51,15 +53,11 @@ const ActivateAccount = () => {
             color: user.active ? "#F04438" : "#36B37E",
             border: user.active ? "1px solid #F04438" : "1px solid #36B37E",
           },
-        }}>
+        }}
+      >
         {user.active ? "Deactivate Accounts" : "Activate Account"}
       </Button>
-      <ModalActivateAccount
-        open={open}
-        handleOpen={handleOpen}
-        handleClose={handleClose}
-        handleChange={handleChange}
-      />
+      <ModalActivateAccount open={open} handleOpen={handleOpen} handleClose={handleClose} handleChange={handleChange} />
     </>
   );
 };

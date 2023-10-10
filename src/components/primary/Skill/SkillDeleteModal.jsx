@@ -1,21 +1,20 @@
-import {Box, Button, Dialog, DialogTitle} from "@mui/material";
-import React from "react";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { Box, Button, Dialog, DialogTitle } from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {deleteASkill, getAllSkills} from "../../../features/slice/skillSlice";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import React from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteASkill, getAllSkills } from "../../../features/slice/skillSlice";
+import useToaster from "../../../customHooks/useToaster";
 
 const SkillDeleteModal = ({ skill }) => {
   const [open, setOpen] = React.useState(false);
- ;
-
-  const { activeChapterIndex, activeCourseId } = useSelector(
-    (state) => state.activePath
-  );
+  const { activeChapterIndex, activeCourseId } = useSelector((state) => state.activePath);
   const alert = useAlert();
+
+  const toast = useToaster();
   const dispatch = useDispatch();
   const handleClickOpen = () => {
     setOpen(true);
@@ -50,13 +49,15 @@ const SkillDeleteModal = ({ skill }) => {
           },
           borderRadius: "2px",
         }}
-        onClick={handleClickOpen}>
+        onClick={handleClickOpen}
+      >
         <Box
           sx={{
             display: "flex",
             gap: 1,
             // justifyContent: "center",
-          }}>
+          }}
+        >
           <DeleteOutlineIcon />
         </Box>
       </Button>
@@ -64,14 +65,11 @@ const SkillDeleteModal = ({ skill }) => {
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description">
-        <DialogTitle id="alert-dialog-title">
-          {"Are you sure Delete Skill?"}
-        </DialogTitle>
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Are you sure Delete Skill?"}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Delete {skill.name}
-          </DialogContentText>
+          <DialogContentText id="alert-dialog-description">Delete {skill.name}</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>No</Button>

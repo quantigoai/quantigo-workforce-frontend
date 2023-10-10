@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { setNewPassword } from "../../../features/slice/userSlice";
 import HeaderNav from "../HomePage/HeaderNav";
+import useToaster from "../../../customHooks/useToaster";
 
 const ForgetPasswordBox = styled(Box)({
   display: "flex",
@@ -57,13 +58,14 @@ const ResetPassword = () => {
   const params = useParams();
   const { id, token } = params;
   const alert = useAlert();
+
+  const toast = useToaster();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  const handleClickShowConfirmPassword = () =>
-    setShowConfirmPassword((show) => !show);
+  const handleClickShowConfirmPassword = () => setShowConfirmPassword((show) => !show);
 
   const handleMouseDownConfirmPassword = (event) => {
     event.preventDefault();
@@ -120,14 +122,7 @@ const ResetPassword = () => {
         <HeaderNav />
         <Grid container>
           <Grid container style={{ justifyItems: "center" }}>
-            <Grid
-              item
-              xs={12}
-              sm={12}
-              md={6}
-              lg={6}
-              sx={{ paddingTop: "7%", paddingLeft: "31%" }}
-            >
+            <Grid item xs={12} sm={12} md={6} lg={6} sx={{ paddingTop: "7%", paddingLeft: "31%" }}>
               <ForgetPasswordBox>
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <Grid container sx={{ padding: "10%" }}>
@@ -173,11 +168,7 @@ const ResetPassword = () => {
                               sx={{ cursor: "pointer" }}
                               position="end"
                             >
-                              {showPassword ? (
-                                <VisibilityOff />
-                              ) : (
-                                <Visibility />
-                              )}
+                              {showPassword ? <VisibilityOff /> : <Visibility />}
                             </InputAdornment>
                           ),
                         }}
@@ -189,18 +180,12 @@ const ResetPassword = () => {
                       )}
                     </Grid>
                     <Grid container item xs={12} sx={{ paddingBottom: "4%" }}>
-                      <FormControl
-                        variant="filled"
-                        fullWidth
-                        sx={{ backgroundColor: "#FFFFFF" }}
-                      >
+                      <FormControl variant="filled" fullWidth sx={{ backgroundColor: "#FFFFFF" }}>
                         <InputLabel>Confirm Password</InputLabel>
                         <FilledInput
                           type={showConfirmPassword ? "text" : "password"}
                           id="filled-adornment-password"
-                          onChange={(e) =>
-                            handleConfirmPassword(e.target.value)
-                          }
+                          onChange={(e) => handleConfirmPassword(e.target.value)}
                           endAdornment={
                             <InputAdornment
                               onClick={handleClickShowConfirmPassword}
@@ -208,11 +193,7 @@ const ResetPassword = () => {
                               sx={{ cursor: "pointer" }}
                               position="end"
                             >
-                              {showConfirmPassword ? (
-                                <VisibilityOff />
-                              ) : (
-                                <Visibility />
-                              )}
+                              {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
                             </InputAdornment>
                           }
                         />

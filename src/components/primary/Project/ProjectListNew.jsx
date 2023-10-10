@@ -10,34 +10,35 @@
 import SaveIcon from "@mui/icons-material/Save";
 import SearchIcon from "@mui/icons-material/Search";
 import {
-    Box,
-    FormControl,
-    Grid,
-    InputAdornment,
-    InputLabel,
-    MenuItem,
-    Paper,
-    Select,
-    SvgIcon,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    TextField,
-    Typography,
+  Box,
+  FormControl,
+  Grid,
+  InputAdornment,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+  SvgIcon,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
 } from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {setActivePath} from "../../../features/slice/activePathSlice";
-import {getProjectByWorkSpace, updateAProjectById,} from "../../../features/slice/projectByWorkspaceSlice";
-import {getAllTeams} from "../../../features/slice/teamSlice";
-import {getWorkSpaceById} from "../../../features/slice/workSpaceSlice";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { setActivePath } from "../../../features/slice/activePathSlice";
+import { getProjectByWorkSpace, updateAProjectById } from "../../../features/slice/projectByWorkspaceSlice";
+import { getAllTeams } from "../../../features/slice/teamSlice";
+import { getWorkSpaceById } from "../../../features/slice/workSpaceSlice";
 import HubField from "./HubField";
 import PriorityField from "./PriorityField";
 import StatusField from "./StatusField";
+import useToaster from "../../../customHooks/useToaster";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -63,6 +64,8 @@ const ProjectListNew = () => {
   const { projects } = useSelector((state) => state.project);
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
   const [activeHub, setActiveHub] = React.useState([]);
   const [projectStatus, setProjectStatus] = React.useState("");
   const [priority, setPriority] = React.useState("");
@@ -93,11 +96,7 @@ const ProjectListNew = () => {
     setSearch(e.target.value);
   };
   const filtered = projects.filter((entry) =>
-    Object.values(entry).some(
-      (val) =>
-        typeof val === "string" &&
-        val.toLowerCase().includes(search.toLowerCase())
-    )
+    Object.values(entry).some((val) => typeof val === "string" && val.toLowerCase().includes(search.toLowerCase()))
   );
 
   const handleChangeTeam = (e) => {
@@ -155,15 +154,14 @@ const ProjectListNew = () => {
             display: "flex",
           }}
           xs={12}
-          container>
+          container
+        >
           <Typography variant="h4" style={{ color: "#090080" }}>
             Project
           </Typography>
         </Grid>
         <Grid xs={12}>
-          <Typography variant="caption">
-            Lorem ipsum dolor sit amet consectetur urna viverra.
-          </Typography>
+          <Typography variant="caption">Lorem ipsum dolor sit amet consectetur urna viverra.</Typography>
         </Grid>
       </Box>
 
@@ -182,7 +180,8 @@ const ProjectListNew = () => {
               paddingLeft: "3%",
               paddingRight: "3%",
               paddingBottom: "0%",
-            }}>
+            }}
+          >
             <FormControl
               variant="filled"
               fullWidth
@@ -192,15 +191,15 @@ const ProjectListNew = () => {
                 borderRadius: "4px",
                 // width: "238.5px",
                 height: "58px",
-              }}>
-              <InputLabel id="demo-simple-select-filled-label">
-                Server
-              </InputLabel>
+              }}
+            >
+              <InputLabel id="demo-simple-select-filled-label">Server</InputLabel>
               <Select
                 labelId="demo-simple-select-filled-label"
                 id="demo-simple-select-filled"
                 defaultValue={""}
-                onChange={(e) => handleChangeServer(e)}>
+                onChange={(e) => handleChangeServer(e)}
+              >
                 <MenuItem value={"quantigo"}>Quantigo Server</MenuItem>
                 <MenuItem value={"ag"}>Ag Server</MenuItem>
               </Select>
@@ -218,7 +217,8 @@ const ProjectListNew = () => {
                   borderRadius: "4px",
                   // width: "238.5px",
                   height: "58px",
-                }}>
+                }}
+              >
                 <InputLabel id="demo-simple-select-label">Team</InputLabel>
                 {teams.length > 0 && (
                   <Select
@@ -226,7 +226,8 @@ const ProjectListNew = () => {
                     id="demo-simple-select"
                     defaultValue=""
                     onChange={(e) => handleChangeTeam(e)}
-                    label="Team">
+                    label="Team"
+                  >
                     {teams.map((team) => (
                       <MenuItem key={team.id} value={team.id || ""}>
                         {team.name}
@@ -248,15 +249,11 @@ const ProjectListNew = () => {
                     borderRadius: "4px",
                     // width: "238.5px",
                     height: "58px",
-                  }}>
-                  <InputLabel id="demo-simple-select-label">
-                    Work Space{" "}
-                  </InputLabel>
+                  }}
+                >
+                  <InputLabel id="demo-simple-select-label">Work Space </InputLabel>
                   {workspaces.length > 0 && (
-                    <Select
-                      onChange={(e) => handleChangeWorkspace(e)}
-                      label="workspace"
-                      defaultValue={""}>
+                    <Select onChange={(e) => handleChangeWorkspace(e)} label="workspace" defaultValue={""}>
                       {workspaces.map((workspace) => (
                         <MenuItem key={workspace.id} value={workspace.id || ""}>
                           {workspace.name}
@@ -280,7 +277,8 @@ const ProjectListNew = () => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "0%",
-              }}>
+              }}
+            >
               <TextField
                 fullWidth
                 InputProps={{
@@ -304,7 +302,8 @@ const ProjectListNew = () => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "0%",
-              }}>
+              }}
+            >
               {!isLoading && (
                 <Grid xs={12}>
                   <TableContainer component={Paper}>
@@ -327,7 +326,8 @@ const ProjectListNew = () => {
                             key={project._id}
                             sx={{
                               "&:last-child td, &:last-child th": { border: 0 },
-                            }}>
+                            }}
+                          >
                             <TableCell align="left">{project.name}</TableCell>
                             <TableCell align="center">{project.type}</TableCell>
                             <TableCell align="center">{project.id}</TableCell>
@@ -346,10 +346,7 @@ const ProjectListNew = () => {
                               />
                             </TableCell>
                             <TableCell align="center">
-                              <StatusField
-                                project={project}
-                                handleStatusProject={handleStatusProject}
-                              />
+                              <StatusField project={project} handleStatusProject={handleStatusProject} />
                             </TableCell>
                             <TableCell align="center">
                               <SaveIcon

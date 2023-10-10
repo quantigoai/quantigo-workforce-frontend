@@ -1,8 +1,9 @@
-import {Button, FormControl, Grid, InputLabel, MenuItem, Select, styled,} from "@mui/material";
-import React, {useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {deleteOrActivateUser} from "../../../../features/slice/userSlice";
+import { Button, FormControl, Grid, InputLabel, MenuItem, Select, styled } from "@mui/material";
+import React, { useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteOrActivateUser } from "../../../../features/slice/userSlice";
+import useToaster from "../../../../customHooks/useToaster";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -18,6 +19,8 @@ const ButtonStyle = styled(Button)({
 const UserStatusChange = ({ user }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
   const [actionStatus, setActionStatus] = useState("");
   const { isLoading } = useSelector((state) => state.user);
   const handleSetStatus = (e) => {
@@ -79,11 +82,7 @@ const UserStatusChange = ({ user }) => {
               Action Status
             </ButtonStyle>
           ) : (
-            <ButtonStyle
-              variant="outlined"
-              disabled={isLoading}
-              onClick={handleChange}
-            >
+            <ButtonStyle variant="outlined" disabled={isLoading} onClick={handleChange}>
               Action Status
             </ButtonStyle>
           )}

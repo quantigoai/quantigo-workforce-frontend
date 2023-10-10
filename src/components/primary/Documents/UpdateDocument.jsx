@@ -8,6 +8,9 @@
  */
 
 // TODO Remove this file and its references
+import { PhotoCamera } from "@mui/icons-material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
 import {
   Avatar,
   Box,
@@ -24,13 +27,11 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import UploadFileIcon from "@mui/icons-material/UploadFile";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { PhotoCamera } from "@mui/icons-material";
+import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { updateMyDocuments } from "../../../features/slice/userSlice";
-import { useAlert } from "react-alert";
+import useToaster from "../../../customHooks/useToaster";
 
 const UpdateDocument = () => {
   const dispatch = useDispatch();
@@ -46,6 +47,8 @@ const UpdateDocument = () => {
   const [coverImage, setCoverImage] = useState(null);
   const { user } = useSelector((state) => state.user);
   const alert = useAlert();
+
+  const toast = useToaster();
   const { register, handleSubmit } = useForm();
 
   const handleImage = (e) => {
@@ -109,28 +112,18 @@ const UpdateDocument = () => {
                     <Typography variant="h5">{user.documentNo}</Typography>
                   </Grid>
                   <Grid>
-                    <img
-                      src={`data:image/jpeg;base64,${user.documentsImage}`}
-                    />
+                    <img src={`data:image/jpeg;base64,${user.documentsImage}`} />
                   </Grid>
                 </>
               ) : (
                 <>
-                  <Grid
-                    container
-                    style={{ paddingTop: "1%", paddingLeft: "35%" }}
-                  >
+                  <Grid container style={{ paddingTop: "1%", paddingLeft: "35%" }}>
                     <Typography variant="h4">Update Document</Typography>
                   </Grid>
                   <form onSubmit={handleSubmit(onSubmit)}>
-                    <Grid
-                      container
-                      style={{ paddingTop: "5%", paddingLeft: "10%" }}
-                    >
+                    <Grid container style={{ paddingTop: "5%", paddingLeft: "10%" }}>
                       <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">
-                          Document Type
-                        </InputLabel>
+                        <InputLabel id="demo-simple-select-label">Document Type</InputLabel>
                         <Select
                           labelId="demo-simple-select-label"
                           id="demo-simple-select"
@@ -143,10 +136,7 @@ const UpdateDocument = () => {
                         </Select>
                       </FormControl>
                     </Grid>
-                    <Grid
-                      container
-                      style={{ paddingTop: "5%", paddingLeft: "10%" }}
-                    >
+                    <Grid container style={{ paddingTop: "5%", paddingLeft: "10%" }}>
                       <TextField
                         fullWidth
                         name="Document NO"
@@ -154,55 +144,23 @@ const UpdateDocument = () => {
                         {...register("documentNo", { required: true })}
                       ></TextField>
                     </Grid>
-                    <Grid
-                      container
-                      style={{ paddingTop: "5%", paddingLeft: "20%" }}
-                    >
+                    <Grid container style={{ paddingTop: "5%", paddingLeft: "20%" }}>
                       <Box>
-                        <img
-                          width={"100%"}
-                          height={150}
-                          src={coverImage}
-                          alt=""
-                        />
+                        <img width={"100%"} height={150} src={coverImage} alt="" />
                       </Box>
-                      <Stack
-                        direction="row"
-                        alignItems="center"
-                        justifyContent={"center"}
-                        spacing={2}
-                      >
-                        <Typography variant={"body1"}>
-                          Upload NID Image
-                        </Typography>
-                        <IconButton
-                          color="primary"
-                          aria-label="upload picture"
-                          component="label"
-                        >
-                          <input
-                            hidden
-                            accept="image/*"
-                            type="file"
-                            onChange={handleImage}
-                          />
+                      <Stack direction="row" alignItems="center" justifyContent={"center"} spacing={2}>
+                        <Typography variant={"body1"}>Upload NID Image</Typography>
+                        <IconButton color="primary" aria-label="upload picture" component="label">
+                          <input hidden accept="image/*" type="file" onChange={handleImage} />
                           <PhotoCamera />
                         </IconButton>
-                        <IconButton
-                          color="warning"
-                          aria-label="remove picture"
-                          component="label"
-                          onClick={removeImage}
-                        >
+                        <IconButton color="warning" aria-label="remove picture" component="label" onClick={removeImage}>
                           <DeleteIcon />
                         </IconButton>
                       </Stack>
                     </Grid>
 
-                    <Grid
-                      container
-                      style={{ paddingTop: "5%", paddingLeft: "50%" }}
-                    >
+                    <Grid container style={{ paddingTop: "5%", paddingLeft: "50%" }}>
                       <Button type="submit" variant="contained">
                         Update
                       </Button>

@@ -17,6 +17,7 @@ import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import useToaster from "../../../customHooks/useToaster";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import { createASkill, getAllSkills } from "../../../features/slice/skillSlice";
 
@@ -51,6 +52,8 @@ const Skills = () => {
   const dispatch = useDispatch();
   const { skills, isLoading } = useSelector((state) => state.skill);
   const alert = useAlert();
+
+  const toast = useToaster();
   const [name, setName] = useState("");
   const [error, setError] = useState(false);
   const [description, setDescription] = useState("");
@@ -169,11 +172,7 @@ const Skills = () => {
                   />
                 </Grid>
                 <Grid container>
-                  <ButtonStyle
-                    disabled={error || isLoading}
-                    variant="contained"
-                    type="submit"
-                  >
+                  <ButtonStyle disabled={error || isLoading} variant="contained" type="submit">
                     Create Skill
                   </ButtonStyle>
                 </Grid>
@@ -224,12 +223,8 @@ const Skills = () => {
                             }}
                           >
                             <TableCell align="left">{i + 1}</TableCell>
-                            <TableCell align="left">
-                              {capitalizeFirstLetter(skill.name)}
-                            </TableCell>
-                            <TableCell align="left">
-                              {capitalizeFirstLetter(skill.description)}
-                            </TableCell>
+                            <TableCell align="left">{capitalizeFirstLetter(skill.name)}</TableCell>
+                            <TableCell align="left">{capitalizeFirstLetter(skill.description)}</TableCell>
                             <TableCell align="center">
                               <SkillEdit skill={skill} />
                             </TableCell>

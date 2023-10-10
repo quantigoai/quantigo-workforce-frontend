@@ -8,11 +8,14 @@ import { myProfileEdit, uploadMyImage } from "../../../../../features/slice/user
 import CommonFieldTest from "../CommonFieldTest";
 import CommonSelectField from "../CommonSelectField";
 import ProfilePicture from "./ProfilePicture";
+import useToaster from "../../../../../customHooks/useToaster";
 const MyProfileIndex = () => {
   const { user, isLoading } = useSelector((state) => state.user);
   const [editAble, setEditAble] = useState(false);
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
   const handleEditProfile = () => {
     setEditAble(true);
   };
@@ -104,7 +107,8 @@ const MyProfileIndex = () => {
               width: "0",
             },
             height: { xl: "84%", lg: "80%" },
-          }}>
+          }}
+        >
           <form onSubmit={handleSubmit(onSubmit)}>
             <Box sx={{ paddingLeft: "2%", paddingRight: "2%" }}>
               <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
@@ -207,7 +211,7 @@ const MyProfileIndex = () => {
                 </Grid>
                 <Grid item xs={6}>
                   <CommonFieldTest
-                  name="billingAccountNo"
+                    name="billingAccountNo"
                     label={"Nagad No."}
                     defaultValue={user.billingAccountNo}
                     disableItem={false}
@@ -276,7 +280,8 @@ const MyProfileIndex = () => {
                         backgroundColor: "#2E58FF",
                         color: "#FFFFF",
                       },
-                    }}>
+                    }}
+                  >
                     Save Changes
                   </Button>
                 )}

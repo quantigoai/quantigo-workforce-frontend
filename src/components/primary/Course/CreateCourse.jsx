@@ -13,10 +13,8 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  createCourse,
-  getAllCourses,
-} from "../../../features/slice/courseSlice";
+import useToaster from "../../../customHooks/useToaster";
+import { createCourse, getAllCourses } from "../../../features/slice/courseSlice";
 import { getAllSkills } from "../../../features/slice/skillSlice";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
@@ -55,6 +53,8 @@ const CreateCourse = () => {
   const { courses, isLoading, course } = useSelector((state) => state.course);
   const { skills } = useSelector((state) => state.skill);
   const alert = useAlert();
+
+  const toast = useToaster();
   const [courseName, setCourseName] = useState([]);
   const [name, setName] = useState("");
   const [error, setError] = useState(false);
@@ -98,9 +98,7 @@ const CreateCourse = () => {
 
     setPreRequisiteCourses(
       // On autofill we get a stringified value.
-      typeof selectedPreRequisiteCourses === "string"
-        ? value.split(",")
-        : selectedPreRequisiteCourses
+      typeof selectedPreRequisiteCourses === "string" ? value.split(",") : selectedPreRequisiteCourses
     );
   };
 
@@ -149,9 +147,9 @@ const CreateCourse = () => {
     dispatch(createCourse(formData)).then((action) => {
       if (action.payload?.status === 200) {
         navigate("/course");
-        alert.show("Course created successfully", { type: "success" });
+        toast.trigger("Course created successfully", "success");
       } else {
-        alert.show("Can not create course", { type: "error" });
+        toast.trigger("Can not create course", "error");
       }
     });
   };
@@ -182,10 +180,7 @@ const CreateCourse = () => {
                     <Stack direction="column" spacing={3}>
                       <Grid container spacing={2}>
                         <Grid item xs={6}>
-                          <NameField
-                            nameValidation={nameValidation}
-                            register={register}
-                          />
+                          <NameField nameValidation={nameValidation} register={register} />
                           {error && (
                             <Box
                               style={{
@@ -207,9 +202,7 @@ const CreateCourse = () => {
                       <PreRequisiteCourse
                         course={course}
                         courses={courses}
-                        handleChange_Pre_Requisite_Course={
-                          handleChange_Pre_Requisite_Course
-                        }
+                        handleChange_Pre_Requisite_Course={handleChange_Pre_Requisite_Course}
                         perRequisiteCourses={preRequisiteCourses}
                         MenuProps={MenuProps}
                       />
@@ -236,11 +229,7 @@ const CreateCourse = () => {
                   <Grid xs={12} sx={{ paddingLeft: "0%", paddingBottom: "1%" }}>
                     <Typography>Course Cover Image</Typography>
                   </Grid>
-                  <CoverImageField
-                    coverImage={coverImage}
-                    removeImage={removeImage}
-                    handleImage={handleImage}
-                  />
+                  <CoverImageField coverImage={coverImage} removeImage={removeImage} handleImage={handleImage} />
                 </Grid>
               </Grid>
             </Grid>

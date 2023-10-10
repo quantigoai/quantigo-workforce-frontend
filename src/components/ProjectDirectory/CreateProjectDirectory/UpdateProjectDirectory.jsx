@@ -1,18 +1,10 @@
-import {
-  Box,
-  Button,
-  Grid,
-  Modal,
-  Paper,
-  styled,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Grid, Modal, Paper, styled, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { updateProjectDirectory } from "../../../features/slice/ProjectDirectorySlice";
+import useToaster from "../../../customHooks/useToaster";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -45,6 +37,8 @@ const UpdateProjectDirectory = ({ item }) => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
   const [openModal, setOpenModal] = useState(false);
   const { register, handleSubmit } = useForm();
   const handleUpdateModal = () => {
@@ -108,10 +102,7 @@ const UpdateProjectDirectory = ({ item }) => {
         >
           <Box sx={style}>
             <Paper elevation={5} style={paperstyle} sx={{}}>
-              <Grid
-                container
-                sx={{ justifyContent: "center", paddingTop: "1%" }}
-              >
+              <Grid container sx={{ justifyContent: "center", paddingTop: "1%" }}>
                 <Typography variant="h4">
                   Update Project Directory
                   {/* ({job._id}) */}

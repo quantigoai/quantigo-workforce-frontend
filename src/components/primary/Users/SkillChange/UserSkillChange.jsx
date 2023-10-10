@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllSkills } from "../../../../features/slice/skillSlice";
 import { updateAUserById } from "../../../../features/slice/userSlice";
 import SkillField from "../../Course/InputFields/SkillField";
+import useToaster from "../../../../customHooks/useToaster";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -24,6 +25,8 @@ const UserSkillChange = ({ user }) => {
   const [isSkillEmpty, setIsSkillEmpty] = useState(false);
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
   useEffect(() => {
     dispatch(getAllSkills());
   }, []);
@@ -81,17 +84,9 @@ const UserSkillChange = ({ user }) => {
 
   return (
     <>
-      <SkillField
-        skills={skills}
-        skillSet={skill}
-        handleChangeSkills={handleChangeSkills}
-        user={user}
-      />
+      <SkillField skills={skills} skillSet={skill} handleChangeSkills={handleChangeSkills} user={user} />
       <Box sx={{ paddingTop: "3%" }}>
-        <ButtonStyle
-          variant="outlined"
-          disabled={isLoading}
-          onClick={handleChangeSkillSubmit}>
+        <ButtonStyle variant="outlined" disabled={isLoading} onClick={handleChangeSkillSubmit}>
           Change Skill
         </ButtonStyle>
       </Box>

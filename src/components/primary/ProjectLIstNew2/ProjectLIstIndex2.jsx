@@ -31,6 +31,7 @@ import EditProjectModal from "./EditProjectModal";
 // import TableWrapper from "./ExpTable/TableWrapper";
 const TableWrapper = React.lazy(() => import("./ExpTable/TableWrapper"));
 
+import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import {
   fields,
   filterPDR,
@@ -49,7 +50,7 @@ import Project2DetailsModal from "./Project2Details/Project2DetailsModal";
 import ProjectModal from "./ProjectModal";
 import ProjectSelectFIlter from "./ProjectSelectFIlter";
 import "./index.css";
-import LoadingComponent from "../../shared/Loading/LoadingComponent";
+import useToaster from "../../../customHooks/useToaster";
 
 // test for commit
 /**
@@ -74,6 +75,8 @@ const ProjectLIstIndex2 = () => {
   });
 
   const alert = useAlert();
+
+  const toast = useToaster();
 
   const {
     createProjectOpen,

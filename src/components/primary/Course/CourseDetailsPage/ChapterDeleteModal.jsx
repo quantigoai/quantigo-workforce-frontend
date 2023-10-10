@@ -7,17 +7,18 @@ import React from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import useToaster from "../../../../customHooks/useToaster";
 import { setActiveChapterIndex } from "../../../../features/slice/activePathSlice";
-import { deleteAChapterById, manuallySetCourseChapter, } from "../../../../features/slice/courseSlice";
+import { deleteAChapterById, manuallySetCourseChapter } from "../../../../features/slice/courseSlice";
 
 const ChapterDeleteModal = () => {
   const [open, setOpen] = React.useState(false);
   const { courseChapter } = useSelector((state) => state.course);
   const navigate = useNavigate();
-  const { activeChapterIndex, activeCourseId } = useSelector(
-    (state) => state.activePath
-  );
+  const { activeChapterIndex, activeCourseId } = useSelector((state) => state.activePath);
   const alert = useAlert();
+
+  const toast = useToaster();
   const dispatch = useDispatch();
   const handleClickOpen = () => {
     setOpen(true);
@@ -31,13 +32,12 @@ const ChapterDeleteModal = () => {
     dispatch(deleteAChapterById(id)).then((action) => {
       if (action.payload.status === 200) {
         // TODO handle navigation in delete chapter set index to previous chapter if its not 0
-        const previousIndex =
-          activeChapterIndex === 0 ? 0 : activeChapterIndex - 1;
+        const previousIndex = activeChapterIndex === 0 ? 0 : activeChapterIndex - 1;
         dispatch(setActiveChapterIndex(previousIndex));
         dispatch(manuallySetCourseChapter(previousIndex));
         navigate(`/course-details/${activeCourseId}/index`);
         setOpen(false);
-        alert.show("Chapter Deleted Successfully", { type: "success" });
+        toast.trigger("Chapter Deleted Successfully", "success");
       }
     });
   };
@@ -75,20 +75,13 @@ const ChapterDeleteModal = () => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          {"Are you sure Delete Chapter?"}
-        </DialogTitle>
+        <DialogTitle id="alert-dialog-title">{"Are you sure Delete Chapter?"}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Delete {courseChapter.title}
-          </DialogContentText>
+          <DialogContentText id="alert-dialog-description">Delete {courseChapter.title}</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>No</Button>
-          <Button
-            onClick={() => handleDeleteChapter(courseChapter._id)}
-            autoFocus
-          >
+          <Button onClick={() => handleDeleteChapter(courseChapter._id)} autoFocus>
             YES
           </Button>
         </DialogActions>

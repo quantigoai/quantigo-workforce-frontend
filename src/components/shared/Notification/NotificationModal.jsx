@@ -8,7 +8,6 @@
  */
 import { Button, Grid, Popover } from "@mui/material";
 import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import { useAlert } from "react-alert";
@@ -20,6 +19,7 @@ import {
   readLatestNotification,
 } from "../../../features/slice/notificationSlice";
 import SingleNotification from "./SingleNotification";
+import useToaster from "../../../customHooks/useToaster";
 
 const style = {
   position: "absolute",
@@ -58,6 +58,8 @@ const NotificationModal = ({ handleSeeAll, notificationOpen, handleNotificationC
   );
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
 
   const markReadLatest = () => {
     const notificationsId = latestUnreadNotifications.map((unreadNotification) => unreadNotification._id);

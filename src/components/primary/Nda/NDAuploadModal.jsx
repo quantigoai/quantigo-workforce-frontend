@@ -11,6 +11,7 @@ import { signingNda } from "../../../features/slice/userSlice";
 import ProjectModalHeader from "../ProjectLIstNew2/ProjectModalHeader";
 import PdfNdaUploadField from "./PdfNdaUploadField";
 import "./ndaUpload.css";
+import useToaster from "../../../customHooks/useToaster";
 
 const style = {
   display: "flex",
@@ -58,6 +59,8 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
   const { user, isLoading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({
     accept,
     onDrop,

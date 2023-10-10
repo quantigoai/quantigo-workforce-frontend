@@ -1,10 +1,11 @@
-import {Button, FormControlLabel, Grid, Paper, Radio, RadioGroup, Typography,} from "@mui/material";
+import { Button, FormControlLabel, Grid, Paper, Radio, RadioGroup, Typography } from "@mui/material";
 import React from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import {submitQuizById} from "../../../../features/slice/quizSlice";
+import { submitQuizById } from "../../../../features/slice/quizSlice";
+import useToaster from "../../../../customHooks/useToaster";
 
 const ShowQuiz = () => {
   const { quiz, isLoading } = useSelector((state) => state.quiz);
@@ -13,6 +14,8 @@ const ShowQuiz = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const alert = useAlert();
+
+  const toast = useToaster();
   const handleQuizResult = (possibleAnswer, id) => {
     const x = {};
     x[id] = possibleAnswer;
@@ -48,11 +51,9 @@ const ShowQuiz = () => {
             overflowY: "scroll",
             scrollbarWidth: "none",
             // height: "900px",
-          }}>
-          <Grid
-            container
-            xs={12}
-            sx={{ padding: "2%", justifyContent: "center" }}>
+          }}
+        >
+          <Grid container xs={12} sx={{ padding: "2%", justifyContent: "center" }}>
             <Typography variant="h5" sx={{ color: "#090080" }}>
               {" "}
               {quiz.name}
@@ -64,17 +65,12 @@ const ShowQuiz = () => {
               Quiz Instructions
             </Typography>
           </Grid>
-          <Grid
-            container
-            xs={12}
-            sx={{ paddingLeft: "2%", paddingRight: "2%" }}>
+          <Grid container xs={12} sx={{ paddingLeft: "2%", paddingRight: "2%" }}>
             <Typography variant="body2" sx={{ color: "#1D1D1D" }}>
               {" "}
-              Lorem ipsum dolor sit amet consectetur. Pellentesque eget faucibus
-              in eu tellus pharetra justo commodo. Vestibulum eget cum eu
-              pellentesque vel. Etiam in nunc laoreet tristique sed elementum
-              lobortis purus ac. Scelerisque lorem donec integer fringilla
-              vestibulum. Mus hendrerit fringilla leo sollicitudin.
+              Lorem ipsum dolor sit amet consectetur. Pellentesque eget faucibus in eu tellus pharetra justo commodo.
+              Vestibulum eget cum eu pellentesque vel. Etiam in nunc laoreet tristique sed elementum lobortis purus ac.
+              Scelerisque lorem donec integer fringilla vestibulum. Mus hendrerit fringilla leo sollicitudin.
             </Typography>
           </Grid>
           {Object.keys(quiz).length &&
@@ -88,7 +84,8 @@ const ShowQuiz = () => {
                     paddingRight: "2%",
                     paddingBottom: "1%",
                     paddingTop: "1%",
-                  }}>
+                  }}
+                >
                   <Typography variant="h5" sx={{ color: "#090080" }}>
                     Q{i + 1}. {item.question} ?
                   </Typography>
@@ -100,9 +97,7 @@ const ShowQuiz = () => {
                     {item.possibleAnswers.map((posibleAnswer) => (
                       <>
                         <FormControlLabel
-                          onChange={() =>
-                            handleQuizResult(posibleAnswer, item._id)
-                          }
+                          onChange={() => handleQuizResult(posibleAnswer, item._id)}
                           value={posibleAnswer}
                           control={<Radio />}
                           label={posibleAnswer}
@@ -123,7 +118,8 @@ const ShowQuiz = () => {
             paddingRight: "3%",
             paddingTop: "2%",
             paddingBottom: "2%",
-          }}>
+          }}
+        >
           {user.role === "trainer" || user.role === "admin" ? (
             <>
               {" "}
@@ -140,7 +136,8 @@ const ShowQuiz = () => {
                   },
                 }}
                 onClick={() => handleQuizEdit()}
-                variant="contained">
+                variant="contained"
+              >
                 Edit Quiz
               </Button>
             </>
@@ -161,7 +158,8 @@ const ShowQuiz = () => {
               },
             }}
             onClick={() => handleQuizSubmit()}
-            variant="contained">
+            variant="contained"
+          >
             Submit
           </Button>
         </Grid>

@@ -6,6 +6,7 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import useToaster from "../../../customHooks/useToaster";
 import { updateAChapterById } from "../../../features/slice/courseSlice";
 import { realToken } from "../../../helper/lib";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
@@ -19,12 +20,12 @@ import EstimatedTimeToRead from "./InputFields/EstimatedTimeToRead";
 const UpdateChapter = () => {
   const API_URl = import.meta.env.VITE_APP_SERVER_URL;
   const UPLOAD_ENDPOINT = "courses/couseimages/uploads";
-  const { courseChapter, course, isLoading } = useSelector(
-    (state) => state.course
-  );
+  const { courseChapter, course, isLoading } = useSelector((state) => state.course);
   const [content, setContent] = useState("");
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
 
   useEffect(() => {
     if (courseChapter) {
@@ -92,9 +93,9 @@ const UpdateChapter = () => {
     dispatch(updateAChapterById(newData)).then((action) => {
       if (action.payload.status === 200) {
         navigate(`/course-details/${course._id}`);
-        alert.show("chapter update Successfully", { type: "success" });
+        toast.trigger("chapter update Successfully", "success");
       } else {
-        alert.show("chapter do not update", { type: "error" });
+        toast.trigger("chapter do not update", "error");
       }
     });
   };
@@ -128,9 +129,7 @@ const UpdateChapter = () => {
                           <CourseNameField courseName={course.name} />
                         </Grid>
                         <Grid item xs={6}>
-                          <ChapterNoFiledForUpdate
-                            chapterNo={courseChapter.chapterNo}
-                          />
+                          <ChapterNoFiledForUpdate chapterNo={courseChapter.chapterNo} />
                         </Grid>
                       </Grid>
                     </Stack>
@@ -141,33 +140,20 @@ const UpdateChapter = () => {
                     <Stack direction="column" spacing={3}>
                       <Grid container spacing={2}>
                         <Grid item xs={4}>
-                          <ChapterName
-                            courseChapter={courseChapter}
-                            register={register}
-                          />
+                          <ChapterName courseChapter={courseChapter} register={register} />
                         </Grid>
                         <Grid item xs={4}>
-                          <ChapterDescription
-                            courseChapter={courseChapter}
-                            register={register}
-                          />
+                          <ChapterDescription courseChapter={courseChapter} register={register} />
                         </Grid>
                         <Grid item xs={4}>
-                          <EstimatedTimeToRead
-                            courseChapter={courseChapter}
-                            register={register}
-                          />
+                          <EstimatedTimeToRead courseChapter={courseChapter} register={register} />
                         </Grid>
                       </Grid>
                     </Stack>
                   </Grid>
                 </Grid>
                 <Grid xs={12} sx={{ py: 6 }}>
-                  <ContentField
-                    courseChapter={courseChapter}
-                    uploadPlugin={uploadPlugin}
-                    setContent={setContent}
-                  />
+                  <ContentField courseChapter={courseChapter} uploadPlugin={uploadPlugin} setContent={setContent} />
                 </Grid>
               </Grid>
             </Grid>

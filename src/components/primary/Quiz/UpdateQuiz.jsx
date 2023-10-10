@@ -6,22 +6,25 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Box, Grid, Paper} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {updateQuizById} from "../../../features/slice/quizSlice";
+import { Box, Grid, Paper } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { updateQuizById } from "../../../features/slice/quizSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import QuestionAnswer from "./QuestionAnswer";
 import ChapterName from "./QuizField.jsx/ChapterName";
 import CourseName from "./QuizField.jsx/CourseName";
 import Duration from "./QuizField.jsx/Duration";
 import QuizName from "./QuizField.jsx/QuizName";
-import {useNavigate} from "react-router-dom";
+import useToaster from "../../../customHooks/useToaster";
 
 const UpdateQuiz = ({ quizId }) => {
   const alert = useAlert();
+
+  const toast = useToaster();
   const { course } = useSelector((state) => state.course);
   const [removeId, setRemoveIds] = useState([]);
   const dispatch = useDispatch();
@@ -119,9 +122,7 @@ const UpdateQuiz = ({ quizId }) => {
           if (j !== "4" && j !== "5") {
             paCopy.splice(j, 1, tempPossibleAnswer[j]);
           } else {
-            j === "4"
-              ? (tempQA.question = tempPossibleAnswer[j])
-              : (tempQA.correctAnswer = tempPossibleAnswer[j]);
+            j === "4" ? (tempQA.question = tempPossibleAnswer[j]) : (tempQA.correctAnswer = tempPossibleAnswer[j]);
           }
           tempQA.possibleAnswers = paCopy;
         });
@@ -153,7 +154,8 @@ const UpdateQuiz = ({ quizId }) => {
             container
             sx={{
               paddingBottom: "2%",
-            }}>
+            }}
+          >
             <CommonHeader
               title="Update Quiz"
               description="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "

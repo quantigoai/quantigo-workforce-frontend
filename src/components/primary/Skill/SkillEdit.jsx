@@ -1,13 +1,14 @@
-import {Box, Button, Dialog, DialogTitle, styled, TextField,} from "@mui/material";
-import React, {useEffect, useState} from "react";
+import { Box, Button, Dialog, DialogTitle, styled, TextField } from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import Tooltip from "@mui/material/Tooltip";
-import {useDispatch, useSelector} from "react-redux";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {updateASkill} from "../../../features/slice/skillSlice";
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { updateASkill } from "../../../features/slice/skillSlice";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
+import useToaster from "../../../customHooks/useToaster";
 
 const ButtonStyleDelete = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -35,6 +36,8 @@ const SkillEdit = ({ skill }) => {
   const [name, setName] = useState(skill.name);
   const [error, setError] = useState(false);
   const alert = useAlert();
+
+  const toast = useToaster();
   const dispatch = useDispatch();
   const handleClickOpen = () => {
     setOpen(true);
@@ -44,16 +47,13 @@ const SkillEdit = ({ skill }) => {
   const [skillsName, setSkillsName] = useState([]);
 
   useEffect(() => {
-    setSkillsName(
-      skills.map((sk) => sk.name !== skill.name && sk.name.toLowerCase())
-    );
+    setSkillsName(skills.map((sk) => sk.name !== skill.name && sk.name.toLowerCase()));
   }, [open]);
 
   const handleClose = () => {
     setOpen(false);
   };
   const handleSetName = (e) => {
-    
     setName(capitalizeFirstLetter(e.target.value));
     if (skillsName.includes(e.target.value.toLowerCase())) {
       setError(true);
@@ -67,7 +67,7 @@ const SkillEdit = ({ skill }) => {
       data: data,
       id: skill._id,
     };
-    
+
     dispatch(updateASkill(finalData)).then((action) => {
       if (action.payload.status === 200) {
         alert.show(" Update Skill", { type: "success" });
@@ -85,13 +85,15 @@ const SkillEdit = ({ skill }) => {
           variant="outlined"
           // disabled={isLoading}
 
-          onClick={handleClickOpen}>
+          onClick={handleClickOpen}
+        >
           <Box
             sx={{
               display: "flex",
               gap: 1,
               justifyContent: "center",
-            }}>
+            }}
+          >
             Edit
           </Box>
         </ButtonStyleDelete>
@@ -131,7 +133,8 @@ const SkillEdit = ({ skill }) => {
                   color: "red",
                   padding: "5px 5px",
                   marginBottom: "10px",
-                }}>
+                }}
+              >
                 {" "}
                 {"This Skill is already exists."}
               </Box>
@@ -156,11 +159,7 @@ const SkillEdit = ({ skill }) => {
             <ButtonStyle variant="outlined" onClick={handleClose}>
               Cancel
             </ButtonStyle>
-            <ButtonStyle
-              variant="outlined"
-              disabled={isLoading}
-              type="submit"
-              autoFocus>
+            <ButtonStyle variant="outlined" disabled={isLoading} type="submit" autoFocus>
               Save
             </ButtonStyle>
           </DialogActions>

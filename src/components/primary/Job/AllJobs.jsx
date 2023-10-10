@@ -45,6 +45,7 @@ import { getAllTeams } from "../../../features/slice/teamSlice";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import SearchBar from "../../shared/SearchBar/SearchBar";
 import PendingJobDetails from "./JobDetails/PendingJobDetails";
+import useToaster from "../../../customHooks/useToaster";
 
 const ButtonStyle = styled(Button)({
   "&:hover": {
@@ -75,34 +76,18 @@ function TablePaginationActions(props) {
 
   return (
     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-      <IconButton
-        onClick={handleFirstPageButtonClick}
-        disabled={page === 0}
-        aria-label="first page"
-      >
+      <IconButton onClick={handleFirstPageButtonClick} disabled={page === 0} aria-label="first page">
         {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
-      <IconButton
-        onClick={handleBackButtonClick}
-        disabled={page === 0}
-        aria-label="previous page"
-      >
-        {theme.direction === "rtl" ? (
-          <KeyboardArrowRight />
-        ) : (
-          <KeyboardArrowLeft />
-        )}
+      <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
+        {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        {theme.direction === "rtl" ? (
-          <KeyboardArrowLeft />
-        ) : (
-          <KeyboardArrowRight />
-        )}
+        {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
@@ -117,6 +102,8 @@ function TablePaginationActions(props) {
 
 const AllJobs = () => {
   const alert = useAlert();
+
+  const toast = useToaster();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -237,8 +224,7 @@ const AllJobs = () => {
                     >
                       <Alert sx={{ width: "100%" }} severity="error">
                         <AlertTitle>Error</AlertTitle>
-                        Please contact admin for unblock account —{" "}
-                        <strong>check it out!</strong>
+                        Please contact admin for unblock account — <strong>check it out!</strong>
                       </Alert>
                     </Grid>
                   </>
@@ -260,36 +246,22 @@ const AllJobs = () => {
               }}
             >
               <TableContainer>
-                <Table
-                  aria-label="simple table"
-                  sx={{ border: "1px solid #DADCDF" }}
-                >
+                <Table aria-label="simple table" sx={{ border: "1px solid #DADCDF" }}>
                   {/* TODO : Convert this in a separate component  */}
                   <TableHead sx={{ background: "#F8F8F8", height: "80px" }}>
                     <TableRow>
-                      <TableCell
-                        align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}
-                      >
+                      <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                         No
                       </TableCell>
 
-                      <TableCell
-                        align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}
-                      >
+                      <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                         Title
                       </TableCell>
 
-                      <TableCell
-                        align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}
-                      >
+                      <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                         <TableSortLabel>No of Images</TableSortLabel>
                       </TableCell>
-                      {user.role === "admin" ||
-                      user.role === "project_lead" ||
-                      user.role === "delivery_manager" ? (
+                      {user.role === "admin" || user.role === "project_lead" || user.role === "delivery_manager" ? (
                         <>
                           {/* // <TableCell
                         //   align="center"
@@ -298,17 +270,11 @@ const AllJobs = () => {
                         // </TableCell> */}
                         </>
                       ) : (
-                        <TableCell
-                          align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}
-                        >
+                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                           Take Job
                         </TableCell>
                       )}
-                      <TableCell
-                        align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}
-                      >
+                      <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                         <TableSortLabel
                           direction={orderSortTimeLimit ? "asc" : "dsc"}
                           onClick={() => createSortHandler()}
@@ -316,16 +282,10 @@ const AllJobs = () => {
                           Time Limit (Minutes)
                         </TableSortLabel>
                       </TableCell>
-                      <TableCell
-                        align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}
-                      >
+                      <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                         Category
                       </TableCell>
-                      <TableCell
-                        align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}
-                      >
+                      <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                         Action
                       </TableCell>
                     </TableRow>
@@ -341,17 +301,11 @@ const AllJobs = () => {
                     ) */}
                     {jobs.map((job, i) => (
                       <TableRow key={job._id}>
-                        <TableCell align="center">
-                          {page * rowsPerPage + i + 1}
-                        </TableCell>
+                        <TableCell align="center">{page * rowsPerPage + i + 1}</TableCell>
                         <TableCell align="left">{job.title}</TableCell>
 
-                        <TableCell align="center">
-                          {job?.images?.length}
-                        </TableCell>
-                        {user.role === "admin" ||
-                        user.role === "project_lead" ||
-                        user.role === "delivery_manager" ? (
+                        <TableCell align="center">{job?.images?.length}</TableCell>
+                        {user.role === "admin" || user.role === "project_lead" || user.role === "delivery_manager" ? (
                           <>
                             {/* //{" "}
                             <TableCell align="center">
@@ -361,11 +315,7 @@ const AllJobs = () => {
                           </>
                         ) : job.restrictedUsers.includes(user._id) ? (
                           <TableCell align="center">
-                            <ButtonStyle
-                              disabled
-                              variant="outlined"
-                              onClick={() => handleTakeJob(job._id)}
-                            >
+                            <ButtonStyle disabled variant="outlined" onClick={() => handleTakeJob(job._id)}>
                               Take Job
                             </ButtonStyle>
                           </TableCell>
@@ -374,11 +324,7 @@ const AllJobs = () => {
                             {user.isJobBlocked ? (
                               <>
                                 {" "}
-                                <ButtonStyle
-                                  disabled
-                                  variant="outlined"
-                                  onClick={() => handleTakeJob(job._id)}
-                                >
+                                <ButtonStyle disabled variant="outlined" onClick={() => handleTakeJob(job._id)}>
                                   Take Job
                                 </ButtonStyle>
                               </>
@@ -397,9 +343,7 @@ const AllJobs = () => {
                           </TableCell>
                         )}
                         <TableCell align="center">{job.timeLimit}</TableCell>
-                        <TableCell align="center">
-                          {capitalizeFirstLetter(job.category)}
-                        </TableCell>
+                        <TableCell align="center">{capitalizeFirstLetter(job.category)}</TableCell>
                         <TableCell align="center">
                           {/* TODO Fixed the typo */}
                           <PendingJobDetails job={job} />
@@ -421,12 +365,7 @@ const AllJobs = () => {
         <Paper elevation={0} style={paperStyle} sx={{ padding: "0%" }}>
           <Grid container sx={{ justifyContent: "right", paddingRight: "3%" }}>
             <TablePagination
-              rowsPerPageOptions={[
-                5,
-                10,
-                25,
-                { label: "All", value: totalJobs },
-              ]}
+              rowsPerPageOptions={[5, 10, 25, { label: "All", value: totalJobs }]}
               colSpan={3}
               count={totalJobs}
               rowsPerPage={rowsPerPage}

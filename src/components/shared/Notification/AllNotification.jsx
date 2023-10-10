@@ -11,7 +11,13 @@ import dayjs from "dayjs";
 import React from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllNotifications, getAllUnreadNotifications, getLatestNotifications, readAllNotification } from "../../../features/slice/notificationSlice";
+import {
+  getAllNotifications,
+  getAllUnreadNotifications,
+  getLatestNotifications,
+  readAllNotification,
+} from "../../../features/slice/notificationSlice";
+import useToaster from "../../../customHooks/useToaster";
 
 const convertDate = (date) => {
   return dayjs(date).format("DD MMM hh:mm A");
@@ -33,6 +39,8 @@ const formattedDate = (rawTime) => convertDate(rawTime);
 const AllNotification = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
 
   const markAllRead = () => {
     dispatch(readAllNotification()).then(() => {

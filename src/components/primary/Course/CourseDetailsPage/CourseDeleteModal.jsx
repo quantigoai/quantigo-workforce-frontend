@@ -8,12 +8,15 @@ import { useAlert } from "react-alert";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import deleteIcon from "../../../../assets/images/delete.svg";
+import useToaster from "../../../../customHooks/useToaster";
 import { deleteACourseById } from "../../../../features/slice/courseSlice";
 
 const CourseDeleteModal = ({ course }) => {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
   const alert = useAlert();
+
+  const toast = useToaster();
   const dispatch = useDispatch();
   const handleClickOpen = () => {
     setOpen(true);
@@ -27,9 +30,9 @@ const CourseDeleteModal = ({ course }) => {
     dispatch(deleteACourseById(id)).then((action) => {
       if (action.payload.status === 200) {
         navigate("/course");
-        alert.show("Course Deleted Successfully", { type: "success" });
+        toast.trigger("Course Deleted Successfully", "success");
       } else {
-        alert.show("Course do not Delete", { type: "error" });
+        toast.trigger("Course do not Delete", "error");
       }
     });
   };
@@ -60,13 +63,9 @@ const CourseDeleteModal = ({ course }) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          {"Are you sure Delete Course?"}
-        </DialogTitle>
+        <DialogTitle id="alert-dialog-title">{"Are you sure Delete Course?"}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Delete {course.name} Course
-          </DialogContentText>
+          <DialogContentText id="alert-dialog-description">Delete {course.name} Course</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>No</Button>

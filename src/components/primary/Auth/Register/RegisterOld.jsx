@@ -13,12 +13,8 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  checkUserByUserName,
-  createAgUser,
-  createQaiUser,
-  signup,
-} from "../../../../features/slice/userSlice";
+import useToaster from "../../../../customHooks/useToaster";
+import { checkUserByUserName, createAgUser, createQaiUser, signup } from "../../../../features/slice/userSlice";
 import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 import InputFields from "../InputFields/InputFields";
 
@@ -56,6 +52,8 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const alert = useAlert();
+
+  const toast = useToaster();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isSignup, setIsSignup] = useState(true);
@@ -72,23 +70,14 @@ const Register = () => {
     setGender(e.target.value);
   };
   useEffect(() => {
-    if (
-      isValidEmail &&
-      email.length > 6 &&
-      password.length > 5 &&
-      name.length > 0 &&
-      lastName.length > 0
-    ) {
+    if (isValidEmail && email.length > 6 && password.length > 5 && name.length > 0 && lastName.length > 0) {
       setIsFieldValid(true);
     } else {
       setIsFieldValid(false);
     }
   }, [name, email, password, lastName]);
   useEffect(() => {
-    if (
-      (phone.length === 11 && phone[0] === "0" && phone[1] === "1") ||
-      phone.length === 0
-    ) {
+    if ((phone.length === 11 && phone[0] === "0" && phone[1] === "1") || phone.length === 0) {
       setsPhoneNumberCheck(true);
     } else {
       setsPhoneNumberCheck(false);
@@ -96,9 +85,7 @@ const Register = () => {
   }, [phone]);
   useEffect(() => {
     if (
-      (userPhoneNumber.length === 11 &&
-        userPhoneNumber[0] === "0" &&
-        userPhoneNumber[1] === "1") ||
+      (userPhoneNumber.length === 11 && userPhoneNumber[0] === "0" && userPhoneNumber[1] === "1") ||
       userPhoneNumber.length === 0
     ) {
       setIsUserPhoneNumberCheck(true);
@@ -125,10 +112,7 @@ const Register = () => {
     setQaiUserName(e);
     dispatch(checkUserByUserName(e)).then((action) => {
       if (action.payload.status === 200) {
-        if (
-          action.payload.data.isExist &&
-          action.payload.data.message !== "This User Id is already taken"
-        ) {
+        if (action.payload.data.isExist && action.payload.data.message !== "This User Id is already taken") {
           setValidUserName(true);
         } else {
           setValidUserName(false);
@@ -176,34 +160,23 @@ const Register = () => {
     isSignup && hub
       ? dispatch(createQaiUser(qaiCreateData)).then((res) => {
           dispatch(createAgUser(qaiCreateData)).then((res) => {
-          
             dispatch(signup(data)).then((action) => {
               if (action.error) {
-                alert.show(error, { type: "error" });
+                toast.trigger(error, "error");
               } else if (action.payload.status === 204) {
-                alert.show(error, {
-                  type: "error",
-                });
-              } else if (
-                action.payload.status === 200 ||
-                action.payload.status === 201
-              ) {
-                alert.show("User Register Successfully", { type: "success" });
+                toast.trigger(error, "error");
+              } else if (action.payload.status === 200 || action.payload.status === 201) {
+                toast.trigger("User Register Successfully", "success");
                 navigate("/emailVerification");
               }
             });
           });
         })
-      :
-      
-      dispatch(signup(data)).then((action) => {
+      : dispatch(signup(data)).then((action) => {
           if (action.error) {
-            alert.show(error, { type: "error" });
-          } else if (
-            action.payload?.status === 200 ||
-            action.payload?.status === 201
-          ) {
-            alert.show("User Register Successfully", { type: "success" });
+            toast.trigger(error, "error");
+          } else if (action.payload?.status === 200 || action.payload?.status === 201) {
+            toast.trigger("User Register Successfully", "success");
             navigate("/emailVerification");
           }
         });

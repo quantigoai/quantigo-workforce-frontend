@@ -1,13 +1,4 @@
-import {
-  Box,
-  Button,
-  CircularProgress,
-  FilledInput,
-  FormControl,
-  Grid,
-  InputLabel,
-  Typography,
-} from "@mui/material";
+import { Box, Button, CircularProgress, FilledInput, FormControl, Grid, InputLabel, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { useAlert } from "react-alert";
@@ -15,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { forgetPasswordSlice } from "../../../features/slice/userSlice";
 import HeaderNav from "../HomePage/HeaderNav";
+import useToaster from "../../../customHooks/useToaster";
 
 const ButtonStyle = styled(Button)({
   backgroundColor: "#2D58FF",
@@ -39,6 +31,8 @@ const ForgetPassword = () => {
   const { isLoading } = useSelector((state) => state.user);
   const [varificationMessage, setVarificationMessage] = useState("notset");
   const alert = useAlert();
+
+  const toast = useToaster();
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const onSubmit = (data) => {
@@ -60,14 +54,7 @@ const ForgetPassword = () => {
         <>
           <Grid container>
             <Grid container style={{ justifyItems: "center" }}>
-              <Grid
-                item
-                xs={12}
-                sm={12}
-                md={6}
-                lg={6}
-                sx={{ paddingTop: "10%", paddingLeft: "35%" }}
-              >
+              <Grid item xs={12} sm={12} md={6} lg={6} sx={{ paddingTop: "10%", paddingLeft: "35%" }}>
                 <ForgetPasswordBox>
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <Grid container sx={{ padding: "10%" }}>
@@ -82,47 +69,32 @@ const ForgetPassword = () => {
                         </Typography>
                       </Grid>
                       {varificationMessage === "set" ? (
-                        <Grid
-                          container
-                          item
-                          xs={12}
-                          sx={{ paddingBottom: "4%" }}
-                        >
+                        <Grid container item xs={12} sx={{ paddingBottom: "4%" }}>
                           <Typography
                             variant="body1"
                             style={{
                               color: "#FFFFFF",
                             }}
                           >
-                            A verification link has been sent to your email
-                            address. Please check your email.
+                            A verification link has been sent to your email address. Please check your email.
                           </Typography>
                         </Grid>
                       ) : (
                         <></>
                       )}
                       <Grid container item xs={12} sx={{ paddingBottom: "4%" }}>
-                        <FormControl
-                          variant="filled"
-                          fullWidth
-                          sx={{ backgroundColor: "#FFFFFF" }}
-                        >
+                        <FormControl variant="filled" fullWidth sx={{ backgroundColor: "#FFFFFF" }}>
                           <InputLabel>Email</InputLabel>
                           <FilledInput
                             {...register("email", {
                               required: true,
-                              pattern:
-                                /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
+                              pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
                             })}
                           />
                         </FormControl>
                       </Grid>
                       <Grid container item xs={12}>
-                        <ButtonStyle
-                          disabled={isLoading}
-                          fullWidth
-                          type="submit"
-                        >
+                        <ButtonStyle disabled={isLoading} fullWidth type="submit">
                           {" "}
                           Send
                         </ButtonStyle>

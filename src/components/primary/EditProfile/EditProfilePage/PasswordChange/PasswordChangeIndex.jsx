@@ -1,15 +1,13 @@
-import { Box, Button, Grid, Modal, Paper, Typography } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { changePassword, logout } from "../../../../../features/slice/userSlice";
+import ConfirmPassword from "../../Password/ConfirmPassword";
 import CurrentPasswordfield from "../../Password/CurrentPasswordfield";
 import ResetPassword from "../../Password/ResetPassword";
-import ConfirmPassword from "../../Password/ConfirmPassword";
-import {
-  changePassword,
-  logout,
-} from "../../../../../features/slice/userSlice";
+import useToaster from "../../../../../customHooks/useToaster";
 const PasswordChangeIndex = () => {
   const [CurrentPassword, setCurrentPassword] = useState("");
   const [resetPassword, setResetPassword] = useState("");
@@ -17,6 +15,8 @@ const PasswordChangeIndex = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const alert = useAlert();
+
+  const toast = useToaster();
   const handleChangePassword = () => {
     const data = {
       oldPassword: CurrentPassword,
@@ -44,24 +44,16 @@ const PasswordChangeIndex = () => {
         sx={{
           width: "50%",
           padding: "2%",
-        }}>
+        }}
+      >
         <Grid container sx={{ padding: "1%" }}>
-          <CurrentPasswordfield
-            setCurrentPassword={setCurrentPassword}
-            CurrentPassword={CurrentPassword}
-          />
+          <CurrentPasswordfield setCurrentPassword={setCurrentPassword} CurrentPassword={CurrentPassword} />
         </Grid>
         <Grid container sx={{ padding: "1%" }}>
-          <ResetPassword
-            setResetPassword={setResetPassword}
-            resetPassword={resetPassword}
-          />
+          <ResetPassword setResetPassword={setResetPassword} resetPassword={resetPassword} />
         </Grid>
         <Grid container sx={{ padding: "1%" }}>
-          <ConfirmPassword
-            setConfirmPassword={setConfirmPassword}
-            confirmPassword={confirmPassword}
-          />
+          <ConfirmPassword setConfirmPassword={setConfirmPassword} confirmPassword={confirmPassword} />
         </Grid>
         <Grid container sx={{ justifyContent: "center", paddingTop: "2%" }}>
           <Button
@@ -79,7 +71,8 @@ const PasswordChangeIndex = () => {
                 color: "#1D1D1D",
               },
             }}
-            onClick={() => handleChangePassword()}>
+            onClick={() => handleChangePassword()}
+          >
             Change Password
           </Button>
         </Grid>

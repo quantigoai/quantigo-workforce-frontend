@@ -1,8 +1,9 @@
-import {Button, FormControl, Grid, InputLabel, MenuItem, Select, styled, TextField,} from "@mui/material";
-import React, {useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {UnblockJobsForUser,} from "../../../../features/slice/userSlice";
+import { Button, FormControl, Grid, InputLabel, MenuItem, Select, styled, TextField } from "@mui/material";
+import React, { useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { UnblockJobsForUser } from "../../../../features/slice/userSlice";
+import useToaster from "../../../../customHooks/useToaster";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -18,6 +19,8 @@ const ButtonStyle = styled(Button)({
 const JobStatusChange = ({ user }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
   const [actionStatus, setActionStatus] = useState("");
   const [jobLimit, setJobLimit] = useState();
   const { isLoading } = useSelector((state) => state.user);
@@ -34,7 +37,7 @@ const JobStatusChange = ({ user }) => {
         updatedJobLimit: jobLimit,
       },
     };
-    
+
     dispatch(UnblockJobsForUser(data)).then((action) => {
       if (action.payload?.status === 200) {
         alert.show(
@@ -54,10 +57,7 @@ const JobStatusChange = ({ user }) => {
         <Grid container>
           <Grid item xs={6}>
             <FormControl variant="filled" fullWidth>
-              <InputLabel id="demo-simple-select-label">
-                {" "}
-                job Statue Change
-              </InputLabel>
+              <InputLabel id="demo-simple-select-label"> job Statue Change</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -93,11 +93,7 @@ const JobStatusChange = ({ user }) => {
               Action Status
             </ButtonStyle>
           ) : (
-            <ButtonStyle
-              variant="outlined"
-              disabled={isLoading}
-              onClick={handleChange}
-            >
+            <ButtonStyle variant="outlined" disabled={isLoading} onClick={handleChange}>
               Action Status
             </ButtonStyle>
           )}

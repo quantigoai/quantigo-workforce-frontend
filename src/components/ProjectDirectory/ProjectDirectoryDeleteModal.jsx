@@ -9,11 +9,14 @@ import { useAlert } from "react-alert";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteProjectDirectory } from "../../features/slice/ProjectDirectorySlice";
+import useToaster from "../../customHooks/useToaster";
 
 const ProjectDirectoryDeleteModal = ({ item }) => {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
   const alert = useAlert();
+
+  const toast = useToaster();
   const dispatch = useDispatch();
   const handleClickOpen = () => {
     setOpen(true);
@@ -71,13 +74,9 @@ const ProjectDirectoryDeleteModal = ({ item }) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          {"Are you sure Delete ?"}
-        </DialogTitle>
+        <DialogTitle id="alert-dialog-title">{"Are you sure Delete ?"}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Delete {item.Project_Name}
-          </DialogContentText>
+          <DialogContentText id="alert-dialog-description">Delete {item.Project_Name}</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>No</Button>

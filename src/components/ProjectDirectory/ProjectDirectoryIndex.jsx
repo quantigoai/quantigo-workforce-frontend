@@ -2,7 +2,23 @@ import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
-import { Box, Grid, IconButton, Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TableSortLabel, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Grid,
+  IconButton,
+  Paper,
+  Skeleton,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
+  TableSortLabel,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +29,7 @@ import UpdateProjectDirectory from "./CreateProjectDirectory/UpdateProjectDirect
 import ProjectDirectoryDeleteModal from "./ProjectDirectoryDeleteModal";
 import ProjectDirectoryDetailsIndex from "./ProjectDirectoryDetails/ProjectDirectoryDetailsIndex";
 import SearchProjectDirectory from "./ProjectDirectoryFilter/SearchProjectDirectory";
+import useToaster from "../../customHooks/useToaster";
 
 const paperStyle = {
   padding: "0px 0px",
@@ -47,10 +64,18 @@ function TablePaginationActions(props) {
       <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
         {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
       </IconButton>
-      <IconButton onClick={handleNextButtonClick} disabled={page >= Math.ceil(count / rowsPerPage) - 1} aria-label="next page">
+      <IconButton
+        onClick={handleNextButtonClick}
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        aria-label="next page"
+      >
         {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
       </IconButton>
-      <IconButton onClick={handleLastPageButtonClick} disabled={page >= Math.ceil(count / rowsPerPage) - 1} aria-label="last page">
+      <IconButton
+        onClick={handleLastPageButtonClick}
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        aria-label="last page"
+      >
         {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
@@ -67,6 +92,8 @@ const ProjectDirectoryIndex = () => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const alert = useAlert();
+
+  const toast = useToaster();
   const [anchorE2, setAnchorE2] = React.useState(null);
   const [industryType, setIndustryType] = useState("");
   const [clientAliasFilter, setClientAliasesFilter] = useState("");
@@ -293,7 +320,9 @@ const ProjectDirectoryIndex = () => {
       }
     });
   }, []);
-  const filtered = projectDirectory.filter((entry) => Object.values(entry).some((val) => typeof val === "string" && val.toLowerCase().includes(search.toLowerCase())));
+  const filtered = projectDirectory.filter((entry) =>
+    Object.values(entry).some((val) => typeof val === "string" && val.toLowerCase().includes(search.toLowerCase()))
+  );
 
   const skeletonCount = 5;
   const skeletonArray = Array.from({ length: skeletonCount }, (_, index) => index + 1);
@@ -567,7 +596,10 @@ const ProjectDirectoryIndex = () => {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {(rowsPerPage > 0 ? filtered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : filtered).map((item, i) => (
+                      {(rowsPerPage > 0
+                        ? filtered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                        : filtered
+                      ).map((item, i) => (
                         <TableRow key={item._id}>
                           <TableCell align="center"> {page * rowsPerPage + i + 1}</TableCell>
                           <TableCell align="center">{item.Project_Name}</TableCell>

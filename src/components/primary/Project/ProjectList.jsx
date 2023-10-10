@@ -25,19 +25,14 @@ import {
   updateAProjectById,
 } from "../../../features/slice/projectByWorkspaceSlice";
 import { getAllTeams } from "../../../features/slice/teamSlice";
-import {
-  getWorkSpaceById,
-  resetWorkspaces,
-} from "../../../features/slice/workSpaceSlice";
+import { getWorkSpaceById, resetWorkspaces } from "../../../features/slice/workSpaceSlice";
 
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import {
-  downloadMappingSheet,
-  getDataSetByProjectID,
-} from "../../../features/slice/datasetSlice";
+import { downloadMappingSheet, getDataSetByProjectID } from "../../../features/slice/datasetSlice";
 import InnerTable from "./InnerTable";
 
 import ProjectSearchIndex from "./ProjectSearch/ProjectSearchIndex";
+import useToaster from "../../../customHooks/useToaster";
 
 const CustomDownArrow = styled(KeyboardArrowDownIcon)({
   color: "rgba(45, 88, 255, 1)",
@@ -67,6 +62,8 @@ const ProjectList = () => {
   const { datasets } = useSelector((state) => state.dataset);
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
   const [activeHub, setActiveHub] = React.useState([]);
   const [projectStatus, setProjectStatus] = React.useState("");
   const [priority, setPriority] = React.useState("");
@@ -133,35 +130,23 @@ const ProjectList = () => {
     if (filterApply) {
       if (priorityFilter && statusFilter) {
         setProjectListFilter(
-          projects.filter(
-            (item) =>
-              item.priorityLevel === priorityFilter &&
-              item.type === statusFilter
-          )
+          projects.filter((item) => item.priorityLevel === priorityFilter && item.type === statusFilter)
         );
         setFilterApply(false);
       }
       if (priorityFilter && statusFilter === "") {
-        setProjectListFilter(
-          projects.filter((item) => item.priorityLevel === priorityFilter)
-        );
+        setProjectListFilter(projects.filter((item) => item.priorityLevel === priorityFilter));
         setFilterApply(false);
       }
       if (priorityFilter === "" && statusFilter) {
-        setProjectListFilter(
-          projects.filter((item) => item.type === statusFilter)
-        );
+        setProjectListFilter(projects.filter((item) => item.type === statusFilter));
         setFilterApply(false);
       }
     }
   }, [filterApply]);
 
   const filtered = ProjectListFilter.filter((entry) =>
-    Object.values(entry).some(
-      (val) =>
-        typeof val === "string" &&
-        val.toLowerCase().includes(search.toLowerCase())
-    )
+    Object.values(entry).some((val) => typeof val === "string" && val.toLowerCase().includes(search.toLowerCase()))
   );
   const handleChangeTeam = (e) => {
     const data = {
@@ -245,11 +230,7 @@ const ProjectList = () => {
     };
 
     dispatch(downloadMappingSheet(data)).then((action) => {
-      setDataInCSV(
-        action.payload.data.mappingSheet?.mappingData?.map(
-          ({ _id, jobId, ...rest }) => rest
-        )
-      );
+      setDataInCSV(action.payload.data.mappingSheet?.mappingData?.map(({ _id, jobId, ...rest }) => rest));
       setTimeout(() => {
         csvLink.current.link.click();
       });
@@ -264,7 +245,8 @@ const ProjectList = () => {
             marginLeft: "0%",
             display: "flex",
           }}
-          container>
+          container
+        >
           <Typography variant="h4" style={{ color: "#090080" }}>
             Projects
           </Typography>
@@ -286,7 +268,8 @@ const ProjectList = () => {
               paddingLeft: "3%",
               paddingRight: "3%",
               paddingBottom: "1%",
-            }}>
+            }}
+          >
             <Grid item xs={4} sx={{ paddingRight: "1%" }}>
               <FormControl
                 variant="filled"
@@ -297,16 +280,16 @@ const ProjectList = () => {
                   borderRadius: "4px",
                   // width: "238.5px",
                   height: "58px",
-                }}>
-                <InputLabel id="demo-simple-select-filled-label">
-                  Server
-                </InputLabel>
+                }}
+              >
+                <InputLabel id="demo-simple-select-filled-label">Server</InputLabel>
                 <Select
                   labelId="demo-simple-select-filled-label"
                   id="demo-simple-select-filled"
                   defaultValue={"ag"}
                   IconComponent={() => <CustomDownArrow />}
-                  onChange={(e) => handleChangeServer(e)}>
+                  onChange={(e) => handleChangeServer(e)}
+                >
                   <MenuItem value={"quantigo"}>Quantigo Server</MenuItem>
                   <MenuItem value={"ag"}>Ag Server</MenuItem>
                 </Select>
@@ -324,7 +307,8 @@ const ProjectList = () => {
                   borderRadius: "4px",
                   // width: "238.5px",
                   height: "58px",
-                }}>
+                }}
+              >
                 <InputLabel id="demo-simple-select-label">Team</InputLabel>
                 {teams.length > 0 && (
                   <Select
@@ -333,7 +317,8 @@ const ProjectList = () => {
                     defaultValue=""
                     IconComponent={() => <CustomDownArrow />}
                     onChange={(e) => handleChangeTeam(e)}
-                    label="Team">
+                    label="Team"
+                  >
                     {teams.map((team) => (
                       <MenuItem key={team._id} value={team.id || ""}>
                         {team.name}
@@ -355,20 +340,18 @@ const ProjectList = () => {
                     borderRadius: "4px",
                     // width: "238.5px",
                     height: "58px",
-                  }}>
-                  <InputLabel id="demo-simple-select-label">
-                    Work Space{" "}
-                  </InputLabel>
+                  }}
+                >
+                  <InputLabel id="demo-simple-select-label">Work Space </InputLabel>
                   {workspaces.length > 0 && (
                     <Select
                       onChange={(e) => handleChangeWorkspace(e)}
                       label="workspace"
                       IconComponent={() => <CustomDownArrow />}
-                      defaultValue={""}>
+                      defaultValue={""}
+                    >
                       {workspaces.map((workspace) => (
-                        <MenuItem
-                          key={workspace._id}
-                          value={workspace.id || ""}>
+                        <MenuItem key={workspace._id} value={workspace.id || ""}>
                           {workspace.name}
                         </MenuItem>
                       ))}
@@ -390,7 +373,8 @@ const ProjectList = () => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "0%",
-              }}>
+              }}
+            >
               <ProjectSearchIndex
                 anchorEl={anchorEl}
                 placeholder="Search Project"
@@ -412,7 +396,8 @@ const ProjectList = () => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "2%",
-              }}>
+              }}
+            >
               {!isLoading && (
                 <Grid container>
                   <TableContainer component={Paper}>

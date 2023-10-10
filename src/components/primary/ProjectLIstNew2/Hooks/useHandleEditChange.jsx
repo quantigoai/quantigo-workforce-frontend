@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useSelector } from "react-redux";
 import useAllFunc from "./useAllFunc";
+import useToaster from "../../../../customHooks/useToaster";
 
 const useHandleEditChange = () => {
   const { projectDrawer } = useSelector((state) => state.projectDrawer);
@@ -16,6 +17,8 @@ const useHandleEditChange = () => {
 
   const { setEditModalOpen } = useAllFunc();
   const alert = useAlert();
+
+  const toast = useToaster();
 
   useEffect(() => {
     setEditCount(prevSkills?.length - 1);

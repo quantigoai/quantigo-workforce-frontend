@@ -12,6 +12,7 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import useToaster from "../../customHooks/useToaster";
 import {
   createBenchMark,
   getABenchMarkByProjectId,
@@ -22,19 +23,15 @@ import {
   updateABenchMarkById,
   updateBenchmarkData,
 } from "../../features/slice/benchMarkSlice";
-import {
-  getProjectByWorkSpace,
-  resetProjects,
-} from "../../features/slice/projectByWorkspaceSlice";
+import { getProjectByWorkSpace, resetProjects } from "../../features/slice/projectByWorkspaceSlice";
 import { getAllTeams } from "../../features/slice/teamSlice";
-import {
-  getWorkSpaceById,
-  resetWorkspaces,
-} from "../../features/slice/workSpaceSlice";
+import { getWorkSpaceById, resetWorkspaces } from "../../features/slice/workSpaceSlice";
 
 const BenchMarkIndex = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
   const { benchMark, projectMetas } = useSelector((state) => state.benchMark);
 
   const [customData, setCustomData] = useState({});
@@ -321,10 +318,10 @@ const BenchMarkIndex = () => {
     dispatch(createBenchMark(finalData))
       .then((action) => {
         if (action.payload?.status === 201 || action.payload?.status === 200) {
-          alert.show("BenchMark created successfully", { type: "success" });
+          toast.trigger("BenchMark created successfully", "success");
           navigate("/benchmarknew/list");
         } else {
-          alert.show("Unable to create BenchMark", { type: "error" });
+          toast.trigger("Unable to create BenchMark", "error");
         }
       })
       .then(() => {
@@ -388,19 +385,17 @@ const BenchMarkIndex = () => {
 
     dispatch(updateABenchMarkById(bulkData)).then((action) => {
       if (action.payload?.status === 200) {
-        alert.show(action.payload.data.message, { type: "success" });
+        toast.trigger(action.payload.data.message, "success");
         setEdit("noeditable");
         navigate("/benchmarknew/list");
       } else {
-        alert.show("Unable to update the Benchmark", { type: "error" });
+        toast.trigger("Unable to update the Benchmark", "error");
       }
     });
   };
 
   const handleMultiple = (data) => {
-    location.pathname === "/benchmarknew/create"
-      ? onCreateSubmit(data)
-      : onSubmit(data);
+    location.pathname === "/benchmarknew/create" ? onCreateSubmit(data) : onSubmit(data);
   };
 
   // Update

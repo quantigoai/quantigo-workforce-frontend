@@ -1,8 +1,9 @@
-import {Box, Button, FormControl, FormControlLabel, Radio, RadioGroup,} from "@mui/material";
-import React, {useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {assignedJobToAUser} from "../../../../../features/slice/jobSlice";
+import { Box, Button, FormControl, FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import React, { useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { assignedJobToAUser } from "../../../../../features/slice/jobSlice";
+import useToaster from "../../../../../customHooks/useToaster";
 
 const ReassignedJobIndex = ({ job }) => {
   const [value, setValue] = useState(""); // initialize value as an empty string
@@ -24,15 +25,13 @@ const ReassignedJobIndex = ({ job }) => {
   };
 
   const filtered = users.filter((entry) =>
-    Object.values(entry).some(
-      (val) =>
-        typeof val === "string" &&
-        val.toLowerCase().includes(search.toLowerCase())
-    )
+    Object.values(entry).some((val) => typeof val === "string" && val.toLowerCase().includes(search.toLowerCase()))
   );
 
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
 
   const { isLoading, jobs } = useSelector((state) => state.job);
 
@@ -81,7 +80,8 @@ const ReassignedJobIndex = ({ job }) => {
               name="controlled-radio-buttons-group"
               defaultValue=""
               style={{ color: "green" }}
-              onChange={handleChange}>
+              onChange={handleChange}
+            >
               {filtered.map(
                 (user) =>
                   (user.role === "level_1_annotator" ||
@@ -92,10 +92,7 @@ const ReassignedJobIndex = ({ job }) => {
                       sx={{
                         width: "100%",
                         paddingLeft: "7px",
-                        borderRight:
-                          value === user._id
-                            ? " 3px solid #2D58FF"
-                            : "0px solid #2D58FF",
+                        borderRight: value === user._id ? " 3px solid #2D58FF" : "0px solid #2D58FF",
                         color: value === user._id ? "#2D58FF" : "#969CAF",
                       }}
                       key={user._id}
@@ -109,7 +106,6 @@ const ReassignedJobIndex = ({ job }) => {
           </FormControl>
         </Box>
         <Box sx={{ display: "flex", gap: 1, my: "3%" }}>
-          
           <Button
             variant="contained"
             sx={{
@@ -125,7 +121,8 @@ const ReassignedJobIndex = ({ job }) => {
               },
             }}
             disabled={isLoading}
-            onClick={() => handleReassignedJob(value, job._id)}>
+            onClick={() => handleReassignedJob(value, job._id)}
+          >
             Re-Assign
           </Button>
           <Button
@@ -143,7 +140,7 @@ const ReassignedJobIndex = ({ job }) => {
                 border: "1px solid rgba(255, 154, 69, 1)",
               },
             }}
-            >
+          >
             Send to Job Pool
           </Button>
         </Box>

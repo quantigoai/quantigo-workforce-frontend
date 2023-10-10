@@ -7,43 +7,44 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 
-import {useTheme} from "@emotion/react";
+import { useTheme } from "@emotion/react";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import {
-    Alert,
-    AlertTitle,
-    Box,
-    Button,
-    Grid,
-    IconButton,
-    Paper,
-    styled,
-    Table,
-    TableBody,
-    TableContainer,
-    TableHead,
-    TablePagination,
-    TableRow,
+  Alert,
+  AlertTitle,
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  Paper,
+  styled,
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
 } from "@mui/material";
 import TableCell from "@mui/material/TableCell";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {setActivePath} from "../../../features/slice/activePathSlice";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { setActivePath } from "../../../features/slice/activePathSlice";
 import {
-    addDefaultAnnotator,
-    addUserToATeam,
-    availableJobsForReviewer,
-    getAllJobs,
-    takeJobForReviewer,
+  addDefaultAnnotator,
+  addUserToATeam,
+  availableJobsForReviewer,
+  getAllJobs,
+  takeJobForReviewer,
 } from "../../../features/slice/jobSlice";
-import {getAllTeams} from "../../../features/slice/teamSlice";
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
+import { getAllTeams } from "../../../features/slice/teamSlice";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import SearchBar from "../../shared/SearchBar/SearchBar";
 import JobDetailsForReviewer from "./JobDetails/JobDetailsForReviewer";
+import useToaster from "../../../customHooks/useToaster";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -76,36 +77,24 @@ function TablePaginationActions(props) {
 
   return (
     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-      <IconButton
-        onClick={handleFirstPageButtonClick}
-        disabled={page === 0}
-        aria-label="first page">
+      <IconButton onClick={handleFirstPageButtonClick} disabled={page === 0} aria-label="first page">
         {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
-      <IconButton
-        onClick={handleBackButtonClick}
-        disabled={page === 0}
-        aria-label="previous page">
-        {theme.direction === "rtl" ? (
-          <KeyboardArrowRight />
-        ) : (
-          <KeyboardArrowLeft />
-        )}
+      <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
+        {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page">
-        {theme.direction === "rtl" ? (
-          <KeyboardArrowLeft />
-        ) : (
-          <KeyboardArrowRight />
-        )}
+        aria-label="next page"
+      >
+        {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page">
+        aria-label="last page"
+      >
         {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
@@ -114,6 +103,8 @@ function TablePaginationActions(props) {
 
 const AllJobsForReviewer = () => {
   const alert = useAlert();
+
+  const toast = useToaster();
   const dispatch = useDispatch();
   const { user, role } = useSelector((state) => state.user);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -167,11 +158,7 @@ const AllJobsForReviewer = () => {
   };
 
   const filtered = jobs.filter((entry) =>
-    Object.values(entry).some(
-      (val) =>
-        typeof val === "string" &&
-        val.toLowerCase().includes(search.toLowerCase())
-    )
+    Object.values(entry).some((val) => typeof val === "string" && val.toLowerCase().includes(search.toLowerCase()))
   );
 
   const paperStyle = {
@@ -201,7 +188,8 @@ const AllJobsForReviewer = () => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "0%",
-              }}>
+              }}
+            >
               <SearchBar placeholder="Search a Job" func={handleChange} />
             </Grid>
 
@@ -222,11 +210,11 @@ const AllJobsForReviewer = () => {
                         paddingLeft: "3%",
                         paddingRight: "3%",
                         paddingBottom: "0%",
-                      }}>
+                      }}
+                    >
                       <Alert sx={{ width: "100%" }} severity="error">
                         <AlertTitle>Error</AlertTitle>
-                        Please contact admin for unblock account —{" "}
-                        <strong>check it out!</strong>
+                        Please contact admin for unblock account — <strong>check it out!</strong>
                       </Alert>
                     </Grid>
                   </>
@@ -245,56 +233,39 @@ const AllJobsForReviewer = () => {
                 paddingLeft: "3%",
                 paddingRight: "3%",
                 paddingBottom: "3%",
-              }}>
+              }}
+            >
               <TableContainer>
-                <Table
-                  aria-label="simple table"
-                  sx={{ border: "1px solid #DADCDF" }}>
+                <Table aria-label="simple table" sx={{ border: "1px solid #DADCDF" }}>
                   {/* TODO : Convert this in a separate component  */}
                   <TableHead sx={{ background: "#F8F8F8", height: "80px" }}>
                     <TableRow>
-                      <TableCell
-                        align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                         No
                       </TableCell>
 
-                      <TableCell
-                        align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                         Title
                       </TableCell>
 
-                      <TableCell
-                        align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                         No of Images
                       </TableCell>
 
-                      <TableCell
-                        align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                         Take Job
                       </TableCell>
 
-                      <TableCell
-                        align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                         Time Limit (Minutes)
                       </TableCell>
-                      <TableCell
-                        align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                         Category
                       </TableCell>
-                      <TableCell
-                        align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                         Type
                       </TableCell>
-                      <TableCell
-                        align="center"
-                        sx={{ color: "#969CAF", fontSize: "20px" }}>
+                      <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                         Action
                       </TableCell>
                     </TableRow>
@@ -310,33 +281,20 @@ const AllJobsForReviewer = () => {
                     ) */}
                     {jobs.map((job, i) => (
                       <TableRow key={job._id}>
+                        <TableCell align="center">{page * rowsPerPage + i + 1}</TableCell>
+                        <TableCell align="center">{job.job?.id?.title}</TableCell>
+                        <TableCell align="center">{job.job?.id?.images?.length}</TableCell>
                         <TableCell align="center">
-                          {page * rowsPerPage + i + 1}
-                        </TableCell>
-                        <TableCell align="center">
-                          {job.job?.id?.title}
-                        </TableCell>
-                        <TableCell align="center">
-                          {job.job?.id?.images?.length}
-                        </TableCell>
-                        <TableCell align="center">
-                          <ButtonStyle
-                            disabled={isLoading}
-                            variant="outlined"
-                            onClick={() => handleTakeJob(job)}>
+                          <ButtonStyle disabled={isLoading} variant="outlined" onClick={() => handleTakeJob(job)}>
                             Take Job
                           </ButtonStyle>
                         </TableCell>
-                        <TableCell align="center">
-                          {job.job?.id?.timeLimit}
-                        </TableCell>
+                        <TableCell align="center">{job.job?.id?.timeLimit}</TableCell>
                         <TableCell align="center">
                           Image
                           {/* {job.job.id?.} */}
                         </TableCell>
-                        <TableCell align="center">
-                          {capitalizeFirstLetter(job.job?.id?.jobType)}
-                        </TableCell>
+                        <TableCell align="center">{capitalizeFirstLetter(job.job?.id?.jobType)}</TableCell>
                         <TableCell align="center">
                           <JobDetailsForReviewer job={job} />
                         </TableCell>
@@ -356,12 +314,7 @@ const AllJobsForReviewer = () => {
         <Paper elevation={0} style={paperStyle} sx={{ padding: "0%" }}>
           <Grid container sx={{ justifyContent: "right", paddingRight: "3%" }}>
             <TablePagination
-              rowsPerPageOptions={[
-                5,
-                10,
-                25,
-                { label: "All", value: totalJobs },
-              ]}
+              rowsPerPageOptions={[5, 10, 25, { label: "All", value: totalJobs }]}
               colSpan={3}
               count={totalJobs}
               rowsPerPage={rowsPerPage}

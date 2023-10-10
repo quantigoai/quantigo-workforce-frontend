@@ -5,6 +5,7 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import useToaster from "../../../customHooks/useToaster";
 import { createCourseChapter } from "../../../features/slice/courseSlice";
 import {
   clearTemporaryData,
@@ -37,6 +38,8 @@ const CreateChapter = () => {
   const [content, setContent] = useState("");
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
   const { courseChapters, course } = useSelector((state) => state.course);
   const navigate = useNavigate();
   const [chapterNo, setChapterNo] = React.useState(0);
@@ -86,11 +89,11 @@ const CreateChapter = () => {
     };
     dispatch(createCourseChapter(finalData)).then((action) => {
       if (action.payload?.status === 201) {
-        alert.show("Chapter Create", { type: "success" });
+        toast.trigger("Chapter Create", "success");
         dispatch(deleteTemporaryData({ id, chapterNo }));
         navigate(`/course-details/${id}`);
       } else {
-        alert.show("Can not create course chapter", { type: "error" });
+        toast.trigger("Can not create course chapter", "error");
       }
     });
   };

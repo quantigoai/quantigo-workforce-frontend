@@ -37,6 +37,8 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
+const toast = useToaster();
+
   const [showPassword, setShowPassword] = useState(false);
   const { error, isLoading } = useSelector((state) => state.user);
 
@@ -56,7 +58,6 @@ const LoginForm = () => {
     formState: { errors },
   } = methods;
 
-  const toast = useToaster();
 
   const onSubmit = async (data) => {
     dispatch(login(data)).then((action) => {

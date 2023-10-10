@@ -8,29 +8,24 @@
  */
 import SearchIcon from "@mui/icons-material/Search";
 import {
-    Box,
-    Button,
-    FormControl,
-    FormControlLabel,
-    InputAdornment,
-    Popper,
-    Radio,
-    RadioGroup,
-    SvgIcon,
-    TextField,
+  Box,
+  Button,
+  FormControl,
+  FormControlLabel,
+  InputAdornment,
+  Popper,
+  Radio,
+  RadioGroup,
+  SvgIcon,
+  TextField,
 } from "@mui/material";
-import React, {useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {assignedJobToAUser} from "../../../../features/slice/jobSlice";
+import React, { useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { assignedJobToAUser } from "../../../../features/slice/jobSlice";
+import useToaster from "../../../../customHooks/useToaster";
 
-const ReAssignPopper = ({
-  id,
-  popperOpen,
-  popperAnchorEl,
-  job,
-  handleClickAway,
-}) => {
+const ReAssignPopper = ({ id, popperOpen, popperAnchorEl, job, handleClickAway }) => {
   const { users } = useSelector((state) => state.user);
   const [value, setValue] = useState(""); // initialize value as an empty string
 
@@ -50,15 +45,13 @@ const ReAssignPopper = ({
   };
 
   const filtered = users.filter((entry) =>
-    Object.values(entry).some(
-      (val) =>
-        typeof val === "string" &&
-        val.toLowerCase().includes(search.toLowerCase())
-    )
+    Object.values(entry).some((val) => typeof val === "string" && val.toLowerCase().includes(search.toLowerCase()))
   );
 
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
 
   const { isLoading, jobs } = useSelector((state) => state.job);
 
@@ -97,7 +90,8 @@ const ReAssignPopper = ({
           p: 1,
           bgcolor: "#f5f5f5",
           zIndex: 1301,
-        }}>
+        }}
+      >
         <Box gap={1} sx={{ display: "flex", flexDirection: "column" }}>
           <TextField
             fullWidth
@@ -122,7 +116,8 @@ const ReAssignPopper = ({
                 name="controlled-radio-buttons-group"
                 defaultValue=""
                 style={{ color: "green" }}
-                onChange={handleChange}>
+                onChange={handleChange}
+              >
                 {filtered.map(
                   (user) =>
                     (user.role === "level_1_annotator" ||
@@ -133,10 +128,7 @@ const ReAssignPopper = ({
                         sx={{
                           width: "100%",
                           paddingLeft: "7px",
-                          borderRight:
-                            value === user._id
-                              ? " 3px solid #2D58FF"
-                              : "0px solid #2D58FF",
+                          borderRight: value === user._id ? " 3px solid #2D58FF" : "0px solid #2D58FF",
                           color: value === user._id ? "#2D58FF" : "#969CAF",
                         }}
                         key={user._id}
@@ -165,7 +157,8 @@ const ReAssignPopper = ({
                   border: "1px solid rgba(255, 154, 69, 1)",
                 },
               }}
-              onClick={handleCancelClick}>
+              onClick={handleCancelClick}
+            >
               Cancel
             </Button>
             <Button
@@ -183,7 +176,8 @@ const ReAssignPopper = ({
                 },
               }}
               disabled={isLoading}
-              onClick={() => handleReassignedJob(value, job._id)}>
+              onClick={() => handleReassignedJob(value, job._id)}
+            >
               Re-Assign
             </Button>
           </Box>

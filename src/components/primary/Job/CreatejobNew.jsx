@@ -3,10 +3,9 @@
  * Path: /home/tanzim/WorkStation/wmpv2
  * Created Date: Monday, March 27th 2023, 12:54:00 am
  * Author: Tanzim Ahmed
- * 
+ *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-
 
 /*
  * Filename: /home/tanzim/WorkStation/wmpv2/src/components/primary/Job/CreateJob.jsx
@@ -17,20 +16,21 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 
-import {Box, Grid, Paper} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {getDataSetByProjectID} from "../../../features/slice/datasetSlice";
-import {createJob, getVideoId, videoJobCreate,} from "../../../features/slice/jobSlice";
-import {getProjectByWorkSpace} from "../../../features/slice/projectByWorkspaceSlice";
-import {getAllTeams} from "../../../features/slice/teamSlice";
-import {getWorkSpaceById} from "../../../features/slice/workSpaceSlice";
+import { Box, Grid, Paper } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getDataSetByProjectID } from "../../../features/slice/datasetSlice";
+import { createJob, getVideoId, videoJobCreate } from "../../../features/slice/jobSlice";
+import { getProjectByWorkSpace } from "../../../features/slice/projectByWorkspaceSlice";
+import { getAllTeams } from "../../../features/slice/teamSlice";
+import { getWorkSpaceById } from "../../../features/slice/workSpaceSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import SelectMenu from "../BenchMark/SelectMenu";
 import OptionalFields from "./SharedComponents/OptionalFields";
-import {useNavigate} from "react-router-dom";
+import useToaster from "../../../customHooks/useToaster";
 
 const CreateJobNew = () => {
   const { teams } = useSelector((state) => state.team);
@@ -44,6 +44,8 @@ const CreateJobNew = () => {
   const [skills, setSkills] = useState([]);
   const { skills: rootSkills } = useSelector((state) => state.skill);
   const alert = useAlert();
+
+  const toast = useToaster();
   const [server, setServer] = useState("ag");
   const navigate = useNavigate();
   const handleChangeServer = (e) => {
@@ -168,7 +170,7 @@ const CreateJobNew = () => {
           />
         </Grid>
 
-        <Box >
+        <Box>
           <Paper elevation={0} sx={{ padding: "2%" }}>
             <Grid container>
               <SelectMenu

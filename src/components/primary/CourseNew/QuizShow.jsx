@@ -6,21 +6,14 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {
-  Button,
-  FormControlLabel,
-  Grid,
-  Paper,
-  Radio,
-  RadioGroup,
-  Typography,
-} from "@mui/material";
+import { Button, FormControlLabel, Grid, Paper, Radio, RadioGroup, Typography } from "@mui/material";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { submitQuizById } from "../../../features/slice/quizSlice";
-import { useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import useToaster from "../../../customHooks/useToaster";
 import { manuallySetCourseChapterResult } from "../../../features/slice/courseSlice";
+import { submitQuizById } from "../../../features/slice/quizSlice";
 import { updateUserCompletedCourse } from "../../../features/slice/userSlice";
 
 const QuizShow = () => {
@@ -30,6 +23,8 @@ const QuizShow = () => {
   const { user } = useSelector((state) => state.user);
   const [data, setData] = React.useState({});
   const alert = useAlert();
+
+  const toast = useToaster();
   const { course } = useSelector((state) => state.course);
 
   const handleQuizResult = (possibleAnswer, id) => {
@@ -49,16 +44,12 @@ const QuizShow = () => {
     };
     dispatch(submitQuizById(bulkData)).then((action) => {
       if (action.payload?.status === 200) {
-        alert.show("Quiz Submitted", { type: "success" });
+        toast.trigger("Quiz Submitted", "success");
         navigate(`/course-details/${course._id}/quiz-result`);
-        dispatch(
-          manuallySetCourseChapterResult(
-            action.payload.data.isPreviouslyAttempted
-          )
-        );
+        dispatch(manuallySetCourseChapterResult(action.payload.data.isPreviouslyAttempted));
         dispatch(updateUserCompletedCourse(action.payload.data.user));
       } else {
-        alert.show("Quiz can not submit", { type: "error" });
+        toast.trigger("Quiz can not submit", "error");
       }
     });
   };
@@ -75,11 +66,7 @@ const QuizShow = () => {
             // height: "900px",
           }}
         >
-          <Grid
-            container
-            xs={12}
-            sx={{ padding: "2%", justifyContent: "center" }}
-          >
+          <Grid container xs={12} sx={{ padding: "2%", justifyContent: "center" }}>
             <Typography variant="h5" sx={{ color: "#090080" }}>
               {" "}
               {quiz.name}
@@ -117,9 +104,7 @@ const QuizShow = () => {
                       <>
                         <FormControlLabel
                           key={i}
-                          onChange={() =>
-                            handleQuizResult(posibleAnswer, item._id)
-                          }
+                          onChange={() => handleQuizResult(posibleAnswer, item._id)}
                           value={posibleAnswer}
                           control={<Radio />}
                           label={posibleAnswer}

@@ -1,8 +1,9 @@
-import {Button, FormControl, Grid, InputLabel, MenuItem, Select, styled,} from "@mui/material";
-import React, {useState} from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {changeRole} from "../../../../features/slice/userSlice";
+import { Button, FormControl, Grid, InputLabel, MenuItem, Select, styled } from "@mui/material";
+import React, { useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { changeRole } from "../../../../features/slice/userSlice";
+import useToaster from "../../../../customHooks/useToaster";
 
 const ButtonStyle = styled(Button)({
   width: "100%",
@@ -16,6 +17,8 @@ const ButtonStyle = styled(Button)({
 const RoleChange = ({ user }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
   const [roleValue, setRole] = useState("");
   const { isLoading } = useSelector((state) => state.user);
   const { role } = useSelector((state) => state.user.user);
@@ -54,7 +57,8 @@ const RoleChange = ({ user }) => {
                 backgroundColor: "#F8F8F8",
                 border: "1px solid #DADCDF",
                 borderRadius: "4px",
-              }}>
+              }}
+            >
               <MenuItem value={"level_0_annotator"}>Level 0 Annotator</MenuItem>
               <MenuItem value={"level_1_annotator"}>Level 1 Annotator</MenuItem>
               <MenuItem value={"level_2_annotator"}>Level 2 Annotator</MenuItem>
@@ -62,23 +66,15 @@ const RoleChange = ({ user }) => {
               <MenuItem value={"reviewer"}>Reviewer</MenuItem>
               <MenuItem value={"trainer"}>Trainer</MenuItem>
               <MenuItem value={"project_lead"}>Delivery Lead</MenuItem>
-              <MenuItem value={"project_coordinator"}>
-                Project Coordinator
-              </MenuItem>
+              <MenuItem value={"project_coordinator"}>Project Coordinator</MenuItem>
               {(role === "admin" || role === "recruitment_manager") && (
                 <MenuItem value={"delivery_manager"}>Project Delivery Lead</MenuItem>
               )}
               {(role === "admin" || role === "recruitment_manager") && (
                 <MenuItem value={"project_manager"}>Project Manager</MenuItem>
               )}
-              {role === "admin" && (
-                <MenuItem value={"recruitment_manager"}>
-                  Recruitment Manager
-                </MenuItem>
-              )}
-              {role === "admin" && (
-                <MenuItem value={"engineering_lead"}>Engineering Lead</MenuItem>
-              )}
+              {role === "admin" && <MenuItem value={"recruitment_manager"}>Recruitment Manager</MenuItem>}
+              {role === "admin" && <MenuItem value={"engineering_lead"}>Engineering Lead</MenuItem>}
               {role === "admin" && <MenuItem value={"admin"}>Admin</MenuItem>}
               {/* <MenuItem value={"recruitment_manager"}>Recruitment Manager</MenuItem> */}
               {/* <MenuItem value={"admin"}>Video</MenuItem>
@@ -92,10 +88,7 @@ const RoleChange = ({ user }) => {
               Change
             </ButtonStyle>
           ) : (
-            <ButtonStyle
-              variant="outlined"
-              disabled={isLoading}
-              onClick={handleChange}>
+            <ButtonStyle variant="outlined" disabled={isLoading} onClick={handleChange}>
               Change
             </ButtonStyle>
           )}

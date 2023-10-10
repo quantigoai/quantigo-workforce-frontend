@@ -7,6 +7,7 @@ import { changePassword, logout } from "../../../../features/slice/userSlice";
 import ConfirmPassword from "./ConfirmPassword";
 import CurrentPasswordfield from "./CurrentPasswordfield";
 import ResetPassword from "./ResetPassword";
+import useToaster from "../../../../customHooks/useToaster";
 
 const paperstyle = { width: 500 };
 const style = {
@@ -28,6 +29,8 @@ const ChangePasswordModal = ({ openModal, handleClose, setOpenModal }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const alert = useAlert();
+
+  const toast = useToaster();
   const handleChangePassword = () => {
     const data = {
       oldPassword: CurrentPassword,
@@ -65,27 +68,15 @@ const ChangePasswordModal = ({ openModal, handleClose, setOpenModal }) => {
               <Typography variant="h4">Change Password</Typography>
             </Grid>
             <Grid container sx={{ padding: "3%" }}>
-              <CurrentPasswordfield
-                setCurrentPassword={setCurrentPassword}
-                CurrentPassword={CurrentPassword}
-              />
+              <CurrentPasswordfield setCurrentPassword={setCurrentPassword} CurrentPassword={CurrentPassword} />
             </Grid>
             <Grid container sx={{ padding: "3%" }}>
-              <ResetPassword
-                setResetPassword={setResetPassword}
-                resetPassword={resetPassword}
-              />
+              <ResetPassword setResetPassword={setResetPassword} resetPassword={resetPassword} />
             </Grid>
             <Grid container sx={{ padding: "3%" }}>
-              <ConfirmPassword
-                setConfirmPassword={setConfirmPassword}
-                confirmPassword={confirmPassword}
-              />
+              <ConfirmPassword setConfirmPassword={setConfirmPassword} confirmPassword={confirmPassword} />
             </Grid>
-            <Grid
-              container
-              sx={{ justifyContent: "center", paddingBottom: "3%" }}
-            >
+            <Grid container sx={{ justifyContent: "center", paddingBottom: "3%" }}>
               <Button
                 variant="contained"
                 sx={{

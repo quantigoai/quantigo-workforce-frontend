@@ -1,4 +1,3 @@
-
 /*
  * Filename: /home/tanzim/WorkStation/wmpv2/src/components/primary/Auth/Login/Login.jsx
  * Path: /home/tanzim/WorkStation/wmpv2
@@ -15,6 +14,7 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import useToaster from "../../../../customHooks/useToaster";
 import { login } from "../../../../features/slice/userSlice";
 import InputFields from "../InputFields/InputFields";
 
@@ -33,6 +33,8 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const alert = useAlert();
+
+  const toast = useToaster();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -48,10 +50,10 @@ const Login = () => {
 
     dispatch(login(data)).then((action) => {
       if (action.payload?.status === 200) {
-        alert.show("Login Successful", { type: "success" });
+        toast.trigger("Login Successful", "success");
         navigate("/dashboard");
       } else {
-        alert.show(error, { type: "error" });
+        toast.trigger(error, "error");
       }
     });
   };

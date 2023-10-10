@@ -7,20 +7,21 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 import React from "react";
-import {useAlert} from "react-alert";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {getAQuizById} from "../../../features/slice/quizSlice";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import useToaster from "../../../customHooks/useToaster";
+import { getAQuizById } from "../../../features/slice/quizSlice";
 import ChapterContent from "./ChapterContent";
 
 const CourseMainContent = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
   const navigate = useNavigate();
 
-  const { activeChapterIndex, activeCourseId } = useSelector(
-    (state) => state.activePath
-  );
+  const { activeChapterIndex, activeCourseId } = useSelector((state) => state.activePath);
   const { course } = useSelector((state) => state.course);
 
   // useEffect(() => {
@@ -34,7 +35,7 @@ const CourseMainContent = () => {
   };
 
   const handleQuizStart = (id) => {
-    !id && alert.show("No Quiz Found", { type: "error" });
+    !id && toast.trigger("No Quiz Found", "error");
 
     id &&
       dispatch(getAQuizById(id)).then((res) => {
@@ -46,7 +47,6 @@ const CourseMainContent = () => {
   const handleEditChapter = (id) => {
     navigate(`/update-chapter/${id}`);
   };
-
 
   return (
     <>

@@ -8,6 +8,7 @@ import { socket } from "../../../App";
 import { updateMyDocuments } from "../../../features/slice/userSlice";
 import ProjectModalHeader from "../ProjectLIstNew2/ProjectModalHeader";
 import DocumentImageUpload from "./DocumentImageUpload";
+import useToaster from "../../../customHooks/useToaster";
 
 export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
@@ -58,6 +59,8 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
   const dispatch = useDispatch();
   const { user, isLoading } = useSelector((state) => state.user);
   const alert = useAlert();
+
+  const toast = useToaster();
 
   const { register, handleSubmit } = useForm();
 

@@ -6,26 +6,29 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Box, Grid, Paper} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useAlert} from "react-alert";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {getAllCourses, manuallyUpdateCourse,} from "../../../features/slice/courseSlice";
-import {createAQuiz} from "../../../features/slice/quizSlice";
+import { Box, Grid, Paper } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getAllCourses, manuallyUpdateCourse } from "../../../features/slice/courseSlice";
+import { createAQuiz } from "../../../features/slice/quizSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import QuestionAnswer from "./QuestionAnswer";
 import ChapterName from "./QuizField.jsx/ChapterName";
 import CourseName from "./QuizField.jsx/CourseName";
 import Duration from "./QuizField.jsx/Duration";
 import QuizName from "./QuizField.jsx/QuizName";
+import useToaster from "../../../customHooks/useToaster";
 
 const CreateQuiz = () => {
   const { courseChapter } = useSelector((state) => state.course);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const alert = useAlert();
+
+  const toast = useToaster();
   const {
     register,
     handleSubmit,
@@ -108,7 +111,8 @@ const CreateQuiz = () => {
             container
             sx={{
               paddingBottom: "2%",
-            }}>
+            }}
+          >
             <CommonHeader
               title="Create Quiz"
               description="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "

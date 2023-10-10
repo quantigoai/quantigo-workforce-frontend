@@ -4,6 +4,7 @@ import React from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import useToaster from "../../../../customHooks/useToaster";
 import { deleteAChapterById } from "../../../../features/slice/courseSlice";
 import { getAQuizById } from "../../../../features/slice/quizSlice";
 
@@ -11,19 +12,19 @@ const CourseContentComponents = ({ quizId }) => {
   const { course, courseChapter } = useSelector((state) => state.course);
 
   const { user } = useSelector((state) => state.user);
-  const { courseChapters } = useSelector(
-    (state) => state.course.courseChapters
-  );
+  const { courseChapters } = useSelector((state) => state.course.courseChapters);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
   const handleQuizStart = () => {
     if (courseChapter.quiz.id) {
       dispatch(getAQuizById(courseChapter.quiz.id));
       // TODO Need to refactor this code to show quiz
       navigate("/quiz");
     } else {
-      alert.show("Quiz not found", { type: "error" });
+      toast.trigger("Quiz not found", "error");
     }
   };
 
@@ -38,7 +39,7 @@ const CourseContentComponents = ({ quizId }) => {
     dispatch(deleteAChapterById(courseChapter._id)).then((action) => {
       if (action.payload.status === 200) {
         navigate("/course");
-        alert.show("Chapter Deleted Successfully", { type: "success" });
+        toast.trigger("Chapter Deleted Successfully", "success");
       }
     });
   };
@@ -66,10 +67,7 @@ const CourseContentComponents = ({ quizId }) => {
                     paddingRight: "3%",
                   }}
                 >
-                  <Typography>
-                    {dummyCourseChapter.content &&
-                      parse(dummyCourseChapter.content)}
-                  </Typography>
+                  <Typography>{dummyCourseChapter.content && parse(dummyCourseChapter.content)}</Typography>
                 </Grid>
               </Grid>
             ) : (
@@ -140,9 +138,7 @@ const CourseContentComponents = ({ quizId }) => {
             onClick={() => handleQuizStart()}
             variant="contained"
           >
-            {user.role === "trainer" || user.role === "admin"
-              ? "Show Quiz"
-              : "Start Quiz"}
+            {user.role === "trainer" || user.role === "admin" ? "Show Quiz" : "Start Quiz"}
           </Button>
         </Grid>
       </Paper>

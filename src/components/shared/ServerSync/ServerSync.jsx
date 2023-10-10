@@ -11,6 +11,7 @@ import { Button, FormControl, Grid, InputLabel, MenuItem, Paper, Select, TextFie
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
+import useToaster from "../../../customHooks/useToaster";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import { resetUpdatedValue, syncATeam } from "../../../features/slice/syncServerSlice";
 import { getAllTeams, resetTeams } from "../../../features/slice/teamSlice";
@@ -26,6 +27,8 @@ const ServerSync = () => {
   const [teamId, setTeamId] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
   const alert = useAlert();
+
+  const toast = useToaster();
 
   const { updatedValue } = useSelector((state) => state.serverSync);
   useEffect(() => {
@@ -75,13 +78,13 @@ const ServerSync = () => {
       handleClear();
       dispatch(syncATeam(data)).then((action) => {
         if (action.payload.status === 200) {
-          alert.show("Team Sync Successfully", { type: "success" });
+          toast.trigger("Team Sync Successfully", "success");
         } else {
-          alert.show(action.payload.message, { type: "error" });
+          toast.trigger(action.payload.message, "error");
         }
       });
     } else {
-      alert.show("Please select a team or team ID", { type: "error" });
+      toast.trigger("Please select a team or team ID", "error");
     }
   };
 
@@ -111,7 +114,12 @@ const ServerSync = () => {
               }}
             >
               <InputLabel id="demo-simple-select-filled-label">Server</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" id="demo-simple-select-filled" defaultValue={server} onChange={(e) => handleChangeServer(e)}>
+              <Select
+                labelId="demo-simple-select-filled-label"
+                id="demo-simple-select-filled"
+                defaultValue={server}
+                onChange={(e) => handleChangeServer(e)}
+              >
                 <MenuItem value={"quantigo"}>Quantigo Server</MenuItem>
                 <MenuItem value={"ag"}>Ag Server</MenuItem>
               </Select>

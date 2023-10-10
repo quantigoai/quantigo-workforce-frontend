@@ -21,6 +21,7 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import useToaster from "../../../../customHooks/useToaster";
 import { checkUserByUserName, signup } from "../../../../features/slice/userSlice";
 import CustomDatePicker from "../../../shared/CustomField/CustomDatePicker";
 import CustomSelectField from "../../../shared/CustomField/CustomSelectField";
@@ -34,6 +35,8 @@ const RegistrationForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const alert = useAlert();
+
+  const toast = useToaster();
 
   const [showPassword, setShowPassword] = useState(false);
   const [showOtherField, setShowOtherField] = useState(false);
@@ -71,7 +74,7 @@ const RegistrationForm = () => {
   const { firstName, lastName, email, password, qaiUserName, contactNo, billingAccountNo } = watch();
 
   const isFieldsNotEmptyFirstPage = !!firstName && !!lastName && !!email && !!password;
-    
+
   const isFieldsNotEmptyFinalPage = !!qaiUserName && !!contactNo && !!billingAccountNo;
 
   const disableButtonCheck = !!errors.firstName || !!errors.lastName || !!errors.email || !!errors.password;
@@ -91,9 +94,9 @@ const RegistrationForm = () => {
     const { hub, ...rest } = data;
     dispatch(signup(rest)).then((action) => {
       if (action.error) {
-        alert.show(action.error.message, { type: "error" });
+        toast.trigger(action.error.message, "error");
       } else if (action.payload?.status === 200 || action.payload?.status === 201) {
-        alert.show("User Registered Successfully", { type: "success" });
+        toast.trigger("User Registered Successfully", "success");
         navigate("/emailVerification");
       }
     });

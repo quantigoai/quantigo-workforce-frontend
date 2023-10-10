@@ -4,8 +4,8 @@ import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { submitQuizById } from "../../../../features/slice/quizSlice";
 import useToaster from "../../../../customHooks/useToaster";
+import { submitQuizById } from "../../../../features/slice/quizSlice";
 
 const ShowQuiz = () => {
   const { quiz, isLoading } = useSelector((state) => state.quiz);
@@ -29,10 +29,10 @@ const ShowQuiz = () => {
     };
     dispatch(submitQuizById(bulkData)).then((action) => {
       if (action.payload?.status === 200) {
-        alert.show("Quiz Submitted", { type: "success" });
+        toast.trigger("Quiz Submitted", "success"
         navigate("/quiz-result");
       } else {
-        alert.show("Do not submitted quiz", { type: "error" });
+        toast.trigger("Do not submitted quiz", "error");
       }
     });
   };

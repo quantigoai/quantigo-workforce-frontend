@@ -68,13 +68,13 @@ const NotificationModal = ({ handleSeeAll, notificationOpen, handleNotificationC
         dispatch(getAllNotifications());
         dispatch(getLatestNotifications());
         dispatch(getAllUnreadNotifications());
-        alert.show(`Marked last ${notificationsId.length} notifications as read`, {
+        toast.trigger(`Marked last ${notificationsId.length} notifications as read`, {
           type: "success",
         });
         handleNotificationClose();
       });
     } else {
-      alert.show(`No Unread notifications found`, {
+      toast.trigger(`No Unread notifications found`, {
         type: "error",
       });
     }

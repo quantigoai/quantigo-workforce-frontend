@@ -2,8 +2,8 @@ import { Button, FormControl, Grid, InputLabel, MenuItem, Select, styled } from 
 import React from "react";
 import { useAlert } from "react-alert";
 import { useDispatch } from "react-redux";
-import { pauseResumeJobs } from "../../../../../features/slice/jobSlice";
 import useToaster from "../../../../../customHooks/useToaster";
+import { pauseResumeJobs } from "../../../../../features/slice/jobSlice";
 
 const ButtonStyle = styled(Button)({
   width: "100%",
@@ -28,10 +28,10 @@ const PauseResumeJob = ({ job }) => {
     dispatch(pauseResumeJobs(data)).then((action) => {
       if (action.payload?.status === 200) {
         action.payload.data[0].status === "paused"
-          ? alert.show("Job Paused Successfully", { type: "success" })
-          : alert.show("Job Resumed Successfully", { type: "success" });
+          ? toast.trigger("Job Paused Successfully", "success")
+          : toast.trigger("Job Resumed Successfully", "success");
       } else {
-        alert.show("Something went wrong, Try again", { type: "error" });
+        toast.trigger("Something went wrong, Try again", "error");
       }
     });
   };

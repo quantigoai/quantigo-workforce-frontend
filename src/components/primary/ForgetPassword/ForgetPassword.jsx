@@ -4,9 +4,9 @@ import { useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import useToaster from "../../../customHooks/useToaster";
 import { forgetPasswordSlice } from "../../../features/slice/userSlice";
 import HeaderNav from "../HomePage/HeaderNav";
-import useToaster from "../../../customHooks/useToaster";
 
 const ButtonStyle = styled(Button)({
   backgroundColor: "#2D58FF",
@@ -39,9 +39,9 @@ const ForgetPassword = () => {
     dispatch(forgetPasswordSlice(data)).then((action) => {
       if (action.payload.status === 200) {
         setVarificationMessage("set");
-        alert.show("Link sent to email", { type: "success" });
+        toast.trigger("Link sent to email", "success");
       } else {
-        alert.show("Not send email", { type: "error" });
+        toast.trigger("Not send email", "error");
       }
     });
   };

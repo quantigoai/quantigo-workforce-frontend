@@ -5,10 +5,10 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { socket } from "../../../App";
+import useToaster from "../../../customHooks/useToaster";
 import { updateMyDocuments } from "../../../features/slice/userSlice";
 import ProjectModalHeader from "../ProjectLIstNew2/ProjectModalHeader";
 import DocumentImageUpload from "./DocumentImageUpload";
-import useToaster from "../../../customHooks/useToaster";
 
 export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
@@ -99,10 +99,10 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
         ) {
           socket.emit("uploadNDAOrDocuments", user);
         }
-        alert.show("User Documents update successfully", { type: "success" });
+        toast.trigger("User Documents update successfully", "success");
         handleClose();
       } else {
-        alert.show("Failed to update User Documents", { type: "error" });
+        toast.trigger("Failed to update User Documents", "error");
       }
     });
   };

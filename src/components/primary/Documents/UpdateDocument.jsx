@@ -30,8 +30,8 @@ import { useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { updateMyDocuments } from "../../../features/slice/userSlice";
 import useToaster from "../../../customHooks/useToaster";
+import { updateMyDocuments } from "../../../features/slice/userSlice";
 
 const UpdateDocument = () => {
   const dispatch = useDispatch();
@@ -75,9 +75,9 @@ const UpdateDocument = () => {
     };
     dispatch(updateMyDocuments(finalData)).then((action) => {
       if (action.payload?.status === 200 || action.payload?.status === 201) {
-        alert.show("User Documents update successfully", { type: "success" });
+        toast.trigger("User Documents update successfully", "success");
       } else {
-        alert.show("Do not update Document", { type: "error" });
+        toast.trigger("Failed to update Document", "error");
       }
     });
   };

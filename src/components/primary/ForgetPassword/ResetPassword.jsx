@@ -17,9 +17,9 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import useToaster from "../../../customHooks/useToaster";
 import { setNewPassword } from "../../../features/slice/userSlice";
 import HeaderNav from "../HomePage/HeaderNav";
-import useToaster from "../../../customHooks/useToaster";
 
 const ForgetPasswordBox = styled(Box)({
   display: "flex",
@@ -102,10 +102,10 @@ const ResetPassword = () => {
 
     dispatch(setNewPassword(resetdata)).then((action) => {
       if (action.payload?.status === 200) {
-        alert.show(" Password Reset Successfully", { type: "success" });
+        toast.trigger(" Password Reset Successfully", "success");
         navigate("/login");
       } else {
-        alert.show("Password not change", { type: "error" });
+        toast.trigger("Password not change", "error");
       }
     });
   };

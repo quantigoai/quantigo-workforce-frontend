@@ -47,7 +47,7 @@ const AllNotification = () => {
       dispatch(getAllNotifications());
       dispatch(getLatestNotifications());
       dispatch(getAllUnreadNotifications());
-      return alert.show(`Marked all notifications as read`, {
+      return toast.trigger(`Marked all notifications as read`, {
         type: "success",
       });
     });

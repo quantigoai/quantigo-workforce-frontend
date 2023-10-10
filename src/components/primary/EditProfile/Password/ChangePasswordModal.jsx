@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import useToaster from "../../../../customHooks/useToaster";
 import { changePassword, logout } from "../../../../features/slice/userSlice";
 import ConfirmPassword from "./ConfirmPassword";
 import CurrentPasswordfield from "./CurrentPasswordfield";
 import ResetPassword from "./ResetPassword";
-import useToaster from "../../../../customHooks/useToaster";
 
 const paperstyle = { width: 500 };
 const style = {
@@ -43,12 +43,12 @@ const ChangePasswordModal = ({ openModal, handleClose, setOpenModal }) => {
           navigate("/");
         });
         setOpenModal(false);
-        alert.show("Password changed successfully", {
+        toast.trigger("Password changed successfully", {
           type: "success",
         });
       } else {
         setOpenModal(false);
-        alert.show("Password can not change", {
+        toast.trigger("Password can not change", {
           type: "error",
         });
       }

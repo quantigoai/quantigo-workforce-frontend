@@ -2,8 +2,8 @@ import { Button, FormControl, Grid, InputLabel, MenuItem, Select, styled } from 
 import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { changeRole } from "../../../../features/slice/userSlice";
 import useToaster from "../../../../customHooks/useToaster";
+import { changeRole } from "../../../../features/slice/userSlice";
 
 const ButtonStyle = styled(Button)({
   width: "100%",
@@ -35,9 +35,9 @@ const RoleChange = ({ user }) => {
     };
     dispatch(changeRole(finalData)).then((action) => {
       if (action.payload?.status === 200) {
-        alert.show("Role Change Successfully", { type: "success" });
+        toast.trigger("Role Change Successfully", "success");
       } else {
-        alert.show("Role can not Change", { type: "error" });
+        toast.trigger("Role can not Change", "error");
       }
     });
   };

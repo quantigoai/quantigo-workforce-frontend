@@ -31,6 +31,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
+import useToaster from "../../../customHooks/useToaster";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import { getProjectByWorkSpace, updateAProjectById } from "../../../features/slice/projectByWorkspaceSlice";
 import { getAllTeams } from "../../../features/slice/teamSlice";
@@ -38,7 +39,6 @@ import { getWorkSpaceById } from "../../../features/slice/workSpaceSlice";
 import HubField from "./HubField";
 import PriorityField from "./PriorityField";
 import StatusField from "./StatusField";
-import useToaster from "../../../customHooks/useToaster";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -138,10 +138,10 @@ const ProjectListNew = () => {
 
     dispatch(updateAProjectById(finalData))
       .then((res) => {
-        return alert.show(res.payload.data.message, { type: "success" });
+        return toast.trigger(res.payload.data.message, "success");
       })
       .catch((err) => {
-        return alert.show(err.response.data.message, { type: "error" });
+        return toast.trigger(err.response.data.message, "error");
       });
   };
 

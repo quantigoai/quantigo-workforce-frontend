@@ -3,9 +3,9 @@ import { Box, Button } from "@mui/material";
 import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch } from "react-redux";
+import useToaster from "../../../customHooks/useToaster";
 import { createProjectDirectory } from "../../../features/slice/ProjectDirectorySlice";
 import CreateProjectDirectoryModal from "./CreateProjectDirectoryModal";
-import useToaster from "../../../customHooks/useToaster";
 
 const CreateProjectDirectory = () => {
   const [open, setOpen] = useState(false);
@@ -23,11 +23,11 @@ const CreateProjectDirectory = () => {
     dispatch(createProjectDirectory(data)).then((action) => {
       if (action.payload.status === 200) {
         setOpenModal(false);
-        alert.show("Successfully created Project Directory", {
+        toast.trigger("Successfully created Project Directory", {
           type: "success",
         });
       } else {
-        alert.show("Project Directory do not create", { type: "error" });
+        toast.trigger("Project Directory do not create", "error");
       }
     });
   };

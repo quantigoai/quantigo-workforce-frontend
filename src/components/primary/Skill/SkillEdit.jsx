@@ -6,9 +6,9 @@ import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import useToaster from "../../../customHooks/useToaster";
 import { updateASkill } from "../../../features/slice/skillSlice";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
-import useToaster from "../../../customHooks/useToaster";
 
 const ButtonStyleDelete = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -70,10 +70,10 @@ const SkillEdit = ({ skill }) => {
 
     dispatch(updateASkill(finalData)).then((action) => {
       if (action.payload.status === 200) {
-        alert.show(" Update Skill", { type: "success" });
+        toast.trigger(" Update Skill", "success");
         setOpen(false);
       } else {
-        alert.show("Skill Not Update", { type: "error" });
+        toast.trigger("Skill Not Update", "error");
       }
     });
   };

@@ -11,6 +11,7 @@ import dayjs from "dayjs";
 import React, { useEffect } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
+import useToaster from "../../../customHooks/useToaster";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import {
   getDashboardData,
@@ -27,7 +28,6 @@ import LineChart from "./LineChart/LineChart";
 import LineChartDaily from "./LineChart/LineChartDaily";
 import PieChart from "./PieChart/PieChart";
 import PieChartForUser from "./PieChart/PieChartForUser";
-import useToaster from "../../../customHooks/useToaster";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -78,10 +78,10 @@ const Dashboard = () => {
   const handleresendEmail = () => {
     dispatch(resendEmailVarification()).then((action) => {
       if (action.payload?.status === 200 || action.payload?.status === 201) {
-        alert.show(action.payload.data, { type: "success" });
+        toast.trigger(action.payload.data, "success");
         setSendMessage(action.payload.data);
       } else {
-        alert.show("Email Not Send", { type: "error" });
+        toast.trigger("Email Not Send", "error");
       }
     });
   };

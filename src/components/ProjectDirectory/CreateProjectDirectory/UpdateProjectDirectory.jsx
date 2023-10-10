@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { updateProjectDirectory } from "../../../features/slice/ProjectDirectorySlice";
 import useToaster from "../../../customHooks/useToaster";
+import { updateProjectDirectory } from "../../../features/slice/ProjectDirectorySlice";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -56,11 +56,11 @@ const UpdateProjectDirectory = ({ item }) => {
     dispatch(updateProjectDirectory(finalData)).then((action) => {
       if (action?.payload?.status === 200) {
         setOpenModal(false);
-        alert.show("Successfully Updated Project Directory", {
+        toast.trigger("Successfully Updated Project Directory", {
           type: "success",
         });
       } else {
-        alert.show("Project Directory can not Updated", { type: "error" });
+        toast.trigger("Project Directory can not Updated", "error");
       }
     });
   };

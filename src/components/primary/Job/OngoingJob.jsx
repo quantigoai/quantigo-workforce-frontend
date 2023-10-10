@@ -32,12 +32,12 @@ import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
+import useToaster from "../../../customHooks/useToaster";
 import DateAndTime from "../../shared/CountDown/DateAndTime";
 import TakenTime from "../../shared/CountDown/TakenTime";
 import SearchBar from "../../shared/SearchBar/SearchBar";
 import OnGogingJobDetails from "./JobDetails/OnGogingJobDetails";
 import JobStatusField from "./JobStatusBox/JobStatusField";
-import useToaster from "../../../customHooks/useToaster";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -138,9 +138,9 @@ const OngoingJob = ({ action }) => {
 
     dispatch(assignedJobToAUser(data)).then((action) => {
       if (action.payload?.status === 200) {
-        alert.show("Job Reassigned Successfully", { type: "success" });
+        toast.trigger("Job Reassigned Successfully", "success");
       } else {
-        alert.show("Job Can not Reassigned", { type: "error" });
+        toast.trigger("Job Can not Reassigned", "error");
       }
     });
   };
@@ -154,10 +154,10 @@ const OngoingJob = ({ action }) => {
   //   dispatch(pauseResumeJobs(data)).then((action) => {
   //     if (action.payload?.status === 200) {
   //       action.payload.data[0].status === "paused"
-  //         ? alert.show("Job Paused Successfully", { type: "success" })
-  //         : alert.show("Job Resumed Successfully", { type: "success" });
+  //         ? toast.trigger("Job Paused Successfully", "success")
+  //         : toast.trigger("Job Resumed Successfully", "success");
   //     } else {
-  //       alert.show("Something went wrong, Try again", { type: "error" });
+  //       toast.trigger("Something went wrong, Try again", "error");
   //     }
   //   });
   // };

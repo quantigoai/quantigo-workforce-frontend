@@ -6,8 +6,8 @@ import DialogContentText from "@mui/material/DialogContentText";
 import React from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteASkill, getAllSkills } from "../../../features/slice/skillSlice";
 import useToaster from "../../../customHooks/useToaster";
+import { deleteASkill, getAllSkills } from "../../../features/slice/skillSlice";
 
 const SkillDeleteModal = ({ skill }) => {
   const [open, setOpen] = React.useState(false);
@@ -27,9 +27,9 @@ const SkillDeleteModal = ({ skill }) => {
     dispatch(deleteASkill(id)).then((action) => {
       if (action.payload.status === 200 || 201) {
         dispatch(getAllSkills());
-        alert.show("Skill Delete", { type: "success" });
+        toast.trigger("Skill Delete", "success");
       } else {
-        alert.show("Skill Not Delete", { type: "error" });
+        toast.trigger("Skill Not Delete", "error");
       }
     });
   };

@@ -22,6 +22,7 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import useToaster from "../../../customHooks/useToaster";
 import { getDataSetByProjectID } from "../../../features/slice/datasetSlice";
 import { createJob, getVideoId, videoJobCreate } from "../../../features/slice/jobSlice";
 import { getProjectByWorkSpace } from "../../../features/slice/projectByWorkspaceSlice";
@@ -30,7 +31,6 @@ import { getWorkSpaceById } from "../../../features/slice/workSpaceSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import SelectMenu from "../BenchMark/SelectMenu";
 import OptionalFields from "./SharedComponents/OptionalFields";
-import useToaster from "../../../customHooks/useToaster";
 
 const CreateJobNew = () => {
   const { teams } = useSelector((state) => state.team);
@@ -134,11 +134,11 @@ const CreateJobNew = () => {
       };
       dispatch(videoJobCreate(finalData)).then((action) => {
         if (action.payload?.status === 201) {
-          alert.show("Job Pull Successfully", { type: "success" });
+          toast.trigger("Job Pull Successfully", "success");
         } else if (action.payload.status === 202) {
-          alert.show(action.payload.data.message, { type: "error" });
+          toast.trigger(action.payload.data.message, "error");
         } else {
-          alert.show("Something went wrong", { type: "error" });
+          toast.trigger("Something went wrong", "error");
         }
       });
     } else {
@@ -149,11 +149,11 @@ const CreateJobNew = () => {
       dispatch(createJob(finalData)).then((action) => {
         if (action.payload?.status === 201) {
           navigate("/jobs/alljobs");
-          alert.show("Job Pull Successfully", { type: "success" });
+          toast.trigger("Job Pull Successfully", "success");
         } else if (action.payload.status === 202) {
-          alert.show(action.payload.data.message, { type: "error" });
+          toast.trigger(action.payload.data.message, "error");
         } else {
-          alert.show("Something went wrong", { type: "error" });
+          toast.trigger("Something went wrong", "error");
         }
       });
     }

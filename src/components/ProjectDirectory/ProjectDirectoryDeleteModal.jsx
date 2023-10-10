@@ -8,8 +8,8 @@ import React from "react";
 import { useAlert } from "react-alert";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deleteProjectDirectory } from "../../features/slice/ProjectDirectorySlice";
 import useToaster from "../../customHooks/useToaster";
+import { deleteProjectDirectory } from "../../features/slice/ProjectDirectorySlice";
 
 const ProjectDirectoryDeleteModal = ({ item }) => {
   const [open, setOpen] = React.useState(false);
@@ -29,11 +29,9 @@ const ProjectDirectoryDeleteModal = ({ item }) => {
     setOpen(false);
     dispatch(deleteProjectDirectory(id)).then((action) => {
       if (action?.payload?.status === 200) {
-        alert.show("Successfully Deleted Project Directory", {
-          type: "success",
-        });
+        toast.trigger("Successfully Deleted Project Directory", "success");
       } else {
-        alert.show("Project Directory do not Delete", { type: "error" });
+        toast.trigger("Project Directory do not Delete", "error");
       }
     });
   };

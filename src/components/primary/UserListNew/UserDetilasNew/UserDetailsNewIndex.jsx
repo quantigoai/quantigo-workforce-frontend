@@ -4,12 +4,12 @@ import * as React from "react";
 import { useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
+import useToaster from "../../../../customHooks/useToaster";
 import { changeRole, deleteOrActivateUser, updateAUserById } from "../../../../features/slice/userSlice";
 import CommonModalFooter from "../../../shared/CommonModal/CommonModalFooter";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 import DetailsTab from "./DetailsTab";
 import styled from "./testDrawer";
-import useToaster from "../../../../customHooks/useToaster";
 
 export default function UserDetailsNewIndex({ open, handleClose, role }) {
   const alert = useAlert();
@@ -106,18 +106,18 @@ export default function UserDetailsNewIndex({ open, handleClose, role }) {
     isEditSkill &&
       dispatch(updateAUserById(skillData)).then((action) => {
         if (action.payload?.status === 200) {
-          alert.show("Skill Update successfully", { type: "success" });
+          toast.trigger("Skill Update successfully", "success");
           setIsEditSkill(false);
         } else {
-          alert.show("Skill can not updated ", { type: "error" });
+          toast.trigger("Skill can not updated ", "error");
         }
       });
     roleValue &&
       dispatch(changeRole(finalData)).then((action) => {
         if (action.payload?.status === 200) {
-          alert.show("Role Change Successfully", { type: "success" });
+          toast.trigger("Role Change Successfully", "success");
         } else {
-          alert.show("Unable to Change the Role", { type: "error" });
+          toast.trigger("Unable to Change the Role", "error");
         }
       });
 
@@ -126,12 +126,12 @@ export default function UserDetailsNewIndex({ open, handleClose, role }) {
         if (action.payload?.status === 200) {
           if (actionStatus === "delete") {
             window.location.reload(false);
-            alert.show("User Deleted Successfully", { type: "success" });
+            toast.trigger("User Deleted Successfully", "success");
           } else {
-            alert.show("Status change Successfully", { type: "success" });
+            toast.trigger("Status change Successfully", "success");
           }
         } else {
-          alert.show("Unable to Change the Status", { type: "error" });
+          toast.trigger("Unable to Change the Status", "error");
         }
       });
   };

@@ -31,8 +31,8 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { downloadMappingSheet, getDataSetByProjectID } from "../../../features/slice/datasetSlice";
 import InnerTable from "./InnerTable";
 
-import ProjectSearchIndex from "./ProjectSearch/ProjectSearchIndex";
 import useToaster from "../../../customHooks/useToaster";
+import ProjectSearchIndex from "./ProjectSearch/ProjectSearchIndex";
 
 const CustomDownArrow = styled(KeyboardArrowDownIcon)({
   color: "rgba(45, 88, 255, 1)",
@@ -200,10 +200,10 @@ const ProjectList = () => {
         setPriority("");
         setHubModified(false);
 
-        return alert.show("Project status updated", { type: "success" });
+        return toast.trigger("Project status updated", "success");
       })
       .catch((err) => {
-        return alert.show(err.response.data.message, { type: "error" });
+        return toast.trigger(err.response.data.message, "error");
       });
   };
   const [projectId, setProjectId] = useState("");

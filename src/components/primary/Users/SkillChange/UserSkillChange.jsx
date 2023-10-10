@@ -2,10 +2,10 @@ import { Box, Button, styled } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
+import useToaster from "../../../../customHooks/useToaster";
 import { getAllSkills } from "../../../../features/slice/skillSlice";
 import { updateAUserById } from "../../../../features/slice/userSlice";
 import SkillField from "../../Course/InputFields/SkillField";
-import useToaster from "../../../../customHooks/useToaster";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -75,9 +75,9 @@ const UserSkillChange = ({ user }) => {
 
     dispatch(updateAUserById(data)).then((action) => {
       if (action.payload?.status === 200) {
-        alert.show("Skill Update successfully", { type: "success" });
+        toast.trigger("Skill Update successfully", "success");
       } else {
-        alert.show("Skill can not updated ", { type: "error" });
+        toast.trigger("Skill can not updated ", "error");
       }
     });
   };

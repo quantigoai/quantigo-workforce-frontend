@@ -5,10 +5,10 @@ import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import useToaster from "../../../../customHooks/useToaster";
 import { updateAUserById } from "../../../../features/slice/userSlice";
 import AcceptModal from "./AcceptModal";
 import NdaRejectModal from "./NdaRejectModal";
-import useToaster from "../../../../customHooks/useToaster";
 
 const NdaAccept = ({ signNda, user, isNDASigned, signImage }) => {
   const alert = useAlert();
@@ -38,9 +38,9 @@ const NdaAccept = ({ signNda, user, isNDASigned, signImage }) => {
     };
     // dispatch(updateAUserById(data)).then((action) => {
     //   if (action.payload?.status === 200) {
-    //     alert.show("User Verified successfully", { type: "success" });
+    //     toast.trigger("User Verified successfully", "success");
     //   } else {
-    //     alert.show("User not Verified ", { type: "error" });
+    //     toast.trigger("User not Verified ", "error");
     //   }
     // });
   };
@@ -58,9 +58,9 @@ const NdaAccept = ({ signNda, user, isNDASigned, signImage }) => {
     };
     dispatch(updateAUserById(finalData)).then((action) => {
       if (action.payload?.status === 200) {
-        alert.show("Reject  NDA", { type: "success" });
+        toast.trigger("Reject  NDA", "success");
       } else {
-        alert.show("No Reject  NDA", { type: "error" });
+        toast.trigger("No Reject  NDA", "error");
       }
     });
     handleClose();

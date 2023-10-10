@@ -31,6 +31,7 @@ import EditProjectModal from "./EditProjectModal";
 // import TableWrapper from "./ExpTable/TableWrapper";
 const TableWrapper = React.lazy(() => import("./ExpTable/TableWrapper"));
 
+import useToaster from "../../../customHooks/useToaster";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import {
   fields,
@@ -50,7 +51,6 @@ import Project2DetailsModal from "./Project2Details/Project2DetailsModal";
 import ProjectModal from "./ProjectModal";
 import ProjectSelectFIlter from "./ProjectSelectFIlter";
 import "./index.css";
-import useToaster from "../../../customHooks/useToaster";
 
 // test for commit
 /**
@@ -133,11 +133,11 @@ const ProjectLIstIndex2 = () => {
     dispatch(deleteProjectDrawerById(e.id))
       .then((action) => {
         if (action.payload.status === 200) {
-          alert.show(action.payload.data.message, { type: "success" });
+          toast.trigger(action.payload.data.message, "success");
         }
       })
       .catch(() => {
-        alert.show(error, { type: "error" });
+        toast.trigger(error, "error");
       });
   };
   //create and edit project submit
@@ -168,10 +168,10 @@ const ProjectLIstIndex2 = () => {
       const allData = { id: projectDrawer._id, data: newData };
       dispatch(updateProjectDrawerById(allData)).then((action) => {
         if (action.error?.message) {
-          alert.show(action.error?.message, { type: "error" });
+          toast.trigger(action.error?.message, "error");
         }
         if (action.payload?.status === 200) {
-          alert.show(action.payload.data.message, { type: "success" });
+          toast.trigger(action.payload.data.message, "success");
 
           setEditModalOpen(false);
         }
@@ -181,10 +181,10 @@ const ProjectLIstIndex2 = () => {
 
       dispatch(createProjectDrawer(newData)).then((action) => {
         if (action.error) {
-          alert.show(action.error.message, { type: "error" });
+          toast.trigger(action.error.message, "error");
         }
         if (action.payload?.status === 201) {
-          alert.show(action.payload.data.message, { type: "success" });
+          toast.trigger(action.payload.data.message, "success");
           setCreateProjectOpen(false);
         }
       });

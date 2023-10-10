@@ -2,9 +2,9 @@ import { Button } from "@mui/material";
 import React from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
+import useToaster from "../../../../customHooks/useToaster";
 import { activateDeactivateUser } from "../../../../features/slice/userSlice";
 import ModalActivateAccount from "./ModalActivateAccount";
-import useToaster from "../../../../customHooks/useToaster";
 
 const ActivateAccount = () => {
   const [open, setOpen] = React.useState(false);
@@ -28,14 +28,14 @@ const ActivateAccount = () => {
     dispatch(activateDeactivateUser(finalData)).then((action) => {
       if (action.payload?.status === 200) {
         if (user.active) {
-          alert.show("Deactivate Your Account", { type: "success" });
+          toast.trigger("Deactivate Your Account", "success");
           setOpen(false);
         } else {
-          alert.show("Activate Your Account", { type: "success" });
+          toast.trigger("Activate Your Account", "success");
           setOpen(false);
         }
       } else {
-        alert.show("Status can not Change", { type: "error" });
+        toast.trigger("Status can not Change", "error");
       }
     });
   };

@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import useToaster from "../../../../../customHooks/useToaster";
 import { changePassword, logout } from "../../../../../features/slice/userSlice";
 import ConfirmPassword from "../../Password/ConfirmPassword";
 import CurrentPasswordfield from "../../Password/CurrentPasswordfield";
 import ResetPassword from "../../Password/ResetPassword";
-import useToaster from "../../../../../customHooks/useToaster";
 const PasswordChangeIndex = () => {
   const [CurrentPassword, setCurrentPassword] = useState("");
   const [resetPassword, setResetPassword] = useState("");
@@ -28,11 +28,11 @@ const PasswordChangeIndex = () => {
         dispatch(logout()).then(() => {
           navigate("/");
         });
-        alert.show("Password changed successfully", {
+        toast.trigger("Password changed successfully", {
           type: "success",
         });
       } else {
-        alert.show("Password can not change", {
+        toast.trigger("Password can not change", {
           type: "error",
         });
       }

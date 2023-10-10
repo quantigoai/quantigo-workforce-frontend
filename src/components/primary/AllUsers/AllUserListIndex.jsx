@@ -12,26 +12,26 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import { getAllSkills } from "../../../features/slice/skillSlice";
-import { getAllUsers, setTargetedUser, updateAUserById } from "../../../features/slice/userSlice";
+import { getAllUsers, setTargetedUser } from "../../../features/slice/userSlice";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 // import TableWrapper from "../ProjectLIstNew2/ExpTable/TableWrapper";
 const TableWrapper = React.lazy(() => import("../ProjectLIstNew2/ExpTable/TableWrapper"));
 
+import { useForm } from "react-hook-form";
 import useAllUsers from "../../../customHooks/useAllUsers";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import useHandleChange from "../ProjectLIstNew2/Hooks/useHandleChange";
 import PaginationTable from "../ProjectLIstNew2/PaginationTable";
 import "../ProjectLIstNew2/index.css";
 import UserDetailsNewIndex from "../UserListNew/UserDetilasNew/UserDetailsNewIndex";
+import AcceptModal from "../Users/NdaAccept/AcceptModal";
+import NdaRejectModal from "../Users/NdaAccept/NdaRejectModal";
 import UsersFilter from "./UsersFilter";
 import UsersHeader from "./UsersHeader";
 import "./index.css";
 import { fields } from "./tableFields";
 import { hubOptions, roleOptions, userStatusOptions } from "./userFilterOptions";
-import NdaRejectModal from "../Users/NdaAccept/NdaRejectModal";
-import { useForm } from "react-hook-form";
-import AcceptModal from "../Users/NdaAccept/AcceptModal";
 
 // TODO NEED TO FIX LOADING ISSUE
 const AllUserListIndex = ({ action }) => {
@@ -161,7 +161,7 @@ const AllUserListIndex = ({ action }) => {
     setOpenModal(true);
   };
   const onSubmit = (data) => {
-   const finalData = {
+    const finalData = {
       id: selectedUser._id,
       varifiedData: {
         isVerified: false,
@@ -170,9 +170,9 @@ const AllUserListIndex = ({ action }) => {
     };
     // dispatch(updateAUserById(finalData)).then((action) => {
     //   if (action.payload?.status === 200) {
-    //     alert.show("Reject  NDA", { type: "success" });
+    //     toast.trigger("Reject  NDA", "success");
     //   } else {
-    //     alert.show("No Reject  NDA", { type: "error" });
+    //     toast.trigger("Failed to Reject  NDA", "error");
     //   }
     // });
     handleClose();
@@ -186,10 +186,9 @@ const AllUserListIndex = ({ action }) => {
   // accept NDA
   const handleOpenNDA = (params) => {
     setSelectedUser(params);
-   setOpenAccepet(true);
+    setOpenAccepet(true);
   };
   const handleAccept = () => {
-    
     const data = {
       id: selectedUser._id,
       varifiedData: {
@@ -198,9 +197,9 @@ const AllUserListIndex = ({ action }) => {
     };
     // dispatch(updateAUserById(data)).then((action) => {
     //   if (action.payload?.status === 200) {
-    //     alert.show("User Verified successfully", { type: "success" });
+    //     toast.trigger("User Verified successfully", "success");
     //   } else {
-    //     alert.show("User not Verified ", { type: "error" });
+    //     toast.trigger("User not Verified ", "error");
     //   }
     // });
   };
@@ -266,7 +265,8 @@ const AllUserListIndex = ({ action }) => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-          }}>
+          }}
+        >
           {isDataLoading ? (
             <LoadingComponent />
           ) : (

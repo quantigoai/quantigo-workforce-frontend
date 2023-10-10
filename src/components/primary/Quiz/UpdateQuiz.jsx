@@ -12,6 +12,7 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import useToaster from "../../../customHooks/useToaster";
 import { updateQuizById } from "../../../features/slice/quizSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import QuestionAnswer from "./QuestionAnswer";
@@ -19,7 +20,6 @@ import ChapterName from "./QuizField.jsx/ChapterName";
 import CourseName from "./QuizField.jsx/CourseName";
 import Duration from "./QuizField.jsx/Duration";
 import QuizName from "./QuizField.jsx/QuizName";
-import useToaster from "../../../customHooks/useToaster";
 
 const UpdateQuiz = ({ quizId }) => {
   const alert = useAlert();
@@ -139,9 +139,9 @@ const UpdateQuiz = ({ quizId }) => {
     dispatch(updateQuizById(bulkData)).then((action) => {
       if (action.payload?.status === 200) {
         navigate(`/course-details/${course._id}`);
-        alert.show("Quiz Updated Successfully", { type: "success" });
+        toast.trigger("Quiz Updated Successfully", "success");
       } else {
-        alert.show("Failed to update the quiz", { type: "error" });
+        toast.trigger("Failed to update the quiz", "error");
       }
     });
   };

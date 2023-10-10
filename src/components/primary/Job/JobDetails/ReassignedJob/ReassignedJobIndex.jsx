@@ -2,8 +2,8 @@ import { Box, Button, FormControl, FormControlLabel, Radio, RadioGroup } from "@
 import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { assignedJobToAUser } from "../../../../../features/slice/jobSlice";
 import useToaster from "../../../../../customHooks/useToaster";
+import { assignedJobToAUser } from "../../../../../features/slice/jobSlice";
 
 const ReassignedJobIndex = ({ job }) => {
   const [value, setValue] = useState(""); // initialize value as an empty string
@@ -43,9 +43,9 @@ const ReassignedJobIndex = ({ job }) => {
 
     dispatch(assignedJobToAUser(data)).then((action) => {
       if (action.payload?.status === 200) {
-        alert.show("Job Reassigned Successfully", { type: "success" });
+        toast.trigger("Job Reassigned Successfully", "success");
       } else {
-        alert.show("Job Can not Reassigned", { type: "error" });
+        toast.trigger("Job Can not Reassigned", "error");
       }
     });
   };

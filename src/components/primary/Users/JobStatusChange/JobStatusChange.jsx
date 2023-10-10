@@ -2,8 +2,8 @@ import { Button, FormControl, Grid, InputLabel, MenuItem, Select, styled, TextFi
 import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { UnblockJobsForUser } from "../../../../features/slice/userSlice";
 import useToaster from "../../../../customHooks/useToaster";
+import { UnblockJobsForUser } from "../../../../features/slice/userSlice";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -40,13 +40,13 @@ const JobStatusChange = ({ user }) => {
 
     dispatch(UnblockJobsForUser(data)).then((action) => {
       if (action.payload?.status === 200) {
-        alert.show(
+        toast.trigger(
           "Unblock Job Successfully",
 
-          { type: "success" }
+          "success"
         );
       } else {
-        alert.show("Status can not Change", { type: "error" });
+        toast.trigger("Status can not Change", "error");
       }
     });
   };

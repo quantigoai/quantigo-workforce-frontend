@@ -2,8 +2,8 @@ import { Button, FormControl, Grid, InputLabel, MenuItem, Select, styled } from 
 import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteOrActivateUser } from "../../../../features/slice/userSlice";
 import useToaster from "../../../../customHooks/useToaster";
+import { deleteOrActivateUser } from "../../../../features/slice/userSlice";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -36,20 +36,20 @@ const UserStatusChange = ({ user }) => {
       if (action.payload?.status === 200) {
         if (actionStatus === "delete") {
           window.location.reload(false);
-          alert.show(
+          toast.trigger(
             "User Delete Successfully",
 
-            { type: "success" }
+            "success"
           );
         } else {
-          alert.show(
+          toast.trigger(
             "Status change Successfully",
 
-            { type: "success" }
+            "success"
           );
         }
       } else {
-        alert.show("Status can not Change", { type: "error" });
+        toast.trigger("Status can not Change", "error");
       }
     });
   };

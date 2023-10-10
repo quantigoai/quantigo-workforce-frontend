@@ -94,15 +94,15 @@ const Skills = () => {
 
     dispatch(createASkill(data)).then((action) => {
       if (action.error) {
-        alert.show(action.error.message, { type: "error" });
+        toast.trigger(action.error.message, "error");
       }
       if (action.payload.status === 200 || action.payload.status === 201) {
         setName("");
         setDescription("");
         dispatch(getAllSkills());
-        alert.show("Skill Create", { type: "success" });
+        toast.trigger("Skill Create", "success");
       } else {
-        alert.show("Skill Not create", { type: "error" });
+        toast.trigger("Skill Not create", "error");
       }
     });
   };

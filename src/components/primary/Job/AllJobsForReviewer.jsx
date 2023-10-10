@@ -32,6 +32,7 @@ import TableCell from "@mui/material/TableCell";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
+import useToaster from "../../../customHooks/useToaster";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import {
   addDefaultAnnotator,
@@ -44,7 +45,6 @@ import { getAllTeams } from "../../../features/slice/teamSlice";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import SearchBar from "../../shared/SearchBar/SearchBar";
 import JobDetailsForReviewer from "./JobDetails/JobDetailsForReviewer";
-import useToaster from "../../../customHooks/useToaster";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -136,9 +136,9 @@ const AllJobsForReviewer = () => {
     dispatch(addDefaultAnnotator(annotatorData));
     dispatch(takeJobForReviewer(data)).then((action) => {
       if (action.payload?.status === 200) {
-        alert.show("Job taken successfully", { type: "success" });
+        toast.trigger("Job taken successfully", "success");
       } else {
-        alert.show("Job taken Failed", { type: "error" });
+        toast.trigger("Job taken Failed", "error");
       }
     });
   };

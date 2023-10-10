@@ -4,6 +4,7 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import useToaster from "../../../customHooks/useToaster";
 import { myProfileEdit, removeMyImage, uploadMyImage } from "../../../features/slice/userSlice";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
@@ -20,7 +21,6 @@ import ChangePasswordIndex from "./Password/ChangePasswordIndex";
 import PhoneNumberField from "./PhoneNumberField";
 import ProfilePictureIndex from "./ProfilePicture/ProfilePictureIndex";
 import SkillShowUser from "./SkillShowUser";
-import useToaster from "../../../customHooks/useToaster";
 
 const paperStyle = {
   width: "100%",
@@ -57,7 +57,7 @@ const EditProfileIndex = () => {
   const removeImage = () => {
     dispatch(removeMyImage(user._id)).then((action) => {
       if (action.payload.status === 200) {
-        alert.show("Image remove Successfully", { type: "success" });
+        toast.trigger("Image remove Successfully", "success");
         setCoverImageFile(null);
         setCoverImage(null);
         navigate("/edit-profile");
@@ -85,7 +85,7 @@ const EditProfileIndex = () => {
 
     dispatch(myProfileEdit(finalData)).then((action) => {
       if (action.payload.status === 200) {
-        alert.show("Profile update Successfully", { type: "success" });
+        toast.trigger("Profile update Successfully", "success");
         navigate("/edit-profile");
       }
     });

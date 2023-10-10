@@ -33,6 +33,7 @@ import TableCell from "@mui/material/TableCell";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
+import useToaster from "../../../customHooks/useToaster";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import {
   addDefaultReviewer,
@@ -45,7 +46,6 @@ import { getAllTeams } from "../../../features/slice/teamSlice";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import SearchBar from "../../shared/SearchBar/SearchBar";
 import PendingJobDetails from "./JobDetails/PendingJobDetails";
-import useToaster from "../../../customHooks/useToaster";
 
 const ButtonStyle = styled(Button)({
   "&:hover": {
@@ -139,15 +139,15 @@ const AllJobs = () => {
     dispatch(addDefaultReviewer(reviewerData));
     dispatch(takeAjob(id)).then((action) => {
       if (action.payload?.status === 200 || action.payload?.status === 201) {
-        alert.show("Job taken successfully", { type: "success" });
+        toast.trigger("Job taken successfully", "success");
       } else if (action.payload?.status === 204) {
-        alert.show("You have reached the limit", { type: "error" });
+        toast.trigger("You have reached the limit", "error");
       } else if (action.payload?.status === 205) {
-        alert.show("You need to complete the required course first ", {
+        toast.trigger("You need to complete the required course first ", {
           type: "error",
         });
       } else {
-        alert.show("Job taken Failed", { type: "error" });
+        toast.trigger("Job taken Failed", "error");
       }
     });
   };

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
+import useToaster from "../../../customHooks/useToaster";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import { getAjobInfoById, submitAJob, superJobSetStatus, updateReviewerStatus } from "../../../features/slice/jobSlice";
 import CountDown from "../../shared/CountDown/CountDown";
@@ -16,7 +17,6 @@ import SearchBar from "../../shared/SearchBar/SearchBar";
 import ActiveJobAnnotatorDetails from "./JobDetails/ActiveJobAnnotatorDetails";
 import JobStatusField from "./JobStatusBox/JobStatusField";
 import RejectModal from "./RejectModal/RejectModal";
-import useToaster from "../../../customHooks/useToaster";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -93,17 +93,17 @@ const ActiveJobList = ({ action }) => {
       if (action.payload.data.status === "in_progress" || action.payload.data.status === "on_review") {
         dispatch(submitAJob(id)).then((action) => {
           if (action.payload?.status === 200 || action.payload?.status === 201) {
-            alert.show(action.payload.data.message, { type: "success" });
+            toast.trigger(action.payload.data.message, "success");
           } else if (action.payload?.status === 206) {
-            alert.show(action.payload?.data.message, { type: "error" });
+            toast.trigger(action.payload?.data.message, "error");
           } else if (action.payload?.status === 204) {
-            alert.show("Job is not paused", { type: "error" });
+            toast.trigger("Job is not paused", "error");
           } else if (action.payload?.status === 400) {
-            alert.show(action.payload.data.message, { type: "error" });
+            toast.trigger(action.payload.data.message, "error");
           }
         });
       } else {
-        alert.show("Please start the job", { type: "error" });
+        toast.trigger("Please start the job", "error");
       }
     });
   };
@@ -115,13 +115,13 @@ const ActiveJobList = ({ action }) => {
     };
     dispatch(updateReviewerStatus(newData)).then((res) => {
       if (res.payload.status === 200 || res.payload?.status === 201) {
-        alert.show(res.payload.data.message, { type: "success" });
+        toast.trigger(res.payload.data.message, "success");
       } else if (res.payload.status === 206) {
-        alert.show(res.payload.data.message, { type: "error" });
+        toast.trigger(res.payload.data.message, "error");
       } else if (res.payload.status === 204) {
-        alert.show("Job is not paused", { type: "error" });
+        toast.trigger("Job is not paused", "error");
       } else if (res.payload?.status === 400) {
-        alert.show(res.payload.data.message, { type: "error" });
+        toast.trigger(res.payload.data.message, "error");
       }
     });
     handleClose();

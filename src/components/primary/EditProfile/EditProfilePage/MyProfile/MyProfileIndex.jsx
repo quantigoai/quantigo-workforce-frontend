@@ -4,11 +4,11 @@ import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import useToaster from "../../../../../customHooks/useToaster";
 import { myProfileEdit, uploadMyImage } from "../../../../../features/slice/userSlice";
 import CommonFieldTest from "../CommonFieldTest";
 import CommonSelectField from "../CommonSelectField";
 import ProfilePicture from "./ProfilePicture";
-import useToaster from "../../../../../customHooks/useToaster";
 const MyProfileIndex = () => {
   const { user, isLoading } = useSelector((state) => state.user);
   const [editAble, setEditAble] = useState(false);
@@ -72,7 +72,7 @@ const MyProfileIndex = () => {
     coverImageFile &&
       dispatch(uploadMyImage(finalImageData)).then((action) => {
         if (action.payload.status === 200) {
-          alert.show("Profile Picture Update Successfully", {
+          toast.trigger("Profile Picture Update Successfully", {
             type: "success",
           });
           setEditAble(false);
@@ -81,7 +81,7 @@ const MyProfileIndex = () => {
     Object.keys(filteredData).length > 0 &&
       dispatch(myProfileEdit(finalData)).then((action) => {
         if (action.payload.status === 200) {
-          alert.show("Profile Update Successfully", { type: "success" });
+          toast.trigger("Profile Update Successfully", "success");
           setEditAble(false);
         }
       });

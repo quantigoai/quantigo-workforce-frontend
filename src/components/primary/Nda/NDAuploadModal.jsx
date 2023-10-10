@@ -7,11 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import pdfSvg from "../../../assets/images/PDF.svg";
 import deleteIcon from "../../../assets/images/fi_trash-2.png";
 import Ndafile from "../../../assets/ndifile/NDA - Independant Contractor.docx_2.pdf";
+import useToaster from "../../../customHooks/useToaster";
 import { signingNda } from "../../../features/slice/userSlice";
 import ProjectModalHeader from "../ProjectLIstNew2/ProjectModalHeader";
 import PdfNdaUploadField from "./PdfNdaUploadField";
 import "./ndaUpload.css";
-import useToaster from "../../../customHooks/useToaster";
 
 const style = {
   display: "flex",
@@ -123,10 +123,10 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
 
     dispatch(signingNda(data)).then((action) => {
       if (action.payload?.status === 200) {
-        alert.show("NDA Upload Successful", { type: "success" });
+        toast.trigger("NDA Upload Successful", "success");
         handleClose();
       } else {
-        alert.show("Can not upload NDA", { type: "error" });
+        toast.trigger("Can not upload NDA", "error");
         handleClose();
       }
     });

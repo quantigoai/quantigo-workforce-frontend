@@ -2,8 +2,8 @@ import { FormControlLabel, FormGroup, Switch } from "@mui/material";
 import React from "react";
 import { useAlert } from "react-alert";
 import { useDispatch } from "react-redux";
-import { activateDeactivateUser } from "../../../features/slice/userSlice";
 import useToaster from "../../../customHooks/useToaster";
+import { activateDeactivateUser } from "../../../features/slice/userSlice";
 
 const ActivateDeactivateStatus = ({ user }) => {
   const [checked, setChecked] = React.useState(user.active);
@@ -22,12 +22,12 @@ const ActivateDeactivateStatus = ({ user }) => {
     dispatch(activateDeactivateUser(finalData)).then((action) => {
       if (action.payload?.status === 200) {
         if (checked) {
-          alert.show("Deactivate Your Account", { type: "success" });
+          toast.trigger("Deactivate Your Account", "success");
         } else {
-          alert.show("Activate Your Account", { type: "success" });
+          toast.trigger("Activate Your Account", "success");
         }
       } else {
-        alert.show("Status can not Change", { type: "error" });
+        toast.trigger("Status can not Change", "error");
       }
     });
   };

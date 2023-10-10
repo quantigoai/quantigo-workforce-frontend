@@ -12,6 +12,7 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import useToaster from "../../../customHooks/useToaster";
 import { getAllCourses, manuallyUpdateCourse } from "../../../features/slice/courseSlice";
 import { createAQuiz } from "../../../features/slice/quizSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
@@ -20,7 +21,6 @@ import ChapterName from "./QuizField.jsx/ChapterName";
 import CourseName from "./QuizField.jsx/CourseName";
 import Duration from "./QuizField.jsx/Duration";
 import QuizName from "./QuizField.jsx/QuizName";
-import useToaster from "../../../customHooks/useToaster";
 
 const CreateQuiz = () => {
   const { courseChapter } = useSelector((state) => state.course);
@@ -96,9 +96,9 @@ const CreateQuiz = () => {
         const { _id, name } = action.payload.data;
         dispatch(manuallyUpdateCourse({ id: _id, name }));
         navigate(`/course-details/${courseId}/content`);
-        alert.show("Quiz Create Successfully", { type: "success" });
+        toast.trigger("Quiz Create Successfully", "success");
       } else {
-        alert.show("Quiz can not create", { type: "error" });
+        toast.trigger("Quiz can not create", "error");
       }
     });
   };

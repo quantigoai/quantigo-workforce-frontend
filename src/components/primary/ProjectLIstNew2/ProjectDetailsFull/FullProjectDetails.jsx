@@ -19,8 +19,8 @@ import ProjectDetailsHeader from "./ProjectDetailsHeader";
 
 import { addDays } from "date-fns";
 import { useAlert } from "react-alert";
-import CheckOutModal from "./CheckOutModal";
 import useToaster from "../../../../customHooks/useToaster";
+import CheckOutModal from "./CheckOutModal";
 
 const FullProjectDetails = () => {
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
@@ -90,10 +90,10 @@ const FullProjectDetails = () => {
     dispatch(checkInProjectDrawerById(data)).then((action) => {
       if (action.payload?.status === 200) {
         dispatch(updateUserWorkingProject(data.id));
-        alert.show(action.payload.data.message, { type: "success" });
+        toast.trigger(action.payload.data.message, "success");
         setIsDisable(true);
       } else {
-        alert.show(action.error.message, { type: "error" });
+        toast.trigger(action.error.message, "error");
         setIsDisable(false);
         setSkillAlert(true);
       }
@@ -107,17 +107,17 @@ const FullProjectDetails = () => {
     dispatch(checkOutProjectDrawerById(data)).then((action) => {
       if (action.payload?.status === 200) {
         dispatch(clearUserWorkingProject());
-        alert.show(action.payload.data.message, { type: "success" });
+        toast.trigger(action.payload.data.message, "success");
         setIsDisable(false);
         setCheckOutDisable(false);
         setOpen(false);
       } else if (action.error) {
-        alert.show(action.error.message, { type: "error" });
+        toast.trigger(action.error.message, "error");
 
         setCheckOutDisable(false);
         setOpen(false);
       } else {
-        alert.show(action.error.message, { type: "error" });
+        toast.trigger(action.error.message, "error");
 
         setCheckOutDisable(false);
         setOpen(false);

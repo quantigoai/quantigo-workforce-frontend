@@ -22,8 +22,8 @@ import {
 import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { assignedJobToAUser } from "../../../../features/slice/jobSlice";
 import useToaster from "../../../../customHooks/useToaster";
+import { assignedJobToAUser } from "../../../../features/slice/jobSlice";
 
 const ReAssignPopper = ({ id, popperOpen, popperAnchorEl, job, handleClickAway }) => {
   const { users } = useSelector((state) => state.user);
@@ -63,9 +63,9 @@ const ReAssignPopper = ({ id, popperOpen, popperAnchorEl, job, handleClickAway }
 
     dispatch(assignedJobToAUser(data)).then((action) => {
       if (action.payload?.status === 200) {
-        alert.show("Job Reassigned Successfully", { type: "success" });
+        toast.trigger("Job Reassigned Successfully", "success"
       } else {
-        alert.show("Job Can not Reassigned", { type: "error" });
+        toast.trigger("Job Can not Reassigned", "error");
       }
     });
   };

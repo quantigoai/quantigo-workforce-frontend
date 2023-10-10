@@ -61,7 +61,6 @@ const lightTheme = createTheme({
     MuiSelect: {
       styleOverrides: {
         root: {
-          background: "#F8F8F8",
           borderRadius: "4px",
           flex: "none",
           order: 0,
@@ -69,8 +68,8 @@ const lightTheme = createTheme({
           alignSelf: "stretch",
           flexGrow: 0,
           "& .MuiSvgIcon-root": {
-            color: "rgba(45, 88, 255, 1)",
-            marginRight: "10px",
+            color: "#667085",
+            marginRight: "5px",
             cursor: "pointer",
           },
           "& .MuiSelect-select:focus": {
@@ -79,32 +78,7 @@ const lightTheme = createTheme({
         },
       },
     },
-    // MuiTab: {
-    //   styleOverrides: {
-    //     root: {
-    //       textTransform: "none",
-    //       fontSize: "14px",
-    //       fontWeight: 600,
-    //       // color: "##969CAF",
-    //       width: "100%",
-    //       "& .Mui-selected": {
-    //         color: "#2D58FF",
-    //       },
-    //     },
-    //   },
-    // },
-    // MuiPaper: {
-    //   styleOverrides: {
-    //     root: {
-    //       // backgroundColor: "#F2F6FC",
-    //     },
-    //   },
-    // },
-    MuiTableHead: {
-      styleOverrides: {
-        root: {},
-      },
-    },
+
     MuiTableCell: {
       styleOverrides: {
         root: {
@@ -117,11 +91,7 @@ const lightTheme = createTheme({
         },
       },
     },
-    MuiTableRow: {
-      styleOverrides: {
-        root: {},
-      },
-    },
+
     MuiFormHelperText: {
       styleOverrides: {
         root: {

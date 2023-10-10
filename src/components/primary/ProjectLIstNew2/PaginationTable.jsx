@@ -1,8 +1,9 @@
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { Box, Button, MenuItem, Select, Typography } from "@mui/material";
 import { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-
 const paginationOptions = [
   { value: 10, label: 10 },
   { value: 30, label: 30 },
@@ -23,7 +24,6 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
   const itemsPerPage = pagination.pageSize;
   const { myWorkHistoryCount, usersWorkHistoryCount } = useSelector((state) => state.projectDrawer);
   const { users } = useSelector((state) => state.user.users);
-
   useEffect(() => {
     setPagination((prevPagination) => ({
       ...prevPagination,
@@ -69,7 +69,7 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
   const disableNext = pagination.currentPage >= totalPages - 1;
   const location = useLocation();
   const { pathname } = location;
-  const { isLightTheme } = useSelector((state) => state.theme);
+
   const approvedPaths = ["/allprojects", "/all-users"];
 
   const approvedData = [myWorkHistoryCount, usersWorkHistoryCount, users?.length];
@@ -95,17 +95,27 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
           alignContent: "center",
         }}
       >
-        <Typography sx={{ fontSize: "14px", width: "120px", color: isLightTheme ? "#62728F" : "#fff" }} variant="p">
+        <Typography
+          variant="wpf_p4_regular"
+          sx={{
+            width: "120px",
+            color: "neutral.N300",
+          }}
+        >
           Items per page
         </Typography>
         <Select
           sx={{
-            width: "70px",
+            width: "80px",
             height: "30px",
             border: "1px solid #b9b9b9",
             "& .MuiSelect-select": {
-              fontSize: "14px",
-              color: isLightTheme ? "#62728F" : "#fff",
+              fontSize: "wpf_p4_regular",
+              padding: "0px 0px 0px 10px",
+              color: "neutral.N300",
+            },
+            "& .MuiSvgIcon-root": {
+              color: "neutral.N300",
             },
           }}
           id="demo-simple-select"
@@ -115,14 +125,12 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
             setPagination((prevPagination) => ({
               ...prevPagination,
               pageSize: newSize,
-              currentPage: 0, // Reset to the first page when changing pageSize
+              currentPage: 0,
             }));
           }}
           labelId="demo-simple-select-label"
-          // sx={{ width: "100px", height: "40px", border: "1px solid #b9b9b9" }}
           name="limit"
         >
-          {/* Your paginationOptions.map() here */}
           {paginationOptions.map((p) => (
             <MenuItem key={p.value} value={p.value}>
               {p.label}
@@ -133,8 +141,19 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
 
       {/* Buttons */}
       <Box sx={{ display: "flex" }}>
-        <Button disabled={disablePrev} sx={{ minWidth: "30px" }} onClick={handlePrevPage} variant="none">
-          <i className="ri-arrow-left-s-line"></i>
+        <Button
+          disabled={disablePrev}
+          sx={{
+            minWidth: "30px",
+            height: "30px",
+            fontSize: "14px",
+            padding: "6px 2px",
+            color: disablePrev ? "neutral.N650" : "neutral.N300",
+          }}
+          onClick={handlePrevPage}
+          variant="none"
+        >
+          <KeyboardArrowLeftIcon />
         </Button>
         <Box>
           {visiblePageNumbers.map((pageNumberToShow) => (
@@ -144,7 +163,8 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
               name="page"
               variant="small"
               sx={{
-                minWidth: "40px",
+                minWidth: "30px",
+                height: "30px",
                 fontSize: "14px",
                 padding: "6px 2px",
                 color: pagination.currentPage === pageNumberToShow ? "white" : "#62728F",
@@ -159,8 +179,19 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
             </Button>
           ))}
         </Box>
-        <Button sx={{ minWidth: "40px" }} disabled={disableNext} variant="none" onClick={handleNextPage}>
-          <i className="ri-arrow-right-s-line"></i>
+        <Button
+          sx={{
+            minWidth: "30px",
+            height: "30px",
+            fontSize: "14px",
+            padding: "6px 2px",
+            color: disableNext ? "neutral.N650" : "neutral.N300",
+          }}
+          disabled={disableNext}
+          variant="none"
+          onClick={handleNextPage}
+        >
+          <KeyboardArrowRightIcon />
         </Button>
       </Box>
     </Box>

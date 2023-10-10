@@ -44,12 +44,8 @@ const UsersTable = (props) => {
             <TableCell align="left" sx={{ color: "#969CAF", fontSize: "16px" }}>
               No
             </TableCell>
-            <TableCell sx={{ color: "#969CAF", fontSize: "16px" }}>
-              QAI ID
-            </TableCell>
-            <TableCell sx={{ color: "#969CAF", fontSize: "16px" }}>
-              Name
-            </TableCell>
+            <TableCell sx={{ color: "#969CAF", fontSize: "16px" }}>QAI ID</TableCell>
+            <TableCell sx={{ color: "#969CAF", fontSize: "16px" }}>Name</TableCell>
             <TableCell align="left" sx={{ color: "#969CAF", fontSize: "16px" }}>
               Email
             </TableCell>
@@ -65,15 +61,14 @@ const UsersTable = (props) => {
                 color: "#969CAF",
                 fontSize: "16px",
                 paddingLeft: "2%",
-              }}>
+              }}
+            >
               Completed Job
             </TableCell>
 
             {role === "delivery_manager" ? (
               <></>
-            ) : role === "recruitment_manager" ||
-              role === "admin" ||
-              role === "trainer" ? (
+            ) : role === "recruitment_manager" || role === "admin" || role === "trainer" ? (
               <>
                 <TableCell
                   align="left"
@@ -81,21 +76,18 @@ const UsersTable = (props) => {
                     color: "#969CAF",
                     fontSize: "16px",
                     paddingLeft: "4%",
-                  }}>
+                  }}
+                >
                   Action
                 </TableCell>
               </>
             ) : (
-              <TableCell
-                align="center"
-                sx={{ color: "#969CAF", fontSize: "16px" }}>
+              <TableCell align="center" sx={{ color: "#969CAF", fontSize: "16px" }}>
                 Verified
               </TableCell>
             )}
             {role === "recruitment_manager" || role === "delivery_manager" ? (
-              <TableCell
-                align="left"
-                sx={{ color: "#969CAF", fontSize: "16px" }}>
+              <TableCell align="left" sx={{ color: "#969CAF", fontSize: "16px" }}>
                 Details
               </TableCell>
             ) : (
@@ -110,9 +102,7 @@ const UsersTable = (props) => {
           {users &&
             users.map((user, i) => (
               <TableRow key={i}>
-                <StyledTableCell align="left">
-                  {page * rowsPerPage + i + 1}
-                </StyledTableCell>
+                <StyledTableCell align="left">{page * rowsPerPage + i + 1}</StyledTableCell>
                 <StyledTableCell component="th" scope="row">
                   {user.qaiUserName || "N/A"}
                 </StyledTableCell>
@@ -149,9 +139,7 @@ const UsersTable = (props) => {
                   {/* <UserStatusField userStatus={user.active} /> */}
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  {user.completedJobs?.length === 0
-                    ? "N/A"
-                    : user.completedJobs?.length}
+                  {user.completedJobs?.length === 0 ? "N/A" : user.completedJobs?.length}
                 </StyledTableCell>
                 {role === "delivery_manager" ? (
                   <></>
@@ -163,8 +151,7 @@ const UsersTable = (props) => {
                           <Typography>Verified</Typography>
                         </StyledTableCell>
                       </>
-                    ) : user.isNDAApproved === "rejected" ||
-                      user.isDocumentsSubmitted === "rejected" ? (
+                    ) : user.isNDAApproved === "rejected" || user.isDocumentsSubmitted === "rejected" ? (
                       <>
                         <StyledTableCell align="center">
                           <Typography>Rejected</Typography>
@@ -189,8 +176,7 @@ const UsersTable = (props) => {
                     <UserDetailsIndex user={user} openDetails={true} />
                   </StyledTableCell>
                 )}
-                {role === "recruitment_manager" ||
-                role === "delivery_manager" ? (
+                {role === "recruitment_manager" || role === "delivery_manager" ? (
                   <StyledTableCell align="left">
                     <UserDetailsIndex user={user} />
                   </StyledTableCell>
@@ -198,7 +184,7 @@ const UsersTable = (props) => {
                   <></>
                 )}
                 <StyledTableCell align="left">
-                  <UserDetailsNewIndex  user={user}/>
+                  <UserDetailsNewIndex user={user} />
                 </StyledTableCell>
               </TableRow>
             ))}

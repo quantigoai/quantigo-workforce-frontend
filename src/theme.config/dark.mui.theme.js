@@ -92,6 +92,26 @@ const darkTheme = createTheme({
         },
       },
     },
+    MuiSelect: {
+      styleOverrides: {
+        root: {
+          borderRadius: "4px",
+          flex: "none",
+          order: 0,
+          border: "1px solid #DADCDF",
+          alignSelf: "stretch",
+          flexGrow: 0,
+          "& .MuiSvgIcon-root": {
+            color: "#667085",
+            marginRight: "5px",
+            cursor: "pointer",
+          },
+          "& .MuiSelect-select:focus": {
+            backgroundColor: "transparent",
+          },
+        },
+      },
+    },
   },
 });
 

@@ -27,6 +27,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import useToaster from "../../../../customHooks/useToaster";
 import { login } from "../../../../features/slice/userSlice";
 import CustomTextField from "../../../shared/CustomField/CustomTextField";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
@@ -35,7 +36,7 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const alert = useAlert();
-  
+
   const [showPassword, setShowPassword] = useState(false);
   const { error, isLoading } = useSelector((state) => state.user);
 
@@ -55,13 +56,15 @@ const LoginForm = () => {
     formState: { errors },
   } = methods;
 
+  const toast = useToaster();
+
   const onSubmit = async (data) => {
     dispatch(login(data)).then((action) => {
       if (action.payload?.status === 200) {
-        alert.show("Login Successful", { type: "success" });
+        toast.trigger("Login Successful", "success");
         navigate("/dashboard");
       } else {
-        alert.show(error, { type: "error" });
+        toast.trigger("Login failed", "error");
       }
     });
   };

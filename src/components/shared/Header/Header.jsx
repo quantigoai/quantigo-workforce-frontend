@@ -69,9 +69,10 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-    const handleGoBack = () => {
+
+  const handleGoBack = () => {
     navigate(-1);
-      };
+  };
 
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,

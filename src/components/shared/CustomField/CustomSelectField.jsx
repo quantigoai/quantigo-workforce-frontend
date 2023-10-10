@@ -10,8 +10,8 @@ import { MenuItem, Select, Typography, styled } from "@mui/material";
 import PropTypes from "prop-types";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { MyFormControl, MyInputLabel } from "./CustomDatePicker";
 import { useSelector } from "react-redux";
+import { MyFormControl } from "./CustomDatePicker";
 
 CustomSelectField.propTypes = {
   name: PropTypes.string,
@@ -21,7 +21,7 @@ CustomSelectField.propTypes = {
 export const MySelect = styled(Select)(() => ({
   border: "2px solid #E6ECF5",
   // padding: "0px 0px 0px 0px",
-  backgroundColor: "white",
+  // backgroundColor: "white",
 }));
 export default function CustomSelectField({ name, helperText, options, label, setValue, defaultValue, ...other }) {
   const { control } = useFormContext();
@@ -34,12 +34,13 @@ export default function CustomSelectField({ name, helperText, options, label, se
       render={({ field, fieldState: { error } }) => (
         <>
           <MyFormControl fullWidth>
-            <Typography sx={{ mb: 2 }} variant="wpf_p4_medium">
+            <Typography sx={{ mb: 2, color: "#3c4d6b" }} variant="wpf_p4_medium">
               {label}
             </Typography>
             <MySelect
               sx={{
-                backgroundColor: isLightTheme ? "#FFFFFF" : "#1D1D1D",
+                backgroundColor: "#FFFFFF",
+                color : '#000'
               }}
               size="small"
               labelId="demo-simple-select-autowidth-label"

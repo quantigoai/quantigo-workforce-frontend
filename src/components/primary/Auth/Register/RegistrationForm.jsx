@@ -176,7 +176,7 @@ const RegistrationForm = () => {
                 InputProps={{
                   disableUnderline: true,
                   endAdornment: (
-                    <InputAdornment position="end">
+                    <InputAdornment position="end" sx={{ color: "#7D89A3" }}>
                       <EmailIcon />
                     </InputAdornment>
                   ),
@@ -193,7 +193,7 @@ const RegistrationForm = () => {
                   disableUnderline: true,
                   endAdornment: (
                     <InputAdornment position="end">
-                      <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                      <IconButton onClick={() => setShowPassword(!showPassword)} edge="end" sx={{ color: "#7D89A3" }}>
                         {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                       </IconButton>
                     </InputAdornment>

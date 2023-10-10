@@ -19,15 +19,17 @@ CustomTextField.propTypes = {
 export const MyTextField = styled(TextField)(() => ({
   borderRadius: "5px",
   backgroundColor: "#fff",
+  "& .MuiOutlinedInput-root": {
+    // border: "2px solid #E6ECF5 !important",
+    color: "#000",
+    // border: "2px solid #dce2ea !important",
+    borderRadius: "8px",
+  },
   "& .MuiOutlinedInput-notchedOutline ": {
     border: "2px solid #E6ECF5 !important",
     // border: "2px solid #dce2ea !important",
     borderRadius: "8px",
   },
-
-  // ".css-nxo287-MuiInputBase-input-MuiOutlinedInput-input": {
-  //   border: "2px solid blue ",
-  // },
 }));
 
 export default function CustomTextField({ name, label, helperText, ...other }) {
@@ -40,9 +42,11 @@ export default function CustomTextField({ name, label, helperText, ...other }) {
       render={({ field, fieldState: { error } }) => {
         return (
           <Box>
-            <Typography variant="wpf_p4_medium" color="neutral.N300">
+            {/* //!! For this special case use color like hex code, this is not standard */}
+            <Typography variant="wpf_p4_medium" color="#3c4d6b">
               {label}
             </Typography>
+
             <MyTextField
               size="small"
               id="outlined-basic"
@@ -52,7 +56,8 @@ export default function CustomTextField({ name, label, helperText, ...other }) {
               variant="outlined"
               placeholder={label === "Email" ? "email#123@gmail.com" : "example#123"}
               sx={{
-                backgroundColor: isLightTheme ? "#FFFFFF" : "#1D1D1D",
+                // backgroundColor: isLightTheme ? "#FFFFFF" : "#1D1D1D",
+                // backgroundColor: "#FFFFFF",
                 mt: 1.5,
               }}
               value={typeof field.value === "number" && field.value === 0 ? "" : field.value}

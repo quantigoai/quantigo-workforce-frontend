@@ -12,7 +12,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import { getAllSkills } from "../../../features/slice/skillSlice";
-import { getAllUsers, setTargetedUser } from "../../../features/slice/userSlice";
+import { getAllUsers, setTargetedUser, updateAUserById } from "../../../features/slice/userSlice";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 // import TableWrapper from "../ProjectLIstNew2/ExpTable/TableWrapper";
@@ -29,6 +29,9 @@ import UsersHeader from "./UsersHeader";
 import "./index.css";
 import { fields } from "./tableFields";
 import { hubOptions, roleOptions, userStatusOptions } from "./userFilterOptions";
+import NdaRejectModal from "../Users/NdaAccept/NdaRejectModal";
+import { useForm } from "react-hook-form";
+import AcceptModal from "../Users/NdaAccept/AcceptModal";
 
 // TODO NEED TO FIX LOADING ISSUE
 const AllUserListIndex = ({ action }) => {
@@ -37,7 +40,7 @@ const AllUserListIndex = ({ action }) => {
   const { users, totalUsers } = useSelector((state) => state.user.users);
   const { isLoading, user } = useSelector((state) => state.user);
   const { role } = user;
-
+  const [openModal, setOpenModal] = useState(false);
   const [prevSkills, setPrevSkills] = useState([]);
   const [prevRoles, setPrevRoles] = useState([]);
 
@@ -46,7 +49,8 @@ const AllUserListIndex = ({ action }) => {
   const [selectedUser, setSelectedUser] = useState({});
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
-
+  const [openAccepet, setOpenAccepet] = React.useState(false);
+  const { register, handleSubmit } = useForm();
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
@@ -137,6 +141,7 @@ const AllUserListIndex = ({ action }) => {
   const handleDelete = (e) => {};
 
   const handleUserDetailsOpen = (params) => {
+    console.log("handledetail");
     setSelectedUser(params);
     dispatch(setTargetedUser(params));
     setOpen(true);
@@ -147,6 +152,57 @@ const AllUserListIndex = ({ action }) => {
   };
   const handleSearch = (e) => {
     setSearch(e.target.value);
+  };
+
+  // Reject Nda
+  const handleReject = (params) => {
+    console.log(params);
+    setSelectedUser(params);
+    setOpenModal(true);
+  };
+  const onSubmit = (data) => {
+   const finalData = {
+      id: selectedUser._id,
+      varifiedData: {
+        isVerified: false,
+        rejectionCause: data.rejectionCause,
+      },
+    };
+    // dispatch(updateAUserById(finalData)).then((action) => {
+    //   if (action.payload?.status === 200) {
+    //     alert.show("Reject  NDA", { type: "success" });
+    //   } else {
+    //     alert.show("No Reject  NDA", { type: "error" });
+    //   }
+    // });
+    handleClose();
+    setOpen(false);
+  };
+
+  const handleCloseModal = () => {
+    setOpenAccepet(false);
+    setOpenModal(false);
+  };
+  // accept NDA
+  const handleOpenNDA = (params) => {
+    setSelectedUser(params);
+   setOpenAccepet(true);
+  };
+  const handleAccept = () => {
+    
+    const data = {
+      id: selectedUser._id,
+      varifiedData: {
+        isVerified: true,
+      },
+    };
+    // dispatch(updateAUserById(data)).then((action) => {
+    //   if (action.payload?.status === 200) {
+    //     alert.show("User Verified successfully", { type: "success" });
+    //   } else {
+    //     alert.show("User not Verified ", { type: "error" });
+    //   }
+    // });
   };
 
   const handleChangePagination = useCallback(() => {
@@ -210,8 +266,7 @@ const AllUserListIndex = ({ action }) => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-          }}
-        >
+          }}>
           {isDataLoading ? (
             <LoadingComponent />
           ) : (
@@ -232,6 +287,8 @@ const AllUserListIndex = ({ action }) => {
               data={users}
               isChildDataLoading={isChildDataLoading}
               setIsChildDataLoading={setIsChildDataLoading}
+              handleReject={handleReject}
+              handleOpenNDA={handleOpenNDA}
             />
           )}
           <PaginationTable
@@ -243,7 +300,14 @@ const AllUserListIndex = ({ action }) => {
         </Paper>
       </Box>
 
-      <UserDetailsNewIndex role={role} open={open} handleProjectDetailsOpen={handleUserDetailsOpen} handleClose={handleClose} />
+      <UserDetailsNewIndex
+        role={role}
+        open={open}
+        handleProjectDetailsOpen={handleUserDetailsOpen}
+        handleClose={handleClose}
+      />
+      <NdaRejectModal openModal={openModal} handleClose={handleCloseModal} register={register} onSubmit={onSubmit} />
+      <AcceptModal open={openAccepet} handleClose={handleCloseModal} handleAccept={handleAccept} user={selectedUser} />
     </Box>
   );
 };

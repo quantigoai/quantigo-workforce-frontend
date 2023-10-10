@@ -20,10 +20,12 @@ const ChangeInfoIndex = ({ user, handleSetRole, handleSetStatus, role }) => {
             padding: "2%",
             borderRadius: "8px",
             background: "#F2F6FC",
-          }}
-        >
+          }}>
           <Grid container>
-            <Grid item xs={role === "recruitment_manager" ? 12 : 6}>
+            <Grid
+              item
+              xs={role === "recruitment_manager" ? 12 : 6}
+              sx={{ paddingRight: role === "recruitment_manager" ? "" : "2%" }}>
               {" "}
               <SelectFieldCommon label={"Role Change"} user={user} handleSetRole={handleSetRole} />
             </Grid>

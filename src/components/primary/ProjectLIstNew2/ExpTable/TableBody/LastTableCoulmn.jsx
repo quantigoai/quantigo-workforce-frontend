@@ -12,7 +12,15 @@ import React from "react";
 import CustomButton from "../../../../shared/CustomTable/CustomButton";
 import { useLocation } from "react-router-dom";
 
-const LastTableColumn = ({ role, handleProjectDetailsOpen, row, handleClick, handleDelete }) => {
+const LastTableColumn = ({
+  role,
+  handleProjectDetailsOpen,
+  row,
+  handleClick,
+  handleDelete,
+  handleReject,
+  handleOpenNDA,
+}) => {
   const { pathname } = useLocation();
 
   return (
@@ -25,6 +33,8 @@ const LastTableColumn = ({ role, handleProjectDetailsOpen, row, handleClick, han
           params={row}
           handleClick={handleClick}
           handleDelete={handleDelete}
+          handleReject={handleReject}
+          handleOpenNDA={handleOpenNDA}
         />
       </TableCell>
     </>

@@ -71,7 +71,7 @@ const RegistrationForm = () => {
   const { firstName, lastName, email, password, qaiUserName, contactNo, billingAccountNo } = watch();
 
   const isFieldsNotEmptyFirstPage = !!firstName && !!lastName && !!email && !!password;
-
+    
   const isFieldsNotEmptyFinalPage = !!qaiUserName && !!contactNo && !!billingAccountNo;
 
   const disableButtonCheck = !!errors.firstName || !!errors.lastName || !!errors.email || !!errors.password;

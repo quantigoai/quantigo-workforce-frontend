@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { MyFormControl, MyInputLabel } from "./CustomDatePicker";
+import { useSelector } from "react-redux";
 
 CustomSelectField.propTypes = {
   name: PropTypes.string,
@@ -24,6 +25,7 @@ export const MySelect = styled(Select)(() => ({
 }));
 export default function CustomSelectField({ name, helperText, options, label, setValue, defaultValue, ...other }) {
   const { control } = useFormContext();
+  const { isLightTheme } = useSelector((state) => state.theme);
 
   return (
     <Controller
@@ -36,6 +38,9 @@ export default function CustomSelectField({ name, helperText, options, label, se
               {label}
             </Typography>
             <MySelect
+              sx={{
+                backgroundColor: isLightTheme ? "#FFFFFF" : "#1D1D1D",
+              }}
               size="small"
               labelId="demo-simple-select-autowidth-label"
               id="demo-simple-select-autowidth"

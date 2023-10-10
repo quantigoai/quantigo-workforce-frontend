@@ -137,7 +137,12 @@ const LoginForm = () => {
                   color: "#47536B",
                 }}
                 control={
-                  <Checkbox checked={checked} onChange={handleChange} inputProps={{ "aria-label": "controlled" }} />
+                  <Checkbox
+                    sx={{ color: "#47536B" }}
+                    checked={checked}
+                    onChange={handleChange}
+                    inputProps={{ "aria-label": "controlled" }}
+                  />
                 }
                 label="Remember me"
               ></FormControlLabel>

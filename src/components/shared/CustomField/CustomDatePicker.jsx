@@ -13,6 +13,7 @@ import dayjs from "dayjs";
 import PropTypes from "prop-types";
 import { Controller, useFormContext } from "react-hook-form";
 import { convertDate } from "../../../helper/customData";
+import { useSelector } from "react-redux";
 
 CustomDatePicker.propTypes = {
   name: PropTypes.string,
@@ -57,6 +58,7 @@ export default function CustomDatePicker({
   ...other
 }) {
   const { control } = useFormContext();
+  const { isLightTheme } = useSelector((state) => state.theme);
 
   const handleDate = (newValue) => {
     const x = convertDate(newValue);
@@ -83,7 +85,7 @@ export default function CustomDatePicker({
               <MyDatePicker
                 size="small"
                 sx={{
-                  // backgroundColor: "red",
+                  backgroundColor: isLightTheme ? "#FFFFFF" : "#1D1D1D",
                   height: "40px",
                   padding: "0px",
                   color: "#000000",

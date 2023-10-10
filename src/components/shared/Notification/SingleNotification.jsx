@@ -17,9 +17,9 @@ const convertDate = (date) => {
 };
 const SingleNotification = ({ notification }) => {
   const formattedDate = convertDate(notification.createdAt);
-  
+
   return (
-    <Grid container sx={{ py: 1, display: "flex", alignItems: "center" }}>
+    <Grid container sx={{ py: 1, display: "flex", alignItems: "start" }}>
       <Grid item xs={1}>
         <Box
           sx={{
@@ -39,11 +39,12 @@ const SingleNotification = ({ notification }) => {
             alignItems: "center",
           }}
         >
-          <Box>
-            <Typography variant="body1" color="#090080">
+          <Box sx={{ display: "flex", flexDirection: "column" }}>
+            <Typography variant="wpf_p4_medium" color="neutral.700">
               {notification.message}
             </Typography>
-            <Typography variant="body2" color="#5a4fc4">
+
+            <Typography variant="wpf_p4_medium" color="neutral.550">
               {formattedDate}
             </Typography>
           </Box>

@@ -67,6 +67,9 @@ const TableWrapper = ({
             isChildDataLoading={isChildDataLoading}
           />
         );
+      } else if (role === "recruitment_manager") {
+        const message = "No Users found!!!";
+        return <Alert severity="error">{message}</Alert>;
       } else if (role !== "admin") {
         return <DetailsPage skillAlert={skillAlert} />;
       } else {
@@ -89,6 +92,9 @@ const TableWrapper = ({
             currentlyCheckedInProject={currentlyCheckedInProject}
           />
         );
+      } else if (role === "recruitment_manager") {
+        const message = "No Users history found for this projects!";
+        return <Alert severity="error">{message}</Alert>;
       } else if (role !== "admin") {
         return <DetailsPage skillAlert={skillAlert} />;
       } else {

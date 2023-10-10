@@ -6,7 +6,9 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Avatar, FormControlLabel, Stack, Switch, Typography, styled } from "@mui/material";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import { Avatar, Badge, FormControlLabel, Stack, Switch, Typography, styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -67,9 +69,9 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleGoBack = () => {
+    const handleGoBack = () => {
     navigate(-1);
-  };
+      };
 
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
@@ -169,32 +171,25 @@ const Header = () => {
                 </Typography>
               </Button>
             </Box>
-            {/* <Button>
-              {isLightTheme ? (
-                <DarkModeIcon onClick={() => dispatch(setTheme(false))} />
-              ) : (
-                <LightModeIcon onClick={() => dispatch(setTheme(true))} />
-              )}
-            </Button>
+            <Button></Button>
             <Button
               sx={{
                 display: "flex",
                 justifyContent: "flex-end",
                 alignItems: "center",
               }}
-              onClick={handleNotificationOpen}>
+              onClick={handleNotificationOpen}
+            >
               {allUnreadNotifications.length === 0 ? (
                 <NotificationsNoneIcon sx={{ color: "#1976d2" }} />
               ) : (
                 <>
-                  <Badge
-                    badgeContent={allUnreadNotifications.length}
-                    color="primary">
+                  <Badge badgeContent={allUnreadNotifications.length} color="primary">
                     <NotificationsActiveIcon sx={{ color: "#1976d2" }} />
                   </Badge>
                 </>
               )}
-            </Button> */}
+            </Button>
             <NotificationModal
               handleSeeAll={handleSeeAll}
               notificationOpen={notificationOpen}

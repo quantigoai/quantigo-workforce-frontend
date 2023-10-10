@@ -119,27 +119,24 @@ const UsersFilter = ({
                 paddingRight: "16px",
               }}
             >
-              {role === "admin" ||
-                (role === "recruitment_manager" && (
-                  <Button
-                    onClick={() => handleClearFilter()}
-                    sx={{
-                      textTransform: "none",
-                      borderRadius: "8px",
-                      backgroundColor: "#FF4757",
-                      color: "white",
-                      // width: "140px",
-                      height: { xl: "35 px", lg: "35px" },
-                      "&:hover": {
-                        backgroundColor: "#F53142",
-                      },
-                    }}
-                    size="medium"
-                    color="error"
-                  >
-                    Clear Filter
-                  </Button>
-                ))}
+              <Button
+                onClick={() => handleClearFilter()}
+                sx={{
+                  textTransform: "none",
+                  borderRadius: "8px",
+                  backgroundColor: "#FF4757",
+                  color: "white",
+                  // width: "140px",
+                  height: { xl: "35 px", lg: "35px" },
+                  "&:hover": {
+                    backgroundColor: "#F53142",
+                  },
+                }}
+                size="medium"
+                color="error"
+              >
+                Clear Filter
+              </Button>
             </Stack>
           </Stack>
         </Stack>

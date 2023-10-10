@@ -22,10 +22,7 @@ import lightTheme from "./light.mui.theme";
 const ThemeProviderWrapper = ({ children }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
 
-  return (
-    // <ThemeProvider theme={isLightTheme ? lightTheme : darkTheme}>{children(isDarkMode, toggleDarkMode)}</ThemeProvider>
-    <ThemeProvider theme={isLightTheme ? lightTheme : darkTheme}>{children}</ThemeProvider>
-  );
+  return <ThemeProvider theme={isLightTheme ? lightTheme : darkTheme}>{children}</ThemeProvider>;
 };
 
 export default ThemeProviderWrapper;

@@ -8,13 +8,13 @@
  */
 
 import ClearIcon from "@mui/icons-material/Clear";
+import FilterListIcon from "@mui/icons-material/FilterList";
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, Button, Grid, IconButton, InputBase, Paper } from "@mui/material";
 import React from "react";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import "../ProjectLIstNew2/index.css";
 import "./index.css";
-
 const UsersHeader = ({
   isFilter,
   isLightTheme,
@@ -31,7 +31,7 @@ const UsersHeader = ({
         className="headerBox"
         sx={{
           height: isFilter ? "55%" : "100%",
-          background: isLightTheme ? "#FFFFFF" : "#1E1E1E",
+          backgroundColor: "neutral.N000",
         }}
       >
         <Box sx={{ width: "30%", padding: "12px 16px" }}>
@@ -108,7 +108,7 @@ const UsersHeader = ({
             }}
             aria-label="menu"
           >
-            <i style={{ color: "#266AED" }} className="ri-filter-3-line"></i>
+            <FilterListIcon sx={{ color:"primary.main" }} />
           </IconButton>
           <Button
             sx={{

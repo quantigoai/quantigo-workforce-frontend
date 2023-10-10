@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Box, Button, TableCell, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import MainModal from "./MainModal";
 
@@ -29,24 +29,26 @@ const CustomButton = ({
     <Box
       sx={{
         display: "flex",
-        justifyContent: "flex-start",
-      }}>
+        justifyContent: "center",
+      }}
+    >
       {role === "admin" && pathname === "/allprojects" && (
         <>
-          {" "}
           <Button
             sx={{ color: "#2E58FF", padding: "0px", minWidth: "35px" }}
             onClick={() => {
               setIsEdit(true);
               handleClick(params);
-            }}>
+            }}
+          >
             <i className="ri-edit-line"></i>
           </Button>
           <Button
             sx={{ color: "#F04438", padding: "0px", minWidth: "35px" }}
             onClick={() => {
               setIsEdit(false);
-            }}>
+            }}
+          >
             <i onClick={handleOpen} className="ri-delete-bin-6-line"></i>
           </Button>
         </>
@@ -54,21 +56,31 @@ const CustomButton = ({
       {role === "recruitment_manager" ? (
         <>
           {params.isVerified ? (
-            <>
-              {" "}
-              <TableCell sx={{textAlign: "center",width: "70px", }} component="th" scope="row">
-                <Typography variant="wpf_p4_regular" color="neutral.700">
-                  Verified
-                </Typography>
-              </TableCell>
-            </>
+            <Box
+              sx={{
+                display: "flex",
+                width: "100%",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Typography variant="wpf_p4_regular" color="neutral.700">
+                Verified
+              </Typography>
+            </Box>
           ) : (
-            <>
-              {" "}
+            <Box
+              sx={{
+                display: "flex",
+                width: "100%",
+                alignItems: "center",
+              }}
+            >
               <Button
                 disabled={params.isVerified}
                 onClick={() => handleOpenNDA(params)}
-                sx={{ padding: "0px", minWidth: "35px", fontSize: "16px" }}>
+                sx={{ padding: "0px", minWidth: "30px", fontSize: "16px" }}
+              >
                 <i style={{ color: params.isVerified ? "#12B76A" : "" }} className="ri-checkbox-circle-fill"></i>
               </Button>
               <Button
@@ -76,24 +88,26 @@ const CustomButton = ({
                 onClick={() => handleReject(params)}
                 sx={{
                   padding: "0px",
-                  minWidth: "35px",
+                  minWidth: "30px",
                   fontSize: "16px",
                   filter: params.isVerified ? "grayscale(100%) opacity(50%)" : "",
-                }}>
+                }}
+              >
                 <i style={{ color: "#F04438" }} className="ri-close-circle-fill"></i>
               </Button>
-            </>
+            </Box>
           )}
 
           <Button
             onClick={() => handleProjectDetailsOpen(params)}
             sx={{
+              textAlign: "right",
               color: "#2E58FF",
               paddingX: "10px",
               minWidth: "35px",
               textTransform: "none",
-              // fontSize: "15px",
-            }}>
+            }}
+          >
             <i className="ri-eye-line"></i>
           </Button>
         </>
@@ -105,7 +119,8 @@ const CustomButton = ({
             paddingX: "20px",
             minWidth: "35px",
             textTransform: "none",
-          }}>
+          }}
+        >
           <i className="ri-eye-line"></i>
         </Button>
       )}

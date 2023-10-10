@@ -12,7 +12,11 @@ import React from "react";
 const StickyLastTableHead = ({ column }) => {
   return (
     <>
-      <TableCell className="last-head" key={column.id} style={{ minWidth: column.width || "140px" }}>
+      <TableCell
+        className="last-head"
+        key={column.id}
+        style={{ textAlign: column.textAlign, minWidth: column.width || "140px" }}
+      >
         <Typography variant="wpf_h7_semiBold" color="neutral.550">
           {column.headerName}
         </Typography>

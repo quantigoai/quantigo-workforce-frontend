@@ -9,8 +9,8 @@
 
 import { TableCell } from "@mui/material";
 import React from "react";
-import CustomButton from "../../../../shared/CustomTable/CustomButton";
 import { useLocation } from "react-router-dom";
+import CustomButton from "../../../../shared/CustomTable/CustomButton";
 
 const LastTableColumn = ({
   role,
@@ -25,7 +25,7 @@ const LastTableColumn = ({
 
   return (
     <>
-      <TableCell className="tablerowlast">
+      <TableCell className="tablerowlast" >
         <CustomButton
           role={role}
           pathname={pathname}

@@ -25,9 +25,7 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
     if (field.renderCell === "button") {
       customItems = {
         id: index,
-        field: field.field,
-        // width: field.width || 140,
-        width: field.width,
+        ...field,
         headerName: customHeader(field.field),
         renderCell: (params) => (
           <CustomButton pathname={pathname} params={params} handleClick={handleClick} handleDelete={handleDelete} />
@@ -38,10 +36,7 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
     } else if (field.renderCell === "chip") {
       customItems = {
         id: index,
-        field: field.field,
-        // width: field.width || 200,
-        width: field.width,
-
+        ...field,
         headerName: customHeader(field.field),
         renderCell: (params) => {
           return <ProjectDrawerStatusChip value={params.value} />;
@@ -51,10 +46,8 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
       };
     } else if (field.renderCell === "skills-chip") {
       customItems = {
+        ...field,
         id: index,
-        field: field.field,
-        // width: field.width || 180,
-        width: field.width,
         headerName: customHeader(field.field),
         renderCell: (params) => {
           return <ChipGroup params={params} />;
@@ -64,13 +57,10 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
       };
     } else {
       customItems = {
+        ...field,
         id: index,
-        field: field.field,
-        // width: field.width || 214,
-        width: field.width,
         headerName: customHeader(field.field),
         editable: field.editable || false,
-
         cellClassName: field.cellClassName || "",
       };
     }

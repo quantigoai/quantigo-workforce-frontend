@@ -29,7 +29,7 @@ export const fields = [
   { field: "bloodGroup", width: 170 },
   { field: "currentlyCheckedInProject", width: 270 },
   { field: "hub", width: 100 },
-  { field: "ACTIONS", renderCell: "button", width: 80 },
+  { field: "ACTIONS", renderCell: "button", width: 140, textAlign: "center" },
 ];
 
 // {

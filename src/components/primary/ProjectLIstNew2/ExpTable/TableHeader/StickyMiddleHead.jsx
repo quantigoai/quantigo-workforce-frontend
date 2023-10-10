@@ -18,6 +18,7 @@ const StickyMiddleHead = ({ column, handleId, filteredCol }) => {
         <Stack
           flexDirection={"row"}
           sx={{
+            justifyContent: column.textAlign ? column.textAlign : "center",
             alignItems: "center",
           }}
         >

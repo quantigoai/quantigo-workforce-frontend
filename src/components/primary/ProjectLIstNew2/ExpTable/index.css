@@ -48,7 +48,7 @@ table {
     border-left: 1px solid #EBF0F5;
     position: sticky;
     top: 0;
-    right :158px;
+    right :140px;
     /* background-color: aqua; */
     z-index: 231;
 }
@@ -70,7 +70,7 @@ tbody td:last-child {
 .docrow {
     border-left: 1px solid #EBF0F5;
     position: sticky;
-    right :158px;
+    right :140px;
     font-size: 10px;
 }
 

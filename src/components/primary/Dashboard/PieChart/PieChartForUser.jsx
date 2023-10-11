@@ -60,9 +60,9 @@ const PieChartForUser = () => {
         text: "Annotators Activity",
         align: "start",
         font: {
-          size: 20,
+          size: 14,
         },
-        color: "#091E42",
+        color:"neutral.750",
         padding: {
           top: 25,
           left: 30,

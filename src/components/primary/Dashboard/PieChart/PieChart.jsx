@@ -5,15 +5,15 @@ import { useSelector } from "react-redux";
 import "chartjs-plugin-datalabels";
 ChartJS.register(ArcElement, Tooltip, Legend);
 const PieChart = () => {
-  const { activeJobs, takenJobs, totalCountData } = useSelector(
-    (state) => state.dashboard
-  );
+  const { activeJobs, takenJobs, totalCountData } = useSelector((state) => state.dashboard);
   const data = {
     labels: ["Available Jobs", "Active Jobs"],
     datasets: [
       {
         label: "",
         data: [totalCountData.totalAvailableJobs, totalCountData.activeJobs],
+        
+        // data: [0, 0],
         backgroundColor: ["#2E58FF", "#B6C9F0"],
         // borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
         borderWidth: 2,
@@ -39,9 +39,9 @@ const PieChart = () => {
         text: "Projects",
         align: "start",
         font: {
-          size: 20,
+          size: 14,
         },
-        color: "#091E42",
+        color: "neutral.750",
         // padding: 20,
         padding: {
           top: 25,

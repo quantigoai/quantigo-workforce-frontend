@@ -25,15 +25,7 @@ import { weeklyConver } from "../../../../helper/weeklyConver";
 import { capitalizeAllwordAndSlic } from "../../../../helper/capitalizeAllwordAndSlic.js";
 import LineChartExple from "./LineChartExple";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const options = {
   plugins: {
@@ -94,10 +86,7 @@ const LineChartDaily = ({ loading }) => {
         datasets: [
           {
             label: "Active job",
-            data: [
-              10, 20, 30, 42, 51, 82, 31, 59, 61, 73, 91, 58, 10, 20, 30, 42,
-              51, 82, 31, 59, 61, 73, 61, 73,
-            ],
+            data: [10, 20, 30, 42, 51, 82, 31, 59, 61, 73, 91, 58, 10, 20, 30, 42, 51, 82, 31, 59, 61, 73, 61, 73],
             // data: [...takenJobsData.reverse()],
             // data: [0, 1, 1, 2, 3, 4, 5],
             borderColor: "#3399FF",
@@ -120,7 +109,7 @@ const LineChartDaily = ({ loading }) => {
       <Box sx={{ padding: "2%" }}>
         <Grid container>
           <Grid xs={12} sx={{ paddingTop: "1%" }}>
-            <Typography variant="h6" sx={{ color: "#091E42" }}>
+            <Typography variant="wpf_p3_semiBold" sx={{ color: "neutral.750" }}>
               <b>Hourly Check-ins</b>
             </Typography>
           </Grid>

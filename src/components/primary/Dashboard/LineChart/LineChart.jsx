@@ -164,7 +164,7 @@ const LineChart = ({ loading }) => {
       <Box sx={{ padding: "2%" }}>
         <Grid container>
           <Grid xs={12} sx={{ paddingTop: "1%" }}>
-            <Typography variant="h6" sx={{ color: "#091E42" }}>
+            <Typography variant="wpf_p3_semiBold" sx={{ color: "neutral.750" }}>
               <b>Weekly Job Statistics</b>
             </Typography>
           </Grid>

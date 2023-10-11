@@ -9,7 +9,6 @@
 import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -51,7 +50,6 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const alert = useAlert();
 
   const toast = useToaster();
   const navigate = useNavigate();

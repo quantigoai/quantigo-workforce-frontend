@@ -2,7 +2,6 @@ import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Button } from "@mui/material";
 import React, { useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../customHooks/useToaster";
@@ -11,8 +10,6 @@ import AcceptModal from "./AcceptModal";
 import NdaRejectModal from "./NdaRejectModal";
 
 const NdaAccept = ({ signNda, user, isNDASigned, signImage }) => {
-  const alert = useAlert();
-
   const toast = useToaster();
   const serverLink = "https://wmpserver.onrender.com/api/v1/";
   const pdfLink = serverLink.concat(signNda);

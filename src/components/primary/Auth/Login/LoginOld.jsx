@@ -10,7 +10,6 @@
 import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { React, useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -32,7 +31,6 @@ const Login = () => {
   const { error } = useSelector((state) => state.user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const alert = useAlert();
 
   const toast = useToaster();
   const navigate = useNavigate();

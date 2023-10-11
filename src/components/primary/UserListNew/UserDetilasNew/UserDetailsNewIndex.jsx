@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import * as React from "react";
 import { useState } from "react";
-import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../customHooks/useToaster";
 import { changeRole, deleteOrActivateUser, updateAUserById } from "../../../../features/slice/userSlice";
@@ -12,8 +11,6 @@ import DetailsTab from "./DetailsTab";
 import styled from "./testDrawer";
 
 export default function UserDetailsNewIndex({ open, handleClose, role }) {
-  const alert = useAlert();
-
   const toast = useToaster();
   const { targetedUser: user } = useSelector((state) => state.user);
   const [roleValue, setRole] = React.useState("");

@@ -1,7 +1,6 @@
 import AddIcon from "@mui/icons-material/Add";
 import { Box, Button } from "@mui/material";
 import React, { useState } from "react";
-import { useAlert } from "react-alert";
 import { useDispatch } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
 import { createProjectDirectory } from "../../../features/slice/ProjectDirectorySlice";
@@ -9,7 +8,6 @@ import CreateProjectDirectoryModal from "./CreateProjectDirectoryModal";
 
 const CreateProjectDirectory = () => {
   const [open, setOpen] = useState(false);
-  const alert = useAlert();
 
   const toast = useToaster();
   const dispatch = useDispatch();

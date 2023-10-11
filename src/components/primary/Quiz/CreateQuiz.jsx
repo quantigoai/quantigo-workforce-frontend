@@ -8,7 +8,6 @@
  */
 import { Box, Grid, Paper } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -26,7 +25,6 @@ const CreateQuiz = () => {
   const { courseChapter } = useSelector((state) => state.course);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const alert = useAlert();
 
   const toast = useToaster();
   const {

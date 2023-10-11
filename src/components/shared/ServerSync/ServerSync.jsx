@@ -9,7 +9,6 @@
 
 import { Button, FormControl, Grid, InputLabel, MenuItem, Paper, Select, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
 import { setActivePath } from "../../../features/slice/activePathSlice";
@@ -26,7 +25,6 @@ const ServerSync = () => {
   const [team, setTeam] = useState("");
   const [teamId, setTeamId] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
-  const alert = useAlert();
 
   const toast = useToaster();
 

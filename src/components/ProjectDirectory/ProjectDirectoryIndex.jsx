@@ -20,8 +20,8 @@ import {
   useTheme,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
+import useToaster from "../../customHooks/useToaster";
 import { getProjectByDirectory } from "../../features/slice/ProjectDirectorySlice";
 import { setActivePath } from "../../features/slice/activePathSlice";
 import CreateProjectDirectory from "./CreateProjectDirectory/CreateProjectDirectory";
@@ -29,7 +29,6 @@ import UpdateProjectDirectory from "./CreateProjectDirectory/UpdateProjectDirect
 import ProjectDirectoryDeleteModal from "./ProjectDirectoryDeleteModal";
 import ProjectDirectoryDetailsIndex from "./ProjectDirectoryDetails/ProjectDirectoryDetailsIndex";
 import SearchProjectDirectory from "./ProjectDirectoryFilter/SearchProjectDirectory";
-import useToaster from "../../customHooks/useToaster";
 
 const paperStyle = {
   padding: "0px 0px",
@@ -91,7 +90,6 @@ const ProjectDirectoryIndex = () => {
   const [search, setSearch] = useState("");
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
-  const alert = useAlert();
 
   const toast = useToaster();
   const [anchorE2, setAnchorE2] = React.useState(null);

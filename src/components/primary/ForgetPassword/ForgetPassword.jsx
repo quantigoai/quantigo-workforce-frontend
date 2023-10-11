@@ -1,7 +1,6 @@
 import { Box, Button, CircularProgress, FilledInput, FormControl, Grid, InputLabel, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
@@ -30,7 +29,6 @@ const ForgetPasswordBox = styled(Box)({
 const ForgetPassword = () => {
   const { isLoading } = useSelector((state) => state.user);
   const [varificationMessage, setVarificationMessage] = useState("notset");
-  const alert = useAlert();
 
   const toast = useToaster();
   const { register, handleSubmit } = useForm();

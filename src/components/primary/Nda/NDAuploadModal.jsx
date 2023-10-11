@@ -1,7 +1,6 @@
 import { Box, Button, Grid, Modal, Stack, Step, StepLabel, Stepper, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { useDropzone } from "react-dropzone";
 import { useDispatch, useSelector } from "react-redux";
 import pdfSvg from "../../../assets/images/PDF.svg";
@@ -58,7 +57,6 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
   const [isSelected, setIsSelected] = useState(false);
   const { user, isLoading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const toast = useToaster();
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({

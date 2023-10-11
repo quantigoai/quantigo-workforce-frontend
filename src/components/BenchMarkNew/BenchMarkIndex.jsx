@@ -8,7 +8,6 @@
  */
 
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
@@ -29,7 +28,6 @@ import { getWorkSpaceById, resetWorkspaces } from "../../features/slice/workSpac
 
 const BenchMarkIndex = () => {
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const toast = useToaster();
   const { benchMark, projectMetas } = useSelector((state) => state.benchMark);

@@ -22,7 +22,6 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -35,9 +34,8 @@ import { LoadingButtonStyle } from "./Login";
 const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const alert = useAlert();
 
-const toast = useToaster();
+  const toast = useToaster();
 
   const [showPassword, setShowPassword] = useState(false);
   const { error, isLoading } = useSelector((state) => state.user);
@@ -57,7 +55,6 @@ const toast = useToaster();
     handleSubmit,
     formState: { errors },
   } = methods;
-
 
   const onSubmit = async (data) => {
     dispatch(login(data)).then((action) => {

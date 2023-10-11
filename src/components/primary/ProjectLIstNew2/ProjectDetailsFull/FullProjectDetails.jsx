@@ -18,7 +18,6 @@ import ProjectTable2 from "../ProjectTable2";
 import ProjectDetailsHeader from "./ProjectDetailsHeader";
 
 import { addDays } from "date-fns";
-import { useAlert } from "react-alert";
 import useToaster from "../../../../customHooks/useToaster";
 import CheckOutModal from "./CheckOutModal";
 
@@ -39,8 +38,6 @@ const FullProjectDetails = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [skillAlert, setSkillAlert] = useState(false);
-
-  const alert = useAlert();
 
   const toast = useToaster();
   const dispatch = useDispatch();

@@ -1,6 +1,5 @@
 import { Box, Chip, Grid, Paper, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -28,7 +27,6 @@ const paperStyle = {
 const EditProfileIndex = () => {
   const { register, handleSubmit } = useForm();
   const location = useLocation();
-  const alert = useAlert();
 
   const toast = useToaster();
   const dispatch = useDispatch();

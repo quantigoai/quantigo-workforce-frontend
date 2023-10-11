@@ -1,6 +1,5 @@
 import { Button } from "@mui/material";
 import React from "react";
-import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../customHooks/useToaster";
 import { activateDeactivateUser } from "../../../../features/slice/userSlice";
@@ -11,7 +10,6 @@ const ActivateAccount = () => {
   const { user } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const toast = useToaster();
   const handleOpen = () => {

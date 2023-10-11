@@ -9,7 +9,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import React from "react";
-import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
 import {
@@ -38,7 +37,6 @@ const formattedDate = (rawTime) => convertDate(rawTime);
 
 const AllNotification = () => {
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const toast = useToaster();
 

@@ -9,7 +9,6 @@
 import PendingIcon from "@mui/icons-material/Pending";
 import { Box, Button, Paper, Typography } from "@mui/material";
 import React from "react";
-import { useAlert } from "react-alert";
 import useToaster from "../../../customHooks/useToaster";
 
 const boxStyle = {
@@ -31,7 +30,6 @@ const pendingStyle = {
 
 const PaymentInfo = () => {
   const [isRequested, setIsRequested] = React.useState(false);
-  const alert = useAlert();
 
   const toast = useToaster();
   const handleRequest = () => {

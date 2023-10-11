@@ -30,7 +30,6 @@ import {
 } from "@mui/material";
 import TableCell from "@mui/material/TableCell";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
 import { setActivePath } from "../../../features/slice/activePathSlice";
@@ -102,8 +101,6 @@ function TablePaginationActions(props) {
 }
 
 const AllJobsForReviewer = () => {
-  const alert = useAlert();
-
   const toast = useToaster();
   const dispatch = useDispatch();
   const { user, role } = useSelector((state) => state.user);

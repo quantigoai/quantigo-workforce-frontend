@@ -1,6 +1,5 @@
 import { Box, Button, FormControl, FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import React, { useState } from "react";
-import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../../customHooks/useToaster";
 import { assignedJobToAUser } from "../../../../../features/slice/jobSlice";
@@ -29,7 +28,6 @@ const ReassignedJobIndex = ({ job }) => {
   );
 
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const toast = useToaster();
 

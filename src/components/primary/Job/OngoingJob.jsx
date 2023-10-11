@@ -9,7 +9,6 @@
 
 import TableCell from "@mui/material/TableCell";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 
 import {
   Box,
@@ -86,8 +85,6 @@ function TablePaginationActions(props) {
 }
 
 const OngoingJob = ({ action }) => {
-  const alert = useAlert();
-
   const toast = useToaster();
   const [rows, setRows] = useState("");
   const [searched, setSearched] = useState("");

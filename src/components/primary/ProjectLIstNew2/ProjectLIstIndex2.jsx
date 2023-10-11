@@ -11,7 +11,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Box, Button, Grid, IconButton, Paper } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import React, { useCallback, useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "remixicon/fonts/remixicon.css";
@@ -73,8 +72,6 @@ const ProjectLIstIndex2 = () => {
     currentPage: 0,
     pageSize: 10,
   });
-
-  const alert = useAlert();
 
   const toast = useToaster();
 

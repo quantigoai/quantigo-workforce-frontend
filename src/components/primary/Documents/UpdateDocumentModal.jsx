@@ -1,7 +1,6 @@
 import { Box, Button, Grid, MenuItem, Modal, Select, TextField, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { socket } from "../../../App";
@@ -58,7 +57,6 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
   const [coverImage, setCoverImage] = useState(null);
   const dispatch = useDispatch();
   const { user, isLoading } = useSelector((state) => state.user);
-  const alert = useAlert();
 
   const toast = useToaster();
 

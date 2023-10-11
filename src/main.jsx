@@ -1,7 +1,5 @@
 import { CssBaseline } from "@mui/material";
 import React, { Suspense, lazy } from "react";
-import { Provider as AlertProvider, positions, transitions } from "react-alert";
-import AlertTemplate from "react-alert-template-basic";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
@@ -13,16 +11,6 @@ import { persistor, store } from "./features/store/store";
 import "./index.css";
 import ThemeProviderWrapper from "./theme.config/ThemeProviderWrapper";
 const App = lazy(() => import("./App.jsx"));
-
-const options = {
-  position: positions.BOTTOM_RIGHT,
-  timeout: 4500,
-  offset: "30px",
-  transition: transitions.SCALE,
-  containerStyle: {
-    zIndex: 150,
-  },
-};
 
 const toastOptions = {
   position: "bottom-right",
@@ -38,16 +26,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Provider store={store}>
         <ThemeProviderWrapper>
           <CssBaseline />
-          <AlertProvider template={AlertTemplate}>
-            <PersistGate loading={null} persistor={persistor}>
-              <BrowserRouter>
-                <Suspense fallback={<LoadingComponent />}>
-                  <App />
-                  <ToastContainer {...toastOptions} />
-                </Suspense>
-              </BrowserRouter>
-            </PersistGate>
-          </AlertProvider>
+          <PersistGate loading={null} persistor={persistor}>
+            <BrowserRouter>
+              <Suspense fallback={<LoadingComponent />}>
+                <App />
+                <ToastContainer {...toastOptions} />
+              </Suspense>
+            </BrowserRouter>
+          </PersistGate>
         </ThemeProviderWrapper>
       </Provider>
     </React.StrictMode>

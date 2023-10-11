@@ -1,6 +1,5 @@
 import { Button, FormControlLabel, Grid, Paper, Radio, RadioGroup, Typography } from "@mui/material";
 import React from "react";
-import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +12,7 @@ const ShowQuiz = () => {
   const [data, setData] = React.useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const alert = useAlert();
+   
 
   const toast = useToaster();
   const handleQuizResult = (possibleAnswer, id) => {

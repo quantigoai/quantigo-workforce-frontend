@@ -1,7 +1,6 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import moment from "moment/moment";
 import React, { useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../../customHooks/useToaster";
@@ -13,7 +12,6 @@ const MyProfileIndex = () => {
   const { user, isLoading } = useSelector((state) => state.user);
   const [editAble, setEditAble] = useState(false);
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const toast = useToaster();
   const handleEditProfile = () => {

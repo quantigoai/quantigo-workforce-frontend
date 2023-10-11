@@ -10,7 +10,6 @@ import { Button, Grid, Popover } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import React from "react";
-import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
 import {
@@ -57,7 +56,6 @@ const NotificationModal = ({ handleSeeAll, notificationOpen, handleNotificationC
     (state) => state.notification
   );
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const toast = useToaster();
 

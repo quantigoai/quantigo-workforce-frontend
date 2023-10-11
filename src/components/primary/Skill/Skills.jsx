@@ -14,7 +14,6 @@ import {
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
@@ -51,7 +50,6 @@ const Skills = () => {
   } = useForm();
   const dispatch = useDispatch();
   const { skills, isLoading } = useSelector((state) => state.skill);
-  const alert = useAlert();
 
   const toast = useToaster();
   const [name, setName] = useState("");

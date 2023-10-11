@@ -1,7 +1,6 @@
 import { Button, Grid, Paper, Typography } from "@mui/material";
 import parse from "html-react-parser";
 import React from "react";
-import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useToaster from "../../../../customHooks/useToaster";
@@ -15,7 +14,6 @@ const CourseContentComponents = ({ quizId }) => {
   const { courseChapters } = useSelector((state) => state.course.courseChapters);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const toast = useToaster();
   const handleQuizStart = () => {

@@ -16,7 +16,6 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
-import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import {
@@ -61,7 +60,6 @@ const ProjectList = () => {
   const { projects, isLoading } = useSelector((state) => state.project);
   const { datasets } = useSelector((state) => state.dataset);
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const toast = useToaster();
   const [activeHub, setActiveHub] = React.useState([]);

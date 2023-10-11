@@ -1,6 +1,5 @@
 import { Box, Button, Grid, Modal, Paper, styled, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
@@ -36,7 +35,6 @@ const paperstyle = { width: 1000 };
 const UpdateProjectDirectory = ({ item }) => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const toast = useToaster();
   const [openModal, setOpenModal] = useState(false);

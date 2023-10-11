@@ -1,7 +1,6 @@
 import { Box, Grid, Paper, Stack } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -37,7 +36,6 @@ const CreateChapter = () => {
   const API_URl = import.meta.env.VITE_APP_SERVER_URL;
   const [content, setContent] = useState("");
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const toast = useToaster();
   const { courseChapters, course } = useSelector((state) => state.course);

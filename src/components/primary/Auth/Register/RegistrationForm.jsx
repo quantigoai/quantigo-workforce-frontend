@@ -17,7 +17,6 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { Box, Grid, IconButton, InputAdornment, Link, Stack, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -34,7 +33,6 @@ import { RegistrationSchema, genderOptions, hubOptions, userStatusOptions } from
 const RegistrationForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const toast = useToaster();
 

@@ -9,7 +9,6 @@
 
 import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -60,7 +59,6 @@ const UpdateCourse = () => {
   const [error, setError] = useState(false);
 
   const [isPreRequisiteCourseEmpty, setIsPreRequisiteCourseEmpty] = useState(false);
-  const alert = useAlert();
 
   const toast = useToaster();
 

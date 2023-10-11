@@ -5,7 +5,6 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import Tooltip from "@mui/material/Tooltip";
 import React from "react";
-import { useAlert } from "react-alert";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useToaster from "../../customHooks/useToaster";
@@ -14,7 +13,6 @@ import { deleteProjectDirectory } from "../../features/slice/ProjectDirectorySli
 const ProjectDirectoryDeleteModal = ({ item }) => {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
-  const alert = useAlert();
 
   const toast = useToaster();
   const dispatch = useDispatch();

@@ -4,7 +4,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import React from "react";
-import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useToaster from "../../../../customHooks/useToaster";
@@ -16,7 +15,6 @@ const ChapterDeleteModal = () => {
   const { courseChapter } = useSelector((state) => state.course);
   const navigate = useNavigate();
   const { activeChapterIndex, activeCourseId } = useSelector((state) => state.activePath);
-  const alert = useAlert();
 
   const toast = useToaster();
   const dispatch = useDispatch();

@@ -9,7 +9,6 @@
 import { Box, Button, CircularProgress, Grid, Paper, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import React, { useEffect } from "react";
-import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
 import { setActivePath } from "../../../features/slice/activePathSlice";
@@ -40,7 +39,6 @@ const Dashboard = () => {
   const user = useSelector((state) => state.user);
   const { isLoading } = useSelector((state) => state.user);
   const { role } = user.user;
-  const alert = useAlert();
 
   const toast = useToaster();
   // ! TODO Configure it later

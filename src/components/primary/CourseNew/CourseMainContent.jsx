@@ -7,7 +7,6 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 import React from "react";
-import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useToaster from "../../../customHooks/useToaster";
@@ -16,7 +15,6 @@ import ChapterContent from "./ChapterContent";
 
 const CourseMainContent = () => {
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const toast = useToaster();
   const navigate = useNavigate();

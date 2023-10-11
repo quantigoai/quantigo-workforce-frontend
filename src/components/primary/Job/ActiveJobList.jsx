@@ -7,7 +7,6 @@ import TableCell from "@mui/material/TableCell";
 import { styled } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
 
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import useToaster from "../../../customHooks/useToaster";
 import { setActivePath } from "../../../features/slice/activePathSlice";
@@ -46,8 +45,6 @@ const ActiveJobList = ({ action }) => {
   useEffect(() => {
     dispatch(setActivePath("Jobs"));
   }, []);
-
-  const alert = useAlert();
 
   const toast = useToaster();
 

@@ -3,7 +3,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import Tooltip from "@mui/material/Tooltip";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
@@ -35,7 +34,6 @@ const SkillEdit = ({ skill }) => {
   const [open, setOpen] = React.useState(false);
   const [name, setName] = useState(skill.name);
   const [error, setError] = useState(false);
-  const alert = useAlert();
 
   const toast = useToaster();
   const dispatch = useDispatch();

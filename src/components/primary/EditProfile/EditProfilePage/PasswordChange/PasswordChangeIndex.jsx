@@ -1,6 +1,5 @@
 import { Box, Button, Grid } from "@mui/material";
 import React, { useState } from "react";
-import { useAlert } from "react-alert";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useToaster from "../../../../../customHooks/useToaster";
@@ -14,7 +13,6 @@ const PasswordChangeIndex = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const alert = useAlert();
 
   const toast = useToaster();
   const handleChangePassword = () => {

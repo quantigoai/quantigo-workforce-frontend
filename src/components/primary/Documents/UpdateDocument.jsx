@@ -27,7 +27,6 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
@@ -46,7 +45,6 @@ const UpdateDocument = () => {
   const [coverImageFile, setCoverImageFile] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
   const { user } = useSelector((state) => state.user);
-  const alert = useAlert();
 
   const toast = useToaster();
   const { register, handleSubmit } = useForm();

@@ -1,6 +1,5 @@
 import { Button, FormControl, Grid, InputLabel, MenuItem, Select, styled } from "@mui/material";
 import React, { useState } from "react";
-import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../customHooks/useToaster";
 import { deleteOrActivateUser } from "../../../../features/slice/userSlice";
@@ -18,7 +17,6 @@ const ButtonStyle = styled(Button)({
 
 const UserStatusChange = ({ user }) => {
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const toast = useToaster();
   const [actionStatus, setActionStatus] = useState("");

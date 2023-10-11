@@ -18,7 +18,6 @@
 
 import { Box, Grid, Paper } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +42,6 @@ const CreateJobNew = () => {
   const [datasetID, setDatasetID] = useState("");
   const [skills, setSkills] = useState([]);
   const { skills: rootSkills } = useSelector((state) => state.skill);
-  const alert = useAlert();
 
   const toast = useToaster();
   const [server, setServer] = useState("ag");

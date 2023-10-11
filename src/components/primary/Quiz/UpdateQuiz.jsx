@@ -8,7 +8,6 @@
  */
 import { Box, Grid, Paper } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -22,8 +21,6 @@ import Duration from "./QuizField.jsx/Duration";
 import QuizName from "./QuizField.jsx/QuizName";
 
 const UpdateQuiz = ({ quizId }) => {
-  const alert = useAlert();
-
   const toast = useToaster();
   const { course } = useSelector((state) => state.course);
   const [removeId, setRemoveIds] = useState([]);

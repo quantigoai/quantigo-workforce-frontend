@@ -9,7 +9,6 @@
 
 import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -52,7 +51,6 @@ const CreateCourse = () => {
   const dispatch = useDispatch();
   const { courses, isLoading, course } = useSelector((state) => state.course);
   const { skills } = useSelector((state) => state.skill);
-  const alert = useAlert();
 
   const toast = useToaster();
   const [courseName, setCourseName] = useState([]);

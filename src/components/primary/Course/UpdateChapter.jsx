@@ -2,7 +2,6 @@ import { Grid, Paper, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -23,7 +22,6 @@ const UpdateChapter = () => {
   const { courseChapter, course, isLoading } = useSelector((state) => state.course);
   const [content, setContent] = useState("");
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const toast = useToaster();
 

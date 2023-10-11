@@ -8,7 +8,6 @@
  */
 import { Button, FormControlLabel, Grid, Paper, Radio, RadioGroup, Typography } from "@mui/material";
 import React from "react";
-import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useToaster from "../../../customHooks/useToaster";
@@ -22,7 +21,6 @@ const QuizShow = () => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
   const [data, setData] = React.useState({});
-  const alert = useAlert();
 
   const toast = useToaster();
   const { course } = useSelector((state) => state.course);

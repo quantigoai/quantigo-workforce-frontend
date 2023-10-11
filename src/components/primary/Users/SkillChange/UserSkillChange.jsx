@@ -1,6 +1,5 @@
 import { Box, Button, styled } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../customHooks/useToaster";
 import { getAllSkills } from "../../../../features/slice/skillSlice";
@@ -24,7 +23,6 @@ const UserSkillChange = ({ user }) => {
   const [skillSet2, setSkillSet2] = React.useState([]);
   const [isSkillEmpty, setIsSkillEmpty] = useState(false);
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const toast = useToaster();
   useEffect(() => {

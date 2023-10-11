@@ -13,7 +13,6 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -57,7 +56,6 @@ const ResetPassword = () => {
   const navigate = useNavigate();
   const params = useParams();
   const { id, token } = params;
-  const alert = useAlert();
 
   const toast = useToaster();
   const handleClickShowPassword = () => setShowPassword((show) => !show);

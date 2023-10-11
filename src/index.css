@@ -47,7 +47,20 @@ display: flex;
 .success-toast-background{
   background-color: #12B76A;
 }
+
 .error-toast-background{
   background-color: #F04438;
 
 }
+.success-progress-bar {
+  background: rgb(30, 221, 30) !important;
+}
+
+.error-progress-bar {
+  background: rgb(220, 6, 27) !important;
+}
+
+/* .Toastify__progress-bar-theme--light{
+  background-color: yellow !important;
+  
+} */

@@ -22,13 +22,13 @@ const useToaster = () => {
     if (type === "success") {
       toast(<SuccessToaster message={message} />, {
         className: "success-toast-background",
-        // bodyClassName: "grow-font-size",
-        // progressClassName: "fancy-progress-bar",
+        progressClassName: "success-progress-bar",
       });
     }
     if (type === "error") {
       toast(<ErrorToaster message={message} />, {
         className: "error-toast-background",
+        progressClassName: "error-progress-bar",
       });
     }
   };

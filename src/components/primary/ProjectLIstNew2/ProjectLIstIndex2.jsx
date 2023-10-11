@@ -212,7 +212,7 @@ const ProjectLIstIndex2 = () => {
     dispatch(setActivePath("All Projects2"));
     setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
     projectDrawers && projectDrawers.length > 0 && setMyRows(dataBuilder(projectDrawers));
-  }, [dispatch, handleClick, handleDelete, projectDrawers]);
+  }, [dispatch, projectDrawers]);
 
   return (
     <>

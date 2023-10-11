@@ -54,11 +54,12 @@ export default function CustomTextField({ name, label, helperText, ...other }) {
               fullWidth
               // InputProps={{ disableUnderline: true }}
               variant="outlined"
-              placeholder={label === "Email" ? "email#123@gmail.com" : "example#123"}
+              // placeholder={label === "Email" ? "email#123@gmail.com" : "example#123"}
               sx={{
                 // backgroundColor: isLightTheme ? "#FFFFFF" : "#1D1D1D",
                 // backgroundColor: "#FFFFFF",
                 mt: 1.5,
+                fontSize: "14px",
               }}
               value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
               error={!!error}

@@ -79,11 +79,11 @@ const Header = () => {
   const id = openPopover ? "simple-popover" : undefined;
 
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
-    width: 62,
-    height: 34,
+    width: 60,
+    height: 35,
     padding: 7,
+
     "& .MuiSwitch-switchBase": {
-      margin: 1,
       padding: 0,
       transform: "translateX(6px)",
       "&.Mui-checked": {
@@ -124,13 +124,16 @@ const Header = () => {
       borderRadius: 20 / 2,
     },
   }));
-
+  const MyFormControlLabel = styled(FormControlLabel)(({ theme }) => ({
+    "& .MuiFormControlLabel": {
+      marginRight: "0px",
+    },
+  }));
   return (
     <>
       <Box
         sx={{
-          background: isLightTheme ? "#FFFFFF" : "#0E243D",
-          color: isLightTheme ? "#000c1f" : "#F5F5F5",
+          color: "neutral.970",
         }}
       >
         <Box
@@ -156,7 +159,7 @@ const Header = () => {
             >
               <Button
                 sx={{
-                  color: isLightTheme ? "#0E243D" : "#FFFFFF",
+                  color: "neutral.800",
                   width: {
                     xl: "100px",
                     lg: "100px",
@@ -177,141 +180,146 @@ const Header = () => {
               </Button>
             </Box>
 
-            {/* <Box xs={2} sx={{ px: 2 }}>
-              <img src={line} height="100%" />
-            </Box> */}
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <FormControlLabel
-                onClick={() => dispatch(setTheme(!isLightTheme))}
-                control={<MaterialUISwitch sx={{ m: 1 }} checked={isLightTheme ? false : true} />}
-              />
-              <Box
-                sx={{
-                  display: "flex",
-                  cursor: "pointer",
-                  justifyContent: "flex-end",
-                  alignItems: "center",
-                  mr: 3,
-                  transition: "all 0.3s ease-in-out",
-                  p: 1,
-                  borderRadius: "8px",
-                  "&:hover": {
-                    backgroundColor: "#F4F7FE",
-                  },
-                }}
-                aria-describedby={id}
-                onClick={handleNotificationOpen}
-              >
-                {allUnreadNotifications.length === 0 ? (
-                  <NotificationsNoneIcon sx={{ color: "#1976d2" }} />
-                ) : (
-                  <>
-                    <Badge badgeContent={allUnreadNotifications.length} color="primary">
-                      <NotificationsActiveIcon sx={{ color: "#1976d2" }} />
-                    </Badge>
-                  </>
-                )}
-              </Box>
-              <NotificationModal
-                openPopover={openPopover}
-                id={id}
-                handleSeeAll={handleSeeAll}
-                notificationOpen={notificationOpen}
-                handleNotificationClose={handleNotificationClose}
-              />
-
-              <Box sx={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
-                <Avatar
-                  alt="Profile Picture"
-                  src={image}
-                  sx={{
-                    bgcolor: "#D3ECFA",
-                    height: { xl: 40, lg: 34 },
-                    width: { xl: 40, lg: 34 },
-                  }}
+              <Box sx={{ display: "flex" }}>
+                <MyFormControlLabel
+                  onClick={() => dispatch(setTheme(!isLightTheme))}
+                  control={<MaterialUISwitch sx={{ m: 0 }} checked={isLightTheme ? false : true} />}
                 />
-              </Box>
-              <Box>
-                <Box sx={{ display: "flex", px: 2 }}>
-                  <Stack>
-                    <Typography
-                      sx={{
-                        color: isLightTheme ? "#0E243D" : "#FFFFFF",
-                      }}
-                      variant="wpf_p3_semiBold"
-                    >
-                      <b>
-                        {firstName} {lastName}
-                      </b>
-                    </Typography>
 
-                    <Typography sx={{ color: "#969CAF" }} variant="wpf_p4_regular">
-                      {role === "level_1_annotator"
-                        ? "Level 1 Annotator"
-                        : role === "level_2_annotator"
-                        ? "Level 2 Annotator"
-                        : role === "level_0_annotator"
-                        ? "Level 0 Annotator"
-                        : role === "level_3_annotator"
-                        ? "Level 3 Annotator"
-                        : role === "delivery_manager"
-                        ? "Project Delivery Lead"
-                        : role === "project_lead"
-                        ? "Delivery Lead"
-                        : role === "project_coordinator"
-                        ? "Project Coordinator"
-                        : role === "project_manager"
-                        ? "Project Manager"
-                        : role === "recruitment_manager"
-                        ? "Recruitment Manager"
-                        : capitalizeFirstLetter(role)}
-                    </Typography>
-                  </Stack>
-
-                  <Box>
-                    <Menu
-                      sx={{
-                        "& .MuiPaper-root": {
-                          backgroundColor: "#FFFFFF",
-                          // color: isLightTheme ? "#000c1f" : "#F5F5F5",
-                          borderRadius: "5px",
-                        },
-                      }}
-                      anchorEl={anchorEl}
-                      open={open}
-                      onClose={handleClose}
-                    >
-                      <MenuItem
-                        sx={{
-                          backgroundColor: "#FFFFF",
-                          borderBottom: "1px solid #F0F5FA",
-                          width: "182px",
-                        }}
-                        onClick={handleEditProfile}
-                      >
-                        <ListItemIcon>
-                          <img src={ProfileIcon} />
-                        </ListItemIcon>
-                        <ListItemText sx={{ color: "#3C4D6B" }}>Edit Profile</ListItemText>
-                      </MenuItem>
-                      <MenuItem onClick={handleLogOut} sx={{ width: "182px" }}>
-                        <ListItemIcon>
-                          <img src={logOutIcon} />
-                        </ListItemIcon>
-                        <ListItemText sx={{ color: "#3C4D6B" }}>Logout</ListItemText>
-                      </MenuItem>
-                    </Menu>
-                    <Button id="fade-button" onClick={handleClick} sx={{ paddingTop: "20%" }}>
-                      <img src={menuIcon} />
-                      {/* <KeyboardArrowDownIcon /> */}
-                    </Button>
-                  </Box>
+                <Box
+                  sx={{
+                    // backgroundColor: "yellow",
+                    display: "flex",
+                    cursor: "pointer",
+                    // justifyContent: "flex-end",
+                    alignItems: "center",
+                    mr: 3,
+                    transition: "all 0.3s ease-in-out",
+                    p: 1,
+                    borderRadius: "8px",
+                    "&:hover": {
+                      backgroundColor: "#F4F7FE",
+                    },
+                  }}
+                  aria-describedby={id}
+                  onClick={handleNotificationOpen}
+                >
+                  {allUnreadNotifications.length === 0 ? (
+                    // <NotificationsNoneIcon sx={{ color: "#1976d2" }} />
+                    <NotificationsNoneIcon />
+                  ) : (
+                    <>
+                      <Badge badgeContent={allUnreadNotifications.length} color="primary">
+                        <NotificationsActiveIcon />
+                      </Badge>
+                    </>
+                  )}
                 </Box>
               </Box>
+
+              <>
+                <Box sx={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+                  <Avatar
+                    alt="Profile Picture"
+                    src={image}
+                    sx={{
+                      bgcolor: "#D3ECFA",
+                      height: { xl: 40, lg: 34 },
+                      width: { xl: 40, lg: 34 },
+                    }}
+                  />
+                </Box>
+                <Box>
+                  <Box sx={{ display: "flex", px: 2 }}>
+                    <Stack>
+                      <Typography
+                        sx={{
+                          color: "neutral.800",
+                        }}
+                        variant="wpf_p3_semiBold"
+                      >
+                        <b>
+                          {firstName} {lastName}
+                        </b>
+                      </Typography>
+
+                      <Typography sx={{ color: "#969CAF" }} variant="wpf_p4_regular">
+                        {role === "level_1_annotator"
+                          ? "Level 1 Annotator"
+                          : role === "level_2_annotator"
+                          ? "Level 2 Annotator"
+                          : role === "level_0_annotator"
+                          ? "Level 0 Annotator"
+                          : role === "level_3_annotator"
+                          ? "Level 3 Annotator"
+                          : role === "delivery_manager"
+                          ? "Project Delivery Lead"
+                          : role === "project_lead"
+                          ? "Delivery Lead"
+                          : role === "project_coordinator"
+                          ? "Project Coordinator"
+                          : role === "project_manager"
+                          ? "Project Manager"
+                          : role === "recruitment_manager"
+                          ? "Recruitment Manager"
+                          : capitalizeFirstLetter(role)}
+                      </Typography>
+                    </Stack>
+
+                    <Box>
+                      <Menu
+                        sx={{
+                          "& .MuiPaper-root": {
+                            backgroundColor: "#FFFFFF",
+                            // color: isLightTheme ? "#000c1f" : "#F5F5F5",
+                            borderRadius: "5px",
+                          },
+                        }}
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                      >
+                        <MenuItem
+                          sx={{
+                            backgroundColor: "#FFFFF",
+                            borderBottom: "1px solid #F0F5FA",
+                            width: "182px",
+                          }}
+                          onClick={handleEditProfile}
+                        >
+                          <ListItemIcon>
+                            <img src={ProfileIcon} />
+                          </ListItemIcon>
+                          <ListItemText sx={{ color: "#3C4D6B" }}>Edit Profile</ListItemText>
+                        </MenuItem>
+                        <MenuItem onClick={handleLogOut} sx={{ width: "182px" }}>
+                          <ListItemIcon>
+                            <img src={logOutIcon} />
+                          </ListItemIcon>
+                          <ListItemText sx={{ color: "#3C4D6B" }}>Logout</ListItemText>
+                        </MenuItem>
+                      </Menu>
+                      <Button id="fade-button" onClick={handleClick} sx={{ paddingTop: "20%" }}>
+                        <img src={menuIcon} />
+                        {/* <KeyboardArrowDownIcon /> */}
+                      </Button>
+                    </Box>
+                  </Box>
+                </Box>
+              </>
             </Box>
           </Box>
         </Box>
       </Box>
+
+      <NotificationModal
+        openPopover={openPopover}
+        id={id}
+        handleSeeAll={handleSeeAll}
+        notificationOpen={notificationOpen}
+        handleNotificationClose={handleNotificationClose}
+      />
     </>
   );
 };

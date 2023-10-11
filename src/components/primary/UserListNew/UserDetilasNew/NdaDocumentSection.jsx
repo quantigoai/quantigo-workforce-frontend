@@ -5,19 +5,21 @@ import React, { useState } from "react";
 import NidDetails from "../../Users/NidDetals/NidDetails";
 import axios from "axios";
 import { realToken } from "../../../../helper/lib";
-const ButtonStyle = styled(Button)({
+
+const styleBtn = {
   width: "100%",
   textTransform: "none",
-  backgroundColor: "#F4F7FE",
+  backgroundColor: "primary.B008",
+
   color: "#2E58FF",
   borderRadius: "8px",
   border: "1px solid #F4F7FE",
   "&:hover": {
-    backgroundColor: "#F4F7FE",
+    backgroundColor: "primary.B008",
     color: "#2E58FF",
     border: "1px solid #2E58FF",
   },
-});
+};
 const NdaDocumentSection = ({ user }) => {
   const [openModal, setOpenModal] = React.useState(false);
   const [documentsImage, setDocumentsImage] = useState([]);
@@ -51,7 +53,8 @@ const NdaDocumentSection = ({ user }) => {
     <>
       <Grid container sx={{ padding: "2%" }}>
         <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-          <ButtonStyle
+          <Button
+            sx={styleBtn}
             // sx={{ backgroundColor: "red" }}
             disabled={isDisabled}
             onClick={() => handleDetailNid(user.documentsImage, user.documentNo, user.documentsType, user.name)}
@@ -70,10 +73,10 @@ const NdaDocumentSection = ({ user }) => {
               }}
               src={ViewIcon}
             />
-          </ButtonStyle>
+          </Button>
         </Grid>
         <Grid item xs={6}>
-          <ButtonStyle disabled={!user.signImage} onClick={() => handleClick(user.signImage)}>
+          <Button sx={styleBtn} disabled={!user.signImage} onClick={() => handleClick(user.signImage)}>
             <Typography
               variant="wpf_p3_medium"
               color={user.documentNo ? "primary.B200" : ""}
@@ -88,7 +91,7 @@ const NdaDocumentSection = ({ user }) => {
               }}
               src={ArrowIcon}
             />
-          </ButtonStyle>
+          </Button>
         </Grid>
       </Grid>
       <NidDetails

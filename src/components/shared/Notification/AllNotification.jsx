@@ -54,15 +54,12 @@ const AllNotification = () => {
   };
   const { notifications } = useSelector((state) => state.notification);
   return (
-    <>
+    <Box className="content">
       <Box
+        className="notificationContentHeader"
         sx={{
           borderTop: "1px solid #E6ECF5",
           backgroundColor: "neutral.N000",
-          px: 2.5,
-          py: 3,
-          display: "flex",
-          justifyContent: "space-between",
         }}
       >
         <Typography variant="wpf_p1_semiBold" color="neutral.N300">
@@ -85,7 +82,16 @@ const AllNotification = () => {
           Mark All as Read
         </Button>
       </Box>
-      <Box my={2} sx={{ width: "60%", textAlign: "left", px: 2.5 }}>
+      <br />
+      <Box
+        sx={{
+          width: "100%",
+          height: "85%",
+          overflow: "auto",
+          textAlign: "left",
+          px: "16px",
+        }}
+      >
         {notifications.map((notification) => (
           <Box
             sx={{
@@ -107,7 +113,7 @@ const AllNotification = () => {
           </Box>
         ))}
       </Box>
-    </>
+    </Box>
   );
 };
 

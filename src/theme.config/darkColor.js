@@ -27,7 +27,7 @@ export const darkColors = {
     600: "#000", // Very light text color
     700: "#FFFFFF", // Light text color
     750: "#3A3A3A", // Darker background color
-    800: "#000000", // Darkest background color
+    800: "#ddd", // Darkest background color
     850: "#444444",
     900: "#23314D",
     920: "#56627A",

@@ -15,8 +15,8 @@ const MyInputField = styled(TextField)(() => ({
     width: "100%",
     height: "45PX",
     fontSize: "13px",
-    color: "#3C4D6B",
-    backgroundColor: "#FFFFFF",
+    color: "neutral.N300",
+    backgroundColor: "neutral.N000",
   },
 }));
 

@@ -5,7 +5,7 @@ const style = {
   display: "flex",
   flexDirection: "column",
   position: "absolute",
-  top: "40%",
+  top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
   // bgcolor: "background.paper",
@@ -63,17 +63,17 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                     // variant="outlined"
                     onClick={handleClose}
                     sx={{
-                      border: "3px solid #FFFFFF",
+                      border: "3px solid neutral.N000",
                       position: "absolute",
                       top: "0px",
                       right: "0px",
                       zIndex: 1,
-                      backgroundColor: "#FFFFFF",
+                      backgroundColor: "neutral.N000",
                       height: "30px",
                       width: "30px",
                       borderRadius: "50%",
                       "&:hover": {
-                        backgroundColor: "#F4F7FE",
+                        backgroundColor:"neutral.N000",
                         color: "#62728F",
                         // border: "1px solid #F4F7FE",
                       },
@@ -119,21 +119,21 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                           borderRadius: "10px",
                         }}>
                         <Stack direction="row">
-                          <Typography variant="wpf_p2_semiBold" sx={{ color: "#3C4D6B" }}>
+                          <Typography variant="wpf_p2_semiBold" sx={{ color: "neutral.N300" }}>
                             Document Type :
                           </Typography>
 
-                          <Typography variant="wpf_p2_semiBold" sx={{ color: "#2E58FF" ,marginLeft: "6px" }}>
+                          <Typography variant="wpf_p2_semiBold" sx={{ color: "primary.B200" ,marginLeft: "6px" }}>
                               {" "}
                              {drawerStatus(documentsType)}
                             {/* {documentsType} */}
                           </Typography>
                         </Stack>
                         <Stack direction="row" sx={{ justifyContent: "center" }}>
-                          <Typography variant="wpf_p2_semiBold" sx={{ color: "#3C4D6B" }}>
+                          <Typography variant="wpf_p2_semiBold" sx={{ color:  "neutral.N300" }}>
                             Document No :{" "}
                           </Typography>
-                          <Typography variant="wpf_p2_semiBold" sx={{ color: "#3C4D6B",marginLeft: "6px" }}>
+                          <Typography variant="wpf_p2_semiBold" sx={{ color:  "neutral.N300",marginLeft: "6px" }}>
                             {documentsNo}
                           </Typography>
                         </Stack>

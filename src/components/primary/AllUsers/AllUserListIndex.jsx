@@ -12,7 +12,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import { getAllSkills } from "../../../features/slice/skillSlice";
-import { getAllUsers, setTargetedUser } from "../../../features/slice/userSlice";
+import { getAllUsers, setTargetedUser, updateAUserById } from "../../../features/slice/userSlice";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 // import TableWrapper from "../ProjectLIstNew2/ExpTable/TableWrapper";
@@ -32,6 +32,7 @@ import UsersHeader from "./UsersHeader";
 import "./index.css";
 import { fields } from "./tableFields";
 import { hubOptions, roleOptions, userStatusOptions } from "./userFilterOptions";
+import useToaster from "../../../customHooks/useToaster";
 
 // TODO NEED TO FIX LOADING ISSUE
 const AllUserListIndex = ({ action }) => {
@@ -43,7 +44,6 @@ const AllUserListIndex = ({ action }) => {
   const [openModal, setOpenModal] = useState(false);
   const [prevSkills, setPrevSkills] = useState([]);
   const [prevRoles, setPrevRoles] = useState([]);
-
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
   const [selectedUser, setSelectedUser] = useState({});
@@ -51,6 +51,7 @@ const AllUserListIndex = ({ action }) => {
   const handleClose = () => setOpen(false);
   const [openAccepet, setOpenAccepet] = React.useState(false);
   const { register, handleSubmit } = useForm();
+  const toast = useToaster();
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
@@ -168,13 +169,15 @@ const AllUserListIndex = ({ action }) => {
         rejectionCause: data.rejectionCause,
       },
     };
-    // dispatch(updateAUserById(finalData)).then((action) => {
-    //   if (action.payload?.status === 200) {
-    //     toast.trigger("Reject  NDA", "success");
-    //   } else {
-    //     toast.trigger("Failed to Reject  NDA", "error");
-    //   }
-    // });
+    dispatch(updateAUserById(finalData)).then((action) => {
+      if (action.payload?.status === 200) {
+        toast.trigger("Reject  NDA", "success");
+        setOpenAccepet(false);
+        setOpenModal(false);
+      } else {
+        toast.trigger("Failed to Reject  NDA", "error");
+      }
+    });
     handleClose();
     setOpen(false);
   };
@@ -195,13 +198,15 @@ const AllUserListIndex = ({ action }) => {
         isVerified: true,
       },
     };
-    // dispatch(updateAUserById(data)).then((action) => {
-    //   if (action.payload?.status === 200) {
-    //     toast.trigger("User Verified successfully", "success");
-    //   } else {
-    //     toast.trigger("User not Verified ", "error");
-    //   }
-    // });
+    dispatch(updateAUserById(data)).then((action) => {
+      if (action.payload?.status === 200) {
+        toast.trigger("User Verified successfully", "success");
+        setOpenAccepet(false);
+        setOpenModal(false);
+      } else {
+        toast.trigger("User not Verified ", "error");
+      }
+    });
   };
 
   const handleChangePagination = useCallback(() => {
@@ -265,8 +270,7 @@ const AllUserListIndex = ({ action }) => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-          }}
-        >
+          }}>
           {isDataLoading ? (
             <LoadingComponent />
           ) : (

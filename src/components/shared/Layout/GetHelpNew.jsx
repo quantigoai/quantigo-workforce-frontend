@@ -16,7 +16,7 @@ const GetHelpNew = () => {
           //   padding: "10%",
         }}>
         <Grid container sx={{ justifyContent: "center", paddingTop: "9%" }}>
-          <Typography variant="wf_h5_bold" sx={{ color: "neutral.N000" }}>
+          <Typography variant="wf_h5_bold" sx={{ color: "neutral.N700" }}>
             Need Help?
           </Typography>
         </Grid>
@@ -33,7 +33,7 @@ const GetHelpNew = () => {
           }}>
           <Typography
             sx={{
-              color: "neutral.N600",
+              color: "neutral.N700",
               justifyContent: "center",
               textAlign: "center",
               //  fontSize:"11px"
@@ -45,7 +45,7 @@ const GetHelpNew = () => {
 
           <Typography
             sx={{
-              color: "neutral.N600",
+              color: "neutral.N700",
               justifyContent: "center",
               textAlign: "center",
             }}

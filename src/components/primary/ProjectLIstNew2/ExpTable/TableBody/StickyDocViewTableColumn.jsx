@@ -15,7 +15,7 @@ import React, { useState } from "react";
 import { realToken } from "../../../../../helper/lib";
 import NidDetails from "../../../Users/NidDetals/NidDetails";
 const StickyDocViewTableColumn = ({ column }) => {
-  const [openModal, setOpenModal] = React.useState(false);
+    const [openModal, setOpenModal] = React.useState(false);
   const [documentsImage, setDocumentsImage] = useState([]);
   const [documentsType, setDocumentsType] = useState("");
   const [documentsNo, setDocumentsNo] = useState();
@@ -45,14 +45,22 @@ const StickyDocViewTableColumn = ({ column }) => {
   return (
     <>
       <TableCell className="docrow">
-        {/* {column.documentNo && ( */}
+        {/* {column.isNDASigned && column.isDocumentsSubmitted !== "pending" && ( */}
         <Box sx={{ display: "flex", gap: 1 }}>
-          <DescriptionIcon
-            onClick={() => handleDetailNid(column.documentsImage, column.documentNo, column.documentsType, column.name)}
-            sx={{ fontSize: "16px", cursor: "pointer" }}
-          />
-
-          <AttachFileIcon onClick={() => handleClick(column.signImage)} sx={{ fontSize: "16px", cursor: "pointer" }} />
+          {column.isDocumentsSubmitted !== "pending" && (
+            <DescriptionIcon
+              onClick={() =>
+                handleDetailNid(column.documentsImage, column.documentNo, column.documentsType, column.name)
+              }
+              sx={{ fontSize: "16px", cursor: "pointer" }}
+            />
+          )}
+          {column.isNDASigned && (
+            <AttachFileIcon
+              onClick={() => handleClick(column.signImage)}
+              sx={{ fontSize: "16px", cursor: "pointer" }}
+            />
+          )}
         </Box>
         {/* )} */}
       </TableCell>

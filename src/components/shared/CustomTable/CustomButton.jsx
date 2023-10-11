@@ -20,7 +20,7 @@ const CustomButton = ({
   handleReject,
   handleOpenNDA,
 }) => {
-  const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [isEdit, setIsEdit] = React.useState(true);
@@ -30,7 +30,8 @@ const CustomButton = ({
       sx={{
         display: "flex",
         justifyContent: "center",
-      }}>
+      }}
+    >
       {role === "admin" && pathname === "/allprojects" && (
         <>
           <Button
@@ -38,14 +39,16 @@ const CustomButton = ({
             onClick={() => {
               setIsEdit(true);
               handleClick(params);
-            }}>
+            }}
+          >
             <i className="ri-edit-line"></i>
           </Button>
           <Button
             sx={{ color: "#F04438", padding: "0px", minWidth: "35px" }}
             onClick={() => {
               setIsEdit(false);
-            }}>
+            }}
+          >
             <i onClick={handleOpen} className="ri-delete-bin-6-line"></i>
           </Button>
         </>
@@ -59,7 +62,8 @@ const CustomButton = ({
                 width: "100%",
                 alignItems: "center",
                 justifyContent: "center",
-              }}>
+              }}
+            >
               <Typography variant="wpf_p4_regular" color="neutral.700">
                 Verified
               </Typography>
@@ -70,22 +74,28 @@ const CustomButton = ({
                 display: "flex",
                 width: "100%",
                 alignItems: "center",
-              }}>
+              }}
+            >
               <Button
                 // disabled={params.isDocumentsSubmitted === "rejected" && params.isNDAApproved === "rejected"}
                 disabled={
                   (params.isDocumentsSubmitted === "rejected" && params.isNDAApproved === "rejected") ||
-                  (params.isDocumentsSubmitted === "pending" && params.isNDAApproved === "pending")
+                  (params.isDocumentsSubmitted === "pending" && params.isNDAApproved === "pending") ||
+                  params.isDocumentsSubmitted === "pending" ||
+                  params.isNDASigned === false
                 }
                 onClick={() => handleOpenNDA(params)}
-                sx={{ padding: "0px", minWidth: "30px", fontSize: "16px" }}>
+                sx={{ padding: "0px", minWidth: "30px", fontSize: "16px" }}
+              >
                 <i style={{ color: params.isVerified ? "#12B76A" : "" }} className="ri-checkbox-circle-fill"></i>
               </Button>
               <Button
                 // disabled={params.isVerified}
                 disabled={
                   (params.isDocumentsSubmitted === "rejected" && params.isNDAApproved === "rejected") ||
-                  (params.isDocumentsSubmitted === "pending" && params.isNDAApproved === "pending")
+                  (params.isDocumentsSubmitted === "pending" && params.isNDAApproved === "pending") ||
+                  params.isDocumentsSubmitted === "pending" ||
+                  params.isNDASigned === false
                 }
                 onClick={() => handleReject(params)}
                 sx={{
@@ -94,10 +104,13 @@ const CustomButton = ({
                   fontSize: "16px",
                   filter:
                     (params.isDocumentsSubmitted === "rejected" && params.isNDAApproved === "rejected") ||
-                    (params.isDocumentsSubmitted === "pending" && params.isNDAApproved === "pending")
+                    (params.isDocumentsSubmitted === "pending" && params.isNDAApproved === "pending") ||
+                    params.isDocumentsSubmitted === "pending" ||
+                    params.isNDASigned === false
                       ? "grayscale(100%) opacity(50%)"
                       : "",
-                }}>
+                }}
+              >
                 <i style={{ color: "#F04438" }} className="ri-close-circle-fill"></i>
               </Button>
             </Box>
@@ -111,7 +124,8 @@ const CustomButton = ({
               paddingX: "10px",
               minWidth: "35px",
               textTransform: "none",
-            }}>
+            }}
+          >
             <i className="ri-eye-line"></i>
           </Button>
         </>
@@ -123,7 +137,8 @@ const CustomButton = ({
             paddingX: "20px",
             minWidth: "35px",
             textTransform: "none",
-          }}>
+          }}
+        >
           <i className="ri-eye-line"></i>
         </Button>
       )}

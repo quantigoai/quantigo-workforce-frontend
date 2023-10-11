@@ -185,12 +185,19 @@ const Header = () => {
                 onClick={() => dispatch(setTheme(!isLightTheme))}
                 control={<MaterialUISwitch sx={{ m: 1 }} checked={isLightTheme ? false : true} />}
               />
-              <Button
+              <Box
                 sx={{
                   display: "flex",
+                  cursor: "pointer",
                   justifyContent: "flex-end",
                   alignItems: "center",
                   mr: 3,
+                  transition: "all 0.3s ease-in-out",
+                  p: 1,
+                  borderRadius: "8px",
+                  "&:hover": {
+                    backgroundColor: "#F4F7FE",
+                  },
                 }}
                 aria-describedby={id}
                 onClick={handleNotificationOpen}
@@ -204,7 +211,7 @@ const Header = () => {
                     </Badge>
                   </>
                 )}
-              </Button>
+              </Box>
               <NotificationModal
                 openPopover={openPopover}
                 id={id}

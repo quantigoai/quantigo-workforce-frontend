@@ -52,12 +52,15 @@ const NdaDocumentSection = ({ user }) => {
       <Grid container sx={{ padding: "2%" }}>
         <Grid item xs={6} sx={{ paddingRight: "2%" }}>
           <ButtonStyle
+            // sx={{ backgroundColor: "red" }}
             disabled={isDisabled}
-            onClick={() => handleDetailNid(user.documentsImage, user.documentNo, user.documentsType, user.name)}>
+            onClick={() => handleDetailNid(user.documentsImage, user.documentNo, user.documentsType, user.name)}
+          >
             <Typography
               variant="wpf_p3_medium"
               color={user.documentNo ? "primary.B200" : ""}
-              sx={{ paddingRight: "4%", filter: isDisabled ? "grayscale(100%) opacity(50%)" : "" }}>
+              sx={{ paddingRight: "4%", filter: isDisabled ? "grayscale(100%) opacity(50%)" : "" }}
+            >
               {" "}
               Document{" "}
             </Typography>
@@ -74,7 +77,8 @@ const NdaDocumentSection = ({ user }) => {
             <Typography
               variant="wpf_p3_medium"
               color={user.documentNo ? "primary.B200" : ""}
-              sx={{ paddingRight: "4%", filter: isDisabled ? "grayscale(100%) opacity(50%)" : "" }}>
+              sx={{ paddingRight: "4%", filter: isDisabled ? "grayscale(100%) opacity(50%)" : "" }}
+            >
               {" "}
               NDA
             </Typography>

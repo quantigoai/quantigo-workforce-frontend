@@ -15,6 +15,7 @@ import React from "react";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import "../ProjectLIstNew2/index.css";
 import "./index.css";
+import ExportUserList from "./ExportUserList";
 const UsersHeader = ({
   isFilter,
   isLightTheme,
@@ -113,7 +114,9 @@ const UsersHeader = ({
           >
             <FilterListIcon sx={{ color: "primary.main" }} />
           </IconButton>
-          <Button
+
+          <ExportUserList/>
+          {/* <Button
             sx={{
               textTransform: "none",
               borderRadius: "8px",
@@ -127,7 +130,7 @@ const UsersHeader = ({
             onClick={handleProjectCreateOpen}
           >
             Export
-          </Button>
+          </Button> */}
         </Box>
       </Box>
     </>

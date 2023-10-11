@@ -1,18 +1,5 @@
 import { Button, Grid, styled, Typography } from "@mui/material";
 import React from "react";
-
-const ButtonStyleHelp = styled(Button)({
-  backgroundColor: "#FFFFFF",
-  color: "#2E58FF",
-  width: "50%",
-  borderRadius: "8px",
-  fontSize: "12px",
-  textTransform: "none",
-  "&:hover": {
-    backgroundColor: "#FFFFFF",
-    color: "#2E58FF",
-  },
-});
 const GetHelpNew = () => {
   const handleHelp = () => {
     window.open("https://discord.gg/YarPssHr6y");
@@ -25,7 +12,7 @@ const GetHelpNew = () => {
         sx={{
           borderRadius: "8px",
           // height: "157px",
-          backgroundColor: "#476CFF",
+          backgroundColor: "primary.P600",
           //   padding: "10%",
         }}>
         <Grid container sx={{ justifyContent: "center", paddingTop: "9%" }}>
@@ -49,20 +36,18 @@ const GetHelpNew = () => {
               color: "neutral.N600",
               justifyContent: "center",
               textAlign: "center",
-            //  fontSize:"11px"
+              //  fontSize:"11px"
             }}
             // variant="caption"
-            variant="wpf_p4_regular"
-          >
+            variant="wpf_p4_regular">
             Our customer support is at your
           </Typography>
-          
+
           <Typography
             sx={{
               color: "neutral.N600",
               justifyContent: "center",
               textAlign: "center",
-           
             }}
             variant="wpf_p4_regular">
             service
@@ -77,9 +62,23 @@ const GetHelpNew = () => {
             paddingTop: "2%",
             paddingBottom: "10%",
           }}>
-          <ButtonStyleHelp variant="outlined" onClick={handleHelp}>
+          <Button
+            sx={{
+              backgroundColor: "neutral.N000",
+              color: "primary.B200",
+              width: "50%",
+              borderRadius: "8px",
+              fontSize: "12px",
+              textTransform: "none",
+              "&:hover": {
+                backgroundColor: "neutral.N000",
+                color: "primary.B200",
+              },
+            }}
+            variant="outlined"
+            onClick={handleHelp}>
             <b> Get Help</b>
-          </ButtonStyleHelp>
+          </Button>
 
           {/* <iframe
             src="https://discordapp.com/widget?id=919892777150595072&theme=light"

@@ -1,8 +1,8 @@
 import {Box, Typography} from "@mui/material";
 import React from "react";
-import CreateNewAccount from "../../../../../assets/images/CreateNewAccount.png";
-import newUserPic from "../../../../../assets/images/NewUser.png";
-import oldUserPic from "../../../../../assets/images/oldUser.png";
+import CreateNewAccount from "../../../../../assets/images/HowItWork/createaccount.jpg";
+import newUserPic from "../../../../../assets/images/HowItWork/newUser.jpg";
+import oldUserPic from "../../../../../assets/images/HowItWork/oldUser.jpg";
 import ImageModal from "../ImageModal";
 
 const CreateAnAccountComponents = () => {

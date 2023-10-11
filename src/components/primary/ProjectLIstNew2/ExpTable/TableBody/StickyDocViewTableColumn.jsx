@@ -10,19 +10,66 @@
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { Box, TableCell } from "@mui/material";
-import React from "react";
-
+import axios from "axios";
+import React, { useState } from "react";
+import { realToken } from "../../../../../helper/lib";
+import NidDetails from "../../../Users/NidDetals/NidDetails";
 const StickyDocViewTableColumn = ({ column }) => {
-//   console.log("🚀 ~ file: StickyDocViewTableColumn.jsx:16 ~ StickyDocViewTableColumn ~ column:", column);
+  const [openModal, setOpenModal] = React.useState(false);
+  const [documentsImage, setDocumentsImage] = useState([]);
+  const [documentsType, setDocumentsType] = useState("");
+  const [documentsNo, setDocumentsNo] = useState();
+  const [userName, setUserName] = useState([]);
+  const BACKEND_URL = import.meta.env.VITE_APP_SERVER_URL;
+  const handleClick = (signNda) => {
+    window.open(signNda);
+  };
+  const handleDetailNid = (documentImage, documentNo, documentType, name) => {
+    setOpenModal(true);
+
+    setDocumentsNo(documentNo);
+    setDocumentsType(documentType);
+    setUserName(name);
+    const id = column._id;
+    axios
+      .get(`${BACKEND_URL}/users/get-user-documents/${id}`, {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+      })
+      .then((res) => {
+        setDocumentsImage(res.data.documentsImage);
+      });
+  };
+  const handleClose = () => setOpenModal(false);
   return (
     <>
       <TableCell className="docrow">
-        <Box sx={{ display: "flex", gap: 1 }}>
-          <DescriptionIcon sx={{ fontSize: "16px", cursor: "pointer" }} />
+        {column.documentNo && (
+          <Box sx={{ display: "flex", gap: 1 }}>
+            <DescriptionIcon
+              onClick={() =>
+                handleDetailNid(column.documentsImage, column.documentNo, column.documentsType, column.name)
+              }
+              sx={{ fontSize: "16px", cursor: "pointer" }}
+            />
 
-          <AttachFileIcon sx={{ fontSize: "16px", cursor: "pointer" }} />
-        </Box>
+            <AttachFileIcon
+              onClick={() => handleClick(column.signImage)}
+              sx={{ fontSize: "16px", cursor: "pointer" }}
+            />
+          </Box>
+        )}
       </TableCell>
+      <NidDetails
+        userId={column._id}
+        openModal={openModal}
+        handleClose={handleClose}
+        documentImage={documentsImage}
+        documentsNo={documentsNo}
+        documentsType={documentsType}
+        userName={userName}
+      />
     </>
   );
 };

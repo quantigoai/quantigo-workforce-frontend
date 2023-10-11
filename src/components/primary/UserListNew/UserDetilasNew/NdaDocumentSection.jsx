@@ -45,8 +45,8 @@ const NdaDocumentSection = ({ user }) => {
         setDocumentsImage(res.data.documentsImage);
       });
   };
-  const handleClose = () => setOpenModal(false);
-  const isDisabled = !user.documentNo;
+  const handleClose = () => setOpenModal(false); 
+ const isDisabled = !user.documentNo;
   return (
     <>
       <Grid container sx={{ padding: "2%" }}>

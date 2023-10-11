@@ -39,6 +39,7 @@ export const lightColors = {
     B300: "#090080",
     B008: "#F4F7FE",
     B009: "#2D58FF",
+    P600: "#476CFF",
   },
   error: {
     500: "#F04438",

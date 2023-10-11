@@ -20,8 +20,7 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
-      {...other}
-    >
+      {...other}>
       {value === index && (
         <Box sx={{ p: 3 }}>
           <Typography>{children}</Typography>
@@ -60,22 +59,19 @@ export default function EditProfilePageIndex() {
             height: "100%",
             borderRadius: "8px",
             backgroundColor: "neutral.N000",
-          }}
-        >
+          }}>
           <Grid
             container
             sx={{
               width: "100%",
               height: "100%",
               borderRadius: "8px",
-            }}
-          >
+            }}>
             <Grid
               item
               xs={2.5}
               xl={2}
-              sx={{ borderRight: "1px solid #E1E8F5", display: "flex", flexDirection: "column", paddingTop: "1%" }}
-            >
+              sx={{ borderRight: "1px solid #E1E8F5", display: "flex", flexDirection: "column", paddingTop: "1%" }}>
               <Tabs
                 orientation="vertical"
                 variant="scrollable"
@@ -89,8 +85,7 @@ export default function EditProfilePageIndex() {
                   paddingTop: "5%",
                   textAlign: "right",
                   paddingLeft: "5%",
-                }}
-              >
+                }}>
                 <Tab
                   sx={{
                     alignItems: "flex-start",
@@ -101,8 +96,7 @@ export default function EditProfilePageIndex() {
                     <Typography
                       sx={{ textTransform: "none" }}
                       variant="wpf_p3_semiBold"
-                      color={value === 0 ? "primary.B200" : "neutral.700"}
-                    >
+                      color={value === 0 ? "primary.B200" : "neutral.700"}>
                       My Profile
                     </Typography>
                   }
@@ -118,14 +112,13 @@ export default function EditProfilePageIndex() {
                     <Typography
                       sx={{ textTransform: "none" }}
                       variant="wpf_p3_semiBold"
-                      color={value === 1 ? "primary.B200" : "neutral.700"}
-                    >
-                      Courses
+                      color={value === 1 ? "primary.B200" : "neutral.700"}>
+                      Password & Security
                     </Typography>
                   }
                   {...a11yProps(1)}
                 />
-                <Tab
+                {/* <Tab
                   sx={{
                     alignItems: "flex-start",
                     borderRadius: value === 2 ? "8px" : "none",
@@ -141,7 +134,7 @@ export default function EditProfilePageIndex() {
                     </Typography>
                   }
                   {...a11yProps(2)}
-                />
+                /> */}
               </Tabs>
               <Box sx={{ marginTop: "auto" }}>
                 <Grid container sx={{ justifyContent: "center", paddingBottom: "4%" }}>
@@ -155,11 +148,12 @@ export default function EditProfilePageIndex() {
                   <MyProfileIndex />
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                  <MyCoursesIndex />
-                </TabPanel>
-                <TabPanel sx={{ position: "absolute" }} value={value} index={2}>
                   <PasswordChangeIndex />
+                  {/* <MyCoursesIndex /> */}
                 </TabPanel>
+                {/* <TabPanel sx={{ position: "absolute" }} value={value} index={2}>
+                  <PasswordChangeIndex />
+                </TabPanel> */}
               </Box>
             </Grid>
           </Grid>

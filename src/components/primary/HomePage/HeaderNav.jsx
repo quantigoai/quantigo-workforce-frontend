@@ -14,7 +14,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
 import logoBlue from "../../../assets/images/rsz_logoblue.png";
 
-const HeaderNav = () => {
+const HeaderNav = ({ isForgetPassword }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { isLightTheme } = useSelector((state) => state.theme);
@@ -71,7 +71,7 @@ const HeaderNav = () => {
                   display: "flex",
                   height: "100%",
                   justifyContent: "flex-end",
-                  backgroundColor: "#fff",
+                  backgroundColor: isForgetPassword ? "" : "#fff",
                   p: 4,
                 }}
                 gap={3}
@@ -84,7 +84,7 @@ const HeaderNav = () => {
                     cursor: "pointer",
                   }}
                 >
-                  <Typography color="neutral.850">FAQ</Typography>
+                  <Typography color={isForgetPassword ? "#fff" : "neutral.850"}>FAQ</Typography>
                 </Link>
                 <Link
                   onClick={() => navigate("/howitworks")}
@@ -94,7 +94,7 @@ const HeaderNav = () => {
                     cursor: "pointer",
                   }}
                 >
-                  <Typography color="neutral.850" variant="body1">
+                  <Typography color={isForgetPassword ? "#fff" : "neutral.850"} variant="body1">
                     How it works
                   </Typography>
                 </Link>
@@ -102,7 +102,7 @@ const HeaderNav = () => {
                   How it work
                 </Typography> */}
                 <Typography
-                  color="neutral.850"
+                  color={isForgetPassword ? "#fff" : "neutral.850"}
                   // sx={{
                   //   color: location.pathname === "/howitworks" && " #47536B",
                   // }}

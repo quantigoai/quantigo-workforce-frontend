@@ -94,19 +94,19 @@ const MiddleTableColumn = ({ row, column }) => {
       );
     } else if (column.field === "totalWorkingHours") {
       return (
-        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+        <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
           <TotalWorkingHoursCell data={row[column?.field]} />
         </TableCell>
       );
     } else if (column.field === "activeJobs") {
       return (
-        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+        <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
           <ActiveJobsCell data={row[column?.field]} />
         </TableCell>
       );
     } else if (column.field === "billingAccountNo") {
       return (
-        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+        <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
           <MobileNoCell data={row[column?.field]} />
         </TableCell>
       );
@@ -120,7 +120,7 @@ const MiddleTableColumn = ({ row, column }) => {
       );
     } else if (column.field === "dob") {
       return (
-        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+        <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
           <Typography variant="wpf_p4_regular" color="neutral.700">
             {row[column?.field] && formatDateDob(row[column?.field])}
           </Typography>
@@ -128,7 +128,7 @@ const MiddleTableColumn = ({ row, column }) => {
       );
     } else if (column.field === "gender") {
       return (
-        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+        <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
           <Typography variant="wpf_p4_regular" color="neutral.700">
             {row[column?.field] ? capitalizeFirstLetter(row[column?.field]) : ""}
           </Typography>
@@ -136,19 +136,19 @@ const MiddleTableColumn = ({ row, column }) => {
       );
     } else if (column.field === "bloodGroup") {
       return (
-        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+        <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
           <BloodGroupCell data={row[column?.field]} />
         </TableCell>
       );
     } else if (column.field === "paymentRate") {
       return (
-        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+        <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
           <PaymentRateCell data={row[column?.field]} />
         </TableCell>
       );
     } else if (column.field === "currentlyCheckedInProject") {
       return (
-        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+        <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
           <ProjectEnroll data={row[column?.field]} />
         </TableCell>
       );

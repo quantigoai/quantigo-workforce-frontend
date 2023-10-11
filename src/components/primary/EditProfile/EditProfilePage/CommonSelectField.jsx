@@ -32,7 +32,7 @@ function CommonSelectField({ name, label, defaultValue, disableItem, control, ru
               <Typography
                 sx={{
                   fontSize: "12px",
-                  color: "#3C4D6B",
+                  color: "neutral.N300",
                   fontWeight: "500",
                   mb: 1,
                 }}
@@ -48,7 +48,7 @@ function CommonSelectField({ name, label, defaultValue, disableItem, control, ru
                 placeholder="Select"
                 sx={{
                   height: "42px",
-                  backgroundColor: editAble ? "" : "#F2F6FC",
+                  backgroundColor: editAble ? "" : "neutral.N400",
                 }}
                 disabled={disableItem ? true : !editAble}
                 defaultValue={defaultValue}
@@ -57,7 +57,11 @@ function CommonSelectField({ name, label, defaultValue, disableItem, control, ru
                 //   {...other}
               >
                 {options.map((option) => (
-                  <MenuItem key={option.value} fullWidth value={(() => setValue(field.name, field.value), option.value)}>
+                  <MenuItem
+                    key={option.value}
+                    fullWidth
+                    value={(() => setValue(field.name, field.value), option.value)}
+                  >
                     {option.label}
                   </MenuItem>
                 ))}

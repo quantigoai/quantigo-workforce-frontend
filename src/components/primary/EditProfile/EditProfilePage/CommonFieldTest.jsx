@@ -1,10 +1,4 @@
-import {
-  FormControl,
-  Grid,
-  TextField,
-  Typography,
-  styled,
-} from "@mui/material";
+import { FormControl, Grid, TextField, Typography, styled } from "@mui/material";
 import React from "react";
 import { Controller } from "react-hook-form";
 const MyTextField = styled(TextField)(() => ({
@@ -14,16 +8,7 @@ const MyTextField = styled(TextField)(() => ({
   },
   "& .MuiInputBase-root": { height: "42px", fontSize: "14px" },
 }));
-function CommonFieldTest({
-  name,
-  label,
-  defaultValue,
-  disableItem,
-  control,
-  rules,
-  errors,
-  editAble,
-}) {
+function CommonFieldTest({ name, label, defaultValue, disableItem, control, rules, errors, editAble }) {
   return (
     <Grid item xs={12} sx={{ mb: 1 }}>
       {/* <label>{name}</label> */}
@@ -37,23 +22,20 @@ function CommonFieldTest({
               <Typography
                 sx={{
                   fontSize: "12px",
-                  color: "#3C4D6B",
+                  color: "neutral.N300",
                   fontWeight: "500",
                   mb: 1,
-                }}>
+                }}
+              >
                 {label}
               </Typography>
               <MyTextField
-              sx={{ backgroundColor: editAble ? "" : "#F2F6FC",}}
+                sx={{ backgroundColor: editAble ? "" : "neutral.N400" }}
                 variant="outlined"
                 disabled={disableItem ? true : !editAble}
                 defaultValue={defaultValue}
                 {...field}
-                value={
-                  typeof field.value === "number" && field.value === 0
-                    ? ""
-                    : field.value
-                }
+                value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
               />
             </FormControl>
           );

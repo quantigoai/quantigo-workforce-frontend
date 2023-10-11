@@ -112,7 +112,7 @@ const MyProfileIndex = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <Box sx={{ paddingLeft: "2%", paddingRight: "2%" }}>
               <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
-                <Typography sx={{ fontSize: "12px", color: "#2E58FF" }}>Personal Information</Typography>
+                <Typography sx={{ fontSize: "12px", color: "primary.B200" }}>Personal Information</Typography>
               </Grid>
 
               <Grid container spacing={2}>
@@ -194,7 +194,7 @@ const MyProfileIndex = () => {
                 </Grid>
               </Grid>
               <Grid container sx={{ paddingTop: "1%", paddingBottom: "1%" }}>
-                <Typography sx={{ fontSize: "12px", color: "#2E58FF" }}>Contact Information</Typography>
+                <Typography sx={{ fontSize: "12px", color: "primary.B200" }}>Contact Information</Typography>
               </Grid>
               <Grid container spacing={2}>
                 <Grid item xs={6}>
@@ -269,16 +269,16 @@ const MyProfileIndex = () => {
                     variant="contained"
                     disabled={isLoading}
                     sx={{
-                      backgroundColor: "#2E58FF",
-                      color: "#FFFFF",
+                      backgroundColor: "primary.B200",
+                      color: "neutral.N000",
                       borderRadius: "8px",
                       textTransform: "none",
                       fontSize: "12px",
                       width: "150px",
 
                       "&:hover": {
-                        backgroundColor: "#2E58FF",
-                        color: "#FFFFF",
+                        backgroundColor: "primary.B200",
+                        color: "neutral.N000",
                       },
                     }}
                   >

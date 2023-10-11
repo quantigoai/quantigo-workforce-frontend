@@ -40,7 +40,7 @@ const ResetPassword = ({ setResetPassword, resetPassword }) => {
           <Typography
             sx={{
               fontSize: "12px",
-              color: "#3C4D6B",
+              color: "neutral.N300",
               fontWeight: "500",
               mb: 1,
             }}>

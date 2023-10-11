@@ -28,13 +28,9 @@ const PasswordChangeIndex = () => {
         dispatch(logout()).then(() => {
           navigate("/");
         });
-        toast.trigger("Password changed successfully", {
-          type: "success",
-        });
+        toast.trigger("Password changed successfully", "success");
       } else {
-        toast.trigger("Password can not change", {
-          type: "error",
-        });
+        toast.trigger("Password can not change", "error");
       }
     });
   };

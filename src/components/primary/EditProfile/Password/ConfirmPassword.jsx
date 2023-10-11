@@ -1,14 +1,7 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import PasswordIcon from "../../../../assets/images/dashboardIcon/PasswordIcon.svg";
-import {
-  FormControl,
-  Grid,
-  InputAdornment,
-  TextField,
-  Typography,
-  styled,
-} from "@mui/material";
+import { Visibility } from "@mui/icons-material";
+import { FormControl, Grid, InputAdornment, TextField, Typography, styled } from "@mui/material";
 import React from "react";
+import PasswordIcon from "../../../../assets/images/dashboardIcon/PasswordIcon.svg";
 const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "1px solid #E6ECF5 !important",
@@ -40,10 +33,11 @@ const ConfirmPassword = ({ setConfirmPassword, confirmPassword }) => {
           <Typography
             sx={{
               fontSize: "12px",
-              color: "#3C4D6B",
+              color: "neutral.N300",
               fontWeight: "500",
               mb: 1,
-            }}>
+            }}
+          >
             Confirm New Password
           </Typography>
           <MyTextField
@@ -66,7 +60,8 @@ const ConfirmPassword = ({ setConfirmPassword, confirmPassword }) => {
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
                   sx={{ cursor: "pointer" }}
-                  position="end">
+                  position="end"
+                >
                   {!showPassword ? <img src={PasswordIcon} /> : <Visibility />}
                 </InputAdornment>
               ),

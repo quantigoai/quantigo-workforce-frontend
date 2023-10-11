@@ -36,7 +36,9 @@ export const darkColors = {
   primary: {
     main: "#266AED", // Primary color
     B100: "#266AED", // Lighter primary color
+    // B200: "#2E58FF", // Darker primary color
     B200: "#2E58FF", // Darker primary color
+    // B200: "#ddd", // Darker primary color
     B300: "#fff",
     B007: "#2C2C2C",
     // B008: "#F4F7FE",

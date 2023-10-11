@@ -11,13 +11,13 @@ import dayjs from "dayjs";
 import React from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
+import useToaster from "../../../customHooks/useToaster";
 import {
   getAllNotifications,
   getAllUnreadNotifications,
   getLatestNotifications,
   readAllNotification,
 } from "../../../features/slice/notificationSlice";
-import useToaster from "../../../customHooks/useToaster";
 
 const convertDate = (date) => {
   return dayjs(date).format("DD MMM hh:mm A");
@@ -47,9 +47,7 @@ const AllNotification = () => {
       dispatch(getAllNotifications());
       dispatch(getLatestNotifications());
       dispatch(getAllUnreadNotifications());
-      return toast.trigger(`Marked all notifications as read`, {
-        type: "success",
-      });
+      return toast.trigger(`Marked all notifications as read`, "success");
     });
   };
   const { notifications } = useSelector((state) => state.notification);

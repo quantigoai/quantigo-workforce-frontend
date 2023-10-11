@@ -72,9 +72,7 @@ const MyProfileIndex = () => {
     coverImageFile &&
       dispatch(uploadMyImage(finalImageData)).then((action) => {
         if (action.payload.status === 200) {
-          toast.trigger("Profile Picture Update Successfully", {
-            type: "success",
-          });
+          toast.trigger("Profile Picture Update Successfully", "success");
           setEditAble(false);
         }
       });

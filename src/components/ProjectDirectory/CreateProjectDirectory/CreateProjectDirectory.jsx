@@ -23,9 +23,7 @@ const CreateProjectDirectory = () => {
     dispatch(createProjectDirectory(data)).then((action) => {
       if (action.payload.status === 200) {
         setOpenModal(false);
-        toast.trigger("Successfully created Project Directory", {
-          type: "success",
-        });
+        toast.trigger("Successfully created Project Directory", "success");
       } else {
         toast.trigger("Project Directory do not create", "error");
       }

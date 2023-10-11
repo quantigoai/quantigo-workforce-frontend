@@ -43,14 +43,10 @@ const ChangePasswordModal = ({ openModal, handleClose, setOpenModal }) => {
           navigate("/");
         });
         setOpenModal(false);
-        toast.trigger("Password changed successfully", {
-          type: "success",
-        });
+        toast.trigger("Password changed successfully", "success");
       } else {
         setOpenModal(false);
-        toast.trigger("Password can not change", {
-          type: "error",
-        });
+        toast.trigger("Password can not change", "error");
       }
     });
   };

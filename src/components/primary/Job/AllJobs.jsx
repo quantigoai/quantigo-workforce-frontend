@@ -143,9 +143,7 @@ const AllJobs = () => {
       } else if (action.payload?.status === 204) {
         toast.trigger("You have reached the limit", "error");
       } else if (action.payload?.status === 205) {
-        toast.trigger("You need to complete the required course first ", {
-          type: "error",
-        });
+        toast.trigger("You need to complete the required course first ", "error");
       } else {
         toast.trigger("Job taken Failed", "error");
       }

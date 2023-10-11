@@ -56,9 +56,7 @@ const UpdateProjectDirectory = ({ item }) => {
     dispatch(updateProjectDirectory(finalData)).then((action) => {
       if (action?.payload?.status === 200) {
         setOpenModal(false);
-        toast.trigger("Successfully Updated Project Directory", {
-          type: "success",
-        });
+        toast.trigger("Successfully Updated Project Directory", "success");
       } else {
         toast.trigger("Project Directory can not Updated", "error");
       }

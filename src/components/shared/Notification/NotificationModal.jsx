@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
+import useToaster from "../../../customHooks/useToaster";
 import {
   getAllNotifications,
   getAllUnreadNotifications,
@@ -19,7 +20,6 @@ import {
   readLatestNotification,
 } from "../../../features/slice/notificationSlice";
 import SingleNotification from "./SingleNotification";
-import useToaster from "../../../customHooks/useToaster";
 
 const style = {
   position: "absolute",
@@ -68,15 +68,11 @@ const NotificationModal = ({ handleSeeAll, notificationOpen, handleNotificationC
         dispatch(getAllNotifications());
         dispatch(getLatestNotifications());
         dispatch(getAllUnreadNotifications());
-        toast.trigger(`Marked last ${notificationsId.length} notifications as read`, {
-          type: "success",
-        });
+        toast.trigger(`Marked last ${notificationsId.length} notifications as read`, "success");
         handleNotificationClose();
       });
     } else {
-      toast.trigger(`No Unread notifications found`, {
-        type: "error",
-      });
+      toast.trigger(`No Unread notifications found`, "error");
     }
   };
 

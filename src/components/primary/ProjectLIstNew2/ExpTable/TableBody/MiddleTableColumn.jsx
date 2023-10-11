@@ -13,17 +13,18 @@ import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord
 import { calculateTimeDifference, formatDate, formatDateDob, formatTime } from "../../../../../helper/dateConverter";
 import ChipGroup from "../../../../shared/CustomTable/ChipGroup";
 import ProjectDrawerStatusChip from "../../../../shared/FilterField/ProjectDrawerStatusChip";
+import ActiveJobsCell from "../CustomTableCell/ActiveJobsCell";
 import BloodGroupCell from "../CustomTableCell/BloodGroupCell";
 import LinkCell from "../CustomTableCell/LinkCell";
+import MobileNoCell from "../CustomTableCell/MobileNoCell";
 import PaymentRateCell from "../CustomTableCell/PaymentRateCell";
+import ProjectEnroll from "../CustomTableCell/ProjectEnroll";
 import TotalWorkingHoursCell from "../CustomTableCell/TotalWorkingHoursCell";
 import UserBasicInfoCell from "../CustomTableCell/UserBasicInfoCell";
 import UserRoleCell from "../CustomTableCell/UserRoleCell";
-import MobileNoCell from "../CustomTableCell/MobileNoCell";
-import ActiveJobsCell from "../CustomTableCell/ActiveJobsCell";
-import ProjectEnroll from "../CustomTableCell/ProjectEnroll";
 
 const MiddleTableColumn = ({ row, column }) => {
+  console.log("🚀 ~ file: MiddleTableColumn.jsx:27 ~ MiddleTableColumn ~ column:", column)
   const value = row[column.id];
   return (() => {
     if (column.field === "project_skills") {
@@ -163,7 +164,7 @@ const MiddleTableColumn = ({ row, column }) => {
     }
 
     return (
-      <TableCell key={column.id}>
+      <TableCell align={column.columnDataAlign} key={column.id}>
         <Typography variant="wpf_p4_regular" color="neutral.700">
           {column.format && typeof value === "number" ? column.format(row[column?.field]) : row[column?.field]}
         </Typography>

@@ -103,13 +103,16 @@ const UsersHeader = ({
             onClick={handleIsFilter}
             sx={{
               px: "5px 0px",
+              // TODO Need to fix this background color
               background: isLightTheme ? "#F4F7FE" : "black",
+              // backgroundColor: "primary.B008",
+
               mx: 2,
               borderRadius: "8px",
             }}
             aria-label="menu"
           >
-            <FilterListIcon sx={{ color:"primary.main" }} />
+            <FilterListIcon sx={{ color: "primary.main" }} />
           </IconButton>
 
           <ExportUserList/>

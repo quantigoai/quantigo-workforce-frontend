@@ -12,8 +12,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import PropTypes from "prop-types";
 import { Controller, useFormContext } from "react-hook-form";
-import { convertDate } from "../../../helper/customData";
 import { useSelector } from "react-redux";
+import { convertDate } from "../../../helper/customData";
 
 CustomDatePicker.propTypes = {
   name: PropTypes.string,
@@ -25,9 +25,10 @@ export const MyDatePicker = styled(DatePicker)(() => ({
   "& .MuiOutlinedInput-input": {
     padding: "12px",
     height: "100%",
+    color :"#000"
   },
   "& .MuiIconButton-root": {
-    color: "neutral.500",
+    color: "#7D89A3",
   },
 }));
 
@@ -41,6 +42,7 @@ export const MyFormControl = styled(FormControl)(() => ({
   "& MuiInputBase-root-MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
     border: "0px",
     borderColor: "#2D58FF",
+    color: "#000",
   },
   "& MuiInputBase-root-MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
     border: "0px",
@@ -72,11 +74,14 @@ export default function CustomDatePicker({
       name={name}
       render={({ field: { onChange, onBlur, value, ref, error } }) => (
         <>
-          <Typography variant="wpf_p4_medium">Date of Birth</Typography>
+          <Typography variant="wpf_p4_medium" color="#3c4d6b">
+            Date of Birth
+          </Typography>
           <MyFormControl
             fullWidth
             sx={{
               backgroundColor: "#FFFFFF",
+              color: "#3c4d6b",
               border: "2px solid #E6ECF5",
               mt: "10px",
             }}
@@ -85,7 +90,7 @@ export default function CustomDatePicker({
               <MyDatePicker
                 size="small"
                 sx={{
-                  backgroundColor: isLightTheme ? "#FFFFFF" : "#1D1D1D",
+                  backgroundColor: "#FFFFFF",
                   height: "40px",
                   padding: "0px",
                   color: "#000000",
@@ -101,7 +106,6 @@ export default function CustomDatePicker({
                   size="small"
                   sx={{
                     mt: 0,
-                    backgroundColor: "green",
                     padding: "0px",
                     height: "40px",
                     color: "#000000",

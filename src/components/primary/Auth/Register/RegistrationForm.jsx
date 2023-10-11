@@ -176,7 +176,7 @@ const RegistrationForm = () => {
                 InputProps={{
                   disableUnderline: true,
                   endAdornment: (
-                    <InputAdornment position="end">
+                    <InputAdornment position="end" sx={{ color: "#7D89A3" }}>
                       <EmailIcon />
                     </InputAdornment>
                   ),
@@ -193,7 +193,7 @@ const RegistrationForm = () => {
                   disableUnderline: true,
                   endAdornment: (
                     <InputAdornment position="end">
-                      <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                      <IconButton onClick={() => setShowPassword(!showPassword)} edge="end" sx={{ color: "#7D89A3" }}>
                         {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                       </IconButton>
                     </InputAdornment>
@@ -251,6 +251,7 @@ const RegistrationForm = () => {
             </Stack>
             {isNewUser && (
               // Generated QAI Username Field
+              // TODO change color of disabled text in dark mode
               <Box sx={{ height: "100px" }}>
                 <CustomTextField disabled name="qaiUserName" label="Quantigo Username" value={generatedHubId} />
               </Box>

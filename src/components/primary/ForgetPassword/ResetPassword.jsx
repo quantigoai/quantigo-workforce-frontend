@@ -117,7 +117,7 @@ const ResetPassword = () => {
   return (
     <>
       <Box className="container">
-        <HeaderNav />
+        <HeaderNav resetPassword={true} />
         <Grid container>
           <Grid container style={{ justifyItems: "center" }}>
             <Grid item xs={12} sm={12} md={6} lg={6} sx={{ paddingTop: "7%", paddingLeft: "31%" }}>

@@ -24,12 +24,12 @@ const convertDate = (date) => {
 const boxUnReadStyle = {
   borderTop: "1px solid #fff",
   borderRadius: "5px",
-  padding: "10px",
-  backgroundColor: "#e4e4e4",
+  padding: "30px",
+  // backgroundColor: "#e4e4e4",
 };
 
 const boxReadStyle = {
-  borderTop: "1px solid #E5E5E5",
+  // borderTop: "1px solid #E5E5E5",
   borderRadius: "5px",
   padding: "10px",
 };
@@ -50,28 +50,66 @@ const AllNotification = () => {
   };
   const { notifications } = useSelector((state) => state.notification);
   return (
-    <>
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Typography sx={{ color: "#090080" }} variant="h4">
+    <Box className="content">
+      <Box
+        className="notificationContentHeader"
+        sx={{
+          borderTop: "1px solid #E6ECF5",
+          backgroundColor: "neutral.N000",
+        }}
+      >
+        <Typography variant="wpf_p1_semiBold" color="neutral.N300">
           All Notification
         </Typography>
-        <Button variant="outlined" onClick={markAllRead} sx={{ color: "#090080" }}>
+
+        <Button
+          sx={{
+            textTransform: "none",
+            borderRadius: "8px",
+            backgroundColor: "#2E58FF",
+            color: "white",
+            "&:hover": {
+              background: "#244EF5",
+            },
+          }}
+          variant="contained"
+          onClick={markAllRead}
+        >
           Mark All as Read
         </Button>
       </Box>
-      <Box my={2}>
+      <br />
+      <Box
+        sx={{
+          width: "100%",
+          height: "85%",
+          overflow: "auto",
+          textAlign: "left",
+          px: "16px",
+        }}
+      >
         {notifications.map((notification) => (
-          <Box key={notification._id} style={notification.isRead ? boxReadStyle : boxUnReadStyle}>
-            <Typography variant="body1" color="#090080">
+          <Box
+            sx={{
+              backgroundColor: "neutral.N000",
+              display: "flex",
+              justifyContent: "space-between",
+              borderBottom: "1px solid #E6ECF5",
+              py: 5,
+            }}
+            key={notification._id}
+            style={notification.isRead ? boxReadStyle : boxUnReadStyle}
+          >
+            <Typography variant="wpf_p3_medium" color="neutral.700">
               {notification.message}
             </Typography>
-            <Typography variant="body2" color="#5a4fc4">
+            <Typography variant="wpf_p4_regular" color="neutral.550">
               {formattedDate(notification.createdAt)}
             </Typography>
           </Box>
         ))}
       </Box>
-    </>
+    </Box>
   );
 };
 

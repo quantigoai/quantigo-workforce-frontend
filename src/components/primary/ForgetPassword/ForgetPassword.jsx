@@ -47,7 +47,7 @@ const ForgetPassword = () => {
   return (
     <>
       <Box className="container">
-        <HeaderNav />
+        <HeaderNav isForgetPassword={true} />
 
         <>
           <Grid container>

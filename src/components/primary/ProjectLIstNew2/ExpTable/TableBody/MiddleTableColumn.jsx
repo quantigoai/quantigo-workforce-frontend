@@ -24,7 +24,6 @@ import UserBasicInfoCell from "../CustomTableCell/UserBasicInfoCell";
 import UserRoleCell from "../CustomTableCell/UserRoleCell";
 
 const MiddleTableColumn = ({ row, column }) => {
-
   const value = row[column.id];
   return (() => {
     if (column.field === "project_skills") {

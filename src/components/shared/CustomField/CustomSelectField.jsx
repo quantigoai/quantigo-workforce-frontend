@@ -22,6 +22,8 @@ export const MySelect = styled(Select)(() => ({
   border: "2px solid #E6ECF5",
   // padding: "0px 0px 0px 0px",
   // backgroundColor: "white",
+  height: "40px",
+  borderRadius: "8px",
 }));
 export default function CustomSelectField({ name, helperText, options, label, setValue, defaultValue, ...other }) {
   const { control } = useFormContext();
@@ -40,7 +42,8 @@ export default function CustomSelectField({ name, helperText, options, label, se
             <MySelect
               sx={{
                 backgroundColor: "#FFFFFF",
-                color : '#000'
+                color: "#000",
+                fontSize: "14px",
               }}
               size="small"
               labelId="demo-simple-select-autowidth-label"
@@ -53,7 +56,12 @@ export default function CustomSelectField({ name, helperText, options, label, se
               {...other}
             >
               {options.map((option) => (
-                <MenuItem key={option.value} fullWidth value={(() => setValue(field.name, field.value), option.value)}>
+                <MenuItem
+                  sx={{ fontSize: "14px" }}
+                  key={option.value}
+                  fullWidth
+                  value={(() => setValue(field.name, field.value), option.value)}
+                >
                   {option.label}
                 </MenuItem>
               ))}

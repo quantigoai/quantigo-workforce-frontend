@@ -29,7 +29,7 @@ const UserStatusChangeFiled = ({ label, user, handleSetStatus }) => {
           <Typography
             sx={{
               fontSize: "12px",
-              color: "#3C4D6B",
+              color: "neutral.N300",
               fontWeight: "500",
               mb: 1,
             }}
@@ -45,7 +45,7 @@ const UserStatusChangeFiled = ({ label, user, handleSetStatus }) => {
             placeholder="Select"
             sx={{
               height: "40px",
-              backgroundColor: "#FFFFFF",
+              backgroundColor: "neutral.N000",
               fontSize: "14px",
             }}
             onChange={handleSetStatus}

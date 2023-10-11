@@ -30,10 +30,11 @@ const SelectFieldCommon = ({ label, user, handleSetRole }) => {
           <Typography
             sx={{
               fontSize: "12px",
-              color: "#3C4D6B",
+              color: "neutral.N300",
               fontWeight: "500",
               mb: 1,
-            }}>
+            }}
+          >
             {label}
           </Typography>
 
@@ -45,11 +46,13 @@ const SelectFieldCommon = ({ label, user, handleSetRole }) => {
             placeholder="Select"
             sx={{
               // height: "36px",
-              backgroundColor: "#FFFFFF",
+
+              backgroundColor: "neutral.N000",
               fontSize: "14px",
             }}
             onChange={handleSetRole}
-            defaultValue={user.role}>
+            defaultValue={user.role}
+          >
             <MenuItem value={"level_0_annotator"} sx={menuItemStyle}>
               {" "}
               Level 0 Annotator

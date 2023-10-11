@@ -23,9 +23,9 @@ CustomDatePicker.propTypes = {
 export const MyDatePicker = styled(DatePicker)(() => ({
   border: "0px solid #E0E0E0",
   "& .MuiOutlinedInput-input": {
-    padding: "12px",
+    padding: "10px",
     height: "100%",
-    color :"#000"
+    color: "#000",
   },
   "& .MuiIconButton-root": {
     color: "#7D89A3",
@@ -83,7 +83,9 @@ export default function CustomDatePicker({
               backgroundColor: "#FFFFFF",
               color: "#3c4d6b",
               border: "2px solid #E6ECF5",
-              mt: "10px",
+              borderRadius: "10px",
+              mt: "11px",
+              fontSize: "12px",
             }}
           >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -91,9 +93,10 @@ export default function CustomDatePicker({
                 size="small"
                 sx={{
                   backgroundColor: "#FFFFFF",
-                  height: "40px",
+                  height: "36px",
                   padding: "0px",
                   color: "#000000",
+                  fontSize: "12px",
                 }}
                 inputFormat="DD-MM-YYYY"
                 minDate={minDob}

@@ -27,7 +27,6 @@ body {
 display: flex;
   flex-direction: column;
   height: 100%;
-  /* background-color: yellow;  */
 }
 
 .contentHeader{
@@ -43,4 +42,12 @@ display: flex;
     padding:0px 16px ;
     justify-content: space-between;
     align-items: center;
+}
+
+.success-toast-background{
+  background-color: #12B76A;
+}
+.error-toast-background{
+  background-color: #F04438;
+
 }

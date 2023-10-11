@@ -17,13 +17,12 @@ export const MyTextField = styled(TextField)(() => ({
   },
   "& .MuiInputBase-root": { height: "78%", fontSize: "14px" },
 }));
-export const MySelect = styled(Select)(() => ({
-  border: "2px solid #E6ECF5",
-  // padding: "5px 0px 0px 0px",
-  borderRadius: "8px",
-  background: "none",
-  // backgroundColor:"red",
-  fontSize: "14px",
+export const MySelect = styled(TextField)(() => ({
+  "& .MuiOutlinedInput-notchedOutline": {
+    border: "2px solid #E6ECF5 !important",
+    borderRadius: "8px",
+  },
+  "& .MuiInputBase-root": { height: "100%", fontSize: "14px" },
 }));
 const style = {
   display: "flex",
@@ -48,7 +47,7 @@ const style = {
 
 const NdaRejectModal = ({ openModal, handleClose, onSubmit }) => {
   const { register, handleSubmit } = useForm();
-  
+
   return (
     <>
       <Modal
@@ -91,12 +90,13 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit }) => {
                     id="demo-simple-select-autowidth"
                     variant="outlined"
                     fullWidth
-                    defaultValue={"reject"}
-                    placeholder="Select"
-                    sx={{ height: "51%" }}>
-                    <MenuItem disabled sx={{ fontSize: "14px" }} value={"reject"} fullWidth>
+                    disabled
+                    defaultValue={"Rejected"}
+                    // placeholder="Select"
+                    sx={{ height: "50%" }}>
+                    {/* <MenuItem disabled sx={{ fontSize: "14px" }} value={"reject"} fullWidth>
                       Reject
-                    </MenuItem>
+                    </MenuItem> */}
                   </MySelect>
                 </Grid>
                 <Grid container style={{}}>
@@ -116,7 +116,6 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit }) => {
                     multiline
                     rows={5}
                     InputProps={{ disableUnderline: true }}
-                   
                     {...register("rejectionCause", {
                       required: false,
                     })}
@@ -127,8 +126,8 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit }) => {
             <Box
               sx={{
                 flex: "0 0 64px",
-                borderTop: "2px solid #F2F6FC",
-                backgroundColor: "#FFFFFF",
+                borderTop: "1px solid #F2F6FC",
+                backgroundColor: "neutral.N000",
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",

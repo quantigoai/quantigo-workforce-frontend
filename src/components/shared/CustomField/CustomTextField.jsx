@@ -20,15 +20,15 @@ export const MyTextField = styled(TextField)(() => ({
   borderRadius: "5px",
   backgroundColor: "#fff",
   "& .MuiOutlinedInput-root": {
-    // border: "2px solid #E6ECF5 !important",
     color: "#000",
-    // border: "2px solid #dce2ea !important",
     borderRadius: "8px",
   },
   "& .MuiOutlinedInput-notchedOutline ": {
     border: "2px solid #E6ECF5 !important",
-    // border: "2px solid #dce2ea !important",
     borderRadius: "8px",
+  },
+  "& .MuiInputBase-input.Mui-disabled": {
+    WebkitTextFillColor: "#56627a",
   },
 }));
 

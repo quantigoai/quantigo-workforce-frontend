@@ -251,7 +251,6 @@ const RegistrationForm = () => {
             </Stack>
             {isNewUser && (
               // Generated QAI Username Field
-              // TODO change color of disabled text in dark mode
               <Box sx={{ height: "100px" }}>
                 <CustomTextField disabled name="qaiUserName" label="Quantigo Username" value={generatedHubId} />
               </Box>

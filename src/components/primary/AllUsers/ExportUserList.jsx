@@ -10,17 +10,20 @@ const url = import.meta.env.VITE_APP_SERVER_URL;
 
 const ExportUserList = () => {
   const { totalUsers } = useSelector((state) => state.user.users);
-  console.log("🚀 ~ file: ExportUserList.jsx:10 ~ ExportUserList ~ totalUsers:", totalUsers);
-
   const [jsonData, setJsonData] = useState([]);
   const csvHeader = [
-    { label: "Name", key: "userName" },
-    { label: "Quantigo ID", key: "userQaiID" },
-    { label: "Check In Date", key: "checkedInDate" },
-    { label: "Check In Time", key: "checkedInTime" },
-    { label: "Check Out Date", key: "checkedOutDate" },
-    { label: "Check Out Time", key: "checkedOutTime" },
-    { label: "Working Time", key: "workingTimeInMs" },
+    { label: "Name", key: "name" },
+    { label: "Quantigo ID", key: "qaiUserName" },
+    { label: "Role", key: "role" },
+    { label: "Email", key: "email" },
+    { label: "Gender", key: "gender" },
+    { label: "phone", key: "phone" },
+    { label: "DOB", key: "dob" },
+    { label: "Billing Account No", key: "billingAccountNo" },
+    { label: "Blood Group", key: "bloodGroup" },
+    { label: "Occupation", key: "occupation" },
+    { label: "Permanent Address", key: "permanentAddress" },
+    { label: "Present Address", key: "presentAddress" },
   ];
 
   const [initiateDownload, setInitiateDownload] = useState(false);
@@ -38,22 +41,17 @@ const ExportUserList = () => {
   }, [initiateDownload]);
 
   const fetchData = async () => {
-    console.log("hitt");
     try {
-      const response = await axios.get(`${url}/users?limit=${totalUsers}`, {
+      const response = await axios.get(`${url}/users?limit=${totalUsers}&skip=0`, {
         headers: {
           Authorization: `Bearer ${realToken()}`,
         },
       });
 
-      const data = response.data.projectDrawer.checkedInUsersHistory;
+      const data = response.data.users;
 
       if (data.length) {
-        // data.map((f) =>
-        //   f.workingTimeInMs
-        //     ? (f.workingTimeInMs = calculateTimeDifference(f.workingTimeInMs))
-        //     : (f.workingTimeInMs = "Currently Working")
-        // );
+        data.map((f) => (f.dob = new Date(f.dob).toLocaleDateString("en-US")));
         setJsonData(data);
         return true;
       } else {

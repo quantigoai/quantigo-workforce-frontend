@@ -39,7 +39,8 @@ export const darkColors = {
     B200: "#2E58FF", // Darker primary color
     B300: "#fff",
     B007: "#2C2C2C",
-    B008: "#F4F7FE",
+    // B008: "#F4F7FE",
+    B008: "#2C2C2C",
     B009: "#2D58FF", // Lighter background for primary
   },
   error: {

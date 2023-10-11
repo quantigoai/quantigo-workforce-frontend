@@ -45,21 +45,16 @@ const StickyDocViewTableColumn = ({ column }) => {
   return (
     <>
       <TableCell className="docrow">
-        {column.documentNo && (
-          <Box sx={{ display: "flex", gap: 1 }}>
-            <DescriptionIcon
-              onClick={() =>
-                handleDetailNid(column.documentsImage, column.documentNo, column.documentsType, column.name)
-              }
-              sx={{ fontSize: "16px", cursor: "pointer" }}
-            />
+        {/* {column.documentNo && ( */}
+        <Box sx={{ display: "flex", gap: 1 }}>
+          <DescriptionIcon
+            onClick={() => handleDetailNid(column.documentsImage, column.documentNo, column.documentsType, column.name)}
+            sx={{ fontSize: "16px", cursor: "pointer" }}
+          />
 
-            <AttachFileIcon
-              onClick={() => handleClick(column.signImage)}
-              sx={{ fontSize: "16px", cursor: "pointer" }}
-            />
-          </Box>
-        )}
+          <AttachFileIcon onClick={() => handleClick(column.signImage)} sx={{ fontSize: "16px", cursor: "pointer" }} />
+        </Box>
+        {/* )} */}
       </TableCell>
       <NidDetails
         userId={column._id}

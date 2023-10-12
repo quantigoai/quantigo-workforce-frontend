@@ -1,6 +1,6 @@
 import CloseIcon from "@mui/icons-material/Close";
-import { Box, Button, Grid, Typography } from "@mui/material";
-import React, { useState } from "react";
+import {Box, Button, Grid, Typography} from "@mui/material";
+import React from "react";
 import IndustryTypeField from "./IndustryTypeField";
 import ClientAliasField from "./ClientAliasField";
 import AnnotationType from "./AnnotationType";

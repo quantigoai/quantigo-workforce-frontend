@@ -1,4 +1,4 @@
-import { Chip, Grid } from "@mui/material";
+import {Chip, Grid} from "@mui/material";
 import React from "react";
 
 let jobStatus = [

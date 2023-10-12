@@ -7,8 +7,9 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 import ErrorIcon from "@mui/icons-material/Error";
-import { Box, Stack, Typography } from "@mui/material";
+import {Box, Stack, Typography} from "@mui/material";
 import React from "react";
+
 const ErrorToaster = ({ message }) => {
   return (
     <>

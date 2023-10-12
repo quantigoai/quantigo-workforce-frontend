@@ -6,19 +6,19 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Box, Button, CircularProgress, Grid, Paper, Typography } from "@mui/material";
+import {Box, Button, CircularProgress, Grid, Paper, Typography} from "@mui/material";
 import dayjs from "dayjs";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
-import { setActivePath } from "../../../features/slice/activePathSlice";
+import {setActivePath} from "../../../features/slice/activePathSlice";
 import {
-  getDashboardData,
-  getDashboardDataHourly,
-  getDashboardDataWeekly,
+    getDashboardData,
+    getDashboardDataHourly,
+    getDashboardDataWeekly,
 } from "../../../features/slice/dashboardSlice";
-import { resendEmailVarification } from "../../../features/slice/userSlice";
-import { convertDate } from "../../../helper/customData";
+import {resendEmailVarification} from "../../../features/slice/userSlice";
+import {convertDate} from "../../../helper/customData";
 import BarChart from "./BarChart/BarChart";
 import CongratulationComponents from "./CongratulationDashBoard/CongratulationComponents";
 import DashboardDocument from "./DashBoardForDocument/DashboardDocument";

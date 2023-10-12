@@ -13,7 +13,7 @@
  * ------------------------
  */
 
-import { combineReducers } from "@reduxjs/toolkit";
+import {combineReducers} from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import projectDirectoryReducer from "../slice/ProjectDirectorySlice";
 import activePathReducer from "../slice/activePathSlice";

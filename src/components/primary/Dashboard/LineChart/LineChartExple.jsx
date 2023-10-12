@@ -1,18 +1,18 @@
-import React, { useRef } from "react";
-import { useState } from "react";
-import { Line } from "react-chartjs-2";
+import React, {useState} from "react";
+import {Line} from "react-chartjs-2";
 import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  LineElement,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  Filler,
+    CategoryScale,
+    Chart as ChartJS,
+    Filler,
+    Legend,
+    LinearScale,
+    LineElement,
+    PointElement,
+    Title,
+    Tooltip,
 } from "chart.js";
-import { Box } from "@mui/material";
+import {Box} from "@mui/material";
+
 ChartJS.register(
   Title,
   Tooltip,

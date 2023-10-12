@@ -6,14 +6,13 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Route, Routes } from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import ErrorPage from "../../shared/Error/ErrorPage";
 import AllNotification from "../../shared/Notification/AllNotification";
 import AllUserListIndex from "../AllUsers/AllUserListIndex";
 import EmailVerification from "../Auth/EmailVerification/EmailVerification";
 import EmailVerificationAfterLogin from "../Auth/EmailVerification/EmailVerificationAfterLogin";
 import Dashboard from "../Dashboard/Dashboard";
-import UpdateDocument from "../Documents/UpdateDocument";
 import EditProfilePageIndex from "../EditProfile/EditProfilePage/EditProfilePageIndex";
 import ForgetPassword from "../ForgetPassword/ForgetPassword";
 import ResetPassword from "../ForgetPassword/ResetPassword";
@@ -22,7 +21,6 @@ import DetailsPage from "../ProjectLIstNew2/ProjectDetailsFull/DetailsPage";
 import FullProjectDetails from "../ProjectLIstNew2/ProjectDetailsFull/FullProjectDetails";
 import ProjectLIstIndex2 from "../ProjectLIstNew2/ProjectLIstIndex2";
 import Skills from "../Skill/Skills";
-import UserListIndex from "../UserListNew/UserListIndex";
 import PrivateRoute from "./PrivateRoute";
 
 export const roles = {
@@ -100,7 +98,6 @@ const Routers = () => {
         </Route> */}
         {/* ---------- ------------ ---------------- */}
 
-        <Route path={"/updatedocument"} element={<UpdateDocument />} />
         <Route path={"/forgetpassword"} element={<ForgetPassword />} />
         <Route path={"/reset-password/:id/:token"} element={<ResetPassword />} />
 
@@ -152,8 +149,7 @@ const Routers = () => {
         {/* -------- ---------- ------------ */}
 
         {/* --------All users ------------ */}
-        {/* TODO Check if iis really needed or not */}
-        <Route path={"/annotators"} element={<UserListIndex action={"annotator"} />} />
+
 
         <Route
           element={
@@ -171,8 +167,6 @@ const Routers = () => {
             ></PrivateRoute>
           }
         >
-          {/*//!! This is not used */}
-          {/* <Route path={"/allusers"} element={<UserListIndex action={"alluser"} />} />  */}
 
           <Route path={"/all-users"} element={<AllUserListIndex action={"admin"} />} />
         </Route>
@@ -317,9 +311,6 @@ const Routers = () => {
         {/* -------- My Profile ---------- */}
 
         <Route path={"/edit-profile"} element={<EditProfilePageIndex />}></Route>
-
-        {/* //!! This is not used */}
-        {/* <Route path={"/show-profile"} element={<EditProfileIndex />}></Route> */}
 
         {/* -------- ------------ ---------- */}
 

@@ -1,5 +1,5 @@
-import { Grid, Paper, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import {Grid, Paper, Typography} from "@mui/material";
+import {Box} from "@mui/system";
 import React from "react";
 
 const TotalworkingHourMonthly = () => {

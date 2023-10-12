@@ -6,21 +6,21 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Box, Grid, Typography } from "@mui/material";
+import {Box, Grid, Typography} from "@mui/material";
 import {
-  CategoryScale,
-  Chart as ChartJS,
-  Legend,
-  LineElement,
-  LinearScale,
-  PointElement,
-  Title,
-  Tooltip,
+    CategoryScale,
+    Chart as ChartJS,
+    Legend,
+    LinearScale,
+    LineElement,
+    PointElement,
+    Title,
+    Tooltip,
 } from "chart.js";
-import React, { useEffect } from "react";
-import { Bar } from "react-chartjs-2";
-import { useSelector } from "react-redux";
-import { daysAndMonths } from "../../../../helper/dateConverter";
+import React, {useEffect} from "react";
+import {Bar} from "react-chartjs-2";
+import {useSelector} from "react-redux";
+import {daysAndMonths} from "../../../../helper/dateConverter";
 
 ChartJS.register(
   CategoryScale,

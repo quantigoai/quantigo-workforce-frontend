@@ -8,25 +8,25 @@
  */
 
 import TableCell from "@mui/material/TableCell";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 
 import {
-  Box,
-  Grid,
-  IconButton,
-  Paper,
-  Table,
-  TableBody,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
+    Box,
+    Grid,
+    IconButton,
+    Paper,
+    Table,
+    TableBody,
+    TableContainer,
+    TableHead,
+    TablePagination,
+    TableRow,
 } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { assignedJobToAUser, getAllAssignedJob } from "../../../features/slice/jobSlice";
-import { getAllUsers } from "../../../features/slice/userSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {assignedJobToAUser, getAllAssignedJob} from "../../../features/slice/jobSlice";
+import {getAllUsers} from "../../../features/slice/userSlice";
 // import NotificationToaster from "../NotificationToaster/NotificationToaster";
-import { useTheme } from "@emotion/react";
+import {useTheme} from "@emotion/react";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";

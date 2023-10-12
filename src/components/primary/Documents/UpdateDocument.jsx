@@ -8,29 +8,29 @@
  */
 
 // TODO Remove this file and its references
-import { PhotoCamera } from "@mui/icons-material";
+import {PhotoCamera} from "@mui/icons-material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import {
-  Avatar,
-  Box,
-  Button,
-  FormControl,
-  Grid,
-  IconButton,
-  InputLabel,
-  MenuItem,
-  Paper,
-  Select,
-  Stack,
-  TextField,
-  Typography,
+    Avatar,
+    Box,
+    Button,
+    FormControl,
+    Grid,
+    IconButton,
+    InputLabel,
+    MenuItem,
+    Paper,
+    Select,
+    Stack,
+    TextField,
+    Typography,
 } from "@mui/material";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import {useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
-import { updateMyDocuments } from "../../../features/slice/userSlice";
+import {updateMyDocuments} from "../../../features/slice/userSlice";
 
 const UpdateDocument = () => {
   const dispatch = useDispatch();

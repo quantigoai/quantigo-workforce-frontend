@@ -8,8 +8,8 @@
  */
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { FormControl, Grid, InputLabel, MenuItem, Select, } from "@mui/material";
-import React, { useState } from "react";
+import {FormControl, Grid, InputLabel, MenuItem, Select,} from "@mui/material";
+import React, {useState} from "react";
 
 const LevelField = ({ course, register }) => {
   

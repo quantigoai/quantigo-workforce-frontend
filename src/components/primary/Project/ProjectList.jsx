@@ -1,33 +1,33 @@
 import {
-  Box,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Paper,
-  Select,
-  styled,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
+    Box,
+    FormControl,
+    Grid,
+    InputLabel,
+    MenuItem,
+    Paper,
+    Select,
+    styled,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Typography,
 } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setActivePath } from "../../../features/slice/activePathSlice";
+import React, {useEffect, useRef, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {setActivePath} from "../../../features/slice/activePathSlice";
 import {
-  getProjectByWorkSpace,
-  resetProjects,
-  updateAProjectById,
+    getProjectByWorkSpace,
+    resetProjects,
+    updateAProjectById,
 } from "../../../features/slice/projectByWorkspaceSlice";
-import { getAllTeams } from "../../../features/slice/teamSlice";
-import { getWorkSpaceById, resetWorkspaces } from "../../../features/slice/workSpaceSlice";
+import {getAllTeams} from "../../../features/slice/teamSlice";
+import {getWorkSpaceById, resetWorkspaces} from "../../../features/slice/workSpaceSlice";
 
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { downloadMappingSheet, getDataSetByProjectID } from "../../../features/slice/datasetSlice";
+import {downloadMappingSheet, getDataSetByProjectID} from "../../../features/slice/datasetSlice";
 import InnerTable from "./InnerTable";
 
 import useToaster from "../../../customHooks/useToaster";

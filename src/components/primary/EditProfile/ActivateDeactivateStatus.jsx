@@ -1,8 +1,8 @@
-import { FormControlLabel, FormGroup, Switch } from "@mui/material";
+import {FormControlLabel, FormGroup, Switch} from "@mui/material";
 import React from "react";
-import { useDispatch } from "react-redux";
+import {useDispatch} from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
-import { activateDeactivateUser } from "../../../features/slice/userSlice";
+import {activateDeactivateUser} from "../../../features/slice/userSlice";
 
 const ActivateDeactivateStatus = ({ user }) => {
   const [checked, setChecked] = React.useState(user.active);

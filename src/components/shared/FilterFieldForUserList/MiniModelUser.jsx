@@ -8,10 +8,10 @@
  */
 
 import CloseIcon from "@mui/icons-material/Close";
-import { Box, Button, Grid, Typography } from "@mui/material";
+import {Box, Button, Grid, Typography} from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import {useSelector} from "react-redux";
+import {useLocation} from "react-router-dom";
 import HubField from "./HubField";
 import RoleField from "./RoleField";
 import SkillFieldForUserList from "./SkillFieldForUserList";

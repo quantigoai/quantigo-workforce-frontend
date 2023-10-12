@@ -15,13 +15,10 @@
 // Flat create benchmark should be fixed
 // Default value is not set in text field for flat bm update benchmark
 
-import { Button, Grid } from "@mui/material";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getProjectMeta,
-  getProjectMetaAg,
-} from "../../features/slice/benchMarkSlice";
+import {Button, Grid} from "@mui/material";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getProjectMeta, getProjectMetaAg,} from "../../features/slice/benchMarkSlice";
 import CommonMetaFields from "../primary/BenchMark/sharedComponents/CommonMeta/CommonMetaFields";
 import ImageFields from "../primary/BenchMark/sharedComponents/ImageFields";
 import NameDescFIeld from "../primary/BenchMark/sharedComponents/NameDescFIeld";

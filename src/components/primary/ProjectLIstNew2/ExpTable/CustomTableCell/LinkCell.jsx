@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Link, Typography } from "@mui/material";
+import {Link, Typography} from "@mui/material";
 import React from "react";
 
 const LinkCell = ({ data }) => {

@@ -7,15 +7,16 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Alert, Box } from "@mui/material";
-import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import {Alert, Box} from "@mui/material";
+import {useSelector} from "react-redux";
+import {useLocation} from "react-router-dom";
 import "swiper/css";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import PaginationTable from "./PaginationTable";
 import DetailsPage from "./ProjectDetailsFull/DetailsPage";
 import TableComponent from "./TableComponent";
 import "./index.css";
+
 /**
  * @param {object} pagination - pagination object
  * @param {function} setPagination - set pagination

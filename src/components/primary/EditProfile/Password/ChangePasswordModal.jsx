@@ -1,9 +1,9 @@
-import { Box, Button, Grid, Modal, Paper, Typography } from "@mui/material";
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {Box, Button, Grid, Modal, Paper, Typography} from "@mui/material";
+import React, {useState} from "react";
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import useToaster from "../../../../customHooks/useToaster";
-import { changePassword, logout } from "../../../../features/slice/userSlice";
+import {changePassword, logout} from "../../../../features/slice/userSlice";
 import ConfirmPassword from "./ConfirmPassword";
 import CurrentPasswordfield from "./CurrentPasswordfield";
 import ResetPassword from "./ResetPassword";

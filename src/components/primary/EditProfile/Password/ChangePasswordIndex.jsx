@@ -1,5 +1,5 @@
-import { Box, Button } from "@mui/material";
-import React, { useState } from "react";
+import {Box, Button} from "@mui/material";
+import React, {useState} from "react";
 import ChangePasswordModal from "./ChangePasswordModal";
 
 const ChangePasswordIndex = () => {

@@ -1,6 +1,6 @@
-import { Box, Button, Menu, MenuItem } from "@mui/material";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import {Box, Button, Menu, MenuItem} from "@mui/material";
+import React from "react";
+
 const selectTypeFilter = [
   "Client_Alias",
   "Industry",

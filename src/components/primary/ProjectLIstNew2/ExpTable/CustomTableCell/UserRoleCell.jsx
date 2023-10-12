@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
+import {capitalizeFirstLetter} from "../../../../../helper/capitalizeFirstWord";
 
 const UserRoleCell = ({ role }) => {
   const RoleFormatter = (role) => {

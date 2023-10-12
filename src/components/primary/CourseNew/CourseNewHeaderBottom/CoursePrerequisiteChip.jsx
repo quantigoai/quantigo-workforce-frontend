@@ -1,12 +1,7 @@
-import {
-  Grid,
-  Tooltip,
-  Typography,
-  styled,
-  tooltipClasses,
-} from "@mui/material";
+import {Grid, styled, Tooltip, tooltipClasses, Typography,} from "@mui/material";
 import React from "react";
 import preIcon from "../../../../assets/images/PreIcon.svg";
+
 const BootstrapTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
 ))(({ theme }) => ({

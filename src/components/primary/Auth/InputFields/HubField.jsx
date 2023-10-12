@@ -1,7 +1,7 @@
-import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
+import {FormControl, Grid, InputLabel, MenuItem, Select} from "@mui/material";
 import axios from "axios";
 import React from "react";
-import { useDispatch } from "react-redux";
+import {useDispatch} from "react-redux";
 
 export const HubField = ({
   setQaiID,

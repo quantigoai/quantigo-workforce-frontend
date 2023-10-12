@@ -7,10 +7,10 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Grid, Link, Typography } from "@mui/material";
+import {Box, Grid, Link, Typography} from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import {useSelector} from "react-redux";
+import {useLocation, useNavigate} from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
 import logoBlue from "../../../assets/images/rsz_logoblue.png";
 

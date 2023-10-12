@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Chip, Typography } from "@mui/material";
+import {Chip, Typography} from "@mui/material";
 import React from "react";
 
 const category1Style = {

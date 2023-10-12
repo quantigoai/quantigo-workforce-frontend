@@ -1,9 +1,9 @@
-import { Box, Button, Grid, Paper, styled, Typography } from "@mui/material";
+import {Box, Button, Grid, Paper, styled, Typography} from "@mui/material";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { enrollACourse } from "../../../features/slice/courseSlice";
-import { updateUserEnrollCourse } from "../../../features/slice/userSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {enrollACourse} from "../../../features/slice/courseSlice";
+import {updateUserEnrollCourse} from "../../../features/slice/userSlice";
 
 const ButtonStyle = styled(Button)({
   border: "8px",

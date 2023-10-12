@@ -9,11 +9,12 @@
 
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import DescriptionIcon from "@mui/icons-material/Description";
-import { Box, TableCell } from "@mui/material";
+import {Box, TableCell} from "@mui/material";
 import axios from "axios";
-import React, { useState } from "react";
-import { realToken } from "../../../../../helper/lib";
+import React, {useState} from "react";
+import {realToken} from "../../../../../helper/lib";
 import NidDetails from "../../../Users/NidDetals/NidDetails";
+
 const StickyDocViewTableColumn = ({ column }) => {
     const [openModal, setOpenModal] = React.useState(false);
   const [documentsImage, setDocumentsImage] = useState([]);

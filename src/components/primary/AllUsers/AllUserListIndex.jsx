@@ -7,18 +7,15 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Paper } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setActivePath } from "../../../features/slice/activePathSlice";
-import { getAllSkills } from "../../../features/slice/skillSlice";
-import { getAllUsers, setTargetedUser, updateAUserById } from "../../../features/slice/userSlice";
+import {Box, Paper} from "@mui/material";
+import React, {useCallback, useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {setActivePath} from "../../../features/slice/activePathSlice";
+import {getAllSkills} from "../../../features/slice/skillSlice";
+import {getAllUsers, setTargetedUser, updateAUserById} from "../../../features/slice/userSlice";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
-// import TableWrapper from "../ProjectLIstNew2/ExpTable/TableWrapper";
-const TableWrapper = React.lazy(() => import("../ProjectLIstNew2/ExpTable/TableWrapper"));
-
-import { useForm } from "react-hook-form";
+import {useForm} from "react-hook-form";
 import useAllUsers from "../../../customHooks/useAllUsers";
 import useToaster from "../../../customHooks/useToaster";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
@@ -31,10 +28,11 @@ import NdaRejectModal from "../Users/NdaAccept/NdaRejectModal";
 import UsersFilter from "./UsersFilter";
 import UsersHeader from "./UsersHeader";
 import "./index.css";
-import { fields } from "./tableFields";
-import { hubOptions, roleOptions, userStatusOptions } from "./userFilterOptions";
+import {fields} from "./tableFields";
+import {hubOptions, roleOptions, userStatusOptions} from "./userFilterOptions";
+// import TableWrapper from "../ProjectLIstNew2/ExpTable/TableWrapper";
+const TableWrapper = React.lazy(() => import("../ProjectLIstNew2/ExpTable/TableWrapper"));
 
-// TODO NEED TO FIX LOADING ISSUE
 const AllUserListIndex = () => {
   const dispatch = useDispatch();
   const { isLightTheme } = useSelector((state) => state.theme);

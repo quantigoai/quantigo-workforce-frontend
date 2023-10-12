@@ -1,5 +1,5 @@
-import { Avatar, Button, Grid, styled } from "@mui/material";
-import { useSelector } from "react-redux";
+import {Avatar, Button, Grid, styled} from "@mui/material";
+import {useSelector} from "react-redux";
 
 const ButtonStyle = styled(Button)({
   backgroundColor: "#2D58FF",

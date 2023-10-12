@@ -1,5 +1,5 @@
-import { Box, Grid, Paper, Typography } from "@mui/material";
-import { useSelector } from "react-redux";
+import {Box, Grid, Paper, Typography} from "@mui/material";
+import {useSelector} from "react-redux";
 import iconPendding from "../../../../assets/images/dashboardIcon/activeAnnotator.svg";
 
 const ActiveUser = () => {

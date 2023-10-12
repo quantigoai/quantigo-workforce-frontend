@@ -1,12 +1,12 @@
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { Box, Button, Dialog, DialogTitle } from "@mui/material";
+import {Box, Button, Dialog, DialogTitle} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
-import { deleteASkill, getAllSkills } from "../../../features/slice/skillSlice";
+import {deleteASkill, getAllSkills} from "../../../features/slice/skillSlice";
 
 const SkillDeleteModal = ({ skill }) => {
   const [open, setOpen] = React.useState(false);

@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { yupResolver } from "@hookform/resolvers/yup";
+import {yupResolver} from "@hookform/resolvers/yup";
 import EmailIcon from "@mui/icons-material/Email";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -21,16 +21,17 @@ import {
   Link,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import * as Yup from "yup";
 import useToaster from "../../../../customHooks/useToaster";
-import { login } from "../../../../features/slice/userSlice";
+import {login} from "../../../../features/slice/userSlice";
 import CustomTextField from "../../../shared/CustomField/CustomTextField";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
-import { LoadingButtonStyle } from "./Login";
+import {LoadingButtonStyle} from "./Login";
+
 const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();

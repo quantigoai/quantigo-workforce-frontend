@@ -7,24 +7,24 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
+import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import useToaster from "../../customHooks/useToaster";
 import {
-  createBenchMark,
-  getABenchMarkByProjectId,
-  getProjectMeta,
-  getProjectMetaAg,
-  resetProjectMetas,
-  setBenchMarkLocal,
-  updateABenchMarkById,
-  updateBenchmarkData,
+    createBenchMark,
+    getABenchMarkByProjectId,
+    getProjectMeta,
+    getProjectMetaAg,
+    resetProjectMetas,
+    setBenchMarkLocal,
+    updateABenchMarkById,
+    updateBenchmarkData,
 } from "../../features/slice/benchMarkSlice";
-import { getProjectByWorkSpace, resetProjects } from "../../features/slice/projectByWorkspaceSlice";
-import { getAllTeams } from "../../features/slice/teamSlice";
-import { getWorkSpaceById, resetWorkspaces } from "../../features/slice/workSpaceSlice";
+import {getProjectByWorkSpace, resetProjects} from "../../features/slice/projectByWorkspaceSlice";
+import {getAllTeams} from "../../features/slice/teamSlice";
+import {getWorkSpaceById, resetWorkspaces} from "../../features/slice/workSpaceSlice";
 
 const BenchMarkIndex = () => {
   const dispatch = useDispatch();

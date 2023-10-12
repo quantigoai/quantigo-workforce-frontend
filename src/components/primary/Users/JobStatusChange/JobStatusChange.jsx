@@ -1,8 +1,8 @@
-import { Button, FormControl, Grid, InputLabel, MenuItem, Select, styled, TextField } from "@mui/material";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {Button, FormControl, Grid, InputLabel, MenuItem, Select, styled, TextField} from "@mui/material";
+import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../../customHooks/useToaster";
-import { UnblockJobsForUser } from "../../../../features/slice/userSlice";
+import {UnblockJobsForUser} from "../../../../features/slice/userSlice";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",

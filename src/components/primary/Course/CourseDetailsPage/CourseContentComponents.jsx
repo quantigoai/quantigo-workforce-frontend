@@ -1,11 +1,11 @@
-import { Button, Grid, Paper, Typography } from "@mui/material";
+import {Button, Grid, Paper, Typography} from "@mui/material";
 import parse from "html-react-parser";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import useToaster from "../../../../customHooks/useToaster";
-import { deleteAChapterById } from "../../../../features/slice/courseSlice";
-import { getAQuizById } from "../../../../features/slice/quizSlice";
+import {deleteAChapterById} from "../../../../features/slice/courseSlice";
+import {getAQuizById} from "../../../../features/slice/quizSlice";
 
 const CourseContentComponents = ({ quizId }) => {
   const { course, courseChapter } = useSelector((state) => state.course);

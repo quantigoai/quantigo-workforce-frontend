@@ -7,37 +7,34 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Paper } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {Box, Paper} from "@mui/material";
+import React, {useCallback, useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import "remixicon/fonts/remixicon.css";
-import { setActivePath } from "../../../features/slice/activePathSlice";
+import {setActivePath} from "../../../features/slice/activePathSlice";
 import {
-  createProjectDrawer,
-  deleteProjectDrawerById,
-  getAllProjectDrawers,
-  setCurrentProjectDrawer,
-  updateProjectDrawerById,
+    createProjectDrawer,
+    deleteProjectDrawerById,
+    getAllProjectDrawers,
+    setCurrentProjectDrawer,
+    updateProjectDrawerById,
 } from "../../../features/slice/projectDrawerSlice";
-import { getAllSkills } from "../../../features/slice/skillSlice";
+import {getAllSkills} from "../../../features/slice/skillSlice";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 import EditProjectModal from "./EditProjectModal";
-// import TableWrapper from "./ExpTable/TableWrapper";
-const TableWrapper = React.lazy(() => import("./ExpTable/TableWrapper"));
-
 import useToaster from "../../../customHooks/useToaster";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import {
-  fields,
-  filterPDR,
-  platformCreateOptions,
-  platformOptions,
-  projectTypeCreateOptions,
-  projectTypeOptions,
-  statusCreateOptions,
-  statusOptions,
+    fields,
+    filterPDR,
+    platformCreateOptions,
+    platformOptions,
+    projectTypeCreateOptions,
+    projectTypeOptions,
+    statusCreateOptions,
+    statusOptions,
 } from "./FIlterOptions";
 import useAllFunc from "./Hooks/useAllFunc";
 import useHandleChange from "./Hooks/useHandleChange";
@@ -48,6 +45,8 @@ import ProjectHeader from "./ProjectHeader";
 import ProjectModal from "./ProjectModal";
 import ProjectSelectFIlter from "./ProjectSelectFIlter";
 import "./index.css";
+// import TableWrapper from "./ExpTable/TableWrapper";
+const TableWrapper = React.lazy(() => import("./ExpTable/TableWrapper"));
 
 // test for commit
 /**

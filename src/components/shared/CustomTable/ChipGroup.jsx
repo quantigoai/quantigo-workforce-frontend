@@ -6,12 +6,13 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { AvatarGroup } from "@mui/material";
+import {AvatarGroup} from "@mui/material";
 import Box from "@mui/material/Box";
 import Popper from "@mui/material/Popper";
 import * as React from "react";
 import ProjectDrawerStatusChip from "../FilterField/ProjectDrawerStatusChip";
 import "./index.css";
+
 const ChipGroup = ({ value }) => {
   const params = { value: value };
   const mouseOverEffect = (event) => {

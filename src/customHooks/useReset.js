@@ -13,22 +13,22 @@
  * ------------------------
  */
 
-import { resetProjectDirectorySlice, updateProjectDirectoryData } from "../features/slice/ProjectDirectorySlice";
-import { resetBenchMarkSlice, updateBenchmarkData } from "../features/slice/benchMarkSlice";
-import { resetCourseSlice, updateCourseData } from "../features/slice/courseSlice";
-import { resetDashboardSlice, updateDashboardData } from "../features/slice/dashboardSlice";
-import { resetDataSetSlice, updateDatasetData } from "../features/slice/datasetSlice";
-import { resetJobSlice, updateJobData } from "../features/slice/jobSlice";
-import { resetNotificationSlice } from "../features/slice/notificationSlice";
-import { resetProjectByWorkspaceSlice, updateProjectData } from "../features/slice/projectByWorkspaceSlice";
-import { resetProjectDrawerSlice } from "../features/slice/projectDrawerSlice";
-import { resetQuizSlice, updateQuizData } from "../features/slice/quizSlice";
-import { resetSkillSlice, updateSkillData } from "../features/slice/skillSlice";
-import { resetSyncServerSlice } from "../features/slice/syncServerSlice";
-import { resetTeamSlice, updateTeamData } from "../features/slice/teamSlice";
-import { resetTemporaryDataSlice } from "../features/slice/temporaryDataSlice";
-import { resetUserSlice } from "../features/slice/userSlice";
-import { resetWorkspaceSlice, updateWorkSpaceData } from "../features/slice/workSpaceSlice";
+import {resetProjectDirectorySlice, updateProjectDirectoryData} from "../features/slice/ProjectDirectorySlice";
+import {resetBenchMarkSlice, updateBenchmarkData} from "../features/slice/benchMarkSlice";
+import {resetCourseSlice, updateCourseData} from "../features/slice/courseSlice";
+import {resetDashboardSlice, updateDashboardData} from "../features/slice/dashboardSlice";
+import {resetDataSetSlice, updateDatasetData} from "../features/slice/datasetSlice";
+import {resetJobSlice, updateJobData} from "../features/slice/jobSlice";
+import {resetNotificationSlice} from "../features/slice/notificationSlice";
+import {resetProjectByWorkspaceSlice, updateProjectData} from "../features/slice/projectByWorkspaceSlice";
+import {resetProjectDrawerSlice} from "../features/slice/projectDrawerSlice";
+import {resetQuizSlice, updateQuizData} from "../features/slice/quizSlice";
+import {resetSkillSlice, updateSkillData} from "../features/slice/skillSlice";
+import {resetSyncServerSlice} from "../features/slice/syncServerSlice";
+import {resetTeamSlice, updateTeamData} from "../features/slice/teamSlice";
+import {resetTemporaryDataSlice} from "../features/slice/temporaryDataSlice";
+import {resetUserSlice} from "../features/slice/userSlice";
+import {resetWorkspaceSlice, updateWorkSpaceData} from "../features/slice/workSpaceSlice";
 
 export default function useReset(dispatch, role, activePath = "/") {
   if (role === "admin") {

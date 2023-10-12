@@ -6,29 +6,28 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import { Avatar, Badge, FormControlLabel, Stack, Switch, Typography, styled } from "@mui/material";
+import {Avatar, Badge, FormControlLabel, Stack, styled, Switch, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import backIcon from "../../../assets/images/dashboardIcon/GoBackIcon.svg";
 import logOutIcon from "../../../assets/images/logoutIcon.svg";
 import menuIcon from "../../../assets/images/menuIcon.svg";
 import ProfileIcon from "../../../assets/images/profileIcon.svg";
 import useReset from "../../../customHooks/useReset";
-import { setTheme } from "../../../features/slice/themeSlice";
-import { logout } from "../../../features/slice/userSlice";
-import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
+import {setTheme} from "../../../features/slice/themeSlice";
+import {logout} from "../../../features/slice/userSlice";
+import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
 import NotificationModal from "../Notification/NotificationModal";
 import Lottie from "lottie-react";
 import bell from "../CustomSvgIcons/animation_lnnh2ad0.json";
+
 const Header = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
 

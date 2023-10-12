@@ -1,10 +1,9 @@
 import React from "react";
-import { ArcElement, Chart as ChartJS, Legend, Title, Tooltip } from "chart.js";
-import { Pie } from "react-chartjs-2";
-import { useSelector } from "react-redux";
-import { Grid, Typography } from "@mui/material";
-import PiechartExaplem from "./PiechartExaplem";
+import {ArcElement, Chart as ChartJS, Legend, Title, Tooltip} from "chart.js";
+import {Pie} from "react-chartjs-2";
+import {useSelector} from "react-redux";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+
 ChartJS.register(ArcElement, Tooltip, Legend, Title, ChartDataLabels);
 
 const PieChartForUser = () => {

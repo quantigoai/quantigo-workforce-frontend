@@ -1,11 +1,12 @@
-import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
-import { SingleInputDateRangeField } from "@mui/x-date-pickers-pro/SingleInputDateRangeField";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import {DateRangePicker} from "@mui/x-date-pickers-pro/DateRangePicker";
+import {SingleInputDateRangeField} from "@mui/x-date-pickers-pro/SingleInputDateRangeField";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
+import {DemoContainer} from "@mui/x-date-pickers/internals/demo";
 import * as React from "react";
-import { useState } from "react";
+import {useState} from "react";
 import calenderIcon from "../../../../assets/images/dashboardIcon/calendar-line.svg";
+
 export default function DateRangeField({ setStartDate, setEndDate }) {
   const [selectedDateRange, setSelectedDateRange] = useState([null, null]); // Step 1
 

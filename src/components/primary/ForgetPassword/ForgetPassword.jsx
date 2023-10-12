@@ -1,10 +1,10 @@
-import { Box, Button, CircularProgress, FilledInput, FormControl, Grid, InputLabel, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import {Box, Button, CircularProgress, FilledInput, FormControl, Grid, InputLabel, Typography} from "@mui/material";
+import {styled} from "@mui/material/styles";
+import {useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
-import { forgetPasswordSlice } from "../../../features/slice/userSlice";
+import {forgetPasswordSlice} from "../../../features/slice/userSlice";
 import HeaderNav from "../HomePage/HeaderNav";
 
 const ButtonStyle = styled(Button)({

@@ -6,9 +6,9 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Button, Grid, Paper } from "@mui/material";
+import {Button, Grid, Paper} from "@mui/material";
 import parse from "html-react-parser";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 import ChapterDeleteModal from "../Course/CourseDetailsPage/ChapterDeleteModal";
 import ChapterHeader from "./ChapterHeader";
 

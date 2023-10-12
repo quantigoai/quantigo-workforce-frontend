@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Chip } from "@mui/material";
+import {Chip} from "@mui/material";
 
 let drawerStatus = (status) => {
   switch (status) {

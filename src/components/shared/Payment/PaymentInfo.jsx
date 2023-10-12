@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 import PendingIcon from "@mui/icons-material/Pending";
-import { Box, Button, Paper, Typography } from "@mui/material";
+import {Box, Button, Paper, Typography} from "@mui/material";
 import React from "react";
 import useToaster from "../../../customHooks/useToaster";
 

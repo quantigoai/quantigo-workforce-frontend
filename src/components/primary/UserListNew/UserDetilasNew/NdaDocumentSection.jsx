@@ -1,10 +1,10 @@
-import { Button, Grid, Typography, styled } from "@mui/material";
+import {Button, Grid, Typography} from "@mui/material";
 import ArrowIcon from "../../../../assets/images/dashboardIcon/ArrowIcon.svg";
 import ViewIcon from "../../../../assets/images/dashboardIcon/ViewIcon.svg";
-import React, { useState } from "react";
+import React, {useState} from "react";
 import NidDetails from "../../Users/NidDetals/NidDetails";
 import axios from "axios";
-import { realToken } from "../../../../helper/lib";
+import {realToken} from "../../../../helper/lib";
 
 const styleBtn = {
   width: "100%",

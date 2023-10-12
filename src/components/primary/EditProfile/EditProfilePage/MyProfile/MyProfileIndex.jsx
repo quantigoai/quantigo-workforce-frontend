@@ -1,13 +1,14 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import {Box, Button, Grid, Typography} from "@mui/material";
 import moment from "moment/moment";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../../../customHooks/useToaster";
-import { myProfileEdit, uploadMyImage } from "../../../../../features/slice/userSlice";
+import {myProfileEdit, uploadMyImage} from "../../../../../features/slice/userSlice";
 import CommonFieldTest from "../CommonFieldTest";
 import CommonSelectField from "../CommonSelectField";
 import ProfilePicture from "./ProfilePicture";
+
 const MyProfileIndex = () => {
   const { user, isLoading } = useSelector((state) => state.user);
   const [editAble, setEditAble] = useState(false);

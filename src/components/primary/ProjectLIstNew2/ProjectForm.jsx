@@ -1,8 +1,19 @@
-import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography, styled } from '@mui/material';
+import {
+    Box,
+    Button,
+    FormControl,
+    Grid,
+    InputLabel,
+    MenuItem,
+    Select,
+    styled,
+    TextField,
+    Typography
+} from '@mui/material';
 import React from 'react';
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import SkillField from '../Course/InputFields/SkillField';
 import SkillFieldProject from './SkillFieldProject';
+
 const CustomDownArrow = styled(KeyboardArrowDownIcon)({
     color: "#667085",
     marginRight: "10px",

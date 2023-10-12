@@ -1,7 +1,7 @@
-import { Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { getProjectDrawerById } from "../../../../../features/slice/projectDrawerSlice";
+import {Typography} from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {useDispatch} from "react-redux";
+import {getProjectDrawerById} from "../../../../../features/slice/projectDrawerSlice";
 
 const ProjectEnroll = ({ data }) => {
   const dispatch = useDispatch();

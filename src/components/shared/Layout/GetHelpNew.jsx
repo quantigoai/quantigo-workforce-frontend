@@ -1,5 +1,6 @@
-import { Button, Grid, styled, Typography } from "@mui/material";
+import {Button, Grid, Typography} from "@mui/material";
 import React from "react";
+
 const GetHelpNew = () => {
   const handleHelp = () => {
     window.open("https://discord.gg/YarPssHr6y");

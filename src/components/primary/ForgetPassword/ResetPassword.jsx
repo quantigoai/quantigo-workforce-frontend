@@ -1,23 +1,23 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import {Visibility, VisibilityOff} from "@mui/icons-material";
 import {
-  Box,
-  Button,
-  FilledInput,
-  FormControl,
-  FormHelperText,
-  Grid,
-  InputAdornment,
-  InputLabel,
-  TextField,
-  Typography,
+    Box,
+    Button,
+    FilledInput,
+    FormControl,
+    FormHelperText,
+    Grid,
+    InputAdornment,
+    InputLabel,
+    TextField,
+    Typography,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import {styled} from "@mui/material/styles";
+import React, {useEffect, useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate, useParams} from "react-router-dom";
 import useToaster from "../../../customHooks/useToaster";
-import { setNewPassword } from "../../../features/slice/userSlice";
+import {setNewPassword} from "../../../features/slice/userSlice";
 import HeaderNav from "../HomePage/HeaderNav";
 
 const ForgetPasswordBox = styled(Box)({

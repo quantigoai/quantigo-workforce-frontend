@@ -12,9 +12,9 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import { configureStore } from "@reduxjs/toolkit";
-import { persistReducer, persistStore } from "redux-persist";
-import { rootPersistConfig, rootReducers } from "../slice/rootReducers";
+import {configureStore} from "@reduxjs/toolkit";
+import {persistReducer, persistStore} from "redux-persist";
+import {rootPersistConfig, rootReducers} from "../slice/rootReducers";
 
 const store = configureStore({
   reducer: persistReducer(rootPersistConfig, rootReducers),

@@ -13,18 +13,18 @@
  * ------------------------
  */
 
-import { updateProjectDirectoryData } from "../features/slice/ProjectDirectorySlice";
-import { updateBenchmarkData } from "../features/slice/benchMarkSlice";
-import { updateCourseData } from "../features/slice/courseSlice";
-import { updateDashboardData } from "../features/slice/dashboardSlice";
-import { updateDatasetData } from "../features/slice/datasetSlice";
-import { updateJobData } from "../features/slice/jobSlice";
-import { updateProjectData } from "../features/slice/projectByWorkspaceSlice";
-import { clearProjectDrawerData } from "../features/slice/projectDrawerSlice";
-import { updateQuizData } from "../features/slice/quizSlice";
-import { updateSkillData } from "../features/slice/skillSlice";
-import { updateTeamData } from "../features/slice/teamSlice";
-import { updateWorkSpaceData } from "../features/slice/workSpaceSlice";
+import {updateProjectDirectoryData} from "../features/slice/ProjectDirectorySlice";
+import {updateBenchmarkData} from "../features/slice/benchMarkSlice";
+import {updateCourseData} from "../features/slice/courseSlice";
+import {updateDashboardData} from "../features/slice/dashboardSlice";
+import {updateDatasetData} from "../features/slice/datasetSlice";
+import {updateJobData} from "../features/slice/jobSlice";
+import {updateProjectData} from "../features/slice/projectByWorkspaceSlice";
+import {clearProjectDrawerData} from "../features/slice/projectDrawerSlice";
+import {updateQuizData} from "../features/slice/quizSlice";
+import {updateSkillData} from "../features/slice/skillSlice";
+import {updateTeamData} from "../features/slice/teamSlice";
+import {updateWorkSpaceData} from "../features/slice/workSpaceSlice";
 
 export default function useClearReduxData(dispatch, activePath, id = null) {
   const dispatchFunctions = [

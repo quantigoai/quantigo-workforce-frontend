@@ -7,10 +7,11 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { styled } from "@mui/material/styles";
-import { Box } from "@mui/system";
-import { DataGrid, gridClasses } from "@mui/x-data-grid";
+import {styled} from "@mui/material/styles";
+import {Box} from "@mui/system";
+import {DataGrid, gridClasses} from "@mui/x-data-grid";
 import "./index.css";
+
 const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
   [`& .${gridClasses.row}.even`]: {
     backgroundColor: theme.palette.grey[200],

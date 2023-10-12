@@ -7,10 +7,10 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Button, MenuItem, Select, Typography } from "@mui/material";
-import { useCallback, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import {Box, Button, MenuItem, Select, Typography} from "@mui/material";
+import {useCallback, useEffect} from "react";
+import {useSelector} from "react-redux";
+import {useLocation} from "react-router-dom";
 
 const paginationOptions = [
   { value: 10, label: 10 },

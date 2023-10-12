@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Badge, TableCell, Typography, styled } from "@mui/material";
+import {Badge, styled, TableCell, Typography} from "@mui/material";
 import React from "react";
 
 const StyledBadge = styled(Badge)(() => ({

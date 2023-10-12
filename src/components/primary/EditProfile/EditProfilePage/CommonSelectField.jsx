@@ -1,6 +1,7 @@
-import { FormControl, Grid, MenuItem, Select, Typography, styled } from "@mui/material";
+import {FormControl, Grid, MenuItem, Select, styled, Typography} from "@mui/material";
 import React from "react";
-import { Controller } from "react-hook-form";
+import {Controller} from "react-hook-form";
+
 export const MySelect = styled(Select)(() => ({
   border: "1px solid #E6ECF5",
   borderRadius: "8px",

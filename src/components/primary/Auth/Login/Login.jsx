@@ -6,10 +6,10 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { LoadingButton } from "@mui/lab";
-import { Box, Grid } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { React } from "react";
+import {LoadingButton} from "@mui/lab";
+import {Box, Grid} from "@mui/material";
+import {styled} from "@mui/material/styles";
+import {React} from "react";
 import LoginForm from "./LoginForm";
 
 export const BgBox = styled(Box)({

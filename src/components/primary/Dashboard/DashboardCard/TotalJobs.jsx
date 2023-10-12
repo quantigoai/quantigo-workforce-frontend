@@ -1,7 +1,7 @@
-import { Grid, Paper, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import {Grid, Paper, Typography} from "@mui/material";
+import {Box} from "@mui/system";
 import React from "react";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 import iconPendding from "../../../../assets/images/dashboardIcon/IconJOb.svg";
 
 const TotalJobs = () => {

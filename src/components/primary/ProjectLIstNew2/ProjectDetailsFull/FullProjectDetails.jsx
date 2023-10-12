@@ -1,23 +1,23 @@
-import { Box } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import {Box} from "@mui/material";
+import React, {useCallback, useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate, useParams} from "react-router-dom";
 import {
-  checkInProjectDrawerById,
-  checkOutProjectDrawerById,
-  getMyWorkHistoryById,
-  getUsersWorkHistoryById,
+    checkInProjectDrawerById,
+    checkOutProjectDrawerById,
+    getMyWorkHistoryById,
+    getUsersWorkHistoryById,
 } from "../../../../features/slice/projectDrawerSlice";
-import { clearUserWorkingProject, updateUserWorkingProject } from "../../../../features/slice/userSlice";
+import {clearUserWorkingProject, updateUserWorkingProject} from "../../../../features/slice/userSlice";
 import dataBuilder from "../../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../../shared/CustomTable/fieldBuilder";
-import { singleDetailsFields } from "../FIlterOptions";
+import {singleDetailsFields} from "../FIlterOptions";
 import useAllFunc from "../Hooks/useAllFunc";
 import Project2DetailsModal from "../Project2Details/Project2DetailsModal";
 import ProjectTable2 from "../ProjectTable2";
 import ProjectDetailsHeader from "./ProjectDetailsHeader";
 
-import { addDays } from "date-fns";
+import {addDays} from "date-fns";
 import useToaster from "../../../../customHooks/useToaster";
 import CheckOutModal from "./CheckOutModal";
 

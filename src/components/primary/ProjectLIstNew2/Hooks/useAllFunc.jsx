@@ -1,7 +1,7 @@
 /* eslint-disable no-prototype-builtins */
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { getAllSkills } from "../../../../features/slice/skillSlice";
+import React, {useState} from "react";
+import {useDispatch} from "react-redux";
+import {getAllSkills} from "../../../../features/slice/skillSlice";
 
 const useAllFunc = () => {
   const [filterValue, setFilterValue] = useState({});

@@ -7,9 +7,9 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { TableCell } from "@mui/material";
+import {TableCell} from "@mui/material";
 import React from "react";
-import { useLocation } from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import CustomButton from "../../../../shared/CustomTable/CustomButton";
 
 const LastTableColumn = ({

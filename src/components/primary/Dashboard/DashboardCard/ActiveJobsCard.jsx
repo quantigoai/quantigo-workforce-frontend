@@ -1,6 +1,6 @@
-import { Grid, Paper, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import { useSelector } from "react-redux";
+import {Grid, Paper, Typography} from "@mui/material";
+import {Box} from "@mui/system";
+import {useSelector} from "react-redux";
 import iconPendding from "../../../../assets/images/dashboardIcon/MyActive JobsIcon.svg";
 
 const ActiveJobsCard = () => {

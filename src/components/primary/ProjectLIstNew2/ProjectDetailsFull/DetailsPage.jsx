@@ -1,9 +1,9 @@
-import { Alert, Box, Stack } from "@mui/material";
-import { useSelector } from "react-redux";
+import {Alert, Box, Stack} from "@mui/material";
+import {useSelector} from "react-redux";
 import BoxItem from "../Project2Details/BoxItem";
 import SingleItem from "../Project2Details/SingleItem";
 
-import { formatDate } from "../../../../helper/dateConverter";
+import {formatDate} from "../../../../helper/dateConverter";
 import DetailsItemSIngle from "../Project2Details/DetailsItemSIngle";
 
 const style = {

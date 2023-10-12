@@ -1,8 +1,9 @@
 import React from "react";
-import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
-import { Doughnut, Pie } from "react-chartjs-2";
-import { useSelector } from "react-redux";
+import {ArcElement, Chart as ChartJS, Legend, Tooltip} from "chart.js";
+import {Doughnut} from "react-chartjs-2";
+import {useSelector} from "react-redux";
 import "chartjs-plugin-datalabels";
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 const PieChart = () => {
   const { activeJobs, takenJobs, totalCountData } = useSelector((state) => state.dashboard);

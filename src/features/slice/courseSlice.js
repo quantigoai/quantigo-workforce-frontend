@@ -12,10 +12,10 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import { realToken } from "../../helper/lib";
-import { calculateProgress } from "../../helper/scoreStore";
+import {realToken} from "../../helper/lib";
+import {calculateProgress} from "../../helper/scoreStore";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 

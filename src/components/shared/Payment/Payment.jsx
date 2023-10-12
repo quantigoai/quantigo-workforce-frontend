@@ -6,10 +6,10 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Box, Grid, Paper } from "@mui/material";
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { setActivePath } from "../../../features/slice/activePathSlice";
+import {Box, Grid, Paper} from "@mui/material";
+import React, {useEffect} from "react";
+import {useDispatch} from "react-redux";
+import {setActivePath} from "../../../features/slice/activePathSlice";
 import CommonHeader from "../CustomComponenet/CommonHeader/CommonHeader";
 import PaymentInfo from "./PaymentInfo";
 

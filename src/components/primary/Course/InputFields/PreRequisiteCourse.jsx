@@ -8,18 +8,9 @@
  */
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import {
-  Box,
-  Chip,
-  FilledInput,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-} from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import {Box, Chip, FilledInput, FormControl, Grid, InputLabel, MenuItem, Select,} from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {useLocation} from "react-router-dom";
 
 const PreRequisiteCourse = ({
   course = { course },

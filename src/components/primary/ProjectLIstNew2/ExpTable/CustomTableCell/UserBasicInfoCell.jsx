@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Avatar, Box, Stack } from "@mui/material";
+import {Avatar, Box, Stack} from "@mui/material";
 import React from "react";
 
 const UserBasicInfoCell = ({ name, email, image }) => {

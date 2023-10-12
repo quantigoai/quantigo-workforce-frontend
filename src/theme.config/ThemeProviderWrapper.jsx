@@ -13,9 +13,9 @@
  * ------------------------
  */
 
-import { ThemeProvider } from "@mui/material/styles";
+import {ThemeProvider} from "@mui/material/styles";
 import React from "react";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 import darkTheme from "./dark.mui.theme";
 import lightTheme from "./light.mui.theme";
 

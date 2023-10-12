@@ -7,19 +7,9 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {
-  Box,
-  FormControl,
-  Grid,
-  InputLabel,
-  LinearProgress,
-  MenuItem,
-  Paper,
-  Select,
-  Typography,
-} from "@mui/material";
-import { useSelector } from "react-redux";
-import { useOutletContext } from "react-router-dom";
+import {Box, FormControl, Grid, InputLabel, LinearProgress, MenuItem, Paper, Select, Typography,} from "@mui/material";
+import {useSelector} from "react-redux";
+import {useOutletContext} from "react-router-dom";
 
 const ChapterHeader = () => {
   const { courseChapters, courseChapter, course } = useSelector(

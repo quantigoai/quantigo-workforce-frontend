@@ -1,16 +1,13 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
+import ErrorPage from "../../shared/Error/ErrorPage";
 import EmailVerification from "../Auth/EmailVerification/EmailVerification";
 import EmailVerificationConfirmation from "../Auth/EmailVerification/EmailVerificationConfirmation";
-import Faq from "../Auth/FAQ/Faq";
 import HowItWorkPage from "../Auth/HowItWorkPage/HowItWorkPage";
-import UpdateDocument from "../Documents/UpdateDocument";
 import ForgetPassword from "../ForgetPassword/ForgetPassword";
 import ResetPassword from "../ForgetPassword/ResetPassword";
 import LoginHomePage from "../HomePage/LoginHomePage";
 import RegisterHomePage from "../HomePage/RegisterHomePage";
-import NDAuploadModal from "../Nda/NDAuploadModal";
-import ErrorPage from "../../shared/Error/ErrorPage";
 
 const RoutersLogin = () => {
   return (
@@ -25,14 +22,12 @@ const RoutersLogin = () => {
         <Route path={"/howitworks"} element={<HowItWorkPage />} />
 
         <Route path={"/emailVerification"} element={<EmailVerification />} />
-        
+
         <Route path={"/forgetpassword"} element={<ForgetPassword />} />
 
         <Route path={"/reset-password/:id/:token/"} element={<ResetPassword />} />
         <Route path={"/verify-email/:id/:token/"} element={<EmailVerificationConfirmation />} />
 
-        {/* <Route path={"/updatedocument"} element={<UpdateDocument />} /> */}
-        {/* <Route path={"/ndamodal"} element={<NDAuploadModal />} /> */}
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>

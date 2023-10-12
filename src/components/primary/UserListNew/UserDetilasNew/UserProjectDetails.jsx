@@ -1,19 +1,6 @@
-import {
-  Box,
-  Grid,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-  styled,
-  tableCellClasses,
-} from "@mui/material";
+import {styled, TableCell, tableCellClasses, TableRow,} from "@mui/material";
 import React from "react";
-import starIcon from "../../../../assets/images/StarIcon.svg";
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     // backgroundColor: "#FAFCFF",

@@ -8,7 +8,7 @@
  */
 
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import { Box, Grid, Typography } from "@mui/material";
+import {Box, Grid, Typography} from "@mui/material";
 import dayjs from "dayjs";
 import React from "react";
 

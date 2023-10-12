@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Paper, Stack } from "@mui/material";
+import {Box, Paper, Stack} from "@mui/material";
 import React from "react";
 import StepperGuide from "./StepperGuide";
 

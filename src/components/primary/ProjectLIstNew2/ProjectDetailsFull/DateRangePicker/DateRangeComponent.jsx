@@ -6,14 +6,14 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { addDays, format } from "date-fns";
-import { useEffect, useRef, useState } from "react";
-import { DateRange } from "react-date-range";
+import {addDays, format} from "date-fns";
+import {useEffect, useRef, useState} from "react";
+import {DateRange} from "react-date-range";
 import "./index.css";
 
 import BackspaceIcon from "@mui/icons-material/Backspace";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import { IconButton, InputAdornment, TextField, styled } from "@mui/material";
+import {IconButton, InputAdornment, styled, TextField} from "@mui/material";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 

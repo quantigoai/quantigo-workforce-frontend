@@ -3,27 +3,27 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import {
-  Box,
-  Grid,
-  IconButton,
-  Paper,
-  Skeleton,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
-  TableSortLabel,
-  Typography,
-  useTheme,
+    Box,
+    Grid,
+    IconButton,
+    Paper,
+    Skeleton,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TablePagination,
+    TableRow,
+    TableSortLabel,
+    Typography,
+    useTheme,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../customHooks/useToaster";
-import { getProjectByDirectory } from "../../features/slice/ProjectDirectorySlice";
-import { setActivePath } from "../../features/slice/activePathSlice";
+import {getProjectByDirectory} from "../../features/slice/ProjectDirectorySlice";
+import {setActivePath} from "../../features/slice/activePathSlice";
 import CreateProjectDirectory from "./CreateProjectDirectory/CreateProjectDirectory";
 import UpdateProjectDirectory from "./CreateProjectDirectory/UpdateProjectDirectory";
 import ProjectDirectoryDeleteModal from "./ProjectDirectoryDeleteModal";

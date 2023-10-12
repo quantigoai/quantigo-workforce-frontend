@@ -1,10 +1,4 @@
-import {
-  FormControl,
-  Grid,
-  TextField,
-  Typography,
-  styled,
-} from "@mui/material";
+import {FormControl, Grid, styled, TextField, Typography,} from "@mui/material";
 import React from "react";
 
 const CommonField = ({

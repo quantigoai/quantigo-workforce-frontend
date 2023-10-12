@@ -7,8 +7,8 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Stack } from "@mui/material";
-import { LoadingButtonStyle } from "../Login/Login";
+import {Stack} from "@mui/material";
+import {LoadingButtonStyle} from "../Login/Login";
 
 export default function FinalButton(props) {
   return (

@@ -20,6 +20,7 @@ const TableWrapper = React.lazy(() => import("../ProjectLIstNew2/ExpTable/TableW
 
 import { useForm } from "react-hook-form";
 import useAllUsers from "../../../customHooks/useAllUsers";
+import useToaster from "../../../customHooks/useToaster";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import useHandleChange from "../ProjectLIstNew2/Hooks/useHandleChange";
 import PaginationTable from "../ProjectLIstNew2/PaginationTable";
@@ -32,7 +33,6 @@ import UsersHeader from "./UsersHeader";
 import "./index.css";
 import { fields } from "./tableFields";
 import { hubOptions, roleOptions, userStatusOptions } from "./userFilterOptions";
-import useToaster from "../../../customHooks/useToaster";
 
 // TODO NEED TO FIX LOADING ISSUE
 const AllUserListIndex = ({ action }) => {
@@ -241,6 +241,8 @@ const AllUserListIndex = ({ action }) => {
           clearSearch={clearSearch}
         />
 
+        {/* <motion.Box animate={{ x: 100 }}> */}
+        {/* <motion.div animate={{ x: 100 }}> */}
         <UsersFilter
           isFilter={isFilter}
           isLightTheme={isLightTheme}
@@ -259,6 +261,7 @@ const AllUserListIndex = ({ action }) => {
           addRoles={addRoles}
           handleChangeRoles={handleChangeRoles}
         />
+        {/* </motion.div> */}
       </Box>
 
       <Box className="tableContent">
@@ -270,7 +273,8 @@ const AllUserListIndex = ({ action }) => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-          }}>
+          }}
+        >
           {isDataLoading ? (
             <LoadingComponent />
           ) : (

@@ -13,16 +13,12 @@ import { useSelector } from "react-redux";
 import ProjectSelectFIlterField from "../ProjectLIstNew2/ProjectSelectFIlterField";
 import ProjectMultipleSelectRole from "./ProjectMultipleSelectRole";
 import UserSkillFieldSelect from "./UserSkillFieldSelect";
+import { motion } from "framer-motion";
 
 const UsersFilter = ({
   role,
   roleOptions,
   isFilter,
-  isLightTheme,
-  filterPDR,
-  platformOptions,
-  statusOptions,
-  projectTypeOptions,
   handleChange,
   handleClearFilter,
   filterValue,
@@ -42,6 +38,17 @@ const UsersFilter = ({
   return (
     <>
       <Box
+        component={motion.div}
+        // initial={{
+        //   x: isFilter ? 1000 : 0,
+        // }}
+        animate={{
+          // x: 1000,
+          opacity: isFilter ? 1 : 0,
+          // y: isFilter ? 1 : 0
+          // initial: { opacity: 0.1 },
+          transition: { type: "spring", stiffness: 300, duration: 0.6, delay: 0.2 },
+        }}
         sx={{
           backgroundColor: "neutral.N000",
           width: "100%",

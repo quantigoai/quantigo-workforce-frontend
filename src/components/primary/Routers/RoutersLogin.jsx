@@ -10,29 +10,30 @@ import ResetPassword from "../ForgetPassword/ResetPassword";
 import LoginHomePage from "../HomePage/LoginHomePage";
 import RegisterHomePage from "../HomePage/RegisterHomePage";
 import NDAuploadModal from "../Nda/NDAuploadModal";
+import ErrorPage from "../../shared/Error/ErrorPage";
 
 const RoutersLogin = () => {
   return (
     <>
       <Routes>
         <Route path={"/"} element={<LoginHomePage />} />
-        <Route path={"/faq"} element={<Faq />} />
+        <Route path={"/register"} element={<RegisterHomePage />} />
+        <Route path={"/login"} element={<LoginHomePage />} />
+
+        {/* <Route path={"/faq"} element={<Faq />} /> */}
 
         <Route path={"/howitworks"} element={<HowItWorkPage />} />
 
         <Route path={"/emailVerification"} element={<EmailVerification />} />
-
-        <Route path={"/verify-email/:id/:token/"} element={<EmailVerificationConfirmation />} />
-        <Route path={"/reset-password"} element={<ResetPassword />} />
-        <Route path={"/forgetpassword"} element={<ForgetPassword />} />
         
-        <Route path={"/register"} element={<RegisterHomePage />} />
-        <Route path={"/login"} element={<LoginHomePage />} />
+        <Route path={"/forgetpassword"} element={<ForgetPassword />} />
 
-        <Route path={"/updatedocument"} element={<UpdateDocument />} />
-        <Route path={"/ndamodal"} element={<NDAuploadModal />} />
-        <Route path={"/howitworks"} element={<HowItWorkPage />} />
-        <Route path={"/reset-password/:id/:token"} element={<ResetPassword />} />
+        <Route path={"/reset-password/:id/:token/"} element={<ResetPassword />} />
+        <Route path={"/verify-email/:id/:token/"} element={<EmailVerificationConfirmation />} />
+
+        {/* <Route path={"/updatedocument"} element={<UpdateDocument />} /> */}
+        {/* <Route path={"/ndamodal"} element={<NDAuploadModal />} /> */}
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>
   );

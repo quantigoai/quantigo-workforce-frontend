@@ -7,54 +7,25 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 import { Route, Routes } from "react-router-dom";
-import BenchMarkIndex from "../../BenchMarkNew/BenchMarkIndex";
-import BenchmarkList from "../../BenchMarkNew/BenchmarkList";
-import CreateBenchMarkNew from "../../BenchMarkNew/CreateBenchMarkNew";
-import SingleBenchmarkNew from "../../BenchMarkNew/SingleBenchmarkNew";
-import UpdateBenchMarkNew from "../../BenchMarkNew/UpdateBenchMarkNew";
-import ProjectDirectoryIndex from "../../ProjectDirectory/ProjectDirectoryIndex";
 import ErrorPage from "../../shared/Error/ErrorPage";
 import AllNotification from "../../shared/Notification/AllNotification";
-import Payment from "../../shared/Payment/Payment";
-import ServerSync from "../../shared/ServerSync/ServerSync";
 import AllUserListIndex from "../AllUsers/AllUserListIndex";
-import CalculateAnnotations from "../Annotations/CalculateAnnotations";
 import EmailVerification from "../Auth/EmailVerification/EmailVerification";
 import EmailVerificationAfterLogin from "../Auth/EmailVerification/EmailVerificationAfterLogin";
-import Course from "../Course/Course";
-import CreateChapter from "../Course/CreateChapter";
-import CreateCourse from "../Course/CreateCourse";
-import UpdateChapter from "../Course/UpdateChapter";
-import UpdateCourse from "../Course/UpdateCourse";
-import CourseDetails from "../CourseNew/CourseDetails";
-import CourseDetailsIndex from "../CourseNew/CourseDetailsIndex";
-import CourseMainContent from "../CourseNew/CourseMainContent";
-import QuizShow from "../CourseNew/QuizShow";
 import Dashboard from "../Dashboard/Dashboard";
 import UpdateDocument from "../Documents/UpdateDocument";
-import EditProfileIndex from "../EditProfile/EditProfileIndex";
 import EditProfilePageIndex from "../EditProfile/EditProfilePage/EditProfilePageIndex";
 import ForgetPassword from "../ForgetPassword/ForgetPassword";
 import ResetPassword from "../ForgetPassword/ResetPassword";
-import ActiveJobList from "../Job/ActiveJobList";
-import AllJobs from "../Job/AllJobs";
-import AllJobsForReviewer from "../Job/AllJobsForReviewer";
-import CreateJob from "../Job/CreateJob";
-import Job from "../Job/Job";
-import OngoingJob from "../Job/OngoingJob";
-import ProjectList from "../Project/ProjectList";
+import Home from "../Home/Home";
 import DetailsPage from "../ProjectLIstNew2/ProjectDetailsFull/DetailsPage";
 import FullProjectDetails from "../ProjectLIstNew2/ProjectDetailsFull/FullProjectDetails";
 import ProjectLIstIndex2 from "../ProjectLIstNew2/ProjectLIstIndex2";
-import CreateQuiz from "../Quiz/CreateQuiz";
-import ShowResult from "../Quiz/QuizPage/ShowResult/ShowResult";
-import UpdateQuiz from "../Quiz/UpdateQuiz";
 import Skills from "../Skill/Skills";
 import UserListIndex from "../UserListNew/UserListIndex";
 import PrivateRoute from "./PrivateRoute";
-import Home from "../Home/Home";
 
-const roles = {
+export const roles = {
   admin: "admin",
   eng_lead: "engineering_lead",
 
@@ -82,46 +53,60 @@ const Routers = () => {
     <>
       <Routes>
         <Route path={"/"} element={<Dashboard />} />
-        <Route path={"/home"} element={<Home />} />
-        <Route path={"/verify-email/:id/:token/"} element={<EmailVerificationAfterLogin />} />
-        {/*TODO Correction in this component */}
-        <Route path={"/emailVerification"} element={<EmailVerification />} />
-
         <Route path={"/dashboard"} element={<Dashboard />} />
 
-        {/* ---------- Course and chapter related routes ------------ */}
+        <Route path={"/home"} element={<Home />} />
+        <Route path={"/verify-email/:id/:token/"} element={<EmailVerificationAfterLogin />} />
 
-        <Route path={"/course"} element={<Course />} />
+        {/* //!! important */}
+        {/* TODO Correction in this component */}
+        <Route path={"/emailVerification"} element={<EmailVerification />} />
+
+        {/* ---------- Course routes ------------ */}
+        {/* TODO Should updated and release later  */}
+        {/* <Route path={"/course"} element={<Course />} />
         <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}>
           <Route path={"/create-course"} element={<CreateCourse />} />
         </Route>
         <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}>
           <Route path={"/edit-course/:id"} element={<UpdateCourse />} />
         </Route>
-        <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}>
-          <Route path={"/update-chapter/:id"} element={<UpdateChapter />} />
-        </Route>
-
         <Route path={"/course-details/:id"} element={<CourseDetails />}>
           <Route path="index" element={<CourseDetailsIndex />} />
-          {/* <Route path="index" element={<CourseNewDetailsIndex />} /> */}
           <Route path="content" element={<CourseMainContent />} />
           <Route path="show-quiz" element={<QuizShow />} />
           <Route path={"quiz-result"} element={<ShowResult />} />
-        </Route>
+        </Route> */}
 
+        {/* ---------- ------------ ------------ */}
+
+        {/* ---------- Chapter related routes ------------ */}
+        {/* TODO Should updated and release later  */}
+        {/* <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}>
+          <Route path={"/update-chapter/:id"} element={<UpdateChapter />} />
+        </Route>
         <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]} />}>
+          <Route path={"/create-chapter/:id"} element={<CreateChapter />} />
+        </Route> */}
+        {/* ---------- ------------ ------------ */}
+
+        {/* ---------- Quiz related routes ------------ */}
+        {/* TODO Should updated and release later  */}
+        {/* <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]} />}>
           <Route path={"/create-quiz"} element={<CreateQuiz />} />
         </Route>
         <Route element={<PrivateRoute roles={[roles.trainer, roles.admin]} />}>
           <Route path={"/edit-quiz"} element={<UpdateQuiz />} />
-        </Route>
-        <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]} />}>
-          <Route path={"/create-chapter/:id"} element={<CreateChapter />} />
-        </Route>
+        </Route> */}
+        {/* ---------- ------------ ---------------- */}
 
         <Route path={"/updatedocument"} element={<UpdateDocument />} />
-        <Route
+        <Route path={"/forgetpassword"} element={<ForgetPassword />} />
+        <Route path={"/reset-password/:id/:token"} element={<ResetPassword />} />
+
+        {/* ----------- Project List ------------ */}
+        {/* TODO Should updated and release later  */}
+        {/* <Route
           element={
             <PrivateRoute
               roles={[
@@ -137,10 +122,15 @@ const Routers = () => {
           }
         >
           <Route path={"/projectlist"} element={<ProjectList />} />
-        </Route>
-        <Route path={"/payment"} element={<Payment />} />
-        <Route path={"/forgetpassword"} element={<ForgetPassword />} />
+        </Route> */}
+        {/* --------- ------------- ------------ */}
 
+        {/* --------- Payment ------------ */}
+        {/* TODO Should updated and release later  */}
+        {/* <Route path={"/payment"} element={<Payment />} /> */}
+        {/* --------- ------------- ------------ */}
+
+        {/* --------- Skill ------------ */}
         <Route
           element={
             <PrivateRoute
@@ -159,7 +149,9 @@ const Routers = () => {
         >
           <Route path={"/skillcreate"} element={<Skills />} />
         </Route>
-        <Route path={"/reset-password/:id/:token"} element={<ResetPassword />} />
+        {/* -------- ---------- ------------ */}
+
+        {/* --------All users ------------ */}
         {/* TODO Check if iis really needed or not */}
         <Route path={"/annotators"} element={<UserListIndex action={"annotator"} />} />
 
@@ -179,9 +171,16 @@ const Routers = () => {
             ></PrivateRoute>
           }
         >
-          <Route path={"/allusers"} element={<UserListIndex action={"alluser"} />} />
+          {/*//!! This is not used */}
+          {/* <Route path={"/allusers"} element={<UserListIndex action={"alluser"} />} />  */}
+
           <Route path={"/all-users"} element={<AllUserListIndex action={"admin"} />} />
         </Route>
+
+        {/* -------- --------- ------------ */}
+
+        {/* --------All Projects ------------ */}
+
         <Route
           element={
             <PrivateRoute
@@ -199,6 +198,7 @@ const Routers = () => {
         >
           <Route path={"/allprojects"} element={<ProjectLIstIndex2 action={"allprojects"} />} />
         </Route>
+
         <Route
           element={
             <PrivateRoute
@@ -216,6 +216,7 @@ const Routers = () => {
         >
           <Route path={"/detailsInfo/:id"} element={<DetailsPage action={"detailsInfo"} />} />
         </Route>
+
         <Route
           element={
             <PrivateRoute
@@ -234,10 +235,11 @@ const Routers = () => {
           <Route path={"/projectDetails/:id"} element={<FullProjectDetails action={"projectDetails"} />} />
         </Route>
 
-        <Route path={"/users"} element={<UserListIndex action={"recruitment_manager"} />} />
-        <Route path={"/reviewers"} element={<UserListIndex action={"reviewer"} />} />
+        {/* -------- ---------- ------------ */}
 
-        <Route
+        {/* -------- Jobs ------------ */}
+        {/* TODO Should updated and release later  */}
+        {/* <Route
           element={
             <PrivateRoute
               roles={[
@@ -272,17 +274,18 @@ const Routers = () => {
 
             <Route path={"reviwerJoblist"} element={<ActiveJobList action={"jobs"} />} />
           </Route>
-        </Route>
+        </Route> */}
+        {/* -------- ------ ------------ */}
 
         {/* TODO Need to fixed the skeleton */}
-        <Route element={<PrivateRoute roles={[roles.admin]} />}>
+        {/* TODO Should updated and release later  */}
+        {/* <Route element={<PrivateRoute roles={[roles.admin]} />}>
           <Route path={"/calculate-annotation"} element={<CalculateAnnotations />} />
-        </Route>
+        </Route> */}
 
-        {/* TODO Apply this asap */}
-        {/* New Version */}
-
-        <Route
+        {/* -------- Benchmark ---------- */}
+        {/* TODO Should updated and release later  */}
+        {/* <Route
           element={
             <PrivateRoute
               roles={[roles.admin, roles.eng_lead, roles.pro_lead, roles.pro_co, roles.pro_manager, roles.del_manager]}
@@ -295,8 +298,12 @@ const Routers = () => {
             <Route path={"update"} element={<UpdateBenchMarkNew />} />
             <Route path={"create"} element={<CreateBenchMarkNew />} />
           </Route>
-        </Route>
-        <Route
+        </Route> */}
+        {/* -------- -------------- ---------- */}
+
+        {/* --------Server Sync ---------- */}
+        {/* TODO Should updated and release later  */}
+        {/* <Route
           element={
             <PrivateRoute
               roles={[roles.admin, roles.eng_lead, roles.pro_lead, roles.pro_co, roles.pro_manager, roles.del_manager]}
@@ -304,16 +311,25 @@ const Routers = () => {
           }
         >
           <Route path={"/serversync"} element={<ServerSync />} />
-        </Route>
+        </Route> */}
+        {/* -------- ------------ ---------- */}
 
-        {/* --------Server Sync ---------- */}
+        {/* -------- My Profile ---------- */}
 
-        {/* --------------- */}
-        {/* <Route path={"/edit-profile"} element={<EditProfileIndex />}></Route> */}
         <Route path={"/edit-profile"} element={<EditProfilePageIndex />}></Route>
-        <Route path={"/show-profile"} element={<EditProfileIndex />}></Route>
+
+        {/* //!! This is not used */}
+        {/* <Route path={"/show-profile"} element={<EditProfileIndex />}></Route> */}
+
+        {/* -------- ------------ ---------- */}
+
+        {/* ---------- Notification ----------- */}
         <Route path={"/show-all-notification"} element={<AllNotification />}></Route>
-        <Route
+        {/* ---------- ---------- ----------- */}
+
+        {/* ---------- Project Directory ----------- */}
+        {/* TODO Should updated and release later  */}
+        {/* <Route
           element={
             <PrivateRoute
               roles={[roles.admin, roles.eng_lead, roles.pro_lead, roles.pro_co, roles.pro_manager, roles.del_manager]}
@@ -321,9 +337,16 @@ const Routers = () => {
           }
         >
           <Route path={"/projectDirectory"} element={<ProjectDirectoryIndex />} />
-        </Route>
+        </Route> */}
+        {/* ---------- ---------- ----------- */}
 
+        {/* ---------- Error Page ----------- */}
         <Route path="*" element={<ErrorPage />} />
+        {/* ---------- ---------- ----------- */}
+
+        {/* ---------- Coming Soon page ----------- */}
+
+        {/* ---------- ---------- ----------- */}
       </Routes>
     </>
   );

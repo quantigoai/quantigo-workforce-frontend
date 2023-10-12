@@ -18,6 +18,7 @@ const style = {
 };
 const AcceptModal = ({ open, handleClose, handleAccept, user }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
+  const { isLoading } = useSelector((state) => state.user);
   return (
     <>
       <Modal
@@ -85,6 +86,7 @@ const AcceptModal = ({ open, handleClose, handleAccept, user }) => {
               onClick={() => {
                 handleAccept();
               }}
+              disabled={isLoading}
               sx={{
                 textTransform: "none",
                 background: "#FFAB00",

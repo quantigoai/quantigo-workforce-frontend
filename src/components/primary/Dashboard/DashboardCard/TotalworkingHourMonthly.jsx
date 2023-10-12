@@ -7,15 +7,15 @@ const TotalworkingHourMonthly = () => {
     <>
       <Grid container>
         <Paper elevation={0} sx={{ padding: "0%", width: "100%", height: "100px" }}>
-          <Box sx={{ padding: "4%" }}>
+          <Box sx={{ padding: "6%" }}>
             <Grid container>
-              <Typography variant={"wf_h6"} sx={{ color: "#3C4D6B" }}>
+              <Typography variant={"wpf_p4_medium"} sx={{ color: "neutral.N300" }}>
                 Working Hour (Current Month)
               </Typography>
             </Grid>
             <Grid container sx={{ paddingTop: "4%" }}>
               <Grid item xs={8}>
-                <Typography sx={{ color: "##1D1D1D" }} variant="h5">
+                <Typography sx={{ color: "neutral.750" }} variant="wpf_h4_Bold">
                   0
                 </Typography>
               </Grid>

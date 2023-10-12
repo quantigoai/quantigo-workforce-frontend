@@ -14,23 +14,25 @@ const PendingRequest = () => {
             padding: "0%",
             width: "100%",
             height: "100px",
+            // display  :"flex",
             borderRadius: "8px",
-          }}
-        >
-          <Box sx={{ padding: "4%", position: "relative" }}>
-            <Grid container sx={{ paddingTop: "0%" }}>
-              <Grid item xs={3}>
+            // backgroundColor:"blue",
+            // justifyContent:"center"
+          }}>
+          <Box sx={{ padding: "6%", position: "relative", backgroundColor: "" }}>
+            <Grid container sx={{ paddingTop: "0%", backgroundColor: "" }}>
+              <Grid item xs={3.5}>
                 <img src={iconPendding} />
               </Grid>
-              <Grid item xs={9}>
+              <Grid item xs={8.5}>
                 <Grid container>
-                  <Typography variant={"wf_h6"} sx={{ color: "#3C4D6B" }}>
+                  <Typography variant={"wpf_p4_medium"} sx={{ color: "neutral.N300" }}>
                     Pending Request
                   </Typography>
                 </Grid>
                 <Grid container sx={{ paddingTop: "4%" }}>
                   <Grid item xs={8}>
-                    <Typography sx={{ color: "#091E42" }} variant="h5">
+                    <Typography sx={{ color: "neutral.750" }} variant="wpf_h4_Bold">
                       <b>{totalCountData.pendingUsers}</b>
                     </Typography>
                   </Grid>

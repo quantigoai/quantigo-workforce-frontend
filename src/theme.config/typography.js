@@ -32,6 +32,17 @@ const typography = {
   wf_h4: createTypography("20px", "500", "30px"), // our own typography
   wf_p2_semiBold: createTypography("14px", "500", "16px"),
 
+
+  wpf_h1_Bold: createTypography("40px", "700", "48px"),
+  wpf_h2_Bold: createTypography("36px", "700", "44px"),
+  wpf_h3_Bold: createTypography("32px", "700", "40px"),
+  wpf_h4_Bold: createTypography("24px", "700", "32px"),
+  wpf_h5_Bold: createTypography("20px", "700", "28px"),
+  wpf_h6_Bold: createTypography("16px", "700", "28px"),
+  wpf_h7_Bold: createTypography("12px", "700", "28px"),
+
+
+
   wpf_h1_semiBold: createTypography("40px", "600", "48px"),
   wpf_h2_semiBold: createTypography("36px", "600", "44px"),
   wpf_h3_semiBold: createTypography("32px", "600", "40px"),

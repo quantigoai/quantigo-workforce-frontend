@@ -37,7 +37,7 @@ const EmailVerification = () => {
 
   return (
     <Box className="container">
-      <HeaderNav />
+      <HeaderNav isEmailVerification={true} />
       <Grid
         container
         sx={{

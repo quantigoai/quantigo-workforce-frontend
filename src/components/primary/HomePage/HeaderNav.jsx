@@ -14,7 +14,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
 import logoBlue from "../../../assets/images/rsz_logoblue.png";
 
-const HeaderNav = ({ isForgetPassword, resetPassword }) => {
+const HeaderNav = ({ isForgetPassword, resetPassword, isEmailVerification }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { isLightTheme } = useSelector((state) => state.theme);
@@ -71,7 +71,7 @@ const HeaderNav = ({ isForgetPassword, resetPassword }) => {
                   display: "flex",
                   height: "100%",
                   justifyContent: "flex-end",
-                  backgroundColor: isForgetPassword || resetPassword ? "" : "#fff",
+                  backgroundColor: isForgetPassword || resetPassword || isEmailVerification ? "" : "#fff",
                   p: 4,
                 }}
                 gap={3}
@@ -84,7 +84,9 @@ const HeaderNav = ({ isForgetPassword, resetPassword }) => {
                     cursor: "pointer",
                   }}
                 >
-                  <Typography color={isForgetPassword || resetPassword ? "#fff" : "neutral.850"}>FAQ</Typography>
+                  <Typography color={isForgetPassword || resetPassword || isEmailVerification ? "#fff" : "neutral.850"}>
+                    FAQ
+                  </Typography>
                 </Link>
                 <Link
                   onClick={() => navigate("/howitworks")}
@@ -94,7 +96,10 @@ const HeaderNav = ({ isForgetPassword, resetPassword }) => {
                     cursor: "pointer",
                   }}
                 >
-                  <Typography color={isForgetPassword || resetPassword ? "#fff" : "neutral.850"} variant="body1">
+                  <Typography
+                    color={isForgetPassword || resetPassword || isEmailVerification ? "#fff" : "neutral.850"}
+                    variant="body1"
+                  >
                     How it works
                   </Typography>
                 </Link>
@@ -102,7 +107,7 @@ const HeaderNav = ({ isForgetPassword, resetPassword }) => {
                   How it work
                 </Typography> */}
                 <Typography
-                  color={isForgetPassword || resetPassword ? "#fff" : "neutral.850"}
+                  color={isForgetPassword || resetPassword || isEmailVerification ? "#fff" : "neutral.850"}
                   // sx={{
                   //   color: location.pathname === "/howitworks" && " #47536B",
                   // }}

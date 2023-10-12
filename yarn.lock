@@ -1990,9 +1990,9 @@
     react-is "^18.2.0"
 
 "@mui/x-data-grid@^6.10.2":
-  version "6.16.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-6.16.1.tgz#b7a33c25193d70b80ffbe4b168d8524752dfa5c5"
-  integrity sha512-jiV4kMegueNiaB3Qs0VpHG0Cp+eIZa5upMr9fcdPMPNLhOYnkNtexTyezfptJyfD8Adbjrjt4bbRktBcDCC5DA==
+  version "6.16.2"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-6.16.2.tgz#115354c32827c4a92a05c7576dbe3b152ca718f3"
+  integrity sha512-nKZxlzkcqXUbgxvz01J0okziBH4uvnEVVneOSzp5TeCOC7Wke1YFBJRRjR6H6tVpbaqlOw/LFULrTfcJtiaMBQ==
   dependencies:
     "@babel/runtime" "^7.23.1"
     "@mui/utils" "^5.14.11"
@@ -2001,23 +2001,23 @@
     reselect "^4.1.8"
 
 "@mui/x-date-pickers-pro@^6.11.0":
-  version "6.16.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-date-pickers-pro/-/x-date-pickers-pro-6.16.1.tgz#c3f00ecb87eb466f02851ecc779b153d0e4c8f9f"
-  integrity sha512-QiW7ggejZl4iqmQFUE1EFoaM1lrm7q4E0w7yB3sGPuknrM7H4T6FroJCatJuyjj3EXpfop53sxrE0ykuUoU/YQ==
+  version "6.16.2"
+  resolved "https://registry.yarnpkg.com/@mui/x-date-pickers-pro/-/x-date-pickers-pro-6.16.2.tgz#8ab43dc07445e86b643ede6f749146ce5b7aa369"
+  integrity sha512-YmSGhlN8FiYJQ2Jfm7C4S0nZtysghRk+dPOzALLb9eFEG8I32XUOeNI0Gs7ETfVZHobK7RZfDNPr8/VveMTVow==
   dependencies:
     "@babel/runtime" "^7.23.1"
     "@mui/base" "^5.0.0-beta.17"
     "@mui/utils" "^5.14.11"
-    "@mui/x-date-pickers" "6.16.1"
+    "@mui/x-date-pickers" "6.16.2"
     "@mui/x-license-pro" "6.10.2"
     clsx "^2.0.0"
     prop-types "^15.8.1"
     react-transition-group "^4.4.5"
 
-"@mui/x-date-pickers@6.16.1", "@mui/x-date-pickers@^6.0.1":
-  version "6.16.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-date-pickers/-/x-date-pickers-6.16.1.tgz#76341384ef51db5f405f779fe5f2e9456b2cdc53"
-  integrity sha512-4B2+DU7aywYdvmr10o2qai6kbbR26zta/v1y8x3bmTilI/KcbhZ2OlsyArPKmTRNC8VYirejSnhLkPR/+JIkPg==
+"@mui/x-date-pickers@6.16.2", "@mui/x-date-pickers@^6.0.1":
+  version "6.16.2"
+  resolved "https://registry.yarnpkg.com/@mui/x-date-pickers/-/x-date-pickers-6.16.2.tgz#a21e9891d797287bd8aebb822eb26e70a81923f8"
+  integrity sha512-JFrDUeBkiKtfJ0WqwyPBICEP1U+Ujfsily3ZQ/Hv4zAOleG/5769EgS7TOO4cVgnuhtvQ/pqx2gmuCn8/gcC5w==
   dependencies:
     "@babel/runtime" "^7.23.1"
     "@mui/base" "^5.0.0-beta.17"
@@ -5448,9 +5448,9 @@ forwarded@0.2.0:
   integrity sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==
 
 fraction.js@^4.3.6:
-  version "4.3.6"
-  resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.3.6.tgz#e9e3acec6c9a28cf7bc36cbe35eea4ceb2c5c92d"
-  integrity sha512-n2aZ9tNfYDwaHhvFTkhFErqOMIb8uyzSQ+vGJBjZyanAKZVbGUQ1sngfk9FdkBw7G26O7AgNjLcecLffD1c7eg==
+  version "4.3.7"
+  resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.3.7.tgz#06ca0085157e42fda7f9e726e79fefc4068840f7"
+  integrity sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==
 
 framer-motion@^10.16.4:
   version "10.16.4"

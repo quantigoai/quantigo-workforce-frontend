@@ -1,22 +1,19 @@
 /*
- * Filename: /home/tanzim/workstation/Office/quantigo-workforce-frontend/src/components/primary/AllUsers/UsersHeader.jsx
+ * Filename: /home/tanzim/workstation/Office/quantigo-workforce-frontend/src/components/primary/ProjectLIstNew2/ProjectHeader.jsx
  * Path: /home/tanzim/workstation/Office/quantigo-workforce-frontend
- * Created Date: Thursday, September 28th 2023, 2:15:36 am
+ * Created Date: Thursday, October 12th 2023, 11:38:29 am
  * Author: Tanzim Ahmed
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import ClearIcon from "@mui/icons-material/Clear";
-import FilterListIcon from "@mui/icons-material/FilterList";
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, Button, Grid, IconButton, InputBase, Paper } from "@mui/material";
 import React from "react";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
-import "../ProjectLIstNew2/index.css";
-import ExportUserList from "./ExportUserList";
-import "./index.css";
-const UsersHeader = ({
+import FilterListIcon from "@mui/icons-material/FilterList";
+
+const ProjectHeader = ({
   isFilter,
   isLightTheme,
   handleIsFilter,
@@ -45,7 +42,8 @@ const UsersHeader = ({
               paddingX: "10px",
             }}
           >
-            <CommonHeader title="All Users" customButton="Create User" />
+            {/* TODO Need to remove the unnecessary custom button */}
+            <CommonHeader title="Projects" customButton="Create User" />
           </Grid>
         </Box>
 
@@ -74,29 +72,7 @@ const UsersHeader = ({
             <IconButton disabled type="button" sx={{ p: "5px" }} aria-label="search">
               <SearchIcon />
             </IconButton>
-            <InputBase
-              inputRef={searchRef}
-              onBlur={(e) => handleSearch(e)}
-              sx={{ ml: 0, flex: 1 }}
-              placeholder="Search"
-            />
-            {search && (
-              <Button
-                sx={{
-                  minWidth: "40px",
-                }}
-              >
-                <ClearIcon
-                  sx={{
-                    color: "neutral.N300",
-                    "&:hover": {
-                      color: "#F04438",
-                    },
-                  }}
-                  onClick={clearSearch}
-                />
-              </Button>
-            )}
+            <InputBase sx={{ ml: 0, flex: 1 }} placeholder="Search" />
           </Paper>
 
           <IconButton
@@ -111,9 +87,7 @@ const UsersHeader = ({
           >
             <FilterListIcon sx={{ color: "primary.main" }} />
           </IconButton>
-
-          <ExportUserList />
-          {/* <Button
+          <Button
             sx={{
               textTransform: "none",
               borderRadius: "8px",
@@ -126,12 +100,12 @@ const UsersHeader = ({
             variant="contained"
             onClick={handleProjectCreateOpen}
           >
-            Export
-          </Button> */}
+            Create Project
+          </Button>
         </Box>
       </Box>
     </>
   );
 };
 
-export default UsersHeader;
+export default ProjectHeader;

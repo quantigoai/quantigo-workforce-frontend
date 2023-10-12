@@ -7,9 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import SearchIcon from "@mui/icons-material/Search";
-import { Box, Button, Grid, IconButton, Paper } from "@mui/material";
-import InputBase from "@mui/material/InputBase";
+import { Box, Paper } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +21,6 @@ import {
   updateProjectDrawerById,
 } from "../../../features/slice/projectDrawerSlice";
 import { getAllSkills } from "../../../features/slice/skillSlice";
-import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 import EditProjectModal from "./EditProjectModal";
@@ -32,7 +29,6 @@ const TableWrapper = React.lazy(() => import("./ExpTable/TableWrapper"));
 
 import useToaster from "../../../customHooks/useToaster";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
-import { motion } from "framer-motion";
 import {
   fields,
   filterPDR,
@@ -48,6 +44,7 @@ import useHandleChange from "./Hooks/useHandleChange";
 import useHandleEditChange from "./Hooks/useHandleEditChange";
 import PaginationTable from "./PaginationTable";
 import Project2DetailsModal from "./Project2Details/Project2DetailsModal";
+import ProjectHeader from "./ProjectHeader";
 import ProjectModal from "./ProjectModal";
 import ProjectSelectFIlter from "./ProjectSelectFIlter";
 import "./index.css";
@@ -58,9 +55,13 @@ import "./index.css";
  */
 
 const ProjectLIstIndex2 = () => {
-  const { skills } = useSelector((state) => state.skill);
-  const { isLightTheme } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
+  const { isLightTheme } = useSelector((state) => state.theme);
+  const { skills } = useSelector((state) => state.skill);
+  const { projectDrawers, projectDrawer, total, error } = useSelector((state) => state.projectDrawer);
+  const { role } = useSelector((state) => state.user.user);
+  const [isDataLoading, setIsDataLoading] = useState(true);
+  const [isChildDataLoading, setIsChildDataLoading] = useState(false);
   const navigate = useNavigate();
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
@@ -68,13 +69,11 @@ const ProjectLIstIndex2 = () => {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [setAnnotatorPlatform] = useState();
   const [detailProject, setDetailProject] = useState({});
-
+  const toast = useToaster();
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
   });
-
-  const toast = useToaster();
 
   const {
     createProjectOpen,
@@ -92,23 +91,13 @@ const ProjectLIstIndex2 = () => {
     setDetailsProjectOpen,
   } = useAllFunc();
 
-  const { isLoading, projectDrawers, projectDrawer, total, error } = useSelector((state) => state.projectDrawer);
-  const { role } = useSelector((state) => state.user.user);
-  const [isDataLoading, setIsDataLoading] = useState(true);
-  const [isChildDataLoading, setIsChildDataLoading] = useState(false);
-
   const handleProjectDetailsOpen = (project) => {
     setDetailsProjectOpen(true);
     setDetailProject(project);
   };
-  useEffect(() => {
-    dispatch(getAllSkills());
-    dispatch(getAllProjectDrawers({ pagination })).then(() => setIsDataLoading(false));
-  }, []);
 
   const handleChangePagination = useCallback(() => {
     setIsChildDataLoading(true);
-    dispatch(getAllSkills());
     dispatch(
       getAllProjectDrawers({
         pagination,
@@ -127,6 +116,16 @@ const ProjectLIstIndex2 = () => {
     setAddSkills([]);
   };
 
+  //create and edit project submit
+
+  const { handleEditSkill, filteredSkillInfo, editCount, prevSkills, editSkills, isEdit, setIsEdit } =
+    useHandleEditChange();
+
+  const handleEditProjectClose = () => {
+    setEditModalOpen(false);
+    setIsEditModal(false);
+  };
+
   const handleDelete = (e) => {
     dispatch(deleteProjectDrawerById(e.id))
       .then((action) => {
@@ -138,22 +137,16 @@ const ProjectLIstIndex2 = () => {
         toast.trigger(error, "error");
       });
   };
-  //create and edit project submit
-
-  const { handleEditSkill, filteredSkillInfo, editCount, prevSkills, editSkills, isEdit, setIsEdit } =
-    useHandleEditChange();
-
-  const handleEditProjectClose = () => {
-    setEditModalOpen(false);
-    setIsEditModal(false);
-  };
-
   const handleClick = (e) => {
     dispatch(setCurrentProjectDrawer(e.id));
     setEditModalOpen(true);
     setIsEdit(true);
     setIsEditModal(true);
   };
+  // const handleDelete = (e) => {};
+  // const handleClick = (e) => {
+  //   console.log("handleclick");
+  // };
 
   const skillId = addSkills?.map((skill) => skill._id);
 
@@ -206,136 +199,49 @@ const ProjectLIstIndex2 = () => {
       typeof value === "string" ? value.split(",") : value
     );
   };
+
   useEffect(() => {
     dispatch(setActivePath("All Projects2"));
     setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
     projectDrawers && projectDrawers.length > 0 && setMyRows(dataBuilder(projectDrawers));
   }, [dispatch, projectDrawers]);
 
+  useEffect(() => {
+    dispatch(getAllSkills());
+    dispatch(getAllProjectDrawers({ pagination })).then(() => setIsDataLoading(false));
+  }, []);
+
   return (
     <>
       <Box className="projectBox">
         {/* TODO Filter functionality need to be checked for last page  */}
         <Box className="projectHeader">
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              width: "100%",
-              height: isFilter ? "55%" : "100%",
-              alignItems: "center",
-              background: isLightTheme ? "#FFFFFF" : "#1E1E1E",
-              borderTop: "1px solid #E6ECF5",
-            }}
-          >
-            <Box sx={{ width: "30%", padding: "12px 16px" }}>
-              <Grid
-                container
-                sx={{
-                  display: "flex",
-                  alignContent: "center",
-                  alignItems: "center",
-                  paddingX: "10px",
-                }}
-              >
-                {/* TODO Need to remove the unnecessary custom button */}
-                <CommonHeader title="Projects" customButton="Create User" />
-              </Grid>
-            </Box>
+          <ProjectHeader
+            isFilter={false}
+            isLightTheme={isLightTheme}
+            handleIsFilter={handleIsFilter}
+            handleProjectCreateOpen={() => console.log("handleProjectCreateOpen")}
+            // handleSearch={handleSearch}
+            // setSearch={setSearch}
+            // search={search}
+            // searchRef={searchRef}
+            // clearSearch={clearSearch}
+          />
 
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "12px 20px",
-              }}
-            >
-              <Paper
-                component="form"
-                sx={{
-                  p: "2px 4px",
-                  display: "flex",
-                  alignItems: "center",
-                  width: "240px",
-                  background: isLightTheme ? "#F4F7FE" : "#1E1E1E",
-                  border: "1px solid #EFF3FE",
-                  borderRadius: "8px",
-                  outline: "none",
-                  boxShadow: "none",
-                }}
-              >
-                <IconButton disabled type="button" sx={{ p: "5px" }} aria-label="search">
-                  <SearchIcon />
-                </IconButton>
-                <InputBase sx={{ ml: 0, flex: 1 }} placeholder="Search" />
-              </Paper>
-              <IconButton
-                onClick={handleIsFilter}
-                sx={{
-                  px: "5px 0px",
-                  background: isLightTheme ? "#F4F7FE" : "black",
-                  mx: 2,
-                  borderRadius: "8px",
-                }}
-                aria-label="menu"
-              >
-                <i style={{ color: "#266AED" }} className="ri-filter-3-line"></i>
-              </IconButton>
-              <Button
-                sx={{
-                  textTransform: "none",
-                  borderRadius: "8px",
-                  backgroundColor: "#2E58FF",
-                  color: "white",
-                  "&:hover": {
-                    background: "#244EF5",
-                  },
-                }}
-                variant="contained"
-                onClick={handleProjectCreateOpen}
-              >
-                Create Project
-              </Button>
-            </Box>
-          </Box>
-
-          <Box
-            component={motion.div}
-            // initial={{
-            //   x: isFilter ? 1000 : 0,
-            // }}
-            animate={{
-              // x: 1000,
-              opacity: isFilter ? 1 : 0,
-              // y: isFilter ? 1 : 0
-              // initial: { opacity: 0.1 },
-              transition: { type: "spring", stiffness: 300, duration: 0.4, delay: 0.2 },
-            }}
-            sx={{
-              background: isLightTheme ? "#FFFFFF" : "#1E1E1E",
-              width: "100%",
-              height: isFilter ? "45%" : "0%",
-              paddingY: "5px",
-              display: isFilter ? "block" : "none",
-              borderTop: "1px solid #E6ECF5",
-              transition: isFilter && "all 0.2s ease-in-out",
-            }}
-          >
-            <ProjectSelectFIlter
-              handleChangeAnnotatorFilter={handleChangeAnnotatorFilter}
-              role={role}
-              filterPDR={filterPDR}
-              platformOptions={platformOptions}
-              statusOptions={statusOptions}
-              projectTypeOptions={projectTypeOptions}
-              handleChange={handleChange}
-              handleClearFilter={handleClearFilter}
-              filterValue={filterValue}
-              skills={skills}
-              onSubmit={onSubmit}
-            />
-          </Box>
+          <ProjectSelectFIlter
+            isFilter={isFilter}
+            handleChangeAnnotatorFilter={handleChangeAnnotatorFilter}
+            role={role}
+            filterPDR={filterPDR}
+            platformOptions={platformOptions}
+            statusOptions={statusOptions}
+            projectTypeOptions={projectTypeOptions}
+            handleChange={handleChange}
+            handleClearFilter={handleClearFilter}
+            filterValue={filterValue}
+            skills={skills}
+            onSubmit={onSubmit}
+          />
         </Box>
 
         <Box className="tableContent">
@@ -352,26 +258,24 @@ const ProjectLIstIndex2 = () => {
             {isDataLoading ? (
               <LoadingComponent />
             ) : (
-              <>
-                <TableWrapper
-                  role={role}
-                  handleDetailsPage={handleDetailsPage}
-                  handleClick={handleClick}
-                  handleDelete={handleDelete}
-                  myColumn={myColumn}
-                  myRows={myRows}
-                  pagination={pagination}
-                  setPagination={setPagination}
-                  handleChangePagination={handleChangePagination}
-                  totalItems={total}
-                  handleId={handleId}
-                  filteredCol={filteredCol}
-                  handleProjectDetailsOpen={handleProjectDetailsOpen}
-                  data={projectDrawers}
-                  isChildDataLoading={isChildDataLoading}
-                  setIsChildDataLoading={setIsChildDataLoading}
-                />
-              </>
+              <TableWrapper
+                role={role}
+                handleDetailsPage={handleDetailsPage}
+                handleClick={handleClick}
+                handleDelete={handleDelete}
+                myColumn={myColumn}
+                myRows={myRows}
+                pagination={pagination}
+                setPagination={setPagination}
+                handleChangePagination={handleChangePagination}
+                totalItems={total}
+                handleId={handleId}
+                filteredCol={filteredCol}
+                handleProjectDetailsOpen={handleProjectDetailsOpen}
+                data={projectDrawers}
+                isChildDataLoading={isChildDataLoading}
+                setIsChildDataLoading={setIsChildDataLoading}
+              />
             )}
 
             <PaginationTable
@@ -382,6 +286,7 @@ const ProjectLIstIndex2 = () => {
             />
           </Paper>
         </Box>
+
         {detailsProjectOpen && (
           <Box>
             <Project2DetailsModal

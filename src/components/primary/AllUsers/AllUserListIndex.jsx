@@ -35,12 +35,16 @@ import { fields } from "./tableFields";
 import { hubOptions, roleOptions, userStatusOptions } from "./userFilterOptions";
 
 // TODO NEED TO FIX LOADING ISSUE
-const AllUserListIndex = ({ action }) => {
+const AllUserListIndex = () => {
   const dispatch = useDispatch();
   const { isLightTheme } = useSelector((state) => state.theme);
   const { users, totalUsers } = useSelector((state) => state.user.users);
-  const { isLoading, user } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
   const { role } = user;
+  const { skills } = useSelector((state) => state.skill);
+
+  const [isDataLoading, setIsDataLoading] = useState(true);
+  const [isChildDataLoading, setIsChildDataLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [prevSkills, setPrevSkills] = useState([]);
   const [prevRoles, setPrevRoles] = useState([]);
@@ -56,6 +60,7 @@ const AllUserListIndex = ({ action }) => {
     currentPage: 0,
     pageSize: 10,
   });
+  const searchRef = React.useRef(null);
 
   const {
     handleChangeSkill,
@@ -69,7 +74,7 @@ const AllUserListIndex = ({ action }) => {
     setSearch,
   } = useHandleChange();
 
-  const searchRef = React.useRef(null);
+
   const clearSearch = () => {
     setSearch("");
     searchRef.current.value = "";
@@ -83,8 +88,8 @@ const AllUserListIndex = ({ action }) => {
     clearSearch
   );
 
-  const { skills } = useSelector((state) => state.skill);
 
+  // TODO Move
   const arraysAreEqual = (arr1, arr2) => {
     if (arr1.length !== arr2.length) {
       return false;
@@ -127,37 +132,32 @@ const AllUserListIndex = ({ action }) => {
     users && users.length > 0 && setMyRows(dataBuilder(users));
   }, [dispatch, users]);
 
-  const [isDataLoading, setIsDataLoading] = useState(true);
-  const [isChildDataLoading, setIsChildDataLoading] = useState(false);
-
   useEffect(() => {
     dispatch(getAllSkills());
     dispatch(getAllUsers({ pagination })).then(() => setIsDataLoading(false));
   }, []);
 
+  // TODO remove this
+  const handleDelete = (e) => {};
   const handleClick = (e) => {
     console.log("handleclick");
   };
-
-  const handleDelete = (e) => {};
+  const handleDetailsPage = (e) => {
+    console.log("handledetail");
+  };
 
   const handleUserDetailsOpen = (params) => {
-    console.log("handledetail");
     setSelectedUser(params);
     dispatch(setTargetedUser(params));
     setOpen(true);
   };
 
-  const handleDetailsPage = (e) => {
-    console.log("handledetail");
-  };
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };
 
   // Reject Nda
   const handleReject = (params) => {
-    console.log(params);
     setSelectedUser(params);
     setOpenModal(true);
   };

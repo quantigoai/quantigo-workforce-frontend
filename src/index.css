@@ -44,13 +44,14 @@ display: flex;
     align-items: center;
 }
 
+/* Toaster Start */
 .success-toast-background{
   background-color: #12B76A;
 }
 
 .error-toast-background{
   background-color: #F04438;
-
+  
 }
 .success-progress-bar {
   background: rgb(30, 221, 30) !important;
@@ -60,7 +61,14 @@ display: flex;
   background: rgb(220, 6, 27) !important;
 }
 
-/* .Toastify__progress-bar-theme--light{
-  background-color: yellow !important;
-  
-} */
+/* Toaster End  */
+
+/* Component  Header  */
+
+.headerBox{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    border-top: 1px solid #E6ECF5;
+}

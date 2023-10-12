@@ -45,7 +45,8 @@ export default function WPFTable({
   const y = useParallax(scrollYProgress, 300);
   console.log("🚀 ~ file: WPFTable.jsx:45 ~ y:", y);
   const scaleX = useSpring(scrollYProgress, {
-    stiffness: 500,
+    stiffness: 80,
+    delay : 2.5,
     damping: 30,
     restDelta: 0.001,
   });

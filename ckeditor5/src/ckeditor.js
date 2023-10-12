@@ -55,119 +55,120 @@ import Title from '@ckeditor/ckeditor5-heading/src/title.js';
 import TodoList from '@ckeditor/ckeditor5-list/src/todolist';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline.js';
 
-class Editor extends ClassicEditor {}
+class Editor extends ClassicEditor {
+}
 
 // Plugins to include in the build.
 Editor.builtinPlugins = [
-	Alignment,
-	Autoformat,
-	AutoImage,
-	AutoLink,
-	Autosave,
-	BlockQuote,
-	Bold,
-	Essentials,
-	FindAndReplace,
-	FontBackgroundColor,
-	FontColor,
-	FontFamily,
-	FontSize,
-	Heading,
-	Highlight,
-	HorizontalLine,
-	Image,
-	ImageCaption,
-	ImageInsert,
-	ImageResize,
-	ImageStyle,
-	ImageToolbar,
-	ImageUpload,
-	Indent,
-	IndentBlock,
-	Italic,
-	Link,
-	LinkImage,
-	List,
-	MediaEmbed,
-	MediaEmbedToolbar,
-	Mention,
-	PageBreak,
-	Paragraph,
-	PasteFromOffice,
-	SpecialCharacters,
-	SpecialCharactersArrows,
-	SpecialCharactersCurrency,
-	SpecialCharactersEssentials,
-	SpecialCharactersLatin,
-	SpecialCharactersMathematical,
-	SpecialCharactersText,
-	Subscript,
-	Superscript,
-	Table,
-	TableColumnResize,
-	TableToolbar,
-	TextTransformation,
-	Title,
-	TodoList,
-	Underline
+    Alignment,
+    Autoformat,
+    AutoImage,
+    AutoLink,
+    Autosave,
+    BlockQuote,
+    Bold,
+    Essentials,
+    FindAndReplace,
+    FontBackgroundColor,
+    FontColor,
+    FontFamily,
+    FontSize,
+    Heading,
+    Highlight,
+    HorizontalLine,
+    Image,
+    ImageCaption,
+    ImageInsert,
+    ImageResize,
+    ImageStyle,
+    ImageToolbar,
+    ImageUpload,
+    Indent,
+    IndentBlock,
+    Italic,
+    Link,
+    LinkImage,
+    List,
+    MediaEmbed,
+    MediaEmbedToolbar,
+    Mention,
+    PageBreak,
+    Paragraph,
+    PasteFromOffice,
+    SpecialCharacters,
+    SpecialCharactersArrows,
+    SpecialCharactersCurrency,
+    SpecialCharactersEssentials,
+    SpecialCharactersLatin,
+    SpecialCharactersMathematical,
+    SpecialCharactersText,
+    Subscript,
+    Superscript,
+    Table,
+    TableColumnResize,
+    TableToolbar,
+    TextTransformation,
+    Title,
+    TodoList,
+    Underline
 ];
 
 // Editor configuration.
 Editor.defaultConfig = {
-	toolbar: {
-		items: [
-			'heading',
-			'|',
-			'bold',
-			'italic',
-			'underline',
-			'link',
-			'bulletedList',
-			'numberedList',
-			'todoList',
-			'|',
-			'alignment',
-			'outdent',
-			'indent',
-			'pageBreak',
-			'horizontalLine',
-			'|',
-			'highlight',
-			'fontBackgroundColor',
-			'fontColor',
-			'fontFamily',
-			'fontSize',
-			'imageUpload',
-			'imageInsert',
-			'blockQuote',
-			'insertTable',
-			'mediaEmbed',
-			'undo',
-			'redo',
-			'findAndReplace',
-			'specialCharacters',
-			'superscript',
-			'subscript'
-		]
-	},
-	language: 'en',
-	image: {
-		toolbar: [
-			'imageTextAlternative',
-			'toggleImageCaption',
-			'imageStyle:inline',
-			'imageStyle:block',
-			'imageStyle:side',
-			'linkImage'
-		]
-	},
-	table: {
-		contentToolbar: [
-			'tableColumn',
-			'tableRow',
-			'mergeTableCells'
-		]
-	}
+    toolbar: {
+        items: [
+            'heading',
+            '|',
+            'bold',
+            'italic',
+            'underline',
+            'link',
+            'bulletedList',
+            'numberedList',
+            'todoList',
+            '|',
+            'alignment',
+            'outdent',
+            'indent',
+            'pageBreak',
+            'horizontalLine',
+            '|',
+            'highlight',
+            'fontBackgroundColor',
+            'fontColor',
+            'fontFamily',
+            'fontSize',
+            'imageUpload',
+            'imageInsert',
+            'blockQuote',
+            'insertTable',
+            'mediaEmbed',
+            'undo',
+            'redo',
+            'findAndReplace',
+            'specialCharacters',
+            'superscript',
+            'subscript'
+        ]
+    },
+    language: 'en',
+    image: {
+        toolbar: [
+            'imageTextAlternative',
+            'toggleImageCaption',
+            'imageStyle:inline',
+            'imageStyle:block',
+            'imageStyle:side',
+            'linkImage'
+        ]
+    },
+    table: {
+        contentToolbar: [
+            'tableColumn',
+            'tableRow',
+            'mergeTableCells'
+        ]
+    }
 };
 
 export default Editor;

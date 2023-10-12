@@ -31,116 +31,116 @@ import {resetUserSlice} from "../features/slice/userSlice";
 import {resetWorkspaceSlice, updateWorkSpaceData} from "../features/slice/workSpaceSlice";
 
 export default function useReset(dispatch, role, activePath = "/") {
-  if (role === "admin") {
-    dispatch(resetUserSlice());
-    dispatch(resetProjectDirectorySlice());
-    dispatch(resetBenchMarkSlice());
-    dispatch(resetCourseSlice());
-    dispatch(resetDashboardSlice());
-    dispatch(resetDataSetSlice());
-    dispatch(resetJobSlice());
-    dispatch(resetNotificationSlice());
-    dispatch(resetProjectByWorkspaceSlice());
-    dispatch(resetProjectDrawerSlice());
-    dispatch(resetQuizSlice());
-    dispatch(resetSkillSlice());
-    dispatch(resetSyncServerSlice());
-    dispatch(resetTeamSlice());
-    dispatch(resetTemporaryDataSlice());
-    dispatch(resetWorkspaceSlice());
-  }
+    if (role === "admin") {
+        dispatch(resetUserSlice());
+        dispatch(resetProjectDirectorySlice());
+        dispatch(resetBenchMarkSlice());
+        dispatch(resetCourseSlice());
+        dispatch(resetDashboardSlice());
+        dispatch(resetDataSetSlice());
+        dispatch(resetJobSlice());
+        dispatch(resetNotificationSlice());
+        dispatch(resetProjectByWorkspaceSlice());
+        dispatch(resetProjectDrawerSlice());
+        dispatch(resetQuizSlice());
+        dispatch(resetSkillSlice());
+        dispatch(resetSyncServerSlice());
+        dispatch(resetTeamSlice());
+        dispatch(resetTemporaryDataSlice());
+        dispatch(resetWorkspaceSlice());
+    }
 
-  if (activePath === "All Users") {
-    dispatch(updateDashboardData());
-    dispatch(updateJobData());
-    dispatch(updateBenchmarkData());
-    dispatch(updateCourseData());
-    dispatch(updateTeamData());
-    dispatch(updateDatasetData());
-    dispatch(updateWorkSpaceData());
-    dispatch(updateProjectDirectoryData());
-    dispatch(updateQuizData());
-    dispatch(updateProjectData());
-  }
-  if (activePath === "Project Directory") {
-    dispatch(updateDashboardData());
-    dispatch(updateJobData());
-    dispatch(updateBenchmarkData());
-    dispatch(updateCourseData());
-    dispatch(updateTeamData());
-    dispatch(updateDatasetData());
-    dispatch(updateWorkSpaceData());
-    dispatch(updateQuizData());
-    dispatch(updateProjectData());
-    dispatch(updateSkillData());
-  }
-  if (activePath === "Sync Server") {
-    dispatch(updateDashboardData());
-    dispatch(updateJobData());
-    dispatch(updateBenchmarkData());
-    dispatch(updateCourseData());
-    dispatch(updateTeamData());
-    dispatch(updateDatasetData());
-    dispatch(updateWorkSpaceData());
-    dispatch(updateProjectDirectoryData());
-    dispatch(updateQuizData());
-    dispatch(updateProjectData());
-    dispatch(updateSkillData());
-  }
-  if (activePath === "Benchmark") {
-    dispatch(updateDashboardData());
-    dispatch(updateJobData());
-    dispatch(updateCourseData());
-    dispatch(updateProjectDirectoryData());
-    dispatch(updateQuizData());
-    dispatch(updateSkillData());
-  }
-  if (activePath === "Jobs") {
-    dispatch(updateDashboardData());
-    dispatch(updateBenchmarkData());
-    dispatch(updateCourseData());
-    dispatch(updateProjectDirectoryData());
-    dispatch(updateQuizData());
-  }
-  if (activePath === "Course") {
-    dispatch(updateDashboardData());
-    dispatch(updateJobData());
-    dispatch(updateBenchmarkData());
-    dispatch(updateTeamData());
-    dispatch(updateDatasetData());
-    dispatch(updateWorkSpaceData());
-    dispatch(updateProjectDirectoryData());
-    dispatch(updateProjectData());
-  }
-  if (activePath === "Projects") {
-    dispatch(updateDashboardData());
-    dispatch(updateJobData());
-    dispatch(updateBenchmarkData());
-    dispatch(updateCourseData());
-    dispatch(updateProjectDirectoryData());
-    dispatch(updateQuizData());
-  }
-  if (activePath === "Skill") {
-    dispatch(updateDashboardData());
-    dispatch(updateJobData());
-    dispatch(updateBenchmarkData());
-    dispatch(updateCourseData());
-    dispatch(updateTeamData());
-    dispatch(updateDatasetData());
-    dispatch(updateWorkSpaceData());
-    dispatch(updateProjectDirectoryData());
-    dispatch(updateQuizData());
-    dispatch(updateProjectData());
-  }
-  if (activePath === "Dashboard") {
-    dispatch(updateJobData());
-    dispatch(updateBenchmarkData());
-    dispatch(updateCourseData());
-    dispatch(updateTeamData());
-    dispatch(updateDatasetData());
-    dispatch(updateWorkSpaceData());
-    dispatch(updateProjectDirectoryData());
-    dispatch(updateQuizData());
-    dispatch(updateProjectData());
-  }
+    if (activePath === "All Users") {
+        dispatch(updateDashboardData());
+        dispatch(updateJobData());
+        dispatch(updateBenchmarkData());
+        dispatch(updateCourseData());
+        dispatch(updateTeamData());
+        dispatch(updateDatasetData());
+        dispatch(updateWorkSpaceData());
+        dispatch(updateProjectDirectoryData());
+        dispatch(updateQuizData());
+        dispatch(updateProjectData());
+    }
+    if (activePath === "Project Directory") {
+        dispatch(updateDashboardData());
+        dispatch(updateJobData());
+        dispatch(updateBenchmarkData());
+        dispatch(updateCourseData());
+        dispatch(updateTeamData());
+        dispatch(updateDatasetData());
+        dispatch(updateWorkSpaceData());
+        dispatch(updateQuizData());
+        dispatch(updateProjectData());
+        dispatch(updateSkillData());
+    }
+    if (activePath === "Sync Server") {
+        dispatch(updateDashboardData());
+        dispatch(updateJobData());
+        dispatch(updateBenchmarkData());
+        dispatch(updateCourseData());
+        dispatch(updateTeamData());
+        dispatch(updateDatasetData());
+        dispatch(updateWorkSpaceData());
+        dispatch(updateProjectDirectoryData());
+        dispatch(updateQuizData());
+        dispatch(updateProjectData());
+        dispatch(updateSkillData());
+    }
+    if (activePath === "Benchmark") {
+        dispatch(updateDashboardData());
+        dispatch(updateJobData());
+        dispatch(updateCourseData());
+        dispatch(updateProjectDirectoryData());
+        dispatch(updateQuizData());
+        dispatch(updateSkillData());
+    }
+    if (activePath === "Jobs") {
+        dispatch(updateDashboardData());
+        dispatch(updateBenchmarkData());
+        dispatch(updateCourseData());
+        dispatch(updateProjectDirectoryData());
+        dispatch(updateQuizData());
+    }
+    if (activePath === "Course") {
+        dispatch(updateDashboardData());
+        dispatch(updateJobData());
+        dispatch(updateBenchmarkData());
+        dispatch(updateTeamData());
+        dispatch(updateDatasetData());
+        dispatch(updateWorkSpaceData());
+        dispatch(updateProjectDirectoryData());
+        dispatch(updateProjectData());
+    }
+    if (activePath === "Projects") {
+        dispatch(updateDashboardData());
+        dispatch(updateJobData());
+        dispatch(updateBenchmarkData());
+        dispatch(updateCourseData());
+        dispatch(updateProjectDirectoryData());
+        dispatch(updateQuizData());
+    }
+    if (activePath === "Skill") {
+        dispatch(updateDashboardData());
+        dispatch(updateJobData());
+        dispatch(updateBenchmarkData());
+        dispatch(updateCourseData());
+        dispatch(updateTeamData());
+        dispatch(updateDatasetData());
+        dispatch(updateWorkSpaceData());
+        dispatch(updateProjectDirectoryData());
+        dispatch(updateQuizData());
+        dispatch(updateProjectData());
+    }
+    if (activePath === "Dashboard") {
+        dispatch(updateJobData());
+        dispatch(updateBenchmarkData());
+        dispatch(updateCourseData());
+        dispatch(updateTeamData());
+        dispatch(updateDatasetData());
+        dispatch(updateWorkSpaceData());
+        dispatch(updateProjectDirectoryData());
+        dispatch(updateQuizData());
+        dispatch(updateProjectData());
+    }
 }

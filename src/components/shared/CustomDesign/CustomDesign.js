@@ -11,23 +11,23 @@ import styled from "@emotion/styled";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const customDesign = () => {
-  const selectFieldStyle = {
-    height: "58px",
-    background: "#F8F8F8",
-    border: "1px solid #DADCDF",
-    borderRadius: "4px",
-    flex: "none",
-    order: "0",
-    alignSelf: "stretch",
-    flexGrow: "0",
-  };
+    const selectFieldStyle = {
+        height: "58px",
+        background: "#F8F8F8",
+        border: "1px solid #DADCDF",
+        borderRadius: "4px",
+        flex: "none",
+        order: "0",
+        alignSelf: "stretch",
+        flexGrow: "0",
+    };
 
-  const CustomDownArrow = styled(KeyboardArrowDownIcon)({
-    color: "rgba(45, 88, 255, 1)",
-    marginRight: "10px",
-  });
+    const CustomDownArrow = styled(KeyboardArrowDownIcon)({
+        color: "rgba(45, 88, 255, 1)",
+        marginRight: "10px",
+    });
 
-  return { selectFieldStyle, CustomDownArrow };
+    return {selectFieldStyle, CustomDownArrow};
 };
 
 export default customDesign;

@@ -14,10 +14,10 @@
  */
 
 const dataBuilder = (data) => {
-  const newRows = data.map((d, index) => {
-    return { ...d, id: d._id };
-  });
-  return newRows;
+    const newRows = data.map((d, index) => {
+        return {...d, id: d._id};
+    });
+    return newRows;
 };
 
 export default dataBuilder;

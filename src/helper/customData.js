@@ -14,45 +14,45 @@
  */
 
 export const convertDate = (date) => {
-  if (date) {
-    const cDate = new Date(date["$d"]);
-    const currentDate = cDate && new Date(cDate)?.setHours(6);
-    const newDate = currentDate && new Date(currentDate)?.toISOString();
-    return newDate || "2000-01-01T00:00:00.000Z";
-  }
+    if (date) {
+        const cDate = new Date(date["$d"]);
+        const currentDate = cDate && new Date(cDate)?.setHours(6);
+        const newDate = currentDate && new Date(currentDate)?.toISOString();
+        return newDate || "2000-01-01T00:00:00.000Z";
+    }
 };
 
 export const labelsData = (idCollection, primaryDataset, secondaryDataset) => {
-  return [...idCollection].map((id) => {
-    // if (primaryDataset[id]) {
-    //   return `${primaryDataset[id].teamName}/${primaryDataset[id].projectName}`;
-    // } else {
-    //   return `${secondaryDataset[id].teamName}/${secondaryDataset[id].projectName}`;
-    // }
-    if (primaryDataset[id]) {
-      return `${primaryDataset[id].teamName}`;
-    } else {
-      return `${secondaryDataset[id].teamName}`;
-    }
-  });
+    return [...idCollection].map((id) => {
+        // if (primaryDataset[id]) {
+        //   return `${primaryDataset[id].teamName}/${primaryDataset[id].projectName}`;
+        // } else {
+        //   return `${secondaryDataset[id].teamName}/${secondaryDataset[id].projectName}`;
+        // }
+        if (primaryDataset[id]) {
+            return `${primaryDataset[id].teamName}`;
+        } else {
+            return `${secondaryDataset[id].teamName}`;
+        }
+    });
 };
 
 export const chartValues = (idCollection, primaryDataset, secondaryDataset) => {
-  const activeJobValues = [];
-  const blockedJobValues = [];
+    const activeJobValues = [];
+    const blockedJobValues = [];
 
-  idCollection.forEach((id) => {
-    if (primaryDataset[id]) {
-      activeJobValues.push(primaryDataset[id].item);
-    } else {
-      activeJobValues.push(0);
-    }
-    if (secondaryDataset[id]) {
-      blockedJobValues.push(secondaryDataset[id].item);
-    } else {
-      blockedJobValues.push(0);
-    }
-  });
+    idCollection.forEach((id) => {
+        if (primaryDataset[id]) {
+            activeJobValues.push(primaryDataset[id].item);
+        } else {
+            activeJobValues.push(0);
+        }
+        if (secondaryDataset[id]) {
+            blockedJobValues.push(secondaryDataset[id].item);
+        } else {
+            blockedJobValues.push(0);
+        }
+    });
 
-  return { activeJobValues, blockedJobValues };
+    return {activeJobValues, blockedJobValues};
 };

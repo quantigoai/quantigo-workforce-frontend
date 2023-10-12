@@ -17,14 +17,14 @@ import {persistReducer, persistStore} from "redux-persist";
 import {rootPersistConfig, rootReducers} from "../slice/rootReducers";
 
 const store = configureStore({
-  reducer: persistReducer(rootPersistConfig, rootReducers),
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }),
-  devTools: import.meta.env.NODE_ENV !== "production",
+    reducer: persistReducer(rootPersistConfig, rootReducers),
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }),
+    devTools: import.meta.env.NODE_ENV !== "production",
 });
 
 const persistor = persistStore(store);
 
-export { persistor, store };
+export {persistor, store};

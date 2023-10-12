@@ -56,6 +56,8 @@ const ResetPassword = () => {
   const navigate = useNavigate();
   const params = useParams();
   const { id, token } = params;
+  console.log("🚀 ~ file: ResetPassword.jsx:59 ~ ResetPassword ~ token:", token)
+  console.log("🚀 ~ file: ResetPassword.jsx:59 ~ ResetPassword ~ id:", id)
 
   const toast = useToaster();
   const handleClickShowPassword = () => setShowPassword((show) => !show);

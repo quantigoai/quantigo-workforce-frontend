@@ -166,7 +166,7 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit, handleRejectCause, r
 
                         borderRadius: "8px",
                         "&.Mui-disabled": {
-                          // background: "#eaeaea",
+                          background: "#B6C9F0",  
                           color: "#FFFFFF",
                         },
                         "&:hover": {

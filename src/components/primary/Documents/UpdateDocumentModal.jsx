@@ -257,7 +257,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                         border: "1px solid #F4F7FE",
                       },
                       "&.Mui-disabled": {
-                        // background: "#eaeaea",
+                        background: "#B6C9F0",  
                         color: "#FFFFFF",
                       },
                     }}

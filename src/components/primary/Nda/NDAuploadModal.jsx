@@ -136,15 +136,13 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
         open={openModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+        aria-describedby="modal-modal-description">
         <Box
           sx={{
             ...style,
             height: { xl: "60%", lg: "%" },
             width: { xl: "35%", lg: "40%" },
-          }}
-        >
+          }}>
           <Box sx={{ flex: "0 0 5%" }}>
             <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Upload NDA Form"} />
           </Box>
@@ -154,8 +152,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
               flex: "1",
               overflowY: "auto",
               padding: "3%",
-            }}
-          >
+            }}>
             <Box sx={{ width: "100%", paddingTop: "1%", paddingBottom: "3%" }}>
               <Stepper activeStep={stepper}>
                 {steps.map((label) => (
@@ -172,8 +169,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
                   href={Ndafile}
                   download="Nda_File.pdf"
                   onClick={() => handleDownload()}
-                  style={{ textDecoration: "none", color: "#266AED" }}
-                >
+                  style={{ textDecoration: "none", color: "#266AED" }}>
                   <i className="ri-download-2-line"></i>
                   <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
                     Download Non-disclosure Agreement
@@ -194,8 +190,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
                   fontSize: "14px",
                   mb: "7px",
                 }}
-                variant="h6"
-              >
+                variant="h6">
                 Attachment
               </Typography>
 
@@ -207,8 +202,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
                   backgroundColor: "neutral.N600",
                   height: "75px",
                   color: "neutral.700",
-                }}
-              >
+                }}>
                 {!selectedFile?.name ? (
                   <></>
                 ) : (
@@ -225,8 +219,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
                             paddingTop: "2%",
                             textAlign: "left",
                             paddingRight: "2%",
-                          }}
-                        >
+                          }}>
                           <Typography>{selectedFile?.name}</Typography>
                         </Grid>
                         <Grid item xs={1}>
@@ -254,8 +247,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
 
               bottom: "0px",
               borderRadius: "8px",
-            }}
-          >
+            }}>
             <Grid container sx={{ padding: "2%" }}>
               <Grid item xs={6}>
                 <Button
@@ -270,8 +262,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
                       color: "neutral.N650",
                     },
                   }}
-                  onClick={() => handleClose()}
-                >
+                  onClick={() => handleClose()}>
                   Cancel
                 </Button>
               </Grid>
@@ -279,7 +270,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
                 <Grid container sx={{ justifyContent: "right" }}>
                   <Button
                     type="submit"
-                    disabled={!selectedFile?.name ||isLoading }
+                    disabled={!selectedFile?.name || isLoading}
                     sx={{
                       width: "128px",
                       textTransform: "none",
@@ -288,7 +279,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
 
                       borderRadius: "8px",
                       "&.Mui-disabled": {
-                        // background: "#eaeaea",
+                        background: "#B6C9F0",
                         color: "#FFFFFF",
                       },
                       "&:hover": {
@@ -298,8 +289,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
                       },
                     }}
                     // onClick={() => handleChange()}
-                    onClick={handleSubmission}
-                  >
+                    onClick={handleSubmission}>
                     Upload
                   </Button>
                 </Grid>

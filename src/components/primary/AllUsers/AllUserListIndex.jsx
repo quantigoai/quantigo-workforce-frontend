@@ -133,7 +133,7 @@ const AllUserListIndex = () => {
   };
 
   useEffect(() => {
-    dispatch(setActivePath("All Users 2"));
+    dispatch(setActivePath("All Users"));
     setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
     users && users.length > 0 && setMyRows(dataBuilder(users));
   }, [dispatch, users]);

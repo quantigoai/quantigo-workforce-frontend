@@ -201,7 +201,7 @@ const ProjectLIstIndex2 = () => {
   };
 
   useEffect(() => {
-    dispatch(setActivePath("All Projects2"));
+    dispatch(setActivePath("All Projects"));
     setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
     projectDrawers && projectDrawers.length > 0 && setMyRows(dataBuilder(projectDrawers));
   }, [dispatch, projectDrawers]);

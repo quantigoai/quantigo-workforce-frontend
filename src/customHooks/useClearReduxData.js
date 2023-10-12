@@ -43,8 +43,8 @@ export default function useClearReduxData(dispatch, activePath, id = null) {
   ];
 
   const allPath = [
-    "All Users 2",
-    "All Projects 2",
+    "All Users",
+    "All Projects",
     "Project Directory",
     "Sync Server",
     "Benchmark",
@@ -53,7 +53,7 @@ export default function useClearReduxData(dispatch, activePath, id = null) {
     "Projects",
     "Skill",
     "Dashboard",
-    "All Projects2",
+    "All Projects",
   ];
 
   const allowedPath = {
@@ -67,7 +67,7 @@ export default function useClearReduxData(dispatch, activePath, id = null) {
     updateProjectDirectoryData: ["Project Directory"],
     updateQuizData: ["Course"],
     updateProjectData: ["Benchmark", "Jobs", "Projects"],
-    updateSkillData: ["All Users", "Jobs", "Course", "Projects", "Skill", "Dashboard", "All Projects2"],
+    updateSkillData: ["All Users", "Jobs", "Course", "Projects", "Skill", "Dashboard", "All Projects"],
     clearProjectDrawerData: [],
   };
   const allowedPathKeys = Object.keys(allowedPath);

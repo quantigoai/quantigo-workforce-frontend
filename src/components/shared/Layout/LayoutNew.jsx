@@ -132,8 +132,8 @@ export default function LayoutNew({ children }) {
   const adminOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     // { name: "All Users", icon: UserSvg },
-    { name: "All Users 2", icon: UserSvg },
-    { name: "All Projects2", icon: ProjectSvg },
+    { name: "All Users", icon: UserSvg },
+    { name: "All Projects", icon: ProjectSvg },
     { name: "Skill", icon: SkillIcon },
     { name: "Projects", icon: ProjectSvg },
     { name: "Course", icon: CourseSvg },
@@ -185,7 +185,7 @@ export default function LayoutNew({ children }) {
 
   const anntatorOptions = [
     { name: "Dashboard", icon: DashboardSvg },
-    { name: "All Projects2", icon: ProjectSvg },
+    { name: "All Projects", icon: ProjectSvg },
     { name: "Course", icon: CourseSvg },
     { name: "Jobs", icon: JobSvg },
     // { name: "Payment", icon: PaymentSvg },
@@ -211,7 +211,7 @@ export default function LayoutNew({ children }) {
   const recruitOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     // { name: "Users", icon: UserSvg },
-    { name: "All Users 2", icon: UserSvg },
+    { name: "All Users", icon: UserSvg },
   ];
 
   const unverifiedOptions = [{ name: "Account Activation", icon: DashboardSvg }];
@@ -219,7 +219,7 @@ export default function LayoutNew({ children }) {
   const devOptions = [
     { name: "Account Activation", icon: DashboardSvg },
     { name: "AllUsers", icon: UserSvg },
-    { name: "All Projects2", icon: ProjectSvg },
+    { name: "All Projects", icon: ProjectSvg },
     { name: "Annotator List", icon: UserSvg },
     { name: "Archive Job", icon: JobSvg },
     // { name: "Calculate Annotation", icon: HourSvg },
@@ -248,10 +248,8 @@ export default function LayoutNew({ children }) {
       case "Dashboard":
         return navigate("/dashboard");
       case "All Users":
-        return navigate("/allusers");
-      case "All Users 2":
         return navigate("/all-users");
-      case "All Projects2":
+      case "All Projects":
         return navigate("/allprojects");
       case "Project Directory":
         return navigate("/projectDirectory");

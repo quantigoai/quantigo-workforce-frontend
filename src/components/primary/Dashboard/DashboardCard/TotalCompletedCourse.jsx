@@ -18,20 +18,20 @@ const TotalCompletedCourse = () => {
             borderRadius: "8px",
           }}
         >
-          <Box sx={{ padding: "4%", position: "relative" }}>
+          <Box sx={{ padding: "6%", position: "relative" }}>
             <Grid container sx={{ paddingTop: "0%" }}>
-              <Grid item xs={3}>
+              <Grid item xs={3.5}>
                 <img src={iconPendding} />
               </Grid>
-              <Grid item xs={9}>
+              <Grid item xs={8.5}>
                 <Grid container>
-                  <Typography variant={"wf_h6"} sx={{ color: "#3C4D6B" }}>
-                    Total Completed Courses
+                <Typography variant={"wpf_p4_medium"} sx={{ color: "neutral.N300" }}>
+                   Total Completed Courses
                   </Typography>
                 </Grid>
                 <Grid container sx={{ paddingTop: "4%" }}>
                   <Grid item xs={8}>
-                    <Typography sx={{ color: "#091E42" }} variant="h5">
+                  <Typography sx={{ color: "neutral.750" }} variant="wpf_h4_Bold">
                       <b> {totalCountData.requestedUsersCompletedCourses}</b>
                     </Typography>
                   </Grid>

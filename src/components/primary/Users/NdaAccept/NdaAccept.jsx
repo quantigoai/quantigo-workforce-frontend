@@ -16,6 +16,7 @@ const NdaAccept = ({ signNda, user, isNDASigned, signImage }) => {
   const [isVerified, setIsVerified] = useState();
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
+  const [rejectionCause, setRejectionCause] = useState("");
   const { register, handleSubmit } = useForm();
   const [open, setOpen] = useState(false);
   const [openAccepet, setOpenAccepet] = React.useState(false);
@@ -50,7 +51,7 @@ const NdaAccept = ({ signNda, user, isNDASigned, signImage }) => {
       id: user._id,
       varifiedData: {
         isVerified: false,
-        rejectionCause: data.rejectionCause,
+        rejectionCause: rejectionCause,
       },
     };
     dispatch(updateAUserById(finalData)).then((action) => {
@@ -63,7 +64,10 @@ const NdaAccept = ({ signNda, user, isNDASigned, signImage }) => {
     handleClose();
     setOpen(false);
   };
-
+  const handleRejectCause = (e) => {
+    setRejectionCause(e.target.value);
+    console.log("🚀 ~ file: NdaAccept.jsx:70 ~ handleRejectCause ~ e.target.value:", e.target.value);
+  };
   const handleClose = () => setOpenModal(false);
 
   return (
@@ -77,7 +81,13 @@ const NdaAccept = ({ signNda, user, isNDASigned, signImage }) => {
           <CancelIcon onClick={() => handleReject()} />
         </Button>
       </spam>
-      <NdaRejectModal openModal={openModal} handleClose={handleClose} register={register} onSubmit={onSubmit} />
+      <NdaRejectModal
+        openModal={openModal}
+        handleClose={handleClose}
+        register={register}
+        onSubmit={onSubmit}
+        handleRejectCause={handleRejectCause}
+      />
       <AcceptModal open={openAccepet} handleClose={handleCloseModal} handleAccept={handleAccept} user={user} />
     </>
   );

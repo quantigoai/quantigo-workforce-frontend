@@ -141,7 +141,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
         <Box
           sx={{
             ...style,
-            height: { xl: "56%", lg: "75%" },
+            height: { xl: "60%", lg: "%" },
             width: { xl: "35%", lg: "40%" },
           }}
         >
@@ -279,6 +279,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
                 <Grid container sx={{ justifyContent: "right" }}>
                   <Button
                     type="submit"
+                    disabled={!selectedFile?.name ||isLoading }
                     sx={{
                       width: "128px",
                       textTransform: "none",

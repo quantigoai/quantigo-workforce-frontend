@@ -55,6 +55,7 @@ const AllUserListIndex = () => {
   const handleClose = () => setOpen(false);
   const [openAccepet, setOpenAccepet] = React.useState(false);
   const { register, handleSubmit } = useForm();
+  const [rejectionCause, setRejectionCause] = useState("");
   const toast = useToaster();
   const [pagination, setPagination] = useState({
     currentPage: 0,
@@ -126,6 +127,11 @@ const AllUserListIndex = () => {
     }
   };
 
+  const handleRejectCause = (e) => {
+    setRejectionCause(e.target.value);
+   
+  };
+
   useEffect(() => {
     dispatch(setActivePath("All Users 2"));
     setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
@@ -166,7 +172,7 @@ const AllUserListIndex = () => {
       id: selectedUser._id,
       varifiedData: {
         isVerified: false,
-        rejectionCause: data.rejectionCause,
+        rejectionCause: rejectionCause,
       },
     };
     dispatch(updateAUserById(finalData)).then((action) => {
@@ -185,6 +191,7 @@ const AllUserListIndex = () => {
   const handleCloseModal = () => {
     setOpenAccepet(false);
     setOpenModal(false);
+    setRejectionCause("")
   };
   // accept NDA
   const handleOpenNDA = (params) => {
@@ -314,7 +321,14 @@ const AllUserListIndex = () => {
         handleProjectDetailsOpen={handleUserDetailsOpen}
         handleClose={handleClose}
       />
-      <NdaRejectModal openModal={openModal} handleClose={handleCloseModal} register={register} onSubmit={onSubmit} />
+      <NdaRejectModal
+        openModal={openModal}
+        handleClose={handleCloseModal}
+        register={register}
+        onSubmit={onSubmit}
+        handleRejectCause={handleRejectCause}
+        rejectionCause={rejectionCause}
+      />
       <AcceptModal open={openAccepet} handleClose={handleCloseModal} handleAccept={handleAccept} user={selectedUser} />
     </Box>
   );

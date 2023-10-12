@@ -10,6 +10,7 @@ import { Box, Button, Grid, MenuItem, Modal, Paper, Select, TextField, Typograph
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
+import { useSelector } from "react-redux";
 export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "2px solid #E6ECF5 !important",
@@ -45,9 +46,9 @@ const style = {
   },
 };
 
-const NdaRejectModal = ({ openModal, handleClose, onSubmit }) => {
+const NdaRejectModal = ({ openModal, handleClose, onSubmit, handleRejectCause, rejectionCause }) => {
   const { register, handleSubmit } = useForm();
-
+  const { isLoading } = useSelector((state) => state.user);
   return (
     <>
       <Modal
@@ -58,8 +59,8 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit }) => {
         <Box
           sx={{
             ...style,
-            height: { xl: "40%", lg: "50%" },
-            width: { xl: "35%", lg: "60%" },
+            height: { xl: "40%", lg: "%" },
+            width: { xl: "35%", lg: "40%" },
           }}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Box sx={{ flex: "0 0 5%" }}>
@@ -93,11 +94,7 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit }) => {
                     disabled
                     defaultValue={"Rejected"}
                     // placeholder="Select"
-                    sx={{ height: "50%" }}>
-                    {/* <MenuItem disabled sx={{ fontSize: "14px" }} value={"reject"} fullWidth>
-                      Reject
-                    </MenuItem> */}
-                  </MySelect>
+                    sx={{ height: "50%" }}></MySelect>
                 </Grid>
                 <Grid container style={{}}>
                   <Typography
@@ -116,9 +113,10 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit }) => {
                     multiline
                     rows={5}
                     InputProps={{ disableUnderline: true }}
-                    {...register("rejectionCause", {
-                      required: false,
-                    })}
+                    // {...register("rejectionCause", {
+                    //   required: true,
+                    // })}
+                    onChange={(e) => handleRejectCause(e)}
                   />
                 </Grid>
               </Grid>
@@ -158,6 +156,7 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit }) => {
                 <Grid item xs={6}>
                   <Grid container sx={{ justifyContent: "right" }}>
                     <Button
+                      disabled={rejectionCause === ""}
                       type="submit"
                       sx={{
                         width: "128px",

@@ -17,23 +17,37 @@ const ActiveJobsCard = () => {
             width: "100%",
             height: "100px",
             borderRadius: "8px",
-          }}
-        >
-          <Box sx={{ padding: "4%", position: "relative" }}>
+          }}>
+          <Box sx={{ padding: "6%", position: "relative" }}>
             <Grid container>
-              <Grid item xs={3}>
+              <Grid item xs={3.5}>
                 <img src={iconPendding} />
               </Grid>
-              <Grid item xs={9}>
+              <Grid item xs={8.5}>
                 <Grid container>
-                  <Typography variant="wf_h6" sx={{ color: "#3C4D6B" }}>
-                    {user.role === "level_0_annotator" || user.role === "level_1_annotator" || user.role === "level_2_annotator" || user.role === "level_3_annotator" || user.role === "Reviewer" ? "My Active Jobs" : "Active Jobs"}
+                  <Typography variant={"wpf_p4_medium"} sx={{ color: "neutral.N300" }}>
+                    {user.role === "level_0_annotator" ||
+                    user.role === "level_1_annotator" ||
+                    user.role === "level_2_annotator" ||
+                    user.role === "level_3_annotator" ||
+                    user.role === "Reviewer"
+                      ? "My Active Jobs"
+                      : "Active Jobs"}
                   </Typography>
                 </Grid>
                 <Grid container sx={{ paddingTop: "4%" }}>
                   <Grid item xs={8}>
-                    <Typography sx={{ color: "#091E42" }} variant="h5">
-                      <b> {user.role === "level_0_annotator" || user.role === "level_1_annotator" || user.role === "level_2_annotator" || user.role === "level_3_annotator" || user.role === "Reviewer" ? totalCountData.requestedUsersOnGoingJobs : totalCountData.activeJobs}</b>
+                    <Typography sx={{ color: "neutral.750" }} variant="wpf_h4_Bold">
+                      <b>
+                        {" "}
+                        {user.role === "level_0_annotator" ||
+                        user.role === "level_1_annotator" ||
+                        user.role === "level_2_annotator" ||
+                        user.role === "level_3_annotator" ||
+                        user.role === "Reviewer"
+                          ? totalCountData.requestedUsersOnGoingJobs
+                          : totalCountData.activeJobs}
+                      </b>
                     </Typography>
                   </Grid>
                 </Grid>

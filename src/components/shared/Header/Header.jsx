@@ -27,7 +27,8 @@ import { setTheme } from "../../../features/slice/themeSlice";
 import { logout } from "../../../features/slice/userSlice";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import NotificationModal from "../Notification/NotificationModal";
-
+import Lottie from "lottie-react";
+import bell from "../CustomSvgIcons/animation_lnnh2ad0.json";
 const Header = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
 
@@ -130,6 +131,14 @@ const Header = () => {
     },
   }));
 
+  const lottieOptions = {
+    // loop: true,
+    loop: allUnreadNotifications.length ? true : false,
+    style: {
+      height: 30,
+    },
+  };
+
   return (
     <>
       <Box
@@ -208,11 +217,15 @@ const Header = () => {
                 >
                   {allUnreadNotifications.length === 0 ? (
                     // <NotificationsNoneIcon sx={{ color: "#1976d2" }} />
-                    <NotificationsNoneIcon />
+                    // <NotificationsNoneIcon />
+                    <>
+                      <Lottie animationData={bell} {...lottieOptions} />
+                    </>
                   ) : (
                     <>
-                      <Badge badgeContent={allUnreadNotifications.length} color="primary">
-                        <NotificationsActiveIcon />
+                      <Badge sx={{}} badgeContent={allUnreadNotifications.length} color="primary">
+                        {/* <NotificationsActiveIcon /> */}
+                        <Lottie animationData={bell} {...lottieOptions} />
                       </Badge>
                     </>
                   )}

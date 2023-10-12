@@ -21,6 +21,7 @@ import {
   readAllNotification,
 } from "../../../features/slice/notificationSlice";
 import clock from "../../shared/CustomSvgIcons/wired-lineal-45-clock-time.json";
+import success from "../CustomSvgIcons/wired-lineal-37-approve-checked-simple.json";
 // import ChangeRoleIcons
 const convertDate = (date) => {
   return dayjs(date).format("DD MMM hh:mm A");
@@ -55,6 +56,7 @@ const iconHandler = (notificationType) => {
     case notificationType === "updateUserRole":
       // return <AddchartIcon sx={{ ...style, backgroundColor: "primary.B300", color: "primary.B008" }} />;
       return <Lottie animationData={clock} {...lottieOptions} />;
+
     case notificationType === "customUserData":
       return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
     case notificationType === "notification":
@@ -64,7 +66,8 @@ const iconHandler = (notificationType) => {
     case notificationType === "rejectUser":
       return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
     case notificationType === "uploadNDAOrDocuments":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      // return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={success} {...lottieOptions} />;
     case notificationType === "addUserSkills":
       return <AccessTimeIcon sx={{ ...style, backgroundColor: "yellow", color: "green" }} />;
     case notificationType === "removeUserSkills":

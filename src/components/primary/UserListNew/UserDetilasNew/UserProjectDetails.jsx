@@ -120,7 +120,7 @@ const annotationList = [
 const UserProjectDetails = () => {
   return (
     <>
-      <Box sx={{ paddingTop: "2%", paddingBottom: "2%" }}>
+      {/* <Box sx={{ paddingTop: "2%", paddingBottom: "2%" }}>
         <Typography variant="wf_h5_bold">List of Projects</Typography>
       </Box>
       <Box sx={{}}>
@@ -238,8 +238,8 @@ const UserProjectDetails = () => {
               </Grid>
             ))}
           </Grid>
-        </Box>
-      </Box>
+        </Box> */}
+      {/* </Box> */}
     </>
   );
 };

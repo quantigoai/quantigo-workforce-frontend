@@ -32,6 +32,7 @@ import UsersHeader from "./UsersHeader";
 import "./index.css";
 import { fields } from "./tableFields";
 import { hubOptions, roleOptions, userStatusOptions } from "./userFilterOptions";
+import { motion } from "framer-motion";
 
 // TODO NEED TO FIX LOADING ISSUE
 const AllUserListIndex = ({ action }) => {
@@ -236,6 +237,8 @@ const AllUserListIndex = ({ action }) => {
           clearSearch={clearSearch}
         />
 
+        {/* <motion.Box animate={{ x: 100 }}> */}
+        {/* <motion.div animate={{ x: 100 }}> */}
         <UsersFilter
           isFilter={isFilter}
           isLightTheme={isLightTheme}
@@ -254,6 +257,7 @@ const AllUserListIndex = ({ action }) => {
           addRoles={addRoles}
           handleChangeRoles={handleChangeRoles}
         />
+        {/* </motion.div> */}
       </Box>
 
       <Box className="tableContent">

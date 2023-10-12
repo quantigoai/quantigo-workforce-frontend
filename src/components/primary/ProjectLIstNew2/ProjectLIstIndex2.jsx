@@ -33,6 +33,7 @@ const TableWrapper = React.lazy(() => import("./ExpTable/TableWrapper"));
 
 import useToaster from "../../../customHooks/useToaster";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
+import { motion } from "framer-motion";
 import {
   fields,
   filterPDR,
@@ -303,6 +304,17 @@ const ProjectLIstIndex2 = () => {
           </Box>
 
           <Box
+            component={motion.div}
+            // initial={{
+            //   x: isFilter ? 1000 : 0,
+            // }}
+            animate={{
+              // x: 1000,
+              opacity: isFilter ? 1 : 0,
+              // y: isFilter ? 1 : 0
+              // initial: { opacity: 0.1 },
+              transition: { type: "spring", stiffness: 300, duration: 0.4, delay: 0.2 },
+            }}
             sx={{
               background: isLightTheme ? "#FFFFFF" : "#1E1E1E",
               width: "100%",

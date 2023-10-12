@@ -1,3 +1,9 @@
+
+/* body{
+    scroll-behavior: smooth;
+    overscroll-behavior-x: none;
+    overscroll-behavior-y: none;
+} */
 table {
     border-collapse: collapse;
     width: 100%;
@@ -13,7 +19,9 @@ table {
     z-index: 1;
 }
 .tableHeader, .tableBody{
-    cursor :default
+    cursor :default;
+ 
+  
 }
 .thead{
     position: sticky;

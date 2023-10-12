@@ -16,6 +16,7 @@ import StickyFirstTableHead from "./TableHeader/StickyFirstTableHead";
 import StickyLastTableHead from "./TableHeader/StickyLastTableHead";
 import StickyMiddleHead from "./TableHeader/StickyMiddleHead";
 import "./index.css";
+import { motion, useScroll, useSpring, useTransform, MotionValue } from "framer-motion";
 
 export default function WPFTable({
   handleDetailsPage,
@@ -35,10 +36,27 @@ export default function WPFTable({
   handleReject,
   handleOpenNDA,
 }) {
+  // function useParallax(value, distance) {
+  //   return useTransform(value, [0, 1], [-distance, distance]);
+  // }
+  // const ref = React.useRef(null);
+  // const { scrollYProgress } = useScroll({ target: ref });
+  // console.log("🚀 ~ file: WPFTable.jsx:44 ~ scrollYProgress:", scrollYProgress);
+  // const y = useParallax(scrollYProgress, 300);
+  // console.log("🚀 ~ file: WPFTable.jsx:45 ~ y:", y);
+  // const scaleX = useSpring(scrollYProgress, {
+  //   stiffness: 100,
+  //   damping: 30,
+  //   restDelta: 0.001,
+  // });
   return (
     myColumn.length > 0 && (
       <>
-        <TableContainer className="tableContainer" sx={{ height: "100%" }}>
+        <TableContainer
+          // ref={ref}
+          className="tableContainer"
+          sx={{ height: "100%" }}
+        >
           <Table stickyHeader aria-label="sticky table">
             <TableHead className="tableHeader">
               <TableRow>
@@ -63,11 +81,18 @@ export default function WPFTable({
                   position: "absolute",
                   top: "50%",
                   left: "50%",
-                }}>
+                }}
+              >
                 <LoadingComponent height="100%" />
               </Box>
             ) : (
-              <TableBody className="tableBody">
+              <TableBody
+                // data-aos="fade-left"
+                // component={motion.div}
+
+                // style={{ scaleX }}
+                className="tableBody"
+              >
                 {myRows.map((row) => (
                   <TableRow
                     key={row.id}
@@ -84,13 +109,13 @@ export default function WPFTable({
                         currentlyCheckedInProject={currentlyCheckedInProject}
                       />
                     ))}
-                  
+
                     {columns.map((column) => (
-                      <MiddleTableColumn key={column.id} row={row} column={column} />
+                      <MiddleTableColumn data-aos="fade-left" key={column.id} row={row} column={column} />
                     ))}
-                  
+
                     {role === "recruitment_manager" && <StickyDocViewTableColumn column={row} />}
-                  
+
                     {stickyLastColumn.map((column) => (
                       <LastTableColumn
                         key={column.id}

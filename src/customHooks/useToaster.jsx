@@ -34,7 +34,6 @@ const useToaster = () => {
   };
 
   const responsePromise = async (fetch) => {
-    // console.log("🚀 ~ file: useToaster.js:24 ~ useToaster ~ fetch:", fetch);
     return;
   };
 

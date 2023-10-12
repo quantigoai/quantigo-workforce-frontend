@@ -41,12 +41,10 @@ export default function WPFTable({
   }
   const ref = React.useRef(null);
   const { scrollYProgress } = useScroll({ target: ref });
-  console.log("🚀 ~ file: WPFTable.jsx:44 ~ scrollYProgress:", scrollYProgress);
   const y = useParallax(scrollYProgress, 300);
-  console.log("🚀 ~ file: WPFTable.jsx:45 ~ y:", y);
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 80,
-    delay : 2.5,
+    delay: 2.5,
     damping: 30,
     restDelta: 0.001,
   });

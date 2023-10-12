@@ -6,8 +6,11 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+
 import { Box, Button, Typography } from "@mui/material";
 import dayjs from "dayjs";
+import Lottie from "lottie-react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
@@ -17,23 +20,102 @@ import {
   getLatestNotifications,
   readAllNotification,
 } from "../../../features/slice/notificationSlice";
-
+import clock from "../../shared/CustomSvgIcons/wired-lineal-45-clock-time.json";
+// import ChangeRoleIcons
 const convertDate = (date) => {
   return dayjs(date).format("DD MMM hh:mm A");
 };
 const boxUnReadStyle = {
   borderTop: "1px solid #fff",
-  borderRadius: "5px",
-  padding: "30px",
-  // backgroundColor: "#e4e4e4",
+  padding: "25px",
 };
 
 const boxReadStyle = {
-  // borderTop: "1px solid #E5E5E5",
   borderRadius: "5px",
   padding: "10px",
 };
 const formattedDate = (rawTime) => convertDate(rawTime);
+
+const style = {
+  height: "100%",
+  padding: "7px",
+  borderRadius: "50%",
+};
+
+const lottieOptions = {
+  // loop: true,
+  loop: false,
+  style: {
+    height: 40,
+  },
+};
+
+const iconHandler = (notificationType) => {
+  switch (true) {
+    case notificationType === "updateUserRole":
+      // return <AddchartIcon sx={{ ...style, backgroundColor: "primary.B300", color: "primary.B008" }} />;
+      return <Lottie animationData={clock} {...lottieOptions} />;
+    case notificationType === "customUserData":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "notification":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "approvedUser":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "rejectUser":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "uploadNDAOrDocuments":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "addUserSkills":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "yellow", color: "green" }} />;
+    case notificationType === "removeUserSkills":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "blockUser":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "unBlockUser":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "updateProjectPriority":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "updateProjectHub":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "updateProjectStatus":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "newJobAvailable":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "reviewerAvailableJob":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "takeJobReviewer":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "takeJobAnnotator":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "reviewOnJobAccept":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "reviewOnJobReject":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "reviewOnJobRejectFinal":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "submitJob":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "jobTimeOutAnnotator":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "jobTimeOutReviewer":
+      return <Lottie animationData={clock} {...lottieOptions} />;
+    case notificationType === "enrollCourseStudent":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "courseCompleteUser":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "benchmarkCreate":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "benchMarkUpdate":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "jobBlockAnnotator":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+    case notificationType === "jobUnblockAnnotator":
+      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+
+    default:
+      break;
+  }
+};
 
 const AllNotification = () => {
   const dispatch = useDispatch();
@@ -100,9 +182,18 @@ const AllNotification = () => {
             key={notification._id}
             style={notification.isRead ? boxReadStyle : boxUnReadStyle}
           >
-            <Typography variant="wpf_p3_medium" color="neutral.700">
-              {notification.message}
-            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+              }}
+            >
+              {iconHandler(notification.type)}
+              <Typography variant="wpf_p3_medium" color="neutral.700">
+                {notification.message}
+              </Typography>
+            </Box>
             <Typography variant="wpf_p4_regular" color="neutral.550">
               {formattedDate(notification.createdAt)}
             </Typography>

@@ -23,7 +23,6 @@ import logOutIcon from "../../../assets/images/logoutIcon.svg";
 import menuIcon from "../../../assets/images/menuIcon.svg";
 import ProfileIcon from "../../../assets/images/profileIcon.svg";
 import useReset from "../../../customHooks/useReset";
-import useToaster from "../../../customHooks/useToaster";
 import { setTheme } from "../../../features/slice/themeSlice";
 import { logout } from "../../../features/slice/userSlice";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
@@ -131,10 +130,6 @@ const Header = () => {
     },
   }));
 
-  const toaster = useToaster();
-  const x = () => {
-    return <h2>Hello </h2>;
-  };
   return (
     <>
       <Box

@@ -5,7 +5,6 @@ import SelectFieldCommon from "./SelectFieldCommon";
 import UserStatusChangeFiled from "./UserStatusChangeFiled";
 
 const ChangeInfoIndex = ({ user, handleSetRole, handleSetStatus, role }) => {
-  console.log("🚀 ~ file: ChangeInfoIndex.jsx:8 ~ ChangeInfoIndex ~ role:", role);
   return (
     <>
       <Box sx={{ paddingTop: "2%", paddingBottom: "1%" }}>

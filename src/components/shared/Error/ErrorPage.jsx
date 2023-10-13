@@ -38,7 +38,7 @@ const ErrorPage = () => {
         <Paper elevation={0} sx={paperStyle}>
           <Grid container>
             <Grid xs={3} sx={{ paddingLeft: "2%" }}>
-              <Lottie animationData={error} {...lottieOptions} />;
+              <Lottie animationData={error} {...lottieOptions} />
             </Grid>
             <Grid xs={9}>
               <Grid xs={10}>
@@ -49,27 +49,19 @@ const ErrorPage = () => {
                 <br />
                 <Typography variant="wpf_p2_regular">
                   It seems that the page you're looking for either doesn't exist or is still under development. Please
-                  check the URL or try again later. In the meantime, you can return to our homepage or{" "}
+                  check the URL or try again later. In the meantime, you can return to our homepage or
                   {
                     <Link blank={true} href="https://discord.gg/YarPssHr6y">
                       contact our support team
                     </Link>
-                  }{" "}
+                  }
                   for assistance. We apologize for any inconvenience.
                 </Typography>
               </Grid>
-              <Grid xs={12}>
-                {/* <Typography variant="caption" sx={{ color: "#969CAF" }}>
-                      Lorem ipsum dolor sit amet consectetur. Senectus placerat
-                      metus sit massa urna non tristique. Faucibus arcu faucibus
-                      id odio enim egestas.
-                    </Typography> */}
-              </Grid>
+              <Grid xs={12}></Grid>
               <Grid xs={12} sx={{ paddingTop: "5%" }}>
                 <Button
-                  onClick={() => {
-                    navigate("/");
-                  }}
+                  onClick={() => navigate("/")}
                   sx={{
                     backgroundColor: "#2D58FF",
                     color: "#FFFFFF",

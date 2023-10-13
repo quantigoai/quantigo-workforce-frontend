@@ -6,6 +6,8 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
+import LogoutIcon from "@mui/icons-material/Logout";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { Avatar, Badge, FormControlLabel, Stack, styled, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -17,9 +19,8 @@ import Lottie from "lottie-react";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import logOutIcon from "../../../assets/images/logoutIcon.svg";
-import menuIcon from "../../../assets/images/menuIcon.svg";
-import ProfileIcon from "../../../assets/images/profileIcon.svg";
+// import logOutIcon from "../../../assets/images/logoutIcon.svg";
+import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 import useReset from "../../../customHooks/useReset";
 import { setTheme } from "../../../features/slice/themeSlice";
 import { logout } from "../../../features/slice/userSlice";
@@ -28,7 +29,6 @@ import bell from "../CustomSvgIcons/animation_lnnh2ad0.json";
 import NotificationModal from "../Notification/NotificationModal";
 import GoBackButton from "./GoBackButton";
 import ThemeSwitch from "./ThemeSwitch";
-
 const Header = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
 
@@ -45,7 +45,6 @@ const Header = () => {
   const handleNotificationClose = () => setNotificationOpen(null);
   const { allUnreadNotifications } = useSelector((state) => state.notification);
   const reset = useReset;
-
   const handleLogOut = () => {
     // const role = user.user.role;
     dispatch(logout()).then(() => {
@@ -113,7 +112,6 @@ const Header = () => {
               justifyContent: "space-between",
             }}
           >
-
             <GoBackButton handleGoBack={handleGoBack} />
 
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -133,7 +131,7 @@ const Header = () => {
                     p: 1,
                     borderRadius: "8px",
                     "&:hover": {
-                      backgroundColor: "#F4F7FE",
+                      backgroundColor: "neutral.N400",
                     },
                   }}
                   aria-describedby={id}
@@ -179,7 +177,7 @@ const Header = () => {
                         </b>
                       </Typography>
 
-                      <Typography sx={{ color: "#969CAF" }} variant="wpf_p4_regular">
+                      <Typography sx={{ color: "neutral.N650" }} variant="wpf_p4_regular">
                         {role === "level_1_annotator"
                           ? "Level 1 Annotator"
                           : role === "level_2_annotator"
@@ -206,8 +204,6 @@ const Header = () => {
                       <Menu
                         sx={{
                           "& .MuiPaper-root": {
-                            backgroundColor: "#FFFFFF",
-                            // color: isLightTheme ? "#000c1f" : "#F5F5F5",
                             borderRadius: "5px",
                           },
                         }}
@@ -217,27 +213,29 @@ const Header = () => {
                       >
                         <MenuItem
                           sx={{
-                            backgroundColor: "#FFFFF",
                             borderBottom: "1px solid #F0F5FA",
                             width: "182px",
                           }}
                           onClick={handleEditProfile}
                         >
                           <ListItemIcon>
-                            <img src={ProfileIcon} />
+                            <PersonOutlineIcon />
                           </ListItemIcon>
-                          <ListItemText sx={{ color: "#3C4D6B" }}>Edit Profile</ListItemText>
+                          <ListItemText sx={{ color: "neutral.N300" }}>Edit Profile</ListItemText>
                         </MenuItem>
                         <MenuItem onClick={handleLogOut} sx={{ width: "182px" }}>
                           <ListItemIcon>
-                            <img src={logOutIcon} />
+                            <LogoutIcon />
                           </ListItemIcon>
-                          <ListItemText sx={{ color: "#3C4D6B" }}>Logout</ListItemText>
+                          <ListItemText sx={{ color: "neutral.N300" }}>Logout</ListItemText>
                         </MenuItem>
                       </Menu>
-                      <Button id="fade-button" onClick={handleClick} sx={{ paddingTop: "20%" }}>
-                        <img src={menuIcon} />
-                        {/* <KeyboardArrowDownIcon /> */}
+                      <Button id="fade-button" onClick={handleClick} sx={{ paddingTop: "5%" }}>
+                        <ExpandCircleDownIcon
+                          sx={{
+                            color: "neutral.N300",
+                          }}
+                        />
                       </Button>
                     </Box>
                   </Box>

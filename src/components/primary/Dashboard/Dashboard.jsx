@@ -88,8 +88,7 @@ const Dashboard = () => {
         <>
           <Box
             // sx={{ backgroundColor: "#F5F5F5", height: "100%", width: "100%" }}>
-            sx={{ padding: "1%", height: "100%",  }}
-          >
+            sx={{ padding: "1%", height: "100%" }}>
             {role === "level_0_annotator" ? (
               <>
                 {/* {user.user.isVerified ? <CongratulationComponents /> : <DashboardDocument />} */}
@@ -113,14 +112,12 @@ const Dashboard = () => {
                         paddingRight: "%",
                         width: "100%",
                         // height: "100%",
-                      }}
-                    >
+                      }}>
                       <Paper
                         elevation={0}
                         sx={{
                           borderRadius: "8px",
-                        }}
-                      >
+                        }}>
                         {!projectLoading && (
                           <BarChart
                             startDate={startDate}
@@ -137,7 +134,7 @@ const Dashboard = () => {
                   <>
                     <Grid container sx={{ paddingBottom: "2%" }}>
                       <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                        <Paper elevation={0} sx={{ borderRadius: "8px" }}>
+                        <Paper elevation={0} sx={{ borderRadius: "8px", height: { xl: "350px", lg: "330px" } }}>
                           {!projectLoading && (
                             <BarChart
                               startDate={startDate}
@@ -153,11 +150,11 @@ const Dashboard = () => {
                         <Paper
                           elevation={0}
                           sx={{
-                            height: "99%",
+                            // height: "99%",
                             borderRadius: "8px",
                             paddingLeft: "3%",
-                          }}
-                        >
+                            height: { xl: "350px", lg: "330px" },
+                          }}>
                           {/* <Grid sx={{ paddingTop: "5%" }}></Grid> */}
                           <PieChartForUser />
                         </Paper>
@@ -166,11 +163,10 @@ const Dashboard = () => {
                         <Paper
                           elevation={0}
                           sx={{
-                            height: {xl: "350px", lg:"300px"},
+                            height: { xl: "350px", lg: "330px" },
                             borderRadius: "8px",
                             paddingLeft: "3%",
-                          }}
-                        >
+                          }}>
                           <PieChart />
                         </Paper>
                       </Grid>
@@ -178,7 +174,7 @@ const Dashboard = () => {
 
                     <Grid container>
                       <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                        <Paper elevation={0} sx={{ borderRadius: "8px" }}>
+                        <Paper elevation={0} sx={{ borderRadius: "8px",}}>
                           <LineChart loading={weekLoading} />
                         </Paper>
                       </Grid>
@@ -202,8 +198,7 @@ const Dashboard = () => {
               height: "100%",
               // width: "100%",
               padding: "1%",
-            }}
-          >
+            }}>
             <Paper elevation={0} style={paperstyleResendEmail}>
               <Grid container sx={{ justifyContent: "center", paddingTop: "7%" }}>
                 <Typography variant="h4" sx={{ color: "#090080" }}>
@@ -217,8 +212,7 @@ const Dashboard = () => {
                   justifyContent: "center",
                   paddingTop: "2%",
                   position: "relative",
-                }}
-              >
+                }}>
                 <Button
                   disabled={isLoading}
                   sx={{
@@ -229,8 +223,7 @@ const Dashboard = () => {
                       color: "#1D1D1D",
                     },
                   }}
-                  onClick={() => handleresendEmail()}
-                >
+                  onClick={() => handleresendEmail()}>
                   Resend Email
                 </Button>
                 {isLoading && (

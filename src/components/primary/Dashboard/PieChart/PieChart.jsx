@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 ChartJS.register(ArcElement, Tooltip, Legend);
 const PieChart = () => {
   const { activeJobs, takenJobs, totalCountData } = useSelector((state) => state.dashboard);
-  console.log("🚀 ~ file: PieChart.jsx:10 ~ PieChart ~ totalCountData:", totalCountData);
   const { isLightTheme } = useSelector((state) => state.theme);
 
   const data = {
@@ -20,6 +19,7 @@ const PieChart = () => {
         // data: [10, 10],
 
         // data: [0, 0],
+        // backgroundColor: [isLightTheme ? "#2E58FF" : "#2E58FF", isLightTheme ? "#B6C9F0" : "##B6C9F0"],
         backgroundColor: ["#2E58FF", "#B6C9F0"],
         // borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
         borderWidth: 2,

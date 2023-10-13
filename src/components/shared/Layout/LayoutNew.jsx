@@ -210,6 +210,10 @@ export default function LayoutNew({ children }) {
 
   const level0AnnotatorOptions = [
     { name: "Dashboard", icon: DashboardSvg },
+    { name: "Identity Verification", icon: CourseSvg },
+  ];
+  const Verifiedlevel0AnnotatorOptions = [
+    { name: "Dashboard", icon: DashboardSvg },
     { name: "Course", icon: CourseSvg },
   ];
   const trainerOptions = [
@@ -440,10 +444,9 @@ export default function LayoutNew({ children }) {
                   role === "project_coordinator" &&
                   projectCoordinatorOptions.map((text) => handleMenu(text))}
                 {isLoggedIn && role === "project_manager" && projectManagerOptions.map((text) => handleMenu(text))}
-                {isLoggedIn &&
-                  isVerified &&
-                  role === "level_0_annotator" &&
-                  level0AnnotatorOptions.map((text) => handleMenu(text))}
+                {isLoggedIn && isVerified && role === "level_0_annotator"
+                  ? Verifiedlevel0AnnotatorOptions.map((text) => handleMenu(text))
+                  : level0AnnotatorOptions.map((text) => handleMenu(text))}
               </List>
             )}
 

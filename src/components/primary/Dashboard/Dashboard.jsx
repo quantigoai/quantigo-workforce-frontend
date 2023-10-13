@@ -93,7 +93,7 @@ const Dashboard = () => {
           >
             {role === "level_0_annotator" ? (
               <>
-                {!user.user.isVerified ? <CongratulationComponents /> : <DashboardDocument />}
+                {user.user.isVerified ? <CongratulationComponents /> : <DashboardDocument />}
                 {/* <DashboardDocument /> */}
                 {/*  */}
               </>

@@ -6,18 +6,10 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {
-  Box,
-  FilledInput,
-  FormControl,
-  Grid,
-  InputLabel,
-  Paper,
-  Typography,
-} from "@mui/material";
+import {Box, FilledInput, FormControl, Grid, InputLabel, Paper, Typography,} from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
-import { useOutletContext } from "react-router-dom";
+import {useSelector} from "react-redux";
+import {useOutletContext} from "react-router-dom";
 
 const NameDescFIeld = ({ isUpdate = false }) => {
   const [

@@ -7,12 +7,12 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, {useEffect} from "react";
+import {useSelector} from "react-redux";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 import TableWrapper from "../ProjectLIstNew2/ExpTable/TableWrapper";
-import { fields } from "./tableFields";
+import {fields} from "./tableFields";
 
 const AllUsersTable = ({
   handleClick,

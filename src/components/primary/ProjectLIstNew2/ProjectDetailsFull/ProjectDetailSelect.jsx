@@ -1,4 +1,4 @@
-import { Box, FormControl, MenuItem, Select } from "@mui/material";
+import {Box, FormControl, MenuItem, Select} from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const style = (value) => {

@@ -8,10 +8,10 @@
  */
 
 import CloseIcon from "@mui/icons-material/Close";
-import { Box, Button, Grid, Typography } from "@mui/material";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { useLocation, useOutletContext } from "react-router-dom";
+import {Box, Button, Grid, Typography} from "@mui/material";
+import React, {useState} from "react";
+import {useSelector} from "react-redux";
+import {useLocation, useOutletContext} from "react-router-dom";
 import SkillFieldForUserList from "../FilterFieldForUserList/SkillFieldForUserList";
 import AttemptLeftField from "./AttemptLeftField";
 import DateField from "./DateField";

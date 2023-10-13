@@ -1,14 +1,14 @@
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { Box, Button, Dialog, DialogTitle } from "@mui/material";
+import {Box, Button, Dialog, DialogTitle} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import useToaster from "../../../../customHooks/useToaster";
-import { setActiveChapterIndex } from "../../../../features/slice/activePathSlice";
-import { deleteAChapterById, manuallySetCourseChapter } from "../../../../features/slice/courseSlice";
+import {setActiveChapterIndex} from "../../../../features/slice/activePathSlice";
+import {deleteAChapterById, manuallySetCourseChapter} from "../../../../features/slice/courseSlice";
 
 const ChapterDeleteModal = () => {
   const [open, setOpen] = React.useState(false);

@@ -1,8 +1,8 @@
-import React from "react";
 import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import congImg from "../../../../assets/images/congImg.svg";
 import jobIcon from "../../../../assets/images/totalJobIcon.svg";
-import { useNavigate } from "react-router-dom";
 import CongratulationStepProcess from "./CongratulationStepProcess";
 
 const CongratulationComponents = () => {
@@ -44,7 +44,7 @@ const CongratulationComponents = () => {
                   <Box sx={{ padding: "3%" }}>
                     <Grid xs={12}>
                       <Typography variant="wpf_h4_semiBold" sx={{ color: "neutral.750" }}>
-                        Congratulatioins
+                        Congratulations
                       </Typography>
                     </Grid>
                     <Grid xs={12}>

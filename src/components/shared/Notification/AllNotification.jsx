@@ -6,7 +6,6 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
 import { Box, Button, Typography } from "@mui/material";
 import dayjs from "dayjs";
@@ -20,8 +19,43 @@ import {
   getLatestNotifications,
   readAllNotification,
 } from "../../../features/slice/notificationSlice";
-import clock from "../../shared/CustomSvgIcons/wired-lineal-45-clock-time.json";
 import success from "../CustomSvgIcons/wired-lineal-37-approve-checked-simple.json";
+
+import change from "../../shared/CustomSvgIcons/change-icon.json";
+import ok from "../../shared/CustomSvgIcons/ok-icon.json";
+import cloud from "../../shared/CustomSvgIcons/wired-lineal-1-cloud.json";
+import error from "../../shared/CustomSvgIcons/wired-lineal-1140-error.json";
+import elipse from "../../shared/CustomSvgIcons/wired-lineal-1415-elipse.json";
+import polyline from "../../shared/CustomSvgIcons/wired-lineal-1419-polyline.json";
+import noEntry from "../../shared/CustomSvgIcons/wired-lineal-1738-no-entry.json";
+import envelope from "../../shared/CustomSvgIcons/wired-lineal-177-envelope-mail-send.json";
+import suitcase from "../../shared/CustomSvgIcons/wired-lineal-187-suitcase.json";
+import avatar from "../../shared/CustomSvgIcons/wired-lineal-21-avatar.json";
+import edit from "../../shared/CustomSvgIcons/wired-lineal-245-edit-document.json";
+import approve from "../../shared/CustomSvgIcons/wired-lineal-37-approve-checked-simple.json";
+import clock from "../../shared/CustomSvgIcons/wired-lineal-45-clock-time.json";
+import plus from "../../shared/CustomSvgIcons/wired-lineal-49-plus-circle.json";
+
+// import document from "../../shared/CustomSvgIcons/document-icon.json"
+// import link from "../../shared/CustomSvgIcons/wired-lineal-11-link-unlink-morph.json"
+// import photo from "../../shared/CustomSvgIcons/wired-lineal-54-photo-picturelandscape-gallery.json"
+// import eye from "../../shared/CustomSvgIcons/wired-lineal-69-eye.json"
+// import bar from "../../shared/CustomSvgIcons/wired-lineal-153-bar-chart-growth.json"
+// import trash from "../../shared/CustomSvgIcons/wired-lineal-185-trash-bin.json"
+// import share1 from "../../shared/CustomSvgIcons/wired-lineal-259-share-arrow.json"
+// import avatarMale from "../../shared/CustomSvgIcons/wired-lineal-268-avatar-man.json"
+// import avatarFemale from "../../shared/CustomSvgIcons/wired-lineal-269-avatar-female.json"
+// import coins from "../../shared/CustomSvgIcons/wired-lineal-298-coins.json"
+// import bookmark from "../../shared/CustomSvgIcons/wired-lineal-400-bookmark-morph.json"
+// import it from "../../shared/CustomSvgIcons/wired-lineal-680-it-developer.json"
+// import share2 from "../../shared/CustomSvgIcons/wired-lineal-751-share.json"
+// import privacy from "../../shared/CustomSvgIcons/wired-lineal-966-privacy-policy.json"
+// import circle from "../../shared/CustomSvgIcons/wired-lineal-1414-circle.json"
+// import triangle from "../../shared/CustomSvgIcons/wired-lineal-1416-triangle.json"
+// import rounded from "../../shared/CustomSvgIcons/wired-lineal-1417-rounded-square.json"
+// import rectangle from "../../shared/CustomSvgIcons/wired-lineal-1421-rectangle.json"
+import polygon from "../../shared/CustomSvgIcons/wired-lineal-1422-polygon.json";
+
 // import ChangeRoleIcons
 const convertDate = (date) => {
   return dayjs(date).format("DD MMM hh:mm A");
@@ -43,77 +77,111 @@ const style = {
   borderRadius: "50%",
 };
 
-const lottieOptions = {
+const mediumOptions = {
   // loop: true,
   loop: false,
   style: {
     height: 40,
   },
 };
+const miniOptions = {
+  // loop: true,
+  loop: false,
+  style: {
+    height: 25,
+  },
+};
 
-const iconHandler = (notificationType) => {
+export const iconHandler = (notificationType, miniPopup) => {
+  const lottieOptions = miniPopup ? miniOptions : mediumOptions;
+
   switch (true) {
     case notificationType === "updateUserRole":
-      // return <AddchartIcon sx={{ ...style, backgroundColor: "primary.B300", color: "primary.B008" }} />;
-      return <Lottie animationData={clock} {...lottieOptions} />;
+      return <Lottie animationData={change} {...lottieOptions} />;
+
+    case notificationType === "uploadNDAOrDocuments":
+      return <Lottie animationData={cloud} {...lottieOptions} />;
 
     case notificationType === "customUserData":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
-    case notificationType === "notification":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
-    case notificationType === "approvedUser":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
-    case notificationType === "rejectUser":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
-    case notificationType === "uploadNDAOrDocuments":
-      // return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
       return <Lottie animationData={success} {...lottieOptions} />;
+
+    case notificationType === "notification":
+      return <Lottie animationData={success} {...lottieOptions} />;
+
+    case notificationType === "approvedUser":
+      return <Lottie animationData={approve} {...lottieOptions} />;
+
+    case notificationType === "rejectUser":
+      return <Lottie animationData={error} {...lottieOptions} />;
+
     case notificationType === "addUserSkills":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "yellow", color: "green" }} />;
+      return <Lottie animationData={plus} {...lottieOptions} />;
+
     case notificationType === "removeUserSkills":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={error} {...lottieOptions} />;
+
     case notificationType === "blockUser":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={noEntry} {...lottieOptions} />;
+
     case notificationType === "unBlockUser":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={ok} {...lottieOptions} />;
+
     case notificationType === "updateProjectPriority":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={edit} {...lottieOptions} />;
+
     case notificationType === "updateProjectHub":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={edit} {...lottieOptions} />;
+
     case notificationType === "updateProjectStatus":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={edit} {...lottieOptions} />;
+
     case notificationType === "newJobAvailable":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={polyline} {...lottieOptions} />;
+
     case notificationType === "reviewerAvailableJob":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={polygon} {...lottieOptions} />;
+
     case notificationType === "takeJobReviewer":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={suitcase} {...lottieOptions} />;
+
     case notificationType === "takeJobAnnotator":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={suitcase} {...lottieOptions} />;
+
     case notificationType === "reviewOnJobAccept":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={success} {...lottieOptions} />;
+
     case notificationType === "reviewOnJobReject":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={error} {...lottieOptions} />;
+
     case notificationType === "reviewOnJobRejectFinal":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={error} {...lottieOptions} />;
+
     case notificationType === "submitJob":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={envelope} {...lottieOptions} />;
+
     case notificationType === "jobTimeOutAnnotator":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={clock} {...lottieOptions} />;
+
     case notificationType === "jobTimeOutReviewer":
       return <Lottie animationData={clock} {...lottieOptions} />;
+
     case notificationType === "enrollCourseStudent":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={avatar} {...lottieOptions} />;
+
     case notificationType === "courseCompleteUser":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={success} {...lottieOptions} />;
+
     case notificationType === "benchmarkCreate":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={elipse} {...lottieOptions} />;
+
     case notificationType === "benchMarkUpdate":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={success} {...lottieOptions} />;
+
     case notificationType === "jobBlockAnnotator":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={error} {...lottieOptions} />;
+
     case notificationType === "jobUnblockAnnotator":
-      return <AccessTimeIcon sx={{ ...style, backgroundColor: "", color: "" }} />;
+      return <Lottie animationData={success} {...lottieOptions} />;
 
     default:
       break;
@@ -192,7 +260,7 @@ const AllNotification = () => {
                 gap: "10px",
               }}
             >
-              {iconHandler(notification.type)}
+              {iconHandler(notification.type, false)}
               <Typography variant="wpf_p3_medium" color="neutral.700">
                 {notification.message}
               </Typography>

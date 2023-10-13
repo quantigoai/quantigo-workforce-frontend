@@ -30,7 +30,7 @@ const useHandleChange = () => {
       target: { value },
     } = event;
     setCount(value.length - 1);
-    setAddRoles(typeof value === "string" ? value.split(",") : value);
+    setAddRoles(value);
   };
 
   return {

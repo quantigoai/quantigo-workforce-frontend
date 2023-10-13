@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { InputAdornment, TextField } from "@mui/material";
+import {InputAdornment, TextField} from "@mui/material";
 import React from "react";
 import emailIcon from "../../../../assets/images/IconEmail.png";
 

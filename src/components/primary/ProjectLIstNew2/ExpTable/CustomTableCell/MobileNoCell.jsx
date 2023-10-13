@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Typography } from "@mui/material";
+import {Typography} from "@mui/material";
 import React from "react";
 
 const MobileNoCell = ({ data }) => {

@@ -7,15 +7,15 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 
-import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {Box, Grid, Paper, Stack, Typography} from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import useToaster from "../../../customHooks/useToaster";
-import { createCourse, getAllCourses } from "../../../features/slice/courseSlice";
-import { getAllSkills } from "../../../features/slice/skillSlice";
-import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
+import {createCourse, getAllCourses} from "../../../features/slice/courseSlice";
+import {getAllSkills} from "../../../features/slice/skillSlice";
+import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import CategoryField from "./InputFields/CategoryField";
 import CoverImageField from "./InputFields/CoverImageField";

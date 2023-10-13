@@ -1,6 +1,6 @@
-import { Box, Button, colors } from "@mui/material";
+import {Button} from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 
 const CheckInButton = ({ handleCheckInButton, isDisable }) => {
   const { isLightTheme } = useSelector((state) => state.theme);

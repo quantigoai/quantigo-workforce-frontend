@@ -1,11 +1,11 @@
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { Button } from "@mui/material";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import {Button} from "@mui/material";
+import React, {useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../../customHooks/useToaster";
-import { updateAUserById } from "../../../../features/slice/userSlice";
+import {updateAUserById} from "../../../../features/slice/userSlice";
 import AcceptModal from "./AcceptModal";
 import NdaRejectModal from "./NdaRejectModal";
 

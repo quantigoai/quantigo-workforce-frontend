@@ -1,14 +1,14 @@
-import { Box, Button, Dialog, DialogTitle } from "@mui/material";
+import {Box, Button, Dialog, DialogTitle} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import Tooltip from "@mui/material/Tooltip";
 import React from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import deleteIcon from "../../../../assets/images/delete.svg";
 import useToaster from "../../../../customHooks/useToaster";
-import { deleteACourseById } from "../../../../features/slice/courseSlice";
+import {deleteACourseById} from "../../../../features/slice/courseSlice";
 
 const CourseDeleteModal = ({ course }) => {
   const [open, setOpen] = React.useState(false);

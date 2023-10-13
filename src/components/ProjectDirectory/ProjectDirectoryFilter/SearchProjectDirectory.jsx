@@ -1,10 +1,9 @@
 import SearchIcon from "@mui/icons-material/Search";
-import { IconButton, Paper, Popover, styled } from "@mui/material";
+import {IconButton, Paper, Popover, styled} from "@mui/material";
 import * as React from "react";
 import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import MiniModelProjectDirectory from "./MiniModelProjectDirectory";
 import MiniModalProjectDirectoryNew from "./MiniModalProjectDirectoryNew";
 
 const CustomFilterIcon = styled(FilterAltIcon)({

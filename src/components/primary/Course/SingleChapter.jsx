@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Chip, Grid, Typography } from "@mui/material";
+import {Chip, Grid, Typography} from "@mui/material";
 import React from "react";
 import iconButton from "../../../assets/images/Vector (1).png";
 

@@ -1,9 +1,9 @@
-import { Box, Button, Grid, Modal, Paper, styled, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import {Box, Button, Grid, Modal, Paper, styled, TextField, Typography} from "@mui/material";
+import React, {useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch} from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
-import { updateProjectDirectory } from "../../../features/slice/ProjectDirectorySlice";
+import {updateProjectDirectory} from "../../../features/slice/ProjectDirectorySlice";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",

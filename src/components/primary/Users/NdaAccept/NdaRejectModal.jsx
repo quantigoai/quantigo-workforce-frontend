@@ -6,11 +6,12 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Box, Button, Grid, MenuItem, Modal, Paper, Select, TextField, Typography, styled } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import {Box, Button, Grid, Modal, styled, TextField, Typography} from "@mui/material";
+import React from "react";
+import {useForm} from "react-hook-form";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
+
 export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "2px solid #E6ECF5 !important",

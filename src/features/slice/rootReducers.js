@@ -13,7 +13,7 @@
  * ------------------------
  */
 
-import { combineReducers } from "@reduxjs/toolkit";
+import {combineReducers} from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import projectDirectoryReducer from "../slice/ProjectDirectorySlice";
 import activePathReducer from "../slice/activePathSlice";
@@ -35,30 +35,30 @@ import workspaceReducer from "../slice/workSpaceSlice";
 import projectDrawerReducer from "./projectDrawerSlice";
 
 const rootPersistConfig = {
-  key: "root",
-  storage: storage,
-  blacklist: ["auth", "skill"],
+    key: "root",
+    storage: storage,
+    blacklist: ["auth", "skill"],
 };
 
 const rootReducers = combineReducers({
-  user: userReducer,
-  theme: themeReducer,
-  job: jobReducer,
-  team: teamReducer,
-  workspace: workspaceReducer,
-  project: projectReducer,
-  benchMark: benchMarkReducer,
-  dataset: dataSetReducer,
-  course: courseReducer,
-  quiz: quizReducer,
-  dashboard: dashboardReducer,
-  skill: skillReducer,
-  serverSync: syncServerReducer,
-  activePath: activePathReducer,
-  tempData: temporaryDataReducer,
-  notification: notificationReducer,
-  projectDirectory: projectDirectoryReducer,
-  projectDrawer: projectDrawerReducer,
+    user: userReducer,
+    theme: themeReducer,
+    job: jobReducer,
+    team: teamReducer,
+    workspace: workspaceReducer,
+    project: projectReducer,
+    benchMark: benchMarkReducer,
+    dataset: dataSetReducer,
+    course: courseReducer,
+    quiz: quizReducer,
+    dashboard: dashboardReducer,
+    skill: skillReducer,
+    serverSync: syncServerReducer,
+    activePath: activePathReducer,
+    tempData: temporaryDataReducer,
+    notification: notificationReducer,
+    projectDirectory: projectDirectoryReducer,
+    projectDrawer: projectDrawerReducer,
 });
 
-export { rootPersistConfig, rootReducers };
+export {rootPersistConfig, rootReducers};

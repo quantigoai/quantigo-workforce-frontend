@@ -1,8 +1,8 @@
-import { Box, Chip, MenuItem, Select, Typography, styled } from "@mui/material";
+import {Box, Chip, MenuItem, Select, styled, Typography} from "@mui/material";
 import React from "react";
-import { Controller, useFormContext } from "react-hook-form";
-import { useSelector } from "react-redux";
-import { MyFormControl } from "./CustomDatePicker";
+import {Controller, useFormContext} from "react-hook-form";
+import {useSelector} from "react-redux";
+import {MyFormControl} from "./CustomDatePicker";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export const MySelect = styled(Select)(() => ({

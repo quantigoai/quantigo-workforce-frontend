@@ -6,8 +6,8 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import { Grid } from "@mui/material";
+import {CKEditor} from "@ckeditor/ckeditor5-react";
+import {Grid} from "@mui/material";
 import Editor from "ckeditor5-custom-build/build/ckeditor";
 import React from "react";
 

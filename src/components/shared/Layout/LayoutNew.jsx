@@ -30,9 +30,26 @@ import PaymentSvg from "../../../assets/images/wmp_svg/drawer/u_credit-card.svg"
 import UserSvg from "../../../assets/images/wmp_svg/drawer/userNew.svg";
 import Header from "../Header/Header";
 import GetHelpNew from "./GetHelpNew";
+import { AnimatePresence, motion } from "framer-motion";
 
 const drawerWidth = "15%";
 
+const menuAnimation = {
+  hidden: {
+    opacity: 0,
+    height: 0,
+    padding: 0,
+    transition: { duration: 0.3, when: "afterChildren" },
+  },
+  show: {
+    opacity: 1,
+    height: "auto",
+    transition: {
+      duration: 0.3,
+      when: "beforeChildren",
+    },
+  },
+};
 const openedMixin = (theme) => ({
   width: drawerWidth,
   transition: theme.transitions.create("width", {
@@ -193,6 +210,10 @@ export default function LayoutNew({ children }) {
 
   const level0AnnotatorOptions = [
     { name: "Dashboard", icon: DashboardSvg },
+    { name: "Identity Verification", icon: CourseSvg },
+  ];
+  const Verifiedlevel0AnnotatorOptions = [
+    { name: "Dashboard", icon: DashboardSvg },
     { name: "Course", icon: CourseSvg },
   ];
   const trainerOptions = [
@@ -341,93 +362,100 @@ export default function LayoutNew({ children }) {
   };
 
   return (
-    <Stack direction={"row"}>
-      <Box
-        sx={{
-          width: open ? "15%" : "3%",
-          height: "100vh",
-          backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
-        }}
-      >
-        <Drawer
-          PaperProps={{
-            sx: {
-              backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
-            },
+    <Stack component={motion.div} animate={{}} direction={"row"}>
+      <AnimatePresence>
+        <Box
+          component={motion.div}
+          // whileTap={{ scale: 0.96 }}
+          animate={{
+            width: open ? "15%" : "3%",
+            transition: { duration: 0.4 },
           }}
-          variant="permanent"
-          open={open}
+          sx={{
+            // width: open ? "15%" : "3%",
+            height: "100vh",
+            backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
+          }}
         >
-          <DrawerHeader>
-            <Box sx={{}}>
-              <img
-                onClick={() => navigate("/")}
-                src={logo}
-                alt="logo"
-                style={{
-                  cursor: "pointer",
-                  ...(!open && { display: "none" }),
-                }}
-                className="responsive-logo"
-              />
+          <Drawer
+            PaperProps={{
+              sx: {
+                backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
+              },
+            }}
+            variant="permanent"
+            open={open}
+          >
+            <DrawerHeader>
+              <Box sx={{}}>
+                <img
+                  onClick={() => navigate("/")}
+                  src={logo}
+                  alt="logo"
+                  style={{
+                    cursor: "pointer",
+                    ...(!open && { display: "none" }),
+                  }}
+                  className="responsive-logo"
+                />
+              </Box>
+
+              {open && (
+                <Box sx={{ justifyContent: "left", paddingLeft: { xl: "20%", lg: "1%", md: "1%" } }}>
+                  <IconButton onClick={handleDrawerClose}>
+                    {theme.direction === "rtl" ? <img src={menuFoldLine} /> : <img src={menuFoldLine} />}
+                  </IconButton>
+                </Box>
+              )}
+              {!open && (
+                <IconButton onClick={handleDrawerOpen}>
+                  <img src={menuUnfoldLne} />
+                </IconButton>
+              )}
+            </DrawerHeader>
+            <Box sx={{ paddingLeft: "11%" }}>
+              {open && (
+                <Typography variant="caption" sx={{ color: "#B6C9F0" }}>
+                  <b>MAIN MENU</b>
+                </Typography>
+              )}
+              {!open && (
+                <Typography variant="caption" sx={{ color: "#B6C9F0", paddingLeft: "10%" }}>
+                  <b>MENU</b>
+                </Typography>
+              )}
             </Box>
 
-            {open && (
-              <Box sx={{ justifyContent: "left", paddingLeft: { xl: "20%", lg: "1%", md: "1%" } }}>
-                <IconButton onClick={handleDrawerClose}>
-                  {theme.direction === "rtl" ? <img src={menuFoldLine} /> : <img src={menuFoldLine} />}
-                </IconButton>
-              </Box>
+            {isLoggedIn && !isBlocked && !isEmailVerified ? (
+              <List>{unverifiedOptions.map((text) => handleMenu(text))}</List>
+            ) : (
+              <List>
+                {isLoggedIn && role === "admin" && adminOptions.map((text) => handleMenu(text))}
+                {isLoggedIn && role === "delivery_manager" && dmOptions.map((text) => handleMenu(text))}
+                {isLoggedIn && role === "level_1_annotator" && anntatorOptions.map((text) => handleMenu(text))}
+                {isLoggedIn && role === "level_2_annotator" && anntatorOptions.map((text) => handleMenu(text))}
+                {isLoggedIn && role === "level_3_annotator" && anntatorOptions.map((text) => handleMenu(text))}
+                {isLoggedIn && role === "trainer" && trainerOptions.map((text) => handleMenu(text))}
+                {isLoggedIn && role === "reviewer" && reviewerOptions.map((text) => handleMenu(text))}
+                {isLoggedIn && role === "engineering_lead" && devOptions.map((text) => handleMenu(text))}
+                {isLoggedIn && role === "recruitment_manager" && recruitOptions.map((text) => handleMenu(text))}
+                {isLoggedIn && role === "project_lead" && projectLeadOptions.map((text) => handleMenu(text))}
+                {isLoggedIn &&
+                  role === "project_coordinator" &&
+                  projectCoordinatorOptions.map((text) => handleMenu(text))}
+                {isLoggedIn && role === "project_manager" && projectManagerOptions.map((text) => handleMenu(text))}
+                {isLoggedIn && isVerified && role === "level_0_annotator"
+                  ? Verifiedlevel0AnnotatorOptions.map((text) => handleMenu(text))
+                  : level0AnnotatorOptions.map((text) => handleMenu(text))}
+              </List>
             )}
-            {!open && (
-              <IconButton onClick={handleDrawerOpen}>
-                <img src={menuUnfoldLne} />
-              </IconButton>
-            )}
-          </DrawerHeader>
-          <Box sx={{ paddingLeft: "11%" }}>
-            {open && (
-              <Typography variant="caption" sx={{ color: "#B6C9F0" }}>
-                <b>MAIN MENU</b>
-              </Typography>
-            )}
-            {!open && (
-              <Typography variant="caption" sx={{ color: "#B6C9F0", paddingLeft: "10%" }}>
-                <b>MENU</b>
-              </Typography>
-            )}
-          </Box>
 
-          {isLoggedIn && !isBlocked && !isEmailVerified ? (
-            <List>{unverifiedOptions.map((text) => handleMenu(text))}</List>
-          ) : (
-            <List>
-              {isLoggedIn && role === "admin" && adminOptions.map((text) => handleMenu(text))}
-              {isLoggedIn && role === "delivery_manager" && dmOptions.map((text) => handleMenu(text))}
-              {isLoggedIn && role === "level_1_annotator" && anntatorOptions.map((text) => handleMenu(text))}
-              {isLoggedIn && role === "level_2_annotator" && anntatorOptions.map((text) => handleMenu(text))}
-              {isLoggedIn && role === "level_3_annotator" && anntatorOptions.map((text) => handleMenu(text))}
-              {isLoggedIn && role === "trainer" && trainerOptions.map((text) => handleMenu(text))}
-              {isLoggedIn && role === "reviewer" && reviewerOptions.map((text) => handleMenu(text))}
-              {isLoggedIn && role === "engineering_lead" && devOptions.map((text) => handleMenu(text))}
-              {isLoggedIn && role === "recruitment_manager" && recruitOptions.map((text) => handleMenu(text))}
-              {isLoggedIn && role === "project_lead" && projectLeadOptions.map((text) => handleMenu(text))}
-              {isLoggedIn &&
-                role === "project_coordinator" &&
-                projectCoordinatorOptions.map((text) => handleMenu(text))}
-              {isLoggedIn && role === "project_manager" && projectManagerOptions.map((text) => handleMenu(text))}
-              {isLoggedIn &&
-                isVerified &&
-                role === "level_0_annotator" &&
-                level0AnnotatorOptions.map((text) => handleMenu(text))}
-            </List>
-          )}
-
-          <DrawerFooter sx={{ paddingLeft: "5%", paddingRight: "5%", paddingBottom: "5%" }}>
-            {open && <GetHelpNew />}
-          </DrawerFooter>
-        </Drawer>
-      </Box>
+            <DrawerFooter sx={{ paddingLeft: "5%", paddingRight: "5%", paddingBottom: "5%" }}>
+              {open && <GetHelpNew />}
+            </DrawerFooter>
+          </Drawer>
+        </Box>
+      </AnimatePresence>
 
       <Box
         sx={{

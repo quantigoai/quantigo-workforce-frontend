@@ -1,11 +1,12 @@
-import { Box, Grid } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { Suspense, lazy, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { emailVerificationLink } from "../../../../features/slice/userSlice";
+import {Box, Grid} from "@mui/material";
+import {styled} from "@mui/material/styles";
+import {lazy, Suspense, useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useParams} from "react-router-dom";
+import {emailVerificationLink} from "../../../../features/slice/userSlice";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import HeaderNav from "../../HomePage/HeaderNav";
+
 const VerificationResult = lazy(() => import("./VerificationResult"));
 
 const EmailVerificationConfirmation = () => {
@@ -37,21 +38,12 @@ const EmailVerificationConfirmation = () => {
   return (
     <Box className="container">
       <Keyframes>
-        <HeaderNav />
+        <HeaderNav emailVerificationConfirm={true} />
         <Grid container style={{ justifyItems: "center" }}>
-          <Grid
-            xs={12}
-            sm={12}
-            md={6}
-            lg={6}
-            sx={{ paddingTop: "10%", paddingLeft: "35%" }}
-          >
+          <Grid xs={12} sm={12} md={6} lg={6} sx={{ paddingTop: "10%", paddingLeft: "35%" }}>
             {!isLoading && (
               <Suspense fallback={<LoadingComponent />}>
-                <VerificationResult
-                  message={message}
-                  verificationTimeOver={verificationTimeOver}
-                />
+                <VerificationResult message={message} verificationTimeOver={verificationTimeOver} />
               </Suspense>
             )}
           </Grid>

@@ -13,117 +13,117 @@
  * ------------------------
  */
 
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import { realToken } from "../../helper/lib";
+import {realToken} from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
 const initialState = {
-  isLoading: false,
-  activeJobs: [],
-  takenJobs: [],
-  projectBasedData: {},
-  totalCountData: [],
-  weeklyData: {},
-  hourlyData: {},
-  error: "null",
+    isLoading: false,
+    activeJobs: [],
+    takenJobs: [],
+    projectBasedData: {},
+    totalCountData: [],
+    weeklyData: {},
+    hourlyData: {},
+    error: "null",
 };
 
 export const getDashboardData = createAsyncThunk("dashboard", async (data) => {
-  const { startDate, endDate } = data;
-  return axios.get(`${url}/dashboard?startDate=${startDate}&endDate=${endDate}`, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
+    const {startDate, endDate} = data;
+    return axios.get(`${url}/dashboard?startDate=${startDate}&endDate=${endDate}`, {
+        headers: {
+            Authorization: `Bearer ${realToken()}`,
+        },
+    });
 });
 
 export const getDashboardDataWeekly = createAsyncThunk("dashboard/weekly", async () => {
-  return axios.get(`${url}/dashboard/weeklydata`, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
+    return axios.get(`${url}/dashboard/weeklydata`, {
+        headers: {
+            Authorization: `Bearer ${realToken()}`,
+        },
+    });
 });
 
 export const getDashboardDataHourly = createAsyncThunk("dashboard/hourly", async () => {
-  return axios.get(`${url}/dashboard/hourlydata`, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
+    return axios.get(`${url}/dashboard/hourlydata`, {
+        headers: {
+            Authorization: `Bearer ${realToken()}`,
+        },
+    });
 });
 
 // total count Data
 
 export const getTotalCountData = createAsyncThunk("total/Count/data", async () => {
-  return axios.get(`${url}/dashboard/totalcountdata`, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
+    return axios.get(`${url}/dashboard/totalcountdata`, {
+        headers: {
+            Authorization: `Bearer ${realToken()}`,
+        },
+    });
 });
 
 export const dashboardSlice = createSlice({
-  name: "dashboard",
-  initialState,
-  reducers: {
-    updateDashboardData: () => initialState,
-    resetDashboardSlice: () => {
-      return initialState;
+    name: "dashboard",
+    initialState,
+    reducers: {
+        updateDashboardData: () => initialState,
+        resetDashboardSlice: () => {
+            return initialState;
+        },
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(getDashboardData.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(getDashboardData.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.activeJobs = action.payload.data.activeJobsData;
-        state.takenJobs = action.payload.data.blockedJobsData;
-      })
-      .addCase(getDashboardData.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(getDashboardDataWeekly.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(getDashboardDataWeekly.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.weeklyData = action.payload.data.data;
-      })
-      .addCase(getDashboardDataWeekly.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(getDashboardDataHourly.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(getDashboardDataHourly.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.hourlyData = action.payload.data.data;
-      })
-      .addCase(getDashboardDataHourly.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(getTotalCountData.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(getTotalCountData.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.totalCountData = action.payload.data;
-      })
-      .addCase(getTotalCountData.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      });
-  },
+    extraReducers: (builder) => {
+        builder
+            .addCase(getDashboardData.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getDashboardData.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.activeJobs = action.payload.data.activeJobsData;
+                state.takenJobs = action.payload.data.blockedJobsData;
+            })
+            .addCase(getDashboardData.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(getDashboardDataWeekly.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getDashboardDataWeekly.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.weeklyData = action.payload.data.data;
+            })
+            .addCase(getDashboardDataWeekly.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(getDashboardDataHourly.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getDashboardDataHourly.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.hourlyData = action.payload.data.data;
+            })
+            .addCase(getDashboardDataHourly.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(getTotalCountData.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getTotalCountData.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.totalCountData = action.payload.data;
+            })
+            .addCase(getTotalCountData.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            });
+    },
 });
 
-export const { resetDashboardSlice, updateDashboardData } = dashboardSlice.actions;
+export const {resetDashboardSlice, updateDashboardData} = dashboardSlice.actions;
 
 export default dashboardSlice.reducer;

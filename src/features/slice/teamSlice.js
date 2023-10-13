@@ -12,57 +12,57 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import { realToken } from "../../helper/lib";
+import {realToken} from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
 const initialState = {
-  isLoading: false,
-  team: {},
-  teams: [],
-  error: "null",
-  isCreated: false,
+    isLoading: false,
+    team: {},
+    teams: [],
+    error: "null",
+    isCreated: false,
 };
 
-export const getAllTeams = createAsyncThunk("resources/teams", async ({ server_agent }) => {
-  return axios.get(`${url}/resources/teams/${server_agent}`, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
+export const getAllTeams = createAsyncThunk("resources/teams", async ({server_agent}) => {
+    return axios.get(`${url}/resources/teams/${server_agent}`, {
+        headers: {
+            Authorization: `Bearer ${realToken()}`,
+        },
+    });
 });
 
 // Clear all teams data from state
 
 const teamSlice = createSlice({
-  name: "team",
-  initialState: initialState,
-  reducers: {
-    updateTeamData: () => initialState,
-    resetTeams: (state) => {
-      state.teams = [];
+    name: "team",
+    initialState: initialState,
+    reducers: {
+        updateTeamData: () => initialState,
+        resetTeams: (state) => {
+            state.teams = [];
+        },
+        resetTeamSlice: () => {
+            return initialState;
+        },
     },
-    resetTeamSlice: () => {
-      return initialState;
+    extraReducers: (builder) => {
+        builder
+            .addCase(getAllTeams.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getAllTeams.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = null;
+                state.teams = action.payload.data.data.teams;
+            })
+            .addCase(getAllTeams.rejected, (state) => {
+                state.isLoading = false;
+            });
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(getAllTeams.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(getAllTeams.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        state.teams = action.payload.data.data.teams;
-      })
-      .addCase(getAllTeams.rejected, (state) => {
-        state.isLoading = false;
-      });
-  },
 });
 
-export const { resetTeamSlice, resetTeams, updateTeamData } = teamSlice.actions;
+export const {resetTeamSlice, resetTeams, updateTeamData} = teamSlice.actions;
 export default teamSlice.reducer;

@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 
 import MoveUpIcon from "@mui/icons-material/MoveUp";
 import SwipeRightIcon from "@mui/icons-material/SwipeRight";
-import { Box, Button, Grid, Paper, Table, TableBody, TableContainer, TableHead, TableRow } from "@mui/material";
+import {Box, Button, Grid, Paper, Table, TableBody, TableContainer, TableHead, TableRow} from "@mui/material";
 import TableCell from "@mui/material/TableCell";
-import { styled } from "@mui/material/styles";
-import { useDispatch, useSelector } from "react-redux";
+import {styled} from "@mui/material/styles";
+import {useDispatch, useSelector} from "react-redux";
 
-import { useForm } from "react-hook-form";
+import {useForm} from "react-hook-form";
 import useToaster from "../../../customHooks/useToaster";
-import { setActivePath } from "../../../features/slice/activePathSlice";
-import { getAjobInfoById, submitAJob, superJobSetStatus, updateReviewerStatus } from "../../../features/slice/jobSlice";
+import {setActivePath} from "../../../features/slice/activePathSlice";
+import {getAjobInfoById, submitAJob, superJobSetStatus, updateReviewerStatus} from "../../../features/slice/jobSlice";
 import CountDown from "../../shared/CountDown/CountDown";
 import SearchBar from "../../shared/SearchBar/SearchBar";
 import ActiveJobAnnotatorDetails from "./JobDetails/ActiveJobAnnotatorDetails";

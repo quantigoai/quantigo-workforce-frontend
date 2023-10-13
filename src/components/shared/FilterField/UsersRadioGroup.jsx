@@ -8,9 +8,9 @@
  */
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import React, { useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
+import React, {useState} from "react";
+import {useOutletContext} from "react-router-dom";
 
 const UsersRadioGroup = ({ users, isReviewers = false }) => {
   const [statusType, setStatusType, annotator, setAnnotator, reviewer, setReviewer, attemptLeft, setAttemptLeft, date, setDate, handleFilter, handleReset, handleClose, anchorEl, setAnchorEl, isClicked, setIsClicked, dateValue, setDateValue, setProjectIdFilter, projectIdFilter] = useOutletContext();

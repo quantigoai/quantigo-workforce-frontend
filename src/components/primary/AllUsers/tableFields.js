@@ -14,22 +14,22 @@
  */
 
 export const fields = [
-  { field: "qaiUserName", width: 150 },
-  { field: "name", width: 300, textAlign: "left", columnDataAlign: "left" },
-  { field: "gender", width: 100, columnDataAlign: "left" },
-  { field: "dob", width: 150, textAlign: "left", columnDataAlign: "left" },
-  { field: "billingAccountNo", width: 150, textAlign: "left", columnDataAlign: "left" },
-  { field: "role", width: 160, textAlign: "left", columnDataAlign: "left" },
-  { field: "isVerified", width: 100, textAlign: "left", columnDataAlign: "left" },
-  { field: "jobLimit", width: 150, textAlign: "center", columnDataAlign: "center" },
-  { field: "activeJobs", width: 170, textAlign: "center", columnDataAlign: "center" },
-  { field: "jobLimitLeft", width: 170, textAlign: "left", columnDataAlign: "left" },
-  { field: "totalWorkingHours", width: 180, textAlign: "left", columnDataAlign: "center" },
-  { field: "paymentRate", width: 160, textAlign: "left", columnDataAlign: "left" },
-  { field: "bloodGroup", width: 170, textAlign: "center", columnDataAlign: "center" },
-  { field: "currentlyCheckedInProject", width: 270, textAlign: "left", columnDataAlign: "left" },
-  { field: "hub", width: 100, textAlign: "left", columnDataAlign: "left" },
-  { field: "ACTIONS", renderCell: "button", width: 140, textAlign: "center" },
+    {field: "qaiUserName", width: 150},
+    {field: "name", width: 300, textAlign: "left", columnDataAlign: "left"},
+    {field: "gender", width: 100, columnDataAlign: "left"},
+    {field: "dob", width: 150, textAlign: "left", columnDataAlign: "left"},
+    {field: "billingAccountNo", width: 150, textAlign: "left", columnDataAlign: "left"},
+    {field: "role", width: 160, textAlign: "left", columnDataAlign: "left"},
+    {field: "isVerified", width: 100, textAlign: "left", columnDataAlign: "left"},
+    {field: "jobLimit", width: 150, textAlign: "center", columnDataAlign: "center"},
+    {field: "activeJobs", width: 170, textAlign: "center", columnDataAlign: "center"},
+    {field: "jobLimitLeft", width: 170, textAlign: "left", columnDataAlign: "left"},
+    {field: "totalWorkingHours", width: 180, textAlign: "left", columnDataAlign: "center"},
+    {field: "paymentRate", width: 160, textAlign: "left", columnDataAlign: "left"},
+    {field: "bloodGroup", width: 170, textAlign: "center", columnDataAlign: "center"},
+    {field: "currentlyCheckedInProject", width: 270, textAlign: "left", columnDataAlign: "left"},
+    {field: "hub", width: 100, textAlign: "left", columnDataAlign: "left"},
+    {field: "ACTIONS", renderCell: "button", width: 140, textAlign: "center"},
 ];
 
 // {

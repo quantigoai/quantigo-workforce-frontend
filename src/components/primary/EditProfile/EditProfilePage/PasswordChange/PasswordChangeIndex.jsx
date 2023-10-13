@@ -1,12 +1,13 @@
-import { Box, Button, Grid } from "@mui/material";
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {Box, Button, Grid} from "@mui/material";
+import React, {useState} from "react";
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import useToaster from "../../../../../customHooks/useToaster";
-import { changePassword, logout } from "../../../../../features/slice/userSlice";
+import {changePassword, logout} from "../../../../../features/slice/userSlice";
 import ConfirmPassword from "../../Password/ConfirmPassword";
 import CurrentPasswordfield from "../../Password/CurrentPasswordfield";
 import ResetPassword from "../../Password/ResetPassword";
+
 const PasswordChangeIndex = () => {
   const [CurrentPassword, setCurrentPassword] = useState("");
   const [resetPassword, setResetPassword] = useState("");

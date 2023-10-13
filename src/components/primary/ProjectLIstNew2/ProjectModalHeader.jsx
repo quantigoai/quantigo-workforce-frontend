@@ -1,5 +1,5 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
-import { useSelector } from "react-redux";
+import {Box, Button, Grid, Typography} from "@mui/material";
+import {useSelector} from "react-redux";
 import u_multiply from "../../../assets/images/crosIcon.svg";
 
 const ProjectModalHeader = ({ handleCreateProjectClose, modalTitle, isPageDetail }) => {

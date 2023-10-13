@@ -7,42 +7,42 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 
-import { useTheme } from "@emotion/react";
+import {useTheme} from "@emotion/react";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import {
-  Alert,
-  AlertTitle,
-  Box,
-  Button,
-  Grid,
-  IconButton,
-  Paper,
-  styled,
-  Table,
-  TableBody,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
-  TableSortLabel,
+    Alert,
+    AlertTitle,
+    Box,
+    Button,
+    Grid,
+    IconButton,
+    Paper,
+    styled,
+    Table,
+    TableBody,
+    TableContainer,
+    TableHead,
+    TablePagination,
+    TableRow,
+    TableSortLabel,
 } from "@mui/material";
 import TableCell from "@mui/material/TableCell";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
-import { setActivePath } from "../../../features/slice/activePathSlice";
+import {setActivePath} from "../../../features/slice/activePathSlice";
 import {
-  addDefaultReviewer,
-  addUserToATeam,
-  availableJobsForReviewer,
-  getAllJobs,
-  takeAjob,
+    addDefaultReviewer,
+    addUserToATeam,
+    availableJobsForReviewer,
+    getAllJobs,
+    takeAjob,
 } from "../../../features/slice/jobSlice";
-import { getAllTeams } from "../../../features/slice/teamSlice";
-import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
+import {getAllTeams} from "../../../features/slice/teamSlice";
+import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
 import SearchBar from "../../shared/SearchBar/SearchBar";
 import PendingJobDetails from "./JobDetails/PendingJobDetails";
 

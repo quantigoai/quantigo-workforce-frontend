@@ -1,6 +1,5 @@
-import {Box, Grid} from "@mui/material";
+import {Box} from "@mui/material";
 import React from "react";
-import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import DashboardCardIndex from "./DashboardCardIndex";
 
 const DashboardIndex = () => {

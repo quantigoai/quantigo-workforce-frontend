@@ -7,9 +7,9 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Chip, Grid } from "@mui/material";
-import React, { useEffect } from "react";
-import { useLocation, useOutletContext } from "react-router-dom";
+import {Chip, Grid} from "@mui/material";
+import React, {useEffect} from "react";
+import {useLocation, useOutletContext} from "react-router-dom";
 
 let jobStatus = [
   {

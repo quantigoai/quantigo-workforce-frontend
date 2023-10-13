@@ -6,13 +6,13 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Box, Grid, Paper } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {Box, Grid, Paper} from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import useToaster from "../../../customHooks/useToaster";
-import { updateQuizById } from "../../../features/slice/quizSlice";
+import {updateQuizById} from "../../../features/slice/quizSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import QuestionAnswer from "./QuestionAnswer";
 import ChapterName from "./QuizField.jsx/ChapterName";

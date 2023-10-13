@@ -1,14 +1,5 @@
-import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
-} from "@mui/material";
-import React, { useState } from "react";
+import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow,} from "@mui/material";
+import React, {useState} from "react";
 import "swiper/css";
 import "./exp.css";
 

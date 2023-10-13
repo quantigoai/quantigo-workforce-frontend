@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+
 /*
  * File           : userFilterOptions.js
  * Project        : wmpfrontv2
@@ -12,23 +14,34 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-
-import dayjs from "dayjs";
-import { useEffect, useState } from "react";
-export const roleOptions = [
-  { value: "level_0_annotator", label: "level_0_annotator" },
-  { value: "level_1_annotator", label: "level_1_annotator" },
-  { value: "level_2_annotator", label: "level_2_annotator" },
-  { value: "level_3_annotator", label: "level_3_annotator" },
-  { value: "reviewer", label: "reviewer" },
-  { value: "trainer", label: "trainer" },
-  { value: "project_lead", label: "project_lead" },
-  { value: "project_coordinator", label: "project_coordinator" },
-  { value: "delivery_manager", label: "delivery_manager" },
-  { value: "project_manager", label: "project_manager" },
-  { value: "recruitment_manager", label: "recruitment_manager" },
-  { value: "engineering_lead", label: "engineering_lead" },
-  { value: "admin", label: "admin" },
+export const roleOptionsAdmin = [
+  { value: "level_0_annotator", label: "Level 0 annotator" },
+  { value: "level_1_annotator", label: "Level 1 annotator" },
+  { value: "level_2_annotator", label: "Level 2 annotator" },
+  { value: "level_3_annotator", label: "Level 3 annotator" },
+  { value: "reviewer", label: "Reviewer" },
+  { value: "trainer", label: "Trainer" },
+  { value: "project_lead", label: "Project lead" },
+  { value: "project_coordinator", label: "Project coordinator" },
+  { value: "delivery_manager", label: "Delivery manager" },
+  { value: "project_manager", label: "Project manager" },
+  { value: "recruitment_manager", label: "Recruitment manager" },
+  { value: "engineering_lead", label: "Engineering lead" },
+  { value: "admin", label: "Admin" },
+];
+export const roleOptionsRecruitment_manager = [
+  { value: "level_0_annotator", label: "Level 0 annotator" },
+  { value: "level_1_annotator", label: "Level 1 annotator" },
+  { value: "level_2_annotator", label: "Level 2 annotator" },
+  { value: "level_3_annotator", label: "Level 3 annotator" },
+  { value: "reviewer", label: "Reviewer" },
+  { value: "trainer", label: "Trainer" },
+  { value: "project_lead", label: "Project lead" },
+  { value: "project_coordinator", label: "Project coordinator" },
+  { value: "delivery_manager", label: "Delivery manager" },
+  { value: "project_manager", label: "Project manager" },
+  { value: "recruitment_manager", label: "Recruitment manager" },
+  { value: "engineering_lead", label: "Engineering lead" },
 ];
 
 export const hubOptions = [

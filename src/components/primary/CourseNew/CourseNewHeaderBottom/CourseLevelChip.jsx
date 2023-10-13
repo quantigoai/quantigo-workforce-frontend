@@ -1,7 +1,7 @@
-import { Grid, Typography } from "@mui/material";
+import {Grid, Typography} from "@mui/material";
 import React from "react";
 import levelImage from "../../../../assets/images/Frame 2.svg";
-import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
+import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
 
 const basicStyle = {
   width: "100%",

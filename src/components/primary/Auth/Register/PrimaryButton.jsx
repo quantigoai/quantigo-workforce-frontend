@@ -7,9 +7,8 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Typography } from "@mui/material";
-import { LoadingButtonStyle } from "../Login/Login";
-import { Link, useNavigate } from "react-router-dom";
+import {Box} from "@mui/material";
+import {LoadingButtonStyle} from "../Login/Login";
 
 export default function PrimaryButton(props) {
   // const navigate = useNavigate();

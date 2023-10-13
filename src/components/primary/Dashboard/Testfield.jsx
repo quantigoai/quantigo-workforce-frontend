@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm, Controller, useFieldArray } from 'react-hook-form';
+import {Controller, useFieldArray, useForm} from 'react-hook-form';
 
 function Testfield() {
   const { control, handleSubmit } = useForm();

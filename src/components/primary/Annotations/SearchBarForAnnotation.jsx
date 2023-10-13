@@ -1,6 +1,7 @@
-import { IconButton, InputBase, Paper } from "@mui/material";
+import {IconButton, InputBase, Paper} from "@mui/material";
 import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
+
 const SearchBarForAnnotation = ({ handleSearch }) => {
   return (
     <>

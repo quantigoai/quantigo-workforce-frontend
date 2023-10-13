@@ -1,13 +1,13 @@
-import { Box, Button, Dialog, DialogTitle, styled, TextField } from "@mui/material";
+import {Box, Button, Dialog, DialogTitle, styled, TextField} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import Tooltip from "@mui/material/Tooltip";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useEffect, useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
-import { updateASkill } from "../../../features/slice/skillSlice";
-import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
+import {updateASkill} from "../../../features/slice/skillSlice";
+import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
 
 const ButtonStyleDelete = styled(Button)({
   // backgroundColor: "#2D58FF",

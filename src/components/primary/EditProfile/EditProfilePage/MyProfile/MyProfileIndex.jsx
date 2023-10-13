@@ -8,6 +8,7 @@ import { myProfileEdit, uploadMyImage } from "../../../../../features/slice/user
 import CommonFieldTest from "../CommonFieldTest";
 import CommonSelectField from "../CommonSelectField";
 import ProfilePicture from "./ProfilePicture";
+
 const MyProfileIndex = () => {
   const { user, isLoading } = useSelector((state) => state.user);
   const [editAble, setEditAble] = useState(false);
@@ -32,6 +33,7 @@ const MyProfileIndex = () => {
   const { handleSubmit, control, errors } = useForm();
 
   const onSubmit = (data) => {
+    
     const filteredData = Object.fromEntries(Object.entries(data).filter(([_, value]) => value !== undefined));
 
     // let name =filteredData.firstName.concat(" ", filteredData.lastName);
@@ -50,6 +52,7 @@ const MyProfileIndex = () => {
     // } else {
     //   name = user.name;
     // }
+
 
     const dataAll = {
       ...filteredData,

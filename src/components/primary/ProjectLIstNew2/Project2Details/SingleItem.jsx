@@ -1,6 +1,6 @@
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import {Box, Grid, Stack, Typography} from "@mui/material";
 import ProjectDrawerStatusChip from "../../../shared/FilterField/ProjectDrawerStatusChip";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 
 const SingleItem = ({ ItemTitle, Item }) => {
   const { isLightTheme } = useSelector((state) => state.theme);

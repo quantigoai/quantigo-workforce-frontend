@@ -1,14 +1,8 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import {Visibility} from "@mui/icons-material";
 import PasswordIcon from "../../../../assets/images/dashboardIcon/PasswordIcon.svg";
-import {
-  FormControl,
-  Grid,
-  InputAdornment,
-  TextField,
-  Typography,
-  styled,
-} from "@mui/material";
+import {FormControl, Grid, InputAdornment, styled, TextField, Typography,} from "@mui/material";
 import React from "react";
+
 const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "1px solid #E6ECF5 !important",

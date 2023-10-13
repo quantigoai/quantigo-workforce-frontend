@@ -1,16 +1,7 @@
-import {
-  Box,
-  Grid,
-  TableBody,
-  TableCell,
-  TableRow,
-  Typography,
-  styled,
-  Table,
-  tableCellClasses,
-} from "@mui/material";
+import {Box, Grid, styled, Table, TableBody, TableCell, tableCellClasses, TableRow, Typography,} from "@mui/material";
 import React from "react";
 import ProjectDrawerStatusChip from "../../../../shared/FilterField/ProjectDrawerStatusChip";
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#F4F7FE",

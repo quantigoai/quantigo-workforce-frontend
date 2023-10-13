@@ -1,17 +1,17 @@
-import { Box, Grid, Paper, Stack } from "@mui/material";
+import {Box, Grid, Paper, Stack} from "@mui/material";
 import axios from "axios";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import React, {useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate, useParams} from "react-router-dom";
 import useToaster from "../../../customHooks/useToaster";
-import { createCourseChapter } from "../../../features/slice/courseSlice";
+import {createCourseChapter} from "../../../features/slice/courseSlice";
 import {
-  clearTemporaryData,
-  deleteTemporaryData,
-  updateTemporaryData,
+    clearTemporaryData,
+    deleteTemporaryData,
+    updateTemporaryData,
 } from "../../../features/slice/temporaryDataSlice";
-import { realToken } from "../../../helper/lib";
+import {realToken} from "../../../helper/lib";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import ChapterDescription from "./InputFields/ChapterDescription";
 import ChapterName from "./InputFields/ChapterName";

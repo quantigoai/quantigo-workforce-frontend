@@ -1,9 +1,9 @@
-import { Box, Button, styled } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {Box, Button, styled} from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../../customHooks/useToaster";
-import { getAllSkills } from "../../../../features/slice/skillSlice";
-import { updateAUserById } from "../../../../features/slice/userSlice";
+import {getAllSkills} from "../../../../features/slice/skillSlice";
+import {updateAUserById} from "../../../../features/slice/userSlice";
 import SkillField from "../../Course/InputFields/SkillField";
 
 const ButtonStyle = styled(Button)({

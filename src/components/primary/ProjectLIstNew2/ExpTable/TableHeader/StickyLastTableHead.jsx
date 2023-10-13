@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { TableCell, Typography } from "@mui/material";
+import {TableCell, Typography} from "@mui/material";
 import React from "react";
 
 const StickyLastTableHead = ({ column }) => {

@@ -13,32 +13,32 @@
  * ------------------------
  */
 
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-  isLoading: false,
-  activePath: "",
-  activeChapterIndex: 0,
-  activeCourseId: "",
-  error: "null",
+    isLoading: false,
+    activePath: "",
+    activeChapterIndex: 0,
+    activeCourseId: "",
+    error: "null",
 };
 
 export const activePathSlice = createSlice({
-  name: "activePath",
-  initialState,
-  reducers: {
-    setActivePath: (state, action) => {
-      state.activePath = action.payload;
+    name: "activePath",
+    initialState,
+    reducers: {
+        setActivePath: (state, action) => {
+            state.activePath = action.payload;
+        },
+        setActiveChapterIndex: (state, action) => {
+            state.activeChapterIndex = action.payload;
+        },
+        setActiveCourseId: (state, action) => {
+            state.activeCourseId = action.payload;
+        },
     },
-    setActiveChapterIndex: (state, action) => {
-      state.activeChapterIndex = action.payload;
-    },
-    setActiveCourseId: (state, action) => {
-      state.activeCourseId = action.payload;
-    },
-  },
 });
 
-export const { setActivePath, setActiveChapterIndex, setActiveCourseId } =
-  activePathSlice.actions;
+export const {setActivePath, setActiveChapterIndex, setActiveCourseId} =
+    activePathSlice.actions;
 export default activePathSlice.reducer;

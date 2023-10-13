@@ -9,18 +9,18 @@
 
 import DownloadIcon from "@mui/icons-material/Download";
 import {
-  Box,
-  Button,
-  Collapse,
-  Grid,
-  IconButton,
-  Skeleton,
-  styled,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
+    Box,
+    Button,
+    Collapse,
+    Grid,
+    IconButton,
+    Skeleton,
+    styled,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
 } from "@mui/material";
 import React from "react";
 import HubField from "./HubField";
@@ -28,12 +28,12 @@ import PriorityField from "./PriorityField";
 import StatusField from "./StatusField";
 
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
+import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
 
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { CSVLink } from "react-csv";
+import {CSVLink} from "react-csv";
 import DatasetProgressIndex from "./DatasetProgressIndex";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",

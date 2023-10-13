@@ -19,6 +19,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useToaster from "../../../customHooks/useToaster";
 import { setNewPassword } from "../../../features/slice/userSlice";
 import HeaderNav from "../HomePage/HeaderNav";
+import { LoadingButtonStyle } from "../Auth/Login/Login";
 
 const ForgetPasswordBox = styled(Box)({
   display: "flex",
@@ -56,9 +57,7 @@ const ResetPassword = () => {
   const navigate = useNavigate();
   const params = useParams();
   const { id, token } = params;
-  console.log("🚀 ~ file: ResetPassword.jsx:59 ~ ResetPassword ~ token:", token)
-  console.log("🚀 ~ file: ResetPassword.jsx:59 ~ ResetPassword ~ id:", id)
-
+ 
   const toast = useToaster();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -153,19 +152,19 @@ const ResetPassword = () => {
                         label="Password"
                         variant="filled"
                         type={showPassword ? "text" : "password"}
-                        id="filled-adornment-password"
+                        // id="filled-adornment-password"
                         value={password}
                         required={true}
                         autoComplete="off"
                         onChange={(e) => handlePassword(e.target.value)}
-                        inputProps={{ minLength: 6 }}
-                        sx={{ backgroundColor: "#FFFFFF" }}
+                        inputProps={{ minLength: 6, sx: { color: "#000" } }}
+                        sx={{ backgroundColor: "#FFFFFF", fontSize: "14px", color: "red" }}
                         InputProps={{
                           endAdornment: (
                             <InputAdornment
                               onClick={handleClickShowPassword}
                               onMouseDown={handleMouseDownPassword}
-                              sx={{ cursor: "pointer" }}
+                              sx={{ cursor: "pointer", color: "grey" }}
                               position="end"
                             >
                               {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -183,6 +182,7 @@ const ResetPassword = () => {
                       <FormControl variant="filled" fullWidth sx={{ backgroundColor: "#FFFFFF" }}>
                         <InputLabel>Confirm Password</InputLabel>
                         <FilledInput
+                          sx={{ color: "#000" }}
                           type={showConfirmPassword ? "text" : "password"}
                           id="filled-adornment-password"
                           onChange={(e) => handleConfirmPassword(e.target.value)}
@@ -190,7 +190,7 @@ const ResetPassword = () => {
                             <InputAdornment
                               onClick={handleClickShowConfirmPassword}
                               onMouseDown={handleMouseDownConfirmPassword}
-                              sx={{ cursor: "pointer" }}
+                              sx={{ cursor: "pointer", color: "grey" }}
                               position="end"
                             >
                               {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
@@ -204,12 +204,25 @@ const ResetPassword = () => {
                         </FormHelperText>
                       )}
                     </Grid>
-                    <Grid container item xs={12}>
+                    {/* <Grid container item xs={12}>
                       <ButtonStyle disabled={isLoading} fullWidth type="submit">
                         {" "}
                         Change password
                       </ButtonStyle>
-                    </Grid>
+                    </Grid> */}
+                    <LoadingButtonStyle
+                      fullWidth
+                      color="inherit"
+                      size="large"
+                      // disabled={Object.keys(errors).length || false}
+                      disabled={isLoading}
+                      type="submit"
+                      variant="contained"
+                      loading={isLoading}
+                      sx={{ textTransform: "none" }}
+                    >
+                      Change Password
+                    </LoadingButtonStyle>
                   </Grid>
                 </form>
               </ForgetPasswordBox>

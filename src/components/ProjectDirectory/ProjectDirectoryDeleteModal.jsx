@@ -1,14 +1,14 @@
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { Box, Button, Dialog, DialogTitle } from "@mui/material";
+import {Box, Button, Dialog, DialogTitle} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import Tooltip from "@mui/material/Tooltip";
 import React from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import useToaster from "../../customHooks/useToaster";
-import { deleteProjectDirectory } from "../../features/slice/ProjectDirectorySlice";
+import {deleteProjectDirectory} from "../../features/slice/ProjectDirectorySlice";
 
 const ProjectDirectoryDeleteModal = ({ item }) => {
   const [open, setOpen] = React.useState(false);

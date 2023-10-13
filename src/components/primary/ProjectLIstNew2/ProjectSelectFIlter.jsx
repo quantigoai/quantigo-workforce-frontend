@@ -1,6 +1,6 @@
-import { Box, Button, FormControlLabel, Stack, Switch, Typography } from "@mui/material";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import {Box, Button, FormControlLabel, Stack, Switch, Typography} from "@mui/material";
+import {motion} from "framer-motion";
+import {useState} from "react";
 import PlatformSelectAnnotator from "./PlatformSelectAnnotator";
 import ProjectSelectFIlterField from "./ProjectSelectFIlterField";
 

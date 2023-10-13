@@ -6,9 +6,9 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Box } from "@mui/material";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import {Box} from "@mui/material";
+import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import React from "react";
 
 const DateRangePicker = () => {

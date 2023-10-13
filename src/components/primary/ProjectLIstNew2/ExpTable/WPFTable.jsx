@@ -89,8 +89,8 @@ export default function WPFTable({
             ) : (
               <TableBody
                 // data-aos="fade-left"
-                component={motion.tbody}
-                style={{ scaleX }}
+                // component={motion.tbody}
+                // style={{ scaleX }}
                 className="tableBody"
               >
                 {myRows.map((row) => (

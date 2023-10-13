@@ -1,10 +1,10 @@
-import { Chip, Grid, Typography } from "@mui/material";
+import {Chip, Grid, Typography} from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 import iconButton from "../../../assets/images/Vector (1).png";
 import chapterBlueIcon from "../../../assets/images/Group 1.svg";
-import iconBlue from "../../../assets/images/blueIcon.png";
 import iconChapter from "../../../assets/images/Group 1.svg";
+import iconBlue from "../../../assets/images/blueIcon.png";
 
 const SingleChapterNew = ({ courseChapter, index }) => {
   const { activeChapterIndex } = useSelector((state) => state.activePath);

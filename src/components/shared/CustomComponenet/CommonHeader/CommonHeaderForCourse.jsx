@@ -6,21 +6,15 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {
-  Alert,
-  AlertTitle,
-  Box,
-  Button,
-  Grid,
-  Typography,
-} from "@mui/material";
+import {Alert, AlertTitle, Box, Button, Grid, Typography,} from "@mui/material";
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
 import CourseDeleteModal from "../../../primary/Course/CourseDetailsPage/CourseDeleteModal";
 import CourseNewHeaderBottom from "../../../primary/CourseNew/CourseNewHeaderBottom/CourseNewHeaderBottom";
 import editCourseIcon from "../../../../assets/images/edit.svg";
 import RectangleIcon from "../../../../assets/images/Rectangle 3.svg";
+
 const CommonHeaderForCourse = ({
   isLoading,
   title,

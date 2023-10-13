@@ -7,11 +7,11 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Grid } from "@mui/material";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setActivePath } from "../../features/slice/activePathSlice";
-import { getAllBenchMarks } from "../../features/slice/benchMarkSlice";
+import {Grid} from "@mui/material";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {setActivePath} from "../../features/slice/activePathSlice";
+import {getAllBenchMarks} from "../../features/slice/benchMarkSlice";
 import CommonHeader from "../shared/CustomComponenet/CommonHeader/CommonHeader";
 import BenchMarkTable from "./BenchMarkTable";
 

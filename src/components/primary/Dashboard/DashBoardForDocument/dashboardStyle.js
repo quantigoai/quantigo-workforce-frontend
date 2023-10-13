@@ -14,19 +14,19 @@
  */
 
 const dashboardStyle = () => {
-  const buttonStyle = {
-    backgroundColor: "neutral.N000",
-    color: "#2E58FF",
-    borderRadius: "6px",
-    border: "1px solid #E6ECF5",
-    height: "35px",
-    "&:hover": {
-      backgroundColor: "#FFFFFF",
-    },
-  };
-  return {
-    buttonStyle,
-  };
+    const buttonStyle = {
+        backgroundColor: "neutral.N000",
+        color: "#2E58FF",
+        borderRadius: "6px",
+        border: "1px solid #E6ECF5",
+        height: "35px",
+        "&:hover": {
+            backgroundColor: "#FFFFFF",
+        },
+    };
+    return {
+        buttonStyle,
+    };
 };
 
 export default dashboardStyle;

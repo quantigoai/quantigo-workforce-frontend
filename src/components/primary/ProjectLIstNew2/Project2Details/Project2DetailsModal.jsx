@@ -1,4 +1,4 @@
-import { Box, Fade, Modal, Stack, Grid, Typography } from "@mui/material";
+import {Box, Fade, Modal, Stack} from "@mui/material";
 import React from "react";
 import Backdrop from "@mui/material/Backdrop";
 import ProjectModalHeader from "../ProjectModalHeader";
@@ -6,9 +6,10 @@ import DetailsItem from "./DetailsItem";
 import SingleItem from "./SingleItem";
 import BoxItem from "./BoxItem";
 
-import { formatDate } from "../../../../helper/dateConverter";
-import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
-import { useSelector } from "react-redux";
+import {formatDate} from "../../../../helper/dateConverter";
+import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
+import {useSelector} from "react-redux";
+
 const style = {
   display: "flex",
   flexDirection: "column",

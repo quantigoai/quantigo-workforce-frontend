@@ -6,12 +6,12 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { MenuItem, Select, Typography, styled } from "@mui/material";
+import {MenuItem, Select, styled, Typography} from "@mui/material";
 import PropTypes from "prop-types";
 import React from "react";
-import { Controller, useFormContext } from "react-hook-form";
-import { useSelector } from "react-redux";
-import { MyFormControl } from "./CustomDatePicker";
+import {Controller, useFormContext} from "react-hook-form";
+import {useSelector} from "react-redux";
+import {MyFormControl} from "./CustomDatePicker";
 
 CustomSelectField.propTypes = {
   name: PropTypes.string,

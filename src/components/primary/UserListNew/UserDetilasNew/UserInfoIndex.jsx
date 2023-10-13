@@ -1,11 +1,11 @@
-import { Box, Stack, Typography } from "@mui/material";
+import {Box, Stack} from "@mui/material";
 import React from "react";
 import SingleItem from "../../ProjectLIstNew2/Project2Details/SingleItem";
 import ChangeInfoIndex from "./ChangeInfoIndex";
 import DetailsItemThree from "./DetailsItemThree";
 import NdaDocumentSection from "./NdaDocumentSection";
 import moment from "moment/moment";
-import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
+import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
 import SkillFieldForUserDetails from "./SkillFieldForUserDetails";
 
 const UserInfoIndex = ({

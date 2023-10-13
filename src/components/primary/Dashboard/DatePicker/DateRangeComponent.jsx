@@ -1,10 +1,10 @@
-import { Box, IconButton, InputAdornment, TextField, styled } from "@mui/material";
-import { addDays, format } from "date-fns";
-import React, { useEffect, useState } from "react";
-import { useRef } from "react";
-import { DateRange } from "react-date-range";
+import {Box, IconButton, InputAdornment, styled, TextField} from "@mui/material";
+import {addDays, format} from "date-fns";
+import React, {useEffect, useRef, useState} from "react";
+import {DateRange} from "react-date-range";
 import BackspaceIcon from "@mui/icons-material/Backspace";
 import calenderIcon from "../../../../assets/images/dashboardIcon/calendar-line.svg";
+
 const MyInputField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     // border: "1px solid #E6ECF5 !important",

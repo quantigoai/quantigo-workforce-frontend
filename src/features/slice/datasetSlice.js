@@ -13,78 +13,78 @@
  * ------------------------
  */
 
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import { realToken } from "../../helper/lib";
+import {realToken} from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
 const initialState = {
-  isLoading: false,
-  datasets: [],
-  error: "null",
-  isCreated: false,
+    isLoading: false,
+    datasets: [],
+    error: "null",
+    isCreated: false,
 };
 
 export const getDataSetByProjectID = createAsyncThunk(
-  "/resources/datasets/:id",
-  async (data) => {
-    const { id, server_agent } = data;
-    return axios.get(`${url}/resources/datasets/${id}/${server_agent}`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  }
+    "/resources/datasets/:id",
+    async (data) => {
+        const {id, server_agent} = data;
+        return axios.get(`${url}/resources/datasets/${id}/${server_agent}`, {
+            headers: {
+                Authorization: `Bearer ${realToken()}`,
+            },
+        });
+    }
 );
 export const downloadMappingSheet = createAsyncThunk(
-  "/download/mapping/sheet",
-  async (data) => {
-    const { server_agent, teamId, WorkSpaceId, projectId, datasetId } = data;
-    return axios.get(
-      `${url}/spv/datasets/mappingsheet/${server_agent}/${teamId}/${WorkSpaceId}/${projectId}/${datasetId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      }
-    );
-  }
+    "/download/mapping/sheet",
+    async (data) => {
+        const {server_agent, teamId, WorkSpaceId, projectId, datasetId} = data;
+        return axios.get(
+            `${url}/spv/datasets/mappingsheet/${server_agent}/${teamId}/${WorkSpaceId}/${projectId}/${datasetId}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${realToken()}`,
+                },
+            }
+        );
+    }
 );
 
 const dataSetSlice = createSlice({
-  name: "dataset",
-  initialState: initialState,
-  reducers: {
-    updateDatasetData: () => initialState,
-    resetDataSetSlice: () => {
-      return initialState;
-    }
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(getDataSetByProjectID.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(getDataSetByProjectID.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        state.datasets = action.payload.data.data.dataset;
-      })
-      .addCase(getDataSetByProjectID.rejected, (state) => {
-        state.isLoading = false;
-      })
-      .addCase(downloadMappingSheet.pending, (state) => {
-        state.isLoading = false;
-      })
-      .addCase(downloadMappingSheet.fulfilled, (state) => {
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(downloadMappingSheet.rejected, (state) => {
-        state.isLoading = false;
-      });
-  },
+    name: "dataset",
+    initialState: initialState,
+    reducers: {
+        updateDatasetData: () => initialState,
+        resetDataSetSlice: () => {
+            return initialState;
+        }
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(getDataSetByProjectID.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getDataSetByProjectID.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = null;
+                state.datasets = action.payload.data.data.dataset;
+            })
+            .addCase(getDataSetByProjectID.rejected, (state) => {
+                state.isLoading = false;
+            })
+            .addCase(downloadMappingSheet.pending, (state) => {
+                state.isLoading = false;
+            })
+            .addCase(downloadMappingSheet.fulfilled, (state) => {
+                state.isLoading = false;
+                state.error = null;
+            })
+            .addCase(downloadMappingSheet.rejected, (state) => {
+                state.isLoading = false;
+            });
+    },
 });
-export const { resetDataSetSlice, updateDatasetData } = dataSetSlice.actions;
+export const {resetDataSetSlice, updateDatasetData} = dataSetSlice.actions;
 export default dataSetSlice.reducer;

@@ -8,16 +8,16 @@
  */
 
 export const calculateProgress = (courseChapters) => {
-  let totalChapters = courseChapters?.length;
-  if (!totalChapters) {
-    return 0;
-  }
-  let completedChapters = 0;
-
-  courseChapters.forEach((chapter) => {
-    if (chapter.scoreAverage > 70) {
-      completedChapters++;
+    let totalChapters = courseChapters?.length;
+    if (!totalChapters) {
+        return 0;
     }
-  });
-  return Math.round((completedChapters / totalChapters) * 100);
+    let completedChapters = 0;
+
+    courseChapters.forEach((chapter) => {
+        if (chapter.scoreAverage > 70) {
+            completedChapters++;
+        }
+    });
+    return Math.round((completedChapters / totalChapters) * 100);
 };

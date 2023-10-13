@@ -13,96 +13,96 @@
  * ------------------------
  */
 
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import { realToken } from "../../helper/lib";
+import {realToken} from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
 const initialState = {
-  isLoading: false,
-  temporaryData: {},
-  temporaryDatas: [],
-  error: "null",
+    isLoading: false,
+    temporaryData: {},
+    temporaryDatas: [],
+    error: "null",
 };
 
 export const updateTemporaryData = createAsyncThunk("resources/temporaryDatas", async (data) => {
-  return axios.post(`${url}/courses/temporaryDataRouter/`, data, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
+    return axios.post(`${url}/courses/temporaryDataRouter/`, data, {
+        headers: {
+            Authorization: `Bearer ${realToken()}`,
+        },
+    });
 });
 
 export const deleteTemporaryData = createAsyncThunk("resources/temporaryDatas/delete", async (data) => {
-  const { id, chapterNo } = data;
-  return axios.delete(
-    `${url}/courses/temporaryDataRouter/${id}/${chapterNo}`,
+    const {id, chapterNo} = data;
+    return axios.delete(
+        `${url}/courses/temporaryDataRouter/${id}/${chapterNo}`,
 
-    {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    }
-  );
+        {
+            headers: {
+                Authorization: `Bearer ${realToken()}`,
+            },
+        }
+    );
 });
 
 export const clearTemporaryData = createAsyncThunk("resources/temporaryDatas/clear", async (data) => {
-  return axios.post(`${url}/courses/temporaryDataRouter/cleartemporaryData`, data, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
+    return axios.post(`${url}/courses/temporaryDataRouter/cleartemporaryData`, data, {
+        headers: {
+            Authorization: `Bearer ${realToken()}`,
+        },
+    });
 });
 
 // Clear all temporaryDatas data from state
 
 const temporaryDataSlice = createSlice({
-  name: "temporaryData",
-  initialState: initialState,
-  reducers: {
-    resetTemporaryDatas: (state) => {
-      state.temporaryDatas = [];
+    name: "temporaryData",
+    initialState: initialState,
+    reducers: {
+        resetTemporaryDatas: (state) => {
+            state.temporaryDatas = [];
+        },
+        resetTemporaryDataSlice: () => {
+            return initialState;
+        },
     },
-    resetTemporaryDataSlice: () => {
-      return initialState;
+    extraReducers: (builder) => {
+        builder
+            .addCase(updateTemporaryData.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(updateTemporaryData.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = null;
+            })
+            .addCase(updateTemporaryData.rejected, (state) => {
+                state.isLoading = false;
+            })
+            .addCase(deleteTemporaryData.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(deleteTemporaryData.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = null;
+            })
+            .addCase(deleteTemporaryData.rejected, (state) => {
+                state.isLoading = false;
+            })
+            .addCase(clearTemporaryData.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(clearTemporaryData.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = null;
+            })
+            .addCase(clearTemporaryData.rejected, (state) => {
+                state.isLoading = false;
+            });
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(updateTemporaryData.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(updateTemporaryData.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(updateTemporaryData.rejected, (state) => {
-        state.isLoading = false;
-      })
-      .addCase(deleteTemporaryData.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(deleteTemporaryData.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(deleteTemporaryData.rejected, (state) => {
-        state.isLoading = false;
-      })
-      .addCase(clearTemporaryData.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(clearTemporaryData.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(clearTemporaryData.rejected, (state) => {
-        state.isLoading = false;
-      });
-  },
 });
 
-export const { resetTemporaryDataSlice, resetTemporaryDatas } = temporaryDataSlice.actions;
+export const {resetTemporaryDataSlice, resetTemporaryDatas} = temporaryDataSlice.actions;
 
 export default temporaryDataSlice.reducer;

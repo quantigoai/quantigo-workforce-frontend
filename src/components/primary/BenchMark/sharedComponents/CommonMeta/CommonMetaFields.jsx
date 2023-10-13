@@ -7,20 +7,20 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 import {
-  Box,
-  FilledInput,
-  FormControl,
-  FormControlLabel,
-  Grid,
-  InputLabel,
-  Paper,
-  Radio,
-  RadioGroup,
-  Typography,
+    Box,
+    FilledInput,
+    FormControl,
+    FormControlLabel,
+    Grid,
+    InputLabel,
+    Paper,
+    Radio,
+    RadioGroup,
+    Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useOutletContext } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
+import {useOutletContext} from "react-router-dom";
 
 const CommonMetaFields = ({ isUpdate = false, renderItems, bm }) => {
   const [

@@ -1,12 +1,12 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Stack } from "@mui/material";
+import {yupResolver} from "@hookform/resolvers/yup";
+import {Stack} from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Fade from "@mui/material/Fade";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import { useForm } from "react-hook-form";
+import {useForm} from "react-hook-form";
 import * as Yup from "yup";
 import PDSelectField from "../../shared/CustomField/PDSelectField";
 import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
@@ -16,7 +16,7 @@ import useHandleEditChange from "./Hooks/useHandleEditChange";
 import ProjectModalHeader from "./ProjectModalHeader";
 import PDDateField from "../../shared/CustomField/PDDateField";
 import PDReleventField from "../../shared/CustomField/PDReleventField";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 
 const style = {
   position: "absolute",

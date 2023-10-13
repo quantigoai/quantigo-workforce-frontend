@@ -1,3 +1,12 @@
+/*
+ * Filename: /home/tanzim/workstation/Office/quantigo-workforce-frontend/src/main.jsx
+ * Path: /home/tanzim/workstation/Office/quantigo-workforce-frontend
+ * Created Date: Friday, October 13th 2023, 1:26:10 pm
+ * Author: Tanzim Ahmed
+ *
+ * Copyright (c) 2023 Tanzim Ahmed
+ */
+
 import { CssBaseline } from "@mui/material";
 import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
@@ -10,6 +19,7 @@ import LoadingComponent from "./components/shared/Loading/LoadingComponent";
 import { persistor, store } from "./features/store/store";
 import "./index.css";
 import ThemeProviderWrapper from "./theme.config/ThemeProviderWrapper";
+
 const App = lazy(() => import("./App.jsx"));
 
 const toastOptions = {
@@ -26,9 +36,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Provider store={store}>
         <ThemeProviderWrapper>
           <CssBaseline />
-          <PersistGate loading={null} persistor={persistor}>
+          {/* <PersistGate loading={null} persistor={persistor}> */}
+          <PersistGate loading={<LoadingComponent />} persistor={persistor}>
             <BrowserRouter>
               <Suspense fallback={<LoadingComponent />}>
+                {/* <Suspense fallback={""}> */}
                 <App />
                 <ToastContainer {...toastOptions} />
               </Suspense>

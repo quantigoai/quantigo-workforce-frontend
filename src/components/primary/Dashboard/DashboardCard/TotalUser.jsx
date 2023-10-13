@@ -1,8 +1,8 @@
-import { Grid, Paper, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllUsers } from "../../../../features/slice/userSlice";
+import {Grid, Paper, Typography} from "@mui/material";
+import {Box} from "@mui/system";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getAllUsers} from "../../../../features/slice/userSlice";
 import iconPendding from "../../../../assets/images/dashboardIcon/activeAnnotator.svg";
 
 const TotalUser = () => {

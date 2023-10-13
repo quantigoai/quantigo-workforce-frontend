@@ -1,7 +1,8 @@
-import { Grid, Typography } from "@mui/material";
+import {Grid, Typography} from "@mui/material";
 import React from "react";
 import categoryIcon from "../../../../assets/images/categorysvg.svg";
-import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
+import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
+
 const CourseCategoryChip = ({ category }) => {
  
   return (

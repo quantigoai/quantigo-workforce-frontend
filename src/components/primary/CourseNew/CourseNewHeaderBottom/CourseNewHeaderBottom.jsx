@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Grid } from "@mui/material";
+import {Grid} from "@mui/material";
 import CourseCategoryChip from "./CourseCategoryChip";
 import CourseLevelChip from "./CourseLevelChip";
 import CourseLiveSessionChip from "./CourseLiveSessionChip";

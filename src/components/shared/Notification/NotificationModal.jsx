@@ -128,9 +128,6 @@ const NotificationModal = ({ handleSeeAll, notificationOpen, handleNotificationC
               }}
               onClick={handleSeeAll}
             >
-              {/* <Typography mx={2} variant="wpf_p2_semiBold" color="neutral.700">
-                Click here to sell all...
-              </Typography> */}
               <Typography sx={{ ml: 2 }} variant="wpf_p4_medium" color="neutral.700">
                 Click here to sell all...
               </Typography>

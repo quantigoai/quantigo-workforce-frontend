@@ -8,7 +8,7 @@
  */
 
 import React from "react";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 import CommonMetaFields from "../../primary/BenchMark/sharedComponents/CommonMeta/CommonMetaFields";
 import ImageFields from "../../primary/BenchMark/sharedComponents/ImageFields";
 import NameDescFIeld from "../../primary/BenchMark/sharedComponents/NameDescFIeld";

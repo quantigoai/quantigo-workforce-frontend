@@ -1,29 +1,28 @@
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
-import { Suspense, lazy, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {lazy, Suspense, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import io from "socket.io-client";
 import "./App.css";
-import { availableJobsForReviewer, getAllAssignedJob, getAllJobs, getMyJobs } from "./features/slice/jobSlice";
+import {availableJobsForReviewer, getAllAssignedJob, getAllJobs, getMyJobs} from "./features/slice/jobSlice";
 import {
-  deleteBefore15DaysNotifications,
-  getAllNotifications,
-  getAllUnreadNotifications,
-  getLatestNotifications,
-  setNewNotification,
+    deleteBefore15DaysNotifications,
+    getAllNotifications,
+    getAllUnreadNotifications,
+    getLatestNotifications,
+    setNewNotification,
 } from "./features/slice/notificationSlice";
-import { setFromPreviousTheme } from "./features/slice/themeSlice";
-import { alreadyLogin, updateLoggedInUserManually, updateSingleUserManually } from "./features/slice/userSlice";
+import {setFromPreviousTheme} from "./features/slice/themeSlice";
+import {alreadyLogin, updateLoggedInUserManually, updateSingleUserManually} from "./features/slice/userSlice";
 import socketHandlers from "./socketHandlers";
-// import RoutersLogin from "./components/primary/Routers/RoutersLogin";
-const RoutersLogin = lazy(() => import("./components/primary/Routers/RoutersLogin"));
-// import Layout from "./components/shared/Layout/Layout";
-// const Layout = lazy(() => import("./components/shared/Layout/Layout"));
-
 import CryptoJS from "crypto-js";
 import Routers from "./components/primary/Routers/Routers";
 import LoadingComponent from "./components/shared/Loading/LoadingComponent";
 import useClearReduxData from "./customHooks/useClearReduxData";
+// import RoutersLogin from "./components/primary/Routers/RoutersLogin";
+const RoutersLogin = lazy(() => import("./components/primary/Routers/RoutersLogin"));
+// import Layout from "./components/shared/Layout/Layout";
+// const Layout = lazy(() => import("./components/shared/Layout/Layout"));
 // import LayoutNew from "./components/shared/Layout/LayoutNew";
 const LayoutNew = lazy(() => import("./components/shared/Layout/LayoutNew"));
 

@@ -1,7 +1,7 @@
-import { FormControl, TextField, Typography, styled } from "@mui/material";
+import {FormControl, styled, TextField, Typography} from "@mui/material";
 import PropTypes from "prop-types";
-import { Controller, useFormContext } from "react-hook-form";
-import { useSelector } from "react-redux";
+import {Controller, useFormContext} from "react-hook-form";
+import {useSelector} from "react-redux";
 
 PDTextFIeld.propTypes = {
   name: PropTypes.string,

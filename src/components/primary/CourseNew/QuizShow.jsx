@@ -6,14 +6,14 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Button, FormControlLabel, Grid, Paper, Radio, RadioGroup, Typography } from "@mui/material";
+import {Button, FormControlLabel, Grid, Paper, Radio, RadioGroup, Typography} from "@mui/material";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import useToaster from "../../../customHooks/useToaster";
-import { manuallySetCourseChapterResult } from "../../../features/slice/courseSlice";
-import { submitQuizById } from "../../../features/slice/quizSlice";
-import { updateUserCompletedCourse } from "../../../features/slice/userSlice";
+import {manuallySetCourseChapterResult} from "../../../features/slice/courseSlice";
+import {submitQuizById} from "../../../features/slice/quizSlice";
+import {updateUserCompletedCourse} from "../../../features/slice/userSlice";
 
 const QuizShow = () => {
   const { quiz, isLoading } = useSelector((state) => state.quiz);

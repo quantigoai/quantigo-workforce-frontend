@@ -12,19 +12,19 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import {configureStore} from "@reduxjs/toolkit";
-import {persistReducer, persistStore} from "redux-persist";
-import {rootPersistConfig, rootReducers} from "../slice/rootReducers";
+import { configureStore } from "@reduxjs/toolkit";
+import { persistReducer, persistStore } from "redux-persist";
+import { rootPersistConfig, rootReducers } from "../slice/rootReducers";
 
 const store = configureStore({
-    reducer: persistReducer(rootPersistConfig, rootReducers),
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-            serializableCheck: false,
-        }),
-    devTools: import.meta.env.NODE_ENV !== "production",
+  reducer: persistReducer(rootPersistConfig, rootReducers),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+  devTools: import.meta.env.VITE_APP_NODE_ENV !== "production" ? true : false,
 });
 
 const persistor = persistStore(store);
 
-export {persistor, store};
+export { persistor, store };

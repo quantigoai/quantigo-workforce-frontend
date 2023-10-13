@@ -10,7 +10,7 @@
 import ClearIcon from "@mui/icons-material/Clear";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import SearchIcon from "@mui/icons-material/Search";
-import {Box, Button, Grid, IconButton, InputBase, Paper} from "@mui/material";
+import { Box, Button, Grid, IconButton, InputBase, Paper } from "@mui/material";
 import React from "react";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import "../ProjectLIstNew2/index.css";
@@ -59,7 +59,7 @@ const UsersHeader = ({
           }}
         >
           <Paper
-            component="form"
+            // component="form"
             sx={{
               p: "2px 4px",
               display: "flex",
@@ -77,9 +77,15 @@ const UsersHeader = ({
             </IconButton>
             <InputBase
               inputRef={searchRef}
-              onBlur={(e) => handleSearch(e)}
+              // onBlur={(e) => handleSearch(e)}
               sx={{ ml: 0, flex: 1 }}
               placeholder="Search"
+              onKeyDown={(ev) => {
+                if (ev.key === "Enter") {
+                  handleSearch(ev);
+                  ev.preventDefault();
+                }
+              }}
             />
             {search && (
               <Button
@@ -114,21 +120,6 @@ const UsersHeader = ({
           </IconButton>
 
           <ExportUserList />
-          {/* <Button
-            sx={{
-              textTransform: "none",
-              borderRadius: "8px",
-              backgroundColor: "#2E58FF",
-              color: "white",
-              "&:hover": {
-                background: "#244EF5",
-              },
-            }}
-            variant="contained"
-            onClick={handleProjectCreateOpen}
-          >
-            Export
-          </Button> */}
         </Box>
       </Box>
     </>

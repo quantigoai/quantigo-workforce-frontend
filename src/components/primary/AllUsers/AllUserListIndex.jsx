@@ -9,15 +9,15 @@
 
 import { Box, Paper } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import useAllUsers from "../../../customHooks/useAllUsers";
+import useToaster from "../../../customHooks/useToaster";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import { getAllSkills } from "../../../features/slice/skillSlice";
 import { getAllUsers, setTargetedUser, updateAUserById } from "../../../features/slice/userSlice";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
-import { useForm } from "react-hook-form";
-import useAllUsers from "../../../customHooks/useAllUsers";
-import useToaster from "../../../customHooks/useToaster";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import useHandleChange from "../ProjectLIstNew2/Hooks/useHandleChange";
 import PaginationTable from "../ProjectLIstNew2/PaginationTable";
@@ -103,6 +103,7 @@ const AllUserListIndex = () => {
 
     return true;
   };
+
 
   const handleClickAway = () => {
     const skillsId = addSkills.map((skill) => skill._id);

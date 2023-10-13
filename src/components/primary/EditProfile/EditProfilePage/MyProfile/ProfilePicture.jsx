@@ -19,9 +19,9 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
           // backgroundColor:"blue",
           height: "90%",
           width: "100%",
-          justifyContent:"center"
+          justifyContent: "center",
         }}>
-        <Grid container sx={{ padding: "1%",backgroundColor:"", }}>
+        <Grid container sx={{ padding: "1%", backgroundColor: "" }}>
           <Grid item xs={10}>
             <Grid container>
               <Grid item xs={1.5} sx={{ paddingLeft: "%" }}>
@@ -85,7 +85,7 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                   </Box>
                 </Box>
               </Grid>
-              <Grid item xs={7} sx={{ paddingTop: "2%" ,}}>
+              <Grid item xs={7} sx={{ paddingTop: "2%" }}>
                 <Grid container>
                   <Grid item xs={4} xl={3} sx={{ backgroundColor: "" }}>
                     <Typography variant="wpf_p1_semiBold" sx={{ color: "neutral.750" }}>
@@ -95,7 +95,25 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                     </Typography>
                     <br />
                     <Typography variant="wpf_p4_regular" sx={{ color: "neutral.700" }}>
-                      {capitalizeFirstLetter(user.role)}
+                      {user.role === "level_1_annotator"
+                        ? "Level 1 Annotator"
+                        : user.role === "level_2_annotator"
+                        ? "Level 2 Annotator"
+                        : user.role === "level_0_annotator"
+                        ? "Level 0 Annotator"
+                        : user.role === "level_3_annotator"
+                        ? "Level 3 Annotator"
+                        : user.role === "delivery_manager"
+                        ? "Project Delivery Lead"
+                        : user.role === "project_lead"
+                        ? "Delivery Lead"
+                        : user.role === "project_coordinator"
+                        ? "Project Coordinator"
+                        : user.role === "project_manager"
+                        ? "Project Manager"
+                        : user.role === "recruitment_manager"
+                        ? "Recruitment Manager"
+                        : capitalizeFirstLetter(user.role)}
                     </Typography>
                   </Grid>
                   <Grid item xs={8} xl={9}>
@@ -134,7 +152,7 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
             </Grid>
           </Grid>
 
-          <Grid item xs={2} sx={{justifyContent: "center",}}>
+          <Grid item xs={2} sx={{ justifyContent: "center" }}>
             <Grid container sx={{ justifyContent: "right", paddingTop: "14%" }}>
               {!editAble && (
                 <Button

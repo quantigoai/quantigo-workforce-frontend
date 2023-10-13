@@ -37,21 +37,12 @@ const EmailVerificationConfirmation = () => {
   return (
     <Box className="container">
       <Keyframes>
-        <HeaderNav />
+        <HeaderNav emailVerificationConfirm={true} />
         <Grid container style={{ justifyItems: "center" }}>
-          <Grid
-            xs={12}
-            sm={12}
-            md={6}
-            lg={6}
-            sx={{ paddingTop: "10%", paddingLeft: "35%" }}
-          >
+          <Grid xs={12} sm={12} md={6} lg={6} sx={{ paddingTop: "10%", paddingLeft: "35%" }}>
             {!isLoading && (
               <Suspense fallback={<LoadingComponent />}>
-                <VerificationResult
-                  message={message}
-                  verificationTimeOver={verificationTimeOver}
-                />
+                <VerificationResult message={message} verificationTimeOver={verificationTimeOver} />
               </Suspense>
             )}
           </Grid>

@@ -7,15 +7,15 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Box, Paper} from "@mui/material";
-import React, {useCallback, useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {setActivePath} from "../../../features/slice/activePathSlice";
-import {getAllSkills} from "../../../features/slice/skillSlice";
-import {getAllUsers, setTargetedUser, updateAUserById} from "../../../features/slice/userSlice";
+import { Box, Paper } from "@mui/material";
+import React, { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setActivePath } from "../../../features/slice/activePathSlice";
+import { getAllSkills } from "../../../features/slice/skillSlice";
+import { getAllUsers, setTargetedUser, updateAUserById } from "../../../features/slice/userSlice";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import useAllUsers from "../../../customHooks/useAllUsers";
 import useToaster from "../../../customHooks/useToaster";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
@@ -28,8 +28,8 @@ import NdaRejectModal from "../Users/NdaAccept/NdaRejectModal";
 import UsersFilter from "./UsersFilter";
 import UsersHeader from "./UsersHeader";
 import "./index.css";
-import {fields} from "./tableFields";
-import {hubOptions, roleOptions, userStatusOptions} from "./userFilterOptions";
+import { fields } from "./tableFields";
+import { hubOptions, roleOptions, userStatusOptions } from "./userFilterOptions";
 // import TableWrapper from "../ProjectLIstNew2/ExpTable/TableWrapper";
 const TableWrapper = React.lazy(() => import("../ProjectLIstNew2/ExpTable/TableWrapper"));
 
@@ -73,7 +73,6 @@ const AllUserListIndex = () => {
     setSearch,
   } = useHandleChange();
 
-
   const clearSearch = () => {
     setSearch("");
     searchRef.current.value = "";
@@ -86,7 +85,6 @@ const AllUserListIndex = () => {
     setPrevRoles,
     clearSearch
   );
-
 
   // TODO Move
   const arraysAreEqual = (arr1, arr2) => {
@@ -111,15 +109,17 @@ const AllUserListIndex = () => {
 
     const isSkillsSame = arraysAreEqual(prevSkills, skillsId);
 
-    const isRolesSame = arraysAreEqual(prevRoles, addRoles);
+    const roleValue = addRoles.map((role) => role.value);
+    
+    const isRolesSame = arraysAreEqual(prevRoles, roleValue);
 
     setPrevSkills(skillsId);
-    setPrevRoles(addRoles);
+    setPrevRoles(roleValue);
 
     if (!isSkillsSame) {
-      handleChange({}, skillsId, addRoles, isSkillsSame, isRolesSame);
+      handleChange({}, skillsId, roleValue, isSkillsSame, isRolesSame);
     } else if (!isRolesSame) {
-      handleChange({}, skillsId, addRoles, isSkillsSame, isRolesSame);
+      handleChange({}, skillsId, roleValue, isSkillsSame, isRolesSame);
     } else {
       return;
     }
@@ -127,7 +127,6 @@ const AllUserListIndex = () => {
 
   const handleRejectCause = (e) => {
     setRejectionCause(e.target.value);
-   
   };
 
   useEffect(() => {
@@ -189,7 +188,7 @@ const AllUserListIndex = () => {
   const handleCloseModal = () => {
     setOpenAccepet(false);
     setOpenModal(false);
-    setRejectionCause("")
+    setRejectionCause("");
   };
   // accept NDA
   const handleOpenNDA = (params) => {

@@ -1,5 +1,5 @@
-import {useState} from "react";
-import {useSelector} from "react-redux";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import useToaster from "../../../../customHooks/useToaster";
 // import { roleOptions } from "./userFilterOptions";
 const useHandleChange = () => {
@@ -30,7 +30,7 @@ const useHandleChange = () => {
       target: { value },
     } = event;
     setCount(value.length - 1);
-    setAddRoles(typeof value === "string" ? value.split(",") : value);
+    setAddRoles(value);
   };
 
   return {

@@ -1,13 +1,13 @@
-import {CssBaseline} from "@mui/material";
-import React, {lazy, Suspense} from "react";
+import { CssBaseline } from "@mui/material";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import {Provider} from "react-redux";
-import {BrowserRouter} from "react-router-dom";
-import {ToastContainer} from "react-toastify";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {PersistGate} from "redux-persist/integration/react";
+import { PersistGate } from "redux-persist/integration/react";
 import LoadingComponent from "./components/shared/Loading/LoadingComponent";
-import {persistor, store} from "./features/store/store";
+import { persistor, store } from "./features/store/store";
 import "./index.css";
 import ThemeProviderWrapper from "./theme.config/ThemeProviderWrapper";
 

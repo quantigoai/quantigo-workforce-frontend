@@ -1,6 +1,6 @@
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import {Box, Chip, MenuItem, Select, styled, Typography} from "@mui/material";
-import {MyFormControl} from "../../shared/CustomField/CustomDatePicker";
+import { Box, Chip, MenuItem, Select, styled, Typography } from "@mui/material";
+import { MyFormControl } from "../../shared/CustomField/CustomDatePicker";
 
 export const MySelect = styled(Select)(() => ({
   border: "1px solid #E6ECF5",
@@ -42,7 +42,7 @@ const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, r
           }
           return (
             <Box
-              key={selected}
+              key={selected.value}
               sx={{
                 display: "grid",
                 gridTemplateColumns: "repeat(2,1fr)",
@@ -51,8 +51,10 @@ const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, r
               }}
             >
               {selected.map(
-                (value, i) =>
-                  [0].includes(i) && <Chip sx={{ height: "100%", color: "neutral.700" }} key={value} label={value} />
+                (item, i) =>
+                  [0].includes(i) && (
+                    <Chip sx={{ height: "100%", color: "neutral.700" }} key={item.value} label={item.label} />
+                  )
               )}
               {selected.length > 1 && (
                 <Typography variant="h7" sx={{ ml: 2, mt: 0, color: "neutral.700" }}>
@@ -67,7 +69,7 @@ const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, r
         onClose={handleClickAway}
       >
         {roles?.map((role) => (
-          <MenuItem sx={{ fontSize: "14px" }} key={role.label} value={role.label || ""}>
+          <MenuItem sx={{ fontSize: "14px" }} key={role.label} value={role || ""}>
             {role.label}
           </MenuItem>
         ))}

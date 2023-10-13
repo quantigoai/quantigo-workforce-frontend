@@ -130,7 +130,7 @@ const BarChart = ({ startDate, setStartDate, endDate, setEndDate, loading }) => 
           data: activeJobValues,
           // data: sampleData,
 
-          backgroundColor: isLightTheme ? "#091E42" : "#12B76A",
+          backgroundColor: isLightTheme ? "#B6C9F0" : "#12B76A",
         },
         {
           label: "Active Jobs",

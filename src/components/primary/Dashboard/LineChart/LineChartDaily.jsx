@@ -115,7 +115,7 @@ const LineChartDaily = ({ loading }) => {
         </Grid>
 
         <Grid container sx={{ padding: "2%" }}>
-          <LineChartExple />
+          <LineChartExple customData={customData} />
           {/* <Line options={options} data={customData} /> */}
         </Grid>
       </Box>

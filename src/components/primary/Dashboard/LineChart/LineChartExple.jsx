@@ -1,49 +1,27 @@
-import React, {useState} from "react";
-import {Line} from "react-chartjs-2";
+import React, { useState } from "react";
+import { Line } from "react-chartjs-2";
 import {
-    CategoryScale,
-    Chart as ChartJS,
-    Filler,
-    Legend,
-    LinearScale,
-    LineElement,
-    PointElement,
-    Title,
-    Tooltip,
-} from "chart.js";
-import {Box} from "@mui/material";
-
-ChartJS.register(
+  CategoryScale,
+  Chart as ChartJS,
+  Filler,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
   Title,
   Tooltip,
-  LineElement,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  Filler
-);
+} from "chart.js";
+import { Box } from "@mui/material";
 
-const LineChartExple = () => {
+ChartJS.register(Title, Tooltip, LineElement, Legend, CategoryScale, LinearScale, PointElement, Filler);
+
+const LineChartExple = ({ customData }) => {
   const [data, setData] = useState({
-    labels: [
-      "Jan",
-      "Feb",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "Oct",
-      "Nov",
-      "Dec",
-    ],
+    labels: ["Jan", "Feb", "March", "April", "May", "June", "July", "August", "September", "Oct", "Nov", "Dec"],
     datasets: [
       {
         // label: "",
-        data: [10, 20, 30, 42, 51, 82, 31, 59, 61, 73, 91, 58],
+        data: [10, 20, 30, 42, 51, 82, 31, 59, 61, 73, 9, 58],
         fill: true,
         // backgroundColor: "rgba(51, 153, 255,0.1)",
         // backgroundColor: "linear-gradient(to right, #ff0000, #00ff00)",
@@ -100,11 +78,9 @@ const LineChartExple = () => {
     },
   };
   return (
-    <Box  sx={{ width: "100%" }}>
-      <Line options={options} data={data}>
-        Hello
-      </Line>
-    </Box>
+    <Line options={options} data={data} height={153}>
+      Hello
+    </Line>
   );
 };
 

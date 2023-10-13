@@ -88,13 +88,13 @@ const miniOptions = {
   // loop: true,
   loop: false,
   style: {
-    height: 30,
+    height: 25,
   },
 };
 
 export const iconHandler = (notificationType, miniPopup) => {
   const lottieOptions = miniPopup ? miniOptions : mediumOptions;
-  
+
   switch (true) {
     case notificationType === "updateUserRole":
       return <Lottie animationData={change} {...lottieOptions} />;

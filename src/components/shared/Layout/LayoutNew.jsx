@@ -265,6 +265,7 @@ export default function LayoutNew({ children }) {
   ];
 
   const handleOptionClick = (option) => {
+    console.log("🚀 ~ file: LayoutNew.jsx:268 ~ handleOptionClick ~ option:", option)
     switch (option) {
       case "Dashboard":
         return navigate("/dashboard");
@@ -274,6 +275,8 @@ export default function LayoutNew({ children }) {
         return navigate("/allprojects");
       case "Project Directory":
         return navigate("/projectDirectory");
+      case "Identity Verification":
+        return navigate("/identity-verification");
       case "Users":
         return navigate("/users");
       case "Task Log":
@@ -340,8 +343,7 @@ export default function LayoutNew({ children }) {
             },
           }}
           className="responsive-drawer"
-          onClick={() => handleOptionClick(text.name)}
-        >
+          onClick={() => handleOptionClick(text.name)}>
           <ListItemIcon sx={{ color: "#FFFFFF", minWidth: "45px" }}>
             <img src={text.icon} />
           </ListItemIcon>
@@ -375,8 +377,7 @@ export default function LayoutNew({ children }) {
             // width: open ? "15%" : "3%",
             height: "100vh",
             backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
-          }}
-        >
+          }}>
           <Drawer
             PaperProps={{
               sx: {
@@ -384,8 +385,7 @@ export default function LayoutNew({ children }) {
               },
             }}
             variant="permanent"
-            open={open}
-          >
+            open={open}>
             <DrawerHeader>
               <Box sx={{}}>
                 <img
@@ -461,15 +461,13 @@ export default function LayoutNew({ children }) {
         sx={{
           width: open ? "85%" : "97%",
           height: "100vh",
-        }}
-      >
+        }}>
         {/* navbar */}
         <Box
           sx={{
             height: { xl: "7%", lg: "9%", md: "10%" },
             width: "100%",
-          }}
-        >
+          }}>
           <Header openDrawer={open} />
         </Box>
 
@@ -481,15 +479,13 @@ export default function LayoutNew({ children }) {
             backgroundColor: isLightTheme ? "#F2F6FC" : "#121212",
             width: "100%",
             overflowY: "auto",
-          }}
-        >
+          }}>
           {isLoggedIn && !isBlocked ? (
             <Box
               sx={{
                 height: "100%",
                 overflowY: "auto",
-              }}
-            >
+              }}>
               {children}
             </Box>
           ) : (

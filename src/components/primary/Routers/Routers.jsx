@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Route, Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import ErrorPage from "../../shared/Error/ErrorPage";
 import AllNotification from "../../shared/Notification/AllNotification";
 import AllUserListIndex from "../AllUsers/AllUserListIndex";
@@ -20,7 +20,6 @@ import Home from "../Home/Home";
 import DetailsPage from "../ProjectLIstNew2/ProjectDetailsFull/DetailsPage";
 import FullProjectDetails from "../ProjectLIstNew2/ProjectDetailsFull/FullProjectDetails";
 import ProjectLIstIndex2 from "../ProjectLIstNew2/ProjectLIstIndex2";
-import Skills from "../Skill/Skills";
 import PrivateRoute from "./PrivateRoute";
 
 export const roles = {
@@ -128,7 +127,7 @@ const Routers = () => {
         {/* --------- ------------- ------------ */}
 
         {/* --------- Skill ------------ */}
-        <Route
+        {/* <Route
           element={
             <PrivateRoute
               roles={[
@@ -145,11 +144,10 @@ const Routers = () => {
           }
         >
           <Route path={"/skillcreate"} element={<Skills />} />
-        </Route>
+        </Route> */}
         {/* -------- ---------- ------------ */}
 
         {/* --------All users ------------ */}
-
 
         <Route
           element={
@@ -167,7 +165,6 @@ const Routers = () => {
             ></PrivateRoute>
           }
         >
-
           <Route path={"/all-users"} element={<AllUserListIndex action={"admin"} />} />
         </Route>
 

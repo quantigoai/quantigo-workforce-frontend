@@ -49,16 +49,16 @@ const ProcessCard = ({ item }) => {
             )}
           </Grid>
           <Grid container>
-            <Typography variant="wpf_p2_semiBold"  >{item.header}</Typography>
+            <Typography variant="wpf_p2_semiBold"  sx={{ color: "neutral.N300" }} >{item.header}</Typography>
           </Grid>
           <Grid container>
             {" "}
-            <Typography variant="wpf_p4_regular">{item.describe}</Typography>
+            <Typography variant="wpf_p4_regular" sx={{ color: "neutral.N300" }}>{item.describe}</Typography>
           </Grid>
           <Grid container sx={{ paddingTop: "2%" }}>
             {!item.active && (
               <>
-                <Typography variant="wpf_p4_semiBold" sx={{ paddingRight: "3%" }}>
+                <Typography variant="wpf_p4_semiBold" sx={{ paddingRight: "3%", color: "neutral.N300" }}>
                   Continue
                 </Typography>
                 <img src={arrowIcon} />

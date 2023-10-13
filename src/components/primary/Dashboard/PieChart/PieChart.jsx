@@ -1,12 +1,13 @@
-import React from "react";
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
+import "chartjs-plugin-datalabels";
+import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { useSelector } from "react-redux";
-import "chartjs-plugin-datalabels";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 const PieChart = () => {
   const { activeJobs, takenJobs, totalCountData } = useSelector((state) => state.dashboard);
+  console.log("🚀 ~ file: PieChart.jsx:10 ~ PieChart ~ totalCountData:", totalCountData);
   const { isLightTheme } = useSelector((state) => state.theme);
 
   const data = {
@@ -15,6 +16,8 @@ const PieChart = () => {
       {
         label: "",
         data: [totalCountData.totalAvailableJobs, totalCountData.activeJobs],
+        // data: [],
+        // data: [10, 10],
 
         // data: [0, 0],
         backgroundColor: ["#2E58FF", "#B6C9F0"],
@@ -63,6 +66,7 @@ const PieChart = () => {
         color: (context) => {
           const dataset = context.dataset.backgroundColor;
           const value = dataset[context.dataIndex];
+          // const value = 10;
           return value === "#2E58FF" ? "#FFFFFF" : "#3C4D6B"; // Dynamic color based on value
         },
       },

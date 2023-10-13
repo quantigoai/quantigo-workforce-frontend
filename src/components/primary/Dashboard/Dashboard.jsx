@@ -6,22 +6,21 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Box, Button, CircularProgress, Grid, Paper, Typography} from "@mui/material";
+import { Box, Button, CircularProgress, Grid, Paper, Typography } from "@mui/material";
 import dayjs from "dayjs";
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
-import {setActivePath} from "../../../features/slice/activePathSlice";
+import { setActivePath } from "../../../features/slice/activePathSlice";
 import {
-    getDashboardData,
-    getDashboardDataHourly,
-    getDashboardDataWeekly,
+  getDashboardData,
+  getDashboardDataHourly,
+  getDashboardDataWeekly,
 } from "../../../features/slice/dashboardSlice";
-import {resendEmailVarification} from "../../../features/slice/userSlice";
-import {convertDate} from "../../../helper/customData";
+import { resendEmailVarification } from "../../../features/slice/userSlice";
+import { convertDate } from "../../../helper/customData";
 import BarChart from "./BarChart/BarChart";
 import CongratulationComponents from "./CongratulationDashBoard/CongratulationComponents";
-import DashboardDocument from "./DashBoardForDocument/DashboardDocument";
 import DashboardIndex from "./DashboardIndex";
 import LineChart from "./LineChart/LineChart";
 import LineChartDaily from "./LineChart/LineChartDaily";
@@ -89,7 +88,7 @@ const Dashboard = () => {
         <>
           <Box
             // sx={{ backgroundColor: "#F5F5F5", height: "100%", width: "100%" }}>
-            sx={{ padding: "1%", height: "100%" }}
+            sx={{ padding: "1%", height: "100%",  }}
           >
             {role === "level_0_annotator" ? (
               <>
@@ -97,7 +96,7 @@ const Dashboard = () => {
                 {/* <DashboardDocument /> */}
                 {/* <DashboardDocument /> */}
                 {/*  */}
-                <CongratulationComponents /> 
+                <CongratulationComponents />
               </>
             ) : (
               <>
@@ -120,9 +119,6 @@ const Dashboard = () => {
                         elevation={0}
                         sx={{
                           borderRadius: "8px",
-                          // width: "100%",
-                          // height: "100%",
-                          // height: "90px",
                         }}
                       >
                         {!projectLoading && (
@@ -157,7 +153,6 @@ const Dashboard = () => {
                         <Paper
                           elevation={0}
                           sx={{
-                            // paddingTop: "10%",
                             height: "99%",
                             borderRadius: "8px",
                             paddingLeft: "3%",
@@ -171,8 +166,7 @@ const Dashboard = () => {
                         <Paper
                           elevation={0}
                           sx={{
-                            // paddingTop: "5%",
-                            height: "99%",
+                            height: {xl: "350px", lg:"300px"},
                             borderRadius: "8px",
                             paddingLeft: "3%",
                           }}

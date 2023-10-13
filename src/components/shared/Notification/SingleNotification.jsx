@@ -15,6 +15,7 @@ import { iconHandler } from "./AllNotification";
 const convertDate = (date) => {
   return dayjs(date).format("DD MMM hh:mm A");
 };
+
 const SingleNotification = ({ notification }) => {
   const formattedDate = convertDate(notification.createdAt);
 

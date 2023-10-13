@@ -1,14 +1,12 @@
+import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
-import {Box, Button, Grid, Paper, Typography} from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import congImg from "../../../../assets/images/Frame 626711.png";
-import {useNavigate} from "react-router-dom";
 
 const CongratulationComponents = () => {
   const paperstyle = {
     backgroundColor: "#FFFFFF",
     padding: "3%",
-    // width: "100%",
-    // height: "100%",
     borderRadius: "2px",
   };
 
@@ -52,7 +50,8 @@ const CongratulationComponents = () => {
                         borderRadius: "1px",
                         width: "173px",
                         height: "40px",
-                      }}>
+                      }}
+                    >
                       Get Started
                     </Button>
                   </Grid>

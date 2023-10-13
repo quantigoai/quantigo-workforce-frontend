@@ -6,15 +6,15 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Box, Grid, Typography} from "@mui/material";
-import {BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip} from "chart.js";
-import React, {useEffect, useState} from "react";
-import {Bar} from "react-chartjs-2";
-import {useDispatch, useSelector} from "react-redux";
-import {chartValues, labelsData} from "../../../../helper/customData";
+import { Box, Grid, Typography } from "@mui/material";
+import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip } from "chart.js";
+import { addDays } from "date-fns";
+import React, { useEffect, useState } from "react";
+import { Bar } from "react-chartjs-2";
+import { useDispatch, useSelector } from "react-redux";
+import { getDashboardData } from "../../../../features/slice/dashboardSlice";
+import { chartValues, labelsData } from "../../../../helper/customData";
 import DateRangeComponentForDashboard from "../DatePicker/DateRangeComponent";
-import {addDays} from "date-fns";
-import {getDashboardData} from "../../../../features/slice/dashboardSlice";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -114,6 +114,7 @@ const BarChart = ({ startDate, setStartDate, endDate, setEndDate, loading }) => 
       },
     ],
   };
+  const { isLightTheme } = useSelector((state) => state.theme);
   useEffect(() => {
     const activeProjectIds = Object.keys(activeJobs);
     const takenProjectIds = Object.keys(takenJobs);
@@ -127,18 +128,20 @@ const BarChart = ({ startDate, setStartDate, endDate, setEndDate, loading }) => 
         {
           label: "Available Jobs",
           data: activeJobValues,
+          // data: sampleData,
 
-          backgroundColor: "#B6C9F0",
+          backgroundColor: isLightTheme ? "#B6C9F0" : "#12B76A",
         },
         {
           label: "Active Jobs",
           data: blockedJobValues,
-          backgroundColor: "#2E58FF",
+          // data: sampleData,
+          backgroundColor: isLightTheme ? "#2E58FF" : "#EAECF0",
         },
       ],
     });
     setIsDataUpdate(false);
-  }, [activeJobs, takenJobs]);
+  }, [activeJobs, takenJobs, isLightTheme]);
 
   return (
     <>

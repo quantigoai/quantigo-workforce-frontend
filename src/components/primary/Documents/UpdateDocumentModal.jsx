@@ -115,8 +115,6 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
       }
     });
   };
-  console.log(coverImage);
-  console.log(coverImageFile);
   return (
     <>
       <Modal

@@ -6,14 +6,14 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {FormControl, InputLabel, styled, TextField, Typography} from "@mui/material";
-import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
-import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import { FormControl, InputLabel, styled, TextField, Typography } from "@mui/material";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import PropTypes from "prop-types";
-import {Controller, useFormContext} from "react-hook-form";
-import {useSelector} from "react-redux";
-import {convertDate} from "../../../helper/customData";
+import { Controller, useFormContext } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { convertDate } from "../../../helper/customData";
 
 CustomDatePicker.propTypes = {
   name: PropTypes.string,
@@ -23,7 +23,7 @@ CustomDatePicker.propTypes = {
 export const MyDatePicker = styled(DatePicker)(() => ({
   border: "0px solid #E0E0E0",
   "& .MuiOutlinedInput-input": {
-    padding: "10px",
+    padding: "9px",
     height: "100%",
     color: "#000",
   },
@@ -42,7 +42,7 @@ export const MyFormControl = styled(FormControl)(() => ({
   "& MuiInputBase-root-MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
     border: "0px",
     borderColor: "#2D58FF",
-    color: "#000",
+    color: "#3c4d6b",
   },
   "& MuiInputBase-root-MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
     border: "0px",
@@ -83,9 +83,10 @@ export default function CustomDatePicker({
               backgroundColor: "#FFFFFF",
               color: "#3c4d6b",
               border: "2px solid #E6ECF5",
-              borderRadius: "10px",
-              mt: "11px",
+              borderRadius: "5px",
               fontSize: "12px",
+              mt: 0.3,
+              height: "45px",
             }}
           >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -93,10 +94,7 @@ export default function CustomDatePicker({
                 size="small"
                 sx={{
                   backgroundColor: "#FFFFFF",
-                  height: "36px",
-                  padding: "0px",
-                  color: "#000000",
-                  fontSize: "12px",
+                  color: "#3c4d6b",
                 }}
                 inputFormat="DD-MM-YYYY"
                 minDate={minDob}
@@ -108,10 +106,7 @@ export default function CustomDatePicker({
                 <TextField
                   size="small"
                   sx={{
-                    mt: 0,
-                    padding: "0px",
-                    height: "40px",
-                    color: "#000000",
+                    color: "#3c4d6b",
                   }}
                   error={!!error}
                   helperText={error && error?.message}

@@ -35,18 +35,18 @@ const SkillDeleteModal = ({ skill }) => {
   return (
     <>
       <Button
-        variant="contained"
+        // variant="contained"
         // disabled={isLoading}
         type="submit"
-        sx={{
-          backgroundColor: "#D8514B",
-          color: "#FFFFFF",
-          "&:hover": {
-            backgroundColor: "#FF9A45",
-            color: "#1D1D1D",
-          },
-          borderRadius: "2px",
-        }}
+        // sx={{
+        //   backgroundColor: "#D8514B",
+        //   color: "#FFFFFF",
+        //   "&:hover": {
+        //     backgroundColor: "#FF9A45",
+        //     color: "#1D1D1D",
+        //   },
+        //   borderRadius: "2px",
+        // }}
         onClick={handleClickOpen}
       >
         <Box

@@ -18,7 +18,7 @@ const UserInfoIndex = ({
   setIsEditSkill,
   isEditSkill,
 }) => {
-  const DOB = moment.utc(user.dob).format("MMM Do, YYYY");
+  const DOB =user.dob ?  moment.utc(user.dob).format("MMM Do, YYYY") : "Not Available";
   const dateObj = new Date(user.lastJobTakenAt);
   const today = new Date();
   const diffInMs = Math.abs(today - dateObj);

@@ -11,7 +11,7 @@ const ProjectModalHeader = ({ handleCreateProjectClose, modalTitle, isPageDetail
         width: "100%",
         backgroundColor: "neutral.N000",
         // background: isLightTheme ? (isPageDetail ? "white" : "#F2F6FC") : isPageDetail ? "#1E1E1E" : "#2A2A2A",
-        borderRadius: "8px",
+        // borderRadius: "8px",
         borderBottom: "1px solid #EBF0F5",
       }}
     >

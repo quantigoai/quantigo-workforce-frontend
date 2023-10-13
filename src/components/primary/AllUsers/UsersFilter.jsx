@@ -33,7 +33,6 @@ const UsersFilter = ({
   addRoles,
   handleChangeRoles,
 }) => {
-  console.log("🚀 ~ file: UsersFilter.jsx:36 ~ role:", role);
   const { skills } = useSelector((state) => state.skill);
 
   return (

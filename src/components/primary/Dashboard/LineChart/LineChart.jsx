@@ -6,31 +6,24 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Box, Grid, Typography} from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import {
-    CategoryScale,
-    Chart as ChartJS,
-    Legend,
-    LinearScale,
-    LineElement,
-    PointElement,
-    Title,
-    Tooltip,
-} from "chart.js";
-import React, {useEffect} from "react";
-import {Bar} from "react-chartjs-2";
-import {useSelector} from "react-redux";
-import {daysAndMonths} from "../../../../helper/dateConverter";
-
-ChartJS.register(
   CategoryScale,
+  Chart as ChartJS,
+  Legend,
   LinearScale,
-  PointElement,
   LineElement,
+  PointElement,
   Title,
   Tooltip,
-  Legend
-);
+} from "chart.js";
+import React, { useEffect } from "react";
+import { Bar } from "react-chartjs-2";
+import { useSelector } from "react-redux";
+import { daysAndMonths } from "../../../../helper/dateConverter";
+import { capitalizeAllwordAndSlic } from "../../../../helper/capitalizeAllwordAndSlic";
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 export const options = {
   responsive: true,
@@ -117,8 +110,9 @@ const LineChart = ({ loading }) => {
       const labels = [];
       chartLabels.map((item) => {
         const { day, month, dateNumber } = daysAndMonths(item);
-
-        return labels.push(`${day}, ${month} ${dateNumber}`);
+        const dayFinal = capitalizeAllwordAndSlic(day);
+        return labels.push(`${dayFinal}`);
+        // return labels.push(`${day}, ${month} ${dateNumber}`);
       });
 
       const takenJobsData = [];
@@ -171,7 +165,7 @@ const LineChart = ({ loading }) => {
         </Grid>
 
         <Grid container sx={{ padding: "2%" }}>
-          {!isDataUpdate && <Bar options={options} data={sampleData} />}
+          {!isDataUpdate && <Bar options={options} data={customData} height={160} />}
         </Grid>
       </Box>
       {/* <Grid container sx={{ padding: "2%" }}>

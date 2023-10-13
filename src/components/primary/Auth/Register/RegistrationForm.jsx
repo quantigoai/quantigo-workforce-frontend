@@ -7,28 +7,28 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {yupResolver} from "@hookform/resolvers/yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CheckIcon from "@mui/icons-material/Check";
 import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import {Box, Grid, IconButton, InputAdornment, Link, Stack, Typography} from "@mui/material";
+import { Box, Grid, IconButton, InputAdornment, Link, Stack, Typography } from "@mui/material";
 import axios from "axios";
-import {useEffect, useState} from "react";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import useToaster from "../../../../customHooks/useToaster";
-import {checkUserByUserName, signup} from "../../../../features/slice/userSlice";
+import { checkUserByUserName, signup } from "../../../../features/slice/userSlice";
 import CustomDatePicker from "../../../shared/CustomField/CustomDatePicker";
 import CustomSelectField from "../../../shared/CustomField/CustomSelectField";
 import CustomTextField from "../../../shared/CustomField/CustomTextField";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
 import FinalButton from "./FinalButton";
 import PrimaryButton from "./PrimaryButton";
-import {genderOptions, hubOptions, RegistrationSchema, userStatusOptions} from "./RegistrationFormHelper";
+import { RegistrationSchema, genderOptions, hubOptions, userStatusOptions } from "./RegistrationFormHelper";
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -136,6 +136,7 @@ const RegistrationForm = () => {
         setHelperMessage("");
       } else {
         setHelperMessage(res.payload.data.message);
+        setHelperMessage(res.payload.data.message);
       }
     });
   };
@@ -162,6 +163,7 @@ const RegistrationForm = () => {
             <Box sx={{ height: "100px" }}>
               <CustomTextField name="firstName" label="First Name" />
             </Box>
+
             <Box sx={{ height: "100px" }}>
               <CustomTextField name="lastName" label="Last Name" />
             </Box>
@@ -205,7 +207,7 @@ const RegistrationForm = () => {
           <>
             <Stack direction="row" spacing={2}>
               {/* User Type */}
-              <Box sx={{ width: "50%", height: "100px" }}>
+              <Box sx={{ width: "50%", height: "100px", backgroundColor: "green" }}>
                 <CustomSelectField
                   name="currentUserStatus"
                   helperText="Select an option"
@@ -215,6 +217,7 @@ const RegistrationForm = () => {
                   onChange={handleChangeUserType}
                 />
               </Box>
+
               {isNewUser ? (
                 // Hub Field
                 <Box sx={{ width: "50%", height: "100px" }}>
@@ -234,11 +237,13 @@ const RegistrationForm = () => {
                     name="qaiUserName"
                     label="Quantigo Username"
                     onBlur={handleCheckQaiUserName}
+                      helperText={helperMessage}
+                      placeholder="QAI_XXXXXX"
                     InputProps={{
                       disableUnderline: true,
                       endAdornment: (
                         <InputAdornment position="end">
-                          {helperMessage && <CheckIcon sx={{ color: "green", fontWeight: 700 }} />}
+                          {helperMessage && <CheckIcon sx={{ color: "#12B76A", fontWeight: 700 }} />}
                           {errors.qaiUserName && <CancelIcon sx={{ color: "red", fontWeight: 700 }} />}
                         </InputAdornment>
                       ),
@@ -277,6 +282,7 @@ const RegistrationForm = () => {
                 <CustomTextField
                   name="billingAccountNo"
                   label="Nagad Account No"
+                  placeholder="01XXXXXXXXX"
                   InputProps={{
                     disableUnderline: true,
                     endAdornment: (
@@ -294,6 +300,7 @@ const RegistrationForm = () => {
                   // sx={{ mr: isNewUser &&  }}
                   name="contactNo"
                   label="Phone Number"
+                  placeholder="01XXXXXXXXX"
                   InputProps={{
                     disableUnderline: true,
                     endAdornment: (

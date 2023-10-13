@@ -150,61 +150,64 @@ export default function LayoutNew({ children }) {
     { name: "Dashboard", icon: DashboardSvg },
     // { name: "All Users", icon: UserSvg },
     { name: "All Users", icon: UserSvg },
-    { name: "All Projects", icon: ProjectSvg },
-    { name: "Skill", icon: SkillIcon },
-    { name: "Projects", icon: ProjectSvg },
-    { name: "Course", icon: CourseSvg },
-    { name: "Jobs", icon: JobSvg },
-    { name: "Benchmark", icon: BenchmarkSvg },
-    { name: "Sync Server", icon: SyncIcon },
-    { name: "Project Directory", icon: ProjectSvg },
+    // { name: "All Projects", icon: ProjectSvg },
+    // { name: "Skill", icon: SkillIcon },
+    // { name: "Projects", icon: ProjectSvg },
+    // { name: "Course", icon: CourseSvg },
+    // { name: "Jobs", icon: JobSvg },
+    // { name: "Benchmark", icon: BenchmarkSvg },
+    // { name: "Sync Server", icon: SyncIcon },
+    // { name: "Project Directory", icon: ProjectSvg },
     // { name: "Hour Calculation", icon: HourSvg },
   ];
   const projectManagerOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "All Users", icon: UserSvg },
-    { name: "Skill", icon: CourseSvg },
-    { name: "Projects", icon: ProjectSvg },
-    { name: "Jobs", icon: JobSvg },
-    { name: "Benchmark", icon: BenchmarkSvg },
-    { name: "Sync Server", icon: SyncIcon },
-    { name: "Project Directory", icon: ProjectSvg },
+    // { name: "All Projects", icon: ProjectSvg },
+    // { name: "Skill", icon: CourseSvg },
+    // { name: "Projects", icon: ProjectSvg },
+    // { name: "Jobs", icon: JobSvg },
+    // { name: "Benchmark", icon: BenchmarkSvg },
+    // { name: "Sync Server", icon: SyncIcon },
+    // { name: "Project Directory", icon: ProjectSvg },
   ];
   const projectLeadOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "All Users", icon: UserSvg },
-    { name: "Skill", icon: SkillIcon },
-    { name: "Projects", icon: ProjectSvg },
-    { name: "Jobs", icon: JobSvg },
-    { name: "Benchmark", icon: BenchmarkSvg },
-    { name: "Project Directory", icon: ProjectSvg },
-    { name: "Sync Server", icon: SyncIcon },
+    // { name: "All Projects", icon: ProjectSvg },
+    // { name: "Skill", icon: SkillIcon },
+    // { name: "Projects", icon: ProjectSvg },
+    // { name: "Jobs", icon: JobSvg },
+    // { name: "Benchmark", icon: BenchmarkSvg },
+    // { name: "Project Directory", icon: ProjectSvg },
+    // { name: "Sync Server", icon: SyncIcon },
   ];
   const projectCoordinatorOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "Projects", icon: ProjectSvg },
-    { name: "Jobs", icon: JobSvg },
-    { name: "Sync Server", icon: SyncIcon },
-    { name: "Project Directory", icon: ProjectSvg },
+    // { name: "Jobs", icon: JobSvg },
+    // { name: "Sync Server", icon: SyncIcon },
+    // { name: "Project Directory", icon: ProjectSvg },
   ];
 
   const dmOptions = [
     { name: "Dashboard", icon: DashboardSvg },
-    { name: "Annotator List", icon: UserSvg },
-    { name: "Reviewer List", icon: UserSvg },
-    { name: "Skill", icon: SkillIcon },
-    { name: "Projects", icon: ProjectSvg },
-    { name: "Jobs", icon: JobSvg },
-    { name: "Benchmark", icon: BenchmarkSvg },
-    { name: "Project Directory", icon: ProjectSvg },
-    { name: "Sync Server", icon: SyncIcon },
+    // { name: "All Projects", icon: ProjectSvg },
+    // { name: "Annotator List", icon: UserSvg },
+    // { name: "Reviewer List", icon: UserSvg },
+    // { name: "Skill", icon: SkillIcon },
+    // { name: "Projects", icon: ProjectSvg },
+    // { name: "Jobs", icon: JobSvg },
+    // { name: "Benchmark", icon: BenchmarkSvg },
+    // { name: "Project Directory", icon: ProjectSvg },
+    // { name: "Sync Server", icon: SyncIcon },
   ];
 
   const anntatorOptions = [
     { name: "Dashboard", icon: DashboardSvg },
-    { name: "All Projects", icon: ProjectSvg },
-    { name: "Course", icon: CourseSvg },
-    { name: "Jobs", icon: JobSvg },
+    // { name: "All Projects", icon: ProjectSvg },
+    // { name: "Course", icon: CourseSvg },
+    // { name: "Jobs", icon: JobSvg },
     // { name: "Payment", icon: PaymentSvg },
   ];
 
@@ -214,19 +217,19 @@ export default function LayoutNew({ children }) {
   ];
   const Verifiedlevel0AnnotatorOptions = [
     { name: "Dashboard", icon: DashboardSvg },
-    { name: "Course", icon: CourseSvg },
+    // { name: "Course", icon: CourseSvg },
   ];
   const trainerOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "All Users", icon: UserSvg },
-    { name: "Course", icon: CourseSvg },
-    { name: "Skill", icon: SkillIcon },
+    // { name: "Course", icon: CourseSvg },
+    // { name: "Skill", icon: SkillIcon },
   ];
 
   const reviewerOptions = [
     { name: "Dashboard", icon: DashboardSvg },
-    { name: "Course", icon: CourseSvg },
-    { name: "Jobs", icon: JobSvg },
+    // { name: "Course", icon: CourseSvg },
+    // { name: "Jobs", icon: JobSvg },
   ];
 
   const recruitOptions = [
@@ -342,8 +345,7 @@ export default function LayoutNew({ children }) {
             },
           }}
           className="responsive-drawer"
-          onClick={() => handleOptionClick(text.name)}
-        >
+          onClick={() => handleOptionClick(text.name)}>
           <ListItemIcon sx={{ color: "#FFFFFF", minWidth: "45px" }}>
             <img src={text.icon} />
           </ListItemIcon>
@@ -414,8 +416,7 @@ export default function LayoutNew({ children }) {
             // width: open ? "15%" : "3%",
             height: "100vh",
             backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
-          }}
-        >
+          }}>
           <Drawer
             PaperProps={{
               sx: {
@@ -423,8 +424,7 @@ export default function LayoutNew({ children }) {
               },
             }}
             variant="permanent"
-            open={open}
-          >
+            open={open}>
             <DrawerHeader>
               <Box sx={{}}>
                 <img
@@ -482,15 +482,13 @@ export default function LayoutNew({ children }) {
         sx={{
           width: open ? "85%" : "97%",
           height: "100vh",
-        }}
-      >
+        }}>
         {/* navbar */}
         <Box
           sx={{
             height: { xl: "7%", lg: "9%", md: "10%" },
             width: "100%",
-          }}
-        >
+          }}>
           <Header openDrawer={open} />
         </Box>
 
@@ -502,15 +500,13 @@ export default function LayoutNew({ children }) {
             backgroundColor: isLightTheme ? "#F2F6FC" : "#121212",
             width: "100%",
             overflowY: "auto",
-          }}
-        >
+          }}>
           {isLoggedIn && !isBlocked ? (
             <Box
               sx={{
                 height: "100%",
                 overflowY: "auto",
-              }}
-            >
+              }}>
               {children}
             </Box>
           ) : (

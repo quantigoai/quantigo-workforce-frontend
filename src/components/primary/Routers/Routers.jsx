@@ -22,6 +22,7 @@ import FullProjectDetails from "../ProjectLIstNew2/ProjectDetailsFull/FullProjec
 import ProjectLIstIndex2 from "../ProjectLIstNew2/ProjectLIstIndex2";
 import PrivateRoute from "./PrivateRoute";
 import AccountActivation from "../Dashboard/CongratulationDashBoard/AccountActivation";
+import Skills from "../Skill/Skills";
 
 export const roles = {
   admin: "admin",
@@ -128,7 +129,7 @@ const Routers = () => {
         {/* --------- ------------- ------------ */}
 
         {/* --------- Skill ------------ */}
-        {/* <Route
+        <Route
           element={
             <PrivateRoute
               roles={[
@@ -142,10 +143,9 @@ const Routers = () => {
                 roles.trainer,
               ]}
             />
-          }
-        >
+          }>
           <Route path={"/skillcreate"} element={<Skills />} />
-        </Route> */}
+        </Route>
         {/* -------- ---------- ------------ */}
 
         {/* --------All users ------------ */}

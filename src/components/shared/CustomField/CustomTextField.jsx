@@ -7,10 +7,10 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Box, styled, TextField, Typography} from "@mui/material";
+import { Box, styled, TextField, Typography } from "@mui/material";
 import PropTypes from "prop-types";
-import {Controller, useFormContext} from "react-hook-form";
-import {useSelector} from "react-redux";
+import { Controller, useFormContext } from "react-hook-form";
+import { useSelector } from "react-redux";
 
 CustomTextField.propTypes = {
   name: PropTypes.string,
@@ -18,9 +18,11 @@ CustomTextField.propTypes = {
 };
 export const MyTextField = styled(TextField)(() => ({
   borderRadius: "5px",
+  padding: "0px 0px 0px 0px",
   backgroundColor: "#fff",
   "& .MuiOutlinedInput-root": {
     color: "#000",
+    height: "45px",
     borderRadius: "8px",
   },
   "& .MuiOutlinedInput-notchedOutline ": {
@@ -30,9 +32,16 @@ export const MyTextField = styled(TextField)(() => ({
   "& .MuiInputBase-input.Mui-disabled": {
     WebkitTextFillColor: "#56627a",
   },
+  "& .MuiFormHelperText-root": {
+    color: "#12B76A",
+    "&.Mui-error": {
+      color: "#F04438",
+    },
+  },
 }));
 
 export default function CustomTextField({ name, label, helperText, ...other }) {
+  console.log("🚀 ~ file: CustomTextField.jsx:38 ~ CustomTextField ~ helperText:", helperText);
   const { control } = useFormContext();
   const { isLightTheme } = useSelector((state) => state.theme);
   return (
@@ -54,12 +63,10 @@ export default function CustomTextField({ name, label, helperText, ...other }) {
               fullWidth
               // InputProps={{ disableUnderline: true }}
               variant="outlined"
-              // placeholder={label === "Email" ? "email#123@gmail.com" : "example#123"}
               sx={{
-                // backgroundColor: isLightTheme ? "#FFFFFF" : "#1D1D1D",
-                // backgroundColor: "#FFFFFF",
-                mt: 1.5,
+                mt: 0.3,
                 fontSize: "14px",
+                height: "45px",
               }}
               value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
               error={!!error}

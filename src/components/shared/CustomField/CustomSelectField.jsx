@@ -6,23 +6,32 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {MenuItem, Select, styled, Typography} from "@mui/material";
+import { Box, FormControl, MenuItem, Select, styled, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import React from "react";
-import {Controller, useFormContext} from "react-hook-form";
-import {useSelector} from "react-redux";
-import {MyFormControl} from "./CustomDatePicker";
+import { Controller, useFormContext } from "react-hook-form";
+import { useSelector } from "react-redux";
+// import {MyFormControl} from "./CustomDatePicker";
 
 CustomSelectField.propTypes = {
   name: PropTypes.string,
   helperText: PropTypes.node,
 };
 
+export const CustomFormControl = styled(FormControl)(() => ({
+  height: "100px",
+  "& MuiInputBase-root-MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+    border: "0px",
+    borderColor: "#2D58FF",
+    color: "#000",
+  },
+  "& MuiInputBase-root-MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
+    border: "0px",
+    borderColor: "#2D58FF",
+  },
+}));
+
 export const MySelect = styled(Select)(() => ({
-  border: "2px solid #E6ECF5",
-  // padding: "0px 0px 0px 0px",
-  // backgroundColor: "white",
-  height: "40px",
   borderRadius: "8px",
 }));
 export default function CustomSelectField({ name, helperText, options, label, setValue, defaultValue, ...other }) {
@@ -35,38 +44,51 @@ export default function CustomSelectField({ name, helperText, options, label, se
       control={control}
       render={({ field, fieldState: { error } }) => (
         <>
-          <MyFormControl fullWidth>
-            <Typography sx={{ mb: 2, color: "#3c4d6b" }} variant="wpf_p4_medium">
-              {label}
-            </Typography>
-            <MySelect
+          <CustomFormControl fullWidth>
+            <Box
               sx={{
-                backgroundColor: "#FFFFFF",
-                color: "#000",
-                fontSize: "14px",
+                height: "100px",
               }}
-              size="small"
-              labelId="demo-simple-select-autowidth-label"
-              id="demo-simple-select-autowidth"
-              {...field}
-              label={label}
-              defaultValue={defaultValue}
-              error={!!error}
-              helperText={error ? error?.message : helperText}
-              {...other}
             >
-              {options.map((option) => (
-                <MenuItem
-                  sx={{ fontSize: "14px" }}
-                  key={option.value}
-                  fullWidth
-                  value={(() => setValue(field.name, field.value), option.value)}
+              <Typography sx={{ mb: 0, color: "#3c4d6b" }} variant="wpf_p4_medium">
+                {label}
+              </Typography>
+              <Box sx={{ width: "100%" }}>
+                <MySelect
+                  sx={{
+                    mt: 0.3,
+                    height: "45px",
+                    width: "100%",
+                    backgroundColor: "#FFFFFF",
+                    color: "#000",
+                    border: "2px solid #E6ECF5",
+                    fontSize: "14px",
+                    borderRadius: "5px",
+                  }}
+                  size="small"
+                  labelId="demo-simple-select-autowidth-label"
+                  id="demo-simple-select-autowidth"
+                  {...field}
+                  label={label}
+                  defaultValue={defaultValue}
+                  error={!!error}
+                  helperText={error ? error?.message : helperText}
+                  {...other}
                 >
-                  {option.label}
-                </MenuItem>
-              ))}
-            </MySelect>
-          </MyFormControl>
+                  {options.map((option) => (
+                    <MenuItem
+                      sx={{ fontSize: "14px" }}
+                      key={option.value}
+                      fullWidth
+                      value={(() => setValue(field.name, field.value), option.value)}
+                    >
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </MySelect>
+              </Box>
+            </Box>
+          </CustomFormControl>
         </>
       )}
     />

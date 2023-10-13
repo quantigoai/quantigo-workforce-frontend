@@ -29,7 +29,7 @@ import UsersFilter from "./UsersFilter";
 import UsersHeader from "./UsersHeader";
 import "./index.css";
 import { fields } from "./tableFields";
-import { hubOptions, roleOptions, userStatusOptions } from "./userFilterOptions";
+import { hubOptions, roleOptionsAdmin, roleOptionsRecruitment_manager, userStatusOptions } from "./userFilterOptions";
 // import TableWrapper from "../ProjectLIstNew2/ExpTable/TableWrapper";
 const TableWrapper = React.lazy(() => import("../ProjectLIstNew2/ExpTable/TableWrapper"));
 
@@ -110,7 +110,7 @@ const AllUserListIndex = () => {
     const isSkillsSame = arraysAreEqual(prevSkills, skillsId);
 
     const roleValue = addRoles.map((role) => role.value);
-    
+
     const isRolesSame = arraysAreEqual(prevRoles, roleValue);
 
     setPrevSkills(skillsId);
@@ -254,7 +254,7 @@ const AllUserListIndex = () => {
           handleChange={handleChange}
           handleClearFilter={handleClearFilter}
           filterValue={filterValue}
-          roleOptions={roleOptions}
+          roleOptions={role === "admin" ? roleOptionsAdmin : roleOptionsRecruitment_manager}
           hubOptions={hubOptions}
           skillOptions={skillsOptions}
           userStatusOptions={userStatusOptions}

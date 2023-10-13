@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+
 /*
  * File           : userFilterOptions.js
  * Project        : wmpfrontv2
@@ -12,7 +14,7 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-export const roleOptions = [
+export const roleOptionsAdmin = [
   { value: "level_0_annotator", label: "Level 0 annotator" },
   { value: "level_1_annotator", label: "Level 1 annotator" },
   { value: "level_2_annotator", label: "Level 2 annotator" },
@@ -21,11 +23,25 @@ export const roleOptions = [
   { value: "trainer", label: "Trainer" },
   { value: "project_lead", label: "Project lead" },
   { value: "project_coordinator", label: "Project coordinator" },
-  { value: "delivery_manager", label: "Delivery_manager" },
-  { value: "project_manager", label: "Project_manager" },
-  { value: "recruitment_manager", label: "Recruitment_manager" },
-  { value: "engineering_lead", label: "Engineering_lead" },
-  { value: "admin", label: "admin" },
+  { value: "delivery_manager", label: "Delivery manager" },
+  { value: "project_manager", label: "Project manager" },
+  { value: "recruitment_manager", label: "Recruitment manager" },
+  { value: "engineering_lead", label: "Engineering lead" },
+  { value: "admin", label: "Admin" },
+];
+export const roleOptionsRecruitment_manager = [
+  { value: "level_0_annotator", label: "Level 0 annotator" },
+  { value: "level_1_annotator", label: "Level 1 annotator" },
+  { value: "level_2_annotator", label: "Level 2 annotator" },
+  { value: "level_3_annotator", label: "Level 3 annotator" },
+  { value: "reviewer", label: "Reviewer" },
+  { value: "trainer", label: "Trainer" },
+  { value: "project_lead", label: "Project lead" },
+  { value: "project_coordinator", label: "Project coordinator" },
+  { value: "delivery_manager", label: "Delivery manager" },
+  { value: "project_manager", label: "Project manager" },
+  { value: "recruitment_manager", label: "Recruitment manager" },
+  { value: "engineering_lead", label: "Engineering lead" },
 ];
 
 export const hubOptions = [

@@ -7,13 +7,13 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Box, Button, Stack} from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import React from "react";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import ProjectSelectFIlterField from "../ProjectLIstNew2/ProjectSelectFIlterField";
 import ProjectMultipleSelectRole from "./ProjectMultipleSelectRole";
 import UserSkillFieldSelect from "./UserSkillFieldSelect";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 
 const UsersFilter = ({
   role,
@@ -33,6 +33,7 @@ const UsersFilter = ({
   addRoles,
   handleChangeRoles,
 }) => {
+  console.log("🚀 ~ file: UsersFilter.jsx:36 ~ role:", role);
   const { skills } = useSelector((state) => state.skill);
 
   return (

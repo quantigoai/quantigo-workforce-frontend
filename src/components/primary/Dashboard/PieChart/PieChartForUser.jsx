@@ -1,24 +1,17 @@
 import React from "react";
-import {ArcElement, Chart as ChartJS, Legend, Title, Tooltip} from "chart.js";
-import {Pie} from "react-chartjs-2";
-import {useSelector} from "react-redux";
+import { ArcElement, Chart as ChartJS, Legend, Title, Tooltip } from "chart.js";
+import { Pie } from "react-chartjs-2";
+import { useSelector } from "react-redux";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title, ChartDataLabels);
 
 const PieChartForUser = () => {
-  const { activeJobs, takenJobs, totalCountData } = useSelector(
-    (state) => state.dashboard
-  );
+  const { activeJobs, takenJobs, totalCountData } = useSelector((state) => state.dashboard);
+  const { isLightTheme } = useSelector((state) => state.theme);
 
   const data = {
-    labels: [
-      "Level 0 Annotator",
-      "Level 1 Annotator",
-      "Level 2 Annotator",
-      "Level 3 Annotator",
-      "Reviewer",
-    ],
+    labels: ["Level 0 Annotator", "Level 1 Annotator", "Level 2 Annotator", "Level 3 Annotator", "Reviewer"],
     datasets: [
       {
         label: "",
@@ -29,13 +22,7 @@ const PieChartForUser = () => {
           totalCountData.level_3_annotator,
           totalCountData.reviewer,
         ],
-        backgroundColor: [
-          "#266AED",
-          "#FFAB00",
-          "#36B37E",
-          "#FF4757",
-          "#9747FF",
-        ],
+        backgroundColor: ["#266AED", "#FFAB00", "#36B37E", "#FF4757", "#9747FF"],
 
         borderWidth: 3,
       },
@@ -61,7 +48,7 @@ const PieChartForUser = () => {
         font: {
           size: 14,
         },
-        color:"neutral.750",
+        color: isLightTheme ? "black" : "white",
         padding: {
           top: 25,
           left: 30,

@@ -7,21 +7,21 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Box, Grid, Typography} from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import {
-    CategoryScale,
-    Chart as ChartJS,
-    Legend,
-    LinearScale,
-    LineElement,
-    PointElement,
-    Title,
-    Tooltip,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
 } from "chart.js";
-import React, {useEffect, useState} from "react";
-import {useSelector} from "react-redux";
-import {weeklyConver} from "../../../../helper/weeklyConver";
-import {capitalizeAllwordAndSlic} from "../../../../helper/capitalizeAllwordAndSlic.js";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { weeklyConver } from "../../../../helper/weeklyConver";
+import { capitalizeAllwordAndSlic } from "../../../../helper/capitalizeAllwordAndSlic.js";
 import LineChartExple from "./LineChartExple";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
@@ -61,48 +61,6 @@ const options = {
   },
 };
 const LineChartDaily = ({ loading }) => {
-  const { hourlyData } = useSelector((state) => state.dashboard);
-  const [customData, setCustomData] = useState({});
-  const [isDataUpdate, setIsDataUpdate] = React.useState(true);
-
-  useEffect(() => {
-    const takenJobsData = [];
-    if (!loading) {
-      const labels = Object.keys(hourlyData?.hourJobs);
-      const finalLabel = [];
-
-      labels.forEach((label) => {
-        takenJobsData.push(hourlyData.hourJobs[label]);
-        const { weekly } = weeklyConver(label);
-
-        const weeklydate = capitalizeAllwordAndSlic(weekly[0]);
-        return finalLabel.push(`${weeklydate} ${weekly[2]} ${weekly[3]}`);
-      });
-
-      const data = {
-        labels: finalLabel.reverse(),
-
-        datasets: [
-          {
-            label: "Active job",
-            data: [10, 20, 30, 42, 51, 82, 31, 59, 61, 73, 91, 58, 10, 20, 30, 42, 51, 82, 31, 59, 61, 73, 61, 73],
-            // data: [...takenJobsData.reverse()],
-            // data: [0, 1, 1, 2, 3, 4, 5],
-            borderColor: "#3399FF",
-            // fill: true,
-            // backgroundColor: "yellow",
-            // tension: 0.5,
-            fill: true,
-            backgroundColor: "#DDE8FB",
-            tension: 0.6,
-          },
-        ],
-      };
-
-      setCustomData(data);
-      setIsDataUpdate(false);
-    }
-  }, [loading]);
   return (
     <>
       <Box sx={{ padding: "2%" }}>
@@ -115,7 +73,7 @@ const LineChartDaily = ({ loading }) => {
         </Grid>
 
         <Grid container sx={{ padding: "2%" }}>
-          <LineChartExple customData={customData} />
+          <LineChartExple loading={loading} />
           {/* <Line options={options} data={customData} /> */}
         </Grid>
       </Box>

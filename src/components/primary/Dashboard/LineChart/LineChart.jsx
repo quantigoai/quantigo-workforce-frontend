@@ -21,6 +21,7 @@ import React, { useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import { daysAndMonths } from "../../../../helper/dateConverter";
+import { capitalizeAllwordAndSlic } from "../../../../helper/capitalizeAllwordAndSlic";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -109,7 +110,8 @@ const LineChart = ({ loading }) => {
       const labels = [];
       chartLabels.map((item) => {
         const { day, month, dateNumber } = daysAndMonths(item);
-        return labels.push(`${day}`);
+        const dayFinal = capitalizeAllwordAndSlic(day);
+        return labels.push(`${dayFinal}`);
         // return labels.push(`${day}, ${month} ${dateNumber}`);
       });
 

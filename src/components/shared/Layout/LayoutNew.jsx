@@ -24,13 +24,13 @@ import DashboardSvg from "../../../assets/images/wmp_svg/drawer/DashboardIcon.sv
 import JobSvg from "../../../assets/images/wmp_svg/drawer/jobsNew.svg";
 // import LogoutSvg from "../../../assets/images/wmp_svg/drawer/logout.svg";
 import { Stack } from "@mui/material";
+import { AnimatePresence, motion } from "framer-motion";
 import ProjectSvg from "../../../assets/images/wmp_svg/drawer/projectNew.svg";
 import SyncIcon from "../../../assets/images/wmp_svg/drawer/syncIcon.svg";
 import PaymentSvg from "../../../assets/images/wmp_svg/drawer/u_credit-card.svg";
 import UserSvg from "../../../assets/images/wmp_svg/drawer/userNew.svg";
 import Header from "../Header/Header";
 import GetHelpNew from "./GetHelpNew";
-import { AnimatePresence, motion } from "framer-motion";
 
 const drawerWidth = "15%";
 
@@ -265,7 +265,6 @@ export default function LayoutNew({ children }) {
   ];
 
   const handleOptionClick = (option) => {
-    console.log("🚀 ~ file: LayoutNew.jsx:268 ~ handleOptionClick ~ option:", option)
     switch (option) {
       case "Dashboard":
         return navigate("/dashboard");
@@ -343,7 +342,8 @@ export default function LayoutNew({ children }) {
             },
           }}
           className="responsive-drawer"
-          onClick={() => handleOptionClick(text.name)}>
+          onClick={() => handleOptionClick(text.name)}
+        >
           <ListItemIcon sx={{ color: "#FFFFFF", minWidth: "45px" }}>
             <img src={text.icon} />
           </ListItemIcon>
@@ -363,6 +363,43 @@ export default function LayoutNew({ children }) {
     );
   };
 
+  const handleMenuFunction = (role) => {
+    if (isLoggedIn) {
+      switch (true) {
+        case role === "admin":
+          return adminOptions.map((text) => handleMenu(text));
+        case role === "delivery_manager":
+          return dmOptions.map((text) => handleMenu(text));
+        case role === "level_0_annotator":
+          return isVerified
+            ? Verifiedlevel0AnnotatorOptions.map((text) => handleMenu(text))
+            : level0AnnotatorOptions.map((text) => handleMenu(text));
+        case role === "level_1_annotator":
+          return anntatorOptions.map((text) => handleMenu(text));
+        case role === "level_2_annotator":
+          return anntatorOptions.map((text) => handleMenu(text));
+        case role === "level_3_annotator":
+          return anntatorOptions.map((text) => handleMenu(text));
+        case role === "trainer":
+          return trainerOptions.map((text) => handleMenu(text));
+        case role === "reviewer":
+          return reviewerOptions.map((text) => handleMenu(text));
+        case role === "engineering_lead":
+          return devOptions.map((text) => handleMenu(text));
+        case role === "recruitment_manager":
+          return recruitOptions.map((text) => handleMenu(text));
+        case role === "project_lead":
+          return projectLeadOptions.map((text) => handleMenu(text));
+        case role === "project_coordinator":
+          return projectCoordinatorOptions.map((text) => handleMenu(text));
+        case role === "project_manager":
+          return projectManagerOptions.map((text) => handleMenu(text));
+        default:
+          break;
+      }
+    }
+  };
+
   return (
     <Stack component={motion.div} animate={{}} direction={"row"}>
       <AnimatePresence>
@@ -377,7 +414,8 @@ export default function LayoutNew({ children }) {
             // width: open ? "15%" : "3%",
             height: "100vh",
             backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
-          }}>
+          }}
+        >
           <Drawer
             PaperProps={{
               sx: {
@@ -385,7 +423,8 @@ export default function LayoutNew({ children }) {
               },
             }}
             variant="permanent"
-            open={open}>
+            open={open}
+          >
             <DrawerHeader>
               <Box sx={{}}>
                 <img
@@ -429,25 +468,7 @@ export default function LayoutNew({ children }) {
             {isLoggedIn && !isBlocked && !isEmailVerified ? (
               <List>{unverifiedOptions.map((text) => handleMenu(text))}</List>
             ) : (
-              <List>
-                {isLoggedIn && role === "admin" && adminOptions.map((text) => handleMenu(text))}
-                {isLoggedIn && role === "delivery_manager" && dmOptions.map((text) => handleMenu(text))}
-                {isLoggedIn && role === "level_1_annotator" && anntatorOptions.map((text) => handleMenu(text))}
-                {isLoggedIn && role === "level_2_annotator" && anntatorOptions.map((text) => handleMenu(text))}
-                {isLoggedIn && role === "level_3_annotator" && anntatorOptions.map((text) => handleMenu(text))}
-                {isLoggedIn && role === "trainer" && trainerOptions.map((text) => handleMenu(text))}
-                {isLoggedIn && role === "reviewer" && reviewerOptions.map((text) => handleMenu(text))}
-                {isLoggedIn && role === "engineering_lead" && devOptions.map((text) => handleMenu(text))}
-                {isLoggedIn && role === "recruitment_manager" && recruitOptions.map((text) => handleMenu(text))}
-                {isLoggedIn && role === "project_lead" && projectLeadOptions.map((text) => handleMenu(text))}
-                {isLoggedIn &&
-                  role === "project_coordinator" &&
-                  projectCoordinatorOptions.map((text) => handleMenu(text))}
-                {isLoggedIn && role === "project_manager" && projectManagerOptions.map((text) => handleMenu(text))}
-                {isLoggedIn && isVerified && role === "level_0_annotator"
-                  ? Verifiedlevel0AnnotatorOptions.map((text) => handleMenu(text))
-                  : level0AnnotatorOptions.map((text) => handleMenu(text))}
-              </List>
+              <List>{handleMenuFunction(role)}</List>
             )}
 
             <DrawerFooter sx={{ paddingLeft: "5%", paddingRight: "5%", paddingBottom: "5%" }}>
@@ -461,13 +482,15 @@ export default function LayoutNew({ children }) {
         sx={{
           width: open ? "85%" : "97%",
           height: "100vh",
-        }}>
+        }}
+      >
         {/* navbar */}
         <Box
           sx={{
             height: { xl: "7%", lg: "9%", md: "10%" },
             width: "100%",
-          }}>
+          }}
+        >
           <Header openDrawer={open} />
         </Box>
 
@@ -479,13 +502,15 @@ export default function LayoutNew({ children }) {
             backgroundColor: isLightTheme ? "#F2F6FC" : "#121212",
             width: "100%",
             overflowY: "auto",
-          }}>
+          }}
+        >
           {isLoggedIn && !isBlocked ? (
             <Box
               sx={{
                 height: "100%",
                 overflowY: "auto",
-              }}>
+              }}
+            >
               {children}
             </Box>
           ) : (

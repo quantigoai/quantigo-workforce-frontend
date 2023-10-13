@@ -23,18 +23,18 @@ import success from "../CustomSvgIcons/wired-lineal-37-approve-checked-simple.js
 
 import change from "../../shared/CustomSvgIcons/change-icon.json";
 import ok from "../../shared/CustomSvgIcons/ok-icon.json";
+import cloud from "../../shared/CustomSvgIcons/wired-lineal-1-cloud.json";
 import error from "../../shared/CustomSvgIcons/wired-lineal-1140-error.json";
+import elipse from "../../shared/CustomSvgIcons/wired-lineal-1415-elipse.json";
 import polyline from "../../shared/CustomSvgIcons/wired-lineal-1419-polyline.json";
 import noEntry from "../../shared/CustomSvgIcons/wired-lineal-1738-no-entry.json";
+import envelope from "../../shared/CustomSvgIcons/wired-lineal-177-envelope-mail-send.json";
+import suitcase from "../../shared/CustomSvgIcons/wired-lineal-187-suitcase.json";
+import avatar from "../../shared/CustomSvgIcons/wired-lineal-21-avatar.json";
 import edit from "../../shared/CustomSvgIcons/wired-lineal-245-edit-document.json";
 import approve from "../../shared/CustomSvgIcons/wired-lineal-37-approve-checked-simple.json";
 import clock from "../../shared/CustomSvgIcons/wired-lineal-45-clock-time.json";
 import plus from "../../shared/CustomSvgIcons/wired-lineal-49-plus-circle.json";
-import cloud from "../../shared/CustomSvgIcons/wired-lineal-1-cloud.json"
-import elipse from "../../shared/CustomSvgIcons/wired-lineal-1415-elipse.json"
-import avatar from "../../shared/CustomSvgIcons/wired-lineal-21-avatar.json"
-import envelope from "../../shared/CustomSvgIcons/wired-lineal-177-envelope-mail-send.json"
-import suitcase from "../../shared/CustomSvgIcons/wired-lineal-187-suitcase.json"
 
 // import document from "../../shared/CustomSvgIcons/document-icon.json"
 // import link from "../../shared/CustomSvgIcons/wired-lineal-11-link-unlink-morph.json"
@@ -54,7 +54,7 @@ import suitcase from "../../shared/CustomSvgIcons/wired-lineal-187-suitcase.json
 // import triangle from "../../shared/CustomSvgIcons/wired-lineal-1416-triangle.json"
 // import rounded from "../../shared/CustomSvgIcons/wired-lineal-1417-rounded-square.json"
 // import rectangle from "../../shared/CustomSvgIcons/wired-lineal-1421-rectangle.json"
-import polygon from "../../shared/CustomSvgIcons/wired-lineal-1422-polygon.json"
+import polygon from "../../shared/CustomSvgIcons/wired-lineal-1422-polygon.json";
 
 // import ChangeRoleIcons
 const convertDate = (date) => {
@@ -77,15 +77,24 @@ const style = {
   borderRadius: "50%",
 };
 
-const lottieOptions = {
+const mediumOptions = {
   // loop: true,
   loop: false,
   style: {
     height: 40,
   },
 };
+const miniOptions = {
+  // loop: true,
+  loop: false,
+  style: {
+    height: 30,
+  },
+};
 
-const iconHandler = (notificationType) => {
+export const iconHandler = (notificationType, miniPopup) => {
+  const lottieOptions = miniPopup ? miniOptions : mediumOptions;
+  
   switch (true) {
     case notificationType === "updateUserRole":
       return <Lottie animationData={change} {...lottieOptions} />;
@@ -251,7 +260,7 @@ const AllNotification = () => {
                 gap: "10px",
               }}
             >
-              {iconHandler(notification.type)}
+              {iconHandler(notification.type, false)}
               <Typography variant="wpf_p3_medium" color="neutral.700">
                 {notification.message}
               </Typography>

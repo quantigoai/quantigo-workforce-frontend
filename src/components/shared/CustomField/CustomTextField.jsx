@@ -41,7 +41,6 @@ export const MyTextField = styled(TextField)(() => ({
 }));
 
 export default function CustomTextField({ name, label, helperText, ...other }) {
-  console.log("🚀 ~ file: CustomTextField.jsx:38 ~ CustomTextField ~ helperText:", helperText);
   const { control } = useFormContext();
   const { isLightTheme } = useSelector((state) => state.theme);
   return (

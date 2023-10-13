@@ -28,7 +28,7 @@ const RoutersLogin = () => {
         <Route path={"/reset-password/:id/:token/"} element={<ResetPassword />} />
         <Route path={"/verify-email/:id/:token/"} element={<EmailVerificationConfirmation />} />
 
-        <Route path="*" element={<ErrorPage />} />
+        {/* <Route path="*" element={<ErrorPage />} /> */}
       </Routes>
     </>
   );

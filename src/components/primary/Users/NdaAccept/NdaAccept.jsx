@@ -66,7 +66,6 @@ const NdaAccept = ({ signNda, user, isNDASigned, signImage }) => {
   };
   const handleRejectCause = (e) => {
     setRejectionCause(e.target.value);
-    console.log("🚀 ~ file: NdaAccept.jsx:70 ~ handleRejectCause ~ e.target.value:", e.target.value);
   };
   const handleClose = () => setOpenModal(false);
 

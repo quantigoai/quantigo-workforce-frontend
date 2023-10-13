@@ -6,10 +6,10 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Alert} from "@mui/material";
-import React, {useState} from "react";
-import {useSelector} from "react-redux";
-import {useLocation} from "react-router-dom";
+import { Alert } from "@mui/material";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import DetailsPage from "../ProjectDetailsFull/DetailsPage";
 import WPFTable from "./WPFTable";
 

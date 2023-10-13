@@ -60,14 +60,14 @@ const CommonModalFooter = ({
                   width: "128px",
                   textTransform: "none",
                   backgroundColor: "primary.B200",
-                  color: "neutral.N000",
+                  color: "neutral.N700",
                   borderRadius: "8px",
                   "&.Mui-disabled": {
                     color: "neutral.N000",
                   },
                   "&:hover": {
                     backgroundColor: "primary.B100",
-                    color: "neutral.N000",
+                    color: "neutral.N700",
                     cursor: "pointer",
                   },
                 }}

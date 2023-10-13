@@ -161,6 +161,15 @@ const MiddleTableColumn = ({ row, column }) => {
         </TableCell>
       );
     }
+    else if (column.field === "isVerified") {
+      return (
+        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+          <Typography variant="wpf_p4_regular" color="neutral.700">
+            {row[column?.field] ? "Verified" : "Not Verified"}
+          </Typography>
+        </TableCell>
+      );
+    }
 
     return (
       <TableCell align={column.columnDataAlign} key={column.id}>

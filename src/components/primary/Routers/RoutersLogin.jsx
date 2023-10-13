@@ -1,5 +1,5 @@
 import React from "react";
-import {Route, Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import ErrorPage from "../../shared/Error/ErrorPage";
 import EmailVerification from "../Auth/EmailVerification/EmailVerification";
 import EmailVerificationConfirmation from "../Auth/EmailVerification/EmailVerificationConfirmation";

@@ -79,8 +79,8 @@ const SkillEdit = ({ skill }) => {
   return (
     <>
       <Tooltip title="Edit Skill" arrow>
-        <ButtonStyleDelete
-          variant="outlined"
+        <Button
+          // variant="outlined"
           // disabled={isLoading}
 
           onClick={handleClickOpen}
@@ -92,9 +92,9 @@ const SkillEdit = ({ skill }) => {
               justifyContent: "center",
             }}
           >
-            Edit
+              <i className="ri-edit-line"></i>
           </Box>
-        </ButtonStyleDelete>
+        </Button>
       </Tooltip>
       <Dialog
         PaperProps={{

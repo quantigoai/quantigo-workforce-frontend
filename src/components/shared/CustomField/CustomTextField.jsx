@@ -20,6 +20,7 @@ export const MyTextField = styled(TextField)(() => ({
   borderRadius: "5px",
   padding: "0px 0px 0px 0px",
   backgroundColor: "#fff",
+
   "& .MuiOutlinedInput-root": {
     color: "#000",
     height: "45px",
@@ -65,7 +66,6 @@ export default function CustomTextField({ name, label, helperText, ...other }) {
               sx={{
                 mt: 0.3,
                 fontSize: "14px",
-                height: "45px",
               }}
               value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
               error={!!error}

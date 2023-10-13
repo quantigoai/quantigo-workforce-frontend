@@ -84,7 +84,7 @@ const CongratulationStepProcess = () => {
               <Typography variant="wpf_h4_semiBold" >Quantigo Workforce Process</Typography>
             </Grid>
             <Grid container>
-              <Typography variant="wpf_p3_regular" sx={{color:"neutral.750"}}>
+              <Typography variant="wpf_p3_regular" sx={{color:"neutral.N300"}}>
                 Lorem ipsum dolor sit amet consectetur. Libero faucibus dui faucibus et. Nisi amet viverra egestas vel
                 urna eu hendrerit. Mauris urna id dictum tortor. Vulputate vitae turpis duis sit. Id eleifend tincidunt
                 integer vitae scelerisque.

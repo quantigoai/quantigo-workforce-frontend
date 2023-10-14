@@ -1,29 +1,26 @@
+import CryptoJS from "crypto-js";
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
-import {lazy, Suspense, useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { lazy, Suspense, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import io from "socket.io-client";
 import "./App.css";
-import {availableJobsForReviewer, getAllAssignedJob, getAllJobs, getMyJobs} from "./features/slice/jobSlice";
-import {
-    deleteBefore15DaysNotifications,
-    getAllNotifications,
-    getAllUnreadNotifications,
-    getLatestNotifications,
-    setNewNotification,
-} from "./features/slice/notificationSlice";
-import {setFromPreviousTheme} from "./features/slice/themeSlice";
-import {alreadyLogin, updateLoggedInUserManually, updateSingleUserManually} from "./features/slice/userSlice";
-import socketHandlers from "./socketHandlers";
-import CryptoJS from "crypto-js";
 import Routers from "./components/primary/Routers/Routers";
 import LoadingComponent from "./components/shared/Loading/LoadingComponent";
 import useClearReduxData from "./customHooks/useClearReduxData";
-// import RoutersLogin from "./components/primary/Routers/RoutersLogin";
+import { availableJobsForReviewer, getAllAssignedJob, getAllJobs, getMyJobs } from "./features/slice/jobSlice";
+import {
+  deleteBefore15DaysNotifications,
+  getAllNotifications,
+  getAllUnreadNotifications,
+  getLatestNotifications,
+  setNewNotification,
+} from "./features/slice/notificationSlice";
+import { setFromPreviousTheme } from "./features/slice/themeSlice";
+import { alreadyLogin, updateLoggedInUserManually, updateSingleUserManually } from "./features/slice/userSlice";
+import socketHandlers from "./socketHandlers";
 const RoutersLogin = lazy(() => import("./components/primary/Routers/RoutersLogin"));
-// import Layout from "./components/shared/Layout/Layout";
-// const Layout = lazy(() => import("./components/shared/Layout/Layout"));
-// import LayoutNew from "./components/shared/Layout/LayoutNew";
+
 const LayoutNew = lazy(() => import("./components/shared/Layout/LayoutNew"));
 
 const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
@@ -32,8 +29,9 @@ export const socket = io(import.meta.env.VITE_APP_SOCKET_SERVER_URL);
 function App() {
   const dispatch = useDispatch();
   const storedUser = useSelector((state) => state.user);
+  const { isLoading, user, isLoggedIn } = useSelector((state) => state.user);
   const { activePath } = useSelector((state) => state.activePath);
-  const { isLoggedIn } = storedUser;
+  // const { isLoggedIn } = user;
 
   const tokenCheck = () => {
     const existedToken = Cookies.get("token");
@@ -59,19 +57,21 @@ function App() {
   }, [activePath]);
 
   useEffect(() => {
-    socketHandlers({
-      socket,
-      dispatch,
-      storedUser,
-      setNewNotification,
-      updateLoggedInUserManually,
-      updateSingleUserManually,
-      getAllJobs,
-      getMyJobs,
-      availableJobsForReviewer,
-      getAllAssignedJob,
-    });
-  }, [dispatch, storedUser.user.role]);
+    if (user) {
+      socketHandlers({
+        socket,
+        dispatch,
+        storedUser,
+        setNewNotification,
+        updateLoggedInUserManually,
+        updateSingleUserManually,
+        getAllJobs,
+        getMyJobs,
+        availableJobsForReviewer,
+        getAllAssignedJob,
+      });
+    }
+  }, [dispatch, user.role]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -81,11 +81,13 @@ function App() {
         dispatch(getAllUnreadNotifications());
       });
     }
-  }, [storedUser.user.role]);
+  }, [user.role]);
 
   return (
     <>
-      {isLoggedIn ? (
+      {isLoading && !isLoading ? (
+        <LoadingComponent />
+      ) : isLoggedIn ? (
         <Suspense fallback={<LoadingComponent />}>
           <LayoutNew>{<Routers />}</LayoutNew>
         </Suspense>

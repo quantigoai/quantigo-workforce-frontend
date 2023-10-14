@@ -1,4 +1,4 @@
-import {Button, Grid, Typography} from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import React from "react";
 
 const GetHelpNew = () => {
@@ -15,9 +15,10 @@ const GetHelpNew = () => {
           // height: "157px",
           backgroundColor: "primary.P600",
           //   padding: "10%",
-        }}>
+        }}
+      >
         <Grid container sx={{ justifyContent: "center", paddingTop: "9%" }}>
-          <Typography variant="wf_h5_bold" sx={{ color: "neutral.N700" }}>
+          <Typography variant="wpf_p3_medium_2" sx={{ color: "neutral.N700" }}>
             Need Help?
           </Typography>
         </Grid>
@@ -31,7 +32,8 @@ const GetHelpNew = () => {
             paddingBottom: "5%",
             textAlign: "center",
             // backgroundColor:"red"
-          }}>
+          }}
+        >
           <Typography
             sx={{
               color: "neutral.N700",
@@ -40,7 +42,8 @@ const GetHelpNew = () => {
               //  fontSize:"11px"
             }}
             // variant="caption"
-            variant="wpf_p4_regular">
+            variant="wpf_p4_regular"
+          >
             Our customer support is at your
           </Typography>
 
@@ -50,7 +53,8 @@ const GetHelpNew = () => {
               justifyContent: "center",
               textAlign: "center",
             }}
-            variant="wpf_p4_regular">
+            variant="wpf_p4_regular"
+          >
             service
           </Typography>
         </Grid>
@@ -62,7 +66,8 @@ const GetHelpNew = () => {
             paddingRight: "10%",
             paddingTop: "2%",
             paddingBottom: "10%",
-          }}>
+          }}
+        >
           <Button
             sx={{
               backgroundColor: "neutral.N000",
@@ -77,7 +82,8 @@ const GetHelpNew = () => {
               },
             }}
             variant="outlined"
-            onClick={handleHelp}>
+            onClick={handleHelp}
+          >
             <b> Get Help</b>
           </Button>
 

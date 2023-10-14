@@ -1,6 +1,6 @@
-import {Box, Grid, Stack, Typography} from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
 import ProjectDrawerStatusChip from "../../../shared/FilterField/ProjectDrawerStatusChip";
-import {useSelector} from "react-redux";
 
 const SingleItem = ({ ItemTitle, Item }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
@@ -31,7 +31,10 @@ const SingleItem = ({ ItemTitle, Item }) => {
               </>
             ) : (
               <>
-                <Typography variant="wf_h5_bold" sx={{ color: isLightTheme ? "#091E42" : "#fff", fontWeight: "500" }}>
+                <Typography
+                  variant="wpf_p3_medium_2"
+                  sx={{ color: isLightTheme ? "#091E42" : "#fff", fontWeight: "500" }}
+                >
                   {Item ?? Item}
                 </Typography>
               </>

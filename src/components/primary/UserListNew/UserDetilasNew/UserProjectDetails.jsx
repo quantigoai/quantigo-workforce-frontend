@@ -1,4 +1,4 @@
-import {styled, TableCell, tableCellClasses, TableRow,} from "@mui/material";
+import { styled, TableCell, tableCellClasses, TableRow } from "@mui/material";
 import React from "react";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -108,7 +108,7 @@ const UserProjectDetails = () => {
   return (
     <>
       {/* <Box sx={{ paddingTop: "2%", paddingBottom: "2%" }}>
-        <Typography variant="wf_h5_bold">List of Projects</Typography>
+        <Typography variant="wpf_p3_medium_2">List of Projects</Typography>
       </Box>
       <Box sx={{}}>
         <Stack
@@ -144,7 +144,7 @@ const UserProjectDetails = () => {
                       sx={{
                         backgroundColor: row.status === "Working" ? "#EFF9F5" : "", 
                       }}>
-                      <Typography variant="wf_h6">{row.name}</Typography>
+                      <Typography variant="wpf_p4_medium">{row.name}</Typography>
                     </StyledTableCell>
                     <StyledTableCell
                       align="left"
@@ -152,7 +152,7 @@ const UserProjectDetails = () => {
                         backgroundColor: row.status === "Working" ? "#EFF9F5" : "", 
                       }}>
                       {" "}
-                      <Typography variant="wf_h6">{row.endName}</Typography>
+                      <Typography variant="wpf_p4_medium">{row.endName}</Typography>
                     </StyledTableCell>
                     <StyledTableCell
                       align="left"
@@ -160,7 +160,7 @@ const UserProjectDetails = () => {
                         backgroundColor: row.status === "Working" ? "#EFF9F5" : "", 
                       }}>
                       {" "}
-                      <Typography variant="wf_h6">{row.hours}</Typography>
+                      <Typography variant="wpf_p4_medium">{row.hours}</Typography>
                     </StyledTableCell>
                     <StyledTableCell
                       align="left"
@@ -168,7 +168,7 @@ const UserProjectDetails = () => {
                         backgroundColor: row.status === "Working" ? "#EFF9F5" : "", 
                       }}>
                       {" "}
-                      <Typography variant="wf_h6">
+                      <Typography variant="wpf_p4_medium">
                         <img src={starIcon} /> {row.Rating} Star
                       </Typography>
                     </StyledTableCell>
@@ -178,7 +178,7 @@ const UserProjectDetails = () => {
                         backgroundColor: row.status === "Working" ? "#EFF9F5" : "", 
                       }}>
                       {" "}
-                      <Typography variant="wf_h6" sx={{ color: row.status === "Working" ? "#36B37E" : "" }}>
+                      <Typography variant="wpf_p4_medium" sx={{ color: row.status === "Working" ? "#36B37E" : "" }}>
                         {row.status}
                       </Typography>
                     </StyledTableCell>
@@ -191,7 +191,7 @@ const UserProjectDetails = () => {
       </Box>
       <Box sx={{ paddingTop: "2%", paddingBottom: "2%" }}>
         <Grid container>
-          <Typography variant="wf_h5_bold">List of Annotation</Typography>
+          <Typography variant="wpf_p3_medium_2">List of Annotation</Typography>
         </Grid>
         <Box sx={{ paddingLeft: "1%", paddingTop: "2%", paddingBottom: "2%" }}>
           <Grid
@@ -212,12 +212,12 @@ const UserProjectDetails = () => {
                 sx={{ borderBottom: "1px solid #E6ECF5", borderRight: "1px solid #E6ECF5" }}>
                 <Grid container sx={{ padding: "1%" }}>
                   <Grid item xs={7}>
-                    <Typography variant="wf_h6" sx={{ color: "#5A6B89" }}>
+                    <Typography variant="wpf_p4_medium" sx={{ color: "#5A6B89" }}>
                       {item.name}
                     </Typography>
                   </Grid>
                   <Grid item xs={5}>
-                    <Typography variant="wf_h6" sx={{ color: "#091E42" }}>
+                    <Typography variant="wpf_p4_medium" sx={{ color: "#091E42" }}>
                       : {item.hours}
                     </Typography>
                   </Grid>

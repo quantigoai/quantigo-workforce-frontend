@@ -18,13 +18,13 @@ const lightTheme = createTheme({
     },
     typography: {
         ...typography,
-        ...(typography.wf_h6.color = "#3C4D6B"),
-        ...(typography.wf_h6_xl.color = "#3C4D6B"),
-        ...(typography.wf_h6_light.color = "#3C4D6B"),
-        ...(typography.wf_h5.color = "#3C4D6B"),
-        ...(typography.wf_h5_bold.color = "#3C4D6B"),
-        ...(typography.wf_h4.color = "#3C4D6B"),
-        ...(typography.wf_p2_semiBold.color = "#3C4D6B"),
+        // ...(typography.wf_h6.color = "#3C4D6B"),
+        // ...(typography.wf_h6_xl.color = "#3C4D6B"),
+        // ...(typography.wf_h6_light.color = "#3C4D6B"),
+        // ...(typography.wf_h5.color = "#3C4D6B"),
+        // ...(typography.wf_h5_bold.color = "#3C4D6B"),
+        // ...(typography.wf_h4.color = "#3C4D6B"),
+        // ...(typography.wf_p2_semiBold.color = "#3C4D6B"),
 
         ...(typography.wpf_h1_semiBold.color = "#3C4D6B"),
         ...(typography.wpf_h2_semiBold.color = "#3C4D6B"),
@@ -120,14 +120,14 @@ lightTheme.typography.wf_h6 = {
     },
 };
 
-lightTheme.typography.wf_p2_semiBold = {
-    [lightTheme.breakpoints.up("lg")]: {
-        fontSize: "12px",
-    },
-    [lightTheme.breakpoints.up("xl")]: {
-        fontSize: "14px",
-    },
-};
+// lightTheme.typography.wf_p2_semiBold = {
+//     [lightTheme.breakpoints.up("lg")]: {
+//         fontSize: "12px",
+//     },
+//     [lightTheme.breakpoints.up("xl")]: {
+//         fontSize: "14px",
+//     },
+// };
 // lightTheme.typography.wpf_p3_semiBold = {
 //   [lightTheme.breakpoints.up("md")]: {
 //     ...typography.wpf_p3_semiBold,

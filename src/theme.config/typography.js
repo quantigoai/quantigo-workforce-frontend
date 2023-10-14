@@ -24,13 +24,13 @@ const createTypography = (fontSize, fontWeight, lineHeight) => ({
 });
 
 const typography = {
-    wf_h6: createTypography("12px", "500", "18px"), // our own typography
-    wf_h6_xl: createTypography("15px", "500", "18px"), // our own typography
-    wf_h6_light: createTypography("12px", "400", "16px"), // our own typography
-    wf_h5: createTypography("14px", "500", "20px"), // our own typography
-    wf_h5_bold: createTypography("14px", "500", "24px"), // our own typography
+    // wf_h6: createTypography("12px", "500", "18px"), // our own typography
+    // wf_h6_xl: createTypography("15px", "500", "18px"), // our own typography
+    // wf_h6_light: createTypography("12px", "400", "16px"), // our own typography
+    // wf_h5: createTypography("14px", "500", "20px"), // our own typography
+    // wf_h5_bold: createTypography("14px", "500", "24px"), // our own typography
     wf_h4: createTypography("20px", "500", "30px"), // our own typography
-    wf_p2_semiBold: createTypography("14px", "500", "16px"),
+    // wf_p2_semiBold: createTypography("14px", "500", "16px"),
 
 
     wpf_h1_Bold: createTypography("40px", "700", "48px"),
@@ -65,6 +65,7 @@ const typography = {
     wpf_h5_regular: createTypography("20px", "400", "28px"),
     wpf_h6_regular: createTypography("16px", "400", "24px"),
     wpf_h7_regular: createTypography("12px", "400", "20px"),
+    wpf_h8_regular: createTypography("12px", "400", "16px"),
 
     wpf_p1_semiBold: createTypography("18px", "600", "28px"),
     wpf_p2_semiBold: createTypography("16px", "600", "24px"),
@@ -74,6 +75,8 @@ const typography = {
     wpf_p1_medium: createTypography("18px", "500", "28px"),
     wpf_p2_medium: createTypography("16px", "500", "24px"),
     wpf_p3_medium: createTypography("14px", "500", "20px"),
+    wpf_p3_medium_2: createTypography("14px", "500", "24px"),
+    wpf_p3_medium_3: createTypography("14px", "500", "16px"),
     wpf_p4_medium: createTypography("12px", "500", "18px"),
 
     wpf_p1_regular: createTypography("18px", "400", "28px"),

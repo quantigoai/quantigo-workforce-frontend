@@ -26,6 +26,7 @@ const socketHandlers = ({
   getAllAssignedJob,
 }) => {
   const { _id, role } = storedUser.user;
+  // const { _id, role } = storedUser;
 
   const handleNotification = (notification) => {
     if (

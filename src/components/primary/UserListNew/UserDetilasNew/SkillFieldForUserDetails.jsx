@@ -1,6 +1,6 @@
-import {Box, Button, Grid, Stack, Typography} from "@mui/material";
-import {useState} from "react"; // Import useState
-import {useSelector} from "react-redux";
+import { Box, Button, Grid, Stack, Typography } from "@mui/material";
+import { useState } from "react"; // Import useState
+import { useSelector } from "react-redux";
 import ProjectDrawerStatusChip from "../../../shared/FilterField/ProjectDrawerStatusChip";
 import SkillField from "./SkillField";
 
@@ -74,7 +74,10 @@ const SkillFieldForUserDetails = ({
                 </>
               ) : (
                 <>
-                  <Typography variant="wf_h5_bold" sx={{ color: isLightTheme ? "#091E42" : "#fff", fontWeight: "500" }}>
+                  <Typography
+                    variant="wpf_p3_medium_2"
+                    sx={{ color: isLightTheme ? "#091E42" : "#fff", fontWeight: "500" }}
+                  >
                     {Item ?? Item}
                   </Typography>
                 </>

@@ -7,19 +7,19 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Badge, Box, Link, styled, Typography} from "@mui/material";
+import { Badge, Box, Link, styled, Typography } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import "swiper/css";
-import {calculateTimeDifference, formatDate, formatTime} from "../../../helper/dateConverter";
+import { calculateTimeDifference, formatDate, formatTime } from "../../../helper/dateConverter";
 import ChipGroup from "../../shared/CustomTable/ChipGroup";
 import CustomButton from "../../shared/CustomTable/CustomButton";
 import ProjectDrawerStatusChip from "../../shared/FilterField/ProjectDrawerStatusChip";
-import SortingButton from "./Project2Details/SortingButton";
 import "./index.css";
+import SortingButton from "./Project2Details/SortingButton";
 
 const StyledBadge = styled(Badge)(() => ({
   "& .MuiBadge-badge": {
@@ -88,19 +88,19 @@ const TableComponent = ({
                   } else if (col.field === "createdBy") {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography variant="wf_p2_semiBold">{row[col?.field] || "Admin"}</Typography>
+                        <Typography variant="wpf_p3_medium_3">{row[col?.field] || "Admin"}</Typography>
                       </TableCell>
                     );
                   } else if (col.field === "benchmark") {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography variant="wf_p2_semiBold">{row[col?.field] || "10 sec"}</Typography>
+                        <Typography variant="wpf_p3_medium_3">{row[col?.field] || "10 sec"}</Typography>
                       </TableCell>
                     );
                   } else if (col.field === "estimated_end_date") {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography variant="wf_p2_semiBold">
+                        <Typography variant="wpf_p3_medium_3">
                           {formatDate(row[col?.field]) || "20 july 2023"}
                         </Typography>
                       </TableCell>
@@ -109,7 +109,7 @@ const TableComponent = ({
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
                         {row?.[col.field]?.length > 0 ? (
-                          <Typography sx={{ color: "#253E5C" }} variant="wf_p2_semiBold">
+                          <Typography sx={{ color: "#253E5C" }} variant="wpf_p3_medium_3">
                             <Link
                               sx={{
                                 textDecoration: "none",
@@ -156,12 +156,12 @@ const TableComponent = ({
                       >
                         {currentlyCheckedInProject === row._id ? (
                           <StyledBadge variant="dot" color="success">
-                            <Typography sx={{ cursor: "pointer" }} variant="wf_p2_semiBold">
+                            <Typography sx={{ cursor: "pointer" }} variant="wpf_p3_medium_3">
                               {row[col?.field]}
                             </Typography>
                           </StyledBadge>
                         ) : (
-                          <Typography sx={{ cursor: "pointer" }} variant="wf_p2_semiBold">
+                          <Typography sx={{ cursor: "pointer" }} variant="wpf_p3_medium_3">
                             {row[col?.field]}
                           </Typography>
                         )}
@@ -170,13 +170,13 @@ const TableComponent = ({
                   } else if (col.field === "workingTimeInMs") {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography variant="wf_p2_semiBold">{calculateTimeDifference(row[col?.field])}</Typography>
+                        <Typography variant="wpf_p3_medium_3">{calculateTimeDifference(row[col?.field])}</Typography>
                       </TableCell>
                     );
                   } else if (col.field === "checkedInDate" || col.field === "checkedOutDate") {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography variant="wf_p2_semiBold">
+                        <Typography variant="wpf_p3_medium_3">
                           {/* TODO Add working chip here */}
                           {row[col?.field] ? formatDate(row[col?.field]) : "Working ⛑️"}
                         </Typography>
@@ -186,7 +186,7 @@ const TableComponent = ({
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
                         {/* TODO Add working chip here  */}
-                        <Typography variant="wf_p2_semiBold">
+                        <Typography variant="wpf_p3_medium_3">
                           {row[col?.field] ? formatTime(row[col?.field]) : "Working ⛑️"}
                         </Typography>
                       </TableCell>
@@ -194,7 +194,7 @@ const TableComponent = ({
                   } else {
                     return (
                       <TableCell sx={{ textAlign: "left" }} key={col.id} component="th" scope="row">
-                        <Typography variant="wf_p2_semiBold">{row[col?.field]}</Typography>
+                        <Typography variant="wpf_p3_medium_3">{row[col?.field]}</Typography>
                       </TableCell>
                     );
                   }

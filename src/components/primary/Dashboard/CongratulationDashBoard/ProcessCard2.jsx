@@ -3,18 +3,18 @@ import React from "react";
 import confirmIcon from "../../../../assets/images/confirmprocess.svg";
 import waitIcon from "../../../../assets/images/waitIcon.svg";
 import arrowIcon from "../../../../assets/images/arrowCon.svg";
+import SLiderPrevNext from "./SLiderPrevNext";
 
 const ProcessCard2 = ({ item }) => {
   return (
     <Box
       sx={{
-        width: "400px",
         height: "140px",
         border: item.active ? "1px solid #36B37E" : "2px solid #EAECF0",
         backgroundColor: item.active ? "green.801" : "#Fff",
         borderRadius: "12px",
         display: "flex",
-        justifyContent: "space-around", // Center the content horizontally
+        justifyContent: "space-between", // Center the content horizontally
         alignItems: "center",
         paddingLeft: "7%",
       }}

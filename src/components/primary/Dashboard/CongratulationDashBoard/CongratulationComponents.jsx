@@ -1,5 +1,6 @@
 import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import congImg from "../../../../assets/images/congImg.svg";
 import jobIcon from "../../../../assets/images/totalJobIcon.svg";
@@ -16,6 +17,8 @@ const CongratulationComponents = () => {
 
   const teamicondiv = { paddingBottom: "1%", paddingTop: "0%", borderRadius: "2px" };
   const navigate = useNavigate();
+  const { totalCountData } = useSelector((state) => state.dashboard);
+
   return (
     <>
       <Grid container style={teamicondiv}>
@@ -34,7 +37,8 @@ const CongratulationComponents = () => {
                     alignItems: "center",
                     borderTopLeftRadius: "8px",
                     borderBottomLeftRadius: "8px",
-                  }}>
+                  }}
+                >
                   <Box>
                     {" "}
                     <img src={congImg} />
@@ -49,16 +53,13 @@ const CongratulationComponents = () => {
                     </Grid>
                     <Grid xs={12}>
                       <Typography variant="wpf_p3_regular" sx={{ color: "neutral.N300" }}>
-                        Lorem ipsum dolor sit amet consectetur. Libero faucibus dui faucibus et. Nisi amet viverra
-                        egestas vel urna eu hendrerit. Mauris urna id dictum tortor. Vulputate vitae turpis duis sit. Id
-                        eleifend tincidunt integer vitae scelerisque.
+                        Quantigo Workforce platform is a place where you can earn money by doing annotation work. It is
+                        a very simple process. You just have to follow the steps given below. We give you the
+                        opportunity to grow your career with us. We are always with you to help you.
                       </Typography>
                     </Grid>
                     <Grid xs={12} sx={{ paddingTop: "3%" }}>
                       <Button
-                        // onClick={() => {
-                        //   navigate("/course");
-                        // }}
                         sx={{
                           textTransform: "none",
                           borderRadius: "8px",
@@ -72,7 +73,8 @@ const CongratulationComponents = () => {
 
                           width: "126px",
                           height: "40px",
-                        }}>
+                        }}
+                      >
                         Get Started
                       </Button>
                     </Grid>
@@ -89,18 +91,20 @@ const CongratulationComponents = () => {
                     alignItems: "center",
                     borderTopRightRadius: "8px",
                     borderBottomRightRadius: "8px",
-                  }}>
+                  }}
+                >
                   <Box>
                     <Grid container sx={{ justifyContent: "center", paddingBottom: "9%" }}>
                       <img src={jobIcon} />
                     </Grid>
                     <Grid container sx={{ justifyContent: "center" }}>
                       <Typography variant="wpf_h4_Bold" sx={{ color: "neutral.N300" }}>
+                        {/* {totalCountData.activeJobs} */}
                         108
                       </Typography>
                     </Grid>
                     <Grid container sx={{ justifyContent: "center" }}>
-                      <Typography variant="wpf_p4_medium" sx={{ color:  "neutral.N300" }}>
+                      <Typography variant="wpf_p4_medium" sx={{ color: "neutral.N300" }}>
                         Total Available Jobs
                       </Typography>
                     </Grid>

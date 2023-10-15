@@ -1,33 +1,34 @@
+import uploadImg from "./carouselImg/003-upload-file.png";
 import accountImg from "./carouselImg/004-add-user.png";
 import verifytImg from "./carouselImg/005-check.png";
-import uploadImg from "./carouselImg/003-upload-file.png";
-import courseImg from "./carouselImg/002-online-education.png";
-import skillImg from "./carouselImg/001-skill.png";
-import jobImg from "./carouselImg/006-job.png";
-import submitImg from "./carouselImg/007-application.png";
-import moneyImg from "./carouselImg/008-earning.png";
 
 const processList = [
   {
     header: "Create an Account",
-    describe: "Lorem ipsum dolor sit amet consectetur. Euismod mattis quam ut nulla eget",
+    describe:
+      "This is the initial step to join our workforce platform. By creating an account, you gain access to a variety of features and opportunities.",
     active: true,
     _id: 1,
     image: accountImg,
+    navigationLink: "/",
   },
   {
     header: "Verify your email address",
-    describe: "Lorem ipsum dolor sit amet consectetur. Euismod mattis quam ut nulla eget",
+    describe:
+      "After signing up, you will need to verify your email address. This step is crucial to ensure the security of your account and the authenticity of your identity.",
     active: true,
     _id: 2,
     image: verifytImg,
+    navigationLink: "/verify-email",
   },
   {
     header: "Upload Identity  (NDA/ Documents)",
-    describe: "Lorem ipsum dolor sit amet consectetur. Euismod mattis quam ut nulla eget",
+    describe:
+      "In this step, you will be required to provide necessary identity documents such as NDAs or other relevant documents. This step may be essential for certain roles or tasks on the platform.",
     active: false,
     _id: 3,
     image: uploadImg,
+    navigationLink: "/identity-verification",
   },
   // {
   //   header: "Start a course",

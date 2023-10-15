@@ -12,13 +12,6 @@ import processList from "./ProcessLIst";
 import SLiderPrevNext from "./SLiderPrevNext";
 
 const CongratulationStepProcess = () => {
-  const paperstyle = {
-    backgroundColor: "neutral.N000",
-    padding: ".5%",
-    // width: "100%",
-    // height: "100%",
-    borderRadius: "8px",
-  };
   const { user } = useSelector((state) => state.user);
   return (
     <>
@@ -54,8 +47,8 @@ const CongratulationStepProcess = () => {
             centeredSlides={true}
             slidesPerView={1.8}
             spaceBetween={60}
-            grabCursor={true}
             initialSlide={defaultIndex(user)}
+            // grabCursor={true}
             // loopedSlides={100}
             // loop={true}
             // navigation

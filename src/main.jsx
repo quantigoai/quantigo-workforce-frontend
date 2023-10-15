@@ -36,7 +36,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Provider store={store}>
         <ThemeProviderWrapper>
           <CssBaseline />
-          {/* <PersistGate loading={null} persistor={persistor}> */}
           <PersistGate loading={<LoadingComponent />} persistor={persistor}>
             <BrowserRouter>
               <Suspense fallback={<LoadingComponent />}>

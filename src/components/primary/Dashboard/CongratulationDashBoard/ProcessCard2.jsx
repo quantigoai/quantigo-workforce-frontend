@@ -13,14 +13,26 @@ export const defaultIndex = (user) => {
   }
   return 1;
 };
-const showCompleteIcon = (caseId, user) => {
-  if (caseId === 1) {
+const showCompleteIcon = (Id, user) => {
+  if (Id === 1) {
     return true;
   }
-  if (caseId === 2 && user.isEmailVerified) {
+  if (Id === 2 && user.isEmailVerified) {
     return true;
   }
-  if (caseId === 3 && user.isVerified) {
+  if (Id === 3 && user.isVerified) {
+    return true;
+  }
+  return false;
+};
+const showContinueButton = (Id, user) => {
+  if (Id === 1) {
+    return false;
+  }
+  if (Id === 2 && !user.isEmailVerified) {
+    return true;
+  }
+  if (Id === 3 && user.isEmailVerified && !user.isVerified) {
     return true;
   }
   return false;
@@ -65,7 +77,7 @@ const ProcessCard2 = ({ item }) => {
             </Typography>
           </Grid>
           <Grid container sx={{ paddingTop: "2%" }}>
-            {!showCompleteIcon(item._id, user) && (
+            {!showCompleteIcon(item._id, user) && showContinueButton(item._id, user) && (
               <Link>
                 <Box
                   onClick={() => {

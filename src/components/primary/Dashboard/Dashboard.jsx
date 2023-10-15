@@ -6,18 +6,16 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Box, Button, CircularProgress, Grid, Paper, Typography } from "@mui/material";
+import { Box, Grid, Paper } from "@mui/material";
 import dayjs from "dayjs";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import useToaster from "../../../customHooks/useToaster";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import {
   getDashboardData,
   getDashboardDataHourly,
   getDashboardDataWeekly,
 } from "../../../features/slice/dashboardSlice";
-import { resendEmailVarification } from "../../../features/slice/userSlice";
 import { convertDate } from "../../../helper/customData";
 import BarChart from "./BarChart/BarChart";
 import CongratulationComponents from "./CongratulationDashBoard/CongratulationComponents";
@@ -34,12 +32,9 @@ const Dashboard = () => {
   const [projectLoading, setProjectLoading] = React.useState(true);
   const [weekLoading, setWeekLoading] = React.useState(true);
   const [hourLoading, setHourLoading] = React.useState(true);
-  const [sendMessage, setSendMessage] = React.useState("");
   const user = useSelector((state) => state.user);
-  const { isLoading } = useSelector((state) => state.user);
   const { role } = user.user;
 
-  const toast = useToaster();
   // ! TODO Configure it later
   useEffect(() => {
     setProjectLoading(true);
@@ -64,31 +59,14 @@ const Dashboard = () => {
     });
   }, []);
 
-  const paperstyleResendEmail = {
-    backgroundColor: "#FFFFFF",
-    padding: "3%",
-    // width: "100",
-    height: "400px",
-    borderRadius: "2px",
-    justifyContent: "center",
-  };
-  const handleresendEmail = () => {
-    dispatch(resendEmailVarification()).then((action) => {
-      if (action.payload?.status === 200 || action.payload?.status === 201) {
-        toast.trigger(action.payload.data, "success");
-        setSendMessage(action.payload.data);
-      } else {
-        toast.trigger("Email Not Send", "error");
-      }
-    });
-  };
   return (
     <>
       {user.user.isEmailVerified ? (
         <>
           <Box
             // sx={{ backgroundColor: "#F5F5F5", height: "100%", width: "100%" }}>
-            sx={{ padding: "1%", height: "100%" }}>
+            sx={{ padding: "1%", height: "100%" }}
+          >
             {role === "level_0_annotator" ? (
               <>
                 {/* {user.user.isVerified ? <CongratulationComponents /> : <DashboardDocument />} */}
@@ -112,12 +90,14 @@ const Dashboard = () => {
                         paddingRight: "%",
                         width: "100%",
                         // height: "100%",
-                      }}>
+                      }}
+                    >
                       <Paper
                         elevation={0}
                         sx={{
                           borderRadius: "8px",
-                        }}>
+                        }}
+                      >
                         {!projectLoading && (
                           <BarChart
                             startDate={startDate}
@@ -154,7 +134,8 @@ const Dashboard = () => {
                             borderRadius: "8px",
                             paddingLeft: "3%",
                             height: { xl: "350px", lg: "330px" },
-                          }}>
+                          }}
+                        >
                           {/* <Grid sx={{ paddingTop: "5%" }}></Grid> */}
                           <PieChartForUser />
                         </Paper>
@@ -166,7 +147,8 @@ const Dashboard = () => {
                             height: { xl: "350px", lg: "330px" },
                             borderRadius: "8px",
                             paddingLeft: "3%",
-                          }}>
+                          }}
+                        >
                           <PieChart />
                         </Paper>
                       </Grid>
@@ -174,7 +156,7 @@ const Dashboard = () => {
 
                     <Grid container>
                       <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                        <Paper elevation={0} sx={{ borderRadius: "8px",}}>
+                        <Paper elevation={0} sx={{ borderRadius: "8px" }}>
                           <LineChart loading={weekLoading} />
                         </Paper>
                       </Grid>
@@ -192,62 +174,9 @@ const Dashboard = () => {
         </>
       ) : (
         <>
-          <Box
-            sx={{
-              // backgroundColor: "#F5F5F5",
-              height: "100%",
-              // width: "100%",
-              padding: "1%",
-            }}>
-            <Paper elevation={0} style={paperstyleResendEmail}>
-              <Grid container sx={{ justifyContent: "center", paddingTop: "7%" }}>
-                <Typography variant="h4" sx={{ color: "#090080" }}>
-                  Please check your email
-                </Typography>
-              </Grid>
-              {/* TODO Check position and css here */}
-              <Grid
-                container
-                sx={{
-                  justifyContent: "center",
-                  paddingTop: "2%",
-                  position: "relative",
-                }}>
-                <Button
-                  disabled={isLoading}
-                  sx={{
-                    backgroundColor: "#2D58FF",
-                    color: "#FFFFFF",
-                    "&:hover": {
-                      backgroundColor: "#FF9A45",
-                      color: "#1D1D1D",
-                    },
-                  }}
-                  onClick={() => handleresendEmail()}>
-                  Resend Email
-                </Button>
-                {isLoading && (
-                  <CircularProgress
-                    size={30}
-                    sx={{
-                      position: "absolute",
-                      color: "#FF9A45",
-                    }}
-                  />
-                )}
-              </Grid>
-
-              <Grid container sx={{ justifyContent: "center", paddingTop: "2%" }}>
-                <Typography variant="h6" sx={{ color: "#090080" }}>
-                  {sendMessage}
-                </Typography>
-              </Grid>
-            </Paper>
-          </Box>
+          <CongratulationComponents />
         </>
       )}
-
-      {/* <Testfield /> */}
     </>
   );
 };

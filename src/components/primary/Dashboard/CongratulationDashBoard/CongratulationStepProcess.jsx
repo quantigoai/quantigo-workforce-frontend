@@ -1,15 +1,16 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
-import ProcessCard from "./ProcessCard";
-import processList from "./ProcessLIst";
-import ProcessCard2 from "./ProcessCard2";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { useSelector } from "react-redux";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { A11y, Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import ProcessCard2, { defaultIndex } from "./ProcessCard2";
+import processList from "./ProcessLIst";
 import SLiderPrevNext from "./SLiderPrevNext";
+
 const CongratulationStepProcess = () => {
   const paperstyle = {
     backgroundColor: "neutral.N000",
@@ -18,15 +19,13 @@ const CongratulationStepProcess = () => {
     // height: "100%",
     borderRadius: "8px",
   };
-
+  const { user } = useSelector((state) => state.user);
   return (
     <>
       <Box
         sx={{
           width: "100%",
-          // height: "100%",
           borderRadius: "8px",
-          // backgroundColor: "neutral.N000",
         }}
       >
         <Paper
@@ -34,8 +33,6 @@ const CongratulationStepProcess = () => {
           style={{
             backgroundColor: "neutral.N000",
             padding: ".5%",
-            // width: "100%",
-            // height: "100%",
             borderRadius: "8px",
           }}
         >
@@ -55,9 +52,10 @@ const CongratulationStepProcess = () => {
             modules={[Navigation, A11y]}
             loopedSlides={3}
             centeredSlides={true}
-            slidesPerView={1.4}
+            slidesPerView={1.8}
             spaceBetween={60}
             grabCursor={true}
+            initialSlide={defaultIndex(user)}
             // loopedSlides={100}
             // loop={true}
             // navigation
@@ -73,7 +71,6 @@ const CongratulationStepProcess = () => {
               <Grid container spacing={3}>
                 {processList.map((item) => (
                   <Grid key={item._id} item xs={12} sm={6} md={3} gap={1}>
-                    {/* <ProcessCard2 item={item} /> */}
                     <SwiperSlide>
                       <ProcessCard2 item={item} />
                     </SwiperSlide>

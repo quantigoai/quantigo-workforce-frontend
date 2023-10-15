@@ -1,8 +1,8 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
+import arrowIcon from "../../../../assets/images/arrowCon.svg";
 import confirmIcon from "../../../../assets/images/confirmprocess.svg";
 import waitIcon from "../../../../assets/images/waitIcon.svg";
-import arrowIcon from "../../../../assets/images/arrowCon.svg";
 const ProcessCard = ({ item }) => {
   return (
     <>
@@ -17,7 +17,8 @@ const ProcessCard = ({ item }) => {
           justifyContent: "center", // Center the content horizontally
           alignItems: "center",
           paddingLeft: "7%",
-        }}>
+        }}
+      >
         <Box>
           <Grid container sx={{ paddingBottom: "5%" }}>
             {item.active ? (
@@ -42,18 +43,23 @@ const ProcessCard = ({ item }) => {
 
                     // width: "100px",
                     // height: "100px",
-                  }}>
+                  }}
+                >
                   <Typography variant="wpf_h6_Bold">0{item._id}</Typography>
                 </Box>
               </Box>
             )}
           </Grid>
           <Grid container>
-            <Typography variant="wpf_p2_semiBold"  sx={{ color: "neutral.N300" }} >{item.header}</Typography>
+            <Typography variant="wpf_p2_semiBold" sx={{ color: "neutral.N300" }}>
+              {item.header}
+            </Typography>
           </Grid>
           <Grid container>
             {" "}
-            <Typography variant="wpf_p4_regular" sx={{ color: "neutral.N300" }}>{item.describe}</Typography>
+            <Typography variant="wpf_p4_regular" sx={{ color: "neutral.N300" }}>
+              {item.describe}
+            </Typography>
           </Grid>
           <Grid container sx={{ paddingTop: "2%" }}>
             {!item.active && (

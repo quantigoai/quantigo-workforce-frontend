@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
 import BenchmarkSvg from "../../../assets/images/wmp_svg/drawer/banchmarkIcon.svg";
 import CourseSvg from "../../../assets/images/wmp_svg/drawer/courseNew.svg";
-import SkillIcon from "../../../assets/images/wmp_svg/drawer/skillIcon.svg";
 import UserBlocked from "../UserBlocked/UserBlocked";
 // import DashboardSvg from "../../../assets/images/wmp_svg/drawer/dashboard.svg";
 import menuFoldLine from "../../../assets/images/menu-fold-line.svg";
@@ -26,7 +25,6 @@ import JobSvg from "../../../assets/images/wmp_svg/drawer/jobsNew.svg";
 import { Stack } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import ProjectSvg from "../../../assets/images/wmp_svg/drawer/projectNew.svg";
-import SyncIcon from "../../../assets/images/wmp_svg/drawer/syncIcon.svg";
 import PaymentSvg from "../../../assets/images/wmp_svg/drawer/u_credit-card.svg";
 import UserSvg from "../../../assets/images/wmp_svg/drawer/userNew.svg";
 import Header from "../Header/Header";
@@ -238,10 +236,16 @@ export default function LayoutNew({ children }) {
     { name: "All Users", icon: UserSvg },
   ];
 
-  const unverifiedOptions = [{ name: "Account Activation", icon: DashboardSvg }];
+  const unverifiedOptions = [
+    { name: "Dashboard", icon: DashboardSvg },
+    {
+      name: "Verify Email",
+      icon: DashboardSvg,
+    },
+  ];
 
   const devOptions = [
-    { name: "Account Activation", icon: DashboardSvg },
+    { name: "Verify Email", icon: DashboardSvg },
     { name: "AllUsers", icon: UserSvg },
     { name: "All Projects", icon: ProjectSvg },
     { name: "Annotator List", icon: UserSvg },
@@ -319,8 +323,8 @@ export default function LayoutNew({ children }) {
         return navigate("/payment");
       case "Hour Calculation":
         return navigate("/calculate-annotation");
-      case "Account Activation":
-        return navigate("/dashboard");
+      case "Verify Email":
+        return navigate("/verify-email");
       case "Skill":
         return navigate("/skillcreate");
       case "Sync Server":
@@ -345,7 +349,8 @@ export default function LayoutNew({ children }) {
             },
           }}
           className="responsive-drawer"
-          onClick={() => handleOptionClick(text.name)}>
+          onClick={() => handleOptionClick(text.name)}
+        >
           <ListItemIcon sx={{ color: "#FFFFFF", minWidth: "45px" }}>
             <img src={text.icon} />
           </ListItemIcon>
@@ -416,7 +421,8 @@ export default function LayoutNew({ children }) {
             // width: open ? "15%" : "3%",
             height: "100vh",
             backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
-          }}>
+          }}
+        >
           <Drawer
             PaperProps={{
               sx: {
@@ -424,7 +430,8 @@ export default function LayoutNew({ children }) {
               },
             }}
             variant="permanent"
-            open={open}>
+            open={open}
+          >
             <DrawerHeader>
               <Box sx={{}}>
                 <img
@@ -482,13 +489,15 @@ export default function LayoutNew({ children }) {
         sx={{
           width: open ? "85%" : "97%",
           height: "100vh",
-        }}>
+        }}
+      >
         {/* navbar */}
         <Box
           sx={{
             height: { xl: "7%", lg: "9%", md: "10%" },
             width: "100%",
-          }}>
+          }}
+        >
           <Header openDrawer={open} />
         </Box>
 
@@ -500,13 +509,15 @@ export default function LayoutNew({ children }) {
             backgroundColor: isLightTheme ? "#F2F6FC" : "#121212",
             width: "100%",
             overflowY: "auto",
-          }}>
+          }}
+        >
           {isLoggedIn && !isBlocked ? (
             <Box
               sx={{
                 height: "100%",
                 overflowY: "auto",
-              }}>
+              }}
+            >
               {children}
             </Box>
           ) : (

@@ -1,32 +1,54 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
-import confirmIcon from "../../../../assets/images/confirmprocess.svg";
-import waitIcon from "../../../../assets/images/waitIcon.svg";
+import { useSelector } from "react-redux";
 import arrowIcon from "../../../../assets/images/arrowCon.svg";
-import SLiderPrevNext from "./SLiderPrevNext";
-import NorthEastIcon from "@mui/icons-material/NorthEast";
+import confirmIcon from "../../../../assets/images/confirmprocess.svg";
+
+export const defaultIndex = ( user) => {
+  if (user.isEmailVerified) {
+    return 2;
+  }
+  if (user.isVerified) {
+    return 2;
+  }
+  return 1;
+};
+
 const ProcessCard2 = ({ item }) => {
+  const { user } = useSelector((state) => state.user);
+
+  const showCompleteIcon = (caseId, user) => {
+    if (caseId === 1) {
+      return true;
+    }
+    if (caseId === 2 && user.isEmailVerified) {
+      return true;
+    }
+    if (caseId === 3 && user.isVerified) {
+      return true;
+    }
+    return false;
+  };
   return (
     <Box
       sx={{
         height: "140px",
         border: item.active ? "1px solid #EFF9F5" : "2px solid #EAECF0",
-        backgroundColor: item.active ? "green.801" : "neutral.N000",
+        backgroundColor: showCompleteIcon(item._id, user) ? "green.801" : "neutral.N000",
         borderRadius: "12px",
-        display: "flex",
-        justifyContent: "space-between", // Center the content horizontally
         alignItems: "center",
         paddingLeft: "7%",
-        position: "relative",
       }}
     >
-      {item.active && (
-        <Box sx={{ position: "absolute", top: 4, left: 1085 }}>
-          {" "}
+      {showCompleteIcon(item._id, user) ? (
+        <Box sx={{ display: "flex", height: "30%", justifyContent: "flex-end" }}>
           <img style={{ width: "20px" }} src={confirmIcon} />
         </Box>
+      ) : (
+        <Box sx={{ display: "flex", height: "30%", justifyContent: "flex-end" }}></Box>
       )}
-      <Box sx={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
+
+      <Box sx={{ display: "flex", width: "100%", height: "70%" }}>
         <Box>
           <img src={item.image} alt="" />
         </Box>
@@ -43,7 +65,7 @@ const ProcessCard2 = ({ item }) => {
             </Typography>
           </Grid>
           <Grid container sx={{ paddingTop: "2%" }}>
-            {!item.active && (
+            {!showCompleteIcon(item._id, user) && (
               <>
                 <Typography variant="wpf_p4_semiBold" sx={{ paddingRight: "3%", color: "neutral.N300" }}>
                   Continue

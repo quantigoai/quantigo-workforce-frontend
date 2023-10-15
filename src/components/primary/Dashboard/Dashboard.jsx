@@ -63,107 +63,109 @@ const Dashboard = () => {
     <>
       {user.user.isEmailVerified ? (
         <>
-          <Box
-            // sx={{ backgroundColor: "#F5F5F5", height: "100%", width: "100%" }}>
-            sx={{ padding: "1%", height: "100%" }}
-          >
-            {role === "level_0_annotator" ? (
-              <>
-                <CongratulationComponents />
-              </>
+          <Box sx={{ padding: "1%", height: "100%" }}>
+            {user.user.isVerified ? (
+              role === "level_0_annotator" ? (
+                <>
+                  <CongratulationComponents />
+                </>
+              ) : (
+                <>
+                  {role === "level_1_annotator" ||
+                  role === "level_2_annotator" ||
+                  role === "level_3_annotator" ||
+                  role === "reviewer" ? (
+                    // <>
+                    //   <Box
+                    //     container
+                    //     sx={{
+                    //       paddingRight: "%",
+                    //       width: "100%",
+                    //     }}
+                    //   >
+                    //     <Paper
+                    //       elevation={0}
+                    //       sx={{
+                    //         borderRadius: "8px",
+                    //       }}
+                    //     >
+                    //       {!projectLoading && (
+                    //         <BarChart
+                    //           startDate={startDate}
+                    //           setStartDate={setStartDate}
+                    //           endDate={endDate}
+                    //           setEndDate={setEndDate}
+                    //           loading={projectLoading}
+                    //         />
+                    //       )}
+                    //     </Paper>
+                    //   </Box>
+                    // </>
+                    <CongratulationComponents />
+                  ) : (
+                    <>
+                      <DashboardIndex />
+                      <Grid container sx={{ paddingBottom: "2%" }}>
+                        <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                          <Paper elevation={0} sx={{ borderRadius: "8px", height: { xl: "350px", lg: "330px" } }}>
+                            {!projectLoading && (
+                              <BarChart
+                                startDate={startDate}
+                                setStartDate={setStartDate}
+                                endDate={endDate}
+                                setEndDate={setEndDate}
+                                loading={projectLoading}
+                              />
+                            )}
+                          </Paper>
+                        </Grid>
+                        <Grid item xs={3} sx={{ paddingRight: "2%" }}>
+                          <Paper
+                            elevation={0}
+                            sx={{
+                              // height: "99%",
+                              borderRadius: "8px",
+                              paddingLeft: "3%",
+                              height: { xl: "350px", lg: "330px" },
+                            }}
+                          >
+                            {/* <Grid sx={{ paddingTop: "5%" }}></Grid> */}
+                            <PieChartForUser />
+                          </Paper>
+                        </Grid>
+                        <Grid item xs={3}>
+                          <Paper
+                            elevation={0}
+                            sx={{
+                              height: { xl: "350px", lg: "330px" },
+                              borderRadius: "8px",
+                              paddingLeft: "3%",
+                            }}
+                          >
+                            <PieChart />
+                          </Paper>
+                        </Grid>
+                      </Grid>
+
+                      <Grid container>
+                        <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                          <Paper elevation={0} sx={{ borderRadius: "8px" }}>
+                            <LineChart loading={weekLoading} />
+                          </Paper>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Paper elevation={0} sx={{ borderRadius: "8px" }}>
+                            <LineChartDaily loading={hourLoading} />
+                          </Paper>
+                        </Grid>
+                      </Grid>
+                    </>
+                  )}
+                </>
+              )
             ) : (
               <>
-                <DashboardIndex />
-                {role === "level_0_annotator" ||
-                role === "level_1_annotator" ||
-                role === "level_2_annotator" ||
-                role === "level_3_annotator" ||
-                role === "reviewer" ? (
-                  <>
-                    <Box
-                      container
-                      sx={{
-                        paddingRight: "%",
-                        width: "100%",
-                        // height: "100%",
-                      }}
-                    >
-                      <Paper
-                        elevation={0}
-                        sx={{
-                          borderRadius: "8px",
-                        }}
-                      >
-                        {!projectLoading && (
-                          <BarChart
-                            startDate={startDate}
-                            setStartDate={setStartDate}
-                            endDate={endDate}
-                            setEndDate={setEndDate}
-                            loading={projectLoading}
-                          />
-                        )}
-                      </Paper>
-                    </Box>
-                  </>
-                ) : (
-                  <>
-                    <Grid container sx={{ paddingBottom: "2%" }}>
-                      <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                        <Paper elevation={0} sx={{ borderRadius: "8px", height: { xl: "350px", lg: "330px" } }}>
-                          {!projectLoading && (
-                            <BarChart
-                              startDate={startDate}
-                              setStartDate={setStartDate}
-                              endDate={endDate}
-                              setEndDate={setEndDate}
-                              loading={projectLoading}
-                            />
-                          )}
-                        </Paper>
-                      </Grid>
-                      <Grid item xs={3} sx={{ paddingRight: "2%" }}>
-                        <Paper
-                          elevation={0}
-                          sx={{
-                            // height: "99%",
-                            borderRadius: "8px",
-                            paddingLeft: "3%",
-                            height: { xl: "350px", lg: "330px" },
-                          }}
-                        >
-                          {/* <Grid sx={{ paddingTop: "5%" }}></Grid> */}
-                          <PieChartForUser />
-                        </Paper>
-                      </Grid>
-                      <Grid item xs={3}>
-                        <Paper
-                          elevation={0}
-                          sx={{
-                            height: { xl: "350px", lg: "330px" },
-                            borderRadius: "8px",
-                            paddingLeft: "3%",
-                          }}
-                        >
-                          <PieChart />
-                        </Paper>
-                      </Grid>
-                    </Grid>
-
-                    <Grid container>
-                      <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                        <Paper elevation={0} sx={{ borderRadius: "8px" }}>
-                          <LineChart loading={weekLoading} />
-                        </Paper>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Paper elevation={0} sx={{ borderRadius: "8px" }}>
-                          <LineChartDaily loading={hourLoading} />
-                        </Paper>
-                      </Grid>
-                    </Grid>
-                  </>
-                )}
+                <CongratulationComponents />
               </>
             )}
           </Box>

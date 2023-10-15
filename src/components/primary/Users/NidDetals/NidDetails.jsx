@@ -1,4 +1,4 @@
-import {Box, Grid, IconButton, Modal, Paper, Skeleton, Stack, Typography} from "@mui/material";
+import { Box, Grid, IconButton, Modal, Paper, Skeleton, Stack, Typography } from "@mui/material";
 import u_multiply from "../../../../assets/images/crosIcon.svg"; // Import your close (cross) button icon here
 
 const style = {
@@ -43,7 +43,8 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
         open={openModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
+        aria-describedby="modal-modal-description"
+      >
         <Box sx={style}>
           <Grid container sx={{}}>
             <Paper sx={{ borderRadius: "10px" }}>
@@ -58,7 +59,8 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                     // right: "0px",
                     left: "8px",
                     justifyContent: "right",
-                  }}>
+                  }}
+                >
                   <IconButton
                     // variant="outlined"
                     onClick={handleClose}
@@ -73,11 +75,12 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                       width: "30px",
                       borderRadius: "50%",
                       "&:hover": {
-                        backgroundColor:"neutral.N000",
+                        backgroundColor: "neutral.N000",
                         color: "#62728F",
                         // border: "1px solid #F4F7FE",
                       },
-                    }}>
+                    }}
+                  >
                     <img style={{}} alt="cross" src={u_multiply} />
                   </IconButton>
                 </Grid>
@@ -89,14 +92,20 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                     justifyContent: "center",
                     borderRadius: "10px",
                     padding: "2%",
-                  }}>
+                  }}
+                >
                   {documentImage?.length === 0 ? (
                     <>
-                      <Box sx={{ width: 600 }}>
+                      <Box sx={{ width: "100%", height: "100%", padding: "1%" }}>
                         <Skeleton />
                         <Skeleton animation="wave" />
                         <Skeleton animation={false} />
                         <Skeleton />
+                        <Skeleton animation="wave" />
+                        <Skeleton animation={false} />
+                        <Skeleton animation="wave" />
+                        <Skeleton animation={false} />
+                        <Skeleton animation={"wave"} />
                         <Skeleton animation="wave" />
                         <Skeleton animation={false} />
                       </Box>
@@ -105,7 +114,8 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                     <Box
                       sx={{
                         padding: "1%",
-                      }}>
+                      }}
+                    >
                       <Box
                         sx={{
                           display: "flex",
@@ -113,27 +123,25 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                           alignItems: "center",
                           alignConyent: "center",
                           padding: "10px",
-                          //   paddingBottom: "10px",
-                          // paddingTop:"10px",
                           backgroundColor: "neutral.N600",
                           borderRadius: "10px",
-                        }}>
+                        }}
+                      >
                         <Stack direction="row">
                           <Typography variant="wpf_p2_semiBold" sx={{ color: "neutral.N300" }}>
                             Document Type :
                           </Typography>
 
-                          <Typography variant="wpf_p2_semiBold" sx={{ color: "primary.B200" ,marginLeft: "6px" }}>
-                              {" "}
-                             {drawerStatus(documentsType)}
-                            {/* {documentsType} */}
+                          <Typography variant="wpf_p2_semiBold" sx={{ color: "primary.B200", marginLeft: "6px" }}>
+                            {" "}
+                            {drawerStatus(documentsType)}
                           </Typography>
                         </Stack>
                         <Stack direction="row" sx={{ justifyContent: "center" }}>
-                          <Typography variant="wpf_p2_semiBold" sx={{ color:  "neutral.N300" }}>
+                          <Typography variant="wpf_p2_semiBold" sx={{ color: "neutral.N300" }}>
                             Document No :{" "}
                           </Typography>
-                          <Typography variant="wpf_p2_semiBold" sx={{ color:  "neutral.N300",marginLeft: "6px" }}>
+                          <Typography variant="wpf_p2_semiBold" sx={{ color: "neutral.N300", marginLeft: "6px" }}>
                             {documentsNo}
                           </Typography>
                         </Stack>

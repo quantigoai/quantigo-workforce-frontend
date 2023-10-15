@@ -146,8 +146,9 @@ export default function LayoutNew({ children }) {
   };
   const adminOptions = [
     { name: "Dashboard", icon: DashboardSvg },
-    // { name: "All Users", icon: UserSvg },
     { name: "All Users", icon: UserSvg },
+
+    // { name: "All Users", icon: UserSvg },
     // { name: "All Projects", icon: ProjectSvg },
     // { name: "Skill", icon: SkillIcon },
     // { name: "Projects", icon: ProjectSvg },
@@ -160,7 +161,10 @@ export default function LayoutNew({ children }) {
   ];
   const projectManagerOptions = [
     { name: "Dashboard", icon: DashboardSvg },
-    { name: "All Users", icon: UserSvg },
+    { name: "Identity Verification", icon: CourseSvg },
+
+    // { name: "All Users", icon: UserSvg },
+
     // { name: "All Projects", icon: ProjectSvg },
     // { name: "Skill", icon: CourseSvg },
     // { name: "Projects", icon: ProjectSvg },
@@ -171,7 +175,10 @@ export default function LayoutNew({ children }) {
   ];
   const projectLeadOptions = [
     { name: "Dashboard", icon: DashboardSvg },
-    { name: "All Users", icon: UserSvg },
+    { name: "Identity Verification", icon: CourseSvg },
+
+    // { name: "All Users", icon: UserSvg },
+
     // { name: "All Projects", icon: ProjectSvg },
     // { name: "Skill", icon: SkillIcon },
     // { name: "Projects", icon: ProjectSvg },
@@ -182,14 +189,59 @@ export default function LayoutNew({ children }) {
   ];
   const projectCoordinatorOptions = [
     { name: "Dashboard", icon: DashboardSvg },
-    { name: "Projects", icon: ProjectSvg },
+    { name: "Identity Verification", icon: CourseSvg },
+
+    // { name: "Projects", icon: ProjectSvg },
+
     // { name: "Jobs", icon: JobSvg },
     // { name: "Sync Server", icon: SyncIcon },
     // { name: "Project Directory", icon: ProjectSvg },
   ];
 
+  const verifiedDmOptions = [
+    { name: "Home", icon: BenchmarkSvg },
+    { name: "Dashboard", icon: DashboardSvg },
+  ];
+  const verifiedTrainerOptions = [
+    { name: "Home", icon: BenchmarkSvg },
+    { name: "Dashboard", icon: DashboardSvg },
+    // { name: "All Users", icon: UserSvg },
+  ];
+  const verifiedProjectManagerOptions = [
+    { name: "Home", icon: BenchmarkSvg },
+    { name: "Dashboard", icon: DashboardSvg },
+    // { name: "All Users", icon: UserSvg },
+  ];
+  const verifiedProjectLeadOptions = [
+    { name: "Home", icon: BenchmarkSvg },
+    { name: "Dashboard", icon: DashboardSvg },
+    // { name: "All Users", icon: UserSvg },
+  ];
+  const verifiedProjectCoordinatorOptions = [
+    { name: "Home", icon: BenchmarkSvg },
+    { name: "Dashboard", icon: DashboardSvg },
+    // { name: "Projects", icon: ProjectSvg },
+    // { name: "All Users", icon: UserSvg },
+  ];
+  const verifiedReviewerOptions = [
+    { name: "Home", icon: BenchmarkSvg },
+    { name: "Dashboard", icon: DashboardSvg },
+  ];
+  const verifiedDevOptions = [
+    { name: "Home", icon: BenchmarkSvg },
+    { name: "Dashboard", icon: DashboardSvg },
+  ];
+  const verifiedRecruitOptions = [
+    // { name: "Home", icon: BenchmarkSvg },
+    { name: "Dashboard", icon: DashboardSvg },
+    { name: "All Users", icon: UserSvg },
+  ];
+
+
   const dmOptions = [
     { name: "Dashboard", icon: DashboardSvg },
+    { name: "Identity Verification", icon: CourseSvg },
+
     // { name: "All Projects", icon: ProjectSvg },
     // { name: "Annotator List", icon: UserSvg },
     // { name: "Reviewer List", icon: UserSvg },
@@ -203,6 +255,8 @@ export default function LayoutNew({ children }) {
 
   const anntatorOptions = [
     { name: "Dashboard", icon: DashboardSvg },
+    { name: "Identity Verification", icon: CourseSvg },
+
     // { name: "All Projects", icon: ProjectSvg },
     // { name: "Course", icon: CourseSvg },
     // { name: "Jobs", icon: JobSvg },
@@ -219,21 +273,26 @@ export default function LayoutNew({ children }) {
   ];
   const trainerOptions = [
     { name: "Dashboard", icon: DashboardSvg },
-    { name: "All Users", icon: UserSvg },
+    { name: "Identity Verification", icon: CourseSvg },
+
     // { name: "Course", icon: CourseSvg },
     // { name: "Skill", icon: SkillIcon },
   ];
 
   const reviewerOptions = [
     { name: "Dashboard", icon: DashboardSvg },
+    { name: "Identity Verification", icon: CourseSvg },
+
     // { name: "Course", icon: CourseSvg },
     // { name: "Jobs", icon: JobSvg },
   ];
 
   const recruitOptions = [
     { name: "Dashboard", icon: DashboardSvg },
+    { name: "Identity Verification", icon: CourseSvg },
+
     // { name: "Users", icon: UserSvg },
-    { name: "All Users", icon: UserSvg },
+    // { name: "All Users", icon: UserSvg },
   ];
 
   const unverifiedOptions = [
@@ -246,6 +305,7 @@ export default function LayoutNew({ children }) {
 
   const devOptions = [
     { name: "Verify Email", icon: DashboardSvg },
+    { name: "Identity Verification", icon: CourseSvg },
     { name: "AllUsers", icon: UserSvg },
     { name: "All Projects", icon: ProjectSvg },
     { name: "Annotator List", icon: UserSvg },
@@ -264,7 +324,6 @@ export default function LayoutNew({ children }) {
     { name: "Reviewer Course", icon: CourseSvg },
     { name: "Reviewer Job Lst", icon: JobSvg },
     { name: "Reviewer List", icon: UserSvg },
-    { name: "Benchmark", icon: BenchmarkSvg },
     { name: "Skill", icon: PaymentSvg },
     { name: "Show Quiz", icon: CourseSvg },
     { name: "Users", icon: UserSvg },
@@ -277,6 +336,8 @@ export default function LayoutNew({ children }) {
         return navigate("/dashboard");
       case "All Users":
         return navigate("/all-users");
+      case "Home":
+        return navigate("/home");
       case "All Projects":
         return navigate("/allprojects");
       case "Project Directory":
@@ -340,12 +401,9 @@ export default function LayoutNew({ children }) {
         <ListItemButton
           sx={{
             borderRadius: activePath === text.name && "8px",
-            // justifyContent: "left",
-            // border: activePath === text.name && "3px solid #FFFFFF",
             backgroundColor: activePath === text.name && "rgba(255, 255, 255, 0.15)",
             "&:hover": {
               backgroundColor: "rgba(255, 154, 69, 0.1)",
-              // paddingLeft: "3%",
             },
           }}
           className="responsive-drawer"
@@ -359,8 +417,6 @@ export default function LayoutNew({ children }) {
             primary={text.name}
             sx={{
               color: "#FFFFFF",
-              // backgroundColor: "red",
-              // fontSize: "14px",
               fontSize: { xl: "14px", lg: "13px", md: "12px" },
               justifyContent: "left",
             }}
@@ -375,32 +431,64 @@ export default function LayoutNew({ children }) {
       switch (true) {
         case role === "admin":
           return adminOptions.map((text) => handleMenu(text));
+
         case role === "delivery_manager":
-          return dmOptions.map((text) => handleMenu(text));
+          return isVerified
+            ? verifiedDmOptions.map((text) => handleMenu(text))
+            : dmOptions.map((text) => handleMenu(text));
+
         case role === "level_0_annotator":
           return isVerified
             ? Verifiedlevel0AnnotatorOptions.map((text) => handleMenu(text))
             : level0AnnotatorOptions.map((text) => handleMenu(text));
+
         case role === "level_1_annotator":
-          return anntatorOptions.map((text) => handleMenu(text));
+          return isVerified
+            ? Verifiedlevel0AnnotatorOptions.map((text) => handleMenu(text))
+            : level0AnnotatorOptions.map((text) => handleMenu(text));
+
         case role === "level_2_annotator":
-          return anntatorOptions.map((text) => handleMenu(text));
+          return isVerified
+            ? Verifiedlevel0AnnotatorOptions.map((text) => handleMenu(text))
+            : level0AnnotatorOptions.map((text) => handleMenu(text));
+
         case role === "level_3_annotator":
-          return anntatorOptions.map((text) => handleMenu(text));
+          return isVerified
+            ? Verifiedlevel0AnnotatorOptions.map((text) => handleMenu(text))
+            : level0AnnotatorOptions.map((text) => handleMenu(text));
+
         case role === "trainer":
-          return trainerOptions.map((text) => handleMenu(text));
+          return isVerified
+            ? verifiedTrainerOptions.map((text) => handleMenu(text))
+            : trainerOptions.map((text) => handleMenu(text));
+
         case role === "reviewer":
-          return reviewerOptions.map((text) => handleMenu(text));
+          return isVerified
+            ? verifiedReviewerOptions.map((text) => handleMenu(text))
+            : reviewerOptions.map((text) => handleMenu(text));
+
         case role === "engineering_lead":
           return devOptions.map((text) => handleMenu(text));
+
         case role === "recruitment_manager":
-          return recruitOptions.map((text) => handleMenu(text));
+          return isVerified
+            ? verifiedRecruitOptions.map((text) => handleMenu(text))
+            : recruitOptions.map((text) => handleMenu(text));
+
         case role === "project_lead":
-          return projectLeadOptions.map((text) => handleMenu(text));
+          return isVerified
+            ? verifiedProjectLeadOptions.map((text) => handleMenu(text))
+            : projectLeadOptions.map((text) => handleMenu(text));
+
         case role === "project_coordinator":
-          return projectCoordinatorOptions.map((text) => handleMenu(text));
+          return isVerified
+            ? verifiedProjectCoordinatorOptions.map((text) => handleMenu(text))
+            : projectCoordinatorOptions.map((text) => handleMenu(text));
+
         case role === "project_manager":
-          return projectManagerOptions.map((text) => handleMenu(text));
+          return isVerified
+            ? verifiedProjectManagerOptions.map((text) => handleMenu(text))
+            : projectManagerOptions.map((text) => handleMenu(text));
         default:
           break;
       }
@@ -412,13 +500,11 @@ export default function LayoutNew({ children }) {
       <AnimatePresence>
         <Box
           component={motion.div}
-          // whileTap={{ scale: 0.96 }}
           animate={{
             width: open ? "15%" : "3%",
             transition: { duration: 0.4 },
           }}
           sx={{
-            // width: open ? "15%" : "3%",
             height: "100vh",
             backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
           }}

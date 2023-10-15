@@ -7,33 +7,33 @@ import jobIcon from "../../../../assets/images/totalJobIcon.svg";
 import CongratulationStepProcess from "./CongratulationStepProcess";
 
 const CongratulationComponents = () => {
-  const paperstyle = {
+  const paperStyle = {
     backgroundColor: "neutral.N000",
     padding: ".5%",
-    // width: "100%",
-    // height: "100%",
     borderRadius: "8px",
   };
 
-  const teamicondiv = { paddingBottom: "1%", paddingTop: "0%", borderRadius: "2px" };
+  const teamIconDiv = { paddingBottom: "1%", paddingTop: "0%", borderRadius: "2px" };
   const navigate = useNavigate();
   const { totalCountData } = useSelector((state) => state.dashboard);
 
   return (
     <>
-      <Grid container style={teamicondiv}>
+      <Grid container style={teamIconDiv}>
         <Grid xs={12}>
           <Box>
-            <Paper elevation={0} style={paperstyle}>
+            <Paper elevation={0} style={paperStyle}>
               <Grid container>
                 <Grid
                   item
                   xs={2}
+                  md={3}
+                  lg={3}
+                  xl={2}
                   sx={{
                     paddingLeft: "2%",
                     backgroundColor: "warning.100",
                     display: "flex",
-                    // justifyContent: "right", // Center the content horizontally
                     alignItems: "center",
                     borderTopLeftRadius: "8px",
                     borderBottomLeftRadius: "8px",
@@ -44,7 +44,7 @@ const CongratulationComponents = () => {
                     <img src={congImg} />
                   </Box>
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={8} md={7} lg={7} xl={8}>
                   <Box sx={{ padding: "3%" }}>
                     <Grid xs={12}>
                       <Typography variant="wpf_h4_semiBold" sx={{ color: "neutral.750" }}>
@@ -70,7 +70,6 @@ const CongratulationComponents = () => {
                             backgroundColor: "#FF9A45",
                             color: "#1D1D1D",
                           },
-
                           width: "126px",
                           height: "40px",
                         }}
@@ -83,11 +82,13 @@ const CongratulationComponents = () => {
                 <Grid
                   item
                   xs={2}
+                  lg={2}
+                  md={2}
+                  xl={2}
                   sx={{
-                    // paddingLeft: "2%",
                     backgroundColor: "primary.B008",
                     display: "flex",
-                    justifyContent: "center", // Center the content horizontally
+                    justifyContent: "center",
                     alignItems: "center",
                     borderTopRightRadius: "8px",
                     borderBottomRightRadius: "8px",

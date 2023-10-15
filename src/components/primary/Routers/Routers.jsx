@@ -23,6 +23,7 @@ import ProjectLIstIndex2 from "../ProjectLIstNew2/ProjectLIstIndex2";
 import PrivateRoute from "./PrivateRoute";
 import AccountActivation from "../Dashboard/CongratulationDashBoard/AccountActivation";
 import Skills from "../Skill/Skills";
+import VerifyEmail from "../Auth/EmailVerification/VerifyEmail";
 
 export const roles = {
   admin: "admin",
@@ -55,6 +56,7 @@ const Routers = () => {
         <Route path={"/dashboard"} element={<Dashboard />} />
         <Route path={"/identity-verification"} element={<AccountActivation />} />
         <Route path={"/home"} element={<Home />} />
+        <Route path={"/verify-email/"} element={<VerifyEmail />} />
         <Route path={"/verify-email/:id/:token/"} element={<EmailVerificationAfterLogin />} />
 
         {/* //!! important */}

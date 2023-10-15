@@ -8,7 +8,7 @@ export const defaultIndex = ( user) => {
   if (user.isEmailVerified) {
     return 2;
   }
-  if (user.isVerified) {
+  if (user.isEmailVerified && user.isVerified) {
     return 2;
   }
   return 1;
@@ -33,7 +33,7 @@ const ProcessCard2 = ({ item }) => {
     <Box
       sx={{
         height: "140px",
-        border: item.active ? "1px solid #EFF9F5" : "2px solid #EAECF0",
+        border: item.active ? "2px solid #EFF9F5" : "2px solid #EAECF0",
         backgroundColor: showCompleteIcon(item._id, user) ? "green.801" : "neutral.N000",
         borderRadius: "12px",
         alignItems: "center",

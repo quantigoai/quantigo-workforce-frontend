@@ -4,59 +4,36 @@ import confirmIcon from "../../../../assets/images/confirmprocess.svg";
 import waitIcon from "../../../../assets/images/waitIcon.svg";
 import arrowIcon from "../../../../assets/images/arrowCon.svg";
 import SLiderPrevNext from "./SLiderPrevNext";
-
+import NorthEastIcon from "@mui/icons-material/NorthEast";
 const ProcessCard2 = ({ item }) => {
   return (
     <Box
       sx={{
         height: "140px",
-        border: item.active ? "1px solid #36B37E" : "2px solid #EAECF0",
-        backgroundColor: item.active ? "green.801" : "#Fff",
+        border: item.active ? "1px solid #EFF9F5" : "2px solid #EAECF0",
+        backgroundColor: item.active ? "green.801" : "neutral.N000",
         borderRadius: "12px",
         display: "flex",
         justifyContent: "space-between", // Center the content horizontally
         alignItems: "center",
         paddingLeft: "7%",
+        position: "relative",
       }}
     >
+      {item.active && (
+        <Box sx={{ position: "absolute", top: 4, left: 1085 }}>
+          {" "}
+          <img style={{ width: "20px" }} src={confirmIcon} />
+        </Box>
+      )}
       <Box sx={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
-        {/* <Grid container sx={{ paddingBottom: "5%" }}>
-          {item.active ? (
-            <>
-              {" "}
-              <img src={confirmIcon} />
-            </>
-          ) : (
-            <Box sx={{ position: "relative" }}>
-              <img
-                style={{
-                  border: "4px solid white",
-                  borderRadius: "50%",
-                }}
-                src={waitIcon}
-              />
-              <Box
-                sx={{
-                  position: "absolute",
-                  top: 10,
-                  left: 14,
-
-                  // width: "100px",
-                  // height: "100px",
-                }}
-              >
-                <Typography variant="wpf_h6_Bold">0{item._id}</Typography>
-              </Box>
-            </Box>
-          )}
-        </Grid> */}
         <Box>
           <img src={item.image} alt="" />
         </Box>
         <Box sx={{ paddingLeft: "20px" }}>
           <Grid container>
             <Typography variant="wpf_p2_semiBold" sx={{ color: "neutral.N300" }}>
-              {item.header}
+              {item.header} <i className="ri-arrow-right-up-line"></i>
             </Typography>
           </Grid>
           <Grid container>

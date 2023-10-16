@@ -12,6 +12,15 @@ import AllNotification from "../../shared/Notification/AllNotification";
 import AllUserListIndex from "../AllUsers/AllUserListIndex";
 import EmailVerification from "../Auth/EmailVerification/EmailVerification";
 import EmailVerificationAfterLogin from "../Auth/EmailVerification/EmailVerificationAfterLogin";
+import VerifyEmail from "../Auth/EmailVerification/VerifyEmail";
+import Course from "../Course/Course";
+import CreateCourse from "../Course/CreateCourse";
+import UpdateCourse from "../Course/UpdateCourse";
+import CourseDetails from "../CourseNew/CourseDetails";
+import CourseDetailsIndex from "../CourseNew/CourseDetailsIndex";
+import CourseMainContent from "../CourseNew/CourseMainContent";
+import QuizShow from "../CourseNew/QuizShow";
+import AccountActivation from "../Dashboard/CongratulationDashBoard/AccountActivation";
 import Dashboard from "../Dashboard/Dashboard";
 import EditProfilePageIndex from "../EditProfile/EditProfilePage/EditProfilePageIndex";
 import ForgetPassword from "../ForgetPassword/ForgetPassword";
@@ -20,10 +29,9 @@ import Home from "../Home/Home";
 import DetailsPage from "../ProjectLIstNew2/ProjectDetailsFull/DetailsPage";
 import FullProjectDetails from "../ProjectLIstNew2/ProjectDetailsFull/FullProjectDetails";
 import ProjectLIstIndex2 from "../ProjectLIstNew2/ProjectLIstIndex2";
-import PrivateRoute from "./PrivateRoute";
-import AccountActivation from "../Dashboard/CongratulationDashBoard/AccountActivation";
+import ShowResult from "../Quiz/QuizPage/ShowResult/ShowResult";
 import Skills from "../Skill/Skills";
-import VerifyEmail from "../Auth/EmailVerification/VerifyEmail";
+import PrivateRoute from "./PrivateRoute";
 
 export const roles = {
   admin: "admin",
@@ -64,8 +72,9 @@ const Routers = () => {
         <Route path={"/emailVerification"} element={<EmailVerification />} />
 
         {/* ---------- Course routes ------------ */}
+        
         {/* TODO Should updated and release later  */}
-        {/* <Route path={"/course"} element={<Course />} />
+        <Route path={"/course"} element={<Course />} />
         <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}>
           <Route path={"/create-course"} element={<CreateCourse />} />
         </Route>
@@ -77,7 +86,7 @@ const Routers = () => {
           <Route path="content" element={<CourseMainContent />} />
           <Route path="show-quiz" element={<QuizShow />} />
           <Route path={"quiz-result"} element={<ShowResult />} />
-        </Route> */}
+        </Route>
 
         {/* ---------- ------------ ------------ */}
 

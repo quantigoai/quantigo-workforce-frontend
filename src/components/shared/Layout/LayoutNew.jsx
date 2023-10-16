@@ -147,12 +147,12 @@ export default function LayoutNew({ children }) {
   const adminOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "All Users", icon: UserSvg },
+    { name: "Course", icon: CourseSvg },
 
     // { name: "All Users", icon: UserSvg },
     // { name: "All Projects", icon: ProjectSvg },
     // { name: "Skill", icon: SkillIcon },
     // { name: "Projects", icon: ProjectSvg },
-    // { name: "Course", icon: CourseSvg },
     // { name: "Jobs", icon: JobSvg },
     // { name: "Benchmark", icon: BenchmarkSvg },
     // { name: "Sync Server", icon: SyncIcon },

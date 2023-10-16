@@ -6,11 +6,11 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Grid, Paper} from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import React from "react";
-import {useSelector} from "react-redux";
-import ChapterIntro from "./ChapterIntro";
+import { useSelector } from "react-redux";
 import AdditionalInfo from "./AdditionalInfo";
+import ChapterIntro from "./ChapterIntro";
 
 const CourseDetailsIndex = () => {
   //   TODO Need to fix the height of the paper

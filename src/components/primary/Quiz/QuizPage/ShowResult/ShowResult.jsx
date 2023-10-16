@@ -1,9 +1,9 @@
-import {Button, Grid, Paper, Typography} from "@mui/material";
+import { Button, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {setActiveChapterIndex} from "../../../../../features/slice/activePathSlice";
-import {manuallySetCourseChapter} from "../../../../../features/slice/courseSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setActiveChapterIndex } from "../../../../../features/slice/activePathSlice";
+import { manuallySetCourseChapter } from "../../../../../features/slice/courseSlice";
 
 const ShowResult = () => {
   const navigate = useNavigate();
@@ -28,10 +28,7 @@ const ShowResult = () => {
     <>
       <Paper elevation={0} sx={{ width: "100%" }}>
         <Grid container sx={{}}>
-          <Grid
-            container
-            xs={12}
-            sx={{ padding: "2%", justifyContent: "left" }}>
+          <Grid container xs={12} sx={{ padding: "2%", justifyContent: "left" }}>
             <Typography variant="h5" sx={{ color: "#090080" }}>
               Quiz Result
             </Typography>
@@ -46,7 +43,8 @@ const ShowResult = () => {
               paddingLeft: "3%",
               paddingTop: "3%",
               paddingRight: "2%",
-            }}>
+            }}
+          >
             <Grid xs={4} sx={{ paddingRight: "3%", justifyContent: "center" }}>
               <Paper
                 elevation={0}
@@ -55,7 +53,8 @@ const ShowResult = () => {
                   borderRadius: "8px",
                   height: "120px",
                   justifyContent: "center",
-                }}>
+                }}
+              >
                 <Grid
                   container
                   xs={12}
@@ -63,7 +62,8 @@ const ShowResult = () => {
                     display: "flex",
                     justifyContent: "center",
                     paddingTop: "5%",
-                  }}>
+                  }}
+                >
                   <Typography variant="h6" sx={{ color: "#969CAF" }}>
                     {" "}
                     Attempt / Average Score
@@ -75,10 +75,10 @@ const ShowResult = () => {
                   sx={{
                     justifyContent: "center",
                     paddingLeft: "0%",
-                  }}>
+                  }}
+                >
                   <Typography variant="h5" sx={{ color: "#969CAF" }}>
-                    {result?.isPreviouslyAttempted?.attemptTaken} /{" "}
-                    {result?.isPreviouslyAttempted?.scoreAverage}
+                    {result?.isPreviouslyAttempted?.attemptTaken} / {result?.isPreviouslyAttempted?.scoreAverage}
                   </Typography>
                 </Grid>
               </Paper>
@@ -92,14 +92,16 @@ const ShowResult = () => {
                   background: "#F8F8F8",
                   borderRadius: "8px",
                   height: "120px",
-                }}>
+                }}
+              >
                 <Grid
                   container
                   xs={12}
                   sx={{
                     justifyContent: "center",
                     paddingTop: "5%",
-                  }}>
+                  }}
+                >
                   <Typography variant="h5" sx={{ color: "#969CAF" }}>
                     Current Score
                   </Typography>
@@ -119,14 +121,16 @@ const ShowResult = () => {
                   background: "#F8F8F8",
                   borderRadius: "8px",
                   height: "120px",
-                }}>
+                }}
+              >
                 <Grid
                   container
                   xs={12}
                   sx={{
                     justifyContent: "center",
                     paddingTop: "5%",
-                  }}>
+                  }}
+                >
                   <Typography variant="h5" sx={{ color: "#969CAF" }}>
                     {" "}
                     Status
@@ -159,7 +163,8 @@ const ShowResult = () => {
             paddingRight: "3%",
             paddingTop: "30%",
             paddingBottom: "2%",
-          }}>
+          }}
+        >
           {/* <Button
             variant="outlined"
             sx={{
@@ -182,7 +187,8 @@ const ShowResult = () => {
                 },
               }}
               onClick={handleNextChapter}
-              variant="contained">
+              variant="contained"
+            >
               Next
             </Button>
           ) : (
@@ -198,7 +204,8 @@ const ShowResult = () => {
                 },
               }}
               onClick={() => handleReAttempt()}
-              variant="contained">
+              variant="contained"
+            >
               Re-Attempt
             </Button>
           )}

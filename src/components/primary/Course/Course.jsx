@@ -6,14 +6,14 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Grid} from "@mui/material";
+import { Grid } from "@mui/material";
 import Box from "@mui/material/Box";
 import * as React from "react";
-import {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {setActivePath} from "../../../features/slice/activePathSlice";
-import {getAllCourses} from "../../../features/slice/courseSlice";
-import {getAllSkills} from "../../../features/slice/skillSlice";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setActivePath } from "../../../features/slice/activePathSlice";
+import { getAllCourses } from "../../../features/slice/courseSlice";
+import { getAllSkills } from "../../../features/slice/skillSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import LoadingSkeleton from "../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton";
 import CourseTab from "./CourseTab";
@@ -74,10 +74,7 @@ const Course = () => {
             role === "reviewer" ? (
               <>
                 {" "}
-                <CourseTab
-                  filterCourses={filterCourses}
-                  isLoading={isLoading}
-                />
+                <CourseTab filterCourses={filterCourses} isLoading={isLoading} />
               </>
             ) : (
               <>

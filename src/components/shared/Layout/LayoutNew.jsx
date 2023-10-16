@@ -224,7 +224,7 @@ export default function LayoutNew({ children }) {
     // { name: "All Users", icon: UserSvg },
   ];
   const verifiedReviewerOptions = [
-    { name: "Home", icon: BenchmarkSvg },
+    // { name: "Home", icon: BenchmarkSvg },
     { name: "Dashboard", icon: DashboardSvg },
   ];
   const verifiedDevOptions = [

@@ -33,7 +33,6 @@ const MyProfileIndex = () => {
   const { handleSubmit, control, errors } = useForm();
 
   const onSubmit = (data) => {
-    
     const filteredData = Object.fromEntries(Object.entries(data).filter(([_, value]) => value !== undefined));
 
     // let name =filteredData.firstName.concat(" ", filteredData.lastName);
@@ -52,7 +51,6 @@ const MyProfileIndex = () => {
     // } else {
     //   name = user.name;
     // }
-
 
     const dataAll = {
       ...filteredData,
@@ -96,6 +94,7 @@ const MyProfileIndex = () => {
             handleEditProfile={handleEditProfile}
             coverImage={coverImage}
             handleImage={handleImage}
+            coverImageFile={coverImageFile}
           />
         </Box>
         <Box
@@ -106,8 +105,7 @@ const MyProfileIndex = () => {
               width: "0",
             },
             height: { xl: "84%", lg: "80%" },
-          }}
-        >
+          }}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Box sx={{ paddingLeft: "2%", paddingRight: "2%" }}>
               <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
@@ -279,8 +277,7 @@ const MyProfileIndex = () => {
                         backgroundColor: "primary.B200",
                         color: "neutral.N000",
                       },
-                    }}
-                  >
+                    }}>
                     Save Changes
                   </Button>
                 )}

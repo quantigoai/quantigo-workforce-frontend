@@ -1,10 +1,10 @@
-import {Box, Button, Grid, MenuItem, Modal, Select, TextField, Typography} from "@mui/material";
-import {styled} from "@mui/material/styles";
-import {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {socket} from "../../../App";
+import { Box, Button, Grid, MenuItem, Modal, Select, TextField, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { socket } from "../../../App";
 import useToaster from "../../../customHooks/useToaster";
-import {updateMyDocuments} from "../../../features/slice/userSlice";
+import { updateMyDocuments } from "../../../features/slice/userSlice";
 import ProjectModalHeader from "../ProjectLIstNew2/ProjectModalHeader";
 import DocumentImageUpload from "./DocumentImageUpload";
 
@@ -61,7 +61,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
   const [isDocumentNoValid, setDocumentNoValid] = useState(false);
   const [isDocumentTypeValid, setDocumentTypeValid] = useState(false);
   const toast = useToaster();
-
+  const maxSize = 1024000;
   const handleDocumentNoChange = (e) => {
     const documentNo = e.target.value;
     setDocumentNo(e.target.value);
@@ -73,6 +73,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
     const documentType = e.target.value;
     setDocumentsType(e.target.value);
     // Check if a document type is selected
+
     setDocumentTypeValid(documentType !== "");
   };
   const handleImage = (e) => {
@@ -115,19 +116,22 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
       }
     });
   };
+  console.log(coverImageFile?.size);
   return (
     <>
       <Modal
         open={openModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
+        aria-describedby="modal-modal-description"
+      >
         <Box
           sx={{
             ...style,
             height: { xl: "56%", lg: "75%" },
             width: { xl: "35%", lg: "40%" },
-          }}>
+          }}
+        >
           <Box sx={{ flex: "0 0 5%" }}>
             <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Upload Document"} />
           </Box>
@@ -137,14 +141,16 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
               flex: "1",
               overflowY: "auto",
               padding: "3%",
-            }}>
+            }}
+          >
             <Box>
               <Grid container sx={{ padding: "0%", paddingLeft: "0%" }}>
                 <Typography
                   variant={"wpf_p4_semiBold"}
                   sx={{
                     mb: 1,
-                  }}>
+                  }}
+                >
                   Document Type
                 </Typography>
 
@@ -164,7 +170,8 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                   onChange={(e) => {
                     // setDocumentsType(e.target.value);
                     handleDocumentTypeChange(e); // Validate document type
-                  }}>
+                  }}
+                >
                   <MenuItem value={"NID"} sx={{ fontSize: "14px" }}>
                     NID
                   </MenuItem>
@@ -179,7 +186,8 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                   variant={"wpf_p4_semiBold"}
                   sx={{
                     mb: 1,
-                  }}>
+                  }}
+                >
                   Document NO
                 </Typography>
                 <MyTextField
@@ -216,7 +224,8 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
               padding: "0 2%",
               bottom: "0px",
               borderRadius: "8px",
-            }}>
+            }}
+          >
             <Grid container sx={{ padding: "2%" }}>
               <Grid item xs={6}>
                 <Button
@@ -231,7 +240,8 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                       color: "neutral.N650",
                     },
                   }}
-                  onClick={() => handleClose()}>
+                  onClick={() => handleClose()}
+                >
                   Cancel
                 </Button>
               </Grid>
@@ -240,8 +250,14 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                 <Grid container sx={{ justifyContent: "right" }}>
                   <Button
                     type="submit"
-                    // disabled={isLoading}
-                    disabled={!isDocumentNoValid || !isDocumentTypeValid || !coverImage || isLoading}
+                    // disabled={true}
+                    disabled={
+                      !isDocumentNoValid ||
+                      !isDocumentTypeValid ||
+                      // !coverImage ||
+                      isLoading ||
+                      coverImageFile?.size > maxSize
+                    }
                     sx={{
                       width: "128px",
                       textTransform: "none",
@@ -251,14 +267,15 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                       "&:hover": {
                         backgroundColor: "#F4F7FE",
                         color: "#62728F",
-                        border: "1px solid #F4F7FE",
+                        // border: "1px solid #F4F7FE",
                       },
                       "&.Mui-disabled": {
-                        background: "#B6C9F0",  
+                        background: "#B6C9F0",
                         color: "#FFFFFF",
                       },
                     }}
-                    onClick={handleChange}>
+                    onClick={handleChange}
+                  >
                     Upload
                   </Button>
                 </Grid>

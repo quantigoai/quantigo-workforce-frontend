@@ -1,8 +1,8 @@
-import {Box, Button, Grid} from "@mui/material";
-import React, {useMemo, useState} from "react";
+import { Box, Button, Grid, Typography } from "@mui/material";
+import React, { useMemo, useState } from "react";
 // import dragiconplus from "../../../../assets/images/dragiconplus.svg";
-import {useDropzone} from "react-dropzone";
-import {useSelector} from "react-redux";
+import { useDropzone } from "react-dropzone";
+import { useSelector } from "react-redux";
 import ctaImage from "../../../assets/images/CTA.png";
 import IconImage from "../../../assets/images/Icon.png";
 import ndaUploadStyle from "../Nda/ndaUploadStyle";
@@ -23,7 +23,7 @@ const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleIm
   const screenSize = window.innerWidth;
   const { isLightTheme } = useSelector((state) => state.theme);
   const { baseUploadBoxStyle } = ndaUploadStyle(isLightTheme);
-
+  const maxSize = 1024000;
   const [isHovered, setIsHovered] = useState(false);
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -37,15 +37,23 @@ const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleIm
     onDrop: handleImage,
   });
 
-  const style = useMemo(
-    () => ({
-      ...baseUploadBoxStyle,
-      ...(isFocused ? focusedStyle : {}),
-      ...(isDragAccept ? acceptStyle : {}),
-      ...(isDragReject ? rejectStyle : {}),
-    }),
-    [isFocused, isDragAccept, isDragReject]
-  );
+  const style = useMemo(() => {
+    const fileSize = acceptedFiles ? acceptedFiles[0]?.size : null;
+    const maxSize = 1024000; // 1MB in bytes
+    if (fileSize && fileSize > maxSize) {
+      return {
+        ...baseUploadBoxStyle,
+        ...rejectStyle,
+      };
+    } else {
+      return {
+        ...baseUploadBoxStyle,
+        ...(isFocused ? focusedStyle : {}),
+        ...(isDragAccept ? acceptStyle : {}),
+        ...(isDragReject ? rejectStyle : {}),
+      };
+    }
+  }, [isFocused, isDragAccept, isDragReject, acceptedFiles]);
 
   const files = acceptedFiles.map((file) => (
     <span key={file.path}>
@@ -65,49 +73,75 @@ const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleIm
     // Large screens
     width = 510;
   }
+  // console.log(acceptedFiles[0].size)
   return (
     <>
       <Grid container>
         <Box {...getRootProps({ style })}>
           {acceptedFiles.length ? (
-            <Box
-              sx={{
-                position: "relative",
-              }}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <img height={175} src={coverImage} alt="" style={{ width }} />
-              {/* <p>File : {files}</p> */}
-              {isHovered && (
-                <Box sx={{ color: "red", cursor: "pointer", position: "absolute", top: "45%", right: "43%" }}>
-                  <Button
-                    onClick={removeImage}
+            <>
+              {acceptedFiles[0].size > maxSize ? (
+                <>
+                  {/* <Typography>sfsf</Typography> */}
+                  <br />
+                  <br />
+                  <Typography variant="wpf_p3_regular" sx={{ color: "#ff1744" }}>
+                    File : {files}
+                  </Typography>
+                  <Typography variant="wpf_p3_regular" sx={{ color: "#ff1744" }}>
+                    The selected file is too large. Please choose a file that is less than 1Mb in size
+                  </Typography>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <Box
                     sx={{
-                      width: "100px",
-                      textTransform: "none",
-                      backgroundColor: "#FFFFFF",
-                      color: "#2E58FF",
-                      borderRadius: "20px",
-
-                      "&:hover": {
-                        backgroundColor: "#FFFFFF",
-                        color: "#2E58FF",
-                        // border: "1px solid #2E58FF",
-                      },
+                      position: "relative",
                     }}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
                   >
-                    Replace
-                  </Button>
-                  {/* <DeleteIcon onClick={removeImage} sx={{ color: "red" }} /> */}
-                </Box>
+                    <img height={175} src={coverImage} alt="" style={{ width }} />
+                    {/* <p>File : {files}</p> */}
+                    {isHovered && (
+                      <Box sx={{ color: "red", cursor: "pointer", position: "absolute", top: "45%", right: "43%" }}>
+                        <Button
+                          onClick={removeImage}
+                          sx={{
+                            width: "100px",
+                            textTransform: "none",
+                            backgroundColor: "#FFFFFF",
+                            color: "#2E58FF",
+                            borderRadius: "20px",
+
+                            "&:hover": {
+                              backgroundColor: "#FFFFFF",
+                              color: "#2E58FF",
+                              // border: "1px solid #2E58FF",
+                            },
+                          }}
+                        >
+                          Replace
+                        </Button>
+                        {/* <DeleteIcon onClick={removeImage} sx={{ color: "red" }} /> */}
+                      </Box>
+                    )}
+                  </Box>
+                </>
               )}
-            </Box>
+            </>
           ) : (
             <>
               <input {...getInputProps()} />
+              <br />
               <img src={IconImage} />
-              <p>Drag and Drop a file here or Browse” (JPG/ JPEG / PNG)</p>
+              <Typography variant="wpf_p2_regular" sx={{ paddingTop: "1%" }}>
+                Drag and Drop a file here or Browse” (JPG/ JPEG / PNG){" "}
+              </Typography>
+              <Typography variant="wpf_p2_regular" sx={{ paddingBottom: "2%" }}>
+                Maximum file size: 1Mb.
+              </Typography>
               <img src={ctaImage} />
             </>
           )}

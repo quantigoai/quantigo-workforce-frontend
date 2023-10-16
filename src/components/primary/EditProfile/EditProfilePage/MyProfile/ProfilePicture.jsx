@@ -1,13 +1,13 @@
-import {Avatar, Box, Button, Chip, Grid, Stack, Typography} from "@mui/material";
+import { Avatar, Box, Button, Chip, Grid, Stack, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import React from "react";
 import editIcon from "../../../../../assets/images/EditIcon.svg";
 import EditIconProfile from "../../../../../assets/images/Group.svg";
-import {capitalizeFirstLetter} from "../../../../../helper/capitalizeFirstWord";
+import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
 
-const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleImage }) => {
+const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleImage, coverImageFile }) => {
   const image = user.image;
-
+  const maxSize = 1024 * 1024;
   return (
     <>
       <Stack
@@ -63,6 +63,12 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                         <label htmlFor="upload-photo">
                           <IconButton
                             sx={{
+                              border:
+                                coverImageFile?.size > maxSize
+                                  ? "1px solid #ff1744"
+                                  : coverImageFile?.size < maxSize
+                                  ? "1px solid #00e676"
+                                  : "",
                               // backgroundColor: "blue",
                               // position: "absolute",
                               // top: "50%",

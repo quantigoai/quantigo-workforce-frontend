@@ -100,14 +100,14 @@ const CongratulationComponents = () => {
                     </Grid>
                     <Grid container sx={{ justifyContent: "center" }}>
                       <Typography variant="wpf_h4_Bold" sx={{ color: "neutral.N300" }}>
-                        {/* {totalCountData.activeJobs} */}
-                        108
+                        {/* 108 */}
+                        Coming Soon
                       </Typography>
                     </Grid>
                     <Grid container sx={{ justifyContent: "center" }}>
-                      <Typography variant="wpf_p4_medium" sx={{ color: "neutral.N300" }}>
+                      {/* <Typography variant="wpf_p4_medium" sx={{ color: "neutral.N300" }}>
                         Total Available Jobs
-                      </Typography>
+                      </Typography> */}
                     </Grid>
                   </Box>
                 </Grid>

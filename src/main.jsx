@@ -24,7 +24,7 @@ const App = lazy(() => import("./App.jsx"));
 
 const toastOptions = {
   position: "bottom-right",
-  autoClose: 20000,
+  autoClose: 2000,
   // autoClose: false,
   hideProgressBar: false,
   closeOnClick: false,

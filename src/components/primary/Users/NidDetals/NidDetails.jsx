@@ -148,7 +148,8 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                       </Box>
                       <Box sx={{ paddingTop: "2%" }}>
                         <img
-                          src={`data:image/jpeg;base64,${documentImage}`}
+                          // src={`data:image/jpeg;base64,${documentImage}`}
+                          src={documentImage}
                           style={{
                             height: documentsType === "NID" ? 300 : 500,
                             width: "100%",

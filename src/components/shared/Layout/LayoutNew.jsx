@@ -224,7 +224,7 @@ export default function LayoutNew({ children }) {
     // { name: "All Users", icon: UserSvg },
   ];
   const verifiedReviewerOptions = [
-    { name: "Home", icon: BenchmarkSvg },
+    // { name: "Home", icon: BenchmarkSvg },
     { name: "Dashboard", icon: DashboardSvg },
   ];
   const verifiedDevOptions = [
@@ -236,7 +236,6 @@ export default function LayoutNew({ children }) {
     { name: "Dashboard", icon: DashboardSvg },
     { name: "All Users", icon: UserSvg },
   ];
-
 
   const dmOptions = [
     { name: "Dashboard", icon: DashboardSvg },
@@ -471,9 +470,10 @@ export default function LayoutNew({ children }) {
           return devOptions.map((text) => handleMenu(text));
 
         case role === "recruitment_manager":
-          return isVerified
-            ? verifiedRecruitOptions.map((text) => handleMenu(text))
-            : recruitOptions.map((text) => handleMenu(text));
+          // return isVerified
+          //   ? verifiedRecruitOptions.map((text) => handleMenu(text))
+          //   : recruitOptions.map((text) => handleMenu(text));
+          return verifiedRecruitOptions.map((text) => handleMenu(text));
 
         case role === "project_lead":
           return isVerified

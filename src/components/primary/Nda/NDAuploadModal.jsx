@@ -1,13 +1,13 @@
-import {Box, Button, Grid, Modal, Stack, Step, StepLabel, Stepper, Typography} from "@mui/material";
-import {styled} from "@mui/material/styles";
-import React, {useEffect, useState} from "react";
-import {useDropzone} from "react-dropzone";
-import {useDispatch, useSelector} from "react-redux";
+import { Box, Button, Grid, Modal, Stack, Step, StepLabel, Stepper, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import React, { useEffect, useState } from "react";
+import { useDropzone } from "react-dropzone";
+import { useDispatch, useSelector } from "react-redux";
 import pdfSvg from "../../../assets/images/PDF.svg";
 import deleteIcon from "../../../assets/images/fi_trash-2.png";
 import Ndafile from "../../../assets/ndifile/NDA - Independant Contractor.docx_2.pdf";
 import useToaster from "../../../customHooks/useToaster";
-import {signingNda} from "../../../features/slice/userSlice";
+import { signingNda } from "../../../features/slice/userSlice";
 import ProjectModalHeader from "../ProjectLIstNew2/ProjectModalHeader";
 import PdfNdaUploadField from "./PdfNdaUploadField";
 import "./ndaUpload.css";
@@ -57,7 +57,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
   const [isSelected, setIsSelected] = useState(false);
   const { user, isLoading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
+  const maxSize = 1 * 1024 * 1024;
   const toast = useToaster();
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({
     accept,
@@ -84,8 +84,13 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
       const url = URL.createObjectURL(file);
       setCoverImage(url);
     }
-    setStepper(3);
+    if (e.length === 0 || e[0].size > maxSize) {
+      setStepper(1);
+    } else {
+      setStepper(3);
+    }
   };
+
   const removeImage = () => {
     setCoverImageFile([]);
     setSelectedFile([]);
@@ -130,6 +135,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
     });
   };
   const steps = ["Downlaod NDA form", "Sign the form", " Upload the signed document"];
+
   return (
     <>
       <Modal
@@ -203,7 +209,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
                   height: "75px",
                   color: "neutral.700",
                 }}>
-                {!selectedFile?.name ? (
+                {!selectedFile?.name || selectedFile.size > maxSize ? (
                   <></>
                 ) : (
                   <>
@@ -270,7 +276,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
                 <Grid container sx={{ justifyContent: "right" }}>
                   <Button
                     type="submit"
-                    disabled={!selectedFile?.name || isLoading}
+                    disabled={!selectedFile?.name || isLoading || selectedFile?.size > maxSize}
                     sx={{
                       width: "128px",
                       textTransform: "none",

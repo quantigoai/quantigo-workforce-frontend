@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 import ErrorIcon from "@mui/icons-material/Error";
-import {Box, Stack, Typography} from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
 
 const ErrorToaster = ({ message }) => {
@@ -22,15 +22,13 @@ const ErrorToaster = ({ message }) => {
             alignItems: "center",
           }}
         >
-          <ErrorIcon sx={{ color: "#fff" }} />
+          <ErrorIcon sx={{ color: "#F04438" }} />
           <Box>
-            <Typography variant="wpf_p2_semiBold" color="#fff">
+            <Typography variant="wpf_p2_semiBold" color="#green.800">
               Error
             </Typography>
             <br />
-            <Typography variant="wpf_p3_semiBold" color="#fff">
-              {message}
-            </Typography>
+            <Typography variant="wpf_h8_regular">{message}</Typography>
           </Box>
         </Stack>
       </Box>

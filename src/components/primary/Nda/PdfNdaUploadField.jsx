@@ -30,48 +30,77 @@ const rejectStyle = {
 const PdfNdaUploadField = ({ handleImage, selectedFile }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { baseUploadBoxStyle } = ndaUploadStyle(isLightTheme);
-
+  const maxSize = 1 * 1024 * 1024;
   const { acceptedFiles, getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({
     accept: { "application/pdf": [".pdf"] },
     onDrop: handleImage,
   });
 
-  const style = useMemo(
-    () => ({
-      ...baseUploadBoxStyle,
-      ...(isFocused ? focusedStyle : {}),
-      ...(isDragAccept ? acceptStyle : {}),
-      ...(isDragReject ? rejectStyle : {}),
-    }),
-    [isFocused, isDragAccept, isDragReject]
-  );
+  const style = useMemo(() => {
+    const fileSize = selectedFile ? selectedFile.size : null;
+    const maxSize = 1 * 1024 * 1024; // 1MB in bytes
+    if (fileSize && fileSize > maxSize) {
+      return {
+        ...baseUploadBoxStyle,
+        ...rejectStyle,
+      };
+    } else {
+      return {
+        ...baseUploadBoxStyle,
+        ...(isFocused ? focusedStyle : {}),
+        ...(isDragAccept ? acceptStyle : {}),
+      };
+    }
+  }, [isFocused, isDragAccept, isDragReject, selectedFile]);
+  // const style = useMemo(
+  //   () => ({
+  //     ...baseUploadBoxStyle,
+  //     ...(isFocused ? focusedStyle : {}),
+  //     ...(isDragAccept ? acceptStyle : {}),
+  //     ...(isDragReject ? rejectStyle : {}),
+  //   }),
+  //   [isFocused, isDragAccept, isDragReject]
+  // );
 
   const files = acceptedFiles.map((file) => (
     <span key={file.path}>
       {file.path} - {(file.size * 1e-6).toFixed(3)} Mb
     </span>
   ));
-
+ 
   return (
     <>
       <Grid>
         <Box className="">
           <Box {...getRootProps({ style })}>
             {selectedFile?.name ? (
-              <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-                <p>File : {files}</p>
-                {/* <img width={"100%"} height={100} src={coverImage} alt="" /> */}
-                {/* <DeleteIcon onClick={removeImage} sx={{ color: "red" }} /> */}
-              </Box>
+              <>
+                <br />
+                <Typography
+                  variant="wpf_p3_regular"
+                  sx={{ color: selectedFile?.size > maxSize ? "#ff1744" : "#013220" }}>
+                  File : {files}
+                </Typography>
+                {selectedFile.size > maxSize ? (
+                  <Typography variant="wpf_p3_regular" sx={{ color: "#ff1744" }}>
+                    The selected file is too large. Please choose a file that is less than 1MB in size
+                  </Typography>
+                ) : (
+                  <></>
+                )}
+              </>
             ) : (
               <>
-                  <input {...getInputProps()} type="file" name="file" />
-                  <br/>
+                <input {...getInputProps()} type="file" name="file" />
+                <br />
                 <img src={IconImage} />
                 <Typography variant="wpf_p2_regular" sx={{ paddingTop: "1%" }}>
                   Drag and Drop a file here or Browse” (Pdf)
                 </Typography>
-                <Typography variant="wpf_p2_regular" sx={{ paddingBottom: "2%" }}> Maximum file size: 1MB.</Typography>
+                <Typography variant="wpf_p2_regular" sx={{ paddingBottom: "2%" }}>
+                  {" "}
+                  Maximum file size: 1MB.
+                </Typography>
                 {/* <p> Maximum file size: 1MB.</p> */}
                 <img src={ctaImage} />
               </>

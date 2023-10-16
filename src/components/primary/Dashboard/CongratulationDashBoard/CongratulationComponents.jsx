@@ -99,9 +99,10 @@ const CongratulationComponents = () => {
                       <img src={jobIcon} />
                     </Grid>
                     <Grid container sx={{ justifyContent: "center" }}>
-                      <Typography variant="wpf_h4_Bold" sx={{ color: "neutral.N300" }}>
+                      <Typography variant="wpf_h6_Bold" sx={{ color: "neutral.N300" }}>
                         {/* {totalCountData.activeJobs} */}
-                        108
+                        {/* 108 */}
+                        Coming soon
                       </Typography>
                     </Grid>
                     <Grid container sx={{ justifyContent: "center" }}>

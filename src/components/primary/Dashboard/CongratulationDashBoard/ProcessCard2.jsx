@@ -50,17 +50,16 @@ const ProcessCard2 = ({ item }) => {
         borderRadius: "12px",
         alignItems: "center",
         paddingLeft: "7%",
-      }}
-    >
+      }}>
       {showCompleteIcon(item._id, user) ? (
-        <Box sx={{ display: "flex", height: "30%", justifyContent: "flex-end" }}>
+        <Box sx={{ display: "flex", height: "30%", justifyContent: "flex-end",paddingRight:"2%" }}>
           <img style={{ width: "20px" }} src={confirmIcon} />
         </Box>
       ) : (
-        <Box sx={{ display: "flex", height: "30%", justifyContent: "flex-end" }}></Box>
+        <Box sx={{ display: "flex", height: "0%", justifyContent: "flex-end" }}></Box>
       )}
 
-      <Box sx={{ display: "flex", width: "100%", height: "70%" }}>
+      <Box sx={{ display: "flex",alignItems: !showCompleteIcon(item._id, user) && "center", width: "100%", height: showCompleteIcon(item._id, user) ? "70%" : "100%" }}>
         <Box>
           <img src={item.image} alt="" />
         </Box>
@@ -70,13 +69,13 @@ const ProcessCard2 = ({ item }) => {
               {item.header} <i className="ri-arrow-right-up-line"></i>
             </Typography>
           </Grid>
-          <Grid container>
+          <Grid container sx={{paddingRight:"3%"}}>
             {" "}
             <Typography variant="wpf_p4_regular" sx={{ color: "neutral.N300" }}>
               {item.describe}
             </Typography>
           </Grid>
-          <Grid container sx={{ paddingTop: "2%" }}>
+          <Grid container>
             {!showCompleteIcon(item._id, user) && showContinueButton(item._id, user) && (
               <Link>
                 <Box
@@ -87,12 +86,10 @@ const ProcessCard2 = ({ item }) => {
                     display: "flex",
                     alignItems: "center",
                     gap: 0.3,
-                  }}
-                >
+                  }}>
                   <Typography
                     variant="wpf_p4_semiBold"
-                    sx={{ paddingRight: "3%", color: "neutral.N300", cursor: "pointer" }}
-                  >
+                    sx={{ paddingRight: "3%", color: "neutral.N300", cursor: "pointer" }}>
                     Continue
                   </Typography>
                   <img src={arrowIcon} />

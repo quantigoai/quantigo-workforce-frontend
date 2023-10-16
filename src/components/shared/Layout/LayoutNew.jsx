@@ -237,7 +237,6 @@ export default function LayoutNew({ children }) {
     { name: "All Users", icon: UserSvg },
   ];
 
-
   const dmOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "Identity Verification", icon: CourseSvg },
@@ -471,9 +470,10 @@ export default function LayoutNew({ children }) {
           return devOptions.map((text) => handleMenu(text));
 
         case role === "recruitment_manager":
-          return isVerified
-            ? verifiedRecruitOptions.map((text) => handleMenu(text))
-            : recruitOptions.map((text) => handleMenu(text));
+          // return isVerified
+          //   ? verifiedRecruitOptions.map((text) => handleMenu(text))
+          //   : recruitOptions.map((text) => handleMenu(text));
+          return verifiedRecruitOptions.map((text) => handleMenu(text));
 
         case role === "project_lead":
           return isVerified

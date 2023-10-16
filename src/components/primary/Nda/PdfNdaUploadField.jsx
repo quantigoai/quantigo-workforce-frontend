@@ -6,11 +6,11 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Box, Grid} from "@mui/material";
-import React, {useMemo} from "react";
+import { Box, Grid, Typography } from "@mui/material";
+import React, { useMemo } from "react";
 // import dragiconplus from "../../../../assets/images/dragiconplus.svg";
-import {useDropzone} from "react-dropzone";
-import {useSelector} from "react-redux";
+import { useDropzone } from "react-dropzone";
+import { useSelector } from "react-redux";
 import ctaImage from "../../../assets/images/CTA.png";
 import IconImage from "../../../assets/images/Icon.png";
 import ndaUploadStyle from "./ndaUploadStyle";
@@ -65,9 +65,14 @@ const PdfNdaUploadField = ({ handleImage, selectedFile }) => {
               </Box>
             ) : (
               <>
-                <input {...getInputProps()} type="file" name="file" />
+                  <input {...getInputProps()} type="file" name="file" />
+                  <br/>
                 <img src={IconImage} />
-                <p>Drag and Drop a file here or Browse” (Pdf)</p>
+                <Typography variant="wpf_p2_regular" sx={{ paddingTop: "1%" }}>
+                  Drag and Drop a file here or Browse” (Pdf)
+                </Typography>
+                <Typography variant="wpf_p2_regular" sx={{ paddingBottom: "2%" }}> Maximum file size: 1MB.</Typography>
+                {/* <p> Maximum file size: 1MB.</p> */}
                 <img src={ctaImage} />
               </>
             )}

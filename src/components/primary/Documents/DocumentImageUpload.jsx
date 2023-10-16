@@ -1,8 +1,8 @@
-import {Box, Button, Grid} from "@mui/material";
-import React, {useMemo, useState} from "react";
+import { Box, Button, Grid, Typography } from "@mui/material";
+import React, { useMemo, useState } from "react";
 // import dragiconplus from "../../../../assets/images/dragiconplus.svg";
-import {useDropzone} from "react-dropzone";
-import {useSelector} from "react-redux";
+import { useDropzone } from "react-dropzone";
+import { useSelector } from "react-redux";
 import ctaImage from "../../../assets/images/CTA.png";
 import IconImage from "../../../assets/images/Icon.png";
 import ndaUploadStyle from "../Nda/ndaUploadStyle";
@@ -75,8 +75,7 @@ const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleIm
                 position: "relative",
               }}
               onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
+              onMouseLeave={handleMouseLeave}>
               <img height={175} src={coverImage} alt="" style={{ width }} />
               {/* <p>File : {files}</p> */}
               {isHovered && (
@@ -95,8 +94,7 @@ const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleIm
                         color: "#2E58FF",
                         // border: "1px solid #2E58FF",
                       },
-                    }}
-                  >
+                    }}>
                     Replace
                   </Button>
                   {/* <DeleteIcon onClick={removeImage} sx={{ color: "red" }} /> */}
@@ -106,8 +104,14 @@ const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleIm
           ) : (
             <>
               <input {...getInputProps()} />
+              <br />
               <img src={IconImage} />
-              <p>Drag and Drop a file here or Browse” (JPG/ JPEG / PNG)</p>
+              <Typography variant="wpf_p2_regular" sx={{ paddingTop: "1%" }}>
+                Drag and Drop a file here or Browse” (JPG/ JPEG / PNG){" "}
+              </Typography>
+              <Typography variant="wpf_p2_regular" sx={{ paddingBottom: "2%" }}>
+                Maximum file size: 512KB.
+              </Typography>
               <img src={ctaImage} />
             </>
           )}

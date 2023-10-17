@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import io from "socket.io-client";
 import "./App.css";
 import Routers from "./components/primary/Routers/Routers";
+import MobileErrorPage from "./components/shared/Error/MobileErrorPage";
 import LoadingComponent from "./components/shared/Loading/LoadingComponent";
 import useClearReduxData from "./customHooks/useClearReduxData";
 import { availableJobsForReviewer, getAllAssignedJob, getAllJobs, getMyJobs } from "./features/slice/jobSlice";
@@ -83,21 +84,31 @@ function App() {
     }
   }, [user.role]);
 
-  return (
-    <>
-      {isLoading && !isLoading ? (
-        <LoadingComponent />
-      ) : isLoggedIn ? (
-        <Suspense fallback={<LoadingComponent />}>
-          <LayoutNew>{<Routers />}</LayoutNew>
-        </Suspense>
-      ) : (
-        <Suspense fallback={<LoadingComponent />}>
-          <RoutersLogin />
-        </Suspense>
-      )}
-    </>
-  );
+  const isMobile = window.innerWidth < 1024;
+
+  if (isMobile) {
+    return (
+      <>
+        <MobileErrorPage />
+      </>
+    );
+  } else {
+    return (
+      <>
+        {isLoading && !isLoading ? (
+          <LoadingComponent />
+        ) : isLoggedIn ? (
+          <Suspense fallback={<LoadingComponent />}>
+            <LayoutNew>{<Routers />}</LayoutNew>
+          </Suspense>
+        ) : (
+          <Suspense fallback={<LoadingComponent />}>
+            <RoutersLogin />
+          </Suspense>
+        )}
+      </>
+    );
+  }
 }
 
 export default App;

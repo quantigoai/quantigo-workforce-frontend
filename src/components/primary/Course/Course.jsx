@@ -14,10 +14,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import { getAllCourses } from "../../../features/slice/courseSlice";
 import { getAllSkills } from "../../../features/slice/skillSlice";
-import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import LoadingSkeleton from "../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton";
 import CourseTab from "./CourseTab";
 import CustomCard from "./CustomCard";
+import CourseHeader from "./CourseHeader/CourseHeader";
 
 const Course = () => {
   const { role } = useSelector((state) => state.user.user);
@@ -35,13 +35,8 @@ const Course = () => {
   }, [isLoading]);
 
   return (
-    <>
-      <Box
-        sx={{
-          display: "flex",
-          mb: "2%",
-        }}
-      >
+    <Box className="content">
+      <Box className="contentHeader">
         <Grid
           container
           sx={{
@@ -51,16 +46,11 @@ const Course = () => {
             alignItems: "center",
           }}
         >
-          <CommonHeader
-            title="Courses"
-            description="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "
-            isLoading={isLoading}
-            customButton="Create Course"
-          />
+          <CourseHeader />
         </Grid>
       </Box>
 
-      <Box>
+      <Box sx={{ height: "85%" }}>
         {isLoading ? (
           <>
             <LoadingSkeleton />
@@ -78,9 +68,17 @@ const Course = () => {
               </>
             ) : (
               <>
-                <Grid container spacing={4}>
+                {/* <CourseTab filterCourses={filterCourses} isLoading={isLoading} /> */}
+                <Grid
+                  container
+                  spacing={2}
+                  sx={{
+                    height: "100%",
+                    width: "100%",
+                  }}
+                >
                   {courses.map((course) => (
-                    <Grid key={course._id} item xs={12} sm={6} md={3} gap={1}>
+                    <Grid key={course._id} item xs={12} px={1} sm={6} md={3} sx={{ height: "50%" }}>
                       <CustomCard course={course} />
                     </Grid>
                   ))}
@@ -90,7 +88,7 @@ const Course = () => {
           </>
         )}
       </Box>
-    </>
+    </Box>
   );
 };
 

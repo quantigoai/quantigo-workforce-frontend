@@ -6,29 +6,30 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Box, Button, CircularProgress, Grid, Typography} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { Box, Grid, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import imageSample from "../../../assets/images/img.png";
-import {setActiveChapterIndex, setActiveCourseId,} from "../../../features/slice/activePathSlice";
-import {getACourseByID, getAllChapterFromACourse, getCourseQuizzesResults,} from "../../../features/slice/courseSlice";
+import { setActiveChapterIndex, setActiveCourseId } from "../../../features/slice/activePathSlice";
+import { getACourseByID, getAllChapterFromACourse, getCourseQuizzesResults } from "../../../features/slice/courseSlice";
 import CategoryChip from "./CategoryChip";
 import LevelChip from "./CourseCardActionLebel/LevelChip";
 import LanguageChip from "./LanguageChip";
+import CourseProgress from "./CourseProgress/CourseProgress";
 
 const MyCustomCard = {
   padding: "0 0 0 0 ",
   width: "100%",
-  height: "250px",
+  height: "100%",
   objectFit: "cover",
-  borderRadius: "5px 5px 0px 0px",
+  borderRadius: "10px 10px 0px 0px",
 };
 
 const MyCustomCardHover = {
   padding: "0 0 0 0 ",
   width: "100%",
-  height: "250px",
+  height: "100%",
   objectFit: "cover",
   borderRadius: "5px 5px 0px 0px",
   transform: "scale(1.05)",
@@ -106,14 +107,19 @@ const CustomCard = ({ course }) => {
     <>
       <Box
         sx={{
+          // height: "350px",
           height: "100%",
+          width: "100%",
           display: "flex",
           flexDirection: "column",
           //!! Need to remove shadow later
-          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-          mx: "0%",
-          py: "0%",
-          bgcolor: "#FFFFFF",
+          boxShadow: "0px 1px 2px 0px rgba(37, 62, 92, 0.08)",
+          // mx: "4%",
+          // px: "4%",
+          // py: "0%",
+          // backgroundColor: "neutral.N000",
+          borderRadius: "10px",
+          border: "1px solid white",
         }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -121,57 +127,61 @@ const CustomCard = ({ course }) => {
         <Box
           sx={{
             width: "100%",
-            height: "60%",
+            height: "40%",
+            // backgroundColor: "red",
             pt: 0,
-            mb: 2,
+            mb: 0,
             overflow: "hidden",
           }}
         >
           <img
-            style={
-              hovering
-                ? { ...MyCustomCard, ...MyCustomCardHover }
-                : MyCustomCard
-            }
+            style={hovering ? { ...MyCustomCard, ...MyCustomCardHover } : MyCustomCard}
             src={imageUrl}
             alt={course.name}
           />
         </Box>
 
         {/* Chips */}
-        <Box sx={{ px: "3%" }}>
-          <Grid container spacing={1} sx={{ py: "3%" }}>
-            <Grid item xs={4} sx={{ paddingRight: "2%" }}>
-              <LanguageChip language={course.language} />
-            </Grid>
-            <Grid item xs={4} sx={{ paddingRight: "2%" }}>
-              <CategoryChip category={course.category} />
-            </Grid>
-            <Grid item xs={4} sx={{ padding: "0%" }}>
-              <LevelChip level={course.level} />
-            </Grid>
-          </Grid>
-        </Box>
 
         {/* Content */}
-        <Box sx={{ px: "2%", height: "20%", pb: "3%" }}>
-          <Grid container>
-            <Typography variant="h5" sx={{ color: "#090080" }}>
-              {course.name}
-            </Typography>
-          </Grid>
+        <Box
+          sx={{
+            height: "60%",
+            backgroundColor: "neutral.N000",
+          }}
+        >
+          <Box sx={{ px: "4%", height: "40%", pb: "0" }}>
+            <Grid container>
+              <Typography variant="wpf_h6_semiBold" color={"grey.500"}>
+                {course.name}
+              </Typography>
+            </Grid>
 
-          <Grid container>
-            <Typography variant="caption" sx={{ color: "#969CAF" }}>
-              {course.description?.length > 100
-                ? course.description?.substring(0, 100) + "....."
-                : course.description}
-            </Typography>
-          </Grid>
-        </Box>
+            <Grid mt={1} container>
+              <Typography variant="wpf_h8_regular" color={"grey.550"}>
+                {course.description?.length > 100
+                  ? course.description?.substring(0, 100) + "....."
+                  : course.description}
+              </Typography>
+            </Grid>
+          </Box>
+          {/* //chip  */}
+          <Box sx={{ px: "4%", height: "30%" }}>
+            <Grid container sx={{ py: "3%" }}>
+              <Grid item xs={3} sx={{ paddingRight: "2%" }}>
+                <LanguageChip language={course.language} />
+              </Grid>
+              <Grid item xs={3} sx={{ paddingRight: "2%" }}>
+                <CategoryChip category={course.category} />
+              </Grid>
+              <Grid item xs={3} sx={{ padding: "0%" }}>
+                <LevelChip level={course.level} />
+              </Grid>
+            </Grid>
+          </Box>
 
-        {/* Button */}
-        <Box sx={{ px: "2%", pb: "3%" }}>
+          {/* Button */}
+          {/* <Box sx={{ px: "2%", pb: "3%" }}>
           <Grid
             container
             sx={{ display: "flex" }}
@@ -201,6 +211,12 @@ const CustomCard = ({ course }) => {
               )}
             </Button>
           </Grid>
+        </Box> */}
+
+          {/* //progress bar  */}
+          <Box sx={{ borderTop: "1px solid #E6ECF5", height: "20%", padding: "10px 10px" }}>
+            <CourseProgress />
+          </Box>
         </Box>
       </Box>
     </>

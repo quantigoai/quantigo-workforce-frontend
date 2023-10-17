@@ -57,6 +57,10 @@ export const darkColors = {
     500: "#E6FAF1", // Green background color
     800: "#12B76A", // Darker green color
   },
+  grey: {
+    500: "#F4F7FE",
+    550: "#fff",
+  },
   warning: {
     200: "#FAE4C3", // Lighter warning color
     50: "#FCF4E8", // Very light warning color

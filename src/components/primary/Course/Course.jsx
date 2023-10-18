@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import Box from "@mui/material/Box";
 import * as React from "react";
 import { useEffect } from "react";
@@ -18,6 +18,7 @@ import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeade
 import LoadingSkeleton from "../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton";
 import CourseTab from "./CourseTab";
 import CustomCard from "./CustomCard";
+import CreateCourseModal from "./CreateCourseModal/CreateCourseModal";
 
 const Course = () => {
   const { role } = useSelector((state) => state.user.user);
@@ -25,7 +26,9 @@ const Course = () => {
   const [filterCourses, setFilterCourses] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const dispatch = useDispatch();
-
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   useEffect(() => {
     dispatch(setActivePath("Course"));
     dispatch(getAllSkills());
@@ -36,12 +39,14 @@ const Course = () => {
 
   return (
     <>
+      <Button onClick={handleOpen}>Create Course</Button>
+
+      <CreateCourseModal open={open} handleClose={handleClose} />
       <Box
         sx={{
           display: "flex",
           mb: "2%",
-        }}
-      >
+        }}>
         <Grid
           container
           sx={{
@@ -49,8 +54,7 @@ const Course = () => {
             display: "flex",
             alignContent: "center",
             alignItems: "center",
-          }}
-        >
+          }}>
           <CommonHeader
             title="Courses"
             description="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "

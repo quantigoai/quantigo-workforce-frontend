@@ -1,9 +1,9 @@
-import {MenuItem, Select, styled, Typography} from "@mui/material";
+import { MenuItem, Select, styled, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import React from "react";
-import {Controller, useFormContext} from "react-hook-form";
-import {MyFormControl} from "./CustomDatePicker";
-import {useSelector} from "react-redux";
+import { Controller, useFormContext } from "react-hook-form";
+import { MyFormControl } from "./CustomDatePicker";
+import { useSelector } from "react-redux";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 PDSelectField.propTypes = {
@@ -65,7 +65,6 @@ export default function PDSelectField({ name, helperText, options, label, setVal
               ))}
             </MySelect>
           </MyFormControl>
-      
         </>
       )}
     />

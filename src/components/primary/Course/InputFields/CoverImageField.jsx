@@ -7,9 +7,9 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 import DeleteIcon from "@mui/icons-material/Delete";
-import {Box, Grid} from "@mui/material";
-import React, {useMemo} from "react";
-import {useDropzone} from "react-dropzone";
+import { Box, Grid } from "@mui/material";
+import React, { useMemo } from "react";
+import { useDropzone } from "react-dropzone";
 import dragiconplus from "../../../../assets/images/dragiconplus.svg";
 
 const baseStyle = {
@@ -21,6 +21,7 @@ const baseStyle = {
   borderWidth: 2,
   borderRadius: 2,
   height: "150px",
+  // overflowY: "scroll",
   borderColor: "rgba(70, 70, 70, 0.2)",
   borderStyle: "dashed",
   backgroundColor: "#fafafa",
@@ -42,14 +43,10 @@ const rejectStyle = {
 };
 
 const CoverImageField = ({ handleImage, coverImage, removeImage }) => {
-  const {
-    acceptedFiles,
-    getRootProps,
-    getInputProps,
-    isFocused,
-    isDragAccept,
-    isDragReject,
-  } = useDropzone({ accept: { "image/*": [] }, onDrop: handleImage });
+  const { acceptedFiles, getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({
+    accept: { "image/*": [] },
+    onDrop: handleImage,
+  });
 
   const style = useMemo(
     () => ({

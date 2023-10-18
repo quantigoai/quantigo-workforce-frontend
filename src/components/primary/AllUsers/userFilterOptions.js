@@ -101,3 +101,21 @@ export const singleDetailsFields = [
   { field: "checkedOutTime", width: 200 },
   { field: "workingTimeInMs", width: 400 },
 ];
+
+export const courseLevelFields = [
+  { value: "basic", label: "Basic" },
+  { value: "beginner", label: "Beginner" }, 
+  { value: "intermediate", label: "Intermediate" }, 
+  { value: "advanced", label: "Advanced" }, 
+];
+export const courseCategoryFields = [
+  { value: "intro", label: "Intro" },
+  { value: "image", label: "Image" },
+  { value: "video", label: "Video" },
+  { value: "LiDAR", label: "LiDAR" },
+];
+
+export const courseLanguageFields = [
+  { value: "english", label: "English" },
+  { value: "bengali", label: "Bengali" },
+];

@@ -1,10 +1,10 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import * as React from "react";
-import {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../customHooks/useToaster";
-import {changeRole, deleteOrActivateUser, updateAUserById} from "../../../../features/slice/userSlice";
+import { changeRole, deleteOrActivateUser, updateAUserById } from "../../../../features/slice/userSlice";
 import CommonModalFooter from "../../../shared/CommonModal/CommonModalFooter";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 import DetailsTab from "./DetailsTab";
@@ -119,7 +119,7 @@ export default function UserDetailsNewIndex({ open, handleClose, role }) {
       });
 
     actionStatus &&
-      dispatch(deleteOrActivateUser(finalData)).then((action) => {
+      dispatch(deleteOrActivateUser(finalStatusData)).then((action) => {
         if (action.payload?.status === 200) {
           if (actionStatus === "delete") {
             window.location.reload(false);

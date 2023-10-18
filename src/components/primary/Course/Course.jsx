@@ -37,20 +37,10 @@ const Course = () => {
   return (
     <Box className="content">
       <Box className="contentHeader">
-        <Grid
-          container
-          sx={{
-            paddingBottom: "0%",
-            display: "flex",
-            alignContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <CourseHeader />
-        </Grid>
+        <CourseHeader />
       </Box>
 
-      <Box sx={{ height: "85%" }}>
+      <Box sx={{ height: "85%", overflow: "auto" }}>
         {isLoading ? (
           <>
             <LoadingSkeleton />

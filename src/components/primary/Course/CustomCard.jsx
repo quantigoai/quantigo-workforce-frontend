@@ -128,7 +128,7 @@ const CustomCard = ({ course }) => {
           sx={{
             width: "100%",
             height: "40%",
-            // backgroundColor: "red",
+            backgroundColor: "#fff",
             pt: 0,
             mb: 0,
             overflow: "hidden",

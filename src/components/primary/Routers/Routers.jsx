@@ -32,6 +32,7 @@ import ProjectLIstIndex2 from "../ProjectLIstNew2/ProjectLIstIndex2";
 import ShowResult from "../Quiz/QuizPage/ShowResult/ShowResult";
 import Skills from "../Skill/Skills";
 import PrivateRoute from "./PrivateRoute";
+import QuizPage from "../Course/QuizPage/QuizPage";
 
 export const roles = {
   admin: "admin",
@@ -72,9 +73,10 @@ const Routers = () => {
         <Route path={"/emailVerification"} element={<EmailVerification />} />
 
         {/* ---------- Course routes ------------ */}
-        
+
         {/* TODO Should updated and release later  */}
         <Route path={"/course"} element={<Course />} />
+        <Route path={"/quiz-page"} element={<QuizPage />} />
         <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}>
           <Route path={"/create-course"} element={<CreateCourse />} />
         </Route>

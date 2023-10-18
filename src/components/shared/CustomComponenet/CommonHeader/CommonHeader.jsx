@@ -8,9 +8,9 @@
  */
 import AddIcon from "@mui/icons-material/Add";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import {Alert, AlertTitle, Box, Button, Grid, Typography} from "@mui/material";
-import {useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { Alert, AlertTitle, Box, Button, Grid, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import CourseDeleteModal from "../../../primary/Course/CourseDetailsPage/CourseDeleteModal";
 
 const CommonHeader = ({ isLoading, title, description, customButton, handleCancel }) => {
@@ -18,7 +18,7 @@ const CommonHeader = ({ isLoading, title, description, customButton, handleCance
   const { course } = useSelector((state) => state.course);
   const { user } = useSelector((state) => state.user);
   const { isLightTheme } = useSelector((state) => state.theme);
-  
+
   const handleNavigation = (navigateLink) => {
     switch (navigateLink) {
       case "Create Course":
@@ -71,7 +71,7 @@ const CommonHeader = ({ isLoading, title, description, customButton, handleCance
           width: "100%",
         }}
       >
-        <Grid item xs={8}>
+        <Grid item xs={10}>
           <Grid
             sx={{
               display: "flex",

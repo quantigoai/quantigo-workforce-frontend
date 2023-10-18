@@ -10,7 +10,6 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { Avatar, Badge, FormControlLabel, Stack, styled, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Menu from "@mui/material/Menu";
@@ -20,7 +19,6 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 // import logOutIcon from "../../../assets/images/logoutIcon.svg";
-import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 import useReset from "../../../customHooks/useReset";
 import { setTheme } from "../../../features/slice/themeSlice";
 import { logout } from "../../../features/slice/userSlice";
@@ -152,7 +150,7 @@ const Header = () => {
               </Box>
 
               <>
-                <Box sx={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+                {/* <Box sx={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
                   <Avatar
                     alt="Profile Picture"
                     src={image}
@@ -162,7 +160,7 @@ const Header = () => {
                       width: { xl: 40, lg: 34 },
                     }}
                   />
-                </Box>
+                </Box> */}
                 <Box>
                   <Box sx={{ display: "flex", px: 2 }}>
                     <Stack>
@@ -230,13 +228,33 @@ const Header = () => {
                           <ListItemText sx={{ color: "neutral.N300" }}>Logout</ListItemText>
                         </MenuItem>
                       </Menu>
-                      <Button id="fade-button" onClick={handleClick} sx={{ paddingTop: "5%" }}>
-                        <ExpandCircleDownIcon
+                      {/* <Button id="fade-button" onClick={handleClick} sx={{ paddingTop: "0%" }}> */}
+                      {/* <ExpandCircleDownIcon
                           sx={{
                             color: "neutral.N300",
                           }}
+                        /> */}
+                      <Box
+                        onClick={handleClick}
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          cursor: "pointer",
+                          px: 2,
+                        }}
+                      >
+                        <Avatar
+                          alt="Profile Picture"
+                          src={image}
+                          sx={{
+                            bgcolor: "#D3ECFA",
+                            height: { xl: 37, lg: 34 },
+                            width: { xl: 37, lg: 34 },
+                          }}
                         />
-                      </Button>
+                      </Box>
+                      {/* </Button> */}
                     </Box>
                   </Box>
                 </Box>

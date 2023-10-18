@@ -88,7 +88,7 @@ const ProcessCard2 = ({ item }) => {
                     gap: 0.3,
                   }}>
                   <Typography
-                    variant="wpf_p4_semiBold"
+                    variant="wpf_p3_semiBold"
                     sx={{ paddingRight: "3%", color: "neutral.N300", cursor: "pointer" }}>
                     Continue
                   </Typography>

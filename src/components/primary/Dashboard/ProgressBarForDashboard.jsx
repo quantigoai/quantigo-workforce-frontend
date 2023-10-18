@@ -1,11 +1,11 @@
-import {Box, CircularProgress, Typography} from "@mui/material";
-import React, {useEffect} from "react";
-import {useSelector} from "react-redux";
+import { Box, CircularProgress, Typography } from "@mui/material";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const ProgressBarForDashboard = () => {
   const [progress, setProgress] = React.useState(80);
   const { user } = useSelector((state) => state);
- 
+
   useEffect(() => {
     if (user.user.isNDASigned && user.user.isDocumentsSubmitted === "submitted") {
       setProgress(100);
@@ -57,13 +57,13 @@ const ProgressBarForDashboard = () => {
             alignItems: "center",
             justifyContent: "center",
             // backgroundColor: "blue",
-          }}>
+          }}
+        >
           <Typography variant="wpf_h7_semiBold">
             <b> {progress}%</b>
           </Typography>
         </Box>
       </Box>
-
     </>
   );
 };

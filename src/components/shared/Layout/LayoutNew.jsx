@@ -150,7 +150,7 @@ export default function LayoutNew({ children }) {
     { name: "Course", icon: CourseSvg },
 
     // { name: "All Users", icon: UserSvg },
-    // { name: "All Projects", icon: ProjectSvg },
+    { name: "All Projects", icon: ProjectSvg },
     // { name: "Skill", icon: SkillIcon },
     // { name: "Projects", icon: ProjectSvg },
     // { name: "Jobs", icon: JobSvg },

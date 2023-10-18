@@ -2,7 +2,7 @@ import {Box, Typography} from "@mui/material";
 import React from "react";
 import ProfileCompletion from "../../../../../assets/images/HowItWork/ProfileCompletion.jpg";
 import NdaUploadImage from "../../../../../assets/images/HowItWork/NDAUpload.jpg";
-import congratulationImage from "../../../../../assets/images/congratulation.png";
+import congratulationImage from "../../../../../assets/images/HowItWork/congratulation.jpg";
 import ImageModal from "../ImageModal";
 
 const ThirdPageProfileSetup = () => {

@@ -1,8 +1,8 @@
-import {Box, Chip, MenuItem, Select, styled, Typography} from "@mui/material";
+import { Box, Chip, MenuItem, Select, styled, Typography } from "@mui/material";
 import React from "react";
-import {Controller, useFormContext} from "react-hook-form";
-import {useSelector} from "react-redux";
-import {MyFormControl} from "./CustomDatePicker";
+import { Controller, useFormContext } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { MyFormControl } from "./CustomDatePicker";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export const MySelect = styled(Select)(() => ({
@@ -49,8 +49,7 @@ const PDskillFIeld = ({
                 fontWeight: "500",
                 mb: 1,
                 color: isLightTheme ? "#091E42" : "#FFFFFF",
-              }}
-            >
+              }}>
               {label}
             </Typography>
 
@@ -75,8 +74,7 @@ const PDskillFIeld = ({
                     gap: 0.5,
                     fontSize: "12px",
                     height: "20px",
-                  }}
-                >
+                  }}>
                   {selected?.map(
                     (value, i) =>
                       [0].includes(i) && <Chip sx={{ fontSize: "12px", height: "95%" }} key={value} label={value} />
@@ -109,8 +107,7 @@ const PDskillFIeld = ({
                   )}
                 </Box>
               )}
-              MenuProps={MenuProps}
-            >
+              MenuProps={MenuProps}>
               {skills?.map((skill) => (
                 <MenuItem sx={{ fontSize: "14px" }} key={skill._id} value={skill.name}>
                   {skill.name}

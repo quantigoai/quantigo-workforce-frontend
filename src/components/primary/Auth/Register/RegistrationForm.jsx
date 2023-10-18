@@ -229,6 +229,14 @@ const RegistrationForm = () => {
                     onChange={handleChangeHub}
                     setValue={setValue}
                   />
+                  {/* <CustomSelectMenu2
+                    name="hub"
+                    helperText="Select a hub"
+                    options={hubOptions}
+                    label={"User Hub"}
+                    onChange={handleChangeHub}
+                    setValue={setValue}
+                  /> */}
                 </Box>
               ) : (
                 // QAI Username Field
@@ -237,8 +245,8 @@ const RegistrationForm = () => {
                     name="qaiUserName"
                     label="Quantigo Username"
                     onBlur={handleCheckQaiUserName}
-                      helperText={helperMessage}
-                      placeholder="QAI_XXXXXX"
+                    helperText={helperMessage}
+                    placeholder="QAI_XXXXXX"
                     InputProps={{
                       disableUnderline: true,
                       endAdornment: (

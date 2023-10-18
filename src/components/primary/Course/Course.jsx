@@ -19,6 +19,7 @@ import CourseHeader from "./CourseHeader/CourseHeader";
 import CourseTab from "./CourseTab";
 import CreateCourseModal from "./CreateCourseModal/CreateCourseModal";
 import CustomCard from "./CustomCard";
+import { useNavigate } from "react-router-dom";
 
 const Course = () => {
   const { role } = useSelector((state) => state.user.user);
@@ -36,32 +37,20 @@ const Course = () => {
       setIsLoading(false);
     });
   }, [isLoading]);
-
+  const navigate = useNavigate();
   return (
     <>
       <Button onClick={handleOpen}>Create Course</Button>
+      <Button
+        onClick={() => {
+          navigate("/quiz-page");
+        }}
+      >
+        show quiz
+      </Button>
 
       <CreateCourseModal open={open} handleClose={handleClose} />
-      {/* <Box
-        sx={{
-          display: "flex",
-          mb: "2%",
-        }}>
-        <Grid
-          container
-          sx={{
-            paddingBottom: "0%",
-            display: "flex",
-            alignContent: "center",
-            alignItems: "center",
-          }}>
-          <CommonHeader
-            title="Courses"
-            description="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "
-            isLoading={isLoading}
-            customButton="Create Course"
-          />
-        </Grid> */}
+
       <Box className="content">
         <Box className="contentHeader">
           <CourseHeader />

@@ -1,30 +1,38 @@
-import {Chip} from "@mui/material";
+import { Chip } from "@mui/material";
 import React from "react";
-import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
+import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 
 const basicStyle = {
-  width: "100%",
-  height: "23px",
-  background: "#A93439",
-  borderRadius: "100px",
+  width: "70%",
+  height: "33px",
+  backgroundColor: "#FFF8EB",
+  borderRadius: "8px",
+  border: "1px solid rgba(255, 71, 87, 0.24)",
+  color: "#FF4757",
 };
 const advanceStyle = {
-  width: "100%",
-  height: "23px",
-  background: "#4A2D8B ",
-  borderRadius: "100px",
+  width: "70%",
+  height: "33px",
+  backgroundColor: "#FFF8EB",
+  borderRadius: "8px",
+  border: "1px solid rgba(255, 71, 87, 0.24)",
+  color: "#FF4757",
 };
 const beginnerStyle = {
-  width: "100%",
-  height: "23px",
-  background: "#82BD40",
-  borderRadius: "100px",
+  width: "70%",
+  height: "33px",
+  backgroundColor: "#FFF8EB",
+  borderRadius: "8px",
+  border: "1px solid rgba(255, 71, 87, 0.24)",
+  color: "#FF4757",
 };
 const intermediateStyle = {
-  width: "100%",
-  height: "23px",
-  background: "#EB6651",
-  borderRadius: "100px",
+  width: "70%",
+  height: "33px",
+  backgroundColor: "#FFF8EB",
+  borderRadius: "8px",
+  border: "1px solid rgba(255, 71, 87, 0.24)",
+  color: "#FF4757",
 };
 const LevelChip = ({ level }) => {
   let style = {};
@@ -49,10 +57,7 @@ const LevelChip = ({ level }) => {
 
   return (
     <>
-      <Chip
-        sx={{ ...style, color: "#ffffff", width: "100%" }}
-        label={capitalizeFirstLetter(level)}
-      />
+      <Chip sx={{ ...style, width: "100%" }} label={capitalizeFirstLetter(level)} />
     </>
   );
 };

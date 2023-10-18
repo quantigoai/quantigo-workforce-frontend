@@ -6,33 +6,41 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Chip} from "@mui/material";
+import { Chip } from "@mui/material";
 import React from "react";
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 
 const introStyle = {
   width: "100%",
-  height: "23px",
-  background: "#2d3b87",
-  borderRadius: "100px",
+  height: "33px",
+  backgroundColor: "#FFF8EB",
+  borderRadius: "10px",
+  border: "1px solid rgba(54, 179, 126, 0.26)",
+  color: "#36B37E",
 };
 const imageStyle = {
   width: "100%",
-  height: "23px",
-  background: "#057583 ",
-  borderRadius: "100px",
+  height: "33px",
+  backgroundColor: "#FFF8EB",
+  borderRadius: "10px",
+  border: "1px solid rgba(54, 179, 126, 0.26)",
+  color: "#36B37E",
 };
 const videoStyle = {
   width: "100%",
-  height: "23px",
-  background: "#ABA4D1 ",
-  borderRadius: "100px",
+  height: "33px",
+  backgroundColor: "#FFF8EB",
+  borderRadius: "10px",
+  border: "1px solid rgba(54, 179, 126, 0.26)",
+  color: "#36B37E",
 };
 const LiDARStyle = {
   width: "100%",
-  height: "23px",
-  background: "#7f3860",
-  borderRadius: "100px",
+  height: "33px",
+  backgroundColor: "#FFF8EB",
+  borderRadius: "10px",
+  border: "1px solid rgba(54, 179, 126, 0.26)",
+  color: "#36B37E",
 };
 
 const CategoryChip = ({ category }) => {
@@ -58,7 +66,7 @@ const CategoryChip = ({ category }) => {
 
   return (
     <>
-      <Chip sx={{...style, color: "#ffffff"}} label={capitalizeFirstLetter(category)} />
+      <Chip sx={{ ...style }} label={capitalizeFirstLetter(category)} />
     </>
   );
 };

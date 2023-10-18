@@ -14,11 +14,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import { getAllCourses } from "../../../features/slice/courseSlice";
 import { getAllSkills } from "../../../features/slice/skillSlice";
-import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import LoadingSkeleton from "../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton";
+import CourseHeader from "./CourseHeader/CourseHeader";
 import CourseTab from "./CourseTab";
-import CustomCard from "./CustomCard";
 import CreateCourseModal from "./CreateCourseModal/CreateCourseModal";
+import CustomCard from "./CustomCard";
 
 const Course = () => {
   const { role } = useSelector((state) => state.user.user);
@@ -42,7 +42,7 @@ const Course = () => {
       <Button onClick={handleOpen}>Create Course</Button>
 
       <CreateCourseModal open={open} handleClose={handleClose} />
-      <Box
+      {/* <Box
         sx={{
           display: "flex",
           mb: "2%",
@@ -61,38 +61,50 @@ const Course = () => {
             isLoading={isLoading}
             customButton="Create Course"
           />
-        </Grid>
-      </Box>
+        </Grid> */}
+      <Box className="content">
+        <Box className="contentHeader">
+          <CourseHeader />
+        </Box>
 
-      <Box>
-        {isLoading ? (
-          <>
-            <LoadingSkeleton />
-          </>
-        ) : (
-          <>
-            {role === "level_0_annotator" ||
-            role === "level_1_annotator" ||
-            role === "level_2_annotator" ||
-            role === "level_3_annotator" ||
-            role === "reviewer" ? (
-              <>
-                {" "}
-                <CourseTab filterCourses={filterCourses} isLoading={isLoading} />
-              </>
-            ) : (
-              <>
-                <Grid container spacing={4}>
-                  {courses.map((course) => (
-                    <Grid key={course._id} item xs={12} sm={6} md={3} gap={1}>
-                      <CustomCard course={course} />
-                    </Grid>
-                  ))}
-                </Grid>
-              </>
-            )}
-          </>
-        )}
+        <Box sx={{ height: "85%", overflow: "auto" }}>
+          {isLoading ? (
+            <>
+              <LoadingSkeleton />
+            </>
+          ) : (
+            <>
+              {role === "level_0_annotator" ||
+              role === "level_1_annotator" ||
+              role === "level_2_annotator" ||
+              role === "level_3_annotator" ||
+              role === "reviewer" ? (
+                <>
+                  {" "}
+                  <CourseTab filterCourses={filterCourses} isLoading={isLoading} />
+                </>
+              ) : (
+                <>
+                  {/* <CourseTab filterCourses={filterCourses} isLoading={isLoading} /> */}
+                  <Grid
+                    container
+                    spacing={2}
+                    sx={{
+                      height: "100%",
+                      width: "100%",
+                    }}
+                  >
+                    {courses.map((course) => (
+                      <Grid key={course._id} item xs={12} px={1} sm={6} md={3} sx={{ height: "50%" }}>
+                        <CustomCard course={course} />
+                      </Grid>
+                    ))}
+                  </Grid>
+                </>
+              )}
+            </>
+          )}
+        </Box>
       </Box>
     </>
   );

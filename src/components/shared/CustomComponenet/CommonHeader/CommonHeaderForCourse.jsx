@@ -6,22 +6,16 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Alert, AlertTitle, Box, Button, Grid, Typography,} from "@mui/material";
+import { Alert, AlertTitle, Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
-import {useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import CourseDeleteModal from "../../../primary/Course/CourseDetailsPage/CourseDeleteModal";
 import CourseNewHeaderBottom from "../../../primary/CourseNew/CourseNewHeaderBottom/CourseNewHeaderBottom";
 import editCourseIcon from "../../../../assets/images/edit.svg";
 import RectangleIcon from "../../../../assets/images/Rectangle 3.svg";
 
-const CommonHeaderForCourse = ({
-  isLoading,
-  title,
-  description,
-  customButton,
-  handleCancel,
-}) => {
+const CommonHeaderForCourse = ({ isLoading, title, description, customButton, handleCancel }) => {
   const navigate = useNavigate();
   const { course } = useSelector((state) => state.course);
   const { user } = useSelector((state) => state.user);
@@ -49,6 +43,7 @@ const CommonHeaderForCourse = ({
         break;
     }
   };
+
   const goPreviousPage = () => {
     handleCancel && handleCancel();
     navigate(-1);
@@ -82,15 +77,23 @@ const CommonHeaderForCourse = ({
             xs={12}
             sx={{
               display: "flex",
-              paddingTop: "1%",
-              paddingLeft: "3%",
-              paddingBottom: "1%",
+              padding: "1%",
+              // paddingTop: "1%",
+              // paddingLeft: "1%",
+              // paddingBottom: "1%",
+              backgroundColor: "#FFFFFF",
+              // backgroundColor: "red",
               borderBottom: "1px solid #EBEDF5",
             }}>
             <Grid item xs={8}>
               <Grid item xs={12}>
                 <Typography variant="h5" style={{ color: "#1D1D1D" }}>
                   <b> {title} </b>
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography variant="caption" style={{ color: "#1D1D1D" }}>
+                  <b> {course.description} </b>
                 </Typography>
               </Grid>
               <Grid item xs={12}>
@@ -115,17 +118,13 @@ const CommonHeaderForCourse = ({
                   paddingLeft: "0%",
                   // borderBottom: "1px solid #EBEDF5",
                 }}>
-                {customButton === "dashboard" ||
-                customButton === "Create User" ||
-                customButton === "null" ? (
+                {customButton === "dashboard" || customButton === "Create User" || customButton === "null" ? (
                   <></>
                 ) : customButton ? (
                   <Grid item xs={6}>
                     {/* {user.role === "trainer" || user.role === "admin" ? ( */}
                     <>
-                      {user.role === "trainer" ||
-                      user.role === "admin" ||
-                      user.role === "delivery_manager" ? (
+                      {user.role === "trainer" || user.role === "admin" || user.role === "delivery_manager" ? (
                         <>
                           <Grid
                             container
@@ -181,8 +180,7 @@ const CommonHeaderForCourse = ({
                     </Grid>
 
                     <Grid item xs={3}>
-                      {title === "Create Job Pool" ||
-                      title === "Create a Benchmark" ? (
+                      {title === "Create Job Pool" || title === "Create a Benchmark" ? (
                         <>
                           <Button
                             variant="contained"
@@ -233,9 +231,12 @@ const CommonHeaderForCourse = ({
             <Grid
               container
               sx={{
-                justifyContent: "left",
-                paddingTop: "1%",
-                paddingLeft: "3%",
+                // justifyContent: "left",
+                padding:"1%",
+                // paddingTop: "1%",
+                // paddingBottom: "1%",
+                // paddingLeft: "1%",
+                backgroundColor: "#FFFFFF",
               }}>
               <CourseNewHeaderBottom course={course} />
             </Grid>

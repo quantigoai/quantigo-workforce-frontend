@@ -19,6 +19,7 @@ import CourseHeader from "./CourseHeader/CourseHeader";
 import CourseTab from "./CourseTab";
 import CreateCourseModal from "./CreateCourseModal/CreateCourseModal";
 import CustomCard from "./CustomCard";
+import CreateTestMOdal from "./CreateCourseModal/CreateTestMOdal";
 
 const Course = () => {
   const { role } = useSelector((state) => state.user.user);
@@ -39,8 +40,9 @@ const Course = () => {
 
   return (
     <>
-      <Button onClick={handleOpen}>Create Course</Button>
-
+      {/* <Button onClick={handleOpen}>Create Course</Button> */}
+      {/* <CreateTestMOdal open={open} handleClose={handleClose} /> */}
+     
       <CreateCourseModal open={open} handleClose={handleClose} />
       {/* <Box
         sx={{
@@ -64,7 +66,7 @@ const Course = () => {
         </Grid> */}
       <Box className="content">
         <Box className="contentHeader">
-          <CourseHeader />
+          <CourseHeader handleOpen={handleOpen} />
         </Box>
 
         <Box sx={{ height: "85%", overflow: "auto" }}>

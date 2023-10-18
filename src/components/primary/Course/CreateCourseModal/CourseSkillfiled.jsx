@@ -106,7 +106,7 @@ const CourseSkillfiled = ({ course, skills, skillSet, handleChangeSkills, MenuPr
             //     ? course.skills.map((s) => s.name)
             //     : skillSet
             // }
-            defaultValue={skills.map((s) => s.name)}
+            defaultValue={isUpdate ? skills.map((s) => s.name) : skillSet}
             onChange={handleChangeSkills}
             // input={<FilledInput id="select-multiple-chip" label="Chip" />}
             // MenuProps={MenuProps}

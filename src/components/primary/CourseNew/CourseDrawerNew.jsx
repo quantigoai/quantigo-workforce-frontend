@@ -20,6 +20,7 @@ const CourseDrawerNew = ({ handleChapterClick }) => {
   const { course, isLoading } = useSelector((state) => state.course);
   const navigate = useNavigate();
 
+  
   const handleCreateChapter = (id) => {
     navigate(`/create-chapter/${id}`);
   };

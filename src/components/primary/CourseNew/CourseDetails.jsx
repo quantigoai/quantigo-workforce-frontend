@@ -15,11 +15,11 @@ import { setActiveChapterIndex } from "../../../features/slice/activePathSlice";
 import { getAChapterById, getACourseByID } from "../../../features/slice/courseSlice";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import CourseDrawer from "./CourseDrawer";
+import CommonHeaderForCourse from "../../shared/CustomComponenet/CommonHeader/CommonHeaderForCourse";
+import CourseDrawerNew from "./CourseDrawerNew";
 
 const CourseDetails = () => {
-  const { course, courseChapter, isLoading } = useSelector(
-    (state) => state.course
-  );
+  const { course, courseChapter, isLoading } = useSelector((state) => state.course);
   const params = useParams();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -53,40 +53,31 @@ const CourseDetails = () => {
 
   return (
     <>
-      {/* <Paper sx={{ width: "100%" }} elevation={0}> */}
-      <Box sx={{ display: "flex", alignItems: "baseline" }}>
-        <Grid
-          container
-          sx={{
-            paddingBottom: "1%",
-          }}>
-          <CommonHeader
+      <Box className="projectBox">
+        <Box className="courseHeader">
+          <CommonHeaderForCourse
             title={course.name}
+           
             description={course.description}
             isLoading={isLoading}
             customButton="Edit Course"
           />
-          {/* <CommonHeaderForCourse
-              title={course.name}
-              description={course.description}
-              isLoading={isLoading}
-              customButton="Edit Course"
-            /> */}
-        </Grid>
-      </Box>
-      {/* </Paper> */}
-      <Box sx={{ paddingTop: "1%" }}>
-        <Grid container>
-          {!isInContent && (
-            <Grid item xs={3} sx={{ paddingRight: "1%" }}>
-              <CourseDrawer handleChapterClick={handleChapterClick} />
-              {/* <CourseDrawerNew handleChapterClick={handleChapterClick} /> */}
+        </Box>
+        <Box className="courseContent">
+          <Box sx={{ height: "100%",backgroundColor: "" }}>
+            <Grid container sx={{  }}>
+              {!isInContent && (
+                <Grid item xs={3} sx={{ paddingRight: "1%" }}>
+                  {/* <CourseDrawer handleChapterClick={handleChapterClick} /> */}
+                  <CourseDrawerNew handleChapterClick={handleChapterClick} />
+                </Grid>
+              )}
+              <Grid item xs={isInContent ? 12 : 9}>
+              <Outlet context={[handleChapterClick]} />
             </Grid>
-          )}
-          <Grid item xs={isInContent ? 12 : 9}>
-            <Outlet context={[handleChapterClick]} />
-          </Grid>
-        </Grid>
+            </Grid>
+          </Box>
+        </Box>
       </Box>
     </>
   );

@@ -32,6 +32,10 @@ import ProjectLIstIndex2 from "../ProjectLIstNew2/ProjectLIstIndex2";
 import ShowResult from "../Quiz/QuizPage/ShowResult/ShowResult";
 import Skills from "../Skill/Skills";
 import PrivateRoute from "./PrivateRoute";
+import CourseNewDetailsIndex from "../CourseNew/CourseNewDetailsIndex";
+import CreateQuiz from "../Quiz/CreateQuiz";
+import UpdateQuiz from "../Quiz/UpdateQuiz";
+import UpdateChapter from "../Course/UpdateChapter";
 
 export const roles = {
   admin: "admin",
@@ -72,7 +76,7 @@ const Routers = () => {
         <Route path={"/emailVerification"} element={<EmailVerification />} />
 
         {/* ---------- Course routes ------------ */}
-        
+
         {/* TODO Should updated and release later  */}
         <Route path={"/course"} element={<Course />} />
         <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}>
@@ -82,7 +86,8 @@ const Routers = () => {
           <Route path={"/edit-course/:id"} element={<UpdateCourse />} />
         </Route>
         <Route path={"/course-details/:id"} element={<CourseDetails />}>
-          <Route path="index" element={<CourseDetailsIndex />} />
+          {/* <Route path="index" element={<CourseDetailsIndex />} /> */}
+          <Route path="index" element={<CourseNewDetailsIndex />} />
           <Route path="content" element={<CourseMainContent />} />
           <Route path="show-quiz" element={<QuizShow />} />
           <Route path={"quiz-result"} element={<ShowResult />} />
@@ -92,22 +97,22 @@ const Routers = () => {
 
         {/* ---------- Chapter related routes ------------ */}
         {/* TODO Should updated and release later  */}
-        {/* <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}>
+        <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}>
           <Route path={"/update-chapter/:id"} element={<UpdateChapter />} />
         </Route>
         <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]} />}>
-          <Route path={"/create-chapter/:id"} element={<CreateChapter />} />
-        </Route> */}
+          {/* <Route path={"/create-chapter/:id"} element={<CreateChapter />} /> */}
+        </Route>
         {/* ---------- ------------ ------------ */}
 
         {/* ---------- Quiz related routes ------------ */}
         {/* TODO Should updated and release later  */}
-        {/* <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]} />}>
+        <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]} />}>
           <Route path={"/create-quiz"} element={<CreateQuiz />} />
         </Route>
         <Route element={<PrivateRoute roles={[roles.trainer, roles.admin]} />}>
           <Route path={"/edit-quiz"} element={<UpdateQuiz />} />
-        </Route> */}
+        </Route>
         {/* ---------- ------------ ---------------- */}
 
         <Route path={"/forgetpassword"} element={<ForgetPassword />} />
@@ -154,8 +159,7 @@ const Routers = () => {
                 roles.trainer,
               ]}
             />
-          }
-        >
+          }>
           <Route path={"/skillcreate"} element={<Skills />} />
         </Route>
         {/* -------- ---------- ------------ */}
@@ -173,10 +177,8 @@ const Routers = () => {
                 roles.pro_manager,
                 roles.del_manager,
                 roles.rec_manger,
-              ]}
-            ></PrivateRoute>
-          }
-        >
+              ]}></PrivateRoute>
+          }>
           <Route path={"/all-users"} element={<AllUserListIndex action={"admin"} />} />
         </Route>
 
@@ -195,10 +197,8 @@ const Routers = () => {
                 roles.pro_manager,
                 roles.del_manager,
                 roles.rec_manger,
-              ]}
-            ></PrivateRoute>
-          }
-        >
+              ]}></PrivateRoute>
+          }>
           <Route path={"/allprojects"} element={<ProjectLIstIndex2 action={"allprojects"} />} />
         </Route>
 
@@ -213,10 +213,8 @@ const Routers = () => {
                 roles.pro_manager,
                 roles.del_manager,
                 roles.rec_manger,
-              ]}
-            ></PrivateRoute>
-          }
-        >
+              ]}></PrivateRoute>
+          }>
           <Route path={"/detailsInfo/:id"} element={<DetailsPage action={"detailsInfo"} />} />
         </Route>
 
@@ -231,10 +229,8 @@ const Routers = () => {
                 roles.pro_manager,
                 roles.del_manager,
                 roles.rec_manger,
-              ]}
-            ></PrivateRoute>
-          }
-        >
+              ]}></PrivateRoute>
+          }>
           <Route path={"/projectDetails/:id"} element={<FullProjectDetails action={"projectDetails"} />} />
         </Route>
 

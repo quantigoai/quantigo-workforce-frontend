@@ -22,7 +22,7 @@ const ChapterHeader = () => {
       <Box>
         <Paper sx={{ padding: "0.5%" }}>
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Grid item xs={4}>
+            <Grid item xs={12}>
               <FormControl variant="filled" sx={{ m: 1, minWidth: "90%" }}>
                 <InputLabel id="demo-simple-select-filled-label">
                   Chapters
@@ -44,7 +44,7 @@ const ChapterHeader = () => {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item xs={8}>
+            {/* <Grid item xs={8}>
               {user.role === "admin" || user.role === "trainer" ? (
                 <></>
               ) : (
@@ -69,7 +69,7 @@ const ChapterHeader = () => {
                   </Typography>
                 </>
               )}
-            </Grid>
+            </Grid> */}
           </Box>
         </Paper>
       </Box>

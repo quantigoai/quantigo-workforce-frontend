@@ -31,7 +31,7 @@ const MyCustomCardHover = {
   width: "100%",
   height: "100%",
   objectFit: "cover",
-  borderRadius: "5px 5px 0px 0px",
+  borderRadius: "10px 10px 0px 0px",
   transform: "scale(1.05)",
   transition: "all 1s ease",
 };
@@ -132,12 +132,14 @@ const CustomCard = ({ course }) => {
             pt: 0,
             mb: 0,
             overflow: "hidden",
+            cursor:"pointer"  
           }}
         >
           <img
             style={hovering ? { ...MyCustomCard, ...MyCustomCardHover } : MyCustomCard}
             src={imageUrl}
             alt={course.name}
+            onClick={() => handleViewDetailsButton(course._id)}
           />
         </Box>
 
@@ -151,8 +153,8 @@ const CustomCard = ({ course }) => {
           }}
         >
           <Box sx={{ px: "4%", height: "40%", pb: "0" }}>
-            <Grid container>
-              <Typography variant="wpf_h6_semiBold" color={"grey.500"}>
+            <Grid container   onClick={() => handleViewDetailsButton(course._id)}>
+              <Typography variant="wpf_h6_semiBold" color={"grey.500"} sx={{cursor:"pointer"}}>
                 {course.name}
               </Typography>
             </Grid>

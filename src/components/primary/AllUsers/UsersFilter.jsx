@@ -39,20 +39,14 @@ const UsersFilter = ({
     <>
       <Box
         component={motion.div}
-        // initial={{
-        //   x: isFilter ? 1000 : 0,
-        // }}
         animate={{
-          // x: 1000,
           opacity: isFilter ? 1 : 0,
-          // y: isFilter ? 1 : 0
-          // initial: { opacity: 0.1 },
           transition: { type: "spring", stiffness: 300, duration: 0.6, delay: 0.2 },
         }}
         sx={{
           backgroundColor: "neutral.N000",
           width: "100%",
-          height: isFilter ? "45%" : "0%",
+          height: isFilter ? "50%" : "0%",
           paddingY: "5px",
           display: isFilter ? "block" : "none",
           borderTop: "1px solid #E6ECF5",
@@ -133,7 +127,8 @@ const UsersFilter = ({
                   borderRadius: "8px",
                   backgroundColor: "#FF4757",
                   color: "white",
-                  // width: "140px",
+                  width: "100px",
+                  ml: 3,
                   height: { xl: "35 px", lg: "35px" },
                   "&:hover": {
                     backgroundColor: "#F53142",

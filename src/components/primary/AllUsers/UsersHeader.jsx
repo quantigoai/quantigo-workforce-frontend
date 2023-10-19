@@ -16,7 +16,7 @@ import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeade
 import "../ProjectLIstNew2/index.css";
 import ExportUserList from "./ExportUserList";
 import "./index.css";
-
+import FilterListOffIcon from "@mui/icons-material/FilterListOff";
 const UsersHeader = ({
   isCourse,
   isFilter,
@@ -33,7 +33,7 @@ const UsersHeader = ({
       <Box
         className="headerBox"
         sx={{
-          height: isFilter ? "55%" : "100%",
+          height: isFilter ? "50%" : "80%",
           backgroundColor: "neutral.N000",
         }}
       >
@@ -117,7 +117,11 @@ const UsersHeader = ({
             }}
             aria-label="menu"
           >
-            <FilterListIcon sx={{ color: "primary.main" }} />
+            {isFilter ? (
+              <FilterListOffIcon sx={{ color: "primary.main" }} />
+            ) : (
+              <FilterListIcon sx={{ color: "primary.main" }} />
+            )}
           </IconButton>
 
           <ExportUserList />

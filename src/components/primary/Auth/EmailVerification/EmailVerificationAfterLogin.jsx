@@ -1,9 +1,9 @@
-import {Box, Button, Grid, Paper, Typography} from "@mui/material";
-import {styled} from "@mui/material/styles";
-import React, {useEffect} from "react";
-import {useDispatch} from "react-redux";
-import {useNavigate, useParams} from "react-router-dom";
-import {emailVerificationLink} from "../../../../features/slice/userSlice";
+import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { emailVerificationLink } from "../../../../features/slice/userSlice";
 
 const paperstyleResendEmail = {
   backgroundColor: "#FFFFFF",
@@ -28,40 +28,63 @@ const EmailVerificationAfterLogin = () => {
   const { id, token } = params;
   const dispatch = useDispatch();
   const data = { id, token };
+  const [isVerified, setIsVerified] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const { isLoading } = useSelector((state) => state.user);
 
   useEffect(() => {
-    dispatch(emailVerificationLink(data));
-  }, []);
+    console.log(
+      "🚀 ~ file: EmailVerificationAfterLogin.jsx:32 ~ EmailVerificationAfterLogin ~ isVerified:",
+      isVerified
+    );
+    dispatch(emailVerificationLink(data)).then((action) => {
+      console.log("🚀 ~ file: EmailVerificationAfterLogin.jsx:42 ~ dispatch ~ action:", action);
+      if (action.error) {
+        setMessage(action.error.message);
+        setIsVerified(false);
+      } else {
+        console.log("🚀 ~ file: EmailVerificationAfterLogin.jsx:40 ~ dispatch ~ action:", action);
+        // TODO update user
+        setMessage(action.payload.data.message);
+        setIsVerified(true);
+      }
+    });
+  }, [dispatch]);
+
   const navigate = useNavigate();
   return (
     <>
       <>
-        <Box
-          sx={{
-            backgroundColor: "#F5F5F5",
-            height: "100%",
-            width: "100%",
-            paddingLeft: "1%",
-          }}
-        >
-          <Paper elevation={0} style={paperstyleResendEmail}>
-            <Grid container sx={{ justifyContent: "center", paddingTop: "7%" }}>
-              <Typography variant="h4" sx={{ color: "#090080" }}>
-                Your Account is Verified
-              </Typography>
-            </Grid>
-            <Grid container sx={{ justifyContent: "center", paddingTop: "2%" }}>
-              <ButtonStyle
-                fullWidth
-                onClick={() => {
-                  navigate("/");
-                }}
-              >
-                Go to Dashboard{" "}
-              </ButtonStyle>
-            </Grid>
-          </Paper>
-        </Box>
+        {!isLoading && (
+          <Box
+            sx={{
+              backgroundColor: "#F5F5F5",
+              height: "100%",
+              width: "100%",
+              paddingLeft: "1%",
+            }}
+          >
+            <Paper elevation={0} style={paperstyleResendEmail}>
+              <Grid container sx={{ justifyContent: "center", paddingTop: "7%" }}>
+                <Typography variant="h4" sx={{ color: "#090080" }}>
+                  {/* Your Account is {isVerified ? "Verified" : "Not Verified"} */}
+                  {message}
+                </Typography>
+              </Grid>
+              <Grid container sx={{ justifyContent: "center", paddingTop: "2%" }}>
+                <ButtonStyle
+                  fullWidth
+                  onClick={() => {
+                    navigate("/");
+                  }}
+                >
+                  Go to Dashboard{" "}
+                </ButtonStyle>
+              </Grid>
+            </Paper>
+          </Box>
+        )}
       </>
     </>
   );

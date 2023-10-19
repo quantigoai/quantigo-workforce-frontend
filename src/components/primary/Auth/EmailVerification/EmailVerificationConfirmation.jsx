@@ -1,9 +1,9 @@
-import {Box, Grid} from "@mui/material";
-import {styled} from "@mui/material/styles";
-import {lazy, Suspense, useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useParams} from "react-router-dom";
-import {emailVerificationLink} from "../../../../features/slice/userSlice";
+import { Box, Grid } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { lazy, Suspense, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { emailVerificationLink } from "../../../../features/slice/userSlice";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import HeaderNav from "../../HomePage/HeaderNav";
 
@@ -18,6 +18,7 @@ const EmailVerificationConfirmation = () => {
 
   useEffect(() => {
     dispatch(emailVerificationLink(params)).then((action) => {
+      console.log("🚀 ~ file: EmailVerificationConfirmation.jsx:21 ~ dispatch ~ action:", action);
       if (action.payload?.status === 200) {
         setMessage(action.payload.data.message);
         setVerificationTimeOver(true);

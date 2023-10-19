@@ -254,7 +254,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                     disabled={
                       !isDocumentNoValid ||
                       !isDocumentTypeValid ||
-                      // !coverImage ||
+                      !coverImage ||  
                       isLoading ||
                       coverImageFile?.size > maxSize
                     }

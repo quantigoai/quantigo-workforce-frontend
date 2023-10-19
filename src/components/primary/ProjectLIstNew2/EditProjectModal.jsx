@@ -1,12 +1,12 @@
-import {yupResolver} from "@hookform/resolvers/yup";
-import {Stack} from "@mui/material";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Stack } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Fade from "@mui/material/Fade";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import PDSelectField from "../../shared/CustomField/PDSelectField";
 import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
@@ -16,7 +16,7 @@ import useHandleEditChange from "./Hooks/useHandleEditChange";
 import ProjectModalHeader from "./ProjectModalHeader";
 import PDDateField from "../../shared/CustomField/PDDateField";
 import PDReleventField from "../../shared/CustomField/PDReleventField";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 const style = {
   position: "absolute",
@@ -76,8 +76,7 @@ const EditProjectModal = ({
           backdrop: {
             timeout: 500,
           },
-        }}
-      >
+        }}>
         <Fade in={editModalOpen}>
           <Box sx={style}>
             <ProjectModalHeader
@@ -92,42 +91,49 @@ const EditProjectModal = ({
                     paddingTop: "2%",
                     paddingRight: "3%",
                     position: "relative",
-                  }}
-                >
-                  <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                    <PDSelectField
-                      name={"project_platform"}
-                      label="Platform"
-                      options={platformCreateOptions}
-                      defaultValue={projectDrawer.project_platform}
-                    />
-                    <PDTextFIeld
-                      name="project_drawer_name"
-                      label="Project Name"
-                      defaultValue={projectDrawer.project_drawer_name}
-                      InputProps={{
-                        disableUnderline: true,
-                      }}
-                    />
+                  }}>
+                  <Stack direction="row" spacing={2}>
+                    <Box sx={{ width: "50%", height: "100px" }}>
+                      <PDSelectField
+                        name={"project_platform"}
+                        label="Platform"
+                        options={platformCreateOptions}
+                        defaultValue={projectDrawer.project_platform}
+                      />
+                    </Box>
+                    <Box sx={{ width: "50%", height: "100px" }}>
+                      <PDTextFIeld
+                        name="project_drawer_name"
+                        label="Project Name"
+                        defaultValue={projectDrawer.project_drawer_name}
+                        InputProps={{
+                          disableUnderline: true,
+                        }}
+                      />
+                    </Box>
                   </Stack>
-                  <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                    {" "}
-                    <PDSelectField
-                      name={"project_type"}
-                      label="Project Type"
-                      options={projectTypeCreateOptions}
-                      defaultValue={projectDrawer.project_type}
-                    />
-                    <PDTextFIeld
-                      name="project_batch"
-                      label="Batch"
-                      defaultValue={projectDrawer.project_batch}
-                      InputProps={{
-                        disableUnderline: true,
-                        min: 1,
-                      }}
-                      isNumber="true"
-                    />
+
+                  <Stack direction="row" spacing={2}>
+                    <Box sx={{ width: "50%", height: "100px" }}>
+                      <PDSelectField
+                        name={"project_type"}
+                        label="Project Type"
+                        options={projectTypeCreateOptions}
+                        defaultValue={projectDrawer.project_type}
+                      />
+                    </Box>
+                    <Box sx={{ width: "50%", height: "100px" }}>
+                      <PDTextFIeld
+                        name="project_batch"
+                        label="Batch"
+                        defaultValue={projectDrawer.project_batch}
+                        InputProps={{
+                          disableUnderline: true,
+                          min: 1,
+                        }}
+                        isNumber="true"
+                      />
+                    </Box>
                   </Stack>
 
                   <Stack direction="row" gap={2} sx={{ py: "0%" }}>
@@ -201,8 +207,7 @@ const EditProjectModal = ({
                       mb: "10px",
                       color: isLightTheme ? "#091E42" : "#fff",
                     }}
-                    variant="h6"
-                  >
+                    variant="h6">
                     Relevant Documents
                   </Typography>
 
@@ -215,8 +220,7 @@ const EditProjectModal = ({
                       maxHeight: 200,
                       color: isLightTheme ? "#091E42" : "#FFFFFF",
                       overflowY: "auto",
-                    }}
-                  >
+                    }}>
                     <PDReleventField defaultValueItems={projectDrawer.relevantDocuments} name={"relevantDocuments"} />
                   </Stack>
                 </Box>
@@ -229,8 +233,7 @@ const EditProjectModal = ({
                     padding: "20px",
                     mt: 2,
                     borderTop: "2px solid #F2F6FC",
-                  }}
-                >
+                  }}>
                   <Button
                     onClick={handleEditProjectClose}
                     sx={{
@@ -246,8 +249,7 @@ const EditProjectModal = ({
                       },
                     }}
                     variant="filled"
-                    size="large"
-                  >
+                    size="large">
                     Cancel
                   </Button>
                   <Button
@@ -263,8 +265,7 @@ const EditProjectModal = ({
                       },
                     }}
                     variant="contained"
-                    size="large"
-                  >
+                    size="large">
                     Save
                   </Button>
                 </Box>

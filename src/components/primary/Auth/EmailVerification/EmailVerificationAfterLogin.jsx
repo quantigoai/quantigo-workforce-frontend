@@ -29,18 +29,29 @@ const EmailVerificationAfterLogin = () => {
   const dispatch = useDispatch();
   const data = { id, token };
   const [isVerified, setIsVerified] = useState(false);
+  const [message, setMessage] = useState("");
+
   const { isLoading } = useSelector((state) => state.user);
 
   useEffect(() => {
+    console.log(
+      "🚀 ~ file: EmailVerificationAfterLogin.jsx:32 ~ EmailVerificationAfterLogin ~ isVerified:",
+      isVerified
+    );
     dispatch(emailVerificationLink(data)).then((action) => {
-      if (action.payload.error.message) {
+      console.log("🚀 ~ file: EmailVerificationAfterLogin.jsx:42 ~ dispatch ~ action:", action);
+      if (action.error) {
+        setMessage(action.error.message);
         setIsVerified(false);
       } else {
+        console.log("🚀 ~ file: EmailVerificationAfterLogin.jsx:40 ~ dispatch ~ action:", action);
         // TODO update user
+        setMessage(action.payload.data.message);
         setIsVerified(true);
       }
     });
-  }, []);
+  }, [dispatch]);
+
   const navigate = useNavigate();
   return (
     <>
@@ -57,7 +68,8 @@ const EmailVerificationAfterLogin = () => {
             <Paper elevation={0} style={paperstyleResendEmail}>
               <Grid container sx={{ justifyContent: "center", paddingTop: "7%" }}>
                 <Typography variant="h4" sx={{ color: "#090080" }}>
-                  Your Account is {isVerified ? "Verified" : "Not Verified"}
+                  {/* Your Account is {isVerified ? "Verified" : "Not Verified"} */}
+                  {message}
                 </Typography>
               </Grid>
               <Grid container sx={{ justifyContent: "center", paddingTop: "2%" }}>

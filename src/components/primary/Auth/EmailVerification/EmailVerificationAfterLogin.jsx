@@ -28,7 +28,7 @@ const EmailVerificationAfterLogin = () => {
   const { id, token } = params;
   const dispatch = useDispatch();
   const data = { id, token };
-  const [isVerified, setIsVerified] = useState(null);
+  const [isVerified, setIsVerified] = useState(false);
   const { isLoading } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const EmailVerificationAfterLogin = () => {
             <Paper elevation={0} style={paperstyleResendEmail}>
               <Grid container sx={{ justifyContent: "center", paddingTop: "7%" }}>
                 <Typography variant="h4" sx={{ color: "#090080" }}>
-                  Your Account is {isVerified && !isLoading ? "Verified" : "Not Verified"}
+                  Your Account is {isVerified ? "Verified" : "Not Verified"}
                 </Typography>
               </Grid>
               <Grid container sx={{ justifyContent: "center", paddingTop: "2%" }}>

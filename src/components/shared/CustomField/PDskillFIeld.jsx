@@ -53,7 +53,7 @@ const PDskillFIeld = ({
                   fontSize: "12px",
                   fontWeight: "500",
                   mb: 0,
-                  color: isLightTheme ? "#091E42" : "#FFFFFF",
+                  color: "neutral.N300",
                 }}>
                 {label}
               </Typography>

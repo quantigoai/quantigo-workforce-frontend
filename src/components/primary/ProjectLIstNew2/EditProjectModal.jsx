@@ -93,7 +93,7 @@ const EditProjectModal = ({
                     position: "relative",
                   }}>
                   <Stack direction="row" spacing={2}>
-                    <Box sx={{ width: "50%", height: "100px" }}>
+                    <Box sx={{ width: "50%", height: "80px" }}>
                       <PDSelectField
                         name={"project_platform"}
                         label="Platform"
@@ -101,7 +101,7 @@ const EditProjectModal = ({
                         defaultValue={projectDrawer.project_platform}
                       />
                     </Box>
-                    <Box sx={{ width: "50%", height: "100px" }}>
+                    <Box sx={{ width: "50%", height: "80px" }}>
                       <PDTextFIeld
                         name="project_drawer_name"
                         label="Project Name"
@@ -114,7 +114,7 @@ const EditProjectModal = ({
                   </Stack>
 
                   <Stack direction="row" spacing={2}>
-                    <Box sx={{ width: "50%", height: "100px" }}>
+                    <Box sx={{ width: "50%", height: "80px" }}>
                       <PDSelectField
                         name={"project_type"}
                         label="Project Type"
@@ -122,7 +122,7 @@ const EditProjectModal = ({
                         defaultValue={projectDrawer.project_type}
                       />
                     </Box>
-                    <Box sx={{ width: "50%", height: "100px" }}>
+                    <Box sx={{ width: "50%", height: "80px" }}>
                       <PDTextFIeld
                         name="project_batch"
                         label="Batch"
@@ -136,76 +136,87 @@ const EditProjectModal = ({
                     </Box>
                   </Stack>
 
-                  <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                    <PDTextFIeld
-                      name="project_alias"
-                      label="Alias"
-                      defaultValue={projectDrawer.project_alias}
-                      InputProps={{
-                        disableUnderline: true,
-                      }}
-                    />
-
-                    <PDTextFIeld
-                      name="pdr"
-                      label="PDR"
-                      defaultValue={projectDrawer.pdr}
-                      InputProps={{
-                        disableUnderline: true,
-                        min: 1,
-                        max: 5,
-                      }}
-                      isNumberPdr="true"
-                    />
+                  <Stack direction="row" spacing={2}>
+                    <Box sx={{ width: "50%", height: "80px" }}>
+                      <PDTextFIeld
+                        name="project_alias"
+                        label="Alias"
+                        defaultValue={projectDrawer.project_alias}
+                        InputProps={{
+                          disableUnderline: true,
+                        }}
+                      />
+                    </Box>
+                    <Box sx={{ width: "50%", height: "80px" }}>
+                      <PDTextFIeld
+                        name="pdr"
+                        label="PDR"
+                        defaultValue={projectDrawer.pdr}
+                        InputProps={{
+                          disableUnderline: true,
+                          min: 1,
+                          max: 5,
+                        }}
+                        isNumberPdr="true"
+                      />
+                    </Box>
                   </Stack>
 
                   {/* <SkillField/> */}
 
-                  <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                    <PDskillFIeld
-                      name={"project_skills"}
-                      addSkills={editSkills}
-                      selectedSkills={prevSkills}
-                      label="Skills"
-                      isEdit={isEdit}
-                      handleChangeSkill={handleEditSkill}
-                      skills={skills}
-                      count={editCount}
-                    />
-                    <PDTextFIeld
-                      name="benchmark"
-                      label="Benchmark"
-                      defaultValue={projectDrawer.benchMark}
-                      InputProps={{
-                        disableUnderline: true,
-                      }}
-                    />
+                  <Stack direction="row" spacing={2}>
+                    <Box sx={{ width: "50%", height: "80px" }}>
+                      <PDskillFIeld
+                        name={"project_skills"}
+                        addSkills={editSkills}
+                        selectedSkills={prevSkills}
+                        label="Skills"
+                        isEdit={isEdit}
+                        handleChangeSkill={handleEditSkill}
+                        skills={skills}
+                        count={editCount}
+                      />
+                    </Box>
+                    <Box sx={{ width: "50%", height: "80px" }}>
+                      <PDTextFIeld
+                        name="benchmark"
+                        label="Benchmark"
+                        defaultValue={projectDrawer.benchMark}
+                        InputProps={{
+                          disableUnderline: true,
+                        }}
+                      />
+                    </Box>
                   </Stack>
 
-                  <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                    <PDDateField
-                      name="estimated_end_date"
-                      label="Estimated End Time"
-                      defaultValue={projectDrawer.estimated_end_date}
-                      InputProps={{
-                        disableUnderline: true,
-                      }}
-                    />
-                    <PDSelectField
-                      name={"project_status"}
-                      label="Status"
-                      options={statusCreateOptions}
-                      defaultValue={projectDrawer.project_status}
-                    />
+                  <Stack direction="row" spacing={2}>
+                    <Box sx={{ width: "50%", height: "80px" }}>
+                      <PDDateField
+                        name="estimated_end_date"
+                        label="Estimated End Time"
+                        defaultValue={projectDrawer.estimated_end_date}
+                        InputProps={{
+                          disableUnderline: true,
+                        }}
+                      />
+                    </Box>
+                    <Box sx={{ width: "50%", height: "80px" }}>
+                      <PDSelectField
+                        name={"project_status"}
+                        label="Status"
+                        options={statusCreateOptions}
+                        defaultValue={projectDrawer.project_status}
+                      />
+                    </Box>
                   </Stack>
 
                   <Typography
                     sx={{
+                      fontSize: "12px",
                       fontWeight: "500",
                       mt: "5px",
-                      fontSize: "14px",
-                      mb: "10px",
-                      color: isLightTheme ? "#091E42" : "#fff",
+                      mb: "5px",
+                      color: "neutral.N300",
                     }}
                     variant="h6">
                     Relevant Documents

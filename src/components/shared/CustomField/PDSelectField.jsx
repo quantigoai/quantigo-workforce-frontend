@@ -41,7 +41,7 @@ export default function PDSelectField({ name, helperText, options, label, setVal
                   fontSize: "12px",
                   fontWeight: "500",
                   mb: 0,
-                  color: isLightTheme ? "#091E42" : "#FFFFFF",
+                  color: "neutral.N300",
                   // paddingBottom:"1%"
                 }}>
                 {label}
@@ -52,8 +52,8 @@ export default function PDSelectField({ name, helperText, options, label, setVal
                     mt: 0.3,
                     height: "45px",
                     width: "100%",
-                    backgroundColor: "#FFFFFF",
-                    color: "#000",
+                    backgroundColor: "neutral.N000",
+                    // color: "#000", 
                     border: "2px solid #E6ECF5",
                     fontSize: "14px",
                     // borderRadius: "5px",

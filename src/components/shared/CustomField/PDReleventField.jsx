@@ -31,7 +31,7 @@ function PDReleventField({ name, defaultValueItems }) {
       border: "2px solid #E6ECF5 !important",
       borderRadius: "8px",
     },
-    "& .MuiInputBase-root": { height: "78%", fontSize: "14px" },
+    "& .MuiInputBase-root": { height: "45px", fontSize: "14px" },
   }));
 
   return (

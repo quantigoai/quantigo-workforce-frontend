@@ -13,13 +13,11 @@ const GetHelpNew = () => {
         sx={{
           margin: "4% 4%",
           borderRadius: "8px",
-          // height: "157px",
           backgroundColor: "primary.P600",
-          //   padding: "10%",
         }}
       >
         <Grid container sx={{ justifyContent: "center", paddingTop: "9%" }}>
-          <Typography variant="wpf_p3_medium_2" sx={{ color: "neutral.N700" }}>
+          <Typography variant="wpf_p3_semiBold" sx={{ color: "neutral.N700" }}>
             Need Help?
           </Typography>
         </Grid>
@@ -32,7 +30,6 @@ const GetHelpNew = () => {
             paddingTop: "2%",
             paddingBottom: "5%",
             textAlign: "center",
-            // backgroundColor:"red"
           }}
         >
           <Typography
@@ -40,9 +37,7 @@ const GetHelpNew = () => {
               color: "neutral.N700",
               justifyContent: "center",
               textAlign: "center",
-              //  fontSize:"11px"
             }}
-            // variant="caption"
             variant="wpf_p4_regular"
           >
             Our customer support is at your
@@ -72,10 +67,8 @@ const GetHelpNew = () => {
           <Button
             sx={{
               backgroundColor: "neutral.N000",
-              color: "primary.B200",
               width: "50%",
               borderRadius: "8px",
-              fontSize: "12px",
               textTransform: "none",
               "&:hover": {
                 backgroundColor: "neutral.N000",
@@ -85,7 +78,10 @@ const GetHelpNew = () => {
             variant="outlined"
             onClick={handleHelp}
           >
-            <b> Get Help</b>
+            <Typography variant="wpf_p4_medium" color="primary.B200">
+              {" "}
+              Get Help
+            </Typography>
           </Button>
 
           {/* <iframe

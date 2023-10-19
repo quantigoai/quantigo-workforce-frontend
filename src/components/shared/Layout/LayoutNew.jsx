@@ -79,9 +79,11 @@ const Drawer = styled(MuiDrawer, {
 const DrawerFooter = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  position: "absolute",
-  bottom: "0px",
-  justifyContent: "center",
+  // justifyContent: "flex-end",
+  // position: "sticky",
+  // bottom: "0px",
+
+  // width: drawerWidth,
   ...theme.mixins.toolbar,
 }));
 
@@ -534,7 +536,18 @@ export default function LayoutNew({ children }) {
               </Box>
             </DrawerHeader>
 
-            <Box>
+            <Box
+              sx={{
+                height: { xxl: "75%", xl: "70%", lg: "70%" },
+                overflow: "auto",
+                "&::-webkit-scrollbar": {
+                  display: "none",
+                },
+                "&-ms-overflow-style:": {
+                  display: "none",
+                },
+              }}
+            >
               <Box sx={{ paddingLeft: "11%" }}>
                 {open && (
                   <Typography variant="wpf_p4_semiBold" sx={{ color: "#B6C9F0" }}>
@@ -555,18 +568,13 @@ export default function LayoutNew({ children }) {
               )}
             </Box>
 
-            <DrawerFooter
-              sx={{
-                position: "sticky",
-                bottom: { xxl: "6%", xl: "7%", lg: "5%" },
-                // width: "16.67%",
-              }}
-            >
-              {open && <GetHelpNew />}
+            <DrawerFooter>
+              <>{open && <GetHelpNew />}</>
             </DrawerFooter>
           </Drawer>
         </Box>
       </AnimatePresence>
+
       <AnimatePresence>
         <Box
           component={motion.div}

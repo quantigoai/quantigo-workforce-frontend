@@ -128,11 +128,37 @@ const lightTheme = createTheme({
   },
 });
 
-// lightTheme.typography.wf_h6 = {
-//   [lightTheme.breakpoints.up("lg")]: {
-//     fontSize: "12px",
-//   },
-//   [lightTheme.breakpoints.up("xl")]: {
+[lightTheme.breakpoints.between("lg", "xl")].forEach((key) => {
+  lightTheme.typography.wpf_p4_semiBold[key] = {
+    fontSize: "10px",
+  };
+});
+
+[lightTheme.breakpoints.up("xxl")].forEach((key) => {
+  lightTheme.typography.wpf_p4_semiBold[key] = {
+    fontSize: "14px",
+  };
+});
+[lightTheme.breakpoints.between("lg", "xl")].forEach((key) => {
+  lightTheme.typography.wpf_p3_medium[key] = {
+    fontSize: "10px",
+  };
+});
+
+[lightTheme.breakpoints.up("xxl")].forEach((key) => {
+  lightTheme.typography.wpf_p3_medium[key] = {
+    fontSize: "16px",
+  };
+});
+
+// [lightTheme.breakpoints.up("md")].forEach((key) => {
+//   lightTheme.typography.wpf_p4_semiBold[key] = {
+//     fontSize: "11px",
+//   };
+// });
+
+// lightTheme.typography.wpf_p4_semiBold = {
+//   [lightTheme.breakpoints.("")]: {
 //     fontSize: "14px",
 //   },
 // };

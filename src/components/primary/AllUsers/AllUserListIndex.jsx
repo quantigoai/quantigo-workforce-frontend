@@ -104,7 +104,6 @@ const AllUserListIndex = () => {
     return true;
   };
 
-
   const handleClickAway = () => {
     const skillsId = addSkills.map((skill) => skill._id);
 
@@ -235,7 +234,7 @@ const AllUserListIndex = () => {
     <Box className="projectBox">
       <Box className="projectHeader">
         <UsersHeader
-          isFilter={false}
+          isFilter={isFilter}
           isLightTheme={isLightTheme}
           handleIsFilter={handleIsFilter}
           handleProjectCreateOpen={() => console.log("handleProjectCreateOpen")}

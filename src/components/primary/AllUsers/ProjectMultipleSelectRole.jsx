@@ -25,7 +25,8 @@ const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, r
       <MySelect
         sx={{
           backgroundColor: "neutral.N000",
-          height: "36px",
+          height: "30px",
+          fontSize: "14px",
         }}
         displayEmpty
         multiple

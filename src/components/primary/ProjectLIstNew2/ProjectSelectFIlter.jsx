@@ -1,6 +1,6 @@
-import {Box, Button, FormControlLabel, Stack, Switch, Typography} from "@mui/material";
-import {motion} from "framer-motion";
-import {useState} from "react";
+import { Box, Button, FormControlLabel, Stack, Switch, Typography } from "@mui/material";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import PlatformSelectAnnotator from "./PlatformSelectAnnotator";
 import ProjectSelectFIlterField from "./ProjectSelectFIlterField";
 
@@ -31,8 +31,8 @@ const ProjectSelectFIlter = ({
       sx={{
         backgroundColor: "neutral.N000",
         width: "100%",
-        height: isFilter ? "45%" : "0%",
-        paddingY: "5px",
+        height: isFilter ? "50%" : "0%",
+        // paddingY: "5px",
         display: isFilter ? "block" : "none",
         borderTop: "1px solid #E6ECF5",
         transition: isFilter && "all 0.2s ease-in-out",
@@ -132,8 +132,10 @@ const ProjectSelectFIlter = ({
                   borderRadius: "8px",
                   backgroundColor: "#FF4757",
                   color: "white",
-                  width: "140px",
-                  height: "35 px",
+                  width: "100px",
+                  height: "25 px",
+                  ml: 3,
+                  mt: 0.5,
                   "&:hover": {
                     backgroundColor: "#F53142",
                   },

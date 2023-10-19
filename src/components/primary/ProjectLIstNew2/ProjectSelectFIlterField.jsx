@@ -1,7 +1,7 @@
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import {MenuItem, Select, styled, Typography} from "@mui/material";
+import { MenuItem, Select, styled, Typography } from "@mui/material";
 import PropTypes from "prop-types";
-import {MyFormControl} from "../../shared/CustomField/CustomDatePicker";
+import { MyFormControl } from "../../shared/CustomField/CustomDatePicker";
 
 ProjectSelectFIlterField.propTypes = {
   name: PropTypes.string,
@@ -19,9 +19,10 @@ export default function ProjectSelectFIlterField({ options, label, handleChange,
       <MySelect
         displayEmpty
         sx={{
-          height: "36px",
+          height: "30px",
           padding: "8px 1px",
           borderRadius: "8px",
+          fontSize: "14px",
           "& svg": {
             fill: "#667085",
           },
@@ -38,7 +39,7 @@ export default function ProjectSelectFIlterField({ options, label, handleChange,
           </Typography>
         </MenuItem>
         {options.map((option) => (
-          <MenuItem key={option.value} fullWidth value={option.value}>
+          <MenuItem sx={{ fontSize: "14px" }} key={option.value} fullWidth value={option.value}>
             <Typography variant="h7" color="neutral.700">
               {option.label}
             </Typography>

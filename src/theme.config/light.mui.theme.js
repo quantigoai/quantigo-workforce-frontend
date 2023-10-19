@@ -18,13 +18,6 @@ const lightTheme = createTheme({
   },
   typography: {
     ...typography,
-    // ...(typography.wf_h6.color = "#3C4D6B"),
-    // ...(typography.wf_h6_xl.color = "#3C4D6B"),
-    // ...(typography.wf_h6_light.color = "#3C4D6B"),
-    // ...(typography.wf_h5.color = "#3C4D6B"),
-    // ...(typography.wf_h5_bold.color = "#3C4D6B"),
-    // ...(typography.wf_h4.color = "#3C4D6B"),
-    // ...(typography.wf_p2_semiBold.color = "#3C4D6B"),
 
     ...(typography.wpf_h1_semiBold.color = "#3C4D6B"),
     ...(typography.wpf_h2_semiBold.color = "#3C4D6B"),
@@ -115,6 +108,13 @@ const lightTheme = createTheme({
         },
       },
     },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          margin: "0",
+        },
+      },
+    },
   },
   breakpoints: {
     values: {
@@ -128,14 +128,14 @@ const lightTheme = createTheme({
   },
 });
 
-lightTheme.typography.wf_h6 = {
-  [lightTheme.breakpoints.up("lg")]: {
-    fontSize: "12px",
-  },
-  [lightTheme.breakpoints.up("xl")]: {
-    fontSize: "14px",
-  },
-};
+// lightTheme.typography.wf_h6 = {
+//   [lightTheme.breakpoints.up("lg")]: {
+//     fontSize: "12px",
+//   },
+//   [lightTheme.breakpoints.up("xl")]: {
+//     fontSize: "14px",
+//   },
+// };
 
 // lightTheme.typography.wf_p2_semiBold = {
 //     [lightTheme.breakpoints.up("lg")]: {
@@ -154,14 +154,14 @@ lightTheme.typography.wf_h6 = {
 //     fontSize: "14px",
 //   },
 // };
-lightTheme.typography.wpf_p4_semiBold = {
-  [lightTheme.breakpoints.up("lg")]: {
-    fontSize: "12px",
-  },
-  [lightTheme.breakpoints.up("xl")]: {
-    fontSize: "12px",
-  },
-};
+// lightTheme.typography.wpf_p4_semiBold = {
+//   [lightTheme.breakpoints.up("lg")]: {
+//     fontSize: "12px",
+//   },
+//   [lightTheme.breakpoints.up("xl")]: {
+//     fontSize: "12px",
+//   },
+// };
 
 // lightTheme.typography.wpf_h5_semiBold = {
 //   [lightTheme.breakpoints.up("lg")]: {

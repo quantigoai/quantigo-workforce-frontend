@@ -11,6 +11,7 @@ const GetHelpNew = () => {
       <Grid
         container
         sx={{
+          margin: "4% 4%",
           borderRadius: "8px",
           // height: "157px",
           backgroundColor: "primary.P600",

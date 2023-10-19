@@ -490,7 +490,7 @@ export default function LayoutNew({ children }) {
           >
             <DrawerHeader
               sx={{
-                height: "9%",
+                height: "7%",
                 position: "sticky",
                 top: 0,
                 zIndex: 1213,
@@ -589,7 +589,8 @@ export default function LayoutNew({ children }) {
           {/* navbar */}
           <Box
             sx={{
-              height: { xl: "7%", lg: "9%", md: "10%" },
+              // height: { xl: "7%", lg: "7%", },
+              height: "7%",
               width: "100%",
             }}
           >

@@ -129,6 +129,17 @@ const lightTheme = createTheme({
 });
 
 [lightTheme.breakpoints.between("lg", "xl")].forEach((key) => {
+  lightTheme.typography.wpf_p3_semiBold[key] = {
+    fontSize: "12px",
+  };
+});
+
+[lightTheme.breakpoints.up("xxl")].forEach((key) => {
+  lightTheme.typography.wpf_p3_semiBold[key] = {
+    fontSize: "16px",
+  };
+});
+[lightTheme.breakpoints.between("lg", "xl")].forEach((key) => {
   lightTheme.typography.wpf_p4_semiBold[key] = {
     fontSize: "10px",
   };

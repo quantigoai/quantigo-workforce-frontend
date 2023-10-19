@@ -11,36 +11,40 @@ import React from "react";
 
 import backIcon from "../../../assets/images/dashboardIcon/GoBackIcon.svg";
 
-const GoBackButton = ({handleGoBack}) => {
+const GoBackButton = ({ handleGoBack }) => {
   return (
     <>
-      <Box
-        sx={{
-          display: "flex",
-        }}
-      >
+      <>
         <Button
           sx={{
             color: "neutral.800",
             width: {
-              xl: "100px",
-              lg: "100px",
+              xl: "110px",
+              lg: "110px",
             },
             height: {
-              xl: "100%",
+              xl: "32px",
               lg: "100%",
             },
             textTransform: "none",
+            display: "flex",
+            gap :1,
           }}
           onClick={handleGoBack}
         >
-          <img src={backIcon} />
+          <img
+            style={{
+              width: "15px",
+              height: "15px",
+            }}
+            src={backIcon}
+          />
 
-          <Typography variant="wpf_p3_semiBold" sx={{ paddingLeft: "12%" }}>
+          <Typography variant="wpf_p3_medium" sx={{ paddingLeft: "0%" }}>
             Go Back
           </Typography>
         </Button>
-      </Box>
+      </>
     </>
   );
 };

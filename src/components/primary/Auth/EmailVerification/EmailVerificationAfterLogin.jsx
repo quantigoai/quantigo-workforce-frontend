@@ -1,9 +1,9 @@
-import {Box, Button, Grid, Paper, Typography} from "@mui/material";
-import {styled} from "@mui/material/styles";
-import React, {useEffect} from "react";
-import {useDispatch} from "react-redux";
-import {useNavigate, useParams} from "react-router-dom";
-import {emailVerificationLink} from "../../../../features/slice/userSlice";
+import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { emailVerificationLink } from "../../../../features/slice/userSlice";
 
 const paperstyleResendEmail = {
   backgroundColor: "#FFFFFF",
@@ -28,40 +28,51 @@ const EmailVerificationAfterLogin = () => {
   const { id, token } = params;
   const dispatch = useDispatch();
   const data = { id, token };
+  const [isVerified, setIsVerified] = useState(null);
+  const { isLoading } = useSelector((state) => state.user);
 
   useEffect(() => {
-    dispatch(emailVerificationLink(data));
+    dispatch(emailVerificationLink(data)).then((action) => {
+      if (action.payload.error.message) {
+        setIsVerified(false);
+      } else {
+        // TODO update user
+        setIsVerified(true);
+      }
+    });
   }, []);
   const navigate = useNavigate();
   return (
     <>
       <>
-        <Box
-          sx={{
-            backgroundColor: "#F5F5F5",
-            height: "100%",
-            width: "100%",
-            paddingLeft: "1%",
-          }}
-        >
-          <Paper elevation={0} style={paperstyleResendEmail}>
-            <Grid container sx={{ justifyContent: "center", paddingTop: "7%" }}>
-              <Typography variant="h4" sx={{ color: "#090080" }}>
-                Your Account is Verified
-              </Typography>
-            </Grid>
-            <Grid container sx={{ justifyContent: "center", paddingTop: "2%" }}>
-              <ButtonStyle
-                fullWidth
-                onClick={() => {
-                  navigate("/");
-                }}
-              >
-                Go to Dashboard{" "}
-              </ButtonStyle>
-            </Grid>
-          </Paper>
-        </Box>
+        {!isLoading && (
+          <Box
+            sx={{
+              backgroundColor: "#F5F5F5",
+              height: "100%",
+              width: "100%",
+              paddingLeft: "1%",
+            }}
+          >
+            <Paper elevation={0} style={paperstyleResendEmail}>
+              <Grid container sx={{ justifyContent: "center", paddingTop: "7%" }}>
+                <Typography variant="h4" sx={{ color: "#090080" }}>
+                  Your Account is {isVerified && !isLoading ? "Verified" : "Not Verified"}
+                </Typography>
+              </Grid>
+              <Grid container sx={{ justifyContent: "center", paddingTop: "2%" }}>
+                <ButtonStyle
+                  fullWidth
+                  onClick={() => {
+                    navigate("/");
+                  }}
+                >
+                  Go to Dashboard{" "}
+                </ButtonStyle>
+              </Grid>
+            </Paper>
+          </Box>
+        )}
       </>
     </>
   );

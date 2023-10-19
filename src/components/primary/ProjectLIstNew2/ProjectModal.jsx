@@ -96,7 +96,7 @@ const ProjectModal = ({
                     position: "relative",
                   }}>
                   <Stack direction="row" spacing={2}>
-                    <Box sx={{ width: "50%", height: "100px" }}>
+                    <Box sx={{ width: "50%", height: "80px",backgroundColor:"" }}>
                       <PDSelectField
                         name={"project_platform"}
                         label="Platform"
@@ -104,7 +104,7 @@ const ProjectModal = ({
                         defaultValue={""}
                       />
                     </Box>
-                    <Box sx={{ width: "50%", height: "100px" }}>
+                    <Box sx={{ width: "50%", height: "80px",backgroundColor:"" }}>
                       <PDTextFIeld
                         name="project_drawer_name"
                         label="Project Name"
@@ -114,8 +114,8 @@ const ProjectModal = ({
                       />
                     </Box>
                   </Stack>
-                  <Stack direction="row" spacing={2} sx={{ backgroundColor: "", height: "100px" }}>
-                    <Box sx={{ width: "50%", height: "100px" }}>
+                  <Stack direction="row" spacing={2}>
+                    <Box sx={{ width: "50%", height: "80px" ,backgroundColor:""}}>
                       <PDSelectField
                         name={"project_type"}
                         label="Project Type"
@@ -123,7 +123,7 @@ const ProjectModal = ({
                         defaultValue={""}
                       />
                     </Box>
-                    <Box sx={{ width: "50%", height: "100px" }}>
+                    <Box sx={{ width: "50%", height: "80px" ,backgroundColor:""}}>
                       <PDTextFIeld
                         name="project_batch"
                         label="Batch"
@@ -136,8 +136,8 @@ const ProjectModal = ({
                     </Box>
                   </Stack>
 
-                  <Stack direction="row" spacing={2} sx={{ backgroundColor: "", height: "100px" }}>
-                    <Box sx={{ width: "50%", height: "100px" }}>
+                  <Stack direction="row" spacing={2} >
+                    <Box sx={{ width: "50%", height: "80px" }}>
                       <PDTextFIeld
                         name="project_alias"
                         label="Alias"
@@ -146,10 +146,11 @@ const ProjectModal = ({
                         }}
                       />
                     </Box>
-                    <Box sx={{ width: "50%", height: "100px" }}>
+                    <Box sx={{ width: "50%", height: "80px" }}>
                       <PDTextFIeld
                         name="pdr"
                         label="PDR"
+                        placeholder="PDR must be in range 1 to 5"
                         InputProps={{
                           disableUnderline: true,
                           min: 1,
@@ -163,8 +164,8 @@ const ProjectModal = ({
                   {/* <SkillField/> */}
 
                   {/* TODO Style change for dark mode */}
-                  <Stack direction="row" spacing={2} sx={{ backgroundColor: "", height: "100px" }}>
-                    <Box sx={{ width: "50%", height: "100px" }}>
+                  <Stack direction="row"  spacing={2}  >
+                    <Box sx={{ width: "50%", height: "80px" }}>
                       <PDskillFIeld
                         name={"project_skills"}
                         addSkills={addSkills && addSkills}
@@ -174,7 +175,7 @@ const ProjectModal = ({
                         count={count}
                       />
                     </Box>
-                    <Box sx={{ width: "50%", height: "100px" }}>
+                    <Box sx={{ width: "50%", height: "80px" }}>
                       <PDTextFIeld
                         name="benchMark"
                         label="Benchmark"
@@ -185,8 +186,8 @@ const ProjectModal = ({
                     </Box>
                   </Stack>
 
-                  <Stack direction="row" spacing={2} sx={{ backgroundColor: "", height: "100px" }}>
-                    <Box sx={{ width: "50%", height: "100px" }}>
+                  <Stack direction="row" spacing={2} >
+                    <Box sx={{ width: "50%", height: "80px" }}>
                       <PDDateField
                         name="estimated_end_date"
                         label="Estimated End Date"
@@ -195,7 +196,7 @@ const ProjectModal = ({
                         }}
                       />
                     </Box>
-                    <Box sx={{ width: "50%", height: "100px" }}>
+                    <Box sx={{ width: "50%", height: "80px" }}>
                       <PDSelectField
                         name={"project_status"}
                         label="Status"
@@ -207,11 +208,11 @@ const ProjectModal = ({
 
                   <Typography
                     sx={{
+                      fontSize: "12px",
                       fontWeight: "500",
                       mt: "5px",
-                      fontSize: "14px",
-                      mb: "10px",
-                      color: isLightTheme ? "#091E42" : "#FFFFFF",
+                      mb: "5px",
+                      color: "neutral.N300",
                     }}
                     variant="h6">
                     Relevant Documents
@@ -275,7 +276,7 @@ const ProjectModal = ({
                     }}
                     variant="contained"
                     size="large">
-                    Save
+                    Create
                   </Button>
                 </Box>
               </FormProvider>

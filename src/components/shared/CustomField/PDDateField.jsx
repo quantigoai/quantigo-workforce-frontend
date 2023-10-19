@@ -57,7 +57,7 @@ export default function PDDateField({
                   fontSize: "12px",
                   fontWeight: "500",
                   mb: 0,
-                  color: isLightTheme ? "#091E42" : "#FFFFFF",
+                  color: "neutral.N300",
                 }}>
                 {label}
               </Typography>
@@ -68,8 +68,8 @@ export default function PDDateField({
                       mt: 0.3,
                       // height: "45px",
                       width: "100%",
-                      backgroundColor: "#FFFFFF",
-                      color: "#000",
+                      backgroundColor: "neutral.N000",
+                      // color: "#000",
                       // border: "2px solid #E6ECF5",
                       fontSize: "14px",
                       borderRadius: "5px",

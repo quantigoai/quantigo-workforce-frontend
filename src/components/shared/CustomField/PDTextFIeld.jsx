@@ -20,9 +20,10 @@ export const PdTextField = styled(TextField)(() => ({
   backgroundColor: "#fff",
 
   "& .MuiOutlinedInput-root": {
-    color: "#000",
+    // color: "#000",
     height: "45px",
     borderRadius: "8px",
+    fontSize: "14px" 
   },
   "& .MuiOutlinedInput-notchedOutline ": {
     border: "2px solid #E6ECF5 !important",
@@ -68,7 +69,7 @@ export default function PDTextFIeld({
                   fontSize: "12px",
                   fontWeight: "500",
                   mb: 0,
-                  color: isLightTheme ? "#091E42" : "#FFFFFF",
+                  color: "neutral.N300",
                 }}>
                 {label}
               </Typography>
@@ -85,9 +86,10 @@ export default function PDTextFIeld({
                   sx={{
                     mt: 0.3,
                     fontSize: "14px",
+                    backgroundColor: "neutral.N000",
                   }}
                   // inputProps={InputProps}
-                  defaultValue={defaultValue}
+                  defaultValue={defaultValue} 
                   value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
                   error={!!error}
                   helperText={error ? error?.message : helperText}

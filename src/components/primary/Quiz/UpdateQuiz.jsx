@@ -20,6 +20,8 @@ import CourseName from "./QuizField.jsx/CourseName";
 import Duration from "./QuizField.jsx/Duration";
 import QuizName from "./QuizField.jsx/QuizName";
 
+
+
 const UpdateQuiz = ({ quizId }) => {
   const toast = useToaster();
   const { course } = useSelector((state) => state.course);

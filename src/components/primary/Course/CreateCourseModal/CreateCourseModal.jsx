@@ -23,6 +23,8 @@ import SelectField from "./SelectField";
 import PDTextFIeld from "../../../shared/CustomField/PDTextFIeld";
 import DocumentImageUpload from "../../Documents/DocumentImageUpload";
 import CourseSkillfiled from "./CourseSkillfiled";
+
+import CustomTextField from "../../../shared/CustomField/CustomTextField";
 const style = {
   position: "absolute",
   top: "50%",
@@ -57,6 +59,7 @@ const CreateCourseModal = ({ handleClose, open }) => {
   const [courseName, setCourseName] = useState([]);
   const [name, setName] = useState("");
   const [error, setError] = useState(false);
+
   useEffect(() => {
     dispatch(getAllCourses());
     dispatch(getAllSkills());
@@ -124,36 +127,39 @@ const CreateCourseModal = ({ handleClose, open }) => {
       setError(false);
     }
   };
+  const handleCreateCourse = (data) => {
+  console.log("🚀 ~ file: CreateCourseModal.jsx:131 ~ handleCreateCourse ~ data:", data)
+  
+}
+  // const onSubmit = (data) => {
+  //   console.log("🚀 ~ file: CreateCourseModal.jsx:124 ~ onSubmit ~ data:", data);
+  //   const preRequisiteCoursesColl = preRequisiteCourses.map((preRequisite) => {
+  //     return preRequisite._id;
+  //   });
+  //   const skillColl = skill.map((skill) => {
+  //     return skill._id;
+  //   });
 
-  const onSubmit = (data) => {
-    console.log("🚀 ~ file: CreateCourseModal.jsx:124 ~ onSubmit ~ data:", data);
-    const preRequisiteCoursesColl = preRequisiteCourses.map((preRequisite) => {
-      return preRequisite._id;
-    });
-    const skillColl = skill.map((skill) => {
-      return skill._id;
-    });
+  //   const formData = new FormData();
+  //   formData.append("name", name);
+  //   console.log("🚀 ~ file: CreateCourseModal.jsx:134 ~ onSubmit ~ name:", name);
+  //   formData.append("category", data.category);
+  //   formData.append("level", data.level);
+  //   formData.append("language", data.language);
+  //   formData.append("description", data.description);
+  //   formData.append("images", coverImageFile);
 
-    const formData = new FormData();
-    formData.append("name", name);
-    console.log("🚀 ~ file: CreateCourseModal.jsx:134 ~ onSubmit ~ name:", name);
-    formData.append("category", data.category);
-    formData.append("level", data.level);
-    formData.append("language", data.language);
-    formData.append("description", data.description);
-    formData.append("images", coverImageFile);
-
-    formData.append("prerequisiteCourses", preRequisiteCoursesColl);
-    formData.append("skills", skillColl);
-    dispatch(createCourse(formData)).then((action) => {
-      if (action.payload?.status === 200) {
-        navigate("/course");
-        toast.trigger("Course created successfully", "success");
-      } else {
-        toast.trigger("Can not create course", "error");
-      }
-    });
-  };
+  //   formData.append("prerequisiteCourses", preRequisiteCoursesColl);
+  //   formData.append("skills", skillColl);
+  //   // dispatch(createCourse(formData)).then((action) => {
+  //   //   if (action.payload?.status === 200) {
+  //   //     navigate("/course");
+  //   //     toast.trigger("Course created successfully", "success");
+  //   //   } else {
+  //   //     toast.trigger("Can not create course", "error");
+  //   //   }
+  //   // });
+  // };
   return (
     <>
       <Modal
@@ -173,18 +179,18 @@ const CreateCourseModal = ({ handleClose, open }) => {
               height: "100%",
               position: "relative",
             }}>
-            <Box sx={{ height: "8%" }}>
-              <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Create Project"} />
-            </Box>
-            <Box
-              sx={{
-                height: "92%",
-                backgroundColor: "",
-              }}>
-              <form onSubmit={handleSubmit(onSubmit)}>
+            {/* <form onSubmit={handleSubmit(onSubmit)}> */}
+              <Box sx={{ height: "8%", backgroundColor: "" }}>
+                <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Create Project"} />
+              </Box>
+              <Box
+                sx={{
+                  height: "92%",
+                  backgroundColor: "",
+                }}>
                 <Box
                   sx={{
-                    height: "90%",
+                    height: "80%",
                     // backgroundColor: "red",
                     // overflowY: "auto",
                     padding: "3%",
@@ -203,6 +209,9 @@ const CreateCourseModal = ({ handleClose, open }) => {
                       <CTextFieldDescription register={register} />
                     </Grid>
                     <Grid container>
+                      <PreRequisiteCourseFiled perRequisiteCourses={preRequisiteCourses} />
+                    </Grid>
+                    <Grid container>
                       <Grid xs={6} sx={{ paddingRight: "1%" }}>
                         <CSelectField name={"level"} options={courseLevelFields} level={"Level"} register={register} />
                       </Grid>
@@ -217,16 +226,14 @@ const CreateCourseModal = ({ handleClose, open }) => {
                       </Grid>
                     </Grid>
                     <Grid container>
-                    <CourseSkillfiled
-                      skills={skills}
-                      register={register}
-                      skillSet={skill}
-                      handleChangeSkills={handleChangeSkills}
-                      // MenuProps={MenuProps}
-                    />
-</Grid>
-
-
+                      <CourseSkillfiled
+                        skills={skills}
+                        register={register}
+                        skillSet={skill}
+                        handleChangeSkills={handleChangeSkills}
+                        // MenuProps={MenuProps}
+                      />
+                    </Grid>
 
                     <Grid container>
                       {" "}
@@ -237,8 +244,6 @@ const CreateCourseModal = ({ handleClose, open }) => {
                         register={register}
                       />
                     </Grid>
-
-                    {/* <PreRequisiteCourseFiled /> */}
                     <Grid xs={12} sx={{ paddingLeft: "0%", paddingBottom: "1%" }}>
                       <Typography
                         sx={{
@@ -255,7 +260,7 @@ const CreateCourseModal = ({ handleClose, open }) => {
                     {/* <CoverImageField coverImage={coverImage} removeImage={removeImage} handleImage={handleImage} /> */}
                   </>
                 </Box>
-                <Box sx={{ height: "10%", backgroundColor: "green", zIndex: 0 }}>
+                <Box sx={{ height: "10%", backgroundColor: "", zIndex: 0 }}>
                   {/* <Box
                     sx={{
                       display: "flex",
@@ -304,7 +309,7 @@ const CreateCourseModal = ({ handleClose, open }) => {
                               // border: "1px solid #2E58FF",
                             },
                           }}
-                          // onClick={() => handleChange()}
+                          onClick={() => handleCreateCourse()}
                           // onClick={handleSubmission}
                         >
                           Create
@@ -314,8 +319,8 @@ const CreateCourseModal = ({ handleClose, open }) => {
                   </Grid>
                   {/* </Box> */}
                 </Box>
-              </form>
-            </Box>
+              </Box>
+            {/* </form> */}
           </Box>
         </Box>
       </Modal>

@@ -1,7 +1,7 @@
-import {Grid, Typography} from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import React from "react";
 import levelImage from "../../../../assets/images/Frame 2.svg";
-import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
+import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 
 const basicStyle = {
   width: "100%",
@@ -28,7 +28,6 @@ const intermediateStyle = {
   borderRadius: "100px",
 };
 const CourseLevelChip = ({ level }) => {
-  
   let style = {};
 
   switch (level) {
@@ -51,21 +50,25 @@ const CourseLevelChip = ({ level }) => {
   return (
     <>
       <Grid container>
-        <Grid item xs={4} sx={{ paddingTop: "3%" }}>
+        <Grid item xs={4} sx={{ paddingTop: "0%" }}>
           <img src={levelImage} />
         </Grid>
 
-        <Grid item xs={7} sx={{}}>
-          <Grid xs={12}>
-            <Typography sx={{ color: "#969CAF" }} variant="caption">
-              LEVEL
-            </Typography>
-          </Grid>
-          <Grid xs={12}>
+        <Grid item xs={7} sx={{backgroundColor:""}}>
+          {/* <Grid xs={12}> */}
+          <Typography sx={{ color: "#969CAF" }} variant="wpf_p5_medium">
+            LEVEL
+          </Typography>
+          <br/>
+          <Typography variant="wpf_p3_medium">
+            <b>{capitalizeFirstLetter(level)}</b>
+          </Typography>
+          {/* </Grid> */}
+          {/* <Grid xs={12}>
             <Typography>
               <b>{capitalizeFirstLetter(level)}</b>
             </Typography>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Grid>
     </>

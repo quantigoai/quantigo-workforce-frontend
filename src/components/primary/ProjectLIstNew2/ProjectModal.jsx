@@ -1,13 +1,13 @@
-import {yupResolver} from "@hookform/resolvers/yup";
-import {Stack} from "@mui/material";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Stack } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Fade from "@mui/material/Fade";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import {useForm} from "react-hook-form";
-import {useSelector} from "react-redux";
+import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 import * as Yup from "yup";
 import PDDateField from "../../shared/CustomField/PDDateField";
 import PDReleventField from "../../shared/CustomField/PDReleventField";
@@ -16,6 +16,7 @@ import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
 import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
 import FormProvider from "../../shared/FormProvider/FormProvider";
 import ProjectModalHeader from "./ProjectModalHeader";
+import CustomSelectField from "../../shared/CustomField/CustomSelectField";
 
 const style = {
   position: "absolute",
@@ -80,8 +81,7 @@ const ProjectModal = ({
           backdrop: {
             timeout: 500,
           },
-        }}
-      >
+        }}>
         <Fade in={createProjectOpen}>
           <Box sx={style}>
             <ProjectModalHeader handleCreateProjectClose={handleCreateProjectClose} modalTitle={"Create Project"} />
@@ -94,97 +94,115 @@ const ProjectModal = ({
                     paddingTop: "2%",
                     paddingRight: "3%",
                     position: "relative",
-                  }}
-                >
-                  <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                    <PDSelectField
-                      name={"project_platform"}
-                      label="Platform"
-                      options={platformCreateOptions}
-                      defaultValue={""}
-                    />
-                    <PDTextFIeld
-                      name="project_drawer_name"
-                      label="Project Name"
-                      InputProps={{
-                        disableUnderline: true,
-                      }}
-                    />
+                  }}>
+                  <Stack direction="row" spacing={2}>
+                    <Box sx={{ width: "50%", height: "100px" }}>
+                      <PDSelectField
+                        name={"project_platform"}
+                        label="Platform"
+                        options={platformCreateOptions}
+                        defaultValue={""}
+                      />
+                    </Box>
+                    <Box sx={{ width: "50%", height: "100px" }}>
+                      <PDTextFIeld
+                        name="project_drawer_name"
+                        label="Project Name"
+                        InputProps={{
+                          disableUnderline: true,
+                        }}
+                      />
+                    </Box>
                   </Stack>
-                  <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                    <PDSelectField
-                      name={"project_type"}
-                      label="Project Type"
-                      options={projectTypeCreateOptions}
-                      defaultValue={""}
-                    />
-                    <PDTextFIeld
-                      name="project_batch"
-                      label="Batch"
-                      InputProps={{
-                        disableUnderline: true,
-                        min: 1,
-                      }}
-                      isNumber="true"
-                    />
+                  <Stack direction="row" spacing={2} sx={{ backgroundColor: "", height: "100px" }}>
+                    <Box sx={{ width: "50%", height: "100px" }}>
+                      <PDSelectField
+                        name={"project_type"}
+                        label="Project Type"
+                        options={projectTypeCreateOptions}
+                        defaultValue={""}
+                      />
+                    </Box>
+                    <Box sx={{ width: "50%", height: "100px" }}>
+                      <PDTextFIeld
+                        name="project_batch"
+                        label="Batch"
+                        InputProps={{
+                          disableUnderline: true,
+                          min: 1,
+                        }}
+                        isNumber="true"
+                      />
+                    </Box>
                   </Stack>
 
-                  <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                    <PDTextFIeld
-                      name="project_alias"
-                      label="Alias"
-                      InputProps={{
-                        disableUnderline: true,
-                      }}
-                    />
-
-                    <PDTextFIeld
-                      name="pdr"
-                      label="PDR"
-                      InputProps={{
-                        disableUnderline: true,
-                        min: 1,
-                        max: 5,
-                      }}
-                      isNumberPdr="true"
-                    />
+                  <Stack direction="row" spacing={2} sx={{ backgroundColor: "", height: "100px" }}>
+                    <Box sx={{ width: "50%", height: "100px" }}>
+                      <PDTextFIeld
+                        name="project_alias"
+                        label="Alias"
+                        InputProps={{
+                          disableUnderline: true,
+                        }}
+                      />
+                    </Box>
+                    <Box sx={{ width: "50%", height: "100px" }}>
+                      <PDTextFIeld
+                        name="pdr"
+                        label="PDR"
+                        InputProps={{
+                          disableUnderline: true,
+                          min: 1,
+                          max: 5,
+                        }}
+                        isNumberPdr="true"
+                      />
+                    </Box>
                   </Stack>
 
                   {/* <SkillField/> */}
 
                   {/* TODO Style change for dark mode */}
-                  <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                    <PDskillFIeld
-                      name={"project_skills"}
-                      addSkills={addSkills && addSkills}
-                      label="Skills"
-                      handleChangeSkill={handleChangeSkill}
-                      skills={skills}
-                      count={count}
-                    />
-                    <PDTextFIeld
-                      name="benchMark"
-                      label="Benchmark"
-                      InputProps={{
-                        disableUnderline: true,
-                      }}
-                    />
+                  <Stack direction="row" spacing={2} sx={{ backgroundColor: "", height: "100px" }}>
+                    <Box sx={{ width: "50%", height: "100px" }}>
+                      <PDskillFIeld
+                        name={"project_skills"}
+                        addSkills={addSkills && addSkills}
+                        label="Skills"
+                        handleChangeSkill={handleChangeSkill}
+                        skills={skills}
+                        count={count}
+                      />
+                    </Box>
+                    <Box sx={{ width: "50%", height: "100px" }}>
+                      <PDTextFIeld
+                        name="benchMark"
+                        label="Benchmark"
+                        InputProps={{
+                          disableUnderline: true,
+                        }}
+                      />
+                    </Box>
                   </Stack>
 
-                  <Stack direction="row" gap={2} sx={{ py: "0%" }}>
-                    <PDDateField
-                      name="estimated_end_date"
-                      label="Estimated End Date"
-                      InputProps={{
-                        disableUnderline: true,
-                      }}
-                    />
-                    <PDSelectField
-                      name={"project_status"}
-                      label="Status"
-                      options={statusCreateOptions}
-                      defaultValue={""}
-                    />
+                  <Stack direction="row" spacing={2} sx={{ backgroundColor: "", height: "100px" }}>
+                    <Box sx={{ width: "50%", height: "100px" }}>
+                      <PDDateField
+                        name="estimated_end_date"
+                        label="Estimated End Date"
+                        InputProps={{
+                          disableUnderline: true,
+                        }}
+                      />
+                    </Box>
+                    <Box sx={{ width: "50%", height: "100px" }}>
+                      <PDSelectField
+                        name={"project_status"}
+                        label="Status"
+                        options={statusCreateOptions}
+                        defaultValue={""}
+                      />
+                    </Box>
                   </Stack>
 
                   <Typography
@@ -195,8 +213,7 @@ const ProjectModal = ({
                       mb: "10px",
                       color: isLightTheme ? "#091E42" : "#FFFFFF",
                     }}
-                    variant="h6"
-                  >
+                    variant="h6">
                     Relevant Documents
                   </Typography>
 
@@ -210,8 +227,7 @@ const ProjectModal = ({
                       maxHeight: 200,
                       color: isLightTheme ? "#091E42" : "#FFFFFF",
                       overflowY: "auto",
-                    }}
-                  >
+                    }}>
                     <PDReleventField name={"relevantDocuments"} />
                   </Stack>
                 </Box>
@@ -224,8 +240,7 @@ const ProjectModal = ({
                     padding: "20px",
                     mt: 2,
                     borderTop: "2px solid #F2F6FC",
-                  }}
-                >
+                  }}>
                   <Button
                     onClick={handleCreateProjectClose}
                     sx={{
@@ -242,8 +257,7 @@ const ProjectModal = ({
                       },
                     }}
                     variant="filled"
-                    size="large"
-                  >
+                    size="large">
                     Cancel
                   </Button>
                   <Button
@@ -260,8 +274,7 @@ const ProjectModal = ({
                       },
                     }}
                     variant="contained"
-                    size="large"
-                  >
+                    size="large">
                     Save
                   </Button>
                 </Box>

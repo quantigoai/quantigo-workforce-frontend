@@ -11,6 +11,7 @@ import Box from "@mui/material/Box";
 import * as React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import { getAllCourses } from "../../../features/slice/courseSlice";
 import { getAllSkills } from "../../../features/slice/skillSlice";
@@ -19,7 +20,6 @@ import CourseHeader from "./CourseHeader/CourseHeader";
 import CourseTab from "./CourseTab";
 import CreateCourseModal from "./CreateCourseModal/CreateCourseModal";
 import CustomCard from "./CustomCard";
-import { useNavigate } from "react-router-dom";
 
 const Course = () => {
   const { role } = useSelector((state) => state.user.user);
@@ -53,7 +53,7 @@ const Course = () => {
 
       <Box className="content">
         <Box className="contentHeader">
-          <CourseHeader />
+          <CourseHeader handleOpen={handleOpen} />
         </Box>
 
         <Box sx={{ height: "85%", overflow: "auto" }}>

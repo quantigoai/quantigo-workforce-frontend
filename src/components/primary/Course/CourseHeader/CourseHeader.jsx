@@ -5,7 +5,7 @@ import { ClearIcon } from "@mui/x-date-pickers";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import SearchIcon from "@mui/icons-material/Search";
 
-const CourseHeader = () => {
+const CourseHeader = ({handleOpen}) => {
   return (
     <>
       <Box
@@ -111,7 +111,7 @@ const CourseHeader = () => {
               },
             }}
             variant="contained"
-            // onClick={handleProjectCreateOpen}
+            onClick={handleOpen}
           >
             <i style={{ fontSize: "17px", marginRight: "6px" }} className="ri-add-fill"></i> Create Course
           </Button>

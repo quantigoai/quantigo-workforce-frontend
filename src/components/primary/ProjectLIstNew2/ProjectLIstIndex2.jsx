@@ -219,7 +219,8 @@ const ProjectLIstIndex2 = () => {
             isFilter={false}
             isLightTheme={isLightTheme}
             handleIsFilter={handleIsFilter}
-            handleProjectCreateOpen={() => console.log("handleProjectCreateOpen")}
+            // handleProjectCreateOpen={() => console.log("handleProjectCreateOpen")}
+            handleProjectCreateOpen={() => setCreateProjectOpen(true)}
             // handleSearch={handleSearch}
             // setSearch={setSearch}
             // search={search}

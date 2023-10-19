@@ -22,6 +22,7 @@ import Duration from "./QuizField.jsx/Duration";
 import QuizName from "./QuizField.jsx/QuizName";
 
 const CreateQuiz = () => {
+  
   const { courseChapter } = useSelector((state) => state.course);
   const dispatch = useDispatch();
   const navigate = useNavigate();

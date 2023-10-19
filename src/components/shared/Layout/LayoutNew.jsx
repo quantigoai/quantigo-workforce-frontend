@@ -1,4 +1,3 @@
-import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
@@ -79,23 +78,23 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(["width", "margin"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
+// const AppBar = styled(MuiAppBar, {
+//   shouldForwardProp: (prop) => prop !== "open",
+// })(({ theme, open }) => ({
+//   zIndex: theme.zIndex.drawer + 1,
+//   transition: theme.transitions.create(["width", "margin"], {
+//     easing: theme.transitions.easing.sharp,
+//     duration: theme.transitions.duration.leavingScreen,
+//   }),
+//   ...(open && {
+//     marginLeft: drawerWidth,
+//     width: `calc(100% - ${drawerWidth}px)`,
+//     transition: theme.transitions.create(["width", "margin"], {
+//       easing: theme.transitions.easing.sharp,
+//       duration: theme.transitions.duration.enteringScreen,
+//     }),
+//   }),
+// }));
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -125,6 +124,7 @@ const DrawerFooter = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
   // justifyContent: "flex-end",
 }));
+
 export default function LayoutNew({ children }) {
   const { activePath } = useSelector((state) => state.activePath);
   const navigate = useNavigate();
@@ -519,32 +519,47 @@ export default function LayoutNew({ children }) {
             open={open}
           >
             <DrawerHeader>
-              <Box sx={{}}>
-                <img
-                  onClick={() => navigate("/")}
-                  src={logo}
-                  alt="logo"
-                  style={{
-                    cursor: "pointer",
-                    ...(!open && { display: "none" }),
-                  }}
-                  className="responsive-logo"
-                />
-              </Box>
-
-              {open && (
-                <Box sx={{ justifyContent: "left", paddingLeft: { xl: "20%", lg: "1%", md: "1%" } }}>
-                  <IconButton onClick={handleDrawerClose}>
-                    {theme.direction === "rtl" ? <img src={menuFoldLine} /> : <img src={menuFoldLine} />}
-                  </IconButton>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: !open ? "center" : "space-between",
+                  width: "80%",
+                  alignItems: "center",
+                }}
+              >
+                <Box sx={{ display: "flex", justifyContent: "center" }}>
+                  <img
+                    onClick={() => navigate("/")}
+                    src={logo}
+                    alt="logo"
+                    style={{
+                      cursor: "pointer",
+                      ...(!open && { display: "none" }),
+                    }}
+                    className="responsive-logo"
+                  />
                 </Box>
-              )}
-              {!open && (
-                <IconButton onClick={handleDrawerOpen}>
-                  <img src={menuUnfoldLne} />
-                </IconButton>
-              )}
+
+                {open && (
+                  // <Box sx={{ justifyContent: "left", paddingLeft: { xl: "20%", lg: "1%", md: "1%" } }}>
+                  // <Box sx={{ paddingLeft: { xxl: "30%", xl: "15%", lg: "15%", md: "1%" } }}>
+                  <Box>
+                    <IconButton onClick={handleDrawerClose}>
+                      {theme.direction === "rtl" ? <img src={menuFoldLine} /> : <img src={menuFoldLine} />}
+                    </IconButton>
+                  </Box>
+                )}
+
+                {!open && (
+                  <Box>
+                    <IconButton onClick={handleDrawerOpen}>
+                      <img src={menuUnfoldLne} />
+                    </IconButton>
+                  </Box>
+                )}
+              </Box>
             </DrawerHeader>
+
             <Box sx={{ paddingLeft: "11%" }}>
               {open && (
                 <Typography variant="caption" sx={{ color: "#B6C9F0" }}>
@@ -580,7 +595,7 @@ export default function LayoutNew({ children }) {
         {/* navbar */}
         <Box
           sx={{
-                     height: { xl: "7%", lg: "9%", md: "10%" },
+            height: { xl: "7%", lg: "9%", md: "10%" },
             width: "100%",
           }}
         >

@@ -30,7 +30,7 @@ import UserSvg from "../../../assets/images/wmp_svg/drawer/userNew.svg";
 import Header from "../Header/Header";
 import GetHelpNew from "./GetHelpNew";
 
-const drawerWidth = "15%";
+const drawerWidth = "16.67%";
 
 const menuAnimation = {
   hidden: {
@@ -147,7 +147,7 @@ export default function LayoutNew({ children }) {
   const adminOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "All Users", icon: UserSvg },
-    { name: "Course", icon: CourseSvg },
+    // { name: "Course", icon: CourseSvg },
 
     // { name: "All Users", icon: UserSvg },
     { name: "All Projects", icon: ProjectSvg },
@@ -501,7 +501,7 @@ export default function LayoutNew({ children }) {
         <Box
           component={motion.div}
           animate={{
-            width: open ? "15%" : "3%",
+            width: open ? "16.67%" : "3%",
             transition: { duration: 0.4 },
           }}
           sx={{
@@ -573,14 +573,14 @@ export default function LayoutNew({ children }) {
 
       <Box
         sx={{
-          width: open ? "85%" : "97%",
+          width: open ? "84.34%" : "97%",
           height: "100vh",
         }}
       >
         {/* navbar */}
         <Box
           sx={{
-            height: { xl: "7%", lg: "9%", md: "10%" },
+                     height: { xl: "7%", lg: "9%", md: "10%" },
             width: "100%",
           }}
         >

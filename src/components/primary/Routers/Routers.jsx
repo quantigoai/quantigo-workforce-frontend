@@ -78,7 +78,8 @@ const Routers = () => {
         {/* ---------- Course routes ------------ */}
 
         {/* TODO Should updated and release later  */}
-        <Route path={"/course"} element={<Course />} />
+
+        {/* <Route path={"/course"} element={<Course />} />
         <Route path={"/quiz-page"} element={<QuizPage />} />
         <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}>
           <Route path={"/create-course"} element={<CreateCourse />} />
@@ -86,13 +87,16 @@ const Routers = () => {
         <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}>
           <Route path={"/edit-course/:id"} element={<UpdateCourse />} />
         </Route>
-        <Route path={"/course-details/:id"} element={<CourseDetails />}>
-          {/* <Route path="index" element={<CourseDetailsIndex />} /> */}
-          <Route path="index" element={<CourseNewDetailsIndex />} />
+        <Route path={"/course-details/:id"} element={<CourseDetails />}> */}
+          
+          {/* TODO Check it and remove this */}
+          {/* //    <Route path="index" element={<CourseDetailsIndex />} /> */}
+
+          {/* <Route path="index" element={<CourseNewDetailsIndex />} />
           <Route path="content" element={<CourseMainContent />} />
           <Route path="show-quiz" element={<QuizShow />} />
           <Route path={"quiz-result"} element={<ShowResult />} />
-        </Route>
+        </Route> */}
 
         {/* ---------- ------------ ------------ */}
 

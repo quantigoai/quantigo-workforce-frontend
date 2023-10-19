@@ -108,14 +108,22 @@ const lightTheme = createTheme({
         },
       },
     },
-    MuiGrid :{
+    MuiGrid: {
       styleOverrides: {
         root: {
-          margin : 0
-
+          margin: 0,
         },
       },
-    }
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 0, // mobile deprecated
+      sm: 600, // mobile deprecated
+      md: 768,
+      lg: 1024,
+      xl: 1440,
+    },
   },
 });
 

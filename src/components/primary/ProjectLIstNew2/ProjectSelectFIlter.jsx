@@ -34,7 +34,7 @@ const ProjectSelectFIlter = ({
         // paddingY: "5px",
         display: isFilter ? "block" : "none",
         height: "52px",
-        // borderTop: "1px solid #E6ECF5",
+        borderTop: "1px solid #E6ECF5",
         transition: isFilter && "all 0.2s ease-in-out",
       }}
     >

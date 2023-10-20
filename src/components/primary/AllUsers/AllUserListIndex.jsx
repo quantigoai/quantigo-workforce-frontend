@@ -282,25 +282,25 @@ const AllUserListIndex = () => {
           {isDataLoading ? (
             <LoadingComponent />
           ) : (
-            <TableWrapper
-              role={role}
-              handleDetailsPage={handleDetailsPage}
-              handleClick={handleClick}
-              handleDelete={handleDelete}
-              myColumn={myColumn}
-              myRows={myRows}
-              pagination={pagination}
-              setPagination={setPagination}
-              handleChangePagination={handleChangePagination}
-              totalItems={totalUsers}
-              handleId={handleId}
-              filteredCol={filteredCol}
-              handleProjectDetailsOpen={handleUserDetailsOpen}
-              data={users}
-              isChildDataLoading={isChildDataLoading}
-              setIsChildDataLoading={setIsChildDataLoading}
-              handleReject={handleReject}
-              handleOpenNDA={handleOpenNDA}
+              <TableWrapper
+            role={role}
+            handleDetailsPage={handleDetailsPage}
+            handleClick={handleClick}
+            handleDelete={handleDelete}
+            myColumn={myColumn}
+            myRows={myRows}
+            pagination={pagination}
+            setPagination={setPagination}
+            handleChangePagination={handleChangePagination}
+            totalItems={totalUsers}
+            handleId={handleId}
+            filteredCol={filteredCol}
+            handleProjectDetailsOpen={handleUserDetailsOpen}
+            data={users}
+            isChildDataLoading={isChildDataLoading}
+            setIsChildDataLoading={setIsChildDataLoading}
+            handleReject={handleReject}
+            handleOpenNDA={handleOpenNDA}
             />
           )}
           <PaginationTable

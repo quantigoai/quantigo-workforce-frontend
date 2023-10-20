@@ -265,23 +265,23 @@ const ProjectLIstIndex2 = () => {
             {isDataLoading ? (
               <LoadingComponent />
             ) : (
-              <TableWrapper
-                role={role}
-                handleDetailsPage={handleDetailsPage}
-                handleClick={handleClick}
-                handleDelete={handleDelete}
-                myColumn={myColumn}
-                myRows={myRows}
-                pagination={pagination}
-                setPagination={setPagination}
-                handleChangePagination={handleChangePagination}
-                totalItems={total}
-                handleId={handleId}
-                filteredCol={filteredCol}
-                handleProjectDetailsOpen={handleProjectDetailsOpen}
-                data={projectDrawers}
-                isChildDataLoading={isChildDataLoading}
-                setIsChildDataLoading={setIsChildDataLoading}
+                <TableWrapper
+              role={role}
+              handleDetailsPage={handleDetailsPage}
+              handleClick={handleClick}
+              handleDelete={handleDelete}
+              myColumn={myColumn}
+              myRows={myRows}
+              pagination={pagination}
+              setPagination={setPagination}
+              handleChangePagination={handleChangePagination}
+              totalItems={total}
+              handleId={handleId}
+              filteredCol={filteredCol}
+              handleProjectDetailsOpen={handleProjectDetailsOpen}
+              data={projectDrawers}
+              isChildDataLoading={isChildDataLoading}
+              setIsChildDataLoading={setIsChildDataLoading}
               />
             )}
 

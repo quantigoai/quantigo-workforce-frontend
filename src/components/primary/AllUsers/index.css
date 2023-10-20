@@ -36,6 +36,7 @@
 .tableContent{
    width: 100%;
    padding: 16px;
+   background-color: aqua;
    height: 85%;
 }
 

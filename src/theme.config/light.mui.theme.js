@@ -79,7 +79,7 @@ const lightTheme = createTheme({
           backgroundColor: "#fff",
           color: "#3C4D6B",
           height: "40px",
-          padding: "10px 16px",
+          padding: "12px",
           margin: "0",
         },
       },

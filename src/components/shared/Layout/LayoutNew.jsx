@@ -29,7 +29,7 @@ import UserSvg from "../../../assets/images/wmp_svg/drawer/userNew.svg";
 import Header from "../Header/Header";
 import GetHelpNew from "./GetHelpNew";
 
-const drawerWidth = "16.67%";
+const drawerWidth = "15.67%";
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -66,7 +66,7 @@ const Drawer = styled(MuiDrawer, {
   width: drawerWidth,
   flexShrink: 0,
   whiteSpace: "nowrap",
-  // boxSizing: "border-box",
+  boxSizing: "border-box",
   ...(open && {
     ...openedMixin(theme),
     "& .MuiDrawer-paper": openedMixin(theme),
@@ -470,12 +470,15 @@ export default function LayoutNew({ children }) {
           sx={{
             height: "100vh",
             backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
+            // position: "relative",
           }}
         >
           <Drawer
             PaperProps={{
               sx: {
-                // backgroundColor: "red",
+                // position: "absolute",
+                // width: "100%",
+
                 backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
                 "&::-webkit-scrollbar": {
                   display: "none",
@@ -589,8 +592,8 @@ export default function LayoutNew({ children }) {
           {/* navbar */}
           <Box
             sx={{
-              // height: { xl: "7%", lg: "7%", },
-              height: "7%",
+              height: { xxl: "7%", xl: "7.22%", lg: "7.22%" },
+              // height: "7.22%%",
               width: "100%",
             }}
           >
@@ -600,8 +603,8 @@ export default function LayoutNew({ children }) {
           {/* body */}
           <Box
             sx={{
-              height: { xl: "93%", lg: "91%", md: "90%" },
-              paddingBottom: "1%",
+              height: { xxl: "93%", xl: "92.78%", lg: "92.78", md: "90%" },
+              paddingBottom: "0%",
               backgroundColor: isLightTheme ? "#F2F6FC" : "#121212",
               width: "100%",
               overflowY: "auto",

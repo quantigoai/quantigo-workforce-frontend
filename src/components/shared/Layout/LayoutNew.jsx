@@ -29,7 +29,7 @@ import UserSvg from "../../../assets/images/wmp_svg/drawer/userNew.svg";
 import Header from "../Header/Header";
 import GetHelpNew from "./GetHelpNew";
 
-const drawerWidth = "16.67%";
+const drawerWidth = "16.66%";
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -59,8 +59,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-
-  ...theme.mixins.toolbar,
+  // ...theme.mixins.toolbar,
 }));
 
 const Drawer = styled(MuiDrawer, {
@@ -458,12 +457,18 @@ export default function LayoutNew({ children }) {
   };
 
   return (
-    <Stack component={motion.div} direction={"row"}>
+    <Stack
+      component={motion.div}
+      direction={"row"}
+      sx={{
+        width: "100vw",
+      }}
+    >
       <AnimatePresence>
         <Box
           component={motion.div}
           animate={{
-            width: open ? "16.67%" : "5%",
+            width: open ? "16.66%" : "5%",
             transition: { duration: 0.4 },
           }}
           sx={{
@@ -475,9 +480,6 @@ export default function LayoutNew({ children }) {
           <Drawer
             PaperProps={{
               sx: {
-                // position: "absolute",
-                // width: "100%",
-
                 backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
                 "&::-webkit-scrollbar": {
                   display: "none",
@@ -492,7 +494,7 @@ export default function LayoutNew({ children }) {
           >
             <DrawerHeader
               sx={{
-                height: "7%",
+                height: "56px",
                 position: "sticky",
                 top: 0,
                 zIndex: 1213,
@@ -581,7 +583,7 @@ export default function LayoutNew({ children }) {
         <Box
           component={motion.div}
           animate={{
-            width: open ? "84.34%" : "95%",
+            width: open ? "83.34%" : "95%",
             transition: { duration: 0.4 },
           }}
           sx={{

@@ -8,6 +8,7 @@ import { myProfileEdit, uploadMyImage } from "../../../../../features/slice/user
 import CommonFieldTest from "../CommonFieldTest";
 import CommonSelectField from "../CommonSelectField";
 import ProfilePicture from "./ProfilePicture";
+import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
 
 const MyProfileIndex = () => {
   const { user, isLoading } = useSelector((state) => state.user);
@@ -86,8 +87,12 @@ const MyProfileIndex = () => {
   const DOB = moment.utc(user.dob).format("MMM Do, YYYY");
   return (
     <>
-      <Box sx={{ flex: "1", overflowY: "auto", backgroundColor: "", height: "80vh" }}>
-        <Box sx={{ flex: "0 0 auto", height: { xl: "16%", lg: "20%" } }}>
+      <Box sx={{
+        flex: "1", overflowY: "auto", backgroundColor: "",
+        // height: "85vh"
+        height: { xxl: "85vh", xl: "85vh", lg: "82vh" },
+      }}>
+        <Box sx={{ flex: "0 0 auto", height: { xxl: "15%", xl: "17%", lg: "17%" }, backgroundColor: "" }}>
           <ProfilePicture
             user={user}
             editAble={editAble}
@@ -97,23 +102,27 @@ const MyProfileIndex = () => {
             coverImageFile={coverImageFile}
           />
         </Box>
+
         <Box
-          sx={{
+           sx={{
             flex: "1",
             overflowY: "auto",
             "&::-webkit-scrollbar": {
               width: "0",
             },
-            height: { xl: "84%", lg: "80%" },
+            backgroundColor: "",
+            height: { xxl: "85%", xl: "83%", lg: "83%" },
           }}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Box sx={{ paddingLeft: "2%", paddingRight: "2%" }}>
               <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
-                <Typography sx={{ fontSize: "12px", color: "primary.B200" }}>Personal Information</Typography>
+                <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
+                  Personal Information
+                </Typography>
               </Grid>
 
-              <Grid container spacing={2}>
-                <Grid item xs={6}>
+              <Grid container spacing={0} sx={{ backgroundColor: "  " }}>
+                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <CommonFieldTest
                     name="firstName"
                     label={"First Name"}
@@ -138,12 +147,12 @@ const MyProfileIndex = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid container spacing={2}>
-                <Grid item xs={6}>
+              <Grid container>
+                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <CommonFieldTest
                     name="gender"
                     label={"Gender"}
-                    defaultValue={user.gender}
+                    defaultValue={capitalizeFirstLetter(user.gender)}
                     disableItem={true}
                     control={control}
                     rules={{ required: false }}
@@ -164,8 +173,8 @@ const MyProfileIndex = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid container spacing={2}>
-                <Grid item xs={6}>
+              <Grid container>
+                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <CommonFieldTest
                     name="dob"
                     label={"Date Of Birth"}
@@ -190,11 +199,11 @@ const MyProfileIndex = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid container sx={{ paddingTop: "1%", paddingBottom: "1%" }}>
-                <Typography sx={{ fontSize: "12px", color: "primary.B200" }}>Contact Information</Typography>
+              <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
+                <Typography sx={{ fontSize: "12px", color: "primary.B200" }}>Contact Info.</Typography>
               </Grid>
-              <Grid container spacing={2}>
-                <Grid item xs={6}>
+              <Grid container>
+                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <CommonFieldTest
                     name="phone"
                     label={"Phone No."}
@@ -219,8 +228,8 @@ const MyProfileIndex = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid container spacing={2}>
-                <Grid item xs={6}>
+              <Grid container>
+                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <CommonFieldTest
                     name="email"
                     label={"Email"}
@@ -245,7 +254,7 @@ const MyProfileIndex = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid container spacing={2}>
+              <Grid container>
                 <Grid item xs={12}>
                   <CommonFieldTest
                     name="permanentAddress"
@@ -259,27 +268,52 @@ const MyProfileIndex = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid container sx={{ paddingTop: "2%" }}>
-                {editAble && (
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    disabled={isLoading}
-                    sx={{
-                      backgroundColor: "primary.B200",
-                      color: "neutral.N000",
-                      borderRadius: "8px",
-                      textTransform: "none",
-                      fontSize: "12px",
-                      width: "150px",
 
-                      "&:hover": {
-                        backgroundColor: "primary.B200",
-                        color: "neutral.N000",
-                      },
-                    }}>
-                    Save Changes
-                  </Button>
+              <Grid container sx={{ paddingBottom: "1%", backgroundColor: "" }}>
+                {editAble && (
+                  <>
+                    
+                    <Box sx={{ paddingRight: "3%" }}>
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        disabled={isLoading}
+                        sx={{
+                          backgroundColor: "primary.B200",
+                          color: "neutral.N000",
+                          borderRadius: "8px",
+                          textTransform: "none",
+                          fontSize: "12px",
+                          width: "150px",
+
+                          "&:hover": {
+                            backgroundColor: "primary.B200",
+                            color: "neutral.N000",
+                          },
+                        }}>
+                        Save Changes
+                      </Button>
+                    </Box>
+
+                    <Button
+                      variant="contained"
+                      // disabled={isLoading}
+                      onClick={() => setEditAble(false)}
+                      sx={{
+                        textTransform: "none",
+                        backgroundColor: "#F2F6FC",
+                        borderRadius: "8px",
+                        fontSize: "12px",
+                        color: "#253E5C",
+                        // padding: " 10px 16px",
+                        width: "150px",
+                        "&:hover": {
+                          background: "#F2F6FC",
+                        },
+                      }}>
+                      Cancel
+                    </Button>
+                  </>
                 )}
               </Grid>
               {/* <button type="submit">Submit</button> */}

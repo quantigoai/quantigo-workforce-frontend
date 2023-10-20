@@ -79,6 +79,16 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
     // setStepper(1);
   };
   useEffect(() => {}, [acceptedFiles]);
+
+  const handleSubmission = () => {
+    const formData = new FormData();
+    formData.append("hoursData", selectedFile);
+    console.log("🚀 ~ file: DetailsUploadHourModal.jsx:86 ~ handleSubmission ~ selectedFile:", selectedFile)
+    // const data = {
+    //   id: user._id,
+    //   signImage: formData,
+    // };
+  };
   return (
     <>
       <Modal
@@ -92,12 +102,11 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
             height: { xl: "%", lg: "%" },
             width: { xl: "35%", lg: "40%" },
           }}>
-                  <Box sx={{ flex: "0 0 5%" }}>
-                      <Grid container sx={{paddingRight:"3%"}} >
-                      <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Upload Effective Hour"} />
-       
-                      </Grid>
-               </Box>
+          <Box sx={{ flex: "0 0 5%" }}>
+            <Grid container sx={{ paddingRight: "3%" }}>
+              <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Upload Effective Hour"} />
+            </Grid>
+          </Box>
 
           <Box
             sx={{
@@ -135,9 +144,9 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
                 ) : (
                   <>
                     <Grid item xs={12} sx={{}}>
-                      <Grid container sx={{paddingRight:"2%"}}>
+                      <Grid container sx={{ paddingRight: "2%" }}>
                         <Grid item xs={1} sx={{ paddingTop: "2%" }}>
-                          <img src={pdfSvg} height={27}/>
+                          <img src={pdfSvg} height={27} />
                         </Grid>
                         <Grid
                           item
@@ -145,8 +154,8 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
                           sx={{
                             paddingTop: "2%",
                             textAlign: "left",
-                              paddingRight: "3%",
-                              paddingLeft: "2%",
+                            paddingRight: "3%",
+                            paddingLeft: "2%",
                           }}>
                           <Typography variant="wpf_p3_medium">{selectedFile?.name}</Typography>
                         </Grid>
@@ -216,9 +225,7 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
                         // border: "1px solid #2E58FF",
                       },
                     }}
-                    // onClick={() => handleChange()}
-                    //   onClick={handleSubmission}
-                  >
+                    onClick={handleSubmission}>
                     Upload
                   </Button>
                 </Grid>

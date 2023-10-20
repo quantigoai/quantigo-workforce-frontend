@@ -69,8 +69,9 @@ export default function EditProfilePageIndex() {
             <Grid
               item
               xs={2.5}
-              xl={2}
-              sx={{ borderRight: "1px solid #E1E8F5", display: "flex", flexDirection: "column", paddingTop: "1%" }}>
+              xxl={2}
+              xl={2.5}
+              sx={{ borderRight: "1px solid #E1E8F5",  display: "flex", flexDirection: "column", paddingTop: "1%" }}>
               <Tabs
                 orientation="vertical"
                 variant="scrollable"
@@ -90,6 +91,8 @@ export default function EditProfilePageIndex() {
                     alignItems: "flex-start",
                     borderRadius: value === 0 ? "8px" : "none",
                     backgroundColor: value === 0 ? "primary.B008" : "",
+                    height:value === 0 ? "40px" : "",
+                    // backgroundColor:"red"
                   }}
                   label={
                     <Typography
@@ -106,6 +109,7 @@ export default function EditProfilePageIndex() {
                     alignItems: "flex-start",
                     borderRadius: value === 1 ? "8px" : "none",
                     backgroundColor: value === 1 ? "primary.B008" : "",
+                    height:value === 1 ? "40px" : "",
                   }}
                   label={
                     <Typography
@@ -141,7 +145,7 @@ export default function EditProfilePageIndex() {
                 </Grid>
               </Box>
             </Grid>
-            <Grid item xs={9.5} xl={10} sx={{ height: "100%", backgroundColor: "" }}>
+            <Grid item xxl={10} xs={9.5} xl={9.5} sx={{ height: "100%", backgroundColor: "" }}>
               <Box>
                 <TabPanel value={value} index={0}>
                   <MyProfileIndex />

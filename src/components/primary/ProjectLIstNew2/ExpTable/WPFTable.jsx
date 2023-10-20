@@ -111,7 +111,7 @@ export default function WPFTable({
                     ))}
 
                     {columns.map((column) => (
-                      <MiddleTableColumn data-aos="fade-left" key={column.id} row={row} column={column} />
+                      <MiddleTableColumn key={column.id} row={row} column={column} />
                     ))}
 
                     {role === "recruitment_manager" && <StickyDocViewTableColumn column={row} />}

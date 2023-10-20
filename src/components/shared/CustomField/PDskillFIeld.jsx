@@ -47,14 +47,17 @@ const PDskillFIeld = ({
             <Box
               sx={{
                 height: "100px",
-              }}>
+              }}
+            >
               <Typography
+                variant="wpf_h7_medium"
                 sx={{
                   fontSize: "12px",
                   fontWeight: "500",
                   mb: 0,
                   color: "neutral.N300",
-                }}>
+                }}
+              >
                 {label}
               </Typography>
               <Box sx={{ width: "100%" }}>
@@ -89,7 +92,8 @@ const PDskillFIeld = ({
                         gap: 0.5,
                         fontSize: "12px",
                         height: "20px",
-                      }}>
+                      }}
+                    >
                       {selected?.map(
                         (value, i) =>
                           [0].includes(i) && <Chip sx={{ fontSize: "12px", height: "95%" }} key={value} label={value} />
@@ -122,7 +126,8 @@ const PDskillFIeld = ({
                       )}
                     </Box>
                   )}
-                  MenuProps={MenuProps}>
+                  MenuProps={MenuProps}
+                >
                   {skills?.map((skill) => (
                     <MenuItem sx={{ fontSize: "14px" }} key={skill._id} value={skill.name}>
                       {skill.name}

@@ -23,7 +23,7 @@ export const PdTextField = styled(TextField)(() => ({
     // color: "#000",
     height: "45px",
     borderRadius: "8px",
-    fontSize: "14px" 
+    fontSize: "14px",
   },
   "& .MuiOutlinedInput-notchedOutline ": {
     border: "2px solid #E6ECF5 !important",
@@ -59,44 +59,51 @@ export default function PDTextFIeld({
       render={({ field, fieldState: { error } }) => {
         return (
           // <FormControl fullWidth>
-            <Box
+          <Box
+            sx={{
+              height: "100px",
+            }}
+          >
+            <Typography
+              // variant="wpf_p4_medium"
               sx={{
-                height: "100px",
-              }}>
-              <Typography
-                // variant="wpf_p4_medium"
+                fontSize: "12px",
+                fontWeight: "500",
+                mb: 0,
+                color: "neutral.N300",
+              }}
+            >
+              {label}
+            </Typography>
+            <Box sx={{ width: "100%" }}>
+              <PdTextField
+                size="small"
+                type={isNumber || isNumberPdr ? "number" : "text"}
+                id="outlined-basic"
+                {...field}
+                fullWidth
+                // InputProps={{ disableUnderline: true }}
+                variant="outlined"
+                required
                 sx={{
-                  fontSize: "12px",
-                  fontWeight: "500",
-                  mb: 0,
-                  color: "neutral.N300",
-                }}>
-                {label}
-              </Typography>
-              <Box sx={{ width: "100%" }}>
-                <PdTextField
-                  size="small"
-                  type={isNumber || isNumberPdr ? "number" : "text"}
-                  id="outlined-basic"
-                  {...field}
-                  fullWidth
-                  // InputProps={{ disableUnderline: true }}
-                  variant="outlined"
-                  required
-                  sx={{
-                    mt: 0.3,
-                    fontSize: "14px",
-                    backgroundColor: "neutral.N000",
-                  }}
-                  // inputProps={InputProps}
-                  defaultValue={defaultValue} 
-                  value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
-                  error={!!error}
-                  helperText={error ? error?.message : helperText}
-                  {...other}
-                />
-              </Box>
+                  mt: 0.3,
+                  fontSize: "14px",
+                  backgroundColor: "neutral.N000",
+                }}
+                // inputProps={InputProps}
+                defaultValue={defaultValue}
+                value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
+                error={!!error}
+                helperText={error ? error?.message : helperText}
+                {...other}
+                InputProps={{
+                  inputProps: isNumberPdr
+                    ? { disableUnderline: true, min: 1, max: 5 }
+                    : { disableUnderline: true, min: 1 },
+                }}
+              />
             </Box>
+          </Box>
           // </FormControl>
         );
       }}

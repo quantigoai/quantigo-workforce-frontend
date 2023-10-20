@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Chip} from "@mui/material";
+import { Chip } from "@mui/material";
 
 let drawerStatus = (status) => {
   switch (status) {
@@ -70,7 +70,7 @@ const ProjectDrawerStatusChip = ({ value, isPopper = false }) => {
 
   return (
     <>
-      <Chip variant="outlined" sx={style(value)} label={drawerStatus(value)} value={value} />
+      <Chip variant="outlined" sx={{ ...style(value), fontSize: "11px" }} label={drawerStatus(value)} value={value} />
     </>
   );
 };

@@ -51,20 +51,23 @@ export default function PDDateField({
             <Box
               sx={{
                 height: "100px",
-              }}>
+              }}
+            >
               <Typography
+                variant="wpf_h7_medium"
                 sx={{
                   fontSize: "12px",
                   fontWeight: "500",
                   mb: 0,
                   color: "neutral.N300",
-                }}>
+                }}
+              >
                 {label}
               </Typography>
               <Box sx={{ width: "100%" }}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <MyDatePicker
-                     sx={{
+                    sx={{
                       mt: 0.3,
                       // height: "45px",
                       width: "100%",
@@ -77,7 +80,8 @@ export default function PDDateField({
                     // inputFormat="DD-MM-YYYY"
                     format="DD MMM YYYY"
                     defaultValue={defaultValue ? dayjs(defaultValue) : field.value}
-                    onChange={handleChange}>
+                    onChange={handleChange}
+                  >
                     <TextField sx={{}} error={!!error} helperText={error && error?.message} id="date-picker" />
                   </MyDatePicker>
                 </LocalizationProvider>

@@ -65,7 +65,7 @@ export default function PDTextFIeld({
             }}
           >
             <Typography
-              // variant="wpf_p4_medium"
+              variant="wpf_h7_medium"
               sx={{
                 fontSize: "12px",
                 fontWeight: "500",

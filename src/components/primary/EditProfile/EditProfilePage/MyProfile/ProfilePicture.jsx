@@ -30,8 +30,8 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                     alt="Profile Picture"
                     src={!coverImage ? image : coverImage}
                     sx={{
-                      height: { xl: "95px", lg: "75px" },
-                      width: { xl: "95px", lg: "75px" },
+                      height: { xxl: "85px", xl: "72px", lg: "72px" },
+                      width: { xxl: "85px",xl: "72px", lg: "72px" },
                       // width: "100px",
                       // height: "100px",
                       filter: editAble && "brightness(65%)",
@@ -44,8 +44,8 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                       position: "absolute",
                       top: 0,
                       left: 0,
-                      height: { xl: "95px", lg: "75px" },
-                      width: { xl: "95px", lg: "75px" },
+                      height: {xxl: "85px", xl: "72px", lg: "72px" },
+                      width: {xxl: "85px", xl: "72px", lg: "72px" },
                       // width: "100px",
                       // height: "100px",
                     }}>
@@ -130,11 +130,16 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                             color: "neutral.N000",
                             backgroundColor: "primary.B200",
                             height: "20px",
+                            // width: "75px",
                             borderRadius: "32px",
-                            fontSize: "10px",
                           }}
                           // label="QAI_DK3454"
-                          label={capitalizeFirstLetter(user.qaiUserName || "")}
+                          label={
+                            <Typography variant="wpf_p5_medium">
+                              {capitalizeFirstLetter(user.qaiUserName || "")}{" "}
+                            </Typography>
+                          }
+                          // label={capitalizeFirstLetter(user.qaiUserName || "")}
                         />
                       </Box>
                       {!user.active && (
@@ -158,7 +163,7 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
             </Grid>
           </Grid>
 
-          <Grid item xs={2} sx={{ justifyContent: "center" }}>
+          <Grid item xs={2} sx={{ justifyContent: "center" ,backgroundColor:"",paddingRight:"1%"}}>
             <Grid container sx={{ justifyContent: "right", paddingTop: "14%" }}>
               {!editAble && (
                 <Button

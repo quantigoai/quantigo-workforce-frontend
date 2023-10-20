@@ -1,13 +1,13 @@
-import {FormControl, Grid, MenuItem, Select, styled, Typography} from "@mui/material";
+import { FormControl, Grid, MenuItem, Select, styled, Typography } from "@mui/material";
 import React from "react";
-import {Controller} from "react-hook-form";
+import { Controller } from "react-hook-form";
 
 export const MySelect = styled(Select)(() => ({
   border: "1px solid #E6ECF5",
   borderRadius: "8px",
-  padding: "5px 0px 0px 0px",
+  // padding: "5px 0px 0px 0px",
   background: "none",
-  height: "42px",
+  height: "40px",
 }));
 const options = [
   { value: "(A+)", label: "A+" },
@@ -32,12 +32,11 @@ function CommonSelectField({ name, label, defaultValue, disableItem, control, ru
             <FormControl fullWidth>
               <Typography
                 sx={{
-                  fontSize: "12px",
                   color: "neutral.N300",
-                  fontWeight: "500",
+
                   mb: 1,
                 }}
-              >
+                variant="wpf_p4_medium">
                 {label}
               </Typography>
 
@@ -48,8 +47,9 @@ function CommonSelectField({ name, label, defaultValue, disableItem, control, ru
                 variant="outlined"
                 placeholder="Select"
                 sx={{
-                  height: "42px",
+                  height: "40px",
                   backgroundColor: editAble ? "" : "neutral.N400",
+                  fontSize:"14px"
                 }}
                 disabled={disableItem ? true : !editAble}
                 defaultValue={defaultValue}
@@ -59,10 +59,10 @@ function CommonSelectField({ name, label, defaultValue, disableItem, control, ru
               >
                 {options.map((option) => (
                   <MenuItem
+                    sx={{fontSize:"14px"}}
                     key={option.value}
                     fullWidth
-                    value={(() => setValue(field.name, field.value), option.value)}
-                  >
+                    value={(() => setValue(field.name, field.value), option.value)}>
                     {option.label}
                   </MenuItem>
                 ))}

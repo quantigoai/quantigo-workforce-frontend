@@ -1,17 +1,17 @@
-import {FormControl, Grid, styled, TextField, Typography} from "@mui/material";
+import { FormControl, Grid, styled, TextField, Typography } from "@mui/material";
 import React from "react";
-import {Controller} from "react-hook-form";
+import { Controller } from "react-hook-form";
 
 const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "1px solid #E6ECF5 !important",
     borderRadius: "8px",
   },
-  "& .MuiInputBase-root": { height: "42px", fontSize: "14px" },
+  "& .MuiInputBase-root": { height: "40px", fontSize: "14px" },
 }));
 function CommonFieldTest({ name, label, defaultValue, disableItem, control, rules, errors, editAble }) {
   return (
-    <Grid item xs={12} sx={{ mb: 1 }}>
+    <Grid item xs={12} sx={{ mb: 2 }}>
       {/* <label>{name}</label> */}
       <Controller
         name={name}
@@ -22,16 +22,20 @@ function CommonFieldTest({ name, label, defaultValue, disableItem, control, rule
             <FormControl fullWidth>
               <Typography
                 sx={{
-                  fontSize: "12px",
                   color: "neutral.N300",
-                  fontWeight: "500",
+
                   mb: 1,
                 }}
-              >
+                variant="wpf_p4_medium">
                 {label}
               </Typography>
               <MyTextField
-                sx={{ backgroundColor: editAble ? "" : "neutral.N400" }}
+                sx={{
+                  backgroundColor: editAble ? "" : "neutral.N400",
+                  fontSize: "14px",
+                  borderRadius: "8px",
+                  height: "40px",
+                }}
                 variant="outlined"
                 disabled={disableItem ? true : !editAble}
                 defaultValue={defaultValue}

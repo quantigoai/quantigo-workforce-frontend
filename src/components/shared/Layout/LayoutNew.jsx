@@ -29,7 +29,7 @@ import UserSvg from "../../../assets/images/wmp_svg/drawer/userNew.svg";
 import Header from "../Header/Header";
 import GetHelpNew from "./GetHelpNew";
 
-const drawerWidth = "15.67%";
+const drawerWidth = "16.67%";
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -46,9 +46,12 @@ const closedMixin = (theme) => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: "hidden",
+  // padding: "7px",
+  // margin: "5px",
   width: `calc(${theme.spacing(7)} + 1px)`,
+  marginLeft: "10px",
   [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
+    width: `calc(${theme.spacing(7)} + 5px)`,
   },
 });
 
@@ -79,11 +82,7 @@ const Drawer = styled(MuiDrawer, {
 const DrawerFooter = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  // justifyContent: "flex-end",
-  // position: "sticky",
-  // bottom: "0px",
 
-  // width: drawerWidth,
   ...theme.mixins.toolbar,
 }));
 
@@ -464,7 +463,7 @@ export default function LayoutNew({ children }) {
         <Box
           component={motion.div}
           animate={{
-            width: open ? "16.67%" : "3%",
+            width: open ? "16.67%" : "5%",
             transition: { duration: 0.4 },
           }}
           sx={{
@@ -582,7 +581,7 @@ export default function LayoutNew({ children }) {
         <Box
           component={motion.div}
           animate={{
-            width: open ? "84.34%" : "97%",
+            width: open ? "84.34%" : "95%",
             transition: { duration: 0.4 },
           }}
           sx={{

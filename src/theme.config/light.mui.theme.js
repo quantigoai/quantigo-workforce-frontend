@@ -115,6 +115,13 @@ const lightTheme = createTheme({
         },
       },
     },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          border : "none",
+        },
+      },
+    },
   },
   breakpoints: {
     values: {

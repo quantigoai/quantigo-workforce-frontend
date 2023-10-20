@@ -3,11 +3,12 @@ import { styled } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useDispatch, useSelector } from "react-redux";
-import pdfSvg from "../../../../assets/images/PDF.svg";
+import pdfSvg from "../../../../assets/images/csvIcon.png";
 import deleteIcon from "../../../../assets/images/fi_trash-2.png";
 
 import ProjectModalHeader from "../ProjectModalHeader";
 import PdfNdaUploadField from "../../Nda/PdfNdaUploadField";
+import CsvUploadField from "./CsvUploadField";
 
 const style = {
   display: "flex",
@@ -88,12 +89,15 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
         <Box
           sx={{
             ...style,
-            height: { xl: "60%", lg: "%" },
+            height: { xl: "%", lg: "%" },
             width: { xl: "35%", lg: "40%" },
           }}>
-          <Box sx={{ flex: "0 0 5%" }}>
-            <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Upload Effective Hour"} />
-          </Box>
+                  <Box sx={{ flex: "0 0 5%" }}>
+                      <Grid container sx={{paddingRight:"3%"}} >
+                      <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Upload Effective Hour"} />
+       
+                      </Grid>
+               </Box>
 
           <Box
             sx={{
@@ -102,7 +106,7 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
               padding: "3%",
             }}>
             <Box sx={{ paddingLeft: "1%", paddingRight: "1%" }}>
-              <PdfNdaUploadField handleImage={handleImage} selectedFile={selectedFile} />
+              <CsvUploadField handleImage={handleImage} selectedFile={selectedFile} />
             </Box>
 
             <Box sx={{ paddingLeft: "1%", paddingRight: "1%" }}>
@@ -132,8 +136,8 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
                   <>
                     <Grid item xs={12} sx={{}}>
                       <Grid container sx={{paddingRight:"2%"}}>
-                        <Grid item xs={1} sx={{ paddingTop: "1%" }}>
-                          <img src={pdfSvg} />
+                        <Grid item xs={1} sx={{ paddingTop: "2%" }}>
+                          <img src={pdfSvg} height={27}/>
                         </Grid>
                         <Grid
                           item
@@ -141,9 +145,10 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
                           sx={{
                             paddingTop: "2%",
                             textAlign: "left",
-                            paddingRight: "3%",
+                              paddingRight: "3%",
+                              paddingLeft: "2%",
                           }}>
-                          <Typography>{selectedFile?.name}</Typography>
+                          <Typography variant="wpf_p3_medium">{selectedFile?.name}</Typography>
                         </Grid>
                         <Grid item xs={1}>
                           <Button onClick={removeImage}>

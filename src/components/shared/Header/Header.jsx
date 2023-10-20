@@ -189,17 +189,23 @@ const Header = () => {
                     <Menu
                       sx={{
                         "& .MuiPaper-root": {
-                          borderRadius: "5px",
+                          borderRadius: "6px",
+                          width: "182px",
+                          mt: 1.3,
+                          ml: -4,
+                          boxShadow: "0px 8px 24px 0px #253E5C14, 0px 0px 4px 0px #253E5C0A",
                         },
                       }}
                       anchorEl={anchorEl}
                       open={open}
+                      autoFocus={false}
                       onClose={handleClose}
                     >
                       <MenuItem
                         sx={{
                           borderBottom: "1px solid #F0F5FA",
                           width: "182px",
+                          py: 1.5,
                         }}
                         onClick={handleEditProfile}
                       >
@@ -208,7 +214,8 @@ const Header = () => {
                         </ListItemIcon>
                         <ListItemText sx={{ color: "neutral.N300" }}>Edit Profile</ListItemText>
                       </MenuItem>
-                      <MenuItem onClick={handleLogOut} sx={{ width: "182px" }}>
+
+                      <MenuItem onClick={handleLogOut} sx={{ width: "182px", py: 1.5 }}>
                         <ListItemIcon>
                           <LogoutIcon />
                         </ListItemIcon>

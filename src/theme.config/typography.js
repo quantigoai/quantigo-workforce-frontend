@@ -71,13 +71,14 @@ const typography = {
     wpf_p2_semiBold: createTypography("16px", "600", "24px"),
     wpf_p3_semiBold: createTypography("14px", "600", "20px"),
     wpf_p4_semiBold: createTypography("12px", "600", "18px"),
+    wpf_p4_semiBold_2: createTypography("12px", "600", "16px"),
 
     wpf_p1_medium: createTypography("18px", "500", "28px"),
     wpf_p2_medium: createTypography("16px", "500", "24px"),
     wpf_p3_medium: createTypography("14px", "500", "20px"),
     wpf_p3_medium_2: createTypography("14px", "500", "24px"),
     wpf_p3_medium_3: createTypography("14px", "500", "16px"),
-    wpf_p4_medium: createTypography("12px", "500", "18px"),
+    wpf_p4_medium: createTypography("12px", "500", "16px"),
     wpf_p5_medium: createTypography("10px", "500", "12px"),
 
     wpf_p1_regular: createTypography("18px", "400", "28px"),

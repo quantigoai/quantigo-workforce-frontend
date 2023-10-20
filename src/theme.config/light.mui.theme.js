@@ -71,26 +71,42 @@ const lightTheme = createTheme({
         },
       },
     },
-
-    MuiTableCell: {
+    MuiTableRow: {
       styleOverrides: {
         root: {
           borderBottom: "1px solid #f2f6fc",
           backgroundColor: "#fff",
           color: "#3C4D6B",
           height: "40px",
-          padding: "12px",
+          // height: "40px",
+          // padding: "12px",
+          // padding: "0px",
           margin: "0",
         },
       },
     },
-    MuiFormControl : {
-      styleOverrides :{
+    MuiTableCell: {
+      styleOverrides: {
         root: {
-          padding:  "0",
-          paddingTop:  "0px",
+          borderBottom: "1px solid #f2f6fc",
+          backgroundColor: "#fff",
+          color: "#3C4D6B",
+          // height: "40px",
+          // height: "40px",
+          // padding: "12px",
+          padding: "4px 10px",
+          margin: "0",
         },
-      }
+      },
+    },
+
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          padding: "0",
+          paddingTop: "0px",
+        },
+      },
     },
     MuiFormHelperText: {
       styleOverrides: {
@@ -125,7 +141,7 @@ const lightTheme = createTheme({
     MuiDrawer: {
       styleOverrides: {
         paper: {
-          border : "none",
+          border: "none",
         },
       },
     },

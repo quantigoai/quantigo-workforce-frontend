@@ -19,7 +19,7 @@ const StickyDocViewTableHead = ({ column }) => {
           minWidth: column?.width || "140px",
         }}
       >
-        <Typography variant="wpf_h7_semiBold" color="neutral.550">
+        <Typography variant="wpf_p4_semiBold_2" color="neutral.550">
           Documents
         </Typography>
       </TableCell>

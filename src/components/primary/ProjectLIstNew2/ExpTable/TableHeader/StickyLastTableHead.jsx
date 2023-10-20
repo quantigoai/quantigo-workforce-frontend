@@ -17,7 +17,7 @@ const StickyLastTableHead = ({ column }) => {
         key={column.id}
         style={{ textAlign: column.textAlign, minWidth: column.width || "140px" }}
       >
-        <Typography variant="wpf_h7_semiBold" color="neutral.550">
+        <Typography variant="wpf_p4_semiBold_2" color="neutral.550">
           {column.headerName}
         </Typography>
       </TableCell>

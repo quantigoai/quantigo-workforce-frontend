@@ -76,13 +76,14 @@ const PdfNdaUploadField = ({ handleImage, selectedFile }) => {
             {selectedFile?.name ? (
               <>
                 <br />
+                <br />
                 <Typography
                   variant="wpf_p3_regular"
                   sx={{ color: selectedFile?.size > maxSize ? "#ff1744" : "#013220" }}>
                   File : {files}
                 </Typography>
                 {selectedFile.size > maxSize ? (
-                  <Typography variant="wpf_p3_regular" sx={{ color: "#ff1744" }}>
+                  <Typography variant="wpf_p3_regular" sx={{ color: "#ff1744" ,textAlign:"center"}}>
                     The selected file is too large. Please choose a file that is less than 512Kb in size
                   </Typography>
                 ) : (

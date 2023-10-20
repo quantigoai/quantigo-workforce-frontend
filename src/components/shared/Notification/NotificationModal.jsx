@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Button, Grid, Popover } from "@mui/material";
+import { Button, Popover } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import React from "react";
@@ -47,7 +47,6 @@ const PopoverStyle = {
 };
 const boxStyle = {
   borderTop: "1px solid #E5E5E5",
-  borderRadius: "5px",
   padding: "2px",
 };
 
@@ -77,13 +76,14 @@ const NotificationModal = ({ handleSeeAll, notificationOpen, handleNotificationC
   return (
     <>
       <Popover
-        sx={{ width: "100%" }}
+        elevation={4}
+        sx={{
+          width: "100%",
+        }}
         id={id}
         open={openPopover}
         anchorEl={notificationOpen}
         onClose={handleNotificationClose}
-        // aria-labelledby="modal-modal-title"
-        // aria-describedby="modal-modal-description"
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "right",
@@ -94,29 +94,27 @@ const NotificationModal = ({ handleSeeAll, notificationOpen, handleNotificationC
         }}
       >
         <Box sx={{ width: "450px" }}>
-          <Box sx={{ py: 1.5, px: 2 }}>
-            <Grid container spacing={2} gap={2}>
-              <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <Typography variant="wpf_p3_semiBold" color="neutral.700">
-                    Notifications ({allUnreadNotifications.length} New)
-                  </Typography>
-                  <Button
-                    variant="outlined"
-                    sx={{
-                      cursor: "pointer",
-                      color: "#2D58FF",
-                      fontSize: "12px",
-                      borderRadius: "5px",
-                      textTransform: "none",
-                    }}
-                    onClick={markReadLatest}
-                  >
-                    Mark Read Latest
-                  </Button>
-                </Box>
-              </Grid>
-            </Grid>
+          <Box>
+            <Box sx={{ p: 2, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <Typography variant="wpf_p3_medium" color="neutral.700">
+                Notifications ({allUnreadNotifications.length} New)
+              </Typography>
+
+              <Button
+                variant="outlined"
+                sx={{
+                  height: "30px",
+                  cursor: "pointer",
+                  color: "#2D58FF",
+                  fontSize: "12px",
+                  borderRadius: "5px",
+                  textTransform: "none",
+                }}
+                onClick={markReadLatest}
+              >
+                Mark Read Latest
+              </Button>
+            </Box>
           </Box>
           <Box sx={boxStyle}>
             {latestUnreadNotifications.slice(0, 10).map((notification) => (
@@ -124,7 +122,12 @@ const NotificationModal = ({ handleSeeAll, notificationOpen, handleNotificationC
             ))}
             <Box
               sx={{
+                borderTop: "1px solid #E5E5E5",
                 cursor: "pointer",
+                pb: 1,
+                "&:hover": {
+                  bgcolor: "neutral.N400",
+                },
               }}
               onClick={handleSeeAll}
             >

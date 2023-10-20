@@ -84,7 +84,14 @@ const lightTheme = createTheme({
         },
       },
     },
-
+    MuiFormControl : {
+      styleOverrides :{
+        root: {
+          padding:  "0",
+          paddingTop:  "0px",
+        },
+      }
+    },
     MuiFormHelperText: {
       styleOverrides: {
         root: {

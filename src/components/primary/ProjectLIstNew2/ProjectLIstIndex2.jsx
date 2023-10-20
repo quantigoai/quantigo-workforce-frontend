@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Paper } from "@mui/material";
+import { Box, Paper, styled } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -210,17 +210,24 @@ const ProjectLIstIndex2 = () => {
     dispatch(getAllProjectDrawers({ pagination })).then(() => setIsDataLoading(false));
   }, []);
 
+  const HeaderBox = styled(Box)({
+    display: "flex",
+    flexDirection: "column",
+    height: "116px",
+    alignItems: "center",
+  });
+
   return (
     <>
       <Box className="projectBox">
         {/* TODO Filter functionality need to be checked for last page  */}
-        <Box className="projectHeader">
+        <HeaderBox>
           <ProjectHeader
             isFilter={isFilter}
             isLightTheme={isLightTheme}
             handleIsFilter={handleIsFilter}
-            // handleProjectCreateOpen={() => console.log("handleProjectCreateOpen")}
             handleProjectCreateOpen={() => setCreateProjectOpen(true)}
+            // handleProjectCreateOpen={() => console.log("handleProjectCreateOpen")}
             // handleSearch={handleSearch}
             // setSearch={setSearch}
             // search={search}
@@ -242,7 +249,7 @@ const ProjectLIstIndex2 = () => {
             skills={skills}
             onSubmit={onSubmit}
           />
-        </Box>
+        </HeaderBox>
 
         <Box className="tableContent">
           <Paper

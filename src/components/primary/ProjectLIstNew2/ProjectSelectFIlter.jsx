@@ -31,26 +31,37 @@ const ProjectSelectFIlter = ({
       sx={{
         backgroundColor: "neutral.N000",
         width: "100%",
-        height: isFilter ? "50%" : "0%",
         // paddingY: "5px",
         display: isFilter ? "block" : "none",
-        borderTop: "1px solid #E6ECF5",
+        height: "52px",
+        // borderTop: "1px solid #E6ECF5",
         transition: isFilter && "all 0.2s ease-in-out",
       }}
     >
-      <Stack sx={{ width: "100%" }}>
+      <Stack sx={{ width: "100%", height: "100%" }}>
         {/* <Grid items xs={9}> */}
-        <Stack sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexDirection: "row" }}>
+        <Stack
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexDirection: "row",
+            height: "100%",
+          }}
+        >
           {role === "admin" ? (
             <>
-              <Stack
+              <Box
                 sx={{
                   display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
                   flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
                   width: "100%",
-                  paddingX: "16px",
+                  height: "100%",
+
+                  // paddingX: "16px",
+                  // py: "8px",
                 }}
               >
                 <ProjectSelectFIlterField
@@ -81,7 +92,7 @@ const ProjectSelectFIlter = ({
                   filterValue={filterValue}
                   handleChange={handleChange}
                 />
-              </Stack>
+              </Box>
             </>
           ) : (
             <Box sx={{ display: "flex", alignItems: "center", paddingX: "40px", width: "70%" }}>
@@ -123,7 +134,7 @@ const ProjectSelectFIlter = ({
             </Box>
           )}
 
-          <Stack sx={{ width: "10%" }}>
+          {/* <Stack sx={{ width: "10%" }}>
             {role === "admin" && (
               <Button
                 onClick={() => handleClearFilter()}
@@ -134,7 +145,7 @@ const ProjectSelectFIlter = ({
                   color: "white",
                   width: "100px",
                   height: "25 px",
-                  ml: 3,
+
                   mt: 0.5,
                   "&:hover": {
                     backgroundColor: "#F53142",
@@ -147,7 +158,7 @@ const ProjectSelectFIlter = ({
                 Clear Filter
               </Button>
             )}
-          </Stack>
+          </Stack> */}
         </Stack>
       </Stack>
     </Box>

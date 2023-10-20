@@ -28,7 +28,7 @@ const ProjectHeader = ({
       <Box
         className="headerBox"
         sx={{
-          height: isFilter ? "50%" : "80%",
+          // height: isFilter ? "50%" : "80%",
           backgroundColor: "neutral.N000",
         }}
       >

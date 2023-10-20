@@ -41,10 +41,12 @@ export default function WPFTable({
         <TableContainer
           // ref={ref}
           className="tableContainer"
-          sx={{ height: "100%" }}
+          sx={{ height: "100%", width: "100%" }}
         >
-          <Table stickyHeader
-            // aria-label="sticky table"
+          <Table
+            //  sx={{ height: "100%", width: "10%" }}
+            stickyHeader
+            aria-label="sticky table"
           >
             <TableHead className="tableHeader">
               <TableRow>

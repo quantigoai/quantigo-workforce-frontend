@@ -7,14 +7,16 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Box, Stack, TableCell, Typography} from "@mui/material";
+import { Box, Stack, TableCell, Typography } from "@mui/material";
 import React from "react";
 import SortingButton from "../../Project2Details/SortingButton";
 
 const StickyFirstTableHead = ({ column, handleId, filteredCol }) => {
   return (
     <>
-      <TableCell className="first-head" key={column.id} style={{ minWidth: column.width || "140px" }}>
+      <TableCell className="first-head" key={column.id} 
+      style={{ minWidth: column.width || "140px" }}
+      >
         <Stack
           flexDirection={"row"}
           sx={{

@@ -38,7 +38,7 @@ export const MyInputLabel = styled(InputLabel)(() => ({
 
 export const MyFormControl = styled(FormControl)(() => ({
   borderRadius: "5px",
-  padding: "2px 0px 0px 0px",
+  padding: "0px 0px 0px 0px",
   "& MuiInputBase-root-MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
     border: "0px",
     borderColor: "#2D58FF",

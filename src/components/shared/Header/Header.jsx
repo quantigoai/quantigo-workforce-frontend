@@ -92,15 +92,12 @@ const Header = () => {
 
   return (
     <>
-      <Box
-        sx={{
-          color: "neutral.970",
-        }}
-      >
+      <>
         <Box
           sx={{
+            color: "neutral.970",
+            height: "100%",
             mx: 0,
-            py: 1,
             px: 2,
           }}
         >
@@ -244,7 +241,7 @@ const Header = () => {
             </Box>
           </Box>
         </Box>
-      </Box>
+      </>
 
       <NotificationModal
         openPopover={openPopover}

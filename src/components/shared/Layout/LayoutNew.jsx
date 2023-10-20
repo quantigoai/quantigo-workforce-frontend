@@ -594,6 +594,9 @@ export default function LayoutNew({ children }) {
               height: { xxl: "7%", xl: "7.22%", lg: "7.22%" },
               // height: "7.22%%",
               width: "100%",
+              // display: "flex",
+              // justifyContent: "center",
+              // alignItems: "center",
             }}
           >
             <Header openDrawer={open} />

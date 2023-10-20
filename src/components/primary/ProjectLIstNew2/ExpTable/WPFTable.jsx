@@ -6,7 +6,6 @@ import TableRow from "@mui/material/TableRow";
 import * as React from "react";
 
 import { Box } from "@mui/material";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import FirstTableColumn from "./TableBody/FirstTableColumn";
 import LastTableColumn from "./TableBody/LastTableCoulmn";
@@ -36,20 +35,6 @@ export default function WPFTable({
   handleReject,
   handleOpenNDA,
 }) {
-  function useParallax(value, distance) {
-    return useTransform(value, [0, 1], [-distance, distance]);
-  }
-  const ref = React.useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref });
-
-  const y = useParallax(scrollYProgress, 300);
-
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 500,
-
-    damping: 100,
-    restDelta: 0.001,
-  });
   return (
     myColumn.length > 0 && (
       <>
@@ -58,7 +43,9 @@ export default function WPFTable({
           className="tableContainer"
           sx={{ height: "100%" }}
         >
-          <Table stickyHeader aria-label="sticky table">
+          <Table stickyHeader
+            // aria-label="sticky table"
+          >
             <TableHead className="tableHeader">
               <TableRow>
                 {stickyFirstColumn.map((column) => (
@@ -87,12 +74,7 @@ export default function WPFTable({
                 <LoadingComponent height="100%" />
               </Box>
             ) : (
-              <TableBody
-                // data-aos="fade-left"
-                // component={motion.tbody}
-                // style={{ scaleX }}
-                className="tableBody"
-              >
+              <TableBody className="tableBody">
                 {myRows.map((row) => (
                   <TableRow
                     key={row.id}
@@ -111,7 +93,7 @@ export default function WPFTable({
                     ))}
 
                     {columns.map((column) => (
-                      <MiddleTableColumn data-aos="fade-left" key={column.id} row={row} column={column} />
+                      <MiddleTableColumn key={column.id} row={row} column={column} />
                     ))}
 
                     {role === "recruitment_manager" && <StickyDocViewTableColumn column={row} />}

@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Box, Button, Typography} from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import MainModal from "./MainModal";
 
@@ -20,7 +20,7 @@ const CustomButton = ({
   handleReject,
   handleOpenNDA,
 }) => {
-    const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [isEdit, setIsEdit] = React.useState(true);
@@ -35,7 +35,7 @@ const CustomButton = ({
       {role === "admin" && pathname === "/allprojects" && (
         <>
           <Button
-            sx={{ color: "#2E58FF", padding: "0px", minWidth: "35px" }}
+            sx={{ color: "#2E58FF", paddingX: "5px", minWidth: "16px" }}
             onClick={() => {
               setIsEdit(true);
               handleClick(params);
@@ -44,7 +44,7 @@ const CustomButton = ({
             <i className="ri-edit-line"></i>
           </Button>
           <Button
-            sx={{ color: "#F04438", padding: "0px", minWidth: "35px" }}
+            sx={{ color: "#F04438", paddingX: "5px", minWidth: "16px" }}
             onClick={() => {
               setIsEdit(false);
             }}
@@ -100,7 +100,7 @@ const CustomButton = ({
                 onClick={() => handleReject(params)}
                 sx={{
                   padding: "0px",
-                  minWidth: "30px",
+                  minWidth: "25px",
                   fontSize: "16px",
                   filter:
                     (params.isDocumentsSubmitted === "rejected" && params.isNDAApproved === "rejected") ||
@@ -121,8 +121,8 @@ const CustomButton = ({
             sx={{
               textAlign: "right",
               color: "#2E58FF",
-              paddingX: "10px",
-              minWidth: "35px",
+              paddingX: "5px",
+              minWidth: "16px",
               textTransform: "none",
             }}
           >
@@ -134,8 +134,8 @@ const CustomButton = ({
           onClick={() => handleProjectDetailsOpen(params)}
           sx={{
             color: "#2E58FF",
-            paddingX: "20px",
-            minWidth: "35px",
+            paddingX: "5px",
+            minWidth: "16px",
             textTransform: "none",
           }}
         >

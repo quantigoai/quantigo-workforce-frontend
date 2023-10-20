@@ -35,15 +35,18 @@ export default function PDSelectField({ name, helperText, options, label, setVal
             <Box
               sx={{
                 height: "100px",
-              }}>
+              }}
+            >
               <Typography
+                variant={"wpf_h7_medium"}
                 sx={{
                   fontSize: "12px",
                   fontWeight: "500",
                   mb: 0,
                   color: "neutral.N300",
                   // paddingBottom:"1%"
-                }}>
+                }}
+              >
                 {label}
               </Typography>
               <Box sx={{ width: "100%" }}>
@@ -53,7 +56,7 @@ export default function PDSelectField({ name, helperText, options, label, setVal
                     height: "45px",
                     width: "100%",
                     backgroundColor: "neutral.N000",
-                    // color: "#000", 
+                    // color: "#000",
                     border: "2px solid #E6ECF5",
                     fontSize: "14px",
                     // borderRadius: "5px",
@@ -67,13 +70,15 @@ export default function PDSelectField({ name, helperText, options, label, setVal
                   error={!!error}
                   helperText={error ? error?.message : helperText}
                   IconComponent={KeyboardArrowDownIcon}
-                  {...other}>
+                  {...other}
+                >
                   {options.map((option) => (
                     <MenuItem
                       sx={{ fontSize: "14px" }}
                       key={option.value}
                       fullWidth
-                      value={(() => setValue(field.name, field.value), option.value)}>
+                      value={(() => setValue(field.name, field.value), option.value)}
+                    >
                       {option.label}
                     </MenuItem>
                   ))}

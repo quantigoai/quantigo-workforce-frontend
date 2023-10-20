@@ -1,10 +1,10 @@
-import {Box, Button, FormControl, Stack, styled, TextField, Typography} from "@mui/material";
+import { Box, Button, FormControl, Stack, styled, TextField, Typography } from "@mui/material";
 import React from "react";
-import {Controller, useFieldArray, useFormContext} from "react-hook-form";
-import {useSelector} from "react-redux";
+import { Controller, useFieldArray, useFormContext } from "react-hook-form";
+import { useSelector } from "react-redux";
 
 function PDReleventField({ name, defaultValueItems }) {
-   const { control, setValue } = useFormContext();
+  const { control, setValue } = useFormContext();
   const { isLightTheme } = useSelector((state) => state.theme);
 
   const { fields, append, remove } = useFieldArray({
@@ -40,7 +40,9 @@ function PDReleventField({ name, defaultValueItems }) {
         <Box key={field.id}>
           <Stack direction="row" gap={2} xs={12}>
             <FormControl fullWidth>
-              <Typography sx={{ fontSize: "12px", fontWeight: "500", mb: 1 }}>Document Name</Typography>
+              <Typography variant="wpf_h7_medium" sx={{ fontSize: "12px", fontWeight: "500", mb: 1 }}>
+                Document Name
+              </Typography>
               <Controller
                 name={`relevantDocuments[${index}].documentName`}
                 control={control}
@@ -49,7 +51,9 @@ function PDReleventField({ name, defaultValueItems }) {
               />
             </FormControl>
             <FormControl fullWidth>
-              <Typography sx={{ fontSize: "12px", fontWeight: "500", mb: 1 }}>Link</Typography>
+              <Typography variant="wpf_h7_medium" sx={{ fontSize: "12px", fontWeight: "500", mb: 1 }}>
+                Link
+              </Typography>
               <Controller
                 name={`relevantDocuments[${index}].documentUrl`}
                 control={control}
@@ -64,7 +68,8 @@ function PDReleventField({ name, defaultValueItems }) {
                   left: 245,
                   fontSize: "20px",
                 }}
-                onClick={() => remove(index)}>
+                onClick={() => remove(index)}
+              >
                 <i style={{ color: "red", cursor: "pointer" }} className="ri-delete-bin-line"></i>
               </Button>
             </FormControl>
@@ -82,7 +87,8 @@ function PDReleventField({ name, defaultValueItems }) {
         }}
         variant="p"
         type="button"
-        onClick={() => append({ documentName: "", documentUrl: "" })}>
+        onClick={() => append({ documentName: "", documentUrl: "" })}
+      >
         <i className="ri-add-line"></i> Add another document
       </Typography>
     </>

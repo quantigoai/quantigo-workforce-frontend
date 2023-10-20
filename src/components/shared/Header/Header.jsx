@@ -108,6 +108,7 @@ const Header = () => {
             sx={{
               display: "flex",
               justifyContent: "space-between",
+              alignItems: "center",
             }}
           >
             <GoBackButton handleGoBack={handleGoBack} />
@@ -150,17 +151,6 @@ const Header = () => {
               </Box>
 
               <>
-                {/* <Box sx={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
-                  <Avatar
-                    alt="Profile Picture"
-                    src={image}
-                    sx={{
-                      bgcolor: "#D3ECFA",
-                      height: { xl: 40, lg: 34 },
-                      width: { xl: 40, lg: 34 },
-                    }}
-                  />
-                </Box> */}
                 <Box>
                   <Box sx={{ display: "flex", px: 2 }}>
                     <Stack>
@@ -168,11 +158,9 @@ const Header = () => {
                         sx={{
                           color: "neutral.800",
                         }}
-                        variant="wpf_p3_semiBold"
+                        variant="wpf_p3_medium"
                       >
-                        <b>
-                          {firstName} {lastName}
-                        </b>
+                        {firstName} {lastName}
                       </Typography>
 
                       <Typography sx={{ color: "neutral.N650" }} variant="wpf_p4_regular">
@@ -228,12 +216,7 @@ const Header = () => {
                           <ListItemText sx={{ color: "neutral.N300" }}>Logout</ListItemText>
                         </MenuItem>
                       </Menu>
-                      {/* <Button id="fade-button" onClick={handleClick} sx={{ paddingTop: "0%" }}> */}
-                      {/* <ExpandCircleDownIcon
-                          sx={{
-                            color: "neutral.N300",
-                          }}
-                        /> */}
+
                       <Box
                         onClick={handleClick}
                         sx={{
@@ -254,7 +237,6 @@ const Header = () => {
                           }}
                         />
                       </Box>
-                      {/* </Button> */}
                     </Box>
                   </Box>
                 </Box>

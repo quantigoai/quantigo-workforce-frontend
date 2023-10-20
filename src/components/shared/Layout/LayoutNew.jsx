@@ -1,4 +1,3 @@
-import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
@@ -30,24 +29,8 @@ import UserSvg from "../../../assets/images/wmp_svg/drawer/userNew.svg";
 import Header from "../Header/Header";
 import GetHelpNew from "./GetHelpNew";
 
-const drawerWidth = "16.67%";
+const drawerWidth = "15.67%";
 
-const menuAnimation = {
-  hidden: {
-    opacity: 0,
-    height: 0,
-    padding: 0,
-    transition: { duration: 0.3, when: "afterChildren" },
-  },
-  show: {
-    opacity: 1,
-    height: "auto",
-    transition: {
-      duration: 0.3,
-      when: "beforeChildren",
-    },
-  },
-};
 const openedMixin = (theme) => ({
   width: drawerWidth,
   transition: theme.transitions.create("width", {
@@ -73,28 +56,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  // paddingLeft: "1%",
-  // padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-}));
 
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(["width", "margin"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
+  ...theme.mixins.toolbar,
 }));
 
 const Drawer = styled(MuiDrawer, {
@@ -104,7 +67,6 @@ const Drawer = styled(MuiDrawer, {
   flexShrink: 0,
   whiteSpace: "nowrap",
   boxSizing: "border-box",
-  // backgroundColor: "#2D58FF",
   ...(open && {
     ...openedMixin(theme),
     "& .MuiDrawer-paper": openedMixin(theme),
@@ -117,14 +79,14 @@ const Drawer = styled(MuiDrawer, {
 const DrawerFooter = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  position: "absolute",
-  bottom: "0px",
-  justifyContent: "center",
-  // padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
   // justifyContent: "flex-end",
+  // position: "sticky",
+  // bottom: "0px",
+
+  // width: drawerWidth,
+  ...theme.mixins.toolbar,
 }));
+
 export default function LayoutNew({ children }) {
   const { activePath } = useSelector((state) => state.activePath);
   const navigate = useNavigate();
@@ -411,15 +373,16 @@ export default function LayoutNew({ children }) {
           <ListItemIcon sx={{ color: "#FFFFFF", minWidth: "45px" }}>
             <img src={text.icon} />
           </ListItemIcon>
-          <ListItemText
-            disableTypography
-            primary={text.name}
-            sx={{
-              color: "#FFFFFF",
-              fontSize: { xl: "14px", lg: "13px", md: "12px" },
-              justifyContent: "left",
-            }}
-          />
+
+          <Typography variant="wpf_p3_medium">
+            <ListItemText
+              disableTypography
+              primary={text.name}
+              sx={{
+                color: "#FFFFFF",
+              }}
+            />
+          </Typography>
         </ListItemButton>
       </ListItem>
     );
@@ -496,7 +459,7 @@ export default function LayoutNew({ children }) {
   };
 
   return (
-    <Stack component={motion.div} animate={{}} direction={"row"}>
+    <Stack component={motion.div} direction={"row"}>
       <AnimatePresence>
         <Box
           component={motion.div}
@@ -507,112 +470,163 @@ export default function LayoutNew({ children }) {
           sx={{
             height: "100vh",
             backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
+            // position: "relative",
           }}
         >
           <Drawer
             PaperProps={{
               sx: {
+                // position: "absolute",
+                // width: "100%",
+
                 backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
+                "&::-webkit-scrollbar": {
+                  display: "none",
+                },
+                "&-ms-overflow-style:": {
+                  display: "none",
+                },
               },
             }}
             variant="permanent"
             open={open}
           >
-            <DrawerHeader>
-              <Box sx={{}}>
-                <img
-                  onClick={() => navigate("/")}
-                  src={logo}
-                  alt="logo"
-                  style={{
-                    cursor: "pointer",
-                    ...(!open && { display: "none" }),
-                  }}
-                  className="responsive-logo"
-                />
+            <DrawerHeader
+              sx={{
+                height: "7%",
+                position: "sticky",
+                top: 0,
+                zIndex: 1213,
+                backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: !open ? "center" : "space-between",
+                  width: "80%",
+                  alignItems: "center",
+                }}
+              >
+                <Box sx={{ display: "flex", justifyContent: "center" }}>
+                  <img
+                    onClick={() => navigate("/")}
+                    src={logo}
+                    alt="logo"
+                    style={{
+                      cursor: "pointer",
+                      ...(!open && { display: "none" }),
+                    }}
+                    className="responsive-logo"
+                  />
+                </Box>
+
+                {open && (
+                  <Box>
+                    <IconButton onClick={handleDrawerClose}>
+                      {theme.direction === "rtl" ? <img src={menuFoldLine} /> : <img src={menuFoldLine} />}
+                    </IconButton>
+                  </Box>
+                )}
+
+                {!open && (
+                  <Box>
+                    <IconButton onClick={handleDrawerOpen}>
+                      <img src={menuUnfoldLne} />
+                    </IconButton>
+                  </Box>
+                )}
+              </Box>
+            </DrawerHeader>
+
+            <Box
+              sx={{
+                height: { xxl: "75%", xl: "70%", lg: "70%" },
+                overflow: "auto",
+                "&::-webkit-scrollbar": {
+                  display: "none",
+                },
+                "&-ms-overflow-style:": {
+                  display: "none",
+                },
+              }}
+            >
+              <Box sx={{ paddingLeft: "11%" }}>
+                {open && (
+                  <Typography variant="wpf_p4_semiBold" sx={{ color: "#B6C9F0" }}>
+                    MAIN MENU
+                  </Typography>
+                )}
+                {!open && (
+                  <Typography variant="wpf_p4_semiBold" sx={{ color: "#B6C9F0" }}>
+                    MENU
+                  </Typography>
+                )}
               </Box>
 
-              {open && (
-                <Box sx={{ justifyContent: "left", paddingLeft: { xl: "20%", lg: "1%", md: "1%" } }}>
-                  <IconButton onClick={handleDrawerClose}>
-                    {theme.direction === "rtl" ? <img src={menuFoldLine} /> : <img src={menuFoldLine} />}
-                  </IconButton>
-                </Box>
-              )}
-              {!open && (
-                <IconButton onClick={handleDrawerOpen}>
-                  <img src={menuUnfoldLne} />
-                </IconButton>
-              )}
-            </DrawerHeader>
-            <Box sx={{ paddingLeft: "11%" }}>
-              {open && (
-                <Typography variant="caption" sx={{ color: "#B6C9F0" }}>
-                  <b>MAIN MENU</b>
-                </Typography>
-              )}
-              {!open && (
-                <Typography variant="caption" sx={{ color: "#B6C9F0", paddingLeft: "10%" }}>
-                  <b>MENU</b>
-                </Typography>
+              {isLoggedIn && !isBlocked && !isEmailVerified ? (
+                <List>{unverifiedOptions.map((text) => handleMenu(text))}</List>
+              ) : (
+                <List>{handleMenuFunction(role)}</List>
               )}
             </Box>
 
-            {isLoggedIn && !isBlocked && !isEmailVerified ? (
-              <List>{unverifiedOptions.map((text) => handleMenu(text))}</List>
-            ) : (
-              <List>{handleMenuFunction(role)}</List>
-            )}
-
-            <DrawerFooter sx={{ paddingLeft: "5%", paddingRight: "5%", paddingBottom: "5%" }}>
-              {open && <GetHelpNew />}
+            <DrawerFooter>
+              <>{open && <GetHelpNew />}</>
             </DrawerFooter>
           </Drawer>
         </Box>
       </AnimatePresence>
 
-      <Box
-        sx={{
-          width: open ? "84.34%" : "97%",
-          height: "100vh",
-        }}
-      >
-        {/* navbar */}
+      <AnimatePresence>
         <Box
+          component={motion.div}
+          animate={{
+            width: open ? "84.34%" : "97%",
+            transition: { duration: 0.4 },
+          }}
           sx={{
-                     height: { xl: "7%", lg: "9%", md: "10%" },
-            width: "100%",
+            height: "100vh",
           }}
         >
-          <Header openDrawer={open} />
-        </Box>
+          {/* navbar */}
+          <Box
+            sx={{
+              height: { xxl: "7%", xl: "7.22%", lg: "7.22%" },
+              // height: "7.22%%",
+              width: "100%",
+            }}
+          >
+            <Header openDrawer={open} />
+          </Box>
 
-        {/* body */}
-        <Box
-          sx={{
-            height: { xl: "93%", lg: "91%", md: "90%" },
-            paddingBottom: "1%",
-            backgroundColor: isLightTheme ? "#F2F6FC" : "#121212",
-            width: "100%",
-            overflowY: "auto",
-          }}
-        >
-          {isLoggedIn && !isBlocked ? (
-            <Box
-              sx={{
-                height: "100%",
-                overflowY: "auto",
-              }}
-            >
-              {children}
-            </Box>
-          ) : (
-            <UserBlocked />
-          )}
-        </Box>
+          {/* body */}
+          <Box
+            sx={{
+              height: { xxl: "93%", xl: "92.78%", lg: "92.78", md: "90%" },
+              paddingBottom: "0%",
+              backgroundColor: isLightTheme ? "#F2F6FC" : "#121212",
+              width: "100%",
+              overflowY: "auto",
+            }}
+          >
+            {isLoggedIn && !isBlocked ? (
+              <Box
+                sx={{
+                  height: "100%",
+                  overflowY: "auto",
+                }}
+              >
+                {children}
+              </Box>
+            ) : (
+              <UserBlocked />
+            )}
+          </Box>
 
-        {/* TODO Fix this */}
-      </Box>
+          {/* TODO Fix this */}
+        </Box>
+      </AnimatePresence>
     </Stack>
   );
 }

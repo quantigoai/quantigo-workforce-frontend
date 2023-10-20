@@ -36,6 +36,7 @@
 .tableContent{
    width: 100%;
    padding: 16px;
+   background-color: aqua;
    height: 85%;
 }
 
@@ -161,21 +162,18 @@
   width: 110px; /* Default width for all screen sizes */
 
   @media (max-width: 1920px) {
-    /* Large screens (xl) */
     width: 137px;
     height: 27px;
   }
 
-  @media (max-width: 1360px) {
-    /* Large screens (lg) */
-    width: 121px;
+  @media (max-width: 1440px) {
+    width: 125px;
     height: 24px;
   }
 
-  @media (max-width: 960px) {
-    /* Medium screens (md) */
-    width: 100px;
-    height: 24px;
+  @media (max-width: 1024px) {
+    width: 88px;
+    height: 20px;
   }
 
 

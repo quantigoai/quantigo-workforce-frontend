@@ -92,156 +92,157 @@ const Header = () => {
 
   return (
     <>
-      <>
+      <Box
+        sx={{
+          color: "neutral.970",
+          height: "100%",
+          mx: 0,
+          px: 2,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
         <Box
           sx={{
-            color: "neutral.970",
-            height: "100%",
-            mx: 0,
-            px: 2,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <GoBackButton handleGoBack={handleGoBack} />
+          <GoBackButton handleGoBack={handleGoBack} />
 
-            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <Box sx={{ display: "flex" }}>
-                <MyFormControlLabel
-                  onClick={() => dispatch(setTheme(!isLightTheme))}
-                  control={<ThemeSwitch sx={{ m: 0 }} checked={isLightTheme ? false : true} />}
-                />
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <Box sx={{ display: "flex" }}>
+              <MyFormControlLabel
+                onClick={() => dispatch(setTheme(!isLightTheme))}
+                control={<ThemeSwitch sx={{ m: 0 }} checked={isLightTheme ? false : true} />}
+              />
 
-                <Box
-                  sx={{
-                    display: "flex",
-                    cursor: "pointer",
-                    alignItems: "center",
-                    mr: 3,
-                    transition: "all 0.3s ease-in-out",
-                    p: 1,
-                    borderRadius: "8px",
-                    "&:hover": {
-                      backgroundColor: "neutral.N400",
-                    },
-                  }}
-                  aria-describedby={id}
-                  onClick={handleNotificationOpen}
-                >
-                  {allUnreadNotifications.length === 0 ? (
-                    <>
+              <Box
+                sx={{
+                  display: "flex",
+                  cursor: "pointer",
+                  alignItems: "center",
+                  mr: 3,
+                  transition: "all 0.3s ease-in-out",
+                  p: 1,
+                  borderRadius: "8px",
+                  "&:hover": {
+                    backgroundColor: "neutral.N400",
+                  },
+                }}
+                aria-describedby={id}
+                onClick={handleNotificationOpen}
+              >
+                {allUnreadNotifications.length === 0 ? (
+                  <>
+                    <Lottie animationData={bell} {...lottieOptions} />
+                  </>
+                ) : (
+                  <>
+                    <Badge sx={{}} badgeContent={allUnreadNotifications.length} color="primary">
                       <Lottie animationData={bell} {...lottieOptions} />
-                    </>
-                  ) : (
-                    <>
-                      <Badge sx={{}} badgeContent={allUnreadNotifications.length} color="primary">
-                        <Lottie animationData={bell} {...lottieOptions} />
-                      </Badge>
-                    </>
-                  )}
-                </Box>
+                    </Badge>
+                  </>
+                )}
               </Box>
+            </Box>
 
-              <>
-                <Box>
-                  <Box sx={{ display: "flex", px: 2 }}>
-                    <Stack>
-                      <Typography
+            <>
+              <Box>
+                <Box sx={{ display: "flex", px: 2 }}>
+                  <Stack>
+                    <Typography
+                      sx={{
+                        color: "neutral.800",
+                      }}
+                      variant="wpf_p3_medium"
+                    >
+                      {firstName} {lastName}
+                    </Typography>
+
+                    <Typography sx={{ color: "neutral.N650" }} variant="wpf_p4_regular">
+                      {role === "level_1_annotator"
+                        ? "Level 1 Annotator"
+                        : role === "level_2_annotator"
+                        ? "Level 2 Annotator"
+                        : role === "level_0_annotator"
+                        ? "Level 0 Annotator"
+                        : role === "level_3_annotator"
+                        ? "Level 3 Annotator"
+                        : role === "delivery_manager"
+                        ? "Project Delivery Lead"
+                        : role === "project_lead"
+                        ? "Delivery Lead"
+                        : role === "project_coordinator"
+                        ? "Project Coordinator"
+                        : role === "project_manager"
+                        ? "Project Manager"
+                        : role === "recruitment_manager"
+                        ? "Recruitment Manager"
+                        : capitalizeFirstLetter(role)}
+                    </Typography>
+                  </Stack>
+
+                  <Box>
+                    <Menu
+                      sx={{
+                        "& .MuiPaper-root": {
+                          borderRadius: "5px",
+                        },
+                      }}
+                      anchorEl={anchorEl}
+                      open={open}
+                      onClose={handleClose}
+                    >
+                      <MenuItem
                         sx={{
-                          color: "neutral.800",
+                          borderBottom: "1px solid #F0F5FA",
+                          width: "182px",
                         }}
-                        variant="wpf_p3_medium"
+                        onClick={handleEditProfile}
                       >
-                        {firstName} {lastName}
-                      </Typography>
+                        <ListItemIcon>
+                          <PersonOutlineIcon />
+                        </ListItemIcon>
+                        <ListItemText sx={{ color: "neutral.N300" }}>Edit Profile</ListItemText>
+                      </MenuItem>
+                      <MenuItem onClick={handleLogOut} sx={{ width: "182px" }}>
+                        <ListItemIcon>
+                          <LogoutIcon />
+                        </ListItemIcon>
+                        <ListItemText sx={{ color: "neutral.N300" }}>Logout</ListItemText>
+                      </MenuItem>
+                    </Menu>
 
-                      <Typography sx={{ color: "neutral.N650" }} variant="wpf_p4_regular">
-                        {role === "level_1_annotator"
-                          ? "Level 1 Annotator"
-                          : role === "level_2_annotator"
-                          ? "Level 2 Annotator"
-                          : role === "level_0_annotator"
-                          ? "Level 0 Annotator"
-                          : role === "level_3_annotator"
-                          ? "Level 3 Annotator"
-                          : role === "delivery_manager"
-                          ? "Project Delivery Lead"
-                          : role === "project_lead"
-                          ? "Delivery Lead"
-                          : role === "project_coordinator"
-                          ? "Project Coordinator"
-                          : role === "project_manager"
-                          ? "Project Manager"
-                          : role === "recruitment_manager"
-                          ? "Recruitment Manager"
-                          : capitalizeFirstLetter(role)}
-                      </Typography>
-                    </Stack>
-
-                    <Box>
-                      <Menu
+                    <Box
+                      onClick={handleClick}
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        cursor: "pointer",
+                        px: 2,
+                      }}
+                    >
+                      <Avatar
+                        alt="Profile Picture"
+                        src={image}
                         sx={{
-                          "& .MuiPaper-root": {
-                            borderRadius: "5px",
-                          },
+                          bgcolor: "#D3ECFA",
+                          height: { xl: 37, lg: 34 },
+                          width: { xl: 37, lg: 34 },
                         }}
-                        anchorEl={anchorEl}
-                        open={open}
-                        onClose={handleClose}
-                      >
-                        <MenuItem
-                          sx={{
-                            borderBottom: "1px solid #F0F5FA",
-                            width: "182px",
-                          }}
-                          onClick={handleEditProfile}
-                        >
-                          <ListItemIcon>
-                            <PersonOutlineIcon />
-                          </ListItemIcon>
-                          <ListItemText sx={{ color: "neutral.N300" }}>Edit Profile</ListItemText>
-                        </MenuItem>
-                        <MenuItem onClick={handleLogOut} sx={{ width: "182px" }}>
-                          <ListItemIcon>
-                            <LogoutIcon />
-                          </ListItemIcon>
-                          <ListItemText sx={{ color: "neutral.N300" }}>Logout</ListItemText>
-                        </MenuItem>
-                      </Menu>
-
-                      <Box
-                        onClick={handleClick}
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          cursor: "pointer",
-                          px: 2,
-                        }}
-                      >
-                        <Avatar
-                          alt="Profile Picture"
-                          src={image}
-                          sx={{
-                            bgcolor: "#D3ECFA",
-                            height: { xl: 37, lg: 34 },
-                            width: { xl: 37, lg: 34 },
-                          }}
-                        />
-                      </Box>
+                      />
                     </Box>
                   </Box>
                 </Box>
-              </>
-            </Box>
+              </Box>
+            </>
           </Box>
         </Box>
-      </>
+      </Box>
 
       <NotificationModal
         openPopover={openPopover}

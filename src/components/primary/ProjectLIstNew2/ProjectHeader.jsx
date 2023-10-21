@@ -38,7 +38,7 @@ const ProjectHeader = ({
               display: "flex",
               alignContent: "center",
               alignItems: "center",
-              paddingX: "10px",
+              // paddingX: "10px",
             }}
           >
             {/* TODO Need to remove the unnecessary custom button */}

@@ -12,9 +12,9 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
-import UserBlocked from "../UserBlocked/UserBlocked";
 import menuFoldLine from "../../../assets/images/menu-fold-line.svg";
 import menuUnfoldLne from "../../../assets/images/menu-unfold-line.svg";
+import UserBlocked from "../UserBlocked/UserBlocked";
 
 import { Stack } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
@@ -425,7 +425,7 @@ export default function LayoutNew({ children }) {
           {/* navbar */}
           <Box
             sx={{
-              height: { xxl: "7%", xl: "7.22%", lg: "7.22%" },
+              height: { xxl: "7%", xl: "56px", lg: "7.22%" },
             }}
           >
             <Header openDrawer={open} />
@@ -434,8 +434,9 @@ export default function LayoutNew({ children }) {
           {/* body */}
           <Box
             sx={{
-              height: { xxl: "93%", xl: "92.78%", lg: "92.78", md: "90%" },
-              paddingBottom: "0%",
+              height: { xxl: "93%", xl: "720px", lg: "92.78", md: "90%" },
+              paddingBottom: "0",
+              margin: 0,
               backgroundColor: isLightTheme ? "#F2F6FC" : "#121212",
               width: "100%",
               overflowY: "auto",
@@ -445,6 +446,7 @@ export default function LayoutNew({ children }) {
               <Box
                 sx={{
                   height: "100%",
+                  width: "100%",
                   overflowY: "auto",
                 }}
               >

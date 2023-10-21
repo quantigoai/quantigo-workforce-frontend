@@ -31,8 +31,10 @@ const ProjectSelectFIlter = ({
         backgroundColor: "neutral.N000",
         width: "100%",
         paddingY: "5px",
+
         display: isFilter ? "block" : "none",
         height: "52px",
+        // paddingX: "16px",
         borderTop: "1px solid #E6ECF5",
       }}
     >
@@ -44,7 +46,7 @@ const ProjectSelectFIlter = ({
             justifyContent: "space-between",
             alignItems: "center",
             flexDirection: "row",
-            paddingX: "16px",
+            // paddingX: "16px",
           }}
         >
           {role === "admin" ? (
@@ -57,9 +59,7 @@ const ProjectSelectFIlter = ({
                   alignItems: "center",
                   width: "100%",
                   height: "100%",
-
                   // paddingX: "16px",
-                  // py: "8px",
                 }}
               >
                 <ProjectSelectFIlterField
@@ -93,7 +93,18 @@ const ProjectSelectFIlter = ({
               </Box>
             </>
           ) : (
-            <Box sx={{ display: "flex", alignItems: "center", paddingX: "40px", width: "70%" }}>
+            <Box
+              // sx={{ display: "flex", alignItems: "center", paddingX: "40px", width: "70%" }}
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                width: "100%",
+                paddingX: "16px",
+                height: "100%",
+              }}
+            >
               <Box
                 sx={{
                   display: "flex",
@@ -115,14 +126,14 @@ const ProjectSelectFIlter = ({
                   handleChangeAnnotatorFilter={handleChangeAnnotatorFilter}
                 />
               </Box>
+
               <FormControlLabel
                 sx={{
                   backgroundColor: "#F4F7FE",
                   border: "1px solid #E6ECF5",
                   borderRadius: "8px",
                   width: "25%",
-                  ml: 2,
-                  px: "10px",
+                  mr: 0,
                   color: "#3C4D6B",
                   opacity: "0.7",
                 }}

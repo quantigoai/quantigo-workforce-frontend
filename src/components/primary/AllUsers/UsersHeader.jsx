@@ -43,7 +43,7 @@ const UsersHeader = ({
               display: "flex",
               alignContent: "center",
               alignItems: "center",
-              paddingX: "10px",
+              // paddingX: "10px",
             }}
           >
             <CommonHeader title="All Users" customButton="Create User" />

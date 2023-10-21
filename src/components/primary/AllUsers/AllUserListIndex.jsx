@@ -266,7 +266,7 @@ const AllUserListIndex = () => {
         />
       </HeaderBox>
 
-      <Box className="tableContent">
+      <Box className="contentBody">
         <TablePaper>
           {isDataLoading ? (
             <LoadingComponent />

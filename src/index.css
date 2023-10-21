@@ -33,11 +33,7 @@ body {
 }
 
 .contentHeader{
-    /* display: flex;
-    flex-direction: column;
-    height: 15%;
-    align-items: center; */
-       display: flex;
+    display: flex;
     justify-content: space-between;
     width: 100%;
     align-items: center;
@@ -51,6 +47,15 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
+/* below the header */
+.contentBody {
+    width: 100%;
+   margin: auto;
+   padding: 16px;
+   height: calc(100% - 116px);
+}
+
 
 /* Toaster Start */
 

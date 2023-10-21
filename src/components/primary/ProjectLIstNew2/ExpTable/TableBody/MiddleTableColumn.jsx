@@ -7,10 +7,10 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {TableCell, Typography} from "@mui/material";
+import { TableCell, Typography } from "@mui/material";
 import React from "react";
-import {capitalizeFirstLetter} from "../../../../../helper/capitalizeFirstWord";
-import {calculateTimeDifference, formatDate, formatDateDob, formatTime} from "../../../../../helper/dateConverter";
+import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
+import { calculateTimeDifference, formatDate, formatDateDob, formatTime } from "../../../../../helper/dateConverter";
 import ChipGroup from "../../../../shared/CustomTable/ChipGroup";
 import ProjectDrawerStatusChip from "../../../../shared/FilterField/ProjectDrawerStatusChip";
 import ActiveJobsCell from "../CustomTableCell/ActiveJobsCell";
@@ -28,7 +28,7 @@ const MiddleTableColumn = ({ row, column }) => {
   return (() => {
     if (column.field === "project_skills") {
       return (
-        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+        <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
           <ChipGroup value={row[column?.field]} />
         </TableCell>
       );
@@ -50,7 +50,7 @@ const MiddleTableColumn = ({ row, column }) => {
       );
     } else if (column.field === "createdBy") {
       return (
-        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+        <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
           <Typography variant="wpf_p4_regular" color="neutral.700">
             {row[column?.field] || "Admin"}
           </Typography>
@@ -58,7 +58,7 @@ const MiddleTableColumn = ({ row, column }) => {
       );
     } else if (column.field === "benchmark") {
       return (
-        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+        <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
           <Typography variant="wpf_p4_regular" color="neutral.700">
             {row[column?.field] || "10 sec"}
           </Typography>
@@ -66,7 +66,7 @@ const MiddleTableColumn = ({ row, column }) => {
       );
     } else if (column.field === "estimated_end_date") {
       return (
-        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+        <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
           <Typography variant="wpf_p4_regular" color="neutral.700">
             {formatDate(row[column?.field]) || "20 july 2023"}
           </Typography>
@@ -74,7 +74,7 @@ const MiddleTableColumn = ({ row, column }) => {
       );
     } else if (column.field === "relevantDocuments") {
       return (
-        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+        <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
           <LinkCell data={row[column?.field]} />
         </TableCell>
       );
@@ -86,7 +86,7 @@ const MiddleTableColumn = ({ row, column }) => {
       );
     } else if (column.field === "workingTimeInMs") {
       return (
-        <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
+        <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
           <Typography variant="wpf_p4_regular" color="neutral.700">
             {calculateTimeDifference(row[column?.field])}
           </Typography>
@@ -160,8 +160,7 @@ const MiddleTableColumn = ({ row, column }) => {
           </Typography>
         </TableCell>
       );
-    }
-    else if (column.field === "isVerified") {
+    } else if (column.field === "isVerified") {
       return (
         <TableCell sx={{ textAlign: "left" }} key={column.id} component="th" scope="row">
           <Typography variant="wpf_p4_regular" color="neutral.700">

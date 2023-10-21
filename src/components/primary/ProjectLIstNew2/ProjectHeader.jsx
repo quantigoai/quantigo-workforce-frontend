@@ -7,12 +7,12 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
+import FilterListIcon from "@mui/icons-material/FilterList";
+import FilterListOffIcon from "@mui/icons-material/FilterListOff";
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, Button, Grid, IconButton, InputBase, Paper } from "@mui/material";
 import React from "react";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
-import FilterListIcon from "@mui/icons-material/FilterList";
-import FilterListOffIcon from "@mui/icons-material/FilterListOff";
 const ProjectHeader = ({
   isFilter,
   isLightTheme,
@@ -26,9 +26,8 @@ const ProjectHeader = ({
   return (
     <>
       <Box
-        className="headerBox"
+        className="contentHeader"
         sx={{
-          // height: isFilter ? "50%" : "80%",
           backgroundColor: "neutral.N000",
         }}
       >

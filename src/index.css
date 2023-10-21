@@ -22,18 +22,24 @@ body {
 .MuiBackdrop-root-MuiModal-backdrop{
   background-color: "transparent"
 }
- /* TODO CHANGE THE CLASS NAME FUTURE*/
+/* TODO CHANGE THE CLASS NAME FUTURE*/
+/* ROOT Box in a page  */
 .content {
-display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   height: 100%;
 }
 
 .contentHeader{
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     height: 15%;
+    align-items: center; */
+       display: flex;
+    justify-content: space-between;
+    width: 100%;
     align-items: center;
+    border-top: 1px solid #E6ECF5;
 }
 .notificationContentHeader{
     display: flex;

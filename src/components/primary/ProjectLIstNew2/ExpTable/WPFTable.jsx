@@ -39,15 +39,13 @@ export default function WPFTable({
     myColumn.length > 0 && (
       <>
         <TableContainer
-          // ref={ref}
           className="tableContainer"
-          sx={{ height: "100%", width: "100%" }}
+          sx={{
+            height: "100%",
+            width: "100%",
+          }}
         >
-          <Table
-            //  sx={{ height: "100%", width: "10%" }}
-            stickyHeader
-            aria-label="sticky table"
-          >
+          <Table stickyHeader aria-label="sticky table">
             <TableHead className="tableHeader">
               <TableRow>
                 {stickyFirstColumn.map((column) => (
@@ -80,9 +78,7 @@ export default function WPFTable({
                 {myRows.map((row) => (
                   <TableRow
                     key={row.id}
-                    hover
-                    // role="checkbox"
-                    // tabIndex={-1}
+                    // hover
                   >
                     {stickyFirstColumn.map((column) => (
                       <FirstTableColumn

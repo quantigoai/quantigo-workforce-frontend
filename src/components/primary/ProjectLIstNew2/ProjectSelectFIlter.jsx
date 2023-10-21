@@ -1,4 +1,4 @@
-import { Box, Button, FormControlLabel, Stack, Switch, Typography } from "@mui/material";
+import { Box, FormControlLabel, Stack, Switch, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import PlatformSelectAnnotator from "./PlatformSelectAnnotator";
@@ -25,17 +25,15 @@ const ProjectSelectFIlter = ({
     <Box
       component={motion.div}
       animate={{
-        opacity: isFilter ? 1 : 0,
         transition: { type: "spring", stiffness: 300, duration: 0.4, delay: 0.2 },
       }}
       sx={{
         backgroundColor: "neutral.N000",
         width: "100%",
-        // paddingY: "5px",
+        paddingY: "5px",
         display: isFilter ? "block" : "none",
         height: "52px",
         borderTop: "1px solid #E6ECF5",
-        transition: isFilter && "all 0.2s ease-in-out",
       }}
     >
       <Stack sx={{ width: "100%", height: "100%" }}>
@@ -46,7 +44,7 @@ const ProjectSelectFIlter = ({
             justifyContent: "space-between",
             alignItems: "center",
             flexDirection: "row",
-            height: "100%",
+            paddingX: "16px",
           }}
         >
           {role === "admin" ? (

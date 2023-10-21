@@ -8,12 +8,12 @@
  */
 
 import { Box, Button, Stack } from "@mui/material";
+import { motion } from "framer-motion";
 import React from "react";
 import { useSelector } from "react-redux";
 import ProjectSelectFIlterField from "../ProjectLIstNew2/ProjectSelectFIlterField";
 import ProjectMultipleSelectRole from "./ProjectMultipleSelectRole";
 import UserSkillFieldSelect from "./UserSkillFieldSelect";
-import { motion } from "framer-motion";
 
 const UsersFilter = ({
   role,
@@ -40,27 +40,25 @@ const UsersFilter = ({
       <Box
         component={motion.div}
         animate={{
-          opacity: isFilter ? 1 : 0,
-          transition: { type: "spring", stiffness: 300, duration: 0.6, delay: 0.2 },
+          transition: { type: "spring", stiffness: 300, duration: 0.4, delay: 0.2 },
         }}
         sx={{
           backgroundColor: "neutral.N000",
           width: "100%",
-          height: isFilter ? "50%" : "0%",
-          paddingY: "5px",
           display: isFilter ? "block" : "none",
           borderTop: "1px solid #E6ECF5",
-          transition: isFilter && "all 0.2s ease-in-out",
+          height: "52px",
+          paddingY: "5px",
         }}
       >
-        {/* <Stack sx={{ width: "100%" }}> */}
-        <Stack>
+        <Stack sx={{ width: "100%", height: "100%" }}>
           <Stack
             sx={{
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
               flexDirection: "row",
+              paddingX: "16px",
             }}
           >
             {role === "admin" || role === "recruitment_manager" ? (
@@ -72,7 +70,6 @@ const UsersFilter = ({
                     alignItems: "center",
                     flexDirection: "row",
                     width: "100%",
-                    paddingX: "16px",
                   }}
                 >
                   <ProjectMultipleSelectRole
@@ -115,10 +112,12 @@ const UsersFilter = ({
             )}
 
             <Stack
-              sx={{
-                width: "10%",
-                paddingRight: "16px",
-              }}
+              sx={
+                {
+                  // width: "10%",
+                  // paddingRight: "16px",
+                }
+              }
             >
               <Button
                 onClick={() => handleClearFilter()}
@@ -127,8 +126,8 @@ const UsersFilter = ({
                   borderRadius: "8px",
                   backgroundColor: "#FF4757",
                   color: "white",
-                  width: "100px",
-                  ml: 3,
+                  // width: "100px",
+                  // ml: 3,
                   height: { xl: "35 px", lg: "35px" },
                   "&:hover": {
                     backgroundColor: "#F53142",
@@ -137,7 +136,7 @@ const UsersFilter = ({
                 size="medium"
                 color="error"
               >
-                Clear Filter
+                Clear
               </Button>
             </Stack>
           </Stack>

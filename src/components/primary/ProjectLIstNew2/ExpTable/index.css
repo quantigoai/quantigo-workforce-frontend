@@ -11,7 +11,7 @@ table {
 }
 .tableColumn1st{
     cursor: pointer;
-    
+    border-bottom: 1px solid #F2F6FC
     /* width: 20%; */
     
 }
@@ -48,6 +48,7 @@ table {
 /* Last right cell header */
 .last-head {
     border-left: 1px solid #EBF0F5;
+    border-bottom: 2px solid #F2F6FC;
     position: sticky;
     top: 0;
     right :0;
@@ -56,6 +57,7 @@ table {
 
 .doccolhead{
     border-left: 1px solid #EBF0F5;
+    border-bottom: 2px solid #F2F6FC;
     position: sticky;
     top: 0;
     right :140px;

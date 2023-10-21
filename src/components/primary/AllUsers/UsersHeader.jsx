@@ -31,9 +31,8 @@ const UsersHeader = ({
   return (
     <>
       <Box
-        className="headerBox"
+        className="contentHeader"
         sx={{
-          height: isFilter ? "50%" : "80%",
           backgroundColor: "neutral.N000",
         }}
       >

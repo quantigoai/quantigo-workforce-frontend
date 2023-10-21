@@ -181,7 +181,7 @@ const layoutMenuOption = () => {
   const devOptions = [
     { name: "Verify Email", icon: DashboardSvg },
     { name: "Identity Verification", icon: CourseSvg },
-    { name: "AllUsers", icon: UserSvg },
+    { name: "All Users", icon: UserSvg },
     { name: "All Projects", icon: ProjectSvg },
     { name: "Annotator List", icon: UserSvg },
     { name: "Archive Job", icon: JobSvg },

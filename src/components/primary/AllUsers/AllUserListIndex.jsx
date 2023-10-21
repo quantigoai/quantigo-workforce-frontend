@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Paper } from "@mui/material";
+import { Box } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,6 +21,7 @@ import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import useHandleChange from "../ProjectLIstNew2/Hooks/useHandleChange";
 import PaginationTable from "../ProjectLIstNew2/PaginationTable";
+import { HeaderBox, TablePaper } from "../ProjectLIstNew2/ProjectLIstIndex2";
 import "../ProjectLIstNew2/index.css";
 import UserDetailsNewIndex from "../UserListNew/UserDetilasNew/UserDetailsNewIndex";
 import AcceptModal from "../Users/NdaAccept/AcceptModal";
@@ -231,8 +232,8 @@ const AllUserListIndex = () => {
 
   // --------------------------------
   return (
-    <Box className="projectBox">
-      <Box className="projectHeader">
+    <Box className="content">
+      <HeaderBox>
         <UsersHeader
           isFilter={isFilter}
           isLightTheme={isLightTheme}
@@ -245,8 +246,6 @@ const AllUserListIndex = () => {
           clearSearch={clearSearch}
         />
 
-        {/* <motion.Box animate={{ x: 100 }}> */}
-        {/* <motion.div animate={{ x: 100 }}> */}
         <UsersFilter
           isFilter={isFilter}
           isLightTheme={isLightTheme}
@@ -265,42 +264,32 @@ const AllUserListIndex = () => {
           addRoles={addRoles}
           handleChangeRoles={handleChangeRoles}
         />
-        {/* </motion.div> */}
-      </Box>
+      </HeaderBox>
 
       <Box className="tableContent">
-        <Paper
-          sx={{
-            width: "100%",
-            height: "100%",
-            overflow: "auto",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-          }}
-        >
+        <TablePaper>
           {isDataLoading ? (
             <LoadingComponent />
           ) : (
-              <TableWrapper
-            role={role}
-            handleDetailsPage={handleDetailsPage}
-            handleClick={handleClick}
-            handleDelete={handleDelete}
-            myColumn={myColumn}
-            myRows={myRows}
-            pagination={pagination}
-            setPagination={setPagination}
-            handleChangePagination={handleChangePagination}
-            totalItems={totalUsers}
-            handleId={handleId}
-            filteredCol={filteredCol}
-            handleProjectDetailsOpen={handleUserDetailsOpen}
-            data={users}
-            isChildDataLoading={isChildDataLoading}
-            setIsChildDataLoading={setIsChildDataLoading}
-            handleReject={handleReject}
-            handleOpenNDA={handleOpenNDA}
+            <TableWrapper
+              role={role}
+              handleDetailsPage={handleDetailsPage}
+              handleClick={handleClick}
+              handleDelete={handleDelete}
+              myColumn={myColumn}
+              myRows={myRows}
+              pagination={pagination}
+              setPagination={setPagination}
+              handleChangePagination={handleChangePagination}
+              totalItems={totalUsers}
+              handleId={handleId}
+              filteredCol={filteredCol}
+              handleProjectDetailsOpen={handleUserDetailsOpen}
+              data={users}
+              isChildDataLoading={isChildDataLoading}
+              setIsChildDataLoading={setIsChildDataLoading}
+              handleReject={handleReject}
+              handleOpenNDA={handleOpenNDA}
             />
           )}
           <PaginationTable
@@ -309,7 +298,7 @@ const AllUserListIndex = () => {
             handleChangePagination={handleChangePagination}
             totalItems={totalUsers}
           />
-        </Paper>
+        </TablePaper>
       </Box>
 
       <UserDetailsNewIndex

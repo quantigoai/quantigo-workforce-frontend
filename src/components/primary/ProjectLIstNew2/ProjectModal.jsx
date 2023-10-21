@@ -223,7 +223,7 @@ const ProjectModal = ({
                       padding: "16px",
                       borderRadius: "8px",
                       background: isLightTheme ? "#FAFCFF" : "#1E2A41",
-                      maxHeight: 200,
+                      maxHeight: 155,
                       color: isLightTheme ? "#091E42" : "#FFFFFF",
                       overflowY: "auto",
                     }}
@@ -269,7 +269,7 @@ const ProjectModal = ({
                       paddingX: "30px",
                       paddingY: "5px",
                       fontSize: "16px",
-                      borderRadius: "10px",
+                      borderRadius: "8px",
                       backgroundColor: "#2E58FF",
                       "&:hover": {
                         background: "#244EF5",

@@ -1,42 +1,47 @@
-import {Box, Button, Typography} from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 const SortingButton = ({ filteredCol, column }) => {
   const val = Object.keys(filteredCol);
-
+  const ascColorCode = (value) => {
+    return value.includes(column) ? (filteredCol[column] === "asc" ? "blue" : "#7B98BA") : "#7B98BA";
+  };
+  const descColorCode = (value) => {
+    return value.includes(column) ? (filteredCol[column] === "desc" ? "blue" : "#7B98BA") : "#7B98BA";
+  };
   return (
     <Button
       sx={{
-        display: "flex",
         minWidth: "15px",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
         ":hover": {
           backgroundColor: "transparent",
           color: "black",
         },
       }}
     >
-      <Box>
-        <Typography
-          sx={{
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          gap: "8px",
+        }}
+      >
+        <i
+          className="ri-arrow-up-s-fill"
+          style={{
+            fontSize: "14px",
+            color: ascColorCode(val),
             lineHeight: 0,
-            fontSize: "15px",
           }}
-          color={val.includes(column) ? (filteredCol[column] === "asc" ? "blue" : "#7B98BA") : "#7B98BA"}
-        >
-          <i className="ri-arrow-up-s-fill"></i>
-        </Typography>
-        <Typography
-          sx={{
+        ></i>
+        <i
+          className="ri-arrow-down-s-fill"
+          style={{
+            fontSize: "14px",
+            color: descColorCode(val),
             lineHeight: 0,
-            mt: 1,
-            fontSize: "15px",
           }}
-          color={val.includes(column) ? (filteredCol[column] === "desc" ? "blue" : "#7B98BA") : "#7B98BA"}
-        >
-          <i className="ri-arrow-down-s-fill"></i>
-        </Typography>
+        ></i>
       </Box>
     </Button>
   );

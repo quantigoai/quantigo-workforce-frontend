@@ -304,6 +304,7 @@ export default function LayoutNew({ children }) {
             transition: { duration: 0.4 },
           }}
           sx={{
+            // overflowX: "clip",
             height: "100vh",
             backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
             // position: "relative",
@@ -375,11 +376,9 @@ export default function LayoutNew({ children }) {
             <Box
               sx={{
                 height: { xxl: "75%", xl: "70%", lg: "70%" },
-                overflow: "auto",
+                overflowX: "hidden",
+                scrollbarWidth: "none", // Firefox scrollbar width
                 "&::-webkit-scrollbar": {
-                  display: "none",
-                },
-                "&-ms-overflow-style:": {
                   display: "none",
                 },
               }}

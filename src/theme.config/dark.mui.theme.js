@@ -76,14 +76,23 @@ const darkTheme = createTheme({
         },
       },
     },
+    MuiTableRow: {
+      styleOverrides: {
+        root: {
+          borderBottom: "1px solid #f2f6fc",
+          backgroundColor: "#fff",
+          height: "44px",
+          margin: "0",
+        },
+      },
+    },
     MuiTableCell: {
       styleOverrides: {
         root: {
           borderBottom: "1px solid #f2f6fc",
           backgroundColor: "#1e1e1e",
           color: "#fff",
-          height: "40px",
-          padding: "10px 16px",
+          padding: "0px 10px",
           margin: "0",
         },
       },
@@ -132,6 +141,53 @@ const darkTheme = createTheme({
       },
     },
   },
+  breakpoints: {
+    values: {
+      xs: 0, // mobile deprecated
+      sm: 600, // mobile deprecated
+      md: 768,
+      lg: 1024,
+      xl: 1440,
+      xxl: 1920,
+    },
+  },
+});
+
+[darkTheme.breakpoints.between("lg", "xl")].forEach((key) => {
+  darkTheme.typography.wpf_p3_semiBold[key] = {
+    fontSize: "12px",
+  };
+});
+
+[darkTheme.breakpoints.up("xxl")].forEach((key) => {
+  darkTheme.typography.wpf_p3_semiBold[key] = {
+    fontSize: "16px",
+  };
+  darkTheme.components.MuiTableRow.styleOverrides.root[key] = {
+    height: "56px",
+  };
+});
+[darkTheme.breakpoints.between("lg", "xl")].forEach((key) => {
+  darkTheme.typography.wpf_p4_semiBold[key] = {
+    fontSize: "10px",
+  };
+});
+
+[darkTheme.breakpoints.up("xxl")].forEach((key) => {
+  darkTheme.typography.wpf_p4_semiBold[key] = {
+    fontSize: "14px",
+  };
+});
+[darkTheme.breakpoints.between("lg", "xl")].forEach((key) => {
+  darkTheme.typography.wpf_p3_medium[key] = {
+    fontSize: "10px",
+  };
+});
+
+[darkTheme.breakpoints.up("xxl")].forEach((key) => {
+  darkTheme.typography.wpf_p3_medium[key] = {
+    fontSize: "16px",
+  };
 });
 
 export default darkTheme;

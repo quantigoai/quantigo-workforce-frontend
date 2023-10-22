@@ -55,12 +55,12 @@ export const fields = [
   },
 ];
 export const singleDetailsFields = [
-  { field: "userQaiID", width: 140 },
-  { field: "checkedInDate", width: 180 },
-  { field: "checkedInTime", width: 180 },
-  { field: "checkedOutDate", width: 180 },
-  { field: "checkedOutTime", width: 180 },
-  { field: "workingTimeInMs", width: 180 },
+  { field: "userQaiID", width: 140, textAlign: "left", columnDataAlign: "left" },
+  { field: "checkedInDate", width: 180, textAlign: "left", columnDataAlign: "left" },
+  { field: "checkedInTime", width: 180, textAlign: "left", columnDataAlign: "left" },
+  { field: "checkedOutDate", width: 180, textAlign: "left", columnDataAlign: "left" },
+  { field: "checkedOutTime", width: 180, textAlign: "left", columnDataAlign: "left" },
+  { field: "workingTimeInMs", width: 180, textAlign: "left", columnDataAlign: "left" },
   {
     field: "ACTIONS",
     renderCell: "button",

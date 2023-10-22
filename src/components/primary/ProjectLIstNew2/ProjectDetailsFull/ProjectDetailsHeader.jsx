@@ -1,9 +1,9 @@
-import {Box, Typography} from "@mui/material";
-import {statusCreateOptions} from "../FIlterOptions";
+import { Box, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+import { statusCreateOptions } from "../FIlterOptions";
 import CheckINOutButton from "./CheckInOutButton";
 import ProjectDetailSelect from "./ProjectDetailSelect";
 import ProjectDetailsButton from "./ProjectDetailsButton";
-import {useSelector} from "react-redux";
 
 const ProjectDetailsHeader = ({
   value,
@@ -24,16 +24,22 @@ const ProjectDetailsHeader = ({
 }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   return (
+    // <Box
+    //   display={"flex"}
+    //   // alignItems={"center"}
+    //   justifyContent={"space-between"}
+    //   width={"100%"}
+    //   margin="auto"
+    //   sx={{
+    //     // backgroundColor: "red",
+    //     backgroundColor: isLightTheme ? "white" : "#121212",
+    //     borderRadius: "8px 8px 0px 0px",
+    //   }}
+    // >
     <Box
-      display={"flex"}
-      // alignItems={"center"}
-      justifyContent={"space-between"}
-      width={"100%"}
-      margin="auto"
+      className="contentHeader"
       sx={{
-        // backgroundColor: "red",
-        backgroundColor: isLightTheme ? "white" : "#121212",
-        borderRadius: "8px 8px 0px 0px",
+        backgroundColor: "neutral.N000",
       }}
     >
       <Box

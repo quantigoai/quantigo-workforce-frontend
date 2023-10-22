@@ -55,10 +55,15 @@ export const fields = [
   },
 ];
 export const singleDetailsFields = [
-  { field: "userQaiID", width: 300 },
-  { field: "checkedInDate", width: 200 },
-  { field: "checkedInTime", width: 200 },
-  { field: "checkedOutDate", width: 200 },
-  { field: "checkedOutTime", width: 200 },
-  { field: "workingTimeInMs", width: 400 },
+  { field: "userQaiID", width: 140 },
+  { field: "checkedInDate", width: 180 },
+  { field: "checkedInTime", width: 180 },
+  { field: "checkedOutDate", width: 180 },
+  { field: "checkedOutTime", width: 180 },
+  { field: "workingTimeInMs", width: 180 },
+  {
+    field: "ACTIONS",
+    renderCell: "button",
+    width: 80,
+  },
 ];

@@ -7,9 +7,10 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 import { Alert } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import DetailsPage from "../ProjectDetailsFull/DetailsPage";
 import WPFTable from "./WPFTable";
 
@@ -34,9 +35,6 @@ const TableWrapper = ({
   handleReject,
   handleOpenNDA,
 }) => {
-  const { isLightTheme } = useSelector((state) => state.theme);
-  // const { isLoading } = useSelector((state) => state.user);
-
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
   const location = useLocation();
   const { pathname } = location;
@@ -44,7 +42,6 @@ const TableWrapper = ({
   const stickyFirstColumn = [myColumn[0]];
   const stickyLastColumn = [myColumn[myColumn.length - 1]];
   const columns = myColumn.slice(1, myColumn.length - 1);
-  const [isColumSet, setIsColumnSet] = useState(false);
   const approvedPaths = ["/allprojects", "/all-users"];
 
   const renderMainContent = () => {
@@ -80,7 +77,9 @@ const TableWrapper = ({
         return <Alert severity="error">No Users history found for this project!</Alert>;
       }
     } else {
-      if (data.length > 0) {
+      if (isChildDataLoading) {
+        return <LoadingComponent />;
+      } else if (data && data.length > 0) {
         return (
           <WPFTable
             handleDetailsPage={handleDetailsPage}
@@ -94,6 +93,10 @@ const TableWrapper = ({
             role={role}
             skillAlert={skillAlert}
             currentlyCheckedInProject={currentlyCheckedInProject}
+            stickyFirstColumn={stickyFirstColumn}
+            stickyLastColumn={stickyLastColumn}
+            columns={columns}
+            isChildDataLoading={isChildDataLoading}
             handleReject={handleReject}
             handleOpenNDA={handleOpenNDA}
           />

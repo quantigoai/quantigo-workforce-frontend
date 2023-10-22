@@ -18,13 +18,13 @@ import ProjectDetailsHeader from "./ProjectDetailsHeader";
 
 import { addDays } from "date-fns";
 import useToaster from "../../../../customHooks/useToaster";
-import LoadingComponent from "../../../shared/Loading/LoadingComponent";
-import TableWrapper from "../ExpTable/TableWrapper";
 import PaginationTable from "../PaginationTable";
 import { HeaderBox, TablePaper } from "../ProjectLIstIndex2";
 import CheckOutModal from "./CheckOutModal";
+const TableWrapper = React.lazy(() => import("../ExpTable/TableWrapper"));
 
 const FullProjectDetails = () => {
+  const { id } = useParams();
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
   const { isLoading, projectDrawer, usersWorkHistory, usersWorkHistoryCount } = useSelector(
     (state) => state.projectDrawer
@@ -34,8 +34,6 @@ const FullProjectDetails = () => {
   const [value, setValue] = React.useState(projectDrawer.project_status);
   const [detailCol, setDetailCol] = useState([]);
   const [detailRow, setDetailRow] = useState([]);
-
-  const { id } = useParams();
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -60,7 +58,7 @@ const FullProjectDetails = () => {
   });
 
   useEffect(() => {
-    setIsLoadingDetails(false);
+        setIsLoadingDetails(false);
     if (!isLoadingDetails) {
       setDetailCol(fieldBuilder(singleDetailsFields));
       setDetailRow(dataBuilder(usersWorkHistory));
@@ -151,7 +149,7 @@ const FullProjectDetails = () => {
   const handleChangePagination = useCallback(() => {
     setIsChildDataLoading(true);
     if (role === "admin") {
-      if (range[0].startDate.getTime() !== range[0].endDate.getTime()) {
+            if (range[0].startDate.getTime() !== range[0].endDate.getTime()) {
         dispatch(
           getUsersWorkHistoryById({
             pagination,
@@ -185,9 +183,9 @@ const FullProjectDetails = () => {
       });
     }
   }, [role, range, dispatch, pagination, filteredCol, projectDrawer._id]);
+
   return (
     <Box className="content">
-      {/* <HeaderBox sx={{ padding: "16px" }}> */}
       <HeaderBox>
         {/* {!isLoadingDetails && detailRow.length > 0 && ( */}
         {!isDataLoading && (
@@ -209,13 +207,10 @@ const FullProjectDetails = () => {
           />
         )}
       </HeaderBox>
-      {/* {!isLoadingDetails && ( */}
-      {isDataLoading ? (
-        <LoadingComponent />
-      ) : (
-        <Box className="contentBody">
-          <TablePaper>
-            {/* <ProjectTable2
+
+      <Box className="contentBody">
+        <TablePaper>
+          {/* <ProjectTable2
               skillAlert={skillAlert}
               role={role}
               myColumn={detailCol}
@@ -228,39 +223,38 @@ const FullProjectDetails = () => {
               filteredCol={filteredCol}
               handleProjectDetailsOpen={handleProjectDetailsOpen}
             /> */}
-            <TableWrapper
-              role={role}
-              myColumn={detailCol}
-              myRows={detailRow}
-              pagination={pagination}
-              setPagination={setPagination}
-              handleChangePagination={handleChangePagination}
-              totalItems={usersWorkHistoryCount}
-              handleId={handleId}
-              skillAlert={skillAlert}
-              filteredCol={filteredCol}
-              handleProjectDetailsOpen={handleProjectDetailsOpen}
-              isChildDataLoading={isChildDataLoading}
-              data={usersWorkHistory}
-              setIsChildDataLoading={setIsChildDataLoading}
-            />
-            {/* {usersWorkHistory?.length ? (
+          <TableWrapper
+            role={role}
+            myColumn={detailCol}
+            myRows={detailRow}
+            pagination={pagination}
+            setPagination={setPagination}
+            handleChangePagination={handleChangePagination}
+            totalItems={usersWorkHistoryCount}
+            handleId={handleId}
+            skillAlert={skillAlert}
+            filteredCol={filteredCol}
+            handleProjectDetailsOpen={handleProjectDetailsOpen}
+            isChildDataLoading={isChildDataLoading}
+            data={usersWorkHistory}
+            setIsChildDataLoading={setIsChildDataLoading}
+          />
+          {/* {usersWorkHistory?.length ? (
             
           ) : (
             <Alert Alert severity="error">
               No Users history found for this project!
             </Alert>
           )} */}
-            <PaginationTable
-              pagination={pagination}
-              setPagination={setPagination}
-              handleChangePagination={handleChangePagination}
-              totalItems={usersWorkHistoryCount}
-            />
-          </TablePaper>
-        </Box>
-      )}
-      {/* // )} */}
+          <PaginationTable
+            pagination={pagination}
+            setPagination={setPagination}
+            handleChangePagination={handleChangePagination}
+            totalItems={usersWorkHistoryCount}
+          />
+        </TablePaper>
+      </Box>
+
       <Box>
         <CheckOutModal
           projectDrawer={projectDrawer}

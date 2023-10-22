@@ -31,7 +31,6 @@ import UsersHeader from "./UsersHeader";
 import "./index.css";
 import { fields } from "./tableFields";
 import { hubOptions, roleOptionsAdmin, roleOptionsRecruitment_manager, userStatusOptions } from "./userFilterOptions";
-// import TableWrapper from "../ProjectLIstNew2/ExpTable/TableWrapper";
 const TableWrapper = React.lazy(() => import("../ProjectLIstNew2/ExpTable/TableWrapper"));
 
 const AllUserListIndex = () => {
@@ -53,7 +52,7 @@ const AllUserListIndex = () => {
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
   const [openAccepet, setOpenAccepet] = React.useState(false);
-  const { register, handleSubmit } = useForm();
+  const { register } = useForm();
   const [rejectionCause, setRejectionCause] = useState("");
   const toast = useToaster();
   const [pagination, setPagination] = useState({

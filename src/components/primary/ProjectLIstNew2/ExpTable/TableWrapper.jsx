@@ -35,7 +35,7 @@ const TableWrapper = ({
   handleReject,
   handleOpenNDA,
 }) => {
-  const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
+    const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
   const location = useLocation();
   const { pathname } = location;
 

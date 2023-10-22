@@ -74,7 +74,7 @@ const TableWrapper = ({
       } else if (role !== "admin") {
         return <DetailsPage skillAlert={skillAlert} />;
       } else {
-        return <Alert severity="error">No Users history found for this project!</Alert>;
+        return <Alert severity="error">No data found!</Alert>;
       }
     } else {
       if (isChildDataLoading) {

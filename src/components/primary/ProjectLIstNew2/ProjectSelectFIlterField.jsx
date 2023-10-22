@@ -17,7 +17,9 @@ export default function ProjectSelectFIlterField({ options, label, handleChange,
   return (
     // <></>
 
-    <MyFormControl sx={{ px: 2, minWidth: "25%" }} size="small">
+    <MyFormControl fullWidth
+      sx={{ px: 2, minWidth: "25%" }}
+      size="small">
       <MySelect
         displayEmpty
         sx={{

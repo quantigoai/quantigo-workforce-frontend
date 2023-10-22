@@ -1,4 +1,4 @@
-import { Box, FormControlLabel, Stack, Switch, Typography } from "@mui/material";
+import { Box, Button, FormControlLabel, Stack, Switch, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import PlatformSelectAnnotator from "./PlatformSelectAnnotator";
@@ -31,15 +31,12 @@ const ProjectSelectFIlter = ({
         backgroundColor: "neutral.N000",
         width: "100%",
         paddingY: "5px",
-
         display: isFilter ? "block" : "none",
-        height: "52px",
-        // paddingX: "16px",
         borderTop: "1px solid #E6ECF5",
+        height: "52px",
       }}
     >
       <Stack sx={{ width: "100%", height: "100%" }}>
-        {/* <Grid items xs={9}> */}
         <Stack
           sx={{
             display: "flex",
@@ -55,10 +52,11 @@ const ProjectSelectFIlter = ({
                 sx={{
                   display: "flex",
                   flexDirection: "row",
-                  justifyContent: "center",
+                  justifyContent: "start",
                   alignItems: "center",
                   width: "100%",
-                  height: "100%",
+                  // backgroundColor: "blue",
+                  // height: "100%",
                   // paddingX: "16px",
                 }}
               >
@@ -143,7 +141,9 @@ const ProjectSelectFIlter = ({
             </Box>
           )}
 
-          {/* <Stack sx={{ width: "10%" }}>
+          <Stack
+          sx={{ width: "10%", px:2 }}
+          >
             {role === "admin" && (
               <Button
                 onClick={() => handleClearFilter()}
@@ -152,10 +152,8 @@ const ProjectSelectFIlter = ({
                   borderRadius: "8px",
                   backgroundColor: "#FF4757",
                   color: "white",
-                  width: "100px",
-                  height: "25 px",
 
-                  mt: 0.5,
+                  height: { xl: "35 px", lg: "35px" },
                   "&:hover": {
                     backgroundColor: "#F53142",
                   },
@@ -163,11 +161,10 @@ const ProjectSelectFIlter = ({
                 size="medium"
                 color="error"
               >
-                {" "}
-                Clear Filter
+                Clear
               </Button>
             )}
-          </Stack> */}
+          </Stack>
         </Stack>
       </Stack>
     </Box>

@@ -162,6 +162,9 @@ const lightTheme = createTheme({
   lightTheme.typography.wpf_p3_semiBold[key] = {
     fontSize: "16px",
   };
+  lightTheme.components.MuiTableRow.styleOverrides.root[key] = {
+    height: "56px",
+  };
 });
 [lightTheme.breakpoints.between("lg", "xl")].forEach((key) => {
   lightTheme.typography.wpf_p4_semiBold[key] = {

@@ -78,7 +78,7 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
       sx={{
         display: "flex",
         width: "100%",
-        height: "48px",
+        height: { xl: "48px", xxl: "60px" },
         // backgroundColor: "gray",
         paddingX: "16px",
         paddingY: "12px",
@@ -91,32 +91,34 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
         gap={0}
         sx={{
           display: "flex",
-          justifyContent: "flex-start",
           alignItems: "center",
-          alignContent: "center",
         }}
       >
-        <Typography
-          variant="wpf_p4_regular"
-          sx={{
-            width: "120px",
-            color: "neutral.N300",
-          }}
-        >
-          Items per page
-        </Typography>
+        <Box>
+          <Typography
+            variant="wpf_p4_regular"
+            sx={{
+              width: "120px",
+              color: "neutral.N300",
+            }}
+          >
+            Items per page :
+          </Typography>
+        </Box>
+
         <Select
           sx={{
-            width: "80px",
+            width: "70px",
             height: "24px",
-            border: "1px solid #b9b9b9",
+            border: "none",
             "& .MuiSelect-select": {
-              fontSize: "wpf_p4_regular",
-              padding: "0px 0px 0px 10px",
+              padding: "5px 0px 0px 10px",
+              fontSize: "14px",
               color: "neutral.N300",
             },
             "& .MuiSvgIcon-root": {
               color: "neutral.N300",
+              pt: "2px",
             },
           }}
           id="demo-simple-select"

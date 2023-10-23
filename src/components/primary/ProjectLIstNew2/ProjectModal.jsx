@@ -91,9 +91,9 @@ const ProjectModal = ({
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <Box
                   sx={{
-                    paddingLeft: "3%",
-                    paddingTop: "2%",
-                    paddingRight: "3%",
+                    paddingLeft: "16px",
+                    paddingTop: "1%",
+                    paddingRight: "16px",
                     position: "relative",
                   }}
                 >
@@ -237,7 +237,8 @@ const ProjectModal = ({
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    padding: "20px",
+                    paddingY: "12px",
+                    paddingX:"16px",
                     mt: 2,
                     borderTop: "2px solid #F2F6FC",
                   }}
@@ -248,12 +249,15 @@ const ProjectModal = ({
                       textTransform: "none",
                       paddingX: "30px",
                       paddingY: "5px",
-                      fontSize: "16px",
-                      color: "#62728F",
+                      fontSize: "14px",
+                      height: "40px",
+                      width: "120px",
+                      borderRadius: "8px",
                       border: "1px solid #F4F7FE",
                       backgroundColor: "#F4F7FE",
+                      color:"#62728F",
                       "&:hover": {
-                        border: " 1px solid #2E58FF",
+                   
                         backgroundColor: "#F4F7FE",
                       },
                     }}
@@ -268,7 +272,9 @@ const ProjectModal = ({
                       textTransform: "none",
                       paddingX: "30px",
                       paddingY: "5px",
-                      fontSize: "16px",
+                      fontSize: "14px",
+                      height: "40px",
+                      width:"120px",
                       borderRadius: "8px",
                       backgroundColor: "#2E58FF",
                       "&:hover": {

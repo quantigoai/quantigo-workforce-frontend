@@ -29,7 +29,7 @@ const ResetPassword = ({ setResetPassword, resetPassword }) => {
   
   return (
     <>
-      <Grid item xs={12} sx={{ mb: 1 }}>
+      <Grid item xs={12} sx={{ mb: 2  }}>
         <FormControl fullWidth>
           <Typography
             sx={{
@@ -68,30 +68,7 @@ const ResetPassword = ({ setResetPassword, resetPassword }) => {
           />
         </FormControl>
       </Grid>
-      {/* <TextField
-        fullWidth
-        label="New Password"
-        variant="filled"
-        type={showPassword ? "text" : "password"}
-        id="filled-adornment-password"
-        value={resetPassword}
-        required={true}
-        autoComplete="off"
-        onChange={(e) => handlePassword(e.target.value)}
-        inputProps={{ minLength: 6 }}
-        sx={{ backgroundColor: "#FFFFFF" }}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-              sx={{ cursor: "pointer" }}
-              position="end">
-              {showPassword ? <VisibilityOff /> : <Visibility />}
-            </InputAdornment>
-          ),
-        }}
-      /> */}
+     
     </>
   );
 };

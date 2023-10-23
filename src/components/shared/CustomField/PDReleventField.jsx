@@ -60,18 +60,19 @@ function PDReleventField({ name, defaultValueItems }) {
                 defaultValue=""
                 render={({ field }) => <MyTextField type="text" {...field} />}
               />
-              <Button
-                type="button"
-                sx={{
-                  mt: "25px",
-                  position: "absolute",
-                  left: 245,
-                  fontSize: "20px",
-                }}
-                onClick={() => remove(index)}
-              >
-                <i style={{ color: "red", cursor: "pointer" }} className="ri-delete-bin-line"></i>
-              </Button>
+              {fields[0]?.documentName && (
+                <Button
+                  type="button"
+                  sx={{
+                    mt: "25px",
+                    position: "absolute",
+                    left: 245,
+                    fontSize: "20px",
+                  }}
+                  onClick={() => remove(index)}>
+                  <i style={{ color: "red", cursor: "pointer" }} className="ri-delete-bin-line"></i>
+                </Button>
+              )}
             </FormControl>
           </Stack>
         </Box>
@@ -87,8 +88,7 @@ function PDReleventField({ name, defaultValueItems }) {
         }}
         variant="p"
         type="button"
-        onClick={() => append({ documentName: "", documentUrl: "" })}
-      >
+        onClick={() => append({ documentName: "", documentUrl: "" })}>
         <i className="ri-add-line"></i> Add another document
       </Typography>
     </>

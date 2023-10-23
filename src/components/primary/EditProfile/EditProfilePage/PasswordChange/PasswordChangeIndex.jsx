@@ -62,8 +62,8 @@ const PasswordChangeIndex = () => {
               fontSize: "14px",
               color: "#FFFFFF",
               "&:hover": {
-                backgroundColor: "#FF9A45",
-                color: "#1D1D1D",
+                backgroundColor: "#244EF5",
+                color: "#FFFFFF",
               },
             }}
             onClick={() => handleChangePassword()}

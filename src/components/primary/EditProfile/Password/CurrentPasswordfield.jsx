@@ -28,7 +28,7 @@ const CurrentPasswordfield = ({ setCurrentPassword, CurrentPassword }) => {
 
   return (
     <>
-      <Grid item xs={12} sx={{ mb: 1 }}>
+      <Grid item xs={12} sx={{ mb: 2 }}>
         <FormControl fullWidth>
           <Typography
             sx={{

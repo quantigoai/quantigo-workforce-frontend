@@ -9,6 +9,8 @@ import deleteIcon from "../../../../assets/images/fi_trash-2.png";
 import ProjectModalHeader from "../ProjectModalHeader";
 import PdfNdaUploadField from "../../Nda/PdfNdaUploadField";
 import CsvUploadField from "./CsvUploadField";
+import { uploadEffectiveHours } from "../../../../features/slice/projectDrawerSlice";
+import useToaster from "../../../../customHooks/useToaster";
 
 const style = {
   display: "flex",
@@ -50,11 +52,14 @@ const ButtonStyle = styled(Button)({
 
 const DetailsUploadHourModal = ({ openModal, handleClose }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
+  const { projectDrawer } = useSelector((state) => state.projectDrawer);
   const [selectedFile, setSelectedFile] = useState([]);
   const [isSelected, setIsSelected] = useState(false);
   const [coverImageFile, setCoverImageFile] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
   const maxSize = 1 * 1024 * 1024;
+  const toast = useToaster();
+  const dispatch = useDispatch();
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({});
   const handleImage = (e) => {
     setCoverImageFile(e[0]);
@@ -79,15 +84,23 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
     // setStepper(1);
   };
   useEffect(() => {}, [acceptedFiles]);
-
+  console.log(projectDrawer._id);
   const handleSubmission = () => {
     const formData = new FormData();
     formData.append("hoursData", selectedFile);
-    console.log("🚀 ~ file: DetailsUploadHourModal.jsx:86 ~ handleSubmission ~ selectedFile:", selectedFile)
-    // const data = {
-    //   id: user._id,
-    //   signImage: formData,
-    // };
+    const data = {
+      id: projectDrawer._id,
+      hoursData: formData,
+    };
+    dispatch(uploadEffectiveHours(data)).then((action) => {
+      if (action.payload?.status === 200) {
+        toast.trigger(action.payload?.data.message, "success");
+        // handleClose();
+      } else {
+        toast.trigger("action.error.message", "error");
+        // handleClose();
+      }
+    });
   };
   return (
     <>
@@ -103,7 +116,7 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
             width: { xl: "35%", lg: "40%" },
           }}>
           <Box sx={{ flex: "0 0 5%" }}>
-            <Grid container sx={{ paddingRight: "3%" }}>
+            <Grid container sx={{ paddingRight: "0%" }}>
               <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Upload Effective Hour"} />
             </Grid>
           </Box>

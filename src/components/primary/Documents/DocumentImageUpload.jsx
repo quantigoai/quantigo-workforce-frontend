@@ -69,6 +69,9 @@ const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleIm
   if (screenSize >= 1500) {
     // Extra-large screens
     width = 630;
+  } else if (screenSize === 1440) {
+    // Large screens
+    width = 470;
   } else if (screenSize >= 992) {
     // Large screens
     width = 510;
@@ -100,8 +103,7 @@ const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleIm
                       position: "relative",
                     }}
                     onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                  >
+                    onMouseLeave={handleMouseLeave}>
                     <img height={175} src={coverImage} alt="" style={{ width }} />
                     {/* <p>File : {files}</p> */}
                     {isHovered && (
@@ -120,8 +122,7 @@ const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleIm
                               color: "#2E58FF",
                               // border: "1px solid #2E58FF",
                             },
-                          }}
-                        >
+                          }}>
                           Replace
                         </Button>
                         {/* <DeleteIcon onClick={removeImage} sx={{ color: "red" }} /> */}

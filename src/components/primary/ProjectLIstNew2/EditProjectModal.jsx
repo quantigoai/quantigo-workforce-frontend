@@ -260,7 +260,6 @@ const EditProjectModal = ({
                       backgroundColor: "#F4F7FE",
                       color:"#62728F",
                       "&:hover": {
-                        border: " 1px solid #2E58FF",
                         backgroundColor: "#F4F7FE",
                       },
                     }}

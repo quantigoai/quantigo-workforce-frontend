@@ -1,3 +1,12 @@
+/*
+ * Filename: /home/tanzim/workstation/Office/quantigo-workforce-frontend/src/components/primary/ProjectLIstNew2/ProjectDetailsFull/DetailsUploadHourModal.jsx
+ * Path: /home/tanzim/workstation/Office/quantigo-workforce-frontend
+ * Created Date: Monday, October 23rd 2023, 3:07:06 pm
+ * Author: Tanzim Ahmed
+ *
+ * Copyright (c) 2023 Tanzim Ahmed
+ */
+
 import { Box, Button, Grid, Modal, Stack, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";

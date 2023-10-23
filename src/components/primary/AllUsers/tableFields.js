@@ -25,6 +25,8 @@ export const fields = [
   { field: "activeJobs", width: 150, textAlign: "center", columnDataAlign: "center" },
   { field: "jobLimitLeft", width: 160, textAlign: "left", columnDataAlign: "center" },
   { field: "totalWorkingHours", width: 170, textAlign: "left", columnDataAlign: "center" },
+  { field: "totalPaidAmount", width: 170, textAlign: "center", columnDataAlign: "center" },
+  { field: "totalDueAmount", width: 170, textAlign: "center", columnDataAlign: "center" },
   { field: "paymentRate", width: 160, textAlign: "left", columnDataAlign: "center" },
   { field: "bloodGroup", width: 170, textAlign: "center", columnDataAlign: "center" },
   { field: "currentlyCheckedInProject", width: 270, textAlign: "left", columnDataAlign: "left" },

@@ -58,7 +58,7 @@ const FullProjectDetails = () => {
   });
 
   useEffect(() => {
-        setIsLoadingDetails(false);
+    setIsLoadingDetails(false);
     if (!isLoadingDetails) {
       setDetailCol(fieldBuilder(singleDetailsFields));
       setDetailRow(dataBuilder(usersWorkHistory));
@@ -149,7 +149,7 @@ const FullProjectDetails = () => {
   const handleChangePagination = useCallback(() => {
     setIsChildDataLoading(true);
     if (role === "admin") {
-            if (range[0].startDate.getTime() !== range[0].endDate.getTime()) {
+      if (range[0].startDate.getTime() !== range[0].endDate.getTime()) {
         dispatch(
           getUsersWorkHistoryById({
             pagination,
@@ -182,7 +182,7 @@ const FullProjectDetails = () => {
         setIsChildDataLoading(false);
       });
     }
-  }, [role, range, dispatch, pagination, filteredCol, projectDrawer._id]);
+  }, [role, range, pagination, filteredCol, projectDrawer._id]);
 
   return (
     <Box className="content">

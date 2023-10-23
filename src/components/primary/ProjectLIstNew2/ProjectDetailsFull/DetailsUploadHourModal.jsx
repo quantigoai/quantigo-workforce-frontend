@@ -5,13 +5,14 @@ import { useDropzone } from "react-dropzone";
 import { useDispatch, useSelector } from "react-redux";
 import pdfSvg from "../../../../assets/images/csvIcon.png";
 import deleteIcon from "../../../../assets/images/fi_trash-2.png";
-
+// import Ndafile from "../../../../assets/ndifile/Template_for_effective_hours - Sheet1.csv" 
 // import useToaster from "../../../../customHooks/useToaster";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { realToken } from "../../../../helper/lib";
 import ProjectModalHeader from "../ProjectModalHeader";
 import CsvUploadField from "./CsvUploadField";
+import { CSVDownload } from "react-csv";
 
 const style = {
   display: "flex",
@@ -51,7 +52,7 @@ const ButtonStyle = styled(Button)({
   },
 });
 
-const DetailsUploadHourModal = ({ openModal, handleClose }) => {
+const DetailsUploadHourModal = ({ openModal, setOpen }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { projectDrawer } = useSelector((state) => state.projectDrawer);
   const [selectedFile, setSelectedFile] = useState([]);
@@ -62,6 +63,13 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
   // const toast = useToaster();
   const dispatch = useDispatch();
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({});
+  const handleClose = () => {
+    setOpen(false);
+    setCoverImageFile([]);
+    setSelectedFile([]);
+    setCoverImage(null);
+  };
+
   const handleImage = (e) => {
     setCoverImageFile(e[0]);
     setSelectedFile(e[0]);
@@ -117,7 +125,7 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
           render() {
             return "CSV is uploading...";
           },
-          // icon: false,
+          icon: false,
         },
         success: {
           render({ data }) {
@@ -133,7 +141,7 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
         },
       }
     );
-    console.log(response);
+   
     // .then((action) => {
     // if (action.payload?.status === 200) {
     //   toast.trigger(action.payload?.data.message, "success");
@@ -143,6 +151,9 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
     //   // handleClose();
     // }
   };
+    const handleDownload = () => {
+    
+  };
 
   return (
     <>
@@ -150,15 +161,13 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
         open={openModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+        aria-describedby="modal-modal-description">
         <Box
           sx={{
             ...style,
             height: { xl: "%", lg: "%" },
             width: { xl: "35%", lg: "40%" },
-          }}
-        >
+          }}>
           <Box sx={{ flex: "0 0 5%" }}>
             <Grid container sx={{ paddingRight: "0%" }}>
               <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Upload Effective Hour"} />
@@ -170,8 +179,26 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
               flex: "1",
               overflowY: "auto",
               padding: "3%",
-            }}
-          >
+            }}>
+            <Box>
+            <Box sx={{ width: "100%", paddingTop: "1%", paddingBottom: "3%", paddingLeft: "1%", paddingRight: "1%" }}>
+              <Grid container>
+                <a
+                  // href={Ndafile}
+                  // download="Template_for_effective_hours - Sheet1.pdf"
+                  onClick={() => handleDownload()}
+                  style={{ textDecoration: "none", color: "#266AED" }}>
+                  <i className="ri-download-2-line"></i>
+                  <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
+                    Download Reference CSV
+                  </Typography>
+                </a>
+                </Grid>
+              
+            </Box>
+            </Box>
+
+
             <Box sx={{ paddingLeft: "1%", paddingRight: "1%" }}>
               <CsvUploadField handleImage={handleImage} selectedFile={selectedFile} />
             </Box>
@@ -184,8 +211,7 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
                   fontSize: "14px",
                   mb: "7px",
                 }}
-                variant="h6"
-              >
+                variant="h6">
                 Attachment
               </Typography>
 
@@ -197,8 +223,7 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
                   backgroundColor: "neutral.N600",
                   height: "75px",
                   color: "neutral.700",
-                }}
-              >
+                }}>
                 {!selectedFile?.name || selectedFile.size > maxSize ? (
                   <></>
                 ) : (
@@ -216,8 +241,7 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
                             textAlign: "left",
                             paddingRight: "3%",
                             paddingLeft: "2%",
-                          }}
-                        >
+                          }}>
                           <Typography variant="wpf_p3_medium">{selectedFile?.name}</Typography>
                         </Grid>
                         <Grid item xs={1}>
@@ -245,8 +269,7 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
 
               bottom: "0px",
               borderRadius: "8px",
-            }}
-          >
+            }}>
             <Grid container sx={{ padding: "2%" }}>
               <Grid item xs={6}>
                 <Button
@@ -261,8 +284,7 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
                       color: "neutral.N650",
                     },
                   }}
-                  onClick={() => handleClose()}
-                >
+                  onClick={() => handleClose()}>
                   Cancel
                 </Button>
               </Grid>
@@ -270,7 +292,7 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
                 <Grid container sx={{ justifyContent: "right" }}>
                   <Button
                     type="submit"
-                    // disabled={!selectedFile?.name || isLoading || selectedFile?.size > maxSize}
+                    disabled={!selectedFile?.name || selectedFile?.size > maxSize}
                     sx={{
                       width: "128px",
                       textTransform: "none",
@@ -288,8 +310,7 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
                         // border: "1px solid #2E58FF",
                       },
                     }}
-                    onClick={handleSubmission}
-                  >
+                    onClick={handleSubmission}>
                     Upload
                   </Button>
                 </Grid>

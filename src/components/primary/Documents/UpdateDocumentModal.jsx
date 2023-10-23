@@ -116,7 +116,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
       }
     });
   };
-  console.log(coverImageFile?.size);
+
   return (
     <>
       <Modal
@@ -128,7 +128,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
         <Box
           sx={{
             ...style,
-            height: { xl: "56%", lg: "75%" },
+            height: { xl: "67%", lg: "75%" },
             width: { xl: "35%", lg: "40%" },
           }}
         >
@@ -141,6 +141,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
               flex: "1",
               overflowY: "auto",
               padding: "3%",
+            
             }}
           >
             <Box>
@@ -202,7 +203,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                 />
               </Grid>
 
-              <Grid container>
+              <Grid container sx={{}}>
                 <DocumentImageUpload
                   coverImageFile={coverImageFile}
                   coverImage={coverImage}

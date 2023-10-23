@@ -30,7 +30,7 @@ const DetailsUploadHourBUtton = () => {
         </Typography>
       </Button>
 
-      <DetailsUploadHourModal openModal={open} handleClose={handleClose} />
+      <DetailsUploadHourModal openModal={open} setOpen={setOpen} />
     </>
   );
 };

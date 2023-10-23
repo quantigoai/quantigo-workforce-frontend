@@ -146,7 +146,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
         <Box
           sx={{
             ...style,
-            height: { xl: "60%", lg: "%" },
+            height: { xl: "%", lg: "%" },
             width: { xl: "35%", lg: "40%" },
           }}>
           <Box sx={{ flex: "0 0 5%" }}>

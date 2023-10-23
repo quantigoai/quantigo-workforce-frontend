@@ -1,0 +1,2 @@
+name,workingHours,QAI_ID,paymentRate,totalBill,penalty,bonus,due,paidAmount,workingSkills
+John Doe,100,QA_XXXXXX,60,1000,4%,4%,500,500,"Skill1, Skill 2"

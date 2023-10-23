@@ -4,17 +4,26 @@ import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
 
 function PDReleventField({ name, defaultValueItems }) {
-  const { control, getValues, setValue } = useFormContext();
+  const MyTextField = styled(TextField)(() => ({
+    backgroundColor: isLightTheme && "#FFF",
+    "& .MuiOutlinedInput-notchedOutline": {
+      border: "2px solid #E6ECF5 !important",
+      borderRadius: "8px",
+    },
+    "& .MuiInputBase-root": { height: "45px", fontSize: "14px" },
+  }));
+
+  const { watch, control, setValue } = useFormContext();
+
   const { isLightTheme } = useSelector((state) => state.theme);
   const [hasChanged, setHasChanged] = useState(false);
 
-  const [documentNameChange, setDocumentNameChange] = useState(false);
-  const [documentURLChange, setDocumentURLChange] = useState(false);
+  const [idxDocumentNameChange, setIdxDocumentNameChange] = useState(null);
+  const [idxDocumentURLChange, setIdxDocumentURLChange] = useState(null);
 
   const { fields, append, remove } = useFieldArray({
     control,
     name,
-    // name: "relevantDocuments",
   });
 
   React.useEffect(() => {
@@ -27,37 +36,44 @@ function PDReleventField({ name, defaultValueItems }) {
   }, [defaultValueItems]);
 
   const handleFieldChange = (index, fieldName, value) => {
+    const { relevantDocuments } = watch();
     const fieldNameKey = `relevantDocuments[${index}].${fieldName}`;
+
     setValue(fieldNameKey, value);
-
-    if (!value) {
-      setHasChanged(false);
-    } else {
-      setHasChanged(true);
-    }
-
     if (fieldName === "documentName") {
-      setDocumentNameChange(true);
+      setIdxDocumentNameChange(index);
+      setIdxDocumentURLChange(null);
     } else if (fieldName === "documentUrl") {
-      setDocumentURLChange(true);
+      setIdxDocumentNameChange(null);
+      setIdxDocumentURLChange(index);
     }
-    console.log("🚀 ~ file: PDReleventField.jsx:8 ~ PDReleventField ~ getValues:", getValues());
+    const currentValues = relevantDocuments[index];
+
+    if (currentValues.documentName && currentValues.documentUrl) {
+      setHasChanged(true);
+    } else {
+      setHasChanged(false);
+    }
   };
-  const MyTextField = styled(TextField)(() => ({
-    backgroundColor: isLightTheme && "#FFF",
-    "& .MuiOutlinedInput-notchedOutline": {
-      border: "2px solid #E6ECF5 !important",
-      borderRadius: "8px",
-    },
-    "& .MuiInputBase-root": { height: "45px", fontSize: "14px" },
-  }));
 
   const handleAddOtherDocument = () => {
     append({ documentName: "", documentUrl: "" });
-    setDocumentNameChange(false);
-    setDocumentURLChange(false);
+    setHasChanged(false);
+    setIdxDocumentNameChange(null);
+    setIdxDocumentURLChange(null);
   };
-  
+
+  const handleBlur = () => {
+    setIdxDocumentNameChange(null);
+    setIdxDocumentURLChange(null);
+  };
+  const handleRemove = (index) => {
+    remove(index);
+    setHasChanged(true);
+    setIdxDocumentNameChange(false);
+    setIdxDocumentURLChange(false);
+  };
+
   return (
     <>
       {fields.map((field, index) => (
@@ -65,7 +81,7 @@ function PDReleventField({ name, defaultValueItems }) {
           <Stack direction="row" gap={2} xs={12}>
             <FormControl fullWidth>
               <Typography variant="wpf_h7_medium" sx={{ fontSize: "12px", fontWeight: "500", mb: 1 }}>
-                Document Name sss
+                Document Name
               </Typography>
               <Controller
                 name={`relevantDocuments[${index}].documentName`}
@@ -75,10 +91,11 @@ function PDReleventField({ name, defaultValueItems }) {
                   <MyTextField
                     type="text"
                     {...field}
-                    autoFocus={documentNameChange}
+                    autoFocus={index === idxDocumentNameChange}
                     onChange={(e) => {
                       handleFieldChange(index, "documentName", e.target.value);
                     }}
+                    onBlur={handleBlur}
                   />
                 )}
               />
@@ -95,10 +112,11 @@ function PDReleventField({ name, defaultValueItems }) {
                   <MyTextField
                     type="text"
                     {...field}
-                    autoFocus={documentURLChange}
+                    autoFocus={index === idxDocumentURLChange}
                     onChange={(e) => {
                       handleFieldChange(index, "documentUrl", e.target.value);
                     }}
+                    onBlur={handleBlur}
                   />
                 )}
               />
@@ -112,7 +130,7 @@ function PDReleventField({ name, defaultValueItems }) {
                     left: 245,
                     fontSize: "20px",
                   }}
-                  onClick={() => remove(index)}
+                  onClick={() => handleRemove(index)}
                 >
                   <i style={{ color: "red", cursor: "pointer" }} className="ri-delete-bin-line"></i>
                 </Button>
@@ -133,7 +151,6 @@ function PDReleventField({ name, defaultValueItems }) {
         }}
         variant="p"
         type="button"
-        // disabled={hasChanged}
         onClick={handleAddOtherDocument}
       >
         <i className="ri-add-line"></i> Add another document

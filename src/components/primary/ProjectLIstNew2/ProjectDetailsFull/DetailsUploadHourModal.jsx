@@ -98,14 +98,20 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
     };
     handleClose();
     const response = await toast.promise(
-      axios.patch(`${url}/project-drawer/upload-hours/${data.id}`, data.hoursData, {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-        content: {
-          "Content-Type": "multipart/form-data",
-        },
-      }),
+      () => {
+        try {
+          return axios.patch(`${url}/project-drawer/upload-hours/${data.id}`, data.hoursData, {
+            headers: {
+              Authorization: `Bearer ${realToken()}`,
+            },
+            content: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+        } catch (error) {
+          throw new Error(error.response.data.message);
+        }
+      },
       {
         pending: {
           render() {
@@ -118,13 +124,11 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
             return `${data.data.message}`;
           },
           // other options
-          icon: "🟢",
+          icon: "🤙",
         },
         error: {
           render({ data }) {
-            console.log("🚀 ~ file: DetailsUploadHourModal.jsx:125 ~ render ~ data:", data);
-            // When the promise reject, data will contains the error
-            return `Oops, ${data.status}`;
+            return data.response.data.message;
           },
         },
       }

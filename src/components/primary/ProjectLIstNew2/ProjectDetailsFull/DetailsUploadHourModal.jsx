@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Modal, Stack, Step, StepLabel, Stepper, Typography } from "@mui/material";
+import { Box, Button, Grid, Modal, Stack, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
@@ -6,11 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import pdfSvg from "../../../../assets/images/csvIcon.png";
 import deleteIcon from "../../../../assets/images/fi_trash-2.png";
 
+// import useToaster from "../../../../customHooks/useToaster";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { realToken } from "../../../../helper/lib";
 import ProjectModalHeader from "../ProjectModalHeader";
-import PdfNdaUploadField from "../../Nda/PdfNdaUploadField";
 import CsvUploadField from "./CsvUploadField";
-import { uploadEffectiveHours } from "../../../../features/slice/projectDrawerSlice";
-import useToaster from "../../../../customHooks/useToaster";
 
 const style = {
   display: "flex",
@@ -58,7 +59,7 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
   const [coverImageFile, setCoverImageFile] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
   const maxSize = 1 * 1024 * 1024;
-  const toast = useToaster();
+  // const toast = useToaster();
   const dispatch = useDispatch();
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({});
   const handleImage = (e) => {
@@ -83,38 +84,77 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
     setCoverImage(null);
     // setStepper(1);
   };
+  const url = import.meta.env.VITE_APP_SERVER_URL;
+
   useEffect(() => {}, [acceptedFiles]);
   console.log(projectDrawer._id);
-  const handleSubmission = () => {
+
+  const handleSubmission = async () => {
     const formData = new FormData();
     formData.append("hoursData", selectedFile);
     const data = {
       id: projectDrawer._id,
       hoursData: formData,
     };
-    dispatch(uploadEffectiveHours(data)).then((action) => {
-      if (action.payload?.status === 200) {
-        toast.trigger(action.payload?.data.message, "success");
-        // handleClose();
-      } else {
-        toast.trigger("action.error.message", "error");
-        // handleClose();
+    handleClose();
+    const response = await toast.promise(
+      axios.patch(`${url}/project-drawer/upload-hours/${data.id}`, data.hoursData, {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+        content: {
+          "Content-Type": "multipart/form-data",
+        },
+      }),
+      {
+        pending: {
+          render() {
+            return "CSV is uploading...";
+          },
+          // icon: false,
+        },
+        success: {
+          render({ data }) {
+            return `${data.data.message}`;
+          },
+          // other options
+          icon: "🟢",
+        },
+        error: {
+          render({ data }) {
+            console.log("🚀 ~ file: DetailsUploadHourModal.jsx:125 ~ render ~ data:", data);
+            // When the promise reject, data will contains the error
+            return `Oops, ${data.status}`;
+          },
+        },
       }
-    });
+    );
+    console.log(response);
+    // .then((action) => {
+    // if (action.payload?.status === 200) {
+    //   toast.trigger(action.payload?.data.message, "success");
+    //   // handleClose();
+    // } else {
+    //   toast.trigger("action.error.message", "error");
+    //   // handleClose();
+    // }
   };
+
   return (
     <>
       <Modal
         open={openModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
+        aria-describedby="modal-modal-description"
+      >
         <Box
           sx={{
             ...style,
             height: { xl: "%", lg: "%" },
             width: { xl: "35%", lg: "40%" },
-          }}>
+          }}
+        >
           <Box sx={{ flex: "0 0 5%" }}>
             <Grid container sx={{ paddingRight: "0%" }}>
               <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Upload Effective Hour"} />
@@ -126,7 +166,8 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
               flex: "1",
               overflowY: "auto",
               padding: "3%",
-            }}>
+            }}
+          >
             <Box sx={{ paddingLeft: "1%", paddingRight: "1%" }}>
               <CsvUploadField handleImage={handleImage} selectedFile={selectedFile} />
             </Box>
@@ -139,7 +180,8 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
                   fontSize: "14px",
                   mb: "7px",
                 }}
-                variant="h6">
+                variant="h6"
+              >
                 Attachment
               </Typography>
 
@@ -151,7 +193,8 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
                   backgroundColor: "neutral.N600",
                   height: "75px",
                   color: "neutral.700",
-                }}>
+                }}
+              >
                 {!selectedFile?.name || selectedFile.size > maxSize ? (
                   <></>
                 ) : (
@@ -169,7 +212,8 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
                             textAlign: "left",
                             paddingRight: "3%",
                             paddingLeft: "2%",
-                          }}>
+                          }}
+                        >
                           <Typography variant="wpf_p3_medium">{selectedFile?.name}</Typography>
                         </Grid>
                         <Grid item xs={1}>
@@ -197,7 +241,8 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
 
               bottom: "0px",
               borderRadius: "8px",
-            }}>
+            }}
+          >
             <Grid container sx={{ padding: "2%" }}>
               <Grid item xs={6}>
                 <Button
@@ -212,7 +257,8 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
                       color: "neutral.N650",
                     },
                   }}
-                  onClick={() => handleClose()}>
+                  onClick={() => handleClose()}
+                >
                   Cancel
                 </Button>
               </Grid>
@@ -238,7 +284,8 @@ const DetailsUploadHourModal = ({ openModal, handleClose }) => {
                         // border: "1px solid #2E58FF",
                       },
                     }}
-                    onClick={handleSubmission}>
+                    onClick={handleSubmission}
+                  >
                     Upload
                   </Button>
                 </Grid>

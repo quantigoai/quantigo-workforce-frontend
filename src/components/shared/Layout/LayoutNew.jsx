@@ -119,6 +119,8 @@ export default function LayoutNew({ children }) {
     recruitOptions,
     unverifiedOptions,
     devOptions,
+    verifiedAccountManagerOptions,
+    accountManagerOptions,
   } = layoutMenuOption();
 
   const handleOptionClick = (option) => {
@@ -261,6 +263,11 @@ export default function LayoutNew({ children }) {
 
         case role === "engineering_lead":
           return devOptions.map((text) => handleMenu(text));
+
+        case role === "account_manager":
+          return isVerified
+            ? verifiedAccountManagerOptions.map((text) => handleMenu(text))
+            : accountManagerOptions.map((text) => handleMenu(text));
 
         case role === "recruitment_manager":
           // return isVerified

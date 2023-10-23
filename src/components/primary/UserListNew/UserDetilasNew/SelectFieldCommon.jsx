@@ -1,6 +1,6 @@
-import {FormControl, Grid, MenuItem, Select, styled, Typography} from "@mui/material";
+import { FormControl, Grid, MenuItem, Select, styled, Typography } from "@mui/material";
 import React from "react";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 export const MySelect = styled(Select)(() => ({
   border: "1px solid #E6ECF5",
@@ -88,6 +88,11 @@ const SelectFieldCommon = ({ label, user, handleSetRole }) => {
             {(role === "admin" || role === "recruitment_manager") && (
               <MenuItem value={"project_manager"} sx={menuItemStyle}>
                 Project Manager
+              </MenuItem>
+            )}
+            {role === "admin" && (
+              <MenuItem value={"account_manager"} sx={menuItemStyle}>
+                Account Manager
               </MenuItem>
             )}
             {role === "admin" && (

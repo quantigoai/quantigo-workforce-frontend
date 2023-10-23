@@ -36,6 +36,31 @@ const layoutMenuOption = () => {
     // { name: "Project Directory", icon: ProjectSvg },
     // { name: "Hour Calculation", icon: HourSvg },
   ];
+  const accountManagerOptions = [
+    { name: "Dashboard", icon: DashboardSvg },
+    { name: "All Users", icon: UserSvg },
+
+    // { name: "All Users", icon: UserSvg },
+    { name: "All Projects", icon: ProjectSvg },
+    // { name: "Projects", icon: ProjectSvg },
+    // { name: "Jobs", icon: JobSvg },
+    // { name: "Benchmark", icon: BenchmarkSvg },
+    // { name: "Sync Server", icon: SyncIcon },
+    // { name: "Project Directory", icon: ProjectSvg },
+    // { name: "Hour Calculation", icon: HourSvg },
+  ];
+  const verifiedAccountManagerOptions = [
+    { name: "Dashboard", icon: DashboardSvg },
+    { name: "All Users", icon: UserSvg },
+    { name: "All Projects", icon: ProjectSvg },
+
+    // { name: "Projects", icon: ProjectSvg },
+    // { name: "Jobs", icon: JobSvg },
+    // { name: "Benchmark", icon: BenchmarkSvg },
+    // { name: "Sync Server", icon: SyncIcon },
+    // { name: "Project Directory", icon: ProjectSvg },
+    // { name: "Hour Calculation", icon: HourSvg },
+  ];
   const projectManagerOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "Identity Verification", icon: CourseSvg },
@@ -227,6 +252,8 @@ const layoutMenuOption = () => {
     recruitOptions,
     unverifiedOptions,
     devOptions,
+    accountManagerOptions,
+    verifiedAccountManagerOptions,
   };
 };
 

@@ -25,6 +25,7 @@ export const roleOptionsAdmin = [
   { value: "project_coordinator", label: "Project coordinator" },
   { value: "delivery_manager", label: "Delivery manager" },
   { value: "project_manager", label: "Project manager" },
+  { value: "account_manager", label: "Account manager" },
   { value: "recruitment_manager", label: "Recruitment manager" },
   { value: "engineering_lead", label: "Engineering lead" },
   { value: "admin", label: "Admin" },

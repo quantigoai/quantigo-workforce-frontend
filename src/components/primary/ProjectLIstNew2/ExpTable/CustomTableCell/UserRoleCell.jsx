@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {capitalizeFirstLetter} from "../../../../../helper/capitalizeFirstWord";
+import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
 
 const UserRoleCell = ({ role }) => {
   const RoleFormatter = (role) => {
@@ -27,6 +27,8 @@ const UserRoleCell = ({ role }) => {
         return "Project Coordinator";
       case "project_manager":
         return "Project Manager";
+      case "account_manager":
+        return "Account Manager";
       case "recruitment_manager":
         return "Recruitment Manager";
       default:

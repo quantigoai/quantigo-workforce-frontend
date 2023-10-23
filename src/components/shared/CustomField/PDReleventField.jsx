@@ -1,29 +1,49 @@
 import { Box, Button, FormControl, Stack, styled, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
 
 function PDReleventField({ name, defaultValueItems }) {
   const { control, setValue } = useFormContext();
   const { isLightTheme } = useSelector((state) => state.theme);
-
+  const [hasChanged, setHasChanged] = useState(false);
   const { fields, append, remove } = useFieldArray({
     control,
     name,
     // name: "relevantDocuments",
   });
-  if (defaultValueItems && defaultValueItems.length > 0 && fields.length === 0) {
-    setValue(name, defaultValueItems);
-  } else if (fields.length === 0) {
-    append({ documentName: "", documentUrl: "" });
-  }
-  // React.useEffect(() => {
-  //   if (defaultValueItems && defaultValueItems.length > 0) {
-  //     setValue(name, defaultValueItems);
-  //   } else if (fields.length === 0) {
-  //     append({ documentName: "", documentUrl: "" });
-  //   }
-  // }, [defaultValueItems, setValue, name]);
+ 
+  // if (defaultValueItems && defaultValueItems.length > 0 && fields.length === 0) {
+  //   setValue(name, defaultValueItems);
+  //   setHasChanged(true);
+  // } else if (fields.length === 0) {
+   
+    
+  //   append({ documentName: "", documentUrl: "" });
+  // }
+ 
+  React.useEffect(() => {
+    console.log(fields)
+    if (defaultValueItems && defaultValueItems.length > 0 && fields.length === 0) {
+      setValue(name, defaultValueItems);
+      setHasChanged(true);
+    }
+   
+    else if (fields.length === 0) {
+      console.log("🚀 ~ file: PDReleventField.jsx:31 ~ React.useEffect ~ fields:", fields)
+      
+      append({ documentName: "", documentUrl: "" });
+    }
+  }, [defaultValueItems]);
+
+  const handleFieldChange = (index, fieldName, value) => {
+    const fieldNameKey = `relevantDocuments[${index}].${fieldName}`;
+    setValue(fieldNameKey, value);
+    setHasChanged(true);
+    console.log("🚀 ~ file: PDReleventField.jsx:31 ~ handleFieldChange ~ fieldNameKey:", fieldNameKey);
+    console.log(`Field at index ${index} with name ${fieldName} changed to: ${value}`);
+    console.log(fields);
+  };
 
   const MyTextField = styled(TextField)(() => ({
     backgroundColor: isLightTheme && "#FFF",
@@ -47,7 +67,16 @@ function PDReleventField({ name, defaultValueItems }) {
                 name={`relevantDocuments[${index}].documentName`}
                 control={control}
                 defaultValue=""
-                render={({ field }) => <MyTextField type="text" {...field} />}
+                render={({ field }) => (
+                  <MyTextField
+                    type="text"
+                    {...field}
+                    onChange={(e) => {
+                      // Handle the field change here
+                      handleFieldChange(index, "documentName", e.target.value);
+                    }}
+                  />
+                )}
               />
             </FormControl>
             <FormControl fullWidth>
@@ -58,9 +87,19 @@ function PDReleventField({ name, defaultValueItems }) {
                 name={`relevantDocuments[${index}].documentUrl`}
                 control={control}
                 defaultValue=""
-                render={({ field }) => <MyTextField type="text" {...field} />}
+                render={({ field }) => (
+                  <MyTextField
+                    type="text"
+                    {...field}
+                    onChange={(e) => {
+                      // Handle the field change here
+                      handleFieldChange(index, "documentUrl", e.target.value);
+                    }}
+                  />
+                )}
               />
-              {fields[0]?.documentName && (
+
+              {fields.length != 1 && (
                 <Button
                   type="button"
                   sx={{
@@ -85,9 +124,11 @@ function PDReleventField({ name, defaultValueItems }) {
           mb: "0px",
           color: "#2E58FF",
           cursor: "pointer",
+          pointerEvents: hasChanged ? "auto" : "none",
         }}
         variant="p"
         type="button"
+        // disabled={hasChanged}
         onClick={() => append({ documentName: "", documentUrl: "" })}>
         <i className="ri-add-line"></i> Add another document
       </Typography>

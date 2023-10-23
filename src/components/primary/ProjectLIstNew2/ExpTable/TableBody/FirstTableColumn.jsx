@@ -23,6 +23,8 @@ const FirstTableColumn = ({ row, column, handleDetailsPage, currentlyCheckedInPr
       <TableCell
         sx={{
           minWidth: column.minWidth,
+          // border: "11px solid #EBF0F5",
+          // border: "2px solid red",
         }}
         className="tableColumn1st"
         key={column.id}

@@ -71,26 +71,36 @@ const lightTheme = createTheme({
         },
       },
     },
-
+    MuiTableRow: {
+      styleOverrides: {
+        root: {
+          borderBottom: "1px solid #f2f6fc",
+          backgroundColor: "#fff",
+          color: "#3C4D6B",
+          height: "44px",
+          margin: "0",
+        },
+      },
+    },
     MuiTableCell: {
       styleOverrides: {
         root: {
           borderBottom: "1px solid #f2f6fc",
           backgroundColor: "#fff",
           color: "#3C4D6B",
-          height: "40px",
-          padding: "12px",
+          padding: "0px 10px",
           margin: "0",
         },
       },
     },
-    MuiFormControl : {
-      styleOverrides :{
+
+    MuiFormControl: {
+      styleOverrides: {
         root: {
-          padding:  "0",
-          paddingTop:  "0px",
+          padding: "0",
+          paddingTop: "0px",
         },
-      }
+      },
     },
     MuiFormHelperText: {
       styleOverrides: {
@@ -125,7 +135,7 @@ const lightTheme = createTheme({
     MuiDrawer: {
       styleOverrides: {
         paper: {
-          border : "none",
+          border: "none",
         },
       },
     },
@@ -151,6 +161,9 @@ const lightTheme = createTheme({
 [lightTheme.breakpoints.up("xxl")].forEach((key) => {
   lightTheme.typography.wpf_p3_semiBold[key] = {
     fontSize: "16px",
+  };
+  lightTheme.components.MuiTableRow.styleOverrides.root[key] = {
+    height: "56px",
   };
 });
 [lightTheme.breakpoints.between("lg", "xl")].forEach((key) => {

@@ -31,9 +31,8 @@ const UsersHeader = ({
   return (
     <>
       <Box
-        className="headerBox"
+        className="contentHeader"
         sx={{
-          height: isFilter ? "50%" : "80%",
           backgroundColor: "neutral.N000",
         }}
       >
@@ -44,7 +43,7 @@ const UsersHeader = ({
               display: "flex",
               alignContent: "center",
               alignItems: "center",
-              paddingX: "10px",
+              // paddingX: "10px",
             }}
           >
             <CommonHeader title="All Users" customButton="Create User" />

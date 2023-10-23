@@ -22,7 +22,7 @@ const StickyMiddleHead = ({ column, handleId, filteredCol }) => {
             alignItems: "center",
           }}
         >
-          <Typography variant="wpf_h7_semiBold" color="neutral.550">
+          <Typography variant="wpf_p4_semiBold_2" color="neutral.550">
             {column.headerName}
           </Typography>
           <Box onClick={() => handleId(column.field)}>

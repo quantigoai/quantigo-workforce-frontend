@@ -25,28 +25,25 @@ const ProjectSelectFIlter = ({
     <Box
       component={motion.div}
       animate={{
-        opacity: isFilter ? 1 : 0,
         transition: { type: "spring", stiffness: 300, duration: 0.4, delay: 0.2 },
       }}
       sx={{
         backgroundColor: "neutral.N000",
         width: "100%",
-        // paddingY: "5px",
+        paddingY: "5px",
         display: isFilter ? "block" : "none",
+        borderTop: "1px solid #E6ECF5",
         height: "52px",
-        // borderTop: "1px solid #E6ECF5",
-        transition: isFilter && "all 0.2s ease-in-out",
       }}
     >
       <Stack sx={{ width: "100%", height: "100%" }}>
-        {/* <Grid items xs={9}> */}
         <Stack
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
             flexDirection: "row",
-            height: "100%",
+            // paddingX: "16px",
           }}
         >
           {role === "admin" ? (
@@ -55,13 +52,12 @@ const ProjectSelectFIlter = ({
                 sx={{
                   display: "flex",
                   flexDirection: "row",
-                  justifyContent: "center",
+                  justifyContent: "start",
                   alignItems: "center",
                   width: "100%",
-                  height: "100%",
-
+                  // backgroundColor: "blue",
+                  // height: "100%",
                   // paddingX: "16px",
-                  // py: "8px",
                 }}
               >
                 <ProjectSelectFIlterField
@@ -95,7 +91,18 @@ const ProjectSelectFIlter = ({
               </Box>
             </>
           ) : (
-            <Box sx={{ display: "flex", alignItems: "center", paddingX: "40px", width: "70%" }}>
+            <Box
+              // sx={{ display: "flex", alignItems: "center", paddingX: "40px", width: "70%" }}
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                width: "100%",
+                paddingX: "16px",
+                height: "100%",
+              }}
+            >
               <Box
                 sx={{
                   display: "flex",
@@ -117,14 +124,14 @@ const ProjectSelectFIlter = ({
                   handleChangeAnnotatorFilter={handleChangeAnnotatorFilter}
                 />
               </Box>
+
               <FormControlLabel
                 sx={{
                   backgroundColor: "#F4F7FE",
                   border: "1px solid #E6ECF5",
                   borderRadius: "8px",
                   width: "25%",
-                  ml: 2,
-                  px: "10px",
+                  mr: 0,
                   color: "#3C4D6B",
                   opacity: "0.7",
                 }}
@@ -134,7 +141,9 @@ const ProjectSelectFIlter = ({
             </Box>
           )}
 
-          {/* <Stack sx={{ width: "10%" }}>
+          <Stack
+          sx={{ width: "10%", px:2 }}
+          >
             {role === "admin" && (
               <Button
                 onClick={() => handleClearFilter()}
@@ -143,10 +152,8 @@ const ProjectSelectFIlter = ({
                   borderRadius: "8px",
                   backgroundColor: "#FF4757",
                   color: "white",
-                  width: "100px",
-                  height: "25 px",
 
-                  mt: 0.5,
+                  height: { xl: "35 px", lg: "35px" },
                   "&:hover": {
                     backgroundColor: "#F53142",
                   },
@@ -154,11 +161,10 @@ const ProjectSelectFIlter = ({
                 size="medium"
                 color="error"
               >
-                {" "}
-                Clear Filter
+                Clear
               </Button>
             )}
-          </Stack> */}
+          </Stack>
         </Stack>
       </Stack>
     </Box>

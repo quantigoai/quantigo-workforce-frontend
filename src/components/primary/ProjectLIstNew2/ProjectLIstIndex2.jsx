@@ -12,6 +12,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "remixicon/fonts/remixicon.css";
+import useToaster from "../../../customHooks/useToaster";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import {
   createProjectDrawer,
@@ -23,9 +24,8 @@ import {
 import { getAllSkills } from "../../../features/slice/skillSlice";
 import dataBuilder from "../../shared/CustomTable/dataBuilder";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
-import EditProjectModal from "./EditProjectModal";
-import useToaster from "../../../customHooks/useToaster";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
+import EditProjectModal from "./EditProjectModal";
 import {
   fields,
   filterPDR,
@@ -53,6 +53,24 @@ const TableWrapper = React.lazy(() => import("./ExpTable/TableWrapper"));
  * @returns {JSX.Element} A table for rendering rows and columns items in the project list 2 page
  */
 
+export const HeaderBox = styled(Box)({
+  display: "flex",
+  flexDirection: "column",
+  height: "116px",
+  alignItems: "center",
+});
+
+export const TablePaper = styled(Paper)({
+  width: "100%",
+  height: "100%",
+  overflow: "auto",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  borderRadius: "8px",
+  border: "0px 0px 1px 0px",
+  boxShadow: "0px 1px 3px 0px #09008014",
+});
 const ProjectLIstIndex2 = () => {
   const dispatch = useDispatch();
   const { isLightTheme } = useSelector((state) => state.theme);
@@ -210,16 +228,9 @@ const ProjectLIstIndex2 = () => {
     dispatch(getAllProjectDrawers({ pagination })).then(() => setIsDataLoading(false));
   }, []);
 
-  const HeaderBox = styled(Box)({
-    display: "flex",
-    flexDirection: "column",
-    height: "116px",
-    alignItems: "center",
-  });
-
   return (
     <>
-      <Box className="projectBox">
+      <Box className="content">
         {/* TODO Filter functionality need to be checked for last page  */}
         <HeaderBox>
           <ProjectHeader
@@ -227,12 +238,6 @@ const ProjectLIstIndex2 = () => {
             isLightTheme={isLightTheme}
             handleIsFilter={handleIsFilter}
             handleProjectCreateOpen={() => setCreateProjectOpen(true)}
-            // handleProjectCreateOpen={() => console.log("handleProjectCreateOpen")}
-            // handleSearch={handleSearch}
-            // setSearch={setSearch}
-            // search={search}
-            // searchRef={searchRef}
-            // clearSearch={clearSearch}
           />
 
           <ProjectSelectFIlter
@@ -251,17 +256,8 @@ const ProjectLIstIndex2 = () => {
           />
         </HeaderBox>
 
-        <Box className="tableContent">
-          <Paper
-            sx={{
-              width: "100%",
-              height: "100%",
-              overflow: "auto",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-            }}
-          >
+        <Box className="contentBody">
+          <TablePaper>
             {isDataLoading ? (
               <LoadingComponent />
             ) : (
@@ -291,7 +287,7 @@ const ProjectLIstIndex2 = () => {
               handleChangePagination={handleChangePagination}
               totalItems={total}
             />
-          </Paper>
+          </TablePaper>
         </Box>
 
         {detailsProjectOpen && (

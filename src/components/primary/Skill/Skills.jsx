@@ -125,19 +125,14 @@ const Skills = () => {
   return (
     <>
       <Box className="projectBox">
-        <Box
-          className="projectHeader"
-          sx={
-            {
-              // backgroundColor: "blue",
-            }
-          }>
+        <Box className="projectHeader">
           <Box
             className="headerBox"
             sx={{
               height: "75%",
               backgroundColor: "neutral.N000",
-            }}>
+            }}
+          >
             <Box sx={{ width: "30%", padding: "12px 16px" }}>
               <Grid
                 container
@@ -146,20 +141,9 @@ const Skills = () => {
                   alignContent: "center",
                   alignItems: "center",
                   paddingX: "10px",
-                }}>
-                <Typography
-                  variant="wpf_h5_semiBold"
-                  // sx={{
-                  //   fontSize: "20px",
-                  //   fontWeight: "600",
-                  //   lineHeight: "28px",
-                  //   color: isLightTheme ? " #3C4D6B" : "white",
-                  //   mt: 0.7,
-                  //   fontStyle: "normal",
-                  // }}
-                >
-                  Skill
-                </Typography>
+                }}
+              >
+                <Typography variant="wpf_h5_semiBold">Skill</Typography>
               </Grid>
             </Box>
           </Box>
@@ -172,7 +156,8 @@ const Skills = () => {
             alignItems: "center",
             padding: "12px 20px",
             // backgroundColor: "blue",
-          }}>
+          }}
+        >
           <Paper
             elevation={0}
             sx={{
@@ -184,15 +169,16 @@ const Skills = () => {
               justifyContent: "space-between",
               borderRadius: "8px",
               padding: "2%",
-            }}>
-            <Grid container sx={{ padding: "%" }}>
+            }}
+          >
+            <Grid container>
               <Grid item xs={5} sx={{ paddingTop: "%" }}>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  <Grid item xs={12} sx={{ paddingBottom: "4%" }}>
+                  {/* <Grid item xs={12} sx={{ paddingBottom: "4%" }}>
                     <Typography variant="wpf_h5_semiBold" sx={{ color: "neutral.750" }}>
                       Skill Create
                     </Typography>
-                  </Grid>
+                  </Grid> */}
                   <Grid container sx={{ paddingBottom: "2%", paddingTop: "3%" }}>
                     <FormControl fullWidth>
                       <Typography
@@ -202,7 +188,8 @@ const Skills = () => {
                           mb: 1,
                           color: isLightTheme ? "#091E42" : "#FFFFFF",
                           paddingBottom: "1%",
-                        }}>
+                        }}
+                      >
                         Skill Name
                       </Typography>
                       <MyTextField
@@ -222,7 +209,8 @@ const Skills = () => {
                         color: "red",
                         padding: "5px 5px",
                         marginBottom: "10px",
-                      }}>
+                      }}
+                    >
                       {" "}
                       {"This Skill is already exists."}
                     </Box>
@@ -237,7 +225,8 @@ const Skills = () => {
                           mb: 1,
                           color: isLightTheme ? "#091E42" : "#FFFFFF",
                           paddingBottom: "1%",
-                        }}>
+                        }}
+                      >
                         Skill Description
                       </Typography>
 
@@ -263,7 +252,7 @@ const Skills = () => {
                         borderRadius: "8px",
                         "&.Mui-disabled": {
                           color: "neutral.N000",
-                          backgroundColor:"#B6C9F0"
+                          backgroundColor: "#B6C9F0",
                         },
                         "&:hover": {
                           backgroundColor: "primary.B100",
@@ -273,7 +262,8 @@ const Skills = () => {
                       }}
                       disabled={error || isLoading}
                       variant="contained"
-                      type="submit">
+                      type="submit"
+                    >
                       Create Skill
                     </Button>
                   </Grid>
@@ -301,7 +291,8 @@ const Skills = () => {
                       "&::-webkit-scrollbar-thumb:hover": {
                         background: "#555",
                       },
-                    }}>
+                    }}
+                  >
                     <TableContainer component={Paper}>
                       <Table aria-label="simple table">
                         <TableHead sx={{ background: "#F8F8F8", height: "70px" }}>
@@ -320,7 +311,8 @@ const Skills = () => {
                               key={skill._id}
                               sx={{
                                 "&:last-child td, &:last-child th": { border: 0 },
-                              }}>
+                              }}
+                            >
                               <TableCell align="left">{i + 1}</TableCell>
                               <TableCell align="left">{capitalizeFirstLetter(skill.name)}</TableCell>
                               <TableCell align="left">{capitalizeFirstLetter(skill.description)}</TableCell>

@@ -14,16 +14,14 @@ import SortingButton from "../../Project2Details/SortingButton";
 const StickyFirstTableHead = ({ column, handleId, filteredCol }) => {
   return (
     <>
-      <TableCell className="first-head" key={column.id} 
-      style={{ minWidth: column.width || "140px" }}
-      >
+      <TableCell className="first-head" key={column.id} style={{ minWidth: column.width || "140px" }}>
         <Stack
           flexDirection={"row"}
           sx={{
             alignItems: "center",
           }}
         >
-          <Typography variant="wpf_h7_semiBold" color="neutral.550">
+          <Typography variant="wpf_p4_semiBold_2" color="neutral.550">
             {column.headerName}
           </Typography>
           <Box onClick={() => handleId(column.field)}>

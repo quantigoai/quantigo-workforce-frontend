@@ -1,4 +1,4 @@
-import {Box} from "@mui/material";
+import { Box } from "@mui/material";
 import DateRangeComponent from "./DateRangePicker/DateRangeComponent";
 import DetailChartarButton from "./DetailChartarButton";
 import DetailsButton from "./DetailsButton";

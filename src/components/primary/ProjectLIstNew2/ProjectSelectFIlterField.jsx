@@ -16,13 +16,17 @@ export const MySelect = styled(Select)(() => ({
 export default function ProjectSelectFIlterField({ options, label, handleChange, name, filterValue }) {
   return (
     // <></>
-    <MyFormControl sx={{ px: 0.7, minWidth: "25%" }} size="small">
+
+    <MyFormControl fullWidth
+      sx={{ px: 2, minWidth: "25%" }}
+      size="small">
       <MySelect
         displayEmpty
         sx={{
           height: "36px",
           padding: "0px 0px",
           margin: "0",
+          width: "100%",
           borderRadius: "8px",
           // fontSize: "14px",
           "& svg": {

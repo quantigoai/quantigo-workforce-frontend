@@ -97,7 +97,6 @@ const Header = () => {
           color: "neutral.970",
           height: "100%",
           mx: 0,
-          px: 2,
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -192,7 +191,7 @@ const Header = () => {
                           borderRadius: "6px",
                           width: "182px",
                           mt: 1.3,
-                          ml: -4,
+                          ml: -2,
                           boxShadow: "0px 8px 24px 0px #253E5C14, 0px 0px 4px 0px #253E5C0A",
                         },
                       }}
@@ -230,7 +229,7 @@ const Header = () => {
                         alignItems: "center",
                         justifyContent: "center",
                         cursor: "pointer",
-                        px: 2,
+                        padding: "0px 8px 0px 14px",
                       }}
                     >
                       <Avatar

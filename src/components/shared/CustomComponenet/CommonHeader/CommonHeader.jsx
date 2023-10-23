@@ -17,7 +17,6 @@ const CommonHeader = ({ isLoading, title, description, customButton, handleCance
   const navigate = useNavigate();
   const { course } = useSelector((state) => state.course);
   const { user } = useSelector((state) => state.user);
-  const { isLightTheme } = useSelector((state) => state.theme);
 
   const handleNavigation = (navigateLink) => {
     switch (navigateLink) {
@@ -43,7 +42,7 @@ const CommonHeader = ({ isLoading, title, description, customButton, handleCance
         break;
     }
   };
-
+  // TODO Cancel go back if it is outside
   const goPreviousPage = () => {
     handleCancel && handleCancel();
     navigate(-1);

@@ -214,6 +214,28 @@ export const uploadEffectiveHours = createAsyncThunk("project-drawer/upload-hour
   });
 });
 
+export const approveProjectHistory = createAsyncThunk("/project-history/approved-history", async (id) => {
+  try {
+    return await axios.patch(`${url}/project-history/approved-history/${id}`, id, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+export const rejectProjectHistory = createAsyncThunk("/project-history/reject-history", async (id) => {
+  try {
+    return await axios.patch(`${url}/project-history/reject-history/${id}`, id, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
 const projectDrawerSlice = createSlice({
   name: "projectDrawer",
   initialState: initialState,
@@ -409,6 +431,28 @@ const projectDrawerSlice = createSlice({
         state.error = null;
       })
       .addCase(uploadEffectiveHours.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(approveProjectHistory.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(approveProjectHistory.fulfilled, (state) => {
+        state.isLoading = false;
+
+        state.error = null;
+      })
+      .addCase(approveProjectHistory.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(rejectProjectHistory.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(rejectProjectHistory.fulfilled, (state) => {
+        state.isLoading = false;
+
+        state.error = null;
+      })
+      .addCase(rejectProjectHistory.rejected, (state) => {
         state.isLoading = false;
       });
   },

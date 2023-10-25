@@ -18,21 +18,35 @@ const ProjectDetailsButton = ({ range, setRange, value, handleProjectDetailsOpen
 
           <DateRangeComponent range={range} setRange={setRange} />
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
-          <DetailChartarButton />
+          <DetailChartarButton role={role}/>
         </>
       )}
       {value === "completed" && (
         <>
-          <DetailsUploadHourBUtton />
+          <DetailsUploadHourBUtton role={role}/>
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
-          <DetailChartarButton />
+          <DetailChartarButton role={role}/>
         </>
       )}
       {value === "hours-added" && (
         <>
-          <DetailsUploadHourBUtton />
+          <DetailsUploadHourBUtton role={role}/>
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
-          <DetailChartarButton />
+          <DetailChartarButton role={role}/>
+        </>
+      )}
+      {value === "hours-approved" && (
+        <>
+          <DetailsUploadHourBUtton role={role}/>
+          <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
+          <DetailChartarButton role={role}/>
+        </>
+      )}
+      {value === "payment-done" && (
+        <>
+          <DetailsUploadHourBUtton role={role}/>
+          <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
+          <DetailChartarButton role={role}/>
         </>
       )}
     </Box>

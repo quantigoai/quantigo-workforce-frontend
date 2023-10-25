@@ -40,8 +40,7 @@ const ProjectDetailsHeader = ({
       className="contentHeader"
       sx={{
         backgroundColor: "neutral.N000",
-      }}
-    >
+      }}>
       <Box
         sx={{
           width: "100%",
@@ -49,15 +48,14 @@ const ProjectDetailsHeader = ({
           display: "flex",
           justifyContent: "space-between",
           alignItems: "Center",
-        }}
-      >
+        }}>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Typography variant="wpf_p1_semiBold" color={isLightTheme ? "#091E42" : "white"}>
             {projectDrawer.project_drawer_name}{" "}
           </Typography>
 
           <Box sx={{ ml: 2 }}>
-            {role === "admin" && (
+            {(role === "admin" || role === "account_manager") && (
               <ProjectDetailSelect
                 defaultVal={projectDrawer.project_status}
                 value={value}
@@ -71,7 +69,7 @@ const ProjectDetailsHeader = ({
 
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
           <Box>
-            {role === "admin" ? (
+            {role === "admin" || role === "account_manager" ? (
               <ProjectDetailsButton
                 range={range}
                 setRange={setRange}

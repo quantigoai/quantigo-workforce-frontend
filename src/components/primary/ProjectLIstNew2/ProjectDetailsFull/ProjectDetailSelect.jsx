@@ -59,6 +59,34 @@ const style = (value) => {
           fill: "#36B37E",
         },
       };
+      case "hours-approved":
+        return {
+          backgroundColor: "rgba(250, 228, 195, 1)",
+          color: "rgba(247, 144, 9, 1)",
+          width: "145px",
+          border: "2px solid rgba(250, 228, 195, 1)",
+          height: "35px",
+          borderRadius: "8px",
+          fontWeight: "600",
+          fontSize: "14px",
+          "& svg": {
+            fill: "#F2A200",
+          },
+      };
+      case "payment-done":
+        return {
+          backgroundColor: "rgba(250, 228, 195, 1)",
+          color: "rgba(247, 144, 9, 1)",
+          width: "145px",
+          border: "2px solid rgba(250, 228, 195, 1)",
+          height: "35px",
+          borderRadius: "8px",
+          fontWeight: "600",
+          fontSize: "14px",
+          "& svg": {
+            fill: "#F2A200",
+          },
+        };
     default:
       return {
         textAlign: "center",
@@ -76,6 +104,7 @@ const style = (value) => {
   }
 };
 const ProjectDetailSelect = ({ options, handleChange, value, setValue, defaultVal }) => {
+  console.log("🚀 ~ file: ProjectDetailSelect.jsx:79 ~ ProjectDetailSelect ~ options:", options)
   return (
     <Box>
       <FormControl

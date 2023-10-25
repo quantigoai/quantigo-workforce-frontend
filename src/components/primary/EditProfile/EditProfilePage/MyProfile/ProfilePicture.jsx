@@ -94,7 +94,7 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
               <Grid item xs={7} sx={{ paddingTop: "2%" }}>
                 <Grid container>
                   <Grid container>
-                    <Box sx={{paddingRight:"2%"}}>
+                    <Box sx={{ paddingRight: "2%" }}>
                       <Typography variant="wpf_p1_semiBold" sx={{ color: "neutral.750" }}>
                         {user.firstName} {user.lastName}{" "}
                       </Typography>
@@ -131,11 +131,10 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                         />
                       </Box>
                     )}
-                  
                   </Grid>
 
                   <Grid container>
-                  <Typography variant="wpf_p4_regular" sx={{ color: "neutral.700" }}>
+                    <Typography variant="wpf_p4_regular" sx={{ color: "neutral.700" }}>
                       {user.role === "level_1_annotator"
                         ? "Level 1 Annotator"
                         : user.role === "level_2_annotator"
@@ -154,6 +153,8 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                         ? "Project Manager"
                         : user.role === "recruitment_manager"
                         ? "Recruitment Manager"
+                        : user.role === "account_manager"
+                        ? "Account Manager"
                         : capitalizeFirstLetter(user.role)}
                     </Typography>
                   </Grid>

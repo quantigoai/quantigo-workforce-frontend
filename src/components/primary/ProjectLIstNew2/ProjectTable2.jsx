@@ -7,9 +7,9 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Alert, Box} from "@mui/material";
-import {useSelector} from "react-redux";
-import {useLocation} from "react-router-dom";
+import { Alert, Box } from "@mui/material";
+import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import "swiper/css";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import PaginationTable from "./PaginationTable";
@@ -119,8 +119,7 @@ const ProjectTable2 = ({
         sx={{
           backgroundColor: isLightTheme ? "#fff" : "#1c1c1c",
         }}
-        className="pagination"
-      >
+        className="pagination">
         <PaginationTable
           pagination={pagination}
           setPagination={setPagination}

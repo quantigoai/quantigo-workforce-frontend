@@ -1,14 +1,15 @@
-import {Button, Typography} from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import axios from "axios";
-import React, {useEffect, useState} from "react";
-import {CSVDownload} from "react-csv";
-import {useSelector} from "react-redux";
-import {calculateTimeDifference} from "../../../../helper/dateConverter";
-import {realToken} from "../../../../helper/lib";
+import React, { useEffect, useState } from "react";
+import { CSVDownload } from "react-csv";
+import { useSelector } from "react-redux";
+import { calculateTimeDifference } from "../../../../helper/dateConverter";
+import { realToken } from "../../../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
-const DetailChartarButton = () => {
+const DetailChartarButton = ({ role }) => {
+  console.log("🚀 ~ file: DetailChartarButton.jsx:12 ~ DetailChartarButton ~ role:", role);
   const { projectDrawer, usersWorkHistoryCount } = useSelector((state) => state.projectDrawer);
   const [jsonData, setJsonData] = useState([]);
   const csvHeader = [
@@ -67,24 +68,30 @@ const DetailChartarButton = () => {
 
   return (
     <>
-      <Button
-        sx={{
-          backgroundColor: "#2E58FF",
-          color: "#FFF",
-          fontSize: "14px",
-          fontWeight: "500",
-          borderRadius: "6px",
-          "&:hover": {},
-          mr: 2,
-        }}
-        variant="contained"
-        onClick={fetchData}
-      >
-        <i className="ri-download-2-line"></i>
-        <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
-          Download Charter
-        </Typography>
-      </Button>
+      {role === "account_manager" ? (
+        <></>
+      ) : (
+        <>
+          <Button
+            sx={{
+              backgroundColor: "#2E58FF",
+              color: "#FFF",
+              fontSize: "14px",
+              fontWeight: "500",
+              borderRadius: "6px",
+              "&:hover": {},
+              mr: 2,
+            }}
+            variant="contained"
+            onClick={fetchData}>
+            <i className="ri-download-2-line"></i>
+            <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
+              Download Charter
+            </Typography>
+          </Button>
+        </>
+      )}
+
       {initiateDownload && <CSVDownload data={jsonData} headers={csvHeader} target="_blank" />}
     </>
   );

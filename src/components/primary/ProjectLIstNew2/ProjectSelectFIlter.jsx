@@ -43,21 +43,21 @@ const ProjectSelectFIlter = ({
             justifyContent: "space-between",
             alignItems: "center",
             flexDirection: "row",
-            // paddingX: "16px",
+            paddingY: "6px",
           }}
         >
           {role === "admin" ? (
             <>
-              <Box
+              <Stack
                 sx={{
                   display: "flex",
-                  flexDirection: "row",
                   justifyContent: "start",
                   alignItems: "center",
-                  width: "100%",
+                  flexDirection: "row",
+                  width: "90%",
+                  pl: 2,
+                  gap: 2,
                   // backgroundColor: "blue",
-                  // height: "100%",
-                  // paddingX: "16px",
                 }}
               >
                 <ProjectSelectFIlterField
@@ -88,7 +88,7 @@ const ProjectSelectFIlter = ({
                   filterValue={filterValue}
                   handleChange={handleChange}
                 />
-              </Box>
+              </Stack>
             </>
           ) : (
             <Box
@@ -141,9 +141,7 @@ const ProjectSelectFIlter = ({
             </Box>
           )}
 
-          <Stack
-          sx={{ width: "10%", px:2 }}
-          >
+          <Stack sx={{ width: "7%", px: 2 }}>
             {role === "admin" && (
               <Button
                 onClick={() => handleClearFilter()}
@@ -152,8 +150,7 @@ const ProjectSelectFIlter = ({
                   borderRadius: "8px",
                   backgroundColor: "#FF4757",
                   color: "white",
-
-                  height: { xl: "35 px", lg: "35px" },
+                  height: { xl: "30 px", lg: "30px" },
                   "&:hover": {
                     backgroundColor: "#F53142",
                   },

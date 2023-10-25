@@ -56,7 +56,7 @@ const UsersFilter = ({
               justifyContent: "space-between",
               alignItems: "center",
               flexDirection: "row",
-              // paddingX: "16px",
+              paddingY: "6px",
             }}
           >
             {role === "admin" || role === "recruitment_manager" ? (

@@ -10,13 +10,12 @@ import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import * as Yup from "yup";
 import PDDateField from "../../shared/CustomField/PDDateField";
-import PDReleventField from "../../shared/CustomField/PDReleventField";
+import PDReleventField2 from "../../shared/CustomField/PDReleventField2";
 import PDSelectField from "../../shared/CustomField/PDSelectField";
 import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
 import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
 import FormProvider from "../../shared/FormProvider/FormProvider";
 import ProjectModalHeader from "./ProjectModalHeader";
-import CustomSelectField from "../../shared/CustomField/CustomSelectField";
 
 const style = {
   position: "absolute",
@@ -228,7 +227,7 @@ const ProjectModal = ({
                       overflowY: "auto",
                     }}
                   >
-                    <PDReleventField name={"relevantDocuments"} />
+                    <PDReleventField2 name={"relevantDocuments"} />
                   </Stack>
                 </Box>
 
@@ -238,7 +237,7 @@ const ProjectModal = ({
                     justifyContent: "space-between",
                     alignItems: "center",
                     paddingY: "12px",
-                    paddingX:"16px",
+                    paddingX: "16px",
                     mt: 2,
                     borderTop: "2px solid #F2F6FC",
                   }}
@@ -255,9 +254,8 @@ const ProjectModal = ({
                       borderRadius: "8px",
                       border: "1px solid #F4F7FE",
                       backgroundColor: "#F4F7FE",
-                      color:"#62728F",
+                      color: "#62728F",
                       "&:hover": {
-                   
                         backgroundColor: "#F4F7FE",
                       },
                     }}
@@ -274,7 +272,7 @@ const ProjectModal = ({
                       paddingY: "5px",
                       fontSize: "14px",
                       height: "40px",
-                      width:"120px",
+                      width: "120px",
                       borderRadius: "8px",
                       backgroundColor: "#2E58FF",
                       "&:hover": {

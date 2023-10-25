@@ -17,6 +17,7 @@ import ProjectModalHeader from "./ProjectModalHeader";
 import PDDateField from "../../shared/CustomField/PDDateField";
 import PDReleventField from "../../shared/CustomField/PDReleventField";
 import { useSelector } from "react-redux";
+import PDReleventField2 from "../../shared/CustomField/PDReleventField2";
 
 const style = {
   position: "absolute",
@@ -232,7 +233,7 @@ const EditProjectModal = ({
                       color: isLightTheme ? "#091E42" : "#FFFFFF",
                       overflowY: "auto",
                     }}>
-                    <PDReleventField defaultValueItems={projectDrawer.relevantDocuments} name={"relevantDocuments"} />
+                    <PDReleventField2 defaultValueItems={projectDrawer.relevantDocuments} name={"relevantDocuments"} />
                   </Stack>
                 </Box>
 

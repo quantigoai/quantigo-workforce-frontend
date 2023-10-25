@@ -19,6 +19,10 @@ let drawerStatus = (status) => {
       return "Hours Added";
     case "completed":
       return "Completed";
+    case "hours-approved":
+      return "Hours Approved";
+    case "payment-done":
+      return "Payment Done";
     default:
       return status;
   }
@@ -49,6 +53,20 @@ const ProjectDrawerStatusChip = ({ value, isPopper = false }) => {
           border: "1px solid rgba(250, 228, 195, 1)",
         };
       case "completed":
+        return {
+          backgroundColor: "#C4F5DF",
+          color: "#12B76A",
+          width: "120px",
+          border: "1px solid #C4F5DF",
+        };
+      case "hours-approved":
+        return {
+          backgroundColor: "#C4F5DF",
+          color: "#12B76A",
+          width: "120px",
+          border: "1px solid #C4F5DF",
+        };
+      case "payment-done":
         return {
           backgroundColor: "#C4F5DF",
           color: "#12B76A",

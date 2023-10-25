@@ -6,6 +6,7 @@ import TableRow from "@mui/material/TableRow";
 import * as React from "react";
 
 import { Box } from "@mui/material";
+import { useParams } from "react-router-dom";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import FirstTableColumn from "./TableBody/FirstTableColumn";
 import LastTableColumn from "./TableBody/LastTableCoulmn";
@@ -35,6 +36,7 @@ export default function WPFTable({
   handleReject,
   handleOpenNDA,
 }) {
+  const { id } = useParams();
   return (
     myColumn.length > 0 && (
       <>
@@ -57,9 +59,8 @@ export default function WPFTable({
 
                 {role === "recruitment_manager" && <StickyDocViewTableHead column={{ width: "40px" }} />}
 
-                {stickyLastColumn.map((column) => (
-                  <StickyLastTableHead key={column.id} column={column} />
-                ))}
+                {location.pathname !== `/projectDetails/${id}` &&
+                  stickyLastColumn.map((column) => <StickyLastTableHead key={column.id} column={column} />)}
               </TableRow>
             </TableHead>
 
@@ -96,18 +97,19 @@ export default function WPFTable({
 
                     {role === "recruitment_manager" && <StickyDocViewTableColumn column={row} />}
 
-                    {stickyLastColumn.map((column) => (
-                      <LastTableColumn
-                        key={column.id}
-                        role={role}
-                        handleProjectDetailsOpen={handleProjectDetailsOpen}
-                        row={row}
-                        handleClick={handleClick}
-                        handleDelete={handleDelete}
-                        handleReject={handleReject}
-                        handleOpenNDA={handleOpenNDA}
-                      />
-                    ))}
+                    {location.pathname !== `/projectDetails/${id}` &&
+                      stickyLastColumn.map((column) => (
+                        <LastTableColumn
+                          key={column.id}
+                          role={role}
+                          handleProjectDetailsOpen={handleProjectDetailsOpen}
+                          row={row}
+                          handleClick={handleClick}
+                          handleDelete={handleDelete}
+                          handleReject={handleReject}
+                          handleOpenNDA={handleOpenNDA}
+                        />
+                      ))}
                   </TableRow>
                 ))}
               </TableBody>

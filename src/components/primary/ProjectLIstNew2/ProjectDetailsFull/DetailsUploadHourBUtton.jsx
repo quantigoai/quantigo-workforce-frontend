@@ -1,11 +1,10 @@
 import { Button, Typography } from "@mui/material";
 import React from "react";
-import DetailsUploadHourModal from "./DetailsUploadHourModal";
 import { useDispatch, useSelector } from "react-redux";
 import { approveProjectHistory, rejectProjectHistory } from "../../../../features/slice/projectDrawerSlice";
+import DetailsUploadHourModal from "./DetailsUploadHourModal";
 
 const DetailsUploadHourBUtton = ({ role, value }) => {
-  console.log("🚀 ~ file: DetailsUploadHourBUtton.jsx:6 ~ DetailsUploadHourBUtton ~ role:", role);
   const [open, setOpen] = React.useState(false);
   const { projectDrawer } = useSelector((state) => state.projectDrawer);
   const dispatch = useDispatch();
@@ -38,15 +37,13 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
               mr: 2,
             }}
             variant="contained"
-            onClick={handleOpen}>
+            onClick={handleOpen}
+          >
             <i className="ri-upload-2-line"></i>
             <Typography variant="body" sx={{ ml: 1, textTransform: "none", fontWeight: "500" }}>
               Upload Effective Hour
             </Typography>
           </Button>
-
-
-          
         </>
       ) : (
         <>
@@ -61,7 +58,8 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
               borderRadius: "6px",
               "&:hover": {},
               mr: 2,
-            }}>
+            }}
+          >
             <i style={{}} className="ri-checkbox-circle-fill"></i>
             <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
               Hours Accept
@@ -79,7 +77,8 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
               borderRadius: "6px",
               "&:hover": {},
               mr: 2,
-            }}>
+            }}
+          >
             <i style={{}} className="ri-close-circle-fill"></i>
             <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
               Hours Reject

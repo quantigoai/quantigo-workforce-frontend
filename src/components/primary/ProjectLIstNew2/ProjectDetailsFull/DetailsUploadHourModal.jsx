@@ -21,6 +21,7 @@ import { toast } from "react-toastify";
 import { realToken } from "../../../../helper/lib";
 import ProjectModalHeader from "../ProjectModalHeader";
 import CsvUploadField from "./CsvUploadField";
+import { updateProjectDrawerManually } from "../../../../features/slice/projectDrawerSlice";
 
 const style = {
   display: "flex",
@@ -137,6 +138,7 @@ const DetailsUploadHourModal = ({ openModal, setOpen }) => {
         },
         success: {
           render({ data }) {
+            dispatch(updateProjectDrawerManually(data.data.projectDrawer));
             return `${data.data.message}`;
           },
           // other options

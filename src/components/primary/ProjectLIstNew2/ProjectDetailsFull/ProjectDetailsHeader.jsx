@@ -40,7 +40,8 @@ const ProjectDetailsHeader = ({
       className="contentHeader"
       sx={{
         backgroundColor: "neutral.N000",
-      }}>
+      }}
+    >
       <Box
         sx={{
           width: "100%",
@@ -48,7 +49,8 @@ const ProjectDetailsHeader = ({
           display: "flex",
           justifyContent: "space-between",
           alignItems: "Center",
-        }}>
+        }}
+      >
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Typography variant="wpf_p1_semiBold" color={isLightTheme ? "#091E42" : "white"}>
             {projectDrawer.project_drawer_name}{" "}

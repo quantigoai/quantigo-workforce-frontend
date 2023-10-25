@@ -227,11 +227,15 @@ export const approveProjectHistory = createAsyncThunk("/project-history/approved
 });
 export const rejectProjectHistory = createAsyncThunk("/project-history/reject-history", async (id) => {
   try {
-    return await axios.patch(`${url}/project-history/reject-history/${id}`, id, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
+    return await axios.patch(
+      `${url}/project-history/reject-history/${id}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+      }
+    );
   } catch (error) {
     throw new Error(error.response.data.message);
   }
@@ -256,6 +260,9 @@ const projectDrawerSlice = createSlice({
     },
     setCurrentProjectDrawer: (state, action) => {
       state.projectDrawer = state.projectDrawers.find((p) => p._id === action.payload);
+    },
+    updateProjectDrawerManually: (state, action) => {
+      state.projectDrawer = action.payload;
     },
     resetProjectDrawerSlice: () => {
       return initialState;
@@ -433,14 +440,13 @@ const projectDrawerSlice = createSlice({
         state.usersWorkHistory = [];
         state.isLoading = false;
       })
-      .addCase(uploadEffectiveHours.pending, (state, action) => {
-        state.projectDrawer = action.payload.data.projectDrawer;
+      .addCase(uploadEffectiveHours.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(uploadEffectiveHours.fulfilled, (state) => {
-        state.isLoading = false;
-
+      .addCase(uploadEffectiveHours.fulfilled, (state, action) => {
+        state.projectDrawer = action.payload.data.projectDrawer;
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(uploadEffectiveHours.rejected, (state) => {
         state.isLoading = false;
@@ -451,7 +457,6 @@ const projectDrawerSlice = createSlice({
       .addCase(approveProjectHistory.fulfilled, (state, action) => {
         state.projectDrawer = action.payload.data.projectDrawer;
         state.isLoading = false;
-
         state.error = null;
       })
       .addCase(approveProjectHistory.rejected, (state) => {
@@ -463,7 +468,6 @@ const projectDrawerSlice = createSlice({
       .addCase(rejectProjectHistory.fulfilled, (state, action) => {
         state.projectDrawer = action.payload.data.projectDrawer;
         state.isLoading = false;
-
         state.error = null;
       })
       .addCase(rejectProjectHistory.rejected, (state) => {
@@ -475,7 +479,6 @@ const projectDrawerSlice = createSlice({
       .addCase(approveProjectPayment.fulfilled, (state, action) => {
         state.projectDrawer = action.payload.data.projectDrawer;
         state.isLoading = false;
-
         state.error = null;
       })
       .addCase(approveProjectPayment.rejected, (state) => {
@@ -483,6 +486,11 @@ const projectDrawerSlice = createSlice({
       });
   },
 });
-export const { clearProjectDrawerData, resetProjectDrawerSlice, resetProjectDrawer, setCurrentProjectDrawer } =
-  projectDrawerSlice.actions;
+export const {
+  updateProjectDrawerManually,
+  clearProjectDrawerData,
+  resetProjectDrawerSlice,
+  resetProjectDrawer,
+  setCurrentProjectDrawer,
+} = projectDrawerSlice.actions;
 export default projectDrawerSlice.reducer;

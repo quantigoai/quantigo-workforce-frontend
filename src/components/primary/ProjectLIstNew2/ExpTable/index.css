@@ -95,16 +95,28 @@ table td {
 
 
 .tableContainer::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-  /* background-color: rgb(255, 255, 255);  */
-  background-color: transparent; 
-  /* cursor: grab; */
+  width: 10% ;
+  height: 4px;
+    /* background-color: transparent;  */
+    /* background-color: #2E58FF;  */
+    cursor: pointer;
+    
+}
+
+.tableContainer::-webkit-scrollbar-thumb {
+  background-color: #2E58FF;  
+  height: 4px;
+  border-radius: 16px;
+  width: 500px;
+  cursor: grab;
+  
 }
 
 .tableContainer::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(69, 88, 123, 0.567);
-  cursor: grab;
+    background-color: #2E58FF; 
+    border-radius: 16px;
+    height: 4px;
+    cursor: grab;
 }
 
 .tableContainer::-webkit-scrollbar-track:hover {
@@ -113,5 +125,5 @@ table td {
 }
 
 ::-webkit-scrollbar-corner {
-    background-color: transparent; /* Corner color */
+    background-color: transparent; 
 }

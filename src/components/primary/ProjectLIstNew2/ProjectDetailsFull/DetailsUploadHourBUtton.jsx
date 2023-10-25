@@ -4,7 +4,7 @@ import DetailsUploadHourModal from "./DetailsUploadHourModal";
 import { useDispatch, useSelector } from "react-redux";
 import { approveProjectHistory, rejectProjectHistory } from "../../../../features/slice/projectDrawerSlice";
 
-const DetailsUploadHourBUtton = ({ role }) => {
+const DetailsUploadHourBUtton = ({ role, value }) => {
   console.log("🚀 ~ file: DetailsUploadHourBUtton.jsx:6 ~ DetailsUploadHourBUtton ~ role:", role);
   const [open, setOpen] = React.useState(false);
   const { projectDrawer } = useSelector((state) => state.projectDrawer);
@@ -22,7 +22,33 @@ const DetailsUploadHourBUtton = ({ role }) => {
 
   return (
     <>
-      {role === "account_manager" ? (
+      {value === "completed" ? (
+        <>
+          <Button
+            sx={{
+              backgroundColor: "#FFAB00",
+              color: "#FFF",
+              fontSize: "14px",
+              fontWeight: "500",
+              borderRadius: "6px",
+              border: "1px solid #FFAB00",
+              "&:hover": {
+                backgroundColor: "#F2A200",
+              },
+              mr: 2,
+            }}
+            variant="contained"
+            onClick={handleOpen}>
+            <i className="ri-upload-2-line"></i>
+            <Typography variant="body" sx={{ ml: 1, textTransform: "none", fontWeight: "500" }}>
+              Upload Effective Hour
+            </Typography>
+          </Button>
+
+
+          
+        </>
+      ) : (
         <>
           <Button
             variant="contained"
@@ -44,9 +70,9 @@ const DetailsUploadHourBUtton = ({ role }) => {
           <Button
             // disabled={params.isVerified}
             variant="contained"
-            onClick={()=>handleRejectHours()}
+            onClick={() => handleRejectHours()}
             sx={{
-              backgroundColor: "#2E58FF",
+              backgroundColor: "#FF4757",
               color: "#FFF",
               fontSize: "14px",
               fontWeight: "500",
@@ -54,33 +80,9 @@ const DetailsUploadHourBUtton = ({ role }) => {
               "&:hover": {},
               mr: 2,
             }}>
-            <i style={{ }} className="ri-close-circle-fill"></i>
+            <i style={{}} className="ri-close-circle-fill"></i>
             <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
               Hours Reject
-            </Typography>
-          </Button>
-        </>
-      ) : (
-        <>
-          {" "}
-          <Button
-            sx={{
-              backgroundColor: "#FFAB00",
-              color: "#FFF",
-              fontSize: "14px",
-              fontWeight: "500",
-              borderRadius: "6px",
-              border: "1px solid #FFAB00",
-              "&:hover": {
-                backgroundColor: "#F2A200",
-              },
-              mr: 2,
-            }}
-            variant="contained"
-            onClick={handleOpen}>
-            <i className="ri-upload-2-line"></i>
-            <Typography variant="body" sx={{ ml: 1, textTransform: "none", fontWeight: "500" }}>
-              Upload Effective Hour
             </Typography>
           </Button>
         </>

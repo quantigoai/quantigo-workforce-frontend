@@ -3,6 +3,7 @@ import DateRangeComponent from "./DateRangePicker/DateRangeComponent";
 import DetailChartarButton from "./DetailChartarButton";
 import DetailsButton from "./DetailsButton";
 import DetailsUploadHourBUtton from "./DetailsUploadHourBUtton";
+import ApproveProjectPaymentButton from "./ApproveProjectPaymentButton";
 
 const ProjectDetailsButton = ({ range, setRange, value, handleProjectDetailsOpen, role }) => {
   return (
@@ -18,35 +19,36 @@ const ProjectDetailsButton = ({ range, setRange, value, handleProjectDetailsOpen
 
           <DateRangeComponent range={range} setRange={setRange} />
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
-          <DetailChartarButton role={role}/>
+          <DetailChartarButton role={role} />
         </>
       )}
       {value === "completed" && (
         <>
-          <DetailsUploadHourBUtton role={role}/>
+          {role !== "account_manager" && <DetailsUploadHourBUtton value={value} role={role} />}{" "}
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
-          <DetailChartarButton role={role}/>
+          <DetailChartarButton role={role} />
         </>
       )}
       {value === "hours-added" && (
         <>
-          <DetailsUploadHourBUtton role={role}/>
+          <DetailsUploadHourBUtton value={value} role={role} />
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
-          <DetailChartarButton role={role}/>
+          <DetailChartarButton role={role} />
         </>
       )}
       {value === "hours-approved" && (
         <>
-          <DetailsUploadHourBUtton role={role}/>
+          {/* <DetailsUploadHourBUtton value={value} role={role} /> */}
+          <ApproveProjectPaymentButton role={role}/>
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
-          <DetailChartarButton role={role}/>
+          <DetailChartarButton role={role} />
         </>
       )}
       {value === "payment-done" && (
         <>
-          <DetailsUploadHourBUtton role={role}/>
+          {/* <DetailsUploadHourBUtton value={value} role={role} /> */}
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
-          <DetailChartarButton role={role}/>
+          <DetailChartarButton role={role} />
         </>
       )}
     </Box>

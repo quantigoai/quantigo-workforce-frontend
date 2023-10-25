@@ -133,7 +133,7 @@ const DetailsUploadHourModal = ({ openModal, setOpen }) => {
           render() {
             return "CSV is uploading...";
           },
-          icon: false,
+          icon: true,
         },
         success: {
           render({ data }) {

@@ -236,6 +236,17 @@ export const rejectProjectHistory = createAsyncThunk("/project-history/reject-hi
     throw new Error(error.response.data.message);
   }
 });
+export const approveProjectPayment = createAsyncThunk("project-history/approved-payment", async (id) => {
+  try {
+    return await axios.patch(`${url}/project-history/approved-payment/${id}`, id, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
 const projectDrawerSlice = createSlice({
   name: "projectDrawer",
   initialState: initialState,
@@ -422,7 +433,8 @@ const projectDrawerSlice = createSlice({
         state.usersWorkHistory = [];
         state.isLoading = false;
       })
-      .addCase(uploadEffectiveHours.pending, (state) => {
+      .addCase(uploadEffectiveHours.pending, (state, action) => {
+        state.projectDrawer = action.payload.data.projectDrawer;
         state.isLoading = true;
       })
       .addCase(uploadEffectiveHours.fulfilled, (state) => {
@@ -436,7 +448,8 @@ const projectDrawerSlice = createSlice({
       .addCase(approveProjectHistory.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(approveProjectHistory.fulfilled, (state) => {
+      .addCase(approveProjectHistory.fulfilled, (state, action) => {
+        state.projectDrawer = action.payload.data.projectDrawer;
         state.isLoading = false;
 
         state.error = null;
@@ -447,12 +460,25 @@ const projectDrawerSlice = createSlice({
       .addCase(rejectProjectHistory.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(rejectProjectHistory.fulfilled, (state) => {
+      .addCase(rejectProjectHistory.fulfilled, (state, action) => {
+        state.projectDrawer = action.payload.data.projectDrawer;
         state.isLoading = false;
 
         state.error = null;
       })
       .addCase(rejectProjectHistory.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(approveProjectPayment.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(approveProjectPayment.fulfilled, (state, action) => {
+        state.projectDrawer = action.payload.data.projectDrawer;
+        state.isLoading = false;
+
+        state.error = null;
+      })
+      .addCase(approveProjectPayment.rejected, (state) => {
         state.isLoading = false;
       });
   },

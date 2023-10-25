@@ -69,7 +69,7 @@ const UsersFilter = ({
                     flexDirection: "row",
                     width: "100%",
                     pl: 2,
-                    gap:2
+                    gap: 2,
                     // backgroundColor: "blue",
                   }}
                 >
@@ -112,7 +112,7 @@ const UsersFilter = ({
               <Box sx={{ display: "flex", alignItems: "center", paddingX: "40px", width: "70%" }}></Box>
             )}
 
-            <Stack sx={{ width: "10%", px: 2 }}>
+            <Stack sx={{ width: "7%", px: 2 }}>
               <Button
                 onClick={() => handleClearFilter()}
                 sx={{
@@ -120,8 +120,7 @@ const UsersFilter = ({
                   borderRadius: "8px",
                   backgroundColor: "#FF4757",
                   color: "white",
-
-                  height: { xl: "35 px", lg: "35px" },
+                  height: { xl: "30 px", lg: "30px" },
                   "&:hover": {
                     backgroundColor: "#F53142",
                   },

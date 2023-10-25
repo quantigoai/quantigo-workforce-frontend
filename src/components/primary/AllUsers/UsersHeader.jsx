@@ -9,6 +9,7 @@
 
 import ClearIcon from "@mui/icons-material/Clear";
 import FilterListIcon from "@mui/icons-material/FilterList";
+import FilterListOffIcon from "@mui/icons-material/FilterListOff";
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, Button, Grid, IconButton, InputBase, Paper } from "@mui/material";
 import React from "react";
@@ -16,7 +17,6 @@ import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeade
 import "../ProjectLIstNew2/index.css";
 import ExportUserList from "./ExportUserList";
 import "./index.css";
-import FilterListOffIcon from "@mui/icons-material/FilterListOff";
 const UsersHeader = ({
   isCourse,
   isFilter,
@@ -90,6 +90,7 @@ const UsersHeader = ({
             {search && (
               <Button
                 sx={{
+                  height: "30px",
                   minWidth: "40px",
                 }}
               >
@@ -109,7 +110,7 @@ const UsersHeader = ({
           <IconButton
             onClick={handleIsFilter}
             sx={{
-              px: "5px 0px",
+              px: "0px 0px",
               backgroundColor: "primary.B008",
               mx: 2,
               borderRadius: "8px",

@@ -68,6 +68,8 @@ const UsersFilter = ({
                     alignItems: "center",
                     flexDirection: "row",
                     width: "100%",
+                    pl: 2,
+                    gap:2
                     // backgroundColor: "blue",
                   }}
                 >

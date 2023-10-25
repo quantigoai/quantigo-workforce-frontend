@@ -21,7 +21,7 @@ const MenuProps = {
 
 const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, roles, count, handleClickAway }) => {
   return (
-    <MyFormControl fullWidth sx={{ px: 2, minWidth: "25%" }}>
+    <MyFormControl fullWidth sx={{ px: 0, minWidth: "25%" }}>
       <MySelect
         sx={{
           backgroundColor: "neutral.N000",

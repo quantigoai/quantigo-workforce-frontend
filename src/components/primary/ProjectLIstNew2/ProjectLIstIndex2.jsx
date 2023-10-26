@@ -105,6 +105,8 @@ const ProjectLIstIndex2 = () => {
     filteredCol,
     handleIsFilter,
     isFilter,
+    search,
+    setSearch,
     setDetailsProjectOpen,
   } = useAllFunc();
 
@@ -120,11 +122,12 @@ const ProjectLIstIndex2 = () => {
         pagination,
         filteredData: filterValue,
         ascDescOption: filteredCol,
+        search,
       })
     ).then(() => {
       setIsChildDataLoading(false);
     });
-  }, [dispatch, pagination, filterValue, filteredCol]);
+  }, [dispatch, pagination, filterValue, filteredCol, search]);
 
   const { handleChangeSkill, addSkills, setAddSkills, count } = useHandleChange();
 
@@ -217,6 +220,8 @@ const ProjectLIstIndex2 = () => {
     );
   };
 
+  const searchRef = React.useRef(null);
+
   useEffect(() => {
     dispatch(setActivePath("All Projects"));
     setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
@@ -228,6 +233,15 @@ const ProjectLIstIndex2 = () => {
     dispatch(getAllProjectDrawers({ pagination })).then(() => setIsDataLoading(false));
   }, []);
 
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const clearSearch = () => {
+    setSearch("");
+    searchRef.current.value = "";
+  };
+
   return (
     <>
       <Box className="content">
@@ -238,6 +252,11 @@ const ProjectLIstIndex2 = () => {
             isLightTheme={isLightTheme}
             handleIsFilter={handleIsFilter}
             handleProjectCreateOpen={() => setCreateProjectOpen(true)}
+            handleSearch={handleSearch}
+            setSearch={setSearch}
+            search={search}
+            searchRef={searchRef}
+            clearSearch={clearSearch}
           />
 
           <ProjectSelectFIlter

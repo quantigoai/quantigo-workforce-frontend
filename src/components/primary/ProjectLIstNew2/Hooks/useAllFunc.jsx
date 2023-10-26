@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux";
 import {getAllSkills} from "../../../../features/slice/skillSlice";
 
 const useAllFunc = () => {
+   const [search, setSearch] = useState("");
   const [filterValue, setFilterValue] = useState({});
   const dispatch = useDispatch();
   const [createProjectOpen, setCreateProjectOpen] = React.useState(false);
@@ -83,6 +84,8 @@ const useAllFunc = () => {
     filteredCol,
     handleIsFilter,
     isFilter,
+    search,
+    setSearch,
   };
 };
 

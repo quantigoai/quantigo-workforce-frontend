@@ -24,11 +24,10 @@ const layoutMenuOption = () => {
   const adminOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "All Users", icon: UserSvg },
-    { name: "Skill", icon: BenchmarkSvg },
-    { name: "Course", icon: CourseSvg },
-
-    // { name: "All Users", icon: UserSvg },
     { name: "All Projects", icon: ProjectSvg },
+    { name: "Skill", icon: BenchmarkSvg },
+    // { name: "Course", icon: CourseSvg },
+
     // { name: "Projects", icon: ProjectSvg },
     // { name: "Jobs", icon: JobSvg },
     // { name: "Benchmark", icon: BenchmarkSvg },
@@ -39,9 +38,9 @@ const layoutMenuOption = () => {
   const accountManagerOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "All Users", icon: UserSvg },
+    { name: "All Projects", icon: ProjectSvg },
 
     // { name: "All Users", icon: UserSvg },
-    { name: "All Projects", icon: ProjectSvg },
     // { name: "Projects", icon: ProjectSvg },
     // { name: "Jobs", icon: JobSvg },
     // { name: "Benchmark", icon: BenchmarkSvg },
@@ -64,10 +63,10 @@ const layoutMenuOption = () => {
   const projectManagerOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "Identity Verification", icon: CourseSvg },
-
     // { name: "All Users", icon: UserSvg },
-
     // { name: "All Projects", icon: ProjectSvg },
+
+
     // { name: "Skill", icon: CourseSvg },
     // { name: "Projects", icon: ProjectSvg },
     // { name: "Jobs", icon: JobSvg },
@@ -78,11 +77,10 @@ const layoutMenuOption = () => {
   const projectLeadOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "Identity Verification", icon: CourseSvg },
-
+    // { name: "All Projects", icon: ProjectSvg },
+    // { name: "Skill", icon: CourseSvg },
     // { name: "All Users", icon: UserSvg },
 
-    // { name: "All Projects", icon: ProjectSvg },
-    // { name: "Skill", icon: SkillIcon },
     // { name: "Projects", icon: ProjectSvg },
     // { name: "Jobs", icon: JobSvg },
     // { name: "Benchmark", icon: BenchmarkSvg },
@@ -103,6 +101,7 @@ const layoutMenuOption = () => {
   const verifiedDmOptions = [
     { name: "Home", icon: BenchmarkSvg },
     { name: "Dashboard", icon: DashboardSvg },
+    { name: "All Projects", icon: ProjectSvg },
   ];
   const verifiedTrainerOptions = [
     { name: "Home", icon: BenchmarkSvg },
@@ -112,16 +111,22 @@ const layoutMenuOption = () => {
   const verifiedProjectManagerOptions = [
     { name: "Home", icon: BenchmarkSvg },
     { name: "Dashboard", icon: DashboardSvg },
+    { name: "All Projects", icon: ProjectSvg },
+
     // { name: "All Users", icon: UserSvg },
   ];
   const verifiedProjectLeadOptions = [
     { name: "Home", icon: BenchmarkSvg },
     { name: "Dashboard", icon: DashboardSvg },
+    { name: "All Projects", icon: ProjectSvg },
+
     // { name: "All Users", icon: UserSvg },
   ];
   const verifiedProjectCoordinatorOptions = [
     { name: "Home", icon: BenchmarkSvg },
     { name: "Dashboard", icon: DashboardSvg },
+    { name: "All Projects", icon: ProjectSvg },
+
     // { name: "Projects", icon: ProjectSvg },
     // { name: "All Users", icon: UserSvg },
   ];
@@ -137,6 +142,7 @@ const layoutMenuOption = () => {
     // { name: "Home", icon: BenchmarkSvg },
     { name: "Dashboard", icon: DashboardSvg },
     { name: "All Users", icon: UserSvg },
+    { name: "All Projects", icon: ProjectSvg },
   ];
 
   const dmOptions = [

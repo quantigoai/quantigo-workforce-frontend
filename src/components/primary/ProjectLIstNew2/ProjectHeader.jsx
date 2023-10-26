@@ -7,6 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
+import ClearIcon from "@mui/icons-material/Clear";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import FilterListOffIcon from "@mui/icons-material/FilterListOff";
 import SearchIcon from "@mui/icons-material/Search";
@@ -38,7 +39,6 @@ const ProjectHeader = ({
               display: "flex",
               alignContent: "center",
               alignItems: "center",
-              // paddingX: "10px",
             }}
           >
             {/* TODO Need to remove the unnecessary custom button */}
@@ -54,7 +54,7 @@ const ProjectHeader = ({
             padding: "12px 20px",
           }}
         >
-          <Paper
+          {/* <Paper
             component="form"
             sx={{
               p: "2px 4px",
@@ -72,8 +72,55 @@ const ProjectHeader = ({
               <SearchIcon />
             </IconButton>
             <InputBase sx={{ ml: 0, flex: 1 }} placeholder="Search" />
+          </Paper> */}
+          <Paper
+            // component="form"
+            sx={{
+              p: "2px 4px",
+              display: "flex",
+              alignItems: "center",
+              width: "240px",
+              backgroundColor: "primary.B008",
+              border: "1px solid #EFF3FE",
+              borderRadius: "8px",
+              outline: "none",
+              boxShadow: "none",
+            }}
+          >
+            <IconButton disabled type="button" sx={{ p: "5px" }} aria-label="search">
+              <SearchIcon />
+            </IconButton>
+            <InputBase
+              inputRef={searchRef}
+              // onBlur={(e) => handleSearch(e)}
+              sx={{ ml: 0, flex: 1 }}
+              placeholder="Search"
+              onKeyDown={(ev) => {
+                if (ev.key === "Enter") {
+                  handleSearch(ev);
+                  ev.preventDefault();
+                }
+              }}
+            />
+            {search && (
+              <Button
+                sx={{
+                  height: "30px",
+                  minWidth: "40px",
+                }}
+              >
+                <ClearIcon
+                  sx={{
+                    color: "neutral.N300",
+                    "&:hover": {
+                      color: "#F04438",
+                    },
+                  }}
+                  onClick={clearSearch}
+                />
+              </Button>
+            )}
           </Paper>
-
           <IconButton
             onClick={handleIsFilter}
             sx={{

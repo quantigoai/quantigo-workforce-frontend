@@ -17,6 +17,7 @@ import {
   getDashboardDataWeekly,
 } from "../../../features/slice/dashboardSlice";
 import { convertDate } from "../../../helper/customData";
+import AnnotatorLandingPage from "./AnnotatorLandingPage/AnnotatorLandingPage";
 import BarChart from "./BarChart/BarChart";
 import CongratulationComponents from "./CongratulationDashBoard/CongratulationComponents";
 import DashboardIndex from "./DashboardIndex";
@@ -127,7 +128,8 @@ const Dashboard = () => {
             {user.user.isVerified ? (
               role === "level_0_annotator" ? (
                 <>
-                  <CongratulationComponents />
+                  {/* <CongratulationComponents /> */}
+                  <AnnotatorLandingPage />
                 </>
               ) : (
                 <>

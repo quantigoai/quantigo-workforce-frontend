@@ -115,27 +115,69 @@ const BarChart = ({ startDate, setStartDate, endDate, setEndDate, loading }) => 
     ],
   };
   const { isLightTheme } = useSelector((state) => state.theme);
+  const [chartData, setChartData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: "",
+        data: [],
+        backgroundColor: "#B6C9F0",
+        borderWidth: 1,
+        borderRadius: 10,
+      },
+      {
+        label: "",
+        data: [],
+        backgroundColor: "#2E58FF",
+        borderWidth: 1,
+        borderRadius: 10,
+      },
+    ],
+  });
+  const {
+    user: { estimatedPaymentForProjects, role },
+  } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    const transformed = {
+      labels: estimatedPaymentForProjects.slice(0, 3).map((item) => item.projectName || "test"),
+      datasets: [
+        {
+          label: "Estimated Hours",
+          data: estimatedPaymentForProjects.slice(0, 3).map((item) => item.estimatedWorkingHours),
+          backgroundColor: "#B6C9F0",
+          borderWidth: 1,
+          borderRadius: 10,
+        },
+        {
+          label: "Estimated Payment (in thousands)",
+          data: estimatedPaymentForProjects.slice(0, 3).map((item) => item.estimatedPayment / 1000),
+          backgroundColor: "#2E58FF",
+          borderWidth: 1,
+          borderRadius: 10,
+        },
+      ],
+    };
+    setChartData(transformed);
+  }, [estimatedPaymentForProjects]);
+
   useEffect(() => {
     const activeProjectIds = Object.keys(activeJobs);
     const takenProjectIds = Object.keys(takenJobs);
     const uniqueIds = new Set([...activeProjectIds, ...takenProjectIds]);
     const label = labelsData(uniqueIds, activeJobs, takenJobs);
     const { activeJobValues, blockedJobValues } = chartValues(uniqueIds, activeJobs, takenJobs);
-
     setCustomData({
       labels: label,
       datasets: [
         {
           label: "Available Jobs",
           data: activeJobValues,
-          // data: sampleData,
-
           backgroundColor: isLightTheme ? "#B6C9F0" : "#12B76A",
         },
         {
           label: "Active Jobs",
           data: blockedJobValues,
-          // data: sampleData,
           backgroundColor: isLightTheme ? "#2E58FF" : "#EAECF0",
         },
       ],
@@ -149,13 +191,13 @@ const BarChart = ({ startDate, setStartDate, endDate, setEndDate, loading }) => 
         <Grid container>
           <Grid xs={6} sx={{ paddingTop: "1%" }}>
             <Typography variant="wpf_p3_semiBold" sx={{ color: "neutral.750" }}>
-              <b>Project based Annotators/Reviewers</b>
+              {role === "admin" ? "Project Based Annotators/Reviewers" : "Latest Working Projects"}
             </Typography>
           </Grid>
           <Grid xs={6}>
             <Grid container sx={{ justifyContent: "right" }}>
               {/* <DateRangeField setStartDate={setStartDate} setEndDate={setEndDate} /> */}
-              <DateRangeComponentForDashboard setRange={setRange} range={range} />
+              {role === "admin" && <DateRangeComponentForDashboard setRange={setRange} range={range} />}
             </Grid>
           </Grid>
         </Grid>
@@ -168,8 +210,8 @@ const BarChart = ({ startDate, setStartDate, endDate, setEndDate, loading }) => 
                 maintainAspectRatio: false,
               }}
               // data={sampleData}
+              data={role !== "admin" ? chartData : customData}
               style={{ height: "250px" }}
-              data={customData}
             />
           )}
         </Grid>

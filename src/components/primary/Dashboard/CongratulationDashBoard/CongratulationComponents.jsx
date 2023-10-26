@@ -14,8 +14,6 @@ const CongratulationComponents = () => {
   };
 
   const teamIconDiv = { paddingBottom: "1%", paddingTop: "0%", borderRadius: "2px" };
-  const navigate = useNavigate();
-  const { totalCountData } = useSelector((state) => state.dashboard);
 
   return (
     <>

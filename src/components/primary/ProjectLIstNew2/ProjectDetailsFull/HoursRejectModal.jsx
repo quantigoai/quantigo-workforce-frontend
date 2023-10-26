@@ -48,9 +48,8 @@ const style = {
   },
 };
 
-const HoursRejectModal = ({ openModal, handleClose, }) => {
-  const { register, handleSubmit } = useForm();
-  const { isLoading } = useSelector((state) => state.user);
+const HoursRejectModal = ({ openModal, handleClose, handleRejectHours,handleRejectCause={handleRejectCause} }) => {
+
   return (
     <>
       <Modal
@@ -61,7 +60,7 @@ const HoursRejectModal = ({ openModal, handleClose, }) => {
         <Box
           sx={{
             ...style,
-            height: { xl: "40%", lg: "%" },
+            height: { xl: "50%", lg: "%" },
             width: { xl: "35%", lg: "40%" },
           }}>
           <Box sx={{ flex: "0 0 5%" }}>
@@ -71,7 +70,7 @@ const HoursRejectModal = ({ openModal, handleClose, }) => {
           <Box
             sx={{
               flex: "1",
-              overflowY: "auto",
+
               padding: "2%",
             }}>
             <Grid container style={{ padding: "1%" }}>
@@ -97,7 +96,7 @@ const HoursRejectModal = ({ openModal, handleClose, }) => {
                   // placeholder="Select"
                   sx={{ height: "50%" }}></MySelect>
               </Grid>
-              <Grid container style={{}}>
+              <Grid container style={{ backgroundColor: "" }}>
                 <Typography
                   sx={{
                     fontSize: "12px",
@@ -114,24 +113,21 @@ const HoursRejectModal = ({ openModal, handleClose, }) => {
                   multiline
                   rows={5}
                   InputProps={{ disableUnderline: true }}
-                  // {...register("rejectionCause", {
-                  //   required: true,
-                  // })}
-                //   onChange={(e) => handleRejectCause(e)}
+                  onChange={(e) => handleRejectCause(e)}
                 />
               </Grid>
             </Grid>
           </Box>
           <Box
             sx={{
-              flex: "0 0 64px",
+              //   flex: "0 0 50px",
               borderTop: "1px solid #F2F6FC",
               backgroundColor: "neutral.N000",
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              padding: "0 2%",
-
+              padding: "2%",
+              //   backgroundColor:"",
               bottom: "0px",
               borderRadius: "8px",
             }}>
@@ -157,8 +153,6 @@ const HoursRejectModal = ({ openModal, handleClose, }) => {
               <Grid item xs={6}>
                 <Grid container sx={{ justifyContent: "right" }}>
                   <Button
-                    // disabled={rejectionCause === ""}
-                    // type="submit"
                     sx={{
                       width: "128px",
                       textTransform: "none",
@@ -176,8 +170,7 @@ const HoursRejectModal = ({ openModal, handleClose, }) => {
                         // border: "1px solid #2E58FF",
                       },
                     }}
-                    // onClick={() => handleChange()}
-                  >
+                    onClick={() => handleRejectHours()}>
                     Save Changes
                   </Button>
                 </Grid>

@@ -3,13 +3,22 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { approveProjectHistory, rejectProjectHistory } from "../../../../features/slice/projectDrawerSlice";
 import DetailsUploadHourModal from "./DetailsUploadHourModal";
+import ModalAcceptReject from "./ModalAcceptReject";
 
 const DetailsUploadHourBUtton = ({ role, value }) => {
   const [open, setOpen] = React.useState(false);
+  const [openAccept, setOpenAccept] = React.useState(false);
   const { projectDrawer } = useSelector((state) => state.projectDrawer);
   const dispatch = useDispatch();
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleOpenAccept = () => setOpenAccept(true);
+  const handleClose = () => {
+    setOpenAccept(false);
+    setOpen(false);
+  };
+  const handleOpenReject = () => {
+    setOpenAccept(true);
+  };
   const handleAcceptHours = () => {
     console.log(projectDrawer._id);
     dispatch(approveProjectHistory(projectDrawer._id));
@@ -37,8 +46,7 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
               mr: 2,
             }}
             variant="contained"
-            onClick={handleOpen}
-          >
+            onClick={handleOpen}>
             <i className="ri-upload-2-line"></i>
             <Typography variant="body" sx={{ ml: 1, textTransform: "none", fontWeight: "500" }}>
               Upload Effective Hour
@@ -49,7 +57,8 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
         <>
           <Button
             variant="contained"
-            onClick={() => handleAcceptHours()}
+            // onClick={() => handleAcceptHours()}
+            onClick={handleOpenAccept}
             sx={{
               backgroundColor: "#2E58FF",
               color: "#FFF",
@@ -58,8 +67,7 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
               borderRadius: "6px",
               "&:hover": {},
               mr: 2,
-            }}
-          >
+            }}>
             <i style={{}} className="ri-checkbox-circle-fill"></i>
             <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
               Hours Accept
@@ -68,7 +76,8 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
           <Button
             // disabled={params.isVerified}
             variant="contained"
-            onClick={() => handleRejectHours()}
+            // onClick={() => handleRejectHours()}
+            onClick={handleOpenReject}
             sx={{
               backgroundColor: "#FF4757",
               color: "#FFF",
@@ -77,8 +86,7 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
               borderRadius: "6px",
               "&:hover": {},
               mr: 2,
-            }}
-          >
+            }}>
             <i style={{}} className="ri-close-circle-fill"></i>
             <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
               Hours Reject
@@ -86,7 +94,7 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
           </Button>
         </>
       )}
-
+      <ModalAcceptReject open={openAccept} handleClose={handleClose} />
       <DetailsUploadHourModal openModal={open} setOpen={setOpen} />
     </>
   );

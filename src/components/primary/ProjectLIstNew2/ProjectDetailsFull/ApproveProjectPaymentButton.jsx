@@ -3,6 +3,7 @@ import React from "react";
 import DetailsUploadHourModal from "./DetailsUploadHourModal";
 import { useDispatch, useSelector } from "react-redux";
 import { approveProjectPayment } from "../../../../features/slice/projectDrawerSlice";
+import ModalAcceptReject from "./ModalAcceptReject";
 
 const ApproveProjectPaymentButton = ({ role }) => {
   const [open, setOpen] = React.useState(false);
@@ -20,7 +21,8 @@ const ApproveProjectPaymentButton = ({ role }) => {
     <>
       <Button
         variant="contained"
-        onClick={() => handleApprovePayment()}
+        // onClick={() => handleApprovePayment()}
+        onClick={handleOpen}
         sx={{
           backgroundColor: "#2E58FF",
           color: "#FFF",
@@ -35,6 +37,7 @@ const ApproveProjectPaymentButton = ({ role }) => {
           Payment Approve
         </Typography>
       </Button>
+      <ModalAcceptReject open={open} handleClose={handleClose} />
     </>
   );
 };

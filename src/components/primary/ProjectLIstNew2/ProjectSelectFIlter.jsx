@@ -30,34 +30,43 @@ const ProjectSelectFIlter = ({
       sx={{
         backgroundColor: "neutral.N000",
         width: "100%",
-        paddingY: "5px",
         display: isFilter ? "block" : "none",
         borderTop: "1px solid #E6ECF5",
         height: "52px",
+        pr: 2,
+        pl: 2,
+        pY: "6px",
       }}
     >
-      <Stack sx={{ width: "100%", height: "100%" }}>
+      <Stack
+        sx={{
+          width: "100%",
+          height: "100%",
+          py: "6px",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <Stack
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
             flexDirection: "row",
-            // paddingX: "16px",
           }}
         >
           {role === "admin" ? (
             <>
-              <Box
+              <Stack
                 sx={{
                   display: "flex",
-                  flexDirection: "row",
                   justifyContent: "start",
                   alignItems: "center",
-                  width: "100%",
+                  flexDirection: "row",
+                  width: "90%",
+
+                  gap: 2,
                   // backgroundColor: "blue",
-                  // height: "100%",
-                  // paddingX: "16px",
                 }}
               >
                 <ProjectSelectFIlterField
@@ -88,7 +97,7 @@ const ProjectSelectFIlter = ({
                   filterValue={filterValue}
                   handleChange={handleChange}
                 />
-              </Box>
+              </Stack>
             </>
           ) : (
             <Box
@@ -141,9 +150,7 @@ const ProjectSelectFIlter = ({
             </Box>
           )}
 
-          <Stack
-          sx={{ width: "10%", px:2 }}
-          >
+          <Stack sx={{ width: "7%", pl: 2 }}>
             {role === "admin" && (
               <Button
                 onClick={() => handleClearFilter()}
@@ -152,8 +159,7 @@ const ProjectSelectFIlter = ({
                   borderRadius: "8px",
                   backgroundColor: "#FF4757",
                   color: "white",
-
-                  height: { xl: "35 px", lg: "35px" },
+                  height: { xl: "30 px", lg: "30px" },
                   "&:hover": {
                     backgroundColor: "#F53142",
                   },

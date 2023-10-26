@@ -26,7 +26,7 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
         <MySelect
           sx={{
             backgroundColor: "neutral.N000",
-            height: "30px",
+            height: "36px",
             fontSize: "14px",
           }}
           displayEmpty

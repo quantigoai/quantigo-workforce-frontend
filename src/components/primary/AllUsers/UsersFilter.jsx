@@ -43,20 +43,29 @@ const UsersFilter = ({
         sx={{
           backgroundColor: "neutral.N000",
           width: "100%",
-          paddingY: "5px",
           display: isFilter ? "block" : "none",
           borderTop: "1px solid #E6ECF5",
           height: "52px",
+          pr: 2,
+          pl: 2,
+          pY: "6px",
         }}
       >
-        <Stack sx={{ width: "100%", height: "100%" }}>
+        <Stack
+          sx={{
+            width: "100%",
+            height: "100%",
+            py: "6px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <Stack
             sx={{
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
               flexDirection: "row",
-              // paddingX: "16px",
             }}
           >
             {role === "admin" || role === "recruitment_manager" ? (
@@ -68,6 +77,8 @@ const UsersFilter = ({
                     alignItems: "center",
                     flexDirection: "row",
                     width: "100%",
+                    pl: 2,
+                    gap: 2,
                     // backgroundColor: "blue",
                   }}
                 >
@@ -110,7 +121,7 @@ const UsersFilter = ({
               <Box sx={{ display: "flex", alignItems: "center", paddingX: "40px", width: "70%" }}></Box>
             )}
 
-            <Stack sx={{ width: "10%", px: 2 }}>
+            <Stack sx={{ width: "7%", px: 2 }}>
               <Button
                 onClick={() => handleClearFilter()}
                 sx={{
@@ -118,8 +129,7 @@ const UsersFilter = ({
                   borderRadius: "8px",
                   backgroundColor: "#FF4757",
                   color: "white",
-
-                  height: { xl: "35 px", lg: "35px" },
+                  height: { xl: "30 px", lg: "30px" },
                   "&:hover": {
                     backgroundColor: "#F53142",
                   },

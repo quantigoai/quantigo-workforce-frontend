@@ -43,20 +43,29 @@ const UsersFilter = ({
         sx={{
           backgroundColor: "neutral.N000",
           width: "100%",
-          paddingY: "5px",
           display: isFilter ? "block" : "none",
           borderTop: "1px solid #E6ECF5",
           height: "52px",
+          pr: 2,
+          pl: 2,
+          pY: "6px",
         }}
       >
-        <Stack sx={{ width: "100%", height: "100%" }}>
+        <Stack
+          sx={{
+            width: "100%",
+            height: "100%",
+            py: "6px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <Stack
             sx={{
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
               flexDirection: "row",
-              paddingY: "6px",
             }}
           >
             {role === "admin" || role === "recruitment_manager" ? (

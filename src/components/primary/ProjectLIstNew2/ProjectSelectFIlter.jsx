@@ -30,20 +30,29 @@ const ProjectSelectFIlter = ({
       sx={{
         backgroundColor: "neutral.N000",
         width: "100%",
-        paddingY: "5px",
         display: isFilter ? "block" : "none",
         borderTop: "1px solid #E6ECF5",
         height: "52px",
+        pr: 2,
+        pl: 2,
+        pY: "6px",
       }}
     >
-      <Stack sx={{ width: "100%", height: "100%" }}>
+      <Stack
+        sx={{
+          width: "100%",
+          height: "100%",
+          py: "6px",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <Stack
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
             flexDirection: "row",
-            paddingY: "6px",
           }}
         >
           {role === "admin" ? (
@@ -55,7 +64,7 @@ const ProjectSelectFIlter = ({
                   alignItems: "center",
                   flexDirection: "row",
                   width: "90%",
-                  pl: 2,
+
                   gap: 2,
                   // backgroundColor: "blue",
                 }}
@@ -141,7 +150,7 @@ const ProjectSelectFIlter = ({
             </Box>
           )}
 
-          <Stack sx={{ width: "7%", px: 2 }}>
+          <Stack sx={{ width: "7%", pl: 2 }}>
             {role === "admin" && (
               <Button
                 onClick={() => handleClearFilter()}

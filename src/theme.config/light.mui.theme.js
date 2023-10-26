@@ -139,6 +139,12 @@ const lightTheme = createTheme({
         },
       },
     },
+    MuiStack: {
+      styleOverrides: {
+        // padding: "0",
+        // height: "0px",
+      },
+    },
   },
   breakpoints: {
     values: {

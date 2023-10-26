@@ -8,9 +8,12 @@ const DetailsButton = ({ handleProjectDetailsOpen, handleDetailButton, role }) =
       sx={{
         backgroundColor: "#F2F6FC",
         color: "#3C4D6B",
-        fontSize: "14px",
         fontWeight: "500",
         borderRadius: "6px",
+      
+        fontSize: "12px",
+        height: "30px",
+        width: "86px",
         border: "1px solid #E6ECF5",
         "&:hover": { border: "1px solid #E6ECF5" },
         mr: 2,
@@ -18,7 +21,7 @@ const DetailsButton = ({ handleProjectDetailsOpen, handleDetailButton, role }) =
       variant="outlined"
     >
       <i className="ri-information-line"></i>
-      <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
+      <Typography variant="wpf_h7_medium" sx={{ ml: 1, textTransform: "none" }}>
         {" "}
         Details
       </Typography>

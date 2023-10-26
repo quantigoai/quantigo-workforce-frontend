@@ -104,7 +104,7 @@ const DetailsUploadHourModal = ({ openModal, setOpen }) => {
   const url = import.meta.env.VITE_APP_SERVER_URL;
 
   useEffect(() => {}, [acceptedFiles]);
-  console.log(projectDrawer._id);
+
 
   const handleSubmission = async () => {
     const formData = new FormData();

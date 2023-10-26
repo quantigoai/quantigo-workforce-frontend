@@ -7,7 +7,7 @@ import ApproveProjectPaymentButton from "./ApproveProjectPaymentButton";
 
 const ProjectDetailsButton = ({ range, setRange, value, handleProjectDetailsOpen, role }) => {
   return (
-    <Box display={"flex"} alignItems={"center"} justifyContent={"space-evenly"}>
+    <Box display={"flex"} alignItems={"center"} justifyContent={"space-evenly"} > 
       {value === "not-Started" && (
         <Box>
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />

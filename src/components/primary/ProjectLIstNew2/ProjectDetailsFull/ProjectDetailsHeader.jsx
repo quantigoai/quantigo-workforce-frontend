@@ -56,7 +56,7 @@ const ProjectDetailsHeader = ({
             {projectDrawer.project_drawer_name}{" "}
           </Typography>
 
-          <Box sx={{ ml: 2 }}>
+          <Box sx={{ ml: 0 }}>
             {(role === "admin" || role === "account_manager") && (
               <ProjectDetailSelect
                 defaultVal={projectDrawer.project_status}

@@ -76,7 +76,7 @@ const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleIm
     // Large screens
     width = 510;
   }
-  // console.log(acceptedFiles[0].size)
+
   return (
     <>
       <Grid container>

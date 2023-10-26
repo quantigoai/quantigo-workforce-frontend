@@ -276,7 +276,7 @@ const MyProfileIndex = () => {
                     <Box sx={{ paddingRight: "3%" }}>
                       <Button
                         type="submit"
-                        variant="contained"
+                        // variant="contained"
                         disabled={isLoading}
                         sx={{
                           backgroundColor: "primary.B200",
@@ -296,7 +296,7 @@ const MyProfileIndex = () => {
                     </Box>
 
                     <Button
-                      variant="contained"
+                      // variant="contained"
                       // disabled={isLoading}
                       onClick={() => setEditAble(false)}
                       sx={{

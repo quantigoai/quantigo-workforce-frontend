@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import React from "react";
 import buttonIcon from "../../../../assets/images/Buttons.svg";
 
@@ -31,18 +31,12 @@ const ModalActivateAccount = ({ open, handleChange, handleClose }) => {
         aria-describedby="modal-modal-description">
         <Box sx={style}>
           <img src={buttonIcon} />
-          <Typography
-            sx={{ mt: "10%" }}
-            id="modal-modal-title"
-            variant="h6"
-            component="h2">
+          <Typography sx={{ mt: "10%" }} id="modal-modal-title" variant="h6" component="h2">
             <b>Account {user.active ? "Deactivation" : "Activation"}</b>
           </Typography>
-          <Typography
-            id="modal-modal-description"
-            sx={{ mt: 2, color: "#3C4D6B" }}>
+          <Typography id="modal-modal-description" sx={{ mt: 2, color: "#3C4D6B" }}>
             Are you sure you want to {user.active ? "deactivate " : "activate "}
-            your account?
+            your account ?
           </Typography>
           <Box
             sx={{
@@ -52,38 +46,38 @@ const ModalActivateAccount = ({ open, handleChange, handleClose }) => {
               marginTop: "20px",
             }}>
             {/* #F2F6FC */}
-            <Box  sx={{paddingRight:"2%"}}>
-            <Button
-              sx={{
-                textTransform: "none",
-                background: "#F2F6FC",
-                borderRadius: "10px",
-                color: "#253E5C",
-                // padding: " 10px 16px",
-                width: "150px",
-                "&:hover": {
+            <Box sx={{ paddingRight: "4%" }}>
+              <Button
+                sx={{
+                  textTransform: "none",
                   background: "#F2F6FC",
-                },
-              }}
-              onClick={handleClose}
-              variant="contained">
-              Cancel
-            </Button>
+                  borderRadius: "10px",
+                  color: "#253E5C",
+                  // padding: " 10px 16px",
+                  width: "150px",
+                  "&:hover": {
+                    background: "#F2F6FC",
+                  },
+                }}
+                onClick={handleClose}>
+                Cancel
+              </Button>
             </Box>
-           
+
             <Button
               onClick={() => handleChange()}
               sx={{
                 textTransform: "none",
                 background: "#FFAB00",
+
+                color: "#fff",
                 borderRadius: "10px",
                 width: "150px",
                 "&:hover": {
                   background: "#FFAB00",
                   // color: user.active ? "#F04438" : "#36B37E",
                 },
-              }}
-              variant="contained">
+              }}>
               Confirm
             </Button>
           </Box>

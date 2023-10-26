@@ -30,16 +30,17 @@ const ModalAcceptReject = ({ open, handleClose, handleAcceptHours }) => {
         aria-describedby="modal-modal-description">
         <Box sx={style}>
           <Box sx={{ backgroundColor: "", width: "400px", height: "336px", padding: "48px" }}>
-            <Box sx={{ backgroundColor: "" }}>
+            <Box sx={{ paddingBottom: "25px" }}>
               {" "}
               <img src={buttonIcon} />
             </Box>
             <Box sx={{ paddingBottom: "32px" }}>
-              <Typography sx={{ mt: "10%" }} id="modal-modal-title" variant="h6" component="h2">
-                Change Statue
+              <Typography sx={{ mt: "0%" }} id="modal-modal-title" variant="wpf_p1_semiBold">
+                Hours Accept
               </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2, color: "#3C4D6B" }}>
-                Are you sure you want to accept hours?
+              <br />
+              <Typography variant="wpf_p3_regular" sx={{ mt: 1, color: "#3C4D6B" }}>
+                Are you sure you want to change hours accept ?
               </Typography>
             </Box>
             <Box
@@ -59,7 +60,7 @@ const ModalAcceptReject = ({ open, handleClose, handleAcceptHours }) => {
                     borderRadius: "10px",
                     color: "#253E5C",
                     // padding: " 10px 16px",
-                    fontSize:"14px",
+                    fontSize: "14px",
                     width: "150px",
                     "&:hover": {
                       background: "#F2F6FC",
@@ -68,7 +69,7 @@ const ModalAcceptReject = ({ open, handleClose, handleAcceptHours }) => {
                   onClick={handleClose}
                   // variant="contained"
                 >
-                  Cancel
+                  No
                 </Button>
               </Box>
 
@@ -77,7 +78,7 @@ const ModalAcceptReject = ({ open, handleClose, handleAcceptHours }) => {
                 sx={{
                   textTransform: "none",
                   background: "#FFAB00",
-                  color:"#fff",
+                  color: "#fff",
                   borderRadius: "10px",
                   width: "150px",
                   "&:hover": {
@@ -85,7 +86,7 @@ const ModalAcceptReject = ({ open, handleClose, handleAcceptHours }) => {
                     // color: user.active ? "#F04438" : "#36B37E",
                   },
                 }}>
-                Confirm
+                Yes
               </Button>
             </Box>
           </Box>

@@ -229,7 +229,6 @@ export const approveProjectHistory = createAsyncThunk("/project-history/approved
 });
 export const rejectProjectHistory = createAsyncThunk("/project-history/reject-history", async (data) => {
   const { id, rejectionCause } = data;
-  console.log("🚀 ~ file: projectDrawerSlice.js:230 ~ rejectProjectHistory ~ rejectionCause:", rejectionCause)
   try {
     return await axios.patch(`${url}/project-history/reject-history/${id}`, {rejectionCause}, {
       headers: {

@@ -1,4 +1,4 @@
-import {Box} from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
 import CheckInButton from "./CheckInButton";
 import CheckOutButton from "./CheckOutButton";
@@ -20,6 +20,7 @@ const CheckINOutButton = ({
       {usersWorkHistoryCount > 0 && <DetailsButton handleProjectDetailsOpen={handleProjectDetailsOpen} />}
       <CheckInButton isDisable={isDisable} handleCheckInButton={handleCheckInButton} />
       <CheckOutButton
+        isDisable={isDisable}
         handleOpen={handleOpen}
         checkOutDisable={checkOutDisable}
         handleCheckOutButton={handleCheckOutButton}

@@ -1,7 +1,9 @@
-import {Button} from "@mui/material";
+import { Button } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const CheckOutButton = ({ checkOutDisable, handleCheckOutButton, handleOpen }) => {
+  const { isLightTheme } = useSelector((state) => state.theme);
   return (
     <Button
       disabled={checkOutDisable}
@@ -15,6 +17,9 @@ const CheckOutButton = ({ checkOutDisable, handleCheckOutButton, handleOpen }) =
         color: "#FF4757",
         fontWeight: "bold",
         ml: 3,
+        "&:disabled": {
+          color: isLightTheme ? "gray" : "gray",
+        },
       }}
     >
       <i style={{ marginRight: "5px" }} className="ri-logout-box-line"></i>

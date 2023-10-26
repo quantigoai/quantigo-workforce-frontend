@@ -164,7 +164,8 @@ const Routers = () => {
                 roles.trainer,
               ]}
             />
-          }>
+          }
+        >
           <Route path={"/skillcreate"} element={<Skills />} />
         </Route>
         {/* -------- ---------- ------------ */}
@@ -182,8 +183,10 @@ const Routers = () => {
                 roles.pro_manager,
                 roles.del_manager,
                 roles.rec_manger,
-              ]}></PrivateRoute>
-          }>
+              ]}
+            ></PrivateRoute>
+          }
+        >
           <Route path={"/all-users"} element={<AllUserListIndex action={"admin"} />} />
         </Route>
 
@@ -203,8 +206,13 @@ const Routers = () => {
                 roles.del_manager,
                 roles.rec_manger,
                 roles.acc_manger,
-              ]}></PrivateRoute>
-          }>
+                roles.level_1,
+                roles.level_2,
+                roles.level_3,
+              ]}
+            ></PrivateRoute>
+          }
+        >
           <Route path={"/allprojects"} element={<ProjectLIstIndex2 action={"allprojects"} />} />
         </Route>
 
@@ -220,8 +228,13 @@ const Routers = () => {
                 roles.del_manager,
                 roles.rec_manger,
                 // roles.acc_manger,
-              ]}></PrivateRoute>
-          }>
+                roles.level_1,
+                roles.level_2,
+                roles.level_3,
+              ]}
+            ></PrivateRoute>
+          }
+        >
           <Route path={"/detailsInfo/:id"} element={<DetailsPage action={"detailsInfo"} />} />
         </Route>
 
@@ -237,8 +250,13 @@ const Routers = () => {
                 roles.del_manager,
                 roles.rec_manger,
                 roles.acc_manger,
-              ]}></PrivateRoute>
-          }>
+                roles.level_1,
+                roles.level_2,
+                roles.level_3,
+              ]}
+            ></PrivateRoute>
+          }
+        >
           <Route path={"/projectDetails/:id"} element={<FullProjectDetails action={"projectDetails"} />} />
         </Route>
 

@@ -1,8 +1,8 @@
-import {MenuItem, Select, styled} from "@mui/material";
+import { MenuItem, Select, Typography, styled } from "@mui/material";
 import React from "react";
-import {MyFormControl} from "../../shared/CustomField/CustomDatePicker";
+import { MyFormControl } from "../../shared/CustomField/CustomDatePicker";
 
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -10,23 +10,38 @@ export const MySelect = styled(Select)(() => ({ width: "100%" }));
 
 const PlatformSelectAnnotator = ({ handleChangeAnnotatorFilter, name, label, options }) => {
   return (
-    <MyFormControl sx={{ m: 0.5, minWidth: "15%" }} size="medium">
+    <MyFormControl
+      sx={{
+        px: 0,
+        py: 0,
+        minWidth: "35%",
+        minHeight: "36px",
+        height: "36px",
+      }}
+      // size="medium"
+    >
       <MySelect
         displayEmpty
         defaultValue={""}
         sx={{
-          height: "30px",
-          borderRadius: "8px",
-
-          "& svg": {
-            fill: "#667085",
-          },
-          backgroundColor: "none",
-          width: "140px",
+          color: "blue",
+          height: "36px",
+          fontSize: "14px",
+          // height: "36px",
+          // padding: "3px",
+          margin: "0px",
+          fontWeight: "500",
           border: "none",
-          color: "#2E58FF",
+          // fontSize: "14px",
+          // color: "red",
+          "& svg": {
+            fill: "#5A6B89",
+          },
+          "& .MuiOutlinedInput-input": {
+            padding: "4px",
+          },
         }}
-        IconComponent={KeyboardArrowDownIcon}
+        IconComponent={ArrowDropDownIcon}
         label={label}
         onChange={handleChangeAnnotatorFilter}
         name={name}
@@ -35,8 +50,10 @@ const PlatformSelectAnnotator = ({ handleChangeAnnotatorFilter, name, label, opt
           <span style={{ color: "grey" }}>{label}</span>
         </MenuItem>
         {options.map((option) => (
-          <MenuItem key={option.value} fullWidth value={option.value}>
-            {option.label}
+          <MenuItem sx={{ fontSize: "14px" }} key={option.value} fullWidth value={option.value}>
+            <Typography variant="h7" color="primary.B200">
+              {option.label}
+            </Typography>
           </MenuItem>
         ))}
       </MySelect>

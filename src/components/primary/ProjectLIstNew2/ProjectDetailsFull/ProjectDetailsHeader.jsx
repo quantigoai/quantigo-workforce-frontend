@@ -79,7 +79,11 @@ const ProjectDetailsHeader = ({
                 value={value}
                 handleProjectDetailsOpen={handleProjectDetailsOpen}
               />
-            ) : (
+            ) : role === "level_0_annotator" ||
+              role === "level_1_annotator" ||
+              role === "level_2_annotator" ||
+              role === "level_3_annotator" ||
+              role === "reviewer" ? (
               <CheckINOutButton
                 usersWorkHistoryCount={usersWorkHistoryCount}
                 handleOpen={handleOpen}
@@ -90,7 +94,7 @@ const ProjectDetailsHeader = ({
                 handleCheckInButton={handleCheckInButton}
                 handleDetailButton={handleDetailButton}
               />
-            )}
+            ) : null}
           </Box>
         </Box>
       </Box>

@@ -100,16 +100,15 @@ const ProjectSelectFIlter = ({
               </Stack>
             </>
           ) : (
-            <Box
-              // sx={{ display: "flex", alignItems: "center", paddingX: "40px", width: "70%" }}
+            <Stack
               sx={{
                 display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
+                justifyContent: "start",
                 alignItems: "center",
+                flexDirection: "row",
                 width: "100%",
-                paddingX: "16px",
-                height: "100%",
+                gap: 2,
+                // backgroundColor: "blue",
               }}
             >
               <Box
@@ -119,16 +118,16 @@ const ProjectSelectFIlter = ({
                   backgroundColor: "#F4F7FE",
                   border: "1px solid #E6ECF5 ",
                   borderRadius: "8px",
-                  width: "30%",
+                  width: "22%",
                 }}
               >
-                <Typography sx={{ color: "#3C4D6B", opacity: "0.7", paddingX: "10px" }} variant="p">
+                <Typography sx={{ opacity: "0.7", ml: 1 }} color={"neutral.N300"} variant="wpf_p3_regular">
                   {" "}
-                  Choose Platform:
+                  Choose Platform :
                 </Typography>
                 <PlatformSelectAnnotator
                   name="project_platform"
-                  label={"select"}
+                  label={"Project Platform"}
                   options={platformOptions}
                   handleChangeAnnotatorFilter={handleChangeAnnotatorFilter}
                 />
@@ -139,37 +138,39 @@ const ProjectSelectFIlter = ({
                   backgroundColor: "#F4F7FE",
                   border: "1px solid #E6ECF5",
                   borderRadius: "8px",
-                  width: "25%",
+                  marginLeft: "5px",
                   mr: 0,
+                  pr: 1,
                   color: "#3C4D6B",
                   opacity: "0.7",
+                  fontWeight: "500",
+                  fontSize: "14px",
+                  fontFamily: "Inter",
                 }}
-                control={<Switch checked={checked} onChange={handleChangeCheck} />}
+                control={<Switch sx={{ pr: 2 }} checked={checked} onChange={handleChangeCheck} />}
                 label="Available Jobs for me"
               />
-            </Box>
+            </Stack>
           )}
 
           <Stack sx={{ width: "7%", pl: 2 }}>
-            {role === "admin" && (
-              <Button
-                onClick={() => handleClearFilter()}
-                sx={{
-                  textTransform: "none",
-                  borderRadius: "8px",
-                  backgroundColor: "#FF4757",
-                  color: "white",
-                  height: { xl: "30 px", lg: "30px" },
-                  "&:hover": {
-                    backgroundColor: "#F53142",
-                  },
-                }}
-                size="medium"
-                color="error"
-              >
-                Clear
-              </Button>
-            )}
+            <Button
+              onClick={() => handleClearFilter()}
+              sx={{
+                textTransform: "none",
+                borderRadius: "8px",
+                backgroundColor: "#FF4757",
+                color: "white",
+                height: { xl: "30 px", lg: "30px" },
+                "&:hover": {
+                  backgroundColor: "#F53142",
+                },
+              }}
+              size="medium"
+              color="error"
+            >
+              Clear
+            </Button>
           </Stack>
         </Stack>
       </Stack>

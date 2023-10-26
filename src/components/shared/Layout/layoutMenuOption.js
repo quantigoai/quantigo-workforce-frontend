@@ -169,6 +169,15 @@ const layoutMenuOption = () => {
     // { name: "Jobs", icon: JobSvg },
     // { name: "Payment", icon: PaymentSvg },
   ];
+  const verifiedAnnotatorOptions = [
+    { name: "Dashboard", icon: DashboardSvg },
+    // { name: "Identity Verification", icon: CourseSvg },
+
+    { name: "All Projects", icon: ProjectSvg },
+    // { name: "Course", icon: CourseSvg },
+    // { name: "Jobs", icon: JobSvg },
+    // { name: "Payment", icon: PaymentSvg },
+  ];
 
   const level0AnnotatorOptions = [
     { name: "Dashboard", icon: DashboardSvg },
@@ -197,7 +206,7 @@ const layoutMenuOption = () => {
   const recruitOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "Identity Verification", icon: CourseSvg },
-
+    // { name: "All Projects", icon: ProjectSvg },
     // { name: "Users", icon: UserSvg },
     // { name: "All Users", icon: UserSvg },
   ];
@@ -260,6 +269,7 @@ const layoutMenuOption = () => {
     devOptions,
     accountManagerOptions,
     verifiedAccountManagerOptions,
+    verifiedAnnotatorOptions,
   };
 };
 

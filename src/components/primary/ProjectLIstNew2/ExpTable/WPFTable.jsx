@@ -57,7 +57,9 @@ export default function WPFTable({
                   <StickyMiddleHead key={column.id} column={column} handleId={handleId} filteredCol={filteredCol} />
                 ))}
 
-                {role === "recruitment_manager" && <StickyDocViewTableHead column={{ width: "40px" }} />}
+                {role === "recruitment_manager" && location.pathname !== `/projectDetails/${id}` && (
+                  <StickyDocViewTableHead column={{ width: "40px" }} />
+                )}
 
                 {location.pathname !== `/projectDetails/${id}` &&
                   stickyLastColumn.map((column) => <StickyLastTableHead key={column.id} column={column} />)}
@@ -95,7 +97,9 @@ export default function WPFTable({
                       <MiddleTableColumn key={column.id} row={row} column={column} />
                     ))}
 
-                    {role === "recruitment_manager" && <StickyDocViewTableColumn column={row} />}
+                    {role === "recruitment_manager" && location.pathname !== `/projectDetails/${id}` && (
+                      <StickyDocViewTableColumn column={row} />
+                    )}
 
                     {location.pathname !== `/projectDetails/${id}` &&
                       stickyLastColumn.map((column) => (

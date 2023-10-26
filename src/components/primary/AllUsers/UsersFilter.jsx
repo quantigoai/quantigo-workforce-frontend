@@ -77,9 +77,7 @@ const UsersFilter = ({
                     alignItems: "center",
                     flexDirection: "row",
                     width: "100%",
-                    pl: 2,
                     gap: 2,
-                    // backgroundColor: "blue",
                   }}
                 >
                   <ProjectMultipleSelectRole
@@ -129,7 +127,7 @@ const UsersFilter = ({
                   borderRadius: "8px",
                   backgroundColor: "#FF4757",
                   color: "white",
-                  height: { xl: "30 px", lg: "30px" },
+                  height: { xl: "36 px", lg: "36px" },
                   "&:hover": {
                     backgroundColor: "#F53142",
                   },

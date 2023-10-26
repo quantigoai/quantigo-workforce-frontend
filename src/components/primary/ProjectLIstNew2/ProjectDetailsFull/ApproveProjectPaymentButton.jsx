@@ -3,18 +3,27 @@ import React from "react";
 import DetailsUploadHourModal from "./DetailsUploadHourModal";
 import { useDispatch, useSelector } from "react-redux";
 import { approveProjectPayment } from "../../../../features/slice/projectDrawerSlice";
-import ModalAcceptReject from "./ModalAcceptReject";
+
+import PaymentApproveModal from "./PaymentApproveModal";
+import useToaster from "../../../../customHooks/useToaster";
 
 const ApproveProjectPaymentButton = ({ role }) => {
   const [open, setOpen] = React.useState(false);
   const { projectDrawer } = useSelector((state) => state.projectDrawer);
   const dispatch = useDispatch();
+  const toast = useToaster();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const handleApprovePayment = () => {
     console.log(projectDrawer._id);
-    dispatch(approveProjectPayment(projectDrawer._id));
+    dispatch(approveProjectPayment(projectDrawer._id)).then((action) => {
+      if (action.payload?.status === 200) {
+        toast.trigger(action.payload.data.message, "success");
+      } else {
+        toast.trigger(action.error.message, "error");
+      }
+    })
   };
 
   return (
@@ -37,7 +46,7 @@ const ApproveProjectPaymentButton = ({ role }) => {
           Payment Approve
         </Typography>
       </Button>
-      <ModalAcceptReject open={open} handleClose={handleClose} />
+      <PaymentApproveModal open={open} handleClose={handleClose} handleApprovePayment={handleApprovePayment} />
     </>
   );
 };

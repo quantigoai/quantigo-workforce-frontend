@@ -1,31 +1,57 @@
 import { Button, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { approveProjectHistory, rejectProjectHistory } from "../../../../features/slice/projectDrawerSlice";
 import DetailsUploadHourModal from "./DetailsUploadHourModal";
 import ModalAcceptReject from "./ModalAcceptReject";
+import HoursRejectModal from "./HoursRejectModal";
+import dataBuilder from "../../../shared/CustomTable/dataBuilder";
+import useToaster from "../../../../customHooks/useToaster";
 
 const DetailsUploadHourBUtton = ({ role, value }) => {
   const [open, setOpen] = React.useState(false);
   const [openAccept, setOpenAccept] = React.useState(false);
+  const [openReject, setOpenReject] = React.useState(false);
+  const [rejectionCause, setRejectionCause] = useState("");
   const { projectDrawer } = useSelector((state) => state.projectDrawer);
   const dispatch = useDispatch();
+  const toast = useToaster();
   const handleOpen = () => setOpen(true);
   const handleOpenAccept = () => setOpenAccept(true);
   const handleClose = () => {
     setOpenAccept(false);
+    setOpenReject(false);
     setOpen(false);
   };
+  const handleRejectCause = (e) => {
+    setRejectionCause(e.target.value);
+  };
   const handleOpenReject = () => {
-    setOpenAccept(true);
+    setOpenReject(true);
   };
   const handleAcceptHours = () => {
     console.log(projectDrawer._id);
-    dispatch(approveProjectHistory(projectDrawer._id));
+    dispatch(approveProjectHistory(projectDrawer._id)).then((action) => {
+      if (action.payload?.status === 200) {
+        toast.trigger(action.payload.data.message, "success");
+      } else {
+        toast.trigger(action.error.message, "error");
+      }
+    });
   };
   const handleRejectHours = () => {
-    console.log(projectDrawer._id);
-    dispatch(rejectProjectHistory(projectDrawer._id));
+    const data = {
+      id: projectDrawer._id,
+      rejectionCause: rejectionCause,
+    };
+    console.log(data);
+    dispatch(rejectProjectHistory(data)).then((action) => {
+      if (action.payload?.status === 200) {
+        toast.trigger(action.payload.data.message, "success");
+      } else {
+        toast.trigger(action.error.message, "error");
+      }
+    });
   };
 
   return (
@@ -65,7 +91,7 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
               fontSize: "14px",
               fontWeight: "500",
               borderRadius: "6px",
-              "&:hover": {},
+              "&:hover": { backgroundColor: "#2E58FF", color: "#FFF" },
               mr: 2,
             }}>
             <i style={{}} className="ri-checkbox-circle-fill"></i>
@@ -84,7 +110,10 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
               fontSize: "14px",
               fontWeight: "500",
               borderRadius: "6px",
-              "&:hover": {},
+              "&:hover": {
+                backgroundColor: "#FF4757",
+                color: "#FFF",
+              },
               mr: 2,
             }}>
             <i style={{}} className="ri-close-circle-fill"></i>
@@ -94,7 +123,13 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
           </Button>
         </>
       )}
-      <ModalAcceptReject open={openAccept} handleClose={handleClose} />
+      <HoursRejectModal
+        openModal={openReject}
+        handleClose={handleClose}
+        handleRejectHours={handleRejectHours}
+        handleRejectCause={handleRejectCause}
+      />
+      <ModalAcceptReject open={openAccept} handleClose={handleClose} handleAcceptHours={handleAcceptHours} />
       <DetailsUploadHourModal openModal={open} setOpen={setOpen} />
     </>
   );

@@ -227,17 +227,15 @@ export const approveProjectHistory = createAsyncThunk("/project-history/approved
     throw new Error(error.response.data.message);
   }
 });
-export const rejectProjectHistory = createAsyncThunk("/project-history/reject-history", async (id) => {
+export const rejectProjectHistory = createAsyncThunk("/project-history/reject-history", async (data) => {
+  const { id, rejectionCause } = data;
+  console.log("🚀 ~ file: projectDrawerSlice.js:230 ~ rejectProjectHistory ~ rejectionCause:", rejectionCause)
   try {
-    return await axios.patch(
-      `${url}/project-history/reject-history/${id}`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      }
-    );
+    return await axios.patch(`${url}/project-history/reject-history/${id}`, {rejectionCause}, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
   } catch (error) {
     throw new Error(error.response.data.message);
   }

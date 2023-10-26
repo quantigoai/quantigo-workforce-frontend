@@ -20,7 +20,7 @@ const style = {
   // p: 6,
 };
 
-const ModalAcceptReject = ({ open, handleClose, handleAcceptHours }) => {
+const PaymentApproveModal = ({ open, handleClose, handleApprovePayment }) => {
   return (
     <>
       <Modal
@@ -34,12 +34,12 @@ const ModalAcceptReject = ({ open, handleClose, handleAcceptHours }) => {
               {" "}
               <img src={buttonIcon} />
             </Box>
-            <Box sx={{ paddingBottom: "32px" }}>
+            <Box sx={{ paddingBottom: "20px" }}>
               <Typography sx={{ mt: "10%" }} id="modal-modal-title" variant="h6" component="h2">
                 Change Statue
               </Typography>
               <Typography id="modal-modal-description" sx={{ mt: 2, color: "#3C4D6B" }}>
-                Are you sure you want to accept hours?
+                Are you sure you want to approve payment
               </Typography>
             </Box>
             <Box
@@ -47,8 +47,6 @@ const ModalAcceptReject = ({ open, handleClose, handleAcceptHours }) => {
                 display: "flex",
                 justifyContent: "space-around",
                 alignItems: "center",
-                // marginTop: "20px",
-                backgroundColor: "",
               }}>
               {/* #F2F6FC */}
               <Box sx={{ paddingRight: "4%" }}>
@@ -59,25 +57,23 @@ const ModalAcceptReject = ({ open, handleClose, handleAcceptHours }) => {
                     borderRadius: "10px",
                     color: "#253E5C",
                     // padding: " 10px 16px",
-                    fontSize:"14px",
+                    fontSize: "14px",
                     width: "150px",
                     "&:hover": {
                       background: "#F2F6FC",
                     },
                   }}
-                  onClick={handleClose}
-                  // variant="contained"
-                >
+                  onClick={handleClose}>
                   Cancel
                 </Button>
               </Box>
 
               <Button
-                onClick={() => handleAcceptHours()}
+                onClick={() => handleApprovePayment()}
                 sx={{
                   textTransform: "none",
                   background: "#FFAB00",
-                  color:"#fff",
+                  color: "#fff",
                   borderRadius: "10px",
                   width: "150px",
                   "&:hover": {
@@ -95,4 +91,4 @@ const ModalAcceptReject = ({ open, handleClose, handleAcceptHours }) => {
   );
 };
 
-export default ModalAcceptReject;
+export default PaymentApproveModal;

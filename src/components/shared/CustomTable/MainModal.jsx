@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 const style = {
   position: "absolute",
@@ -24,8 +24,7 @@ const MainModal = ({ open, handleDelete, params, handleClose, isEdit, handleClic
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+        aria-describedby="modal-modal-description">
         <Box sx={style}>
           <Box
             sx={{
@@ -40,8 +39,7 @@ const MainModal = ({ open, handleDelete, params, handleClose, isEdit, handleClic
               height: "60px",
               paddingTop: "4px",
               color: "white",
-            }}
-          >
+            }}>
             {" "}
             {isEdit ? (
               <i style={{ width: "60px", height: "60px" }} className="ri-alert-line"></i>
@@ -54,8 +52,7 @@ const MainModal = ({ open, handleDelete, params, handleClose, isEdit, handleClic
               sx={{ mt: "28%", color: isLightTheme ? "#091E42" : "#fff" }}
               id="modal-modal-title"
               variant="h6"
-              component="h2"
-            >
+              component="h2">
               Change Status
             </Typography>
           ) : (
@@ -63,8 +60,7 @@ const MainModal = ({ open, handleDelete, params, handleClose, isEdit, handleClic
               sx={{ mt: "30%", color: isLightTheme ? "#091E42" : "#fff", fontSize: "18px", fontWeight: "600" }}
               id="modal-modal-title"
               variant="h6"
-              component="h2"
-            >
+              component="h2">
               Delete Project
             </Typography>
           )}
@@ -75,8 +71,12 @@ const MainModal = ({ open, handleDelete, params, handleClose, isEdit, handleClic
           ) : (
             <Typography
               id="modal-modal-description"
-              sx={{ fontSize: "14px", color: isLightTheme ? "#3C4D6B" : "#fff", fontWeight: "400", lineHeight: "20px" }}
-            >
+              sx={{
+                fontSize: "14px",
+                color: isLightTheme ? "#3C4D6B" : "#fff",
+                fontWeight: "400",
+                lineHeight: "20px",
+              }}>
               Are you sure you want to delete your Project? If you delete your project, you will lose all the charter
               information
             </Typography>
@@ -87,8 +87,7 @@ const MainModal = ({ open, handleDelete, params, handleClose, isEdit, handleClic
               justifyContent: "space-around",
               alignItems: "center",
               marginTop: "20px",
-            }}
-          >
+            }}>
             {
               <Button
                 sx={{
@@ -103,9 +102,9 @@ const MainModal = ({ open, handleDelete, params, handleClose, isEdit, handleClic
                   },
                 }}
                 onClick={handleClose}
-                variant="contained"
+                // variant="contained"
               >
-                {isEdit ? "no" : "keep"}
+                {isEdit ? "No" : "Keep"}
               </Button>
             }
             <Button
@@ -116,12 +115,13 @@ const MainModal = ({ open, handleDelete, params, handleClose, isEdit, handleClic
                 textTransform: "none",
                 background: isEdit ? "#FFAB00" : "#FF4757",
                 borderRadius: "10px",
+                color: "#fff",
                 width: "150px",
                 ":hover": {
                   backgroundColor: isEdit ? "#F2A200" : "#F53142",
                 },
               }}
-              variant="contained"
+              // variant="contained"
             >
               {isEdit ? "Yes" : "Delete"}
             </Button>

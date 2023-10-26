@@ -16,29 +16,31 @@ const ApproveProjectPaymentButton = ({ role }) => {
   const handleClose = () => setOpen(false);
 
   const handleApprovePayment = () => {
-    console.log(projectDrawer._id);
-    dispatch(approveProjectPayment(projectDrawer._id)).then((action) => {
+   dispatch(approveProjectPayment(projectDrawer._id)).then((action) => {
       if (action.payload?.status === 200) {
         toast.trigger(action.payload.data.message, "success");
       } else {
         toast.trigger(action.error.message, "error");
       }
-    })
+    });
   };
 
   return (
     <>
       <Button
-        variant="contained"
+        // variant="contained"
         // onClick={() => handleApprovePayment()}
         onClick={handleOpen}
         sx={{
           backgroundColor: "#2E58FF",
           color: "#FFF",
-          fontSize: "14px",
+          
+          fontSize: "12px",
           fontWeight: "500",
           borderRadius: "6px",
-          "&:hover": {},
+          height: "30px",
+          width: "142px",
+          "&:hover": { backgroundColor: "#244EF5", color: "#FFF" },
           mr: 2,
         }}>
         {/* <i style={{}} className="ri-checkbox-circle-fill"></i> */}

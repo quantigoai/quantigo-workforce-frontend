@@ -9,7 +9,6 @@ import { realToken } from "../../../../helper/lib";
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
 const DetailChartarButton = ({ role }) => {
-  console.log("🚀 ~ file: DetailChartarButton.jsx:12 ~ DetailChartarButton ~ role:", role);
   const { projectDrawer, usersWorkHistoryCount } = useSelector((state) => state.projectDrawer);
   const [jsonData, setJsonData] = useState([]);
   const csvHeader = [
@@ -76,13 +75,15 @@ const DetailChartarButton = ({ role }) => {
             sx={{
               backgroundColor: "#2E58FF",
               color: "#FFF",
-              fontSize: "14px",
+              fontSize: "12px",
               fontWeight: "500",
               borderRadius: "6px",
-              "&:hover": {},
+              height: "30px",
+              width: "151px",
+              "&:hover": { backgroundColor: "#244EF5", color: "#FFF" },
               mr: 2,
             }}
-            variant="contained"
+            // variant="contained"
             onClick={fetchData}>
             <i className="ri-download-2-line"></i>
             <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>

@@ -95,12 +95,14 @@ const ProjectHeader = ({
               textTransform: "none",
               borderRadius: "8px",
               backgroundColor: "#2E58FF",
+              height: "40px",
+              width:"128px",
               color: "white",
               "&:hover": {
                 background: "#244EF5",
               },
             }}
-            variant="contained"
+            // variant="contained"
             onClick={handleProjectCreateOpen}
           >
             Create Project

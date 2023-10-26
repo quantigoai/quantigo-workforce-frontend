@@ -30,7 +30,7 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
     setOpenReject(true);
   };
   const handleAcceptHours = () => {
-    console.log(projectDrawer._id);
+
     dispatch(approveProjectHistory(projectDrawer._id)).then((action) => {
       if (action.payload?.status === 200) {
         toast.trigger(action.payload.data.message, "success");
@@ -44,7 +44,7 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
       id: projectDrawer._id,
       rejectionCause: rejectionCause,
     };
-    console.log(data);
+
     dispatch(rejectProjectHistory(data)).then((action) => {
       if (action.payload?.status === 200) {
         toast.trigger(action.payload.data.message, "success");
@@ -62,16 +62,19 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
             sx={{
               backgroundColor: "#FFAB00",
               color: "#FFF",
-              fontSize: "14px",
+             
+              fontSize: "12px",
               fontWeight: "500",
               borderRadius: "6px",
+              height: "30px",
+              width: "172px",
               border: "1px solid #FFAB00",
               "&:hover": {
                 backgroundColor: "#F2A200",
               },
               mr: 2,
             }}
-            variant="contained"
+            // variant="contained"
             onClick={handleOpen}>
             <i className="ri-upload-2-line"></i>
             <Typography variant="body" sx={{ ml: 1, textTransform: "none", fontWeight: "500" }}>
@@ -82,16 +85,19 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
       ) : (
         <>
           <Button
-            variant="contained"
+            // variant="contained"
             // onClick={() => handleAcceptHours()}
             onClick={handleOpenAccept}
             sx={{
               backgroundColor: "#2E58FF",
               color: "#FFF",
-              fontSize: "14px",
+          
+              fontSize: "12px",
               fontWeight: "500",
               borderRadius: "6px",
-              "&:hover": { backgroundColor: "#2E58FF", color: "#FFF" },
+              height: "30px",
+              width: "132px",
+              "&:hover": { backgroundColor: "#244EF5", color: "#FFF" },
               mr: 2,
             }}>
             <i style={{}} className="ri-checkbox-circle-fill"></i>
@@ -101,15 +107,17 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
           </Button>
           <Button
             // disabled={params.isVerified}
-            variant="contained"
+            // variant="contained"
             // onClick={() => handleRejectHours()}
             onClick={handleOpenReject}
             sx={{
               backgroundColor: "#FF4757",
               color: "#FFF",
-              fontSize: "14px",
+              fontSize: "12px",
               fontWeight: "500",
               borderRadius: "6px",
+              height: "30px",
+              width: "132px",
               "&:hover": {
                 backgroundColor: "#FF4757",
                 color: "#FFF",

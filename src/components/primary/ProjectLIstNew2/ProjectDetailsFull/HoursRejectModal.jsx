@@ -157,7 +157,7 @@ const HoursRejectModal = ({ openModal, handleClose, }) => {
               <Grid item xs={6}>
                 <Grid container sx={{ justifyContent: "right" }}>
                   <Button
-                    disabled={rejectionCause === ""}
+                    // disabled={rejectionCause === ""}
                     // type="submit"
                     sx={{
                       width: "128px",

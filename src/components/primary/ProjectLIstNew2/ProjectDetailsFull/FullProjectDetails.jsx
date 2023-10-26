@@ -71,6 +71,11 @@ const FullProjectDetails = () => {
 
       if (currentlyCheckedInProject) {
         setIsDisable(true);
+        if (id === currentlyCheckedInProject) {
+          setCheckOutDisable(false);
+        } else {
+          setCheckOutDisable(true);
+        }
       }
     }
   }, [usersWorkHistory, currentlyCheckedInProject, pagination, id, isLoadingDetails]);
@@ -148,7 +153,7 @@ const FullProjectDetails = () => {
   // TODO Need to solve this issue
   const handleChangePagination = useCallback(() => {
     setIsChildDataLoading(true);
-    if (role === "admin" || role==="account_manager") {
+    if (role === "admin" || role === "account_manager") {
       if (range[0].startDate.getTime() !== range[0].endDate.getTime()) {
         dispatch(
           getUsersWorkHistoryById({

@@ -121,6 +121,7 @@ export default function LayoutNew({ children }) {
     devOptions,
     verifiedAccountManagerOptions,
     accountManagerOptions,
+    verifiedAnnotatorOptions,
   } = layoutMenuOption();
 
   const handleOptionClick = (option) => {
@@ -238,17 +239,17 @@ export default function LayoutNew({ children }) {
 
         case role === "level_1_annotator":
           return isVerified
-            ? Verifiedlevel0AnnotatorOptions.map((text) => handleMenu(text))
+            ? verifiedAnnotatorOptions.map((text) => handleMenu(text))
             : level0AnnotatorOptions.map((text) => handleMenu(text));
 
         case role === "level_2_annotator":
           return isVerified
-            ? Verifiedlevel0AnnotatorOptions.map((text) => handleMenu(text))
+            ? verifiedAnnotatorOptions.map((text) => handleMenu(text))
             : level0AnnotatorOptions.map((text) => handleMenu(text));
 
         case role === "level_3_annotator":
           return isVerified
-            ? Verifiedlevel0AnnotatorOptions.map((text) => handleMenu(text))
+            ? verifiedAnnotatorOptions.map((text) => handleMenu(text))
             : level0AnnotatorOptions.map((text) => handleMenu(text));
 
         case role === "trainer":

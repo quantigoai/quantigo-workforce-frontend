@@ -84,7 +84,7 @@ const ProjectLIstIndex2 = () => {
   const [myRows, setMyRows] = useState([]);
   const [isEditModal, setIsEditModal] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
-  const [setAnnotatorPlatform] = useState();
+  const [annotatorPlatform, setAnnotatorPlatform] = useState("");
   const [detailProject, setDetailProject] = useState({});
   const toast = useToaster();
   const [pagination, setPagination] = useState({
@@ -214,10 +214,7 @@ const ProjectLIstIndex2 = () => {
     const {
       target: { value },
     } = event;
-    setAnnotatorPlatform(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+    setAnnotatorPlatform(value);
   };
 
   const searchRef = React.useRef(null);

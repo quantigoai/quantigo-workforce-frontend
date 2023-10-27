@@ -230,7 +230,22 @@ export const approveProjectHistory = createAsyncThunk("/project-history/approved
 export const rejectProjectHistory = createAsyncThunk("/project-history/reject-history", async (data) => {
   const { id, rejectionCause } = data;
   try {
-    return await axios.patch(`${url}/project-history/reject-history/${id}`, {rejectionCause}, {
+    return await axios.patch(
+      `${url}/project-history/reject-history/${id}`,
+      { rejectionCause },
+      {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+      }
+    );
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+export const approveProjectPayment = createAsyncThunk("project-history/approved-payment", async (id) => {
+  try {
+    return await axios.patch(`${url}/project-history/approved-payment/${id}`, id, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -239,9 +254,9 @@ export const rejectProjectHistory = createAsyncThunk("/project-history/reject-hi
     throw new Error(error.response.data.message);
   }
 });
-export const approveProjectPayment = createAsyncThunk("project-history/approved-payment", async (id) => {
+export const getMyAvailableProjects = createAsyncThunk("/project-drawer/myAvailAbleProjects", async () => {
   try {
-    return await axios.patch(`${url}/project-history/approved-payment/${id}`, id, {
+    return await axios.get(`${url}/project-drawer/my-available-project`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -481,6 +496,18 @@ const projectDrawerSlice = createSlice({
         state.error = null;
       })
       .addCase(approveProjectPayment.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(getMyAvailableProjects.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getMyAvailableProjects.fulfilled, (state, action) => {
+        console.log("🚀 ~ file: projectDrawerSlice.js:505 ~ .addCase ~ action:", action.payload.data);
+        state.projectDrawers = action.payload.data.projectDrawers;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getMyAvailableProjects.rejected, (state) => {
         state.isLoading = false;
       });
   },

@@ -8,11 +8,9 @@
  */
 
 import { Box, Button, Grid, Link, Paper, Typography } from "@mui/material";
-import Lottie from "lottie-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import error from "../../shared/CustomSvgIcons/wired-lineal-1140-error.json";
-
+import errorPage from "../../../assets/images/pages/error.png";
 const ContentBox = { padding: "2%", height: "100%" };
 
 const paperStyle = {
@@ -37,47 +35,65 @@ const ErrorPage = () => {
       <Grid xs={12}>
         <Paper elevation={0} sx={paperStyle}>
           <Grid container>
-            <Grid xs={3} sx={{ paddingLeft: "2%" }}>
-              <Lottie animationData={error} {...lottieOptions} />
+            <Grid
+              xs={12}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <img src={errorPage} alt="Error Page" />
             </Grid>
-            <Grid xs={9}>
-              <Grid xs={10}>
-                <Typography variant="wpf_h1_semiBold" color={"error.800"}>
-                  Oops, something went wrong!
-                </Typography>
-                <br />
-                <br />
-                <Typography variant="wpf_p2_regular">
-                  It seems that the page you're looking for either doesn't exist or is still under development. Please
-                  check the URL or try again later. In the meantime, you can return to our homepage or{" "}
-                  {
-                    <Link blank={true} href="https://discord.gg/YarPssHr6y">
-                      contact our support team
-                    </Link>
-                  }
-                  {" "}
-                  for assistance. We apologize for any inconvenience.
-                </Typography>
-              </Grid>
-              <Grid xs={12}></Grid>
-              <Grid xs={12} sx={{ paddingTop: "5%" }}>
-                <Button
-                  onClick={() => navigate("/")}
-                  sx={{
+
+            <Grid
+              xs={10}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                mx: "auto",
+                p: 4,
+              }}
+            >
+              <Typography variant="wpf_h4_semiBold" color={"gray.600"}>
+                Page Not Found!
+              </Typography>
+              <br />
+              <Typography variant="wpf_p2_regular" color={"gray.700"}>
+                Oops, something went wrong! It seems that the page you're looking for either doesn't exist or is still
+                under development. Please check the URL or try again later. In the meantime, you can return to our
+                homepage or{" "}
+                {
+                  <Link blank={true} href="https://discord.gg/YarPssHr6y">
+                    contact our support team
+                  </Link>
+                }{" "}
+                for assistance. We apologize for any inconvenience.
+              </Typography>
+              <br />
+              <Button
+                onClick={() => navigate("/")}
+                sx={{
+                  width: "142px",
+                  height: "40px",
+                  padding: "10px, 24px, 10px, 24px",
+                  borderRadius: "8px",
+                  gap: "8px",
+                  border: "1px solid #FFAB0029",
+                  boxShadow: "0px 24px 60px -16px #00000014",
+                  backgroundColor: "#2E58FF",
+
+                  color: "#FFFFFF",
+                  "&:hover": {
                     backgroundColor: "#2D58FF",
-                    color: "#FFFFFF",
-                    "&:hover": {
-                      backgroundColor: "#FF9A45",
-                      color: "#1D1D1D",
-                    },
-                    borderRadius: "1px",
-                    width: "173px",
-                    height: "40px",
-                  }}
-                >
-                  Back to HomePage
-                </Button>
-              </Grid>
+                    color: "#ddd",
+                  },
+                }}
+              >
+                Back to Home
+              </Button>
             </Grid>
           </Grid>
         </Paper>

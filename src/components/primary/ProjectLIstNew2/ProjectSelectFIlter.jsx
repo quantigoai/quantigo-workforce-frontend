@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import PlatformSelectAnnotator from "./PlatformSelectAnnotator";
 import ProjectSelectFIlterField from "./ProjectSelectFIlterField";
+import { useDispatch } from "react-redux";
+import { getMyAvailableProjects } from "../../../features/slice/projectDrawerSlice";
 
 const ProjectSelectFIlter = ({
   filterPDR,
@@ -17,9 +19,14 @@ const ProjectSelectFIlter = ({
   isFilter,
 }) => {
   const [checked, setChecked] = useState(false);
+  const dispatch = useDispatch();
 
   const handleChangeCheck = (event) => {
     setChecked(event.target.checked);
+    // if (checked) {
+    console.log("🚀 ~ file: ProjectSelectFIlter.jsx:28 ~ handleChangeCheck ~ checked:", checked);
+    dispatch(getMyAvailableProjects()).then(() => console.log("done "));
+    // }
   };
   return (
     <Box

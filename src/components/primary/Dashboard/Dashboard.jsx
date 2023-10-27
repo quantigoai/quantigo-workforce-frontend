@@ -25,6 +25,7 @@ import LineChart from "./LineChart/LineChart";
 import LineChartDaily from "./LineChart/LineChartDaily";
 import PieChart from "./PieChart/PieChart";
 import PieChartForUser from "./PieChart/PieChartForUser";
+import PirChartForProjectDrawer from "./PieChart/PirChartForProjectDrawer";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -100,7 +101,7 @@ const Dashboard = () => {
                 paddingLeft: "3%",
               }}
             >
-              <PieChart />
+              <PirChartForProjectDrawer />
             </Paper>
           </Grid>
         </Grid>

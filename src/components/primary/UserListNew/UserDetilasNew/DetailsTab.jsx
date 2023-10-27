@@ -2,10 +2,10 @@ import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import Typography from "@mui/material/Typography";
-import {useTheme} from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import PropTypes from "prop-types";
 import * as React from "react";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import UserInfoIndex from "./UserInfoIndex";
 import UserProjectDetails from "./UserProjectDetails";
 
@@ -53,7 +53,6 @@ export default function DetailsTab({
 }) {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
-  const { isLightTheme } = useSelector((state) => state.theme);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };

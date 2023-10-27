@@ -53,7 +53,7 @@ const CongratulationComponents = () => {
                       <Typography variant="wpf_p3_regular" sx={{ color: "neutral.N300" }}>
                         Quantigo Workforce platform is a place where you can earn money by doing annotation work. It is
                         a very simple process. You just have to follow the steps given below. We give you the
-                        opportunity to grow your career with us. We are always with you to help you.
+                        opportunity to grow your career with us. We are always with you to help yous.
                       </Typography>
                     </Grid>
                     <Grid xs={12} sx={{ paddingTop: "3%" }}>

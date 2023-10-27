@@ -1,6 +1,32 @@
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { Box, FormControl, MenuItem, Select } from "@mui/material";
+/*
+ * Filename: /home/tanzim/workstation/Office/quantigo-workforce-frontend/src/components/primary/ProjectLIstNew2/ProjectDetailsFull/ProjectDetailSelect.jsx
+ * Path: /home/tanzim/workstation/Office/quantigo-workforce-frontend
+ * Created Date: Friday, October 27th 2023, 2:55:34 pm
+ * Author: Tanzim Ahmed
+ *
+ * Copyright (c) 2023 Tanzim Ahmed
+ */
 
+import { Box, Chip, FormControl } from "@mui/material";
+import { useSelector } from "react-redux";
+let drawerStatus = (status) => {
+  switch (status) {
+    case "not-Started":
+      return "Not Started";
+    case "in-Progress":
+      return "In Progress";
+    case "hours-added":
+      return "Hours Added";
+    case "completed":
+      return "Completed";
+    case "hours-approved":
+      return "Hours Approved";
+    case "payment-done":
+      return "Payment Done";
+    default:
+      return status;
+  }
+};
 const style = (value) => {
   switch (value) {
     case "not-Started":
@@ -118,6 +144,7 @@ const style = (value) => {
   }
 };
 const ProjectDetailSelect = ({ options, handleChange, value, setValue, defaultVal }) => {
+  const { projectDrawer } = useSelector((state) => state.projectDrawer);
   return (
     <Box>
       <FormControl
@@ -128,9 +155,11 @@ const ProjectDetailSelect = ({ options, handleChange, value, setValue, defaultVa
           borderRadius: "4px",
         }}
       >
-        <Select
+        {/* <Select
           sx={style(value || defaultVal)}
-          defaultValue={defaultVal}
+          // defaultValue={defaultVal}
+          defaultValue={projectDrawer.project_status}
+          value={projectDrawer.project_status}
           onChange={handleChange}
           // disabled={true}
           open={false}
@@ -141,12 +170,13 @@ const ProjectDetailSelect = ({ options, handleChange, value, setValue, defaultVa
               sx={{ fontSize: "14px" }}
               key={option.value}
               fullWidth
-              value={(() => setValue(option.name, option.value), option.value)}
+              // value={(() => setValue(option.name, option.value), option.value)}
             >
               {option.label}
             </MenuItem>
           ))}
-        </Select>
+        </Select> */}
+        <Chip sx={style(value || defaultVal)} label={drawerStatus(projectDrawer.project_status)} />
       </FormControl>
     </Box>
   );

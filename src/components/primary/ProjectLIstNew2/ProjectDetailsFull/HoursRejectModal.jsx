@@ -48,8 +48,14 @@ const style = {
   },
 };
 
-const HoursRejectModal = ({ openModal, handleClose, handleRejectHours,handleRejectCause={handleRejectCause} }) => {
-
+const HoursRejectModal = ({
+  openModal,
+  handleClose,
+  handleRejectHours,
+  handleRejectCause = { handleRejectCause },
+  rejectionCause,
+  isLoading,
+}) => {
   return (
     <>
       <Modal
@@ -153,6 +159,7 @@ const HoursRejectModal = ({ openModal, handleClose, handleRejectHours,handleReje
               <Grid item xs={6}>
                 <Grid container sx={{ justifyContent: "right" }}>
                   <Button
+                    disabled={!rejectionCause || isLoading}
                     sx={{
                       width: "128px",
                       textTransform: "none",

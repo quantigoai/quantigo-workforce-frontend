@@ -16,8 +16,9 @@ const ApproveProjectPaymentButton = ({ role }) => {
   const handleClose = () => setOpen(false);
 
   const handleApprovePayment = () => {
-   dispatch(approveProjectPayment(projectDrawer._id)).then((action) => {
+    dispatch(approveProjectPayment(projectDrawer._id)).then((action) => {
       if (action.payload?.status === 200) {
+        setOpen(false);
         toast.trigger(action.payload.data.message, "success");
       } else {
         toast.trigger(action.error.message, "error");
@@ -34,7 +35,7 @@ const ApproveProjectPaymentButton = ({ role }) => {
         sx={{
           backgroundColor: "#2E58FF",
           color: "#FFF",
-          
+
           fontSize: "12px",
           fontWeight: "500",
           borderRadius: "6px",

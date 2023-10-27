@@ -4,6 +4,7 @@ import DetailChartarButton from "./DetailChartarButton";
 import DetailsButton from "./DetailsButton";
 import DetailsUploadHourBUtton from "./DetailsUploadHourBUtton";
 import ApproveProjectPaymentButton from "./ApproveProjectPaymentButton";
+import DownloadEffectiveHours from "./DownloadEffectiveHours";
 
 const ProjectDetailsButton = ({ range, setRange, value, handleProjectDetailsOpen, role }) => {
   return (
@@ -33,7 +34,8 @@ const ProjectDetailsButton = ({ range, setRange, value, handleProjectDetailsOpen
         <>
           <DetailsUploadHourBUtton value={value} role={role} />
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
-          <DetailChartarButton role={role} />
+          {/* <DetailChartarButton role={role} /> */}
+          <DownloadEffectiveHours/>
         </>
       )}
       {value === "hours-approved" && (

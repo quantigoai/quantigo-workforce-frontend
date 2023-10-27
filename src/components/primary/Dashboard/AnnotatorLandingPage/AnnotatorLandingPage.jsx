@@ -12,21 +12,26 @@ import dayjs from "dayjs";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import congImg from "../../../../assets/images/congImg.svg";
-import jobIcon from "../../../../assets/images/totalJobIcon.svg";
 import { getTotalCountData } from "../../../../features/slice/dashboardSlice";
 import { convertDate } from "../../../../helper/customData";
 import BarChart from "../BarChart/BarChart";
 import TotalEstimatedWorkingHoursCard from "../DashboardCard/TotalEstimatedWorkingHoursCard";
 import TotalProjectDrawerCard from "../DashboardCard/TotalProjectDrawerCard";
 import TotalWorkingHoursCard from "../DashboardCard/TotalWorkingHoursCard";
+import StepGuide from "./StepGuide";
 const AnnotatorLandingPage = () => {
   const paperStyle = {
     backgroundColor: "neutral.N000",
-    padding: ".5%",
+    // padding: ".5%",
     borderRadius: "8px",
+    height: "100%",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   };
 
-  const teamIconDiv = { paddingBottom: "1%", paddingTop: "0%", borderRadius: "2px" };
+  const congratulationDiv = { paddingBottom: "1%", paddingTop: "0%", borderRadius: "2px", height: "28%" };
   const { totalCountData } = useSelector((state) => state.dashboard);
   const [startDate, setStartDate] = React.useState(dayjs().startOf("month"));
   const [endDate, setEndDate] = React.useState(dayjs());
@@ -36,7 +41,7 @@ const AnnotatorLandingPage = () => {
 
   const [estimatedPayment, setEstimatedPayment] = React.useState(0);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(getTotalCountData());
   }, []);
@@ -60,7 +65,7 @@ const AnnotatorLandingPage = () => {
   }, []);
   return (
     <>
-      <Grid container style={teamIconDiv}>
+      <Grid container style={congratulationDiv}>
         <Grid items xs={2}>
           <Box
             sx={{
@@ -70,11 +75,11 @@ const AnnotatorLandingPage = () => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              //   gap: "1rem",
               borderRadius: "8px",
+              height: "100%",
+              // gap: "1rem",
               // borderTopLeftRadius: "8px",
               // borderBottomLeftRadius: "8px",
-              height: "100%",
             }}
           >
             <Box
@@ -107,7 +112,12 @@ const AnnotatorLandingPage = () => {
           </Box>
         </Grid>
         <Grid items xs={8}>
-          <Box>
+          <Box
+            sx={{
+              height: "100%",
+              width: "100%",
+            }}
+          >
             <Paper elevation={0} style={paperStyle}>
               <Grid container>
                 <Grid
@@ -130,7 +140,7 @@ const AnnotatorLandingPage = () => {
                     <img src={congImg} />
                   </Box>
                 </Grid>
-                <Grid item xs={10} md={7} lg={7} xl={9}>
+                <Grid item xs={10} md={7} lg={7} xl={8}>
                   <Box sx={{ padding: "3%" }}>
                     <Grid xs={12}>
                       <Typography variant="wpf_h4_semiBold" sx={{ color: "neutral.750" }}>
@@ -176,30 +186,18 @@ const AnnotatorLandingPage = () => {
           md={2}
           xl={2}
           sx={{
-            backgroundColor: "primary.B008",
+            backgroundColor: "neutral.N000",
+            // backgroundColor: "red",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             borderTopRightRadius: "8px",
             borderBottomRightRadius: "8px",
+            height: "100%",
+            width: "100%",
           }}
         >
-          <Box>
-            <Grid container sx={{ justifyContent: "center", paddingBottom: "9%" }}>
-              <img src={jobIcon} />
-            </Grid>
-            <Grid container sx={{ justifyContent: "center" }}>
-              <Typography variant="wpf_h4_Bold" sx={{ color: "neutral.N300" }}>
-                {/* 108 */}
-                Coming Soon
-              </Typography>
-            </Grid>
-            <Grid container sx={{ justifyContent: "center" }}>
-              {/* <Typography variant="wpf_p4_medium" sx={{ color: "neutral.N300" }}>
-                        Total Available Jobs
-                      </Typography> */}
-            </Grid>
-          </Box>
+          <StepGuide />
         </Grid>
       </Grid>
 

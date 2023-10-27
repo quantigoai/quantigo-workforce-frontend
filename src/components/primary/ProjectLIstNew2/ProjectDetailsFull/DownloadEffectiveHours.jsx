@@ -1,10 +1,8 @@
 import { Button, Typography } from "@mui/material";
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { realToken } from "../../../../helper/lib";
-import axios from "axios";
 import { CSVDownload } from "react-csv";
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
@@ -18,8 +16,7 @@ const DownloadEffectiveHours = () => {
     { label: "Bonus", key: "bonus" },
     { label: "Payment Rate", key: "paymentRate" },
     { label: "Due Amount", key: "dueAmount" },
-     { label: "Paid Amount", key: "paidAmount" },
-
+    { label: "Paid Amount", key: "paidAmount" },
   ];
 
   const [initiateDownload, setInitiateDownload] = useState(false);
@@ -45,7 +42,7 @@ const DownloadEffectiveHours = () => {
       });
 
       const data = response.data.projectHistory.projectDrawerUsers;
-   
+
       setJsonData(data);
       // if (data.length) {
       //   data.map((f) =>
@@ -74,12 +71,12 @@ const DownloadEffectiveHours = () => {
           fontWeight: "500",
           borderRadius: "6px",
           height: "30px",
-          width: "181px",
+          width: "200px",
           "&:hover": { backgroundColor: "#244EF5", color: "#FFF" },
           mr: 2,
         }}
         // variant="contained"
-          onClick={fetchData}
+        onClick={fetchData}
       >
         <i className="ri-download-2-line"></i>
         <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
@@ -87,7 +84,6 @@ const DownloadEffectiveHours = () => {
         </Typography>
       </Button>
       {initiateDownload && <CSVDownload data={jsonData} headers={csvHeader} target="_blank" />}
- 
     </>
   );
 };

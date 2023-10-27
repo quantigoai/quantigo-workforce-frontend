@@ -1,7 +1,7 @@
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Box, Button } from "@mui/material";
 import React from "react";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useSwiper } from "swiper/react";
 const SLiderPrevNext = () => {
   const swiper = useSwiper();

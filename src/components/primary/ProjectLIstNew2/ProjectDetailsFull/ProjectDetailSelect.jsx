@@ -1,5 +1,5 @@
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { Box, Chip, FormControl, MenuItem, Select } from "@mui/material";
+import { Box, FormControl, MenuItem, Select } from "@mui/material";
 
 const style = (value) => {
   switch (value) {
@@ -7,13 +7,14 @@ const style = (value) => {
       return {
         backgroundColor: "rgba(242, 246, 252, 1)",
         color: "rgba(60, 77, 107, 1)",
-
+        fontFamily: "Inter",
         border: "1px solid rgba(60, 77, 107, 1)",
         width: "114px",
         height: "22px",
         borderRadius: "4px",
         fontWeight: "600",
         fontSize: "10px",
+        lineHeight: "18px",
         "& svg": {
           fill: "#3C4D6B",
         },
@@ -22,13 +23,14 @@ const style = (value) => {
       return {
         backgroundColor: "rgba(244, 247, 254, 1)",
         color: "rgba(46, 88, 255, 1)",
-
+        fontFamily: "Inter",
         border: "1px solid rgba(46, 88, 255, 1)",
         width: "114px",
         height: "22px",
         borderRadius: "4px",
         fontWeight: "600",
         fontSize: "10px",
+        lineHeight: "18px",
         "& svg": {
           fill: "#2E58FF",
         },
@@ -37,13 +39,14 @@ const style = (value) => {
       return {
         backgroundColor: "rgba(250, 228, 195, 1)",
         color: "rgba(247, 144, 9, 1)",
-
+        fontFamily: "Inter",
         border: "1px solid rgba(247, 144, 9, 1)",
         width: "114px",
         height: "22px",
         borderRadius: "4px",
         fontWeight: "600",
         fontSize: "10px",
+        lineHeight: "18px",
         "& svg": {
           fill: "#F2A200",
         },
@@ -53,11 +56,13 @@ const style = (value) => {
         backgroundColor: "#C4F5DF",
         color: "#12B76A",
         width: "114px",
+        fontFamily: "Inter",
         height: "22px",
         borderRadius: "4px",
         fontWeight: "600",
         fontSize: "10px",
         border: "1px solid #12B76A",
+        lineHeight: "18px",
         // height: "35px",
 
         "& svg": {
@@ -68,13 +73,14 @@ const style = (value) => {
       return {
         backgroundColor: "rgba(250, 228, 195, 1)",
         color: "rgba(247, 144, 9, 1)",
-
         border: "1px solid rgba(247, 144, 9, 1)",
+        fontFamily: "Inter",
         width: "132px",
         height: "22px",
         borderRadius: "4px",
         fontWeight: "600",
         fontSize: "10px",
+        lineHeight: "18px",
         "& svg": {
           fill: "#F2A200",
         },
@@ -83,12 +89,13 @@ const style = (value) => {
       return {
         backgroundColor: "rgba(250, 228, 195, 1)",
         color: "rgba(247, 144, 9, 1)",
-
+        fontFamily: "Inter",
         border: "1px solid rgba(247, 144, 9, 1)",
         width: "124px",
         height: "22px",
         borderRadius: "4px",
         fontWeight: "600",
+        lineHeight: "18px",
         fontSize: "10px",
         "& svg": {
           fill: "#F2A200",
@@ -112,34 +119,35 @@ const style = (value) => {
 };
 const ProjectDetailSelect = ({ options, handleChange, value, setValue, defaultVal }) => {
   return (
-    <Box >
+    <Box>
       <FormControl
         sx={{
           m: 1,
           minWidth: 140,
           // height:"22px",
           borderRadius: "4px",
-        }}>
-    
+        }}
+      >
         <Select
           sx={style(value || defaultVal)}
           defaultValue={defaultVal}
           onChange={handleChange}
           // disabled={true}
           open={false}
-          IconComponent={ArrowDropDownIcon}>
+          IconComponent={ArrowDropDownIcon}
+        >
           {options.map((option) => (
             <MenuItem
-              sx={{ fontSize: "12px" }}
+              sx={{ fontSize: "14px" }}
               key={option.value}
               fullWidth
-              value={(() => setValue(option.name, option.value), option.value)}>
+              value={(() => setValue(option.name, option.value), option.value)}
+            >
               {option.label}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
- 
     </Box>
   );
 };

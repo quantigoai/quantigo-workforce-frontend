@@ -71,6 +71,13 @@ const lightTheme = createTheme({
         },
       },
     },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontFamily: "Inter",
+        },
+      },
+    },
     MuiTableRow: {
       styleOverrides: {
         root: {
@@ -129,6 +136,20 @@ const lightTheme = createTheme({
       styleOverrides: {
         root: {
           margin: "0",
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          fontFamily : "Inter",
+          // backgroundColor: "#F2F6FC",
+          // color: "#3C4D6B",
+          // borderRadius: "4px",
+          // height: "24px",
+          // fontSize: "12px",
+          // fontWeight: "600",
+          padding: "0px 0px",
         },
       },
     },

@@ -1,19 +1,18 @@
 import { Button, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import useToaster from "../../../../customHooks/useToaster";
 import { approveProjectHistory, rejectProjectHistory } from "../../../../features/slice/projectDrawerSlice";
 import DetailsUploadHourModal from "./DetailsUploadHourModal";
-import ModalAcceptReject from "./ModalAcceptReject";
 import HoursRejectModal from "./HoursRejectModal";
-import dataBuilder from "../../../shared/CustomTable/dataBuilder";
-import useToaster from "../../../../customHooks/useToaster";
+import ModalAcceptReject from "./ModalAcceptReject";
 
 const DetailsUploadHourBUtton = ({ role, value }) => {
-  const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
   const [openAccept, setOpenAccept] = React.useState(false);
   const [openReject, setOpenReject] = React.useState(false);
   const [rejectionCause, setRejectionCause] = useState("");
-  const { projectDrawer,isLoading } = useSelector((state) => state.projectDrawer);
+  const { projectDrawer, isLoading } = useSelector((state) => state.projectDrawer);
   const dispatch = useDispatch();
   const toast = useToaster();
   const handleOpen = () => setOpen(true);
@@ -78,7 +77,8 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
               mr: 2,
             }}
             // variant="contained"
-            onClick={handleOpen}>
+            onClick={handleOpen}
+          >
             <i className="ri-upload-2-line"></i>
             <Typography variant="body" sx={{ ml: 1, textTransform: "none", fontWeight: "500" }}>
               Upload Effective Hour
@@ -102,7 +102,8 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
               width: "132px",
               "&:hover": { backgroundColor: "#244EF5", color: "#FFF" },
               mr: 2,
-            }}>
+            }}
+          >
             <i style={{}} className="ri-checkbox-circle-fill"></i>
             <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
               Hours Accept
@@ -126,7 +127,8 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
                 color: "#FFF",
               },
               mr: 2,
-            }}>
+            }}
+          >
             <i style={{}} className="ri-close-circle-fill"></i>
             <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
               Hours Reject

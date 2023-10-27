@@ -80,7 +80,7 @@ const HeaderNav = ({ isForgetPassword, resetPassword, isEmailVerification, email
               >
                 <Link
                   color="neutral.850"
-                  onClick={() => navigate("/faq")}
+                  // onClick={() => navigate("/faq")}
                   underline="hover"
                   sx={{
                     cursor: "pointer",

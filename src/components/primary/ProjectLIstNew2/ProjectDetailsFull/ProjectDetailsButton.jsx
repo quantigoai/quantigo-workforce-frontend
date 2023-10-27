@@ -1,18 +1,25 @@
 import { Box } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import ApproveProjectPaymentButton from "./ApproveProjectPaymentButton";
 import DateRangeComponent from "./DateRangePicker/DateRangeComponent";
 import DetailChartarButton from "./DetailChartarButton";
 import DetailsButton from "./DetailsButton";
 import DetailsUploadHourBUtton from "./DetailsUploadHourBUtton";
-import ApproveProjectPaymentButton from "./ApproveProjectPaymentButton";
 import DownloadEffectiveHours from "./DownloadEffectiveHours";
-import { useSelector } from "react-redux";
-
 
 const ProjectDetailsButton = ({ range, setRange, value, handleProjectDetailsOpen, role }) => {
-  const { project_status } = useSelector((state) => state.projectDrawer.projectDrawer);
+  const { projectDrawer } = useSelector((state) => state.projectDrawer);
+  const { project_status } = projectDrawer;
+  const [isLoading, setIsLoading] = useState(true);
 
- 
-  return (
+  useEffect(() => {
+    setIsLoading(false);
+  }, [project_status]);
+
+  return isLoading ? (
+    <Box>loading......</Box>
+  ) : (
     <Box display={"flex"} alignItems={"center"} justifyContent={"space-evenly"}>
       {project_status === "not-Started" && (
         <Box>
@@ -30,14 +37,14 @@ const ProjectDetailsButton = ({ range, setRange, value, handleProjectDetailsOpen
       )}
       {project_status === "completed" && (
         <>
-          {role !== "account_manager" && <DetailsUploadHourBUtton value={value} role={role} />}{" "}
+          {role !== "account_manager" && <DetailsUploadHourBUtton value={project_status} role={role} />}{" "}
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
           <DetailChartarButton role={role} />
         </>
       )}
       {project_status === "hours-added" && (
         <>
-          <DetailsUploadHourBUtton value={value} role={role} />
+          <DetailsUploadHourBUtton value={project_status} role={role} />
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
           {/* <DetailChartarButton role={role} /> */}
           <DownloadEffectiveHours />

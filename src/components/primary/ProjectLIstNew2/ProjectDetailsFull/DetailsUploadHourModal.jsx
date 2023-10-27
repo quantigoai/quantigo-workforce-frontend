@@ -68,7 +68,7 @@ const DetailsUploadHourModal = ({ openModal, setOpen }) => {
   const [isSelected, setIsSelected] = useState(false);
   const [coverImageFile, setCoverImageFile] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
-  const maxSize = 1 * 1024 * 1024;
+  const maxSize = 3 * 1024 * 1024;
   // const toast = useToaster();
   const dispatch = useDispatch();
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({});

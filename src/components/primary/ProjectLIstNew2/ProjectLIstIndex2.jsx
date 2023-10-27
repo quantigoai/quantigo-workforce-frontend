@@ -197,6 +197,7 @@ const ProjectLIstIndex2 = () => {
       dispatch(createProjectDrawer(newData)).then((action) => {
         if (action.error) {
           toast.trigger(action.error.message, "error");
+          setCreateProjectOpen(false);
         }
         if (action.payload?.status === 201) {
           toast.trigger(action.payload.data.message, "success");

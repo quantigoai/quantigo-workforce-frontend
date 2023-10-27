@@ -18,7 +18,7 @@ import PDDateField from "../../shared/CustomField/PDDateField";
 import PDReleventField from "../../shared/CustomField/PDReleventField";
 import { useSelector } from "react-redux";
 import PDReleventField2 from "../../shared/CustomField/PDReleventField2";
-
+import {LoadingButton} from "@mui/lab";
 const style = {
   position: "absolute",
   top: "50%",
@@ -47,7 +47,7 @@ const EditProjectModal = ({
 }) => {
   const { prevSkills } = useHandleEditChange();
   const { isLightTheme } = useSelector((state) => state.theme);
-
+  const { isLoading } = useSelector((state) => state.projectDrawer);
   const ProjectDrawerSchema = Yup.object().shape({
     // project_drawer_name: Yup.string().required(" project name is required"),
     // project_alias: Yup.string().required("alias is required"),
@@ -268,8 +268,9 @@ const EditProjectModal = ({
                     size="large">
                     Cancel
                   </Button>
-                  <Button
+                  <LoadingButton
                     type="submit"
+                    loading={isLoading}
                     sx={{
                       textTransform: "none",
                       paddingX: "30px",
@@ -282,11 +283,15 @@ const EditProjectModal = ({
                       "&:hover": {
                         background: "#244EF5",
                       },
+                      "&:disabled": {
+                        backgroundColor: "#B6C9F0",
+                        color: "#FFFFFF",
+                      },
                     }}
                     variant="contained"
                     size="large">
                     Save
-                  </Button>
+                  </LoadingButton>
                 </Box>
               </FormProvider>
             </Box>

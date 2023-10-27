@@ -16,7 +16,7 @@ import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
 import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
 import FormProvider from "../../shared/FormProvider/FormProvider";
 import ProjectModalHeader from "./ProjectModalHeader";
-
+import {LoadingButton} from "@mui/lab";
 const style = {
   position: "absolute",
   top: "50%",
@@ -49,7 +49,7 @@ const ProjectModal = ({
   skills,
 }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
-
+  const { isLoading } = useSelector((state) => state.projectDrawer);
   const ProjectDrawerSchema = Yup.object().shape({
     project_drawer_name: Yup.string().required("project name is required"),
     project_alias: Yup.string().required("alias is required"),
@@ -80,8 +80,7 @@ const ProjectModal = ({
           backdrop: {
             timeout: 500,
           },
-        }}
-      >
+        }}>
         <Fade in={createProjectOpen}>
           <Box sx={style}>
             <ProjectModalHeader handleCreateProjectClose={handleCreateProjectClose} modalTitle={"Create Project"} />
@@ -94,8 +93,7 @@ const ProjectModal = ({
                     paddingTop: "1%",
                     paddingRight: "16px",
                     position: "relative",
-                  }}
-                >
+                  }}>
                   <Stack direction="row" spacing={2}>
                     <Box sx={{ width: "50%", height: "80px", backgroundColor: "" }}>
                       <PDSelectField
@@ -210,8 +208,7 @@ const ProjectModal = ({
                       mb: "5px",
                       color: "neutral.N300",
                     }}
-                    variant="h6"
-                  >
+                    variant="h6">
                     Relevant Documents
                   </Typography>
 
@@ -225,8 +222,7 @@ const ProjectModal = ({
                       maxHeight: 155,
                       color: isLightTheme ? "#091E42" : "#FFFFFF",
                       overflowY: "auto",
-                    }}
-                  >
+                    }}>
                     <PDReleventField2 name={"relevantDocuments"} />
                   </Stack>
                 </Box>
@@ -240,8 +236,7 @@ const ProjectModal = ({
                     paddingX: "16px",
                     mt: 2,
                     borderTop: "2px solid #F2F6FC",
-                  }}
-                >
+                  }}>
                   <Button
                     onClick={handleCreateProjectClose}
                     sx={{
@@ -260,12 +255,12 @@ const ProjectModal = ({
                       },
                     }}
                     variant="filled"
-                    size="large"
-                  >
+                    size="large">
                     Cancel
                   </Button>
-                  <Button
+                  <LoadingButton
                     type="submit"
+                    loading={isLoading}
                     sx={{
                       textTransform: "none",
                       paddingX: "30px",
@@ -278,12 +273,17 @@ const ProjectModal = ({
                       "&:hover": {
                         background: "#244EF5",
                       },
+                      "&:disabled": {
+                        backgroundColor: "#B6C9F0",
+                        color: "#FFFFFF",
+                      },
                     }}
                     variant="contained"
                     size="large"
                   >
                     Create
-                  </Button>
+                  </LoadingButton>
+                 
                 </Box>
               </FormProvider>
             </Box>

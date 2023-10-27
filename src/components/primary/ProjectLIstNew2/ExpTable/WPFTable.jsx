@@ -57,7 +57,7 @@ export default function WPFTable({
                   <StickyMiddleHead key={column.id} column={column} handleId={handleId} filteredCol={filteredCol} />
                 ))}
 
-                {role === "recruitment_manager" && location.pathname !== `/projectDetails/${id}` && (
+                {role === "recruitment_manager" && location.pathname === `/all-users` && (
                   <StickyDocViewTableHead column={{ width: "40px" }} />
                 )}
 
@@ -97,7 +97,7 @@ export default function WPFTable({
                       <MiddleTableColumn key={column.id} row={row} column={column} />
                     ))}
 
-                    {role === "recruitment_manager" && location.pathname !== `/projectDetails/${id}` && (
+                    {role === "recruitment_manager" && location.pathname === `/all-users` && (
                       <StickyDocViewTableColumn column={row} />
                     )}
 

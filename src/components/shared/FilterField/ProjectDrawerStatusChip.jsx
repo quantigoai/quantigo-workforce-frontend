@@ -85,6 +85,24 @@ const ProjectDrawerStatusChip = ({ value, isPopper = false }) => {
           height: "24px",
           border: "1px solid #C4F5DF",
         };
+      case "Active":
+        return {
+          backgroundColor: "#C4F5DF",
+          color: "#12B76A",
+          // width: "90px",
+          fontFamily: "Inter",
+          height: "24px",
+          border: "1px solid #C4F5DF",
+        };
+      case "Inactive":
+        return {
+          backgroundColor: "#FFF1F0",
+          color: "#F04438",
+          // width: "90px",
+          fontFamily: "Inter",
+          height: "24px",
+          border: "1px solid #FFD9D6",
+        };
       default:
         return {
           textAlign: "center",

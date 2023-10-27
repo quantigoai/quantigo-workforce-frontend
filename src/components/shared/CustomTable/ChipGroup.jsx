@@ -48,7 +48,7 @@ const ChipGroup = ({ value }) => {
             p: "5px",
             bgcolor: "background.paper",
             display: "grid",
-            gridTemplateColumns: "repeat(2,1fr)",
+            gridTemplateColumns: "repeat(3,1fr)",
             gap: "5px",
           }}
         >

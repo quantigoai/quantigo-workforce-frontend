@@ -24,9 +24,13 @@ import UserBasicInfoCell from "../CustomTableCell/UserBasicInfoCell";
 import UserRoleCell from "../CustomTableCell/UserRoleCell";
 
 const MiddleTableColumn = ({ row, column }) => {
+  const dateObj = new Date(row.lastJobTakenAt);
+  const today = new Date();
+  const diffInMs = Math.abs(today - dateObj);
+  const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
   const value = row[column.id];
   return (() => {
-    if (column.field === "project_skills") {
+    if (column.field === "project_skills" || column.field === "skills") {
       return (
         <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
           <ChipGroup value={row[column?.field]} />
@@ -54,6 +58,24 @@ const MiddleTableColumn = ({ row, column }) => {
           <Typography variant="wpf_p4_regular" color="neutral.700">
             {row[column?.field] || "Admin"}
           </Typography>
+        </TableCell>
+      );
+    } else if (column.field === "status") {
+      return (
+        <TableCell key={column.id} component="th" scope="row">
+          {row.role === "delivery_manager" ||
+          row.role === "project_lead" ||
+          row.role === "recruitment_manager" ||
+          row.role === "admin" ||
+          row.role === "trainer" ||
+          row.role === "account_manager" ||
+          row.role === "reviewer" ? (
+            <ProjectDrawerStatusChip value={"Active"} />
+          ) : row.lastJobTakenAt && diffInDays <= 15 ? (
+            <ProjectDrawerStatusChip value={"active"} />
+          ) : (
+            <ProjectDrawerStatusChip value={"Inactive"} />
+          )}
         </TableCell>
       );
     } else if (column.field === "benchmark") {

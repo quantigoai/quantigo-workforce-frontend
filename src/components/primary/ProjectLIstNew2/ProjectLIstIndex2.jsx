@@ -175,6 +175,7 @@ const ProjectLIstIndex2 = () => {
       const newData = {
         ...data,
         project_skills: filteredSkillInfo,
+        relevantDocuments: data.relevantDocuments.filter((doc) => doc.documentName !== "" || doc.documentUrl !== ""),
       };
       const allData = { id: projectDrawer._id, data: newData };
       dispatch(updateProjectDrawerById(allData)).then((action) => {
@@ -188,8 +189,11 @@ const ProjectLIstIndex2 = () => {
         }
       });
     } else {
-      const newData = { ...data, project_skills: skillId };
-
+      const newData = {
+        ...data,
+        project_skills: skillId,
+        relevantDocuments: data.relevantDocuments.filter((doc) => doc.documentName !== "" || doc.documentUrl !== ""),
+      };
       dispatch(createProjectDrawer(newData)).then((action) => {
         if (action.error) {
           toast.trigger(action.error.message, "error");

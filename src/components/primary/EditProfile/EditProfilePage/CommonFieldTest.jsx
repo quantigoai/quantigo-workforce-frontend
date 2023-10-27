@@ -7,7 +7,13 @@ const MyTextField = styled(TextField)(() => ({
     border: "1px solid #E6ECF5 !important",
     borderRadius: "8px",
   },
-  "& .MuiInputBase-root": { height: "40px", fontSize: "14px" },
+  "& .MuiInputBase-root": { height: "40px", fontSize: "14px", color: "#3C4D6B" },
+  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    border: `1px solid #2E58FF !important`,
+  },
+  "& .MuiInputBase-input.Mui-focused": {
+    color: "blue",
+  },
 }));
 function CommonFieldTest({ name, label, defaultValue, disableItem, control, rules, errors, editAble }) {
   return (

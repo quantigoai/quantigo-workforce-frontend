@@ -1,6 +1,24 @@
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { Box, Chip, FormControl, MenuItem, Select } from "@mui/material";
-
+import { Box, Chip, FormControl, MenuItem, Select, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+let drawerStatus = (status) => {
+  switch (status) {
+    case "not-Started":
+      return "Not Started";
+    case "in-Progress":
+      return "In Progress";
+    case "hours-added":
+      return "Hours Added";
+    case "completed":
+      return "Completed";
+    case "hours-approved":
+      return "Hours Approved";
+    case "payment-done":
+      return "Payment Done";
+    default:
+      return status;
+  }
+};
 const style = (value) => {
   switch (value) {
     case "not-Started":
@@ -111,8 +129,9 @@ const style = (value) => {
   }
 };
 const ProjectDetailSelect = ({ options, handleChange, value, setValue, defaultVal }) => {
+  const { projectDrawer } = useSelector((state) => state.projectDrawer);
   return (
-    <Box >
+    <Box>
       <FormControl
         sx={{
           m: 1,
@@ -120,10 +139,11 @@ const ProjectDetailSelect = ({ options, handleChange, value, setValue, defaultVa
           // height:"22px",
           borderRadius: "4px",
         }}>
-    
-        <Select
+        {/* <Select
           sx={style(value || defaultVal)}
-          defaultValue={defaultVal}
+          // defaultValue={defaultVal}
+          defaultValue={projectDrawer.project_status}
+          value={projectDrawer.project_status}
           onChange={handleChange}
           // disabled={true}
           open={false}
@@ -133,13 +153,14 @@ const ProjectDetailSelect = ({ options, handleChange, value, setValue, defaultVa
               sx={{ fontSize: "12px" }}
               key={option.value}
               fullWidth
-              value={(() => setValue(option.name, option.value), option.value)}>
+              // value={(() => setValue(option.name, option.value), option.value)}
+            >
               {option.label}
             </MenuItem>
           ))}
-        </Select>
+        </Select> */}
+        <Chip sx={style(value || defaultVal)} label={drawerStatus(projectDrawer.project_status)} />
       </FormControl>
- 
     </Box>
   );
 };

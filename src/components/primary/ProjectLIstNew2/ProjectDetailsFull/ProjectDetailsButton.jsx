@@ -5,16 +5,21 @@ import DetailsButton from "./DetailsButton";
 import DetailsUploadHourBUtton from "./DetailsUploadHourBUtton";
 import ApproveProjectPaymentButton from "./ApproveProjectPaymentButton";
 import DownloadEffectiveHours from "./DownloadEffectiveHours";
+import { useSelector } from "react-redux";
+
 
 const ProjectDetailsButton = ({ range, setRange, value, handleProjectDetailsOpen, role }) => {
+  const { project_status } = useSelector((state) => state.projectDrawer.projectDrawer);
+
+ 
   return (
-    <Box display={"flex"} alignItems={"center"} justifyContent={"space-evenly"} > 
-      {value === "not-Started" && (
+    <Box display={"flex"} alignItems={"center"} justifyContent={"space-evenly"}>
+      {project_status === "not-Started" && (
         <Box>
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
         </Box>
       )}
-      {value === "in-Progress" && (
+      {project_status === "in-Progress" && (
         <>
           {/* <DatePickerProgress /> */}
 
@@ -23,30 +28,30 @@ const ProjectDetailsButton = ({ range, setRange, value, handleProjectDetailsOpen
           <DetailChartarButton role={role} />
         </>
       )}
-      {value === "completed" && (
+      {project_status === "completed" && (
         <>
           {role !== "account_manager" && <DetailsUploadHourBUtton value={value} role={role} />}{" "}
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
           <DetailChartarButton role={role} />
         </>
       )}
-      {value === "hours-added" && (
+      {project_status === "hours-added" && (
         <>
           <DetailsUploadHourBUtton value={value} role={role} />
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
           {/* <DetailChartarButton role={role} /> */}
-          <DownloadEffectiveHours/>
+          <DownloadEffectiveHours />
         </>
       )}
-      {value === "hours-approved" && (
+      {project_status === "hours-approved" && (
         <>
           {/* <DetailsUploadHourBUtton value={value} role={role} /> */}
-          <ApproveProjectPaymentButton role={role}/>
+          <ApproveProjectPaymentButton role={role} />
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
           <DetailChartarButton role={role} />
         </>
       )}
-      {value === "payment-done" && (
+      {project_status === "payment-done" && (
         <>
           {/* <DetailsUploadHourBUtton value={value} role={role} /> */}
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />

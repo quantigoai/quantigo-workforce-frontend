@@ -13,7 +13,7 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
   const [openAccept, setOpenAccept] = React.useState(false);
   const [openReject, setOpenReject] = React.useState(false);
   const [rejectionCause, setRejectionCause] = useState("");
-  const { projectDrawer } = useSelector((state) => state.projectDrawer);
+  const { projectDrawer,isLoading } = useSelector((state) => state.projectDrawer);
   const dispatch = useDispatch();
   const toast = useToaster();
   const handleOpen = () => setOpen(true);
@@ -30,11 +30,12 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
     setOpenReject(true);
   };
   const handleAcceptHours = () => {
-
     dispatch(approveProjectHistory(projectDrawer._id)).then((action) => {
       if (action.payload?.status === 200) {
+        setOpenAccept(false);
         toast.trigger(action.payload.data.message, "success");
       } else {
+        setOpenAccept(false);
         toast.trigger(action.error.message, "error");
       }
     });
@@ -47,8 +48,10 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
 
     dispatch(rejectProjectHistory(data)).then((action) => {
       if (action.payload?.status === 200) {
+        setOpenReject(false);
         toast.trigger(action.payload.data.message, "success");
       } else {
+        setOpenReject(false);
         toast.trigger(action.error.message, "error");
       }
     });
@@ -62,7 +65,7 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
             sx={{
               backgroundColor: "#FFAB00",
               color: "#FFF",
-             
+
               fontSize: "12px",
               fontWeight: "500",
               borderRadius: "6px",
@@ -91,7 +94,7 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
             sx={{
               backgroundColor: "#2E58FF",
               color: "#FFF",
-          
+
               fontSize: "12px",
               fontWeight: "500",
               borderRadius: "6px",
@@ -117,7 +120,7 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
               fontWeight: "500",
               borderRadius: "6px",
               height: "30px",
-              width: "132px",
+              // width: "132px",
               "&:hover": {
                 backgroundColor: "#FF4757",
                 color: "#FFF",
@@ -136,6 +139,8 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
         handleClose={handleClose}
         handleRejectHours={handleRejectHours}
         handleRejectCause={handleRejectCause}
+        rejectionCause={rejectionCause}
+        isLoading={isLoading}
       />
       <ModalAcceptReject open={openAccept} handleClose={handleClose} handleAcceptHours={handleAcceptHours} />
       <DetailsUploadHourModal openModal={open} setOpen={setOpen} />

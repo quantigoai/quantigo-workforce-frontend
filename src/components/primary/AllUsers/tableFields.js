@@ -21,6 +21,8 @@ export const fields = [
   { field: "billingAccountNo", width: 150, textAlign: "left", columnDataAlign: "left" },
   { field: "role", width: 180, textAlign: "left", columnDataAlign: "left" },
   { field: "isVerified", width: 100, textAlign: "left", columnDataAlign: "center" },
+  { field: "status", width: 150, renderCell: "chip", textAlign: "center", columnDataAlign: "center" },
+  { field: "skills", width: 300, renderCell: "skills-chip", textAlign: "center", columnDataAlign: "center" },
   { field: "jobLimit", width: 150, textAlign: "center", columnDataAlign: "center" },
   { field: "activeJobs", width: 150, textAlign: "center", columnDataAlign: "center" },
   { field: "jobLimitLeft", width: 160, textAlign: "left", columnDataAlign: "center" },
@@ -30,6 +32,7 @@ export const fields = [
   { field: "paymentRate", width: 160, textAlign: "left", columnDataAlign: "center" },
   { field: "bloodGroup", width: 170, textAlign: "center", columnDataAlign: "center" },
   { field: "currentlyCheckedInProject", width: 270, textAlign: "left", columnDataAlign: "left" },
+
   { field: "hub", width: 100, textAlign: "left", columnDataAlign: "left" },
   { field: "ACTIONS", renderCell: "button", width: 140, textAlign: "center" },
 ];

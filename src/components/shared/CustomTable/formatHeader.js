@@ -120,7 +120,11 @@ const customHeader = (params) => {
     case "hub":
       return "HUB";
     case "billingAccountNo":
-      return "Nagad No";
+      return "NAGAD N0";
+    case "skills":
+      return "SKILLS";
+    case "status":
+      return "STATUS";
     case "currentlyCheckedInProject":
       return "PROJECT ENROLLED";
     default:

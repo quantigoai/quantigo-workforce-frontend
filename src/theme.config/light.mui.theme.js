@@ -142,7 +142,7 @@ const lightTheme = createTheme({
     MuiChip: {
       styleOverrides: {
         root: {
-          fontFamily : "Inter",
+          fontFamily: "Inter",
           // backgroundColor: "#F2F6FC",
           // color: "#3C4D6B",
           // borderRadius: "4px",
@@ -173,7 +173,8 @@ const lightTheme = createTheme({
           height: "20px",
           width: "20px",
           fontSize: "10px",
-          color: "rgb(4, 4, 86)"
+          color: "rgb(4, 4, 86)",
+          zIndex: 0.5,
         },
       },
     },

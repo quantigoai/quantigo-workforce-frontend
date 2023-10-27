@@ -47,7 +47,9 @@ const AllUserListIndex = () => {
   const [prevSkills, setPrevSkills] = useState([]);
   const [prevRoles, setPrevRoles] = useState([]);
   const [myColumn, setMyColumn] = useState([]);
+
   const [myRows, setMyRows] = useState([]);
+
   const [selectedUser, setSelectedUser] = useState({});
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);

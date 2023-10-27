@@ -1,11 +1,11 @@
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import {Box, Grid, Link, Typography} from "@mui/material";
+import { Box, Grid, Link, Typography } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
-import {styled} from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import bgimg from "../../../../assets/images/LoginBG.png";
 import arrow from "../../../../assets/images/u_arrow-left.png";
 import HeaderNav from "../../HomePage/HeaderNav";
@@ -60,7 +60,8 @@ const Faq = () => {
               paddingLeft: "19%",
               paddingTop: "7%",
               paddingBottom: "1%",
-            }}>
+            }}
+          >
             <Link
               onClick={() => navigate("/login")}
               underline="hover"
@@ -69,7 +70,8 @@ const Faq = () => {
                 marginTop: 3,
                 cursor: "pointer",
                 color: "#FFFFFF",
-              }}>
+              }}
+            >
               <Box sx={{ display: "flex" }}>
                 <img src={arrow} />
                 Go Back
@@ -84,7 +86,8 @@ const Faq = () => {
               paddingLeft: "19%",
               paddingTop: "0%",
               paddingBottom: "1%",
-            }}>
+            }}
+          >
             <Typography style={{ color: "#FFFFFF" }} variant="h4">
               FAQ
             </Typography>
@@ -98,26 +101,23 @@ const Faq = () => {
                 width: "70%",
                 backgroundColor: "rgba(0, 0, 0, 0)",
                 // backdropFilter: "blur(8px)",
-              }}>
+              }}
+            >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon sx={{ color: "#FFFFFF" }} />}
                 aria-controls="panel1bh-content"
-                id="panel1bh-header">
+                id="panel1bh-header"
+              >
                 <Typography style={{ color: "#FFFFFF" }}>
                   Quis interdum in aliquam elit morbi eget risus nulla.
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography
-                  style={{ color: "#FFFFFF", textAlign: "left" }}
-                  variant="body2">
-                  Lorem ipsum dolor sit amet consectetur. Congue facilisis
-                  maecenas a felis tempus mattis vehicula id. Nullam mus
-                  volutpat morbi at at quam feugiat neque ornare. Dolor
-                  ullamcorper praesent ut viverra praesent cum tristique eu.
-                  Mauris vestibulum ut in ac gravida. Et vestibulum fringilla
-                  ipsum eget viverra nunc massa. Pellentesque vel ut ut turpis.
-                  Sit ac at viverra vel cursus odio felis libero.
+                <Typography style={{ color: "#FFFFFF", textAlign: "left" }} variant="body2">
+                  Lorem ipsum dolor sit amet consectetur. Congue facilisis maecenas a felis tempus mattis vehicula id.
+                  Nullam mus volutpat morbi at at quam feugiat neque ornare. Dolor ullamcorper praesent ut viverra
+                  praesent cum tristique eu. Mauris vestibulum ut in ac gravida. Et vestibulum fringilla ipsum eget
+                  viverra nunc massa. Pellentesque vel ut ut turpis. Sit ac at viverra vel cursus odio felis libero.
                 </Typography>
               </AccordionDetails>
             </Accordion>
@@ -129,27 +129,23 @@ const Faq = () => {
                 borderTop: "1px solid #FFFFFF",
                 backgroundColor: "rgba(0, 0, 0, 0)",
                 backdropFilter: "blur(8px)",
-              }}>
+              }}
+            >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon sx={{ color: "#FFFFFF" }} />}
                 aria-controls="panel2bh-content"
-                id="panel2bh-header">
+                id="panel2bh-header"
+              >
                 <Typography style={{ color: "#FFFFFF", textAlign: "left" }}>
-                  Lorem ipsum dolor sit amet consectetur. Eu fringilla in
-                  imperdiet non mattis in.
+                  Lorem ipsum dolor sit amet consectetur. Eu fringilla in imperdiet non mattis in.
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography
-                  style={{ color: "#FFFFFF", textAlign: "left" }}
-                  variant="body2">
-                  Lorem ipsum dolor sit amet consectetur. Congue facilisis
-                  maecenas a felis tempus mattis vehicula id. Nullam mus
-                  volutpat morbi at at quam feugiat neque ornare. Dolor
-                  ullamcorper praesent ut viverra praesent cum tristique eu.
-                  Mauris vestibulum ut in ac gravida. Et vestibulum fringilla
-                  ipsum eget viverra nunc massa. Pellentesque vel ut ut turpis.
-                  Sit ac at viverra vel cursus odio felis libero.
+                <Typography style={{ color: "#FFFFFF", textAlign: "left" }} variant="body2">
+                  Lorem ipsum dolor sit amet consectetur. Congue facilisis maecenas a felis tempus mattis vehicula id.
+                  Nullam mus volutpat morbi at at quam feugiat neque ornare. Dolor ullamcorper praesent ut viverra
+                  praesent cum tristique eu. Mauris vestibulum ut in ac gravida. Et vestibulum fringilla ipsum eget
+                  viverra nunc massa. Pellentesque vel ut ut turpis. Sit ac at viverra vel cursus odio felis libero.
                 </Typography>
               </AccordionDetails>
             </Accordion>
@@ -161,22 +157,21 @@ const Faq = () => {
                 borderTop: "1px solid #FFFFFF",
                 backgroundColor: "rgba(0, 0, 0, 0)",
                 backdropFilter: "blur(8px)",
-              }}>
+              }}
+            >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon sx={{ color: "#FFFFFF" }} />}
                 aria-controls="panel3bh-content"
-                id="panel3bh-header">
+                id="panel3bh-header"
+              >
                 <Typography style={{ color: "#FFFFFF", textAlign: "left" }}>
                   Quis interdum in aliquam elit morbi eget risus nulla.
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography
-                  style={{ color: "#FFFFFF", textAlign: "left" }}
-                  variant="body2">
-                  Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
-                  Integer sit amet egestas eros, vitae egestas augue. Duis vel
-                  est augue.
+                <Typography style={{ color: "#FFFFFF", textAlign: "left" }} variant="body2">
+                  Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros, vitae egestas
+                  augue. Duis vel est augue.
                 </Typography>
               </AccordionDetails>
             </Accordion>
@@ -188,22 +183,19 @@ const Faq = () => {
                 borderTop: "1px solid #FFFFFF",
                 backgroundColor: "rgba(0, 0, 0, 0)",
                 backdropFilter: "blur(8px)",
-              }}>
+              }}
+            >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon sx={{ color: "#FFFFFF" }} />}
                 aria-controls="panel4bh-content"
-                id="panel4bh-header">
-                <Typography style={{ color: "#FFFFFF", textAlign: "left" }}>
-                  Personal data
-                </Typography>
+                id="panel4bh-header"
+              >
+                <Typography style={{ color: "#FFFFFF", textAlign: "left" }}>Personal data</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography
-                  style={{ color: "#FFFFFF", textAlign: "left" }}
-                  variant="body2">
-                  Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
-                  Integer sit amet egestas eros, vitae egestas augue. Duis vel
-                  est augue.
+                <Typography style={{ color: "#FFFFFF", textAlign: "left" }} variant="body2">
+                  Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros, vitae egestas
+                  augue. Duis vel est augue.
                 </Typography>
               </AccordionDetails>
             </Accordion>

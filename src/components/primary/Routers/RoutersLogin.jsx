@@ -8,6 +8,8 @@ import ForgetPassword from "../ForgetPassword/ForgetPassword";
 import ResetPassword from "../ForgetPassword/ResetPassword";
 import LoginHomePage from "../HomePage/LoginHomePage";
 import RegisterHomePage from "../HomePage/RegisterHomePage";
+import Faq from "../Auth/FAQ/Faq";
+import ComingSoon from "../../shared/ComingSoon/ComingSoon";
 
 const RoutersLogin = () => {
   return (
@@ -18,6 +20,7 @@ const RoutersLogin = () => {
         <Route path={"/login"} element={<LoginHomePage />} />
 
         {/* <Route path={"/faq"} element={<Faq />} /> */}
+        <Route path={"/faq"} element={<ComingSoon />} />
 
         <Route path={"/howitworks"} element={<HowItWorkPage />} />
 

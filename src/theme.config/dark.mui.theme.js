@@ -140,6 +140,18 @@ const darkTheme = createTheme({
         },
       },
     },
+    MuiAvatar: {
+      styleOverrides: {
+        root: {
+          // backgroundColor: "rgb(171, 191, 228)",
+          backgroundColor: "gray",
+          height: "20px",
+          width: "20px",
+          fontSize: "10px",
+          color: "#fff"
+        },
+      },
+    },
   },
   breakpoints: {
     values: {

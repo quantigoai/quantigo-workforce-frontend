@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {AvatarGroup} from "@mui/material";
+import { AvatarGroup } from "@mui/material";
 import Box from "@mui/material/Box";
 import Popper from "@mui/material/Popper";
 import * as React from "react";
@@ -45,11 +45,11 @@ const ChipGroup = ({ value }) => {
             textAlign: "left",
             border: "2px solid #C4F5DF",
             borderRadius: "15px",
-            p: 2,
+            p: "5px",
             bgcolor: "background.paper",
             display: "grid",
-            gridTemplateColumns: "repeat(3,1fr)",
-            gap: "25px",
+            gridTemplateColumns: "repeat(2,1fr)",
+            gap: "5px",
           }}
         >
           {params.value.map(

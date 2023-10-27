@@ -35,42 +35,54 @@ const ProjectDrawerStatusChip = ({ value, isPopper = false }) => {
         return {
           backgroundColor: "rgba(242, 246, 252, 1)",
           color: "rgba(60, 77, 107, 1)",
-          width: "120px",
+          // width: "90px",
+          fontFamily: "Inter",
+          height: "24px",
           border: "1px solid rgba(230, 236, 245, 1)",
         };
       case "in-Progress":
         return {
           backgroundColor: "rgba(244, 247, 254, 1)",
           color: "rgba(46, 88, 255, 1)",
-          width: "120px",
+          // width: "90px",
+          fontFamily: "Inter",
+          height: "24px",
           border: "1px solid rgba(46, 88, 255, 0.12)",
         };
       case "hours-added":
         return {
           backgroundColor: "rgba(250, 228, 195, 1)",
           color: "rgba(247, 144, 9, 1)",
-          width: "120px",
+          // width: "90px",
+          fontFamily: "Inter",
+          height: "24px",
           border: "1px solid rgba(250, 228, 195, 1)",
         };
       case "completed":
         return {
           backgroundColor: "#C4F5DF",
           color: "#12B76A",
-          width: "120px",
+          // width: "90px",
+          fontFamily: "Inter",
+          height: "24px",
           border: "1px solid #C4F5DF",
         };
       case "hours-approved":
         return {
           backgroundColor: "#C4F5DF",
           color: "#12B76A",
-          width: "120px",
+          // width: "90px",
+          fontFamily: "Inter",
+          height: "24px",
           border: "1px solid #C4F5DF",
         };
       case "payment-done":
         return {
           backgroundColor: "#C4F5DF",
           color: "#12B76A",
-          width: "120px",
+          // width: "90px",
+          fontFamily: "Inter",
+          height: "24px",
           border: "1px solid #C4F5DF",
         };
       default:
@@ -78,10 +90,12 @@ const ProjectDrawerStatusChip = ({ value, isPopper = false }) => {
           textAlign: "center",
           backgroundColor: "rgba(242, 246, 252, 1)",
           color: "rgba(60, 77, 107, 1)",
-          width: isPopper ? "220px" : "120px",
+          fontFamily: "Inter",
+          // fontSize: isPopper ? "10px" : "60px",
+          height: "24px",
           padding: "0px",
           border: "1px solid rgba(230, 236, 245, 1)",
-          marginLeft: "10px",
+          marginLeft: isPopper ? "0px" : "10px",
         };
     }
   };

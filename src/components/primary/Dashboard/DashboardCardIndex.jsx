@@ -13,6 +13,7 @@ import TotalUser from "./DashboardCard/TotalUser";
 import DashboardCardforDM from "./DashboardCardRole/DashboardCardforDM";
 import DashboardCardForAnnotator from "./DashboardCardRole/DashboardCardForAnnotator";
 import OnGoingProject from "./DashboardCard/OnGoingProject";
+import OnGoingProjectDrawer from "./DashboardCard/OnGoingProjectDrawer";
 
 const DashboardCardIndex = () => {
   const { user } = useSelector((state) => state.user);
@@ -69,7 +70,7 @@ const DashboardCardIndex = () => {
               <TotalAnnotator />
             </Grid>
             <Grid item xs={3}>
-              {user.role === "admin" ? <OnGoingProject /> : <TotalUser />}
+              {user.role === "admin" ? <OnGoingProjectDrawer /> : <TotalUser />}
             </Grid>
           </Grid>
         </>

@@ -166,6 +166,17 @@ const lightTheme = createTheme({
         // height: "0px",
       },
     },
+    MuiAvatar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "rgb(171, 191, 228)",
+          height: "20px",
+          width: "20px",
+          fontSize: "10px",
+          color: "rgb(4, 4, 86)"
+        },
+      },
+    },
   },
   breakpoints: {
     values: {

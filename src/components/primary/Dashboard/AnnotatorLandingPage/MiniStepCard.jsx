@@ -67,15 +67,15 @@ const MiniStepCard = ({ index }) => {
       <Box
         sx={{
           backgroundColor: "neutral.N000",
-          height: "100%",
-          width: "100%",
-          py: 3,
-          borderRadius: "8px",
+          // height: "100%",
+          // width: "100%",
+          // borderRadius: "20px",
         }}
       >
         <Box
           sx={{
             display: "flex",
+            borderRadius: "20px",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",

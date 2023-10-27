@@ -18,13 +18,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SLiderPrevNext from "../CongratulationDashBoard/SLiderPrevNext";
 import MiniStepCard from "./MiniStepCard";
 
-const StepGuide = () => {
+const StepGuide = ({ isStep }) => {
   return (
     <Box
       sx={{
-        height: "100%",
+        // height: " 0px",
         width: "100%",
         // backgroundColor: "blue",
+        borderRadius: "10px",
       }}
     >
       <Swiper
@@ -44,7 +45,7 @@ const StepGuide = () => {
         // onSlideChange={() => console.log("slide change")}
         // onSwiper={(swiper) => console.log(swiper)}
       >
-        <SLiderPrevNext />
+        <SLiderPrevNext isStep={isStep} />
 
         <Box>
           <Grid container spacing={3}>

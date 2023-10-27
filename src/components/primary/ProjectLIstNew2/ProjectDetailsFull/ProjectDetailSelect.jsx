@@ -1,5 +1,5 @@
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { Box, FormControl, MenuItem, Select } from "@mui/material";
+import { Box, Chip, FormControl, MenuItem, Select } from "@mui/material";
 
 const style = (value) => {
   switch (value) {
@@ -112,7 +112,7 @@ const style = (value) => {
 };
 const ProjectDetailSelect = ({ options, handleChange, value, setValue, defaultVal }) => {
   return (
-    <Box>
+    <Box >
       <FormControl
         sx={{
           m: 1,
@@ -120,10 +120,13 @@ const ProjectDetailSelect = ({ options, handleChange, value, setValue, defaultVa
           // height:"22px",
           borderRadius: "4px",
         }}>
+    
         <Select
           sx={style(value || defaultVal)}
           defaultValue={defaultVal}
           onChange={handleChange}
+          // disabled={true}
+          open={false}
           IconComponent={ArrowDropDownIcon}>
           {options.map((option) => (
             <MenuItem
@@ -136,6 +139,7 @@ const ProjectDetailSelect = ({ options, handleChange, value, setValue, defaultVa
           ))}
         </Select>
       </FormControl>
+ 
     </Box>
   );
 };

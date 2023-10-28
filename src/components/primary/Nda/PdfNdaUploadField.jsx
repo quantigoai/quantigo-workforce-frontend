@@ -79,7 +79,7 @@ const PdfNdaUploadField = ({ handleImage, selectedFile }) => {
                 <br />
                 <Typography
                   variant="wpf_p3_regular"
-                  sx={{ color: selectedFile?.size > maxSize ? "#ff1744" : "#013220" }}>
+                  sx={{ color: selectedFile?.size > maxSize ? "#ff1744" : "neutral.N300" }}>
                   File : {files}
                 </Typography>
                 {selectedFile.size > maxSize ? (

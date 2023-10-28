@@ -6,11 +6,12 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Box, Button, Grid, Modal, styled, TextField, Typography} from "@mui/material";
+import { Box, Button, Grid, Modal, styled, TextField, Typography } from "@mui/material";
 import React from "react";
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
-import {useSelector} from "react-redux";
+import { LoadingButtonStyle } from "../../Auth/Login/Login";
 
 export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
@@ -56,34 +57,36 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit, handleRejectCause, r
         open={openModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
+        aria-describedby="modal-modal-description"
+      >
         <Box
           sx={{
             ...style,
-            height: { xl: "40%", lg: "%" },
-            width: { xl: "35%", lg: "40%" },
-          }}>
+            height: { lg: "50%", xl: "50%",xxl:"38%"  },
+            width: { lg: "40%", xl: "35%",  },
+          }}
+        >
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Box sx={{ flex: "0 0 5%" }}>
-              <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Confirm Rejection"} />
-            </Box>
+            <Box>
+              <Box
+              // sx={{ flex: "0 0 0%" }}
+              >
+                <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Confirm Rejection"} />
+              </Box>
 
-            <Box
-              sx={{
-                flex: "1",
-                overflowY: "auto",
-                padding: "2%",
-              }}>
-              <Grid container style={{ padding: "1%" }}>
-                <Grid container sx={{ paddingBottom: "1%" }}>
+              <Box>
+                <Box style={{ padding: "3%" }}>
+                  {/* <Grid container sx={{ paddingBottom: "1%" }}> */}
                   <Typography
+                    variant="wpf_p4_medium"
                     sx={{
-                      fontSize: "12px",
-                      fontWeight: "500",
+                      // fontSize: "12px",
+                      // fontWeight: "500",
                       mb: 0,
                       // color: isLightTheme ? "#091E42" : "#FFFFFF",
                       // paddingBottom:"1%"
-                    }}>
+                    }}
+                  >
                     Status
                   </Typography>
 
@@ -95,17 +98,18 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit, handleRejectCause, r
                     disabled
                     defaultValue={"Rejected"}
                     // placeholder="Select"
-                    sx={{ height: "50%" }}></MySelect>
-                </Grid>
-                <Grid container style={{}}>
+                    sx={{ height: "50%" }}
+                  ></MySelect>
+                  {/* </Grid> */}
+                  {/* <Grid container style={{}}> */}
                   <Typography
+                    variant="wpf_p4_medium"
                     sx={{
-                      fontSize: "12px",
-                      fontWeight: "500",
                       mb: 1,
                       // color: isLightTheme ? "#091E42" : "#FFFFFF",
                       paddingBottom: "0%",
-                    }}>
+                    }}
+                  >
                     Rejection Cause
                   </Typography>
                   <MyTextField
@@ -119,70 +123,72 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit, handleRejectCause, r
                     // })}
                     onChange={(e) => handleRejectCause(e)}
                   />
-                </Grid>
-              </Grid>
-            </Box>
-            <Box
-              sx={{
-                flex: "0 0 64px",
-                borderTop: "1px solid #F2F6FC",
-                backgroundColor: "neutral.N000",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "0 2%",
+                  {/* </Grid> */}
+                </Box>
+              </Box>
 
-                bottom: "0px",
-                borderRadius: "8px",
-              }}>
-              <Grid container sx={{ padding: "2%" }}>
-                <Grid item xs={6}>
-                  <Button
-                    sx={{
-                      width: "120px",
-                      textTransform: "none",
-                      backgroundColor: "#F4F7FE",
-                      color: "#62728F",
-                      borderRadius: "8px",
-                      "&:hover": {
+              <Box
+                sx={{
+                  // flex: "0 0 64px",
+                  borderTop: "1px solid #F2F6FC",
+                  backgroundColor: "neutral.N000",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: "0 2%",
+
+                  bottom: "0px",
+                  borderRadius: "0 0 8px 8px",
+                }}
+              >
+                <Grid container sx={{ padding: "2%" }}>
+                  <Grid item xs={6}>
+                    <Button
+                      sx={{
+                        width: "120px",
+                        textTransform: "none",
                         backgroundColor: "#F4F7FE",
                         color: "#62728F",
-                        border: "1px solid #F4F7FE",
-                      },
-                    }}
-                    onClick={() => handleClose()}>
-                    Cancel
-                  </Button>
-                </Grid>
-                <Grid item xs={6}>
-                  <Grid container sx={{ justifyContent: "right" }}>
-                    <Button
-                      disabled={rejectionCause === ""}
-                      type="submit"
-                      sx={{
-                        width: "128px",
-                        textTransform: "none",
-                        backgroundColor: "#2E58FF",
-                        color: "#FFFFFF",
-
                         borderRadius: "8px",
-                        "&.Mui-disabled": {
-                          background: "#B6C9F0",  
-                          color: "#FFFFFF",
-                        },
                         "&:hover": {
-                          backgroundColor: "#2E58FF",
-                          color: "#FFFFFF",
-                          // border: "1px solid #2E58FF",
+                          backgroundColor: "#ddd",
+                          color: "#62728F",
                         },
                       }}
-                      // onClick={() => handleChange()}
+                      onClick={() => handleClose()}
                     >
-                      Save Changes
+                      Cancel
                     </Button>
                   </Grid>
+                  <Grid item xs={6}>
+                    <Grid container sx={{ justifyContent: "right" }}>
+                      <LoadingButtonStyle
+                        loading={isLoading}
+                        disabled={rejectionCause === ""}
+                        type="submit"
+                        sx={{
+                          width: "128px",
+                          textTransform: "none",
+                          backgroundColor: "#2E58FF",
+                          color: "#FFFFFF",
+                          borderRadius: "8px",
+                          "&.Mui-disabled": {
+                            background: "#B6C9F0",
+                            color: "#FFFFFF",
+                          },
+                          "&:hover": {
+                            backgroundColor: "#2E58FF",
+                            color: "#FFFFFF",
+                          },
+                        }}
+                        // onClick={() => handleChange()}
+                      >
+                        Save Changes
+                      </LoadingButtonStyle>
+                    </Grid>
+                  </Grid>
                 </Grid>
-              </Grid>
+              </Box>
             </Box>
           </form>
         </Box>

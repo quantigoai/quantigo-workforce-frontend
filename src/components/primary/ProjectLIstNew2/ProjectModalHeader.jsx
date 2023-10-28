@@ -9,8 +9,8 @@ const ProjectModalHeader = ({ handleCreateProjectClose, modalTitle, isPageDetail
       sx={{
         padding: "16px",
         width: "100%",
-        backgroundColor:"#F2F6FC",
-        // backgroundColor: "neutral.N000",
+        // backgroundColor:"#F2F6FC",
+        backgroundColor: "neutral.N400",
         // background: isLightTheme ? (isPageDetail ? "white" : "#F2F6FC") : isPageDetail ? "#1E1E1E" : "#2A2A2A",
         borderRadius: "8px 8px 0px 0px",
         borderBottom: "1px solid #EBF0F5",
@@ -25,15 +25,15 @@ const ProjectModalHeader = ({ handleCreateProjectClose, modalTitle, isPageDetail
           borderRadius: "8px",
           // paddingLeft: "3%",
           // paddingRight: "2%",
-          backgroundColor:"#F2F6FC"
+          // backgroundColor:"#F2F6FC"
+          backgroundColor: "neutral.N400",
         }}
       >
-        <Grid item xs={isPageDetail ? 10 : 11} sx={{backgroundColor:""}}>
+        <Grid item xs={isPageDetail ? 10 : 11} sx={{ backgroundColor: "" }}>
           <Typography
             variant="wpf_p2_semiBold"
             sx={{
               color: isLightTheme ? "#3C4D6B" : "#FFFFFF",
-            
             }}
           >
             {modalTitle}
@@ -52,8 +52,8 @@ const ProjectModalHeader = ({ handleCreateProjectClose, modalTitle, isPageDetail
           )}
         </Grid>
 
-        <Grid item xs={1} sx={{backgroundColor:""}} >
-          <Button onClick={handleCreateProjectClose} sx={{ justifyContent: "" ,backgroundColor:""}}>
+        <Grid item xs={1} sx={{ backgroundColor: "" }}>
+          <Button onClick={handleCreateProjectClose} sx={{ justifyContent: "", backgroundColor: "" }}>
             <img style={{ width: "15px" }} alt="cross" src={u_multiply} />
           </Button>
         </Grid>

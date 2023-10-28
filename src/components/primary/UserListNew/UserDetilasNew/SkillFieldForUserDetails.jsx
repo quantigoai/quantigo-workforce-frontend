@@ -36,7 +36,7 @@ const SkillFieldForUserDetails = ({
             <Grid xs={12} sx={{ padding: "2%" }}>
               <Grid container>
                 <Typography
-                  variant="caption"
+                  variant="wpf_h8_regular"
                   sx={{
                     color: isLightTheme ? "#091E42" : "#fff",
                     opacity: isLightTheme && "0.7",

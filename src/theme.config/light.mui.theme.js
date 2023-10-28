@@ -18,7 +18,6 @@ const lightTheme = createTheme({
   },
   typography: {
     ...typography,
-
     ...(typography.wpf_h1_semiBold.color = "#3C4D6B"),
     ...(typography.wpf_h2_semiBold.color = "#3C4D6B"),
     ...(typography.wpf_h3_semiBold.color = "#3C4D6B"),
@@ -54,6 +53,7 @@ const lightTheme = createTheme({
     MuiSelect: {
       styleOverrides: {
         root: {
+          fontFamily: "Inter",
           borderRadius: "4px",
           flex: "none",
           order: 0,
@@ -106,6 +106,7 @@ const lightTheme = createTheme({
         root: {
           padding: "0",
           paddingTop: "0px",
+          fontFamily: "Inter",
         },
       },
     },

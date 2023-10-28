@@ -28,6 +28,7 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
             backgroundColor: "neutral.N000",
             height: "36px",
             fontSize: { lg: "14px", xl: "14px", xxl: "14px" },
+            fontFamily: "Inter",
           }}
           displayEmpty
           multiple

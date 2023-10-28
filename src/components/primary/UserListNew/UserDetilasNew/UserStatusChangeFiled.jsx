@@ -1,4 +1,4 @@
-import {FormControl, Grid, MenuItem, Select, styled, Typography} from "@mui/material";
+import { FormControl, Grid, MenuItem, Select, styled, Typography } from "@mui/material";
 import React from "react";
 
 export const MySelect = styled(Select)(() => ({
@@ -27,10 +27,9 @@ const UserStatusChangeFiled = ({ label, user, handleSetStatus }) => {
       <Grid item xs={12} sx={{ mb: 1 }}>
         <FormControl fullWidth>
           <Typography
+            variant="wpf_p4_medium"
             sx={{
-              fontSize: "12px",
-              color: "neutral.N300",
-              fontWeight: "500",
+              color: "neutral.750",
               mb: 1,
             }}
           >
@@ -40,7 +39,6 @@ const UserStatusChangeFiled = ({ label, user, handleSetStatus }) => {
           <MySelect
             labelId="demo-simple-select-autowidth-label"
             id="demo-simple-select-autowidth"
-            // {...field}
             variant="outlined"
             placeholder="Select"
             sx={{

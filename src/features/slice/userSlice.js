@@ -688,7 +688,7 @@ const userSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(changeRole.pending, (state) => {
-        state.isLoading = false;
+        state.isLoading = true;
       })
       .addCase(changeRole.fulfilled, (state, action) => {
         state.targetedUser = action.payload.data;
@@ -699,7 +699,7 @@ const userSlice = createSlice({
           return user;
         });
         state.error = null;
-        // state.isLoading = false;
+        state.isLoading = false;
       })
       .addCase(changeRole.rejected, (state) => {
         state.isLoading = false;

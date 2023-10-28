@@ -11,7 +11,7 @@ const SingleItem = ({ ItemTitle, Item }) => {
           <Grid xs={12} sx={{ padding: "2%" }}>
             <Grid container>
               <Typography
-                variant="caption"
+                variant="wpf_h8_regular"
                 sx={{ color: isLightTheme ? "#091E42" : "#fff", opacity: isLightTheme && "0.7", fontWeight: "400" }}
               >
                 {ItemTitle}
@@ -32,7 +32,7 @@ const SingleItem = ({ ItemTitle, Item }) => {
             ) : (
               <>
                 <Typography
-                  variant="wpf_p3_medium_2"
+                  variant="wpf_p3_medium"
                   sx={{ color: isLightTheme ? "#091E42" : "#fff", fontWeight: "500" }}
                 >
                   {Item ?? Item}

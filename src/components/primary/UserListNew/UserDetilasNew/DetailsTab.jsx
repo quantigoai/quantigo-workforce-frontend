@@ -154,7 +154,7 @@ export default function DetailsTab({
           />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <UserProjectDetails />
+          <UserProjectDetails id={user._id} />
         </TabPanel>
       </Box>
     </Box>

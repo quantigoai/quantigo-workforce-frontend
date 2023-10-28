@@ -64,7 +64,7 @@ const UsersHeader = ({
               p: "2px 4px",
               display: "flex",
               alignItems: "center",
-              width: "240px",
+              width: { lg: "160px", xl: "240px", xxl: "240px" },
               backgroundColor: "primary.B008",
               border: "1px solid #EFF3FE",
               borderRadius: "8px",
@@ -78,7 +78,11 @@ const UsersHeader = ({
             <InputBase
               inputRef={searchRef}
               // onBlur={(e) => handleSearch(e)}
-              sx={{ ml: 0, flex: 1 }}
+              sx={{
+                ml: 0,
+                flex: 1,
+                fontFamily: "Inter",
+              }}
               placeholder="Search"
               onKeyDown={(ev) => {
                 if (ev.key === "Enter") {

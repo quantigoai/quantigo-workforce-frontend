@@ -13,7 +13,6 @@ export const MySelect = styled(Select)(() => ({
   padding: "0px",
   height: "36px",
   margin: "0px",
-
 }));
 
 export default function ProjectSelectFIlterField({ options, label, handleChange, name, filterValue }) {
@@ -24,8 +23,8 @@ export default function ProjectSelectFIlterField({ options, label, handleChange,
       fullWidth
       sx={{
         px: 0,
-        py:0,
-        minWidth: "25%",
+        py: 0,
+        minWidth: { lg: "20%", xl: "25%", xxl: "25%" },
         minHeight: "36px",
         height: "36px",
       }}
@@ -35,13 +34,12 @@ export default function ProjectSelectFIlterField({ options, label, handleChange,
         displayEmpty
         sx={{
           height: "36px",
-          fontSize: "14px",
-          // height: "36px",
+          fontSize: { lg: "14px", xl: "14px", xxl: "14px" },
+          fontFamily: "Inter",
           padding: "0px",
           margin: "0px",
           width: "100%",
           borderRadius: "8px",
-          // fontSize: "14px",
           "& svg": {
             fill: "#667085",
           },

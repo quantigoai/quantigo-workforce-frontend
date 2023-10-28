@@ -27,7 +27,7 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
           sx={{
             backgroundColor: "neutral.N000",
             height: "36px",
-            fontSize: "14px",
+            fontSize: { lg: "14px", xl: "14px", xxl: "14px" },
           }}
           displayEmpty
           multiple
@@ -55,8 +55,17 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
                   (value, i) =>
                     [0].includes(i) && (
                       <Chip
-                        // sx={{ fontSize: "12px", height: "100%", color: "neutral.700" }}
-                        sx={{ height: "100%", color: "neutral.700" }}
+                        sx={{
+                          height: {
+                            lg: "20px",
+                            xl: "24px",
+                            xxl: "28px",
+                          },
+                          borderRadius: "32px",
+                          border: "1px solid #E6ECF5",
+                          color: "neutral.700",
+                          fontFamily: "Inter",
+                        }}
                         key={value}
                         label={value}
                       />

@@ -75,21 +75,8 @@ const CommonHeader = ({ isLoading, title, description, customButton, handleCance
             sx={{
               display: "flex",
             }}
-            // container
           >
-            <Typography
-              variant="wpf_h5_semiBold"
-              // sx={{
-              //   fontSize: "20px",
-              //   fontWeight: "600",
-              //   lineHeight: "28px",
-              //   color: isLightTheme ? " #3C4D6B" : "white",
-              //   mt: 0.7,
-              //   fontStyle: "normal",
-              // }}
-            >
-              {title}
-            </Typography>
+            <Typography variant="wpf_p1_semiBold">{title}</Typography>
           </Grid>
           {customButton === "Edit Course" ? (
             <Grid container sx={{ justifyContent: "left" }}>

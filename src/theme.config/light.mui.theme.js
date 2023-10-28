@@ -192,6 +192,12 @@ const lightTheme = createTheme({
 });
 
 [lightTheme.breakpoints.between("lg", "xl")].forEach((key) => {
+  lightTheme.typography.wpf_p1_semiBold[key] = {
+    fontSize: "16px",
+  };
+});
+
+[lightTheme.breakpoints.between("lg", "xl")].forEach((key) => {
   lightTheme.typography.wpf_p3_semiBold[key] = {
     fontSize: "12px",
   };
@@ -204,7 +210,17 @@ const lightTheme = createTheme({
   lightTheme.components.MuiTableRow.styleOverrides.root[key] = {
     height: "56px",
   };
+  lightTheme.typography.wpf_p1_semiBold[key] = {
+    fontSize: "20px",
+  };
+  lightTheme.typography.wpf_p4_semiBold[key] = {
+    fontSize: "14px",
+  };
+  lightTheme.typography.wpf_p3_medium[key] = {
+    fontSize: "16px",
+  };
 });
+
 [lightTheme.breakpoints.between("lg", "xl")].forEach((key) => {
   lightTheme.typography.wpf_p4_semiBold[key] = {
     fontSize: "10px",
@@ -212,9 +228,9 @@ const lightTheme = createTheme({
 });
 
 [lightTheme.breakpoints.up("xxl")].forEach((key) => {
-  lightTheme.typography.wpf_p4_semiBold[key] = {
-    fontSize: "14px",
-  };
+  // lightTheme.typography.wpf_p4_semiBold[key] = {
+  //   fontSize: "14px",
+  // };
 });
 [lightTheme.breakpoints.between("lg", "xl")].forEach((key) => {
   lightTheme.typography.wpf_p3_medium[key] = {

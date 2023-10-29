@@ -158,6 +158,10 @@ const AllUserListIndex = () => {
   };
 
   const handleSearch = (e) => {
+    setPagination((prevPagination) => ({
+      ...prevPagination,
+      currentPage: 0,
+    }));
     setSearch(e.target.value);
   };
 
@@ -217,6 +221,7 @@ const AllUserListIndex = () => {
 
   const handleChangePagination = useCallback(() => {
     setIsChildDataLoading(true);
+    // if (search) {
     dispatch(
       getAllUsers({
         pagination,
@@ -227,6 +232,7 @@ const AllUserListIndex = () => {
     ).then(() => {
       setIsChildDataLoading(false);
     });
+    // }
   }, [dispatch, pagination, filterValue, filteredCol, search]);
 
   const skillsOptions = skills.map((skill) => ({ value: skill._id, label: skill.name }));

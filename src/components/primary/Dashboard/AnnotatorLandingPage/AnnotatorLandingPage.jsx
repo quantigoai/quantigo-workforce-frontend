@@ -163,7 +163,11 @@ const AnnotatorLandingPage = () => {
                           border: "1px solid #FFAB00",
                           backgroundColor: "#FFF8EB",
                           color: "#FF9900",
-                          fontSize: "12px",
+                          fontSize: {
+                            lg: "10px",
+                            xl: "12px",
+                            xxl: "12px",
+                          },
                           "&:hover": {
                             backgroundColor: "#FF9A45",
                             color: "#1D1D1D",
@@ -184,23 +188,24 @@ const AnnotatorLandingPage = () => {
         <Grid
           item
           xs={1}
-          lg={2}
           md={2}
+          lg={2}
           xl={2}
           sx={{
-            backgroundColor: "neutral.N000",
-            // backgroundColor: "red",
+            backgroundColor: "neutral.N100",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             borderTopRightRadius: "8px",
             borderBottomRightRadius: "8px",
-            // height: "100%",
+            // height: "150px",
             width: "100%",
             borderRadius: "10px",
           }}
         >
+          {/* <Paper elevation={0} style={paperStyle}> */}
           <StepGuide isStep={true} />
+          {/* </Paper> */}
         </Grid>
       </Grid>
 

@@ -9,15 +9,14 @@ const SLiderPrevNext = ({ isStep }) => {
     <Box
       sx={{
         display: "flex",
+        backgroundColor: isStep ? "neutral.N100" : "",
         justifyContent: "end",
-        alignItems: "end",
-        mt: isStep ? 2 : 0,
-        backgroundColor: isStep ? "#fff" : "",
       }}
     >
       <Button
         sx={{
           minWidth: "25px",
+          backgroundColor: "transparent",
           "&:focus": {
             color: "white",
             backgroundColor: "#2E58FF",

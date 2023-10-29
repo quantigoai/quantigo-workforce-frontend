@@ -22,9 +22,10 @@ const StepGuide = ({ isStep }) => {
   return (
     <Box
       sx={{
-        // height: " 0px",
+        // height: "213px",
+        height: "100%",
         width: "100%",
-        // backgroundColor: "blue",
+        backgroundColor: "neutral.N100",
         borderRadius: "10px",
       }}
     >
@@ -45,13 +46,25 @@ const StepGuide = ({ isStep }) => {
         // onSlideChange={() => console.log("slide change")}
         // onSwiper={(swiper) => console.log(swiper)}
       >
-        <SLiderPrevNext isStep={isStep} />
+        <Box
+          sx={{
+            my: 0,
+            display: "flex",
+            justifyContent: "end",
+          }}
+        >
+          <SLiderPrevNext isStep={isStep} />
+        </Box>
 
         <Box>
           <Grid container spacing={3}>
             {[1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => (
               <Grid key={item} item xs={12} sm={6} md={3} gap={1}>
-                <SwiperSlide>
+                <SwiperSlide
+                  style={{
+                    height: "100%",
+                  }}
+                >
                   {/* <ProcessCard2 item={item} /> */}
                   <MiniStepCard index={index} />
                 </SwiperSlide>

@@ -23,7 +23,7 @@ const TotalWorkingHoursCard = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "neutral.N000",
+        backgroundColor: "neutral.N100 ",
       }}
     >
       <Grid

@@ -8,12 +8,12 @@
  */
 import { Grid, Typography } from "@mui/material";
 import React from "react";
-import iconPendding from "../../../../assets/images/pendingRequest.svg";
 import { useSelector } from "react-redux";
+import iconPendding from "../../../../assets/images/pendingRequest.svg";
 const TotalWorkingHoursCard = () => {
-     const {
-       user: {  totalWorkingHours },
-     } = useSelector((state) => state.user);
+  const {
+    user: { totalWorkingHours },
+  } = useSelector((state) => state.user);
   return (
     <Grid
       container
@@ -23,7 +23,7 @@ const TotalWorkingHoursCard = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "neutral.N100 ",
+        backgroundColor: "neutral.N100",
       }}
     >
       <Grid

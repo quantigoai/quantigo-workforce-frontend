@@ -17,11 +17,11 @@ import deleteIcon from "../../../../assets/images/fi_trash-2.png";
 // import csvFile from "../../../../assets/ndifile/Template_for_effective_hours - Sheet1.csv";
 // import useToaster from "../../../../customHooks/useToaster";
 import axios from "axios";
-import { toast } from "react-toastify";
+import useToaster from "../../../../customHooks/useToaster";
+import { updateProjectDrawerManually } from "../../../../features/slice/projectDrawerSlice";
 import { realToken } from "../../../../helper/lib";
 import ProjectModalHeader from "../ProjectModalHeader";
 import CsvUploadField from "./CsvUploadField";
-import { updateProjectDrawerManually } from "../../../../features/slice/projectDrawerSlice";
 
 const style = {
   display: "flex",
@@ -78,7 +78,20 @@ const DetailsUploadHourModal = ({ openModal, setOpen }) => {
     setSelectedFile([]);
     setCoverImage(null);
   };
-
+  const uploadRequest = async (data) => {
+    try {
+      return axios.patch(`${url}/project-drawer/upload-hours/${data.id}`, data.hoursData, {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+        content: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  };
   const handleImage = (e) => {
     setCoverImageFile(e[0]);
     setSelectedFile(e[0]);
@@ -94,6 +107,7 @@ const DetailsUploadHourModal = ({ openModal, setOpen }) => {
       //   setStepper(3);
     }
   };
+  const toast = useToaster();
 
   const removeImage = () => {
     setCoverImageFile([]);
@@ -105,7 +119,6 @@ const DetailsUploadHourModal = ({ openModal, setOpen }) => {
 
   useEffect(() => {}, [acceptedFiles]);
 
-
   const handleSubmission = async () => {
     const formData = new FormData();
     formData.append("hoursData", selectedFile);
@@ -114,43 +127,49 @@ const DetailsUploadHourModal = ({ openModal, setOpen }) => {
       hoursData: formData,
     };
     handleClose();
-    const response = await toast.promise(
-      () => {
-        try {
-          return axios.patch(`${url}/project-drawer/upload-hours/${data.id}`, data.hoursData, {
-            headers: {
-              Authorization: `Bearer ${realToken()}`,
-            },
-            content: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
-        } catch (error) {
-          throw new Error(error.response.data.message);
-        }
+    await toast.responsePromise(uploadRequest(data), {
+      initialMessage: "Effective hours is Uploading...",
+      afterSuccess: (data) => {
+        dispatch(updateProjectDrawerManually(data.data.projectDrawer));
       },
-      {
-        pending: {
-          render() {
-            return "CSV is uploading...";
-          },
-          icon: true,
-        },
-        success: {
-          render({ data }) {
-            dispatch(updateProjectDrawerManually(data.data.projectDrawer));
-            return `${data.data.message}`;
-          },
-          // other options
-          icon: "🤙",
-        },
-        error: {
-          render({ data }) {
-            return data.response.data.message;
-          },
-        },
-      }
-    );
+    });
+    // const response = await toast.promise(
+    //   () => {
+    //     try {
+    //       return axios.patch(`${url}/project-drawer/upload-hours/${data.id}`, data.hoursData, {
+    //         headers: {
+    //           Authorization: `Bearer ${realToken()}`,
+    //         },
+    //         content: {
+    //           "Content-Type": "multipart/form-data",
+    //         },
+    //       });
+    //     } catch (error) {
+    //       throw new Error(error.response.data.message);
+    //     }
+    //   },
+    //   {
+    //     pending: {
+    //       render() {
+    //         return "CSV is uploading...";
+    //       },
+    //       icon: true,
+    //     },
+    //     success: {
+    //       render({ data }) {
+    //         dispatch(updateProjectDrawerManually(data.data.projectDrawer));
+    //         return `${data.data.message}`;
+    //       },
+    //       // other options
+    //       icon: "🤙",
+    //     },
+    //     error: {
+    //       render({ data }) {
+    //         return data.response.data.message;
+    //       },
+    //     },
+    //   }
+    // );
 
     // .then((action) => {
     // if (action.payload?.status === 200) {

@@ -96,7 +96,7 @@ const PDskillFIeld = ({
                     >
                       {selected?.map(
                         (value, i) =>
-                          [0].includes(i) && <Chip sx={{ fontSize: "12px", height: "95%" }} key={value} label={value} />
+                          [0].includes(i) && <Chip sx={{ fontSize: "11px", height: "100%",border:"1px solid #E6ECF5", backgroundColor:"#F2F6FC" }} key={value} label={value} />
                       )}
                       {isEdit ? (
                         selectedSkills?.length > 1 && selected?.length > 1 ? (

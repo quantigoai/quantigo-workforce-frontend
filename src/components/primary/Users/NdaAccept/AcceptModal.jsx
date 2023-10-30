@@ -74,11 +74,12 @@ const AcceptModal = ({ open, handleClose, handleAccept, user }) => {
                   borderRadius: "10px",
                   width: "150px",
                   "&:hover": {
-                    backgroundColor: "#FFF0F2",
+                    backgroundColor: "#F2F6FC",
                   },
                 }}
                 onClick={handleClose}
-                variant="contained">
+                // variant="contained"
+              >
                 No
               </Button>
             }
@@ -90,13 +91,16 @@ const AcceptModal = ({ open, handleClose, handleAccept, user }) => {
               sx={{
                 textTransform: "none",
                 background: "#FFAB00",
+                color:"#fff",
                 borderRadius: "10px",
                 width: "150px",
                 ":hover": {
                   backgroundColor: "#F2A200",
+                  color:"#fff"
                 },
               }}
-              variant="contained">
+              // variant="contained"
+            >
               Yes
             </Button>
           </Box>

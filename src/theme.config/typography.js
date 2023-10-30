@@ -85,6 +85,7 @@ const typography = {
     wpf_p2_regular: createTypography("16px", "400", "24px"),
     wpf_p3_regular: createTypography("14px", "400", "20px"),
     wpf_p4_regular: createTypography("12px", "400", "18px"),
+    wpf_p5_regular: createTypography("10px", "400", "16px"),
 
     
 };

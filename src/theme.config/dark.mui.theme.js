@@ -133,6 +133,18 @@ const darkTheme = createTheme({
         },
       },
     },
+    MuiGrid: {
+      styleOverrides: {
+        root: {
+          margin: 0,
+          pt: 0,
+          "& .MuiGrid-item": {
+            margin: 0,
+            pt: 0,
+          },
+        },
+      },
+    },
     MuiIconButton: {
       styleOverrides: {
         root: {
@@ -148,7 +160,7 @@ const darkTheme = createTheme({
           height: "20px",
           width: "20px",
           fontSize: "10px",
-          color: "#fff"
+          color: "#fff",
         },
       },
     },

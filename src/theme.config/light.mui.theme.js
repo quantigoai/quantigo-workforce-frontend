@@ -130,6 +130,11 @@ const lightTheme = createTheme({
       styleOverrides: {
         root: {
           margin: 0,
+          pt: 0,
+          "& .MuiGrid-item": {
+            margin: 0,
+            pt: 0,
+          },
         },
       },
     },

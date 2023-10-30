@@ -4,12 +4,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { emailVerificationLink } from "../../../../features/slice/userSlice";
+import { LoadingButtonStyle } from "../Login/Login";
 
 const paperstyleResendEmail = {
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "neutral.N100",
   padding: "3%",
   width: "100%",
-  height: "400px",
+  height: "100%",
   borderRadius: "2px",
   justifyContent: "center",
 };
@@ -34,17 +35,11 @@ const EmailVerificationAfterLogin = () => {
   const { isLoading } = useSelector((state) => state.user);
 
   useEffect(() => {
-    console.log(
-      "🚀 ~ file: EmailVerificationAfterLogin.jsx:32 ~ EmailVerificationAfterLogin ~ isVerified:",
-      isVerified
-    );
     dispatch(emailVerificationLink(data)).then((action) => {
-      console.log("🚀 ~ file: EmailVerificationAfterLogin.jsx:42 ~ dispatch ~ action:", action);
       if (action.error) {
         setMessage(action.error.message);
         setIsVerified(false);
       } else {
-        console.log("🚀 ~ file: EmailVerificationAfterLogin.jsx:40 ~ dispatch ~ action:", action);
         // TODO update user
         setMessage(action.payload.data.message);
         setIsVerified(true);
@@ -59,7 +54,7 @@ const EmailVerificationAfterLogin = () => {
         {!isLoading && (
           <Box
             sx={{
-              backgroundColor: "#F5F5F5",
+              backgroundColor: "neutral.N100",
               height: "100%",
               width: "100%",
               paddingLeft: "1%",
@@ -67,12 +62,12 @@ const EmailVerificationAfterLogin = () => {
           >
             <Paper elevation={0} style={paperstyleResendEmail}>
               <Grid container sx={{ justifyContent: "center", paddingTop: "7%" }}>
-                <Typography variant="h4" sx={{ color: "#090080" }}>
+                <Typography variant="h4" sx={{ color: "neutral.N300" }}>
                   {/* Your Account is {isVerified ? "Verified" : "Not Verified"} */}
                   {message}
                 </Typography>
               </Grid>
-              <Grid container sx={{ justifyContent: "center", paddingTop: "2%" }}>
+              {/* <Grid container sx={{ justifyContent: "center", paddingTop: "2%" }}>
                 <ButtonStyle
                   fullWidth
                   onClick={() => {
@@ -81,7 +76,23 @@ const EmailVerificationAfterLogin = () => {
                 >
                   Go to Dashboard{" "}
                 </ButtonStyle>
-              </Grid>
+              </Grid> */}
+              <Box sx={{ width: "15%", margin: "auto", mt: 3 }}>
+                <LoadingButtonStyle
+                  fullWidth
+                  color="inherit"
+                  size="large"
+                  // type="submit"
+                  variant="contained"
+                  loading={isLoading}
+                  sx={{ textTransform: "none", borderRadius: "10px" }}
+                  onClick={() => {
+                    navigate("/");
+                  }}
+                >
+                  Back to Dashboard
+                </LoadingButtonStyle>
+              </Box>
             </Paper>
           </Box>
         )}

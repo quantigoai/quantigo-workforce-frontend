@@ -6,16 +6,17 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {LoadingButton} from "@mui/lab";
-import {Box, Grid, styled, Typography} from "@mui/material";
-import {useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { LoadingButton } from "@mui/lab";
+import { Box, Grid, styled, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { LoadingButtonStyle } from "../Login/Login";
 
 const ForgetPasswordBox = styled(Box)({
-  display: "flex",
+  // display: "flex",
   color: "#fffff",
   width: "520px",
-  height: "381px",
+  // height: "300px",
   backgroundColor: "rgba(255, 255, 255, 0.34)",
   backdropFilter: "blur(8px)",
   borderRadius: "36px",
@@ -34,21 +35,28 @@ const ButtonStyle = styled(LoadingButton)({
 const VerificationResult = ({ verificationTimeOver, message }) => {
   const navigate = useNavigate();
   const { isLoggedIn } = useSelector((state) => state.user);
+  const { isLoading } = useSelector((state) => state.user);
 
   return (
     <>
       <ForgetPasswordBox>
-        <Grid container>
-          <Grid
-            container
-            xs={12}
-            sx={{ paddingTop: "13%", justifyContent: "center" }}
+        <Box>
+          <Box
+            sx={{
+              paddingTop: "13%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+              pb: 2,
+            }}
           >
             {verificationTimeOver ? (
               <Typography
                 sx={{
                   color: "#FFFFFF",
                   fontSize: "40px",
+                  fontFamily: "Inter",
                 }}
                 variant="h4"
               >
@@ -59,51 +67,66 @@ const VerificationResult = ({ verificationTimeOver, message }) => {
                 sx={{
                   color: "#FFFFFF",
                   fontSize: "40px",
+                  fontFamily: "Inter",
                 }}
                 variant="h4"
               >
                 Verification Failed
               </Typography>
             )}
-          </Grid>
+          </Box>
 
-          <Grid container sx={{ justifyContent: "center" }}>
+          <Box sx={{ display: "flex", justifyContent: "center", width: "100%", pt: 1 }}>
             <Typography
-              variant="body1"
-              style={{
+              variant="p"
+              sx={{
                 color: "#FFFFFF",
 
-                fontFamily: "Roboto",
+                fontFamily: "Inter",
               }}
             >
               {message}
             </Typography>
-          </Grid>
+          </Box>
 
           {!isLoggedIn ? (
-            <Grid container sx={{ padding: "3%" }}>
-              <ButtonStyle
+            <Box sx={{ width: "35%", mx: "auto", pb: 2, pt: 3 }}>
+              <LoadingButtonStyle
                 fullWidth
+                color="inherit"
+                size="large"
+                disabled={isLoading}
+                // type="submit"
+                variant="contained"
+                loading={isLoading}
+                sx={{ textTransform: "none", borderRadius: "10px" }}
                 onClick={() => {
                   navigate("/login");
                 }}
               >
                 Back to Login
-              </ButtonStyle>
-            </Grid>
+              </LoadingButtonStyle>
+            </Box>
           ) : (
-            <Grid container sx={{ padding: "3%" }}>
-              <ButtonStyle
+            <Box sx={{ width: "35%", mx: "auto", pb: 2, pt: 3 }}>
+              <LoadingButtonStyle
                 fullWidth
+                color="inherit"
+                size="large"
+                disabled={isLoading}
+                // type="submit"
+                variant="contained"
+                loading={isLoading}
+                sx={{ textTransform: "none", borderRadius: "10px" }}
                 onClick={() => {
                   navigate("/");
                 }}
               >
-                Go to Dashboard{" "}
-              </ButtonStyle>
-            </Grid>
+                Back to Dashboard
+              </LoadingButtonStyle>
+            </Box>
           )}
-        </Grid>
+        </Box>
       </ForgetPasswordBox>
     </>
   );

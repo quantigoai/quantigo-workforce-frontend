@@ -155,7 +155,7 @@ const AnnotatorLandingPage = () => {
                         opportunity to grow your career with us. We are always with you to help you.
                       </Typography>
                     </Grid>
-                    <Grid xs={12} sx={{ paddingTop: "3%", pb: 2 }}>
+                    <Grid xs={10} sx={{ paddingTop: "3%", pb: 2 }}>
                       <Button
                         sx={{
                           textTransform: "none",

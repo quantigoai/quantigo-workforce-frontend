@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../customHooks/useToaster";
 import { setActivePath } from "../../../../features/slice/activePathSlice";
 import { resendEmailVarification } from "../../../../features/slice/userSlice";
-
+import { LoadingButtonStyle } from "../Login/Login";
 
 const VerifyEmail = () => {
   const dispatch = useDispatch();
@@ -65,36 +65,19 @@ const VerifyEmail = () => {
             </Box>
           </Grid>
 
-          <Grid
-            container
-            sx={{
-              padding: "1%",
-            }}
+          <LoadingButtonStyle
+            fullWidth
+            color="inherit"
+            size="large"
+            // disabled={isLoading}
+            // type="submit"
+            variant="contained"
+            loading={isLoading}
+            sx={{ textTransform: "none", borderRadius: "10px", width: "15%" }}
+            onClick={handleresendEmail}
           >
-            <Button
-              disabled={isLoading}
-              sx={{
-                backgroundColor: "#2D58FF",
-                color: "#FFFFFF",
-                "&:hover": {
-                  backgroundColor: "#FF9A45",
-                  color: "#1D1D1D",
-                },
-              }}
-              onClick={handleresendEmail}
-            >
-              Resend Email
-            </Button>
-            {isLoading && (
-              <CircularProgress
-                size={30}
-                sx={{
-                  position: "absolute",
-                  color: "#FF9A45",
-                }}
-              />
-            )}
-          </Grid>
+            Resend Email
+          </LoadingButtonStyle>
 
           <Grid container sx={{ justifyContent: "center", paddingTop: "2%" }}>
             <Typography variant="h6" sx={{ color: "#090080" }}>

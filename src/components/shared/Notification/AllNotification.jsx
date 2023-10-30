@@ -35,47 +35,14 @@ import edit from "../../shared/CustomSvgIcons/wired-lineal-245-edit-document.jso
 import approve from "../../shared/CustomSvgIcons/wired-lineal-37-approve-checked-simple.json";
 import clock from "../../shared/CustomSvgIcons/wired-lineal-45-clock-time.json";
 import plus from "../../shared/CustomSvgIcons/wired-lineal-49-plus-circle.json";
-
-// import document from "../../shared/CustomSvgIcons/document-icon.json"
-// import link from "../../shared/CustomSvgIcons/wired-lineal-11-link-unlink-morph.json"
-// import photo from "../../shared/CustomSvgIcons/wired-lineal-54-photo-picturelandscape-gallery.json"
-// import eye from "../../shared/CustomSvgIcons/wired-lineal-69-eye.json"
-// import bar from "../../shared/CustomSvgIcons/wired-lineal-153-bar-chart-growth.json"
-// import trash from "../../shared/CustomSvgIcons/wired-lineal-185-trash-bin.json"
-// import share1 from "../../shared/CustomSvgIcons/wired-lineal-259-share-arrow.json"
-// import avatarMale from "../../shared/CustomSvgIcons/wired-lineal-268-avatar-man.json"
-// import avatarFemale from "../../shared/CustomSvgIcons/wired-lineal-269-avatar-female.json"
-// import coins from "../../shared/CustomSvgIcons/wired-lineal-298-coins.json"
-// import bookmark from "../../shared/CustomSvgIcons/wired-lineal-400-bookmark-morph.json"
-// import it from "../../shared/CustomSvgIcons/wired-lineal-680-it-developer.json"
-// import share2 from "../../shared/CustomSvgIcons/wired-lineal-751-share.json"
-// import privacy from "../../shared/CustomSvgIcons/wired-lineal-966-privacy-policy.json"
-// import circle from "../../shared/CustomSvgIcons/wired-lineal-1414-circle.json"
-// import triangle from "../../shared/CustomSvgIcons/wired-lineal-1416-triangle.json"
-// import rounded from "../../shared/CustomSvgIcons/wired-lineal-1417-rounded-square.json"
-// import rectangle from "../../shared/CustomSvgIcons/wired-lineal-1421-rectangle.json"
 import polygon from "../../shared/CustomSvgIcons/wired-lineal-1422-polygon.json";
 
 // import ChangeRoleIcons
 const convertDate = (date) => {
   return dayjs(date).format("DD MMM hh:mm A");
 };
-const boxUnReadStyle = {
-  borderTop: "1px solid #fff",
-  padding: "25px",
-};
 
-const boxReadStyle = {
-  borderRadius: "5px",
-  padding: "10px",
-};
 const formattedDate = (rawTime) => convertDate(rawTime);
-
-const style = {
-  height: "100%",
-  padding: "7px",
-  borderRadius: "50%",
-};
 
 const mediumOptions = {
   // loop: true,
@@ -235,7 +202,7 @@ const AllNotification = () => {
       <Box
         sx={{
           width: "100%",
-          height: "85%",
+          height: "80%",
           overflow: "auto",
           textAlign: "left",
           px: "16px",
@@ -244,14 +211,18 @@ const AllNotification = () => {
         {notifications.map((notification) => (
           <Box
             sx={{
-              backgroundColor: "neutral.N000",
+              // backgroundColor: "neutral.N000",
               display: "flex",
               justifyContent: "space-between",
               borderBottom: "1px solid #E6ECF5",
               py: 5,
+              fontSize: "12px",
+              padding: "10px",
+              borderTop: "1px solid #fff",
+              backgroundColor: notification.isRead ? "neutral.N100" : "neutral.990",
             }}
             key={notification._id}
-            style={notification.isRead ? boxReadStyle : boxUnReadStyle}
+            // style={notification.isRead ? boxReadStyle : boxUnReadStyle}
           >
             <Box
               sx={{

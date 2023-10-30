@@ -47,7 +47,7 @@ const StickyDocViewTableColumn = ({ column }) => {
     <>
       <TableCell className="docrow">
         {/* {column.isNDASigned && column.isDocumentsSubmitted !== "pending" && ( */}
-        <Box sx={{ display: "flex", gap: 1 }}>
+        <Box sx={{ display: "flex", gap: 1, justifyContent: "center" }}>
           {column.isDocumentsSubmitted !== "pending" && (
             <DescriptionIcon
               onClick={() =>

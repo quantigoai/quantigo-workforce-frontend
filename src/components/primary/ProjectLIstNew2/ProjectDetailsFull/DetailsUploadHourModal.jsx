@@ -61,7 +61,7 @@ const ButtonStyle = styled(Button)({
   },
 });
 
-const DetailsUploadHourModal = ({ openModal, setOpen }) => {
+const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { projectDrawer } = useSelector((state) => state.projectDrawer);
   const [selectedFile, setSelectedFile] = useState([]);
@@ -78,6 +78,7 @@ const DetailsUploadHourModal = ({ openModal, setOpen }) => {
     setSelectedFile([]);
     setCoverImage(null);
   };
+
   const uploadRequest = async (data) => {
     try {
       return axios.patch(`${url}/project-drawer/upload-hours/${data.id}`, data.hoursData, {
@@ -92,6 +93,7 @@ const DetailsUploadHourModal = ({ openModal, setOpen }) => {
       throw new Error(error.response.data.message);
     }
   };
+
   const handleImage = (e) => {
     setCoverImageFile(e[0]);
     setSelectedFile(e[0]);
@@ -127,8 +129,9 @@ const DetailsUploadHourModal = ({ openModal, setOpen }) => {
       hoursData: formData,
     };
     handleClose();
-    await toast.responsePromise(uploadRequest(data), {
+    await toast.responsePromise(uploadRequest(data),setDataLoading, {
       initialMessage: "Effective hours is Uploading...",
+      inPending: () => { },
       afterSuccess: (data) => {
         dispatch(updateProjectDrawerManually(data.data.projectDrawer));
       },

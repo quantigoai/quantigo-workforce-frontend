@@ -33,10 +33,16 @@ const useToaster = () => {
     }
   };
 
-  const responsePromise = async (request, { initialMessage = "Loading...", afterSuccess, afterError }) => {
+  const responsePromise = async (
+    request,
+    setDataLading,
+    { initialMessage = "Loading...", inPending, afterSuccess, afterError }
+  ) => {
     await toast.promise(request, {
       pending: {
         render() {
+          inPending();
+          setDataLading(true);
           return `${initialMessage}`;
         },
         icon: true,
@@ -44,6 +50,7 @@ const useToaster = () => {
       success: {
         render({ data }) {
           afterSuccess(data);
+          setDataLading(false);
           return `${data.data.message}`;
         },
         icon: "🤙",
@@ -51,6 +58,7 @@ const useToaster = () => {
       error: {
         render({ data }) {
           afterError(data);
+          setDataLading(false);
           return data.response.data.message;
         },
       },

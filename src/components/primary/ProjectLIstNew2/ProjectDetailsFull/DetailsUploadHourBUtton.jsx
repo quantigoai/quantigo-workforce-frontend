@@ -1,18 +1,24 @@
+import { LoadingButton } from "@mui/lab";
 import { Button, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../customHooks/useToaster";
-import { approveProjectHistory, rejectProjectHistory } from "../../../../features/slice/projectDrawerSlice";
+import {
+  approveProjectHistory,
+  rejectHistoryAPIRequest,
+  updateProjectDrawerManually,
+} from "../../../../features/slice/projectDrawerSlice";
 import DetailsUploadHourModal from "./DetailsUploadHourModal";
 import HoursRejectModal from "./HoursRejectModal";
 import ModalAcceptReject from "./ModalAcceptReject";
 
 const DetailsUploadHourBUtton = ({ role, value }) => {
-    const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const [openAccept, setOpenAccept] = React.useState(false);
   const [openReject, setOpenReject] = React.useState(false);
   const [rejectionCause, setRejectionCause] = useState("");
   const { projectDrawer, isLoading } = useSelector((state) => state.projectDrawer);
+  const [dataLoading, setDataLoading] = useState(false);
   const dispatch = useDispatch();
   const toast = useToaster();
   const handleOpen = () => setOpen(true);
@@ -39,32 +45,44 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
       }
     });
   };
-  const handleRejectHours = () => {
+  const handleRejectHours = async () => {
     const data = {
       id: projectDrawer._id,
       rejectionCause: rejectionCause,
     };
-
-    dispatch(rejectProjectHistory(data)).then((action) => {
-      if (action.payload?.status === 200) {
+    await toast.responsePromise(rejectHistoryAPIRequest(data), setDataLoading, {
+      initialMessage: "Effective hours is Rejecting...",
+      inPending: () => {
         setOpenReject(false);
-        toast.trigger(action.payload.data.message, "success");
-      } else {
+      },
+      afterSuccess: (data) => {
         setOpenReject(false);
-        toast.trigger(action.error.message, "error");
-      }
+        dispatch(updateProjectDrawerManually(data.data.projectDrawer));
+      },
+      afterError: () => {
+        setOpenReject(false);
+      },
     });
+    // dispatch(rejectProjectHistory(data)).then((action) => {
+    //   if (action.payload?.status === 200) {
+    //     setOpenReject(false);
+    //     toast.trigger(action.payload.data.message, "success");
+    //   } else {
+    //     setOpenReject(false);
+    //     toast.trigger(action.error.message, "error");
+    //   }
+    // });
   };
 
   return (
     <>
       {value === "completed" ? (
         <>
-          <Button
+          <LoadingButton
+            loading={dataLoading}
             sx={{
               backgroundColor: "#FFAB00",
               color: "#FFF",
-
               fontSize: "12px",
               fontWeight: "500",
               borderRadius: "6px",
@@ -76,14 +94,13 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
               },
               mr: 2,
             }}
-            // variant="contained"
             onClick={handleOpen}
           >
             <i className="ri-upload-2-line"></i>
             <Typography variant="body" sx={{ ml: 1, textTransform: "none", fontWeight: "500" }}>
               Upload Effective Hour
             </Typography>
-          </Button>
+          </LoadingButton>
         </>
       ) : (
         <>
@@ -109,10 +126,8 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
               Hours Accept
             </Typography>
           </Button>
-          <Button
-            // disabled={params.isVerified}
-            // variant="contained"
-            // onClick={() => handleRejectHours()}
+          <LoadingButton
+            loading={dataLoading}
             onClick={handleOpenReject}
             sx={{
               backgroundColor: "#FF4757",
@@ -121,7 +136,6 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
               fontWeight: "500",
               borderRadius: "6px",
               height: "30px",
-              // width: "132px",
               "&:hover": {
                 backgroundColor: "#FF4757",
                 color: "#FFF",
@@ -133,7 +147,7 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
             <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
               Hours Reject
             </Typography>
-          </Button>
+          </LoadingButton>
         </>
       )}
       <HoursRejectModal
@@ -145,7 +159,7 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
         isLoading={isLoading}
       />
       <ModalAcceptReject open={openAccept} handleClose={handleClose} handleAcceptHours={handleAcceptHours} />
-      <DetailsUploadHourModal openModal={open} setOpen={setOpen} />
+      <DetailsUploadHourModal setDataLoading={setDataLoading} openModal={open} setOpen={setOpen} />
     </>
   );
 };

@@ -30,6 +30,23 @@ const initialState = {
   error: null,
 };
 
+export const rejectHistoryAPIRequest = async (data) => {
+  const { id, rejectionCause } = data;
+  try {
+    return await axios.patch(
+      `${url}/project-history/reject-history/${id}`,
+      { rejectionCause },
+      {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+      }
+    );
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};
+
 export const getAllProjectDrawers = createAsyncThunk("/project-drawer/", async (data) => {
   try {
     const { search, pagination, filteredData, ascDescOption } = data;
@@ -228,20 +245,7 @@ export const approveProjectHistory = createAsyncThunk("/project-history/approved
   }
 });
 export const rejectProjectHistory = createAsyncThunk("/project-history/reject-history", async (data) => {
-  const { id, rejectionCause } = data;
-  try {
-    return await axios.patch(
-      `${url}/project-history/reject-history/${id}`,
-      { rejectionCause },
-      {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      }
-    );
-  } catch (error) {
-    throw new Error(error.response.data.message);
-  }
+  return await rejectHistoryAPIRequest(data);
 });
 export const approveProjectPayment = createAsyncThunk("project-history/approved-payment", async (id) => {
   try {

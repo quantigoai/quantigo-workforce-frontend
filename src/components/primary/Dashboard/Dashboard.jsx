@@ -127,17 +127,17 @@ const Dashboard = () => {
         <>
           <Box sx={{ padding: "1%", height: "100%" }}>
             {user.user.isVerified ? (
-              role === "level_0_annotator" ? (
+              role === "level_1_annotator" ||
+              role === "level_2_annotator" ||
+              role === "level_3_annotator" ||
+              role === "reviewer" ? (
                 <>
                   {/* <CongratulationComponents /> */}
                   <AnnotatorLandingPage />
                 </>
               ) : (
                 <>
-                  {role === "level_1_annotator" ||
-                  role === "level_2_annotator" ||
-                  role === "level_3_annotator" ||
-                  role === "reviewer" ? (
+                  {role === "level_0_annotator" ? (
                     // <>
                     //   <Box
                     //     container

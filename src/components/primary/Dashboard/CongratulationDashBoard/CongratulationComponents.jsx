@@ -37,26 +37,26 @@ const CongratulationComponents = () => {
                     borderBottomLeftRadius: "8px",
                   }}
                 >
-                  <Box>
+                  <Box sx={{ width: "90%", margin: "auto" }}>
                     {" "}
-                    <img src={congImg} />
+                    <img style={{ width: "100%", margin: "auto" }} src={congImg} />
                   </Box>
                 </Grid>
                 <Grid item xs={8} md={7} lg={7} xl={8}>
                   <Box sx={{ padding: "3%" }}>
                     <Grid xs={12}>
-                      <Typography variant="wpf_h4_semiBold" sx={{ color: "neutral.750" }}>
+                      <Typography variant="wpf_h5_medium" sx={{ color: "neutral.750" }}>
                         Congratulations
                       </Typography>
                     </Grid>
                     <Grid xs={12}>
-                      <Typography variant="wpf_p3_regular" sx={{ color: "neutral.N300" }}>
+                      <Typography variant="wpf_p4_regular" sx={{ color: "neutral.N300" }}>
                         Quantigo Workforce platform is a place where you can earn money by doing annotation work. It is
                         a very simple process. You just have to follow the steps given below. We give you the
                         opportunity to grow your career with us. We are always with you to help yous.
                       </Typography>
                     </Grid>
-                    <Grid xs={12} sx={{ paddingTop: "3%" }}>
+                    <Grid xs={10} sx={{ paddingTop: "3%" }}>
                       <Button
                         sx={{
                           textTransform: "none",
@@ -64,12 +64,17 @@ const CongratulationComponents = () => {
                           border: "1px solid #FFAB00",
                           backgroundColor: "#FFF8EB",
                           color: "#FF9900",
+                          fontSize: {
+                            lg: "10px",
+                            xl: "12px",
+                            xxl: "12px",
+                          },
                           "&:hover": {
                             backgroundColor: "#FF9A45",
                             color: "#1D1D1D",
                           },
-                          width: "126px",
-                          height: "40px",
+                          width: "20%",
+                          height: "30%",
                         }}
                       >
                         Get Started

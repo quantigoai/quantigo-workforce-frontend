@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Avatar, Box, Stack} from "@mui/material";
+import { Avatar, Box, Stack, Typography } from "@mui/material";
 import React from "react";
 
 const UserBasicInfoCell = ({ name, email, image }) => {
@@ -23,8 +23,9 @@ const UserBasicInfoCell = ({ name, email, image }) => {
         src={image}
       />
       <Box>
-        <div>{name}</div>
-        <div>{email}</div>
+        <Typography variant="wpf_p4_semiBold_2">{name}</Typography>
+        <br />
+        <Typography variant="wpf_p5_regular">{email}</Typography>
       </Box>
     </Stack>
   );

@@ -140,9 +140,11 @@ const MyProfileIndex = () => {
                 paddingLeft: "2%",
                 paddingRight: "2%",
                 // height: "100%",
+                // backgroundColor:"red",
                 height: {
                   xl: "531px",
                   xxl: "739px",
+                  lg:"470px"
                 },
               }}
             >
@@ -151,7 +153,8 @@ const MyProfileIndex = () => {
                   // height: "90%",
                   height: {
                     xl: "478px",
-                    xxl: "665px",
+                    xxl: "710px",
+                    lg:"420px"
                   },
                   overflowY: "auto",
                 }}
@@ -319,7 +322,8 @@ const MyProfileIndex = () => {
                   // height: "10%",
                   height: {
                     xl: "53px",
-                    xxl: "73px"
+                    xxl: "73px",
+                    lg:"50px"
                   },
                 }}
               >

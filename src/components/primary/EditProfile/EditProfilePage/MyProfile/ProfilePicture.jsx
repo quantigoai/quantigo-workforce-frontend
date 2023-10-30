@@ -22,10 +22,10 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
           justifyContent: "center",
         }}>
         <Grid container sx={{ padding: "1%", backgroundColor: "" }}>
-          <Grid item xs={10}>
+          <Grid item xs={9} >
             <Grid container>
-              <Grid item xs={1.5} sx={{ paddingLeft: "%" }}>
-                <Box sx={{ position: "relative" }}>
+              {/* <Grid item xs={1.5} lg={2} sx={{}}> */}
+                <Box sx={{ position: "relative",paddingRight:"2%" }}>
                   <Avatar
                     alt="Profile Picture"
                     src={!coverImage ? image : coverImage}
@@ -90,7 +90,7 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                     )}
                   </Box>
                 </Box>
-              </Grid>
+              {/* </Grid> */}
               <Grid item xs={7} sx={{ paddingTop: "2%" }}>
                 <Grid container>
                   <Grid container>
@@ -163,21 +163,22 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
             </Grid>
           </Grid>
 
-          <Grid item xs={2} sx={{ justifyContent: "center", backgroundColor: "", paddingRight: "1%" }}>
-            <Grid container sx={{ justifyContent: "right", paddingTop: "14%" }}>
+          <Grid item xs={3} sx={{ justifyContent: "center", backgroundColor: "", paddingRight: "1%" }}>
+            <Grid container sx={{ justifyContent: "right", paddingTop: "10%",  }}>
               {!editAble && (
                 <Button
                   variant="outlined"
                   sx={{
                     borderRadius: "32px",
                     textTransform: "none",
-                    height: "34px",
-                    width: "121px",
+                    height: "34px",  
+                    width: "131px",
+                    
                   }}
                   onClick={() => handleEditProfile()}
                   disableRipple>
                   <Box sx={{ paddingRight: "10%" }}>
-                    <Typography sx={{ fontSize: "12px" }}> Edit Profile</Typography>
+                    <Typography sx={{ fontSize: "14px" }}> Edit Profile</Typography>
                   </Box>{" "}
                   <img src={editIcon} />{" "}
                 </Button>

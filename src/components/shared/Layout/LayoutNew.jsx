@@ -310,19 +310,20 @@ export default function LayoutNew({ children }) {
           }}
           sx={{
             height: "100vh",
-            backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
+            backgroundColor: isLightTheme ? "#2D58FF" : "#1D2939",
           }}
         >
           <Drawer
             PaperProps={{
               sx: {
-                backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
+                backgroundColor: isLightTheme ? "#2D58FF" : "#1D2939",
                 "&::-webkit-scrollbar": {
                   display: "none",
                 },
                 "&-ms-overflow-style:": {
                   display: "none",
                 },
+                borderRight: "none",
               },
             }}
             variant="permanent"
@@ -334,14 +335,16 @@ export default function LayoutNew({ children }) {
                 position: "sticky",
                 top: 0,
                 zIndex: 1213,
-                backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
+                backgroundColor: isLightTheme ? "#2D58FF" : "#1D2939",
               }}
             >
               <Box
                 sx={{
                   display: "flex",
                   justifyContent: !open ? "center" : "space-between",
-                  width: "80%",
+                  width: "100%",
+                  pl:"8%",
+                  pr:"6%",
                   alignItems: "center",
                 }}
               >
@@ -379,9 +382,9 @@ export default function LayoutNew({ children }) {
             <Box
               sx={{
                 height: {
-                  lg: "75%",
-                  xl: "75%",
-                  xxl: "80%",
+                  lg: "72%",
+                  xl: "72%",
+                  xxl: "75%",
                 },
                 overflowX: "hidden",
                 scrollbarWidth: "none", // Firefox scrollbar width
@@ -390,7 +393,7 @@ export default function LayoutNew({ children }) {
                 },
               }}
             >
-              <Box sx={{ paddingLeft: "11%" }}>
+              <Box sx={{ paddingLeft: "9%" }}>
                 {open && (
                   <Typography variant="wpf_p4_semiBold" sx={{ color: "#B6C9F0" }}>
                     MAIN MENU

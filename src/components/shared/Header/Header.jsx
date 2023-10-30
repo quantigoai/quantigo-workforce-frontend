@@ -17,7 +17,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Lottie from "lottie-react";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 // import logOutIcon from "../../../assets/images/logoutIcon.svg";
 import useReset from "../../../customHooks/useReset";
 import { setTheme } from "../../../features/slice/themeSlice";
@@ -69,9 +69,12 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const location = useLocation();
 
   const handleGoBack = () => {
-    navigate(-1);
+    if (location.pathname !== "/" && location.pathname !== "/dashboard") {
+      navigate(-1);
+    }
   };
   const openPopover = Boolean(notificationOpen);
   const id = openPopover ? "simple-popover" : undefined;

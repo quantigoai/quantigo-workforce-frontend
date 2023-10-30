@@ -15,6 +15,7 @@ const StickyDocViewTableHead = ({ column }) => {
     <>
       <TableCell
         className="doccolhead"
+        align="center"
         sx={{
           minWidth: column?.width || "140px",
         }}

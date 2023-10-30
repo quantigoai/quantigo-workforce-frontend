@@ -35,7 +35,7 @@ table {
 /* First left cell header */
 .first-head {
     border-right: 1px solid #EBF0F5;
-    border-bottom: 2px solid #F2F6FC;
+    /* border-bottom: 2px solid #F2F6FC; */
     position: sticky;
     top: 0;
     left :0;
@@ -49,7 +49,7 @@ table {
 /* Last right cell header */
 .last-head {
     border-left: 1px solid #EBF0F5;
-    border-bottom: 2px solid #F2F6FC;
+    /* border-bottom: 2px solid #F2F6FC; */
     position: sticky;
     top: 0;
     right :0;
@@ -58,11 +58,10 @@ table {
 
 .doccolhead{
     border-left: 1px solid #EBF0F5;
-    border-bottom: 2px solid #F2F6FC;
+    /* border-bottom: 2px solid #F2F6FC; */
     position: sticky;
     top: 0;
     right :140px;
-    /* background-color: aqua; */
     z-index: 231;
 }
 

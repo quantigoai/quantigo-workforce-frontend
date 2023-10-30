@@ -33,7 +33,7 @@ const useToaster = () => {
     }
   };
 
-  const responsePromise = async (request, { initialMessage = "Loading...", afterSuccess }) => {
+  const responsePromise = async (request, { initialMessage = "Loading...", afterSuccess, afterError }) => {
     await toast.promise(request, {
       pending: {
         render() {
@@ -50,6 +50,7 @@ const useToaster = () => {
       },
       error: {
         render({ data }) {
+          afterError(data);
           return data.response.data.message;
         },
       },

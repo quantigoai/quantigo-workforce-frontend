@@ -17,7 +17,7 @@ export const MyTextField = styled(TextField)(() => ({
     border: "2px solid #E6ECF5 !important",
     borderRadius: "8px",
   },
-  "& .MuiInputBase-root": { height: "78%", fontSize: "14px" },
+  "& .MuiInputBase-root": { height: "100%", fontSize: "14px" },
 }));
 export const MySelect = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
@@ -61,15 +61,13 @@ const HoursRejectModal = ({
         open={openModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+        aria-describedby="modal-modal-description">
         <Box
           sx={{
             ...style,
             height: { xl: "50%", lg: "%" },
             width: { xl: "35%", lg: "40%" },
-          }}
-        >
+          }}>
           <Box sx={{ flex: "0 0 5%" }}>
             <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Hours Rejection"} />
           </Box>
@@ -79,8 +77,7 @@ const HoursRejectModal = ({
               flex: "1",
 
               padding: "2%",
-            }}
-          >
+            }}>
             <Grid container style={{ padding: "1%" }}>
               <Grid container sx={{ paddingBottom: "1%" }}>
                 <Typography
@@ -90,8 +87,7 @@ const HoursRejectModal = ({
                     mb: 0,
                     // color: isLightTheme ? "#091E42" : "#FFFFFF",
                     // paddingBottom:"1%"
-                  }}
-                >
+                  }}>
                   Status
                 </Typography>
 
@@ -103,8 +99,7 @@ const HoursRejectModal = ({
                   disabled
                   defaultValue={"Rejected"}
                   // placeholder="Select"
-                  sx={{ height: "50%" }}
-                ></MySelect>
+                  sx={{ height: "50%" }}></MySelect>
               </Grid>
               <Grid container style={{ backgroundColor: "" }}>
                 <Typography
@@ -114,15 +109,22 @@ const HoursRejectModal = ({
                     mb: 1,
                     // color: isLightTheme ? "#091E42" : "#FFFFFF",
                     paddingBottom: "0%",
-                  }}
-                >
+                  }}>
                   Rejection Cause
                 </Typography>
                 <MyTextField
                   variant="outlined"
                   fullWidth
                   multiline
-                  rows={5}
+                  rows={
+                    window.innerWidth >= 1920 // xxl screen size
+                      ? 9
+                      : window.innerWidth >= 1280 // xl screen size
+                      ? 5
+                      : window.innerWidth >= 992 // lg screen size
+                      ? 5
+                      : 3 // Default number of rows for smaller screens
+                  }
                   InputProps={{ disableUnderline: true }}
                   onChange={(e) => handleRejectCause(e)}
                 />
@@ -141,8 +143,7 @@ const HoursRejectModal = ({
               //   backgroundColor:"",
               bottom: "0px",
               borderRadius: "8px",
-            }}
-          >
+            }}>
             <Grid container sx={{ padding: "2%" }}>
               <Grid item xs={6}>
                 <Button
@@ -158,8 +159,7 @@ const HoursRejectModal = ({
                       border: "1px solid #F4F7FE",
                     },
                   }}
-                  onClick={() => handleClose()}
-                >
+                  onClick={() => handleClose()}>
                   Cancel
                 </Button>
               </Grid>
@@ -185,8 +185,7 @@ const HoursRejectModal = ({
                         // border: "1px solid #2E58FF",
                       },
                     }}
-                    onClick={() => handleRejectHours()}
-                  >
+                    onClick={() => handleRejectHours()}>
                     Save Changes
                   </LoadingButton>
                 </Grid>

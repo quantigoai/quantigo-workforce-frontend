@@ -47,6 +47,28 @@ export const rejectHistoryAPIRequest = async (data) => {
   }
 };
 
+export const approveProjectHistoryAPIRequest = async (id) => {
+  try {
+    return await axios.patch(`${url}/project-history/approved-history/${id}`, id, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};
+export const approveProjectPaymentAPLRequest = async (id) => {
+  try {
+    return await axios.patch(`${url}/project-history/approved-payment/${id}`, id, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};
 export const getAllProjectDrawers = createAsyncThunk("/project-drawer/", async (data) => {
   try {
     const { search, pagination, filteredData, ascDescOption } = data;
@@ -234,29 +256,32 @@ export const uploadEffectiveHours = createAsyncThunk("project-drawer/upload-hour
 });
 
 export const approveProjectHistory = createAsyncThunk("/project-history/approved-history", async (id) => {
-  try {
-    return await axios.patch(`${url}/project-history/approved-history/${id}`, id, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  } catch (error) {
-    throw new Error(error.response.data.message);
-  }
+  return await approveProjectHistoryAPIRequest(id);
+  // try {
+  //   return await axios.patch(`${url}/project-history/approved-history/${id}`, id, {
+  //     headers: {
+  //       Authorization: `Bearer ${realToken()}`,
+  //     },
+  //   });
+  // } catch (error) {
+  //   throw new Error(error.response.data.message);
+  // }
 });
 export const rejectProjectHistory = createAsyncThunk("/project-history/reject-history", async (data) => {
   return await rejectHistoryAPIRequest(data);
 });
 export const approveProjectPayment = createAsyncThunk("project-history/approved-payment", async (id) => {
-  try {
-    return await axios.patch(`${url}/project-history/approved-payment/${id}`, id, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  } catch (error) {
-    throw new Error(error.response.data.message);
-  }
+ return await approveProjectPaymentAPLRequest(id)
+ 
+  // try {
+  //   return await axios.patch(`${url}/project-history/approved-payment/${id}`, id, {
+  //     headers: {
+  //       Authorization: `Bearer ${realToken()}`,
+  //     },
+  //   });
+  // } catch (error) {
+  //   throw new Error(error.response.data.message);
+  // }
 });
 export const getMyAvailableProjects = createAsyncThunk("/project-drawer/myAvailAbleProjects", async () => {
   try {

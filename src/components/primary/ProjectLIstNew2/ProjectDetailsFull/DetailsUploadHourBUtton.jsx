@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../customHooks/useToaster";
 import {
   approveProjectHistory,
+  approveProjectHistoryAPIRequest,
   rejectHistoryAPIRequest,
   updateProjectDrawerManually,
 } from "../../../../features/slice/projectDrawerSlice";
@@ -34,16 +35,29 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
   const handleOpenReject = () => {
     setOpenReject(true);
   };
-  const handleAcceptHours = () => {
-    dispatch(approveProjectHistory(projectDrawer._id)).then((action) => {
-      if (action.payload?.status === 200) {
+  const handleAcceptHours = async () => {
+    await toast.responsePromise(approveProjectHistoryAPIRequest(projectDrawer._id), setDataLoading, {
+      initialMessage: "Effective hours is Accepting...",
+      inPending: () => {
         setOpenAccept(false);
-        toast.trigger(action.payload.data.message, "success");
-      } else {
+      },
+      afterSuccess: (data) => {
         setOpenAccept(false);
-        toast.trigger(action.error.message, "error");
-      }
+        dispatch(updateProjectDrawerManually(data.data.projectDrawer));
+      },
+      afterError: () => {
+        setOpenAccept(false);
+      },
     });
+    // dispatch(approveProjectHistory(projectDrawer._id)).then((action) => {
+    //   if (action.payload?.status === 200) {
+    //     setOpenAccept(false);
+    //     toast.trigger(action.payload.data.message, "success");
+    //   } else {
+    //     setOpenAccept(false);
+    //     toast.trigger(action.error.message, "error");
+    //   }
+    // });
   };
   const handleRejectHours = async () => {
     const data = {
@@ -91,11 +105,17 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
               border: "1px solid #FFAB00",
               "&:hover": {
                 backgroundColor: "#F2A200",
+                color: "#FFF",
+              },
+              "&.Mui-disabled": {
+                backgroundColor: "#F0D8A8",
+                color: "#FFFFFF",
+
+                border: "1px solid #F0D8A8",
               },
               mr: 2,
             }}
-            onClick={handleOpen}
-          >
+            onClick={handleOpen}>
             <i className="ri-upload-2-line"></i>
             <Typography variant="body" sx={{ ml: 1, textTransform: "none", fontWeight: "500" }}>
               Upload Effective Hour
@@ -104,9 +124,8 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
         </>
       ) : (
         <>
-          <Button
-            // variant="contained"
-            // onClick={() => handleAcceptHours()}
+          <LoadingButton
+            loading={dataLoading}
             onClick={handleOpenAccept}
             sx={{
               backgroundColor: "#2E58FF",
@@ -118,14 +137,17 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
               height: "30px",
               width: "132px",
               "&:hover": { backgroundColor: "#244EF5", color: "#FFF" },
+              "&.Mui-disabled": {
+                backgroundColor: "#B6C9F0",
+                color: "#FFFFFF",
+              },
               mr: 2,
-            }}
-          >
+            }}>
             <i style={{}} className="ri-checkbox-circle-fill"></i>
             <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
               Hours Accept
             </Typography>
-          </Button>
+          </LoadingButton>
           <LoadingButton
             loading={dataLoading}
             onClick={handleOpenReject}
@@ -140,9 +162,12 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
                 backgroundColor: "#FF4757",
                 color: "#FFF",
               },
+              "&.Mui-disabled": {
+                backgroundColor: "#F5C4C8",
+                color: "#FFFFFF",
+              },
               mr: 2,
-            }}
-          >
+            }}>
             <i style={{}} className="ri-close-circle-fill"></i>
             <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
               Hours Reject

@@ -7,6 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setActivePath } from "../../../features/slice/activePathSlice";
 import CongratulationComponents from "../Dashboard/CongratulationDashBoard/CongratulationComponents";

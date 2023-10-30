@@ -1,14 +1,15 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import moment from "moment/moment";
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../../customHooks/useToaster";
 import { myProfileEdit, uploadMyImage } from "../../../../../features/slice/userSlice";
+import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
+// import FormProvider from "../../../../shared/FormProvider/FormProvider";
 import CommonFieldTest from "../CommonFieldTest";
 import CommonSelectField from "../CommonSelectField";
 import ProfilePicture from "./ProfilePicture";
-import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
 
 const MyProfileIndex = () => {
   const { user, isLoading } = useSelector((state) => state.user);
@@ -87,12 +88,27 @@ const MyProfileIndex = () => {
   const DOB = moment.utc(user.dob).format("MMM Do, YYYY");
   return (
     <>
-      <Box sx={{
-        flex: "1", overflowY: "auto", backgroundColor: "",
-        // height: "85vh"
-        height: { xxl: "85vh", xl: "85vh", lg: "82vh" },
-      }}>
-        <Box sx={{ flex: "0 0 auto", height: { xxl: "15%", xl: "17%", lg: "17%" }, backgroundColor: "" }}>
+      <Box
+        sx={{
+          flex: "1",
+          height: {
+            lg: "82vh",
+            xl: "100%",
+            xxl: "100%",
+          },
+        }}
+      >
+        <Box
+          sx={{
+            // flex: "0 0 auto",
+            height: {
+              lg: "17%",
+              xl: "17%",
+              xxl: "15%",
+            },
+            // backgroundColor: "yellow",
+          }}
+        >
           <ProfilePicture
             user={user}
             editAble={editAble}
@@ -104,221 +120,274 @@ const MyProfileIndex = () => {
         </Box>
 
         <Box
-           sx={{
-            flex: "1",
+          sx={{
+            // flex: "1",
             overflowY: "auto",
             "&::-webkit-scrollbar": {
               width: "0",
             },
-            backgroundColor: "",
-            height: { xxl: "85%", xl: "83%", lg: "83%" },
-          }}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Box sx={{ paddingLeft: "2%", paddingRight: "2%" }}>
-              <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
-                <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
-                  Personal Information
-                </Typography>
-              </Grid>
+            height: {
+              lg: "83%",
+              xl: "83%",
+              xxl: "85%",
+            },
+            // backgroundColor: "black",
+          }}
+        >
+          <FormProvider onSubmit={handleSubmit(onSubmit)}>
+            <Box
+              sx={{
+                paddingLeft: "2%",
+                paddingRight: "2%",
+                // height: "100%",
+                height: {
+                  xl: "531px",
+                  xxl: "739px",
+                },
+              }}
+            >
+              <Box
+                sx={{
+                  // height: "90%",
+                  height: {
+                    xl: "478px",
+                    xxl: "665px",
+                  },
+                  overflowY: "auto",
+                }}
+              >
+                <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
+                  <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
+                    Personal Information
+                  </Typography>
+                </Grid>
 
-              <Grid container spacing={0} sx={{ backgroundColor: "  " }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <CommonFieldTest
-                    name="firstName"
-                    label={"First Name"}
-                    defaultValue={user.firstName}
-                    disableItem={false}
-                    control={control}
-                    rules={{ required: false }}
-                    errors={errors}
-                    editAble={editAble}
-                  />
+                <Grid container spacing={0} sx={{ backgroundColor: " " }}>
+                  <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                    <CommonFieldTest
+                      name="firstName"
+                      label={"First Name"}
+                      defaultValue={user.firstName}
+                      disableItem={false}
+                      control={control}
+                      rules={{ required: false }}
+                      errors={errors}
+                      editAble={editAble}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <CommonFieldTest
+                      name="lastName"
+                      label={"Last Name"}
+                      defaultValue={user.lastName}
+                      disableItem={false}
+                      control={control}
+                      rules={{ required: false }}
+                      errors={errors}
+                      editAble={editAble}
+                    />
+                  </Grid>
                 </Grid>
-                <Grid item xs={6}>
-                  <CommonFieldTest
-                    name="lastName"
-                    label={"Last Name"}
-                    defaultValue={user.lastName}
-                    disableItem={false}
-                    control={control}
-                    rules={{ required: false }}
-                    errors={errors}
-                    editAble={editAble}
-                  />
+                <Grid container>
+                  <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                    <CommonFieldTest
+                      name="gender"
+                      label={"Gender"}
+                      defaultValue={capitalizeFirstLetter(user.gender)}
+                      disableItem={true}
+                      control={control}
+                      rules={{ required: false }}
+                      errors={errors}
+                      editAble={editAble}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <CommonFieldTest
+                      name="occupation"
+                      label={"Occupation"}
+                      defaultValue={user.occupation}
+                      disableItem={false}
+                      control={control}
+                      rules={{ required: false }}
+                      errors={errors}
+                      editAble={editAble}
+                    />
+                  </Grid>
                 </Grid>
-              </Grid>
-              <Grid container>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <CommonFieldTest
-                    name="gender"
-                    label={"Gender"}
-                    defaultValue={capitalizeFirstLetter(user.gender)}
-                    disableItem={true}
-                    control={control}
-                    rules={{ required: false }}
-                    errors={errors}
-                    editAble={editAble}
-                  />
+                <Grid container>
+                  <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                    <CommonFieldTest
+                      name="dob"
+                      label={"Date Of Birth"}
+                      defaultValue={DOB}
+                      disableItem={true}
+                      control={control}
+                      rules={{ required: false }}
+                      errors={errors}
+                      editAble={editAble}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <CommonSelectField
+                      name="bloodGroup"
+                      label={"Blood Group"}
+                      defaultValue={user.bloodGroup}
+                      disableItem={false}
+                      control={control}
+                      rules={{ required: false }}
+                      errors={errors}
+                      editAble={editAble}
+                    />
+                  </Grid>
                 </Grid>
-                <Grid item xs={6}>
-                  <CommonFieldTest
-                    name="occupation"
-                    label={"Occupation"}
-                    defaultValue={user.occupation}
-                    disableItem={false}
-                    control={control}
-                    rules={{ required: false }}
-                    errors={errors}
-                    editAble={editAble}
-                  />
+                <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
+                  <Typography sx={{ fontSize: "12px", color: "primary.B200" }}>Contact Info.</Typography>
                 </Grid>
-              </Grid>
-              <Grid container>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <CommonFieldTest
-                    name="dob"
-                    label={"Date Of Birth"}
-                    defaultValue={DOB}
-                    disableItem={true}
-                    control={control}
-                    rules={{ required: false }}
-                    errors={errors}
-                    editAble={editAble}
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <CommonSelectField
-                    name="bloodGroup"
-                    label={"Blood Group"}
-                    defaultValue={user.bloodGroup}
-                    disableItem={false}
-                    control={control}
-                    rules={{ required: false }}
-                    errors={errors}
-                    editAble={editAble}
-                  />
-                </Grid>
-              </Grid>
-              <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
-                <Typography sx={{ fontSize: "12px", color: "primary.B200" }}>Contact Info.</Typography>
-              </Grid>
-              <Grid container>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <CommonFieldTest
-                    name="phone"
-                    label={"Phone No."}
-                    defaultValue={user.phone}
-                    disableItem={false}
-                    control={control}
-                    rules={{ required: false }}
-                    errors={errors}
-                    editAble={editAble}
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <CommonFieldTest
-                    name="billingAccountNo"
-                    label={"Nagad No."}
-                    defaultValue={user.billingAccountNo}
-                    disableItem={false}
-                    control={control}
-                    rules={{ required: false }}
-                    errors={errors}
-                    editAble={editAble}
-                  />
-                </Grid>
-              </Grid>
-              <Grid container>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <CommonFieldTest
-                    name="email"
-                    label={"Email"}
-                    defaultValue={user.email}
-                    disableItem={true}
-                    control={control}
-                    rules={{ required: false }}
-                    errors={errors}
-                    editAble={editAble}
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <CommonFieldTest
-                    name="presentAddress"
-                    label={"Present Address"}
-                    defaultValue={user.presentAddress}
-                    disableItem={false}
-                    control={control}
-                    rules={{ required: false }}
-                    errors={errors}
-                    editAble={editAble}
-                  />
-                </Grid>
-              </Grid>
-              <Grid container>
-                <Grid item xs={12}>
-                  <CommonFieldTest
-                    name="permanentAddress"
-                    label={"Permanent Address"}
-                    defaultValue={user.permanentAddress}
-                    disableItem={false}
-                    control={control}
-                    rules={{ required: false }}
-                    errors={errors}
-                    editAble={editAble}
-                  />
-                </Grid>
-              </Grid>
 
-              <Grid container sx={{ paddingBottom: "1%", backgroundColor: "" }}>
-                {editAble && (
-                  <>
-                    
-                    <Box sx={{ paddingRight: "3%" }}>
-                      <Button
-                        type="submit"
-                        // variant="contained"
-                        disabled={isLoading}
+                <Grid container>
+                  <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                    <CommonFieldTest
+                      name="phone"
+                      label={"Phone No."}
+                      defaultValue={user.phone}
+                      disableItem={false}
+                      control={control}
+                      rules={{ required: false }}
+                      errors={errors}
+                      editAble={editAble}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <CommonFieldTest
+                      name="billingAccountNo"
+                      label={"Nagad No."}
+                      defaultValue={user.billingAccountNo}
+                      disableItem={false}
+                      control={control}
+                      rules={{ required: false }}
+                      errors={errors}
+                      editAble={editAble}
+                    />
+                  </Grid>
+                </Grid>
+
+                <Grid container>
+                  <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                    <CommonFieldTest
+                      name="email"
+                      label={"Email"}
+                      defaultValue={user.email}
+                      disableItem={true}
+                      control={control}
+                      rules={{ required: false }}
+                      errors={errors}
+                      editAble={editAble}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <CommonFieldTest
+                      name="presentAddress"
+                      label={"Present Address"}
+                      defaultValue={user.presentAddress}
+                      disableItem={false}
+                      control={control}
+                      rules={{ required: false }}
+                      errors={errors}
+                      editAble={editAble}
+                    />
+                  </Grid>
+                </Grid>
+                <Grid container>
+                  <Grid item xs={12}>
+                    <CommonFieldTest
+                      name="permanentAddress"
+                      label={"Permanent Address"}
+                      defaultValue={user.permanentAddress}
+                      disableItem={false}
+                      control={control}
+                      rules={{ required: false }}
+                      errors={errors}
+                      editAble={editAble}
+                    />
+                  </Grid>
+                </Grid>
+              </Box>
+
+              <Box
+                sx={{
+                  // py:3,
+                  // height: "10%",
+                  height: {
+                    xl: "53px",
+                    xxl: "73px"
+                  },
+                }}
+              >
+                <Grid
+                  container
+                  sx={{
+                    height: "100%",
+                  }}
+                >
+                  {editAble && (
+                    <>
+                      <Box
                         sx={{
-                          backgroundColor: "primary.B200",
-                          color: "neutral.N000",
-                          borderRadius: "8px",
-                          textTransform: "none",
-                          fontSize: "12px",
-                          width: "150px",
+                          display: "flex",
+                          alignItems: "center",
 
-                          "&:hover": {
+                          // p: 2
+                        }}
+                      >
+                        <Button
+                          type="submit"
+                          // variant="contained"
+                          disabled={isLoading}
+                          sx={{
+                            height: "40px",
                             backgroundColor: "primary.B200",
                             color: "neutral.N000",
-                          },
-                        }}>
-                        Save Changes
-                      </Button>
-                    </Box>
-
-                    <Button
-                      // variant="contained"
-                      // disabled={isLoading}
-                      onClick={() => setEditAble(false)}
-                      sx={{
-                        textTransform: "none",
-                        backgroundColor: "#F2F6FC",
-                        borderRadius: "8px",
-                        fontSize: "12px",
-                        color: "#253E5C",
-                        // padding: " 10px 16px",
-                        width: "150px",
-                        "&:hover": {
-                          background: "#F2F6FC",
-                        },
-                      }}>
-                      Cancel
-                    </Button>
-                  </>
-                )}
-              </Grid>
+                            borderRadius: "8px",
+                            textTransform: "none",
+                            fontSize: "12px",
+                            width: "150px",
+                            mr: 3,
+                            "&:hover": {
+                              backgroundColor: "primary.B200",
+                              color: "neutral.N000",
+                            },
+                          }}
+                        >
+                          Save Changes
+                        </Button>
+                        <Button
+                          // variant="contained"
+                          // disabled={isLoading}
+                          onClick={() => setEditAble(false)}
+                          sx={{
+                            height: "40px",
+                            textTransform: "none",
+                            backgroundColor: "#F2F6FC",
+                            borderRadius: "8px",
+                            fontSize: "12px",
+                            color: "#253E5C",
+                            // padding: " 10px 16px",
+                            width: "150px",
+                            "&:hover": {
+                              background: "#F2F6FC",
+                            },
+                          }}
+                        >
+                          Cancel
+                        </Button>
+                      </Box>
+                    </>
+                  )}
+                </Grid>
+              </Box>
               {/* <button type="submit">Submit</button> */}
             </Box>
-          </form>
+          </FormProvider>
         </Box>
       </Box>
     </>

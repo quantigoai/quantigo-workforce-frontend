@@ -1,11 +1,11 @@
-import {Grid} from "@mui/material";
+import { Grid } from "@mui/material";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
 import * as React from "react";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import ActivateAccount from "./ActivateAccount";
 import MyProfileIndex from "./MyProfile/MyProfileIndex";
 import PasswordChangeIndex from "./PasswordChange/PasswordChangeIndex";
@@ -19,10 +19,22 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
-      {...other}>
+      {...other}
+      style={{
+        height: "100%",
+        width: "100%",
+      }}
+    >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+        <Box
+          sx={{
+            p: 2,
+            pb: 0,
+            height: "100% ",
+            width: "100%",
+          }}
+        >
+          {children}
         </Box>
       )}
     </div>
@@ -51,27 +63,44 @@ export default function EditProfilePageIndex() {
 
   return (
     <>
-      <Box sx={{ padding: "1%", height: "100%" }}>
+      <Box
+        sx={{
+          height: "100%",
+          display: "flex",
+          width: "100%",
+          padding: "16px",
+        }}
+      >
         <Box
           sx={{
             width: "100%",
             height: "100%",
             borderRadius: "8px",
             backgroundColor: "neutral.N000",
-          }}>
+          }}
+        >
           <Grid
             container
             sx={{
               width: "100%",
               height: "100%",
               borderRadius: "8px",
-            }}>
+              padding: "16px",
+            }}
+          >
             <Grid
               item
               xs={2.5}
               xxl={2}
               xl={2.5}
-              sx={{ borderRight: "1px solid #E1E8F5",  display: "flex", flexDirection: "column", paddingTop: "1%" }}>
+              sx={{
+                borderRight: "1px solid #E1E8F5",
+                display: "flex",
+                flexDirection: "column",
+                height: "100%",
+                // paddingTop: "1%"
+              }}
+            >
               <Tabs
                 orientation="vertical"
                 variant="scrollable"
@@ -80,25 +109,27 @@ export default function EditProfilePageIndex() {
                 onChange={handleChange}
                 aria-label="Vertical tabs example"
                 sx={{
-                  height: "100%",
+                  height: "92%",
                   width: "95%",
-                  paddingTop: "5%",
+                  // paddingTop: "5%",
                   textAlign: "right",
-                  paddingLeft: "5%",
-                }}>
+                  // paddingLeft: "5%",
+                }}
+              >
                 <Tab
                   sx={{
                     alignItems: "flex-start",
                     borderRadius: value === 0 ? "8px" : "none",
                     backgroundColor: value === 0 ? "primary.B008" : "",
-                    height:value === 0 ? "40px" : "",
+                    height: value === 0 ? "40px" : "",
                     // backgroundColor:"red"
                   }}
                   label={
                     <Typography
                       sx={{ textTransform: "none" }}
                       variant="wpf_p3_semiBold"
-                      color={value === 0 ? "primary.B200" : "neutral.700"}>
+                      color={value === 0 ? "primary.B200" : "neutral.700"}
+                    >
                       My Profile
                     </Typography>
                   }
@@ -109,13 +140,14 @@ export default function EditProfilePageIndex() {
                     alignItems: "flex-start",
                     borderRadius: value === 1 ? "8px" : "none",
                     backgroundColor: value === 1 ? "primary.B008" : "",
-                    height:value === 1 ? "40px" : "",
+                    height: value === 1 ? "40px" : "",
                   }}
                   label={
                     <Typography
                       sx={{ textTransform: "none" }}
                       variant="wpf_p3_semiBold"
-                      color={value === 1 ? "primary.B200" : "neutral.700"}>
+                      color={value === 1 ? "primary.B200" : "neutral.700"}
+                    >
                       Password & Security
                     </Typography>
                   }
@@ -139,17 +171,47 @@ export default function EditProfilePageIndex() {
                   {...a11yProps(2)}
                 /> */}
               </Tabs>
-              <Box sx={{ marginTop: "auto" }}>
-                <Grid container sx={{ justifyContent: "center", paddingBottom: "4%" }}>
-                  <ActivateAccount />
-                </Grid>
+
+              <Box
+                sx={{
+                  height: "8%",
+                  // height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  alignContent: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <ActivateAccount />
               </Box>
             </Grid>
-            <Grid item xxl={10} xs={9.5} xl={9.5} sx={{ height: "100%", backgroundColor: "" }}>
-              <Box>
-                <TabPanel value={value} index={0}>
+
+            <Grid
+              item
+              xxl={10}
+              xs={9.5}
+              xl={9.5}
+              sx={{
+                height: "100%",
+              }}
+            >
+              <Box
+                sx={{
+                  height: "100%",
+                  width: "100%",
+                  borderRadius: "8px",
+                }}
+              >
+                <TabPanel
+                  value={value}
+                  index={0}
+                  sx={{
+                    height: "100%",
+                  }}
+                >
                   <MyProfileIndex />
                 </TabPanel>
+
                 <TabPanel value={value} index={1}>
                   <PasswordChangeIndex />
                   {/* <MyCoursesIndex /> */}

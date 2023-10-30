@@ -22,74 +22,74 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
           justifyContent: "center",
         }}>
         <Grid container sx={{ padding: "1%", backgroundColor: "" }}>
-          <Grid item xs={9} >
+          <Grid item xs={9}>
             <Grid container>
               {/* <Grid item xs={1.5} lg={2} sx={{}}> */}
-                <Box sx={{ position: "relative",paddingRight:"2%" }}>
-                  <Avatar
-                    alt="Profile Picture"
-                    src={!coverImage ? image : coverImage}
-                    sx={{
-                      height: { xxl: "85px", xl: "72px", lg: "72px" },
-                      width: { xxl: "85px", xl: "72px", lg: "72px" },
-                      // width: "100px",
-                      // height: "100px",
-                      filter: editAble && "brightness(65%)",
-                      backgroundBlendMode: "luminosity",
-                    }}
-                  />
+              <Box sx={{ position: "relative", paddingRight: "2%" }}>
+                <Avatar
+                  alt="Profile Picture"
+                  src={!coverImage ? image : coverImage}
+                  sx={{
+                    height: { xxl: "85px", xl: "72px", lg: "72px" },
+                    width: { xxl: "85px", xl: "72px", lg: "72px" },
+                    // width: "100px",
+                    // height: "100px",
+                    filter: editAble && "brightness(65%)",
+                    backgroundBlendMode: "luminosity",
+                  }}
+                />
 
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      height: { xxl: "85px", xl: "72px", lg: "72px" },
-                      width: { xxl: "85px", xl: "72px", lg: "72px" },
-                      // width: "100px",
-                      // height: "100px",
-                    }}>
-                    {editAble && (
-                      <>
-                        <input
-                          style={{ display: "none" }}
-                          id="upload-photo"
-                          name="upload-photo"
-                          type="file"
-                          accept="image/*"
-                          onChange={handleImage}
-                          // onchange="handleImageChange"
-                        />
-                        <label htmlFor="upload-photo">
-                          <IconButton
-                            sx={{
-                              border:
-                                coverImageFile?.size > maxSize
-                                  ? "1px solid #ff1744"
-                                  : coverImageFile?.size < maxSize
-                                  ? "1px solid #00e676"
-                                  : "",
-                              // backgroundColor: "blue",
-                              // position: "absolute",
-                              // top: "50%",
-                              // left: "50%",
-                              // transform: "translate(-50%, -50%)",
-                              height: "100%",
-                              width: "100%",
-                              opacity: editAble && 1,
-                              zIndex: 2,
-                            }}
-                            color="primary"
-                            aria-label="upload picture"
-                            component="span">
-                            <img src={EditIconProfile} />
-                            {/* <PhotoCameraIcon /> */}
-                          </IconButton>
-                        </label>
-                      </>
-                    )}
-                  </Box>
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    height: { xxl: "85px", xl: "72px", lg: "72px" },
+                    width: { xxl: "85px", xl: "72px", lg: "72px" },
+                    // width: "100px",
+                    // height: "100px",
+                  }}>
+                  {editAble && (
+                    <>
+                      <input
+                        style={{ display: "none" }}
+                        id="upload-photo"
+                        name="upload-photo"
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImage}
+                        // onchange="handleImageChange"
+                      />
+                      <label htmlFor="upload-photo">
+                        <IconButton
+                          sx={{
+                            border:
+                              coverImageFile?.size > maxSize
+                                ? "1px solid #ff1744"
+                                : coverImageFile?.size < maxSize
+                                ? "1px solid #00e676"
+                                : "",
+                            // backgroundColor: "blue",
+                            // position: "absolute",
+                            // top: "50%",
+                            // left: "50%",
+                            // transform: "translate(-50%, -50%)",
+                            height: "100%",
+                            width: "100%",
+                            opacity: editAble && 1,
+                            zIndex: 2,
+                          }}
+                          color="primary"
+                          aria-label="upload picture"
+                          component="span">
+                          <img src={EditIconProfile} />
+                          {/* <PhotoCameraIcon /> */}
+                        </IconButton>
+                      </label>
+                    </>
+                  )}
                 </Box>
+              </Box>
               {/* </Grid> */}
               <Grid item xs={7} sx={{ paddingTop: "2%" }}>
                 <Grid container>
@@ -164,21 +164,20 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
           </Grid>
 
           <Grid item xs={3} sx={{ justifyContent: "center", backgroundColor: "", paddingRight: "1%" }}>
-            <Grid container sx={{ justifyContent: "right", paddingTop: "10%",  }}>
+            <Grid container sx={{ justifyContent: "right", paddingTop: "10%" }}>
               {!editAble && (
                 <Button
                   variant="outlined"
                   sx={{
                     borderRadius: "32px",
                     textTransform: "none",
-                    height: "34px",  
+                    height: "34px",
                     width: "131px",
-                    
                   }}
                   onClick={() => handleEditProfile()}
                   disableRipple>
                   <Box sx={{ paddingRight: "10%" }}>
-                    <Typography sx={{ fontSize: "14px" }}> Edit Profile</Typography>
+                    <Typography sx={{ fontSize: { xl: "14px", xxl: "14px", lg: "10px" } }}> Edit Profile</Typography>
                   </Box>{" "}
                   <img src={editIcon} />{" "}
                 </Button>

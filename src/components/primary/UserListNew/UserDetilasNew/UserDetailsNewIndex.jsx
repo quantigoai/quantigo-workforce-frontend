@@ -13,7 +13,7 @@ import styled from "./testDrawer";
 export default function UserDetailsNewIndex({ open, handleClose, role }) {
   const toast = useToaster();
   const { targetedUser: user } = useSelector((state) => state.user);
-  const [roleValue, setRole] = React.useState("");
+  const [roleValue, setRoleValue] = React.useState("");
   const [actionStatus, setActionStatus] = React.useState("");
   const [disabledButton, setDisabledButton] = React.useState(false);
   const { isLoading } = useSelector((state) => state.user);
@@ -28,7 +28,7 @@ export default function UserDetailsNewIndex({ open, handleClose, role }) {
 
   React.useEffect(() => {
     !open && setIsEditSkill(false);
-    !open && setRole("");
+    !open && setRoleValue("");
     !open && setActionStatus("");
   }, [open]);
 
@@ -40,7 +40,7 @@ export default function UserDetailsNewIndex({ open, handleClose, role }) {
   };
 
   const handleSetRole = (e) => {
-    setRole(e.target.value);
+    setRoleValue(e.target.value);
     setDisabledButton(true);
   };
 
@@ -113,6 +113,7 @@ export default function UserDetailsNewIndex({ open, handleClose, role }) {
       dispatch(changeRole(finalData)).then((action) => {
         if (action.payload?.status === 200) {
           toast.trigger("Role Change Successfully", "success");
+          setRoleValue("");
         } else {
           toast.trigger("Unable to Change the Role", "error");
         }
@@ -124,8 +125,10 @@ export default function UserDetailsNewIndex({ open, handleClose, role }) {
           if (actionStatus === "delete") {
             window.location.reload(false);
             toast.trigger("User Deleted Successfully", "success");
+            setActionStatus("");
           } else {
             toast.trigger("Status change Successfully", "success");
+            setActionStatus("");
           }
         } else {
           toast.trigger("Unable to Change the Status", "error");
@@ -145,7 +148,7 @@ export default function UserDetailsNewIndex({ open, handleClose, role }) {
           sx={{
             ...BoxStyle,
             height: { xl: "80%", lg: "90%" },
-            width: { xl: "40%", lg: "50%" },
+            width: { lg: "65%", xl: "50%", xxl: "40%" },
           }}
         >
           <Box sx={{ height: "8%" }}>

@@ -13,7 +13,7 @@
  * ------------------------
  */
 
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import ErrorToaster from "../components/shared/Toaster/ErrorToaster";
 import SuccessToaster from "../components/shared/Toaster/SuccessToaster";
 
@@ -33,8 +33,28 @@ const useToaster = () => {
     }
   };
 
-  const responsePromise = async (fetch) => {
-    return;
+  const responsePromise = async (request, { initialMessage = "Loading...", afterSuccess, afterError }) => {
+    await toast.promise(request, {
+      pending: {
+        render() {
+          return `${initialMessage}`;
+        },
+        icon: true,
+      },
+      success: {
+        render({ data }) {
+          afterSuccess(data);
+          return `${data.data.message}`;
+        },
+        icon: "🤙",
+      },
+      error: {
+        render({ data }) {
+          afterError(data);
+          return data.response.data.message;
+        },
+      },
+    });
   };
 
   const comp = (type) => {

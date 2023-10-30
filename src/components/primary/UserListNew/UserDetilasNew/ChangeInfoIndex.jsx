@@ -1,4 +1,4 @@
-import {Box, Grid, Stack, Typography} from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import SelectFieldCommon from "./SelectFieldCommon";
 import UserStatusChangeFiled from "./UserStatusChangeFiled";
@@ -7,8 +7,11 @@ const ChangeInfoIndex = ({ user, handleSetRole, handleSetStatus, role }) => {
   return (
     <>
       <Box sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
-        <Typography sx={{ fontSize: "14px" }}>
-          <b>Change Info.</b>
+        <Typography
+          variant="wpf_p3_semiBold"
+          // sx={{ fontSize: "14px" }}
+        >
+          Change Info.
         </Typography>
       </Box>
       <Box>
@@ -27,7 +30,6 @@ const ChangeInfoIndex = ({ user, handleSetRole, handleSetStatus, role }) => {
               xs={role === "recruitment_manager" ? 12 : 6}
               sx={{ paddingRight: role === "recruitment_manager" ? "" : "2%" }}
             >
-              {" "}
               <SelectFieldCommon label={"Role Change"} user={user} handleSetRole={handleSetRole} />
             </Grid>
             {role === "recruitment_manager" ? (

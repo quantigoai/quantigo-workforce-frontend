@@ -24,14 +24,15 @@ const AnnotatorLandingPage = () => {
     backgroundColor: "neutral.N000",
     // padding: ".5%",
     borderRadius: "8px",
-    height: "100%",
-    width: "100%",
+    // height: "100%",
+    width: "97%",
+    margin: "auto",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
   };
 
-  const congratulationDiv = { paddingBottom: "1%", paddingTop: "0%", borderRadius: "2px", height: "28%" };
+  const congratulationDiv = { paddingBottom: "0%", paddingTop: "0%", borderRadius: "2px" };
   const { totalCountData } = useSelector((state) => state.dashboard);
   const [startDate, setStartDate] = React.useState(dayjs().startOf("month"));
   const [endDate, setEndDate] = React.useState(dayjs());
@@ -87,11 +88,11 @@ const AnnotatorLandingPage = () => {
                 textAlign: "center",
               }}
             >
-              <Typography variant="wpf_h5_Bold" sx={{ color: "neutral.N000" }}>
+              <Typography variant="wpf_p3_semiBold" sx={{ color: "neutral.N000" }}>
                 Estimated Balance
               </Typography>
               <br />
-              <Typography variant="wpf_h5_Bold" sx={{ textAlign: "center", color: "neutral.N000" }}>
+              <Typography variant="wpf_p2_semiBold" sx={{ textAlign: "center", color: "neutral.N000" }}>
                 &#2547;{estimatedPayment.toLocaleString("en-US")}
               </Typography>
             </Box>
@@ -101,11 +102,11 @@ const AnnotatorLandingPage = () => {
                 textAlign: "center",
               }}
             >
-              <Typography variant="wpf_h6_Bold" sx={{ color: "neutral.N000" }}>
+              <Typography variant="wpf_p4_semiBold" sx={{ color: "neutral.N000" }}>
                 Total Paid Amount
               </Typography>
               <br />
-              <Typography variant="wpf_h5_Bold" sx={{ textAlign: "center", color: "neutral.N000" }}>
+              <Typography variant="wpf_p4_semiBold" sx={{ textAlign: "center", color: "neutral.N000" }}>
                 &#2547;{totalPaidAmount.toLocaleString("en-US")}
               </Typography>
             </Box>
@@ -122,12 +123,12 @@ const AnnotatorLandingPage = () => {
               <Grid container>
                 <Grid
                   item
-                  xs={2}
-                  md={3}
-                  lg={3}
+                  xs={1}
+                  md={2}
+                  lg={2}
                   xl={3}
                   sx={{
-                    paddingLeft: "2%",
+                    // paddingLeft: "2%",
                     backgroundColor: "warning.100",
                     display: "flex",
                     alignItems: "center",
@@ -135,26 +136,26 @@ const AnnotatorLandingPage = () => {
                     borderBottomLeftRadius: "8px",
                   }}
                 >
-                  <Box>
+                  <Box sx={{ width: "80%", margin: "auto" }}>
                     {" "}
-                    <img src={congImg} />
+                    <img style={{ width: "100%", margin: "auto" }} src={congImg} />
                   </Box>
                 </Grid>
                 <Grid item xs={10} md={7} lg={7} xl={8}>
                   <Box sx={{ padding: "3%" }}>
                     <Grid xs={12}>
-                      <Typography variant="wpf_h4_semiBold" sx={{ color: "neutral.750" }}>
+                      <Typography variant="wpf_h5_medium" sx={{ color: "neutral.750" }}>
                         Congratulations
                       </Typography>
                     </Grid>
                     <Grid xs={12}>
-                      <Typography variant="wpf_p3_regular" sx={{ color: "neutral.N300" }}>
+                      <Typography variant="wpf_p4_regular" sx={{ color: "neutral.N300", mt: 2 }}>
                         Quantigo Workforce platform is a place where you can earn money by doing annotation work. It is
                         a very simple process. You just have to follow the steps given below. We give you the
                         opportunity to grow your career with us. We are always with you to help you.
                       </Typography>
                     </Grid>
-                    <Grid xs={12} sx={{ paddingTop: "3%" }}>
+                    <Grid xs={12} sx={{ paddingTop: "3%", pb: 2 }}>
                       <Button
                         sx={{
                           textTransform: "none",
@@ -162,12 +163,17 @@ const AnnotatorLandingPage = () => {
                           border: "1px solid #FFAB00",
                           backgroundColor: "#FFF8EB",
                           color: "#FF9900",
+                          fontSize: {
+                            lg: "10px",
+                            xl: "12px",
+                            xxl: "12px",
+                          },
                           "&:hover": {
                             backgroundColor: "#FF9A45",
                             color: "#1D1D1D",
                           },
-                          width: "126px",
-                          height: "40px",
+                          width: "20%",
+                          height: "30%",
                         }}
                       >
                         Get Started
@@ -181,23 +187,25 @@ const AnnotatorLandingPage = () => {
         </Grid>
         <Grid
           item
-          xs={2}
-          lg={2}
+          xs={1}
           md={2}
+          lg={2}
           xl={2}
           sx={{
-            backgroundColor: "neutral.N000",
-            // backgroundColor: "red",
+            backgroundColor: "neutral.N100",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             borderTopRightRadius: "8px",
             borderBottomRightRadius: "8px",
-            height: "100%",
+            // height: "150px",
             width: "100%",
+            borderRadius: "10px",
           }}
         >
-          <StepGuide />
+          {/* <Paper elevation={0} style={paperStyle}> */}
+          <StepGuide isStep={true} />
+          {/* </Paper> */}
         </Grid>
       </Grid>
 

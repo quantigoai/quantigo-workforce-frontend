@@ -16,6 +16,7 @@
 export const lightColors = {
   neutral: {
     N000: "#FFFFFF",
+    N100: "#FFFFFF",
     N300: "#3C4D6B",
     N400: "#F2F6FC",
     N500: "#A3B2CC",
@@ -67,8 +68,7 @@ export const lightColors = {
     500: "#344054",
     550: "#667085",
     600: "#101828",
-    700: "#475467"
-
+    700: "#475467",
   },
 
   chip: {

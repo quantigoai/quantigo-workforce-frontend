@@ -26,7 +26,7 @@ const OnGoingProjectDrawer = () => {
               <Grid item xs={8.5}>
                 <Grid container>
                   <Typography variant={"wpf_p4_medium"} sx={{ color: "neutral.N300" }}>
-                    Ongoing Project Drawer
+                    Ongoing Project
                   </Typography>
                 </Grid>
                 <Grid container sx={{ paddingTop: "4%" }}>

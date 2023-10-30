@@ -10,7 +10,7 @@ const PirChartForProjectDrawer = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
 
   const data = {
-    labels: ["Total Project Drawers", "Ongoing Project Drawers"],
+    labels: ["Total Project", "Ongoing Project"],
     datasets: [
       {
         label: "",

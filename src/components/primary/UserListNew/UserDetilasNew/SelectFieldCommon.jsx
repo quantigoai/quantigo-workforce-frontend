@@ -6,7 +6,6 @@ export const MySelect = styled(Select)(() => ({
   border: "1px solid #E6ECF5",
   borderRadius: "8px",
   padding: "0px 0px 0px 0px",
-  //   background: "none",
   height: "42px",
 }));
 const options = [
@@ -29,10 +28,9 @@ const SelectFieldCommon = ({ label, user, handleSetRole }) => {
       <Grid item xs={12} sx={{ mb: 1 }}>
         <FormControl fullWidth>
           <Typography
+            variant="wpf_p4_medium"
             sx={{
-              fontSize: "12px",
-              color: "neutral.N300",
-              fontWeight: "500",
+              color: "neutral.750",
               mb: 1,
             }}
           >
@@ -42,12 +40,10 @@ const SelectFieldCommon = ({ label, user, handleSetRole }) => {
           <MySelect
             labelId="demo-simple-select-autowidth-label"
             id="demo-simple-select-autowidth"
-            // {...field}
             variant="outlined"
             placeholder="Select"
             sx={{
-              // height: "36px",
-
+              // fontFamily: "Inter",
               backgroundColor: "neutral.N000",
               fontSize: "14px",
             }}

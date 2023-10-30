@@ -150,6 +150,7 @@ const Skills = () => {
         </Box>
 
         <Box
+          className="contentBody"
           sx={{
             display: "flex",
             justifyContent: "space-between",
@@ -168,17 +169,26 @@ const Skills = () => {
               flexDirection: "column",
               justifyContent: "space-between",
               borderRadius: "8px",
-              padding: "2%",
+              padding: "1%",
             }}
           >
-            <Grid container>
-              <Grid item xs={5} sx={{ paddingTop: "%" }}>
+            <Box
+              sx={{
+                display: "flex",
+                gap: 1,
+                height: "100%",
+              }}
+            >
+              <Box
+                sx={{
+                  paddingTop: "0%",
+                  px: 2,
+                  width: "40%",
+                  height: "100%",
+                  backgroundColor: "neutral.N400",
+                }}
+              >
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  {/* <Grid item xs={12} sx={{ paddingBottom: "4%" }}>
-                    <Typography variant="wpf_h5_semiBold" sx={{ color: "neutral.750" }}>
-                      Skill Create
-                    </Typography>
-                  </Grid> */}
                   <Grid container sx={{ paddingBottom: "2%", paddingTop: "3%" }}>
                     <FormControl fullWidth>
                       <Typography
@@ -268,15 +278,20 @@ const Skills = () => {
                     </Button>
                   </Grid>
                 </form>
-              </Grid>
-              <Grid item xs={7} sx={{ paddingLeft: "5%", paddingTop: "5%" }}>
+              </Box>
+              <Box
+                sx={{
+                  width: "60%",
+                  height: "100%",
+                  overflowY: "auto",
+                }}
+              >
                 <>
                   {" "}
                   <Grid
                     item
                     xs={12}
                     sx={{
-                      height: "60vh",
                       overflow: "auto",
                       scrollbarWidth: "thin",
                       "&::-webkit-scrollbar": {
@@ -332,8 +347,8 @@ const Skills = () => {
                     </TableContainer>
                   </Grid>
                 </>
-              </Grid>
-            </Grid>
+              </Box>
+            </Box>
           </Paper>
         </Box>
       </Box>

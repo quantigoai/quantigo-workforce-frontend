@@ -33,21 +33,21 @@ const toastOptions = {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
-    {/* <React.StrictMode> */}
-    <Provider store={store}>
-      <ThemeProviderWrapper>
-        <CssBaseline />
-        <PersistGate loading={<LoadingComponent />} persistor={persistor}>
-          <BrowserRouter>
-            <Suspense fallback={<LoadingComponent />}>
-              {/* <Suspense fallback={""}> */}
-              <App />
-              <ToastContainer {...toastOptions} />
-            </Suspense>
-          </BrowserRouter>
-        </PersistGate>
-      </ThemeProviderWrapper>
-    </Provider>
-    {/* </React.StrictMode> */}
+    <React.StrictMode>
+      <Provider store={store}>
+        <ThemeProviderWrapper>
+          <CssBaseline />
+          <PersistGate loading={<LoadingComponent />} persistor={persistor}>
+            <BrowserRouter>
+              <Suspense fallback={<LoadingComponent />}>
+                {/* <Suspense fallback={""}> */}
+                <App />
+                <ToastContainer {...toastOptions} />
+              </Suspense>
+            </BrowserRouter>
+          </PersistGate>
+        </ThemeProviderWrapper>
+      </Provider>
+    </React.StrictMode>
   </>
 );

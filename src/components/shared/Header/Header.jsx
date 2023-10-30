@@ -100,13 +100,15 @@ const Header = () => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-        }}>
+        }}
+      >
         <Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-          }}>
+          }}
+        >
           <GoBackButton handleGoBack={handleGoBack} />
 
           <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -130,7 +132,8 @@ const Header = () => {
                   },
                 }}
                 aria-describedby={id}
-                onClick={handleNotificationOpen}>
+                onClick={handleNotificationOpen}
+              >
                 {allUnreadNotifications.length === 0 ? (
                   <>
                     <Lottie animationData={bell} {...lottieOptions} />
@@ -153,7 +156,8 @@ const Header = () => {
                       sx={{
                         color: "neutral.800",
                       }}
-                      variant="wpf_p3_medium">
+                      variant="wpf_p3_medium"
+                    >
                       {firstName} {lastName}
                     </Typography>
 
@@ -192,18 +196,25 @@ const Header = () => {
                           ml: -2,
                           boxShadow: "0px 8px 24px 0px #253E5C14, 0px 0px 4px 0px #253E5C0A",
                         },
+                        "& .MuiMenu-list": {
+                          padding: "0px",
+                        },
                       }}
                       anchorEl={anchorEl}
                       open={open}
                       autoFocus={false}
-                      onClose={handleClose}>
+                      onClose={handleClose}
+                    >
                       <MenuItem
                         sx={{
                           borderBottom: "1px solid #F0F5FA",
                           width: "182px",
                           py: 1.5,
+                          mt: 0,
+                          height: "50px",
                         }}
-                        onClick={handleEditProfile}>
+                        onClick={handleEditProfile}
+                      >
                         <ListItemIcon>
                           <PersonOutlineIcon />
                         </ListItemIcon>
@@ -226,7 +237,8 @@ const Header = () => {
                         justifyContent: "center",
                         cursor: "pointer",
                         padding: "0px 8px 0px 14px",
-                      }}>
+                      }}
+                    >
                       <Avatar
                         alt="Profile Picture"
                         src={image}

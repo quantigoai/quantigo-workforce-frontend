@@ -7,8 +7,9 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Box, Button, Grid} from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import React from "react";
+import { LoadingButtonStyle } from "../../primary/Auth/Login/Login";
 
 const CommonModalFooter = ({
   isLoading,
@@ -54,7 +55,7 @@ const CommonModalFooter = ({
           </Grid>
           <Grid item xs={6}>
             <Grid container sx={{ justifyContent: "right" }}>
-              <Button
+              <LoadingButtonStyle
                 // disabled={isLoading || !disabledButton}
                 sx={{
                   width: "128px",
@@ -72,9 +73,10 @@ const CommonModalFooter = ({
                   },
                 }}
                 onClick={handleChange}
+                loading={isLoading}
               >
                 {rightButtonTitle}
-              </Button>
+              </LoadingButtonStyle>
             </Grid>
           </Grid>
         </Grid>

@@ -7,6 +7,7 @@ import useToaster from "../../../customHooks/useToaster";
 import { updateMyDocuments } from "../../../features/slice/userSlice";
 import ProjectModalHeader from "../ProjectLIstNew2/ProjectModalHeader";
 import DocumentImageUpload from "./DocumentImageUpload";
+import { LoadingButton } from "@mui/lab";
 
 export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
@@ -249,14 +250,15 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
 
               <Grid item xs={6}>
                 <Grid container sx={{ justifyContent: "right" }}>
-                  <Button
+                  <LoadingButton
                     type="submit"
                     // disabled={true}
+                    loading = {isLoading}
                     disabled={
                       !isDocumentNoValid ||
                       !isDocumentTypeValid ||
                       !coverImage ||  
-                      isLoading ||
+                      // isLoading ||
                       coverImageFile?.size > maxSize
                     }
                     sx={{
@@ -278,7 +280,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                     onClick={handleChange}
                   >
                     Upload
-                  </Button>
+                  </LoadingButton>
                 </Grid>
               </Grid>
             </Grid>

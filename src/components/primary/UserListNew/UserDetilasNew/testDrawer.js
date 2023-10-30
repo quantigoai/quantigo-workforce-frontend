@@ -15,6 +15,7 @@ const styled = (isLightTheme) => {
         position: "relative",
         top: "50%",
         left: "50%",
+        // width :"40%",
         transform: "translate(-50%, -50%)",
         backgroundColor: "background.paper",
         border: "none",

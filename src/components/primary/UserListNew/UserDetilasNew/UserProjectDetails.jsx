@@ -1,6 +1,21 @@
-import { Box, Grid, Stack, styled, Table, TableBody, TableCell, tableCellClasses, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
-import React from "react";
+import {
+  Box,
+  Stack,
+  styled,
+  Table,
+  TableBody,
+  TableCell,
+  tableCellClasses,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import starIcon from "../../../../assets/images/StarIcon.svg";
+import { realToken } from "../../../../helper/lib";
+import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     // backgroundColor: "#FAFCFF",
@@ -104,7 +119,24 @@ const annotationList = [
     _id: 6,
   },
 ];
-const UserProjectDetails = () => {
+const UserProjectDetails = ({ id }) => {
+  const [isDataLoading, setIsDataLoading] = useState(true);
+  const [data, setData] = useState([]);
+  const serverUrl = import.meta.env.VITE_APP_SERVER_URL;
+
+  useEffect(() => {
+    axios
+      .get(`${serverUrl}/work-history/${id}`, {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+      })
+      .then((res) => {
+        setData(res.data.workHistory);
+        setIsDataLoading(false);
+      });
+  }, [id]);
+
   return (
     <>
       <Box sx={{ paddingTop: "2%", paddingBottom: "2%" }}>
@@ -114,89 +146,93 @@ const UserProjectDetails = () => {
         <Stack
           sx={{
             border: "1px solid #E6ECF5",
-            //   padding: "16px",
             borderRadius: "8px",
-            //   background: "#FAFCFF",
           }}
         >
-          <TableContainer>
-            <Table aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell>Name</StyledTableCell>
-                  <StyledTableCell align="left">End Date</StyledTableCell>
-                  <StyledTableCell align="left">House</StyledTableCell>
-                  <StyledTableCell align="left">Rating</StyledTableCell>
-                  <StyledTableCell align="left">Status</StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {projectList.map((row) => (
-                  <StyledTableRow
-                    key={row._id}
-                    sx={{
-                      height: "34px",
-                      // backgroundColor: row.status === "Working" ? "#EFF9F5" : "",
-                      // backgroundColor:"red"
-                    }}
-                  >
-                    <StyledTableCell
-                      component="th"
-                      scope="row"
-                      sx={{
-                        backgroundColor: row.status === "Working" ? "#EFF9F5" : "",
-                      }}
-                    >
-                      <Typography variant="wpf_p4_medium">{row.name}</Typography>
-                    </StyledTableCell>
-                    <StyledTableCell
-                      align="left"
-                      sx={{
-                        backgroundColor: row.status === "Working" ? "#EFF9F5" : "",
-                      }}
-                    >
-                      {" "}
-                      <Typography variant="wpf_p4_medium">{row.endName}</Typography>
-                    </StyledTableCell>
-                    <StyledTableCell
-                      align="left"
-                      sx={{
-                        backgroundColor: row.status === "Working" ? "#EFF9F5" : "",
-                      }}
-                    >
-                      {" "}
-                      <Typography variant="wpf_p4_medium">{row.hours}</Typography>
-                    </StyledTableCell>
-                    <StyledTableCell
-                      align="left"
-                      sx={{
-                        backgroundColor: row.status === "Working" ? "#EFF9F5" : "",
-                      }}
-                    >
-                      {" "}
-                      <Typography variant="wpf_p4_medium">
-                        <img src={starIcon} /> {row.Rating} Star
-                      </Typography>
-                    </StyledTableCell>
-                    <StyledTableCell
-                      align="left"
-                      sx={{
-                        backgroundColor: row.status === "Working" ? "#EFF9F5" : "",
-                      }}
-                    >
-                      {" "}
-                      <Typography variant="wpf_p4_medium" sx={{ color: row.status === "Working" ? "#36B37E" : "" }}>
-                        {row.status}
-                      </Typography>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          {isDataLoading ? (
+            <LoadingComponent />
+          ) : (
+            <TableContainer>
+              <Table aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>Name</StyledTableCell>
+                    <StyledTableCell align="left">Hours</StyledTableCell>
+                    <StyledTableCell align="left">Amount</StyledTableCell>
+                    <StyledTableCell align="left">Rating</StyledTableCell>
+                    <StyledTableCell align="left">Payment Status</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {data &&
+                    data.usersCompletedProjects.map((row, i) => (
+                      <StyledTableRow
+                        key={i}
+                        sx={{
+                          height: "34px",
+                          // backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
+                          // backgroundColor:"red"
+                        }}
+                      >
+                        <StyledTableCell
+                          component="th"
+                          scope="row"
+                          sx={{
+                            backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
+                          }}
+                        >
+                          <Typography variant="wpf_p4_medium">{row.projectDrawerName}</Typography>
+                        </StyledTableCell>
+                        <StyledTableCell
+                          align="left"
+                          sx={{
+                            backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
+                          }}
+                        >
+                          <Typography variant="wpf_p4_medium">{row.totalWorkingHours}</Typography>
+                        </StyledTableCell>
+                        <StyledTableCell
+                          align="left"
+                          sx={{
+                            backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
+                          }}
+                        >
+                          <Typography variant="wpf_p4_medium">
+                            &#2547;{row.totalBill.toLocaleString("em-us")}
+                          </Typography>
+                        </StyledTableCell>
+                        <StyledTableCell
+                          align="left"
+                          sx={{
+                            backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
+                          }}
+                        >
+                          <Typography variant="wpf_p4_medium">
+                            <img src={starIcon} /> {5} Star
+                          </Typography>
+                        </StyledTableCell>
+                        <StyledTableCell
+                          align="left"
+                          sx={{
+                            backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
+                          }}
+                        >
+                          <Typography
+                            variant="wpf_p4_medium"
+                            sx={{ color: row.paymentStatus === "Paid" ? "#36B37E" : "" }}
+                          >
+                            {row.paymentStatus}
+                          </Typography>
+                        </StyledTableCell>
+                      </StyledTableRow>
+                    ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
         </Stack>
       </Box>
-      <Box sx={{ paddingTop: "2%", paddingBottom: "2%" }}>
+      {/* <Box sx={{ paddingTop: "2%", paddingBottom: "2%" }}>
         <Grid container>
           <Typography variant="wpf_p3_medium_2">List of Annotation</Typography>
         </Grid>
@@ -235,7 +271,7 @@ const UserProjectDetails = () => {
             ))}
           </Grid>
         </Box>
-      </Box>
+      </Box> */}
     </>
   );
 };

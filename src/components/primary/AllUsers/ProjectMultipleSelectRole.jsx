@@ -4,8 +4,6 @@ import { MyFormControl } from "../../shared/CustomField/CustomDatePicker";
 
 export const MySelect = styled(Select)(() => ({
   border: "1px solid #E6ECF5",
-  // padding: "5px 0px 0px 0px",
-  // background: "white",
   borderRadius: "8px",
 }));
 const ITEM_HEIGHT = 40;
@@ -21,12 +19,13 @@ const MenuProps = {
 
 const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, roles, count, handleClickAway }) => {
   return (
-    <MyFormControl fullWidth sx={{ px: 0, minWidth: "25%" }}>
+    <MyFormControl fullWidth sx={{ px: 0, minWidth: { lg: "20%", xl: "25%", xxl: "25%" } }}>
       <MySelect
         sx={{
           backgroundColor: "neutral.N000",
           height: "36px",
-          fontSize: "14px",
+          fontSize: { lg: "14px", xl: "14px", xxl: "14px" },
+          fontFamily: "Inter",
         }}
         displayEmpty
         multiple
@@ -54,7 +53,21 @@ const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, r
               {selected.map(
                 (item, i) =>
                   [0].includes(i) && (
-                    <Chip sx={{ height: "100%", color: "neutral.700" }} key={item.value} label={item.label} />
+                    <Chip
+                      sx={{
+                        height: {
+                          lg: "20px",
+                          xl: "24px",
+                          xxl: "28px",
+                        },
+                        borderRadius: "32px",
+                        border: "1px solid #E6ECF5",
+                        color: "neutral.700",
+                        fontFamily: "Inter",
+                      }}
+                      key={item.value}
+                      label={item.label}
+                    />
                   )
               )}
               {selected.length > 1 && (

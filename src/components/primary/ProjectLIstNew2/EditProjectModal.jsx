@@ -180,7 +180,7 @@ const EditProjectModal = ({
                     </Box>
                     <Box sx={{ width: "50%", height: "80px" }}>
                       <PDTextFIeld
-                        name="benchmark"
+                        name="benchMark"
                         label="Benchmark"
                         defaultValue={projectDrawer.benchMark}
                         InputProps={{

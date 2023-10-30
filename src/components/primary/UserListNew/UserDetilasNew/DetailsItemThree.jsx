@@ -14,7 +14,7 @@ const DetailsItemThree = ({ Item1Title, Item1, Item2Title, Item2, Item3Title, It
             </Typography>
             <br />
             <Typography
-              variant="wpf_p3_medium_2"
+              variant="wpf_p3_medium"
               sx={{
                 color: isLightTheme ? "#091E42" : "#fff",
                 overflow: "hidden",
@@ -32,7 +32,7 @@ const DetailsItemThree = ({ Item1Title, Item1, Item2Title, Item2, Item3Title, It
               {Item2Title}
             </Typography>
             <br />
-            <Typography variant="wpf_p3_medium_2" sx={{ color: isLightTheme ? "#091E42" : "#fff" }}>
+            <Typography variant="wpf_p3_medium" sx={{ color: isLightTheme ? "#091E42" : "#fff" }}>
               {Item2}
             </Typography>
           </Grid>
@@ -41,7 +41,7 @@ const DetailsItemThree = ({ Item1Title, Item1, Item2Title, Item2, Item3Title, It
               {Item3Title}
             </Typography>
             <br />
-            <Typography variant="wpf_p3_medium_2" sx={{ color: isLightTheme ? "#091E42" : "#fff" }}>
+            <Typography variant="wpf_p3_medium" sx={{ color: isLightTheme ? "#091E42" : "#fff" }}>
               {Item3}
             </Typography>
           </Grid>

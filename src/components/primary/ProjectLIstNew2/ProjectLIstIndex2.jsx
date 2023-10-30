@@ -235,6 +235,10 @@ const ProjectLIstIndex2 = () => {
   }, []);
 
   const handleSearch = (e) => {
+    setPagination((prevPagination) => ({
+      ...prevPagination,
+      currentPage: 0,
+    }));
     setSearch(e.target.value);
   };
 

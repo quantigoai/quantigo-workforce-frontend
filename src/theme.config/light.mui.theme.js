@@ -18,7 +18,6 @@ const lightTheme = createTheme({
   },
   typography: {
     ...typography,
-
     ...(typography.wpf_h1_semiBold.color = "#3C4D6B"),
     ...(typography.wpf_h2_semiBold.color = "#3C4D6B"),
     ...(typography.wpf_h3_semiBold.color = "#3C4D6B"),
@@ -54,6 +53,7 @@ const lightTheme = createTheme({
     MuiSelect: {
       styleOverrides: {
         root: {
+          fontFamily: "Inter",
           borderRadius: "4px",
           flex: "none",
           order: 0,
@@ -106,6 +106,7 @@ const lightTheme = createTheme({
         root: {
           padding: "0",
           paddingTop: "0px",
+          fontFamily: "Inter",
         },
       },
     },
@@ -192,6 +193,12 @@ const lightTheme = createTheme({
 });
 
 [lightTheme.breakpoints.between("lg", "xl")].forEach((key) => {
+  lightTheme.typography.wpf_p1_semiBold[key] = {
+    fontSize: "16px",
+  };
+});
+
+[lightTheme.breakpoints.between("lg", "xl")].forEach((key) => {
   lightTheme.typography.wpf_p3_semiBold[key] = {
     fontSize: "12px",
   };
@@ -204,7 +211,17 @@ const lightTheme = createTheme({
   lightTheme.components.MuiTableRow.styleOverrides.root[key] = {
     height: "56px",
   };
+  lightTheme.typography.wpf_p1_semiBold[key] = {
+    fontSize: "20px",
+  };
+  lightTheme.typography.wpf_p4_semiBold[key] = {
+    fontSize: "14px",
+  };
+  lightTheme.typography.wpf_p3_medium[key] = {
+    fontSize: "16px",
+  };
 });
+
 [lightTheme.breakpoints.between("lg", "xl")].forEach((key) => {
   lightTheme.typography.wpf_p4_semiBold[key] = {
     fontSize: "10px",
@@ -212,9 +229,9 @@ const lightTheme = createTheme({
 });
 
 [lightTheme.breakpoints.up("xxl")].forEach((key) => {
-  lightTheme.typography.wpf_p4_semiBold[key] = {
-    fontSize: "14px",
-  };
+  // lightTheme.typography.wpf_p4_semiBold[key] = {
+  //   fontSize: "14px",
+  // };
 });
 [lightTheme.breakpoints.between("lg", "xl")].forEach((key) => {
   lightTheme.typography.wpf_p3_medium[key] = {

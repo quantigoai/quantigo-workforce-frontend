@@ -3,13 +3,20 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Box, Button } from "@mui/material";
 import React from "react";
 import { useSwiper } from "swiper/react";
-const SLiderPrevNext = () => {
+const SLiderPrevNext = ({ isStep }) => {
   const swiper = useSwiper();
   return (
-    <Box sx={{ display: "flex", justifyContent: "end", alignItems: "end", mt: 2 }}>
+    <Box
+      sx={{
+        display: "flex",
+        backgroundColor: isStep ? "neutral.N100" : "",
+        justifyContent: "end",
+      }}
+    >
       <Button
         sx={{
           minWidth: "25px",
+          backgroundColor: "transparent",
           "&:focus": {
             color: "white",
             backgroundColor: "#2E58FF",

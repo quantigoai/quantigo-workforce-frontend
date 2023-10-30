@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 
 const GetHelpNew = () => {
@@ -8,34 +8,34 @@ const GetHelpNew = () => {
 
   return (
     <>
-      <Grid
-        container
+      <Box
         sx={{
-          margin: "4% 4%",
+          margin: { lg: "5%", xl: "4%", xxl: "4%" },
           borderRadius: "8px",
           backgroundColor: "primary.P600",
         }}
       >
-        <Grid container sx={{ justifyContent: "center", paddingTop: "9%" }}>
+        <Box sx={{ display: "flex", justifyContent: "center", paddingTop: "9%" }}>
           <Typography variant="wpf_p3_semiBold" sx={{ color: "neutral.N700" }}>
             Need Help?
           </Typography>
-        </Grid>
-        <Grid
-          container
+        </Box>
+        <Box
           sx={{
+            width: "100%",
+            display: {xl: "flex", xxl:"flex"},
             justifyContent: "center",
-            paddingLeft: "9%",
-            paddingRight: "9%",
-            paddingTop: "2%",
+            flexDirection: "column",
+            paddingTop: "3%",
+            px: "4%",
             paddingBottom: "5%",
             textAlign: "center",
+            whiteSpace: "normal",
           }}
         >
           <Typography
             sx={{
               color: "neutral.N700",
-              justifyContent: "center",
               textAlign: "center",
             }}
             variant="wpf_p4_regular"
@@ -46,20 +46,17 @@ const GetHelpNew = () => {
           <Typography
             sx={{
               color: "neutral.N700",
-              justifyContent: "center",
               textAlign: "center",
             }}
             variant="wpf_p4_regular"
           >
-            service
+            &nbsp;service
           </Typography>
-        </Grid>
-        <Grid
-          container
+        </Box>
+        <Box
           sx={{
+            display: "flex",
             justifyContent: "center",
-            paddingLeft: "10%",
-            paddingRight: "10%",
             paddingTop: "2%",
             paddingBottom: "10%",
           }}
@@ -67,7 +64,7 @@ const GetHelpNew = () => {
           <Button
             sx={{
               backgroundColor: "neutral.N000",
-              width: "50%",
+              width: "60%",
               borderRadius: "8px",
               textTransform: "none",
               "&:hover": {
@@ -79,7 +76,6 @@ const GetHelpNew = () => {
             onClick={handleHelp}
           >
             <Typography variant="wpf_p4_medium" color="primary.B200">
-              {" "}
               Get Help
             </Typography>
           </Button>
@@ -91,8 +87,8 @@ const GetHelpNew = () => {
             allowtransparency="true"
             frameborder="0"
             sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe> */}
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </>
   );
 };

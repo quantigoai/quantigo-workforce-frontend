@@ -72,9 +72,6 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 const DrawerFooter = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-
   ...theme.mixins.toolbar,
 }));
 
@@ -312,10 +309,8 @@ export default function LayoutNew({ children }) {
             transition: { duration: 0.4 },
           }}
           sx={{
-            // overflowX: "clip",
             height: "100vh",
             backgroundColor: isLightTheme ? "#2D58FF" : "#050116",
-            // position: "relative",
           }}
         >
           <Drawer
@@ -383,7 +378,11 @@ export default function LayoutNew({ children }) {
 
             <Box
               sx={{
-                height: { xxl: "75%", xl: "70%", lg: "70%" },
+                height: {
+                  lg: "75%",
+                  xl: "75%",
+                  xxl: "80%",
+                },
                 overflowX: "hidden",
                 scrollbarWidth: "none", // Firefox scrollbar width
                 "&::-webkit-scrollbar": {

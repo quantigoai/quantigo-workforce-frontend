@@ -1,14 +1,16 @@
 /* eslint-disable no-prototype-builtins */
-import React, {useState} from "react";
-import {useDispatch} from "react-redux";
-import {getAllSkills} from "../../../../features/slice/skillSlice";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getAllSkills } from "../../../../features/slice/skillSlice";
 
 const useAllFunc = () => {
-   const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
   const [filterValue, setFilterValue] = useState({});
   const dispatch = useDispatch();
   const [createProjectOpen, setCreateProjectOpen] = React.useState(false);
   const [detailsProjectOpen, setDetailsProjectOpen] = React.useState(false);
+  const [annotatorPlatform, setAnnotatorPlatform] = useState("");
+  const [checked, setChecked] = useState(false);
 
   const [filteredCol, setFilteredCol] = useState({});
   const [isFilter, setIsFilter] = useState(false);
@@ -41,6 +43,8 @@ const useAllFunc = () => {
   const handleClearFilter = () => {
     setFilterValue(defaultState);
     setFilteredCol({});
+    setChecked(false);
+    setAnnotatorPlatform("");
   };
 
   const handleId = (field) => {
@@ -71,6 +75,10 @@ const useAllFunc = () => {
 
   return {
     createProjectOpen,
+    annotatorPlatform,
+    checked,
+    setChecked,
+    setAnnotatorPlatform,
     detailsProjectOpen,
     handleProjectCreateOpen,
     handleProjectDetailsOpen,

@@ -13,7 +13,7 @@
  * ------------------------
  */
 
-import { updateProjectDrawerManually } from "./features/slice/projectDrawerSlice";
+import { updateProjectDrawerByNotification } from "./features/slice/projectDrawerSlice";
 
 const socketHandlers = ({
   socket,
@@ -131,12 +131,11 @@ const socketHandlers = ({
     }
   };
 
-  const handleProjectDrawerNotification = ( notification, projectDrawer) => {
-    // console.log("🚀 ~ file: socketHandlers.js:135 ~ handleProjectDrawerNotification ~ notification:", notification)
+  const handleProjectDrawerNotification = (notification, projectDrawer) => {
     if (notification.notificationFor.includes(storedUser.user.role)) {
       dispatch(setNewNotification(notification));
     }
-    dispatch(updateProjectDrawerManually(projectDrawer));
+    dispatch(updateProjectDrawerByNotification(projectDrawer));
   };
 
   const customUserData = { _id, role };

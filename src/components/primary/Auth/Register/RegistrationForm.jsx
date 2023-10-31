@@ -290,7 +290,7 @@ const RegistrationForm = () => {
                 <CustomTextField
                   name="billingAccountNo"
                   label="Nagad Account No"
-                  placeholder="01XXXXXXXXX"
+                  placeholder="+8801XXXXXXXXX / 01XXXXXXXXX"
                   InputProps={{
                     disableUnderline: true,
                     endAdornment: (
@@ -308,7 +308,7 @@ const RegistrationForm = () => {
                   // sx={{ mr: isNewUser &&  }}
                   name="contactNo"
                   label="Phone Number"
-                  placeholder="01XXXXXXXXX"
+                  placeholder="+8801XXXXXXXXX / 01XXXXXXXXX"
                   InputProps={{
                     disableUnderline: true,
                     endAdornment: (

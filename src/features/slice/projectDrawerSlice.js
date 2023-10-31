@@ -313,6 +313,19 @@ const projectDrawerSlice = createSlice({
         return drawer;
       });
     },
+    
+    updateProjectDrawerByNotification: (state, action) => {
+      if (state.projectDrawer._id === action.payload._id) {
+        state.projectDrawer = action.payload;
+      }
+      state.projectDrawers = state.projectDrawers.flatMap((drawer) => {
+        if (drawer._id === action.payload._id) {
+          return action.payload;
+        }
+        return drawer;
+      });
+    },
+
     resetProjectDrawerSlice: () => {
       return initialState;
     },
@@ -537,7 +550,6 @@ const projectDrawerSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getMyAvailableProjects.fulfilled, (state, action) => {
-        console.log("🚀 ~ file: projectDrawerSlice.js:505 ~ .addCase ~ action:", action.payload.data);
         state.projectDrawers = action.payload.data.projectDrawers;
         state.isLoading = false;
         state.error = null;
@@ -553,5 +565,6 @@ export const {
   resetProjectDrawerSlice,
   resetProjectDrawer,
   setCurrentProjectDrawer,
+  updateProjectDrawerByNotification
 } = projectDrawerSlice.actions;
 export default projectDrawerSlice.reducer;

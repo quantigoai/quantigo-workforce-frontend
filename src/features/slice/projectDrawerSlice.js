@@ -271,8 +271,8 @@ export const rejectProjectHistory = createAsyncThunk("/project-history/reject-hi
   return await rejectHistoryAPIRequest(data);
 });
 export const approveProjectPayment = createAsyncThunk("project-history/approved-payment", async (id) => {
- return await approveProjectPaymentAPLRequest(id)
- 
+  return await approveProjectPaymentAPLRequest(id);
+
   // try {
   //   return await axios.patch(`${url}/project-history/approved-payment/${id}`, id, {
   //     headers: {
@@ -306,6 +306,12 @@ const projectDrawerSlice = createSlice({
     },
     updateProjectDrawerManually: (state, action) => {
       state.projectDrawer = action.payload;
+      state.projectDrawers = state.projectDrawers.flatMap((drawer) => {
+        if (drawer._id === action.payload._id) {
+          return action.payload;
+        }
+        return drawer;
+      });
     },
     resetProjectDrawerSlice: () => {
       return initialState;

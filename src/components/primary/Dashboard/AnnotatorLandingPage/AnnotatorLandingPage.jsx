@@ -32,7 +32,16 @@ const AnnotatorLandingPage = () => {
     alignItems: "center",
   };
 
-  const congratulationDiv = { paddingBottom: "0%", paddingTop: "0%", borderRadius: "2px" };
+  const congratulationDiv = {
+    paddingBottom: "0%",
+    paddingTop: "0%",
+    borderRadius: "2px",
+    height: {
+      lg: "200px",
+      // xl: "100px",
+      // xxl: "100px",
+    },
+  };
   const { totalCountData } = useSelector((state) => state.dashboard);
   const [startDate, setStartDate] = React.useState(dayjs().startOf("month"));
   const [endDate, setEndDate] = React.useState(dayjs());
@@ -66,7 +75,7 @@ const AnnotatorLandingPage = () => {
   }, []);
   return (
     <>
-      <Grid container style={congratulationDiv}>
+      <Grid container sx={congratulationDiv}>
         <Grid items lg={3} xl={2} xxl={2}>
           <Box
             sx={{

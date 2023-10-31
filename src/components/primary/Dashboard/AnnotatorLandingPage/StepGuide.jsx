@@ -26,7 +26,7 @@ const StepGuide = ({ isStep }) => {
         height: "100%",
         width: "100%",
         backgroundColor: "neutral.N100",
-        borderRadius: "10px",
+        borderRadius: "8px",
       }}
     >
       <Swiper

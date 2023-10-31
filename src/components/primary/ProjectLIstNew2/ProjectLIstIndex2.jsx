@@ -18,6 +18,7 @@ import {
   createProjectDrawer,
   deleteProjectDrawerById,
   getAllProjectDrawers,
+  getMyAvailableProjects,
   setCurrentProjectDrawer,
   updateProjectDrawerById,
 } from "../../../features/slice/projectDrawerSlice";
@@ -84,7 +85,6 @@ const ProjectLIstIndex2 = () => {
   const [myRows, setMyRows] = useState([]);
   const [isEditModal, setIsEditModal] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
-  const [annotatorPlatform, setAnnotatorPlatform] = useState("");
   const [detailProject, setDetailProject] = useState({});
   const toast = useToaster();
   const [pagination, setPagination] = useState({
@@ -108,6 +108,10 @@ const ProjectLIstIndex2 = () => {
     search,
     setSearch,
     setDetailsProjectOpen,
+    annotatorPlatform,
+    checked,
+    setChecked,
+    setAnnotatorPlatform,
   } = useAllFunc();
 
   const handleProjectDetailsOpen = (project) => {
@@ -117,17 +121,38 @@ const ProjectLIstIndex2 = () => {
 
   const handleChangePagination = useCallback(() => {
     setIsChildDataLoading(true);
-    dispatch(
-      getAllProjectDrawers({
-        pagination,
-        filteredData: filterValue,
-        ascDescOption: filteredCol,
-        search,
-      })
-    ).then(() => {
-      setIsChildDataLoading(false);
-    });
-  }, [dispatch, pagination, filterValue, filteredCol, search]);
+    // dispatch(
+    //   getAllProjectDrawers({
+    //     pagination,
+    //     filteredData: filterValue,
+    //     ascDescOption: filteredCol,
+    //     search,
+    //   })
+    // ).then(() => {
+    //   setIsChildDataLoading(false);
+    // });
+    if (checked) {
+      dispatch(
+        getMyAvailableProjects({
+          pagination,
+          annotatorPlatform,
+        })
+      ).then(() => {
+        setIsChildDataLoading(false);
+      });
+    } else {
+      dispatch(
+        getAllProjectDrawers({
+          pagination,
+          filteredData: filterValue,
+          ascDescOption: filteredCol,
+          search,
+        })
+      ).then(() => {
+        setIsChildDataLoading(false);
+      });
+    }
+  }, [dispatch, pagination, filterValue, filteredCol, search, annotatorPlatform, checked]);
 
   const { handleChangeSkill, addSkills, setAddSkills, count } = useHandleChange();
 
@@ -214,13 +239,6 @@ const ProjectLIstIndex2 = () => {
     navigate(`/projectDetails/${myData.id}`);
   };
 
-  const handleChangeAnnotatorFilter = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setAnnotatorPlatform(value);
-  };
-
   const searchRef = React.useRef(null);
 
   useEffect(() => {
@@ -246,6 +264,24 @@ const ProjectLIstIndex2 = () => {
     setSearch("");
     searchRef.current.value = "";
   };
+  const handleChangeAnnotatorFilter = (event) => {
+    setPagination((prevPagination) => ({
+      ...prevPagination,
+      currentPage: 0,
+    }));
+    const {
+      target: { value },
+    } = event;
+    setAnnotatorPlatform(value);
+  };
+
+  const handleChangeCheck = (event) => {
+    setPagination((prevPagination) => ({
+      ...prevPagination,
+      currentPage: 0,
+    }));
+    setChecked(event.target.checked);
+  };
 
   return (
     <>
@@ -268,6 +304,8 @@ const ProjectLIstIndex2 = () => {
             isFilter={isFilter}
             handleChangeAnnotatorFilter={handleChangeAnnotatorFilter}
             role={role}
+            handleChangeCheck={handleChangeCheck}
+            checked={checked}
             filterPDR={filterPDR}
             platformOptions={platformOptions}
             statusOptions={statusOptions}
@@ -277,6 +315,7 @@ const ProjectLIstIndex2 = () => {
             filterValue={filterValue}
             skills={skills}
             onSubmit={onSubmit}
+            annotatorPlatform={annotatorPlatform}
           />
         </HeaderBox>
 

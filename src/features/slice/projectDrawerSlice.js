@@ -283,9 +283,15 @@ export const approveProjectPayment = createAsyncThunk("project-history/approved-
   //   throw new Error(error.response.data.message);
   // }
 });
-export const getMyAvailableProjects = createAsyncThunk("/project-drawer/myAvailAbleProjects", async () => {
+export const getMyAvailableProjects = createAsyncThunk("/project-drawer/myAvailAbleProjects", async (data) => {
+  const { pagination, annotatorPlatform } = data;
+
+  let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
+  if (annotatorPlatform) {
+    query += `&project_platform=${annotatorPlatform}`;
+  }
   try {
-    return await axios.get(`${url}/project-drawer/my-available-project`, {
+    return await axios.get(`${url}/project-drawer/my-available-project?${query}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -313,7 +319,7 @@ const projectDrawerSlice = createSlice({
         return drawer;
       });
     },
-    
+
     updateProjectDrawerByNotification: (state, action) => {
       if (state.projectDrawer._id === action.payload._id) {
         state.projectDrawer = action.payload;
@@ -551,6 +557,7 @@ const projectDrawerSlice = createSlice({
       })
       .addCase(getMyAvailableProjects.fulfilled, (state, action) => {
         state.projectDrawers = action.payload.data.projectDrawers;
+        state.total = action.payload.data.total;
         state.isLoading = false;
         state.error = null;
       })
@@ -565,6 +572,6 @@ export const {
   resetProjectDrawerSlice,
   resetProjectDrawer,
   setCurrentProjectDrawer,
-  updateProjectDrawerByNotification
+  updateProjectDrawerByNotification,
 } = projectDrawerSlice.actions;
 export default projectDrawerSlice.reducer;

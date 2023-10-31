@@ -8,13 +8,13 @@ const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 export const MySelect = styled(Select)(() => ({ width: "100%" }));
 
-const PlatformSelectAnnotator = ({ handleChangeAnnotatorFilter, name, label, options }) => {
+const PlatformSelectAnnotator = ({ handleChangeAnnotatorFilter, name, label, options, annotatorPlatform }) => {
   return (
     <MyFormControl
       sx={{
         px: 0,
         py: 0,
-        minWidth: "35%",
+        // minWidth: "35%",
         minHeight: "36px",
         height: "36px",
       }}
@@ -22,7 +22,7 @@ const PlatformSelectAnnotator = ({ handleChangeAnnotatorFilter, name, label, opt
     >
       <MySelect
         displayEmpty
-        defaultValue={""}
+        value={annotatorPlatform}
         sx={{
           color: "blue",
           height: "36px",

@@ -86,7 +86,7 @@ export default function EditProfilePageIndex() {
               width: "100%",
               height: "100%",
               borderRadius: "8px",
-              padding: "16px",
+              // padding: "16px",
             }}
           >
             <Grid
@@ -99,7 +99,8 @@ export default function EditProfilePageIndex() {
                 display: "flex",
                 flexDirection: "column",
                 height: "100%",
-                // paddingTop: "1%"
+                padding: "16px",
+       
               }}
             >
               <Tabs
@@ -111,7 +112,7 @@ export default function EditProfilePageIndex() {
                 aria-label="Vertical tabs example"
                 sx={{
                   height: "92%",
-                  width: "95%",
+                  width: "100%",
                   // paddingTop: "5%",
                   textAlign: "right",
                   // paddingLeft: "5%",
@@ -178,9 +179,10 @@ export default function EditProfilePageIndex() {
                   height: "8%",
                   // height: "100%",
                   display: "flex",
-                  alignItems: "center",
+                  alignItems: "end",
                   alignContent: "center",
                   justifyContent: "center",
+                  
                 }}
               >
                 <ActivateAccount />

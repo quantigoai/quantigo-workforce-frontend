@@ -210,6 +210,12 @@ const socketHandlers = ({
     socket.off("jobBlockAnnotator", handleJobBlockNotification);
     socket.off("jobUnblockAnnotator", handleJobBlockNotification);
     socket.off("updateProjectDrawer", handleProjectDrawerNotification);
+    socket.off("createProjectDrawer", handleProjectDrawerNotification);
+    socket.off("deleteProjectDrawer", handleProjectDrawerNotification);
+    socket.off("uploadEffectiveHours", handleProjectDrawerNotification);
+    socket.off("approvedEffectiveHours", handleProjectDrawerNotification);
+    socket.off("rejectEffectiveHours", handleProjectDrawerNotification);
+    socket.off("approvedPayment", handleProjectDrawerNotification);
   };
 };
 

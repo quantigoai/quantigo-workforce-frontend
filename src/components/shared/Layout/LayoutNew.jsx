@@ -305,7 +305,7 @@ export default function LayoutNew({ children }) {
         <Box
           component={motion.div}
           animate={{
-            width: open ? "16.66%" : "5%",
+            width: open ? "16.66%" : "4%",
             transition: { duration: 0.4 },
           }}
           sx={{
@@ -343,8 +343,8 @@ export default function LayoutNew({ children }) {
                   display: "flex",
                   justifyContent: !open ? "center" : "space-between",
                   width: "100%",
-                  pl:"8%",
-                  pr:"6%",
+                  pl: "8%",
+                  pr: "6%",
                   alignItems: "center",
                 }}
               >
@@ -400,7 +400,7 @@ export default function LayoutNew({ children }) {
                   </Typography>
                 )}
                 {!open && (
-                  <Typography variant="wpf_p4_semiBold" sx={{ color: "#B6C9F0" }}>
+                  <Typography variant="wpf_p4_semiBold" sx={{ color: "#B6C9F0", pl:"5px" }}>
                     MENU
                   </Typography>
                 )}
@@ -424,14 +424,13 @@ export default function LayoutNew({ children }) {
         <Box
           component={motion.div}
           animate={{
-            width: open ? "83.34%" : "95%",
+            width: open ? "83.34%" : "96%",
             transition: { duration: 0.4 },
           }}
           sx={{
             height: "100vh",
           }}
         >
-          {/* navbar */}
           <Box
             sx={{
               height: { xxl: "7%", xl: "56px", lg: "7.22%" },
@@ -440,13 +439,23 @@ export default function LayoutNew({ children }) {
             <Header openDrawer={open} />
           </Box>
 
-          {/* body */}
           <Box
             sx={{
-              height: { xxl: "93%", xl: "720px", lg: "92.78", md: "90%" },
+              height: {
+                md: "92.78%",
+                lg: "92.78",
+                xxl: "93%",
+                xl: "720px",
+              },
               paddingBottom: "0",
               margin: 0,
               backgroundColor: isLightTheme ? "#F2F6FC" : "#121212",
+              // backgroundColor: {
+              //   md: isLightTheme ? "blue" : "pink",
+              //   lg: isLightTheme ? "red" : "pink",
+              //   xl: "yellow",
+              //   xxl: "black",
+              // },
               width: "100%",
               overflowY: "auto",
             }}

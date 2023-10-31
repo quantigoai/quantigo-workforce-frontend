@@ -163,9 +163,14 @@ const lightTheme = createTheme({
       styleOverrides: {
         paper: {
           border: "none",
+          marginLeft: "0px !important",
+        },
+        docked: {
+          marginLeft: "0px !important",
         },
       },
     },
+
     MuiStack: {
       styleOverrides: {
         // padding: "0",
@@ -231,7 +236,6 @@ const lightTheme = createTheme({
   lightTheme.typography.wpf_h6_Bold[key] = {
     fontSize: "14px",
   };
-
 });
 
 [lightTheme.breakpoints.up("xxl")].forEach((key) => {

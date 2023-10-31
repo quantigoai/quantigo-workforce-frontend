@@ -8,6 +8,7 @@ export const MySelect = styled(Select)(() => ({
   // padding: "5px 0px 0px 0px",
   background: "none",
   height: "40px",
+  
 }));
 const options = [
   { value: "(A+)", label: "A+" },

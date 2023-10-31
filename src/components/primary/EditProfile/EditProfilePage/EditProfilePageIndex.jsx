@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import ActivateAccount from "./ActivateAccount";
 import MyProfileIndex from "./MyProfile/MyProfileIndex";
 import PasswordChangeIndex from "./PasswordChange/PasswordChangeIndex";
+import MyprofileIndexNew from "./MyProfile/MyprofileIndexNew";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -209,7 +210,7 @@ export default function EditProfilePageIndex() {
                     height: "100%",
                   }}
                 >
-                  <MyProfileIndex />
+                  <MyprofileIndexNew />
                 </TabPanel>
 
                 <TabPanel value={value} index={1}>

@@ -31,7 +31,7 @@ export const fields = [
   { field: "totalDueAmount", width: 170, textAlign: "center", columnDataAlign: "center" },
   { field: "paymentRate", width: 160, textAlign: "left", columnDataAlign: "center" },
   { field: "bloodGroup", width: 170, textAlign: "center", columnDataAlign: "center" },
-  { field: "currentlyCheckedInProject", width: 270, textAlign: "left", columnDataAlign: "left" },
+  // { field: "currentlyCheckedInProject", width: 270, textAlign: "left", columnDataAlign: "left" },
 
   { field: "hub", width: 100, textAlign: "left", columnDataAlign: "left" },
   { field: "ACTIONS", renderCell: "button", width: 140, textAlign: "center" },

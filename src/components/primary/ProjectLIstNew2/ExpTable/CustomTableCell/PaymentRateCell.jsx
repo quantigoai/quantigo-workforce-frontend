@@ -70,7 +70,7 @@ const PaymentRateCell = ({ data }) => {
       sx={{ ...style, width: "45%" }}
       label={
         <Typography variant="wpf_p4_regular" color="neutral.700">
-          {data}
+          &#2547;{data}
         </Typography>
       }
     />

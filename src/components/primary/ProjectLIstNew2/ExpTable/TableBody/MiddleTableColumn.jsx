@@ -191,6 +191,15 @@ const MiddleTableColumn = ({ row, column }) => {
         </TableCell>
       );
     }
+    else if (column.field === "totalPaidAmount" || column.field === "totalDueAmount") {
+      return (
+        <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
+          <Typography variant="wpf_p4_regular" color="neutral.700">
+            &#2547;{row[column?.field].toLocaleString("en-US")}
+          </Typography>
+        </TableCell>
+      );
+    }
 
     return (
       <TableCell align={column.columnDataAlign} key={column.id}>

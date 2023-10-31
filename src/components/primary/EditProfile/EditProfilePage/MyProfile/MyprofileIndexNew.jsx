@@ -81,12 +81,12 @@ const MyprofileIndexNew = () => {
       presentAddress,
       permanentAddress,
     };
-   
+
     const finalData = {
       id: user._id,
       data,
     };
-
+   
     const formData = new FormData();
     formData.append("image", coverImageFile);
 
@@ -151,8 +151,8 @@ const MyprofileIndexNew = () => {
               width: "0",
             },
             height: {
-              lg: "70%",
-              xl: "74%",
+              lg: "74%",
+              xl: "71%",
               xxl: "75%",
             },
             // backgroundColor: "black",
@@ -162,7 +162,6 @@ const MyprofileIndexNew = () => {
               paddingLeft: "2%",
               paddingRight: "2%",
               height: "100%",
-            
             }}>
             <Box
               sx={{
@@ -190,7 +189,6 @@ const MyprofileIndexNew = () => {
                     disableItem={false}
                     editAble={editAble}
                   />
-                 
                 </Grid>
                 <Grid item xs={6}>
                   <FieldForProfile
@@ -201,7 +199,6 @@ const MyprofileIndexNew = () => {
                     disableItem={false}
                     editAble={editAble}
                   />
-               
                 </Grid>
               </Grid>
               <Grid container>
@@ -226,7 +223,6 @@ const MyprofileIndexNew = () => {
                     handleChange={handleOccupationChange}
                     editAble={editAble}
                   />
-                 
                 </Grid>
               </Grid>
               <Grid container>
@@ -251,7 +247,6 @@ const MyprofileIndexNew = () => {
                     editAble={editAble}
                     handleChange={handleChangeBloodGroup}
                   />
-
                 </Grid>
               </Grid>
               <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
@@ -268,7 +263,6 @@ const MyprofileIndexNew = () => {
                     handleChange={handlePhoneNumberChange}
                     editAble={editAble}
                   />
-                  
                 </Grid>
                 <Grid item xs={6}>
                   <FieldForProfile
@@ -279,7 +273,6 @@ const MyprofileIndexNew = () => {
                     handleChange={handlebillingAccountNoChange}
                     editAble={editAble}
                   />
-                
                 </Grid>
               </Grid>
 
@@ -305,7 +298,6 @@ const MyprofileIndexNew = () => {
                     handleChange={handlePresentAddressChange}
                     editAble={editAble}
                   />
-                
                 </Grid>
               </Grid>
               <Grid container>
@@ -318,7 +310,6 @@ const MyprofileIndexNew = () => {
                     handleChange={handlepermanentAddressChange}
                     editAble={editAble}
                   />
-                
                 </Grid>
               </Grid>
             </Box>
@@ -333,7 +324,7 @@ const MyprofileIndexNew = () => {
             // height: "10%",
             height: {
               lg: "10%",
-              xl: "9%",
+              xl: "14%",
               xxl: "8%",
             },
           }}>
@@ -366,6 +357,10 @@ const MyprofileIndexNew = () => {
                       "&:hover": {
                         backgroundColor: "primary.B200",
                         color: "neutral.N000",
+                      },
+                      "&.Mui-disabled": {
+                        background: "#B6C9F0",
+                        color: "#FFFFFF",
                       },
                     }}>
                     Save Changes

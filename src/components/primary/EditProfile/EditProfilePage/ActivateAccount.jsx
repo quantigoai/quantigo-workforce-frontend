@@ -43,7 +43,7 @@ const ActivateAccount = () => {
         onClick={() => handleOpen()}
         sx={{
           height: "40px",
-          width: "90%",
+          width: "100%",
           textTransform: "none",
           fontSize: { xl: "14px", xxl: "16px", lg: "10px" },
           backgroundColor: user.active ? "#FFF0F2" : "#EFF9F5",

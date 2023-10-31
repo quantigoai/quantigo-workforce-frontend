@@ -120,17 +120,9 @@ const ProjectLIstIndex2 = () => {
   };
 
   const handleChangePagination = useCallback(() => {
+    console.log("hit");
     setIsChildDataLoading(true);
-    // dispatch(
-    //   getAllProjectDrawers({
-    //     pagination,
-    //     filteredData: filterValue,
-    //     ascDescOption: filteredCol,
-    //     search,
-    //   })
-    // ).then(() => {
-    //   setIsChildDataLoading(false);
-    // });
+
     if (checked) {
       dispatch(
         getMyAvailableProjects({
@@ -152,7 +144,7 @@ const ProjectLIstIndex2 = () => {
         setIsChildDataLoading(false);
       });
     }
-  }, [dispatch, pagination, filterValue, filteredCol, search, annotatorPlatform, checked]);
+  }, [dispatch, pagination, filterValue, filteredCol, search, checked]);
 
   const { handleChangeSkill, addSkills, setAddSkills, count } = useHandleChange();
 
@@ -265,14 +257,11 @@ const ProjectLIstIndex2 = () => {
     searchRef.current.value = "";
   };
   const handleChangeAnnotatorFilter = (event) => {
-    setPagination((prevPagination) => ({
-      ...prevPagination,
-      currentPage: 0,
-    }));
     const {
       target: { value },
     } = event;
     setAnnotatorPlatform(value);
+    setChecked(false);
   };
 
   const handleChangeCheck = (event) => {

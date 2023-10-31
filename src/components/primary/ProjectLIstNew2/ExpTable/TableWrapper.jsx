@@ -68,6 +68,9 @@ const TableWrapper = ({
             handleOpenNDA={handleOpenNDA}
           />
         );
+      } else if (data && data.length === 0) {
+        const message = "No available projects found!";
+        return <Alert severity="error">{message}</Alert>;
       } else if (role === "recruitment_manager") {
         const message = "No Users found!!!";
         return <Alert severity="error">{message}</Alert>;

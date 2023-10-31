@@ -295,7 +295,6 @@ export default function LayoutNew({ children }) {
 
   return (
     <Stack
-      component={motion.div}
       direction={"row"}
       sx={{
         width: "100vw",

@@ -1,10 +1,7 @@
 import { Box, Button, FormControlLabel, Stack, Switch, Typography } from "@mui/material";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import PlatformSelectAnnotator from "./PlatformSelectAnnotator";
 import ProjectSelectFIlterField from "./ProjectSelectFIlterField";
-import { useDispatch } from "react-redux";
-import { getMyAvailableProjects } from "../../../features/slice/projectDrawerSlice";
 
 const ProjectSelectFIlter = ({
   filterPDR,
@@ -154,7 +151,20 @@ const ProjectSelectFIlter = ({
             </Stack>
           )}
 
-          <Stack sx={{ width: "7%", pl: 0 }}>
+          <Stack
+            sx={{
+              width: {
+                lg: "9%",
+                xl: "7%",
+                xxl: "7%",
+              },
+              pl: {
+                lg: 0,
+                xl: 2,
+                xxl: 2,
+              },
+            }}
+          >
             <Button
               onClick={() => handleClearFilter()}
               sx={{

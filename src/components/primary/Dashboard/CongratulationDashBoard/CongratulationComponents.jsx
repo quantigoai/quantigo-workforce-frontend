@@ -1,7 +1,5 @@
 import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import congImg from "../../../../assets/images/congImg.svg";
 import jobIcon from "../../../../assets/images/totalJobIcon.svg";
 import CongratulationStepProcess from "./CongratulationStepProcess";

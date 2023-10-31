@@ -67,7 +67,7 @@ const AnnotatorLandingPage = () => {
   return (
     <>
       <Grid container style={congratulationDiv}>
-        <Grid items xs={2} lg={3} xl={2} xxl={2}>
+        <Grid items lg={3} xl={2} xxl={2}>
           <Box
             sx={{
               pr: 1,
@@ -112,7 +112,7 @@ const AnnotatorLandingPage = () => {
             </Box>
           </Box>
         </Grid>
-        <Grid items lg={7} xl={8} xxl={8}>
+        <Grid items lg={6} xl={8} xxl={8}>
           <Box
             sx={{
               height: "100%",
@@ -128,9 +128,7 @@ const AnnotatorLandingPage = () => {
                   lg={3}
                   xl={3}
                   sx={{
-                    // paddingLeft: "2%",
                     backgroundColor: "warning.100",
-                    // display: "flex",
                     display: { lg: "none", xl: "flex", xxl: "flex" },
                     alignItems: "center",
                     borderTopLeftRadius: "8px",
@@ -138,7 +136,6 @@ const AnnotatorLandingPage = () => {
                   }}
                 >
                   <Box sx={{ width: "80%", margin: "auto" }}>
-                    {" "}
                     <img style={{ width: "100%", margin: "auto" }} src={congImg} />
                   </Box>
                 </Grid>
@@ -188,10 +185,9 @@ const AnnotatorLandingPage = () => {
         </Grid>
         <Grid
           item
-          xs={1}
-          md={2}
-          lg={2}
+          lg={3}
           xl={2}
+          xxl={2}
           sx={{
             backgroundColor: "neutral.N100",
             display: "flex",
@@ -204,9 +200,7 @@ const AnnotatorLandingPage = () => {
             borderRadius: "10px",
           }}
         >
-          {/* <Paper elevation={0} style={paperStyle}> */}
           <StepGuide isStep={true} />
-          {/* </Paper> */}
         </Grid>
       </Grid>
 

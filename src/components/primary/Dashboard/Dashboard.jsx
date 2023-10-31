@@ -23,7 +23,6 @@ import CongratulationComponents from "./CongratulationDashBoard/CongratulationCo
 import DashboardIndex from "./DashboardIndex";
 import LineChart from "./LineChart/LineChart";
 import LineChartDaily from "./LineChart/LineChartDaily";
-import PieChart from "./PieChart/PieChart";
 import PieChartForUser from "./PieChart/PieChartForUser";
 import PirChartForProjectDrawer from "./PieChart/PirChartForProjectDrawer";
 
@@ -164,6 +163,7 @@ const Dashboard = () => {
                     //     </Paper>
                     //   </Box>
                     // </>
+
                     <CongratulationComponents />
                   ) : (
                     // <AnnotatorLandingPage />

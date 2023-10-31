@@ -201,12 +201,37 @@ const lightTheme = createTheme({
   lightTheme.typography.wpf_p1_semiBold[key] = {
     fontSize: "16px",
   };
-});
-
-[lightTheme.breakpoints.between("lg", "xl")].forEach((key) => {
+  lightTheme.typography.wpf_p2_semiBold[key] = {
+    fontSize: "14px",
+  };
   lightTheme.typography.wpf_p3_semiBold[key] = {
     fontSize: "12px",
   };
+  lightTheme.typography.wpf_p4_semiBold[key] = {
+    fontSize: "10px",
+  };
+  lightTheme.typography.wpf_p3_medium[key] = {
+    fontSize: "10px",
+  };
+  lightTheme.typography.wpf_h5_medium[key] = {
+    fontSize: "18px",
+  };
+  lightTheme.typography.wpf_p3_regular[key] = {
+    fontSize: "12px",
+  };
+  lightTheme.typography.wpf_p4_regular[key] = {
+    fontSize: "10px",
+  };
+  lightTheme.typography.wpf_p4_medium[key] = {
+    fontSize: "10px",
+  };
+  lightTheme.typography.wpf_h4_Bold[key] = {
+    fontSize: "22px",
+  };
+  lightTheme.typography.wpf_h6_Bold[key] = {
+    fontSize: "14px",
+  };
+
 });
 
 [lightTheme.breakpoints.up("xxl")].forEach((key) => {
@@ -227,73 +252,10 @@ const lightTheme = createTheme({
   };
 });
 
-[lightTheme.breakpoints.between("lg", "xl")].forEach((key) => {
-  lightTheme.typography.wpf_p4_semiBold[key] = {
-    fontSize: "10px",
-  };
-});
-
-[lightTheme.breakpoints.up("xxl")].forEach((key) => {
-  // lightTheme.typography.wpf_p4_semiBold[key] = {
-  //   fontSize: "14px",
-  // };
-});
-[lightTheme.breakpoints.between("lg", "xl")].forEach((key) => {
-  lightTheme.typography.wpf_p3_medium[key] = {
-    fontSize: "10px",
-  };
-});
-
 [lightTheme.breakpoints.up("xxl")].forEach((key) => {
   lightTheme.typography.wpf_p3_medium[key] = {
     fontSize: "16px",
   };
 });
 
-// [lightTheme.breakpoints.up("md")].forEach((key) => {
-//   lightTheme.typography.wpf_p4_semiBold[key] = {
-//     fontSize: "11px",
-//   };
-// });
-
-// lightTheme.typography.wpf_p4_semiBold = {
-//   [lightTheme.breakpoints.("")]: {
-//     fontSize: "14px",
-//   },
-// };
-
-// lightTheme.typography.wf_p2_semiBold = {
-//     [lightTheme.breakpoints.up("lg")]: {
-//         fontSize: "12px",
-//     },
-//     [lightTheme.breakpoints.up("xl")]: {
-//         fontSize: "14px",
-//     },
-// };
-// lightTheme.typography.wpf_p3_semiBold = {
-//   [lightTheme.breakpoints.up("md")]: {
-//     ...typography.wpf_p3_semiBold,
-//     fontSize: "12px",
-//   },
-//   [lightTheme.breakpoints.up("xl")]: {
-//     fontSize: "14px",
-//   },
-// };
-// lightTheme.typography.wpf_p4_semiBold = {
-//   [lightTheme.breakpoints.up("lg")]: {
-//     fontSize: "12px",
-//   },
-//   [lightTheme.breakpoints.up("xl")]: {
-//     fontSize: "12px",
-//   },
-// };
-
-// lightTheme.typography.wpf_h5_semiBold = {
-//   [lightTheme.breakpoints.up("lg")]: {
-//     fontSize: "12px",
-//   },
-//   [lightTheme.breakpoints.up("xl")]: {
-//     fontSize: "12px",
-//   },
-// };
 export default lightTheme;

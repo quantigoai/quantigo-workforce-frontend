@@ -131,7 +131,8 @@ const socketHandlers = ({
     }
   };
 
-  const handleProjectDrawerNotification = (notification, projectDrawer) => {
+  const handleProjectDrawerNotification = ( notification, projectDrawer) => {
+    // console.log("🚀 ~ file: socketHandlers.js:135 ~ handleProjectDrawerNotification ~ notification:", notification)
     if (notification.notificationFor.includes(storedUser.user.role)) {
       dispatch(setNewNotification(notification));
     }
@@ -169,6 +170,13 @@ const socketHandlers = ({
   socket.on("jobBlockAnnotator", handleJobBlockNotification);
   socket.on("jobUnblockAnnotator", handleJobBlockNotification);
   socket.on("updateProjectDrawer", handleProjectDrawerNotification);
+
+  socket.on("createProjectDrawer", handleProjectDrawerNotification);
+  socket.on("deleteProjectDrawer", handleProjectDrawerNotification);
+  socket.on("uploadEffectiveHours", handleProjectDrawerNotification);
+  socket.on("approvedEffectiveHours", handleProjectDrawerNotification);
+  socket.on("rejectEffectiveHours", handleProjectDrawerNotification);
+  socket.on("approvedPayment", handleProjectDrawerNotification);
 
   return () => {
     socket.off("notification", handleNotification);

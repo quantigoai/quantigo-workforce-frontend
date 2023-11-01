@@ -118,7 +118,11 @@ const ProjectSelectFIlter = ({
                   width: { lg: "38%", xl: "28%", xxl: "20%" },
                 }}
               >
-                <Typography sx={{ opacity: "0.7", ml: 1 }} color={"neutral.N300"} variant="wpf_p3_regular">
+                <Typography
+                  sx={{ opacity: "0.7", ml: 1, backgroundColor: "#F4F7FE" }}
+                  color={"#3C4D6B"}
+                  variant="wpf_p3_regular"
+                >
                   {" "}
                   Choose Platform :
                 </Typography>

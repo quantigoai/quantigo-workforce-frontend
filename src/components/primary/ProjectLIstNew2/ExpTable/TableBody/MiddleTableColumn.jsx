@@ -24,6 +24,7 @@ import UserBasicInfoCell from "../CustomTableCell/UserBasicInfoCell";
 import UserRoleCell from "../CustomTableCell/UserRoleCell";
 
 const MiddleTableColumn = ({ row, column }) => {
+  console.log("🚀 ~ file: MiddleTableColumn.jsx:27 ~ MiddleTableColumn ~ column:", column);
   const dateObj = new Date(row.lastJobTakenAt);
   const today = new Date();
   const diffInMs = Math.abs(today - dateObj);
@@ -156,6 +157,14 @@ const MiddleTableColumn = ({ row, column }) => {
           </Typography>
         </TableCell>
       );
+    } else if (column.field === "project_platform") {
+      return (
+        <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
+          <Typography variant="wpf_p4_regular" color="neutral.700">
+            {capitalizeFirstLetter(row[column?.field])}
+          </Typography>
+        </TableCell>
+      );
     } else if (column.field === "bloodGroup") {
       return (
         <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
@@ -190,8 +199,7 @@ const MiddleTableColumn = ({ row, column }) => {
           </Typography>
         </TableCell>
       );
-    }
-    else if (column.field === "totalPaidAmount" || column.field === "totalDueAmount") {
+    } else if (column.field === "totalPaidAmount" || column.field === "totalDueAmount") {
       return (
         <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
           <Typography variant="wpf_p4_regular" color="neutral.700">

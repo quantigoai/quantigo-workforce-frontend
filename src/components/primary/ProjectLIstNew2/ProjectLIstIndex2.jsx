@@ -275,6 +275,7 @@ const ProjectLIstIndex2 = () => {
         <HeaderBox>
           <ProjectHeader
             isFilter={isFilter}
+            role={role}
             isLightTheme={isLightTheme}
             handleIsFilter={handleIsFilter}
             handleProjectCreateOpen={() => setCreateProjectOpen(true)}

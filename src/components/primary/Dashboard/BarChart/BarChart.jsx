@@ -186,12 +186,12 @@ const BarChart = ({ startDate, setStartDate, endDate, setEndDate, loading }) => 
     <>
       <Box sx={{ padding: "2%" }}>
         <Grid container>
-          <Grid xs={6} sx={{ paddingTop: "1%" }}>
+          <Grid item xs={6} sx={{ paddingTop: "1%" }}>
             <Typography variant="wpf_p3_semiBold" sx={{ color: "neutral.750" }}>
               {role === "admin" ? "Project Based Annotators/Reviewers" : "Latest Working Projects"}
             </Typography>
           </Grid>
-          <Grid xs={6}>
+          <Grid item xs={6}>
             <Grid container sx={{ justifyContent: "right" }}>
               {/* <DateRangeField setStartDate={setStartDate} setEndDate={setEndDate} /> */}
               {role === "admin" && <DateRangeComponentForDashboard setRange={setRange} range={range} />}

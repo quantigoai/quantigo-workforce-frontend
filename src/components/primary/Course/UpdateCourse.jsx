@@ -294,8 +294,8 @@ const UpdateCourse = () => {
                   </Grid>
                 </Grid>
 
-                <Grid xs={12} sx={{ py: 6 }}>
-                  <Grid xs={12} sx={{ paddingLeft: "0%", paddingBottom: "1%" }}>
+                <Grid container xs={12} sx={{ py: 6 }}>
+                  <Grid item xs={12} sx={{ paddingLeft: "0%", paddingBottom: "1%" }}>
                     <Typography>Course Cover Image</Typography>
                   </Grid>
 

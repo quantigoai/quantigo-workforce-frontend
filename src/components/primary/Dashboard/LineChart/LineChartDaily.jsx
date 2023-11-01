@@ -12,16 +12,13 @@ import {
   CategoryScale,
   Chart as ChartJS,
   Legend,
-  LinearScale,
   LineElement,
+  LinearScale,
   PointElement,
   Title,
   Tooltip,
 } from "chart.js";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { weeklyConver } from "../../../../helper/weeklyConver";
-import { capitalizeAllwordAndSlic } from "../../../../helper/capitalizeAllwordAndSlic.js";
+import React from "react";
 import LineChartExple from "./LineChartExple";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
@@ -65,7 +62,7 @@ const LineChartDaily = ({ loading }) => {
     <>
       <Box sx={{ padding: "2%" }}>
         <Grid container>
-          <Grid xs={12} sx={{ paddingTop: "1%" }}>
+          <Grid item xs={12} sx={{ paddingTop: "1%" }}>
             <Typography variant="wpf_p3_semiBold" sx={{ color: "neutral.750" }}>
               <b>Hourly Check-ins</b>
             </Typography>

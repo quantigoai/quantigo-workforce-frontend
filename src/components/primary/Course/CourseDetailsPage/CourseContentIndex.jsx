@@ -1,9 +1,9 @@
 import AddIcon from "@mui/icons-material/Add";
-import {Box, Button, Grid} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useLocation, useNavigate} from "react-router-dom";
-import {getAChapterById} from "../../../../features/slice/courseSlice";
+import { Box, Button, Grid } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { getAChapterById } from "../../../../features/slice/courseSlice";
 import CommonHeader from "../../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import ShowQuiz from "../../Quiz/QuizPage/ShowQuiz";
 import ShowResult from "../../Quiz/QuizPage/ShowResult/ShowResult";
@@ -14,9 +14,7 @@ import CourseDeleteModal from "./CourseDeleteModal";
 const CourseContentIndex = () => {
   const { course, isLoading } = useSelector((state) => state.course);
   const { user } = useSelector((state) => state.user);
-  const { courseChapters } = useSelector(
-    (state) => state.course.courseChapters
-  );
+  const { courseChapters } = useSelector((state) => state.course.courseChapters);
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -24,10 +22,7 @@ const CourseContentIndex = () => {
 
   useEffect(() => {
     if (courseChapters?.length > 0) {
-      if (
-        location.pathname !== "/quiz" &&
-        location.pathname !== "/show-result"
-      ) {
+      if (location.pathname !== "/quiz" && location.pathname !== "/show-result") {
         courseChapters.map((courseChapter, i) => {
           if (i === 0) {
             dispatch(getAChapterById(courseChapter._id));
@@ -64,12 +59,8 @@ const CourseContentIndex = () => {
       <Box>
         <Grid container sx={{ paddingTop: "2%" }}>
           {" "}
-          <Grid
-            container
-            xs={3}
-            sx={{ paddingRight: "2%", overflow: "hidden" }}
-          >
-            <Grid xs={12}>
+          <Grid container xs={3} sx={{ paddingRight: "2%", overflow: "hidden" }}>
+            <Grid item xs={12}>
               {user.role === "trainer" || user.role === "admin" ? (
                 <Box>
                   <CourseDeleteModal course={course} />
@@ -78,10 +69,7 @@ const CourseContentIndex = () => {
                 <></>
               )}
               {/* Chapter List item */}
-              <CourseChapterList
-                courseChapters={courseChapters}
-                handleChapter={handleChapter}
-              />
+              <CourseChapterList courseChapters={courseChapters} handleChapter={handleChapter} />
               {user.role === "trainer" || user.role === "admin" ? (
                 <Box>
                   <Button

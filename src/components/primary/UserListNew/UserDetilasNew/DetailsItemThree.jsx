@@ -8,7 +8,7 @@ const DetailsItemThree = ({ Item1Title, Item1, Item2Title, Item2, Item3Title, It
     <>
       <Stack sx={{ borderBottom: "1px solid #E6ECF5" }}>
         <Grid container>
-          <Grid xs={4} sx={{ borderRight: "1px solid #E6ECF5", padding: "2%" }}>
+          <Grid item xs={4} sx={{ borderRight: "1px solid #E6ECF5", padding: "2%" }}>
             <Typography variant="wpf_h8_regular" sx={{ color: isLightTheme ? "#7B98BA" : "#fff" }}>
               {Item1Title}
             </Typography>
@@ -27,7 +27,7 @@ const DetailsItemThree = ({ Item1Title, Item1, Item2Title, Item2, Item3Title, It
             </Typography>
           </Grid>
 
-          <Grid xs={4} sx={{ borderRight: "1px solid #E6ECF5", padding: "2%" }}>
+          <Grid item xs={4} sx={{ borderRight: "1px solid #E6ECF5", padding: "2%" }}>
             <Typography sx={{ color: isLightTheme ? "#7B98BA" : "#fff" }} variant="wpf_h8_regular">
               {Item2Title}
             </Typography>
@@ -36,7 +36,7 @@ const DetailsItemThree = ({ Item1Title, Item1, Item2Title, Item2, Item3Title, It
               {Item2}
             </Typography>
           </Grid>
-          <Grid xs={4} sx={{ padding: "2%" }}>
+          <Grid item xs={4} sx={{ padding: "2%" }}>
             <Typography sx={{ color: isLightTheme ? "#7B98BA" : "#fff" }} variant="wpf_h8_regular">
               {Item3Title}
             </Typography>

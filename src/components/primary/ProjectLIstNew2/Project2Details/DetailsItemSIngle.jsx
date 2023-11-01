@@ -8,7 +8,7 @@ const DetailsItemSIngle = ({ Item1Title, Item1, Item2Title, Item2, Item3Title, I
     <>
       <Stack sx={{ borderBottom: "1px solid #E6ECF5" }}>
         <Grid container>
-          <Grid xs={4} sx={{ borderRight: "1px solid #E6ECF5", padding: "20px" }}>
+          <Grid item xs={4} sx={{ borderRight: "1px solid #E6ECF5", padding: "20px" }}>
             <Typography
               variant="wpf_h8_regular"
               sx={{ color: isLightTheme ? "#091E42" : "white", opacity: isLightTheme ? "0.7" : "1" }}
@@ -20,7 +20,7 @@ const DetailsItemSIngle = ({ Item1Title, Item1, Item2Title, Item2, Item3Title, I
               {Item1}
             </Typography>
           </Grid>
-          <Grid xs={4} sx={{ borderRight: "1px solid #E6ECF5", padding: "20px" }}>
+          <Grid item xs={4} sx={{ borderRight: "1px solid #E6ECF5", padding: "20px" }}>
             <Typography
               variant="wpf_h8_regular"
               sx={{ color: isLightTheme ? "#091E42" : "white", opacity: isLightTheme ? "0.7" : "1" }}
@@ -32,7 +32,7 @@ const DetailsItemSIngle = ({ Item1Title, Item1, Item2Title, Item2, Item3Title, I
               {Item2}
             </Typography>
           </Grid>
-          <Grid xs={4} sx={{ padding: "20px" }}>
+          <Grid item xs={4} sx={{ padding: "20px" }}>
             <Typography
               variant="wpf_h8_regular"
               sx={{ color: isLightTheme ? "#091E42" : "white", opacity: isLightTheme ? "0.7" : "1" }}

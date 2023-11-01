@@ -8,29 +8,29 @@
  */
 
 // TODO Remove this file and its references
-import {PhotoCamera} from "@mui/icons-material";
+import { PhotoCamera } from "@mui/icons-material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import {
-    Avatar,
-    Box,
-    Button,
-    FormControl,
-    Grid,
-    IconButton,
-    InputLabel,
-    MenuItem,
-    Paper,
-    Select,
-    Stack,
-    TextField,
-    Typography,
+  Avatar,
+  Box,
+  Button,
+  FormControl,
+  Grid,
+  IconButton,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+  Stack,
+  TextField,
+  Typography,
 } from "@mui/material";
-import {useState} from "react";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
-import {updateMyDocuments} from "../../../features/slice/userSlice";
+import { updateMyDocuments } from "../../../features/slice/userSlice";
 
 const UpdateDocument = () => {
   const dispatch = useDispatch();
@@ -83,19 +83,19 @@ const UpdateDocument = () => {
     <>
       <Box style={{ background: "#F5F7F9", width: "100%" }}>
         <Grid container style={teamicondiv}>
-          <Grid xs={1} style={{ paddingLeft: "5%" }}>
+          <Grid item xs={1} style={{ paddingLeft: "5%" }}>
             <Avatar sx={{ bgcolor: "#D3ECFA" }}>
               <UploadFileIcon style={{ color: "#1974D2" }} />
             </Avatar>
           </Grid>
-          <Grid xs={2}>
+          <Grid item xs={2}>
             <Typography variant="h5" style={{ color: "#1974D2" }}>
               Update Documents
             </Typography>
           </Grid>
         </Grid>
 
-        <Grid xs={6}>
+        <Grid item xs={6}>
           <Box style={{ padding: "0px", paddingLeft: "0%" }}>
             <Paper elevation={2} style={paperstyle}>
               {user.documentNo ? (

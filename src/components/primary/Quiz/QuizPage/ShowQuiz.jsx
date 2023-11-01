@@ -1,10 +1,10 @@
-import {Button, FormControlLabel, Grid, Paper, Radio, RadioGroup, Typography} from "@mui/material";
+import { Button, FormControlLabel, Grid, Paper, Radio, RadioGroup, Typography } from "@mui/material";
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import useToaster from "../../../../customHooks/useToaster";
-import {submitQuizById} from "../../../../features/slice/quizSlice";
+import { submitQuizById } from "../../../../features/slice/quizSlice";
 
 const ShowQuiz = () => {
   const { quiz, isLoading } = useSelector((state) => state.quiz);
@@ -89,7 +89,7 @@ const ShowQuiz = () => {
                     Q{i + 1}. {item.question} ?
                   </Typography>
                 </Grid>
-                <Grid xs={12} sx={{ paddingLeft: "2%" }}>
+                <Grid item xs={12} sx={{ paddingLeft: "2%" }}>
                   <RadioGroup
                   //  value={value}
                   >

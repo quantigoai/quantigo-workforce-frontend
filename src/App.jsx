@@ -32,6 +32,7 @@ function App() {
   const storedUser = useSelector((state) => state.user);
   const { isLoading, user, isLoggedIn } = useSelector((state) => state.user);
   const { activePath } = useSelector((state) => state.activePath);
+
   // const { isLoggedIn } = user;
 
   const tokenCheck = () => {

@@ -21,12 +21,12 @@ const CoursePrerequisiteChip = ({ prerequisiteCourses }) => {
         </Grid>
 
         <Grid item xs={11} sx={{ paddingLeft: "4%" }}>
-          <Grid xs={12}>
+          <Grid item xs={12}>
             <Typography sx={{ color: "#969CAF" }} variant="caption">
               PRE-REQUISITE
             </Typography>
           </Grid>
-          <Grid xs={12}>
+          <Grid item xs={12}>
             {prerequisiteCourses.length === 1 ? (
               <>
                 {prerequisiteCourses.map((prerequisiteCourse) => (

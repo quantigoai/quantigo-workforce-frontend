@@ -46,12 +46,12 @@ const CourseNewDetailsIndex = () => {
           <Box sx={{ height: "100%", position: "" }}>
             <Box sx={{ height: "8%", backgroundColor: "" }}>
               <Grid container sx={{ paddingLeft: "2%", borderBottom: "1px solid #EBEDF5" }}>
-                <Grid xs={12}>
+                <Grid item xs={12}>
                   <Typography variant="h5" sx={{ fontWeight: "bold", color: "#1D1D1D" }}>
                     {courseChapter?.title}
                   </Typography>
                 </Grid>
-                <Grid xs={12}>
+                <Grid item xs={12}>
                   {" "}
                   <Typography variant="caption" sx={{ fontWeight: "bold", color: "#969CAF" }}>
                     7 min read

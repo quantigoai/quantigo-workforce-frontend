@@ -8,7 +8,7 @@ const SingleItem = ({ ItemTitle, Item }) => {
     <>
       <Stack sx={{ borderBottom: "1px solid #E6ECF5" }}>
         <Grid container>
-          <Grid xs={12} sx={{ padding: "2%" }}>
+          <Grid item xs={12} sx={{ padding: "2%" }}>
             <Grid container>
               <Typography
                 variant="wpf_h8_regular"

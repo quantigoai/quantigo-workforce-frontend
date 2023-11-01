@@ -7,23 +7,20 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Box, Chip, Grid, Link, Typography} from "@mui/material";
+import { Box, Chip, Grid, Link, Typography } from "@mui/material";
 import React from "react";
-import {useSelector} from "react-redux";
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
+import { useSelector } from "react-redux";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import TakenTime from "../../shared/CountDown/TakenTime";
-import LanguageChip from "../Course/LanguageChip";
 import CategoryChip from "../Course/CategoryChip";
 import LevelChip from "../Course/CourseCardActionLebel/LevelChip";
+import LanguageChip from "../Course/LanguageChip";
 
 const AdditionalInfo = () => {
   const { course } = useSelector((state) => state.course);
 
-  const liveTime = new Date(course.liveSessionStartedAt).toLocaleTimeString(
-    "en-US"
-  );
+  const liveTime = new Date(course.liveSessionStartedAt).toLocaleTimeString("en-US");
 
-  
   return (
     <>
       <Box>
@@ -33,51 +30,51 @@ const AdditionalInfo = () => {
 
         <Box>
           <Grid container sx={{ paddingBottom: "2%" }}>
-            <Grid xs={4}>
+            <Grid item xs={4}>
               {" "}
               <Typography variant="body1" sx={{ color: "blue" }}>
                 Level
               </Typography>
             </Grid>
-            <Grid xs={5} sx={{ paddingLeft: "2%" }}>
+            <Grid item xs={5} sx={{ paddingLeft: "2%" }}>
               {" "}
               <LevelChip level={course?.level} />
             </Grid>
           </Grid>
 
           <Grid container sx={{ paddingBottom: "2%" }}>
-            <Grid xs={4}>
+            <Grid item xs={4}>
               {" "}
               <Typography variant="body1" sx={{ color: "blue" }}>
                 Category
               </Typography>
             </Grid>
-            <Grid xs={5} sx={{ paddingLeft: "2%" }}>
+            <Grid item xs={5} sx={{ paddingLeft: "2%" }}>
               {" "}
               <CategoryChip category={course?.category} />
             </Grid>
           </Grid>
 
           <Grid container sx={{ paddingBottom: "5%" }}>
-            <Grid xs={4}>
+            <Grid item xs={4}>
               {" "}
               <Typography variant="body1" sx={{ color: "blue" }}>
                 Language
               </Typography>
             </Grid>
-            <Grid xs={5} sx={{ paddingLeft: "2%" }}>
+            <Grid item xs={5} sx={{ paddingLeft: "2%" }}>
               <LanguageChip language={course?.language} />{" "}
             </Grid>
           </Grid>
 
           <Grid container sx={{ paddingBottom: "5%" }}>
-            <Grid xs={4}>
+            <Grid item xs={4}>
               {" "}
               <Typography variant="body1" sx={{ color: "blue" }}>
                 Skill
               </Typography>
             </Grid>
-            <Grid xs={8} sx={{ paddingLeft: "2%" }}>
+            <Grid item xs={8} sx={{ paddingLeft: "2%" }}>
               {course?.skills?.length === 0 ? (
                 <>
                   {" "}
@@ -106,12 +103,12 @@ const AdditionalInfo = () => {
           </Grid>
 
           <Grid container>
-            <Grid xs={4} sx={{ paddingTop: "0%" }}>
+            <Grid item xs={4} sx={{ paddingTop: "0%" }}>
               <Typography variant="body1" sx={{ color: "blue" }}>
                 Prerequisite
               </Typography>
             </Grid>
-            <Grid xs={8} sx={{ paddingLeft: "2%" }}>
+            <Grid item xs={8} sx={{ paddingLeft: "2%" }}>
               {course?.prerequisiteCourses?.length === 0 ? (
                 <>
                   {" "}
@@ -154,42 +151,36 @@ const AdditionalInfo = () => {
             <Link
               sx={{ fontStyle: "italic" }}
               underline="hover"
-              href={
-                course.liveSessionLink || "https://meet.google.com/yeb-vcyd-nhc"
-              }>
+              href={course.liveSessionLink || "https://meet.google.com/yeb-vcyd-nhc"}
+            >
               {course.liveSessionLink || "https://meet.google.com/yeb-vcyd-nhc"}
             </Link>
             <br />
             <br />
             <Box>
-              
-                <Grid container>
-                  <Grid item xs={2}>
-                    <Typography variant="body1" sx={{ color: "blue" }}>
-                      Date :
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={9}>
-                    <Typography variant="body1">
-                      {<TakenTime takenAt={course?.liveSessionStartedAt} /> ||
-                        "24th March"}
-                    </Typography>
-                  </Grid>
+              <Grid container>
+                <Grid item xs={2}>
+                  <Typography variant="body1" sx={{ color: "blue" }}>
+                    Date :
+                  </Typography>
                 </Grid>
-                <Grid container>
-                  <Grid item xs={2}>
-                    {" "}
-                    <Typography variant="body1" sx={{ color: "blue" }}>
-                      Time :
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={9}>
-                    <Typography variant="body1">
-                      {liveTime || " 10:00 AM"}
-                    </Typography>
-                  </Grid>
+                <Grid item xs={9}>
+                  <Typography variant="body1">
+                    {<TakenTime takenAt={course?.liveSessionStartedAt} /> || "24th March"}
+                  </Typography>
                 </Grid>
-              
+              </Grid>
+              <Grid container>
+                <Grid item xs={2}>
+                  {" "}
+                  <Typography variant="body1" sx={{ color: "blue" }}>
+                    Time :
+                  </Typography>
+                </Grid>
+                <Grid item xs={9}>
+                  <Typography variant="body1">{liveTime || " 10:00 AM"}</Typography>
+                </Grid>
+              </Grid>
 
               {/* <Typography variant="body1" sx={{ display: "flex" }}>
                 <Typography variant="body1" sx={{ color: "blue" }}>

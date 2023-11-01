@@ -33,7 +33,7 @@ const SkillFieldForUserDetails = ({
           onMouseLeave={() => setIsHovered(false)} // Handle mouse leave event
         >
           <Grid container>
-            <Grid xs={12} sx={{ padding: "2%" }}>
+            <Grid item xs={12} sx={{ padding: "2%" }}>
               <Grid container>
                 <Typography
                   variant="wpf_h8_regular"

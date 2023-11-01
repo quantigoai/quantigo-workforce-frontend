@@ -1,13 +1,13 @@
-import {Grid, Paper, Stack} from "@mui/material";
-import {Box} from "@mui/system";
+import { Grid, Paper, Stack } from "@mui/material";
+import { Box } from "@mui/system";
 import axios from "axios";
-import React, {useEffect, useState} from "react";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate, useParams} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import useToaster from "../../../customHooks/useToaster";
-import {updateAChapterById} from "../../../features/slice/courseSlice";
-import {realToken} from "../../../helper/lib";
+import { updateAChapterById } from "../../../features/slice/courseSlice";
+import { realToken } from "../../../helper/lib";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import ChapterDescription from "./InputFields/ChapterDescription";
 import ChapterName from "./InputFields/ChapterName";
@@ -150,7 +150,7 @@ const UpdateChapter = () => {
                     </Stack>
                   </Grid>
                 </Grid>
-                <Grid xs={12} sx={{ py: 6 }}>
+                <Grid item xs={12} sx={{ py: 6 }}>
                   <ContentField courseChapter={courseChapter} uploadPlugin={uploadPlugin} setContent={setContent} />
                 </Grid>
               </Grid>
@@ -161,6 +161,5 @@ const UpdateChapter = () => {
     </>
   );
 };
-
 
 export default UpdateChapter;

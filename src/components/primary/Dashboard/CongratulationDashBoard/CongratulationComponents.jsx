@@ -16,7 +16,7 @@ const CongratulationComponents = () => {
   return (
     <>
       <Grid container style={teamIconDiv}>
-        <Grid xs={12}>
+        <Grid item xs={12}>
           <Box>
             <Paper elevation={0} style={paperStyle}>
               <Grid container>
@@ -42,19 +42,19 @@ const CongratulationComponents = () => {
                 </Grid>
                 <Grid item xs={8} md={7} lg={7} xl={8}>
                   <Box sx={{ padding: "3%" }}>
-                    <Grid xs={12}>
+                    <Grid item xs={12}>
                       <Typography variant="wpf_h5_medium" sx={{ color: "neutral.750" }}>
                         Congratulations
                       </Typography>
                     </Grid>
-                    <Grid xs={12}>
+                    <Grid item xs={12}>
                       <Typography variant="wpf_p4_regular" sx={{ color: "neutral.N300" }}>
                         Quantigo Workforce platform is a place where you can earn money by doing annotation work. It is
                         a very simple process. You just have to follow the steps given below. We give you the
                         opportunity to grow your career with us. We are always with you to help yous.
                       </Typography>
                     </Grid>
-                    <Grid xs={10} sx={{ paddingTop: "3%" }}>
+                    <Grid item xs={10} sx={{ paddingTop: "3%" }}>
                       <Button
                         sx={{
                           textTransform: "none",

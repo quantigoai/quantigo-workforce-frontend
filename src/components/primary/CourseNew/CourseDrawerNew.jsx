@@ -43,12 +43,12 @@ const CourseDrawerNew = ({ handleChapterClick }) => {
             }}>
             <Grid container sx={{ justifyContent: "space-between" }}>
               <Grid item xs={7}>
-                <Grid xs={12}>
+                <Grid item xs={12}>
                   <Typography variant="16px">
                     <b>All Chapters</b>
                   </Typography>
                 </Grid>
-                <Grid xs={12}>
+                <Grid item xs={12}>
                   <Typography sx={{ color: "#969CAF" }} variant="caption">
                     6 Chapters , 4 hrs 32 min
                   </Typography>

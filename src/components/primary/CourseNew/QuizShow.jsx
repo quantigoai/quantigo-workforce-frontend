@@ -94,7 +94,7 @@ const QuizShow = () => {
                     Q{i + 1}. {item.question} ?
                   </Typography>
                 </Grid>
-                <Grid xs={12} sx={{ paddingLeft: "2%" }}>
+                <Grid item xs={12} sx={{ paddingLeft: "2%" }}>
                   <RadioGroup
                   //  value={value}
                   >

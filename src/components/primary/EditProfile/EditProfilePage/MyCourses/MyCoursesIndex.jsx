@@ -1,7 +1,7 @@
-import { Box, Grid, styled, Table, TableBody, TableCell, tableCellClasses, TableRow, Typography } from "@mui/material";
+import { Box, Grid, styled, TableCell, tableCellClasses, TableRow, Typography } from "@mui/material";
 import React from "react";
-import ProjectDrawerStatusChip from "../../../../shared/FilterField/ProjectDrawerStatusChip";
 import { useSelector } from "react-redux";
+import ProjectDrawerStatusChip from "../../../../shared/FilterField/ProjectDrawerStatusChip";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -95,12 +95,12 @@ const MyCoursesIndex = () => {
         </Grid> */}
         <Grid item xs={6}>
           <Grid container sx={{ padding: "2%" }}>
-            <Grid xs={12} sx={{ paddingBottom: "1%" }}>
+            <Grid item xs={12} sx={{ paddingBottom: "1%" }}>
               <Typography variant="h6" sx={{ color: "neutral.N300" }}>
                 <b>Achieved Skills</b>
               </Typography>
             </Grid>
-            <Grid xs={12}>
+            <Grid item xs={12}>
               <Box
                 sx={{
                   border: "1px solid #E6ECF5",
@@ -111,7 +111,8 @@ const MyCoursesIndex = () => {
                   paddingTop: "2%",
                   // paddingRight: "2%",
                   paddingBottom: "2%",
-                }}>
+                }}
+              >
                 {user.skills && (
                   <Grid container>
                     {user.skills.map((p) => (

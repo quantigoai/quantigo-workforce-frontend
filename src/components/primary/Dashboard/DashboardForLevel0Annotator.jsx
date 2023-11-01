@@ -15,7 +15,7 @@ const DashboardForLevel0Annotator = () => {
   return (
     <>
       <Grid container style={teamicondiv}>
-        <Grid xs={6}>
+        <Grid item xs={6}>
           <Box style={{ padding: "0px", paddingLeft: "0%" }}>
             <Paper elevation={2} style={paperstyle}>
               <Typography variant="h4">Active Job</Typography>
@@ -23,7 +23,7 @@ const DashboardForLevel0Annotator = () => {
             </Paper>
           </Box>
         </Grid>
-        <Grid xs={6}>
+        <Grid item xs={6}>
           <Box style={{ padding: "0px", paddingLeft: "0%" }}>
             <Paper elevation={2} style={paperstyle}>
               <Typography variant="h4">Available Job</Typography>

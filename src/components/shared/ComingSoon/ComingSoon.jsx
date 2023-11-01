@@ -41,7 +41,7 @@ const ComingSoon = () => {
 
   return (
     <Box style={ContentBox}>
-      <Grid xs={12}>
+      <Grid item xs={12}>
         <Paper elevation={0} sx={paperStyle}>
           <Grid container>
             <Grid
@@ -71,8 +71,7 @@ const ComingSoon = () => {
               </Typography>
               <br />
               <Typography variant="wpf_p2_regular" color={"gray.700"}>
-                It seems that the page you're looking for is still under development. Please try again
-                later.
+                It seems that the page you're looking for is still under development. Please try again later.
               </Typography>
               <br />
               <Button

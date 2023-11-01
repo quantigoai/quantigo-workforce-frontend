@@ -1,6 +1,6 @@
 import { Box, Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { lazy, Suspense, useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { emailVerificationLink } from "../../../../features/slice/userSlice";
@@ -40,7 +40,7 @@ const EmailVerificationConfirmation = () => {
       <Keyframes>
         <HeaderNav emailVerificationConfirm={true} />
         <Grid container style={{ justifyItems: "center" }}>
-          <Grid xs={12} sm={12} md={6} lg={6} sx={{ paddingTop: "10%", paddingLeft: "35%" }}>
+          <Grid item xs={12} sm={12} md={6} lg={6} sx={{ paddingTop: "10%", paddingLeft: "35%" }}>
             {!isLoading && (
               <Suspense fallback={<LoadingComponent />}>
                 <VerificationResult message={message} verificationTimeOver={verificationTimeOver} />

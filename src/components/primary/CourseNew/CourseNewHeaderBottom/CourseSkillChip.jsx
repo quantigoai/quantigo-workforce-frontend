@@ -1,4 +1,4 @@
-import {Grid, Tooltip, Typography,} from "@mui/material";
+import { Grid, Tooltip, Typography } from "@mui/material";
 import React from "react";
 import skillImage from "../../../../assets/images/skillsIcon.svg";
 
@@ -11,12 +11,12 @@ const CourseSkillChip = ({ skills }) => {
         </Grid>
 
         <Grid item xs={11} sx={{ paddingLeft: "4%" }}>
-          <Grid xs={12}>
+          <Grid item xs={12}>
             <Typography sx={{ color: "#969CAF" }} variant="caption">
               SKILLS
             </Typography>
           </Grid>
-          <Grid xs={12}>
+          <Grid item xs={12}>
             {skills.length === 1 ? (
               <>
                 {skills.map((skill) => (

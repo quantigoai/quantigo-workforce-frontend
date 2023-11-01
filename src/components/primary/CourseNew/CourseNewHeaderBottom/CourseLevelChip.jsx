@@ -54,17 +54,17 @@ const CourseLevelChip = ({ level }) => {
           <img src={levelImage} />
         </Grid>
 
-        <Grid item xs={7} sx={{backgroundColor:""}}>
-          {/* <Grid xs={12}> */}
+        <Grid item xs={7} sx={{ backgroundColor: "" }}>
+          {/* <Grid item xs={12}> */}
           <Typography sx={{ color: "#969CAF" }} variant="wpf_p5_medium">
             LEVEL
           </Typography>
-          <br/>
+          <br />
           <Typography variant="wpf_p3_medium">
             <b>{capitalizeFirstLetter(level)}</b>
           </Typography>
           {/* </Grid> */}
-          {/* <Grid xs={12}>
+          {/* <Grid item xs={12}>
             <Typography>
               <b>{capitalizeFirstLetter(level)}</b>
             </Typography>

@@ -79,21 +79,21 @@ const SelectMenu = ({ teams, workspaces, projects, datasets = [], handleChangeTe
         }}
       >
         {/* Show Team List */}
-        <Grid xs={jobCreate || calculateAnnotation ? 3 : 4} style={{ paddingRight: "1%" }}>
+        <Grid item xs={jobCreate || calculateAnnotation ? 3 : 4} style={{ paddingRight: "1%" }}>
           <Teams teams={teams} handleChangeTeam={handleChangeTeam} />
         </Grid>
         {/* Show Workspaces List */}
-        <Grid xs={jobCreate || calculateAnnotation ? 3 : 4} sx={{ paddingRight: "1%" }}>
+        <Grid item xs={jobCreate || calculateAnnotation ? 3 : 4} sx={{ paddingRight: "1%" }}>
           <Workspaces workspaces={workspaces} handleChangeWorkspace={handleChangeWorkspace} />
         </Grid>
         {/* Show Project List */}
-        <Grid xs={jobCreate || calculateAnnotation ? 3 : 4} sx={{ paddingRight: "1%" }}>
+        <Grid item xs={jobCreate || calculateAnnotation ? 3 : 4} sx={{ paddingRight: "1%" }}>
           <Projects xs={jobCreate || calculateAnnotation ? 3 : 4} projects={projects} handleChangeProject={handleChangeProject} />
         </Grid>
 
         {/* Show Dataset List */}
         {(jobCreate || calculateAnnotation) && (
-          <Grid xs={jobCreate || calculateAnnotation ? 3 : 4} sx={{ paddingRight: "0%" }}>
+          <Grid item xs={jobCreate || calculateAnnotation ? 3 : 4} sx={{ paddingRight: "0%" }}>
             <Datasets jobCreate={jobCreate} calculateAnnotation={calculateAnnotation} datasets={datasets} handleChangeDataset={handleChangeDataset} register={register} />
           </Grid>
         )}

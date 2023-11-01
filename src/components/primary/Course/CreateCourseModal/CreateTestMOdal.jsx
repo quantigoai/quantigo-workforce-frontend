@@ -1,31 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Box, Button, Grid, Modal, Typography } from "@mui/material";
-import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
-import NameField from "../InputFields/NameField";
-import CTextField from "./CTextField";
-import CTextFieldDescription from "./CTextFieldDescription";
-import {
-  courseCategoryFields,
-  courseLevelFields,
-  courseLanguageFields,
-} from "../../../primary/AllUsers/userFilterOptions";
-import CSelectField from "./CSelectField";
-import PreRequisiteCourseFiled from "./PreRequisiteCourseFiled";
-import CoverImageField from "../InputFields/CoverImageField";
-import { useDispatch, useSelector } from "react-redux";
-import { createCourse, getAllCourses } from "../../../../features/slice/courseSlice";
-import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
-import useToaster from "../../../../customHooks/useToaster";
-import { useNavigate } from "react-router-dom";
+import { Box, Button, Grid, Modal } from "@mui/material";
+import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { getAllSkills } from "../../../../features/slice/skillSlice";
-import SelectField from "./SelectField";
-import PDTextFIeld from "../../../shared/CustomField/PDTextFIeld";
-import DocumentImageUpload from "../../Documents/DocumentImageUpload";
-import CourseSkillfiled from "./CourseSkillfiled";
+import { courseCategoryFields, courseLevelFields } from "../../../primary/AllUsers/userFilterOptions";
+import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
+import CSelectField from "./CSelectField";
 // import FormProvider from "../../../shared/FormProvider/FormProvider";
-import CustomTextField from "../../../shared/CustomField/CustomTextField";
-import CustomeSelectField from "./CustomeSelectField";
 const style = {
   position: "absolute",
   top: "50%",
@@ -59,9 +38,7 @@ const CreateTestMOdal = ({ handleClose, open }) => {
   //     formState: { errors },
   //   } = methods;
 
-  const onSubmit = (data) => {
-    
-  };
+  const onSubmit = (data) => {};
 
   return (
     <>
@@ -69,19 +46,22 @@ const CreateTestMOdal = ({ handleClose, open }) => {
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
+        aria-describedby="modal-modal-description"
+      >
         <Box
           sx={{
             ...style,
             height: { xl: "95%", lg: "85%" },
             width: { xl: "35%", lg: "40%" },
-          }}>
+          }}
+        >
           <Box
             sx={{
               backgroundColor: "",
               height: "100%",
               position: "relative",
-            }}>
+            }}
+          >
             <Box sx={{ height: "8%" }}>
               <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Create Project"} />
             </Box>
@@ -89,7 +69,8 @@ const CreateTestMOdal = ({ handleClose, open }) => {
               sx={{
                 height: "92%",
                 backgroundColor: "",
-              }}>
+              }}
+            >
               <FormProvider onSubmit={handleSubmit(onSubmit)}>
                 <Box
                   sx={{
@@ -102,13 +83,14 @@ const CreateTestMOdal = ({ handleClose, open }) => {
                     },
                     overflowY: "auto",
                     // zIndex: 1,
-                  }}>
+                  }}
+                >
                   <>
                     <Grid container>
-                      <Grid xs={6} sx={{ paddingRight: "1%" }}>
+                      <Grid item xs={6} sx={{ paddingRight: "1%" }}>
                         <CSelectField name={"level"} options={courseLevelFields} level={"Level"} register={register} />
                       </Grid>
-                      <Grid xs={6}>
+                      <Grid item xs={6}>
                         {" "}
                         <CSelectField
                           name={"category"}
@@ -197,7 +179,8 @@ const CreateTestMOdal = ({ handleClose, open }) => {
                             color: "neutral.N650",
                           },
                         }}
-                        onClick={() => handleClose()}>
+                        onClick={() => handleClose()}
+                      >
                         Cancel
                       </Button>
                     </Grid>

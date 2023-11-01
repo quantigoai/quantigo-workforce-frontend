@@ -45,7 +45,7 @@ const ShowResult = () => {
               paddingRight: "2%",
             }}
           >
-            <Grid xs={4} sx={{ paddingRight: "3%", justifyContent: "center" }}>
+            <Grid item xs={4} sx={{ paddingRight: "3%", justifyContent: "center" }}>
               <Paper
                 elevation={0}
                 sx={{
@@ -84,7 +84,7 @@ const ShowResult = () => {
               </Paper>
             </Grid>
 
-            <Grid xs={4} sx={{ paddingRight: "3%" }}>
+            <Grid item xs={4} sx={{ paddingRight: "3%" }}>
               {" "}
               <Paper
                 elevation={0}
@@ -113,7 +113,7 @@ const ShowResult = () => {
                 </Grid>
               </Paper>
             </Grid>
-            <Grid xs={4}>
+            <Grid item xs={4}>
               {" "}
               <Paper
                 elevation={0}

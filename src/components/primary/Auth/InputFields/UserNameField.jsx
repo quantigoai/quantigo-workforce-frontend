@@ -1,10 +1,10 @@
-import {Grid, TextField} from "@mui/material";
+import { Grid, TextField } from "@mui/material";
 import React from "react";
 
 export const UserNameField = ({ register, qaiID }) => {
   return (
     <>
-      <Grid xs={12} sx={{ paddingBottom: "2%" }}>
+      <Grid item xs={12} sx={{ paddingBottom: "2%" }}>
         <TextField
           fullWidth
           required={true}

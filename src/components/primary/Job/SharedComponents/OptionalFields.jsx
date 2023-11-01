@@ -6,14 +6,14 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {FormControl, Grid, InputAdornment, InputLabel, MenuItem, Select, TextField,} from "@mui/material";
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {getAllSkills} from "../../../../features/slice/skillSlice";
-import SkillField from "../../Course/InputFields/SkillField";
 import styled from "@emotion/styled";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { FormControl, Grid, InputAdornment, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllSkills } from "../../../../features/slice/skillSlice";
+import SkillField from "../../Course/InputFields/SkillField";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -97,7 +97,8 @@ const OptionalFields = ({ register, setSkills, projectType }) => {
                 borderRadius: "4px",
               }}
               IconComponent={() => <CustomDownArrow />}
-              {...register("jobType", { required: true })}>
+              {...register("jobType", { required: true })}
+            >
               <MenuItem value={"tagging"}>Tag</MenuItem>
               <MenuItem value={"labeling"}>Labeling</MenuItem>
               <MenuItem value={"all"}>All</MenuItem>
@@ -128,10 +129,8 @@ const OptionalFields = ({ register, setSkills, projectType }) => {
         </Grid>
       </Grid>
 
-      <Grid
-        container
-        sx={{ paddingLeft: "3%", paddingRight: "3%", paddingBottom: "2%" }}>
-        <Grid xs={4} sx={{ paddingRight: "2%" }}>
+      <Grid container sx={{ paddingLeft: "3%", paddingRight: "3%", paddingBottom: "2%" }}>
+        <Grid item xs={4} sx={{ paddingRight: "2%" }}>
           {/* TODO move in a separate component */}
           <TextField
             id="input-with-icon-textfield"
@@ -145,9 +144,7 @@ const OptionalFields = ({ register, setSkills, projectType }) => {
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <CustomClockIcon
-                    aria-label="toggle password visibility"
-                    edge="end"></CustomClockIcon>
+                  <CustomClockIcon aria-label="toggle password visibility" edge="end"></CustomClockIcon>
                 </InputAdornment>
               ),
             }}
@@ -155,7 +152,7 @@ const OptionalFields = ({ register, setSkills, projectType }) => {
           />
         </Grid>
 
-        <Grid xs={4} sx={{ paddingRight: "2%" }}>
+        <Grid item xs={4} sx={{ paddingRight: "2%" }}>
           {/* TODO move in a separate component */}
           <TextField
             id="input-with-icon-textfield"
@@ -169,20 +166,15 @@ const OptionalFields = ({ register, setSkills, projectType }) => {
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <CustomClockIcon
-                    aria-label="toggle password visibility"
-                    edge="end"></CustomClockIcon>
+                  <CustomClockIcon aria-label="toggle password visibility" edge="end"></CustomClockIcon>
                 </InputAdornment>
               ),
             }}
             {...register("work_worth_time", { required: false })}
           />
         </Grid>
-        <Grid xs={4} sx={{ paddingRight: "0%" }}>
-          <FormControl
-            variant="filled"
-            fullWidth
-            sx={{ backgroundColor: "#FFFFFF" }}>
+        <Grid item xs={4} sx={{ paddingRight: "0%" }}>
+          <FormControl variant="filled" fullWidth sx={{ backgroundColor: "#FFFFFF" }}>
             <SkillField
               course={course}
               skills={skills}

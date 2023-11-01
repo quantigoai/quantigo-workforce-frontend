@@ -14,14 +14,14 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {FilledInput, FormControl, Grid, InputAdornment, InputLabel, MenuItem, Select,} from "@mui/material";
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {getAllSkills} from "../../../../features/slice/skillSlice";
-import SkillField from "../../Course/InputFields/SkillField";
 import styled from "@emotion/styled";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { FilledInput, FormControl, Grid, InputAdornment, InputLabel, MenuItem, Select } from "@mui/material";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllSkills } from "../../../../features/slice/skillSlice";
+import SkillField from "../../Course/InputFields/SkillField";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -136,16 +136,14 @@ const OptionalFieldsNew = ({ register, setSkills }) => {
       </Grid>
 
       <Grid container sx={{ paddingBottom: "2%" }}>
-        <Grid xs={4} sx={{ paddingRight: "1%" }}>
+        <Grid item xs={4} sx={{ paddingRight: "1%" }}>
           <FormControl
             variant="filled"
             fullWidth
             sx={{ backgroundColor: "#FFFFFF" }}
             {...register("timeLimit", { required: false })}
           >
-            <InputLabel htmlFor="filled-adornment-password">
-              Expire Time (Minute)
-            </InputLabel>
+            <InputLabel htmlFor="filled-adornment-password">Expire Time (Minute)</InputLabel>
             <FilledInput
               defaultValue={90}
               endAdornment={
@@ -161,16 +159,14 @@ const OptionalFieldsNew = ({ register, setSkills }) => {
           </FormControl>
         </Grid>
 
-        <Grid xs={4} sx={{ paddingRight: "1%" }}>
+        <Grid item xs={4} sx={{ paddingRight: "1%" }}>
           <FormControl
             variant="filled"
             fullWidth
             sx={{ backgroundColor: "#FFFFFF" }}
             {...register("work_worth_time", { required: false })}
           >
-            <InputLabel htmlFor="filled-adornment-password">
-              Actual Work Time (Minute)
-            </InputLabel>
+            <InputLabel htmlFor="filled-adornment-password">Actual Work Time (Minute)</InputLabel>
             <FilledInput
               defaultValue={30}
               endAdornment={
@@ -185,12 +181,8 @@ const OptionalFieldsNew = ({ register, setSkills }) => {
             />
           </FormControl>
         </Grid>
-        <Grid xs={4} sx={{ paddingRight: "0%" }}>
-          <FormControl
-            variant="filled"
-            fullWidth
-            sx={{ backgroundColor: "#FFFFFF" }}
-          >
+        <Grid item xs={4} sx={{ paddingRight: "0%" }}>
+          <FormControl variant="filled" fullWidth sx={{ backgroundColor: "#FFFFFF" }}>
             <SkillField
               course={course}
               skills={skills}

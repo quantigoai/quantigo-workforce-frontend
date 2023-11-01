@@ -11,6 +11,7 @@ import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import congImg from "../../../../assets/images/congImg.svg";
 import { getTotalCountData } from "../../../../features/slice/dashboardSlice";
 import { convertDate } from "../../../../helper/customData";
@@ -19,7 +20,6 @@ import TotalEstimatedWorkingHoursCard from "../DashboardCard/TotalEstimatedWorki
 import TotalProjectDrawerCard from "../DashboardCard/TotalProjectDrawerCard";
 import TotalWorkingHoursCard from "../DashboardCard/TotalWorkingHoursCard";
 import StepGuide from "./StepGuide";
-import { useNavigate } from "react-router-dom";
 const AnnotatorLandingPage = () => {
   const paperStyle = {
     backgroundColor: "neutral.N000",
@@ -148,7 +148,7 @@ const AnnotatorLandingPage = () => {
                 </Grid>
                 <Grid item xs={9} md={9} lg={12} xl={9}>
                   <Box sx={{ padding: "3%" }}>
-                    <Grid xs={12}>
+                    <Grid item xs={12}>
                       <Typography variant="wpf_h5_medium" sx={{ color: "neutral.750" }}>
                         Congratulations
                       </Typography>
@@ -160,7 +160,7 @@ const AnnotatorLandingPage = () => {
                         opportunity to grow your career with us. We are always with you to help you.
                       </Typography>
                     </Box>
-                    <Grid xs={10} sx={{ paddingTop: "3%", pb: 2 }}>
+                    <Grid item xs={10} sx={{ paddingTop: "3%", pb: 2 }}>
                       <Button
                         sx={{
                           textTransform: "none",

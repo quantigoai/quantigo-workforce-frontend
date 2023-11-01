@@ -1,7 +1,7 @@
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import {Alert, Box, Button, Grid, Typography} from "@mui/material";
-import React, {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { Alert, Box, Button, Grid, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import UpdateDocumentModal from "../../Documents/UpdateDocumentModal";
 import NDAuploadModal from "../../Nda/NDAuploadModal";
 import ProgressBarForDashboard from "../ProgressBarForDashboard";
@@ -48,14 +48,14 @@ const DashboardDocument = () => {
         >
           <Box sx={{ borderBottom: "1px solid #F2F4F7" }}>
             <Grid container sx={{ justifyContent: "space-between", padding: "1%" }}>
-              <Grid xs={8}>
+              <Grid item xs={8}>
                 <Typography variant="wpf_h6_semiBold">Profile Completion</Typography>
                 <br />
                 <Typography variant="wpf_p4_regular">
                   Please update your profile to get full access to the account
                 </Typography>
               </Grid>
-              <Grid xs={4}>
+              <Grid item xs={4}>
                 <Grid container sx={{ justifyContent: "right" }}>
                   <ProgressBarForDashboard />
                 </Grid>
@@ -65,9 +65,9 @@ const DashboardDocument = () => {
 
           <Box sx={{}}>
             <Grid container sx={{ padding: "1%" }}>
-              <Grid xs={6} sx={{ backgroundColor: "", paddingRight: "1%" }}>
+              <Grid item xs={6} sx={{ backgroundColor: "", paddingRight: "1%" }}>
                 <Box sx={{ backgroundColor: "primary.B008", borderRadius: "8px", padding: "2%" }}>
-                  <Grid xs={12}>
+                  <Grid item xs={12}>
                     <Typography variant="wpf_h6_semiBold" sx={{ color: "primary.B300" }}>
                       NDA Upload
                     </Typography>
@@ -76,7 +76,7 @@ const DashboardDocument = () => {
                       Please download, sign and upload the NDA form.
                     </Typography>
                   </Grid>
-                  <Grid xs={12} sx={{ paddingTop: "2%" }}>
+                  <Grid item xs={12} sx={{ paddingTop: "2%" }}>
                     {!user.user.isNDASigned || user.user.isNDAApproved === "rejected" ? (
                       <Button sx={buttonStyle} onClick={() => handleNDAModal()}>
                         <i className="ri-upload-2-line"></i>
@@ -96,9 +96,9 @@ const DashboardDocument = () => {
                 </Box>
               </Grid>
 
-              <Grid xs={6} sx={{ backgroundColor: "", paddingRight: "0%" }}>
+              <Grid item xs={6} sx={{ backgroundColor: "", paddingRight: "0%" }}>
                 <Box sx={{ backgroundColor: "primary.B008", borderRadius: "8px", padding: "2%" }}>
-                  <Grid xs={12}>
+                  <Grid item xs={12}>
                     <Typography variant="wpf_h6_semiBold" sx={{ color: "primary.B300" }}>
                       Document Upload
                     </Typography>
@@ -107,7 +107,7 @@ const DashboardDocument = () => {
                       Please attach a scanned image of your NID or passport and carefully fill in the number.
                     </Typography>
                   </Grid>
-                  <Grid xs={12} sx={{ paddingTop: "2%" }}>
+                  <Grid item xs={12} sx={{ paddingTop: "2%" }}>
                     {user.user.isDocumentsSubmitted === "submitted" || user.user.isDocumentsSubmitted === "approved" ? (
                       <>
                         <Button sx={buttonStyle} disabled onClick={() => handleNDAModalNid()}>

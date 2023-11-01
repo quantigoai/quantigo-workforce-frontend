@@ -11,8 +11,8 @@ import {
   CategoryScale,
   Chart as ChartJS,
   Legend,
-  LinearScale,
   LineElement,
+  LinearScale,
   PointElement,
   Title,
   Tooltip,
@@ -20,8 +20,8 @@ import {
 import React, { useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import { useSelector } from "react-redux";
-import { daysAndMonths } from "../../../../helper/dateConverter";
 import { capitalizeAllwordAndSlic } from "../../../../helper/capitalizeAllwordAndSlic";
+import { daysAndMonths } from "../../../../helper/dateConverter";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -157,7 +157,7 @@ const LineChart = ({ loading }) => {
     <>
       <Box sx={{ padding: "2%" }}>
         <Grid container>
-          <Grid xs={12} sx={{ paddingTop: "1%" }}>
+          <Grid item xs={12} sx={{ paddingTop: "1%" }}>
             <Typography variant="wpf_p3_semiBold" sx={{ color: "neutral.750" }}>
               <b>Weekly Job Statistics</b>
             </Typography>

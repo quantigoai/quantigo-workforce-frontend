@@ -32,7 +32,7 @@ const ErrorPage = () => {
 
   return (
     <Box style={ContentBox}>
-      <Grid xs={12}>
+      <Grid item xs={12}>
         <Paper elevation={0} sx={paperStyle}>
           <Grid container>
             <Grid

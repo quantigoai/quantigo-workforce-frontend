@@ -20,11 +20,11 @@ const ChapterContent = ({ handleQuizStart, handleCreateQuiz, handleEditChapter }
     <>
       <Box>
         <Grid container>
-          <Grid xs={3} sx={{paddingRight:"1%"}}>
+          <Grid item xs={3} sx={{paddingRight:"1%"}}>
             {" "}
             <ChapterHeader />
           </Grid>
-          <Grid xs={9}>
+          <Grid item xs={9}>
             <Paper elevation={0} sx={{ width: "100%" }}>
               {courseChapter ? (
                 <Grid

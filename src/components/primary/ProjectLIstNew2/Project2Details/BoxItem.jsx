@@ -1,6 +1,6 @@
-import {Box, Grid, Stack, Typography} from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 const BoxItem = ({ Item }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
@@ -8,7 +8,7 @@ const BoxItem = ({ Item }) => {
     <>
       <Stack sx={{ borderBottom: "1px solid #E6ECF5" }}>
         <Grid container>
-          <Grid xs={12} sx={{ padding: "1%" }}>
+          <Grid item xs={12} sx={{ padding: "1%" }}>
             <Typography variant="caption" sx={{ color: isLightTheme ? "#091E42" : "#FFFFFF", opacity: "0.7" }}>
               Relevant Documents
             </Typography>

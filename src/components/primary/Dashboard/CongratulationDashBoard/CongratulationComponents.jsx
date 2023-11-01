@@ -71,7 +71,7 @@ const CongratulationComponents = () => {
                             backgroundColor: "#FF9A45",
                             color: "#1D1D1D",
                           },
-                          width: "20%",
+                          width: "30%",
                           height: "30%",
                         }}
                       >

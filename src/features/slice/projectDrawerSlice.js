@@ -33,7 +33,7 @@ const initialState = {
 export const rejectHistoryAPIRequest = async (data) => {
   const { id, rejectionCause } = data;
   try {
-    return await axios.patch(
+    return axios.patch(
       `${url}/project-history/reject-history/${id}`,
       { rejectionCause },
       {
@@ -49,7 +49,7 @@ export const rejectHistoryAPIRequest = async (data) => {
 
 export const approveProjectHistoryAPIRequest = async (id) => {
   try {
-    return await axios.patch(`${url}/project-history/approved-history/${id}`, id, {
+    return axios.patch(`${url}/project-history/approved-history/${id}`, id, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -60,7 +60,7 @@ export const approveProjectHistoryAPIRequest = async (id) => {
 };
 export const approveProjectPaymentAPLRequest = async (id) => {
   try {
-    return await axios.patch(`${url}/project-history/approved-payment/${id}`, id, {
+    return axios.patch(`${url}/project-history/approved-payment/${id}`, id, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -83,7 +83,7 @@ export const getAllProjectDrawers = createAsyncThunk("/project-drawer/", async (
     if (search) {
       query += `&search=${search}`;
     }
-    return await axios.get(`${url}/project-drawer?${query}`, {
+    return axios.get(`${url}/project-drawer?${query}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -95,7 +95,7 @@ export const getAllProjectDrawers = createAsyncThunk("/project-drawer/", async (
 
 export const createProjectDrawer = createAsyncThunk("/project-drawer/create", async (data) => {
   try {
-    return await axios.post(`${url}/project-drawer`, data, {
+    return axios.post(`${url}/project-drawer`, data, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -107,7 +107,7 @@ export const createProjectDrawer = createAsyncThunk("/project-drawer/create", as
 
 export const updateProjectDrawerById = createAsyncThunk("/project-drawer/update", async (data) => {
   try {
-    return await axios.patch(`${url}/project-drawer/${data.id}`, data.data, {
+    return axios.patch(`${url}/project-drawer/${data.id}`, data.data, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -118,7 +118,7 @@ export const updateProjectDrawerById = createAsyncThunk("/project-drawer/update"
 });
 export const getProjectDrawerById = createAsyncThunk("/project-drawer/projectDrawer/id", async (data) => {
   try {
-    return await axios.get(`${url}/project-drawer/${data}`, {
+    return axios.get(`${url}/project-drawer/${data}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -130,7 +130,7 @@ export const getProjectDrawerById = createAsyncThunk("/project-drawer/projectDra
 
 export const deleteProjectDrawerById = createAsyncThunk("/project-drawer/delete", async (id) => {
   try {
-    return await axios.delete(`${url}/project-drawer/${id}`, {
+    return axios.delete(`${url}/project-drawer/${id}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -142,7 +142,7 @@ export const deleteProjectDrawerById = createAsyncThunk("/project-drawer/delete"
 
 export const checkInProjectDrawerById = createAsyncThunk("/project-drawer/check-in", async (data) => {
   try {
-    return await axios.patch(
+    return axios.patch(
       `${url}/project-drawer/check-in/${data.id}`,
       {},
       {
@@ -158,7 +158,7 @@ export const checkInProjectDrawerById = createAsyncThunk("/project-drawer/check-
 
 export const checkOutProjectDrawerById = createAsyncThunk("/project-drawer/check-out", async (data) => {
   try {
-    return await axios.patch(
+    return axios.patch(
       `${url}/project-drawer/check-out/${data.id}`,
       {},
       {
@@ -174,7 +174,7 @@ export const checkOutProjectDrawerById = createAsyncThunk("/project-drawer/check
 
 export const addSkillsToCheckInUser = createAsyncThunk("/project-drawer/add-skills", async (data) => {
   try {
-    return await axios.patch(`${url}/project-drawer/assign-skills/${data.id}`, data.data, {
+    return axios.patch(`${url}/project-drawer/assign-skills/${data.id}`, data.data, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -186,7 +186,7 @@ export const addSkillsToCheckInUser = createAsyncThunk("/project-drawer/add-skil
 
 export const removeSkillsToCheckInUser = createAsyncThunk("/project-drawer/remove-skills", async (data) => {
   try {
-    return await axios.patch(`${url}/project-drawer/remove-skills/${data.id}`, {
+    return axios.patch(`${url}/project-drawer/remove-skills/${data.id}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -211,7 +211,7 @@ export const getUsersWorkHistoryById = createAsyncThunk("/project-drawer/details
       const endDate = rangeDateFormatter(range[0].endDate);
       query += `&startDate=${startDate}&endDate=${endDate}`;
     }
-    return await axios.get(`${url}/project-drawer/work-history/${id}?${query}`, {
+    return axios.get(`${url}/project-drawer/work-history/${id}?${query}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -232,7 +232,7 @@ export const getMyWorkHistoryById = createAsyncThunk("/project-drawer/details/ge
     }
     ascDescOptions.map((ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`));
 
-    return await axios.get(`${url}/project-drawer/my-work-history/${id}?${query}`, {
+    return axios.get(`${url}/project-drawer/my-work-history/${id}?${query}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -291,7 +291,7 @@ export const getMyAvailableProjects = createAsyncThunk("/project-drawer/myAvailA
     query += `&project_platform=${annotatorPlatform}`;
   }
   try {
-    return await axios.get(`${url}/project-drawer/my-available-project?${query}`, {
+    return axios.get(`${url}/project-drawer/my-available-project?${query}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },

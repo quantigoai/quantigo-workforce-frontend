@@ -69,7 +69,7 @@ const TableWrapper = ({
           />
         );
       } else if (data && data.length === 0) {
-        const message = "No available projects found!";
+        const message = "No available data found!";
         return <Alert severity="error">{message}</Alert>;
       } else if (role === "recruitment_manager") {
         const message = "No Users found!!!";
@@ -104,15 +104,16 @@ const TableWrapper = ({
             handleOpenNDA={handleOpenNDA}
           />
         );
+      } else if (data && data.length === 0) {
+        const message = "No Users history found for this projects!";
+        return <Alert severity="error">{message}</Alert>;
       } else if (role === "recruitment_manager") {
         const message = "No Users history found for this projects!";
         return <Alert severity="error">{message}</Alert>;
       } else if (role !== "admin" && role !== "account_manager") {
         return <DetailsPage skillAlert={skillAlert} />;
       } else {
-        // Dynamic message for the alert
-        const message = "No Users history found for this projects!";
-        return <Alert severity="error">{message}</Alert>;
+        return null;
       }
     }
   };

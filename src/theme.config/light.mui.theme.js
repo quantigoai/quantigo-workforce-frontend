@@ -164,6 +164,12 @@ const lightTheme = createTheme({
         paper: {
           border: "none",
           marginLeft: "0px !important",
+          // "@media(min-width: 600px)": {
+          //   width: "50px !important",
+          // },
+          "@media(min-width: 768px)": {
+            // width: "50px !important",
+          },
         },
         docked: {
           marginLeft: "0px !important",

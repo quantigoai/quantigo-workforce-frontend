@@ -1,10 +1,9 @@
 import { LoadingButton } from "@mui/lab";
-import { Button, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../customHooks/useToaster";
 import {
-  approveProjectHistory,
   approveProjectHistoryAPIRequest,
   rejectHistoryAPIRequest,
   updateProjectDrawerManually,
@@ -115,7 +114,8 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
               },
               mr: 2,
             }}
-            onClick={handleOpen}>
+            onClick={handleOpen}
+          >
             <i className="ri-upload-2-line"></i>
             <Typography variant="body" sx={{ ml: 1, textTransform: "none", fontWeight: "500" }}>
               Upload Effective Hour
@@ -135,17 +135,18 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
               fontWeight: "500",
               borderRadius: "6px",
               height: "30px",
-              width: "132px",
+              width: "142px",
               "&:hover": { backgroundColor: "#244EF5", color: "#FFF" },
               "&.Mui-disabled": {
                 backgroundColor: "#B6C9F0",
                 color: "#FFFFFF",
               },
-              mr: 2,
-            }}>
+              mr: 1,
+            }}
+          >
             <i style={{}} className="ri-checkbox-circle-fill"></i>
             <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
-              Hours Accept
+              Hours Approved
             </Typography>
           </LoadingButton>
           <LoadingButton
@@ -166,9 +167,10 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
                 backgroundColor: "#F5C4C8",
                 color: "#FFFFFF",
               },
-              mr: 2,
-            }}>
-            <i style={{}} className="ri-close-circle-fill"></i>
+              mr: 1,
+            }}
+          >
+            <i className="ri-close-circle-fill"></i>
             <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
               Hours Reject
             </Typography>

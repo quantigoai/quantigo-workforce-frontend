@@ -100,7 +100,7 @@ const FullProjectDetails = () => {
       } else {
         toast.trigger(action.error.message, "error");
         setIsDisable(false);
-        setSkillAlert(true); // TODO Remove this line 
+        setSkillAlert(true); // TODO Remove this line
       }
     });
   };
@@ -219,19 +219,6 @@ const FullProjectDetails = () => {
 
       <Box className="contentBody">
         <TablePaper>
-          {/* <ProjectTable2
-              skillAlert={skillAlert}
-              role={role}
-              myColumn={detailCol}
-              myRows={detailRow}
-              pagination={pagination}
-              setPagination={setPagination}
-              handleChangePagination={handleChangePagination}
-              totalItems={usersWorkHistoryCount}
-              handleId={handleId}
-              filteredCol={filteredCol}
-              handleProjectDetailsOpen={handleProjectDetailsOpen}
-            /> */}
           <TableWrapper
             role={role}
             myColumn={detailCol}
@@ -248,13 +235,7 @@ const FullProjectDetails = () => {
             data={usersWorkHistory}
             setIsChildDataLoading={setIsChildDataLoading}
           />
-          {/* {usersWorkHistory?.length ? (
-            
-          ) : (
-            <Alert Alert severity="error">
-              No Users history found for this project!
-            </Alert>
-          )} */}
+
           <PaginationTable
             pagination={pagination}
             setPagination={setPagination}

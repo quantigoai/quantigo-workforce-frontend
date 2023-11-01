@@ -118,7 +118,18 @@ const ProjectLIstIndex2 = () => {
     setDetailsProjectOpen(true);
     setDetailProject(project);
   };
-
+  const handleDelete = (e) => {
+    dispatch(deleteProjectDrawerById(e.id))
+      .then((action) => {
+        if (action.payload.status === 200) {
+          toast.trigger(action.payload.data.message, "success");
+          handleChangePagination();
+        }
+      })
+      .catch(() => {
+        toast.trigger(error, "error");
+      });
+  };
   const handleChangePagination = useCallback(() => {
     setIsChildDataLoading(true);
 
@@ -162,27 +173,12 @@ const ProjectLIstIndex2 = () => {
     setIsEditModal(false);
   };
 
-  const handleDelete = (e) => {
-    dispatch(deleteProjectDrawerById(e.id))
-      .then((action) => {
-        if (action.payload.status === 200) {
-          toast.trigger(action.payload.data.message, "success");
-        }
-      })
-      .catch(() => {
-        toast.trigger(error, "error");
-      });
-  };
   const handleClick = (e) => {
     dispatch(setCurrentProjectDrawer(e.id));
     setEditModalOpen(true);
     setIsEdit(true);
     setIsEditModal(true);
   };
-  // const handleDelete = (e) => {};
-  // const handleClick = (e) => {
-  //   console.log("handleclick");
-  // };
 
   const skillId = addSkills?.map((skill) => skill._id);
 

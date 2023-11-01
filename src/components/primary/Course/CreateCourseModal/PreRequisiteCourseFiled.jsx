@@ -47,7 +47,6 @@ const PreRequisiteCourseFiled = ({ perRequisiteCourses }) => {
   const handleOpenClose = () => {
     SetIsOpen(!isOpen);
   };
-  console.log(displayedOptions);
   useEffect(() => {
     if (location.pathname === "/course") {
       setSetCourse(courses);

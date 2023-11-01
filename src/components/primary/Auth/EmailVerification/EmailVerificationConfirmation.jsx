@@ -18,7 +18,6 @@ const EmailVerificationConfirmation = () => {
 
   useEffect(() => {
     dispatch(emailVerificationLink(params)).then((action) => {
-      console.log("🚀 ~ file: EmailVerificationConfirmation.jsx:21 ~ dispatch ~ action:", action);
       if (action.payload?.status === 200) {
         setMessage(action.payload.data.message);
         setVerificationTimeOver(true);

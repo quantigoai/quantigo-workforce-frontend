@@ -1,19 +1,18 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import moment from "moment/moment";
 import React, { useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../../customHooks/useToaster";
 import { myProfileEdit, uploadMyImage } from "../../../../../features/slice/userSlice";
 import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
 // import FormProvider from "../../../../shared/FormProvider/FormProvider";
+import { useEffect } from "react";
+import PasswordFieldForProfile from "../../PasswordFieldForProfile";
 import CommonFieldTest from "../CommonFieldTest";
-import CommonSelectField from "../CommonSelectField";
-import ProfilePicture from "./ProfilePicture";
 import FieldForProfile from "../FieldForProfile";
 import SelectFieldForProfile from "../SelectFieldForProfile";
-import PasswordFieldForProfile from "../../PasswordFieldForProfile";
-import { useEffect } from "react";
+import ProfilePicture from "./ProfilePicture";
 
 const MyprofileIndexNew = () => {
   const { user, isLoading } = useSelector((state) => state.user);
@@ -77,7 +76,6 @@ const MyprofileIndexNew = () => {
   // };
   const handleCancel = () => {
     setEditAble(false);
-   
   };
 
   useEffect(() => {
@@ -85,15 +83,14 @@ const MyprofileIndexNew = () => {
     setLastName(user.lastName);
     setPhone(user.phone);
     setOccupation(user.occupation);
-    setBloodGroup(user.bloodGroup)
-    setPermanentAddress(user.permanentAddress)
-    setPresentAddress(user.presentAddress)
-    setBillingAccountNo(user.billingAccountNo)
-    setCoverImage(null)
+    setBloodGroup(user.bloodGroup);
+    setPermanentAddress(user.permanentAddress);
+    setPresentAddress(user.presentAddress);
+    setBillingAccountNo(user.billingAccountNo);
+    setCoverImage(null);
   }, [editAble]);
 
   const handleSubmitChange = () => {
-    console.log("hsdd");
     const data = {
       firstName,
       lastName,
@@ -145,7 +142,8 @@ const MyprofileIndexNew = () => {
             xl: "100%",
             xxl: "100%",
           },
-        }}>
+        }}
+      >
         <Box
           sx={{
             // flex: "0 0 auto",
@@ -155,7 +153,8 @@ const MyprofileIndexNew = () => {
               xxl: "17%",
             },
             // backgroundColor: "yellow",
-          }}>
+          }}
+        >
           <ProfilePicture
             user={user}
             editAble={editAble}
@@ -179,13 +178,15 @@ const MyprofileIndexNew = () => {
               xxl: "75%",
             },
             // backgroundColor: "black",
-          }}>
+          }}
+        >
           <Box
             sx={{
               paddingLeft: "2%",
               paddingRight: "2%",
               height: "100%",
-            }}>
+            }}
+          >
             <Box
               sx={{
                 height: "100%",
@@ -198,7 +199,8 @@ const MyprofileIndexNew = () => {
                   width: "0",
                 },
                 overflowY: "auto",
-              }}>
+              }}
+            >
               <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
                 <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
                   Personal Information
@@ -356,12 +358,14 @@ const MyprofileIndexNew = () => {
               xl: "14%",
               xxl: "8%",
             },
-          }}>
+          }}
+        >
           <Grid
             container
             sx={{
               height: "100%",
-            }}>
+            }}
+          >
             {editAble && (
               <>
                 <Box
@@ -370,7 +374,8 @@ const MyprofileIndexNew = () => {
                     alignItems: "center",
 
                     // p: 2
-                  }}>
+                  }}
+                >
                   <Button
                     onClick={() => handleSubmitChange()}
                     disabled={isLoading}
@@ -391,7 +396,8 @@ const MyprofileIndexNew = () => {
                         background: "#B6C9F0",
                         color: "#FFFFFF",
                       },
-                    }}>
+                    }}
+                  >
                     Save Changes
                   </Button>
                   <Button
@@ -411,7 +417,8 @@ const MyprofileIndexNew = () => {
                       "&:hover": {
                         background: "#F2F6FC",
                       },
-                    }}>
+                    }}
+                  >
                     Cancel
                   </Button>
                 </Box>

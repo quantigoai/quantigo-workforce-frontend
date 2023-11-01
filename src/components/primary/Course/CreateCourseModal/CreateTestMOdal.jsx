@@ -60,7 +60,7 @@ const CreateTestMOdal = ({ handleClose, open }) => {
   //   } = methods;
 
   const onSubmit = (data) => {
-    console.log(data);
+    
   };
 
   return (

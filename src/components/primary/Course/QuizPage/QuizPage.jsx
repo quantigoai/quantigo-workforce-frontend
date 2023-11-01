@@ -23,7 +23,6 @@ const QuizPage = () => {
   } = methods;
 
   const onSubmit = async (data) => {
-    console.log("🚀 ~ file: QuizPage.jsx:22 ~ onSubmit ~ data:", data);
     // dispatch(login(data)).then((action) => {
     //   if (action.payload?.status === 200) {
     //     toast.trigger("Login Successful", "success");

@@ -764,13 +764,11 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(emailVerificationLink.fulfilled, (state, action) => {
-        console.log("🚀 ~ file: userSlice.js:767 ~ .addCase ~ action:", action);
         state.error = null;
         state.user.isEmailVerified = action.payload.data.user.isEmailVerified;
         state.isLoading = false;
       })
       .addCase(emailVerificationLink.rejected, (state, action) => {
-        console.log("🚀 ~ file: userSlice.js:772 ~ .addCase ~ action:", action);
         state.error = action.error.message;
         state.isLoading = false;
       })

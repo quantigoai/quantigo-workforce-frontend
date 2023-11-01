@@ -370,12 +370,10 @@ const projectDrawerSlice = createSlice({
       })
       .addCase(createProjectDrawer.fulfilled, (state, action) => {
         state.error = null;
-        console.log("🚀 ~ file: projectDrawerSlice.js:373 ~ .addCase ~ action.payload:", action.payload)
         // state.projectDrawers = [...state.projectDrawers, action.payload.data.projectDrawer];
         state.isLoading = false;
       })
       .addCase(createProjectDrawer.rejected, (state, action) => {
-        console.log("🚀 ~ file: projectDrawerSlice.js:377 ~ .addCase ~ action:", action)
         state.error = action.error.message;
         state.isLoading = false;
       })

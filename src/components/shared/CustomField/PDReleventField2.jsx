@@ -44,7 +44,6 @@ function PDReleventField2({ name, defaultValueItems }) {
   const handleFieldChange = (index, fieldName, value) => {
     const fieldNameKey = `relevantDocuments[${index}].${fieldName}`;
     setValue(fieldNameKey, value);
-    console.log(getValues().relevantDocuments[index]);
     const { documentName, documentUrl } = getValues().relevantDocuments[index];
     if (documentName && documentUrl) {
       setHasChanged(true);

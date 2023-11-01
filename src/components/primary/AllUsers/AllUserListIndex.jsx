@@ -145,10 +145,10 @@ const AllUserListIndex = () => {
   // TODO remove this
   const handleDelete = (e) => {};
   const handleClick = (e) => {
-    console.log("handleclick");
+   
   };
   const handleDetailsPage = (e) => {
-    console.log("handledetail");
+   
   };
 
   const handleUserDetailsOpen = (params) => {

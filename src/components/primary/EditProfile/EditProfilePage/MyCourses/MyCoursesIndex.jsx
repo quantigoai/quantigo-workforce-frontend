@@ -28,7 +28,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const MyCoursesIndex = () => {
   const { user } = useSelector((state) => state.user);
-  console.log("🚀 ~ file: MyCoursesIndex.jsx:32 ~ MyCoursesIndex ~ user:", user);
   const documentList = [
     {
       name: "Document 01",

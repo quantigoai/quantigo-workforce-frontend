@@ -128,11 +128,9 @@ const CreateCourseModal = ({ handleClose, open }) => {
     }
   };
   const handleCreateCourse = (data) => {
-  console.log("🚀 ~ file: CreateCourseModal.jsx:131 ~ handleCreateCourse ~ data:", data)
   
 }
   // const onSubmit = (data) => {
-  //   console.log("🚀 ~ file: CreateCourseModal.jsx:124 ~ onSubmit ~ data:", data);
   //   const preRequisiteCoursesColl = preRequisiteCourses.map((preRequisite) => {
   //     return preRequisite._id;
   //   });
@@ -142,7 +140,6 @@ const CreateCourseModal = ({ handleClose, open }) => {
 
   //   const formData = new FormData();
   //   formData.append("name", name);
-  //   console.log("🚀 ~ file: CreateCourseModal.jsx:134 ~ onSubmit ~ name:", name);
   //   formData.append("category", data.category);
   //   formData.append("level", data.level);
   //   formData.append("language", data.language);

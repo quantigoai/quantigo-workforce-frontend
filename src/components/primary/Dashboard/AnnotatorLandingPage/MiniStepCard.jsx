@@ -9,6 +9,7 @@
 
 import { Box, Typography } from "@mui/material";
 import React from "react";
+import confirmIcon from "../../../../assets/images/confirmprocess.svg";
 import step1 from "../../../../assets/images/stepsLogo/0.png";
 import step2 from "../../../../assets/images/stepsLogo/1.png";
 import step3 from "../../../../assets/images/stepsLogo/2.png";
@@ -17,47 +18,46 @@ import step5 from "../../../../assets/images/stepsLogo/4.png";
 import step6 from "../../../../assets/images/stepsLogo/5.png";
 import step7 from "../../../../assets/images/stepsLogo/6.png";
 import step8 from "../../../../assets/images/stepsLogo/7.png";
-import confirmIcon from "../../../../assets/images/confirmprocess.svg";
 
 const steps = [
   {
-    title: "Step 1",
-    description: "Create an account",
+    title: "Create an Account",
+    description: "This is the initial step to join.",
     logo: step1,
   },
   {
-    title: "Step 2",
-    description: "Complete your profile",
+    title: "Verify Email",
+    description: "Verify your email.",
     logo: step2,
   },
   {
-    title: "Step 3",
-    description: "Complete your training",
+    title: "Upload Document",
+    description: "Verify your identity",
     logo: step3,
   },
   {
-    title: "Step 4",
-    description: "Start working",
+    title: "Start Course",
+    description: "Start Course to learn.",
     logo: step4,
   },
   {
-    title: "Step 5",
-    description: "Start working",
+    title: "Achieve Skills",
+    description: "Achieve skills by completing course",
     logo: step5,
   },
   {
-    title: "Step 6",
-    description: "Start working",
+    title: "Start Job",
+    description: "Start your job",
     logo: step6,
   },
   {
-    title: "Step 7",
-    description: "Start working",
+    title: "Submit Job",
+    description: "Submit your assigned job",
     logo: step7,
   },
   {
-    title: "Step 8",
-    description: "Start working",
+    title: "Earn Money",
+    description: "Earn money by completing job",
     logo: step8,
   },
 ];
@@ -69,12 +69,17 @@ const MiniStepCard = ({ index }) => {
         sx={{
           backgroundColor: "neutral.N100",
           height: "170px",
-          // width: "100%",
           borderRadius: "8px",
         }}
       >
         <Box sx={{ display: "flex", height: "20%", justifyContent: "flex-end", paddingRight: "2%" }}>
-          <img style={{ width: "20px" }} src={confirmIcon} />
+          {index === 0 || index === 1 || index === 2 ? (
+            <img style={{ width: "20px" }} src={confirmIcon} />
+          ) : (
+            <Typography variant="wpf_h7_semiBold" sx={{ color: "green.800" }}>
+              Coming Soon
+            </Typography>
+          )}
         </Box>
         <Box
           sx={{

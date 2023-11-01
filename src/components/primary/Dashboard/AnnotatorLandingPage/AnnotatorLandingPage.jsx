@@ -19,6 +19,7 @@ import TotalEstimatedWorkingHoursCard from "../DashboardCard/TotalEstimatedWorki
 import TotalProjectDrawerCard from "../DashboardCard/TotalProjectDrawerCard";
 import TotalWorkingHoursCard from "../DashboardCard/TotalWorkingHoursCard";
 import StepGuide from "./StepGuide";
+import { useNavigate } from "react-router-dom";
 const AnnotatorLandingPage = () => {
   const paperStyle = {
     backgroundColor: "neutral.N000",
@@ -51,7 +52,7 @@ const AnnotatorLandingPage = () => {
 
   const [estimatedPayment, setEstimatedPayment] = React.useState(0);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(getTotalCountData());
   }, []);
@@ -87,9 +88,6 @@ const AnnotatorLandingPage = () => {
               alignItems: "center",
               borderRadius: "8px",
               height: "100%",
-              // gap: "1rem",
-              // borderTopLeftRadius: "8px",
-              // borderBottomLeftRadius: "8px",
             }}
           >
             <Box
@@ -182,6 +180,7 @@ const AnnotatorLandingPage = () => {
                           width: "100px",
                           height: "30%",
                         }}
+                        onClick={() => navigate("/allprojects")}
                       >
                         Get Started
                       </Button>
@@ -204,7 +203,6 @@ const AnnotatorLandingPage = () => {
             alignItems: "center",
             borderTopRightRadius: "8px",
             borderBottomRightRadius: "8px",
-            // height: "150px",
             width: "100%",
             borderRadius: "10px",
           }}

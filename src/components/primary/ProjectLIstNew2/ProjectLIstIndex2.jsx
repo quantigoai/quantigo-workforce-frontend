@@ -120,7 +120,6 @@ const ProjectLIstIndex2 = () => {
   };
 
   const handleChangePagination = useCallback(() => {
-    console.log("hit");
     setIsChildDataLoading(true);
 
     if (checked) {

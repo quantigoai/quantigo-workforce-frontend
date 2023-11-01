@@ -106,7 +106,11 @@ const TableWrapper = ({
         );
       } else if (data && data.length === 0) {
         const message = "No Users history found for this projects!";
-        return <Alert severity="error">{message}</Alert>;
+        if (role !== "admin" && role !== "account_manager") {
+          return <DetailsPage skillAlert={skillAlert} />;
+        } else {
+          return <Alert severity="error">{message}</Alert>;
+        }
       } else if (role === "recruitment_manager") {
         const message = "No Users history found for this projects!";
         return <Alert severity="error">{message}</Alert>;

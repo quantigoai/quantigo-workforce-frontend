@@ -100,7 +100,7 @@ const FullProjectDetails = () => {
       } else {
         toast.trigger(action.error.message, "error");
         setIsDisable(false);
-        setSkillAlert(true);
+        setSkillAlert(true); // TODO Remove this line 
       }
     });
   };

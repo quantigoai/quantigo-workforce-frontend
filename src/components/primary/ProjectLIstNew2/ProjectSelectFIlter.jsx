@@ -1,10 +1,7 @@
 import { Box, Button, FormControlLabel, Stack, Switch, Typography } from "@mui/material";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import PlatformSelectAnnotator from "./PlatformSelectAnnotator";
 import ProjectSelectFIlterField from "./ProjectSelectFIlterField";
-import { useDispatch } from "react-redux";
-import { getMyAvailableProjects } from "../../../features/slice/projectDrawerSlice";
 
 const ProjectSelectFIlter = ({
   filterPDR,
@@ -17,17 +14,10 @@ const ProjectSelectFIlter = ({
   role,
   handleChangeAnnotatorFilter,
   isFilter,
+  handleChangeCheck,
+  checked,
+  annotatorPlatform,
 }) => {
-  const [checked, setChecked] = useState(false);
-  const dispatch = useDispatch();
-
-  const handleChangeCheck = (event) => {
-    setChecked(event.target.checked);
-    // if (checked) {
-    console.log("🚀 ~ file: ProjectSelectFIlter.jsx:28 ~ handleChangeCheck ~ checked:", checked);
-    dispatch(getMyAvailableProjects()).then(() => console.log("done "));
-    // }
-  };
   return (
     <Box
       component={motion.div}
@@ -125,7 +115,7 @@ const ProjectSelectFIlter = ({
                   backgroundColor: "#F4F7FE",
                   border: "1px solid #E6ECF5 ",
                   borderRadius: "8px",
-                  width: "22%",
+                  width: { lg: "38%", xl: "28%", xxl: "20%" },
                 }}
               >
                 <Typography sx={{ opacity: "0.7", ml: 1 }} color={"neutral.N300"} variant="wpf_p3_regular">
@@ -136,6 +126,7 @@ const ProjectSelectFIlter = ({
                   name="project_platform"
                   label={"Project Platform"}
                   options={platformOptions}
+                  annotatorPlatform={annotatorPlatform}
                   handleChangeAnnotatorFilter={handleChangeAnnotatorFilter}
                 />
               </Box>
@@ -155,12 +146,25 @@ const ProjectSelectFIlter = ({
                   fontFamily: "Inter",
                 }}
                 control={<Switch sx={{ pr: 2 }} checked={checked} onChange={handleChangeCheck} />}
-                label="Available Jobs for me"
+                label="Available Projects for me"
               />
             </Stack>
           )}
 
-          <Stack sx={{ width: "7%", pl: 2 }}>
+          <Stack
+            sx={{
+              width: {
+                lg: "9%",
+                xl: "7%",
+                xxl: "7%",
+              },
+              pl: {
+                lg: 0,
+                xl: 2,
+                xxl: 2,
+              },
+            }}
+          >
             <Button
               onClick={() => handleClearFilter()}
               sx={{

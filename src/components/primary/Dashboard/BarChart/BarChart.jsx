@@ -33,12 +33,9 @@ export const options = {
     },
     datalabels: {
       display: false,
-
-      // backgroundColor: "#404040",
     },
     title: {
       display: true,
-      // text: "Project Based Jobs",
     },
   },
   scales: {

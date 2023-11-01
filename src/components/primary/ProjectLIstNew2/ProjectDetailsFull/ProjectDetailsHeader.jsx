@@ -71,6 +71,7 @@ const ProjectDetailsHeader = ({
 
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
           <Box>
+            {/* TODO set the role  */}
             {role === "admin" || role === "account_manager" ? (
               <ProjectDetailsButton
                 range={range}

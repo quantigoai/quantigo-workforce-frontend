@@ -139,15 +139,19 @@ const FullProjectDetails = () => {
   ]);
 
   useEffect(() => {
-    dispatch(
-      getUsersWorkHistoryById({
-        pagination,
-        ascDescOption: filteredCol,
-        id: projectDrawer._id,
-      })
-    ).then(() => {
-      setIsDataLoading(false);
-    });
+    if (role) {
+      if (role === "admin" || role === "account_manager") {
+        dispatch(
+          getUsersWorkHistoryById({
+            pagination,
+            ascDescOption: filteredCol,
+            id: projectDrawer._id,
+          })
+        ).then(() => {
+          setIsDataLoading(false);
+        });
+      }
+    }
   }, [id]);
 
   // TODO Need to solve this issue
@@ -193,7 +197,7 @@ const FullProjectDetails = () => {
     <Box className="content">
       <HeaderBox>
         {/* {!isLoadingDetails && detailRow.length > 0 && ( */}
-        {!isDataLoading && (
+        {!isLoading && (
           <ProjectDetailsHeader
             usersWorkHistoryCount={usersWorkHistoryCount}
             range={range}

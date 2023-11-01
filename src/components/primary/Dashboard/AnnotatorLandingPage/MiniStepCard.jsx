@@ -17,6 +17,7 @@ import step5 from "../../../../assets/images/stepsLogo/4.png";
 import step6 from "../../../../assets/images/stepsLogo/5.png";
 import step7 from "../../../../assets/images/stepsLogo/6.png";
 import step8 from "../../../../assets/images/stepsLogo/7.png";
+import confirmIcon from "../../../../assets/images/confirmprocess.svg";
 
 const steps = [
   {
@@ -69,8 +70,12 @@ const MiniStepCard = ({ index }) => {
           backgroundColor: "neutral.N100",
           height: "170px",
           // width: "100%",
+          borderRadius: "8px",
         }}
       >
+        <Box sx={{ display: "flex", height: "20%", justifyContent: "flex-end", paddingRight: "2%" }}>
+          <img style={{ width: "20px" }} src={confirmIcon} />
+        </Box>
         <Box
           sx={{
             display: "flex",

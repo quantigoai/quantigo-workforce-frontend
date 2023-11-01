@@ -13,6 +13,8 @@
  * ------------------------
  */
 
+import { updateProjectDrawerByNotification } from "./features/slice/projectDrawerSlice";
+
 const socketHandlers = ({
   socket,
   dispatch,
@@ -129,6 +131,13 @@ const socketHandlers = ({
     }
   };
 
+  const handleProjectDrawerNotification = (notification, projectDrawer) => {
+    if (notification.notificationFor.includes(storedUser.user.role)) {
+      dispatch(setNewNotification(notification));
+    }
+    dispatch(updateProjectDrawerByNotification(projectDrawer));
+  };
+
   const customUserData = { _id, role };
   socket.emit("customUserData", customUserData);
   socket.on("notification", handleNotification);
@@ -159,6 +168,14 @@ const socketHandlers = ({
   socket.on("benchMarkUpdate", handleNotification);
   socket.on("jobBlockAnnotator", handleJobBlockNotification);
   socket.on("jobUnblockAnnotator", handleJobBlockNotification);
+  socket.on("updateProjectDrawer", handleProjectDrawerNotification);
+
+  socket.on("createProjectDrawer", handleProjectDrawerNotification);
+  socket.on("deleteProjectDrawer", handleProjectDrawerNotification);
+  socket.on("uploadEffectiveHours", handleProjectDrawerNotification);
+  socket.on("approvedEffectiveHours", handleProjectDrawerNotification);
+  socket.on("rejectEffectiveHours", handleProjectDrawerNotification);
+  socket.on("approvedPayment", handleProjectDrawerNotification);
 
   return () => {
     socket.off("notification", handleNotification);
@@ -192,6 +209,13 @@ const socketHandlers = ({
     socket.off("benchMarkUpdate", handleNotification);
     socket.off("jobBlockAnnotator", handleJobBlockNotification);
     socket.off("jobUnblockAnnotator", handleJobBlockNotification);
+    socket.off("updateProjectDrawer", handleProjectDrawerNotification);
+    socket.off("createProjectDrawer", handleProjectDrawerNotification);
+    socket.off("deleteProjectDrawer", handleProjectDrawerNotification);
+    socket.off("uploadEffectiveHours", handleProjectDrawerNotification);
+    socket.off("approvedEffectiveHours", handleProjectDrawerNotification);
+    socket.off("rejectEffectiveHours", handleProjectDrawerNotification);
+    socket.off("approvedPayment", handleProjectDrawerNotification);
   };
 };
 

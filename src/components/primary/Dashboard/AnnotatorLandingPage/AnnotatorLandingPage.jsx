@@ -24,7 +24,7 @@ const AnnotatorLandingPage = () => {
     backgroundColor: "neutral.N000",
     // padding: ".5%",
     borderRadius: "8px",
-    // height: "100%",
+    height: "100%",
     width: "97%",
     margin: "auto",
     display: "flex",
@@ -32,7 +32,16 @@ const AnnotatorLandingPage = () => {
     alignItems: "center",
   };
 
-  const congratulationDiv = { paddingBottom: "0%", paddingTop: "0%", borderRadius: "2px" };
+  const congratulationDiv = {
+    paddingBottom: "0%",
+    paddingTop: "0%",
+    borderRadius: "2px",
+    height: {
+      lg: "200px",
+      // xl: "100px",
+      // xxl: "100px",
+    },
+  };
   const { totalCountData } = useSelector((state) => state.dashboard);
   const [startDate, setStartDate] = React.useState(dayjs().startOf("month"));
   const [endDate, setEndDate] = React.useState(dayjs());
@@ -66,8 +75,8 @@ const AnnotatorLandingPage = () => {
   }, []);
   return (
     <>
-      <Grid container style={congratulationDiv}>
-        <Grid items xs={2}>
+      <Grid container sx={congratulationDiv}>
+        <Grid items lg={3} xl={2} xxl={2}>
           <Box
             sx={{
               pr: 1,
@@ -112,7 +121,7 @@ const AnnotatorLandingPage = () => {
             </Box>
           </Box>
         </Grid>
-        <Grid items xs={8}>
+        <Grid items lg={6} xl={8} xxl={8}>
           <Box
             sx={{
               height: "100%",
@@ -123,38 +132,36 @@ const AnnotatorLandingPage = () => {
               <Grid container>
                 <Grid
                   item
-                  xs={1}
-                  md={2}
-                  lg={2}
+                  xs={3}
+                  md={3}
+                  lg={3}
                   xl={3}
                   sx={{
-                    // paddingLeft: "2%",
                     backgroundColor: "warning.100",
-                    display: "flex",
+                    display: { lg: "none", xl: "flex", xxl: "flex" },
                     alignItems: "center",
                     borderTopLeftRadius: "8px",
                     borderBottomLeftRadius: "8px",
                   }}
                 >
                   <Box sx={{ width: "80%", margin: "auto" }}>
-                    {" "}
                     <img style={{ width: "100%", margin: "auto" }} src={congImg} />
                   </Box>
                 </Grid>
-                <Grid item xs={10} md={7} lg={7} xl={8}>
+                <Grid item xs={9} md={9} lg={12} xl={9}>
                   <Box sx={{ padding: "3%" }}>
                     <Grid xs={12}>
                       <Typography variant="wpf_h5_medium" sx={{ color: "neutral.750" }}>
                         Congratulations
                       </Typography>
                     </Grid>
-                    <Grid xs={12}>
+                    <Box sx={{ width: "100%" }}>
                       <Typography variant="wpf_p4_regular" sx={{ color: "neutral.N300", mt: 2 }}>
                         Quantigo Workforce platform is a place where you can earn money by doing annotation work. It is
                         a very simple process. You just have to follow the steps given below. We give you the
                         opportunity to grow your career with us. We are always with you to help you.
                       </Typography>
-                    </Grid>
+                    </Box>
                     <Grid xs={10} sx={{ paddingTop: "3%", pb: 2 }}>
                       <Button
                         sx={{
@@ -172,7 +179,7 @@ const AnnotatorLandingPage = () => {
                             backgroundColor: "#FF9A45",
                             color: "#1D1D1D",
                           },
-                          width: "20%",
+                          width: "100px",
                           height: "30%",
                         }}
                       >
@@ -187,10 +194,9 @@ const AnnotatorLandingPage = () => {
         </Grid>
         <Grid
           item
-          xs={1}
-          md={2}
-          lg={2}
+          lg={3}
           xl={2}
+          xxl={2}
           sx={{
             backgroundColor: "neutral.N100",
             display: "flex",
@@ -203,9 +209,7 @@ const AnnotatorLandingPage = () => {
             borderRadius: "10px",
           }}
         >
-          {/* <Paper elevation={0} style={paperStyle}> */}
           <StepGuide isStep={true} />
-          {/* </Paper> */}
         </Grid>
       </Grid>
 

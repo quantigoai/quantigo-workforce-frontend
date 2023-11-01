@@ -36,7 +36,6 @@ import ShowResult from "../Quiz/QuizPage/ShowResult/ShowResult";
 import UpdateQuiz from "../Quiz/UpdateQuiz";
 import Skills from "../Skill/Skills";
 import PrivateRoute from "./PrivateRoute";
-import EditProfile from "../EditProfile/EditProfilePage/EditProfile";
 
 export const roles = {
   admin: "admin",
@@ -343,7 +342,6 @@ const Routers = () => {
         {/* -------- My Profile ---------- */}
 
         <Route path={"/edit-profile"} element={<EditProfilePageIndex />}></Route>
-        <Route path={"/edit-profile-2"} element={<EditProfile />}></Route>
 
         {/* -------- ------------ ---------- */}
 

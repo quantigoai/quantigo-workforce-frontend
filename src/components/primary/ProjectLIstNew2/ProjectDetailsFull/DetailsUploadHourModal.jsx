@@ -129,12 +129,13 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
       hoursData: formData,
     };
     handleClose();
-    await toast.responsePromise(uploadRequest(data),setDataLoading, {
+    await toast.responsePromise(uploadRequest(data), setDataLoading, {
       initialMessage: "Effective hours is Uploading...",
-      inPending: () => { },
+      inPending: () => {},
       afterSuccess: (data) => {
         dispatch(updateProjectDrawerManually(data.data.projectDrawer));
       },
+      afterError: () => {},
     });
     // const response = await toast.promise(
     //   () => {

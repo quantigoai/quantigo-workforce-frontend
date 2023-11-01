@@ -1,8 +1,8 @@
-import {Box, IconButton, InputAdornment, styled, TextField} from "@mui/material";
-import {addDays, format} from "date-fns";
-import React, {useEffect, useRef, useState} from "react";
-import {DateRange} from "react-date-range";
 import BackspaceIcon from "@mui/icons-material/Backspace";
+import { Box, IconButton, InputAdornment, styled, TextField } from "@mui/material";
+import { addDays, format } from "date-fns";
+import React, { useEffect, useRef, useState } from "react";
+import { DateRange } from "react-date-range";
 import calenderIcon from "../../../../assets/images/dashboardIcon/calendar-line.svg";
 
 const MyInputField = styled(TextField)(() => ({
@@ -101,7 +101,7 @@ const DateRangeComponentForDashboard = ({ setRange, range }) => {
             : "DD/MM/YYYY - DD/MM/YYYY "
         }
         InputProps={{
-          disableUnderline: true,
+          //disableUnderline: true,
           endAdornment: (
             <InputAdornment position="end">
               <IconButton edge="end">

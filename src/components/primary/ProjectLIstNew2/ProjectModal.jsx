@@ -1,4 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { LoadingButton } from "@mui/lab";
 import { Stack } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
@@ -16,7 +17,6 @@ import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
 import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
 import FormProvider from "../../shared/FormProvider/FormProvider";
 import ProjectModalHeader from "./ProjectModalHeader";
-import {LoadingButton} from "@mui/lab";
 const style = {
   position: "absolute",
   top: "50%",
@@ -80,7 +80,8 @@ const ProjectModal = ({
           backdrop: {
             timeout: 500,
           },
-        }}>
+        }}
+      >
         <Fade in={createProjectOpen}>
           <Box sx={style}>
             <ProjectModalHeader handleCreateProjectClose={handleCreateProjectClose} modalTitle={"Create Project"} />
@@ -93,7 +94,8 @@ const ProjectModal = ({
                     paddingTop: "1%",
                     paddingRight: "16px",
                     position: "relative",
-                  }}>
+                  }}
+                >
                   <Stack direction="row" spacing={2}>
                     <Box sx={{ width: "50%", height: "80px", backgroundColor: "" }}>
                       <PDSelectField
@@ -107,9 +109,11 @@ const ProjectModal = ({
                       <PDTextFIeld
                         name="project_drawer_name"
                         label="Project Name"
-                        InputProps={{
-                          disableUnderline: true,
-                        }}
+                        InputProps={
+                          {
+                            //disableUnderline: true,
+                          }
+                        }
                       />
                     </Box>
                   </Stack>
@@ -127,7 +131,7 @@ const ProjectModal = ({
                         name="project_batch"
                         label="Batch"
                         InputProps={{
-                          disableUnderline: true,
+                          //disableUnderline: true,
                           min: 1,
                         }}
                         isNumber="true"
@@ -140,9 +144,11 @@ const ProjectModal = ({
                       <PDTextFIeld
                         name="project_alias"
                         label="Alias"
-                        InputProps={{
-                          disableUnderline: true,
-                        }}
+                        InputProps={
+                          {
+                            //disableUnderline: true,
+                          }
+                        }
                       />
                     </Box>
                     <Box sx={{ width: "50%", height: "80px" }}>
@@ -173,9 +179,11 @@ const ProjectModal = ({
                       <PDTextFIeld
                         name="benchMark"
                         label="Benchmark"
-                        InputProps={{
-                          disableUnderline: true,
-                        }}
+                        InputProps={
+                          {
+                            //disableUnderline: true,
+                          }
+                        }
                       />
                     </Box>
                   </Stack>
@@ -185,9 +193,11 @@ const ProjectModal = ({
                       <PDDateField
                         name="estimated_end_date"
                         label="Estimated End Date"
-                        InputProps={{
-                          disableUnderline: true,
-                        }}
+                        InputProps={
+                          {
+                            //disableUnderline: true,
+                          }
+                        }
                       />
                     </Box>
                     <Box sx={{ width: "50%", height: "80px" }}>
@@ -208,7 +218,8 @@ const ProjectModal = ({
                       mb: "5px",
                       color: "neutral.N300",
                     }}
-                    variant="h6">
+                    variant="h6"
+                  >
                     Relevant Documents
                   </Typography>
 
@@ -222,7 +233,8 @@ const ProjectModal = ({
                       maxHeight: 155,
                       color: isLightTheme ? "#091E42" : "#FFFFFF",
                       overflowY: "auto",
-                    }}>
+                    }}
+                  >
                     <PDReleventField2 name={"relevantDocuments"} />
                   </Stack>
                 </Box>
@@ -236,7 +248,8 @@ const ProjectModal = ({
                     paddingX: "16px",
                     mt: 2,
                     borderTop: "2px solid #F2F6FC",
-                  }}>
+                  }}
+                >
                   <Button
                     onClick={handleCreateProjectClose}
                     sx={{
@@ -255,7 +268,8 @@ const ProjectModal = ({
                       },
                     }}
                     variant="filled"
-                    size="large">
+                    size="large"
+                  >
                     Cancel
                   </Button>
                   <LoadingButton
@@ -283,7 +297,6 @@ const ProjectModal = ({
                   >
                     Create
                   </LoadingButton>
-                 
                 </Box>
               </FormProvider>
             </Box>

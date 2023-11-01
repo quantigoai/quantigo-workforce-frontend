@@ -1,4 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { LoadingButton } from "@mui/lab";
 import { Stack } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
@@ -7,18 +8,16 @@ import Fade from "@mui/material/Fade";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 import * as Yup from "yup";
+import PDDateField from "../../shared/CustomField/PDDateField";
+import PDReleventField2 from "../../shared/CustomField/PDReleventField2";
 import PDSelectField from "../../shared/CustomField/PDSelectField";
 import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
 import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
 import FormProvider from "../../shared/FormProvider/FormProvider";
 import useHandleEditChange from "./Hooks/useHandleEditChange";
 import ProjectModalHeader from "./ProjectModalHeader";
-import PDDateField from "../../shared/CustomField/PDDateField";
-import PDReleventField from "../../shared/CustomField/PDReleventField";
-import { useSelector } from "react-redux";
-import PDReleventField2 from "../../shared/CustomField/PDReleventField2";
-import {LoadingButton} from "@mui/lab";
 const style = {
   position: "absolute",
   top: "50%",
@@ -77,7 +76,8 @@ const EditProjectModal = ({
           backdrop: {
             timeout: 500,
           },
-        }}>
+        }}
+      >
         <Fade in={editModalOpen}>
           <Box sx={style}>
             <ProjectModalHeader
@@ -92,7 +92,8 @@ const EditProjectModal = ({
                     paddingTop: "1%",
                     paddingRight: "16px",
                     position: "relative",
-                  }}>
+                  }}
+                >
                   <Stack direction="row" spacing={2}>
                     <Box sx={{ width: "50%", height: "80px" }}>
                       <PDSelectField
@@ -107,9 +108,11 @@ const EditProjectModal = ({
                         name="project_drawer_name"
                         label="Project Name"
                         defaultValue={projectDrawer.project_drawer_name}
-                        InputProps={{
-                          disableUnderline: true,
-                        }}
+                        InputProps={
+                          {
+                            //disableUnderline: true,
+                          }
+                        }
                       />
                     </Box>
                   </Stack>
@@ -129,7 +132,7 @@ const EditProjectModal = ({
                         label="Batch"
                         defaultValue={projectDrawer.project_batch}
                         InputProps={{
-                          disableUnderline: true,
+                          //disableUnderline: true,
                           min: 1,
                         }}
                         isNumber="true"
@@ -143,9 +146,11 @@ const EditProjectModal = ({
                         name="project_alias"
                         label="Alias"
                         defaultValue={projectDrawer.project_alias}
-                        InputProps={{
-                          disableUnderline: true,
-                        }}
+                        InputProps={
+                          {
+                            //disableUnderline: true,
+                          }
+                        }
                       />
                     </Box>
                     <Box sx={{ width: "50%", height: "80px" }}>
@@ -154,7 +159,7 @@ const EditProjectModal = ({
                         label="PDR"
                         defaultValue={projectDrawer.pdr}
                         InputProps={{
-                          disableUnderline: true,
+                          //disableUnderline: true,
                           min: 1,
                           max: 5,
                         }}
@@ -183,9 +188,11 @@ const EditProjectModal = ({
                         name="benchMark"
                         label="Benchmark"
                         defaultValue={projectDrawer.benchMark}
-                        InputProps={{
-                          disableUnderline: true,
-                        }}
+                        InputProps={
+                          {
+                            //disableUnderline: true,
+                          }
+                        }
                       />
                     </Box>
                   </Stack>
@@ -196,9 +203,11 @@ const EditProjectModal = ({
                         name="estimated_end_date"
                         label="Estimated End Time"
                         defaultValue={projectDrawer.estimated_end_date}
-                        InputProps={{
-                          disableUnderline: true,
-                        }}
+                        InputProps={
+                          {
+                            //disableUnderline: true,
+                          }
+                        }
                       />
                     </Box>
                     <Box sx={{ width: "50%", height: "80px" }}>
@@ -219,7 +228,8 @@ const EditProjectModal = ({
                       mb: "5px",
                       color: "neutral.N300",
                     }}
-                    variant="h6">
+                    variant="h6"
+                  >
                     Relevant Documents
                   </Typography>
 
@@ -232,7 +242,8 @@ const EditProjectModal = ({
                       maxHeight: 155,
                       color: isLightTheme ? "#091E42" : "#FFFFFF",
                       overflowY: "auto",
-                    }}>
+                    }}
+                  >
                     <PDReleventField2 defaultValueItems={projectDrawer.relevantDocuments} name={"relevantDocuments"} />
                   </Stack>
                 </Box>
@@ -243,10 +254,11 @@ const EditProjectModal = ({
                     justifyContent: "space-between",
                     alignItems: "center",
                     paddingY: "12px",
-                    paddingX:"16px",
+                    paddingX: "16px",
                     mt: 2,
                     borderTop: "2px solid #F2F6FC",
-                  }}>
+                  }}
+                >
                   <Button
                     onClick={handleEditProjectClose}
                     sx={{
@@ -259,13 +271,14 @@ const EditProjectModal = ({
                       borderRadius: "8px",
                       border: "1px solid #F4F7FE",
                       backgroundColor: "#F4F7FE",
-                      color:"#62728F",
+                      color: "#62728F",
                       "&:hover": {
                         backgroundColor: "#F4F7FE",
                       },
                     }}
                     variant="filled"
-                    size="large">
+                    size="large"
+                  >
                     Cancel
                   </Button>
                   <LoadingButton
@@ -277,7 +290,7 @@ const EditProjectModal = ({
                       paddingY: "5px",
                       fontSize: "14px",
                       height: "40px",
-                      width:"120px",
+                      width: "120px",
                       borderRadius: "8px",
                       backgroundColor: "#2E58FF",
                       "&:hover": {
@@ -289,7 +302,8 @@ const EditProjectModal = ({
                       },
                     }}
                     variant="contained"
-                    size="large">
+                    size="large"
+                  >
                     Save
                   </LoadingButton>
                 </Box>

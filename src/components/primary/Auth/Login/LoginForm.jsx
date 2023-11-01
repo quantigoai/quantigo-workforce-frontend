@@ -95,7 +95,7 @@ const LoginForm = () => {
             name="email"
             label="Email"
             InputProps={{
-              disableUnderline: true,
+              // disableUnderline: true,
               endAdornment: (
                 <InputAdornment position="end">
                   <EmailIcon sx={{ color: "neutral.500" }} />
@@ -116,7 +116,7 @@ const LoginForm = () => {
             label="Password"
             type={showPassword ? "text" : "password"}
             InputProps={{
-              disableUnderline: true,
+              // disableUnderline: true,
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton sx={{ color: "neutral.500" }} onClick={() => setShowPassword(!showPassword)} edge="end">

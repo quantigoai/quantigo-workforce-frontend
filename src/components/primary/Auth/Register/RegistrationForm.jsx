@@ -174,7 +174,7 @@ const RegistrationForm = () => {
                 name="email"
                 label="Email"
                 InputProps={{
-                  disableUnderline: true,
+                  // disableUnderline: true,
                   endAdornment: (
                     <InputAdornment position="end" sx={{ color: "#7D89A3" }}>
                       <EmailIcon />
@@ -190,7 +190,7 @@ const RegistrationForm = () => {
                 label="Password"
                 type={showPassword ? "text" : "password"}
                 InputProps={{
-                  disableUnderline: true,
+                  // disableUnderline: true,
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton onClick={() => setShowPassword(!showPassword)} edge="end" sx={{ color: "#7D89A3" }}>
@@ -248,7 +248,7 @@ const RegistrationForm = () => {
                     helperText={helperMessage}
                     placeholder="QAI_XXXXXX"
                     InputProps={{
-                      disableUnderline: true,
+                      // disableUnderline: true,
                       endAdornment: (
                         <InputAdornment position="end">
                           {helperMessage && <CheckIcon sx={{ color: "#12B76A", fontWeight: 700 }} />}
@@ -292,7 +292,7 @@ const RegistrationForm = () => {
                   label="Nagad Account No"
                   placeholder="+8801XXXXXXXXX / 01XXXXXXXXX"
                   InputProps={{
-                    disableUnderline: true,
+                    // disableUnderline: true,
                     endAdornment: (
                       <InputAdornment position="end">
                         <LocalPhoneIcon />
@@ -310,7 +310,7 @@ const RegistrationForm = () => {
                   label="Phone Number"
                   placeholder="+8801XXXXXXXXX / 01XXXXXXXXX"
                   InputProps={{
-                    disableUnderline: true,
+                    // disableUnderline: true,
                     endAdornment: (
                       <InputAdornment position="end">
                         <LocalPhoneIcon />

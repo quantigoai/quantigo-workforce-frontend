@@ -42,6 +42,7 @@ const Header = () => {
   };
   const handleNotificationClose = () => setNotificationOpen(null);
   const { isLoading, allUnreadNotifications } = useSelector((state) => state.notification);
+  console.log("🚀 ~ file: Header.jsx:45 ~ Header ~ allUnreadNotifications:", allUnreadNotifications.length)
   const reset = useReset;
   
   const handleLogOut = () => {

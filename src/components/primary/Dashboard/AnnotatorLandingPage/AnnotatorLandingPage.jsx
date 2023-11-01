@@ -53,10 +53,7 @@ const AnnotatorLandingPage = () => {
   const [estimatedPayment, setEstimatedPayment] = React.useState(0);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  useEffect(() => {
-    dispatch(getTotalCountData());
-  }, []);
-
+ 
   useEffect(() => {
     if (estimatedPaymentForProjects) {
       const totalAmount = estimatedPaymentForProjects.reduce((acc, curr) => {
@@ -65,6 +62,7 @@ const AnnotatorLandingPage = () => {
       setEstimatedPayment(totalAmount);
     }
   }, [estimatedPaymentForProjects]);
+  
   useEffect(() => {
     const data = {
       startDate: convertDate(startDate),
@@ -73,11 +71,12 @@ const AnnotatorLandingPage = () => {
     //  dispatch(getDashboardData(data)).then(() => {
     //    setProjectLoading(false);
     //  });
+    dispatch(getTotalCountData());
   }, []);
   return (
     <>
       <Grid container sx={congratulationDiv}>
-        <Grid items lg={3} xl={2} xxl={2}>
+        <Grid item lg={3} xl={2} xxl={2}>
           <Box
             sx={{
               pr: 1,
@@ -119,7 +118,7 @@ const AnnotatorLandingPage = () => {
             </Box>
           </Box>
         </Grid>
-        <Grid items lg={6} xl={8} xxl={8}>
+        <Grid item lg={6} xl={8} xxl={8}>
           <Box
             sx={{
               height: "100%",
@@ -220,11 +219,11 @@ const AnnotatorLandingPage = () => {
         }}
       >
         <Grid
-          container
+          item
           xs={4}
-          spacing={0}
           sx={{
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "space-around",
             gap: 2,
@@ -240,6 +239,7 @@ const AnnotatorLandingPage = () => {
             <TotalWorkingHoursCard />
           </Grid>
         </Grid>
+
         <Grid item xs={8}>
           <Paper elevation={0} sx={{ borderRadius: "8px", height: { xl: "350px", lg: "330px" } }}>
             <BarChart

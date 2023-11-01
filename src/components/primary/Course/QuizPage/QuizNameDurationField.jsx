@@ -1,8 +1,6 @@
-import React from "react";
-import FormProvider from "../../../shared/FormProvider/FormProvider";
 import { Box } from "@mui/material";
+import React from "react";
 import CustomTextField from "../../../shared/CustomField/CustomTextField";
-import PrimaryButton from "../../Auth/Register/PrimaryButton";
 
 const QuizNameDurationField = ({ methods, onSubmit, handleSubmit }) => {
   return (
@@ -11,9 +9,11 @@ const QuizNameDurationField = ({ methods, onSubmit, handleSubmit }) => {
         <CustomTextField
           name="quiz_name"
           label="Quiz Name"
-          InputProps={{
-            disableUnderline: true,
-          }}
+          InputProps={
+            {
+              //disableUnderline: true,
+            }
+          }
         />
       </Box>
 
@@ -26,9 +26,11 @@ const QuizNameDurationField = ({ methods, onSubmit, handleSubmit }) => {
         <CustomTextField
           name="duration"
           label="duration"
-          InputProps={{
-            disableUnderline: true,
-          }}
+          InputProps={
+            {
+              //disableUnderline: true,
+            }
+          }
         />
       </Box>
     </Box>

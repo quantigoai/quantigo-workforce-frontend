@@ -61,11 +61,11 @@ const StepGuide = ({ isStep }) => {
             {[1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => (
               <Grid key={item} item xs={12} sm={6} md={3} gap={1}>
                 <SwiperSlide
+                  key = {item}
                   style={{
                     height: "100%",
                   }}
                 >
-                  {/* <ProcessCard2 item={item} /> */}
                   <MiniStepCard index={index} />
                 </SwiperSlide>
               </Grid>

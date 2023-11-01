@@ -1,4 +1,4 @@
-import { Box, FormControl, styled, TextField, Typography } from "@mui/material";
+import { Box, styled, TextField, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import { Controller, useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
@@ -96,8 +96,14 @@ export default function PDTextFIeld({
                 {...other}
                 InputProps={{
                   inputProps: isNumberPdr
-                    ? { disableUnderline: true, min: 1, max: 5 }
-                    : { disableUnderline: true, min: 1 },
+                    ? {
+                      // disableUnderline: true,
+                      min: 1, max: 5
+                    }
+                    : {
+                      // disableUnderline: true,
+                      min: 1
+                    },
                 }}
               />
             </Box>

@@ -63,7 +63,7 @@ const CongratulationStepProcess = () => {
               <Grid container spacing={3}>
                 {processList.map((item) => (
                   <Grid key={item._id} item xs={12} sm={6} md={3} gap={1}>
-                    <SwiperSlide>
+                    <SwiperSlide key={item._id}>
                       <ProcessCard2 item={item} />
                     </SwiperSlide>
                   </Grid>

@@ -139,28 +139,30 @@ const ProjectHeader = ({
             )}
           </IconButton>
           {role === "admin" ||
-            role === "project_lead" ||
-            role === "project_coordinator" ||
-            role === "project_manager" ||
-            (role === "delivery_manager" && (
-              <Button
-                sx={{
-                  textTransform: "none",
-                  borderRadius: "8px",
-                  backgroundColor: "#2E58FF",
-                  height: "40px",
-                  width: "128px",
-                  color: "white",
-                  "&:hover": {
-                    background: "#244EF5",
-                  },
-                }}
-                // variant="contained"
-                onClick={handleProjectCreateOpen}
-              >
-                Create Project
-              </Button>
-            ))}
+          role === "project_lead" ||
+          role === "project_coordinator" ||
+          role === "project_manager" ||
+          role === "delivery_manager" ? (
+            <Button
+              sx={{
+                textTransform: "none",
+                borderRadius: "8px",
+                backgroundColor: "#2E58FF",
+                height: "40px",
+                width: "128px",
+                color: "white",
+                "&:hover": {
+                  background: "#244EF5",
+                },
+              }}
+              // variant="contained"
+              onClick={handleProjectCreateOpen}
+            >
+              Create Project
+            </Button>
+          ) : (
+            <></>
+          )}
         </Box>
       </Box>
     </>

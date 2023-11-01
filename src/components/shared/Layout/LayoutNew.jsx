@@ -318,7 +318,17 @@ export default function LayoutNew({ children }) {
     >
       <DrawerBox
         sx={{
-          width: open ? "16.66%" : "4%",
+          width: open
+            ? {
+                lg: "16.66%",
+                xl: "16.66%",
+                xxl: "16.66%",
+              }
+            : {
+                lg: "6%",
+                xl: "4%",
+                xxl: "4%",
+              },
           backgroundColor: isLightTheme ? "#2D58FF" : "#1D2939",
         }}
       >
@@ -430,7 +440,18 @@ export default function LayoutNew({ children }) {
 
       <BodyBox
         sx={{
-          width: open ? "83.34%" : "96%",
+          // width: open ? "83.34%" : "96%",
+          width: open
+            ? {
+                lg: "83.34%",
+                xl: "83.34%",
+                xxl: "83.34%",
+              }
+            : {
+                lg: "94%",
+                xl: "96%",
+                xxl: "96%",
+              },
           height: "100vh",
         }}
       >

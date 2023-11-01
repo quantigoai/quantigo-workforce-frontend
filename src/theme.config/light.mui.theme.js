@@ -472,6 +472,10 @@ const lightTheme = createTheme({
   lightTheme.typography.wpf_p5_regular[key] = {
     fontSize: "12px",
   };
+  // --- component
+  lightTheme.components.MuiTableRow.styleOverrides.root[key] = {
+    height: "56px",
+  };
 });
 
 export default lightTheme;

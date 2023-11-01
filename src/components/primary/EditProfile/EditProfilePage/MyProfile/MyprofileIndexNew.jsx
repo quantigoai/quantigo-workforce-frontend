@@ -13,6 +13,7 @@ import ProfilePicture from "./ProfilePicture";
 import FieldForProfile from "../FieldForProfile";
 import SelectFieldForProfile from "../SelectFieldForProfile";
 import PasswordFieldForProfile from "../../PasswordFieldForProfile";
+import { useEffect } from "react";
 
 const MyprofileIndexNew = () => {
   const { user, isLoading } = useSelector((state) => state.user);
@@ -74,6 +75,22 @@ const MyprofileIndexNew = () => {
   //   const regex = /^(?:\+8801[3-9]\d{8}|01[3-9]\d{8})$/;
   //   return regex.test(phone);
   // };
+  const handleCancel = () => {
+    setEditAble(false);
+   
+  };
+
+  useEffect(() => {
+    setFirstName(user.firstName);
+    setLastName(user.lastName);
+    setPhone(user.phone);
+    setOccupation(user.occupation);
+    setBloodGroup(user.bloodGroup)
+    setPermanentAddress(user.permanentAddress)
+    setPresentAddress(user.presentAddress)
+    setBillingAccountNo(user.billingAccountNo)
+    setCoverImage(null)
+  }, [editAble]);
 
   const handleSubmitChange = () => {
     console.log("hsdd");
@@ -194,7 +211,7 @@ const MyprofileIndexNew = () => {
                     name="firstName"
                     label={"First Name"}
                     handleChange={handleFirstNameChange}
-                    defaultValue={user.firstName}
+                    defaultValue={firstName}
                     disableItem={false}
                     editAble={editAble}
                   />
@@ -204,13 +221,13 @@ const MyprofileIndexNew = () => {
                     name="lastName"
                     label={"Last Name"}
                     handleChange={handleLasttNameChange}
-                    defaultValue={user.lastName}
+                    defaultValue={lastName}
                     disableItem={false}
                     editAble={editAble}
                   />
                 </Grid>
               </Grid>
-              <Grid container sx={{paddingBottom: "20px" }}>
+              <Grid container sx={{ paddingBottom: "20px" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <CommonFieldTest
                     name="gender"
@@ -227,7 +244,7 @@ const MyprofileIndexNew = () => {
                   <FieldForProfile
                     name="occupation"
                     label={"Occupation"}
-                    defaultValue={user.occupation}
+                    defaultValue={occupation}
                     disableItem={false}
                     handleChange={handleOccupationChange}
                     editAble={editAble}
@@ -251,7 +268,7 @@ const MyprofileIndexNew = () => {
                   <SelectFieldForProfile
                     name="bloodGroup"
                     label={"Blood Group"}
-                    defaultValue={user.bloodGroup}
+                    defaultValue={bloodGroup}
                     disableItem={false}
                     editAble={editAble}
                     handleChange={handleChangeBloodGroup}
@@ -267,7 +284,7 @@ const MyprofileIndexNew = () => {
                   <PasswordFieldForProfile
                     name="phone"
                     label={"Phone No."}
-                    defaultValue={user.phone}
+                    defaultValue={phone}
                     disableItem={false}
                     handleChange={handlePhoneNumberChange}
                     editAble={editAble}
@@ -279,7 +296,7 @@ const MyprofileIndexNew = () => {
                   <PasswordFieldForProfile
                     name="billingAccountNo"
                     label={"Nagad No."}
-                    defaultValue={user.billingAccountNo}
+                    defaultValue={billingAccountNo}
                     disableItem={false}
                     handleChange={handlebillingAccountNoChange}
                     editAble={editAble}
@@ -288,7 +305,7 @@ const MyprofileIndexNew = () => {
                 </Grid>
               </Grid>
 
-              <Grid container sx={{paddingBottom: "20px"}}>
+              <Grid container sx={{ paddingBottom: "20px" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <CommonFieldTest
                     name="email"
@@ -305,7 +322,7 @@ const MyprofileIndexNew = () => {
                   <FieldForProfile
                     name="presentAddress"
                     label={"Present Address"}
-                    defaultValue={user.presentAddress}
+                    defaultValue={presentAddress}
                     disableItem={false}
                     handleChange={handlePresentAddressChange}
                     editAble={editAble}
@@ -317,7 +334,7 @@ const MyprofileIndexNew = () => {
                   <FieldForProfile
                     name="permanentAddress"
                     label={"Permanent Address"}
-                    defaultValue={user.permanentAddress}
+                    defaultValue={permanentAddress}
                     disableItem={false}
                     handleChange={handlepermanentAddressChange}
                     editAble={editAble}
@@ -380,7 +397,8 @@ const MyprofileIndexNew = () => {
                   <Button
                     // variant="contained"
                     // disabled={isLoading}
-                    onClick={() => setEditAble(false)}
+                    // onClick={() => setEditAble(false)}
+                    onClick={() => handleCancel()}
                     sx={{
                       height: "40px",
                       textTransform: "none",

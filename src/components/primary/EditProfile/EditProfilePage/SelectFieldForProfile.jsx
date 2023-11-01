@@ -42,7 +42,7 @@ const SelectFieldForProfile = ({ name, label, defaultValue, disableItem, editAbl
             fontSize: "14px",
           }}
           disabled={disableItem ? true : !editAble}
-          defaultValue={defaultValue}
+          value={defaultValue}
           onChange={(e) => handleChange(e)}>
           {options.map((option) => (
             <MenuItem

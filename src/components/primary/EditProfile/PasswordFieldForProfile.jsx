@@ -13,11 +13,11 @@ const MyTextField = styled(TextField)(() => ({
     color: "blue",
   },
 }));
-const PasswordFieldForProfile = ({ label, handleChange, disableItem, defaultValue, editAble,phone }) => {
-function yourPhoneNumberValidationFunction(phoneNumber) {
-  const regex = /^(?:\+8801[3-9]\d{8}|01[3-9]\d{8})$/;
-  return regex.test(phoneNumber);
-}
+const PasswordFieldForProfile = ({ label, handleChange, disableItem, defaultValue, editAble, phone }) => {
+  function yourPhoneNumberValidationFunction(phoneNumber) {
+    const regex = /^(?:\+8801[3-9]\d{8}|01[3-9]\d{8})$/;
+    return regex.test(phoneNumber);
+  }
   return (
     <>
       <FormControl fullWidth>
@@ -37,16 +37,25 @@ function yourPhoneNumberValidationFunction(phoneNumber) {
             borderRadius: "8px",
             height: "40px",
           }}
-        //   type={label === "Phone No." || label === "Nagad No." ? "number" : "text"}
+          //   type={label === "Phone No." || label === "Nagad No." ? "number" : "text"}
           disabled={disableItem ? true : !editAble}
-          defaultValue={defaultValue}
+          value={defaultValue}
           variant="outlined"
           onChange={(e) => handleChange(e)}
           error={yourPhoneNumberValidationFunction(phone) ? false : true}
           helperText={
-            yourPhoneNumberValidationFunction(phone)
-              ? ""
-              : "Contact Number must be a valid Bangladeshi phone number"
+            <Typography
+              variant="subtitle2"
+              sx={{
+                fontSize: { xl: "12px", xxl: "12px", lg: "9px" }
+              }}
+              color={yourPhoneNumberValidationFunction(phone) ? "text.primary" : "error"} 
+            >
+              {yourPhoneNumberValidationFunction(phone)
+                ? ""
+                : "Contact Number must be a valid Bangladeshi phone number"}
+            </Typography>
+            
           }
         />
       </FormControl>

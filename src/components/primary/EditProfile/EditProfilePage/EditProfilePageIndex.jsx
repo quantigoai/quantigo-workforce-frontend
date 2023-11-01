@@ -79,6 +79,7 @@ export default function EditProfilePageIndex() {
             height: "100%",
             borderRadius: "8px",
             backgroundColor: "neutral.N000",
+            // backgroundColor: "blue",
           }}
         >
           <Grid

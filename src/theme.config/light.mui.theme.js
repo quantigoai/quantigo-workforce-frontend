@@ -182,8 +182,8 @@ const lightTheme = createTheme({
   },
   breakpoints: {
     values: {
-      xs: 0, 
-      sm: 600, 
+      xs: 0,
+      sm: 600,
       md: 768,
       lg: 1024,
       xl: 1440,
@@ -193,6 +193,93 @@ const lightTheme = createTheme({
 });
 
 [lightTheme.breakpoints.between("lg", "xl")].forEach((key) => {
+  lightTheme.typography.wpf_h1_Bold[key] = {
+    fontSize: "38px",
+  };
+  lightTheme.typography.wpf_h2_Bold[key] = {
+    fontSize: "34px",
+  };
+  lightTheme.typography.wpf_h3_Bold[key] = {
+    fontSize: "30px",
+  };
+  lightTheme.typography.wpf_h4_Bold[key] = {
+    fontSize: "22px",
+  };
+  lightTheme.typography.wpf_h5_Bold[key] = {
+    fontSize: "18px",
+  };
+  lightTheme.typography.wpf_h6_Bold[key] = {
+    fontSize: "14px",
+  };
+  lightTheme.typography.wpf_h7_Bold[key] = {
+    fontSize: "10px",
+  };
+  lightTheme.typography.wpf_h1_semiBold[key] = {
+    fontSize: "38px",
+  };
+  lightTheme.typography.wpf_h2_semiBold[key] = {
+    fontSize: "34px",
+  };
+  lightTheme.typography.wpf_h3_semiBold[key] = {
+    fontSize: "30px",
+  };
+  lightTheme.typography.wpf_h4_semiBold[key] = {
+    fontSize: "22px",
+  };
+  lightTheme.typography.wpf_h5_semiBold[key] = {
+    fontSize: "18px",
+  };
+  lightTheme.typography.wpf_h6_semiBold[key] = {
+    fontSize: "14px",
+  };
+  lightTheme.typography.wpf_h7_semiBold[key] = {
+    fontSize: "10px",
+  };
+  lightTheme.typography.wpf_h1_medium[key] = {
+    fontSize: "38px",
+  };
+  lightTheme.typography.wpf_h2_medium[key] = {
+    fontSize: "34px",
+  };
+  lightTheme.typography.wpf_h3_medium[key] = {
+    fontSize: "30px",
+  };
+  lightTheme.typography.wpf_h4_medium[key] = {
+    fontSize: "22px",
+  };
+  lightTheme.typography.wpf_h5_medium[key] = {
+    fontSize: "18px",
+  };
+  lightTheme.typography.wpf_h6_medium[key] = {
+    fontSize: "14px",
+  };
+  lightTheme.typography.wpf_h7_medium[key] = {
+    fontSize: "10px",
+  };
+  lightTheme.typography.wpf_h1_regular[key] = {
+    fontSize: "38px",
+  };
+  lightTheme.typography.wpf_h2_regular[key] = {
+    fontSize: "34px",
+  };
+  lightTheme.typography.wpf_h3_regular[key] = {
+    fontSize: "30px",
+  };
+  lightTheme.typography.wpf_h4_regular[key] = {
+    fontSize: "22px",
+  };
+  lightTheme.typography.wpf_h5_regular[key] = {
+    fontSize: "18px",
+  };
+  lightTheme.typography.wpf_h6_regular[key] = {
+    fontSize: "14px",
+  };
+  lightTheme.typography.wpf_h7_regular[key] = {
+    fontSize: "10px",
+  };
+  lightTheme.typography.wpf_h8_regular[key] = {
+    fontSize: "10px",
+  };
   lightTheme.typography.wpf_p1_semiBold[key] = {
     fontSize: "16px",
   };
@@ -205,11 +292,35 @@ const lightTheme = createTheme({
   lightTheme.typography.wpf_p4_semiBold[key] = {
     fontSize: "10px",
   };
-  lightTheme.typography.wpf_p3_medium[key] = {
+  lightTheme.typography.wpf_p4_semiBold_2[key] = {
     fontSize: "10px",
   };
-  lightTheme.typography.wpf_h5_medium[key] = {
-    fontSize: "18px",
+  lightTheme.typography.wpf_p1_medium[key] = {
+    fontSize: "16px",
+  };
+  lightTheme.typography.wpf_p2_medium[key] = {
+    fontSize: "14px",
+  };
+  lightTheme.typography.wpf_p3_medium[key] = {
+    fontSize: "12px",
+  };
+  lightTheme.typography.wpf_p3_medium_2[key] = {
+    fontSize: "12px",
+  };
+  lightTheme.typography.wpf_p3_medium_3[key] = {
+    fontSize: "12px",
+  };
+  lightTheme.typography.wpf_p4_medium[key] = {
+    fontSize: "10px",
+  };
+  lightTheme.typography.wpf_p5_medium[key] = {
+    fontSize: "8px",
+  };
+  lightTheme.typography.wpf_p1_regular[key] = {
+    fontSize: "16px",
+  };
+  lightTheme.typography.wpf_p2_regular[key] = {
+    fontSize: "14px",
   };
   lightTheme.typography.wpf_p3_regular[key] = {
     fontSize: "12px",
@@ -217,38 +328,149 @@ const lightTheme = createTheme({
   lightTheme.typography.wpf_p4_regular[key] = {
     fontSize: "10px",
   };
-  lightTheme.typography.wpf_p4_medium[key] = {
-    fontSize: "10px",
-  };
-  lightTheme.typography.wpf_h4_Bold[key] = {
-    fontSize: "22px",
-  };
-  lightTheme.typography.wpf_h6_Bold[key] = {
-    fontSize: "14px",
+  lightTheme.typography.wpf_p5_regular[key] = {
+    fontSize: "8px",
   };
 });
 
 [lightTheme.breakpoints.up("xxl")].forEach((key) => {
-  lightTheme.typography.wpf_p3_semiBold[key] = {
-    fontSize: "16px",
+  lightTheme.typography.wpf_h1_Bold[key] = {
+    fontSize: "42px",
   };
-  lightTheme.components.MuiTableRow.styleOverrides.root[key] = {
-    height: "56px",
+  lightTheme.typography.wpf_h2_Bold[key] = {
+    fontSize: "38px",
+  };
+  lightTheme.typography.wpf_h3_Bold[key] = {
+    fontSize: "34px",
+  };
+  lightTheme.typography.wpf_h4_Bold[key] = {
+    fontSize: "26px",
+  };
+  lightTheme.typography.wpf_h5_Bold[key] = {
+    fontSize: "22px",
+  };
+  lightTheme.typography.wpf_h6_Bold[key] = {
+    fontSize: "18px",
+  };
+  lightTheme.typography.wpf_h7_Bold[key] = {
+    fontSize: "14px",
+  };
+  lightTheme.typography.wpf_h1_semiBold[key] = {
+    fontSize: "42px",
+  };
+  lightTheme.typography.wpf_h2_semiBold[key] = {
+    fontSize: "38px",
+  };
+  lightTheme.typography.wpf_h3_semiBold[key] = {
+    fontSize: "34px",
+  };
+  lightTheme.typography.wpf_h4_semiBold[key] = {
+    fontSize: "26px",
+  };
+  lightTheme.typography.wpf_h5_semiBold[key] = {
+    fontSize: "22px",
+  };
+  lightTheme.typography.wpf_h6_semiBold[key] = {
+    fontSize: "18px",
+  };
+  lightTheme.typography.wpf_h7_semiBold[key] = {
+    fontSize: "14px",
+  };
+  lightTheme.typography.wpf_h1_medium[key] = {
+    fontSize: "42px",
+  };
+  lightTheme.typography.wpf_h2_medium[key] = {
+    fontSize: "38px",
+  };
+  lightTheme.typography.wpf_h3_medium[key] = {
+    fontSize: "34px",
+  };
+  lightTheme.typography.wpf_h4_medium[key] = {
+    fontSize: "26px",
+  };
+  lightTheme.typography.wpf_h5_medium[key] = {
+    fontSize: "22px",
+  };
+  lightTheme.typography.wpf_h6_medium[key] = {
+    fontSize: "18px",
+  };
+  lightTheme.typography.wpf_h7_medium[key] = {
+    fontSize: "14px",
+  };
+  lightTheme.typography.wpf_h1_regular[key] = {
+    fontSize: "42px",
+  };
+  lightTheme.typography.wpf_h2_regular[key] = {
+    fontSize: "38px",
+  };
+  lightTheme.typography.wpf_h3_regular[key] = {
+    fontSize: "34px",
+  };
+  lightTheme.typography.wpf_h4_regular[key] = {
+    fontSize: "26px",
+  };
+  lightTheme.typography.wpf_h5_regular[key] = {
+    fontSize: "22px",
+  };
+  lightTheme.typography.wpf_h6_regular[key] = {
+    fontSize: "18px",
+  };
+  lightTheme.typography.wpf_h7_regular[key] = {
+    fontSize: "14px",
+  };
+  lightTheme.typography.wpf_h8_regular[key] = {
+    fontSize: "14px",
   };
   lightTheme.typography.wpf_p1_semiBold[key] = {
     fontSize: "20px",
   };
+  lightTheme.typography.wpf_p2_semiBold[key] = {
+    fontSize: "18px",
+  };
+  lightTheme.typography.wpf_p3_semiBold[key] = {
+    fontSize: "16px",
+  };
   lightTheme.typography.wpf_p4_semiBold[key] = {
     fontSize: "14px",
   };
+  lightTheme.typography.wpf_p4_semiBold_2[key] = {
+    fontSize: "14px",
+  };
+  lightTheme.typography.wpf_p1_medium[key] = {
+    fontSize: "20px",
+  };
+  lightTheme.typography.wpf_p2_medium[key] = {
+    fontSize: "18px",
+  };
   lightTheme.typography.wpf_p3_medium[key] = {
     fontSize: "16px",
   };
-});
-
-[lightTheme.breakpoints.up("xxl")].forEach((key) => {
-  lightTheme.typography.wpf_p3_medium[key] = {
+  lightTheme.typography.wpf_p3_medium_2[key] = {
     fontSize: "16px",
+  };
+  lightTheme.typography.wpf_p3_medium_3[key] = {
+    fontSize: "16px",
+  };
+  lightTheme.typography.wpf_p4_medium[key] = {
+    fontSize: "14px",
+  };
+  lightTheme.typography.wpf_p5_medium[key] = {
+    fontSize: "12px",
+  };
+  lightTheme.typography.wpf_p1_regular[key] = {
+    fontSize: "20px",
+  };
+  lightTheme.typography.wpf_p2_regular[key] = {
+    fontSize: "18px",
+  };
+  lightTheme.typography.wpf_p3_regular[key] = {
+    fontSize: "16px",
+  };
+  lightTheme.typography.wpf_p4_regular[key] = {
+    fontSize: "14px",
+  };
+  lightTheme.typography.wpf_p5_regular[key] = {
+    fontSize: "12px",
   };
 });
 

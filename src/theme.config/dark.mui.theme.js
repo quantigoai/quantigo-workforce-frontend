@@ -199,7 +199,7 @@ const darkTheme = createTheme({
   },
   breakpoints: {
     values: {
-      xs: 0, 
+      xs: 0,
       sm: 600,
       md: 768,
       lg: 1024,
@@ -209,8 +209,94 @@ const darkTheme = createTheme({
   },
 });
 
-
 [darkTheme.breakpoints.between("lg", "xl")].forEach((key) => {
+  darkTheme.typography.wpf_h1_Bold[key] = {
+    fontSize: "38px",
+  };
+  darkTheme.typography.wpf_h2_Bold[key] = {
+    fontSize: "34px",
+  };
+  darkTheme.typography.wpf_h3_Bold[key] = {
+    fontSize: "30px",
+  };
+  darkTheme.typography.wpf_h4_Bold[key] = {
+    fontSize: "22px",
+  };
+  darkTheme.typography.wpf_h5_Bold[key] = {
+    fontSize: "18px",
+  };
+  darkTheme.typography.wpf_h6_Bold[key] = {
+    fontSize: "14px",
+  };
+  darkTheme.typography.wpf_h7_Bold[key] = {
+    fontSize: "10px",
+  };
+  darkTheme.typography.wpf_h1_semiBold[key] = {
+    fontSize: "38px",
+  };
+  darkTheme.typography.wpf_h2_semiBold[key] = {
+    fontSize: "34px",
+  };
+  darkTheme.typography.wpf_h3_semiBold[key] = {
+    fontSize: "30px",
+  };
+  darkTheme.typography.wpf_h4_semiBold[key] = {
+    fontSize: "22px",
+  };
+  darkTheme.typography.wpf_h5_semiBold[key] = {
+    fontSize: "18px",
+  };
+  darkTheme.typography.wpf_h6_semiBold[key] = {
+    fontSize: "14px",
+  };
+  darkTheme.typography.wpf_h7_semiBold[key] = {
+    fontSize: "10px",
+  };
+  darkTheme.typography.wpf_h1_medium[key] = {
+    fontSize: "38px",
+  };
+  darkTheme.typography.wpf_h2_medium[key] = {
+    fontSize: "34px",
+  };
+  darkTheme.typography.wpf_h3_medium[key] = {
+    fontSize: "30px",
+  };
+  darkTheme.typography.wpf_h4_medium[key] = {
+    fontSize: "22px",
+  };
+  darkTheme.typography.wpf_h5_medium[key] = {
+    fontSize: "18px",
+  };
+  darkTheme.typography.wpf_h6_medium[key] = {
+    fontSize: "14px",
+  };
+  darkTheme.typography.wpf_h7_medium[key] = {
+    fontSize: "10px",
+  };
+  darkTheme.typography.wpf_h1_regular[key] = {
+    fontSize: "38px",
+  };
+  darkTheme.typography.wpf_h2_regular[key] = {
+    fontSize: "34px",
+  };
+  darkTheme.typography.wpf_h3_regular[key] = {
+    fontSize: "30px",
+  };
+  darkTheme.typography.wpf_h4_regular[key] = {
+    fontSize: "22px",
+  };
+  darkTheme.typography.wpf_h5_regular[key] = {
+    fontSize: "18px",
+  };
+  darkTheme.typography.wpf_h6_regular[key] = {
+    fontSize: "14px",
+  };
+  darkTheme.typography.wpf_h7_regular[key] = {
+    fontSize: "10px",
+  };
+  darkTheme.typography.wpf_h8_regular[key] = {
+    fontSize: "10px",
+  };
   darkTheme.typography.wpf_p1_semiBold[key] = {
     fontSize: "16px",
   };
@@ -223,11 +309,35 @@ const darkTheme = createTheme({
   darkTheme.typography.wpf_p4_semiBold[key] = {
     fontSize: "10px",
   };
-  darkTheme.typography.wpf_p3_medium[key] = {
+  darkTheme.typography.wpf_p4_semiBold_2[key] = {
     fontSize: "10px",
   };
-  darkTheme.typography.wpf_h5_medium[key] = {
-    fontSize: "18px",
+  darkTheme.typography.wpf_p1_medium[key] = {
+    fontSize: "16px",
+  };
+  darkTheme.typography.wpf_p2_medium[key] = {
+    fontSize: "14px",
+  };
+  darkTheme.typography.wpf_p3_medium[key] = {
+    fontSize: "12px",
+  };
+  darkTheme.typography.wpf_p3_medium_2[key] = {
+    fontSize: "12px",
+  };
+  darkTheme.typography.wpf_p3_medium_3[key] = {
+    fontSize: "12px",
+  };
+  darkTheme.typography.wpf_p4_medium[key] = {
+    fontSize: "10px",
+  };
+  darkTheme.typography.wpf_p5_medium[key] = {
+    fontSize: "8px",
+  };
+  darkTheme.typography.wpf_p1_regular[key] = {
+    fontSize: "16px",
+  };
+  darkTheme.typography.wpf_p2_regular[key] = {
+    fontSize: "14px",
   };
   darkTheme.typography.wpf_p3_regular[key] = {
     fontSize: "12px",
@@ -235,38 +345,149 @@ const darkTheme = createTheme({
   darkTheme.typography.wpf_p4_regular[key] = {
     fontSize: "10px",
   };
-  darkTheme.typography.wpf_p4_medium[key] = {
-    fontSize: "10px",
-  };
-  darkTheme.typography.wpf_h4_Bold[key] = {
-    fontSize: "22px",
-  };
-  darkTheme.typography.wpf_h6_Bold[key] = {
-    fontSize: "14px",
+  darkTheme.typography.wpf_p5_regular[key] = {
+    fontSize: "8px",
   };
 });
 
 [darkTheme.breakpoints.up("xxl")].forEach((key) => {
-  darkTheme.typography.wpf_p3_semiBold[key] = {
-    fontSize: "16px",
+  darkTheme.typography.wpf_h1_Bold[key] = {
+    fontSize: "42px",
   };
-  darkTheme.components.MuiTableRow.styleOverrides.root[key] = {
-    height: "56px",
+  darkTheme.typography.wpf_h2_Bold[key] = {
+    fontSize: "38px",
+  };
+  darkTheme.typography.wpf_h3_Bold[key] = {
+    fontSize: "34px",
+  };
+  darkTheme.typography.wpf_h4_Bold[key] = {
+    fontSize: "26px",
+  };
+  darkTheme.typography.wpf_h5_Bold[key] = {
+    fontSize: "22px",
+  };
+  darkTheme.typography.wpf_h6_Bold[key] = {
+    fontSize: "18px",
+  };
+  darkTheme.typography.wpf_h7_Bold[key] = {
+    fontSize: "14px",
+  };
+  darkTheme.typography.wpf_h1_semiBold[key] = {
+    fontSize: "42px",
+  };
+  darkTheme.typography.wpf_h2_semiBold[key] = {
+    fontSize: "38px",
+  };
+  darkTheme.typography.wpf_h3_semiBold[key] = {
+    fontSize: "34px",
+  };
+  darkTheme.typography.wpf_h4_semiBold[key] = {
+    fontSize: "26px",
+  };
+  darkTheme.typography.wpf_h5_semiBold[key] = {
+    fontSize: "22px",
+  };
+  darkTheme.typography.wpf_h6_semiBold[key] = {
+    fontSize: "18px",
+  };
+  darkTheme.typography.wpf_h7_semiBold[key] = {
+    fontSize: "14px",
+  };
+  darkTheme.typography.wpf_h1_medium[key] = {
+    fontSize: "42px",
+  };
+  darkTheme.typography.wpf_h2_medium[key] = {
+    fontSize: "38px",
+  };
+  darkTheme.typography.wpf_h3_medium[key] = {
+    fontSize: "34px",
+  };
+  darkTheme.typography.wpf_h4_medium[key] = {
+    fontSize: "26px",
+  };
+  darkTheme.typography.wpf_h5_medium[key] = {
+    fontSize: "22px",
+  };
+  darkTheme.typography.wpf_h6_medium[key] = {
+    fontSize: "18px",
+  };
+  darkTheme.typography.wpf_h7_medium[key] = {
+    fontSize: "14px",
+  };
+  darkTheme.typography.wpf_h1_regular[key] = {
+    fontSize: "42px",
+  };
+  darkTheme.typography.wpf_h2_regular[key] = {
+    fontSize: "38px",
+  };
+  darkTheme.typography.wpf_h3_regular[key] = {
+    fontSize: "34px",
+  };
+  darkTheme.typography.wpf_h4_regular[key] = {
+    fontSize: "26px",
+  };
+  darkTheme.typography.wpf_h5_regular[key] = {
+    fontSize: "22px",
+  };
+  darkTheme.typography.wpf_h6_regular[key] = {
+    fontSize: "18px",
+  };
+  darkTheme.typography.wpf_h7_regular[key] = {
+    fontSize: "14px",
+  };
+  darkTheme.typography.wpf_h8_regular[key] = {
+    fontSize: "14px",
   };
   darkTheme.typography.wpf_p1_semiBold[key] = {
     fontSize: "20px",
   };
+  darkTheme.typography.wpf_p2_semiBold[key] = {
+    fontSize: "18px",
+  };
+  darkTheme.typography.wpf_p3_semiBold[key] = {
+    fontSize: "16px",
+  };
   darkTheme.typography.wpf_p4_semiBold[key] = {
     fontSize: "14px",
   };
+  darkTheme.typography.wpf_p4_semiBold_2[key] = {
+    fontSize: "14px",
+  };
+  darkTheme.typography.wpf_p1_medium[key] = {
+    fontSize: "20px",
+  };
+  darkTheme.typography.wpf_p2_medium[key] = {
+    fontSize: "18px",
+  };
   darkTheme.typography.wpf_p3_medium[key] = {
     fontSize: "16px",
   };
-});
-
-[darkTheme.breakpoints.up("xxl")].forEach((key) => {
-  darkTheme.typography.wpf_p3_medium[key] = {
+  darkTheme.typography.wpf_p3_medium_2[key] = {
     fontSize: "16px",
+  };
+  darkTheme.typography.wpf_p3_medium_3[key] = {
+    fontSize: "16px",
+  };
+  darkTheme.typography.wpf_p4_medium[key] = {
+    fontSize: "14px",
+  };
+  darkTheme.typography.wpf_p5_medium[key] = {
+    fontSize: "12px",
+  };
+  darkTheme.typography.wpf_p1_regular[key] = {
+    fontSize: "20px",
+  };
+  darkTheme.typography.wpf_p2_regular[key] = {
+    fontSize: "18px",
+  };
+  darkTheme.typography.wpf_p3_regular[key] = {
+    fontSize: "16px",
+  };
+  darkTheme.typography.wpf_p4_regular[key] = {
+    fontSize: "14px",
+  };
+  darkTheme.typography.wpf_p5_regular[key] = {
+    fontSize: "12px",
   };
 });
 

@@ -12,6 +12,7 @@ import CommonSelectField from "../CommonSelectField";
 import ProfilePicture from "./ProfilePicture";
 import FieldForProfile from "../FieldForProfile";
 import SelectFieldForProfile from "../SelectFieldForProfile";
+import PasswordFieldForProfile from "../../PasswordFieldForProfile";
 
 const MyprofileIndexNew = () => {
   const { user, isLoading } = useSelector((state) => state.user);
@@ -69,6 +70,11 @@ const MyprofileIndexNew = () => {
   const handleChangeBloodGroup = (e) => {
     setBloodGroup(e.target.value);
   };
+  // const yourPhoneNumberValidationFunction = (phone) => {
+  //   const regex = /^(?:\+8801[3-9]\d{8}|01[3-9]\d{8})$/;
+  //   return regex.test(phone);
+  // };
+
   const handleSubmitChange = () => {
     console.log("hsdd");
     const data = {
@@ -86,7 +92,7 @@ const MyprofileIndexNew = () => {
       id: user._id,
       data,
     };
-   
+
     const formData = new FormData();
     formData.append("image", coverImageFile);
 
@@ -182,7 +188,7 @@ const MyprofileIndexNew = () => {
                 </Typography>
               </Grid>
 
-              <Grid container spacing={0} sx={{ paddingBottom:"1%"}}>
+              <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <FieldForProfile
                     name="firstName"
@@ -204,7 +210,7 @@ const MyprofileIndexNew = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid container sx={{paddingBottom:"1%"}}>
+              <Grid container sx={{paddingBottom: "20px" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <CommonFieldTest
                     name="gender"
@@ -228,7 +234,7 @@ const MyprofileIndexNew = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid container sx={{paddingBottom:"1%"}}>
+              <Grid container sx={{ paddingBottom: "5px" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <CommonFieldTest
                     name="dob"
@@ -256,30 +262,33 @@ const MyprofileIndexNew = () => {
                 <Typography sx={{ fontSize: "12px", color: "primary.B200" }}>Contact Info.</Typography>
               </Grid>
 
-              <Grid container sx={{paddingBottom:"1%"}}>
+              <Grid container sx={{ paddingBottom: "20px" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <FieldForProfile
+                  <PasswordFieldForProfile
                     name="phone"
                     label={"Phone No."}
                     defaultValue={user.phone}
                     disableItem={false}
                     handleChange={handlePhoneNumberChange}
                     editAble={editAble}
+                    // yourPhoneNumberValidationFunction={yourPhoneNumberValidationFunction}
+                    phone={phone}
                   />
                 </Grid>
                 <Grid item xs={6}>
-                  <FieldForProfile
+                  <PasswordFieldForProfile
                     name="billingAccountNo"
                     label={"Nagad No."}
                     defaultValue={user.billingAccountNo}
                     disableItem={false}
                     handleChange={handlebillingAccountNoChange}
                     editAble={editAble}
+                    phone={billingAccountNo}
                   />
                 </Grid>
               </Grid>
 
-              <Grid container sx={{paddingBottom:"1%"}}>
+              <Grid container sx={{paddingBottom: "20px"}}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <CommonFieldTest
                     name="email"
@@ -303,7 +312,7 @@ const MyprofileIndexNew = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid container sx={{paddingBottom:"1%"}}>
+              <Grid container sx={{ paddingBottom: "20px" }}>
                 <Grid item xs={12}>
                   <FieldForProfile
                     name="permanentAddress"

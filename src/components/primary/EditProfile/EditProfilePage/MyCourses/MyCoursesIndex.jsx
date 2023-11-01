@@ -1,6 +1,7 @@
-import {Box, Grid, styled, Table, TableBody, TableCell, tableCellClasses, TableRow, Typography,} from "@mui/material";
+import { Box, Grid, styled, Table, TableBody, TableCell, tableCellClasses, TableRow, Typography } from "@mui/material";
 import React from "react";
 import ProjectDrawerStatusChip from "../../../../shared/FilterField/ProjectDrawerStatusChip";
+import { useSelector } from "react-redux";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -26,6 +27,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const MyCoursesIndex = () => {
+  const { user } = useSelector((state) => state.user);
+  console.log("🚀 ~ file: MyCoursesIndex.jsx:32 ~ MyCoursesIndex ~ user:", user);
   const documentList = [
     {
       name: "Document 01",
@@ -61,7 +64,7 @@ const MyCoursesIndex = () => {
   return (
     <>
       <Grid container>
-        <Grid item xs={6}>
+        {/* <Grid item xs={6}>
           <Grid container sx={{ padding: "2%" }}>
             <Grid item xs={12} sx={{ paddingBottom: "1%" }}>
               <Typography variant="h6" sx={{ color: "#3C4D6B" }}>
@@ -90,11 +93,11 @@ const MyCoursesIndex = () => {
               </Box>
             </Grid>
           </Grid>
-        </Grid>
+        </Grid> */}
         <Grid item xs={6}>
           <Grid container sx={{ padding: "2%" }}>
             <Grid xs={12} sx={{ paddingBottom: "1%" }}>
-              <Typography variant="h6" sx={{ color: "#3C4D6B" }}>
+              <Typography variant="h6" sx={{ color: "neutral.N300" }}>
                 <b>Achieved Skills</b>
               </Typography>
             </Grid>
@@ -106,17 +109,21 @@ const MyCoursesIndex = () => {
                   borderRadius: "8px",
                   background: "#FAFCFF",
                   height: "200px",
-                  padding: "2%",
+                  paddingTop: "2%",
+                  // paddingRight: "2%",
+                  paddingBottom: "2%",
                 }}>
-                <Grid container>
-                  {documentList.map((p) => (
-                    <>
-                      <Box sx={{ paddingRight: "1%", paddingBottom: "1%" }}>
-                        <ProjectDrawerStatusChip key={p._id} value={p.name} />
-                      </Box>
-                    </>
-                  ))}
-                </Grid>
+                {user.skills && (
+                  <Grid container>
+                    {user.skills.map((p) => (
+                      <>
+                        <Box sx={{ paddingRight: "1%", paddingBottom: "1%" }}>
+                          <ProjectDrawerStatusChip key={p._id} value={p.name} />
+                        </Box>
+                      </>
+                    ))}
+                  </Grid>
+                )}
               </Box>
             </Grid>
           </Grid>

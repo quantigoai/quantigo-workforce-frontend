@@ -10,6 +10,7 @@ import ActivateAccount from "./ActivateAccount";
 import MyProfileIndex from "./MyProfile/MyProfileIndex";
 import PasswordChangeIndex from "./PasswordChange/PasswordChangeIndex";
 import MyprofileIndexNew from "./MyProfile/MyprofileIndexNew";
+import MyCoursesIndex from "./MyCourses/MyCoursesIndex";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -150,12 +151,12 @@ export default function EditProfilePageIndex() {
                       variant="wpf_p3_semiBold"
                       color={value === 1 ? "primary.B200" : "neutral.700"}
                     >
-                      Password & Security
+                      Skills
                     </Typography>
                   }
                   {...a11yProps(1)}
                 />
-                {/* <Tab
+                <Tab
                   sx={{
                     alignItems: "flex-start",
                     borderRadius: value === 2 ? "8px" : "none",
@@ -171,7 +172,7 @@ export default function EditProfilePageIndex() {
                     </Typography>
                   }
                   {...a11yProps(2)}
-                /> */}
+                />
               </Tabs>
 
               <Box
@@ -216,12 +217,12 @@ export default function EditProfilePageIndex() {
                 </TabPanel>
 
                 <TabPanel value={value} index={1}>
-                  <PasswordChangeIndex />
-                  {/* <MyCoursesIndex /> */}
+                  {/* <PasswordChangeIndex /> */}
+                  <MyCoursesIndex />
                 </TabPanel>
-                {/* <TabPanel sx={{ position: "absolute" }} value={value} index={2}>
+                <TabPanel sx={{ position: "absolute" }} value={value} index={2}>
                   <PasswordChangeIndex />
-                </TabPanel> */}
+                </TabPanel>
               </Box>
             </Grid>
           </Grid>

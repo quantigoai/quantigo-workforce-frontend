@@ -62,8 +62,7 @@ export default function PDTextFIeld({
           <Box
             sx={{
               height: "100px",
-            }}
-          >
+            }}>
             <Typography
               variant="wpf_h7_medium"
               sx={{
@@ -71,9 +70,8 @@ export default function PDTextFIeld({
                 fontWeight: "500",
                 mb: 0,
                 color: "neutral.N300",
-              }}
-            >
-              {label}
+              }}>
+              {label} {label === "Benchmark" ? "" : " *"}
             </Typography>
             <Box sx={{ width: "100%" }}>
               <PdTextField
@@ -84,7 +82,7 @@ export default function PDTextFIeld({
                 fullWidth
                 // InputProps={{ disableUnderline: true }}
                 variant="outlined"
-                required
+                required={label === "Benchmark" ? false : true}
                 sx={{
                   mt: 0.3,
                   fontSize: "14px",

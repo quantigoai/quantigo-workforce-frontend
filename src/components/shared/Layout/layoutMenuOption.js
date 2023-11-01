@@ -50,7 +50,6 @@ const layoutMenuOption = () => {
   ];
   const verifiedAccountManagerOptions = [
     { name: "Dashboard", icon: DashboardSvg },
-    { name: "All Users", icon: UserSvg },
     { name: "All Projects", icon: ProjectSvg },
 
     // { name: "Projects", icon: ProjectSvg },

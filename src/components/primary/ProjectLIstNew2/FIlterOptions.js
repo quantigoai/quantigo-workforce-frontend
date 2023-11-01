@@ -48,7 +48,7 @@ export const fields = [
   { field: "pdr", width: 100, textAlign: "center", columnDataAlign: "center" },
   { field: "createdBy", width: 150, textAlign: "center", columnDataAlign: "center" },
   { field: "benchmark", width: 150, textAlign: "left", columnDataAlign: "left" },
-  { field: "estimated_end_date", width: 200, textAlign: "center", columnDataAlign: "center" },
+  { field: "estimated_end_date", width: 220, textAlign: "center", columnDataAlign: "center" },
   { field: "relevantDocuments", width: 150, textAlign: "left", columnDataAlign: "left" },
   {
     field: "ACTIONS",

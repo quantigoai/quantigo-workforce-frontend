@@ -86,7 +86,7 @@ export const fields = [
   { field: "pdr", width: 100 },
   { field: "createdBy", width: 150 },
   { field: "benchmark", width: 150 },
-  { field: "estimated_end_date", width: 200 },
+  { field: "estimated_end_date", width: 220 },
   { field: "relevantDocuments", width: 150 },
   {
     field: "ACTIONS",

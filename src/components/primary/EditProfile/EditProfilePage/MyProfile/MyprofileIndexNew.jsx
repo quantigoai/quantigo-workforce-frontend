@@ -171,6 +171,9 @@ const MyprofileIndexNew = () => {
                 //   xxl: "710px",
                 //   lg: "420px",
                 // },
+                "&::-webkit-scrollbar": {
+                  width: "0",
+                },
                 overflowY: "auto",
               }}>
               <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
@@ -179,7 +182,7 @@ const MyprofileIndexNew = () => {
                 </Typography>
               </Grid>
 
-              <Grid container spacing={0} sx={{ backgroundColor: " " }}>
+              <Grid container spacing={0} sx={{ paddingBottom:"1%"}}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <FieldForProfile
                     name="firstName"
@@ -201,7 +204,7 @@ const MyprofileIndexNew = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid container>
+              <Grid container sx={{paddingBottom:"1%"}}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <CommonFieldTest
                     name="gender"
@@ -225,7 +228,7 @@ const MyprofileIndexNew = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid container>
+              <Grid container sx={{paddingBottom:"1%"}}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <CommonFieldTest
                     name="dob"
@@ -253,7 +256,7 @@ const MyprofileIndexNew = () => {
                 <Typography sx={{ fontSize: "12px", color: "primary.B200" }}>Contact Info.</Typography>
               </Grid>
 
-              <Grid container>
+              <Grid container sx={{paddingBottom:"1%"}}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <FieldForProfile
                     name="phone"
@@ -276,7 +279,7 @@ const MyprofileIndexNew = () => {
                 </Grid>
               </Grid>
 
-              <Grid container>
+              <Grid container sx={{paddingBottom:"1%"}}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <CommonFieldTest
                     name="email"
@@ -300,7 +303,7 @@ const MyprofileIndexNew = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid container>
+              <Grid container sx={{paddingBottom:"1%"}}>
                 <Grid item xs={12}>
                   <FieldForProfile
                     name="permanentAddress"

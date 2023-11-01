@@ -36,10 +36,10 @@ const UsersFilter = ({
   return (
     <>
       <Box
-        component={motion.div}
-        animate={{
-          transition: { type: "spring", stiffness: 300, duration: 0.4, delay: 0.2 },
-        }}
+        // component={motion.div}
+        // animate={{
+        //   transition: { type: "spring", stiffness: 300, duration: 0.4, delay: 0.2 },
+        // }}
         sx={{
           backgroundColor: "neutral.N000",
           width: "100%",
@@ -49,6 +49,7 @@ const UsersFilter = ({
           pr: 2,
           pl: 2,
           pY: "6px",
+          transition : "all 2.5s ease-in-out"
         }}
       >
         <Stack

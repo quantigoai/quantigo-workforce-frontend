@@ -69,10 +69,30 @@ const darkTheme = createTheme({
     secondary: "#fff", // Secondary text color
   },
   components: {
-    MuiPaper: {
+    MuiSelect: {
       styleOverrides: {
         root: {
-          backgroundColor: "#212121",
+          borderRadius: "4px",
+          flex: "none",
+          order: 0,
+          border: "1px solid #DADCDF",
+          alignSelf: "stretch",
+          flexGrow: 0,
+          "& .MuiSvgIcon-root": {
+            color: "#667085",
+            marginRight: "5px",
+            cursor: "pointer",
+          },
+          "& .MuiSelect-select:focus": {
+            backgroundColor: "transparent",
+          },
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontFamily: "Inter",
         },
       },
     },
@@ -97,10 +117,12 @@ const darkTheme = createTheme({
         },
       },
     },
-    MuiTableHead: {
+    MuiFormControl: {
       styleOverrides: {
         root: {
-          backgroundColor: "blue",
+          padding: "0",
+          paddingTop: "0px",
+          fontFamily: "Inter",
         },
       },
     },
@@ -113,23 +135,10 @@ const darkTheme = createTheme({
         },
       },
     },
-    MuiSelect: {
+    MuiIconButton: {
       styleOverrides: {
         root: {
-          borderRadius: "4px",
-          flex: "none",
-          order: 0,
-          border: "1px solid #DADCDF",
-          alignSelf: "stretch",
-          flexGrow: 0,
-          "& .MuiSvgIcon-root": {
-            color: "#667085",
-            marginRight: "5px",
-            cursor: "pointer",
-          },
-          "& .MuiSelect-select:focus": {
-            backgroundColor: "transparent",
-          },
+          color: "#fff",
         },
       },
     },
@@ -145,12 +154,35 @@ const darkTheme = createTheme({
         },
       },
     },
-    MuiIconButton: {
+    MuiPaper: {
       styleOverrides: {
         root: {
-          color: "#fff",
+          backgroundColor: "#212121",
+          margin: "0",
         },
       },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          fontFamily: "Inter",
+          padding: "0px 0px",
+        },
+      },
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          border: "none",
+          marginLeft: "0px !important",
+        },
+        docked: {
+          marginLeft: "0px !important",
+        },
+      },
+    },
+    MuiStack: {
+      styleOverrides: {},
     },
     MuiAvatar: {
       styleOverrides: {
@@ -177,9 +209,40 @@ const darkTheme = createTheme({
   },
 });
 
+
 [darkTheme.breakpoints.between("lg", "xl")].forEach((key) => {
+  darkTheme.typography.wpf_p1_semiBold[key] = {
+    fontSize: "16px",
+  };
+  darkTheme.typography.wpf_p2_semiBold[key] = {
+    fontSize: "14px",
+  };
   darkTheme.typography.wpf_p3_semiBold[key] = {
     fontSize: "12px",
+  };
+  darkTheme.typography.wpf_p4_semiBold[key] = {
+    fontSize: "10px",
+  };
+  darkTheme.typography.wpf_p3_medium[key] = {
+    fontSize: "10px",
+  };
+  darkTheme.typography.wpf_h5_medium[key] = {
+    fontSize: "18px",
+  };
+  darkTheme.typography.wpf_p3_regular[key] = {
+    fontSize: "12px",
+  };
+  darkTheme.typography.wpf_p4_regular[key] = {
+    fontSize: "10px",
+  };
+  darkTheme.typography.wpf_p4_medium[key] = {
+    fontSize: "10px",
+  };
+  darkTheme.typography.wpf_h4_Bold[key] = {
+    fontSize: "22px",
+  };
+  darkTheme.typography.wpf_h6_Bold[key] = {
+    fontSize: "14px",
   };
 });
 
@@ -190,21 +253,14 @@ const darkTheme = createTheme({
   darkTheme.components.MuiTableRow.styleOverrides.root[key] = {
     height: "56px",
   };
-});
-[darkTheme.breakpoints.between("lg", "xl")].forEach((key) => {
-  darkTheme.typography.wpf_p4_semiBold[key] = {
-    fontSize: "10px",
+  darkTheme.typography.wpf_p1_semiBold[key] = {
+    fontSize: "20px",
   };
-});
-
-[darkTheme.breakpoints.up("xxl")].forEach((key) => {
   darkTheme.typography.wpf_p4_semiBold[key] = {
     fontSize: "14px",
   };
-});
-[darkTheme.breakpoints.between("lg", "xl")].forEach((key) => {
   darkTheme.typography.wpf_p3_medium[key] = {
-    fontSize: "10px",
+    fontSize: "16px",
   };
 });
 

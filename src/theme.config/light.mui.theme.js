@@ -149,12 +149,6 @@ const lightTheme = createTheme({
       styleOverrides: {
         root: {
           fontFamily: "Inter",
-          // backgroundColor: "#F2F6FC",
-          // color: "#3C4D6B",
-          // borderRadius: "4px",
-          // height: "24px",
-          // fontSize: "12px",
-          // fontWeight: "600",
           padding: "0px 0px",
         },
       },
@@ -164,24 +158,14 @@ const lightTheme = createTheme({
         paper: {
           border: "none",
           marginLeft: "0px !important",
-          // "@media(min-width: 600px)": {
-          //   width: "50px !important",
-          // },
-          "@media(min-width: 768px)": {
-            // width: "50px !important",
-          },
         },
         docked: {
           marginLeft: "0px !important",
         },
       },
     },
-
     MuiStack: {
-      styleOverrides: {
-        // padding: "0",
-        // height: "0px",
-      },
+      styleOverrides: {},
     },
     MuiAvatar: {
       styleOverrides: {

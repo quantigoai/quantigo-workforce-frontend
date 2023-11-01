@@ -80,7 +80,7 @@ const DrawerBox = styled(Box)(({ theme }) => ({
 
 const BodyBox = styled(Box)(({ theme }) => ({
   height: "100vh",
-  animation: `${slideIn} 0.3s`,
+  animation: `${slideIn} 0.6s`,
 }));
 
 const slideIn = keyframes`
@@ -456,7 +456,7 @@ export default function LayoutNew({ children }) {
             backgroundColor: isLightTheme ? "#F2F6FC" : "#121212",
             width: "100%",
             overflowY: "auto",
-            animation: open && `${slideIn} 0.4s`,
+            animation: open && `${slideIn} 0.6s`,
           }}
         >
           {isLoggedIn && !isBlocked ? (

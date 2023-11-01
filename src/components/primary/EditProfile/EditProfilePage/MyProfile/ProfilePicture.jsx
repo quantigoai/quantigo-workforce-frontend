@@ -6,8 +6,8 @@ import EditIconProfile from "../../../../../assets/images/Group.svg";
 import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
 
 const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleImage, coverImageFile }) => {
-  console.log("🚀 ~ file: ProfilePicture.jsx:9 ~ ProfilePicture ~ coverImageFile:", coverImageFile)
-  console.log("🚀 ~ file: ProfilePicture.jsx:9 ~ ProfilePicture ~ coverImage:", coverImage)
+  console.log("🚀 ~ file: ProfilePicture.jsx:9 ~ ProfilePicture ~ coverImageFile:", coverImageFile);
+  console.log("🚀 ~ file: ProfilePicture.jsx:9 ~ ProfilePicture ~ coverImage:", coverImage);
   const image = user.image;
   const maxSize = 1024 * 1024;
   return (
@@ -22,7 +22,8 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
           height: "90%",
           width: "100%",
           justifyContent: "center",
-        }}>
+        }}
+      >
         <Grid container sx={{ padding: "1%", backgroundColor: "" }}>
           <Grid item xs={9}>
             <Grid container>
@@ -50,7 +51,8 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                     width: { xxl: "85px", xl: "72px", lg: "72px" },
                     // width: "100px",
                     // height: "100px",
-                  }}>
+                  }}
+                >
                   {editAble && (
                     <>
                       <input
@@ -58,7 +60,7 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                         id="upload-photo"
                         name="upload-photo"
                         type="file"
-                        accept="image/*"
+                        accept="image/png,  image/jpeg, image/jpg"
                         onChange={handleImage}
                         // onchange="handleImageChange"
                       />
@@ -71,11 +73,6 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                                 : coverImageFile?.size < maxSize
                                 ? "1px solid #00e676"
                                 : "",
-                            // backgroundColor: "blue",
-                            // position: "absolute",
-                            // top: "50%",
-                            // left: "50%",
-                            // transform: "translate(-50%, -50%)",
                             height: "100%",
                             width: "100%",
                             opacity: editAble && 1,
@@ -83,7 +80,8 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                           }}
                           color="primary"
                           aria-label="upload picture"
-                          component="span">
+                          component="span"
+                        >
                           <img src={EditIconProfile} />
                           {/* <PhotoCameraIcon /> */}
                         </IconButton>
@@ -177,7 +175,8 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                     width: "131px",
                   }}
                   onClick={() => handleEditProfile()}
-                  disableRipple>
+                  disableRipple
+                >
                   <Box sx={{ paddingRight: "10%" }}>
                     <Typography sx={{ fontSize: { xl: "14px", xxl: "14px", lg: "10px" } }}> Edit Profile</Typography>
                   </Box>{" "}

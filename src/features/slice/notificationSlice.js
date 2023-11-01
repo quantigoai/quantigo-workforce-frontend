@@ -95,7 +95,7 @@ const notificationSlice = createSlice({
     setNewNotification: (state, action) => {
       state.notifications = [action.payload, ...state.notifications];
       state.latestUnreadNotifications = [action.payload, ...state.latestUnreadNotifications];
-    //   state.allUnreadNotifications = [action.payload, ...state.allUnreadNotifications];
+      state.allUnreadNotifications = [action.payload, ...state.allUnreadNotifications];
     },
     resetNotificationSlice: () => {
       return initialState;

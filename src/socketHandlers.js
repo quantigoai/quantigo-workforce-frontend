@@ -28,7 +28,6 @@ const socketHandlers = ({
   getAllAssignedJob,
 }) => {
   const { _id, role } = storedUser.user;
-  // const { _id, role } = storedUser;
 
   const handleNotification = (notification) => {
     if (
@@ -41,10 +40,7 @@ const socketHandlers = ({
 
   const handleUserNotification = (notification, user) => {
     storedUser.user._id === user._id && dispatch(updateLoggedInUserManually(user));
-    if (
-      notification.notificationFor.includes(storedUser.user.role) ||
-      notification.notificationForUserIds.includes(storedUser.user._id)
-    ) {
+    if (notification.notificationFor.includes(role) || notification.notificationForUserIds.includes(_id)) {
       if (storedUser.user.role === "reviewer") {
         dispatch(availableJobsForReviewer());
       }

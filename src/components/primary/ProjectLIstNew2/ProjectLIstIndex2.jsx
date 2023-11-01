@@ -213,6 +213,7 @@ const ProjectLIstIndex2 = () => {
         if (action.payload?.status === 201) {
           toast.trigger(action.payload.data.message, "success");
           setCreateProjectOpen(false);
+          handleChangePagination();
         }
       });
     }

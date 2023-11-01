@@ -23,7 +23,6 @@ const style = {
 const SkillDeleteModal = ({ skill }) => {
   const [open, setOpen] = React.useState(false);
   const {isLoading } = useSelector((state) => state.skill);
-  console.log("🚀 ~ file: SkillDeleteModal.jsx:26 ~ SkillDeleteModal ~ isLoading:", isLoading)
   const { isLightTheme } = useSelector((state) => state.theme);
 
   const toast = useToaster();

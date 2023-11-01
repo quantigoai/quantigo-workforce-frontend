@@ -37,8 +37,10 @@ const layoutMenuOption = () => {
   ];
   const accountManagerOptions = [
     { name: "Dashboard", icon: DashboardSvg },
-    { name: "All Users", icon: UserSvg },
-    { name: "All Projects", icon: ProjectSvg },
+    { name: "Identity Verification", icon: CourseSvg },
+
+    // { name: "All Users", icon: UserSvg },
+    // { name: "All Projects", icon: ProjectSvg },
 
     // { name: "All Users", icon: UserSvg },
     // { name: "Projects", icon: ProjectSvg },
@@ -64,7 +66,6 @@ const layoutMenuOption = () => {
     { name: "Identity Verification", icon: CourseSvg },
     // { name: "All Users", icon: UserSvg },
     // { name: "All Projects", icon: ProjectSvg },
-
 
     // { name: "Skill", icon: CourseSvg },
     // { name: "Projects", icon: ProjectSvg },

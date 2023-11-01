@@ -85,7 +85,7 @@ const MyprofileIndexNew = () => {
     setLastName(user.lastName);
     setPhone(user.phone);
     setOccupation(user.occupation);
-    setBloodGroup(bloodGroup)
+    setBloodGroup(user.bloodGroup)
     setPermanentAddress(user.permanentAddress)
     setPresentAddress(user.presentAddress)
     setBillingAccountNo(user.billingAccountNo)

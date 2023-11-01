@@ -204,7 +204,7 @@ const Routers = () => {
                 roles.pro_co,
                 roles.pro_manager,
                 roles.del_manager,
-                roles.rec_manger,
+                // roles.rec_manger,
                 roles.acc_manger,
                 roles.level_1,
                 roles.level_2,

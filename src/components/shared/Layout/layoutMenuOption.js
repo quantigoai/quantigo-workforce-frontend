@@ -142,7 +142,6 @@ const layoutMenuOption = () => {
     // { name: "Home", icon: BenchmarkSvg },
     { name: "Dashboard", icon: DashboardSvg },
     { name: "All Users", icon: UserSvg },
-    { name: "All Projects", icon: ProjectSvg },
   ];
 
   const dmOptions = [

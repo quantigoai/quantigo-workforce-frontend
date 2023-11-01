@@ -182,8 +182,8 @@ const lightTheme = createTheme({
   },
   breakpoints: {
     values: {
-      xs: 0, // mobile deprecated
-      sm: 600, // mobile deprecated
+      xs: 0, 
+      sm: 600, 
       md: 768,
       lg: 1024,
       xl: 1440,

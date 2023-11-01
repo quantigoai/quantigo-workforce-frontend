@@ -16,8 +16,7 @@ import menuFoldLine from "../../../assets/images/menu-fold-line.svg";
 import menuUnfoldLne from "../../../assets/images/menu-unfold-line.svg";
 import UserBlocked from "../UserBlocked/UserBlocked";
 
-import { Stack } from "@mui/material";
-import { motion } from "framer-motion";
+import { Stack, keyframes } from "@mui/material";
 import Header from "../Header/Header";
 import GetHelpNew from "./GetHelpNew";
 import layoutMenuOption from "./layoutMenuOption";
@@ -75,6 +74,23 @@ const DrawerFooter = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
+const DrawerBox = styled(Box)(({ theme }) => ({
+  height: "100vh",
+}));
+
+const BodyBox = styled(Box)(({ theme }) => ({
+  height: "100vh",
+  animation: `${slideIn} 0.3s`,
+}));
+
+const slideIn = keyframes`
+  0% {
+    width: 0; // Initial width
+  }
+  100% {
+    width: 100%; // Final width
+  }
+`;
 export default function LayoutNew({ children }) {
   const { activePath } = useSelector((state) => state.activePath);
   const navigate = useNavigate();
@@ -300,17 +316,10 @@ export default function LayoutNew({ children }) {
         width: "100vw",
       }}
     >
-      {/* <AnimatePresence> */}
-      <Box
-        // component={motion.div}
-        // animate={{
-        //   width: open ? "16.66%" : "4%",
-        //   transition: { duration: 0.4 },
-        // }}
+      <DrawerBox
         sx={{
           width: open ? "16.66%" : "4%",
-          height: "100vh",
-          // backgroundColor: isLightTheme ? "#2D58FF" : "#1D2939",
+          backgroundColor: isLightTheme ? "#2D58FF" : "#1D2939",
         }}
       >
         <Drawer
@@ -417,16 +426,9 @@ export default function LayoutNew({ children }) {
             <>{open && <GetHelpNew />}</>
           </DrawerFooter>
         </Drawer>
-      </Box>
-      {/* </AnimatePresence> */}
+      </DrawerBox>
 
-      {/* <AnimatePresence> */}
-      <Box
-        component={motion.div}
-        // animate={{
-        //   width: open ? "83.34%" : "96%",
-        //   transition: { duration: 0.4 },
-        // }}
+      <BodyBox
         sx={{
           width: open ? "83.34%" : "96%",
           height: "100vh",
@@ -435,6 +437,7 @@ export default function LayoutNew({ children }) {
         <Box
           sx={{
             height: { xxl: "7%", xl: "56px", lg: "7.22%" },
+            animation: `${slideIn} 0.3s`,
           }}
         >
           <Header openDrawer={open} />
@@ -451,14 +454,9 @@ export default function LayoutNew({ children }) {
             paddingBottom: "0",
             margin: 0,
             backgroundColor: isLightTheme ? "#F2F6FC" : "#121212",
-            // backgroundColor: {
-            //   md: isLightTheme ? "blue" : "pink",
-            //   lg: isLightTheme ? "red" : "pink",
-            //   xl: "yellow",
-            //   xxl: "black",
-            // },
             width: "100%",
             overflowY: "auto",
+            animation: open && `${slideIn} 0.4s`,
           }}
         >
           {isLoggedIn && !isBlocked ? (
@@ -477,8 +475,7 @@ export default function LayoutNew({ children }) {
         </Box>
 
         {/* TODO Fix this */}
-      </Box>
-      {/* </AnimatePresence> */}
+      </BodyBox>
     </Stack>
   );
 }

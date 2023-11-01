@@ -23,7 +23,8 @@ const CheckINOutButton = ({
     const projectSkills = projectDrawer?.project_skills?.map((skill) => skill.id);
     const userSkills = user?.skills?.map((skill) => skill.id);
     const matched = projectSkills?.every((skill) => userSkills?.includes(skill));
-    setIsAvailable(matched);
+    
+    setIsAvailable(matched && projectDrawer.project_status === "in-Progress");
   }, []);
 
   return (

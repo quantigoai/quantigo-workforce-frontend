@@ -42,6 +42,7 @@ const Header = () => {
   };
   const handleNotificationClose = () => setNotificationOpen(null);
   const { isLoading, allUnreadNotifications } = useSelector((state) => state.notification);
+
   const reset = useReset;
   const handleLogOut = () => {
     // const role = user.user.role;

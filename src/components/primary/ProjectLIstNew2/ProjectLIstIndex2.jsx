@@ -167,6 +167,10 @@ const ProjectLIstIndex2 = () => {
       .then((action) => {
         if (action.payload.status === 200) {
           toast.trigger(action.payload.data.message, "success");
+          dispatch(getAllProjectDrawers({ pagination })).then(() => {
+            console.log("🚀 ~ file: ProjectLIstIndex2.jsx:171 ~ .then ~ pagination:", pagination);
+            return setIsDataLoading(false);
+          });
         }
       })
       .catch(() => {

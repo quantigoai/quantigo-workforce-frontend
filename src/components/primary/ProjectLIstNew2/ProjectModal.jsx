@@ -55,7 +55,7 @@ const ProjectModal = ({
     project_alias: Yup.string().required("alias is required"),
     project_batch: Yup.string().required("batch is required"),
     pdr: Yup.string().required("pdr is required"),
-    benchMark: Yup.string().required(" benchMark is required"),
+    // benchMark: Yup.string().required(" benchMark is required"),
     // relevantDocuments: Yup.string().required(" document is required"),
     // guideline: Yup.string().required(" document is required"),
     // link: Yup.string().required("link is required"),

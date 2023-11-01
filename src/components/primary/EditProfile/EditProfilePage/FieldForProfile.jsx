@@ -1,5 +1,6 @@
 import { FormControl, TextField, Typography, styled } from "@mui/material";
 import React from "react";
+import { useEffect } from "react";
 const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "1px solid #E6ECF5 !important",
@@ -14,6 +15,7 @@ const MyTextField = styled(TextField)(() => ({
   },
 }));
 const FieldForProfile = ({ label, handleChange, disableItem, defaultValue, editAble }) => {
+
   return (
     <>
       <FormControl fullWidth>
@@ -35,7 +37,7 @@ const FieldForProfile = ({ label, handleChange, disableItem, defaultValue, editA
           }}
         //   type={label === "Phone No." || label === "Nagad No." ? "number" : "text"}
           disabled={disableItem ? true : !editAble}
-          defaultValue={defaultValue}
+          value={defaultValue}
           variant="outlined"
           onChange={(e) => handleChange(e)}
         />

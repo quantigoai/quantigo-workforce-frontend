@@ -6,6 +6,8 @@ import EditIconProfile from "../../../../../assets/images/Group.svg";
 import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
 
 const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleImage, coverImageFile }) => {
+  console.log("🚀 ~ file: ProfilePicture.jsx:9 ~ ProfilePicture ~ coverImageFile:", coverImageFile)
+  console.log("🚀 ~ file: ProfilePicture.jsx:9 ~ ProfilePicture ~ coverImage:", coverImage)
   const image = user.image;
   const maxSize = 1024 * 1024;
   return (

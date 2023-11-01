@@ -107,7 +107,7 @@ const MyCoursesIndex = () => {
                   border: "1px solid #E6ECF5",
                   // padding: "16px",
                   borderRadius: "8px",
-                  background: "#FAFCFF",
+                  backgroundColor: "#FAFCFF",
                   height: "200px",
                   paddingTop: "2%",
                   // paddingRight: "2%",

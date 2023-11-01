@@ -50,12 +50,12 @@ function App() {
       dispatch(alreadyLogin(tokenCheck()));
     }
     dispatch(setFromPreviousTheme());
-  }, []);
+  }, [dispatch]);
   const clearReduxData = useClearReduxData;
   // TODO Need to handle this dynamically
   useEffect(() => {
     clearReduxData(dispatch, activePath);
-  }, [activePath]);
+  }, [activePath, clearReduxData, dispatch]);
 
   useEffect(() => {
     if (user) {
@@ -72,7 +72,7 @@ function App() {
         getAllAssignedJob,
       });
     }
-  }, [dispatch, user.role]);
+  }, [dispatch, storedUser, user, user.role]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -82,7 +82,7 @@ function App() {
         dispatch(getAllUnreadNotifications());
       });
     }
-  }, [user.role]);
+  }, [dispatch, isLoggedIn, user.role]);
 
   const isMobile = window.innerWidth < 1024;
 

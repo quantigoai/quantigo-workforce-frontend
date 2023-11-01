@@ -97,9 +97,9 @@ const style = (value) => {
       };
     case "hours-approved":
       return {
-        backgroundColor: "rgba(250, 228, 195, 1)",
-        color: "rgba(247, 144, 9, 1)",
-        border: "1px solid rgba(247, 144, 9, 1)",
+        backgroundColor: "#e8dfff",
+        color: "#8563c7",
+        border: "1px solid #d5dae8",
         fontFamily: "Inter",
         width: "132px",
         height: "22px",
@@ -108,15 +108,15 @@ const style = (value) => {
         fontSize: "10px",
         lineHeight: "18px",
         "& svg": {
-          fill: "#F2A200",
+          fill: "#8563c7",
         },
       };
     case "payment-done":
       return {
-        backgroundColor: "rgba(250, 228, 195, 1)",
-        color: "rgba(247, 144, 9, 1)",
+        backgroundColor: "#e5ebaf",
+        color: "#8d8938",
         fontFamily: "Inter",
-        border: "1px solid rgba(247, 144, 9, 1)",
+        border: "1px solid #cdd896",
         width: "124px",
         height: "22px",
         borderRadius: "4px",
@@ -124,7 +124,7 @@ const style = (value) => {
         lineHeight: "18px",
         fontSize: "10px",
         "& svg": {
-          fill: "#F2A200",
+          fill: "#8d8938",
         },
       };
     default:

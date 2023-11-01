@@ -69,21 +69,21 @@ const ProjectDrawerStatusChip = ({ value, isPopper = false }) => {
         };
       case "hours-approved":
         return {
-          backgroundColor: "#C4F5DF",
-          color: "#12B76A",
+          backgroundColor: "#e8dfff",
+          color: "#8563c7",
           // width: "90px",
           fontFamily: "Inter",
           height: "24px",
-          border: "1px solid #C4F5DF",
+          border: "1px solid #d5dae8",
         };
       case "payment-done":
         return {
-          backgroundColor: "#C4F5DF",
-          color: "#12B76A",
+          backgroundColor: "#e5ebaf",
+          color: "#8d8938",
           // width: "90px",
           fontFamily: "Inter",
           height: "24px",
-          border: "1px solid #C4F5DF",
+          border: "1px solid #cdd896",
         };
       case "Active":
         return {

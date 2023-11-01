@@ -105,6 +105,7 @@ const ProjectSelectFIlter = ({
                 flexDirection: "row",
                 width: "100%",
                 gap: 2,
+
                 // backgroundColor: "blue",
               }}
             >
@@ -112,9 +113,11 @@ const ProjectSelectFIlter = ({
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  backgroundColor: "#F4F7FE",
+                  backgroundColor: "primary.B008",
                   border: "1px solid #E6ECF5 ",
                   borderRadius: "8px",
+                  height: "30px",
+
                   width: { lg: "38%", xl: "28%", xxl: "20%" },
                 }}
               >
@@ -133,17 +136,25 @@ const ProjectSelectFIlter = ({
 
               <FormControlLabel
                 sx={{
-                  backgroundColor: "#F4F7FE",
+                  backgroundColor: "primary.B008",
                   border: "1px solid #E6ECF5",
                   borderRadius: "8px",
                   marginLeft: "5px",
                   mr: 0,
                   pr: 1,
-                  color: "#3C4D6B",
+                  color: "neutral.N300",
                   opacity: "0.7",
+                  height: "30px",
                   fontWeight: "500",
-                  fontSize: "14px",
+
                   fontFamily: "Inter",
+                  "& .MuiFormControlLabel-label": {
+                    fontSize: {
+                      lg: "10px",
+                      xl: "14px",
+                      xxl: "14px",
+                    },
+                  },
                 }}
                 control={<Switch sx={{ pr: 2 }} checked={checked} onChange={handleChangeCheck} />}
                 label="Available Projects for me"

@@ -25,10 +25,11 @@ const RoutersLogin = lazy(() => import("./components/primary/Routers/RoutersLogi
 const LayoutNew = lazy(() => import("./components/shared/Layout/LayoutNew"));
 
 const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
+
 export const socket = io(import.meta.env.VITE_APP_SOCKET_SERVER_URL);
 
 function App() {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
   const storedUser = useSelector((state) => state.user);
   const { isLoading, user, isLoggedIn } = useSelector((state) => state.user);
   const { activePath } = useSelector((state) => state.activePath);

@@ -11,7 +11,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import FilterListOffIcon from "@mui/icons-material/FilterListOff";
 import SearchIcon from "@mui/icons-material/Search";
-import { Box, Button, Grid, IconButton, InputBase, Paper } from "@mui/material";
+import { Box, Button, Grid, IconButton, InputBase, Paper, Typography } from "@mui/material";
 import React from "react";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import "../ProjectLIstNew2/index.css";
@@ -70,6 +70,11 @@ const UsersHeader = ({
               borderRadius: "8px",
               outline: "none",
               boxShadow: "none",
+              height: {
+                lg: "35px",
+                xl: "40px",
+                xxl: "40px",
+              },
             }}
           >
             <IconButton disabled type="button" sx={{ p: "5px" }} aria-label="search">
@@ -82,8 +87,11 @@ const UsersHeader = ({
                 ml: 0,
                 flex: 1,
                 fontFamily: "Inter",
+                fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
+         
               }}
               placeholder="Search"
+            
               onKeyDown={(ev) => {
                 if (ev.key === "Enter") {
                   handleSearch(ev);
@@ -117,6 +125,12 @@ const UsersHeader = ({
               px: "0px 0px",
               backgroundColor: "primary.B008",
               mx: 2,
+              // height:"40px",
+              height: {
+                lg: "35px",
+                xl: "40px",
+                xxl: "40px",
+              },
               borderRadius: "8px",
             }}
             aria-label="menu"

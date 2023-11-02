@@ -128,7 +128,12 @@ const UsersFilter = ({
                   borderRadius: "8px",
                   backgroundColor: "#FF4757",
                   color: "white",
-                  height: { xl: "36 px", lg: "30px" },
+                  fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
+                  height: {
+                    lg: "30px",
+                    xl: "36px",
+                    xxl: "36px",
+                  },
                   "&:hover": {
                     backgroundColor: "#F53142",
                   },

@@ -31,8 +31,7 @@ const ProjectHeader = ({
         className="contentHeader"
         sx={{
           backgroundColor: "neutral.N000",
-        }}
-      >
+        }}>
         <Box sx={{ width: "30%", padding: "12px 16px" }}>
           <Grid
             container
@@ -40,8 +39,7 @@ const ProjectHeader = ({
               display: "flex",
               alignContent: "center",
               alignItems: "center",
-            }}
-          >
+            }}>
             {/* TODO Need to remove the unnecessary custom button */}
             <CommonHeader title="Projects" customButton="Create User" />
           </Grid>
@@ -53,8 +51,7 @@ const ProjectHeader = ({
             justifyContent: "space-between",
             alignItems: "center",
             padding: "12px 20px",
-          }}
-        >
+          }}>
           {/* <Paper
             component="form"
             sx={{
@@ -81,20 +78,24 @@ const ProjectHeader = ({
               display: "flex",
               alignItems: "center",
               width: "240px",
+              height: {
+                lg: "35px",
+                xl: "40px",
+                xxl: "40px",
+              },
               backgroundColor: "primary.B008",
               border: "1px solid #EFF3FE",
               borderRadius: "8px",
               outline: "none",
               boxShadow: "none",
-            }}
-          >
+            }}>
             <IconButton disabled type="button" sx={{ p: "5px" }} aria-label="search">
               <SearchIcon />
             </IconButton>
             <InputBase
               inputRef={searchRef}
               // onBlur={(e) => handleSearch(e)}
-              sx={{ ml: 0, flex: 1 }}
+              sx={{ ml: 0, flex: 1, fontSize: { xl: "14px", xxl: "16px", lg: "12px" } }}
               placeholder="Search"
               onKeyDown={(ev) => {
                 if (ev.key === "Enter") {
@@ -108,8 +109,7 @@ const ProjectHeader = ({
                 sx={{
                   height: "30px",
                   minWidth: "40px",
-                }}
-              >
+                }}>
                 <ClearIcon
                   sx={{
                     color: "neutral.N300",
@@ -129,9 +129,13 @@ const ProjectHeader = ({
               backgroundColor: "primary.B008",
               mx: 2,
               borderRadius: "8px",
+              height: {
+                lg: "35px",
+                xl: "40px",
+                xxl: "40px",
+              },
             }}
-            aria-label="menu"
-          >
+            aria-label="menu">
             {isFilter ? (
               <FilterListOffIcon sx={{ color: "primary.main" }} />
             ) : (
@@ -148,7 +152,13 @@ const ProjectHeader = ({
                 textTransform: "none",
                 borderRadius: "8px",
                 backgroundColor: "#2E58FF",
-                height: "40px",
+                height: {
+                  lg: "35px",
+                  xl: "40px",
+                  xxl: "40px",
+                },
+                  fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
+          
                 width: "128px",
                 color: "white",
                 "&:hover": {
@@ -156,8 +166,7 @@ const ProjectHeader = ({
                 },
               }}
               // variant="contained"
-              onClick={handleProjectCreateOpen}
-            >
+              onClick={handleProjectCreateOpen}>
               Create Project
             </Button>
           ) : (

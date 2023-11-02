@@ -43,7 +43,7 @@ const Header = () => {
   const handleNotificationClose = () => setNotificationOpen(null);
   const { isLoading, allUnreadNotifications } = useSelector((state) => state.notification);
   const reset = useReset;
-  
+
   const handleLogOut = () => {
     // const role = user.user.role;
     dispatch(logout()).then(() => {
@@ -104,15 +104,13 @@ const Header = () => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-        }}
-      >
+        }}>
         <Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-          }}
-        >
+          }}>
           <GoBackButton handleGoBack={handleGoBack} />
 
           <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -136,8 +134,7 @@ const Header = () => {
                   },
                 }}
                 aria-describedby={id}
-                onClick={handleNotificationOpen}
-              >
+                onClick={handleNotificationOpen}>
                 {allUnreadNotifications.length === 0 ? (
                   <>
                     <Lottie animationData={bell} {...lottieOptions} />
@@ -160,8 +157,7 @@ const Header = () => {
                       sx={{
                         color: "neutral.800",
                       }}
-                      variant="wpf_p3_medium"
-                    >
+                      variant="wpf_p3_medium">
                       {firstName} {lastName}
                     </Typography>
 
@@ -195,7 +191,8 @@ const Header = () => {
                       sx={{
                         "& .MuiPaper-root": {
                           borderRadius: "6px",
-                          width: "182px",
+                          // width: "182px",
+                          width: { xl: "182px", xxl: "182px", lg: "155px" },
                           mt: 1.3,
                           ml: -2,
                           boxShadow: "0px 8px 24px 0px #253E5C14, 0px 0px 4px 0px #253E5C0A",
@@ -207,29 +204,44 @@ const Header = () => {
                       anchorEl={anchorEl}
                       open={open}
                       autoFocus={false}
-                      onClose={handleClose}
-                    >
+                      onClose={handleClose}>
                       <MenuItem
                         sx={{
                           borderBottom: "1px solid #F0F5FA",
-                          width: "182px",
+                          // width: "182px",
+                          width: { xl: "182px", xxl: "182px", lg: "155px" },
                           py: 1.5,
                           mt: 0,
-                          height: "50px",
+                          // height: "50px",
+                          height: { xl: "50px", xxl: "50px", lg: "37px" },
                         }}
-                        onClick={handleEditProfile}
-                      >
+                        onClick={handleEditProfile}>
                         <ListItemIcon>
-                          <PersonOutlineIcon />
+                          <PersonOutlineIcon sx={{height:{ xl: "25px", xxl: "25px", lg: "18px" }}}/>
                         </ListItemIcon>
-                        <ListItemText sx={{ color: "neutral.N300" }}>Edit Profile</ListItemText>
+                        <ListItemText
+                          primaryTypographyProps={{ fontSize: { xl: "16px", xxl: "16px", lg: "12px" } }}
+                          sx={{ color: "neutral.N300" }}>
+                          Edit Profile
+                        </ListItemText>
                       </MenuItem>
 
-                      <MenuItem onClick={handleLogOut} sx={{ width: "182px", py: 1.5 }}>
-                        <ListItemIcon>
-                          <LogoutIcon />
+                      <MenuItem
+                        onClick={handleLogOut}
+                        sx={{
+                          // width: "182px",
+                          py: 1.5,
+                          height: { xl: "50px", xxl: "50px", lg: "37px" },
+                          width: { xl: "182px", xxl: "182px", lg: "155px" },
+                        }}>
+                        <ListItemIcon >
+                          <LogoutIcon sx={{height:{ xl: "25px", xxl: "25px", lg: "18px" }}} />
                         </ListItemIcon>
-                        <ListItemText sx={{ color: "neutral.N300" }}>Logout</ListItemText>
+                        <ListItemText
+                          primaryTypographyProps={{ fontSize: { xl: "16px", xxl: "16px", lg: "12px" } }}
+                          sx={{ color: "neutral.N300" }}>
+                          Logout
+                        </ListItemText>
                       </MenuItem>
                     </Menu>
 
@@ -241,8 +253,7 @@ const Header = () => {
                         justifyContent: "center",
                         cursor: "pointer",
                         padding: "0px 8px 0px 14px",
-                      }}
-                    >
+                      }}>
                       <Avatar
                         alt="Profile Picture"
                         src={image}

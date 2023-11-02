@@ -18,7 +18,7 @@ const HowItWorkPage = () => {
               borderTop: "1px solid #E1E8F5",
               backgroundColor: "#FFFFFF",
              
-              paddingLeft: "4%",
+              paddingLeft: "2%",
               paddingRight: "2%",
               position: "absolute",
             }}>

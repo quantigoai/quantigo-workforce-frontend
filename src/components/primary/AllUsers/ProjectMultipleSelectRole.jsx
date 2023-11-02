@@ -23,8 +23,13 @@ const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, r
       <MySelect
         sx={{
           backgroundColor: "neutral.N000",
-          height: "36px",
-          fontSize: { lg: "14px", xl: "14px", xxl: "14px" },
+          // height: "36px",
+          height: {
+            lg: "30px",
+            xl: "36px",
+            xxl: "36px",
+          },
+          fontSize: { lg: "11px", xl: "14px", xxl: "14px" },
           fontFamily: "Inter",
         }}
         displayEmpty
@@ -63,6 +68,7 @@ const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, r
                         borderRadius: "32px",
                         border: "1px solid #E6ECF5",
                         color: "neutral.700",
+                        fontSize: { xl: "14px", xxl: "16px", lg: "10px" },
                         fontFamily: "Inter",
                       }}
                       key={item.value}
@@ -71,7 +77,7 @@ const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, r
                   )
               )}
               {selected.length > 1 && (
-                <Typography variant="h7" sx={{ ml: 2, mt: 0, color: "neutral.700" }}>
+                <Typography  sx={{ ml: 2, mt: 0, color: "neutral.700",fontSize: { xl: "14px", xxl: "16px", lg: "11px" } }}>
                   + {count} more
                 </Typography>
               )}
@@ -83,7 +89,7 @@ const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, r
         onClose={handleClickAway}
       >
         {roles?.map((role) => (
-          <MenuItem sx={{ fontSize: "14px" }} key={role.label} value={role || ""}>
+          <MenuItem sx={{ fontSize: { xl: "14px", xxl: "16px", lg: "11px" } }} key={role.label} value={role || ""}>
             {role.label}
           </MenuItem>
         ))}

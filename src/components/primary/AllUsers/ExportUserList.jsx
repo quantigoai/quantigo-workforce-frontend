@@ -1,13 +1,13 @@
-import {Button} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {CSVDownload} from "react-csv";
-import {useSelector} from "react-redux";
-import {realToken} from "../../../helper/lib";
+import { Button } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { CSVDownload } from "react-csv";
+import { useSelector } from "react-redux";
+import { realToken } from "../../../helper/lib";
 import axios from "axios";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
-const ExportUserList = () => {
+const   ExportUserList = () => {
   const { totalUsers } = useSelector((state) => state.user.users);
   const [jsonData, setJsonData] = useState([]);
   const csvHeader = [
@@ -69,11 +69,19 @@ const ExportUserList = () => {
           borderRadius: "8px",
           backgroundColor: "#2E58FF",
           color: "white",
+          // height:"40px",
+          height: {
+            lg: "35px",
+            xl: "40px",
+            xxl: "40px",
+          },
           "&:hover": {
             background: "#244EF5",
           },
+          fontSize: { xl: "12px", xxl: "14px", lg: "11px" },
         }}
-        variant="contained"
+        // variant="contained"
+
         onClick={fetchData}
         // onClick={handleProjectCreateOpen}
       >

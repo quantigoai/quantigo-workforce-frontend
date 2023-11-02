@@ -377,7 +377,7 @@ const RegistrationForm = () => {
                   width: isNewUser ? "50%" : "100%",
                   height: {
                     lg: "120px",
-                    xl: "120px",
+                    xl: isNewUser ? "120px" : "90px",
                     xxl: "100px",
                   },
                 }}

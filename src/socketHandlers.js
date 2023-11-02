@@ -135,6 +135,7 @@ const socketHandlers = ({
   };
 
   const customUserData = { _id, role };
+
   socket.emit("customUserData", customUserData);
   socket.on("notification", handleNotification);
   socket.on("approvedUser", handleUserNotification);
@@ -165,7 +166,6 @@ const socketHandlers = ({
   socket.on("jobBlockAnnotator", handleJobBlockNotification);
   socket.on("jobUnblockAnnotator", handleJobBlockNotification);
   socket.on("updateProjectDrawer", handleProjectDrawerNotification);
-
   socket.on("createProjectDrawer", handleProjectDrawerNotification);
   socket.on("deleteProjectDrawer", handleProjectDrawerNotification);
   socket.on("uploadEffectiveHours", handleProjectDrawerNotification);

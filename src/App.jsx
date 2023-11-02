@@ -29,7 +29,7 @@ const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 export const socket = io(import.meta.env.VITE_APP_SOCKET_SERVER_URL);
 
 function App() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const storedUser = useSelector((state) => state.user);
   const { isLoading, user, isLoggedIn } = useSelector((state) => state.user);
   const { activePath } = useSelector((state) => state.activePath);
@@ -50,17 +50,6 @@ function App() {
   useEffect(() => {
     if (tokenCheck()) {
       dispatch(alreadyLogin(tokenCheck()));
-    }
-    dispatch(setFromPreviousTheme());
-  }, [dispatch]);
-  const clearReduxData = useClearReduxData;
-  // TODO Need to handle this dynamically
-  useEffect(() => {
-    clearReduxData(dispatch, activePath);
-  }, [activePath, clearReduxData, dispatch]);
-
-  useEffect(() => {
-    if (user) {
       socketHandlers({
         socket,
         dispatch,
@@ -74,7 +63,14 @@ function App() {
         getAllAssignedJob,
       });
     }
-  }, [dispatch, storedUser, user, user.role]);
+    dispatch(setFromPreviousTheme());
+  }, [dispatch]);
+
+  const clearReduxData = useClearReduxData;
+  // TODO Need to handle this dynamically
+  useEffect(() => {
+    clearReduxData(dispatch, activePath);
+  }, [activePath, clearReduxData, dispatch]);
 
   useEffect(() => {
     if (isLoggedIn) {

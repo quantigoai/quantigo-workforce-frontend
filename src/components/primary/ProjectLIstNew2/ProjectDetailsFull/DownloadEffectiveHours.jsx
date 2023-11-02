@@ -71,15 +71,15 @@ const DownloadEffectiveHours = () => {
           fontWeight: "500",
           borderRadius: "6px",
           height: "30px",
-          width: "200px",
+          // width: "200px",
+          width: { lg: "170px", xl: "200px", xxl: "200px" },
           "&:hover": { backgroundColor: "#244EF5", color: "#FFF" },
           mr: 2,
         }}
         // variant="contained"
-        onClick={fetchData}
-      >
+        onClick={fetchData}>
         <i className="ri-download-2-line"></i>
-        <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
+        <Typography sx={{ ml: 1, textTransform: "none", fontSize: { lg: "11px", xl: "14px", xxl: "14px" } }}>
           Download Effective Hour
         </Typography>
       </Button>

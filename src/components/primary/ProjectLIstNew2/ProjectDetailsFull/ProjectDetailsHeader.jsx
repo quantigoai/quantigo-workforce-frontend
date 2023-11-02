@@ -52,7 +52,7 @@ const ProjectDetailsHeader = ({
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography variant="wpf_p1_semiBold" color={isLightTheme ? "#091E42" : "white"}>
+          <Typography variant="wpf_p1_semiBold" color={isLightTheme ? "#091E42" : "white"} sx={{fontSize: { lg: "12px", xl: "18px", xxl: "18px" }}}>
             {projectDrawer.project_drawer_name}{" "}
           </Typography>
 

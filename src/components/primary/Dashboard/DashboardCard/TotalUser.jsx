@@ -26,10 +26,10 @@ const TotalUser = () => {
           }}>
           <Box sx={{ padding: "5%", position: "relative" }}>
             <Grid container sx={{ paddingTop: "0%" }}>
-              <Grid item xs={3.5}>
+            <Grid item xs={12} xl={4} lg={5} md={5} sm={5}>
                 <img src={iconPendding} />
               </Grid>
-              <Grid item xs={8.5}>
+              <Grid item xs={12} xl={8} lg={7} md={7} sm={7}>
                 <Grid container>
                 <Typography variant={"wpf_p4_medium"} sx={{ color: "neutral.N300" }}>
                    Total Users

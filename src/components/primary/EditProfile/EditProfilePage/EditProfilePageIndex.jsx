@@ -94,6 +94,7 @@ export default function EditProfilePageIndex() {
             <Grid
               item
               xs={2.5}
+              lg={3}
               xxl={2}
               xl={2.5}
               sx={{
@@ -107,17 +108,19 @@ export default function EditProfilePageIndex() {
             >
               <Tabs
                 orientation="vertical"
-                variant="scrollable"
+                // variant="scrollable"
                 indicatorColor=""
                 value={value}
                 onChange={handleChange}
                 aria-label="Vertical tabs example"
                 sx={{
-                  height: "92%",
+                  height: {
+                    lg: "95%",
+                    xl: "92%",
+                    xxl: "92%",
+                  },
                   width: "100%",
-                  // paddingTop: "5%",
                   textAlign: "right",
-                  // paddingLeft: "5%",
                 }}
               >
                 <Tab
@@ -178,7 +181,11 @@ export default function EditProfilePageIndex() {
 
               <Box
                 sx={{
-                  height: "8%",
+                  height: {
+                   lg: "5%",
+                   xl: "8%",
+                   xxl: "8%",
+                  },
                   // height: "100%",
                   display: "flex",
                   alignItems: "end",
@@ -193,8 +200,9 @@ export default function EditProfilePageIndex() {
 
             <Grid
               item
-              xxl={10}
               xs={9.5}
+              lg={9}
+              xxl={10}
               xl={9.5}
               sx={{
                 height: "100%",

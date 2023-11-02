@@ -42,7 +42,11 @@ const ActivateAccount = () => {
       <Button
         onClick={() => handleOpen()}
         sx={{
-          height: "40px",
+          height: {
+            lg: "30px",
+            xl: "40px",
+            xxl: "40px",
+          },
           width: "100%",
           textTransform: "none",
           fontSize: { xl: "14px", xxl: "16px", lg: "10px" },
@@ -53,7 +57,8 @@ const ActivateAccount = () => {
             color: user.active ? "#F04438" : "#36B37E",
             border: user.active ? "1px solid #F04438" : "1px solid #36B37E",
           },
-        }}>
+        }}
+      >
         {user.active ? "Deactivate Accounts" : "Activate Account"}
       </Button>
       <ModalActivateAccount open={open} handleOpen={handleOpen} handleClose={handleClose} handleChange={handleChange} />

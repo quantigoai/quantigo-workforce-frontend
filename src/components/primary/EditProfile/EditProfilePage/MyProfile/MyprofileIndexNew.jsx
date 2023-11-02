@@ -138,7 +138,7 @@ const MyprofileIndexNew = () => {
         sx={{
           flex: "1",
           height: {
-            lg: "82vh",
+            lg: "95%",
             xl: "100%",
             xxl: "100%",
           },
@@ -173,7 +173,7 @@ const MyprofileIndexNew = () => {
               width: "0",
             },
             height: {
-              lg: "74%",
+              lg: "78%",
               xl: "71%",
               xxl: "75%",
             },
@@ -182,19 +182,12 @@ const MyprofileIndexNew = () => {
         >
           <Box
             sx={{
-              paddingLeft: "2%",
-              paddingRight: "2%",
               height: "100%",
             }}
           >
             <Box
               sx={{
                 height: "100%",
-                // height: {
-                //   xl: "478px",
-                //   xxl: "710px",
-                //   lg: "420px",
-                // },
                 "&::-webkit-scrollbar": {
                   width: "0",
                 },
@@ -380,7 +373,11 @@ const MyprofileIndexNew = () => {
                     onClick={() => handleSubmitChange()}
                     disabled={isLoading}
                     sx={{
-                      height: "40px",
+                      height: {
+                        lg: "30px",
+                        xl: "40px",
+                        xxl: "40px",
+                      },
                       backgroundColor: "primary.B200",
                       color: "neutral.N000",
                       borderRadius: "8px",
@@ -406,7 +403,11 @@ const MyprofileIndexNew = () => {
                     // onClick={() => setEditAble(false)}
                     onClick={() => handleCancel()}
                     sx={{
-                      height: "40px",
+                      height: {
+                        lg: "30px",
+                        xl: "40px",
+                        xxl: "40px",
+                      },
                       textTransform: "none",
                       backgroundColor: "#F2F6FC",
                       borderRadius: "8px",

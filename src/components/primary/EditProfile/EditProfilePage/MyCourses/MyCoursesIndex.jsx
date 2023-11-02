@@ -96,7 +96,7 @@ const MyCoursesIndex = () => {
         <Grid item xs={6}>
           <Grid container sx={{ padding: "2%" }}>
             <Grid item xs={12} sx={{ paddingBottom: "1%" }}>
-              <Typography variant="h6" sx={{ color: "neutral.N300" }}>
+              <Typography variant="wpf_h6_bold" sx={{ color: "neutral.N300" }}>
                 <b>Achieved Skills</b>
               </Typography>
             </Grid>
@@ -106,7 +106,7 @@ const MyCoursesIndex = () => {
                   border: "1px solid #E6ECF5",
                   // padding: "16px",
                   borderRadius: "8px",
-                  backgroundColor: "#FAFCFF",
+                  backgroundColor: "neutral.N720",
                   height: "200px",
                   paddingTop: "2%",
                   // paddingRight: "2%",

@@ -23,6 +23,7 @@ export const lightColors = {
     N600: "#E6ECF5",
     N650: "#62728F",
     N700: "#E6ECF5",
+    N720: "#FAFCFF",
     500: "#7D89A3",
     550: "#7B98BA",
     600: "#506D8F",

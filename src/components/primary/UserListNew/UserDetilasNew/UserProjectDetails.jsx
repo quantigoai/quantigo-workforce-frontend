@@ -165,13 +165,11 @@ const UserProjectDetails = ({ id }) => {
                 </TableHead>
                 <TableBody>
                   {data &&
-                    data.usersCompletedProjects.map((row, i) => (
+                    data?.usersCompletedProjects?.map((row, i) => (
                       <StyledTableRow
                         key={i}
                         sx={{
                           height: "34px",
-                          // backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
-                          // backgroundColor:"red"
                         }}
                       >
                         <StyledTableCell

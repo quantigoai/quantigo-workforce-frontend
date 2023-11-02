@@ -112,13 +112,13 @@ const DateRangeComponent = ({ range, setRange }) => {
           //disableUnderline: true,
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton edge="end">
-                {!open ? (
-                  <CalendarMonthIcon onClick={calendarOpen} />
-                ) : (
-                  <BackspaceIcon name="clearButton" onClick={clearRange} ref={refTwo} />
-                )}
-              </IconButton>
+              {!open ? (
+                <IconButton edge="end" onClick={calendarOpen}>
+                  <CalendarMonthIcon />
+                </IconButton>
+              ) : (
+                <BackspaceIcon name="clearButton" onClick={clearRange} ref={refTwo} />
+              )}
             </InputAdornment>
           ),
         }}

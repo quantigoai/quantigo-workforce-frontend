@@ -104,14 +104,13 @@ const DateRangeComponentForDashboard = ({ setRange, range }) => {
           //disableUnderline: true,
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton edge="end">
-                {!open ? (
-                  <img src={calenderIcon} onClick={calendarOpen} />
-                ) : (
-                  // <CalendarMonthIcon onClick={calendarOpen} />
-                  <BackspaceIcon name="clearButton" onClick={clearRange} ref={refTwo} />
-                )}
-              </IconButton>
+              {!open ? (
+                <IconButton edge="end" onClick={calendarOpen}>
+                  <img src={calenderIcon} />
+                </IconButton>
+              ) : (
+                <BackspaceIcon name="clearButton" onClick={clearRange} ref={refTwo} />
+              )}
             </InputAdornment>
           ),
         }}

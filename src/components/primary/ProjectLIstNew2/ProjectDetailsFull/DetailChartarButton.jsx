@@ -79,14 +79,15 @@ const DetailChartarButton = ({ role }) => {
               fontWeight: "500",
               borderRadius: "6px",
               height: "30px",
-              width: "151px",
+                // width: "151px",
+                width: { lg: "140px", xl: "152px", xxl: "172px" },
               "&:hover": { backgroundColor: "#244EF5", color: "#FFF" },
               mr: 2,
             }}
             // variant="contained"
             onClick={fetchData}>
             <i className="ri-download-2-line"></i>
-            <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
+            <Typography  sx={{ ml: 1, textTransform: "none" ,fontSize: { lg: "11px", xl: "12px", xxl: "16px" }}}>
               Download Charter
             </Typography>
           </Button>

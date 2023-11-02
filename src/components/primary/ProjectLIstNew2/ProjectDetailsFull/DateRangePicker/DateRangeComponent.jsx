@@ -17,7 +17,7 @@ import { IconButton, InputAdornment, styled, TextField } from "@mui/material";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 
-const MyInputField = styled(TextField)(() => ({
+const MyInputField = styled(TextField)(({ theme }) => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "1px solid #E6ECF5 !important",
     borderRadius: "6px",
@@ -25,7 +25,15 @@ const MyInputField = styled(TextField)(() => ({
   "& .MuiInputBase-root": {
     height: "32px",
     fontSize: "12px",
-    backgroundColor: "#F2F6FC",
+    backgroundColor: "neutral.N000",
+    fontFamily: "Inter",
+    fontWeight: "500",
+    "@media(max-width:1439px)": {
+      fontSize: "10px",
+    },
+    "@media(min-width: 1920px)": {
+      fontSize: "14px",
+    },
   },
 }));
 

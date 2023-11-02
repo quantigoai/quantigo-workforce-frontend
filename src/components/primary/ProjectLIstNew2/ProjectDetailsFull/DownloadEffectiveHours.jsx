@@ -1,9 +1,9 @@
 import { Button, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { CSVDownload } from "react-csv";
 import { useSelector } from "react-redux";
 import { realToken } from "../../../../helper/lib";
-import { CSVDownload } from "react-csv";
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
 const DownloadEffectiveHours = () => {
@@ -67,19 +67,15 @@ const DownloadEffectiveHours = () => {
         sx={{
           backgroundColor: "#2E58FF",
           color: "#FFF",
-          fontSize: "12px",
-          fontWeight: "500",
           borderRadius: "6px",
           height: "30px",
-          // width: "200px",
-          width: { lg: "170px", xl: "200px", xxl: "200px" },
+          width: { lg: "170px", xl: "200px", xxl: "220px" },
           "&:hover": { backgroundColor: "#244EF5", color: "#FFF" },
-          mr: 2,
         }}
-        // variant="contained"
-        onClick={fetchData}>
+        onClick={fetchData}
+      >
         <i className="ri-download-2-line"></i>
-        <Typography sx={{ ml: 1, textTransform: "none", fontSize: { lg: "11px", xl: "14px", xxl: "14px" } }}>
+        <Typography variant="wpf_h7_medium" sx={{ pl: 1, textTransform: "none", color: "#FFF" }}>
           Download Effective Hour
         </Typography>
       </Button>

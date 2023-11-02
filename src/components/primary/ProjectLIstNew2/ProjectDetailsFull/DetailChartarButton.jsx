@@ -5,11 +5,12 @@ import { CSVDownload } from "react-csv";
 import { useSelector } from "react-redux";
 import { calculateTimeDifference } from "../../../../helper/dateConverter";
 import { realToken } from "../../../../helper/lib";
+import { LoadingButton } from "@mui/lab";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
 const DetailChartarButton = ({ role }) => {
-  const { projectDrawer, usersWorkHistoryCount } = useSelector((state) => state.projectDrawer);
+  const { projectDrawer,isLoading, usersWorkHistoryCount } = useSelector((state) => state.projectDrawer);
   const [jsonData, setJsonData] = useState([]);
   const csvHeader = [
     { label: "Name", key: "userName" },
@@ -71,26 +72,35 @@ const DetailChartarButton = ({ role }) => {
         <></>
       ) : (
         <>
-          <Button
+          <LoadingButton
+            loading={isLoading}
             sx={{
               backgroundColor: "#2E58FF",
               color: "#FFF",
-              fontSize: "12px",
-              fontWeight: "500",
+              fontSize: {
+                lg: "10px",
+                xl: "12px",
+                xxl: "14px",
+              },
               borderRadius: "6px",
               height: "30px",
-                // width: "151px",
-                width: { lg: "140px", xl: "152px", xxl: "172px" },
+              width: { lg: "140px", xl: "152px", xxl: "182px" },
               "&:hover": { backgroundColor: "#244EF5", color: "#FFF" },
-              mr: 2,
             }}
-            // variant="contained"
-            onClick={fetchData}>
+            onClick={fetchData}
+          >
             <i className="ri-download-2-line"></i>
-            <Typography  sx={{ ml: 1, textTransform: "none" ,fontSize: { lg: "11px", xl: "12px", xxl: "16px" }}}>
+            <Typography
+              variant="wpf_h7_medium"
+              sx={{
+                pl: 1,
+                textTransform: "none",
+                color: "#FFF",
+              }}
+            >
               Download Charter
             </Typography>
-          </Button>
+          </LoadingButton>
         </>
       )}
 

@@ -489,6 +489,10 @@ const darkTheme = createTheme({
   darkTheme.typography.wpf_p5_regular[key] = {
     fontSize: "12px",
   };
+  // --- component
+  darkTheme.components.MuiTableRow.styleOverrides.root[key] = {
+    height: "56px",
+  };
 });
 
 export default darkTheme;

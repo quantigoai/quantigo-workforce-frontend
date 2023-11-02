@@ -1,16 +1,14 @@
-import { Button, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import React, { useState } from "react";
-import DetailsUploadHourModal from "./DetailsUploadHourModal";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  approveProjectPayment,
   approveProjectPaymentAPLRequest,
   updateProjectDrawerManually,
 } from "../../../../features/slice/projectDrawerSlice";
 
-import PaymentApproveModal from "./PaymentApproveModal";
-import useToaster from "../../../../customHooks/useToaster";
 import { LoadingButton } from "@mui/lab";
+import useToaster from "../../../../customHooks/useToaster";
+import PaymentApproveModal from "./PaymentApproveModal";
 
 const ApproveProjectPaymentButton = ({ role }) => {
   const [open, setOpen] = React.useState(false);
@@ -51,24 +49,33 @@ const ApproveProjectPaymentButton = ({ role }) => {
         loading={dataLoading}
         onClick={handleOpen}
         sx={{
-          backgroundColor: "#2E58FF",
+          backgroundColor: "#25c77c",
           color: "#FFF",
-
-          fontSize: "12px",
-          fontWeight: "500",
+          fontSize: {
+            lg: "10px",
+            xl: "12px",
+            xxl: "14px",
+          },
           borderRadius: "6px",
           height: "30px",
-          // width: "142px",
           width: { lg: "130px", xl: "150px", xxl: "175px" },
-          "&:hover": { backgroundColor: "#244EF5", color: "#FFF" },
+          "&:hover": { backgroundColor: "green.800", color: "#FFF" },
           "&.Mui-disabled": {
             backgroundColor: "#B6C9F0",
             color: "#FFFFFF",
           },
           mr: 2,
-        }}>
-        {/* <i style={{}} className="ri-checkbox-circle-fill"></i> */}
-        <Typography  sx={{ ml: 0, textTransform: "none",fontSize: { lg: "11px", xl: "12px", xxl: "16px" } }}>
+        }}
+      >
+        <i style={{}} className="ri-checkbox-circle-fill"></i>
+        <Typography
+          variant="wpf_h7_medium"
+          sx={{
+            pl: 1,
+            textTransform: "none",
+            color: "#FFF",
+          }}
+        >
           Payment Approve
         </Typography>
       </LoadingButton>

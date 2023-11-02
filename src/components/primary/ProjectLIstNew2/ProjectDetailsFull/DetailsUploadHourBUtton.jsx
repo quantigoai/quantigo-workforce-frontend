@@ -96,11 +96,13 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
             sx={{
               backgroundColor: "#FFAB00",
               color: "#FFF",
-              fontSize: "12px",
-              fontWeight: "500",
+              fontSize: {
+                lg: "10px",
+                xl: "12px",
+                xxl: "14px",
+              },
               borderRadius: "6px",
               height: "30px",
-              // width: "172px",
               width: { lg: "150px", xl: "190px", xxl: "202px" },
               border: "1px solid #FFAB00",
               "&:hover": {
@@ -113,17 +115,19 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
 
                 border: "1px solid #F0D8A8",
               },
-              mr: 2,
+              mr: 1,
             }}
-            onClick={handleOpen}>
+            onClick={handleOpen}
+          >
             <i className="ri-upload-2-line"></i>
             <Typography
+              variant="wpf_h7_medium"
               sx={{
-                ml: 1,
+                pl: 1,
                 textTransform: "none",
-                fontWeight: "500",
-                fontSize: { lg: "11px", xl: "14px", xxl: "16px" },
-              }}>
+                color: "#FFF",
+              }}
+            >
               Upload Effective Hour
             </Typography>
           </LoadingButton>
@@ -136,12 +140,13 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
             sx={{
               backgroundColor: "#2E58FF",
               color: "#FFF",
-
-              fontSize: "12px",
-              fontWeight: "500",
+              fontSize: {
+                lg: "10px",
+                xl: "12px",
+                xxl: "14px",
+              },
               borderRadius: "6px",
               height: "30px",
-              // width: "142px",
               width: { lg: "120px", xl: "142px", xxl: "162px" },
               "&:hover": { backgroundColor: "#244EF5", color: "#FFF" },
               "&.Mui-disabled": {
@@ -149,11 +154,11 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
                 color: "#FFFFFF",
               },
               mr: 1,
-            }}>
+            }}
+          >
             <i style={{}} className="ri-checkbox-circle-fill"></i>
-            <Typography
-              // variant="body"
-              sx={{ ml: 1, textTransform: "none", fontSize: { lg: "11px", xl: "14px", xxl: "16px" } }}>
+
+            <Typography variant="wpf_h7_medium" sx={{ color: "#FFF", pl: 1, textTransform: "none" }}>
               Hours Approved
             </Typography>
           </LoadingButton>
@@ -163,11 +168,13 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
             sx={{
               backgroundColor: "#FF4757",
               color: "#FFF",
-              fontSize: "12px",
-              fontWeight: "500",
+              fontSize: {
+                lg: "10px",
+                xl: "12px",
+                xxl: "14px",
+              },
               borderRadius: "6px",
               height: "30px",
-              // width: "112px",
               width: { lg: "110px", xl: "112px", xxl: "132px" },
               "&:hover": {
                 backgroundColor: "#FF4757",
@@ -178,9 +185,10 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
                 color: "#FFFFFF",
               },
               mr: 1,
-            }}>
+            }}
+          >
             <i className="ri-close-circle-fill"></i>
-            <Typography sx={{ ml: 1, textTransform: "none", fontSize: { lg: "11px", xl: "12px", xxl: "16px" } }}>
+            <Typography variant="wpf_h7_medium" sx={{ color: "#FFF", pl: 1, textTransform: "none" }}>
               Hours Reject
             </Typography>
           </LoadingButton>

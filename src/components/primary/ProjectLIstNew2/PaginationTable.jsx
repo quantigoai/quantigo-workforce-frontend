@@ -1,8 +1,9 @@
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { Box, Button, MenuItem, Select, Typography } from "@mui/material";
 import { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-
 const paginationOptions = [
   { value: 10, label: 10 },
   { value: 30, label: 30 },
@@ -85,20 +86,23 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
         justifyContent: "space-between",
         alignItems: "center",
         alignContent: "center",
-      }}>
+      }}
+    >
       <Box
         gap={0}
         sx={{
           display: "flex",
           alignItems: "center",
-        }}>
+        }}
+      >
         <Box>
           <Typography
-            variant="wpf_p4_regular"
+            variant="wpf_p3_regular"
             sx={{
               width: "120px",
               color: "neutral.N300",
-            }}>
+            }}
+          >
             Items per page :
           </Typography>
         </Box>
@@ -111,7 +115,7 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
             "& .MuiSelect-select": {
               padding: "5px 0px 0px 10px",
               // fontSize: "14px",
-              fontSize: { xl: "14px", xxl: "16px", lg: "10px" },
+              fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
               color: "neutral.N300",
             },
             "& .MuiSvgIcon-root": {
@@ -130,9 +134,10 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
             }));
           }}
           labelId="demo-simple-select-label"
-          name="limit">
+          name="limit"
+        >
           {paginationOptions.map((p) => (
-            <MenuItem key={p.value} value={p.value} sx={{ fontSize: { xl: "14px", xxl: "16px", lg: "10px" } }}>
+            <MenuItem key={p.value} value={p.value} sx={{ fontSize: { xl: "14px", xxl: "16px", lg: "12px" } }}>
               {p.label}
             </MenuItem>
           ))}
@@ -145,23 +150,23 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
           <Button
             disabled={disablePrev}
             sx={{
-              minWidth: "24px",
-              height: "24px",
-              width: "24px",
-              // fontSize: "14px",
+              minWidth: "20px",
+              height: { lg: "20px", xl: "24px", xxl: "24px" },
+              width: { lg: "20px", xl: "24px", xxl: "24px" },
               fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
               fontWeight: "500",
               padding: "7px 2px",
               color: disableNext ? "neutral.N650" : "neutral.N300",
             }}
             onClick={handlePrevPage}
-            variant="none">
-            <i
-              style={{
-                height: "24px",
-                width: "24px",
+            variant="none"
+          >
+            <KeyboardArrowLeftIcon
+              sx={{
+                height: { lg: "16px", xl: "18px", xxl: "20px" },
+                width: { lg: "16px", xl: "18px", xxl: "20px" },
               }}
-              className="ri-arrow-left-s-line"></i>
+            />
           </Button>
         </Box>
 
@@ -173,11 +178,10 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
               name="page"
               variant="small"
               sx={{
-                minWidth: "24px",
-                height: "24px",
-                width: "24px",
-                // fontSize: "14px",
-                fontSize: { xl: "14px", xxl: "16px", lg: "10px" },
+                minWidth: "20px",
+                height: { lg: "20px", xl: "24px", xxl: "24px" },
+                width: { lg: "20px", xl: "24px", xxl: "24px" },
+                fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
                 fontWeight: "500",
                 padding: "6px 2px",
                 color: pagination.currentPage === pageNumberToShow ? "white" : "#62728F",
@@ -186,30 +190,32 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
                   color: "white",
                   backgroundColor: "#2E58FF",
                 },
-              }}>
+              }}
+            >
               {pageNumberToShow + 1}
             </Button>
           ))}
         </Box>
         <Button
           sx={{
-            minWidth: "24px",
-            height: "24px",
-            width: "24px",
-            fontSize: "14px",
+            minWidth: "20px",
+            height: { lg: "20px", xl: "24px", xxl: "24px" },
+            width: { lg: "20px", xl: "24px", xxl: "24px" },
+            fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
             fontWeight: "500",
             padding: "7px 2px",
             color: disableNext ? "neutral.N650" : "neutral.N300",
           }}
           disabled={disableNext}
           variant="none"
-          onClick={handleNextPage}>
-          <i
-            style={{
-              height: "24px",
-              width: "24px",
+          onClick={handleNextPage}
+        >
+          <KeyboardArrowRightIcon
+            sx={{
+              height: { lg: "16px", xl: "18px", xxl: "20px" },
+              width: { lg: "16px", xl: "18px", xxl: "20px" },
             }}
-            className="ri-arrow-right-s-line"></i>
+          />
         </Button>
       </Box>
     </Box>

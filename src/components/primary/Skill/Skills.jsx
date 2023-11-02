@@ -28,7 +28,7 @@ import SkillEdit from "./SkillEdit";
 
 export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
-    border: "2px solid #7D89A3 !important",
+    border: "2px solid #C4F5DF !important",
     borderRadius: "8px",
   },
   "& .MuiInputBase-root": {
@@ -39,7 +39,7 @@ export const MyTextField = styled(TextField)(() => ({
 }));
 export const MyTextFieldDesc = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
-    border: "2px solid #7D89A3 !important",
+    border: "2px solid #C4F5DF !important",
     borderRadius: "8px",
   },
   "& .MuiInputBase-root": { height: "78%", fontSize: "14px" },
@@ -297,7 +297,7 @@ const Skills = () => {
                             <TableRow>
                               <TableCell sx={{ color: "neutral.550" }}>NAME</TableCell>
                               <TableCell sx={{ color: "neutral.550" }}>DESCRIPTION</TableCell>
-                              <TableCell align="left" sx={{ color: "neutral.550" }}>
+                              <TableCell align="center" sx={{ color: "neutral.550" }}>
                                 ACTION
                               </TableCell>
                             </TableRow>

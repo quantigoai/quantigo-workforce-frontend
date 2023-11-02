@@ -78,7 +78,10 @@ const   ExportUserList = () => {
           "&:hover": {
             background: "#244EF5",
           },
-          fontSize: { xl: "12px", xxl: "14px", lg: "11px" },
+          lineHeight: "20px",
+
+          fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
+          padding: "16px 10px",
         }}
         // variant="contained"
 

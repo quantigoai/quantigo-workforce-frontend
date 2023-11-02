@@ -31,7 +31,8 @@ const ProjectHeader = ({
         className="contentHeader"
         sx={{
           backgroundColor: "neutral.N000",
-        }}>
+        }}
+      >
         <Box sx={{ width: "30%", padding: "12px 16px" }}>
           <Grid
             container
@@ -39,7 +40,8 @@ const ProjectHeader = ({
               display: "flex",
               alignContent: "center",
               alignItems: "center",
-            }}>
+            }}
+          >
             {/* TODO Need to remove the unnecessary custom button */}
             <CommonHeader title="Projects" customButton="Create User" />
           </Grid>
@@ -51,7 +53,8 @@ const ProjectHeader = ({
             justifyContent: "space-between",
             alignItems: "center",
             padding: "12px 20px",
-          }}>
+          }}
+        >
           {/* <Paper
             component="form"
             sx={{
@@ -88,7 +91,8 @@ const ProjectHeader = ({
               borderRadius: "8px",
               outline: "none",
               boxShadow: "none",
-            }}>
+            }}
+          >
             <IconButton disabled type="button" sx={{ p: "5px" }} aria-label="search">
               <SearchIcon />
             </IconButton>
@@ -109,7 +113,8 @@ const ProjectHeader = ({
                 sx={{
                   height: "30px",
                   minWidth: "40px",
-                }}>
+                }}
+              >
                 <ClearIcon
                   sx={{
                     color: "neutral.N300",
@@ -135,7 +140,8 @@ const ProjectHeader = ({
                 xxl: "40px",
               },
             }}
-            aria-label="menu">
+            aria-label="menu"
+          >
             {isFilter ? (
               <FilterListOffIcon sx={{ color: "primary.main" }} />
             ) : (
@@ -157,16 +163,22 @@ const ProjectHeader = ({
                   xl: "40px",
                   xxl: "40px",
                 },
-                  fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
-          
-                width: "128px",
+                fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
+                lineHeight: "20px",
+                width: {
+                  lg: "128px",
+                  xl: "128px",
+                  xxl: "140px",
+                },
                 color: "white",
                 "&:hover": {
                   background: "#244EF5",
-                },
+                  },
+                padding:"16px 10px"
               }}
               // variant="contained"
-              onClick={handleProjectCreateOpen}>
+              onClick={handleProjectCreateOpen}
+            >
               Create Project
             </Button>
           ) : (

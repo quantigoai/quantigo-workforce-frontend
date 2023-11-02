@@ -197,7 +197,7 @@ const FullProjectDetails = () => {
     <Box className="content">
       <HeaderBox>
         {/* {!isLoadingDetails && detailRow.length > 0 && ( */}
-        {!isLoading && (
+        {/* {!isLoading && ( */}
           <ProjectDetailsHeader
             usersWorkHistoryCount={usersWorkHistoryCount}
             range={range}
@@ -214,7 +214,7 @@ const FullProjectDetails = () => {
             handleDetailButton={handleDetailButton}
             handleCheckInButton={handleCheckInButton}
           />
-        )}
+        {/* )} */}
       </HeaderBox>
 
       <Box className="contentBody">

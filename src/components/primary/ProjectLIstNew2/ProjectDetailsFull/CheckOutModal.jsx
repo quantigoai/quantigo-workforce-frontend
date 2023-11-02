@@ -1,3 +1,4 @@
+import { LoadingButton } from "@mui/lab";
 import {Box, Button, Modal, Typography} from "@mui/material";
 import React from "react";
 import {useSelector} from "react-redux";
@@ -16,6 +17,7 @@ const style = {
 };
 const CheckOutModal = ({ open, handleClose, handleCheckOutButton, projectDrawer }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
+  const{isLoading} = useSelector((state) => state.projectDrawer);
   return (
     <Modal
       open={open}
@@ -72,7 +74,8 @@ const CheckOutModal = ({ open, handleClose, handleCheckOutButton, projectDrawer 
           }}
         >
           {
-            <Button
+            <LoadingButton
+              loading={isLoading}
               sx={{
                 textTransform: "none",
                 backgroundColor: "#FFAB00",
@@ -89,7 +92,7 @@ const CheckOutModal = ({ open, handleClose, handleCheckOutButton, projectDrawer 
               variant="contained"
             >
               I underStand
-            </Button>
+            </LoadingButton>
           }
         </Box>
       </Box>

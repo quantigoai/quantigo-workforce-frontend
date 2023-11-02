@@ -1,11 +1,13 @@
-import {Button} from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 import React from "react";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 const CheckInButton = ({ handleCheckInButton, isDisable }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
+  const { isLoading } = useSelector((state) => state.projectDrawer);
   return (
-    <Button
+    <LoadingButton
+      loading={isLoading}
       disabled={isDisable}
       onClick={handleCheckInButton}
       sx={{
@@ -23,7 +25,7 @@ const CheckInButton = ({ handleCheckInButton, isDisable }) => {
     >
       <i style={{ marginRight: "5px" }} className="ri-logout-box-r-line"></i>
       Check-in
-    </Button>
+    </LoadingButton>
   );
 };
 

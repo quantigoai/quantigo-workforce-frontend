@@ -1,16 +1,16 @@
-import { Button, Typography } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+import { Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { CSVDownload } from "react-csv";
 import { useSelector } from "react-redux";
 import { calculateTimeDifference } from "../../../../helper/dateConverter";
 import { realToken } from "../../../../helper/lib";
-import { LoadingButton } from "@mui/lab";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
 const DetailChartarButton = ({ role }) => {
-  const { projectDrawer,isLoading, usersWorkHistoryCount } = useSelector((state) => state.projectDrawer);
+  const { projectDrawer, isLoading, usersWorkHistoryCount } = useSelector((state) => state.projectDrawer);
   const [jsonData, setJsonData] = useState([]);
   const csvHeader = [
     { label: "Name", key: "userName" },
@@ -86,6 +86,10 @@ const DetailChartarButton = ({ role }) => {
               height: "30px",
               width: { lg: "140px", xl: "152px", xxl: "182px" },
               "&:hover": { backgroundColor: "#244EF5", color: "#FFF" },
+              "&.Mui-disabled": {
+                backgroundColor: "#B6C9F0",
+                color: "#FFFFFF",
+              },
             }}
             onClick={fetchData}
           >

@@ -11,7 +11,7 @@ const PieChartForUser = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
 
   const data = {
-    labels: ["Level 0 Annotator", "Level 1 Annotator", "Level 2 Annotator", "Level 3 Annotator", "Reviewer"],
+    labels: ["L0 Annotator", "L1 Annotator", "L2 Annotator", "L3 Annotator", "Reviewer"],
     datasets: [
       {
         label: "",
@@ -28,6 +28,7 @@ const PieChartForUser = () => {
       },
     ],
   };
+
   const options = {
     maintainAspectRatio: false,
     responsive: true,
@@ -35,6 +36,9 @@ const PieChartForUser = () => {
       legend: {
         position: "bottom",
         labels: {
+          font: {
+            size:"10px"
+          },
           usePointStyle: true,
           pointStyle: "circle",
           boxWidth: 10,
@@ -43,12 +47,12 @@ const PieChartForUser = () => {
       },
       title: {
         display: true,
-        text: "Annotators Activity",
+        text: "Annotators Acssstivity",
         align: "start",
         font: {
           size: 14,
         },
-        color: isLightTheme ? "black" : "white",
+        color: isLightTheme ? "#091E42" : "white",
         padding: {
           top: 25,
           left: 30,
@@ -73,21 +77,6 @@ const PieChartForUser = () => {
   return (
     <>
       <Pie options={options} data={data} />
-      {/* <Grid container>
-        <Grid item xs={12}>
-          <Typography variant="h6" sx={{ color: "#091E42" }}>
-            <b>Annotators Activity</b>
-          </Typography>
-        </Grid>
-        <Grid item xs={12}>
-          {" "}
-          <Pie options={options} data={data} />
-        </Grid>
-      </Grid> */}
-      {/* <Typography variant="h6">
-        <b>Annotators Activity</b>
-      </Typography> */}
-      {/*  */}
     </>
   );
 };

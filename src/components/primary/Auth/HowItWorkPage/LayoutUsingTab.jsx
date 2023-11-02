@@ -53,7 +53,7 @@ export default function LayoutUsingTab() {
     <>
       <Tabs
         orientation="vertical"
-        variant="scrollable"
+        // variant="scrollable"
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
@@ -64,6 +64,7 @@ export default function LayoutUsingTab() {
           // borderRight: 1,
           borderColor: "divider",
           paddingTop: "1%",
+          
           textAlign: "left",
         }}>
         <Tab

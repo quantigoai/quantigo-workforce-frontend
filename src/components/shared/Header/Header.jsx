@@ -216,13 +216,14 @@ const Header = () => {
                           py: 1.5,
                           mt: 0,
                           height: "50px",
+                          
                         }}
                         onClick={handleEditProfile}
                       >
                         <ListItemIcon>
                           <PersonOutlineIcon />
                         </ListItemIcon>
-                        <ListItemText sx={{ color: "neutral.N300" }}>Edit Profile</ListItemText>
+                        <ListItemText sx={{ color: "neutral.N300"}}>Edit Profile</ListItemText>
                       </MenuItem>
 
                       <MenuItem onClick={handleLogOut} sx={{ width: "182px", py: 1.5 }}>

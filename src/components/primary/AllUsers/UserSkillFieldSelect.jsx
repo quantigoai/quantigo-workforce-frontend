@@ -26,8 +26,14 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
         <MySelect
           sx={{
             backgroundColor: "neutral.N000",
-            height: "36px",
-            fontSize: { lg: "14px", xl: "14px", xxl: "14px" },
+            // height: "36px",
+            height: {
+              lg: "30px",
+              xl: "36px",
+              xxl: "36px",
+            },
+  
+            fontSize: { lg: "11px", xl: "14px", xxl: "14px" },
             fontFamily: "Inter",
           }}
           displayEmpty
@@ -38,7 +44,7 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
           renderValue={(selected) => {
             if (selected.length === 0) {
               return (
-                <Typography variant="h7" color="neutral.N300">
+                <Typography color="neutral.N300" sx={{ fontSize: { xl: "14px", xxl: "16px", lg: "11px" } }}>
                   {label}
                 </Typography>
               );
@@ -50,8 +56,7 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
                   gridTemplateColumns: "repeat(2,1fr)",
                   alignItems: "center",
                   gap: 0.5,
-                }}
-              >
+                }}>
                 {selected?.map(
                   (value, i) =>
                     [0].includes(i) && (
@@ -66,6 +71,7 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
                           border: "1px solid #E6ECF5",
                           color: "neutral.700",
                           fontFamily: "Inter",
+                          fontSize: { xl: "14px", xxl: "16px", lg: "10px" },
                         }}
                         key={value}
                         label={value}
@@ -82,10 +88,12 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
           }}
           name={name}
           MenuProps={MenuProps}
-          onClose={handleClickAway}
-        >
+          onClose={handleClickAway}>
           {skills?.map((skill) => (
-            <MenuItem sx={{ fontSize: "14px" }} key={skill._id} value={skill.name || ""}>
+            <MenuItem
+              sx={{ fontSize: { xl: "14px", xxl: "16px", lg: "11px" } }}
+              key={skill._id}
+              value={skill.name || ""}>
               {skill.name}
             </MenuItem>
           ))}

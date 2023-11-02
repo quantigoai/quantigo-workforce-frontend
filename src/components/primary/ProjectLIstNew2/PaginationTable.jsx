@@ -85,23 +85,20 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
         justifyContent: "space-between",
         alignItems: "center",
         alignContent: "center",
-      }}
-    >
+      }}>
       <Box
         gap={0}
         sx={{
           display: "flex",
           alignItems: "center",
-        }}
-      >
+        }}>
         <Box>
           <Typography
             variant="wpf_p4_regular"
             sx={{
               width: "120px",
               color: "neutral.N300",
-            }}
-          >
+            }}>
             Items per page :
           </Typography>
         </Box>
@@ -113,7 +110,8 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
             border: "none",
             "& .MuiSelect-select": {
               padding: "5px 0px 0px 10px",
-              fontSize: "14px",
+              // fontSize: "14px",
+              fontSize: { xl: "14px", xxl: "16px", lg: "10px" },
               color: "neutral.N300",
             },
             "& .MuiSvgIcon-root": {
@@ -132,10 +130,9 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
             }));
           }}
           labelId="demo-simple-select-label"
-          name="limit"
-        >
+          name="limit">
           {paginationOptions.map((p) => (
-            <MenuItem key={p.value} value={p.value}>
+            <MenuItem key={p.value} value={p.value} sx={{ fontSize: { xl: "14px", xxl: "16px", lg: "10px" } }}>
               {p.label}
             </MenuItem>
           ))}
@@ -151,21 +148,20 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
               minWidth: "24px",
               height: "24px",
               width: "24px",
-              fontSize: "14px",
+              // fontSize: "14px",
+              fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
               fontWeight: "500",
               padding: "7px 2px",
               color: disableNext ? "neutral.N650" : "neutral.N300",
             }}
             onClick={handlePrevPage}
-            variant="none"
-          >
+            variant="none">
             <i
               style={{
                 height: "24px",
                 width: "24px",
               }}
-              className="ri-arrow-left-s-line"
-            ></i>
+              className="ri-arrow-left-s-line"></i>
           </Button>
         </Box>
 
@@ -180,7 +176,8 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
                 minWidth: "24px",
                 height: "24px",
                 width: "24px",
-                fontSize: "14px",
+                // fontSize: "14px",
+                fontSize: { xl: "14px", xxl: "16px", lg: "10px" },
                 fontWeight: "500",
                 padding: "6px 2px",
                 color: pagination.currentPage === pageNumberToShow ? "white" : "#62728F",
@@ -189,8 +186,7 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
                   color: "white",
                   backgroundColor: "#2E58FF",
                 },
-              }}
-            >
+              }}>
               {pageNumberToShow + 1}
             </Button>
           ))}
@@ -207,15 +203,13 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
           }}
           disabled={disableNext}
           variant="none"
-          onClick={handleNextPage}
-        >
+          onClick={handleNextPage}>
           <i
             style={{
               height: "24px",
               width: "24px",
             }}
-            className="ri-arrow-right-s-line"
-          ></i>
+            className="ri-arrow-right-s-line"></i>
         </Button>
       </Box>
     </Box>

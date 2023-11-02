@@ -64,7 +64,7 @@ const Dashboard = () => {
     return (
       <>
         <Grid container sx={{ paddingBottom: "2%" }}>
-          <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+          <Grid item xs={12} xl={6} lg={5} md={4} sx={{ paddingRight: "2%" }}>
             <Paper elevation={0} sx={{ borderRadius: "8px", height: { xl: "350px", lg: "330px" } }}>
               {!projectLoading && (
                 <BarChart
@@ -77,7 +77,7 @@ const Dashboard = () => {
               )}
             </Paper>
           </Grid>
-          <Grid item xs={3} sx={{ paddingRight: "2%" }}>
+          <Grid item xs={12} xl={3} lg={3.5} md={4} sx={{ paddingRight: "2%" }}>
             <Paper
               elevation={0}
               sx={{
@@ -91,7 +91,7 @@ const Dashboard = () => {
               <PieChartForUser />
             </Paper>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={12} xl={3} lg={3.5} md={4}>
             <Paper
               elevation={0}
               sx={{

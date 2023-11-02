@@ -75,21 +75,21 @@ const ProjectSelectFIlter = ({
                 />
                 <ProjectSelectFIlterField
                   name="project_platform"
-                  label={"project Platform"}
+                  label={"Project Platform"}
                   options={platformOptions}
                   filterValue={filterValue}
                   handleChange={handleChange}
                 />
                 <ProjectSelectFIlterField
                   name={"project_type"}
-                  label="project Type"
+                  label="Project Type"
                   options={projectTypeOptions}
                   filterValue={filterValue}
                   handleChange={handleChange}
                 />
                 <ProjectSelectFIlterField
                   name={"project_status"}
-                  label="project Status"
+                  label="Project Status"
                   options={statusOptions}
                   filterValue={filterValue}
                   handleChange={handleChange}
@@ -187,7 +187,14 @@ const ProjectSelectFIlter = ({
                 borderRadius: "8px",
                 backgroundColor: "#FF4757",
                 color: "white",
-                height: { xl: "30 px", lg: "30px" },
+                fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
+          
+                height: {
+                  lg: "30px",
+                  xl: "36px",
+                  xxl: "36px",
+                },
+      
                 "&:hover": {
                   backgroundColor: "#F53142",
                 },

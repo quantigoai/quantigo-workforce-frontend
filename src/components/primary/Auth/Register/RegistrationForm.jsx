@@ -376,7 +376,7 @@ const RegistrationForm = () => {
                 sx={{
                   width: isNewUser ? "50%" : "100%",
                   height: {
-                    lg: "120px",
+                    lg:isNewUser? "120px" : "80px",
                     xl: isNewUser ? "120px" : "90px",
                     xxl: "100px",
                   },

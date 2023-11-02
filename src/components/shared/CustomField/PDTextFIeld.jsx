@@ -58,11 +58,11 @@ export default function PDTextFIeld({
       control={control}
       render={({ field, fieldState: { error } }) => {
         return (
-          // <FormControl fullWidth>
           <Box
             sx={{
               height: "100px",
-            }}>
+            }}
+          >
             <Typography
               variant="wpf_h7_medium"
               sx={{
@@ -70,8 +70,9 @@ export default function PDTextFIeld({
                 fontWeight: "500",
                 mb: 0,
                 color: "neutral.N300",
-              }}>
-              {label} {label === "Benchmark" ? "" : " *"}
+              }}
+            >
+              {label} {label === "Benchmark" ? "" : <span style={{color:'red'}}>*</span>}
             </Typography>
             <Box sx={{ width: "100%" }}>
               <PdTextField
@@ -80,7 +81,6 @@ export default function PDTextFIeld({
                 id="outlined-basic"
                 {...field}
                 fullWidth
-                // InputProps={{ disableUnderline: true }}
                 variant="outlined"
                 required={label === "Benchmark" ? false : true}
                 sx={{
@@ -88,7 +88,6 @@ export default function PDTextFIeld({
                   fontSize: "14px",
                   backgroundColor: "neutral.N000",
                 }}
-                // inputProps={InputProps}
                 defaultValue={defaultValue}
                 value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
                 error={!!error}
@@ -97,18 +96,16 @@ export default function PDTextFIeld({
                 InputProps={{
                   inputProps: isNumberPdr
                     ? {
-                      // disableUnderline: true,
-                      min: 1, max: 5
-                    }
+                        min: 1,
+                        max: 5,
+                      }
                     : {
-                      // disableUnderline: true,
-                      min: 1
-                    },
+                        min: 1,
+                      },
                 }}
               />
             </Box>
           </Box>
-          // </FormControl>
         );
       }}
     />

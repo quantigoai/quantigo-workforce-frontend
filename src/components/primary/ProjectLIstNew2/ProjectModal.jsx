@@ -51,14 +51,10 @@ const ProjectModal = ({
   const { isLightTheme } = useSelector((state) => state.theme);
   const { isLoading } = useSelector((state) => state.projectDrawer);
   const ProjectDrawerSchema = Yup.object().shape({
-    project_drawer_name: Yup.string().required("project name is required"),
-    project_alias: Yup.string().required("alias is required"),
-    project_batch: Yup.string().required("batch is required"),
-    pdr: Yup.string().required("pdr is required"),
-    // benchMark: Yup.string().required(" benchMark is required"),
-    // relevantDocuments: Yup.string().required(" document is required"),
-    // guideline: Yup.string().required(" document is required"),
-    // link: Yup.string().required("link is required"),
+    project_drawer_name: Yup.string().required("Project name is required"),
+    project_alias: Yup.string().required("Alias is required"),
+    project_batch: Yup.string().required("Batch is required"),
+    pdr: Yup.string().required("Pdr is required"),
   });
 
   const methods = useForm({
@@ -97,7 +93,7 @@ const ProjectModal = ({
                   }}
                 >
                   <Stack direction="row" spacing={2}>
-                    <Box sx={{ width: "50%", height: "80px", backgroundColor: "" }}>
+                    <Box sx={{ width: "50%", height: "80px" }}>
                       <PDSelectField
                         name={"project_platform"}
                         label="Platform"
@@ -105,20 +101,12 @@ const ProjectModal = ({
                         defaultValue={""}
                       />
                     </Box>
-                    <Box sx={{ width: "50%", height: "80px", backgroundColor: "" }}>
-                      <PDTextFIeld
-                        name="project_drawer_name"
-                        label="Project Name"
-                        InputProps={
-                          {
-                            //disableUnderline: true,
-                          }
-                        }
-                      />
+                    <Box sx={{ width: "50%", height: "80px" }}>
+                      <PDTextFIeld name="project_drawer_name" label="Project Name" />
                     </Box>
                   </Stack>
                   <Stack direction="row" spacing={2}>
-                    <Box sx={{ width: "50%", height: "80px", backgroundColor: "" }}>
+                    <Box sx={{ width: "50%", height: "80px" }}>
                       <PDSelectField
                         name={"project_type"}
                         label="Project Type"
@@ -126,12 +114,11 @@ const ProjectModal = ({
                         defaultValue={""}
                       />
                     </Box>
-                    <Box sx={{ width: "50%", height: "80px", backgroundColor: "" }}>
+                    <Box sx={{ width: "50%", height: "80px" }}>
                       <PDTextFIeld
                         name="project_batch"
                         label="Batch"
                         InputProps={{
-                          //disableUnderline: true,
                           min: 1,
                         }}
                         isNumber="true"
@@ -141,22 +128,15 @@ const ProjectModal = ({
 
                   <Stack direction="row" spacing={2}>
                     <Box sx={{ width: "50%", height: "80px" }}>
-                      <PDTextFIeld
-                        name="project_alias"
-                        label="Alias"
-                        InputProps={
-                          {
-                            //disableUnderline: true,
-                          }
-                        }
-                      />
+                      <PDTextFIeld name="project_alias" label="Alias" />
                     </Box>
                     <Box sx={{ width: "50%", height: "80px" }}>
                       <PDTextFIeld
                         name="pdr"
                         label="PDR"
-                        placeholder="PDR must be in range 1 to 5"
+                        placeholder="PDR must be in range between 1 to 5"
                         isNumberPdr="true"
+                        // helperText="PDR must be in range between 1 to 5"
                       />
                     </Box>
                   </Stack>
@@ -176,29 +156,13 @@ const ProjectModal = ({
                       />
                     </Box>
                     <Box sx={{ width: "50%", height: "80px" }}>
-                      <PDTextFIeld
-                        name="benchMark"
-                        label="Benchmark"
-                        InputProps={
-                          {
-                            //disableUnderline: true,
-                          }
-                        }
-                      />
+                      <PDTextFIeld name="benchMark" label="Benchmark" />
                     </Box>
                   </Stack>
 
                   <Stack direction="row" spacing={2}>
                     <Box sx={{ width: "50%", height: "80px" }}>
-                      <PDDateField
-                        name="estimated_end_date"
-                        label="Estimated End Date"
-                        InputProps={
-                          {
-                            //disableUnderline: true,
-                          }
-                        }
-                      />
+                      <PDDateField name="estimated_end_date" label="Estimated End Date" />
                     </Box>
                     <Box sx={{ width: "50%", height: "80px" }}>
                       <PDSelectField
@@ -244,9 +208,9 @@ const ProjectModal = ({
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    paddingY: "12px",
-                    paddingX: "16px",
-                    mt: 2,
+                    paddingY: { lg: "10px", xl: "12px", xxl: "12px" },
+                    paddingX: { lg: "14px", xl: "16px", xxl: "16px" },
+                    mt: 1,
                     borderTop: "2px solid #F2F6FC",
                   }}
                 >
@@ -254,10 +218,14 @@ const ProjectModal = ({
                     onClick={handleCreateProjectClose}
                     sx={{
                       textTransform: "none",
-                      paddingX: "30px",
-                      paddingY: "5px",
-                      fontSize: "14px",
-                      height: "40px",
+                      paddingX: { lg: "20px", xl: "30px", xxl: "30px" },
+                      paddingY: { lg: "3px", xl: "5px", xxl: "5px" },
+                      fontSize: {
+                        lg: "12px",
+                        xl: "14px",
+                        xxl: "14px",
+                      },
+                      height: { lg: "40px", xl: "40px", xxl: "40px" },
                       width: "120px",
                       borderRadius: "8px",
                       border: "1px solid #F4F7FE",
@@ -268,7 +236,6 @@ const ProjectModal = ({
                       },
                     }}
                     variant="filled"
-                    size="large"
                   >
                     Cancel
                   </Button>
@@ -277,10 +244,14 @@ const ProjectModal = ({
                     loading={isLoading}
                     sx={{
                       textTransform: "none",
-                      paddingX: "30px",
-                      paddingY: "5px",
-                      fontSize: "14px",
-                      height: "40px",
+                      paddingX: { lg: "20px", xl: "30px", xxl: "30px" },
+                      paddingY: { lg: "3px", xl: "5px", xxl: "5px" },
+                      fontSize: {
+                        lg: "12px",
+                        xl: "14px",
+                        xxl: "14px",
+                      },
+                      height: { lg: "40px", xl: "40px", xxl: "40px" },
                       width: "120px",
                       borderRadius: "8px",
                       backgroundColor: "#2E58FF",
@@ -293,7 +264,6 @@ const ProjectModal = ({
                       },
                     }}
                     variant="contained"
-                    size="large"
                   >
                     Create
                   </LoadingButton>

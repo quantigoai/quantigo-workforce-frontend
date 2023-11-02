@@ -77,9 +77,14 @@ const ExportUserList = () => {
           "&:hover": {
             background: "#244EF5",
           },
-          lineHeight: "20px",
+          width: {
+            lg: "75px",
+            xl: "90px",
+            xxl: "90px",
+          },
 
           fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
+          lineHeight: "20px",
           padding: "16px 10px",
         }}
         onClick={fetchData}

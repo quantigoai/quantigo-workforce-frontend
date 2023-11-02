@@ -80,7 +80,6 @@ const UsersHeader = ({
             </IconButton>
             <InputBase
               inputRef={searchRef}
-              // onBlur={(e) => handleSearch(e)}
               sx={{
                 ml: 0,
                 flex: 1,
@@ -126,7 +125,6 @@ const UsersHeader = ({
               px: "0px 0px",
               backgroundColor: "primary.B008",
               mx: 2,
-              // height:"40px",
               height: {
                 lg: "30px",
                 xl: "40px",

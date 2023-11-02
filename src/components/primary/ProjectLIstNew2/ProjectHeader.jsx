@@ -55,34 +55,14 @@ const ProjectHeader = ({
             padding: "12px 20px",
           }}
         >
-          {/* <Paper
-            component="form"
-            sx={{
-              p: "2px 4px",
-              display: "flex",
-              alignItems: "center",
-              width: "240px",
-              backgroundColor: "primary.B008",
-              border: "1px solid #EFF3FE",
-              borderRadius: "8px",
-              outline: "none",
-              boxShadow: "none",
-            }}
-          >
-            <IconButton disabled type="button" sx={{ p: "5px" }} aria-label="search">
-              <SearchIcon />
-            </IconButton>
-            <InputBase sx={{ ml: 0, flex: 1 }} placeholder="Search" />
-          </Paper> */}
           <Paper
-            // component="form"
             sx={{
               p: "2px 4px",
               display: "flex",
               alignItems: "center",
-              width: "240px",
+              width: { lg: "160px", xl: "240px", xxl: "240px" },
               height: {
-                lg: "35px",
+                lg: "30px",
                 xl: "40px",
                 xxl: "40px",
               },
@@ -98,8 +78,12 @@ const ProjectHeader = ({
             </IconButton>
             <InputBase
               inputRef={searchRef}
-              // onBlur={(e) => handleSearch(e)}
-              sx={{ ml: 0, flex: 1, fontSize: { xl: "14px", xxl: "16px", lg: "12px" } }}
+              sx={{
+                ml: 0,
+                flex: 1,
+                fontFamily: "Inter",
+                fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
+              }}
               placeholder="Search"
               onKeyDown={(ev) => {
                 if (ev.key === "Enter") {
@@ -117,6 +101,11 @@ const ProjectHeader = ({
               >
                 <ClearIcon
                   sx={{
+                    height: {
+                      lg: "20px",
+                      xl: "40px",
+                      xxl: "40px",
+                    },
                     color: "neutral.N300",
                     "&:hover": {
                       color: "#F04438",
@@ -130,12 +119,12 @@ const ProjectHeader = ({
           <IconButton
             onClick={handleIsFilter}
             sx={{
-              px: "5px 0px",
+              px: "0px 0px",
               backgroundColor: "primary.B008",
               mx: 2,
               borderRadius: "8px",
               height: {
-                lg: "35px",
+                lg: "30px",
                 xl: "40px",
                 xxl: "40px",
               },
@@ -159,7 +148,7 @@ const ProjectHeader = ({
                 borderRadius: "8px",
                 backgroundColor: "#2E58FF",
                 height: {
-                  lg: "35px",
+                  lg: "30px",
                   xl: "40px",
                   xxl: "40px",
                 },
@@ -173,10 +162,9 @@ const ProjectHeader = ({
                 color: "white",
                 "&:hover": {
                   background: "#244EF5",
-                  },
-                padding:"16px 10px"
+                },
+                padding: "16px 10px",
               }}
-              // variant="contained"
               onClick={handleProjectCreateOpen}
             >
               Create Project

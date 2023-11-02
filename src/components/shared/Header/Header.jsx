@@ -192,7 +192,7 @@ const Header = () => {
                         "& .MuiPaper-root": {
                           borderRadius: "6px",
                           // width: "182px",
-                          width: { xl: "182px", xxl: "182px", lg: "160px" },
+                          width: { xl: "182px", xxl: "182px", lg: "155px" },
                           mt: 1.3,
                           ml: -2,
                           boxShadow: "0px 8px 24px 0px #253E5C14, 0px 0px 4px 0px #253E5C0A",
@@ -209,15 +209,15 @@ const Header = () => {
                         sx={{
                           borderBottom: "1px solid #F0F5FA",
                           // width: "182px",
-                          width: { xl: "182px", xxl: "182px", lg: "160px" },
+                          width: { xl: "182px", xxl: "182px", lg: "155px" },
                           py: 1.5,
                           mt: 0,
                           // height: "50px",
-                          height: { xl: "50px", xxl: "50px", lg: "40px" },
+                          height: { xl: "50px", xxl: "50px", lg: "37px" },
                         }}
                         onClick={handleEditProfile}>
                         <ListItemIcon>
-                          <PersonOutlineIcon />
+                          <PersonOutlineIcon sx={{height:{ xl: "25px", xxl: "25px", lg: "18px" }}}/>
                         </ListItemIcon>
                         <ListItemText
                           primaryTypographyProps={{ fontSize: { xl: "16px", xxl: "16px", lg: "12px" } }}
@@ -231,11 +231,11 @@ const Header = () => {
                         sx={{
                           // width: "182px",
                           py: 1.5,
-                          height: { xl: "50px", xxl: "50px", lg: "40px" },
-                          width: { xl: "182px", xxl: "182px", lg: "160px" },
+                          height: { xl: "50px", xxl: "50px", lg: "37px" },
+                          width: { xl: "182px", xxl: "182px", lg: "155px" },
                         }}>
-                        <ListItemIcon>
-                          <LogoutIcon />
+                        <ListItemIcon >
+                          <LogoutIcon sx={{height:{ xl: "25px", xxl: "25px", lg: "18px" }}} />
                         </ListItemIcon>
                         <ListItemText
                           primaryTypographyProps={{ fontSize: { xl: "16px", xxl: "16px", lg: "12px" } }}

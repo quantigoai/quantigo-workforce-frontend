@@ -14,12 +14,15 @@ import LoginForm from "./LoginForm";
 
 export const BgBox = styled(Box)({
   display: "flex",
-
   width: "75.11%",
   height: "100%",
   justifyContent: "center",
   alignItems: "center",
   alignContent: "center",
+  "@media(max-width: 1439px)": {
+    width: "90%",
+    pr:0,
+  },
 });
 
 export const LoadingButtonStyle = styled(LoadingButton)({

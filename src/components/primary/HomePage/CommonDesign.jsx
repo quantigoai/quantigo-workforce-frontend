@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Box, Grid, Typography} from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 
 const CommonDesign = ({ children }) => {
@@ -25,8 +25,6 @@ const CommonDesign = ({ children }) => {
           md={6}
           lg={6}
           sx={{
-            // backgroundColor: "rgba(45, 88, 255, 1)",
-
             display: "flex",
             alignItems: "flex-end",
             alignContent: "center",
@@ -71,10 +69,14 @@ const CommonDesign = ({ children }) => {
           sx={{
             // backgroundColor: "red",
             display: "flex",
-
             alignItems: "start",
             justifyContent: "flex-end",
-            paddingRight: { sm: "0%", lg: "8%", md: "4%", xl: "8%" },
+            paddingRight: {
+              sm: "0%",
+              lg: "4%",
+              xl: "8%",
+              xxl: "8%",
+            },
             alignContent: "center",
             backgroundColor: "#fff",
           }}

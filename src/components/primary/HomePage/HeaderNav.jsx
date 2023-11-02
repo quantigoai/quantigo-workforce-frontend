@@ -45,11 +45,7 @@ const HeaderNav = ({ isForgetPassword, resetPassword, isEmailVerification, email
             src={location.pathname === "/howitworks" ? logoBlue : logo}
             alt="logo"
             style={{
-              // width: "175px",
-              // height: "33px",
-              // paddingTop: "52px",
               paddingLeft: "5%",
-              // position: "absolute",
               cursor: "pointer",
             }}
           />
@@ -74,19 +70,20 @@ const HeaderNav = ({ isForgetPassword, resetPassword, isEmailVerification, email
                   backgroundColor:
                     isForgetPassword || resetPassword || isEmailVerification || emailVerificationConfirm ? "" : "#fff",
                   p: 4,
-                  pr: { xl: "20%", lg: "10%", md: "10%" },
+                  pr: { xl: "13%", lg: "2%", md: "10%", xxl: "13%" },
                 }}
                 gap={3}
               >
                 <Link
                   color="neutral.850"
                   // onClick={() => navigate("/faq")}
-                  underline="hover"
+                  underline="none"
                   sx={{
                     cursor: "pointer",
                   }}
                 >
                   <Typography
+                    variant="wpf_p3_medium"
                     color={
                       isForgetPassword || resetPassword || isEmailVerification || emailVerificationConfirm
                         ? "#fff"
@@ -98,10 +95,29 @@ const HeaderNav = ({ isForgetPassword, resetPassword, isEmailVerification, email
                 </Link>
                 <Link
                   onClick={() => navigate("/howitworks")}
-                  underline="hover"
+                  underline="none"
                   sx={{
                     color: location.pathname === "/howitworks" && "#47536B",
                     cursor: "pointer",
+                  }}
+                >
+                  <Typography
+                    variant="wpf_p3_medium"
+                    color={
+                      isForgetPassword || resetPassword || isEmailVerification || emailVerificationConfirm
+                        ? "#fff"
+                        : "neutral.850"
+                    }
+                  >
+                    How it works
+                  </Typography>
+                </Link>
+
+                <Link
+                  underline="none"
+                  sx={{
+                    color: location.pathname === "/howitworks" && "#47536B",
+                    // cursor: "pointer",
                   }}
                 >
                   <Typography
@@ -110,28 +126,12 @@ const HeaderNav = ({ isForgetPassword, resetPassword, isEmailVerification, email
                         ? "#fff"
                         : "neutral.850"
                     }
-                    variant="body1"
+                    variant="wpf_p3_medium"
+                    sx={{ pr: 5 }}
                   >
-                    How it works
+                    About Us
                   </Typography>
                 </Link>
-                {/* <Typography sx={{ color: "#FFFFFF" }} variant="body1">
-                  How it work
-                </Typography> */}
-                <Typography
-                  color={
-                    isForgetPassword || resetPassword || isEmailVerification || emailVerificationConfirm
-                      ? "#fff"
-                      : "neutral.850"
-                  }
-                  // sx={{
-                  //   color: location.pathname === "/howitworks" && " #47536B",
-                  // }}
-                  variant="body1"
-                  sx={{ pr: 5 }}
-                >
-                  About Us
-                </Typography>
               </Box>
             </Grid>
           </Grid>

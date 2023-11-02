@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {yupResolver} from "@hookform/resolvers/yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import EmailIcon from "@mui/icons-material/Email";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -21,16 +21,16 @@ import {
   Link,
   Typography,
 } from "@mui/material";
-import {useState} from "react";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import useToaster from "../../../../customHooks/useToaster";
-import {login} from "../../../../features/slice/userSlice";
+import { login } from "../../../../features/slice/userSlice";
 import CustomTextField from "../../../shared/CustomField/CustomTextField";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
-import {LoadingButtonStyle} from "./Login";
+import { LoadingButtonStyle } from "./Login";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -77,7 +77,7 @@ const LoginForm = () => {
     <Box sx={{ width: "100%", height: "100%" }}>
       <Grid container item xs={12}>
         <Box>
-          <Typography variant="wpf_h1_semiBold" color="neutral.900">
+          <Typography variant="wpf_h2_semiBold" color="neutral.900">
             {"Welcome Back"}
           </Typography>
           <br />
@@ -90,12 +90,11 @@ const LoginForm = () => {
       <br />
 
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-        <Box sx={{ height: "120px" }}>
+        <Box sx={{ height: "90px" }}>
           <CustomTextField
             name="email"
             label="Email"
             InputProps={{
-              // disableUnderline: true,
               endAdornment: (
                 <InputAdornment position="end">
                   <EmailIcon sx={{ color: "neutral.500" }} />
@@ -108,7 +107,7 @@ const LoginForm = () => {
         <Box
           sx={{
             width: "100%",
-            height: "110px",
+            height: "90px",
           }}
         >
           <CustomTextField

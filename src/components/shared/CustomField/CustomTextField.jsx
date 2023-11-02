@@ -65,7 +65,7 @@ export default function CustomTextField({ name, label, helperText, ...other }) {
               variant="outlined"
               sx={{
                 mt: 0.3,
-                fontSize: "14px",
+                fontSize: "16px",
               }}
               value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
               error={!!error}

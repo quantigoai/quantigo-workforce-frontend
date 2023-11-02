@@ -145,7 +145,7 @@ const RegistrationForm = () => {
     <Box sx={{ width: "100%", height: "100%" }}>
       <Grid container item xs={12}>
         <Box>
-          <Typography variant="wpf_h1_semiBold" color="neutral.900">
+          <Typography variant="wpf_h2_semiBold" color="neutral.900">
             {"Create Account"}
           </Typography>
           <br />
@@ -160,16 +160,40 @@ const RegistrationForm = () => {
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitRegData)}>
         {!showOtherField && (
           <>
-            <Box sx={{ height: "100px" }}>
+            <Box
+              sx={{
+                height: {
+                  lg: "80px",
+                  xl: "90px",
+                  xxl: "100px",
+                },
+              }}
+            >
               <CustomTextField name="firstName" label="First Name" />
             </Box>
 
-            <Box sx={{ height: "100px" }}>
+            <Box
+              sx={{
+                height: {
+                  lg: "80px",
+                  xl: "90px",
+                  xxl: "100px",
+                },
+              }}
+            >
               <CustomTextField name="lastName" label="Last Name" />
             </Box>
             {/* Email */}
 
-            <Box sx={{ height: "100px" }}>
+            <Box
+              sx={{
+                height: {
+                  lg: "80px",
+                  xl: "90px",
+                  xxl: "100px",
+                },
+              }}
+            >
               <CustomTextField
                 name="email"
                 label="Email"
@@ -184,7 +208,15 @@ const RegistrationForm = () => {
               />
             </Box>
             {/* Password */}
-            <Box sx={{ height: "100px" }}>
+            <Box
+              sx={{
+                height: {
+                  lg: "120px",
+                  xl: "120px",
+                  xxl: "100px",
+                },
+              }}
+            >
               <CustomTextField
                 name="password"
                 label="Password"
@@ -207,7 +239,17 @@ const RegistrationForm = () => {
           <>
             <Stack direction="row" spacing={2}>
               {/* User Type */}
-              <Box sx={{ width: "50%", height: "100px", backgroundColor: "green" }}>
+              <Box
+                sx={{
+                  width: "50%",
+                  height: {
+                    lg: "80px",
+                    xl: "90px",
+                    xxl: "100px",
+                  },
+                  backgroundColor: "green",
+                }}
+              >
                 <CustomSelectField
                   name="currentUserStatus"
                   helperText="Select an option"
@@ -220,7 +262,16 @@ const RegistrationForm = () => {
 
               {isNewUser ? (
                 // Hub Field
-                <Box sx={{ width: "50%", height: "100px" }}>
+                <Box
+                  sx={{
+                    width: "50%",
+                    height: {
+                      lg: "80px",
+                      xl: "90px",
+                      xxl: "100px",
+                    },
+                  }}
+                >
                   <CustomSelectField
                     name="hub"
                     helperText="Select a hub"
@@ -240,7 +291,16 @@ const RegistrationForm = () => {
                 </Box>
               ) : (
                 // QAI Username Field
-                <Box sx={{ width: "50%", height: "100px" }}>
+                <Box
+                  sx={{
+                    width: "50%",
+                    height: {
+                      lg: "80px",
+                      xl: "90px",
+                      xxl: "100px",
+                    },
+                  }}
+                >
                   <CustomTextField
                     name="qaiUserName"
                     label="Quantigo Username"
@@ -262,13 +322,30 @@ const RegistrationForm = () => {
             </Stack>
             {isNewUser && (
               // Generated QAI Username Field
-              <Box sx={{ height: "100px" }}>
+              <Box
+                sx={{
+                  height: {
+                    lg: "80px",
+                    xl: "90px",
+                    xxl: "100px",
+                  },
+                }}
+              >
                 <CustomTextField disabled name="qaiUserName" label="Quantigo Username" value={generatedHubId} />
               </Box>
             )}
             <Stack direction="row" spacing={2}>
               {/* Gender field */}
-              <Box sx={{ width: "50%", height: "100px" }}>
+              <Box
+                sx={{
+                  width: "50%",
+                  height: {
+                    lg: "80px",
+                    xl: "90px",
+                    xxl: "100px",
+                  },
+                }}
+              >
                 <CustomSelectField
                   name="gender"
                   defaultValue={genderOptions[0].value}
@@ -279,14 +356,32 @@ const RegistrationForm = () => {
                 />
               </Box>
               {/* Date Picker */}
-              <Box sx={{ width: "50%", height: "100px" }}>
+              <Box
+                sx={{
+                  width: "50%",
+                  height: {
+                    lg: "80px",
+                    xl: "90px",
+                    xxl: "100px",
+                  },
+                }}
+              >
                 <CustomDatePicker setError={setError} setValue={setValue} name="dob" />
               </Box>
             </Stack>
             {/* Nagad Number  */}
 
             <Stack sx={{ display: isNewUser && "flex", flexDirection: isNewUser && "row" }} gap={isNewUser && 2}>
-              <Box sx={{ width: isNewUser ? "50%" : "100%", height: "100px" }}>
+              <Box
+                sx={{
+                  width: isNewUser ? "50%" : "100%",
+                  height: {
+                    lg: "120px",
+                    xl: "120px",
+                    xxl: "100px",
+                  },
+                }}
+              >
                 <CustomTextField
                   name="billingAccountNo"
                   label="Nagad Account No"
@@ -303,7 +398,16 @@ const RegistrationForm = () => {
                 />
               </Box>
               {/* Contact Number */}
-              <Box sx={{ width: isNewUser ? "50%" : "100%", height: "100px" }}>
+              <Box
+                sx={{
+                  width: isNewUser ? "50%" : "100%",
+                  height: {
+                    lg: "120px",
+                    xl: "120px",
+                    xxl: "100px",
+                  },
+                }}
+              >
                 <CustomTextField
                   // sx={{ mr: isNewUser &&  }}
                   name="contactNo"

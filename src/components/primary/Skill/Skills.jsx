@@ -28,14 +28,18 @@ import SkillEdit from "./SkillEdit";
 
 export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
-    border: "2px solid #E6ECF5 !important",
+    border: "2px solid #7D89A3 !important",
     borderRadius: "8px",
   },
-  "& .MuiInputBase-root": { height: "78%", fontSize: "14px", backgroundColor: "#fff" },
+  "& .MuiInputBase-root": {
+    height: "78%",
+    fontSize: "14px",
+    backgroundColor: "neutral.N000",
+  },
 }));
-export const MyTextFielddec = styled(TextField)(() => ({
+export const MyTextFieldDesc = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
-    border: "2px solid #E6ECF5 !important",
+    border: "2px solid #7D89A3 !important",
     borderRadius: "8px",
   },
   "& .MuiInputBase-root": { height: "78%", fontSize: "14px" },
@@ -131,7 +135,8 @@ const Skills = () => {
             sx={{
               height: "75%",
               backgroundColor: "neutral.N000",
-            }}>
+            }}
+          >
             <Box sx={{ width: "30%", padding: "12px 16px" }}>
               <Grid
                 container
@@ -140,7 +145,8 @@ const Skills = () => {
                   alignContent: "center",
                   alignItems: "center",
                   paddingX: "10px",
-                }}>
+                }}
+              >
                 <Typography variant="wpf_h5_semiBold">Skill</Typography>
               </Grid>
             </Box>
@@ -154,26 +160,29 @@ const Skills = () => {
             justifyContent: "space-between",
             alignItems: "center",
             padding: "12px 20px",
-            // backgroundColor: "blue",
-          }}>
+          }}
+        >
           <Paper
             elevation={0}
             sx={{
               width: "100%",
               height: "100%",
-              overflow: "auto",
+              // overflow: "auto",
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
               borderRadius: "8px",
               padding: "1%",
-            }}>
+            }}
+          >
             <Box
               sx={{
                 display: "flex",
                 gap: 1,
                 height: "100%",
-              }}>
+                // overflow: "auto",
+              }}
+            >
               <Box
                 sx={{
                   paddingTop: "0%",
@@ -181,7 +190,8 @@ const Skills = () => {
                   width: "40%",
                   height: "100%",
                   backgroundColor: "neutral.N400",
-                }}>
+                }}
+              >
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <Grid container sx={{ paddingBottom: "3%", paddingTop: "3%" }}>
                     <FormControl fullWidth>
@@ -192,14 +202,14 @@ const Skills = () => {
                           mb: 1,
                           color: isLightTheme ? "#091E42" : "#FFFFFF",
                           paddingBottom: "1%",
-                        }}>
+                        }}
+                      >
                         Name
                       </Typography>
                       <MyTextField
                         fullWidth
                         sx={{ height: "50px" }}
                         id="filled-basic"
-                        // label="Skill Name"
                         variant="outlined"
                         value={name}
                         onChange={handleSetName}
@@ -207,18 +217,6 @@ const Skills = () => {
                         helperText={error ? "This Skill is already exists." : ""}
                       />
                     </FormControl>
-                    {/* {error && (
-                      <Box
-                        style={{
-                          color: "red",
-                          // padding: "5px 5px",
-                          marginBottom: "10px",
-                          fontSize: "10px",
-                        }}>
-                        {" "}
-                        {"This Skill is already exists."}
-                      </Box>
-                    )} */}
                   </Grid>
 
                   <Grid item xs={12} sx={{ paddingBottom: "2%" }}>
@@ -230,11 +228,12 @@ const Skills = () => {
                           mb: 1,
                           color: isLightTheme ? "#091E42" : "#FFFFFF",
                           paddingBottom: "1%",
-                        }}>
+                        }}
+                      >
                         Description
                       </Typography>
 
-                      <MyTextField
+                      <MyTextFieldDesc
                         fullWidth
                         variant="outlined"
                         sx={{ backgroundColor: "" }}
@@ -242,12 +241,10 @@ const Skills = () => {
                         rows={4}
                         value={description}
                         onChange={handleSetDescription}
-                        // {...register("description", {
-                        //   required: true,
-                        // })}
                       />
                     </FormControl>
                   </Grid>
+
                   <Grid container>
                     <Button
                       sx={{
@@ -268,79 +265,68 @@ const Skills = () => {
                       }}
                       disabled={error || isLoading}
                       variant="contained"
-                      type="submit">
+                      type="submit"
+                    >
                       Create Skill
                     </Button>
                   </Grid>
                 </form>
               </Box>
+
               <Box
                 sx={{
                   width: "60%",
                   height: "100%",
-
-                  overflowY: "auto",
-                }}>
+                  // overflowY: "auto",
+                }}
+              >
                 <>
-                  {" "}
-                  <Grid
-                    item
-                    xs={12}
-                    // sx={{
-                    //   overflow: "auto",
-                    //   scrollbarWidth: "thin",
-                    //   "&::-webkit-scrollbar": {
-                    //     width: "0.4em",
-                    //   },
-                    //   "&::-webkit-scrollbar-track": {
-                    //     background: "#f1f1f1",
-                    //   },
-                    //   "&::-webkit-scrollbar-thumb": {
-                    //     backgroundColor: "#888",
-                    //   },
-                    //   "&::-webkit-scrollbar-thumb:hover": {
-                    //     background: "#555",
-                    //   },
-                    // }}
-                  >
-                    <TableContainer>
-                      <Table aria-label="simple table">
-                        <TableHead sx={{ background: "#F8F8F8", height: "0px" }}>
-                          <TableRow>
-                            {/* <TableCell sx={{ color: "neutral.550" }}>NO</TableCell> */}
-                            <TableCell sx={{ color: "neutral.550" }}>NAME</TableCell>
-                            <TableCell sx={{ color: "neutral.550" }}>DESCRIPTION</TableCell>
-                            {/* <TableCell align="center" sx={{ color: "neutral.550" }}>
-                              EDIT
-                            </TableCell> */}
-                            <TableCell align="center" sx={{ color: "neutral.550" }}>
-                              ACTION
-                            </TableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {skills.map((skill, i) => (
-                            <TableRow
-                              key={skill._id}
-                              sx={{
-                                "&:last-child td, &:last-child th": { border: 0 },
-                              }}>
-                              {/* <TableCell align="left">{i + 1}</TableCell> */}
-                              <TableCell align="left">{capitalizeFirstLetter(skill.name)}</TableCell>
-                              <TableCell align="left">{capitalizeFirstLetter(skill.description)}</TableCell>
-                              {/* <TableCell align="center"></TableCell> */}
-
-                              <TableCell align="center">
-                                <>
-                                  <SkillEdit skill={skill} />
-                                  <SkillDeleteModal skill={skill} />
-                                </>
+                  <Grid item xs={12}>
+                    <Paper elevation={0} sx={{ width: "100%", overflow: "auto" }}>
+                      <TableContainer
+                        sx={{
+                          height: {
+                            lg: "500px",
+                            xl: "497px",
+                            xxl: "630px",
+                          },
+                        }}
+                      >
+                        <Table stickyHeader aria-label="sticky table">
+                          <TableHead sx={{ background: "#F8F8F8", height: "0px" }}>
+                            <TableRow>
+                              <TableCell sx={{ color: "neutral.550" }}>NAME</TableCell>
+                              <TableCell sx={{ color: "neutral.550" }}>DESCRIPTION</TableCell>
+                              <TableCell align="left" sx={{ color: "neutral.550" }}>
+                                ACTION
                               </TableCell>
                             </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </TableContainer>
+                          </TableHead>
+                          <TableBody>
+                            {skills.map((skill, i) => (
+                              <TableRow
+                                key={skill._id}
+                                sx={{
+                                  "&:last-child td, &:last-child th": { border: 0 },
+                                }}
+                              >
+                                {/* <TableCell align="left">{i + 1}</TableCell> */}
+                                <TableCell align="left">{capitalizeFirstLetter(skill.name)}</TableCell>
+                                <TableCell align="left">{capitalizeFirstLetter(skill.description)}</TableCell>
+                                {/* <TableCell align="center"></TableCell> */}
+
+                                <TableCell align="center">
+                                  <Box sx={{ display: "flex" }}>
+                                    <SkillEdit skill={skill} />
+                                    <SkillDeleteModal skill={skill} />
+                                  </Box>
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </TableContainer>
+                    </Paper>
                   </Grid>
                 </>
               </Box>

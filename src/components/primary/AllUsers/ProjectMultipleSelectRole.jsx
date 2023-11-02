@@ -11,6 +11,7 @@ const ITEM_PADDING_TOP = 2;
 const MenuProps = {
   PaperProps: {
     style: {
+      fontFamily: "Inter",
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
       width: 110,
     },
@@ -23,13 +24,12 @@ const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, r
       <MySelect
         sx={{
           backgroundColor: "neutral.N000",
-          // height: "36px",
           height: {
             lg: "30px",
             xl: "36px",
             xxl: "36px",
           },
-          fontSize: { lg: "11px", xl: "14px", xxl: "14px" },
+          fontSize: { lg: "12px", xl: "14px", xxl: "14px" },
           fontFamily: "Inter",
         }}
         displayEmpty
@@ -53,6 +53,7 @@ const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, r
                 gridTemplateColumns: "repeat(2,1fr)",
                 alignItems: "center",
                 gap: 0.5,
+                fontFamily: "Inter",
               }}
             >
               {selected.map(
@@ -68,7 +69,7 @@ const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, r
                         borderRadius: "32px",
                         border: "1px solid #E6ECF5",
                         color: "neutral.700",
-                        fontSize: { xl: "14px", xxl: "16px", lg: "10px" },
+                        fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
                         fontFamily: "Inter",
                       }}
                       key={item.value}
@@ -77,7 +78,15 @@ const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, r
                   )
               )}
               {selected.length > 1 && (
-                <Typography  sx={{ ml: 2, mt: 0, color: "neutral.700",fontSize: { xl: "14px", xxl: "16px", lg: "11px" } }}>
+                <Typography
+                  sx={{
+                    fontFamily: "Inter",
+                    pl: "4px",
+                    mt: 0,
+                    color: "neutral.700",
+                    fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
+                  }}
+                >
                   + {count} more
                 </Typography>
               )}
@@ -89,7 +98,11 @@ const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, r
         onClose={handleClickAway}
       >
         {roles?.map((role) => (
-          <MenuItem sx={{ fontSize: { xl: "14px", xxl: "16px", lg: "11px" } }} key={role.label} value={role || ""}>
+          <MenuItem
+            sx={{ fontFamily: "Inter", fontSize: { xl: "14px", xxl: "16px", lg: "12px" } }}
+            key={role.label}
+            value={role || ""}
+          >
             {role.label}
           </MenuItem>
         ))}

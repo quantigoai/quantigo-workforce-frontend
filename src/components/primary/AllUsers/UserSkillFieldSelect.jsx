@@ -14,6 +14,7 @@ const ITEM_PADDING_TOP = 2;
 const MenuProps = {
   PaperProps: {
     style: {
+      fontFamily: "Inter",
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
       width: 110,
     },
@@ -26,14 +27,13 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
         <MySelect
           sx={{
             backgroundColor: "neutral.N000",
-            // height: "36px",
             height: {
               lg: "30px",
               xl: "36px",
               xxl: "36px",
             },
-  
-            fontSize: { lg: "11px", xl: "14px", xxl: "14px" },
+
+            fontSize: { lg: "12px", xl: "14px", xxl: "14px" },
             fontFamily: "Inter",
           }}
           displayEmpty
@@ -44,7 +44,7 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
           renderValue={(selected) => {
             if (selected.length === 0) {
               return (
-                <Typography color="neutral.N300" sx={{ fontSize: { xl: "14px", xxl: "16px", lg: "11px" } }}>
+                <Typography variant="h7" color="neutral.N300">
                   {label}
                 </Typography>
               );
@@ -56,7 +56,9 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
                   gridTemplateColumns: "repeat(2,1fr)",
                   alignItems: "center",
                   gap: 0.5,
-                }}>
+                  fontFamily: "Inter",
+                }}
+              >
                 {selected?.map(
                   (value, i) =>
                     [0].includes(i) && (
@@ -71,7 +73,7 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
                           border: "1px solid #E6ECF5",
                           color: "neutral.700",
                           fontFamily: "Inter",
-                          fontSize: { xl: "14px", xxl: "16px", lg: "10px" },
+                          fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
                         }}
                         key={value}
                         label={value}
@@ -79,7 +81,7 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
                     )
                 )}
                 {selected?.length > 1 && (
-                  <Typography variant="h7" sx={{ ml: 2, mt: 0, color: "neutral.700" }}>
+                  <Typography variant="h7" sx={{ fontFamily: "Inter", pl: "4px", mt: 0, color: "neutral.700" }}>
                     + {count} more
                   </Typography>
                 )}
@@ -88,12 +90,14 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
           }}
           name={name}
           MenuProps={MenuProps}
-          onClose={handleClickAway}>
+          onClose={handleClickAway}
+        >
           {skills?.map((skill) => (
             <MenuItem
-              sx={{ fontSize: { xl: "14px", xxl: "16px", lg: "11px" } }}
+              sx={{ fontFamily: "Inter", fontSize: { xl: "14px", xxl: "16px", lg: "12px" } }}
               key={skill._id}
-              value={skill.name || ""}>
+              value={skill.name || ""}
+            >
               {skill.name}
             </MenuItem>
           ))}

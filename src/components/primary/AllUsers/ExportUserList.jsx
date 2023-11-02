@@ -1,13 +1,13 @@
 import { Button } from "@mui/material";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { CSVDownload } from "react-csv";
 import { useSelector } from "react-redux";
 import { realToken } from "../../../helper/lib";
-import axios from "axios";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
-const   ExportUserList = () => {
+const ExportUserList = () => {
   const { totalUsers } = useSelector((state) => state.user.users);
   const [jsonData, setJsonData] = useState([]);
   const csvHeader = [
@@ -57,7 +57,7 @@ const   ExportUserList = () => {
         return false;
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching data:");
       throw error;
     }
   };
@@ -69,9 +69,8 @@ const   ExportUserList = () => {
           borderRadius: "8px",
           backgroundColor: "#2E58FF",
           color: "white",
-          // height:"40px",
           height: {
-            lg: "35px",
+            lg: "30px",
             xl: "40px",
             xxl: "40px",
           },
@@ -83,10 +82,7 @@ const   ExportUserList = () => {
           fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
           padding: "16px 10px",
         }}
-        // variant="contained"
-
         onClick={fetchData}
-        // onClick={handleProjectCreateOpen}
       >
         Export
       </Button>

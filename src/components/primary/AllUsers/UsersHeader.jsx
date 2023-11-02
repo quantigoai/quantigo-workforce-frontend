@@ -11,7 +11,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import FilterListOffIcon from "@mui/icons-material/FilterListOff";
 import SearchIcon from "@mui/icons-material/Search";
-import { Box, Button, Grid, IconButton, InputBase, Paper, Typography } from "@mui/material";
+import { Box, Button, Grid, IconButton, InputBase, Paper } from "@mui/material";
 import React from "react";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import "../ProjectLIstNew2/index.css";
@@ -43,7 +43,6 @@ const UsersHeader = ({
               display: "flex",
               alignContent: "center",
               alignItems: "center",
-              // paddingX: "10px",
             }}
           >
             <CommonHeader title="All Users" customButton="Create User" />
@@ -59,7 +58,6 @@ const UsersHeader = ({
           }}
         >
           <Paper
-            // component="form"
             sx={{
               p: "2px 4px",
               display: "flex",
@@ -71,7 +69,7 @@ const UsersHeader = ({
               outline: "none",
               boxShadow: "none",
               height: {
-                lg: "35px",
+                lg: "30px",
                 xl: "40px",
                 xxl: "40px",
               },
@@ -88,10 +86,8 @@ const UsersHeader = ({
                 flex: 1,
                 fontFamily: "Inter",
                 fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
-         
               }}
               placeholder="Search"
-            
               onKeyDown={(ev) => {
                 if (ev.key === "Enter") {
                   handleSearch(ev);
@@ -103,11 +99,16 @@ const UsersHeader = ({
               <Button
                 sx={{
                   height: "30px",
-                  minWidth: "40px",
+                  minWidth: "30px",
                 }}
               >
                 <ClearIcon
                   sx={{
+                    height: {
+                      lg: "20px",
+                      xl: "40px",
+                      xxl: "40px",
+                    },
                     color: "neutral.N300",
                     "&:hover": {
                       color: "#F04438",
@@ -127,7 +128,7 @@ const UsersHeader = ({
               mx: 2,
               // height:"40px",
               height: {
-                lg: "35px",
+                lg: "30px",
                 xl: "40px",
                 xxl: "40px",
               },

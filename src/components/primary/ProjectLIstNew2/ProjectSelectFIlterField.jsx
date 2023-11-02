@@ -26,9 +26,9 @@ export default function ProjectSelectFIlterField({ options, label, handleChange,
         py: 0,
         minWidth: { lg: "20%", xl: "25%", xxl: "25%" },
         // minHeight: "36px",
-        // height: "36px",  
+        // height: "36px",
+        fontFamily: "Inter",
       }}
-      // size="small"
     >
       <MySelect
         displayEmpty
@@ -40,7 +40,7 @@ export default function ProjectSelectFIlterField({ options, label, handleChange,
             xxl: "36px",
           },
 
-          fontSize: { lg: "11px", xl: "14px", xxl: "14px" },
+          fontSize: { lg: "12px", xl: "14px", xxl: "14px" },
           fontFamily: "Inter",
           padding: "0px",
           margin: "0px",
@@ -54,21 +54,23 @@ export default function ProjectSelectFIlterField({ options, label, handleChange,
         value={filterValue?.[name] ?? ""}
         label={label}
         onChange={(e) => handleChange(e)}
-        name={name}>
+        name={name}
+      >
         <MenuItem disabled value="">
-          <Typography color="neutral.N300" sx={{ fontSize: { xl: "14px", xxl: "16px", lg: "11px" } }}>
+          <Typography color="neutral.N300" variant="h7">
             {label}
           </Typography>
         </MenuItem>
         {options.map((option) => (
           <MenuItem
-            sx={{ fontSize: { xl: "14px", xxl: "16px", lg: "11px" } }}
+            sx={{ fontFamily: "Inter", fontSize: { xl: "14px", xxl: "16px", lg: "12px" } }}
             key={option.value}
             fullWidth
-            value={option.value}>
-            {/* <Typography  color="neutral.700"> */}
-            {option.label}
-            {/* </Typography> */}
+            value={option.value}
+          >
+            <Typography variant="h7" color="neutral.700">
+              {option.label}
+            </Typography>
           </MenuItem>
         ))}
       </MySelect>

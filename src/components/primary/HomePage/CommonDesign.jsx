@@ -29,7 +29,7 @@ const CommonDesign = ({ children }) => {
             alignItems: "flex-end",
             alignContent: "center",
             paddingRight: { sm: "0%", lg: "2%", md: "4%", xl: "7%" },
-            paddingLeft: { lg: "6%", md: "4%", sm: "4%" },
+            paddingLeft: { lg: "3%", md: "4%", sm: "4%" },
           }}
         >
           <Box sx={{ display: "flex", flexDirection: "column", mb: "100px" }}>
@@ -67,7 +67,6 @@ const CommonDesign = ({ children }) => {
           item
           xs={6}
           sx={{
-            // backgroundColor: "red",
             display: "flex",
             alignItems: "start",
             justifyContent: "flex-end",

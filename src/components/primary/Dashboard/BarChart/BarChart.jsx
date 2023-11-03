@@ -18,56 +18,90 @@ import DateRangeComponentForDashboard from "../DatePicker/DateRangeComponent";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      color: "#091E42",
-      position: "bottom",
-      labels: {
-        usePointStyle: true,
-        pointStyle: "circle",
-        boxWidth: 10,
-        boxHeight: 7,
-      },
-    },
-    datalabels: {
-      display: false,
-    },
-    title: {
-      display: true,
-    },
-  },
-  scales: {
-    x: {
-      ticks: {
-        color: "#7D89A3", // Change label text color here
-      },
-      grid: {
-        display: false,
-      },
-    },
-    y: {
-      beginAtZero: true,
-      border: {
-        display: false,
-      },
-      ticks: {
-        color: "#7D89A3",
-        callback: function (val) {
-          return Number.isInteger(val) ? val : null;
-        },
-      },
-    },
-  },
-};
-
 const BarChart = ({ startDate, setStartDate, endDate, setEndDate, loading }) => {
   const { activeJobs, takenJobs } = useSelector((state) => state.dashboard);
   const [customData, setCustomData] = React.useState({});
   const [isDataUpdate, setIsDataUpdate] = React.useState(true);
   const [dateRange, setDateRange] = useState("");
   const dispatch = useDispatch();
+  const [labelFontSize, setLabelFontSize] = useState(10);
+  const options = {
+    elements: {
+      bar: {
+        borderRadius: 4,
+      },
+    },
+    responsive: true,
+    plugins: {
+      legend: {
+        color: "#091E42",
+        position: "bottom",
+        labels: {
+          usePointStyle: true,
+          pointStyle: "circle",
+          boxWidth: 10,
+          boxHeight: 7,
+          font: {
+            size: labelFontSize,
+          },
+        },
+      },
+      datalabels: {
+        display: false,
+      },
+      title: {
+        display: true,
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: "#7D89A3",
+          font: {
+            size: labelFontSize,
+          },
+        },
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        beginAtZero: true,
+        border: {
+          display: false,
+        },
+        ticks: {
+          color: "#7D89A3",
+          callback: function (val) {
+            return Number.isInteger(val) ? val : null;
+          },
+        },
+      },
+    },
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setLabelFontSize(8);
+      } else if (window.innerWidth >= 768 && window.innerWidth <= 1024) {
+        setLabelFontSize(9);
+      } else if (window.innerWidth > 1024 && window.innerWidth <= 1440) {
+        setLabelFontSize(11);
+      } else if (window.innerWidth >= 1440 && window.innerWidth < 1920) {
+        setLabelFontSize(13);
+      } else {
+        setLabelFontSize(14);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
   const [range, setRange] = useState([
     {
       startDate: addDays(new Date(), -15),
@@ -208,7 +242,7 @@ const BarChart = ({ startDate, setStartDate, endDate, setEndDate, loading }) => 
               }}
               // data={sampleData}
               data={role !== "admin" ? chartData : customData}
-              style={{ height: "250px" }}
+              style={{ height: "270px" }}
             />
           )}
         </Grid>

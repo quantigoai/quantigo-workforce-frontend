@@ -17,7 +17,7 @@ import {
   Title,
   Tooltip,
 } from "chart.js";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import { capitalizeAllwordAndSlic } from "../../../../helper/capitalizeAllwordAndSlic";
@@ -25,57 +25,83 @@ import { daysAndMonths } from "../../../../helper/dateConverter";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "bottom",
-      labels: {
-        usePointStyle: true,
-        pointStyle: "circle",
-        boxWidth: 10,
-        boxHeight: 7,
-      },
-    },
-    datalabels: {
-      display: false,
-
-      // backgroundColor: "#404040",
-    },
-    title: {
-      display: true,
-      // text: "Project Based Jobs",
-    },
-  },
-  scales: {
-    x: {
-      ticks: {
-        color: "#7D89A3", // Change label text color here
-      },
-
-      grid: {
-        display: false,
-      },
-    },
-    y: {
-      border: {
-        display: false,
-      },
-      beginAtZero: true,
-      ticks: {
-        color: "#7D89A3",
-        callback: function (val) {
-          return Number.isInteger(val) ? val : null;
-        },
-      },
-    },
-  },
-};
-
 const LineChart = ({ loading }) => {
   const { weeklyData } = useSelector((state) => state.dashboard);
   const [customData, setCustomData] = React.useState({});
   const [isDataUpdate, setIsDataUpdate] = React.useState(true);
+  const [labelFontSize, setLabelFontSize] = useState(10);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setLabelFontSize(8);
+      } else if (window.innerWidth >= 768 && window.innerWidth <= 1024) {
+        setLabelFontSize(9);
+      } else if (window.innerWidth > 1024 && window.innerWidth <= 1440) {
+        setLabelFontSize(11);
+      } else if (window.innerWidth >= 1440 && window.innerWidth < 1920) {
+        setLabelFontSize(13);
+      } else {
+        setLabelFontSize(14);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "bottom",
+        labels: {
+          usePointStyle: true,
+          pointStyle: "circle",
+          boxWidth: 10,
+          boxHeight: 7,
+          font: {
+            size: labelFontSize,
+          },
+        },
+      },
+      datalabels: {
+        display: false,
+
+        // backgroundColor: "#404040",
+      },
+      title: {
+        display: true,
+        // text: "Project Based Jobs",
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: "#7D89A3", // Change label text color here
+        },
+
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        border: {
+          display: false,
+        },
+        beginAtZero: true,
+        ticks: {
+          color: "#7D89A3",
+          callback: function (val) {
+            return Number.isInteger(val) ? val : null;
+          },
+        },
+      },
+    },
+  };
   const sampleData = {
     labels: [1, 2, 3, 4],
     datasets: [

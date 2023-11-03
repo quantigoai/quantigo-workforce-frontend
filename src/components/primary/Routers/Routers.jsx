@@ -174,17 +174,7 @@ const Routers = () => {
 
         <Route
           element={
-            <PrivateRoute
-              roles={[
-                roles.admin,
-                roles.eng_lead,
-                roles.pro_lead,
-                roles.pro_co,
-                roles.pro_manager,
-                roles.del_manager,
-                roles.rec_manger,
-              ]}
-            ></PrivateRoute>
+            <PrivateRoute roles={[roles.admin, roles.eng_lead, roles.acc_manger, roles.rec_manger]}></PrivateRoute>
           }
         >
           <Route path={"/all-users"} element={<AllUserListIndex action={"admin"} />} />

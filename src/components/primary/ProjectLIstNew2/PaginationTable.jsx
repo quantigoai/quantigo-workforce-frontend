@@ -73,8 +73,6 @@ const PaginationTable = ({ totalItems, pagination, setPagination, handleChangePa
   const approvedPaths = ["/allprojects", "/all-users"];
 
   const approvedData = [myWorkHistoryCount, usersWorkHistoryCount, users?.length];
-  console.log("🚀 ~ file: PaginationTable.jsx:76 ~ PaginationTable ~ users:", users)
-
   return approvedPaths.includes(pathname) || approvedData.some((s) => s > 0) ? (
     <Box
       sx={{

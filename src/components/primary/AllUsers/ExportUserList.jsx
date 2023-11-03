@@ -13,16 +13,35 @@ const ExportUserList = () => {
   const csvHeader = [
     { label: "Name", key: "name" },
     { label: "Quantigo ID", key: "qaiUserName" },
-    { label: "Role", key: "role" },
     { label: "Email", key: "email" },
+    { label: "Role", key: "role" },
     { label: "Gender", key: "gender" },
-    { label: "phone", key: "phone" },
+    { label: "Contact No", key: "phone" },
     { label: "DOB", key: "dob" },
     { label: "Billing Account No", key: "billingAccountNo" },
     { label: "Blood Group", key: "bloodGroup" },
     { label: "Occupation", key: "occupation" },
     { label: "Permanent Address", key: "permanentAddress" },
     { label: "Present Address", key: "presentAddress" },
+    { label: "Is Verified", key: "isVerified" },
+    { label: "Document Type", key: "documentsType" },
+    { label: "NDA Signed", key: "isNDASigned" },
+    { label: "Active Last 15 days", key: "active" },
+    { label: "Is Blocked", key: "isBlocked" },
+    { label: "Points", key: "points" },
+    { label: "Job Limit", key: "jobLimit" },
+    { label: "Email Verified", key: "isEmailVerified" },
+    { label: "Job Limit Left", key: "jobLimitLeft" },
+    { label: "Working Hours", key: "totalWorkingHours" },
+    { label: "Payment Rate", key: "paymentRate" },
+    { label: "Skills", key: "skills" },
+    { label: "HUB", key: "hub" },
+    { label: "Qai_id", key: "qaiId" },
+    { label: "Created At", key: "createdAt" },
+    { label: "Last Update profile", key: "updatedAt" },
+    { label: "Profile image", key: "image" },
+    { label: "Total Due Amount", key: "totalDueAmount" },
+    { label: "Total Paid Amount", key: "totalPaidAmount" },
   ];
 
   const [initiateDownload, setInitiateDownload] = useState(false);
@@ -50,7 +69,12 @@ const ExportUserList = () => {
       const data = response.data.users;
 
       if (data.length) {
-        data.map((f) => (f.dob = new Date(f.dob).toLocaleDateString("en-US")));
+        await data.map((f) => (f.dob = new Date(f.dob).toLocaleDateString("en-US")));
+        await data.map((f) => (f.createdAt = new Date(f.createdAt).toLocaleDateString("en-US")));
+        await data.map((f) => (f.updatedAt = new Date(f.updatedAt).toLocaleDateString("en-US")));
+        data.forEach((user) => {
+          user.skills = user.skills.map((skill) => skill.name);
+        });
         setJsonData(data);
         return true;
       } else {

@@ -1,5 +1,5 @@
 import { Box, Button, Grid } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useToaster from "../../../../../customHooks/useToaster";
@@ -9,27 +9,42 @@ import CurrentPasswordfield from "../../Password/CurrentPasswordfield";
 import ResetPassword from "../../Password/ResetPassword";
 
 const PasswordChangeIndex = () => {
-  const [CurrentPassword, setCurrentPassword] = useState("");
-  const [resetPassword, setResetPassword] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [buttonDisable, setButtonDisable] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const handleCurrnetPassword = (currentPassword) => {
+    setCurrentPassword(currentPassword);
+  };
+  const handleResetPassword = (newPassword) => {
+    setNewPassword(newPassword);
+    setButtonDisable(newPassword !== confirmPassword && currentPassword !== newPassword);
+  };
+  const handleConfirmPassword = (confirmPassword) => {
+    setConfirmPassword(confirmPassword);
+    setButtonDisable(confirmPassword !== newPassword && currentPassword !== confirmPassword);
+  };
+
   const toast = useToaster();
+
   const handleChangePassword = () => {
     const data = {
-      oldPassword: CurrentPassword,
+      oldPassword: currentPassword,
       newPassword: confirmPassword,
     };
 
     dispatch(changePassword(data)).then((action) => {
-      if (action.payload.status === 200) {
+      if (action.error) {
+        console.log("hit");
+        toast.trigger(action.error.message, "error");
+      } else {
         dispatch(logout()).then(() => {
           navigate("/");
         });
         toast.trigger("Password changed successfully", "success");
-      } else {
-        toast.trigger("Password can not change", "error");
       }
     });
   };
@@ -42,13 +57,25 @@ const PasswordChangeIndex = () => {
         }}
       >
         <Grid container sx={{ padding: "1%" }}>
-          <CurrentPasswordfield setCurrentPassword={setCurrentPassword} CurrentPassword={CurrentPassword} />
+          <CurrentPasswordfield
+            handlePassword={handleCurrnetPassword}
+            setCurrentPassword={setCurrentPassword}
+            CurrentPassword={currentPassword}
+          />
         </Grid>
         <Grid container sx={{ padding: "1%" }}>
-          <ResetPassword setResetPassword={setResetPassword} resetPassword={resetPassword} />
+          <ResetPassword
+            handlePassword={handleResetPassword}
+            setResetPassword={setNewPassword}
+            resetPassword={newPassword}
+          />
         </Grid>
         <Grid container sx={{ padding: "1%" }}>
-          <ConfirmPassword setConfirmPassword={setConfirmPassword} confirmPassword={confirmPassword} />
+          <ConfirmPassword
+            handlePassword={handleConfirmPassword}
+            setConfirmPassword={setConfirmPassword}
+            confirmPassword={confirmPassword}
+          />
         </Grid>
         <Grid container sx={{ justifyContent: "start", paddingTop: "2%" }}>
           <Button
@@ -67,6 +94,7 @@ const PasswordChangeIndex = () => {
                 color: "#FFFFFF",
               },
             }}
+            disabled={buttonDisable}
             onClick={() => handleChangePassword()}
           >
             Change Password

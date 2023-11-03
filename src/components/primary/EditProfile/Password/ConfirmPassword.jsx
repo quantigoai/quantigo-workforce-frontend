@@ -23,16 +23,13 @@ const MyTextField = styled(TextField)(() => ({
     // backgroundColor: editAble ? "" : "#F2F6FC",
   },
 }));
-const ConfirmPassword = ({ setConfirmPassword, confirmPassword }) => {
+const ConfirmPassword = ({ setConfirmPassword, confirmPassword, handlePassword }) => {
   const [showPassword, setShowPassword] = React.useState(false);
   //   const [password, setPassword] = useState("");
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
-  };
-  const handlePassword = (e) => {
-    setConfirmPassword(e);
   };
 
   return (

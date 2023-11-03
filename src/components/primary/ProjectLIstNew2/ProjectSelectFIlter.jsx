@@ -53,7 +53,8 @@ const ProjectSelectFIlter = ({
           role === "delivery_manager" ||
           role === "project_manager" ||
           role === "project_coordinator" ||
-          role === "account_manager " ? (
+          role === "account_manager" ||
+          role === "project_lead" ? (
             <>
               <Stack
                 sx={{
@@ -120,7 +121,7 @@ const ProjectSelectFIlter = ({
                   width: { lg: "38%", xl: "28%", xxl: "20%" },
                 }}>
                 <Typography
-                  sx={{ opacity: "0.7", ml: 1,  }}
+                  sx={{ opacity: "0.7", ml: 1, fontSize: { lg: "10px", xl: "12px", xxl: "14px" } }}
                   color={"neutral.N300"}
                   variant="wpf_p3_regular">
                   {" "}

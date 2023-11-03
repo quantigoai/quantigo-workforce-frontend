@@ -16,6 +16,8 @@ export const statusOptions = [
   { value: "in-Progress", label: "In Progress" },
   { value: "completed", label: "Completed" },
   { value: "hours-added", label: "Hours added" },
+  { value: "hours-approved", label: "Hours Approved" },
+  { value: "payment-done", label: "Payment Done" },
 ];
 export const projectTypeOptions = [
   { value: "image", label: "Image" },

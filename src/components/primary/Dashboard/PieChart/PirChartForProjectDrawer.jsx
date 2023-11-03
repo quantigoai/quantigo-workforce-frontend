@@ -45,7 +45,7 @@ const PirChartForProjectDrawer = () => {
         text: "Projects",
         align: "start",
         font: {
-          size: 14,
+          size: 10,
         },
         color: isLightTheme ? "#091E42" : "white",
         // padding: 20,

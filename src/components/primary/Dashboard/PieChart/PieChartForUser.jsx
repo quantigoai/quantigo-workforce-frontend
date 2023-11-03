@@ -1,14 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ArcElement, Chart as ChartJS, Legend, Title, Tooltip } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+import "./index.css";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title, ChartDataLabels);
 
 const PieChartForUser = () => {
   const { activeJobs, takenJobs, totalCountData } = useSelector((state) => state.dashboard);
   const { isLightTheme } = useSelector((state) => state.theme);
+
+  const [labelFontSize, setLabelFontSize] = useState(10);
+
+ 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setLabelFontSize(8); 
+      } else if (window.innerWidth >= 768 && window.innerWidth <= 1024) {
+      
+        setLabelFontSize(8);
+      } else if (window.innerWidth > 1024 && window.innerWidth <= 1440) {
+       
+        setLabelFontSize(10); 
+      } else if (window.innerWidth >= 1440 && window.innerWidth < 1920) {
+        setLabelFontSize(12); 
+      } else {
+        setLabelFontSize(14);
+      }
+    };
+
+    // Initial calculation and event listener for responsive font size
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const data = {
     labels: ["L0 Annotator", "L1 Annotator", "L2 Annotator", "L3 Annotator", "Reviewer"],
@@ -37,7 +68,8 @@ const PieChartForUser = () => {
         position: "bottom",
         labels: {
           font: {
-            size:"10px"
+            // size:"10px"
+            size: labelFontSize,
           },
           usePointStyle: true,
           pointStyle: "circle",

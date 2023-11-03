@@ -140,7 +140,13 @@ const FullProjectDetails = () => {
 
   useEffect(() => {
     if (role) {
-      if (role === "admin" || role === "account_manager") {
+      if (
+        role === "admin" ||
+        role === "account_manager" ||
+        role === "delivery_manager" ||
+        role === "project_coordinator" ||
+        role === "project_manager"
+      ) {
         dispatch(
           getUsersWorkHistoryById({
             pagination,
@@ -157,7 +163,13 @@ const FullProjectDetails = () => {
   // TODO Need to solve this issue
   const handleChangePagination = useCallback(() => {
     setIsChildDataLoading(true);
-    if (role === "admin" || role === "account_manager") {
+    if (
+      role === "admin" ||
+      role === "account_manager" ||
+      role === "delivery_manager" ||
+      role === "project_coordinator" ||
+      role === "project_manager"
+    ) {
       if (range[0].startDate.getTime() !== range[0].endDate.getTime()) {
         dispatch(
           getUsersWorkHistoryById({
@@ -198,22 +210,22 @@ const FullProjectDetails = () => {
       <HeaderBox>
         {/* {!isLoadingDetails && detailRow.length > 0 && ( */}
         {/* {!isLoading && ( */}
-          <ProjectDetailsHeader
-            usersWorkHistoryCount={usersWorkHistoryCount}
-            range={range}
-            setRange={setRange}
-            handleOpen={handleOpen}
-            role={role}
-            handleProjectDetailsOpen={handleProjectDetailsOpen}
-            value={value}
-            setValue={setValue}
-            handleChange={handleChange}
-            projectDrawer={projectDrawer}
-            isDisable={isDisable}
-            checkOutDisable={checkOutDisable}
-            handleDetailButton={handleDetailButton}
-            handleCheckInButton={handleCheckInButton}
-          />
+        <ProjectDetailsHeader
+          usersWorkHistoryCount={usersWorkHistoryCount}
+          range={range}
+          setRange={setRange}
+          handleOpen={handleOpen}
+          role={role}
+          handleProjectDetailsOpen={handleProjectDetailsOpen}
+          value={value}
+          setValue={setValue}
+          handleChange={handleChange}
+          projectDrawer={projectDrawer}
+          isDisable={isDisable}
+          checkOutDisable={checkOutDisable}
+          handleDetailButton={handleDetailButton}
+          handleCheckInButton={handleCheckInButton}
+        />
         {/* )} */}
       </HeaderBox>
 

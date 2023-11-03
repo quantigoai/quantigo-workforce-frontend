@@ -139,7 +139,6 @@ const ProjectHeader = ({
           </IconButton>
           {role === "admin" ||
           role === "project_lead" ||
-          role === "project_coordinator" ||
           role === "project_manager" ||
           role === "delivery_manager" ? (
             <Button

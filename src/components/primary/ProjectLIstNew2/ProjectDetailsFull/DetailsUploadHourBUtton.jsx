@@ -91,107 +91,109 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
     <>
       {value === "completed" ? (
         <>
-          <LoadingButton
-            loading={dataLoading}
-            sx={{
-              backgroundColor: "#FFAB00",
-              color: "#FFF",
-              fontSize: {
-                lg: "10px",
-                xl: "12px",
-                xxl: "14px",
-              },
-              borderRadius: "6px",
-              height: "30px",
-              width: { lg: "150px", xl: "190px", xxl: "202px" },
-              border: "1px solid #FFAB00",
-              "&:hover": {
-                backgroundColor: "#F2A200",
-                color: "#FFF",
-              },
-              "&.Mui-disabled": {
-                backgroundColor: "#F0D8A8",
-                color: "#FFFFFF",
-
-                border: "1px solid #F0D8A8",
-              },
-              mr: 1,
-            }}
-            onClick={handleOpen}
-          >
-            <i className="ri-upload-2-line"></i>
-            <Typography
-              variant="wpf_h7_medium"
+          {(role === "admin" || role === "project_manager" || role === "delivery_manager") && (
+            <LoadingButton
+              loading={dataLoading}
               sx={{
-                pl: 1,
-                textTransform: "none",
+                backgroundColor: "#FFAB00",
                 color: "#FFF",
+                fontSize: {
+                  lg: "10px",
+                  xl: "12px",
+                  xxl: "14px",
+                },
+                borderRadius: "6px",
+                height: "30px",
+                width: { lg: "150px", xl: "190px", xxl: "202px" },
+                border: "1px solid #FFAB00",
+                "&:hover": {
+                  backgroundColor: "#F2A200",
+                  color: "#FFF",
+                },
+                "&.Mui-disabled": {
+                  backgroundColor: "#F0D8A8",
+                  color: "#FFFFFF",
+
+                  border: "1px solid #F0D8A8",
+                },
+                mr: 1,
               }}
-            >
-              Upload Effective Hour
-            </Typography>
-          </LoadingButton>
+              onClick={handleOpen}>
+              <i className="ri-upload-2-line"></i>
+              <Typography
+                variant="wpf_h7_medium"
+                sx={{
+                  pl: 1,
+                  textTransform: "none",
+                  color: "#FFF",
+                }}>
+                Upload Effective Hour
+              </Typography>
+            </LoadingButton>
+          )}
         </>
       ) : (
         <>
-          <LoadingButton
-            loading={dataLoading}
-            onClick={handleOpenAccept}
-            sx={{
-              backgroundColor: "#2E58FF",
-              color: "#FFF",
-              fontSize: {
-                lg: "10px",
-                xl: "12px",
-                xxl: "14px",
-              },
-              borderRadius: "6px",
-              height: "30px",
-              width: { lg: "120px", xl: "142px", xxl: "162px" },
-              "&:hover": { backgroundColor: "#244EF5", color: "#FFF" },
-              "&.Mui-disabled": {
-                backgroundColor: "#B6C9F0",
-                color: "#FFFFFF",
-              },
-              mr: 1,
-            }}
-          >
-            <i style={{}} className="ri-checkbox-circle-fill"></i>
+          {(role === "admin" || role === "account_manager") && (
+            <>
+              <LoadingButton
+                loading={dataLoading}
+                onClick={handleOpenAccept}
+                sx={{
+                  backgroundColor: "#2E58FF",
+                  color: "#FFF",
+                  fontSize: {
+                    lg: "10px",
+                    xl: "12px",
+                    xxl: "14px",
+                  },
+                  borderRadius: "6px",
+                  height: "30px",
+                  width: { lg: "120px", xl: "142px", xxl: "162px" },
+                  "&:hover": { backgroundColor: "#244EF5", color: "#FFF" },
+                  "&.Mui-disabled": {
+                    backgroundColor: "#B6C9F0",
+                    color: "#FFFFFF",
+                  },
+                  mr: 1,
+                }}>
+                <i style={{}} className="ri-checkbox-circle-fill"></i>
 
-            <Typography variant="wpf_h7_medium" sx={{ color: "#FFF", pl: 1, textTransform: "none" }}>
-              Hours Approved
-            </Typography>
-          </LoadingButton>
-          <LoadingButton
-            loading={dataLoading}
-            onClick={handleOpenReject}
-            sx={{
-              backgroundColor: "#FF4757",
-              color: "#FFF",
-              fontSize: {
-                lg: "10px",
-                xl: "12px",
-                xxl: "14px",
-              },
-              borderRadius: "6px",
-              height: "30px",
-              width: { lg: "110px", xl: "112px", xxl: "132px" },
-              "&:hover": {
-                backgroundColor: "#FF4757",
-                color: "#FFF",
-              },
-              "&.Mui-disabled": {
-                backgroundColor: "#F5C4C8",
-                color: "#FFFFFF",
-              },
-              mr: 1,
-            }}
-          >
-            <i className="ri-close-circle-fill"></i>
-            <Typography variant="wpf_h7_medium" sx={{ color: "#FFF", pl: 1, textTransform: "none" }}>
-              Hours Reject
-            </Typography>
-          </LoadingButton>
+                <Typography variant="wpf_h7_medium" sx={{ color: "#FFF", pl: 1, textTransform: "none" }}>
+                  Hours Approved
+                </Typography>
+              </LoadingButton>
+              <LoadingButton
+                loading={dataLoading}
+                onClick={handleOpenReject}
+                sx={{
+                  backgroundColor: "#FF4757",
+                  color: "#FFF",
+                  fontSize: {
+                    lg: "10px",
+                    xl: "12px",
+                    xxl: "14px",
+                  },
+                  borderRadius: "6px",
+                  height: "30px",
+                  width: { lg: "110px", xl: "112px", xxl: "132px" },
+                  "&:hover": {
+                    backgroundColor: "#FF4757",
+                    color: "#FFF",
+                  },
+                  "&.Mui-disabled": {
+                    backgroundColor: "#F5C4C8",
+                    color: "#FFFFFF",
+                  },
+                  mr: 1,
+                }}>
+                <i className="ri-close-circle-fill"></i>
+                <Typography variant="wpf_h7_medium" sx={{ color: "#FFF", pl: 1, textTransform: "none" }}>
+                  Hours Reject
+                </Typography>
+              </LoadingButton>
+            </>
+          )}
         </>
       )}
       <HoursRejectModal

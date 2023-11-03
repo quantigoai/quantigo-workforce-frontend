@@ -68,45 +68,39 @@ const DetailChartarButton = ({ role }) => {
 
   return (
     <>
-      {role === "account_manager" ? (
-        <></>
-      ) : (
-        <>
-          <LoadingButton
-            loading={isLoading}
+      <>
+        <LoadingButton
+          loading={isLoading}
+          sx={{
+            backgroundColor: "#2E58FF",
+            color: "#FFF",
+            fontSize: {
+              lg: "10px",
+              xl: "12px",
+              xxl: "14px",
+            },
+            borderRadius: "6px",
+            height: "30px",
+            width: { lg: "140px", xl: "152px", xxl: "182px" },
+            "&:hover": { backgroundColor: "#244EF5", color: "#FFF" },
+            "&.Mui-disabled": {
+              backgroundColor: "#B6C9F0",
+              color: "#FFFFFF",
+            },
+          }}
+          onClick={fetchData}>
+          <i className="ri-download-2-line"></i>
+          <Typography
+            variant="wpf_h7_medium"
             sx={{
-              backgroundColor: "#2E58FF",
+              pl: 1,
+              textTransform: "none",
               color: "#FFF",
-              fontSize: {
-                lg: "10px",
-                xl: "12px",
-                xxl: "14px",
-              },
-              borderRadius: "6px",
-              height: "30px",
-              width: { lg: "140px", xl: "152px", xxl: "182px" },
-              "&:hover": { backgroundColor: "#244EF5", color: "#FFF" },
-              "&.Mui-disabled": {
-                backgroundColor: "#B6C9F0",
-                color: "#FFFFFF",
-              },
-            }}
-            onClick={fetchData}
-          >
-            <i className="ri-download-2-line"></i>
-            <Typography
-              variant="wpf_h7_medium"
-              sx={{
-                pl: 1,
-                textTransform: "none",
-                color: "#FFF",
-              }}
-            >
-              Download Charter
-            </Typography>
-          </LoadingButton>
-        </>
-      )}
+            }}>
+            Download Charter
+          </Typography>
+        </LoadingButton>
+      </>
 
       {initiateDownload && <CSVDownload data={jsonData} headers={csvHeader} target="_blank" />}
     </>

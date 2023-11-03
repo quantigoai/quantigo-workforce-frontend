@@ -40,8 +40,7 @@ const ProjectDetailsHeader = ({
       className="contentHeader"
       sx={{
         backgroundColor: "neutral.N000",
-      }}
-    >
+      }}>
       <Box
         sx={{
           width: "100%",
@@ -49,15 +48,21 @@ const ProjectDetailsHeader = ({
           display: "flex",
           justifyContent: "space-between",
           alignItems: "Center",
-        }}
-      >
+        }}>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography variant="wpf_p1_semiBold" color={isLightTheme ? "#091E42" : "white"} sx={{fontSize: { lg: "12px", xl: "18px", xxl: "18px" }}}>
+          <Typography
+            variant="wpf_p1_semiBold"
+            color={isLightTheme ? "#091E42" : "white"}
+            sx={{ fontSize: { lg: "12px", xl: "18px", xxl: "18px" } }}>
             {projectDrawer.project_drawer_name}{" "}
           </Typography>
 
           <Box sx={{ ml: 0 }}>
-            {(role === "admin" || role === "account_manager") && (
+            {(role === "admin" ||
+              role === "account_manager" ||
+              role === "delivery_manager" ||
+              role === "project_coordinator" ||
+              role === "project_manager") && (
               <ProjectDetailSelect
                 defaultVal={projectDrawer.project_status}
                 value={value}
@@ -72,7 +77,11 @@ const ProjectDetailsHeader = ({
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
           <Box>
             {/* TODO set the role  */}
-            {role === "admin" || role === "account_manager" ? (
+            {role === "admin" ||
+            role === "account_manager" ||
+            role === "delivery_manager" ||
+            role === "project_coordinator" ||
+            role === "project_manager" ? (
               <ProjectDetailsButton
                 range={range}
                 setRange={setRange}

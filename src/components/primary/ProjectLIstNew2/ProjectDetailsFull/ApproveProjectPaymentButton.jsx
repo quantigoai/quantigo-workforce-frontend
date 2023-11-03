@@ -45,40 +45,40 @@ const ApproveProjectPaymentButton = ({ role }) => {
 
   return (
     <>
-      <LoadingButton
-        loading={dataLoading}
-        onClick={handleOpen}
-        sx={{
-          backgroundColor: "#25c77c",
-          color: "#FFF",
-          fontSize: {
-            lg: "10px",
-            xl: "12px",
-            xxl: "14px",
-          },
-          borderRadius: "6px",
-          height: "30px",
-          width: { lg: "130px", xl: "150px", xxl: "175px" },
-          "&:hover": { backgroundColor: "green.800", color: "#FFF" },
-          "&.Mui-disabled": {
-            backgroundColor: "#B6C9F0",
-            color: "#FFFFFF",
-          },
-          mr: 2,
-        }}
-      >
-        <i style={{}} className="ri-checkbox-circle-fill"></i>
-        <Typography
-          variant="wpf_h7_medium"
+      {(role === "admin" || role === "account_manager") && (
+        <LoadingButton
+          loading={dataLoading}
+          onClick={handleOpen}
           sx={{
-            pl: 1,
-            textTransform: "none",
+            backgroundColor: "#25c77c",
             color: "#FFF",
-          }}
-        >
-          Payment Approve
-        </Typography>
-      </LoadingButton>
+            fontSize: {
+              lg: "10px",
+              xl: "12px",
+              xxl: "14px",
+            },
+            borderRadius: "6px",
+            height: "30px",
+            width: { lg: "130px", xl: "150px", xxl: "175px" },
+            "&:hover": { backgroundColor: "green.800", color: "#FFF" },
+            "&.Mui-disabled": {
+              backgroundColor: "#B6C9F0",
+              color: "#FFFFFF",
+            },
+            mr: 2,
+          }}>
+          <i style={{}} className="ri-checkbox-circle-fill"></i>
+          <Typography
+            variant="wpf_h7_medium"
+            sx={{
+              pl: 1,
+              textTransform: "none",
+              color: "#FFF",
+            }}>
+            Payment Approve
+          </Typography>
+        </LoadingButton>
+      )}
       <PaymentApproveModal open={open} handleClose={handleClose} handleApprovePayment={handleApprovePayment} />
     </>
   );

@@ -11,7 +11,7 @@ const TotalUser = () => {
   const { totalUsers } = useSelector((state) => state.user.users);
 
   useEffect(() => {
-    dispatch(getAllUsers({ limit: 10, skip: 0 }));
+    // dispatch(getAllUsers({ limit: 10, skip: 0 }));
   }, [dispatch]);
   return (
     <>

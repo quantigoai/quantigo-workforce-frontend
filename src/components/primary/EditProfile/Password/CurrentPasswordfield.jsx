@@ -22,16 +22,13 @@ const MyTextField = styled(TextField)(() => ({
     },
   },
 }));
-const CurrentPasswordfield = ({ setCurrentPassword, CurrentPassword }) => {
+const CurrentPasswordfield = ({ setCurrentPassword, CurrentPassword, handlePassword }) => {
   const [showPassword, setShowPassword] = React.useState(false);
   // const [password, setPassword] = useState("");
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
-  };
-  const handlePassword = (e) => {
-    setCurrentPassword(e);
   };
 
   return (

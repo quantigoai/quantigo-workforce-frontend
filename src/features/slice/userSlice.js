@@ -350,11 +350,15 @@ export const resendEmailVarification = createAsyncThunk("resend/email/verificati
 
 // change Password
 export const changePassword = createAsyncThunk("change/password", async (data) => {
-  return axios.post(`${url}/users/change-password`, data, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
+  try {
+    return await axios.post(`${url}/users/change-password`, data, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (err) {
+    throw new Error(err.response.data.message);
+  }
 });
 
 export const checkUserByUserName = createAsyncThunk("check/user/userName", async (qaiUserName) => {

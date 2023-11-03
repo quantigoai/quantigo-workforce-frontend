@@ -74,7 +74,7 @@ const Routers = () => {
 
         {/* //!! important */}
         {/* TODO Correction in this component */}
-        <Route path={"/emailVerification"} element={<EmailVerification />} />
+        {/* <Route path={"/emailVerification"} element={<EmailVerification />} /> */}
 
         {/* ---------- Course routes ------------ */}
 

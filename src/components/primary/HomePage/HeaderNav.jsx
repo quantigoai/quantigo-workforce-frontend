@@ -29,17 +29,7 @@ const HeaderNav = ({ isForgetPassword, resetPassword, isEmailVerification, email
           alignContent: "center",
         }}
       >
-        <Grid
-          sx={
-            {
-              // backgroundColor: "red",
-            }
-          }
-          item
-          xs={6}
-          lg={6}
-          xl={6}
-        >
+        <Grid item xs={6} lg={6} xl={6}>
           <img
             onClick={() => navigate("/")}
             src={location.pathname === "/howitworks" ? logoBlue : logo}

@@ -1,5 +1,5 @@
 import { Box, Button, Grid } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useToaster from "../../../../../customHooks/useToaster";
@@ -13,24 +13,59 @@ const PasswordChangeIndex = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [buttonDisable, setButtonDisable] = useState(true);
+  const [newPassHelperText, setNewPassHelperText] = useState("Password must be at least 6 characters long");
+  const [confirmPassHelperText, setConfirmPassHelperText] = useState("");
+  // const [helperText, sethelperText] = useState("Password must be at least 6 characters long");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleCurrnetPassword = (currentPassword) => {
+  const handleCurrentPassword = (currentPassword) => {
     setCurrentPassword(currentPassword);
   };
-  const handleResetPassword = (newPassword) => {
+  // 2nd input
+  const handleNewPassword = (newPassword) => {
     setNewPassword(newPassword);
-    setButtonDisable(newPassword !== confirmPassword && currentPassword !== newPassword);
+    if (newPassword.length >= 6) {
+      if (currentPassword !== newPassword) {
+        if (confirmPassword === newPassword) {
+          setButtonDisable(false);
+          setNewPassHelperText("");
+          setConfirmPassHelperText("");
+
+        } else {
+          setButtonDisable(true);
+          setConfirmPassHelperText("Confirm Password is not same as New Password");
+        }
+      } else {
+        setButtonDisable(true);
+        setNewPassHelperText("New password and Old password must be different");
+      }
+    } else {
+      setNewPassHelperText("Password must be at least 6 characters long");
+    }
   };
+  // 3rd input
   const handleConfirmPassword = (confirmPassword) => {
     setConfirmPassword(confirmPassword);
-    setButtonDisable(confirmPassword !== newPassword && currentPassword !== confirmPassword);
+    if (confirmPassword.length >= 6) {
+      if (currentPassword !== confirmPassword) {
+        if (confirmPassword === newPassword) {
+          setButtonDisable(false);
+          setNewPassHelperText("");
+          setConfirmPassHelperText("");
+        } else {
+          setButtonDisable(true);
+          setConfirmPassHelperText("Confirm Password is not same as New Password");
+        }
+      } else {
+        setButtonDisable(true);
+      }
+    }
   };
 
   const toast = useToaster();
 
-  const handleChangePassword = () => {
+  const handleChangePasswordSubmit = () => {
     const data = {
       oldPassword: currentPassword,
       newPassword: confirmPassword,
@@ -58,16 +93,17 @@ const PasswordChangeIndex = () => {
       >
         <Grid container sx={{ padding: "1%" }}>
           <CurrentPasswordfield
-            handlePassword={handleCurrnetPassword}
+            handlePassword={handleCurrentPassword}
             setCurrentPassword={setCurrentPassword}
             CurrentPassword={currentPassword}
           />
         </Grid>
         <Grid container sx={{ padding: "1%" }}>
           <ResetPassword
-            handlePassword={handleResetPassword}
+            handlePassword={handleNewPassword}
             setResetPassword={setNewPassword}
             resetPassword={newPassword}
+            helperText={newPassHelperText}
           />
         </Grid>
         <Grid container sx={{ padding: "1%" }}>
@@ -75,6 +111,7 @@ const PasswordChangeIndex = () => {
             handlePassword={handleConfirmPassword}
             setConfirmPassword={setConfirmPassword}
             confirmPassword={confirmPassword}
+            helperText={confirmPassHelperText}
           />
         </Grid>
         <Grid container sx={{ justifyContent: "start", paddingTop: "2%" }}>
@@ -95,7 +132,7 @@ const PasswordChangeIndex = () => {
               },
             }}
             disabled={buttonDisable}
-            onClick={() => handleChangePassword()}
+            onClick={() => handleChangePasswordSubmit()}
           >
             Change Password
           </Button>

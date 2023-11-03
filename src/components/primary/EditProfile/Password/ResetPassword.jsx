@@ -21,7 +21,7 @@ const MyTextField = styled(TextField)(() => ({
     },
   },
 }));
-const ResetPassword = ({ setResetPassword, resetPassword, handlePassword }) => {
+const ResetPassword = ({ setResetPassword, resetPassword, handlePassword, helperText }) => {
   const [showPassword, setShowPassword] = React.useState(false);
   //   const [password, setPassword] = useState("");
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -71,6 +71,7 @@ const ResetPassword = ({ setResetPassword, resetPassword, handlePassword }) => {
                 </InputAdornment>
               ),
             }}
+            helperText={helperText}
           />
         </FormControl>
       </Grid>

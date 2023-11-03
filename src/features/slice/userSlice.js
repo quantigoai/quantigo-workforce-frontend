@@ -216,7 +216,11 @@ export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
 
 //forget password
 export const forgetPasswordSlice = createAsyncThunk("users/forget-password", async (data) => {
-  return axios.post(`${url}/users/forgot-password`, data);
+  try {
+    return await axios.post(`${url}/users/forgot-password`, data);
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
 });
 //set new password
 export const setNewPassword = createAsyncThunk("users/reset-password/:id/:token", async (resetdata) => {

@@ -1,6 +1,6 @@
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
 import "chartjs-plugin-datalabels";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 
@@ -8,6 +8,30 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const PirChartForProjectDrawer = () => {
   const { activeJobs, takenJobs, totalCountData } = useSelector((state) => state.dashboard);
   const { isLightTheme } = useSelector((state) => state.theme);
+  const [labelFontSize, setLabelFontSize] = useState(10);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setLabelFontSize(8);
+      } else if (window.innerWidth >= 768 && window.innerWidth <= 1024) {
+        setLabelFontSize(8);
+      } else if (window.innerWidth > 1024 && window.innerWidth <= 1440) {
+        setLabelFontSize(10);
+      } else if (window.innerWidth >= 1440 && window.innerWidth < 1920) {
+        setLabelFontSize(12);
+      } else {
+        setLabelFontSize(14);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
 
   const data = {
     labels: ["Total Project", "Ongoing Project"],
@@ -38,6 +62,9 @@ const PirChartForProjectDrawer = () => {
           pointStyle: "circle",
           boxWidth: 10,
           boxHeight: 7,
+          font: {
+            size: labelFontSize,
+          },
         },
       },
       title: {
@@ -45,7 +72,7 @@ const PirChartForProjectDrawer = () => {
         text: "Projects",
         align: "start",
         font: {
-          size: 10,
+          size: 14,
         },
         color: isLightTheme ? "#091E42" : "white",
         // padding: 20,

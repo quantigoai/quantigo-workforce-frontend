@@ -1,10 +1,10 @@
-import {Box, Button, CircularProgress, FilledInput, FormControl, Grid, InputLabel, Typography} from "@mui/material";
-import {styled} from "@mui/material/styles";
-import {useState} from "react";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
+import { Box, Button, CircularProgress, FilledInput, FormControl, Grid, InputLabel, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
-import {forgetPasswordSlice} from "../../../features/slice/userSlice";
+import { forgetPasswordSlice } from "../../../features/slice/userSlice";
 import HeaderNav from "../HomePage/HeaderNav";
 import { LoadingButtonStyle } from "../Auth/Login/Login";
 
@@ -36,11 +36,11 @@ const ForgetPassword = () => {
   const dispatch = useDispatch();
   const onSubmit = (data) => {
     dispatch(forgetPasswordSlice(data)).then((action) => {
-      if (action.payload.status === 200) {
+      if (action.error) {
+        toast.trigger(action.error.message, "error");
+      } else {
         setVarificationMessage("set");
         toast.trigger("Link sent to email", "success");
-      } else {
-        toast.trigger("Not send email", "error");
       }
     });
   };

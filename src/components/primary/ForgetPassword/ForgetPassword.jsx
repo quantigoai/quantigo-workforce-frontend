@@ -1,12 +1,12 @@
-import { Box, Button, CircularProgress, FilledInput, FormControl, Grid, InputLabel, Typography } from "@mui/material";
+import { Box, Button, FilledInput, FormControl, Grid, InputLabel, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
 import { forgetPasswordSlice } from "../../../features/slice/userSlice";
-import HeaderNav from "../HomePage/HeaderNav";
 import { LoadingButtonStyle } from "../Auth/Login/Login";
+import HeaderNav from "../HomePage/HeaderNav";
 
 const ButtonStyle = styled(Button)({
   backgroundColor: "#2D58FF",
@@ -47,62 +47,75 @@ const ForgetPassword = () => {
 
   return (
     <>
-      <Box className="container">
-        <HeaderNav isForgetPassword={true} />
-
-        <>
-          <Grid container>
-            <Grid container style={{ justifyItems: "center" }}>
-              <Grid item xs={12} sm={12} md={6} lg={6} sx={{ paddingTop: "10%", paddingLeft: "35%" }}>
-                <ForgetPasswordBox>
-                  <form onSubmit={handleSubmit(onSubmit)}>
-                    <Grid container sx={{ padding: "10%" }}>
-                      <Grid container item xs={12} sx={{ paddingBottom: "4%" }}>
-                        <Typography
-                          style={{
-                            color: "#FFFFFF",
-                            fontSize: "40px",
-                          }}
-                        >
-                          Enter Your Email
-                        </Typography>
-                      </Grid>
-                      {varificationMessage === "set" ? (
-                        <Grid container item xs={12} sx={{ paddingBottom: "4%" }}>
-                          <Typography
-                            variant="body1"
-                            style={{
-                              color: "#FFFFFF",
-                            }}
-                          >
-                            A verification link has been sent to your email address. Please check your email.
-                          </Typography>
-                        </Grid>
-                      ) : (
-                        <></>
-                      )}
-                      <Grid container item xs={12} sx={{ paddingBottom: "4%" }}>
-                        <FormControl
-                          variant="filled"
-                          fullWidth
-                          sx={{
-                            backgroundColor: "#fff",
-                          }}
-                        >
-                          <InputLabel sx={{ color: "#000" }}>Email</InputLabel>
-                          <FilledInput
-                            sx={{
-                              backgroundColor: "#FFFFFF",
-                              color: "#000",
-                            }}
-                            {...register("email", {
-                              required: true,
-                              pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
-                            })}
-                          />
-                        </FormControl>
-                      </Grid>
-                      {/* <Grid container item xs={12}>
+      <Box className="container2">
+        <Box sx={{ height: "10%" }}>
+          <HeaderNav isForgetPassword={true} />
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "center",
+            alignItems: "center",
+            pb: "10%",
+            height: "90%",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <ForgetPasswordBox>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Grid container sx={{ padding: "10%" }}>
+                  <Grid container item xs={12} sx={{ paddingBottom: "4%" }}>
+                    <Typography
+                      style={{
+                        color: "#FFFFFF",
+                        fontSize: "40px",
+                      }}
+                    >
+                      Enter Your Email
+                    </Typography>
+                  </Grid>
+                  {varificationMessage === "set" ? (
+                    <Grid container item xs={12} sx={{ paddingBottom: "4%" }}>
+                      <Typography
+                        variant="body1"
+                        style={{
+                          color: "#FFFFFF",
+                        }}
+                      >
+                        A verification link has been sent to your email address. Please check your email.
+                      </Typography>
+                    </Grid>
+                  ) : (
+                    <></>
+                  )}
+                  <Grid container item xs={12} sx={{ paddingBottom: "4%" }}>
+                    <FormControl
+                      variant="filled"
+                      fullWidth
+                      sx={{
+                        backgroundColor: "#fff",
+                      }}
+                    >
+                      <InputLabel sx={{ color: "#000" }}>Email</InputLabel>
+                      <FilledInput
+                        sx={{
+                          backgroundColor: "#FFFFFF",
+                          color: "#000",
+                        }}
+                        {...register("email", {
+                          required: true,
+                          pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
+                        })}
+                      />
+                    </FormControl>
+                  </Grid>
+                  {/* <Grid container item xs={12}>
                         <ButtonStyle disabled={isLoading} fullWidth type="submit">
                           {" "}
                           Send
@@ -121,26 +134,23 @@ const ForgetPassword = () => {
                           />
                         )}
                       </Grid> */}
-                      <LoadingButtonStyle
-                        fullWidth
-                        color="inherit"
-                        size="large"
-                        disabled={isLoading}
-                        type="submit"
-                        variant="contained"
-                        loading={isLoading}
-                        sx={{ textTransform: "none" }}
-                      >
-                        Send
-                      </LoadingButtonStyle>
-                    </Grid>
-                  </form>
-                </ForgetPasswordBox>
-              </Grid>
-            </Grid>
-          </Grid>
-        </>
-        {/* <Login /> */}
+                  <LoadingButtonStyle
+                    fullWidth
+                    color="inherit"
+                    size="large"
+                    disabled={isLoading}
+                    type="submit"
+                    variant="contained"
+                    loading={isLoading}
+                    sx={{ textTransform: "none" }}
+                  >
+                    Send
+                  </LoadingButtonStyle>
+                </Grid>
+              </form>
+            </ForgetPasswordBox>
+          </Box>
+        </Box>
       </Box>
     </>
   );

@@ -56,7 +56,7 @@ const ProjectDetailsButton = ({ range, setRange, value, handleProjectDetailsOpen
           )}
           {/* <DetailChartarButton role={role} /> */}
           {role !== "project_coordinator" && <DownloadEffectiveHours />}
-          {/* <DetailChartarButton role={role} /> */}
+          <DetailChartarButton role={role} />
         </>
       )}
       {project_status === "hours-approved" && (

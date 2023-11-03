@@ -97,7 +97,7 @@ const OngoingJob = ({ action }) => {
   useEffect(() => {
     // dispatch(getAllJobs());
     dispatch(getAllAssignedJob());
-    dispatch(getAllUsers());
+    // dispatch(getAllUsers());
   }, []);
 
   useEffect(() => {

@@ -120,7 +120,7 @@ const Routers = () => {
         </Route>
         {/* ---------- ------------ ---------------- */}
 
-        <Route path={"/forgetpassword"} element={<ForgetPassword />} />
+        {/* <Route path={"/forgetpassword"} element={<ForgetPassword />} /> */}
         <Route path={"/reset-password/:id/:token"} element={<ResetPassword />} />
 
         {/* ----------- Project List ------------ */}

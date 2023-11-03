@@ -22,6 +22,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useReset from "../../../customHooks/useReset";
 import { setTheme } from "../../../features/slice/themeSlice";
 import { logout } from "../../../features/slice/userSlice";
+import { persistor } from "../../../features/store/store";
 import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import bell from "../CustomSvgIcons/animation_lnnh2ad0.json";
 import NotificationModal from "../Notification/NotificationModal";
@@ -47,6 +48,10 @@ const Header = () => {
   const handleLogOut = () => {
     // const role = user.user.role;
     dispatch(logout()).then(() => {
+      persistor.pause();
+      persistor.flush().then(() => {
+        return persistor.purge();
+      });
       navigate("/");
       setAnchorEl(null);
       reset(dispatch, role);
@@ -104,13 +109,15 @@ const Header = () => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-        }}>
+        }}
+      >
         <Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-          }}>
+          }}
+        >
           <GoBackButton handleGoBack={handleGoBack} />
 
           <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -134,7 +141,8 @@ const Header = () => {
                   },
                 }}
                 aria-describedby={id}
-                onClick={handleNotificationOpen}>
+                onClick={handleNotificationOpen}
+              >
                 {allUnreadNotifications.length === 0 ? (
                   <>
                     <Lottie animationData={bell} {...lottieOptions} />
@@ -157,7 +165,8 @@ const Header = () => {
                       sx={{
                         color: "neutral.800",
                       }}
-                      variant="wpf_p3_medium">
+                      variant="wpf_p3_medium"
+                    >
                       {firstName} {lastName}
                     </Typography>
 
@@ -204,7 +213,8 @@ const Header = () => {
                       anchorEl={anchorEl}
                       open={open}
                       autoFocus={false}
-                      onClose={handleClose}>
+                      onClose={handleClose}
+                    >
                       <MenuItem
                         sx={{
                           borderBottom: "1px solid #F0F5FA",
@@ -215,13 +225,15 @@ const Header = () => {
                           // height: "50px",
                           height: { xl: "50px", xxl: "50px", lg: "37px" },
                         }}
-                        onClick={handleEditProfile}>
+                        onClick={handleEditProfile}
+                      >
                         <ListItemIcon>
-                          <PersonOutlineIcon sx={{height:{ xl: "25px", xxl: "25px", lg: "18px" }}}/>
+                          <PersonOutlineIcon sx={{ height: { xl: "25px", xxl: "25px", lg: "18px" } }} />
                         </ListItemIcon>
                         <ListItemText
                           primaryTypographyProps={{ fontSize: { xl: "16px", xxl: "16px", lg: "12px" } }}
-                          sx={{ color: "neutral.N300" }}>
+                          sx={{ color: "neutral.N300" }}
+                        >
                           Edit Profile
                         </ListItemText>
                       </MenuItem>
@@ -233,13 +245,15 @@ const Header = () => {
                           py: 1.5,
                           height: { xl: "50px", xxl: "50px", lg: "37px" },
                           width: { xl: "182px", xxl: "182px", lg: "155px" },
-                        }}>
-                        <ListItemIcon >
-                          <LogoutIcon sx={{height:{ xl: "25px", xxl: "25px", lg: "18px" }}} />
+                        }}
+                      >
+                        <ListItemIcon>
+                          <LogoutIcon sx={{ height: { xl: "25px", xxl: "25px", lg: "18px" } }} />
                         </ListItemIcon>
                         <ListItemText
                           primaryTypographyProps={{ fontSize: { xl: "16px", xxl: "16px", lg: "12px" } }}
-                          sx={{ color: "neutral.N300" }}>
+                          sx={{ color: "neutral.N300" }}
+                        >
                           Logout
                         </ListItemText>
                       </MenuItem>
@@ -253,7 +267,8 @@ const Header = () => {
                         justifyContent: "center",
                         cursor: "pointer",
                         padding: "0px 8px 0px 14px",
-                      }}>
+                      }}
+                    >
                       <Avatar
                         alt="Profile Picture"
                         src={image}

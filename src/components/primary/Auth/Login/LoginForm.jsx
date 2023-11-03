@@ -43,7 +43,7 @@ const LoginForm = () => {
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string().required("Email is required").email("Email must be a valid email address"),
-    password: Yup.string().required("Password is required"),
+    password: Yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
   });
 
   const methods = useForm({

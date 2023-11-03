@@ -38,7 +38,7 @@ const layoutMenuOption = () => {
   const accountManagerOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "Identity Verification", icon: CourseSvg },
-
+    
     // { name: "All Users", icon: UserSvg },
     // { name: "All Projects", icon: ProjectSvg },
 
@@ -53,6 +53,7 @@ const layoutMenuOption = () => {
   const verifiedAccountManagerOptions = [
     { name: "Dashboard", icon: DashboardSvg },
     { name: "All Projects", icon: ProjectSvg },
+    { name: "All Users", icon: UserSvg },
 
     // { name: "Projects", icon: ProjectSvg },
     // { name: "Jobs", icon: JobSvg },

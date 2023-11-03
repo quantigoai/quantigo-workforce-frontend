@@ -81,7 +81,8 @@ const ProjectDetailsHeader = ({
             role === "account_manager" ||
             role === "delivery_manager" ||
             role === "project_coordinator" ||
-            role === "project_manager" ? (
+            role === "project_manager" ||
+            role == "project_lead" ? (
               <ProjectDetailsButton
                 range={range}
                 setRange={setRange}

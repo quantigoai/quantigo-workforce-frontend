@@ -57,7 +57,7 @@ export default function ProjectSelectFIlterField({ options, label, handleChange,
         name={name}
       >
         <MenuItem disabled value="">
-          <Typography color="neutral.N300" variant="h7">
+          <Typography color="neutral.N300" sx={{fontSize: { xl: "14px", xxl: "16px", lg: "12px" }}}>
             {label}
           </Typography>
         </MenuItem>

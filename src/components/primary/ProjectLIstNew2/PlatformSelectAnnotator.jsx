@@ -26,7 +26,7 @@ const PlatformSelectAnnotator = ({ handleChangeAnnotatorFilter, name, label, opt
         sx={{
           color: "blue",
           height: "36px",
-          fontSize: "14px",
+          fontSize: { lg: "10px", xl: "12px", xxl: "14px" } ,
           // height: "36px",
           // padding: "3px",
           margin: "0px",
@@ -46,11 +46,11 @@ const PlatformSelectAnnotator = ({ handleChangeAnnotatorFilter, name, label, opt
         onChange={handleChangeAnnotatorFilter}
         name={name}
       >
-        <MenuItem disabled value="">
-          <span style={{ color: "grey" }}>{label}</span>
+        <MenuItem disabled value="" sx={{fontSize: { lg: "10px", xl: "12px", xxl: "14px" }}}>
+          <span style={{ color: "grey", }}>{label}</span>
         </MenuItem>
         {options.map((option) => (
-          <MenuItem sx={{ fontSize: "14px" }} key={option.value} fullWidth value={option.value}>
+          <MenuItem sx={{ fontSize: { lg: "10px", xl: "12px", xxl: "14px" } }} key={option.value} fullWidth value={option.value}>
             <Typography variant="h7" color="primary.B200">
               {option.label}
             </Typography>

@@ -31,8 +31,7 @@ const ProjectHeader = ({
         className="contentHeader"
         sx={{
           backgroundColor: "neutral.N000",
-        }}
-      >
+        }}>
         <Box sx={{ width: "30%", padding: "12px 16px" }}>
           <Grid
             container
@@ -40,8 +39,7 @@ const ProjectHeader = ({
               display: "flex",
               alignContent: "center",
               alignItems: "center",
-            }}
-          >
+            }}>
             {/* TODO Need to remove the unnecessary custom button */}
             <CommonHeader title="Projects" customButton="Create User" />
           </Grid>
@@ -53,8 +51,7 @@ const ProjectHeader = ({
             justifyContent: "space-between",
             alignItems: "center",
             padding: "12px 20px",
-          }}
-        >
+          }}>
           <Paper
             sx={{
               p: "2px 4px",
@@ -71,8 +68,7 @@ const ProjectHeader = ({
               borderRadius: "8px",
               outline: "none",
               boxShadow: "none",
-            }}
-          >
+            }}>
             <IconButton disabled type="button" sx={{ p: "5px" }} aria-label="search">
               <SearchIcon />
             </IconButton>
@@ -97,8 +93,7 @@ const ProjectHeader = ({
                 sx={{
                   height: "30px",
                   minWidth: "40px",
-                }}
-              >
+                }}>
                 <ClearIcon
                   sx={{
                     height: {
@@ -121,7 +116,9 @@ const ProjectHeader = ({
             sx={{
               px: "0px 0px",
               backgroundColor: "primary.B008",
-              mx: 2,
+              // mx: 2,
+              ml: 2,
+              mr: role === "admin" || role === "project_manager" || role === "delivery_manager" ? 2 : 0,
               borderRadius: "8px",
               height: {
                 lg: "30px",
@@ -129,18 +126,14 @@ const ProjectHeader = ({
                 xxl: "40px",
               },
             }}
-            aria-label="menu"
-          >
+            aria-label="menu">
             {isFilter ? (
               <FilterListOffIcon sx={{ color: "primary.main" }} />
             ) : (
               <FilterListIcon sx={{ color: "primary.main" }} />
             )}
           </IconButton>
-          {role === "admin" ||
-          role === "project_lead" ||
-          role === "project_manager" ||
-          role === "delivery_manager" ? (
+          {role === "admin" || role === "project_manager" || role === "delivery_manager" ? (
             <Button
               sx={{
                 textTransform: "none",
@@ -164,8 +157,7 @@ const ProjectHeader = ({
                 },
                 padding: "16px 10px",
               }}
-              onClick={handleProjectCreateOpen}
-            >
+              onClick={handleProjectCreateOpen}>
               Create Project
             </Button>
           ) : (

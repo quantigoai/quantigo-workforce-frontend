@@ -32,7 +32,7 @@ const CustomButton = ({
         justifyContent: "center",
       }}
     >
-      {role === "admin" && pathname === "/allprojects" && (
+      {(role === "admin" ||role==="delivery_manager" ||role==="project_manager") && pathname === "/allprojects" && (
         <>
           <Button
             sx={{ color: "#2E58FF", paddingX: "5px", minWidth: "16px" }}

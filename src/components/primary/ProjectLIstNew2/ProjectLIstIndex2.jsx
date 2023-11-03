@@ -310,7 +310,7 @@ const ProjectLIstIndex2 = () => {
             {isDataLoading ? (
               <LoadingComponent />
             ) : (
-              <TableWrapper
+            <TableWrapper
                 role={role}
                 handleDetailsPage={handleDetailsPage}
                 handleClick={handleClick}

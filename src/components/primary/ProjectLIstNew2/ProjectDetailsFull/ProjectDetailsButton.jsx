@@ -30,38 +30,53 @@ const ProjectDetailsButton = ({ range, setRange, value, handleProjectDetailsOpen
         <>
           {/* <DatePickerProgress /> */}
 
-          <DateRangeComponent range={range} setRange={setRange} />
+          {role !== "project_coordinator" && <DateRangeComponent range={range} setRange={setRange} />}
           <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
           <DetailChartarButton role={role} />
         </>
       )}
       {project_status === "completed" && (
         <>
-          {role !== "account_manager" && <DetailsUploadHourBUtton value={project_status} role={role} />}{" "}
-          <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
+          {(
+            <DetailsUploadHourBUtton value={project_status} role={role} />
+          )}
+          {role !== "project_coordinator" && (
+            <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
+          )}
           <DetailChartarButton role={role} />
         </>
       )}
       {project_status === "hours-added" && (
         <>
+          {/* {(role !== "project_coordinator" || role !== "delivery_manager" || role !== "project_manager") && ( */}
           <DetailsUploadHourBUtton value={project_status} role={role} />
-          <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
+          {/* )} */}
+          {role !== "project_coordinator" && (
+            <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
+          )}
           {/* <DetailChartarButton role={role} /> */}
-          <DownloadEffectiveHours />
+          {role !== "project_coordinator" && <DownloadEffectiveHours />}
+          {/* <DetailChartarButton role={role} /> */}
         </>
       )}
       {project_status === "hours-approved" && (
         <>
           {/* <DetailsUploadHourBUtton value={value} role={role} /> */}
-          <ApproveProjectPaymentButton role={role} />
-          <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
+          {role !== "project_coordinator" && <ApproveProjectPaymentButton role={role} />}
+          {role !== "project_coordinator" && (
+            <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
+          )}
+          <DownloadEffectiveHours />
           <DetailChartarButton role={role} />
         </>
       )}
       {project_status === "payment-done" && (
         <>
           {/* <DetailsUploadHourBUtton value={value} role={role} /> */}
-          <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
+          {role !== "project_coordinator" && (
+            <DetailsButton role={role} handleProjectDetailsOpen={handleProjectDetailsOpen} />
+          )}{" "}
+          <DownloadEffectiveHours />
           <DetailChartarButton role={role} />
         </>
       )}

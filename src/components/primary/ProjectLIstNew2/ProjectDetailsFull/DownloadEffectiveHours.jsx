@@ -77,6 +77,7 @@ const DownloadEffectiveHours = () => {
             backgroundColor: "#B6C9F0",
             color: "#FFFFFF",
           },
+          mr: 1,
         }}
         onClick={fetchData}
       >

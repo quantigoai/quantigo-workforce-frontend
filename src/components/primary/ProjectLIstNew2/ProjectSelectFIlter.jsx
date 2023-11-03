@@ -33,8 +33,7 @@ const ProjectSelectFIlter = ({
         pr: 2,
         pl: 2,
         pY: "6px",
-      }}
-    >
+      }}>
       <Stack
         sx={{
           width: "100%",
@@ -42,17 +41,19 @@ const ProjectSelectFIlter = ({
           py: "6px",
           display: "flex",
           justifyContent: "center",
-        }}
-      >
+        }}>
         <Stack
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
             flexDirection: "row",
-          }}
-        >
-          {role === "admin" ? (
+          }}>
+          {role === "admin" ||
+          role === "delivery_manager" ||
+          role === "project_manager" ||
+          role === "project_coordinator" ||
+          role === "account_manager " ? (
             <>
               <Stack
                 sx={{
@@ -64,8 +65,7 @@ const ProjectSelectFIlter = ({
 
                   gap: 2,
                   // backgroundColor: "blue",
-                }}
-              >
+                }}>
                 <ProjectSelectFIlterField
                   label={"Pdr Options"}
                   name="pdr"
@@ -107,8 +107,7 @@ const ProjectSelectFIlter = ({
                 gap: 2,
 
                 // backgroundColor: "blue",
-              }}
-            >
+              }}>
               <Box
                 sx={{
                   display: "flex",
@@ -119,13 +118,11 @@ const ProjectSelectFIlter = ({
                   height: "30px",
 
                   width: { lg: "38%", xl: "28%", xxl: "20%" },
-                }}
-              >
+                }}>
                 <Typography
-                  sx={{ opacity: "0.7", ml: 1, backgroundColor: "#F4F7FE" }}
-                  color={"#3C4D6B"}
-                  variant="wpf_p3_regular"
-                >
+                  sx={{ opacity: "0.7", ml: 1,  }}
+                  color={"neutral.N300"}
+                  variant="wpf_p3_regular">
                   {" "}
                   Choose Platform :
                 </Typography>
@@ -178,8 +175,7 @@ const ProjectSelectFIlter = ({
                 xl: 2,
                 xxl: 2,
               },
-            }}
-          >
+            }}>
             <Button
               onClick={() => handleClearFilter()}
               sx={{
@@ -188,20 +184,19 @@ const ProjectSelectFIlter = ({
                 backgroundColor: "#FF4757",
                 color: "white",
                 fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
-          
+
                 height: {
                   lg: "30px",
                   xl: "36px",
                   xxl: "36px",
                 },
-      
+
                 "&:hover": {
                   backgroundColor: "#F53142",
                 },
               }}
               size="medium"
-              color="error"
-            >
+              color="error">
               Clear
             </Button>
           </Stack>

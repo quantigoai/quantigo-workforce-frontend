@@ -21,7 +21,7 @@ const StickyDocViewTableHead = ({ column }) => {
         }}
       >
         <Typography variant="wpf_p4_semiBold_2" color="neutral.550">
-          Documents
+          DOCUMENTS
         </Typography>
       </TableCell>
     </>

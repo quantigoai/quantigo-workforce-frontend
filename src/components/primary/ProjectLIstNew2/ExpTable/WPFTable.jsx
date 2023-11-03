@@ -58,7 +58,7 @@ export default function WPFTable({
                 ))}
 
                 {role === "recruitment_manager" && location.pathname === `/all-users` && (
-                  <StickyDocViewTableHead column={{ width: "130px" }} />
+                  <StickyDocViewTableHead column={{ width: "100px" }} />
                 )}
 
                 {location.pathname !== `/projectDetails/${id}` &&

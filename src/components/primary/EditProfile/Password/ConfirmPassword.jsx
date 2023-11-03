@@ -1,5 +1,5 @@
-import {Visibility} from "@mui/icons-material";
-import {FormControl, Grid, InputAdornment, styled, TextField, Typography} from "@mui/material";
+import { Visibility } from "@mui/icons-material";
+import { FormControl, Grid, InputAdornment, styled, TextField, Typography } from "@mui/material";
 import React from "react";
 import PasswordIcon from "../../../../assets/images/dashboardIcon/PasswordIcon.svg";
 
@@ -7,11 +7,19 @@ const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "1px solid #E6ECF5 !important",
     borderRadius: "8px",
+    fontFamily: "Inter",
     // backgroundColor: "#F2F6FC",
   },
   "& .MuiInputBase-root": {
     height: "42px",
-    fontSize: "14px",
+    fontSize: "12px",
+    fontFamily: "Inter",
+    "@media(max-width:1439px)": {
+      fontSize: "10px",
+    },
+    "@media(min-width: 1920px)": {
+      fontSize: "14px",
+    },
     // backgroundColor: editAble ? "" : "#F2F6FC",
   },
 }));
@@ -33,10 +41,11 @@ const ConfirmPassword = ({ setConfirmPassword, confirmPassword }) => {
         <FormControl fullWidth>
           <Typography
             sx={{
-              fontSize: "12px",
+              fontSize: { lg: "10px", xl: "12px", xxl: "12px" },
               color: "neutral.N300",
               fontWeight: "500",
               mb: 1,
+              fontFamily: "Inter",
             }}
           >
             Confirm New Password

@@ -1,9 +1,9 @@
-import {Box, Button, Grid} from "@mui/material";
-import React, {useState} from "react";
-import {useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { Box, Button, Grid } from "@mui/material";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import useToaster from "../../../../../customHooks/useToaster";
-import {changePassword, logout} from "../../../../../features/slice/userSlice";
+import { changePassword, logout } from "../../../../../features/slice/userSlice";
 import ConfirmPassword from "../../Password/ConfirmPassword";
 import CurrentPasswordfield from "../../Password/CurrentPasswordfield";
 import ResetPassword from "../../Password/ResetPassword";
@@ -37,7 +37,7 @@ const PasswordChangeIndex = () => {
     <>
       <Box
         sx={{
-          width: "50%",
+          width: { lg: "70%", xl: "60%", xxl: "50%" },
           padding: "2%",
         }}
       >
@@ -50,16 +50,17 @@ const PasswordChangeIndex = () => {
         <Grid container sx={{ padding: "1%" }}>
           <ConfirmPassword setConfirmPassword={setConfirmPassword} confirmPassword={confirmPassword} />
         </Grid>
-        <Grid container sx={{ justifyContent: "center", paddingTop: "2%" }}>
+        <Grid container sx={{ justifyContent: "start", paddingTop: "2%" }}>
           <Button
             variant="contained"
             sx={{
               textTransform: "none",
+              // width: { lg: "990px", xl: "100%", xxl: "422px" },
               width: "100%",
               borderRadius: "8px",
               height: "40px",
               backgroundColor: "#2E58FF",
-              fontSize: "14px",
+              fontSize: { lg: "12px", xl: "14px", xxl: "14px" },
               color: "#FFFFFF",
               "&:hover": {
                 backgroundColor: "#244EF5",

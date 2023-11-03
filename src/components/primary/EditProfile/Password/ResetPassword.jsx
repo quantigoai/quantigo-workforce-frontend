@@ -1,6 +1,6 @@
-import {Visibility} from "@mui/icons-material";
+import { Visibility } from "@mui/icons-material";
 import PasswordIcon from "../../../../assets/images/dashboardIcon/PasswordIcon.svg";
-import {FormControl, Grid, InputAdornment, styled, TextField, Typography,} from "@mui/material";
+import { FormControl, Grid, InputAdornment, styled, TextField, Typography } from "@mui/material";
 import React from "react";
 
 const MyTextField = styled(TextField)(() => ({
@@ -11,8 +11,14 @@ const MyTextField = styled(TextField)(() => ({
   },
   "& .MuiInputBase-root": {
     height: "42px",
-    fontSize: "14px",
-    // backgroundColor: editAble ? "" : "#F2F6FC",
+    fontSize: "12px",
+    fontFamily: "Inter",
+    "@media(max-width:1439px)": {
+      fontSize: "10px",
+    },
+    "@media(min-width: 1920px)": {
+      fontSize: "14px",
+    },
   },
 }));
 const ResetPassword = ({ setResetPassword, resetPassword }) => {
@@ -26,18 +32,20 @@ const ResetPassword = ({ setResetPassword, resetPassword }) => {
   const handlePassword = (e) => {
     setResetPassword(e);
   };
-  
+
   return (
     <>
-      <Grid item xs={12} sx={{ mb: 2  }}>
+      <Grid item xs={12} sx={{ mb: 2 }}>
         <FormControl fullWidth>
           <Typography
             sx={{
-              fontSize: "12px",
+              fontSize: { lg: "10px", xl: "12px", xxl: "12px" },
               color: "neutral.N300",
               fontWeight: "500",
               mb: 1,
-            }}>
+              fontFamily: "Inter",
+            }}
+          >
             New Password
           </Typography>
           <MyTextField
@@ -60,15 +68,15 @@ const ResetPassword = ({ setResetPassword, resetPassword }) => {
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
                   sx={{ cursor: "pointer" }}
-                  position="end">
-                    {!showPassword ? <img src={PasswordIcon} /> : <Visibility />}
+                  position="end"
+                >
+                  {!showPassword ? <img src={PasswordIcon} /> : <Visibility />}
                 </InputAdornment>
               ),
             }}
           />
         </FormControl>
       </Grid>
-     
     </>
   );
 };

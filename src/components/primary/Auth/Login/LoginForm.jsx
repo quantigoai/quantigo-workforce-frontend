@@ -59,11 +59,11 @@ const LoginForm = () => {
 
   const onSubmit = async (data) => {
     dispatch(login(data)).then((action) => {
-      if (action.payload?.status === 200) {
+      if (action.error) {
+        toast.trigger(action.error.message, "error");
+      } else {
         toast.trigger("Login Successful", "success");
         navigate("/dashboard");
-      } else {
-        toast.trigger("Login failed", "error");
       }
     });
   };

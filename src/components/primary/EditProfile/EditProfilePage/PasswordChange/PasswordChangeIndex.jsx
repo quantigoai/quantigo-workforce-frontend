@@ -1,12 +1,13 @@
 import { Box, Button, Grid } from "@mui/material";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useToaster from "../../../../../customHooks/useToaster";
 import { changePassword, logout } from "../../../../../features/slice/userSlice";
 import ConfirmPassword from "../../Password/ConfirmPassword";
 import CurrentPasswordfield from "../../Password/CurrentPasswordfield";
 import ResetPassword from "../../Password/ResetPassword";
+import ConfirmModal from "./ConfirmModal";
 
 const PasswordChangeIndex = () => {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -15,9 +16,12 @@ const PasswordChangeIndex = () => {
   const [buttonDisable, setButtonDisable] = useState(true);
   const [newPassHelperText, setNewPassHelperText] = useState("Password must be at least 6 characters long");
   const [confirmPassHelperText, setConfirmPassHelperText] = useState("");
-  // const [helperText, sethelperText] = useState("Password must be at least 6 characters long");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const { isLoading } = useSelector((state) => state.user);
 
   const handleCurrentPassword = (currentPassword) => {
     setCurrentPassword(currentPassword);
@@ -31,7 +35,6 @@ const PasswordChangeIndex = () => {
           setButtonDisable(false);
           setNewPassHelperText("");
           setConfirmPassHelperText("");
-
         } else {
           setButtonDisable(true);
           setConfirmPassHelperText("Confirm Password is not same as New Password");
@@ -70,16 +73,16 @@ const PasswordChangeIndex = () => {
       oldPassword: currentPassword,
       newPassword: confirmPassword,
     };
-
     dispatch(changePassword(data)).then((action) => {
       if (action.error) {
-        console.log("hit");
         toast.trigger(action.error.message, "error");
+        setOpen(false);
       } else {
         dispatch(logout()).then(() => {
           navigate("/");
         });
         toast.trigger("Password changed successfully", "success");
+        setOpen(false);
       }
     });
   };
@@ -132,12 +135,18 @@ const PasswordChangeIndex = () => {
               },
             }}
             disabled={buttonDisable}
-            onClick={() => handleChangePasswordSubmit()}
+            onClick={() => handleOpen()}
           >
             Change Password
           </Button>
         </Grid>
       </Box>
+      <ConfirmModal
+        open={open}
+        handleClose={handleClose}
+        handleChangePasswordSubmit={handleChangePasswordSubmit}
+        isLoading={isLoading}
+      />
     </>
   );
 };

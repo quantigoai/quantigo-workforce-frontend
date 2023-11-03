@@ -18,7 +18,6 @@ import { LoadingButtonStyle } from "../Login/Login";
 const VerifyEmail = () => {
   const dispatch = useDispatch();
   const { isLoading, user } = useSelector((state) => state.user);
-  console.log("🚀 ~ file: VerifyEmail.jsx:21 ~ VerifyEmail ~ user:", user)
   const toast = useToaster();
   const [sendMessage, setSendMessage] = React.useState("");
 

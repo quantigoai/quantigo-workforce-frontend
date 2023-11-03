@@ -13,9 +13,10 @@ const MyInputField = styled(TextField)(() => ({
   },
   "& .MuiInputBase-root": {
     width: "100%",
-    height: "45PX",
+    height: "40PX",
     fontSize: "13px",
     color: "neutral.N300",
+    // color:"red",
     backgroundColor: "neutral.N000",
   },
 }));

@@ -23,7 +23,7 @@ const MyTextField = styled(TextField)(() => ({
     // backgroundColor: editAble ? "" : "#F2F6FC",
   },
 }));
-const ConfirmPassword = ({ setConfirmPassword, confirmPassword, handlePassword }) => {
+const ConfirmPassword = ({ setConfirmPassword, confirmPassword, handlePassword,helperText }) => {
   const [showPassword, setShowPassword] = React.useState(false);
   //   const [password, setPassword] = useState("");
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -48,11 +48,7 @@ const ConfirmPassword = ({ setConfirmPassword, confirmPassword, handlePassword }
             Confirm New Password
           </Typography>
           <MyTextField
-            // type={isNumber || isNumberPdr ? "number" : "text"}
-
-            //   id="outlined-basic"
             variant="outlined"
-            // {...field}
             fullWidth
             type={showPassword ? "text" : "password"}
             id="filled-adornment-password"
@@ -73,6 +69,7 @@ const ConfirmPassword = ({ setConfirmPassword, confirmPassword, handlePassword }
                 </InputAdornment>
               ),
             }}
+            helperText={helperText}
           />
         </FormControl>
       </Grid>

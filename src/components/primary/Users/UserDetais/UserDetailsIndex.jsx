@@ -87,354 +87,300 @@ const UserDetailsIndex = ({ user ,openDetails}) => {
   };
   const handleClose = () => setOpenModal(false);
   const list = (anchor) => (
-   <>
-    { openDetails===true &&<Box
-      sx={{
-        width: anchor === "top" || anchor === "bottom" ? "auto" : 550,
-      }}
-      role="presentation"
-    >
-      <Box sx={{ paddingTop: "4%", paddingLeft: "4%" }}>
-        <Grid container>
-          <Grid item xs={10}>
-            <Typography variant="h6" sx={{ color: "#090080" }}>
-              Details 
-            </Typography>
-          </Grid>
-          <Grid item xs={2} sx={{ justifyContent: "right" }}>
-            <Button onClick={toggleDrawer(anchor, false)}>
-              <img alt="cross" src={u_multiply} />
-            </Button>
-          </Grid>
-        </Grid>
-      </Box>
-      <Box sx={{ paddingLeft: "4%", paddingTop: "2%", paddingRight: "1%" }}>
-        <Grid container>
-          {user.role === "admin" ? (
-            <></>
-          ) : (
-            <>
-              <Grid container sx={{ paddingBottom: "4%" }}>
-                <Grid
-                  item
-                  xs={3}
-                  sx={{ justifyContent: "left", paddingBottom: "2%" }}
-                >
+    <>
+      {openDetails === true && (
+        <Box
+          sx={{
+            width: anchor === "top" || anchor === "bottom" ? "auto" : 550,
+          }}
+          role="presentation"
+        >
+          <Box sx={{ paddingTop: "4%", paddingLeft: "4%" }}>
+            <Grid container>
+              <Grid item xs={10}>
+                <Typography variant="h6" sx={{ color: "#090080" }}>
+                  Details
+                </Typography>
+              </Grid>
+              <Grid item xs={2} sx={{ justifyContent: "right" }}>
+                <Button onClick={toggleDrawer(anchor, false)}>
+                  <img alt="cross" src={u_multiply} />
+                </Button>
+              </Grid>
+            </Grid>
+          </Box>
+          <Box sx={{ paddingLeft: "4%", paddingTop: "2%", paddingRight: "1%" }}>
+            <Grid container>
+              {user.role === "admin" ? (
+                <></>
+              ) : (
+                <>
+                  <Grid container sx={{ paddingBottom: "4%" }}>
+                    <Grid item xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
+                      <Typography variant="h8" sx={{ color: "#969CAF" }}>
+                        Skill
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={7} sx={{ paddingLeft: "5%" }}>
+                      <Grid container spacing={1}>
+                        {user.skills?.map((item) => (
+                          <Grid key={item._id} item gap={1}>
+                            <Chip
+                              sx={{
+                                color: "#00A671",
+                                background: "rgba(0, 166, 113, 0.12)",
+                              }}
+                              label={capitalizeFirstLetter(item.name)}
+                            />
+                          </Grid>
+                        ))}
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </>
+              )}
+              <Grid container>
+                <Grid item xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
                   <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                    Skill 
+                    Role
                   </Typography>
                 </Grid>
                 <Grid item xs={7} sx={{ paddingLeft: "5%" }}>
-                  <Grid container spacing={1}>
-                    {user.skills?.map((item) => (
-                      <Grid key={item._id} item gap={1}>
-                        <Chip
-                          sx={{
-                            color: "#00A671",
-                            background: "rgba(0, 166, 113, 0.12)",
-                          }}
-                          label={capitalizeFirstLetter(item.name)}
-                        />
-                      </Grid>
-                    ))}
+                  <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                    {user.role === "level_1_annotator"
+                      ? "Level 1 Annotator"
+                      : user.role === "level_2_annotator"
+                      ? "Level 2 Annotator"
+                      : user.role === "level_0_annotator"
+                      ? "Level 0 Annotator"
+                      : user.role === "level_3_annotator"
+                      ? "Level 3 Annotator"
+                      : capitalizeFirstLetter(user?.role)}
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid container>
+                <Grid item xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
+                  <Typography variant="h8" sx={{ color: "#969CAF" }}>
+                    Hub
+                  </Typography>
+                </Grid>
+                <Grid item xs={7} sx={{ paddingLeft: "5%" }}>
+                  <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                    {customHub(user.qaiUserName)}
+                  </Typography>
+                </Grid>
+              </Grid>
+
+              <Grid container>
+                <Grid item xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
+                  <Typography variant="h8" sx={{ color: "#969CAF" }}>
+                    Gender
+                  </Typography>
+                </Grid>
+                <Grid item xs={7} sx={{ paddingLeft: "5%" }}>
+                  <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                    {user.gender === "male" ? "Male" : user.gender === "female" ? "Female" : "Others"}
+                    {/* {capitalizeFirstLetter(user?.gender)} */}
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid container>
+                <Grid item xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
+                  <Typography variant="h8" sx={{ color: "#969CAF" }}>
+                    Date Of Birth
+                  </Typography>
+                </Grid>
+                <Grid item xs={7} sx={{ paddingLeft: "5%" }}>
+                  <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                    <TakenTime takenAt={user.dob} />
+                  </Typography>
+                </Grid>
+              </Grid>
+
+              <Grid container>
+                <Grid item xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
+                  <Typography variant="h8" sx={{ color: "#969CAF" }}>
+                    Phone No
+                  </Typography>
+                </Grid>
+                <Grid item xs={7} sx={{ paddingLeft: "5%" }}>
+                  <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                    {user.contactNom}
+                  </Typography>
+                </Grid>
+              </Grid>
+
+              {user.role === "admin" ? (
+                <></>
+              ) : (
+                <>
+                  <Grid container>
+                    <Grid xs={3} item sx={{ justifyContent: "left", paddingBottom: "2%" }}>
+                      <Typography variant="h8" sx={{ color: "#969CAF" }}>
+                        Complete Course
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={7} sx={{ paddingLeft: "5%" }}>
+                      {user.completedCourses?.length === 0 ? (
+                        <>
+                          <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                            No Course Completed
+                          </Typography>
+                        </>
+                      ) : (
+                        <>
+                          <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
+                            {user?.completedCourses?.length}
+                          </Typography>
+                        </>
+                      )}
+                    </Grid>
+                  </Grid>
+                </>
+              )}
+              <Grid container>
+                <Grid item xs={3} sx={{ justifyContent: "left", paddingBottom: "2%" }}>
+                  <Typography variant="h8" sx={{ color: "#969CAF" }}>
+                    Address
+                  </Typography>
+                </Grid>
+                <Grid item xs={7} sx={{ paddingLeft: "5%" }}>
+                  {user.presentAddress}
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid sx={{ border: "1px solid #DADCDF" }}></Grid>
+          </Box>
+          {role === "delivery_manager" ? (
+            <></>
+          ) : (
+            <>
+              <Box sx={{ paddingTop: "2%", paddingLeft: "4%" }}>
+                <Grid container sx={{ paddingRight: "3%" }}>
+                  <Grid item xs={6} sx={{ paddingRight: "3%" }}>
+                    {" "}
+                    {user.documentNo ? (
+                      <ButtonStyle
+                        variant="outlined"
+                        fullWidth
+                        onClick={() =>
+                          handleDetailNid(user.documentsImage, user.documentNo, user.documentsType, user.name)
+                        }
+                      >
+                        Document
+                      </ButtonStyle>
+                    ) : (
+                      <ButtonStyle
+                        variant="outlined"
+                        fullWidth
+                        disabled
+                        onClick={() =>
+                          handleDetailNid(user.documentsImage, user.documentNo, user.documentsType, user.name)
+                        }
+                      >
+                        Document
+                      </ButtonStyle>
+                    )}
+                  </Grid>
+                  <Grid item xs={6}>
+                    {user.signImage ? (
+                      <ButtonStyle variant="outlined" fullWidth onClick={() => handleClick(user.signImage)}>
+                        NDA
+                      </ButtonStyle>
+                    ) : (
+                      <ButtonStyle variant="outlined" fullWidth disabled onClick={() => handleClick(user.signImage)}>
+                        NDA
+                      </ButtonStyle>
+                    )}
                   </Grid>
                 </Grid>
-              </Grid>
+              </Box>
             </>
           )}
-          <Grid container>
-            <Grid
-              item
-              xs={3}
-              sx={{ justifyContent: "left", paddingBottom: "2%" }}
-            >
-              <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                Role 
-              </Typography>
-            </Grid>
-            <Grid item xs={7} sx={{ paddingLeft: "5%" }}>
-              <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                {user.role === "level_1_annotator"
-                  ? "Level 1 Annotator"
-                  : user.role === "level_2_annotator"
-                  ? "Level 2 Annotator"
-                  : user.role === "level_0_annotator"
-                  ? "Level 0 Annotator"
-                  : user.role === "level_3_annotator"
-                  ? "Level 3 Annotator"
-                  : capitalizeFirstLetter(user?.role)}
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid container>
-            <Grid
-              item
-              xs={3}
-              sx={{ justifyContent: "left", paddingBottom: "2%" }}
-            >
-              <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                Hub
-              </Typography>
-            </Grid>
-            <Grid item xs={7} sx={{ paddingLeft: "5%" }}>
-              <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                {customHub(user.qaiUserName)}
-              </Typography>
-            </Grid>
-          </Grid>
+          <Box sx={{ paddingTop: "2%", paddingLeft: "4%" }}></Box>
+          {/* role Change */}
 
-          <Grid container>
-            <Grid
-              item
-              xs={3}
-              sx={{ justifyContent: "left", paddingBottom: "2%" }}
-            >
-              <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                Gender
-              </Typography>
+          <Box sx={{ paddingTop: "2%", paddingLeft: "4%" }}>
+            <Grid container>
+              <Grid item xs={10}>
+                <Typography variant="h7" sx={{ color: "#090080" }}>
+                  Change Role
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid item xs={7} sx={{ paddingLeft: "5%" }}>
-              <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                {user.gender === "male"
-                  ? "Male"
-                  : user.gender === "female"
-                  ? "Female"
-                  : "Others"}
-                {/* {capitalizeFirstLetter(user?.gender)} */}
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid container>
-            <Grid
-              item
-              xs={3}
-              sx={{ justifyContent: "left", paddingBottom: "2%" }}
-            >
-              <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                Date Of Birth
-              </Typography>
-            </Grid>
-            <Grid item xs={7} sx={{ paddingLeft: "5%" }}>
-              <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                <TakenTime takenAt={user.dob} />
-              </Typography>
-            </Grid>
-          </Grid>
+          </Box>
 
-          <Grid container>
-            <Grid
-              item
-              xs={3}
-              sx={{ justifyContent: "left", paddingBottom: "2%" }}
-            >
-              <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                Phone No
-              </Typography>
-            </Grid>
-            <Grid item xs={7} sx={{ paddingLeft: "5%" }}>
-              <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                {user.phone}
-              </Typography>
-            </Grid>
-          </Grid>
-
+          <Box sx={{ padding: "4%" }}>
+            <RoleChange user={user} />
+          </Box>
           {user.role === "admin" ? (
             <></>
           ) : (
             <>
-              <Grid container>
-                <Grid
-                  xs={3}
-                  item
-                  sx={{ justifyContent: "left", paddingBottom: "2%" }}
-                >
-                  <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                    Complete Course
-                  </Typography>
-                </Grid>
-                <Grid item xs={7} sx={{ paddingLeft: "5%" }}>
-                  {user.completedCourses?.length === 0 ? (
-                    <>
-                      <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                        No Course Completed
-                      </Typography>
-                    </>
-                  ) : (
-                    <>
-                      <Typography variant="h8" sx={{ color: "#1D1D1D" }}>
-                        {user?.completedCourses?.length}
-                      </Typography>
-                    </>
-                  )}
-                </Grid>
-              </Grid>
-            </>
-          )}
-          <Grid container>
-            <Grid
-              item
-              xs={3}
-              sx={{ justifyContent: "left", paddingBottom: "2%" }}
-            >
-              <Typography variant="h8" sx={{ color: "#969CAF" }}>
-                Address
-              </Typography>
-            </Grid>
-            <Grid item xs={7} sx={{ paddingLeft: "5%" }}>
-              {user.presentAddress}
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid sx={{ border: "1px solid #DADCDF" }}></Grid>
-      </Box>
-      {role === "delivery_manager" ? (
-        <></>
-      ) : (
-        <>
-          <Box sx={{ paddingTop: "2%", paddingLeft: "4%" }}>
-            <Grid container sx={{ paddingRight: "3%" }}>
-              <Grid item xs={6} sx={{ paddingRight: "3%" }}>
-                {" "}
-                {user.documentNo ? (
-                  <ButtonStyle
-                    variant="outlined"
-                    fullWidth
-                    onClick={() =>
-                      handleDetailNid(
-                        user.documentsImage,
-                        user.documentNo,
-                        user.documentsType,
-                        user.name
-                      )
-                    }
-                  >
-                    Document
-                  </ButtonStyle>
-                ) : (
-                  <ButtonStyle
-                    variant="outlined"
-                    fullWidth
-                    disabled
-                    onClick={() =>
-                      handleDetailNid(
-                        user.documentsImage,
-                        user.documentNo,
-                        user.documentsType,
-                        user.name
-                      )
-                    }
-                  >
-                    Document
-                  </ButtonStyle>
-                )}
-              </Grid>
-              <Grid item xs={6}>
-                {user.signImage ? (
-                  <ButtonStyle
-                    variant="outlined"
-                    fullWidth
-                    onClick={() => handleClick(user.signImage)}
-                  >
-                    NDA
-                  </ButtonStyle>
-                ) : (
-                  <ButtonStyle
-                    variant="outlined"
-                    fullWidth
-                    disabled
-                    onClick={() => handleClick(user.signImage)}
-                  >
-                    NDA
-                  </ButtonStyle>
-                )}
-              </Grid>
-            </Grid>
-          </Box>
-        </>
-      )}
-      <Box sx={{ paddingTop: "2%", paddingLeft: "4%" }}></Box>
-      {/* role Change */}
-
-      <Box sx={{ paddingTop: "2%", paddingLeft: "4%" }}>
-        <Grid container>
-          <Grid item xs={10}>
-            <Typography variant="h7" sx={{ color: "#090080" }}>
-              Change Role
-            </Typography>
-          </Grid>
-        </Grid>
-      </Box>
-
-      <Box sx={{ padding: "4%" }}>
-        <RoleChange user={user} />
-      </Box>
-      {user.role === "admin" ? (
-        <></>
-      ) : (
-        <>
-          <Box sx={{ paddingTop: "2%", paddingLeft: "4%" }}>
-            <Grid container>
-              <Grid item xs={10}>
-                <Typography variant="h7" sx={{ color: "#090080" }}>
-                  Change Skill
-                </Typography>
-              </Grid>
-            </Grid>
-          </Box>
-          <Box sx={{ padding: "4%" }}>
-            <UserSkillChange user={user} />
-          </Box>
-        </>
-      )}
-      {role === "admin" ? (
-        <>
-          <Box sx={{ paddingTop: "2%", paddingLeft: "4%" }}>
-            <Grid container>
-              <Grid item xs={10}>
-                <Typography variant="h7" sx={{ color: "#090080" }}>
-                  Change Status
-                </Typography>
-              </Grid>
-            </Grid>
-          </Box>
-          <Box sx={{ padding: "4%" }}>
-            <UserStatusChange user={user} />
-          </Box>
-        </>
-      ) : (
-        <></>
-      )}
-      {user.role === "level_1_annotator" ||
-      user.role === "level_2_annotator" ||
-      user.role === "level_3_annotator" ||
-      user.role === "level_0_annotator" ? (
-        <>
-          {!user.isJobBlocked ? (
-            <></>
-          ) : (
-            <>
-              {" "}
               <Box sx={{ paddingTop: "2%", paddingLeft: "4%" }}>
                 <Grid container>
                   <Grid item xs={10}>
                     <Typography variant="h7" sx={{ color: "#090080" }}>
-                      Job Change Status
+                      Change Skill
                     </Typography>
                   </Grid>
                 </Grid>
               </Box>
               <Box sx={{ padding: "4%" }}>
-                <JobStatusChange user={user} />
+                <UserSkillChange user={user} />
               </Box>
             </>
           )}
-        </>
-      ) : (
-        <></>
+          {role === "admin" ? (
+            <>
+              <Box sx={{ paddingTop: "2%", paddingLeft: "4%" }}>
+                <Grid container>
+                  <Grid item xs={10}>
+                    <Typography variant="h7" sx={{ color: "#090080" }}>
+                      Change Status
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Box>
+              <Box sx={{ padding: "4%" }}>
+                <UserStatusChange user={user} />
+              </Box>
+            </>
+          ) : (
+            <></>
+          )}
+          {user.role === "level_1_annotator" ||
+          user.role === "level_2_annotator" ||
+          user.role === "level_3_annotator" ||
+          user.role === "level_0_annotator" ? (
+            <>
+              {!user.isJobBlocked ? (
+                <></>
+              ) : (
+                <>
+                  {" "}
+                  <Box sx={{ paddingTop: "2%", paddingLeft: "4%" }}>
+                    <Grid container>
+                      <Grid item xs={10}>
+                        <Typography variant="h7" sx={{ color: "#090080" }}>
+                          Job Change Status
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </Box>
+                  <Box sx={{ padding: "4%" }}>
+                    <JobStatusChange user={user} />
+                  </Box>
+                </>
+              )}
+            </>
+          ) : (
+            <></>
+          )}
+        </Box>
       )}
-    </Box>}
     </>
-    
   );
 
   return (

@@ -83,7 +83,7 @@ const customHeader = (params) => {
       return "EMAIL";
     case "gender":
       return "GENDER";
-    case "phone":
+    case "contactNo":
       return "PHONE";
     case "isVerified":
       return "VERIFIED";

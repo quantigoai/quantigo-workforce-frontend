@@ -144,7 +144,7 @@ const MyProfileIndex = () => {
                 height: {
                   xl: "531px",
                   xxl: "739px",
-                  lg:"470px"
+                  lg: "470px",
                 },
               }}
             >
@@ -154,7 +154,7 @@ const MyProfileIndex = () => {
                   height: {
                     xl: "478px",
                     xxl: "710px",
-                    lg:"420px"
+                    lg: "420px",
                   },
                   overflowY: "auto",
                 }}
@@ -252,7 +252,7 @@ const MyProfileIndex = () => {
                     <CommonFieldTest
                       name="phone"
                       label={"Phone No."}
-                      defaultValue={user.phone}
+                      defaultValue={user.contactNo}
                       disableItem={false}
                       control={control}
                       rules={{ required: false }}
@@ -323,7 +323,7 @@ const MyProfileIndex = () => {
                   height: {
                     xl: "53px",
                     xxl: "73px",
-                    lg:"50px"
+                    lg: "50px",
                   },
                 }}
               >

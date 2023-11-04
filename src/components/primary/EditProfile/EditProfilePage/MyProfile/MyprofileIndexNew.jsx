@@ -21,7 +21,7 @@ const MyprofileIndexNew = () => {
   const [lastName, setLastName] = useState(user.lastName);
   const [occupation, setOccupation] = useState(user.occupation);
   const [bloodGroup, setBloodGroup] = useState(user.bloodGroup);
-  const [phone, setPhone] = useState(user.phone);
+  const [contactNo, setContactNo] = useState(user.contactNo);
   const [billingAccountNo, setBillingAccountNo] = useState(user.billingAccountNo);
   const [presentAddress, setPresentAddress] = useState(user.presentAddress);
   const [permanentAddress, setPermanentAddress] = useState(user.permanentAddress);
@@ -55,7 +55,7 @@ const MyprofileIndexNew = () => {
     setOccupation(e.target.value);
   };
   const handlePhoneNumberChange = (e) => {
-    setPhone(e.target.value);
+    setContactNo(e.target.value);
   };
   const handlebillingAccountNoChange = (e) => {
     setBillingAccountNo(e.target.value);
@@ -70,10 +70,7 @@ const MyprofileIndexNew = () => {
   const handleChangeBloodGroup = (e) => {
     setBloodGroup(e.target.value);
   };
-  // const yourPhoneNumberValidationFunction = (phone) => {
-  //   const regex = /^(?:\+8801[3-9]\d{8}|01[3-9]\d{8})$/;
-  //   return regex.test(phone);
-  // };
+
   const handleCancel = () => {
     setEditAble(false);
   };
@@ -81,7 +78,7 @@ const MyprofileIndexNew = () => {
   useEffect(() => {
     setFirstName(user.firstName);
     setLastName(user.lastName);
-    setPhone(user.phone);
+    setContactNo(user.contactNo);
     setOccupation(user.occupation);
     setBloodGroup(user.bloodGroup);
     setPermanentAddress(user.permanentAddress);
@@ -96,7 +93,7 @@ const MyprofileIndexNew = () => {
       lastName,
       occupation,
       bloodGroup,
-      phone,
+      contactNo,
       billingAccountNo,
       presentAddress,
       permanentAddress,
@@ -279,12 +276,11 @@ const MyprofileIndexNew = () => {
                   <PasswordFieldForProfile
                     name="phone"
                     label={"Phone No."}
-                    defaultValue={phone}
+                    defaultValue={contactNo}
                     disableItem={false}
                     handleChange={handlePhoneNumberChange}
                     editAble={editAble}
-                    // yourPhoneNumberValidationFunction={yourPhoneNumberValidationFunction}
-                    phone={phone}
+                    phone={contactNo}
                   />
                 </Grid>
                 <Grid item xs={6}>

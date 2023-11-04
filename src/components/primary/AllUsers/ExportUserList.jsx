@@ -16,7 +16,7 @@ const ExportUserList = () => {
     { label: "Email", key: "email" },
     { label: "Role", key: "role" },
     { label: "Gender", key: "gender" },
-    { label: "Contact No", key: "phone" },
+    { label: "Contact No", key: "contactNo" },
     { label: "DOB", key: "dob" },
     { label: "Billing Account No", key: "billingAccountNo" },
     { label: "Blood Group", key: "bloodGroup" },

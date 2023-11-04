@@ -84,7 +84,7 @@ const UserInfoIndex = ({
             Item1Title={"Date Of Birth"}
             Item1={DOB}
             Item2Title={"Phone"}
-            Item2={user.phone}
+            Item2={user.contactNo}
             Item3Title={"Completed Course"}
             Item3={"No Course Completed"}
           />

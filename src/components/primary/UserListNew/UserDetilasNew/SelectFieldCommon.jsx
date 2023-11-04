@@ -51,7 +51,6 @@ const SelectFieldCommon = ({ label, user, handleSetRole }) => {
             defaultValue={user.role}
           >
             <MenuItem value={"level_0_annotator"} sx={menuItemStyle}>
-              {" "}
               Level 0 Annotator
             </MenuItem>
             <MenuItem value={"level_1_annotator"} sx={menuItemStyle}>
@@ -86,7 +85,7 @@ const SelectFieldCommon = ({ label, user, handleSetRole }) => {
                 Project Manager
               </MenuItem>
             )}
-            {role === "admin" && (
+            {(role === "admin" || role === "recruitment_manager") && (
               <MenuItem value={"account_manager"} sx={menuItemStyle}>
                 Account Manager
               </MenuItem>

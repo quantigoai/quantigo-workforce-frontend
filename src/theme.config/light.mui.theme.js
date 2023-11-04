@@ -48,6 +48,7 @@ const lightTheme = createTheme({
     ...(typography.wpf_p2_regular.color = "#3C4D6B"),
     ...(typography.wpf_p3_regular.color = "#3C4D6B"),
     ...(typography.wpf_p4_regular.color = "#3C4D6B"),
+    ...(typography.wpf_p5_regular.color = "#3C4D6B"),
   },
   components: {
     MuiSelect: {

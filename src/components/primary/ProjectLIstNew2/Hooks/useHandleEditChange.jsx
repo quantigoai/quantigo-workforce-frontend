@@ -1,7 +1,5 @@
-import {useEffect, useState} from "react";
-import {useSelector} from "react-redux";
-import useToaster from "../../../../customHooks/useToaster";
-import useAllFunc from "./useAllFunc";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const useHandleEditChange = () => {
   const { projectDrawer } = useSelector((state) => state.projectDrawer);
@@ -9,14 +7,10 @@ const useHandleEditChange = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [prevSkills, setPrevSkills] = useState(projectDrawer.project_skills);
 
-  const [editSkills, setEditSkills] = useState([]);
+  const [editSkills, setEditSkills] = useState(projectDrawer.project_skills);
   const [editCount, setEditCount] = useState(
     projectDrawer?.project_skills?.length > 0 ? projectDrawer?.project_skills?.length : 0
   );
-
-  const { setEditModalOpen } = useAllFunc();
-
-  const toast = useToaster();
 
   useEffect(() => {
     setEditCount(prevSkills?.length - 1);
@@ -30,9 +24,7 @@ const useHandleEditChange = () => {
     const selectedSkills = value.map((skill) => {
       return skills.find((s) => s.name === skill);
     });
-
     setEditCount(value.length - 1);
-
     setEditSkills(typeof selectedSkills === "string" ? value.split(",") : selectedSkills);
   };
 
@@ -40,6 +32,12 @@ const useHandleEditChange = () => {
     name: skill.name,
     id: skill._id,
   }));
+  
+  const handleClearAllSkills = () => {
+    setPrevSkills([]);
+    setEditSkills([]);
+    setEditCount(0);
+  }
 
   return {
     handleEditSkill,
@@ -50,6 +48,7 @@ const useHandleEditChange = () => {
     skills,
     isEdit,
     setIsEdit,
+    handleClearAllSkills,
   };
 };
 

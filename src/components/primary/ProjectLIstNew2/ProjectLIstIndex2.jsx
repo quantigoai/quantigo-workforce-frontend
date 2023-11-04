@@ -188,7 +188,7 @@ const ProjectLIstIndex2 = () => {
     setIsEditModal(true);
   };
 
-  const skillId = addSkills?.map((skill) => skill._id);
+  const skillId = addSkills?.map((skill) => skill?._id);
 
   const onSubmit = (data) => {
     if (isEditModal) {

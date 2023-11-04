@@ -7,15 +7,15 @@ const useHandleEditChange = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [prevSkills, setPrevSkills] = useState(projectDrawer.project_skills);
 
-  const [editSkills, setEditSkills] = useState(projectDrawer.project_skills);
+  const [editSkills, setEditSkills] = useState(projectDrawer?.project_skills);
   const [editCount, setEditCount] = useState(
     projectDrawer?.project_skills?.length > 0 ? projectDrawer?.project_skills?.length : 0
   );
 
   useEffect(() => {
     setEditCount(prevSkills?.length - 1);
-    setPrevSkills(projectDrawer.project_skills);
-  }, [prevSkills?.length, projectDrawer.project_skills, isEdit]);
+    setPrevSkills(projectDrawer?.project_skills);
+  }, [prevSkills?.length, projectDrawer?.project_skills, isEdit]);
 
   const handleEditSkill = (event) => {
     const {
@@ -28,7 +28,7 @@ const useHandleEditChange = () => {
     setEditSkills(typeof selectedSkills === "string" ? value.split(",") : selectedSkills);
   };
 
-  const filteredSkillInfo = editSkills.map((skill) => ({
+  const filteredSkillInfo = editSkills?.map((skill) => ({
     name: skill.name,
     id: skill._id,
   }));

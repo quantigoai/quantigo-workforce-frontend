@@ -139,7 +139,7 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                         </Stack>
                         <Stack direction="row" sx={{ justifyContent: "center" }}>
                           <Typography variant="wpf_p2_semiBold" sx={{ color: "neutral.N300" }}>
-                            Document No :{" "}
+                            Document No. :{" "}
                           </Typography>
                           <Typography variant="wpf_p2_semiBold" sx={{ color: "neutral.N300", marginLeft: "6px" }}>
                             {documentsNo}

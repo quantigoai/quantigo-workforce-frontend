@@ -138,7 +138,7 @@ const UpdateDocument = () => {
                       <TextField
                         fullWidth
                         name="Document NO"
-                        label="Document NO"
+                        label="Document No."
                         {...register("documentNo", { required: true })}
                       ></TextField>
                     </Grid>

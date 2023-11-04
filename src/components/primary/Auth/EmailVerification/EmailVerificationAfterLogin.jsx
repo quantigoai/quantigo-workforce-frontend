@@ -38,11 +38,9 @@ const EmailVerificationAfterLogin = () => {
     dispatch(emailVerificationLink(data)).then((action) => {
       if (action.error) {
         setMessage(action.error.message);
-        setIsVerified(false);
       } else {
         // TODO update user
         setMessage(action.payload.data.message);
-        setIsVerified(true);
       }
     });
   }, [dispatch]);
@@ -67,17 +65,18 @@ const EmailVerificationAfterLogin = () => {
                   {message}
                 </Typography>
               </Grid>
-              {/* <Grid container sx={{ justifyContent: "center", paddingTop: "2%" }}>
-                <ButtonStyle
-                  fullWidth
-                  onClick={() => {
-                    navigate("/");
-                  }}
-                >
-                  Go to Dashboard{" "}
-                </ButtonStyle>
-              </Grid> */}
-              <Box sx={{ width: "15%", margin: "auto", mt: 3 }}>
+
+              <Box
+                sx={{
+                  width: {
+                    lg: "24%",
+                    xl: "17%",
+                    xxl: "13% ",
+                  },
+                  margin: "auto",
+                  mt: 3,
+                }}
+              >
                 <LoadingButtonStyle
                   fullWidth
                   color="inherit"
@@ -85,7 +84,7 @@ const EmailVerificationAfterLogin = () => {
                   // type="submit"
                   variant="contained"
                   loading={isLoading}
-                  sx={{ textTransform: "none", borderRadius: "10px" }}
+                  sx={{ textTransform: "none", borderRadius: "8px" }}
                   onClick={() => {
                     navigate("/");
                   }}

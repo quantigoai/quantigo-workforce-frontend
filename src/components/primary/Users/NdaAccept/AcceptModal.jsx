@@ -1,3 +1,4 @@
+import { LoadingButton } from "@mui/lab";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
@@ -25,7 +26,8 @@ const AcceptModal = ({ open, handleClose, handleAccept, user }) => {
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
+        aria-describedby="modal-modal-description"
+      >
         <Box sx={style}>
           <Box
             sx={{
@@ -40,7 +42,8 @@ const AcceptModal = ({ open, handleClose, handleAccept, user }) => {
               height: "60px",
               paddingTop: "4px",
               color: "white",
-            }}>
+            }}
+          >
             {" "}
             <i style={{ width: "60px", height: "60px" }} className="ri-alert-line"></i>
           </Box>
@@ -49,12 +52,13 @@ const AcceptModal = ({ open, handleClose, handleAccept, user }) => {
             sx={{ mt: "30%", color: isLightTheme ? "#091E42" : "#fff", fontSize: "18px", fontWeight: "600" }}
             id="modal-modal-title"
             variant="h6"
-            component="h2">
+            component="h2"
+          >
             Confirm Verification
           </Typography>
 
           <Typography id="modal-modal-description" sx={{ mt: 2, color: isLightTheme ? "#3C4D6B" : "#fff" }}>
-            Are you want to modify {user.name} verification status
+            Are you sure you want to modify {user.name} as a verified user?
           </Typography>
 
           <Box
@@ -63,7 +67,8 @@ const AcceptModal = ({ open, handleClose, handleAccept, user }) => {
               justifyContent: "space-around",
               alignItems: "center",
               marginTop: "20px",
-            }}>
+            }}
+          >
             {
               <Button
                 sx={{
@@ -83,7 +88,8 @@ const AcceptModal = ({ open, handleClose, handleAccept, user }) => {
                 No
               </Button>
             }
-            <Button
+            <LoadingButton
+              loading={isLoading}
               onClick={() => {
                 handleAccept();
               }}
@@ -91,18 +97,18 @@ const AcceptModal = ({ open, handleClose, handleAccept, user }) => {
               sx={{
                 textTransform: "none",
                 background: "#FFAB00",
-                color:"#fff",
+                color: "#fff",
                 borderRadius: "10px",
                 width: "150px",
                 ":hover": {
                   backgroundColor: "#F2A200",
-                  color:"#fff"
+                  color: "#fff",
                 },
               }}
               // variant="contained"
             >
               Yes
-            </Button>
+            </LoadingButton>
           </Box>
         </Box>
       </Modal>

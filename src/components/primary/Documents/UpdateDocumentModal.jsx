@@ -142,7 +142,6 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
               flex: "1",
               overflowY: "auto",
               padding: "3%",
-            
             }}
           >
             <Box>
@@ -153,7 +152,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                     mb: 1,
                   }}
                 >
-                  Document Type
+                  Document Type<span style={{ color: "red" }}>*</span>
                 </Typography>
 
                 <Select
@@ -190,13 +189,13 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                     mb: 1,
                   }}
                 >
-                  Document NO
+                  Document No.<span style={{ color: "red" }}>*</span>
                 </Typography>
                 <MyTextField
                   variant="outlined"
                   fullWidth
                   InputProps={{ disableUnderline: true }}
-                  placeholder="Enter Document No"
+                  placeholder="Enter Document No."
                   onChange={(e) => {
                     // setDocumentNo(e.target.value);
                     handleDocumentNoChange(e); // Validate document number
@@ -253,11 +252,11 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                   <LoadingButton
                     type="submit"
                     // disabled={true}
-                    loading = {isLoading}
+                    loading={isLoading}
                     disabled={
                       !isDocumentNoValid ||
                       !isDocumentTypeValid ||
-                      !coverImage ||  
+                      !coverImage ||
                       // isLoading ||
                       coverImageFile?.size > maxSize
                     }
@@ -268,9 +267,8 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                       color: "#FFFFFF",
                       borderRadius: "8px",
                       "&:hover": {
-                        backgroundColor: "#F4F7FE",
-                        color: "#62728F",
-                        // border: "1px solid #F4F7FE",
+                        backgroundColor: "#476CFF",
+                        color: "#FFFFFF",
                       },
                       "&.Mui-disabled": {
                         background: "#B6C9F0",

@@ -48,7 +48,7 @@ const LoginForm = () => {
 
   const methods = useForm({
     resolver: yupResolver(LoginSchema),
-    // defaultValues,
+    mode: "all",
   });
   const {
     reset,

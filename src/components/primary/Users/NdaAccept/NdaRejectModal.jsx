@@ -62,8 +62,8 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit, handleRejectCause, r
         <Box
           sx={{
             ...style,
-            height: { lg: "50%", xl: "50%",xxl:"38%"  },
-            width: { lg: "40%", xl: "35%",  },
+            height: { lg: "50%", xl: "50%", xxl: "38%" },
+            width: { lg: "40%", xl: "35%" },
           }}
         >
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -110,7 +110,7 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit, handleRejectCause, r
                       paddingBottom: "0%",
                     }}
                   >
-                    Rejection Cause
+                    Rejection Cause <span style={{ color: "red" }}>*</span>
                   </Typography>
                   <MyTextField
                     variant="outlined"
@@ -177,7 +177,7 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit, handleRejectCause, r
                             color: "#FFFFFF",
                           },
                           "&:hover": {
-                            backgroundColor: "#2E58FF",
+                            backgroundColor: "#476CFF",
                             color: "#FFFFFF",
                           },
                         }}

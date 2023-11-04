@@ -70,6 +70,7 @@ export default function CustomTextField({ name, label, helperText, ...other }) {
               value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
               error={!!error}
               helperText={error ? error?.message : helperText}
+              autocomplete="off"
               {...other}
             />
           </Box>

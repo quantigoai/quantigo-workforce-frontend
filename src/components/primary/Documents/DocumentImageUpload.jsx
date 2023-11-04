@@ -91,8 +91,11 @@ const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleIm
                   <Typography variant="wpf_p3_regular" sx={{ color: "#ff1744" }}>
                     File : {files}
                   </Typography>
-                  <Typography variant="wpf_p3_regular" sx={{ color: "#ff1744" }}>
-                    The selected file is too large. Please choose a file that is less than 1Mb in size
+                  <Typography variant="wpf_p3_regular" sx={{ color: "#ff1744", textDecoration: "justify" }}>
+                    The selected file is too large. Please choose a file less than 1Mb.
+                  </Typography>
+                  <Typography variant="wpf_p3_regular" sx={{ color: "#ff1744", textDecoration: "justify" }}>
+                    Click here again to change the file.
                   </Typography>
                 </>
               ) : (
@@ -103,7 +106,8 @@ const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleIm
                       position: "relative",
                     }}
                     onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}>
+                    onMouseLeave={handleMouseLeave}
+                  >
                     <img height={175} src={coverImage} alt="" style={{ width }} />
                     {/* <p>File : {files}</p> */}
                     {isHovered && (
@@ -122,7 +126,8 @@ const DocumentImageUpload = ({ coverImageFile, coverImage, removeImage, handleIm
                               color: "#2E58FF",
                               // border: "1px solid #2E58FF",
                             },
-                          }}>
+                          }}
+                        >
                           Replace
                         </Button>
                         {/* <DeleteIcon onClick={removeImage} sx={{ color: "red" }} /> */}

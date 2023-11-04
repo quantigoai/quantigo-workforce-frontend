@@ -46,18 +46,9 @@ const RegistrationForm = () => {
   const [helperMessage, setHelperMessage] = useState("");
   const { isLoading } = useSelector((state) => state.user);
 
-  const defaultValues = {
-    firstName: "Tanzim",
-    lastName: "Ahmed",
-    email: "tanzim.ahmed1@g.bracu.ac.bd",
-    password: "ta12345",
-    gender: "male",
-  };
-
   const methods = useForm({
     resolver: yupResolver(RegistrationSchema),
     mode: "all",
-    defaultValues,
   });
   const {
     watch,

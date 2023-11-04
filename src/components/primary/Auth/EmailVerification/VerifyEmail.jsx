@@ -72,12 +72,25 @@ const VerifyEmail = () => {
           <LoadingButtonStyle
             fullWidth
             color="inherit"
-            size="large"
-            // disabled={isLoading}
-            // type="submit"
+            size="medium"
             variant="contained"
             loading={isLoading}
-            sx={{ textTransform: "none", borderRadius: "10px", width: "15%" }}
+            sx={{
+              pl: 1,
+              ml: {
+                lg: 1,
+                xl: 1,
+                xxl: 2,
+              },
+
+              textTransform: "none",
+              borderRadius: "8px",
+              width: {
+                lg: "16%",
+                xl: "12%",
+                xxl: "10% ",
+              },
+            }}
             onClick={handleresendEmail}
           >
             Resend Email

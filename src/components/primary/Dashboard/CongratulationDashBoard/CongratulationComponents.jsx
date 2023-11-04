@@ -71,7 +71,11 @@ const CongratulationComponents = () => {
                             backgroundColor: "#FF9A45",
                             color: "#1D1D1D",
                           },
-                          width: "30%",
+                          width: {
+                            lg: "96px",
+                            xl: "126px",
+                            xxl: "126px",
+                          },
                           height: "30%",
                         }}
                       >
@@ -100,7 +104,7 @@ const CongratulationComponents = () => {
                       <img src={jobIcon} />
                     </Grid>
                     <Grid container sx={{ justifyContent: "center" }}>
-                      <Typography variant="wpf_h4_Bold" sx={{ color: "neutral.N300" }}>
+                      <Typography variant="wpf_h5_Bold" sx={{ color: "neutral.N300" }}>
                         {/* 108 */}
                         Coming Soon
                       </Typography>

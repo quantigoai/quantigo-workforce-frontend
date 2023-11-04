@@ -1,9 +1,10 @@
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { Box, Grid, Link, Typography } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import arrowIcon from "../../../../assets/images/arrowCon.svg";
 import confirmIcon from "../../../../assets/images/confirmprocess.svg";
+
 export const defaultIndex = (user) => {
   if (user.isEmailVerified) {
     return 2;
@@ -50,16 +51,24 @@ const ProcessCard2 = ({ item }) => {
         borderRadius: "12px",
         alignItems: "center",
         paddingLeft: "7%",
-      }}>
+      }}
+    >
       {showCompleteIcon(item._id, user) ? (
-        <Box sx={{ display: "flex", height: "30%", justifyContent: "flex-end",paddingRight:"2%" }}>
+        <Box sx={{ display: "flex", height: "30%", justifyContent: "flex-end", paddingRight: "2%" }}>
           <img style={{ width: "20px" }} src={confirmIcon} />
         </Box>
       ) : (
         <Box sx={{ display: "flex", height: "0%", justifyContent: "flex-end" }}></Box>
       )}
 
-      <Box sx={{ display: "flex",alignItems: !showCompleteIcon(item._id, user) && "center", width: "100%", height: showCompleteIcon(item._id, user) ? "70%" : "100%" }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: !showCompleteIcon(item._id, user) && "center",
+          width: "100%",
+          height: showCompleteIcon(item._id, user) ? "70%" : "100%",
+        }}
+      >
         <Box>
           <img src={item.image} alt="" />
         </Box>
@@ -69,7 +78,7 @@ const ProcessCard2 = ({ item }) => {
               {item.header} <i className="ri-arrow-right-up-line"></i>
             </Typography>
           </Grid>
-          <Grid container sx={{paddingRight:"3%"}}>
+          <Grid container sx={{ paddingRight: "3%" }}>
             {" "}
             <Typography variant="wpf_p4_regular" sx={{ color: "neutral.N300" }}>
               {item.describe}
@@ -85,14 +94,25 @@ const ProcessCard2 = ({ item }) => {
                   sx={{
                     display: "flex",
                     alignItems: "center",
-                    gap: 0.3,
-                  }}>
+                    paddingTop: "2%",
+                  }}
+                >
                   <Typography
                     variant="wpf_p3_semiBold"
-                    sx={{ paddingRight: "3%", color: "neutral.N300", cursor: "pointer" }}>
+                    sx={{ pr: "0", color: "neutral.N300", cursor: "pointer" }}
+                  >
                     Continue
                   </Typography>
-                  <img src={arrowIcon} />
+                  <KeyboardArrowRightIcon
+                    sx={{
+                      paddingTop: "2%",
+                      pl: 0,
+                      ml:0,
+                      color: "neutral.N300",
+                      height: { lg: "16px", xl: "18px", xxl: "23px" },
+                      width: { lg: "16px", xl: "18px", xxl: "23px" },
+                    }}
+                  />
                 </Box>
               </Link>
             )}

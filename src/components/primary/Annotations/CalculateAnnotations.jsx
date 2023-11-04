@@ -251,7 +251,7 @@ const CalculateAnnotations = () => {
                     </TableCell>
                     {/* <TableCell align="left">No. of Images</TableCell> */}
                     <TableCell align="center" sx={{ color: "#969CAF", fontSize: "16px" }}>
-                      NO .Of Tags
+                      No. Of Tags
                     </TableCell>
                     <TableCell align="center" sx={{ color: "#969CAF", fontSize: "16px" }}>
                       No. of Objects

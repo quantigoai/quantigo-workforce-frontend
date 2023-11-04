@@ -24,7 +24,8 @@ const MainModal = ({ open, handleDelete, params, handleClose, isEdit, handleClic
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
+        aria-describedby="modal-modal-description"
+      >
         <Box sx={style}>
           <Box
             sx={{
@@ -39,7 +40,8 @@ const MainModal = ({ open, handleDelete, params, handleClose, isEdit, handleClic
               height: "60px",
               paddingTop: "4px",
               color: "white",
-            }}>
+            }}
+          >
             {" "}
             {isEdit ? (
               <i style={{ width: "60px", height: "60px" }} className="ri-alert-line"></i>
@@ -52,15 +54,15 @@ const MainModal = ({ open, handleDelete, params, handleClose, isEdit, handleClic
               sx={{ mt: "28%", color: isLightTheme ? "#091E42" : "#fff" }}
               id="modal-modal-title"
               variant="h6"
-              component="h2">
+            >
               Change Status
             </Typography>
           ) : (
             <Typography
-              sx={{ mt: "30%", color: isLightTheme ? "#091E42" : "#fff", fontSize: "18px", fontWeight: "600" }}
+              sx={{ mt: "30%", pb: 3, color: isLightTheme ? "#091E42" : "#fff", fontSize: "18px", fontWeight: "600" }}
               id="modal-modal-title"
               variant="h6"
-              component="h2">
+            >
               Delete Project
             </Typography>
           )}
@@ -76,9 +78,10 @@ const MainModal = ({ open, handleDelete, params, handleClose, isEdit, handleClic
                 color: isLightTheme ? "#3C4D6B" : "#fff",
                 fontWeight: "400",
                 lineHeight: "20px",
-              }}>
-              Are you sure you want to delete your Project? If you delete your project, you will lose all the charter
-              information
+              }}
+            >
+              Are you sure you want to delete this Project? If you delete your project, you will lose all the charter
+              information.
             </Typography>
           )}
           <Box
@@ -87,7 +90,8 @@ const MainModal = ({ open, handleDelete, params, handleClose, isEdit, handleClic
               justifyContent: "space-around",
               alignItems: "center",
               marginTop: "20px",
-            }}>
+            }}
+          >
             {
               <Button
                 sx={{
@@ -98,7 +102,7 @@ const MainModal = ({ open, handleDelete, params, handleClose, isEdit, handleClic
                   borderRadius: "10px",
                   width: "150px",
                   "&:hover": {
-                    backgroundColor: "#FFF0F2",
+                    backgroundColor: "#FAE4C3",
                   },
                 }}
                 onClick={handleClose}

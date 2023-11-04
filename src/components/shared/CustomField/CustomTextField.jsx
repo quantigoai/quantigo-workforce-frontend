@@ -59,7 +59,7 @@ export default function CustomTextField({ name, label, helperText, isRequired, .
 
             <MyTextField
               size="small"
-              id="outlined-basic"
+              // id="outlined-basic"
               {...field}
               fullWidth
               // InputProps={{ disableUnderline: true }}
@@ -71,7 +71,7 @@ export default function CustomTextField({ name, label, helperText, isRequired, .
               value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
               error={!!error}
               helperText={error ? error?.message : helperText}
-              autocomplete="off"
+              autoComplete="off"
               {...other}
             />
           </Box>

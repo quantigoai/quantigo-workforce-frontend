@@ -85,7 +85,6 @@ const ExpTable = () => {
         <TableContainer
           sx={{
             height: "90%",
-            backgroundColor: "green",
           }}
         >
           <Table
@@ -147,7 +146,6 @@ const ExpTable = () => {
               sx={{
                 padding: "6px",
                 height: "100%",
-                backgroundColor: "green",
               }}
             >
               {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {

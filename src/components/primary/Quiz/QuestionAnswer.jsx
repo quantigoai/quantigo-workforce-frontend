@@ -50,9 +50,7 @@ const QuestionAnswer = ({
               defaultValue={inputField.question}
               onChange={(event) =>
                 handleChangeInput(
-                  isUpdate
-                    ? handleUpdate(event.target.value, 4, inputField)
-                    : inputField.uniqueId,
+                  isUpdate ? handleUpdate(event.target.value, 4, inputField) : inputField.uniqueId,
                   event
                 )
               }
@@ -82,7 +80,7 @@ const QuestionAnswer = ({
               paddingBottom: "1%",
             }}
           >
-            <Button sx={{ color: "green" }} onClick={handleQA}>
+            <Button sx={{ color: "green.800" }} onClick={handleQA}>
               <AddCircleIcon sx={{ cursor: "pointer", textAlign: "right" }} />
               <Typography>Add More Question</Typography>
             </Button>
@@ -90,13 +88,9 @@ const QuestionAnswer = ({
             <Button
               sx={{ color: "red" }}
               disabled={inputFields.length === 1}
-              onClick={() =>
-                handleRemoveQA(isUpdate ? inputField._id : inputField.uniqueId)
-              }
+              onClick={() => handleRemoveQA(isUpdate ? inputField._id : inputField.uniqueId)}
             >
-              <RemoveCircleIcon
-                sx={{ cursor: "pointer", textAlign: "right" }}
-              />
+              <RemoveCircleIcon sx={{ cursor: "pointer", textAlign: "right" }} />
               <Typography>Remove Question</Typography>
             </Button>
           </Grid>

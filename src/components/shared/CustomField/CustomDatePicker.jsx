@@ -56,6 +56,7 @@ export default function CustomDatePicker({
   helperText,
   options,
   label,
+  isRequired,
   defaultValue,
   ...other
 }) {
@@ -75,7 +76,7 @@ export default function CustomDatePicker({
       render={({ field: { onChange, onBlur, value, ref, error } }) => (
         <>
           <Typography variant="wpf_p4_medium" color="#3c4d6b">
-            Date of Birth
+            Date of Birth <span style={{ color: "#F04438" }}>{isRequired && "*"}</span>
           </Typography>
           <MyFormControl
             fullWidth

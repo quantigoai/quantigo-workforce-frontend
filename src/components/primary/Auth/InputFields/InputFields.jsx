@@ -186,7 +186,7 @@ const InputFields = ({
                   {!qaiErrorMessageCheck && (
                     <FormHelperText
                       sx={{
-                        color: qaiErrorMessage === "User Id is available" ? "green" : "red",
+                        color: qaiErrorMessage === "User Id is available" ? "green.800" : "red",
                       }}
                     >
                       {qaiErrorMessage}

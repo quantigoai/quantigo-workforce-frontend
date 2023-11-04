@@ -77,7 +77,7 @@ const ReassignedJobIndex = ({ job }) => {
               aria-labelledby="demo-controlled-radio-buttons-group"
               name="controlled-radio-buttons-group"
               defaultValue=""
-              style={{ color: "green" }}
+              style={{ color: "green.800" }}
               onChange={handleChange}
             >
               {filtered.map(

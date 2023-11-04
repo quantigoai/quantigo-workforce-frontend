@@ -60,15 +60,15 @@ const RegistrationForm = () => {
     formState: { errors },
   } = methods;
 
-  const { firstName, lastName, email, password, qaiUserName, contactNo, billingAccountNo } = watch();
+  const { firstName, lastName, email, password, qaiUserName, contactNo, billingAccountNo, gender, dob } = watch();
 
   const isFieldsNotEmptyFirstPage = !!firstName && !!lastName && !!email && !!password;
 
-  const isFieldsNotEmptyFinalPage = !!qaiUserName && !!contactNo && !!billingAccountNo;
+  const isFieldsNotEmptyFinalPage = !!qaiUserName && !!contactNo && !!billingAccountNo && !!gender && !!dob;
 
   const disableButtonCheck = !!errors.firstName || !!errors.lastName || !!errors.email || !!errors.password;
 
-  const disableFinishButtonCheck = !!errors.qaiUserName || !!errors.contactNo || !!errors.billingAccountNo;
+  const disableFinishButtonCheck = !!errors.qaiUserName || !!errors.contactNo || !!errors.billingAccountNo || !!errors.gender;
 
   useEffect(() => {
     if (isFieldsNotEmptyFirstPage) {
@@ -240,7 +240,6 @@ const RegistrationForm = () => {
                     xl: "90px",
                     xxl: "100px",
                   },
-                  backgroundColor: "green",
                 }}
               >
                 <CustomSelectField
@@ -343,7 +342,9 @@ const RegistrationForm = () => {
               >
                 <CustomSelectField
                   name="gender"
-                  defaultValue={genderOptions[0].value}
+                  // defaultValue={genderOptions[0].value}
+                  isRequired={true}
+                  defaultValue={""}
                   helperText="Select an option"
                   options={genderOptions}
                   label={"Gender"}
@@ -361,7 +362,7 @@ const RegistrationForm = () => {
                   },
                 }}
               >
-                <CustomDatePicker setError={setError} setValue={setValue} name="dob" />
+                <CustomDatePicker isRequired={true} setError={setError} setValue={setValue} name="dob" />
               </Box>
             </Stack>
             {/* Nagad Number  */}

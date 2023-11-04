@@ -17,6 +17,7 @@ import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
 import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
 import FormProvider from "../../shared/FormProvider/FormProvider";
 import ProjectModalHeader from "./ProjectModalHeader";
+import { ProjectDrawerSchema } from "./ProjectDrawerHelper";
 const style = {
   position: "absolute",
   top: "50%",
@@ -35,6 +36,36 @@ const style = {
     height: "20px",
   },
 };
+export const LineStack = ({ children }) => (
+  <Stack
+    direction="row"
+    spacing={2}
+    sx={{
+      height: {
+        lg: "72px",
+        xl: "82px",
+        xxl: "85px",
+      },
+    }}
+  >
+    {children}
+  </Stack>
+);
+
+export const FieldBox = ({ children }) => (
+  <Box
+    sx={{
+      width: "50%",
+      height: {
+        lg: "72px",
+        xl: "82px",
+        xxl: "85px",
+      },
+    }}
+  >
+    {children}
+  </Box>
+);
 
 const ProjectModal = ({
   createProjectOpen,
@@ -50,15 +81,12 @@ const ProjectModal = ({
 }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { isLoading } = useSelector((state) => state.projectDrawer);
-  const ProjectDrawerSchema = Yup.object().shape({
-    project_drawer_name: Yup.string().required("Project name is required"),
-    project_alias: Yup.string().required("Alias is required"),
-    project_batch: Yup.string().required("Batch is required"),
-    pdr: Yup.string().required("Pdr is required"),
-  });
+
+
 
   const methods = useForm({
     resolver: yupResolver(ProjectDrawerSchema),
+    mode: "all",
   });
 
   const { handleSubmit } = methods;
@@ -92,29 +120,36 @@ const ProjectModal = ({
                     position: "relative",
                   }}
                 >
-                  <Stack direction="row" spacing={2}>
-                    <Box sx={{ width: "50%", height: "80px" }}>
+                  <LineStack>
+                    {/* project platform */}
+                    <FieldBox>
                       <PDSelectField
                         name={"project_platform"}
                         label="Platform"
                         options={platformCreateOptions}
                         defaultValue={""}
+                        isRequired={true}
                       />
-                    </Box>
-                    <Box sx={{ width: "50%", height: "80px" }}>
-                      <PDTextFIeld name="project_drawer_name" label="Project Name" />
-                    </Box>
-                  </Stack>
-                  <Stack direction="row" spacing={2}>
-                    <Box sx={{ width: "50%", height: "80px" }}>
+                    </FieldBox>
+                    {/* project name */}
+                    <FieldBox>
+                      <PDTextFIeld name="project_drawer_name" label="Project Name" isRequired={true} />
+                    </FieldBox>
+                  </LineStack>
+
+                  <LineStack>
+                    {/* project type */}
+                    <FieldBox>
                       <PDSelectField
                         name={"project_type"}
                         label="Project Type"
                         options={projectTypeCreateOptions}
                         defaultValue={""}
+                        isRequired={true}
                       />
-                    </Box>
-                    <Box sx={{ width: "50%", height: "80px" }}>
+                    </FieldBox>
+                    {/* project batch */}
+                    <FieldBox>
                       <PDTextFIeld
                         name="project_batch"
                         label="Batch"
@@ -122,30 +157,31 @@ const ProjectModal = ({
                           min: 1,
                         }}
                         isNumber="true"
+                        isRequired={true}
                       />
-                    </Box>
-                  </Stack>
+                    </FieldBox>
+                  </LineStack>
 
-                  <Stack direction="row" spacing={2}>
-                    <Box sx={{ width: "50%", height: "80px" }}>
-                      <PDTextFIeld name="project_alias" label="Alias" />
-                    </Box>
-                    <Box sx={{ width: "50%", height: "80px" }}>
+                  <LineStack>
+                    {/* project alias */}
+                    <FieldBox>
+                      <PDTextFIeld name="project_alias" label="Alias" isRequired={true} />
+                    </FieldBox>
+                    <FieldBox>
+                      {/* project PDR */}
                       <PDTextFIeld
                         name="pdr"
                         label="PDR"
                         placeholder="PDR must be in range between 1 to 5"
                         isNumberPdr="true"
-                        // helperText="PDR must be in range between 1 to 5"
+                        isRequired={true}
                       />
-                    </Box>
-                  </Stack>
+                    </FieldBox>
+                  </LineStack>
 
-                  {/* <SkillField/> */}
-
-                  {/* TODO Style change for dark mode */}
-                  <Stack direction="row" spacing={2}>
-                    <Box sx={{ width: "50%", height: "80px" }}>
+                  <LineStack>
+                    {/* project skills */}
+                    <FieldBox>
                       <PDskillFIeld
                         name={"project_skills"}
                         addSkills={addSkills && addSkills}
@@ -154,35 +190,37 @@ const ProjectModal = ({
                         skills={skills}
                         count={count}
                       />
-                    </Box>
-                    <Box sx={{ width: "50%", height: "80px" }}>
+                    </FieldBox>
+                    {/* project BM */}
+                    <FieldBox>
                       <PDTextFIeld name="benchMark" label="Benchmark" />
-                    </Box>
-                  </Stack>
+                    </FieldBox>
+                  </LineStack>
 
-                  <Stack direction="row" spacing={2}>
-                    <Box sx={{ width: "50%", height: "80px" }}>
+                  <LineStack>
+                    {/* project estimated date */}
+                    <FieldBox>
                       <PDDateField name="estimated_end_date" label="Estimated End Date" />
-                    </Box>
-                    <Box sx={{ width: "50%", height: "80px" }}>
+                    </FieldBox>
+                    {/* project status */}
+                    <FieldBox>
                       <PDSelectField
                         name={"project_status"}
                         label="Status"
                         options={statusCreateOptions}
                         defaultValue={""}
+                        isRequired={true}
                       />
-                    </Box>
-                  </Stack>
+                    </FieldBox>
+                  </LineStack>
 
                   <Typography
                     sx={{
-                      fontSize: "12px",
-                      fontWeight: "500",
                       mt: "5px",
                       mb: "5px",
                       color: "neutral.N300",
                     }}
-                    variant="h6"
+                    variant="wpf_h7_medium"
                   >
                     Relevant Documents
                   </Typography>
@@ -193,7 +231,7 @@ const ProjectModal = ({
                       border: "1px solid #E6ECF5",
                       padding: "16px",
                       borderRadius: "8px",
-                      background: isLightTheme ? "#FAFCFF" : "#1E2A41",
+                      background: isLightTheme ? "#FAFCFF" : "#2C2C2C",
                       maxHeight: 155,
                       color: isLightTheme ? "#091E42" : "#FFFFFF",
                       overflowY: "auto",

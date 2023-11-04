@@ -165,10 +165,18 @@ const ProjectLIstIndex2 = () => {
 
   //create and edit project submit
 
-  const { handleEditSkill, filteredSkillInfo, editCount, prevSkills, editSkills, isEdit, setIsEdit } =
-    useHandleEditChange();
-
+  const {
+    handleClearAllSkills,
+    handleEditSkill,
+    filteredSkillInfo,
+    editCount,
+    prevSkills,
+    editSkills,
+    isEdit,
+    setIsEdit,
+  } = useHandleEditChange();
   const handleEditProjectClose = () => {
+    handleClearAllSkills();
     setEditModalOpen(false);
     setIsEditModal(false);
   };
@@ -196,7 +204,7 @@ const ProjectLIstIndex2 = () => {
         }
         if (action.payload?.status === 200) {
           toast.trigger(action.payload.data.message, "success");
-
+          handleClearAllSkills();
           setEditModalOpen(false);
         }
       });
@@ -213,6 +221,7 @@ const ProjectLIstIndex2 = () => {
         if (action.payload?.status === 201) {
           toast.trigger(action.payload.data.message, "success");
           setCreateProjectOpen(false);
+          handleClearAllSkills();
           handleChangePagination();
         }
       });
@@ -310,7 +319,7 @@ const ProjectLIstIndex2 = () => {
             {isDataLoading ? (
               <LoadingComponent />
             ) : (
-            <TableWrapper
+              <TableWrapper
                 role={role}
                 handleDetailsPage={handleDetailsPage}
                 handleClick={handleClick}

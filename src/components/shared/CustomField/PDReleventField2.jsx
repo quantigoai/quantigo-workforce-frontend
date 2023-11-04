@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Button, FormControl, Stack, styled, TextField, Typography } from "@mui/material";
+import { Box, FormControl, Stack, styled, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
@@ -19,7 +19,14 @@ function PDReleventField2({ name, defaultValueItems }) {
       border: "2px solid #E6ECF5 !important",
       borderRadius: "8px",
     },
-    "& .MuiInputBase-root": { height: "45px", fontSize: "14px" },
+    "& .MuiInputBase-root": {
+      height: "38px",
+      fontSize: {
+        lg: "12px",
+        xl: "14px",
+        xxl: "14px",
+      },
+    },
   }));
 
   const { watch, control, setValue, getValues } = useFormContext();
@@ -70,7 +77,6 @@ function PDReleventField2({ name, defaultValueItems }) {
               <Controller
                 name={`relevantDocuments[${index}].documentName`}
                 control={control}
-                // defaultValue=""
                 render={({ field }) => (
                   <MyTextField
                     type="text"
@@ -102,18 +108,19 @@ function PDReleventField2({ name, defaultValueItems }) {
               />
 
               {fields.length !== 1 && (
-                <Button
-                  type="button"
-                  sx={{
-                    mt: "25px",
-                    position: "absolute",
-                    left: 245,
-                    fontSize: "20px",
-                  }}
+                <i
                   onClick={() => handleRemove(index)}
-                >
-                  <i style={{ color: "red", cursor: "pointer" }} className="ri-delete-bin-line"></i>
-                </Button>
+                  style={{
+                    color: "red",
+                    cursor: "pointer",
+                    position: "absolute",
+                    left: 275,
+                    top: 35,
+                    height: "20px",
+                    width: "20px",
+                  }}
+                  className="ri-delete-bin-line"
+                ></i>
               )}
             </FormControl>
           </Stack>
@@ -126,10 +133,8 @@ function PDReleventField2({ name, defaultValueItems }) {
           fontSize: "14px",
           mb: "0px",
           color: hasChanged ? "#2E58FF" : "#7D89A3",
-          // color: "#2E58FF",
           cursor: "pointer",
           pointerEvents: hasChanged ? "auto" : "none",
-          // pointerEvents: "auto",
         }}
         variant="p"
         type="button"

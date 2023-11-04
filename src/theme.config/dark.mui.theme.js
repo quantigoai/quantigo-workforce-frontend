@@ -63,6 +63,7 @@ const darkTheme = createTheme({
     ...(typography.wpf_p2_regular.color = "#fff"),
     ...(typography.wpf_p3_regular.color = "#fff"),
     ...(typography.wpf_p4_regular.color = "#fff"),
+    ...(typography.wpf_p5_regular.color = "#fff"),
   },
   text: {
     primary: "#f8f8f8", // Primary text color

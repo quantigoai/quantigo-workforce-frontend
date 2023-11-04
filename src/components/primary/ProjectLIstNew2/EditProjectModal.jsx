@@ -9,7 +9,6 @@ import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import * as Yup from "yup";
 import PDDateField from "../../shared/CustomField/PDDateField";
 import PDReleventField2 from "../../shared/CustomField/PDReleventField2";
 import PDSelectField from "../../shared/CustomField/PDSelectField";
@@ -17,6 +16,8 @@ import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
 import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
 import FormProvider from "../../shared/FormProvider/FormProvider";
 import useHandleEditChange from "./Hooks/useHandleEditChange";
+import { ProjectDrawerSchema } from "./ProjectDrawerHelper";
+import { FieldBox, LineStack } from "./ProjectModal";
 import ProjectModalHeader from "./ProjectModalHeader";
 const style = {
   position: "absolute",
@@ -47,18 +48,18 @@ const EditProjectModal = ({
   const { prevSkills } = useHandleEditChange();
   const { isLightTheme } = useSelector((state) => state.theme);
   const { isLoading } = useSelector((state) => state.projectDrawer);
-  const ProjectDrawerSchema = Yup.object().shape({
-    // project_drawer_name: Yup.string().required(" project name is required"),
-    // project_alias: Yup.string().required("alias is required"),
-    // project_batch: Yup.string().required(" batch is required"),
-    // pdr: Yup.string().required(" pdr is required"),
-    // benchmark: Yup.string().required(" benchmark is required"),
-    // guideline: Yup.string().required(" document is required"),
-    // link: Yup.string().required("link is required"),
-  });
 
   const methods = useForm({
     resolver: yupResolver(ProjectDrawerSchema),
+    defaultValues: {
+      project_platform: projectDrawer.project_platform,
+      project_drawer_name: projectDrawer.project_drawer_name,
+      project_type: projectDrawer.project_type,
+      project_batch: projectDrawer.project_batch,
+      project_alias: projectDrawer.project_alias,
+      pdr: projectDrawer.pdr,
+      project_status: projectDrawer.project_status,
+    },
   });
 
   const { handleSubmit } = methods;
@@ -94,16 +95,18 @@ const EditProjectModal = ({
                     position: "relative",
                   }}
                 >
-                  <Stack direction="row" spacing={2}>
-                    <Box sx={{ width: "50%", height: "80px" }}>
+                  <LineStack>
+                    {/* project platform */}
+                    <FieldBox>
                       <PDSelectField
                         name={"project_platform"}
                         label="Platform"
                         options={platformCreateOptions}
                         defaultValue={projectDrawer.project_platform}
                       />
-                    </Box>
-                    <Box sx={{ width: "50%", height: "80px" }}>
+                    </FieldBox>
+                    {/* project name */}
+                    <FieldBox>
                       <PDTextFIeld
                         name="project_drawer_name"
                         label="Project Name"
@@ -114,19 +117,21 @@ const EditProjectModal = ({
                           }
                         }
                       />
-                    </Box>
-                  </Stack>
+                    </FieldBox>
+                  </LineStack>
 
-                  <Stack direction="row" spacing={2}>
-                    <Box sx={{ width: "50%", height: "80px" }}>
+                  <LineStack>
+                    {/* project type */}
+                    <FieldBox>
                       <PDSelectField
                         name={"project_type"}
                         label="Project Type"
                         options={projectTypeCreateOptions}
                         defaultValue={projectDrawer.project_type}
                       />
-                    </Box>
-                    <Box sx={{ width: "50%", height: "80px" }}>
+                    </FieldBox>
+                    {/* project batch */}
+                    <FieldBox>
                       <PDTextFIeld
                         name="project_batch"
                         label="Batch"
@@ -137,11 +142,12 @@ const EditProjectModal = ({
                         }}
                         isNumber="true"
                       />
-                    </Box>
-                  </Stack>
+                    </FieldBox>
+                  </LineStack>
 
-                  <Stack direction="row" spacing={2}>
-                    <Box sx={{ width: "50%", height: "80px" }}>
+                  <LineStack>
+                    {/* project alias */}
+                    <FieldBox>
                       <PDTextFIeld
                         name="project_alias"
                         label="Alias"
@@ -152,8 +158,9 @@ const EditProjectModal = ({
                           }
                         }
                       />
-                    </Box>
-                    <Box sx={{ width: "50%", height: "80px" }}>
+                    </FieldBox>
+                    <FieldBox>
+                      {/* project PDR */}
                       <PDTextFIeld
                         name="pdr"
                         label="PDR"
@@ -165,13 +172,12 @@ const EditProjectModal = ({
                         }}
                         isNumberPdr="true"
                       />
-                    </Box>
-                  </Stack>
+                    </FieldBox>
+                  </LineStack>
 
-                  {/* <SkillField/> */}
-
-                  <Stack direction="row" spacing={2}>
-                    <Box sx={{ width: "50%", height: "80px" }}>
+                  <LineStack>
+                    {/* project skills */}
+                    <FieldBox>
                       <PDskillFIeld
                         name={"project_skills"}
                         addSkills={editSkills}
@@ -182,8 +188,9 @@ const EditProjectModal = ({
                         skills={skills}
                         count={editCount}
                       />
-                    </Box>
-                    <Box sx={{ width: "50%", height: "80px" }}>
+                    </FieldBox>
+                    {/* project BM */}
+                    <FieldBox>
                       <PDTextFIeld
                         name="benchMark"
                         label="Benchmark"
@@ -194,11 +201,12 @@ const EditProjectModal = ({
                           }
                         }
                       />
-                    </Box>
-                  </Stack>
+                    </FieldBox>
+                  </LineStack>
 
-                  <Stack direction="row" spacing={2}>
-                    <Box sx={{ width: "50%", height: "80px" }}>
+                  <LineStack>
+                    {/* project estimated date */}
+                    <FieldBox>
                       <PDDateField
                         name="estimated_end_date"
                         label="Estimated End Time"
@@ -209,26 +217,25 @@ const EditProjectModal = ({
                           }
                         }
                       />
-                    </Box>
-                    <Box sx={{ width: "50%", height: "80px" }}>
+                    </FieldBox>
+                    {/* project status */}
+                    <FieldBox>
                       <PDSelectField
                         name={"project_status"}
                         label="Status"
                         options={statusCreateOptions}
                         defaultValue={projectDrawer.project_status}
                       />
-                    </Box>
-                  </Stack>
+                    </FieldBox>
+                  </LineStack>
 
                   <Typography
                     sx={{
-                      fontSize: "12px",
-                      fontWeight: "500",
                       mt: "5px",
                       mb: "5px",
                       color: "neutral.N300",
                     }}
-                    variant="h6"
+                    variant="wpf_h7_medium"
                   >
                     Relevant Documents
                   </Typography>
@@ -238,7 +245,7 @@ const EditProjectModal = ({
                       border: "1px solid #E6ECF5",
                       padding: "16px",
                       borderRadius: "8px",
-                      background: isLightTheme ? "#FAFCFF" : "#1E2A41",
+                      background: isLightTheme ? "#FAFCFF" : "#2C2C2C",
                       maxHeight: 155,
                       color: isLightTheme ? "#091E42" : "#FFFFFF",
                       overflowY: "auto",
@@ -253,9 +260,9 @@ const EditProjectModal = ({
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    paddingY: "12px",
-                    paddingX: "16px",
-                    mt: 2,
+                    paddingY: { lg: "10px", xl: "12px", xxl: "12px" },
+                    paddingX: { lg: "14px", xl: "16px", xxl: "16px" },
+                    mt: 1,
                     borderTop: "2px solid #F2F6FC",
                   }}
                 >
@@ -263,10 +270,14 @@ const EditProjectModal = ({
                     onClick={handleEditProjectClose}
                     sx={{
                       textTransform: "none",
-                      paddingX: "30px",
-                      paddingY: "5px",
-                      fontSize: "14px",
-                      height: "40px",
+                      paddingX: { lg: "20px", xl: "30px", xxl: "30px" },
+                      paddingY: { lg: "3px", xl: "5px", xxl: "5px" },
+                      fontSize: {
+                        lg: "12px",
+                        xl: "14px",
+                        xxl: "14px",
+                      },
+                      height: { lg: "40px", xl: "40px", xxl: "40px" },
                       width: "120px",
                       borderRadius: "8px",
                       border: "1px solid #F4F7FE",
@@ -277,7 +288,6 @@ const EditProjectModal = ({
                       },
                     }}
                     variant="filled"
-                    size="large"
                   >
                     Cancel
                   </Button>
@@ -286,10 +296,14 @@ const EditProjectModal = ({
                     loading={isLoading}
                     sx={{
                       textTransform: "none",
-                      paddingX: "30px",
-                      paddingY: "5px",
-                      fontSize: "14px",
-                      height: "40px",
+                      paddingX: { lg: "20px", xl: "30px", xxl: "30px" },
+                      paddingY: { lg: "3px", xl: "5px", xxl: "5px" },
+                      fontSize: {
+                        lg: "12px",
+                        xl: "14px",
+                        xxl: "14px",
+                      },
+                      height: { lg: "40px", xl: "40px", xxl: "40px" },
                       width: "120px",
                       borderRadius: "8px",
                       backgroundColor: "#2E58FF",
@@ -302,7 +316,6 @@ const EditProjectModal = ({
                       },
                     }}
                     variant="contained"
-                    size="large"
                   >
                     Save
                   </LoadingButton>

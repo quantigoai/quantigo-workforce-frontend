@@ -34,7 +34,7 @@ export const CustomFormControl = styled(FormControl)(() => ({
 export const MySelect = styled(Select)(() => ({
   borderRadius: "8px",
 }));
-export default function CustomSelectField({ name, helperText, options, label, setValue, defaultValue, ...other }) {
+export default function CustomSelectField({ name, helperText, options, label, setValue, defaultValue,isRequired, ...other }) {
   const { control } = useFormContext();
   const { isLightTheme } = useSelector((state) => state.theme);
 
@@ -51,7 +51,7 @@ export default function CustomSelectField({ name, helperText, options, label, se
               }}
             >
               <Typography sx={{ mb: 0, color: "#3c4d6b" }} variant="wpf_p4_medium">
-                {label}
+                {label} <span style={{ color: "#F04438" }}>{isRequired && "*"}</span>
               </Typography>
               <Box sx={{ width: "100%" }}>
                 <MySelect

@@ -41,7 +41,7 @@ export const MyTextField = styled(TextField)(() => ({
   },
 }));
 
-export default function CustomTextField({ name, label, helperText, ...other }) {
+export default function CustomTextField({ name, label, helperText, isRequired, ...other }) {
   const { control } = useFormContext();
   const { isLightTheme } = useSelector((state) => state.theme);
   return (
@@ -54,6 +54,7 @@ export default function CustomTextField({ name, label, helperText, ...other }) {
             {/* //!! For this special case use color like hex code, this is not standard */}
             <Typography variant="wpf_p4_medium" color="#3c4d6b">
               {label}
+              <span style={{ color: "#F04438" }}>{isRequired && "*"}</span>
             </Typography>
 
             <MyTextField

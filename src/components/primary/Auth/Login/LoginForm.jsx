@@ -94,6 +94,7 @@ const LoginForm = () => {
           <CustomTextField
             name="email"
             label="Email"
+            isRequired={true}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -113,6 +114,7 @@ const LoginForm = () => {
           <CustomTextField
             name="password"
             label="Password"
+            isRequired={true}
             type={showPassword ? "text" : "password"}
             InputProps={{
               // disableUnderline: true,

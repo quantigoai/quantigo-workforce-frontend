@@ -160,7 +160,7 @@ const RegistrationForm = () => {
                 },
               }}
             >
-              <CustomTextField name="firstName" label="First Name" />
+              <CustomTextField isRequired={true} name="firstName" label="First Name" />
             </Box>
 
             <Box
@@ -172,7 +172,7 @@ const RegistrationForm = () => {
                 },
               }}
             >
-              <CustomTextField name="lastName" label="Last Name" />
+              <CustomTextField isRequired={true} name="lastName" label="Last Name" />
             </Box>
             {/* Email */}
 
@@ -188,6 +188,7 @@ const RegistrationForm = () => {
               <CustomTextField
                 name="email"
                 label="Email"
+                isRequired={true}
                 InputProps={{
                   // disableUnderline: true,
                   endAdornment: (
@@ -211,6 +212,7 @@ const RegistrationForm = () => {
               <CustomTextField
                 name="password"
                 label="Password"
+                isRequired={true}
                 type={showPassword ? "text" : "password"}
                 InputProps={{
                   // disableUnderline: true,
@@ -265,6 +267,7 @@ const RegistrationForm = () => {
                 >
                   <CustomSelectField
                     name="hub"
+                    isRequired={true}
                     helperText="Select a hub"
                     options={hubOptions}
                     label={"User Hub"}
@@ -296,6 +299,7 @@ const RegistrationForm = () => {
                     name="qaiUserName"
                     label="Quantigo Username"
                     onBlur={handleCheckQaiUserName}
+                    isRequired={true}
                     helperText={helperMessage}
                     placeholder="QAI_XXXXXX"
                     InputProps={{
@@ -377,6 +381,7 @@ const RegistrationForm = () => {
                   name="billingAccountNo"
                   label="Nagad Account No"
                   placeholder="01XXXXXXXXX"
+                  isRequired={true}
                   InputProps={{
                     // disableUnderline: true,
                     endAdornment: (

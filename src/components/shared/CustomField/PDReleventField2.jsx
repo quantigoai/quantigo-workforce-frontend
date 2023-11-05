@@ -69,7 +69,7 @@ function PDReleventField2({ name, defaultValueItems }) {
     <>
       {fields.map((field, index) => (
         <Box key={field.id}>
-          <Stack direction="row" gap={2} xs={12}>
+          <Stack direction="row" spacing={2} xs={12}>
             <FormControl fullWidth>
               <Typography variant="wpf_h7_medium" sx={{ fontSize: "12px", fontWeight: "500", mb: 1 }}>
                 Document Name

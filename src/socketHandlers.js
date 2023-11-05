@@ -13,6 +13,7 @@
  * ------------------------
  */
 
+import io from "socket.io-client";
 import { updateProjectDrawerByNotification } from "./features/slice/projectDrawerSlice";
 
 const socketHandlers = ({
@@ -28,6 +29,7 @@ const socketHandlers = ({
   getAllAssignedJob,
 }) => {
   const { _id, role } = storedUser.user;
+  socket = io(import.meta.env.VITE_APP_SOCKET_SERVER_URL);
 
   const handleNotification = (notification) => {
     if (
@@ -135,6 +137,7 @@ const socketHandlers = ({
   };
 
   const customUserData = { _id, role };
+
 
   socket.emit("customUserData", customUserData);
   socket.on("notification", handleNotification);

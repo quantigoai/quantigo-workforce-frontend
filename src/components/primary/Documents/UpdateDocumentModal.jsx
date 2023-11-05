@@ -1,13 +1,12 @@
+import { LoadingButton } from "@mui/lab";
 import { Box, Button, Grid, MenuItem, Modal, Select, TextField, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { socket } from "../../../App";
 import useToaster from "../../../customHooks/useToaster";
 import { updateMyDocuments } from "../../../features/slice/userSlice";
 import ProjectModalHeader from "../ProjectLIstNew2/ProjectModalHeader";
 import DocumentImageUpload from "./DocumentImageUpload";
-import { LoadingButton } from "@mui/lab";
 
 export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
@@ -46,11 +45,6 @@ const style = {
     height: "20px",
   },
 };
-const ButtonStyle = styled(Button)({
-  borderRadius: "2px",
-  width: "100%",
-  height: "30px",
-});
 
 const UpdateDocumentModal = ({ openModal, handleClose }) => {
   const [coverImageFile, setCoverImageFile] = useState([]);
@@ -104,15 +98,9 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
     };
     dispatch(updateMyDocuments(finalData)).then((action) => {
       if (action.payload?.status === 200 || action.payload?.status === 201) {
-        if (
-          action.payload.data.isNDAApproved !== "rejected" &&
-          action.payload.data.isDocumentsSubmitted !== "rejected"
-        ) {
-          socket.emit("uploadNDAOrDocuments", user);
-        }
         toast.trigger("Your Documents has been update successfully.", "success");
         handleClose();
-        setCoverImage(null)
+        setCoverImage(null);
         setDocumentNoValid(false);
         setDocumentTypeValid(false);
       } else {

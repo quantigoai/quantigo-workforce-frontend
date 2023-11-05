@@ -3,7 +3,6 @@ import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
 import { lazy, Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import io from "socket.io-client";
 import "./App.css";
 import Routers from "./components/primary/Routers/Routers";
 import MobileErrorPage from "./components/shared/Error/MobileErrorPage";
@@ -28,7 +27,8 @@ const LayoutNew = lazy(() => import("./components/shared/Layout/LayoutNew"));
 
 const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 
-export const socket = io(import.meta.env.VITE_APP_SOCKET_SERVER_URL);
+// export const socket = io(import.meta.env.VITE_APP_SOCKET_SERVER_URL);
+let socket;
 function App() {
   const dispatch = useDispatch();
   const storedUser = useSelector((state) => state.user);

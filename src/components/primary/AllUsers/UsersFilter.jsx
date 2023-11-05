@@ -44,7 +44,7 @@ const UsersFilter = ({
           pr: 2,
           pl: 2,
           pY: "6px",
-          transition: "all 2.5s ease-in-out",
+          // transition: "all 0.5s ease-in-out",
         }}
       >
         <Stack

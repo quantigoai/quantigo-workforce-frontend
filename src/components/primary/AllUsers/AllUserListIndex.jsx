@@ -180,11 +180,11 @@ const AllUserListIndex = () => {
     };
     dispatch(updateAUserById(finalData)).then((action) => {
       if (action.payload?.status === 200) {
-        toast.trigger("Reject  NDA", "success");
+        toast.trigger("The user verification process has been rejected.", "success");
         setOpenAccepet(false);
         setOpenModal(false);
       } else {
-        toast.trigger("Failed to Reject  NDA", "error");
+        toast.trigger("Failed to reject user verification. Please try again.", "error");
       }
     });
     handleClose();
@@ -210,11 +210,11 @@ const AllUserListIndex = () => {
     };
     dispatch(updateAUserById(data)).then((action) => {
       if (action.payload?.status === 200) {
-        toast.trigger("User Verified successfully", "success");
+        toast.trigger("User has been verified successfully.", "success");
         setOpenAccepet(false);
         setOpenModal(false);
       } else {
-        toast.trigger("User not Verified ", "error");
+        toast.trigger("Failed to verify the user, please try again later.", "error");
       }
     });
   };

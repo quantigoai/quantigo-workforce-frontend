@@ -8,11 +8,8 @@ ProjectSelectFIlterField.propTypes = {
   helperText: PropTypes.node,
 };
 export const MySelect = styled(Select)(() => ({
-  // border: "1px solid #E0E0E0",
-  backgroundColor: "neutral.N000",
-  padding: "0px",
-  height: "36px",
-  margin: "0px",
+  border: "1px solid #E6ECF5",
+  borderRadius: "8px",
 }));
 
 export default function ProjectSelectFIlterField({ options, label, handleChange, name, filterValue }) {
@@ -27,7 +24,7 @@ export default function ProjectSelectFIlterField({ options, label, handleChange,
         minWidth: { lg: "20%", xl: "25%", xxl: "25%" },
         // minHeight: "36px",
         // height: "36px",
-        fontFamily: "Inter",
+        // fontFamily: "Inter",
       }}
     >
       <MySelect
@@ -56,14 +53,17 @@ export default function ProjectSelectFIlterField({ options, label, handleChange,
         onChange={(e) => handleChange(e)}
         name={name}
       >
-        <MenuItem disabled value="">
-          <Typography color="neutral.N300" sx={{fontSize: { xl: "14px", xxl: "16px", lg: "12px" }}}>
+        <MenuItem disabled value="" sx={{ fontSize: { xl: "14px", xxl: "16px", lg: "12px" } }}>
+          <Typography
+            color="neutral.N300"
+            sx={{ fontFamily: "Inter", fontSize: { xl: "14px", xxl: "14px", lg: "12px" } }}
+          >
             {label}
           </Typography>
         </MenuItem>
         {options.map((option) => (
           <MenuItem
-            sx={{ fontFamily: "Inter", fontSize: { xl: "14px", xxl: "16px", lg: "12px" } }}
+            sx={{ fontFamily: "Inter", fontSize: { xl: "14px", xxl: "14px", lg: "12px" } }}
             key={option.value}
             fullWidth
             value={option.value}

@@ -21,6 +21,8 @@ const ProjectDetailsHeader = ({
   range,
   setRange,
   usersWorkHistoryCount,
+  isAvailable,
+  setIsAvailable,
 }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   return (
@@ -40,7 +42,8 @@ const ProjectDetailsHeader = ({
       className="contentHeader"
       sx={{
         backgroundColor: "neutral.N000",
-      }}>
+      }}
+    >
       <Box
         sx={{
           width: "100%",
@@ -48,12 +51,14 @@ const ProjectDetailsHeader = ({
           display: "flex",
           justifyContent: "space-between",
           alignItems: "Center",
-        }}>
+        }}
+      >
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Typography
             variant="wpf_p1_semiBold"
             color={isLightTheme ? "#091E42" : "white"}
-            sx={{ fontSize: { lg: "12px", xl: "18px", xxl: "18px" } }}>
+            sx={{ fontSize: { lg: "12px", xl: "18px", xxl: "18px" } }}
+          >
             {projectDrawer.project_drawer_name}{" "}
           </Typography>
 
@@ -104,6 +109,8 @@ const ProjectDetailsHeader = ({
                 isDisable={isDisable}
                 handleCheckInButton={handleCheckInButton}
                 handleDetailButton={handleDetailButton}
+                isAvailable={isAvailable}
+                setIsAvailable={setIsAvailable}
               />
             ) : null}
           </Box>

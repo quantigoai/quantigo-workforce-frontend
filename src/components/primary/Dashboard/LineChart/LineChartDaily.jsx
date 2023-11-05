@@ -64,7 +64,7 @@ const LineChartDaily = ({ loading }) => {
         <Grid container>
           <Grid item xs={12} sx={{ paddingTop: "1%" }}>
             <Typography variant="wpf_p3_semiBold" sx={{ color: "neutral.750" }}>
-              <b>Hourly Check-ins</b>
+              Hourly Check-ins
             </Typography>
           </Grid>
         </Grid>

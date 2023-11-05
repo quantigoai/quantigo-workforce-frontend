@@ -110,7 +110,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
         ) {
           socket.emit("uploadNDAOrDocuments", user);
         }
-        toast.trigger("User Documents update successfully", "success");
+        toast.trigger("Your Documents has been update successfully.", "success");
         handleClose();
       } else {
         toast.trigger("Failed to update User Documents", "error");

@@ -51,8 +51,9 @@ export const darkColors = {
     P600: "#344054",
   },
   error: {
-    500: "#F04438", // Error color
-    800: "#F04438", // Darker error color
+    500: "#F04438",
+    800: "#F04438",
+    R001: "#FF4757",
   },
   green: {
     200: "#C4F5DF", // Lighter green color

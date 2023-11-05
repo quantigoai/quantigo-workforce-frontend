@@ -16,8 +16,8 @@ const ProjectTypeFilter = ({ setStatusFilter, statusFilter }) => {
             border: "1px solid #DADCDF",
             borderRadius: "4px",
           }}>
-          <MenuItem value={"images"}>Image</MenuItem>
-          <MenuItem value={"videos"}>Video</MenuItem>
+          <MenuItem value={"image"}>Image</MenuItem>
+          <MenuItem value={"video"}>Video</MenuItem>
         </Select>
       </FormControl>
     </>

@@ -386,7 +386,7 @@ const RegistrationForm = () => {
                   InputProps={{
                     // disableUnderline: true,
                     endAdornment: (
-                      <InputAdornment position="end">
+                      <InputAdornment position="end" sx={{ color: "#7D89A3" }}>
                         <LocalPhoneIcon />
                         {/* <img src={phoneicon} /> */}
                       </InputAdornment>
@@ -413,7 +413,7 @@ const RegistrationForm = () => {
                   InputProps={{
                     // disableUnderline: true,
                     endAdornment: (
-                      <InputAdornment position="end">
+                      <InputAdornment position="end" sx={{ color: "#7D89A3" }}>
                         <LocalPhoneIcon />
                       </InputAdornment>
                     ),

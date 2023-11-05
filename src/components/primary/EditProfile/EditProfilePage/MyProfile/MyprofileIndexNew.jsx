@@ -121,6 +121,9 @@ const MyprofileIndexNew = () => {
       });
     //   Object.keys(filteredData).length > 0 &&
     dispatch(myProfileEdit(finalData)).then((action) => {
+      if (action.error) {
+        toast.trigger(action.error.message, "error");
+      }
       if (action.payload.status === 200) {
         toast.trigger("Profile Update Successfully", "success");
         setEditAble(false);

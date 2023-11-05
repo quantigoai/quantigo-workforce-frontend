@@ -64,8 +64,8 @@ export default function CustomDatePicker({
   const { isLightTheme } = useSelector((state) => state.theme);
 
   const handleDate = (newValue) => {
-    const x = convertDate(newValue);
-    setValue("dob", x);
+    const convertedValue = convertDate(newValue);
+    setValue("dob", convertedValue);
   };
   const maxDob = dayjs().subtract(13, "year");
   const minDob = dayjs().subtract(70, "year");

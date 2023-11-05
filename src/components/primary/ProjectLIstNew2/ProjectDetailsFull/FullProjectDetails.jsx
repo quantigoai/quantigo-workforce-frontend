@@ -47,7 +47,7 @@ const FullProjectDetails = () => {
   const [isDisable, setIsDisable] = useState(false);
   const [isAvailable, setIsAvailable] = useState(false);
 
-  const [checkOutDisable, setCheckOutDisable] = useState(false);
+  const [checkOutDisable, setCheckOutDisable] = useState(true);
   const navigate = useNavigate();
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -112,26 +112,20 @@ const FullProjectDetails = () => {
       setCheckOutDisable(true);
     }
     dispatch(checkOutProjectDrawerById(data)).then((action) => {
-      if (action.payload?.status === 200) {
+      if (action.error) {
+        toast.trigger(action.error.message, "error");
+        setCheckOutDisable(false);
+        setOpen(false);
+      } else if (action.payload?.status === 200) {
         dispatch(clearUserWorkingProject());
         toast.trigger(action.payload.data.message, "success");
         setIsDisable(false);
-        setCheckOutDisable(false);
+        setCheckOutDisable(true);
         setOpen(false);
         const userSkills = skills?.map((skill) => skill.id);
         const projectSkills = projectDrawer?.project_skills?.map((skill) => skill.id);
         const matched = projectSkills?.every((skill) => userSkills?.includes(skill));
         setIsAvailable(matched && projectDrawer.project_status === "in-Progress");
-      } else if (action.error) {
-        toast.trigger(action.error.message, "error");
-
-        setCheckOutDisable(false);
-        setOpen(false);
-      } else {
-        toast.trigger(action.error.message, "error");
-
-        setCheckOutDisable(false);
-        setOpen(false);
       }
     });
   };

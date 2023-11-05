@@ -19,7 +19,9 @@ import {
 } from "./features/slice/notificationSlice";
 import { setFromPreviousTheme } from "./features/slice/themeSlice";
 import { alreadyLogin, updateLoggedInUserManually, updateSingleUserManually } from "./features/slice/userSlice";
+
 import socketHandlers from "./socketHandlers";
+
 const RoutersLogin = lazy(() => import("./components/primary/Routers/RoutersLogin"));
 
 const LayoutNew = lazy(() => import("./components/shared/Layout/LayoutNew"));
@@ -48,22 +50,26 @@ function App() {
   };
 
   useEffect(() => {
+    socketHandlers({
+      socket,
+      dispatch,
+      storedUser,
+      setNewNotification,
+      updateLoggedInUserManually,
+      updateSingleUserManually,
+      getAllJobs,
+      getMyJobs,
+      availableJobsForReviewer,
+      getAllAssignedJob,
+    });
+    return () => {};
+  }, []);
+
+  useEffect(() => {
     if (tokenCheck()) {
       dispatch(alreadyLogin(tokenCheck()));
-      socketHandlers({
-        socket,
-        dispatch,
-        storedUser,
-        setNewNotification,
-        updateLoggedInUserManually,
-        updateSingleUserManually,
-        getAllJobs,
-        getMyJobs,
-        availableJobsForReviewer,
-        getAllAssignedJob,
-      });
+      dispatch(setFromPreviousTheme());
     }
-    dispatch(setFromPreviousTheme());
   }, [dispatch]);
 
   const clearReduxData = useClearReduxData;

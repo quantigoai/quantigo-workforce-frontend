@@ -73,6 +73,7 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
   const [coverImageFile, setCoverImageFile] = useState(null);
   const [stepper, setStepper] = useState(0);
   const [coverImage, setCoverImage] = useState(null);
+  
   const handleDownload = () => {
     setStepper(1);
   };
@@ -127,15 +128,16 @@ const NDAuploadModal = ({ openModal, handleClose, onDrop, accept }) => {
 
     dispatch(signingNda(data)).then((action) => {
       if (action.payload?.status === 200) {
-        toast.trigger("NDA Upload Successful", "success");
+        toast.trigger("Your NDA has been upload successfully.", "success");
         handleClose();
+        setStepper(0);
       } else {
         toast.trigger("Can not upload NDA", "error");
         handleClose();
       }
     });
   };
-  const steps = ["Downlaod NDA form", "Sign the form", " Upload the signed document"];
+  const steps = ["Download NDA form", "Sign the form", " Upload the signed document"];
 
   return (
     <>

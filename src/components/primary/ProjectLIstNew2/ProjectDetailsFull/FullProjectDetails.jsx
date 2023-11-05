@@ -25,7 +25,7 @@ const TableWrapper = React.lazy(() => import("../ExpTable/TableWrapper"));
 
 const FullProjectDetails = () => {
   const { id } = useParams();
-  const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
+  const { currentlyCheckedInProject, skills } = useSelector((state) => state.user.user);
   const { isLoading, projectDrawer, usersWorkHistory, usersWorkHistoryCount } = useSelector(
     (state) => state.projectDrawer
   );
@@ -45,6 +45,8 @@ const FullProjectDetails = () => {
   const toast = useToaster();
   const dispatch = useDispatch();
   const [isDisable, setIsDisable] = useState(false);
+  const [isAvailable, setIsAvailable] = useState(false);
+
   const [checkOutDisable, setCheckOutDisable] = useState(false);
   const navigate = useNavigate();
   const handleChange = (event) => {
@@ -116,6 +118,10 @@ const FullProjectDetails = () => {
         setIsDisable(false);
         setCheckOutDisable(false);
         setOpen(false);
+        const userSkills = skills?.map((skill) => skill.id);
+        const projectSkills = projectDrawer?.project_skills?.map((skill) => skill.id);
+        const matched = projectSkills?.every((skill) => userSkills?.includes(skill));
+        setIsAvailable(matched && projectDrawer.project_status === "in-Progress");
       } else if (action.error) {
         toast.trigger(action.error.message, "error");
 
@@ -225,6 +231,8 @@ const FullProjectDetails = () => {
           checkOutDisable={checkOutDisable}
           handleDetailButton={handleDetailButton}
           handleCheckInButton={handleCheckInButton}
+          isAvailable={isAvailable}
+          setIsAvailable={setIsAvailable}
         />
         {/* )} */}
       </HeaderBox>

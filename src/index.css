@@ -84,7 +84,7 @@ body {
    margin: 0 !important;
 }
 .Toastify__toast{
-  background: url('images/checked.png'), rgba(221, 233, 221, 0.66);
+  /* background: url('./assets/images/checked.png'), rgba(221, 233, 221, 0.66); */
 
   padding: 0 !important;
   margin-bottom: 10px !important;

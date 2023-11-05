@@ -24,7 +24,7 @@ const ErrorToaster = ({ message }) => {
         >
           <ErrorIcon sx={{ color: "#F04438" }} />
           <Box>
-            <Typography variant="wpf_p2_semiBold" color="#green.800">
+            <Typography variant="wpf_p2_semiBold" color="error.800">
               Error
             </Typography>
             <br />

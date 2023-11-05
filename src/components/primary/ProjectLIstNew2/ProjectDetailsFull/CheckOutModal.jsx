@@ -62,7 +62,7 @@ const CheckOutModal = ({ open, handleClose, handleCheckOutButton, projectDrawer 
           id="modal-modal-description"
           sx={{ color: isLightTheme ? "#3C4D6B" : "#fff", fontSize: "14px", fontWeight: "400", lineHeight: "20px" }}
         >
-          Are you sure you want to checkout of this project {projectDrawer.project_drawer_name} ?
+          Are you sure you want to checked out from this project {projectDrawer.project_drawer_name} ?
         </Typography>
 
         <Box

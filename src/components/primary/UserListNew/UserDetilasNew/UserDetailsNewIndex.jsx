@@ -103,19 +103,19 @@ export default function UserDetailsNewIndex({ open, handleClose, role }) {
     isEditSkill &&
       dispatch(updateAUserById(skillData)).then((action) => {
         if (action.payload?.status === 200) {
-          toast.trigger("Skill Update successfully", "success");
+          toast.trigger("User skill has been updated successfully.", "success");
           setIsEditSkill(false);
         } else {
-          toast.trigger("Skill can not updated ", "error");
+          toast.trigger("Failed to update user skills, please try again later.", "error");
         }
       });
     roleValue &&
       dispatch(changeRole(finalData)).then((action) => {
         if (action.payload?.status === 200) {
-          toast.trigger("Role Change Successfully", "success");
+          toast.trigger("User role has been changed successfully.", "success");
           setRoleValue("");
         } else {
-          toast.trigger("Unable to Change the Role", "error");
+          toast.trigger("Failed to change user role, try again later.", "error");
         }
       });
 
@@ -124,14 +124,14 @@ export default function UserDetailsNewIndex({ open, handleClose, role }) {
         if (action.payload?.status === 200) {
           if (actionStatus === "delete") {
             window.location.reload(false);
-            toast.trigger("User Deleted Successfully", "success");
+            toast.trigger("User deleted successfully from the application.", "success");
             setActionStatus("");
           } else {
-            toast.trigger("Status change Successfully", "success");
+            toast.trigger("User status has been changed successfully.", "success");
             setActionStatus("");
           }
         } else {
-          toast.trigger("Unable to Change the Status", "error");
+          toast.trigger("Failed to change user status, please try again later.", "error");
         }
       });
   };

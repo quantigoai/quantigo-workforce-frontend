@@ -81,12 +81,16 @@ export const readMyProfile = createAsyncThunk("read/myProfile", async () => {
 });
 
 export const myProfileEdit = createAsyncThunk("user/myProfileEdit", async (finalData) => {
-  const { id, data } = finalData;
-  return axios.patch(`${url}/users/my-profile/${id}`, data, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
+  try {
+    const { id, data } = finalData;
+    return await axios.patch(`${url}/users/my-profile/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
 });
 
 // upload My Image

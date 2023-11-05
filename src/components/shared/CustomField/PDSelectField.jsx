@@ -82,10 +82,9 @@ export default function PDSelectField({
                   {...field}
                   variant="outlined"
                   placeholder="Select"
-                  value={defaultValue}
+                  defaultValue={defaultValue}
                   error={!!error}
-                  // helperText={error ? error?.message : helperText}
-                  helperText={"hello"}
+                  helperText={error ? error?.message : helperText}
                   IconComponent={KeyboardArrowDownIcon}
                   {...other}
                 >

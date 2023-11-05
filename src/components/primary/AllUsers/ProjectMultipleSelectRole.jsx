@@ -69,7 +69,7 @@ const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, r
                         borderRadius: "32px",
                         border: "1px solid #E6ECF5",
                         color: "neutral.700",
-                        fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
+                        fontSize: { xl: "14px", xxl: "14px", lg: "12px" },
                         fontFamily: "Inter",
                       }}
                       key={item.value}
@@ -84,7 +84,7 @@ const ProjectMultipleSelectRole = ({ name, addRoles, handleChangeRoles, label, r
                     pl: "4px",
                     mt: 0,
                     color: "neutral.700",
-                    fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
+                    fontSize: { xl: "14px", xxl: "14px", lg: "12px" },
                   }}
                 >
                   + {count} more

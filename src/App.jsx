@@ -19,7 +19,9 @@ import {
 } from "./features/slice/notificationSlice";
 import { setFromPreviousTheme } from "./features/slice/themeSlice";
 import { alreadyLogin, updateLoggedInUserManually, updateSingleUserManually } from "./features/slice/userSlice";
+
 import socketHandlers from "./socketHandlers";
+
 const RoutersLogin = lazy(() => import("./components/primary/Routers/RoutersLogin"));
 
 const LayoutNew = lazy(() => import("./components/shared/Layout/LayoutNew"));
@@ -27,7 +29,6 @@ const LayoutNew = lazy(() => import("./components/shared/Layout/LayoutNew"));
 const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 
 export const socket = io(import.meta.env.VITE_APP_SOCKET_SERVER_URL);
-
 function App() {
   const dispatch = useDispatch();
   const storedUser = useSelector((state) => state.user);
@@ -48,22 +49,26 @@ function App() {
   };
 
   useEffect(() => {
+    socketHandlers({
+      socket,
+      dispatch,
+      storedUser,
+      setNewNotification,
+      updateLoggedInUserManually,
+      updateSingleUserManually,
+      getAllJobs,
+      getMyJobs,
+      availableJobsForReviewer,
+      getAllAssignedJob,
+    });
+    return () => {};
+  }, []);
+
+  useEffect(() => {
     if (tokenCheck()) {
       dispatch(alreadyLogin(tokenCheck()));
-      socketHandlers({
-        socket,
-        dispatch,
-        storedUser,
-        setNewNotification,
-        updateLoggedInUserManually,
-        updateSingleUserManually,
-        getAllJobs,
-        getMyJobs,
-        availableJobsForReviewer,
-        getAllAssignedJob,
-      });
+      dispatch(setFromPreviousTheme());
     }
-    dispatch(setFromPreviousTheme());
   }, [dispatch]);
 
   const clearReduxData = useClearReduxData;

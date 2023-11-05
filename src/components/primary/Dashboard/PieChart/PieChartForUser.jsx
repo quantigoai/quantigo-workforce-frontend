@@ -79,7 +79,7 @@ const PieChartForUser = () => {
       },
       title: {
         display: true,
-        text: "Annotators Acssstivity",
+        text: "Annotators Activity",
         align: "start",
         font: {
           size: 14,

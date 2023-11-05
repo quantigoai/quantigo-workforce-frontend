@@ -391,7 +391,7 @@ const userSlice = createSlice({
     updateSingleUserManually: (state, action) => {
       const { user } = action.payload;
       state.targetedUser = user;
-      state.users.users = state.users.users.map((item) => {
+      state.users.users = state.users?.users?.map((item) => {
         if (item._id === user._id) {
           return user;
         }

@@ -112,6 +112,9 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
         }
         toast.trigger("Your Documents has been update successfully.", "success");
         handleClose();
+        setCoverImage(null)
+        setDocumentNoValid(false);
+        setDocumentTypeValid(false);
       } else {
         toast.trigger("Failed to update User Documents", "error");
       }

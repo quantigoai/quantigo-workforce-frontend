@@ -183,6 +183,7 @@ const AllUserListIndex = () => {
         toast.trigger("The user verification process has been rejected.", "success");
         setOpenAccepet(false);
         setOpenModal(false);
+        setRejectionCause("");
       } else {
         toast.trigger("Failed to reject user verification. Please try again.", "error");
       }

@@ -82,8 +82,6 @@ const ProjectModal = ({
   const { isLightTheme } = useSelector((state) => state.theme);
   const { isLoading } = useSelector((state) => state.projectDrawer);
 
-
-
   const methods = useForm({
     resolver: yupResolver(ProjectDrawerSchema),
     mode: "all",
@@ -184,7 +182,7 @@ const ProjectModal = ({
                     <FieldBox>
                       <PDskillFIeld
                         name={"project_skills"}
-                        addSkills={addSkills && addSkills}
+                        addSkills={addSkills}
                         label="Skills"
                         handleChangeSkill={handleChangeSkill}
                         skills={skills}

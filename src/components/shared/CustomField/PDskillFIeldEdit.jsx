@@ -45,7 +45,7 @@ const MenuProps = {
     },
   },
 };
-const PDskillFIeld = ({
+const PDskillFIeldEdit = ({
   name,
   addSkills,
   label,
@@ -86,10 +86,12 @@ const PDskillFIeld = ({
                   {...field}
                   variant="outlined"
                   multiple
-                  value={
-                    addSkills.length
-                      ? addSkills?.map((skill) => skill.name)
+                  defaultValue={
+                    // isEdit
+                    selectedSkills.length
+                      ? selectedSkills?.map((skill) => skill.name)
                       : []
+                    // : addSkills?.map((skill) => skill.name)
                   }
                   // defaultValue={isEdit ? selectedSkills?.map((skill) => skill.name) : addSkills}
                   onChange={handleChangeSkill}
@@ -174,4 +176,4 @@ const PDskillFIeld = ({
   );
 };
 
-export default PDskillFIeld;
+export default PDskillFIeldEdit;

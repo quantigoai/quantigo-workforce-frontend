@@ -19,6 +19,7 @@ import useHandleEditChange from "./Hooks/useHandleEditChange";
 import { ProjectDrawerSchema } from "./ProjectDrawerHelper";
 import { FieldBox, LineStack } from "./ProjectModal";
 import ProjectModalHeader from "./ProjectModalHeader";
+import PDskillFIeldEdit from "../../shared/CustomField/PDskillFIeldEdit";
 const style = {
   position: "absolute",
   top: "50%",
@@ -178,7 +179,7 @@ const EditProjectModal = ({
                   <LineStack>
                     {/* project skills */}
                     <FieldBox>
-                      <PDskillFIeld
+                      <PDskillFIeldEdit
                         name={"project_skills"}
                         addSkills={editSkills}
                         selectedSkills={prevSkills}

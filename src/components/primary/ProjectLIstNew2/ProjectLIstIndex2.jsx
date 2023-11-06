@@ -7,13 +7,13 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Paper, styled } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import "remixicon/fonts/remixicon.css";
-import useToaster from "../../../customHooks/useToaster";
-import { setActivePath } from "../../../features/slice/activePathSlice";
+import { Box, Paper, styled } from '@mui/material';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import 'remixicon/fonts/remixicon.css';
+import useToaster from '../../../customHooks/useToaster';
+import { setActivePath } from '../../../features/slice/activePathSlice';
 import {
   createProjectDrawer,
   deleteProjectDrawerById,
@@ -21,12 +21,12 @@ import {
   getMyAvailableProjects,
   setCurrentProjectDrawer,
   updateProjectDrawerById,
-} from "../../../features/slice/projectDrawerSlice";
-import { getAllSkills } from "../../../features/slice/skillSlice";
-import dataBuilder from "../../shared/CustomTable/dataBuilder";
-import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
-import LoadingComponent from "../../shared/Loading/LoadingComponent";
-import EditProjectModal from "./EditProjectModal";
+} from '../../../features/slice/projectDrawerSlice';
+import { getAllSkills } from '../../../features/slice/skillSlice';
+import dataBuilder from '../../shared/CustomTable/dataBuilder';
+import fieldBuilder from '../../shared/CustomTable/fieldBuilder';
+import LoadingComponent from '../../shared/Loading/LoadingComponent';
+import EditProjectModal from './EditProjectModal';
 import {
   fields,
   filterPDR,
@@ -36,18 +36,18 @@ import {
   projectTypeOptions,
   statusCreateOptions,
   statusOptions,
-} from "./FIlterOptions";
-import useAllFunc from "./Hooks/useAllFunc";
-import useHandleChange from "./Hooks/useHandleChange";
-import useHandleEditChange from "./Hooks/useHandleEditChange";
-import PaginationTable from "./PaginationTable";
-import Project2DetailsModal from "./Project2Details/Project2DetailsModal";
-import ProjectHeader from "./ProjectHeader";
-import ProjectModal from "./ProjectModal";
-import ProjectSelectFIlter from "./ProjectSelectFIlter";
-import "./index.css";
+} from './FIlterOptions';
+import useAllFunc from './Hooks/useAllFunc';
+import useHandleChange from './Hooks/useHandleChange';
+import useHandleEditChange from './Hooks/useHandleEditChange';
+import PaginationTable from './PaginationTable';
+import Project2DetailsModal from './Project2Details/Project2DetailsModal';
+import ProjectHeader from './ProjectHeader';
+import ProjectModal from './ProjectModal';
+import ProjectSelectFIlter from './ProjectSelectFIlter';
+import './index.css';
 // import TableWrapper from "./ExpTable/TableWrapper";
-const TableWrapper = React.lazy(() => import("./ExpTable/TableWrapper"));
+const TableWrapper = React.lazy(() => import('./ExpTable/TableWrapper'));
 
 // test for commit
 /**
@@ -55,28 +55,30 @@ const TableWrapper = React.lazy(() => import("./ExpTable/TableWrapper"));
  */
 
 export const HeaderBox = styled(Box)({
-  display: "flex",
-  flexDirection: "column",
-  height: "116px",
-  alignItems: "center",
+  display: 'flex',
+  flexDirection: 'column',
+  height: '116px',
+  alignItems: 'center',
 });
 
 export const TablePaper = styled(Paper)({
-  width: "100%",
-  height: "100%",
-  overflow: "auto",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between",
-  borderRadius: "8px",
-  border: "0px 0px 1px 0px",
-  boxShadow: "0px 1px 3px 0px #09008014",
+  width: '100%',
+  height: '100%',
+  overflow: 'auto',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  borderRadius: '8px',
+  border: '0px 0px 1px 0px',
+  boxShadow: '0px 1px 3px 0px #09008014',
 });
 const ProjectLIstIndex2 = () => {
   const dispatch = useDispatch();
   const { isLightTheme } = useSelector((state) => state.theme);
   const { skills } = useSelector((state) => state.skill);
-  const { projectDrawers, projectDrawer, total, error } = useSelector((state) => state.projectDrawer);
+  const { projectDrawers, projectDrawer, total, error } = useSelector(
+    (state) => state.projectDrawer,
+  );
   const { role } = useSelector((state) => state.user.user);
   const [isDataLoading, setIsDataLoading] = useState(true);
   const [isChildDataLoading, setIsChildDataLoading] = useState(false);
@@ -122,12 +124,12 @@ const ProjectLIstIndex2 = () => {
     dispatch(deleteProjectDrawerById(e.id))
       .then((action) => {
         if (action.payload.status === 200) {
-          toast.trigger(action.payload.data.message, "success");
+          toast.trigger(action.payload.data.message, 'success');
           handleChangePagination();
         }
       })
       .catch(() => {
-        toast.trigger(error, "error");
+        toast.trigger(error, 'error');
       });
   };
   const handleChangePagination = useCallback(() => {
@@ -138,7 +140,7 @@ const ProjectLIstIndex2 = () => {
         getMyAvailableProjects({
           pagination,
           annotatorPlatform,
-        })
+        }),
       ).then(() => {
         setIsChildDataLoading(false);
       });
@@ -149,22 +151,18 @@ const ProjectLIstIndex2 = () => {
           filteredData: filterValue,
           ascDescOption: filteredCol,
           search,
-        })
+        }),
       ).then(() => {
         setIsChildDataLoading(false);
       });
     }
   }, [dispatch, pagination, filterValue, filteredCol, search, checked]);
 
-  const { handleChangeSkill, addSkills, setAddSkills, count } = useHandleChange();
+  // Create hook
+  const { handleChangeSkill, addSkills, setAddSkills, count } =
+    useHandleChange();
 
-  const handleCreateProjectClose = () => {
-    setCreateProjectOpen(false);
-    setAddSkills([]);
-  };
-
-  //create and edit project submit
-
+  //Edit project submit
   const {
     handleClearAllSkills,
     handleEditSkill,
@@ -175,8 +173,15 @@ const ProjectLIstIndex2 = () => {
     isEdit,
     setIsEdit,
   } = useHandleEditChange();
+
+  const handleCreateProjectClose = () => {
+    setAddSkills([]);
+    setCreateProjectOpen(false);
+  };
+
   const handleEditProjectClose = () => {
     handleClearAllSkills();
+    setIsEdit(false);
     setEditModalOpen(false);
     setIsEditModal(false);
   };
@@ -189,40 +194,44 @@ const ProjectLIstIndex2 = () => {
   };
 
   const skillId = addSkills?.map((skill) => skill?._id);
-
   const onSubmit = (data) => {
     if (isEditModal) {
       const newData = {
         ...data,
         project_skills: filteredSkillInfo,
-        relevantDocuments: data.relevantDocuments.filter((doc) => doc.documentName !== "" || doc.documentUrl !== ""),
+        relevantDocuments: data.relevantDocuments.filter(
+          (doc) => doc.documentName !== '' || doc.documentUrl !== '',
+        ),
       };
       const allData = { id: projectDrawer._id, data: newData };
       dispatch(updateProjectDrawerById(allData)).then((action) => {
         if (action.error?.message) {
-          toast.trigger(action.error?.message, "error");
+          toast.trigger(action.error?.message, 'error');
         }
         if (action.payload?.status === 200) {
-          toast.trigger(action.payload.data.message, "success");
+          toast.trigger(action.payload.data.message, 'success');
           handleClearAllSkills();
           setEditModalOpen(false);
+          setIsEditModal(false);
         }
       });
     } else {
       const newData = {
         ...data,
         project_skills: skillId,
-        relevantDocuments: data.relevantDocuments.filter((doc) => doc.documentName !== "" || doc.documentUrl !== ""),
+        relevantDocuments: data.relevantDocuments.filter(
+          (doc) => doc.documentName !== '' || doc.documentUrl !== '',
+        ),
       };
       dispatch(createProjectDrawer(newData)).then((action) => {
         if (action.error) {
-          toast.trigger(action.error.message, "error");
+          toast.trigger(action.error.message, 'error');
         }
         if (action.payload?.status === 201) {
-          toast.trigger(action.payload.data.message, "success");
-          setCreateProjectOpen(false);
-          handleClearAllSkills();
+          toast.trigger(action.payload.data.message, 'success');
+          handleCreateProjectClose();
           handleChangePagination();
+  
         }
       });
     }
@@ -239,14 +248,18 @@ const ProjectLIstIndex2 = () => {
   const searchRef = React.useRef(null);
 
   useEffect(() => {
-    dispatch(setActivePath("All Projects"));
+    dispatch(setActivePath('All Projects'));
     setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
-    projectDrawers && projectDrawers.length > 0 && setMyRows(dataBuilder(projectDrawers));
+    projectDrawers &&
+      projectDrawers.length > 0 &&
+      setMyRows(dataBuilder(projectDrawers));
   }, [dispatch, projectDrawers]);
 
   useEffect(() => {
     dispatch(getAllSkills());
-    dispatch(getAllProjectDrawers({ pagination })).then(() => setIsDataLoading(false));
+    dispatch(getAllProjectDrawers({ pagination })).then(() =>
+      setIsDataLoading(false),
+    );
   }, []);
 
   const handleSearch = (e) => {
@@ -258,8 +271,8 @@ const ProjectLIstIndex2 = () => {
   };
 
   const clearSearch = () => {
-    setSearch("");
-    searchRef.current.value = "";
+    setSearch('');
+    searchRef.current.value = '';
   };
   const handleChangeAnnotatorFilter = (event) => {
     const {
@@ -359,7 +372,7 @@ const ProjectLIstIndex2 = () => {
           </Box>
         )}
         {editModalOpen && (
-          <Box sx={{ width: "100%" }}>
+          <Box sx={{ width: '100%' }}>
             <EditProjectModal
               projectDrawer={projectDrawer}
               editModalOpen={editModalOpen}

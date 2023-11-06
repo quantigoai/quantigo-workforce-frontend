@@ -66,9 +66,7 @@ const PDskillFIeld = ({
       render={({ field, fieldState: { error } }) => (
         <>
           <CustomFormControl fullWidth>
-            <Box
-          
-            >
+            <Box>
               <Typography
                 variant="wpf_h7_medium"
                 sx={{

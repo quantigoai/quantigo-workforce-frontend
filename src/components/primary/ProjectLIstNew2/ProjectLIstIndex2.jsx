@@ -166,7 +166,6 @@ const ProjectLIstIndex2 = () => {
   //create and edit project submit
 
   const {
-    handleClearAllSkills,
     handleEditSkill,
     filteredSkillInfo,
     editCount,
@@ -174,7 +173,10 @@ const ProjectLIstIndex2 = () => {
     editSkills,
     isEdit,
     setIsEdit,
+    handleClearAllSkills,
   } = useHandleEditChange();
+  console.log("🚀 ~ file: ProjectLIstIndex2.jsx:178 ~ ProjectLIstIndex2 ~ editSkills:", editSkills);
+
   const handleEditProjectClose = () => {
     handleClearAllSkills();
     setEditModalOpen(false);
@@ -191,6 +193,7 @@ const ProjectLIstIndex2 = () => {
   const skillId = addSkills?.map((skill) => skill?._id);
 
   const onSubmit = (data) => {
+    console.log(skillId);
     if (isEditModal) {
       const newData = {
         ...data,

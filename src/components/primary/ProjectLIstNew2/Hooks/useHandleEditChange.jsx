@@ -3,11 +3,13 @@ import { useSelector } from "react-redux";
 
 const useHandleEditChange = () => {
   const { projectDrawer } = useSelector((state) => state.projectDrawer);
+
   const { skills } = useSelector((state) => state.skill);
+
   const [isEdit, setIsEdit] = useState(false);
   const [prevSkills, setPrevSkills] = useState(projectDrawer.project_skills);
 
-  const [editSkills, setEditSkills] = useState(projectDrawer?.project_skills);
+  const [editSkills, setEditSkills] = useState(projectDrawer.project_skills);
   const [editCount, setEditCount] = useState(
     projectDrawer?.project_skills?.length > 0 ? projectDrawer?.project_skills?.length : 0
   );
@@ -32,12 +34,12 @@ const useHandleEditChange = () => {
     name: skill.name,
     id: skill._id,
   }));
-  
+
   const handleClearAllSkills = () => {
     setPrevSkills([]);
     setEditSkills([]);
     setEditCount(0);
-  }
+  };
 
   return {
     handleEditSkill,

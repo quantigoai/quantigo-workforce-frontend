@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 import React, { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import useAllUsersFunc from '../../../customHooks/useAllUsersFunc';
 import useToaster from '../../../customHooks/useToaster';
 import { setActivePath } from '../../../features/slice/activePathSlice';
@@ -83,6 +84,7 @@ const AllUserListIndex2 = () => {
     isFilter,
     handleChange,
     handleClearFilter,
+    goBackHandle,
   } = useAllUsersFunc({
     setSearch,
     searchRef,
@@ -94,11 +96,14 @@ const AllUserListIndex2 = () => {
 
   const { register } = useForm();
   const toast = useToaster();
+
   useEffect(() => {
     dispatch(getAllSkills());
     dispatch(setActivePath('All Users'));
   }, []);
-  
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(
       getAllUsers({
@@ -109,6 +114,11 @@ const AllUserListIndex2 = () => {
       }),
     ).then((res) => {
       setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
+      navigate(
+        `/all-users?page=${pagination.currentPage + 1}&limit=${
+          pagination.pageSize
+        }`,
+      );
       setIsDataLoading(false);
     });
   }, [pagination, search, filterValue, filteredCol]);
@@ -140,6 +150,7 @@ const AllUserListIndex2 = () => {
     handleClose();
     setOpen(false);
   };
+
   return (
     <Box className="content">
       <HeaderBox sx={{ backgroundColor: '' }}>

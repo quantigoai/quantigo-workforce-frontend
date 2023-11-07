@@ -26,6 +26,25 @@ const useAllUsersFunc = ({
   setAddSkills,
   setAddRoles,
 }) => {
+  const [pagination, setPagination] = useState({
+    currentPage: 0,
+    pageSize: 10,
+  });
+  // let [searchParams, setSearchParams] = useSearchParams();
+  // useLayoutEffect(() => {
+  //   if (searchParams.get('page') !== null) {
+  //     if (searchParams.get('page') - 1 !== pagination.currentPage) {
+  //       console.log('page :', searchParams.get('page'));
+  //       console.log('useEffect');
+  //       console.log(pagination);
+  //       setPagination((prevPagination) => ({
+  //         ...prevPagination,
+  //         currentPage: searchParams.get('page') - 1,
+  //       }));
+  //     }
+  //   }
+  // }, [searchParams.get('page')]);
+
   const [isDataLoading, setIsDataLoading] = useState(true);
   const [isChildDataLoading, setIsChildDataLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -37,10 +56,7 @@ const useAllUsersFunc = ({
   const [open, setOpen] = useState(false);
   const [openAccepet, setOpenAccepet] = useState(false);
   const [rejectionCause, setRejectionCause] = useState('');
-  const [pagination, setPagination] = useState({
-    currentPage: 0,
-    pageSize: 10,
-  });
+
   // const { handleChange } = useAllUsers();
   const handleClose = () => setOpen(false);
   const clearSearch = () => {
@@ -80,6 +96,8 @@ const useAllUsersFunc = ({
     dispatch(setTargetedUser(params));
     setOpen(true);
   };
+
+  const goBackHandle = () => {};
 
   const handleSearch = (e) => {
     setPagination((prevPagination) => ({
@@ -215,8 +233,6 @@ const useAllUsersFunc = ({
     setIsFilter(!isFilter);
   };
 
-  // -------------------------
-
   return {
     isDataLoading,
     isChildDataLoading,
@@ -263,6 +279,7 @@ const useAllUsersFunc = ({
     isFilter,
     handleChange,
     handleClearFilter,
+    goBackHandle,
   };
 };
 

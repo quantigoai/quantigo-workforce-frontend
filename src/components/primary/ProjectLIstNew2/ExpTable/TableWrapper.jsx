@@ -35,6 +35,7 @@ const TableWrapper = ({
   setMyRows,
 }) => {
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
+  console.log('www')
   const location = useLocation();
   const { pathname } = location;
   const [data, setData] = useState([]);
@@ -64,7 +65,8 @@ const TableWrapper = ({
       setData(users);
       setIsDataLoading(false);
     }
-  }, [pathname, users, pagination]);
+  // }, [pathname, users, pagination]);
+  }, [pathname, users,]);
 
   const renderMainContent = () => {
     if (!isLoading) {

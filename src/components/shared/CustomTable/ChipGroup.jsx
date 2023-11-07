@@ -33,7 +33,7 @@ const ChipGroup = ({ value }) => {
     <div>
       <Box aria-describedby={id}>
         <AvatarGroup onMouseOver={(e) => mouseOverEffect(e)} onMouseOut={(e) => mouseOutEffect(e)} max={3}>
-          {params.value.map((p) => (
+          {params?.value?.map((p) => (
             <ProjectDrawerStatusChip key={p._id} value={p.name} />
           ))}
         </AvatarGroup>

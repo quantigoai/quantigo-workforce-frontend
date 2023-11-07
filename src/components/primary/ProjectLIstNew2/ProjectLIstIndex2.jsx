@@ -349,6 +349,7 @@ const ProjectLIstIndex2 = () => {
                 data={projectDrawers}
                 isChildDataLoading={isChildDataLoading}
                 setIsChildDataLoading={setIsChildDataLoading}
+                setMyRows={setMyRows}
               />
             )}
 

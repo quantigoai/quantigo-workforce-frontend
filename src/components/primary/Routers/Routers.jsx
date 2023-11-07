@@ -34,6 +34,7 @@ import ShowResult from "../Quiz/QuizPage/ShowResult/ShowResult";
 import UpdateQuiz from "../Quiz/UpdateQuiz";
 import Skills from "../Skill/Skills";
 import PrivateRoute from "./PrivateRoute";
+import AllUserListIndex2 from "../AllUsers/AllUserListIndex2";
 
 export const roles = {
   admin: "admin",
@@ -175,7 +176,8 @@ const Routers = () => {
             <PrivateRoute roles={[roles.admin, roles.eng_lead, roles.acc_manger, roles.rec_manger]}></PrivateRoute>
           }
         >
-          <Route path={"/all-users"} element={<AllUserListIndex action={"admin"} />} />
+          {/* <Route path={"/all-users"} element={<AllUserListIndex action={"admin"} />} /> */}
+          <Route path={"/all-users"} element={<AllUserListIndex2 action={"admin"} />} />
         </Route>
 
         {/* -------- --------- ------------ */}

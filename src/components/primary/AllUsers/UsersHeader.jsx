@@ -20,7 +20,6 @@ import "./index.css";
 const UsersHeader = ({
   isCourse,
   isFilter,
-  isLightTheme,
   handleIsFilter,
   handleProjectCreateOpen,
   handleSearch,

@@ -31,6 +31,7 @@ import UsersHeader from "./UsersHeader";
 import "./index.css";
 import { fields } from "./tableFields";
 import { hubOptions, roleOptionsAdmin, roleOptionsRecruitment_manager, userStatusOptions } from "./userFilterOptions";
+import { arraysAreEqual } from "../../../helper/helper";
 const TableWrapper = React.lazy(() => import("../ProjectLIstNew2/ExpTable/TableWrapper"));
 
 const AllUserListIndex = () => {
@@ -51,17 +52,18 @@ const AllUserListIndex = () => {
   const [myRows, setMyRows] = useState([]);
 
   const [selectedUser, setSelectedUser] = useState({});
-  const [open, setOpen] = React.useState(false);
-  const handleClose = () => setOpen(false);
-  const [openAccepet, setOpenAccepet] = React.useState(false);
-  const { register } = useForm();
+  const [open, setOpen] = useState(false);
+  const [openAccepet, setOpenAccepet] = useState(false);
   const [rejectionCause, setRejectionCause] = useState("");
-  const toast = useToaster();
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
   });
-  const searchRef = React.useRef(null);
+  const handleClose = () => setOpen(false);
+  
+  const { register } = useForm();
+  const toast = useToaster();
+  const searchRef = useRef(null);
 
   const {
     handleChangeSkill,
@@ -88,23 +90,7 @@ const AllUserListIndex = () => {
     clearSearch
   );
 
-  // TODO Move
-  const arraysAreEqual = (arr1, arr2) => {
-    if (arr1.length !== arr2.length) {
-      return false;
-    }
 
-    arr1.sort();
-    arr2.sort();
-
-    for (let i = 0; i < arr1.length; i++) {
-      if (arr1[i] !== arr2[i]) {
-        return false;
-      }
-    }
-
-    return true;
-  };
 
   const handleClickAway = () => {
     const skillsId = addSkills.map((skill) => skill._id);

@@ -22,7 +22,30 @@ const LineChartExple = ({ loading }) => {
   const { hourlyData } = useSelector((state) => state.dashboard);
   const [customData, setCustomData] = useState({});
   const [isDataUpdate, setIsDataUpdate] = React.useState(true);
+  const [labelFontSize, setLabelFontSize] = useState(10);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setLabelFontSize(8);
+      } else if (window.innerWidth >= 768 && window.innerWidth <= 1024) {
+        setLabelFontSize(9);
+      } else if (window.innerWidth > 1024 && window.innerWidth <= 1440) {
+        setLabelFontSize(10);
+      } else if (window.innerWidth >= 1440 && window.innerWidth < 1920) {
+        setLabelFontSize(13);
+      } else {
+        setLabelFontSize(14);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
   useEffect(() => {
     const takenJobsData = [];
     if (!loading) {
@@ -118,6 +141,9 @@ const LineChartExple = ({ loading }) => {
       x: {
         ticks: {
           color: "#7D89A3", // Change label text color here
+          font: {
+            size: labelFontSize,
+          },
         },
         display: true,
         grid: {

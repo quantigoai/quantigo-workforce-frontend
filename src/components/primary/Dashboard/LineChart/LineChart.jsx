@@ -82,6 +82,9 @@ const LineChart = ({ loading }) => {
       x: {
         ticks: {
           color: "#7D89A3", // Change label text color here
+          font: {
+            size:labelFontSize
+          }
         },
 
         grid: {

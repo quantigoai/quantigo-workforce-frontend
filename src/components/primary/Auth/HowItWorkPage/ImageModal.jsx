@@ -21,10 +21,13 @@ const ImageModal = ({ Img }) => {
   return (
     <>
       <img
-        width="500"
+        width="600"
         src={Img}
         onClick={handleOpen}
-        style={{ cursor: "pointer" }}
+        style={{
+          cursor: "pointer",
+         
+        }}
       />
       <Modal
         open={open}
@@ -33,7 +36,17 @@ const ImageModal = ({ Img }) => {
         aria-describedby="modal-modal-description">
         <Box sx={style}>
           {" "}
-          <img width="950" height="500" src={Img} onClick={handleOpen} />
+          <img
+            width="850"
+            height="500"
+            //  style={{
+            //   maxWidth: '100%',
+            //   height: 'auto',
+            //   width: '100%', // Optionally, you can set a maximum width
+            // }}
+            src={Img}
+            onClick={handleOpen}
+          />
         </Box>
       </Modal>
     </>

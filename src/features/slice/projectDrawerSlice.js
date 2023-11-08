@@ -465,10 +465,6 @@ const projectDrawerSlice = createSlice({
       })
       .addCase(createProjectDrawer.fulfilled, (state, action) => {
         state.error = null;
-        if (state.projectDrawers.length > 10) state.projectDrawers.pop();
-        state.projectDrawers.unshift(action.payload.data.projectDrawer);
-
-        // state.projectDrawers = [...state.projectDrawers, action.payload.data.projectDrawer];
         state.isLoading = false;
       })
       .addCase(createProjectDrawer.rejected, (state, action) => {

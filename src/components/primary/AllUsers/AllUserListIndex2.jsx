@@ -1,26 +1,34 @@
-import { Box } from "@mui/material";
-import React, { useEffect, useRef } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import useAllUsersFunc from "../../../customHooks/useAllUsersFunc";
-import useToaster from "../../../customHooks/useToaster";
-import { setActivePath } from "../../../features/slice/activePathSlice";
-import { getAllSkills } from "../../../features/slice/skillSlice";
-import { getAllUsers, updateAUserById } from "../../../features/slice/userSlice";
-import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
-import LoadingComponent from "../../shared/Loading/LoadingComponent";
-import TableWrapper from "../ProjectLIstNew2/ExpTable/TableWrapper";
-import useHandleChange from "../ProjectLIstNew2/Hooks/useHandleChange";
-import PaginationTable from "../ProjectLIstNew2/PaginationTable";
-import { HeaderBox, TablePaper } from "../ProjectLIstNew2/ProjectLIstIndex2";
-import UserDetailsNewIndex from "../UserListNew/UserDetilasNew/UserDetailsNewIndex";
-import AcceptModal from "../Users/NdaAccept/AcceptModal";
-import NdaRejectModal from "../Users/NdaAccept/NdaRejectModal";
-import UsersFilter from "./UsersFilter";
-import UsersHeader from "./UsersHeader";
-import { fields } from "./tableFields";
-import { hubOptions, roleOptionsAdmin, roleOptionsRecruitment_manager, userStatusOptions } from "./userFilterOptions";
+import { Box } from '@mui/material';
+import React, { useEffect, useRef } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import useAllUsersFunc from '../../../customHooks/useAllUsersFunc';
+import useToaster from '../../../customHooks/useToaster';
+import { setActivePath } from '../../../features/slice/activePathSlice';
+import { getAllSkills } from '../../../features/slice/skillSlice';
+import {
+  getAllUsers,
+  updateAUserById,
+} from '../../../features/slice/userSlice';
+import fieldBuilder from '../../shared/CustomTable/fieldBuilder';
+import LoadingComponent from '../../shared/Loading/LoadingComponent';
+import TableWrapper from '../ProjectLIstNew2/ExpTable/TableWrapper';
+import useHandleChange from '../ProjectLIstNew2/Hooks/useHandleChange';
+import PaginationTable from '../ProjectLIstNew2/PaginationTable';
+import { HeaderBox, TablePaper } from '../ProjectLIstNew2/ProjectLIstIndex2';
+import UserDetailsNewIndex from '../UserListNew/UserDetilasNew/UserDetailsNewIndex';
+import AcceptModal from '../Users/NdaAccept/AcceptModal';
+import NdaRejectModal from '../Users/NdaAccept/NdaRejectModal';
+import UsersFilter from './UsersFilter';
+import UsersHeader from './UsersHeader';
+import { fields } from './tableFields';
+import {
+  hubOptions,
+  roleOptionsAdmin,
+  roleOptionsRecruitment_manager,
+  userStatusOptions,
+} from './userFilterOptions';
 
 const AllUserListIndex2 = () => {
   const dispatch = useDispatch();
@@ -94,22 +102,27 @@ const AllUserListIndex2 = () => {
 
   useEffect(() => {
     dispatch(getAllSkills());
-    dispatch(setActivePath("All Users"));
+    dispatch(setActivePath('All Users'));
   }, []);
 
   useEffect(() => {
+    setIsDataLoading(true);
     dispatch(
       getAllUsers({
         pagination,
         filteredData: filterValue,
         ascDescOption: filteredCol,
         search,
+      }),
+    )
+      .then((res) => {
+        setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
+        // navigate(`/all-users?page=${pagination.currentPage + 1}&limit=${pagination.pageSize}`);
+        setIsDataLoading(false);
       })
-    ).then((res) => {
-      setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
-      // navigate(`/all-users?page=${pagination.currentPage + 1}&limit=${pagination.pageSize}`);
-      setIsDataLoading(false);
-    });
+      .catch((err) => {
+        setIsDataLoading(false);
+      });
   }, [pagination, search, filterValue, filteredCol]);
 
   const onSubmit = (data) => {
@@ -122,12 +135,18 @@ const AllUserListIndex2 = () => {
     };
     dispatch(updateAUserById(finalData)).then((action) => {
       if (action.payload?.status === 200) {
-        toast.trigger("The user verification process has been rejected.", "success");
+        toast.trigger(
+          'The user verification process has been rejected.',
+          'success',
+        );
         setOpenAccepet(false);
         setOpenModal(false);
-        setRejectionCause("");
+        setRejectionCause('');
       } else {
-        toast.trigger("Failed to reject user verification. Please try again.", "error");
+        toast.trigger(
+          'Failed to reject user verification. Please try again.',
+          'error',
+        );
       }
     });
     handleClose();
@@ -136,7 +155,7 @@ const AllUserListIndex2 = () => {
 
   return (
     <Box className="content">
-      <HeaderBox sx={{ backgroundColor: "" }}>
+      <HeaderBox sx={{ backgroundColor: '' }}>
         <UsersHeader
           isFilter={isFilter}
           handleIsFilter={handleIsFilter}
@@ -152,7 +171,11 @@ const AllUserListIndex2 = () => {
           handleChange={handleChange}
           handleClearFilter={handleClearFilter}
           filterValue={filterValue}
-          roleOptions={user.role === "admin" ? roleOptionsAdmin : roleOptionsRecruitment_manager}
+          roleOptions={
+            user.role === 'admin'
+              ? roleOptionsAdmin
+              : roleOptionsRecruitment_manager
+          }
           hubOptions={hubOptions}
           skillOptions={skillsOptions}
           userStatusOptions={userStatusOptions}
@@ -165,7 +188,7 @@ const AllUserListIndex2 = () => {
         />
       </HeaderBox>
       <Box className="contentBody">
-        <TablePaper sx={{ backgroundColor: "" }}>
+        <TablePaper sx={{ backgroundColor: '' }}>
           {isDataLoading ? (
             <LoadingComponent />
           ) : (
@@ -188,7 +211,10 @@ const AllUserListIndex2 = () => {
               handleOpenNDA={handleOpenNDA}
             />
           )}
-          <PaginationTable pagination={pagination} setPagination={setPagination} />
+          <PaginationTable
+            pagination={pagination}
+            setPagination={setPagination}
+          />
         </TablePaper>
       </Box>
       <UserDetailsNewIndex
@@ -205,7 +231,12 @@ const AllUserListIndex2 = () => {
         handleRejectCause={handleRejectCause}
         rejectionCause={rejectionCause}
       />
-      <AcceptModal open={openAccepet} handleClose={handleCloseModal} handleAccept={handleAccept} user={selectedUser} />
+      <AcceptModal
+        open={openAccepet}
+        handleClose={handleCloseModal}
+        handleAccept={handleAccept}
+        user={selectedUser}
+      />
     </Box>
   );
 };

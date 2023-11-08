@@ -1,39 +1,38 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { LoadingButton } from "@mui/lab";
-import { Stack } from "@mui/material";
-import Backdrop from "@mui/material/Backdrop";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Fade from "@mui/material/Fade";
-import Modal from "@mui/material/Modal";
-import Typography from "@mui/material/Typography";
-import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
-import * as Yup from "yup";
-import PDDateField from "../../shared/CustomField/PDDateField";
-import PDReleventField2 from "../../shared/CustomField/PDReleventField2";
-import PDSelectField from "../../shared/CustomField/PDSelectField";
-import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
-import PDskillFIeld from "../../shared/CustomField/PDskillFIeld";
-import FormProvider from "../../shared/FormProvider/FormProvider";
-import ProjectModalHeader from "./ProjectModalHeader";
-import { ProjectDrawerSchema } from "./ProjectDrawerHelper";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { LoadingButton } from '@mui/lab';
+import { Stack } from '@mui/material';
+import Backdrop from '@mui/material/Backdrop';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Fade from '@mui/material/Fade';
+import Modal from '@mui/material/Modal';
+import Typography from '@mui/material/Typography';
+import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import PDDateField from '../../shared/CustomField/PDDateField';
+import PDReleventField2 from '../../shared/CustomField/PDReleventField2';
+import PDSelectField from '../../shared/CustomField/PDSelectField';
+import PDTextFIeld from '../../shared/CustomField/PDTextFIeld';
+import PDskillFIeld from '../../shared/CustomField/PDskillFIeld';
+import FormProvider from '../../shared/FormProvider/FormProvider';
+import { ProjectDrawerSchema } from './ProjectDrawerHelper';
+import ProjectModalHeader from './ProjectModalHeader';
 const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   width: 700,
-  bgcolor: "background.paper",
-  border: "none",
-  borderRadius: "8px",
+  bgcolor: 'background.paper',
+  border: 'none',
+  borderRadius: '8px',
   p: 0,
   input: {
-    height: "20px",
-    borderRadius: "8px",
+    height: '20px',
+    borderRadius: '8px',
   },
   select: {
-    height: "20px",
+    height: '20px',
   },
 };
 export const LineStack = ({ children }) => (
@@ -42,9 +41,9 @@ export const LineStack = ({ children }) => (
     spacing={2}
     sx={{
       height: {
-        lg: "72px",
-        xl: "82px",
-        xxl: "85px",
+        lg: '72px',
+        xl: '82px',
+        xxl: '85px',
       },
     }}
   >
@@ -55,11 +54,11 @@ export const LineStack = ({ children }) => (
 export const FieldBox = ({ children }) => (
   <Box
     sx={{
-      width: "50%",
+      width: '50%',
       height: {
-        lg: "72px",
-        xl: "82px",
-        xxl: "85px",
+        lg: '72px',
+        xl: '82px',
+        xxl: '85px',
       },
     }}
   >
@@ -84,7 +83,16 @@ const ProjectModal = ({
 
   const methods = useForm({
     resolver: yupResolver(ProjectDrawerSchema),
-    mode: "all",
+    mode: 'all',
+    // defaultValues: {
+    //   project_platform: 'encord',
+    //   project_drawer_name: 'xxxxxxxxxxxx',
+    //   project_type: 'image',
+    //   project_batch: '2',
+    //   project_alias: 'xxxxxxxxxxx',
+    //   pdr: '3',
+    //   project_status: 'in-Progress',
+    // },
   });
 
   const { handleSubmit } = methods;
@@ -106,32 +114,39 @@ const ProjectModal = ({
       >
         <Fade in={createProjectOpen}>
           <Box sx={style}>
-            <ProjectModalHeader handleCreateProjectClose={handleCreateProjectClose} modalTitle={"Create Project"} />
+            <ProjectModalHeader
+              handleCreateProjectClose={handleCreateProjectClose}
+              modalTitle={'Create Project'}
+            />
 
             <Box>
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <Box
                   sx={{
-                    paddingLeft: "16px",
-                    paddingTop: "1%",
-                    paddingRight: "16px",
-                    position: "relative",
+                    paddingLeft: '16px',
+                    paddingTop: '1%',
+                    paddingRight: '16px',
+                    position: 'relative',
                   }}
                 >
                   <LineStack>
                     {/* project platform */}
                     <FieldBox>
                       <PDSelectField
-                        name={"project_platform"}
+                        name={'project_platform'}
                         label="Platform"
                         options={platformCreateOptions}
-                        defaultValue={""}
+                        defaultValue={''}
                         isRequired={true}
                       />
                     </FieldBox>
                     {/* project name */}
                     <FieldBox>
-                      <PDTextFIeld name="project_drawer_name" label="Project Name" isRequired={true} />
+                      <PDTextFIeld
+                        name="project_drawer_name"
+                        label="Project Name"
+                        isRequired={true}
+                      />
                     </FieldBox>
                   </LineStack>
 
@@ -139,10 +154,10 @@ const ProjectModal = ({
                     {/* project type */}
                     <FieldBox>
                       <PDSelectField
-                        name={"project_type"}
+                        name={'project_type'}
                         label="Project Type"
                         options={projectTypeCreateOptions}
-                        defaultValue={""}
+                        defaultValue={''}
                         isRequired={true}
                       />
                     </FieldBox>
@@ -163,7 +178,11 @@ const ProjectModal = ({
                   <LineStack>
                     {/* project alias */}
                     <FieldBox>
-                      <PDTextFIeld name="project_alias" label="Alias" isRequired={true} />
+                      <PDTextFIeld
+                        name="project_alias"
+                        label="Alias"
+                        isRequired={true}
+                      />
                     </FieldBox>
                     <FieldBox>
                       {/* project PDR */}
@@ -181,7 +200,7 @@ const ProjectModal = ({
                     {/* project skills */}
                     <FieldBox>
                       <PDskillFIeld
-                        name={"project_skills"}
+                        name={'project_skills'}
                         addSkills={addSkills}
                         label="Skills"
                         handleChangeSkill={handleChangeSkill}
@@ -198,15 +217,18 @@ const ProjectModal = ({
                   <LineStack>
                     {/* project estimated date */}
                     <FieldBox>
-                      <PDDateField name="estimated_end_date" label="Estimated End Date" />
+                      <PDDateField
+                        name="estimated_end_date"
+                        label="Estimated End Date"
+                      />
                     </FieldBox>
                     {/* project status */}
                     <FieldBox>
                       <PDSelectField
-                        name={"project_status"}
+                        name={'project_status'}
                         label="Status"
                         options={statusCreateOptions}
-                        defaultValue={""}
+                        defaultValue={''}
                         isRequired={true}
                       />
                     </FieldBox>
@@ -214,9 +236,9 @@ const ProjectModal = ({
 
                   <Typography
                     sx={{
-                      mt: "5px",
-                      mb: "5px",
-                      color: "neutral.N300",
+                      mt: '5px',
+                      mb: '5px',
+                      color: 'neutral.N300',
                     }}
                     variant="wpf_h7_medium"
                   >
@@ -226,49 +248,49 @@ const ProjectModal = ({
                   {/* <PDReleventField /> */}
                   <Stack
                     sx={{
-                      border: "1px solid #E6ECF5",
-                      padding: "16px",
-                      borderRadius: "8px",
-                      background: isLightTheme ? "#FAFCFF" : "#2C2C2C",
+                      border: '1px solid #E6ECF5',
+                      padding: '16px',
+                      borderRadius: '8px',
+                      background: isLightTheme ? '#FAFCFF' : '#2C2C2C',
                       maxHeight: 155,
-                      color: isLightTheme ? "#091E42" : "#FFFFFF",
-                      overflowY: "auto",
+                      color: isLightTheme ? '#091E42' : '#FFFFFF',
+                      overflowY: 'auto',
                     }}
                   >
-                    <PDReleventField2 name={"relevantDocuments"} />
+                    <PDReleventField2 name={'relevantDocuments'} />
                   </Stack>
                 </Box>
 
                 <Box
                   sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    paddingY: { lg: "10px", xl: "12px", xxl: "12px" },
-                    paddingX: { lg: "14px", xl: "16px", xxl: "16px" },
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    paddingY: { lg: '10px', xl: '12px', xxl: '12px' },
+                    paddingX: { lg: '14px', xl: '16px', xxl: '16px' },
                     mt: 1,
-                    borderTop: "2px solid #F2F6FC",
+                    borderTop: '2px solid #F2F6FC',
                   }}
                 >
                   <Button
                     onClick={handleCreateProjectClose}
                     sx={{
-                      textTransform: "none",
-                      paddingX: { lg: "20px", xl: "30px", xxl: "30px" },
-                      paddingY: { lg: "3px", xl: "5px", xxl: "5px" },
+                      textTransform: 'none',
+                      paddingX: { lg: '20px', xl: '30px', xxl: '30px' },
+                      paddingY: { lg: '3px', xl: '5px', xxl: '5px' },
                       fontSize: {
-                        lg: "12px",
-                        xl: "14px",
-                        xxl: "14px",
+                        lg: '12px',
+                        xl: '14px',
+                        xxl: '14px',
                       },
-                      height: { lg: "40px", xl: "40px", xxl: "40px" },
-                      width: "120px",
-                      borderRadius: "8px",
-                      border: "1px solid #F4F7FE",
-                      backgroundColor: "#F4F7FE",
-                      color: "#62728F",
-                      "&:hover": {
-                        backgroundColor: "#F4F7FE",
+                      height: { lg: '40px', xl: '40px', xxl: '40px' },
+                      width: '120px',
+                      borderRadius: '8px',
+                      border: '1px solid #F4F7FE',
+                      backgroundColor: '#F4F7FE',
+                      color: '#62728F',
+                      '&:hover': {
+                        backgroundColor: '#F4F7FE',
                       },
                     }}
                     variant="filled"
@@ -279,24 +301,24 @@ const ProjectModal = ({
                     type="submit"
                     loading={isLoading}
                     sx={{
-                      textTransform: "none",
-                      paddingX: { lg: "20px", xl: "30px", xxl: "30px" },
-                      paddingY: { lg: "3px", xl: "5px", xxl: "5px" },
+                      textTransform: 'none',
+                      paddingX: { lg: '20px', xl: '30px', xxl: '30px' },
+                      paddingY: { lg: '3px', xl: '5px', xxl: '5px' },
                       fontSize: {
-                        lg: "12px",
-                        xl: "14px",
-                        xxl: "14px",
+                        lg: '12px',
+                        xl: '14px',
+                        xxl: '14px',
                       },
-                      height: { lg: "40px", xl: "40px", xxl: "40px" },
-                      width: "120px",
-                      borderRadius: "8px",
-                      backgroundColor: "#2E58FF",
-                      "&:hover": {
-                        background: "#244EF5",
+                      height: { lg: '40px', xl: '40px', xxl: '40px' },
+                      width: '120px',
+                      borderRadius: '8px',
+                      backgroundColor: '#2E58FF',
+                      '&:hover': {
+                        background: '#244EF5',
                       },
-                      "&:disabled": {
-                        backgroundColor: "#B6C9F0",
-                        color: "#FFFFFF",
+                      '&:disabled': {
+                        backgroundColor: '#B6C9F0',
+                        color: '#FFFFFF',
                       },
                     }}
                     variant="contained"

@@ -98,6 +98,7 @@ const AllUserListIndex2 = () => {
   }, []);
 
   useEffect(() => {
+    setIsDataLoading(true);
     dispatch(
       getAllUsers({
         pagination,

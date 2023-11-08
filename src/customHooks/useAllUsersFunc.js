@@ -13,19 +13,14 @@
  * ------------------------
  */
 
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setTargetedUser } from '../features/slice/userSlice';
-import { arraysAreEqual } from '../helper/helper';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setTargetedUser, updateAUserById } from "../features/slice/userSlice";
+import { arraysAreEqual } from "../helper/helper";
+import { getAllSkills } from "../features/slice/skillSlice";
+import useToaster from "./useToaster";
 
-const useAllUsersFunc = ({
-  setSearch,
-  searchRef,
-  addSkills,
-  addRoles,
-  setAddSkills,
-  setAddRoles,
-}) => {
+const useAllUsersFunc = ({ setSearch, searchRef, addSkills, addRoles, setAddSkills, setAddRoles }) => {
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
@@ -55,16 +50,15 @@ const useAllUsersFunc = ({
   const [selectedUser, setSelectedUser] = useState({});
   const [open, setOpen] = useState(false);
   const [openAccepet, setOpenAccepet] = useState(false);
-  const [rejectionCause, setRejectionCause] = useState('');
-
+  const [rejectionCause, setRejectionCause] = useState("");
+  const toast = useToaster();
   // const { handleChange } = useAllUsers();
   const handleClose = () => setOpen(false);
   const clearSearch = () => {
-    setSearch('');
-    searchRef.current.value = '';
+    setSearch("");
+    searchRef.current.value = "";
   };
   const handleClickAway = () => {
-    console.log('2');
     const skillsId = addSkills.map((skill) => skill._id);
 
     const isSkillsSame = arraysAreEqual(prevSkills, skillsId);
@@ -78,8 +72,16 @@ const useAllUsersFunc = ({
 
     if (!isSkillsSame) {
       handleChange({}, skillsId, roleValue, isSkillsSame, isRolesSame);
+      setPagination((prevPagination) => ({
+        ...prevPagination,
+        currentPage: 0,
+      }));
     } else if (!isRolesSame) {
       handleChange({}, skillsId, roleValue, isSkillsSame, isRolesSame);
+      setPagination((prevPagination) => ({
+        ...prevPagination,
+        currentPage: 0,
+      }));
     } else {
       return;
     }
@@ -115,7 +117,7 @@ const useAllUsersFunc = ({
   const handleCloseModal = () => {
     setOpenAccepet(false);
     setOpenModal(false);
-    setRejectionCause('');
+    setRejectionCause("");
   };
   // accept NDA
   const handleOpenNDA = (params) => {
@@ -131,14 +133,11 @@ const useAllUsersFunc = ({
     };
     dispatch(updateAUserById(data)).then((action) => {
       if (action.payload?.status === 200) {
-        toast.trigger('User has been verified successfully.', 'success');
+        toast.trigger("User has been verified successfully.", "success");
         setOpenAccepet(false);
         setOpenModal(false);
       } else {
-        toast.trigger(
-          'Failed to verify the user, please try again later.',
-          'error',
-        );
+        toast.trigger("Failed to verify the user, please try again later.", "error");
       }
     });
   };
@@ -164,21 +163,15 @@ const useAllUsersFunc = ({
     setDetailsUserOpen(false);
   };
 
-  const handleChange = (
-    event,
-    skillsId = [],
-    addRoles = [],
-    isSkillsSame = true,
-    isRolesSame = true,
-  ) => {
+  const handleChange = (event, skillsId = [], addRoles = [], isSkillsSame = true, isRolesSame = true) => {
     if (!isSkillsSame) {
-      const field = 'skills';
+      const field = "skills";
       const value = skillsId;
       const filteredData = { ...filterValue };
       filteredData[field] = value;
       setFilterValue(filteredData);
     } else if (!isRolesSame) {
-      const field = 'role';
+      const field = "role";
       const value = addRoles;
       const filteredData = { ...filterValue };
       filteredData[field] = value;
@@ -189,6 +182,10 @@ const useAllUsersFunc = ({
       const filteredData = { ...filterValue };
       filteredData[field] = value;
       setFilterValue(filteredData);
+      setPagination((prevPagination) => ({
+        ...prevPagination,
+        currentPage: 0,
+      }));
     }
   };
 
@@ -210,10 +207,10 @@ const useAllUsersFunc = ({
   const handleId = (field) => {
     setFilteredCol((prev) => {
       if (prev.hasOwnProperty(field)) {
-        if (prev[field] === 'asc') {
+        if (prev[field] === "asc") {
           return {
             ...prev,
-            [field]: 'desc',
+            [field]: "desc",
           };
         } else {
           delete prev[field];
@@ -224,7 +221,7 @@ const useAllUsersFunc = ({
       }
       return {
         ...prev,
-        [field]: 'asc',
+        [field]: "asc",
       };
     });
   };

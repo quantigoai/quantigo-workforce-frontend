@@ -26,18 +26,6 @@ const ProjectDetailsHeader = ({
 }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   return (
-    // <Box
-    //   display={"flex"}
-    //   // alignItems={"center"}
-    //   justifyContent={"space-between"}
-    //   width={"100%"}
-    //   margin="auto"
-    //   sx={{
-    //     // backgroundColor: "red",
-    //     backgroundColor: isLightTheme ? "white" : "#121212",
-    //     borderRadius: "8px 8px 0px 0px",
-    //   }}
-    // >
     <Box
       className="contentHeader"
       sx={{

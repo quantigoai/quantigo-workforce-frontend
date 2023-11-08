@@ -8,7 +8,7 @@
  */
 
 import { Box } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import useAllUsers from "../../../customHooks/useAllUsers";
@@ -60,7 +60,7 @@ const AllUserListIndex = () => {
     pageSize: 10,
   });
   const handleClose = () => setOpen(false);
-  
+
   const { register } = useForm();
   const toast = useToaster();
   const searchRef = useRef(null);
@@ -89,8 +89,6 @@ const AllUserListIndex = () => {
     setPrevRoles,
     clearSearch
   );
-
-
 
   const handleClickAway = () => {
     const skillsId = addSkills.map((skill) => skill._id);
@@ -130,12 +128,8 @@ const AllUserListIndex = () => {
 
   // TODO remove this
   const handleDelete = (e) => {};
-  const handleClick = (e) => {
-   
-  };
-  const handleDetailsPage = (e) => {
-   
-  };
+  const handleClick = (e) => {};
+  const handleDetailsPage = (e) => {};
 
   const handleUserDetailsOpen = (params) => {
     setSelectedUser(params);

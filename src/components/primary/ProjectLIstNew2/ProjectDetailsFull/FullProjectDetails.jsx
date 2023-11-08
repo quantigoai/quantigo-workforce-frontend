@@ -15,8 +15,6 @@ import { singleDetailsFields } from "../FIlterOptions";
 import useAllFunc from "../Hooks/useAllFunc";
 import Project2DetailsModal from "../Project2Details/Project2DetailsModal";
 import ProjectDetailsHeader from "./ProjectDetailsHeader";
-
-import { addDays } from "date-fns";
 import useToaster from "../../../../customHooks/useToaster";
 import PaginationTable from "../PaginationTable";
 import { HeaderBox, TablePaper } from "../ProjectLIstIndex2";

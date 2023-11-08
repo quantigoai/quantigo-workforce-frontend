@@ -53,6 +53,7 @@ const useAllFunc = ({ addSkills, setAddSkills, count, handleClearAllSkills, setI
       ...prevPagination,
       currentPage: 0,
     }));
+    setIsDataLoading(true);
   };
   const defaultState = {
     pdr: "",
@@ -66,10 +67,12 @@ const useAllFunc = ({ addSkills, setAddSkills, count, handleClearAllSkills, setI
     setFilteredCol({});
     setChecked(false);
     setAnnotatorPlatform("");
+    setIsDataLoading(true);
   };
 
   const handleId = (field) => {
     setFilteredCol((prev) => {
+      setIsDataLoading(true);
       if (prev.hasOwnProperty(field)) {
         if (prev[field] === "asc") {
           return {
@@ -139,6 +142,7 @@ const useAllFunc = ({ addSkills, setAddSkills, count, handleClearAllSkills, setI
     navigate(`/projectDetails/${myData.id}`);
   };
   const handleSearch = (e) => {
+    setIsDataLoading(true);
     setPagination((prevPagination) => ({
       ...prevPagination,
       currentPage: 0,
@@ -159,6 +163,7 @@ const useAllFunc = ({ addSkills, setAddSkills, count, handleClearAllSkills, setI
   };
 
   const handleChangeCheck = (event) => {
+    setIsDataLoading(true);
     setPagination((prevPagination) => ({
       ...prevPagination,
       currentPage: 0,

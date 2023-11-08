@@ -285,11 +285,19 @@ export const approveProjectPayment = createAsyncThunk("project-history/approved-
   // }
 });
 export const getMyAvailableProjects = createAsyncThunk("/project-drawer/myAvailAbleProjects", async (data) => {
-  const { pagination, annotatorPlatform } = data;
-
+  const { search, pagination, annotatorPlatform, filteredData, ascDescOption } = data;
   let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
   if (annotatorPlatform) {
     query += `&project_platform=${annotatorPlatform}`;
+  }
+
+  const filterOptions = Object.keys(filteredData);
+  filterOptions.map((f) => (query += `&${f}=${filteredData[f]}`));
+
+  const ascDescOptions = Object.keys(ascDescOption);
+  ascDescOptions.map((ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`));
+  if (search) {
+    query += `&search=${search}`;
   }
   try {
     return axios.get(`${url}/project-drawer/my-available-project?${query}`, {

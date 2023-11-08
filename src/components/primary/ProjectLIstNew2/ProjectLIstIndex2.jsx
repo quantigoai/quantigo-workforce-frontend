@@ -142,8 +142,6 @@ const ProjectLIstIndex2 = () => {
     handleChangeAnnotatorFilter,
     handleChangeCheck,
   } = useAllFunc({ addSkills, setAddSkills, count, searchRef, handleClearAllSkills, setIsEdit, setIsDeleted });
-  console.log("🚀 ~ file: ProjectLIstIndex2.jsx:145 ~ ProjectLIstIndex2 ~ annotatorPlatform:", annotatorPlatform);
-  console.log("🚀 ~ file: ProjectLIstIndex2.jsx:145 ~ ProjectLIstIndex2 ~ checked:", checked);
 
   const onSubmit = (data) => {
     if (isEditModal) {
@@ -182,35 +180,28 @@ const ProjectLIstIndex2 = () => {
       });
     }
   };
-  // if (checked) {
-  //   dispatch(
-  //     getMyAvailableProjects({
-  //       pagination,
-  //       annotatorPlatform,
-  //     }),
-  //   ).then(() => {
-  //     setIsChildDataLoading(false);
-  //   });
-  // } else {
-  //   dispatch(
-  //     getAllProjectDrawers({
-  //       pagination,
-  //       filteredData: filterValue,
-  //       ascDescOption: filteredCol,
-  //       search,
-  //     }),
-  //   ).then(() => {
-  //     setIsChildDataLoading(false);
-  //   });
+
   useEffect(() => {
     dispatch(getAllSkills());
     dispatch(setActivePath("All Projects"));
   }, []);
-
   useEffect(() => {
     if (checked) {
-      console.log("hit");
+      dispatch(
+        getMyAvailableProjects({
+          pagination,
+          annotatorPlatform,
+          filteredData: filterValue,
+          ascDescOption: filteredCol,
+          search,
+        })
+      ).then(() => {
+        setIsChildDataLoading(false);
+        setIsDataLoading(false);
+      });
     } else {
+      // setIsDataLoading(true);
+      console.log("hit2");
       dispatch(
         getAllProjectDrawers({ pagination, filteredData: filterValue, ascDescOption: filteredCol, search })
         // getAllProjectDrawers({ pagination })

@@ -62,9 +62,14 @@ const useAllUsersFunc = ({
   // const { handleChange } = useAllUsers();
   const handleClose = () => setOpen(false);
   const clearSearch = () => {
+<<<<<<< HEAD
     setSearch('');
     setIsDataLoading(true);
     searchRef.current.value = '';
+=======
+    setSearch("");
+    searchRef.current.value = "";
+>>>>>>> 98bbec5ce3d099f8eda821c83089e4457b5aab1b
   };
   const handleClickAway = () => {
     const skillsId = addSkills.map((skill) => skill._id);
@@ -80,14 +85,12 @@ const useAllUsersFunc = ({
 
     if (!isSkillsSame) {
       handleChange({}, skillsId, roleValue, isSkillsSame, isRolesSame);
-      setIsDataLoading(true);
       setPagination((prevPagination) => ({
         ...prevPagination,
         currentPage: 0,
       }));
     } else if (!isRolesSame) {
       handleChange({}, skillsId, roleValue, isSkillsSame, isRolesSame);
-      setIsDataLoading(true);
       setPagination((prevPagination) => ({
         ...prevPagination,
         currentPage: 0,
@@ -112,7 +115,6 @@ const useAllUsersFunc = ({
   const goBackHandle = () => {};
 
   const handleSearch = (e) => {
-    setIsDataLoading(true);
     setPagination((prevPagination) => ({
       ...prevPagination,
       currentPage: 0,
@@ -202,7 +204,6 @@ const useAllUsersFunc = ({
       const filteredData = { ...filterValue };
       filteredData[field] = value;
       setFilterValue(filteredData);
-      setIsDataLoading(true);
       setPagination((prevPagination) => ({
         ...prevPagination,
         currentPage: 0,
@@ -216,7 +217,6 @@ const useAllUsersFunc = ({
   };
 
   const handleClearFilter = () => {
-    setIsDataLoading(true);
     setFilterValue(defaultState);
     setFilteredCol({});
     setAddSkills([]);
@@ -225,6 +225,10 @@ const useAllUsersFunc = ({
     setPrevRoles([]);
     clearSearch();
   };
+
+  // setFilteredCol((prev) => {
+  //   if (Object.prototype.hasOwnProperty.call(prev, field)) {
+  //     if (prev[field] === "asc") {
 
   const handleId = (field) => {
     setFilteredCol((prev) => {

@@ -213,6 +213,7 @@ const ProjectLIstIndex2 = () => {
     dispatch(setActivePath('All Projects'));
   }, []);
   useEffect(() => {
+    setIsDataLoading(true);
     if (checked) {
       dispatch(
         getMyAvailableProjects({
@@ -227,7 +228,6 @@ const ProjectLIstIndex2 = () => {
         setIsDataLoading(false);
       });
     } else {
-      // setIsDataLoading(true);
 
       dispatch(
         getAllProjectDrawers({

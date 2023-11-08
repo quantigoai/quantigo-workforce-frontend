@@ -56,6 +56,7 @@ const useAllUsersFunc = ({ setSearch, searchRef, addSkills, addRoles, setAddSkil
   const handleClose = () => setOpen(false);
   const clearSearch = () => {
     setSearch("");
+    setIsDataLoading(true);
     searchRef.current.value = "";
   };
   const handleClickAway = () => {
@@ -72,12 +73,14 @@ const useAllUsersFunc = ({ setSearch, searchRef, addSkills, addRoles, setAddSkil
 
     if (!isSkillsSame) {
       handleChange({}, skillsId, roleValue, isSkillsSame, isRolesSame);
+      setIsDataLoading(true);
       setPagination((prevPagination) => ({
         ...prevPagination,
         currentPage: 0,
       }));
     } else if (!isRolesSame) {
       handleChange({}, skillsId, roleValue, isSkillsSame, isRolesSame);
+      setIsDataLoading(true);
       setPagination((prevPagination) => ({
         ...prevPagination,
         currentPage: 0,
@@ -102,6 +105,7 @@ const useAllUsersFunc = ({ setSearch, searchRef, addSkills, addRoles, setAddSkil
   const goBackHandle = () => {};
 
   const handleSearch = (e) => {
+    setIsDataLoading(true);
     setPagination((prevPagination) => ({
       ...prevPagination,
       currentPage: 0,
@@ -182,6 +186,7 @@ const useAllUsersFunc = ({ setSearch, searchRef, addSkills, addRoles, setAddSkil
       const filteredData = { ...filterValue };
       filteredData[field] = value;
       setFilterValue(filteredData);
+      setIsDataLoading(true);
       setPagination((prevPagination) => ({
         ...prevPagination,
         currentPage: 0,
@@ -195,6 +200,7 @@ const useAllUsersFunc = ({ setSearch, searchRef, addSkills, addRoles, setAddSkil
   };
 
   const handleClearFilter = () => {
+    setIsDataLoading(true);
     setFilterValue(defaultState);
     setFilteredCol({});
     setAddSkills([]);
@@ -205,6 +211,7 @@ const useAllUsersFunc = ({ setSearch, searchRef, addSkills, addRoles, setAddSkil
   };
 
   const handleId = (field) => {
+    setIsDataLoading(true);
     setFilteredCol((prev) => {
       if (prev.hasOwnProperty(field)) {
         if (prev[field] === "asc") {

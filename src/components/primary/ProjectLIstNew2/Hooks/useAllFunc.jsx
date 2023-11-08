@@ -152,6 +152,7 @@ const useAllFunc = ({ addSkills, setAddSkills, count, handleClearAllSkills, setI
 
   const clearSearch = () => {
     setSearch("");
+    setIsDataLoading(true);
     searchRef.current.value = "";
   };
   const handleChangeAnnotatorFilter = (event) => {
@@ -160,6 +161,11 @@ const useAllFunc = ({ addSkills, setAddSkills, count, handleClearAllSkills, setI
     } = event;
     setAnnotatorPlatform(value);
     setChecked(false);
+    // setIsDataLoading(true);
+    // setPagination((prevPagination) => ({
+    //   ...prevPagination,
+    //   currentPage: 0,
+    // }));
   };
 
   const handleChangeCheck = (event) => {

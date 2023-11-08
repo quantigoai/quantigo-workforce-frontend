@@ -201,7 +201,7 @@ const ProjectLIstIndex2 = () => {
       });
     } else {
       // setIsDataLoading(true);
-      console.log("hit2");
+
       dispatch(
         getAllProjectDrawers({ pagination, filteredData: filterValue, ascDescOption: filteredCol, search })
         // getAllProjectDrawers({ pagination })

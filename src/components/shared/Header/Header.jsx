@@ -89,7 +89,7 @@ const Header = () => {
   const handleGoBack = () => {
     if (location.pathname !== '/' && location.pathname !== '/dashboard') {
       navigate(-1);
-      // goBackHandle();
+            // goBackHandle();
     }
   };
   const openPopover = Boolean(notificationOpen);

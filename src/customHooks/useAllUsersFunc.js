@@ -37,7 +37,7 @@ const useAllUsersFunc = ({
   const dispatch = useDispatch();
   const [downLoadExportOpen, setDownloadExportOpen] = useState(false);
   const [detailsUserOpen, setDetailsUserOpen] = useState(false);
-
+  
   const [filteredCol, setFilteredCol] = useState({});
   const [isFilter, setIsFilter] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
@@ -116,18 +116,18 @@ const useAllUsersFunc = ({
   };
 
   const goBackHandle = () => {
-    // if (searchParams.get('page') !== null) {
-    //   if (searchParams.get('page') - 1 !== pagination.currentPage) {
-    //     console.log('hit');
-    //     console.log(pagination);
-    //     console.log("🚀 ~ file: useAllUsersFunc.js:126 ~ setPagination ~ searchParams.get('page'):", searchParams.get('page'))
-    //     setPagination((prevPagination) => ({
-    //       ...prevPagination,
-    //       currentPage: searchParams.get('page') - 1,
-    //     }));
-    //     console.log(pagination);
-    //   }
-    // }
+  // if (searchParams.get('page') !== null) {
+  //   if (searchParams.get('page') - 1 !== pagination.currentPage) {
+  //     console.log('hit');
+  //     console.log(pagination);
+  //     console.log("🚀 ~ file: useAllUsersFunc.js:126 ~ setPagination ~ searchParams.get('page'):", searchParams.get('page'))
+  //     setPagination((prevPagination) => ({
+  //       ...prevPagination,
+  //       currentPage: searchParams.get('page') - 1,
+  //     }));
+  //     console.log(pagination);
+  //   }
+  // }
   };
 
   const handleSearch = (e) => {

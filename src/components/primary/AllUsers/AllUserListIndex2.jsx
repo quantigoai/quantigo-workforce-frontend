@@ -106,24 +106,24 @@ const AllUserListIndex2 = () => {
   }, []);
 
   useEffect(() => {
-    setIsDataLoading(true);
-    dispatch(
-      getAllUsers({
-        pagination,
-        filteredData: filterValue,
-        ascDescOption: filteredCol,
-        search,
-      }),
-    )
-      .then((res) => {
-        setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
-        // navigate(`/all-users?page=${pagination.currentPage + 1}&limit=${pagination.pageSize}`);
-        setIsDataLoading(false);
-      })
-      .catch((err) => {
-        setIsDataLoading(false);
-      });
-  }, [pagination, search, filterValue, filteredCol]);
+          setIsDataLoading(true);
+      dispatch(
+        getAllUsers({
+          pagination,
+          filteredData: filterValue,
+          ascDescOption: filteredCol,
+          search,
+        }),
+      )
+        .then((res) => {
+          setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
+          // navigate(`/all-users?page=${pagination.currentPage + 1}&limit=${pagination.pageSize}`);
+          setIsDataLoading(false);
+        })
+        .catch((err) => {
+          setIsDataLoading(false);
+        });
+    }, [pagination, search, filterValue, filteredCol]);
 
   const onSubmit = (data) => {
     const finalData = {

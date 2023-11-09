@@ -115,7 +115,20 @@ const useAllUsersFunc = ({
     setOpen(true);
   };
 
-  const goBackHandle = () => {};
+  const goBackHandle = () => {
+    // if (searchParams.get('page') !== null) {
+    //   if (searchParams.get('page') - 1 !== pagination.currentPage) {
+    //     console.log('hit');
+    //     console.log(pagination);
+    //     console.log("🚀 ~ file: useAllUsersFunc.js:126 ~ setPagination ~ searchParams.get('page'):", searchParams.get('page'))
+    //     setPagination((prevPagination) => ({
+    //       ...prevPagination,
+    //       currentPage: searchParams.get('page') - 1,
+    //     }));
+    //     console.log(pagination);
+    //   }
+    // }
+  };
 
   const handleSearch = (e) => {
     setPagination((prevPagination) => ({

@@ -15,6 +15,7 @@ import 'remixicon/fonts/remixicon.css';
 import useToaster from '../../../customHooks/useToaster';
 import { setActivePath } from '../../../features/slice/activePathSlice';
 import {
+  clearProjectDrawer,
   createProjectDrawer,
   getAllProjectDrawers,
   getMyAvailableProjects,
@@ -211,6 +212,8 @@ const ProjectLIstIndex2 = () => {
   useEffect(() => {
     dispatch(getAllSkills());
     dispatch(setActivePath('All Projects'));
+    dispatch(clearProjectDrawer());
+    
   }, []);
   useEffect(() => {
     setIsDataLoading(true);

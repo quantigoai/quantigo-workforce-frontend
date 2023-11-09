@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSkills } from "../../../../features/slice/skillSlice";
 import {
+  clearProjectDrawer,
   deleteProjectDrawerById,
   getAllProjectDrawers,
   setCurrentProjectDrawer,
@@ -117,6 +118,7 @@ const useAllFunc = ({ addSkills, setAddSkills, count, handleClearAllSkills, setI
 
   const handleEditProjectClose = () => {
     handleClearAllSkills();
+    dispatch(clearProjectDrawer());
     setIsEdit(false);
     setEditModalOpen(false);
     setIsEditModal(false);

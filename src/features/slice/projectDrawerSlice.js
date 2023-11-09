@@ -401,6 +401,9 @@ const projectDrawerSlice = createSlice({
     resetProjectDrawer: (state) => {
       state.projectDrawers = [];
     },
+    clearProjectDrawer: (state) => {
+      state.projectDrawer = {};
+    },
     setCurrentProjectDrawer: (state, action) => {
       state.projectDrawer = state.projectDrawers.find(
         (p) => p._id === action.payload,
@@ -672,6 +675,7 @@ const projectDrawerSlice = createSlice({
   },
 });
 export const {
+  clearProjectDrawer,
   updateProjectDrawerManually,
   clearProjectDrawerData,
   resetProjectDrawerSlice,

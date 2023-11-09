@@ -109,7 +109,7 @@ const AllUserListIndex2 = () => {
     )
       .then((res) => {
         setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
-        navigate(`/all-users?page=${pagination.currentPage + 1}&limit=${pagination.pageSize}`);
+        // navigate(`/all-users?page=${pagination.currentPage + 1}&limit=${pagination.pageSize}`);
         setIsDataLoading(false);
       })
       .catch((err) => {

@@ -26,21 +26,14 @@ const useAllUsersFunc = ({ setSearch, searchRef, addSkills, addRoles, setAddSkil
     currentPage: 0,
     pageSize: 10,
   });
-  let [searchParams, setSearchParams] = useSearchParams();
-  useEffect(() => {
-    if (searchParams.get("page") !== null) {
-      if (searchParams.get("page") - 1 !== pagination.currentPage) {
-        console.log("page :", searchParams.get("page"));
-        console.log("useEffect");
-        console.log(pagination);
-        setPagination((prevPagination) => ({
-          ...prevPagination,
-          currentPage: searchParams.get("page") - 1,
-        }));
-      }
-    }
-  }, [searchParams.get("page")]);
+  const [filterValue, setFilterValue] = useState({});
+  const dispatch = useDispatch();
+  const [downLoadExportOpen, setDownloadExportOpen] = useState(false);
+  const [detailsUserOpen, setDetailsUserOpen] = useState(false);
 
+  const [filteredCol, setFilteredCol] = useState({});
+  const [isFilter, setIsFilter] = useState(false);
+  let [searchParams, setSearchParams] = useSearchParams();
   const [isDataLoading, setIsDataLoading] = useState(true);
   const [isChildDataLoading, setIsChildDataLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -55,6 +48,20 @@ const useAllUsersFunc = ({ setSearch, searchRef, addSkills, addRoles, setAddSkil
   const toast = useToaster();
   // const { handleChange } = useAllUsers();
   const handleClose = () => setOpen(false);
+
+  // useEffect(() => {
+  //   if (searchParams.get("page") !== null) {
+  //     if (searchParams.get("page") - 1 !== pagination.currentPage) {
+  //       console.log("page :", searchParams.get("page"));
+  //       console.log("useEffect");
+  //       console.log(pagination);
+  //       setPagination((prevPagination) => ({
+  //         ...prevPagination,
+  //         currentPage: searchParams.get("page") - 1,
+  //       }));
+  //     }
+  //   }
+  // }, [searchParams.get("page")]);
   const clearSearch = () => {
     setSearch("");
     setIsDataLoading(true);
@@ -145,14 +152,6 @@ const useAllUsersFunc = ({ setSearch, searchRef, addSkills, addRoles, setAddSkil
   };
 
   // -------------------------
-
-  const [filterValue, setFilterValue] = useState({});
-  const dispatch = useDispatch();
-  const [downLoadExportOpen, setDownloadExportOpen] = useState(false);
-  const [detailsUserOpen, setDetailsUserOpen] = useState(false);
-
-  const [filteredCol, setFilteredCol] = useState({});
-  const [isFilter, setIsFilter] = useState(false);
 
   const handleDownloadExport = () => {
     setDownloadExportOpen(true), dispatch(getAllSkills());

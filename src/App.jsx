@@ -65,9 +65,9 @@ function App() {
   }, []);
 
   useEffect(() => {
+    dispatch(setFromPreviousTheme());
     if (tokenCheck()) {
       dispatch(alreadyLogin(tokenCheck()));
-      dispatch(setFromPreviousTheme());
     }
   }, [dispatch]);
 

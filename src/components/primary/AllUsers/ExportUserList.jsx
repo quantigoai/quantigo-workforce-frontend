@@ -60,7 +60,7 @@ const ExportUserList = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${url}/users?limit=${totalUsers}&skip=0`, {
+      const response = await axios.get(`${url}/users`, {
         headers: {
           Authorization: `Bearer ${realToken()}`,
         },

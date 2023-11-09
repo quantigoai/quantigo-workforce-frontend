@@ -144,9 +144,8 @@ export const updateMyDocuments = createAsyncThunk("users/my-documents", async (f
 // filter User
 
 export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
-  const { search, pagination, filteredData, ascDescOption, role, hub, active, limit, skip, skills } = data || {};
+  const { search, pagination, filteredData, ascDescOption } = data || {};
 
-  const todayDate = new Date().toISOString().slice(0, 10);
   let query;
   if (pagination) {
     query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
@@ -176,41 +175,7 @@ export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
   if (search) {
     query += `&search=${search}`;
   }
-  // if (limit) {
-  //   if (limit === -1) {
-  //     query += ``;
-  //   } else {
-  //     query += `&limit=${limit}`;
-  //   }
-  // } else {
-  //   query += `&limit=10`;
-  // }
-  // if (skip) {
-  //   query += `&skip=${skip}`;
-  // } else {
-  //   query += `&skip=0`;
-  // }
 
-  // if (role) {
-  //   for (let x in role) {
-  //     query += `&role=${role[x]}`;
-  //   }
-  // }
-  // if (hub) {
-  //   query += `&hub=${hub}`;
-  // }
-  // if (active) {
-  //   if (active === "active") {
-  //     query += `&activeAnnotator=${todayDate}`;
-  //   } else {
-  //     query += `&activeAnnotator=empty`;
-  //   }
-  // }
-  // if (skills) {
-  //   for (let x in skills) {
-  //     query += `&skills=${skills[x]}`;
-  //   }
-  // }
   return axios.get(`${url}/users?${query}`, {
     headers: {
       Authorization: `Bearer ${realToken()}`,

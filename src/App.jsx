@@ -1,29 +1,40 @@
-import CryptoJS from "crypto-js";
-import Cookies from "js-cookie";
-import jwt_decode from "jwt-decode";
-import { lazy, Suspense, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import "./App.css";
-import Routers from "./components/primary/Routers/Routers";
-import MobileErrorPage from "./components/shared/Error/MobileErrorPage";
-import LoadingComponent from "./components/shared/Loading/LoadingComponent";
-import useClearReduxData from "./customHooks/useClearReduxData";
-import { availableJobsForReviewer, getAllAssignedJob, getAllJobs, getMyJobs } from "./features/slice/jobSlice";
+import CryptoJS from 'crypto-js';
+import Cookies from 'js-cookie';
+import jwt_decode from 'jwt-decode';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import './App.css';
+import Routers from './components/primary/Routers/Routers';
+import MobileErrorPage from './components/shared/Error/MobileErrorPage';
+import LoadingComponent from './components/shared/Loading/LoadingComponent';
+import useClearReduxData from './customHooks/useClearReduxData';
+import {
+  availableJobsForReviewer,
+  getAllAssignedJob,
+  getAllJobs,
+  getMyJobs,
+} from './features/slice/jobSlice';
 import {
   deleteBefore15DaysNotifications,
   getAllNotifications,
   getAllUnreadNotifications,
   getLatestNotifications,
   setNewNotification,
-} from "./features/slice/notificationSlice";
-import { setFromPreviousTheme } from "./features/slice/themeSlice";
-import { alreadyLogin, updateLoggedInUserManually, updateSingleUserManually } from "./features/slice/userSlice";
+} from './features/slice/notificationSlice';
+import { setFromPreviousTheme } from './features/slice/themeSlice';
+import {
+  alreadyLogin,
+  updateLoggedInUserManually,
+  updateSingleUserManually,
+} from './features/slice/userSlice';
 
-import socketHandlers from "./socketHandlers";
+import socketHandlers from './socketHandlers';
 
-const RoutersLogin = lazy(() => import("./components/primary/Routers/RoutersLogin"));
+const RoutersLogin = lazy(() =>
+  import('./components/primary/Routers/RoutersLogin'),
+);
 
-const LayoutNew = lazy(() => import("./components/shared/Layout/LayoutNew"));
+const LayoutNew = lazy(() => import('./components/shared/Layout/LayoutNew'));
 
 const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 
@@ -38,7 +49,7 @@ function App() {
   // const { isLoggedIn } = user;
 
   const tokenCheck = () => {
-    const existedToken = Cookies.get("token");
+    const existedToken = Cookies.get('token');
     if (existedToken) {
       var bytes = CryptoJS.AES.decrypt(existedToken, jwtSecret);
       var originalToken = bytes.toString(CryptoJS.enc.Utf8);
@@ -68,10 +79,15 @@ function App() {
     dispatch(setFromPreviousTheme());
     setIsTokenLoading(true);
     if (tokenCheck()) {
-      dispatch(alreadyLogin(tokenCheck())).then((res) => {
-        setIsTokenLoading(false);
-      });
+      dispatch(alreadyLogin(tokenCheck()))
+        .then((res) => {
+          setIsTokenLoading(false);
+        })
+        .catch((err) => {
+          setIsTokenLoading(false);
+        });
     }
+    setIsTokenLoading(false);
   }, [dispatch]);
 
   const clearReduxData = useClearReduxData;

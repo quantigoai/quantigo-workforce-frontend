@@ -14,11 +14,15 @@ import CourseDeleteModal from "../../../primary/Course/CourseDetailsPage/CourseD
 import CourseNewHeaderBottom from "../../../primary/CourseNew/CourseNewHeaderBottom/CourseNewHeaderBottom";
 import editCourseIcon from "../../../../assets/images/edit.svg";
 import RectangleIcon from "../../../../assets/images/Rectangle 3.svg";
+import EditCourseModal from "../../../primary/Course/CreateCourseModal/EditCourseModal";
 
 const CommonHeaderForCourse = ({ isLoading, title, description, customButton, handleCancel }) => {
   const navigate = useNavigate();
   const { course } = useSelector((state) => state.course);
   const { user } = useSelector((state) => state.user);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const handleNavigation = (navigateLink) => {
     switch (navigateLink) {
       case "Create Course":
@@ -147,10 +151,15 @@ const CommonHeaderForCourse = ({ isLoading, title, description, customButton, ha
                                   //     color: "#1D1D1D",
                                   //   },
                                   borderRadius: "2px",
-                                }}
-                                onClick={() => handleNavigation(customButton)}>
+                                  }}
+                                  onClick={handleOpen}
+                                // onClick={() => handleNavigation(customButton)}
+                              >
                                 <img src={editCourseIcon} />
                               </Button>
+                              {/* <Button onClick={handleOpen}>Create Course</Button> */}
+                              <EditCourseModal open={open} handleClose={handleClose} />
+
                               <CourseDeleteModal
                                 course={course}
                                 // handleDeleteCourse={handleDeleteCourse}
@@ -232,7 +241,7 @@ const CommonHeaderForCourse = ({ isLoading, title, description, customButton, ha
               container
               sx={{
                 // justifyContent: "left",
-                padding:"1%",
+                padding: "1%",
                 // paddingTop: "1%",
                 // paddingBottom: "1%",
                 // paddingLeft: "1%",

@@ -7,7 +7,7 @@ export const CCTextField = styled(TextField)(() => ({
   borderRadius: "5px",
 
   "& .MuiOutlinedInput-root": {
-    // height: "35px",
+    height: "35px",
     fontSize: "14px",
     border: "2px solid #E6ECF5 !important",
     borderRadius: "8px",
@@ -20,7 +20,7 @@ export const CCTextField = styled(TextField)(() => ({
     },
   },
   "& .MuiOutlinedInput-input": {
-    padding: "0px 0px 0px 0px",
+    padding: "0px 0px 0px 8px",
   },
   "& .MuiOutlinedInput-notchedOutline ": {},
   "& .MuiInputBase-input.Mui-disabled": {
@@ -33,7 +33,7 @@ export const CCTextField = styled(TextField)(() => ({
     },
   },
 }));
-export default function CTextFieldDescription({
+export default function TextFieldCourse({
   name,
   helperText,
   isNumber,
@@ -67,8 +67,8 @@ export default function CTextFieldDescription({
               type={isNumber || isNumberPdr ? "number" : "text"}
               id="outlined-basic"
               {...field}
-              multiline
-              rows={2}
+              // multiline
+              // rows={3}
               fullWidth
               variant="outlined"
               // required={label === "Benchmark" ? false : true}

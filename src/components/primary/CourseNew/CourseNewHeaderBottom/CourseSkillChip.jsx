@@ -17,7 +17,7 @@ const CourseSkillChip = ({ skills }) => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            {skills.length === 1 ? (
+            {skills?.length === 1 ? (
               <>
                 {skills.map((skill) => (
                   <Grid key={skill._id} item gap={1}>

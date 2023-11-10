@@ -85,8 +85,7 @@ const Dashboard = () => {
                 borderRadius: "8px",
                 paddingLeft: "3%",
                 height: { xl: "350px", lg: "330px" },
-              }}
-            >
+              }}>
               {/* <Grid sx={{ paddingTop: "5%" }}></Grid> */}
               <PieChartForUser />
             </Paper>
@@ -98,8 +97,7 @@ const Dashboard = () => {
                 height: { xl: "350px", lg: "330px" },
                 borderRadius: "8px",
                 paddingLeft: "3%",
-              }}
-            >
+              }}>
               <PirChartForProjectDrawer />
             </Paper>
           </Grid>
@@ -124,7 +122,15 @@ const Dashboard = () => {
     <>
       {user.user.isEmailVerified ? (
         <>
-          <Box sx={{ padding: "1%", height: "100%" }}>
+          <Box
+            sx={{
+              padding: "1%",
+              height: "100%",
+              overflowY: "auto",
+              "&::-webkit-scrollbar": {
+                width: "0", // Hide the scrollbar
+              },
+            }}>
             {user.user.isVerified ? (
               role === "level_1_annotator" ||
               role === "level_2_annotator" ||

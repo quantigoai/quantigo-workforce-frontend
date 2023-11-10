@@ -1,52 +1,109 @@
-import { FormControl, MenuItem, Select, styled, TextField, Typography } from "@mui/material";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { Box, FormHelperText, MenuItem, Select, styled, Typography } from "@mui/material";
 import PropTypes from "prop-types";
-// import { Controller, useFormContext } from "react-hook-form";
-import { useSelector } from "react-redux";
+import React from "react";
+import { Controller, useFormContext } from "react-hook-form";
+import { CustomFormControl } from "../../../shared/CustomField/CustomSelectField";
+
 
 export const MySelect = styled(Select)(() => ({
-  border: "2px solid #E6ECF5",
-  // padding: "5px 0px 0px 0px",
+  height: "35px",
   borderRadius: "8px",
-  background: "none",
-  // backgroundColor:"red",
-  fontSize: "14px",
+  "& .MuiOutlinedInput-root": {
+    color: "#000",
+    border: "1px solid #E6ECF5 !important",
+  },
+  "& .MuiOutlinedInput-input": {
+    padding: "0px 0px 0px 8px",
+    fontSize: "14px",
+    "@media (max-width: 1439px)": {
+      fontSize: "12px",
+    },
+    "@media (mix-width: 1920px)": {
+      fontSize: "14px",
+    },
+  },
+  "& .MuiOutlinedInput-notchedOutline ": {
+    border: "1px solid #E6ECF5 !important",
+  },
+  "& .MuiInputBase-input.Mui-disabled": {
+    WebkitTextFillColor: "#56627a",
+  },
+  "& .MuiFormHelperText-root": {
+    color: "#12B76A",
+    "&.Mui-error": {
+      color: "#F04438",
+    },
+  },
 }));
 
-export default function CSelectField({ name, options, level, register }) {
-  //   const { control } = useFormContext();
-  const { isLightTheme } = useSelector((state) => state.theme);
+export default function CSelectField({
+  name,
+  helperText,
+  options,
+  label,
+  setValue,
+  defaultValue,
+  isRequired,
+  ...other
+}) {
+  const { control } = useFormContext();
 
   return (
-    <>
-      <FormControl fullWidth>
-        <Typography
-          sx={{
-            fontSize: "12px",
-            fontWeight: "500",
-            mb: 1,
-            color: isLightTheme ? "#091E42" : "#FFFFFF",
-            paddingBottom: "0%",
-          }}>
-          {level}
-        </Typography>
-        <MySelect
-          labelId="demo-simple-select-autowidth-label"
-          id="demo-simple-select-autowidth"
-          variant="outlined"
-          placeholder="Select"
-          sx={{ height: "45px" }}
-          //   defaultValue={defaultValue}
-          //   error={!!error}
-          //   helperText={error ? error?.message : helperText}
-          //   IconComponent={KeyboardArrowDownIcon}
-          {...register(name , { required: false })}>
-          {options.map((option) => (
-            <MenuItem sx={{ fontSize: "14px" }} key={option.value} fullWidth value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </MySelect>
-      </FormControl>
-    </>
+    <Controller
+      name={name}
+      control={control}
+      render={({ field, fieldState: { error } }) => (
+        <>
+          {/* <CustomFormControl fullWidth> */}
+            <Box>
+              <Typography
+                variant={"wpf_h7_medium"}
+                sx={{
+                  mb: 0,
+                  color: "neutral.N300",
+                }}>
+                {label}
+                <span style={{ color: "#F04438" }}>{isRequired && "*"}</span>
+              </Typography>
+              <Box sx={{ width: "100%" }}>
+                <MySelect
+                  sx={{
+                    width: "100%",
+                    backgroundColor: "neutral.N000",
+                  }}
+                  labelId="demo-simple-select-helper-label"
+                  id="demo-simple-select-helper"
+                  {...field}
+                  variant="outlined"
+                  placeholder="Select"
+                  defaultValue={defaultValue}
+                  // error={!!error}
+                  // helperText={error ? error?.message : helperText}
+                  IconComponent={KeyboardArrowDownIcon}
+                  {...other}>
+                  {options.map((option) => (
+                    <MenuItem
+                      sx={{
+                        fontSize: {
+                          lg: "12px",
+                          xl: "14px",
+                          xxl: "14px",
+                        },
+                      }}
+                      key={option.value}
+                      fullWidth
+                      value={(() => setValue(field.name, field.value), option.value)}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </MySelect>
+                <FormHelperText sx={{ color: "#F04438" }}>{error ? error?.message : helperText}</FormHelperText>
+              </Box>
+            </Box>
+          {/* </CustomFormControl> */}
+        </>
+      )}
+    />
   );
 }

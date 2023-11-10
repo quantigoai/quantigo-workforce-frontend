@@ -42,6 +42,7 @@ const rejectStyle = {
   borderColor: "#ff1744",
 };
 
+
 const CoverImageField = ({ handleImage, coverImage, removeImage }) => {
   const { acceptedFiles, getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({
     accept: { "image/*": [] },

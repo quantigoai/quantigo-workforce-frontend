@@ -123,33 +123,33 @@ const CreateCourseModal = ({ handleClose, open }) => {
     }
   };
   const handleCreateCourse = (data) => {};
-  // const onSubmit = (data) => {
-  //   const preRequisiteCoursesColl = preRequisiteCourses.map((preRequisite) => {
-  //     return preRequisite._id;
-  //   });
-  //   const skillColl = skill.map((skill) => {
-  //     return skill._id;
-  //   });
+  const onSubmit = (data) => {
+    // const preRequisiteCoursesColl = preRequisiteCourses.map((preRequisite) => {
+    //   return preRequisite._id;
+    // });
+    // const skillColl = skill.map((skill) => {
+    //   return skill._id;
+    // });
 
-  //   const formData = new FormData();
-  //   formData.append("name", name);
-  //   formData.append("category", data.category);
-  //   formData.append("level", data.level);
-  //   formData.append("language", data.language);
-  //   formData.append("description", data.description);
-  //   formData.append("images", coverImageFile);
+    // const formData = new FormData();
+    // formData.append("name", name);
+    // formData.append("category", data.category);
+    // formData.append("level", data.level);
+    // formData.append("language", data.language);
+    // formData.append("description", data.description);
+    // formData.append("images", coverImageFile);
 
-  //   formData.append("prerequisiteCourses", preRequisiteCoursesColl);
-  //   formData.append("skills", skillColl);
-  //   // dispatch(createCourse(formData)).then((action) => {
-  //   //   if (action.payload?.status === 200) {
-  //   //     navigate("/course");
-  //   //     toast.trigger("Course created successfully", "success");
-  //   //   } else {
-  //   //     toast.trigger("Can not create course", "error");
-  //   //   }
-  //   // });
-  // };
+    // formData.append("prerequisiteCourses", preRequisiteCoursesColl);
+    // formData.append("skills", skillColl);
+    // dispatch(createCourse(formData)).then((action) => {
+    //   if (action.payload?.status === 200) {
+    //     navigate("/course");
+    //     toast.trigger("Course created successfully", "success");
+    //   } else {
+    //     toast.trigger("Can not create course", "error");
+    //   }
+    // });
+  };
   return (
     <>
       <Modal

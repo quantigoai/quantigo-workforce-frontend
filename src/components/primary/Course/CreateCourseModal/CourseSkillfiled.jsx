@@ -25,12 +25,29 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { MyFormControl } from "../../../shared/CustomField/CustomDatePicker";
+import { CustomFormControl } from "../../../shared/CustomField/CustomSelectField";
 export const MySelect = styled(Select)(() => ({
-  border: "2px solid #E6ECF5",
-  // padding: "5px 0px 0px 0px",
-  // background: "white",
-  height: "50%",
-  borderRadius: "8px",
+  height: "35px",
+  borderRadius: "5px",
+  "& .MuiOutlinedInput-root": {
+    color: "#000",
+    border: "1px solid #E6ECF5 !important",
+  },
+  "& .MuiOutlinedInput-input": {
+    padding: "0px 0px 0px 8px",
+  },
+  "& .MuiOutlinedInput-notchedOutline ": {
+    border: "1px solid #E6ECF5 !important",
+  },
+  "& .MuiInputBase-input.Mui-disabled": {
+    WebkitTextFillColor: "#56627a",
+  },
+  "& .MuiFormHelperText-root": {
+    color: "#12B76A",
+    "&.Mui-error": {
+      color: "#F04438",
+    },
+  },
 }));
 const iconStyle = {
   color: "rgba(45, 88, 255, 1)",
@@ -48,9 +65,11 @@ const MenuProps = {
   },
 };
 
-const CourseSkillfiled = ({ course, skills, skillSet, handleChangeSkills, MenuProps, user }) => {
+const CourseSkillfiled = ({  skills, skillSet, handleChangeSkills, MenuProps, isUpdate }) => {
   const location = useLocation();
-  const [isUpdate, setIsUpdate] = React.useState(false);
+  const {  course } = useSelector((state) => state.course);
+ 
+  // const [isUpdate, setIsUpdate] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
   const { isLightTheme } = useSelector((state) => state.theme);
 
@@ -69,85 +88,62 @@ const CourseSkillfiled = ({ course, skills, skillSet, handleChangeSkills, MenuPr
   };
   return (
     <>
-      <Grid container>
-        <MyFormControl fullWidth>
-          <Typography
-            sx={{
-              fontSize: "12px",
-              fontWeight: "500",
-              mb: 1,
-              color: isLightTheme ? "#091E42" : "#FFFFFF",
-            }}>
-            Skill
-          </Typography>
-          <MySelect
-            labelId="demo-simple-select-autowidth-label"
-            id="demo-simple-select-autowidth"
-            sx={{
-              background: isLightTheme && "#FFFFFF",
-            }}
-            multiple
-            fullWidth
-            variant="outlined"
-            InputProps={{ disableUnderline: false }}
-            // IconComponent={() =>
-            //   isOpen ? <KeyboardArrowUpIcon style={iconStyle} /> : <KeyboardArrowDownIcon style={iconStyle} />
-            // }
-            onOpen={handleOpenClose}
-            onClose={handleOpenClose}
-            // defaultValue={
-            //   isUpdate &&
-            //   (location.pathname === "/allusers" ||
-            //     location.pathname === "/users" ||
-            //     location.pathname === "/annotators" ||
-            //     location.pathname === "/reviewers")
-            //     ? user.skills.map((s) => s.name)
-            //     : isUpdate
-            //     ? course.skills.map((s) => s.name)
-            //     : skillSet
-            // }
-            defaultValue={isUpdate ? skills.map((s) => s.name) : skillSet}
-            onChange={handleChangeSkills}
-            // input={<FilledInput id="select-multiple-chip" label="Chip" />}
-            // MenuProps={MenuProps}
-            // renderValue={(selected) => (
-            //   <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-            //     {selected.map((value) => (
-            //       <Chip key={value} label={value} />
-            //     ))}
-            //   </Box>
-            //           )}
+      <CustomFormControl fullWidth>
+        <Typography
+          variant={"wpf_h7_medium"}
+          sx={{
+            mb: 0,
+            color: "neutral.N300",
+          }}>
+          Skill
+        </Typography>
+        <MySelect
+          labelId="demo-simple-select-autowidth-label"
+          id="demo-simple-select-autowidth"
+          sx={{
+            background: isLightTheme && "#FFFFFF",
+          }}
+          multiple
+          fullWidth
+          variant="outlined"
+         
+          onOpen={handleOpenClose}
+          onClose={handleOpenClose}
+          IconComponent={KeyboardArrowDownIcon}
+         
+          defaultValue={isUpdate ? course?.skills.map((s) => s.name) : skillSet}
+          onChange={handleChangeSkills}
+        
 
-            renderValue={(selected) => (
-              <Box
-                sx={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(2,1fr)",
-                  gap: 0.5,
-                  fontSize: "12px",
-                  height: "20px",
-                }}>
-                {selected?.map(
-                  (value, i) =>
-                    [0].includes(i) && <Chip sx={{ fontSize: "12px", height: "95%" }} key={value} label={value} />
-                )}
-                {selected.length > 1 && (
-                  <Typography variant="p" sx={{ ml: 2, mt: 0 }}>
-                    {" "}
-                    + {selected.length} more
-                  </Typography>
-                )}
-              </Box>
-            )}
-            MenuProps={MenuProps}>
-            {skills.map((skill) => (
-              <MenuItem key={skill._id} value={skill.name}>
-                {skill.name}
-              </MenuItem>
-            ))}
-          </MySelect>
-        </MyFormControl>
-      </Grid>
+          renderValue={(selected) => (
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2,1fr)",
+                gap: 0.5,
+                fontSize: "12px",
+                height: "20px",
+              }}>
+              {selected?.map(
+                (value, i) =>
+                  [0].includes(i) && <Chip sx={{ fontSize: "12px", height: "95%" }} key={value} label={value} />
+              )}
+              {selected.length > 1 && (
+                <Typography variant="p" sx={{ ml: 2, mt: 0 }}>
+                  {" "}
+                  + {selected.length} more
+                </Typography>
+              )}
+            </Box>
+          )}
+          MenuProps={MenuProps}>
+          {skills.map((skill) => (
+            <MenuItem sx={{ fontSize: "12px" }}  key={skill._id} value={skill.name}>
+              {skill.name}
+            </MenuItem>
+          ))}
+        </MySelect>
+      </CustomFormControl>
     </>
   );
 };

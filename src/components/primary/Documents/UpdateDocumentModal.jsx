@@ -132,8 +132,16 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
         <Box
           sx={{
             ...style,
-            height: { xl: '67%', lg: '75%' },
-            width: { xl: '35%', lg: '40%' },
+            height: {
+              lg: '78%',
+              xl: '72%',
+              xxl: '68%',
+            },
+            width: {
+              lg: '50%',
+              xl: '45%',
+              xxl: '45%',
+            },
           }}
         >
           <Box sx={{ flex: '0 0 5%' }}>

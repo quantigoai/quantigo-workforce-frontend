@@ -80,13 +80,19 @@ const DocumentImageUpload = ({
 
   if (screenSize >= 1500) {
     // Extra-large screens
-    width = 630;
-  } else if (screenSize === 1440) {
+    width = (42 * screenSize) / 100;
+  } else if (screenSize >= 1440) {
     // Large screens
-    width = 470;
-  } else if (screenSize >= 992) {
+    width = (42 * screenSize) / 100;
+  } else if (screenSize >= 1366) {
     // Large screens
-    width = 510;
+    width = (46.58 * screenSize) / 100;
+  } else if (screenSize >= 1280) {
+    // Large screens
+    width = (46.85 * screenSize) / 100;
+  } else if (screenSize >= 1024) {
+    // Large screens
+    width = (46.85 * screenSize) / 100;
   }
 
   return (
@@ -140,7 +146,7 @@ const DocumentImageUpload = ({
                       height={225}
                       src={coverImage}
                       alt=""
-                      style={{ width }}
+                      style={{ width, borderRadius: '8px' }}
                     />
                     {/* <p>File : {files}</p> */}
                     {isHovered && (
@@ -165,7 +171,6 @@ const DocumentImageUpload = ({
                             '&:hover': {
                               backgroundColor: '#FFFFFF',
                               color: '#2E58FF',
-                              // border: "1px solid #2E58FF",
                             },
                           }}
                         >

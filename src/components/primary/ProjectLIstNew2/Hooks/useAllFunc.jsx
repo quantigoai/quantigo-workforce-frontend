@@ -217,7 +217,7 @@ const useAllFunc = ({
     handleCreateProjectClose,
     handleEditProjectClose,
     handleClick,
-    // skillId,
+    skillId,
     handleDetailsPage,
     handleSearch,
     clearSearch,

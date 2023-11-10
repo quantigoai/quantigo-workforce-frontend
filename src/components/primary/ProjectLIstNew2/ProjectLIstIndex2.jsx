@@ -136,7 +136,7 @@ const ProjectLIstIndex2 = () => {
     handleCreateProjectClose,
     handleEditProjectClose,
     handleClick,
-    // skillId,
+    skillId,
     handleDetailsPage,
     handleSearch,
     clearSearch,
@@ -176,7 +176,7 @@ const ProjectLIstIndex2 = () => {
     } else {
       const newData = {
         ...data,
-        // project_skills: skillId,
+        project_skills: skillId,
         relevantDocuments: data.relevantDocuments.filter(
           (doc) => doc.documentName !== '' || doc.documentUrl !== '',
         ),
@@ -213,7 +213,6 @@ const ProjectLIstIndex2 = () => {
     dispatch(getAllSkills());
     dispatch(setActivePath('All Projects'));
     dispatch(clearProjectDrawer());
-    
   }, []);
   useEffect(() => {
     setIsDataLoading(true);
@@ -231,7 +230,6 @@ const ProjectLIstIndex2 = () => {
         setIsDataLoading(false);
       });
     } else {
-
       dispatch(
         getAllProjectDrawers({
           pagination,

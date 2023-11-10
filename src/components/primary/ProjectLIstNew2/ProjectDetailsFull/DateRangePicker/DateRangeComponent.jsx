@@ -125,7 +125,7 @@ const DateRangeComponent = ({ range, setRange }) => {
                   <CalendarMonthIcon />
                 </IconButton>
               ) : (
-                <BackspaceIcon name="clearButton" onClick={clearRange} ref={refTwo} />
+                <BackspaceIcon style={{ cursor: "grab" }} name="clearButton" onClick={clearRange} ref={refTwo} />
               )}
             </InputAdornment>
           ),

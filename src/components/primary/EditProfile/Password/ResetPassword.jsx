@@ -71,7 +71,11 @@ const ResetPassword = ({ setResetPassword, resetPassword, handlePassword, helper
                 </InputAdornment>
               ),
             }}
-            helperText={helperText}
+            helperText={
+              <Typography sx={{ fontSize: "12px" }} color="red">
+                {helperText}
+              </Typography>
+            }
           />
         </FormControl>
       </Grid>

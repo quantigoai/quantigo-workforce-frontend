@@ -117,7 +117,7 @@ const NotificationModal = ({ handleSeeAll, notificationOpen, handleNotificationC
             </Box>
           </Box>
           <Box sx={boxStyle}>
-            {latestUnreadNotifications.slice(0, 10).map((notification) => (
+            {latestUnreadNotifications?.slice(0, 10).map((notification) => (
               <SingleNotification key={notification._id} notification={notification} />
             ))}
             <Box

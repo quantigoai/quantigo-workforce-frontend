@@ -6,21 +6,16 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { useTheme } from '@emotion/react';
+import {useTheme} from '@emotion/react';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
-import { Box, Grid, IconButton, Paper, Radio, Tab, Tabs } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import {
-  availableJobsForReviewer,
-  getAllAssignedJob,
-  getAllJobs,
-  getMyJobs,
-} from '../../../features/slice/jobSlice';
+import {Box, Grid, IconButton, Paper, Radio, Tab, Tabs} from '@mui/material';
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Outlet, useLocation, useNavigate} from 'react-router-dom';
+import {availableJobsForReviewer, getAllAssignedJob, getAllJobs, getMyJobs,} from '../../../features/slice/jobSlice';
 import CommonHeader from '../../shared/CustomComponenet/CommonHeader/CommonHeader';
 
 // import NotificationToaster from "../NotificationToaster/NotificationToaster";

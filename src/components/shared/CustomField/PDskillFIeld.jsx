@@ -1,9 +1,9 @@
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Box, Chip, MenuItem, Select, styled, Typography } from '@mui/material';
+import {Box, Chip, MenuItem, Select, styled, Typography} from '@mui/material';
 import React from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
-import { useSelector } from 'react-redux';
-import { CustomFormControl } from './CustomSelectField';
+import {Controller, useFormContext} from 'react-hook-form';
+import {useSelector} from 'react-redux';
+import {CustomFormControl} from './CustomSelectField';
 
 // export const MySelect = styled(Select)(() => ({
 //   border: "2px solid #E6ECF5",

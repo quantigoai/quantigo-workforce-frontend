@@ -1,10 +1,10 @@
-import { Grid, styled, Typography } from "@mui/material";
+import {Grid, styled, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
 import * as React from "react";
 import u_multiply from "../../../../assets/images/u_multiply.png";
-import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
+import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
 import TakenTime from "../../../shared/CountDown/TakenTime";
 
 const ButtonStyle = styled(Button)({

@@ -1,5 +1,5 @@
-import { Visibility } from "@mui/icons-material";
-import { FormControl, Grid, InputAdornment, styled, TextField, Typography } from "@mui/material";
+import {Visibility} from "@mui/icons-material";
+import {FormControl, Grid, InputAdornment, styled, TextField, Typography} from "@mui/material";
 import React from "react";
 import PasswordIcon from "../../../../assets/images/dashboardIcon/PasswordIcon.svg";
 

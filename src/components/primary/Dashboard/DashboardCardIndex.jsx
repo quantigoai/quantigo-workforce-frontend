@@ -1,7 +1,7 @@
-import { Grid } from '@mui/material';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getTotalCountData } from '../../../features/slice/dashboardSlice';
+import {Grid} from '@mui/material';
+import {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {getTotalCountData} from '../../../features/slice/dashboardSlice';
 import ActiveJobsCard from './DashboardCard/ActiveJobsCard';
 import ActiveUser from './DashboardCard/ActiveUser';
 import ApprovedRequest from './DashboardCard/ApprovedRequest';

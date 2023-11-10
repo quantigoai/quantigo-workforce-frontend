@@ -8,10 +8,10 @@
  */
 
 import SearchIcon from "@mui/icons-material/Search";
-import { Box, InputAdornment, ListSubheader, MenuItem, Select, TextField, Typography, styled } from "@mui/material";
-import React, { useEffect, useMemo, useState } from "react";
-import { Controller, useFormContext } from "react-hook-form";
-import { CustomFormControl } from "./CustomSelectField";
+import {Box, InputAdornment, ListSubheader, MenuItem, Select, styled, TextField, Typography} from "@mui/material";
+import React, {useEffect, useMemo, useState} from "react";
+import {Controller, useFormContext} from "react-hook-form";
+import {CustomFormControl} from "./CustomSelectField";
 // import "./styles.css";
 
 const containsText = (text, searchText) => text.toLowerCase().indexOf(searchText.toLowerCase()) > -1;

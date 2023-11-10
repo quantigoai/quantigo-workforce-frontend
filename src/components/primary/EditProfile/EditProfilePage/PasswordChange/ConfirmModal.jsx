@@ -1,5 +1,5 @@
-import { LoadingButton } from "@mui/lab";
-import { Box, Button, Modal, Typography } from "@mui/material";
+import {LoadingButton} from "@mui/lab";
+import {Box, Button, Modal, Typography} from "@mui/material";
 import React from "react";
 
 const ConfirmModal = ({ open, handleClose, handleChangePasswordSubmit, isLoading }) => {

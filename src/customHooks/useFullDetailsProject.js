@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate, useParams} from "react-router-dom";
 import useToaster from "./useToaster";
-import { checkInProjectDrawerById, checkOutProjectDrawerById } from "../features/slice/projectDrawerSlice";
-import { clearUserWorkingProject, updateUserWorkingProject } from "../features/slice/userSlice";
-import { addDays } from "date-fns";
+import {checkInProjectDrawerById, checkOutProjectDrawerById} from "../features/slice/projectDrawerSlice";
+import {clearUserWorkingProject, updateUserWorkingProject} from "../features/slice/userSlice";
+import {addDays} from "date-fns";
 
 const useFullDetailsProject = () => {
   const { id } = useParams();

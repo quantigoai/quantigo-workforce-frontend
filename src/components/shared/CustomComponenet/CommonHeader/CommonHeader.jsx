@@ -8,16 +8,9 @@
  */
 import AddIcon from '@mui/icons-material/Add';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
-import {
-  Alert,
-  AlertTitle,
-  Box,
-  Button,
-  Grid,
-  Typography,
-} from '@mui/material';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import {Alert, AlertTitle, Box, Button, Grid, Typography,} from '@mui/material';
+import {useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
 import CourseDeleteModal from '../../../primary/Course/CourseDetailsPage/CourseDeleteModal';
 
 const CommonHeader = ({

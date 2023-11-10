@@ -13,8 +13,8 @@
  * ------------------------
  */
 
-import { createTheme } from "@mui/material";
-import { darkColors } from "./darkColor";
+import {createTheme} from "@mui/material";
+import {darkColors} from "./darkColor";
 import typography from "./typography";
 
 const darkTheme = createTheme({

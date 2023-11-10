@@ -6,17 +6,10 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {
-  Alert,
-  AlertTitle,
-  Box,
-  Button,
-  Grid,
-  Typography,
-} from '@mui/material';
+import {Alert, AlertTitle, Box, Button, Grid, Typography,} from '@mui/material';
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import {useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
 import RectangleIcon from '../../../../assets/images/Rectangle 3.svg';
 import editCourseIcon from '../../../../assets/images/edit.svg';
 import CourseDeleteModal from '../../../primary/Course/CourseDetailsPage/CourseDeleteModal';

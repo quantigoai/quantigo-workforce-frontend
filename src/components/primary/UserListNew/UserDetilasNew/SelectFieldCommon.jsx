@@ -1,13 +1,6 @@
-import {
-  FormControl,
-  Grid,
-  MenuItem,
-  Select,
-  styled,
-  Typography,
-} from '@mui/material';
+import {FormControl, Grid, MenuItem, Select, styled, Typography,} from '@mui/material';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
 export const MySelect = styled(Select)(() => ({
   border: '1px solid #E6ECF5',

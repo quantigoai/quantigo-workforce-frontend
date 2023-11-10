@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Box, Button, Typography } from '@mui/material';
+import {Box, Button, Typography} from '@mui/material';
 import React from 'react';
 import MainModal from './MainModal';
 

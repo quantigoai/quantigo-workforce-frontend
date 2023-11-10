@@ -1,13 +1,12 @@
-import { Grid } from "@mui/material";
+import {Grid} from "@mui/material";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
 import * as React from "react";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 import ActivateAccount from "./ActivateAccount";
-import MyProfileIndex from "./MyProfile/MyProfileIndex";
 import PasswordChangeIndex from "./PasswordChange/PasswordChangeIndex";
 import MyprofileIndexNew from "./MyProfile/MyprofileIndexNew";
 import MyCoursesIndex from "./MyCourses/MyCoursesIndex";

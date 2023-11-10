@@ -1,8 +1,8 @@
-import { Box, Radio, Tab, Tabs, Typography } from "@mui/material";
+import {Box, Radio, Tab, Tabs, Typography} from "@mui/material";
 import React from "react";
 import PropTypes from "prop-types";
-import { pink } from "@mui/material/colors";
 import QuestionInput1 from "./QuestionInput";
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (

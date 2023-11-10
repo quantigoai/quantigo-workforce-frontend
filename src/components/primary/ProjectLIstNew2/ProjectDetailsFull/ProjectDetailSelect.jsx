@@ -7,8 +7,9 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Chip, FormControl } from '@mui/material';
-import { useSelector } from 'react-redux';
+import {Box, Chip, FormControl} from '@mui/material';
+import {useSelector} from 'react-redux';
+
 let drawerStatus = (status) => {
   switch (status) {
     case 'not-Started':

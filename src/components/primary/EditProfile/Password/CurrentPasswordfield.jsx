@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { Visibility } from "@mui/icons-material";
-import { FormControl, Grid, InputAdornment, TextField, Typography } from "@mui/material";
+import {Visibility} from "@mui/icons-material";
+import {FormControl, Grid, InputAdornment, TextField, Typography} from "@mui/material";
 import React from "react";
 import PasswordIcon from "../../../../assets/images/dashboardIcon/PasswordIcon.svg";
 

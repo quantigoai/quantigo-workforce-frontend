@@ -1,21 +1,20 @@
 import {
-  Box,
-  Chip,
-  InputAdornment,
-  FormControl,
-  InputLabel,
-  ListSubheader,
-  MenuItem,
-  Select,
-  TextField,
-  Typography,
-  styled,
+    Box,
+    Chip,
+    InputAdornment,
+    ListSubheader,
+    MenuItem,
+    Select,
+    styled,
+    TextField,
+    Typography,
 } from "@mui/material";
-import React, { useEffect, useMemo, useState } from "react";
-import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import { MyFormControl } from "../../../shared/CustomField/CustomDatePicker";
+import React, {useEffect, useMemo, useState} from "react";
+import {useSelector} from "react-redux";
+import {useLocation} from "react-router-dom";
+import {MyFormControl} from "../../../shared/CustomField/CustomDatePicker";
 import SearchIcon from "@mui/icons-material/Search";
+
 export const MySelect = styled(Select)(() => ({
   border: "2px solid #E6ECF5",
   // padding: "5px 0px 0px 0px",

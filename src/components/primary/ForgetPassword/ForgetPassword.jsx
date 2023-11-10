@@ -1,11 +1,11 @@
-import { Box, Button, FilledInput, FormControl, Grid, InputLabel, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import {Box, Button, FilledInput, FormControl, Grid, InputLabel, Typography} from "@mui/material";
+import {styled} from "@mui/material/styles";
+import {useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
-import { forgetPasswordSlice } from "../../../features/slice/userSlice";
-import { LoadingButtonStyle } from "../Auth/Login/Login";
+import {forgetPasswordSlice} from "../../../features/slice/userSlice";
+import {LoadingButtonStyle} from "../Auth/Login/Login";
 import HeaderNav from "../HomePage/HeaderNav";
 
 const ButtonStyle = styled(Button)({

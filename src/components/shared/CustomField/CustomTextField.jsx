@@ -7,10 +7,10 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, styled, TextField, Typography } from "@mui/material";
+import {Box, styled, TextField, Typography} from "@mui/material";
 import PropTypes from "prop-types";
-import { Controller, useFormContext } from "react-hook-form";
-import { useSelector } from "react-redux";
+import {Controller, useFormContext} from "react-hook-form";
+import {useSelector} from "react-redux";
 
 CustomTextField.propTypes = {
   name: PropTypes.string,

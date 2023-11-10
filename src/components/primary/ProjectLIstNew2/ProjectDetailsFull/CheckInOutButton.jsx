@@ -1,6 +1,6 @@
-import { Box } from "@mui/material";
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import {Box} from "@mui/material";
+import React, {useEffect} from "react";
+import {useSelector} from "react-redux";
 import CheckInButton from "./CheckInButton";
 import CheckOutButton from "./CheckOutButton";
 import DetailsButton from "./DetailsButton";

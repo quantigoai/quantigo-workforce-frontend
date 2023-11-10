@@ -12,11 +12,11 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 import CryptoJS from "crypto-js";
 import Cookies from "js-cookie";
-import { realToken } from "../../helper/lib";
+import {realToken} from "../../helper/lib";
 
 // const CryptoJS =
 

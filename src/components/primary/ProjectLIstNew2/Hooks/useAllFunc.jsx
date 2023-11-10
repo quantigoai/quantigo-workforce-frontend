@@ -1,14 +1,14 @@
 /* eslint-disable no-prototype-builtins */
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
 import useToaster from '../../../../customHooks/useToaster';
 import {
-  clearProjectDrawer,
-  deleteProjectDrawerById,
-  setCurrentProjectDrawer,
+    clearProjectDrawer,
+    deleteProjectDrawerById,
+    setCurrentProjectDrawer,
 } from '../../../../features/slice/projectDrawerSlice';
-import { getAllSkills } from '../../../../features/slice/skillSlice';
+import {getAllSkills} from '../../../../features/slice/skillSlice';
 
 const useAllFunc = ({
   addSkills,

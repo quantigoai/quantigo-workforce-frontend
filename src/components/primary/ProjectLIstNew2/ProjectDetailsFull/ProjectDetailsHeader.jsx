@@ -1,6 +1,6 @@
-import { Box, Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { statusCreateOptions } from '../FIlterOptions';
+import {Box, Typography} from '@mui/material';
+import {useSelector} from 'react-redux';
+import {statusCreateOptions} from '../FIlterOptions';
 import CheckINOutButton from './CheckInOutButton';
 import ProjectDetailSelect from './ProjectDetailSelect';
 import ProjectDetailsButton from './ProjectDetailsButton';

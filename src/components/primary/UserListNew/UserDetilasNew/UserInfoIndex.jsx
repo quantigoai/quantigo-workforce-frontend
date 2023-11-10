@@ -1,7 +1,7 @@
-import { Box, Stack } from '@mui/material';
+import {Box, Stack} from '@mui/material';
 import moment from 'moment/moment';
 import React from 'react';
-import { capitalizeFirstLetter } from '../../../../helper/capitalizeFirstWord';
+import {capitalizeFirstLetter} from '../../../../helper/capitalizeFirstWord';
 import SingleItem from '../../ProjectLIstNew2/Project2Details/SingleItem';
 import ChangeInfoIndex from './ChangeInfoIndex';
 import DetailsItemThree from './DetailsItemThree';

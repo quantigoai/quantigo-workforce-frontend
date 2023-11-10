@@ -1,8 +1,9 @@
-import { Box, Grid, Typography } from "@mui/material";
+import {Box, Grid, Typography} from "@mui/material";
 import React from "react";
 import arrowIcon from "../../../../assets/images/arrowCon.svg";
 import confirmIcon from "../../../../assets/images/confirmprocess.svg";
 import waitIcon from "../../../../assets/images/waitIcon.svg";
+
 const ProcessCard = ({ item }) => {
   return (
     <>

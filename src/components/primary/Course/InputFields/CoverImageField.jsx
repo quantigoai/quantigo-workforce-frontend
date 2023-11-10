@@ -7,9 +7,9 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Box, Grid } from "@mui/material";
-import React, { useMemo } from "react";
-import { useDropzone } from "react-dropzone";
+import {Box, Grid} from "@mui/material";
+import React, {useMemo} from "react";
+import {useDropzone} from "react-dropzone";
 import dragiconplus from "../../../../assets/images/dragiconplus.svg";
 
 const baseStyle = {

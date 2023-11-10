@@ -2,9 +2,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import { useSelector } from "react-redux";
 import React from "react";
 import buttonIcon from "../../../../assets/images/Buttons.svg";
+
 const style = {
   position: "absolute",
   top: "50%",

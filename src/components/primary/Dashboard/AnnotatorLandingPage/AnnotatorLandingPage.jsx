@@ -7,19 +7,20 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import {Box, Button, Grid, Paper, Typography} from "@mui/material";
 import dayjs from "dayjs";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import congImg from "../../../../assets/images/congImg.svg";
-import { getTotalCountData } from "../../../../features/slice/dashboardSlice";
-import { convertDate } from "../../../../helper/customData";
+import {getTotalCountData} from "../../../../features/slice/dashboardSlice";
+import {convertDate} from "../../../../helper/customData";
 import BarChart from "../BarChart/BarChart";
 import TotalEstimatedWorkingHoursCard from "../DashboardCard/TotalEstimatedWorkingHoursCard";
 import TotalProjectDrawerCard from "../DashboardCard/TotalProjectDrawerCard";
 import TotalWorkingHoursCard from "../DashboardCard/TotalWorkingHoursCard";
 import StepGuide from "./StepGuide";
+
 const AnnotatorLandingPage = () => {
   const paperStyle = {
     backgroundColor: "neutral.N000",

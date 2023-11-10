@@ -1,5 +1,5 @@
-import { Box, Grid, Stack, Typography } from "@mui/material";
-import { useSelector } from "react-redux";
+import {Box, Grid, Stack, Typography} from "@mui/material";
+import {useSelector} from "react-redux";
 import ProjectDrawerStatusChip from "../../../shared/FilterField/ProjectDrawerStatusChip";
 
 const SingleItem = ({ ItemTitle, Item }) => {

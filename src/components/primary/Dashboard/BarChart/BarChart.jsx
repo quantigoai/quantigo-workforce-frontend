@@ -6,14 +6,14 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Box, Grid, Typography } from "@mui/material";
-import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip } from "chart.js";
-import { addDays } from "date-fns";
-import React, { useEffect, useState } from "react";
-import { Bar } from "react-chartjs-2";
-import { useDispatch, useSelector } from "react-redux";
-import { getDashboardData } from "../../../../features/slice/dashboardSlice";
-import { chartValues, labelsData } from "../../../../helper/customData";
+import {Box, Grid, Typography} from "@mui/material";
+import {BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip} from "chart.js";
+import {addDays} from "date-fns";
+import React, {useEffect, useState} from "react";
+import {Bar} from "react-chartjs-2";
+import {useDispatch, useSelector} from "react-redux";
+import {getDashboardData} from "../../../../features/slice/dashboardSlice";
+import {chartValues, labelsData} from "../../../../helper/customData";
 import DateRangeComponentForDashboard from "../DatePicker/DateRangeComponent";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);

@@ -6,17 +6,17 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Box, Grid, Paper } from "@mui/material";
+import {Box, Grid, Paper} from "@mui/material";
 import dayjs from "dayjs";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setActivePath } from "../../../features/slice/activePathSlice";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {setActivePath} from "../../../features/slice/activePathSlice";
 import {
-  getDashboardData,
-  getDashboardDataHourly,
-  getDashboardDataWeekly,
+    getDashboardData,
+    getDashboardDataHourly,
+    getDashboardDataWeekly,
 } from "../../../features/slice/dashboardSlice";
-import { convertDate } from "../../../helper/customData";
+import {convertDate} from "../../../helper/customData";
 import AnnotatorLandingPage from "./AnnotatorLandingPage/AnnotatorLandingPage";
 import BarChart from "./BarChart/BarChart";
 import CongratulationComponents from "./CongratulationDashBoard/CongratulationComponents";

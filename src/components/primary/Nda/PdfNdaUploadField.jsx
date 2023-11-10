@@ -6,11 +6,11 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Box, Grid, Typography } from '@mui/material';
-import React, { useMemo } from 'react';
+import {Box, Grid, Typography} from '@mui/material';
+import React, {useMemo} from 'react';
 // import dragiconplus from "../../../../assets/images/dragiconplus.svg";
-import { useDropzone } from 'react-dropzone';
-import { useSelector } from 'react-redux';
+import {useDropzone} from 'react-dropzone';
+import {useSelector} from 'react-redux';
 import ctaImage from '../../../assets/images/CTA.png';
 import IconImage from '../../../assets/images/Icon.png';
 import ndaUploadStyle from './ndaUploadStyle';

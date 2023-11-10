@@ -1,12 +1,5 @@
-import {
-  Box,
-  Button,
-  FormControlLabel,
-  Stack,
-  Switch,
-  Typography,
-} from '@mui/material';
-import { motion } from 'framer-motion';
+import {Box, Button, FormControlLabel, Stack, Switch, Typography,} from '@mui/material';
+import {motion} from 'framer-motion';
 import PlatformSelectAnnotator from './PlatformSelectAnnotator';
 import ProjectSelectFIlterField from './ProjectSelectFIlterField';
 

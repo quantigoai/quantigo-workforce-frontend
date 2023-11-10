@@ -1,11 +1,11 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import {Box, Button, Grid, Typography} from "@mui/material";
 import moment from "moment/moment";
-import React, { useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useState} from "react";
+import {FormProvider, useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../../../customHooks/useToaster";
-import { myProfileEdit, uploadMyImage } from "../../../../../features/slice/userSlice";
-import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
+import {myProfileEdit, uploadMyImage} from "../../../../../features/slice/userSlice";
+import {capitalizeFirstLetter} from "../../../../../helper/capitalizeFirstWord";
 // import FormProvider from "../../../../shared/FormProvider/FormProvider";
 import CommonFieldTest from "../CommonFieldTest";
 import CommonSelectField from "../CommonSelectField";

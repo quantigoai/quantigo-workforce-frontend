@@ -24,7 +24,6 @@ import {
 } from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {assignedJobToAUser, getAllAssignedJob} from "../../../features/slice/jobSlice";
-import {getAllUsers} from "../../../features/slice/userSlice";
 // import NotificationToaster from "../NotificationToaster/NotificationToaster";
 import {useTheme} from "@emotion/react";
 import FirstPageIcon from "@mui/icons-material/FirstPage";

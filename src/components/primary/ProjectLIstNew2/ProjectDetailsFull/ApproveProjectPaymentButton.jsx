@@ -1,12 +1,12 @@
-import { Typography } from "@mui/material";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {Typography} from "@mui/material";
+import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {
-  approveProjectPaymentAPLRequest,
-  updateProjectDrawerManually,
+    approveProjectPaymentAPLRequest,
+    updateProjectDrawerManually,
 } from "../../../../features/slice/projectDrawerSlice";
 
-import { LoadingButton } from "@mui/lab";
+import {LoadingButton} from "@mui/lab";
 import useToaster from "../../../../customHooks/useToaster";
 import PaymentApproveModal from "./PaymentApproveModal";
 

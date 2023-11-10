@@ -1,8 +1,8 @@
-import { Button, FormControl, Grid, InputLabel, MenuItem, Select, styled } from "@mui/material";
+import {Button, FormControl, Grid, InputLabel, MenuItem, Select, styled} from "@mui/material";
 import React from "react";
-import { useDispatch } from "react-redux";
+import {useDispatch} from "react-redux";
 import useToaster from "../../../../../customHooks/useToaster";
-import { pauseResumeJobs } from "../../../../../features/slice/jobSlice";
+import {pauseResumeJobs} from "../../../../../features/slice/jobSlice";
 
 const ButtonStyle = styled(Button)({
   width: "100%",

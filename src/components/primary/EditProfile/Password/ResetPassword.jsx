@@ -1,6 +1,6 @@
-import { Visibility } from "@mui/icons-material";
+import {Visibility} from "@mui/icons-material";
 import PasswordIcon from "../../../../assets/images/dashboardIcon/PasswordIcon.svg";
-import { FormControl, Grid, InputAdornment, styled, TextField, Typography } from "@mui/material";
+import {FormControl, Grid, InputAdornment, styled, TextField, Typography} from "@mui/material";
 import React from "react";
 
 const MyTextField = styled(TextField)(() => ({

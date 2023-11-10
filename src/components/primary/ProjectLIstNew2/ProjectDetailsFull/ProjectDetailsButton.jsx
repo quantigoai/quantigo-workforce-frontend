@@ -1,6 +1,6 @@
-import { Box } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import {Box} from '@mui/material';
+import {useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
 import ApproveProjectPaymentButton from './ApproveProjectPaymentButton';
 import DateRangeComponent from './DateRangePicker/DateRangeComponent';
 import DetailChartarButton from './DetailChartarButton';

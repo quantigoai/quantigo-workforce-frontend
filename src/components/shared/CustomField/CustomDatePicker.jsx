@@ -6,14 +6,14 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { FormControl, InputLabel, styled, TextField, Typography } from "@mui/material";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import {FormControl, InputLabel, styled, TextField, Typography} from "@mui/material";
+import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import PropTypes from "prop-types";
-import { Controller, useFormContext } from "react-hook-form";
-import { useSelector } from "react-redux";
-import { convertDate } from "../../../helper/customData";
+import {Controller, useFormContext} from "react-hook-form";
+import {useSelector} from "react-redux";
+import {convertDate} from "../../../helper/customData";
 
 CustomDatePicker.propTypes = {
   name: PropTypes.string,

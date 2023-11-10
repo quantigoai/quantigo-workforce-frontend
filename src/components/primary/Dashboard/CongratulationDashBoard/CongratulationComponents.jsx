@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import {Box, Button, Grid, Paper, Typography} from "@mui/material";
 import React from "react";
 import congImg from "../../../../assets/images/congImg.svg";
 import jobIcon from "../../../../assets/images/totalJobIcon.svg";

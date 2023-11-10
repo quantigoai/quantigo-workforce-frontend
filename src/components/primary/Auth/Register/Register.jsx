@@ -6,9 +6,9 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Grid } from "@mui/material";
+import {Grid} from "@mui/material";
 
-import { BgBox } from "../Login/Login";
+import {BgBox} from "../Login/Login";
 import RegistrationForm from "./RegistrationForm";
 
 const Register = () => {

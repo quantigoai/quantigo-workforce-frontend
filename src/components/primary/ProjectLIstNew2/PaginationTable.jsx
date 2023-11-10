@@ -1,9 +1,9 @@
-import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import { Box, Button, MenuItem, Select, Typography } from "@mui/material";
-import { useCallback, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { Box, Button, MenuItem, Select, Typography } from '@mui/material';
+import { useCallback, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation, useParams } from 'react-router-dom';
 const paginationOptions = [
   { value: 10, label: 10 },
   { value: 30, label: 30 },
@@ -21,17 +21,12 @@ const paginationOptions = [
  * @returns {JSX.Element} - Pagination component for the table.
  */
 const PaginationTable = ({ pagination, setPagination }) => {
-  // console.log("🚀 ~ file: PaginationTable.jsx:29 ~ pagination:", pagination)
   const itemsPerPage = pagination.pageSize;
-  const { myWorkHistoryCount, usersWorkHistoryCount } = useSelector((state) => state.projectDrawer);
+  const { myWorkHistoryCount, usersWorkHistoryCount } = useSelector(
+    (state) => state.projectDrawer,
+  );
   const { users, totalUsers } = useSelector((state) => state.user.users);
   const { total } = useSelector((state) => state.projectDrawer);
-  // useEffect(() => {
-  //   setPagination((prevPagination) => ({
-  //     ...prevPagination,
-  //     currentPage: 0,
-  //   }));
-  // }, [itemsPerPage]);
 
   const handlePrevPage = useCallback(() => {
     setPagination((prevPagination) => ({
@@ -61,10 +56,10 @@ const PaginationTable = ({ pagination, setPagination }) => {
   let [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
-    if (pathname === "/allprojects") {
+    if (pathname === '/allprojects') {
       setTotalPages(Math.ceil(total / pagination.pageSize));
     }
-    if (pathname === "/all-users") {
+    if (pathname === '/all-users') {
       setTotalPages(Math.ceil(totalUsers / pagination.pageSize));
     }
     if (pathname === `/projectDetails/${id}`) {
@@ -73,46 +68,56 @@ const PaginationTable = ({ pagination, setPagination }) => {
   }, [total, totalUsers, usersWorkHistoryCount]);
 
   const visiblePageCount = 5;
-  const firstVisiblePage = Math.max(0, pagination.currentPage - Math.floor(visiblePageCount / 2));
-  const lastVisiblePage = Math.min(totalPages - 1, firstVisiblePage + visiblePageCount - 1);
+  const firstVisiblePage = Math.max(
+    0,
+    pagination.currentPage - Math.floor(visiblePageCount / 2),
+  );
+  const lastVisiblePage = Math.min(
+    totalPages - 1,
+    firstVisiblePage + visiblePageCount - 1,
+  );
   const visiblePageNumbers = Array.from(
     { length: lastVisiblePage - firstVisiblePage + 1 },
-    (_, index) => firstVisiblePage + index
+    (_, index) => firstVisiblePage + index,
   );
 
   const disablePrev = pagination.currentPage === 0;
   const disableNext = pagination.currentPage >= totalPages - 1;
 
-  const approvedPaths = ["/allprojects", "/all-users"];
+  const approvedPaths = ['/allprojects', '/all-users'];
 
-  const approvedData = [myWorkHistoryCount, usersWorkHistoryCount, users?.length];
+  const approvedData = [
+    myWorkHistoryCount,
+    usersWorkHistoryCount,
+    users?.length,
+  ];
   return approvedPaths.includes(pathname) || approvedData.some((s) => s > 0) ? (
     <Box
       sx={{
-        display: "flex",
-        width: "100%",
-        height: { xl: "48px", xxl: "60px" },
+        display: 'flex',
+        width: '100%',
+        height: { xl: '48px', xxl: '60px' },
         // backgroundColor: "gray",
-        paddingX: "16px",
-        paddingY: "12px",
-        justifyContent: "space-between",
-        alignItems: "center",
-        alignContent: "center",
+        paddingX: '16px',
+        paddingY: '12px',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        alignContent: 'center',
       }}
     >
       <Box
         gap={0}
         sx={{
-          display: "flex",
-          alignItems: "center",
+          display: 'flex',
+          alignItems: 'center',
         }}
       >
         <Box>
           <Typography
             variant="wpf_p3_regular"
             sx={{
-              width: "120px",
-              color: "neutral.N300",
+              width: '120px',
+              color: 'neutral.N300',
             }}
           >
             Items per page :
@@ -121,18 +126,18 @@ const PaginationTable = ({ pagination, setPagination }) => {
 
         <Select
           sx={{
-            width: "70px",
-            height: "24px",
-            border: "none",
-            "& .MuiSelect-select": {
-              padding: "5px 0px 0px 10px",
+            width: '70px',
+            height: '24px',
+            border: 'none',
+            '& .MuiSelect-select': {
+              padding: '5px 0px 0px 10px',
               // fontSize: "14px",
-              fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
-              color: "neutral.N300",
+              fontSize: { xl: '14px', xxl: '16px', lg: '12px' },
+              color: 'neutral.N300',
             },
-            "& .MuiSvgIcon-root": {
-              color: "neutral.N300",
-              pt: "2px",
+            '& .MuiSvgIcon-root': {
+              color: 'neutral.N300',
+              pt: '2px',
             },
           }}
           id="demo-simple-select"
@@ -149,7 +154,11 @@ const PaginationTable = ({ pagination, setPagination }) => {
           name="limit"
         >
           {paginationOptions.map((p) => (
-            <MenuItem key={p.value} value={p.value} sx={{ fontSize: { xl: "14px", xxl: "16px", lg: "12px" } }}>
+            <MenuItem
+              key={p.value}
+              value={p.value}
+              sx={{ fontSize: { xl: '14px', xxl: '16px', lg: '12px' } }}
+            >
               {p.label}
             </MenuItem>
           ))}
@@ -157,26 +166,28 @@ const PaginationTable = ({ pagination, setPagination }) => {
       </Box>
 
       {/* Buttons */}
-      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <Box
+        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+      >
         <Box>
           <Button
             disabled={disablePrev}
             sx={{
-              minWidth: "20px",
-              height: { lg: "20px", xl: "24px", xxl: "24px" },
-              width: { lg: "20px", xl: "24px", xxl: "24px" },
-              fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
-              fontWeight: "500",
-              padding: "7px 2px",
-              color: disableNext ? "neutral.N650" : "neutral.N300",
+              minWidth: '20px',
+              height: { lg: '20px', xl: '24px', xxl: '24px' },
+              width: { lg: '20px', xl: '24px', xxl: '24px' },
+              fontSize: { xl: '14px', xxl: '16px', lg: '12px' },
+              fontWeight: '500',
+              padding: '7px 2px',
+              color: disableNext ? 'neutral.N650' : 'neutral.N300',
             }}
             onClick={handlePrevPage}
             variant="none"
           >
             <KeyboardArrowLeftIcon
               sx={{
-                height: { lg: "16px", xl: "18px", xxl: "20px" },
-                width: { lg: "16px", xl: "18px", xxl: "20px" },
+                height: { lg: '16px', xl: '18px', xxl: '20px' },
+                width: { lg: '16px', xl: '18px', xxl: '20px' },
               }}
             />
           </Button>
@@ -190,17 +201,23 @@ const PaginationTable = ({ pagination, setPagination }) => {
               name="page"
               variant="small"
               sx={{
-                minWidth: "20px",
-                height: { lg: "20px", xl: "24px", xxl: "24px" },
-                width: { lg: "20px", xl: "24px", xxl: "24px" },
-                fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
-                fontWeight: "500",
-                padding: "6px 2px",
-                color: pagination.currentPage === pageNumberToShow ? "white" : "#62728F",
-                backgroundColor: pagination.currentPage === pageNumberToShow ? "#2E58FF" : "transparent",
-                "&:focus": {
-                  color: "white",
-                  backgroundColor: "#2E58FF",
+                minWidth: '20px',
+                height: { lg: '20px', xl: '24px', xxl: '24px' },
+                width: { lg: '20px', xl: '24px', xxl: '24px' },
+                fontSize: { xl: '14px', xxl: '16px', lg: '12px' },
+                fontWeight: '500',
+                padding: '6px 2px',
+                color:
+                  pagination.currentPage === pageNumberToShow
+                    ? 'white'
+                    : '#62728F',
+                backgroundColor:
+                  pagination.currentPage === pageNumberToShow
+                    ? '#2E58FF'
+                    : 'transparent',
+                '&:focus': {
+                  color: 'white',
+                  backgroundColor: '#2E58FF',
                 },
               }}
             >
@@ -210,13 +227,13 @@ const PaginationTable = ({ pagination, setPagination }) => {
         </Box>
         <Button
           sx={{
-            minWidth: "20px",
-            height: { lg: "20px", xl: "24px", xxl: "24px" },
-            width: { lg: "20px", xl: "24px", xxl: "24px" },
-            fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
-            fontWeight: "500",
-            padding: "7px 2px",
-            color: disableNext ? "neutral.N650" : "neutral.N300",
+            minWidth: '20px',
+            height: { lg: '20px', xl: '24px', xxl: '24px' },
+            width: { lg: '20px', xl: '24px', xxl: '24px' },
+            fontSize: { xl: '14px', xxl: '16px', lg: '12px' },
+            fontWeight: '500',
+            padding: '7px 2px',
+            color: disableNext ? 'neutral.N650' : 'neutral.N300',
           }}
           disabled={disableNext}
           variant="none"
@@ -224,8 +241,8 @@ const PaginationTable = ({ pagination, setPagination }) => {
         >
           <KeyboardArrowRightIcon
             sx={{
-              height: { lg: "16px", xl: "18px", xxl: "20px" },
-              width: { lg: "16px", xl: "18px", xxl: "20px" },
+              height: { lg: '16px', xl: '18px', xxl: '20px' },
+              width: { lg: '16px', xl: '18px', xxl: '20px' },
             }}
           />
         </Button>

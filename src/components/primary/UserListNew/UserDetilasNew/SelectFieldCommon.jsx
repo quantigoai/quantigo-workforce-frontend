@@ -69,7 +69,7 @@ const SelectFieldCommon = ({ label, user, handleSetRole }) => {
             <MenuItem value={"trainer"} sx={menuItemStyle}>
               Trainer
             </MenuItem>
-            <MenuItem value={"project_lead"} sx={menuItemStyle}>
+            <MenuItem value={"delivery_lead"} sx={menuItemStyle}>
               Delivery Lead
             </MenuItem>
             {/* <MenuItem value={"project_coordinator"} sx={menuItemStyle}></MenuItem> */}

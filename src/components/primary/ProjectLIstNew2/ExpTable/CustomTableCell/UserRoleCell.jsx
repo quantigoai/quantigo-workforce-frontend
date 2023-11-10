@@ -21,7 +21,7 @@ const UserRoleCell = ({ role }) => {
         return "Level 3 Annotator";
       case "delivery_manager":
         return "Project Delivery Lead";
-      case "project_lead":
+      case "delivery_lead":
         return "Delivery Lead";
       case "project_coordinator":
         return "Project Coordinator";

@@ -40,7 +40,6 @@ export const themeSlice = createSlice({
       if (localStorage.getItem("isLightTheme") === null) {
         localStorage.setItem("isLightTheme", true);
 
-        // console.log(localStorage.getItem("isLightTheme"));
       } else {
         localStorage.getItem("isLightTheme") === "true" ? (state.isLightTheme = true) : (state.isLightTheme = false);
       }

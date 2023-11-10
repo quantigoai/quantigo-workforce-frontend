@@ -48,7 +48,7 @@ export const fields = [
   { field: "project_status", renderCell: "chip", textAlign: "center", columnDataAlign: "left" },
   { field: "project_skills", width: 300, renderCell: "skills-chip", textAlign: "center", columnDataAlign: "center" },
   { field: "pdr", width: 100, textAlign: "center", columnDataAlign: "center" },
-  { field: "createdBy", width: 150, textAlign: "center", columnDataAlign: "center" },
+  // { field: "createdBy", width: 150, textAlign: "center", columnDataAlign: "center" },
   { field: "benchmark", width: 150, textAlign: "left", columnDataAlign: "left" },
   { field: "estimated_end_date", width: 220, textAlign: "center", columnDataAlign: "center" },
   { field: "relevantDocuments", width: 150, textAlign: "left", columnDataAlign: "left" },

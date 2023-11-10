@@ -54,7 +54,7 @@ const ProjectSelectFIlter = ({
           role === "project_manager" ||
           role === "project_coordinator" ||
           role === "account_manager" ||
-          role === "project_lead" ? (
+          role === "delivery_lead" ? (
             <>
               <Stack
                 sx={{

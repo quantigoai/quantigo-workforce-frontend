@@ -237,69 +237,69 @@ export default function LayoutNew({ children }) {
   const handleMenuFunction = (role) => {
     if (isLoggedIn) {
       switch (true) {
-        case role === "admin":
+        case role === 'admin':
           return adminOptions.map((text) => handleMenu(text));
 
-        case role === "delivery_manager":
+        case role === 'delivery_manager':
           return isVerified
             ? verifiedDmOptions.map((text) => handleMenu(text))
             : dmOptions.map((text) => handleMenu(text));
 
-        case role === "level_0_annotator":
+        case role === 'level_0_annotator':
           return isVerified
             ? Verifiedlevel0AnnotatorOptions.map((text) => handleMenu(text))
             : level0AnnotatorOptions.map((text) => handleMenu(text));
 
-        case role === "level_1_annotator":
+        case role === 'level_1_annotator':
           return isVerified
             ? verifiedAnnotatorOptions.map((text) => handleMenu(text))
             : level0AnnotatorOptions.map((text) => handleMenu(text));
 
-        case role === "level_2_annotator":
+        case role === 'level_2_annotator':
           return isVerified
             ? verifiedAnnotatorOptions.map((text) => handleMenu(text))
             : level0AnnotatorOptions.map((text) => handleMenu(text));
 
-        case role === "level_3_annotator":
+        case role === 'level_3_annotator':
           return isVerified
             ? verifiedAnnotatorOptions.map((text) => handleMenu(text))
             : level0AnnotatorOptions.map((text) => handleMenu(text));
 
-        case role === "trainer":
+        case role === 'trainer':
           return isVerified
             ? verifiedTrainerOptions.map((text) => handleMenu(text))
             : trainerOptions.map((text) => handleMenu(text));
 
-        case role === "reviewer":
+        case role === 'reviewer':
           return isVerified
             ? verifiedReviewerOptions.map((text) => handleMenu(text))
             : reviewerOptions.map((text) => handleMenu(text));
 
-        case role === "engineering_lead":
+        case role === 'engineering_lead':
           return devOptions.map((text) => handleMenu(text));
 
-        case role === "account_manager":
+        case role === 'account_manager':
           return isVerified
             ? verifiedAccountManagerOptions.map((text) => handleMenu(text))
             : accountManagerOptions.map((text) => handleMenu(text));
 
-        case role === "recruitment_manager":
+        case role === 'recruitment_manager':
           // return isVerified
           //   ? verifiedRecruitOptions.map((text) => handleMenu(text))
           //   : recruitOptions.map((text) => handleMenu(text));
           return verifiedRecruitOptions.map((text) => handleMenu(text));
 
-        case role === "project_lead":
+        case role === 'delivery_lead':
           return isVerified
             ? verifiedProjectLeadOptions.map((text) => handleMenu(text))
             : projectLeadOptions.map((text) => handleMenu(text));
 
-        case role === "project_coordinator":
+        case role === 'project_coordinator':
           return isVerified
             ? verifiedProjectCoordinatorOptions.map((text) => handleMenu(text))
             : projectCoordinatorOptions.map((text) => handleMenu(text));
 
-        case role === "project_manager":
+        case role === 'project_manager':
           return isVerified
             ? verifiedProjectManagerOptions.map((text) => handleMenu(text))
             : projectManagerOptions.map((text) => handleMenu(text));

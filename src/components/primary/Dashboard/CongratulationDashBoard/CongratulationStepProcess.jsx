@@ -47,15 +47,7 @@ const CongratulationStepProcess = () => {
             slidesPerView={1.8}
             spaceBetween={60}
             initialSlide={defaultIndex(user)}
-            // grabCursor={true}
-            // loopedSlides={100}
-            // loop={true}
-            // navigation
-            // centeredSlides={true}
-            // pagination={{ clickable: true }}
-            // scrollbar={{ draggable: true }}
-            // onSlideChange={() => console.log("slide change")}
-            // onSwiper={(swiper) => console.log(swiper)}
+
           >
             <SLiderPrevNext />
 

@@ -1,43 +1,46 @@
-import { Box } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Box } from '@mui/material';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import useFullDetailsProject from '../../../../customHooks/useFullDetailsProject';
+import useToaster from '../../../../customHooks/useToaster';
 import {
-  checkInProjectDrawerById,
-  checkOutProjectDrawerById,
   getMyWorkHistoryById,
   getUsersWorkHistoryById,
-} from "../../../../features/slice/projectDrawerSlice";
-import { clearUserWorkingProject, updateUserWorkingProject } from "../../../../features/slice/userSlice";
-import dataBuilder from "../../../shared/CustomTable/dataBuilder";
-import fieldBuilder from "../../../shared/CustomTable/fieldBuilder";
-import { singleDetailsFields } from "../FIlterOptions";
-import useAllFunc from "../Hooks/useAllFunc";
-import Project2DetailsModal from "../Project2Details/Project2DetailsModal";
-import ProjectDetailsHeader from "./ProjectDetailsHeader";
-import useToaster from "../../../../customHooks/useToaster";
-import PaginationTable from "../PaginationTable";
-import { HeaderBox, TablePaper } from "../ProjectLIstIndex2";
-import CheckOutModal from "./CheckOutModal";
-import useHandleChange from "../Hooks/useHandleChange";
-import useFullDetailsProject from "../../../../customHooks/useFullDetailsProject";
-import LoadingComponent from "../../../shared/Loading/LoadingComponent";
-const TableWrapper = React.lazy(() => import("../ExpTable/TableWrapper"));
+} from '../../../../features/slice/projectDrawerSlice';
+import dataBuilder from '../../../shared/CustomTable/dataBuilder';
+import fieldBuilder from '../../../shared/CustomTable/fieldBuilder';
+import LoadingComponent from '../../../shared/Loading/LoadingComponent';
+import { singleDetailsFields } from '../FIlterOptions';
+import useAllFunc from '../Hooks/useAllFunc';
+import useHandleChange from '../Hooks/useHandleChange';
+import PaginationTable from '../PaginationTable';
+import Project2DetailsModal from '../Project2Details/Project2DetailsModal';
+import { HeaderBox, TablePaper } from '../ProjectLIstIndex2';
+import CheckOutModal from './CheckOutModal';
+import ProjectDetailsHeader from './ProjectDetailsHeader';
+const TableWrapper = React.lazy(() => import('../ExpTable/TableWrapper'));
 
 const FullProjectDetails = () => {
-  const { currentlyCheckedInProject, skills } = useSelector((state) => state.user.user);
-  const { isLoading, projectDrawer, usersWorkHistory, usersWorkHistoryCount } = useSelector(
-    (state) => state.projectDrawer
+  const { currentlyCheckedInProject, skills } = useSelector(
+    (state) => state.user.user,
   );
+  const { isLoading, projectDrawer, usersWorkHistory, usersWorkHistoryCount } =
+    useSelector((state) => state.projectDrawer);
   const { role } = useSelector((state) => state.user.user);
   const toast = useToaster();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { handleChangeSkill, addSkills, setAddSkills, count } = useHandleChange();
+  const { handleChangeSkill, addSkills, setAddSkills, count } =
+    useHandleChange();
 
-  const { detailsProjectOpen, handleProjectDetailsOpen, handleDetailsProjectClose, handleId, filteredCol } = useAllFunc(
-    { addSkills }
-  );
+  const {
+    detailsProjectOpen,
+    handleProjectDetailsOpen,
+    handleDetailsProjectClose,
+    handleId,
+    filteredCol,
+  } = useAllFunc({ addSkills });
   const {
     id,
     open,
@@ -95,39 +98,24 @@ const FullProjectDetails = () => {
         }
       }
     }
-  }, [usersWorkHistory, currentlyCheckedInProject, pagination, id, isLoadingDetails]);
-
-  // useEffect(() => {
-  //   if (role) {
-  //     if (
-  //       role === "admin" ||
-  //       role === "account_manager" ||
-  //       role === "delivery_manager" ||
-  //       role === "project_coordinator" ||
-  //       role === "project_manager"
-  //     ) {
-  //       dispatch(
-  //         getUsersWorkHistoryById({
-  //           pagination,
-  //           ascDescOption: filteredCol,
-  //           id: projectDrawer._id,
-  //         })
-  //       ).then(() => {
-  //         setIsDataLoading(false);
-  //       });
-  //     }
-  //   }
-  // }, [id]);
+  }, [
+    usersWorkHistory,
+    currentlyCheckedInProject,
+    pagination,
+    id,
+    isLoadingDetails,
+  ]);
 
   // TODO Need to solve this issue
   useEffect(() => {
     setIsChildDataLoading(true);
     if (
-      role === "admin" ||
-      role === "account_manager" ||
-      role === "delivery_manager" ||
-      role === "project_coordinator" ||
-      role === "project_manager"
+      role === 'admin' ||
+      role === 'account_manager' ||
+      role === 'delivery_manager' ||
+      role === 'project_coordinator' ||
+      role === 'delivery_lead' ||
+      role === 'project_manager'
     ) {
       if (range[0].startDate.getTime() !== range[0].endDate.getTime()) {
         setIsDataLoading(true);
@@ -137,7 +125,7 @@ const FullProjectDetails = () => {
             ascDescOption: filteredCol,
             id: projectDrawer._id,
             range,
-          })
+          }),
         ).then(() => {
           setIsChildDataLoading(false);
           setIsDataLoading(false);
@@ -148,20 +136,19 @@ const FullProjectDetails = () => {
             pagination,
             ascDescOption: filteredCol,
             id: projectDrawer._id,
-          })
+          }),
         ).then(() => {
           setIsChildDataLoading(false);
           setIsDataLoading(false);
         });
       }
     } else {
-      console.log("hit");
       dispatch(
         getMyWorkHistoryById({
           pagination,
           ascDescOption: filteredCol,
           id: projectDrawer._id,
-        })
+        }),
       ).then(() => {
         setIsChildDataLoading(false);
         setIsDataLoading(false);

@@ -1,16 +1,24 @@
 /* eslint-disable no-prototype-builtins */
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllSkills } from "../../../../features/slice/skillSlice";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import useToaster from '../../../../customHooks/useToaster';
 import {
+  clearProjectDrawer,
   deleteProjectDrawerById,
-  getAllProjectDrawers,
   setCurrentProjectDrawer,
-} from "../../../../features/slice/projectDrawerSlice";
-import useToaster from "../../../../customHooks/useToaster";
-import { useNavigate } from "react-router-dom";
+} from '../../../../features/slice/projectDrawerSlice';
+import { getAllSkills } from '../../../../features/slice/skillSlice';
 
-const useAllFunc = ({ addSkills, setAddSkills, count, handleClearAllSkills, setIsEdit, searchRef, setIsDeleted }) => {
+const useAllFunc = ({
+  addSkills,
+  setAddSkills,
+  count,
+  handleClearAllSkills,
+  setIsEdit,
+  searchRef,
+  setIsDeleted,
+}) => {
   const { skills } = useSelector((state) => state.skill);
   const [isDataLoading, setIsDataLoading] = useState(true);
   const [isChildDataLoading, setIsChildDataLoading] = useState(false);
@@ -23,12 +31,12 @@ const useAllFunc = ({ addSkills, setAddSkills, count, handleClearAllSkills, setI
     currentPage: 0,
     pageSize: 10,
   });
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [filterValue, setFilterValue] = useState({});
   const dispatch = useDispatch();
   const [createProjectOpen, setCreateProjectOpen] = React.useState(false);
   const [detailsProjectOpen, setDetailsProjectOpen] = React.useState(false);
-  const [annotatorPlatform, setAnnotatorPlatform] = useState("");
+  const [annotatorPlatform, setAnnotatorPlatform] = useState('');
   const [checked, setChecked] = useState(false);
   const [filteredCol, setFilteredCol] = useState({});
   const [isFilter, setIsFilter] = useState(false);
@@ -55,26 +63,26 @@ const useAllFunc = ({ addSkills, setAddSkills, count, handleClearAllSkills, setI
     }));
   };
   const defaultState = {
-    pdr: "",
-    project_platform: "",
-    project_type: "",
-    project_status: "",
+    pdr: '',
+    project_platform: '',
+    project_type: '',
+    project_status: '',
   };
 
   const handleClearFilter = () => {
     setFilterValue(defaultState);
     setFilteredCol({});
     setChecked(false);
-    setAnnotatorPlatform("");
+    setAnnotatorPlatform('');
   };
 
   const handleId = (field) => {
     setFilteredCol((prev) => {
       if (prev.hasOwnProperty(field)) {
-        if (prev[field] === "asc") {
+        if (prev[field] === 'asc') {
           return {
             ...prev,
-            [field]: "desc",
+            [field]: 'desc',
           };
         } else {
           delete prev[field];
@@ -85,7 +93,7 @@ const useAllFunc = ({ addSkills, setAddSkills, count, handleClearAllSkills, setI
       }
       return {
         ...prev,
-        [field]: "asc",
+        [field]: 'asc',
       };
     });
   };
@@ -102,12 +110,12 @@ const useAllFunc = ({ addSkills, setAddSkills, count, handleClearAllSkills, setI
     dispatch(deleteProjectDrawerById(e.id))
       .then((action) => {
         if (action.payload.status === 200) {
-          toast.trigger(action.payload.data.message, "success");
+          toast.trigger(action.payload.data.message, 'success');
           setIsDeleted(true);
         }
       })
       .catch(() => {
-        toast.trigger(error, "error");
+        toast.trigger(error, 'error');
       });
   };
   const handleCreateProjectClose = () => {
@@ -117,6 +125,7 @@ const useAllFunc = ({ addSkills, setAddSkills, count, handleClearAllSkills, setI
 
   const handleEditProjectClose = () => {
     handleClearAllSkills();
+    dispatch(clearProjectDrawer());
     setIsEdit(false);
     setEditModalOpen(false);
     setIsEditModal(false);
@@ -147,8 +156,8 @@ const useAllFunc = ({ addSkills, setAddSkills, count, handleClearAllSkills, setI
   };
 
   const clearSearch = () => {
-    setSearch("");
-    searchRef.current.value = "";
+    setSearch('');
+    searchRef.current.value = '';
   };
   const handleChangeAnnotatorFilter = (event) => {
     const {
@@ -166,20 +175,6 @@ const useAllFunc = ({ addSkills, setAddSkills, count, handleClearAllSkills, setI
     setChecked(event.target.checked);
   };
 
-  // let [searchParams, setSearchParams] = useSearchParams();
-  // useLayoutEffect(() => {
-  //   if (searchParams.get('page') !== null) {
-  //     if (searchParams.get('page') - 1 !== pagination.currentPage) {
-  //       console.log('page :', searchParams.get('page'));
-  //       console.log('useEffect');
-  //       console.log(pagination);
-  //       setPagination((prevPagination) => ({
-  //         ...prevPagination,
-  //         currentPage: searchParams.get('page') - 1,
-  //       }));
-  //     }
-  //   }
-  // }, [searchParams.get('page')]);
   return {
     createProjectOpen,
     annotatorPlatform,

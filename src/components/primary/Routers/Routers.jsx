@@ -37,27 +37,27 @@ import PrivateRoute from "./PrivateRoute";
 import AllUserListIndex2 from "../AllUsers/AllUserListIndex2";
 
 export const roles = {
-  admin: "admin",
-  eng_lead: "engineering_lead",
+  admin: 'admin',
+  eng_lead: 'engineering_lead',
 
-  level_0: "level_0_annotator",
+  level_0: 'level_0_annotator',
 
-  level_1: "level_1_annotator",
-  level_2: "level_2_annotator",
-  level_3: "level_3_annotator",
+  level_1: 'level_1_annotator',
+  level_2: 'level_2_annotator',
+  level_3: 'level_3_annotator',
 
-  reviewer: "reviewer",
+  reviewer: 'reviewer',
 
-  trainer: "trainer",
+  trainer: 'trainer',
 
-  pro_lead: "project_lead",
-  pro_co: "project_coordinator",
-  pro_manager: "project_manager",
+  pro_lead: 'delivery_lead',
+  pro_co: 'project_coordinator',
+  pro_manager: 'project_manager',
 
-  del_manager: "delivery_manager",
+  del_manager: 'delivery_manager',
 
-  rec_manger: "recruitment_manager",
-  acc_manger: "account_manager",
+  rec_manger: 'recruitment_manager',
+  acc_manger: 'account_manager',
 };
 
 const Routers = () => {

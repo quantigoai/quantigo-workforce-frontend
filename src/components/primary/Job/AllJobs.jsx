@@ -256,7 +256,7 @@ const AllJobs = () => {
                       <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
                         <TableSortLabel>No of Images</TableSortLabel>
                       </TableCell>
-                      {user.role === "admin" || user.role === "project_lead" || user.role === "delivery_manager" ? (
+                      {user.role === "admin" || user.role === "delivery_lead" || user.role === "delivery_manager" ? (
                         <>
                           {/* // <TableCell
                         //   align="center"
@@ -300,7 +300,7 @@ const AllJobs = () => {
                         <TableCell align="left">{job.title}</TableCell>
 
                         <TableCell align="center">{job?.images?.length}</TableCell>
-                        {user.role === "admin" || user.role === "project_lead" || user.role === "delivery_manager" ? (
+                        {user.role === "admin" || user.role === "delivery_lead" || user.role === "delivery_manager" ? (
                           <>
                             {/* //{" "}
                             <TableCell align="center">

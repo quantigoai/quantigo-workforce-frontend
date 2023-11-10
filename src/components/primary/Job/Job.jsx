@@ -217,7 +217,7 @@ const Job = () => {
             </Grid>
           </Box>
 
-          {role === "admin" || role === "project_lead" || role === "delivery_manager" ? (
+          {role === "admin" || role === "delivery_lead" || role === "delivery_manager" ? (
             <>
               <Paper elevation={0} style={paperstyle}>
                 <Box sx={{ width: "100%" }}>

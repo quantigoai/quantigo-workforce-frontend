@@ -226,7 +226,6 @@ const AllUserListIndex = () => {
           isFilter={isFilter}
           isLightTheme={isLightTheme}
           handleIsFilter={handleIsFilter}
-          handleProjectCreateOpen={() => console.log("handleProjectCreateOpen")}
           handleSearch={handleSearch}
           setSearch={setSearch}
           search={search}

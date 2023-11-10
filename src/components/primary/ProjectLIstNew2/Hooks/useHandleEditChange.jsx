@@ -13,7 +13,6 @@ const useHandleEditChange = () => {
     ? projectDrawer?.project_skills?.length
     : 0,
     );
-    console.log("🚀 ~ file: useHandleEditChange.jsx:11 ~ useHandleEditChange ~ editSkills:", editSkills)
     
   useEffect(() => {
     setEditCount(prevSkills?.length - 1);
@@ -39,8 +38,6 @@ const useHandleEditChange = () => {
     id: skill._id,
   }));
   
-  console.log("🚀 ~ file: useHandleEditChange.jsx:40 ~ filteredSkillInfo ~ filteredSkillInfo:", filteredSkillInfo)
-
   const handleClearAllSkills = () => {
     setPrevSkills([]);
     setEditSkills([]);

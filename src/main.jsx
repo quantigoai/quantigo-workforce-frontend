@@ -33,7 +33,7 @@ const toastOptions = {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
-    <React.StrictMode>
+    {/* <React.StrictMode> */}
       <Provider store={store}>
         <ThemeProviderWrapper>
           <CssBaseline />
@@ -48,6 +48,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           </PersistGate>
         </ThemeProviderWrapper>
       </Provider>
-    </React.StrictMode>
+    {/* </React.StrictMode> */}
   </>
 );

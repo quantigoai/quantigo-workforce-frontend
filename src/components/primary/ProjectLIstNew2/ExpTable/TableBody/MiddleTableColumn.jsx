@@ -64,7 +64,7 @@ const MiddleTableColumn = ({ row, column }) => {
       return (
         <TableCell key={column.id} component="th" scope="row">
           {row.role === "delivery_manager" ||
-          row.role === "project_lead" ||
+          row.role === "delivery_lead" ||
           row.role === "recruitment_manager" ||
           row.role === "admin" ||
           row.role === "trainer" ||

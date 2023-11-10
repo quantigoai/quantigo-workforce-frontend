@@ -36,15 +36,7 @@ const StepGuide = ({ isStep }) => {
         slidesPerView={1}
         spaceBetween={60}
         initialSlide={0}
-        // grabCursor={true}
-        // loopedSlides={100}
-        // loop={true}
-        // navigation
-        // centeredSlides={true}
-        // pagination={{ clickable: true }}
-        // scrollbar={{ draggable: true }}
-        // onSlideChange={() => console.log("slide change")}
-        // onSwiper={(swiper) => console.log(swiper)}
+
       >
         <Box
           sx={{

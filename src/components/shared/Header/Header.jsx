@@ -209,7 +209,7 @@ const Header = () => {
                         ? 'Level 3 Annotator'
                         : role === 'delivery_manager'
                         ? 'Project Delivery Lead'
-                        : role === 'project_lead'
+                        : role === 'delivery_lead'
                         ? 'Delivery Lead'
                         : role === 'project_coordinator'
                         ? 'Project Coordinator'

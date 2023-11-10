@@ -50,7 +50,7 @@ const UserInfoIndex = ({
                 ? "Level 3 Annotator"
                 : user.role === "delivery_manager"
                 ? "Project Delivery Lead"
-                : user.role === "project_lead"
+                : user.role === "delivery_lead"
                 ? "Delivery Lead"
                 : user.role === "project_coordinator"
                 ? "Project Coordinator"
@@ -67,7 +67,7 @@ const UserInfoIndex = ({
             Item2Title={"Annotation Status"}
             Item2={
               user.role === "delivery_manager" ||
-              user.role === "project_lead" ||
+              user.role === "delivery_lead" ||
               user.role === "recruitment_manager" ||
               user.role === "admin" ||
               user.role === "trainer" ||

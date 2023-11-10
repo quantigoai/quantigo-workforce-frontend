@@ -1,7 +1,7 @@
 import CryptoJS from "crypto-js";
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import Routers from "./components/primary/Routers/Routers";
@@ -63,11 +63,14 @@ function App() {
     });
     return () => {};
   }, []);
-
+  const [isTokenLoading, setIsTokenLoading] = useState(false);
   useEffect(() => {
     dispatch(setFromPreviousTheme());
+    setIsTokenLoading(true);
     if (tokenCheck()) {
-      dispatch(alreadyLogin(tokenCheck()));
+      dispatch(alreadyLogin(tokenCheck())).then((res) => {
+        setIsTokenLoading(false);
+      });
     }
   }, [dispatch]);
 
@@ -98,7 +101,9 @@ function App() {
   } else {
     return (
       <>
-        {isLoading && !isLoading ? (
+        {isTokenLoading ? (
+          <LoadingComponent />
+        ) : isLoading && !isLoading ? (
           <LoadingComponent />
         ) : isLoggedIn ? (
           <Suspense fallback={<LoadingComponent />}>

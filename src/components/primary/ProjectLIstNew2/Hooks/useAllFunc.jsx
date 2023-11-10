@@ -222,7 +222,7 @@ const useAllFunc = ({ addSkills, setAddSkills, count, handleClearAllSkills, setI
     handleCreateProjectClose,
     handleEditProjectClose,
     handleClick,
-    // skillId,
+    skillId,
     handleDetailsPage,
     handleSearch,
     clearSearch,

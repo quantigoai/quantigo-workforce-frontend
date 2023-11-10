@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const useHandleEditChange = () => {
   const { projectDrawer } = useSelector((state) => state.projectDrawer);
@@ -8,10 +8,9 @@ const useHandleEditChange = () => {
   const [prevSkills, setPrevSkills] = useState(projectDrawer.project_skills);
 
   const [editSkills, setEditSkills] = useState(projectDrawer?.project_skills);
+  console.log("🚀 ~ file: useHandleEditChange.jsx:11 ~ useHandleEditChange ~ editSkills:", editSkills);
   const [editCount, setEditCount] = useState(
-    projectDrawer?.project_skills?.length > 0
-      ? projectDrawer?.project_skills?.length
-      : 0,
+    projectDrawer?.project_skills?.length > 0 ? projectDrawer?.project_skills?.length : 0
   );
 
   useEffect(() => {
@@ -28,9 +27,7 @@ const useHandleEditChange = () => {
       return skills.find((s) => s.name === skill);
     });
     setEditCount(value.length - 1);
-    setEditSkills(
-      typeof selectedSkills === 'string' ? value.split(',') : selectedSkills,
-    );
+    setEditSkills(typeof selectedSkills === "string" ? value.split(",") : selectedSkills);
   };
 
   const filteredSkillInfo = editSkills?.map((skill) => ({

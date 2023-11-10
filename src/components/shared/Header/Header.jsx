@@ -35,6 +35,7 @@ const Header = () => {
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
   const { role, name, image, firstName, lastName } = useSelector((state) => state.user.user);
+  const { isLoading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const [notificationOpen, setNotificationOpen] = React.useState(null);
@@ -42,7 +43,7 @@ const Header = () => {
     setNotificationOpen(e.currentTarget);
   };
   const handleNotificationClose = () => setNotificationOpen(null);
-  const { isLoading, allUnreadNotifications } = useSelector((state) => state.notification);
+  const { allUnreadNotifications } = useSelector((state) => state.notification);
   const reset = useReset;
 
   const handleLogOut = () => {
@@ -255,6 +256,7 @@ const Header = () => {
                       </MenuItem>
 
                       <MenuItem
+                        disabled={isLoading}
                         onClick={handleLogOut}
                         sx={{
                           // width: "182px",

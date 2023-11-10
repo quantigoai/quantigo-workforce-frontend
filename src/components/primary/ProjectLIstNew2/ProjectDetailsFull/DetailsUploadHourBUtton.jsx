@@ -99,7 +99,7 @@ const DetailsUploadHourBUtton = ({ role, value }) => {
         <>
           {(role === 'admin' ||
             role === 'project_manager' ||
-            role === 'delivery_manager' ||
+            role === 'project_delivery_lead' ||
             role === 'delivery_lead') && (
             <LoadingButton
               loading={dataLoading}

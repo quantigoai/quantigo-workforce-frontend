@@ -112,7 +112,7 @@ const FullProjectDetails = () => {
     if (
       role === 'admin' ||
       role === 'account_manager' ||
-      role === 'delivery_manager' ||
+      role === 'project_delivery_lead' ||
       role === 'project_coordinator' ||
       role === 'delivery_lead' ||
       role === 'project_manager'

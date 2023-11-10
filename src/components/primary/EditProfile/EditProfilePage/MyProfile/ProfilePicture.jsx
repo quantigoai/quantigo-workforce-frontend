@@ -1,11 +1,26 @@
-import { Avatar, Box, Button, Chip, Grid, Stack, Typography } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import React from "react";
-import editIcon from "../../../../../assets/images/EditIcon.svg";
-import EditIconProfile from "../../../../../assets/images/Group.svg";
-import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
+import {
+  Avatar,
+  Box,
+  Button,
+  Chip,
+  Grid,
+  Stack,
+  Typography,
+} from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import React from 'react';
+import editIcon from '../../../../../assets/images/EditIcon.svg';
+import EditIconProfile from '../../../../../assets/images/Group.svg';
+import { capitalizeFirstLetter } from '../../../../../helper/capitalizeFirstWord';
 
-const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleImage, coverImageFile }) => {
+const ProfilePicture = ({
+  user,
+  editAble,
+  handleEditProfile,
+  coverImage,
+  handleImage,
+  coverImageFile,
+}) => {
   const image = user.image;
   const maxSize = 1024 * 1024;
   return (
@@ -147,7 +162,7 @@ const ProfilePicture = ({ user, editAble, handleEditProfile, coverImage, handleI
                         ? 'Level 0 Annotator'
                         : user.role === 'level_3_annotator'
                         ? 'Level 3 Annotator'
-                        : user.role === 'delivery_manager'
+                        : user.role === 'project_delivery_lead'
                         ? 'Project Delivery Lead'
                         : user.role === 'delivery_lead'
                         ? 'Delivery Lead'

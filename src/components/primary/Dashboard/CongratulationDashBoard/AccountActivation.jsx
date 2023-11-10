@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 const AccountActivation = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setActivePath("Identity Verification"));
+    dispatch(setActivePath("Verification"));
   }, []);
 
   return (

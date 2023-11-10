@@ -62,7 +62,7 @@ const ProjectDetailsButton = ({
       )}
       {project_status === 'hours-added' && (
         <>
-          {/* {(role !== "project_coordinator" || role !== "delivery_manager" || role !== "project_manager") && ( */}
+          {/* {(role !== "project_coordinator" || role !== "project_delivery_lead" || role !== "project_manager") && ( */}
           <DetailsUploadHourBUtton value={project_status} role={role} />
           {/* )} */}
           <DetailsButton

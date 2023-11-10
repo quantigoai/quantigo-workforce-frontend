@@ -8,7 +8,6 @@ const useHandleEditChange = () => {
   const [prevSkills, setPrevSkills] = useState(projectDrawer.project_skills);
 
   const [editSkills, setEditSkills] = useState(projectDrawer?.project_skills);
-  console.log("🚀 ~ file: useHandleEditChange.jsx:11 ~ useHandleEditChange ~ editSkills:", editSkills);
   const [editCount, setEditCount] = useState(
     projectDrawer?.project_skills?.length > 0
     ? projectDrawer?.project_skills?.length

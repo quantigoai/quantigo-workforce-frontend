@@ -47,7 +47,7 @@ const CustomButton = ({
       }}
     >
       {(role === 'admin' ||
-        role === 'delivery_manager' ||
+        role === 'project_delivery_lead' ||
         role === 'project_manager') &&
         pathname === '/allprojects' && (
           <>

@@ -72,7 +72,7 @@ const ProjectDetailsHeader = ({
             {/* TODO set the role  */}
             {role === 'admin' ||
             role === 'account_manager' ||
-            role === 'delivery_manager' ||
+            role === 'project_delivery_lead' ||
             role === 'project_coordinator' ||
             role === 'project_manager' ||
             role == 'delivery_lead' ? (

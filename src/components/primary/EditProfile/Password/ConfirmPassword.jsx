@@ -23,7 +23,7 @@ const MyTextField = styled(TextField)(() => ({
     // backgroundColor: editAble ? "" : "#F2F6FC",
   },
 }));
-const ConfirmPassword = ({ setConfirmPassword, confirmPassword, handlePassword,helperText }) => {
+const ConfirmPassword = ({ setConfirmPassword, confirmPassword, handlePassword, helperText }) => {
   const [showPassword, setShowPassword] = React.useState(false);
   //   const [password, setPassword] = useState("");
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -69,7 +69,11 @@ const ConfirmPassword = ({ setConfirmPassword, confirmPassword, handlePassword,h
                 </InputAdornment>
               ),
             }}
-            helperText={helperText}
+            helperText={
+              <Typography sx={{ fontSize: "12px" }} color="red">
+                {helperText}
+              </Typography>
+            }
           />
         </FormControl>
       </Grid>

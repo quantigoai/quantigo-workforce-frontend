@@ -1,9 +1,9 @@
-import { Button } from "@mui/material";
+import {Button} from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { CSVDownload } from "react-csv";
-import { useSelector } from "react-redux";
-import { realToken } from "../../../helper/lib";
+import React, {useEffect, useState} from "react";
+import {CSVDownload} from "react-csv";
+import {useSelector} from "react-redux";
+import {realToken} from "../../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
@@ -60,7 +60,7 @@ const ExportUserList = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${url}/users?limit=${totalUsers}&skip=0`, {
+      const response = await axios.get(`${url}/users`, {
         headers: {
           Authorization: `Bearer ${realToken()}`,
         },

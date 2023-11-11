@@ -6,119 +6,151 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Alert } from "@mui/material";
-import React from "react";
-import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import LoadingComponent from "../../../shared/Loading/LoadingComponent";
-import DetailsPage from "../ProjectDetailsFull/DetailsPage";
-import WPFTable from "./WPFTable";
+import {Alert} from '@mui/material';
+import React, {useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
+import {useLocation, useParams} from 'react-router-dom';
+import dataBuilder from '../../../shared/CustomTable/dataBuilder';
+import LoadingComponent from '../../../shared/Loading/LoadingComponent';
+import DetailsPage from '../ProjectDetailsFull/DetailsPage';
+import WPFTable from './WPFTable';
 
+const antRoles = [
+  'level_0_annotator',
+  'level_1_annotator',
+  'level_2_annotator',
+  'level_3_annotator',
+  'reviewer',
+  'trainer',
+];
 const TableWrapper = ({
   pagination,
   handleDetailsPage,
-  setPagination,
-  handleChangePagination,
   myColumn,
   myRows,
   handleDelete,
   handleClick,
-  totalItems,
   handleId,
   filteredCol,
   handleProjectDetailsOpen,
   role,
   skillAlert,
-  data,
+  // data,
   isChildDataLoading,
-  setIsChildDataLoading,
   handleReject,
   handleOpenNDA,
+  setMyRows,
 }) => {
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
   const location = useLocation();
   const { pathname } = location;
-
+  const { id } = useParams();
+  const [data, setData] = useState([]);
+  const [isDataLoading, setIsDataLoading] = useState(true);
+  const [isWorkHistoryDataLoading, setIsWorkHistoryDataLoading] =
+    useState(true);
   const stickyFirstColumn = [myColumn[0]];
   const stickyLastColumn = [myColumn[myColumn.length - 1]];
   const columns = myColumn.slice(1, myColumn.length - 1);
-  const approvedPaths = ["/allprojects", "/all-users"];
+  const approvedPaths = ['/allprojects', '/all-users', `/projectDetails/${id}`];
+  const {
+    isLoading,
+    users: { users },
+  } = useSelector((state) => state.user);
+  const {
+    isLoading: projectLoading,
+    projectDrawers,
+    usersWorkHistory,
+    usersWorkHistoryCount,
+  } = useSelector((state) => state.projectDrawer);
+  useEffect(() => {
+    if (pathname === '/allprojects') {
+      setIsDataLoading(true);
+      projectDrawers &&
+        projectDrawers.length > 0 &&
+        setMyRows(dataBuilder(projectDrawers));
+      setData(projectDrawers);
+      setIsDataLoading(false);
+      setIsWorkHistoryDataLoading(false);
+    }
+    if (pathname === '/all-users') {
+      setIsDataLoading(true);
+      users && users.length > 0 && setMyRows(dataBuilder(users));
+      setData(users);
+      setIsDataLoading(false);
+      setIsWorkHistoryDataLoading(false);
+    }
+    if (pathname === `/projectDetails/${id}`) {
+      setIsWorkHistoryDataLoading(true);
+      usersWorkHistory &&
+        usersWorkHistory.length > 0 &&
+        setMyRows(dataBuilder(usersWorkHistory));
+      setData(usersWorkHistory);
+      setIsWorkHistoryDataLoading(false);
+      setIsDataLoading(false);
+    }
+    // }, [pathname, users, pagination]);
+  }, [pathname, users, projectDrawers, usersWorkHistory]);
 
   const renderMainContent = () => {
-    if (approvedPaths.includes(pathname)) {
-      if (data && data.length > 0) {
-        return (
-          <WPFTable
-            handleDetailsPage={handleDetailsPage}
-            myColumn={myColumn}
-            myRows={myRows}
-            handleDelete={handleDelete}
-            handleClick={handleClick}
-            handleId={handleId}
-            filteredCol={filteredCol}
-            handleProjectDetailsOpen={handleProjectDetailsOpen}
-            role={role}
-            skillAlert={skillAlert}
-            currentlyCheckedInProject={currentlyCheckedInProject}
-            stickyFirstColumn={stickyFirstColumn}
-            stickyLastColumn={stickyLastColumn}
-            columns={columns}
-            isChildDataLoading={isChildDataLoading}
-            handleReject={handleReject}
-            handleOpenNDA={handleOpenNDA}
-          />
-        );
-      } else if (data && data.length === 0) {
-        const message = "No available data found!";
-        return <Alert severity="error">{message}</Alert>;
-      } else if (role === "recruitment_manager") {
-        const message = "No Users found!!!";
-        return <Alert severity="error">{message}</Alert>;
-      } else if (role !== "admin" && role !== "account_manager") {
-        return <DetailsPage skillAlert={skillAlert} />;
-      } else {
-        return <Alert severity="error">No data found!</Alert>;
-      }
-    } else {
-      if (isChildDataLoading) {
-        return <LoadingComponent />;
-      } else if (data && data.length > 0) {
-        return (
-          <WPFTable
-            handleDetailsPage={handleDetailsPage}
-            myColumn={myColumn}
-            myRows={myRows}
-            handleDelete={handleDelete}
-            handleClick={handleClick}
-            handleId={handleId}
-            filteredCol={filteredCol}
-            handleProjectDetailsOpen={handleProjectDetailsOpen}
-            role={role}
-            skillAlert={skillAlert}
-            currentlyCheckedInProject={currentlyCheckedInProject}
-            stickyFirstColumn={stickyFirstColumn}
-            stickyLastColumn={stickyLastColumn}
-            columns={columns}
-            isChildDataLoading={isChildDataLoading}
-            handleReject={handleReject}
-            handleOpenNDA={handleOpenNDA}
-          />
-        );
-      } else if (data && data.length === 0) {
-        const message = "No Users history found for this projects!";
-        if (role !== "admin" && role !== "account_manager") {
+    if (!isLoading || !projectLoading) {
+      if (approvedPaths.includes(pathname)) {
+        if (data && data.length > 0) {
+          return (
+            <WPFTable
+              handleDetailsPage={handleDetailsPage}
+              myColumn={myColumn}
+              myRows={myRows}
+              handleDelete={handleDelete}
+              handleClick={handleClick}
+              handleId={handleId}
+              filteredCol={filteredCol}
+              handleProjectDetailsOpen={handleProjectDetailsOpen}
+              role={role}
+              skillAlert={skillAlert}
+              currentlyCheckedInProject={currentlyCheckedInProject}
+              stickyFirstColumn={stickyFirstColumn}
+              stickyLastColumn={stickyLastColumn}
+              columns={columns}
+              isChildDataLoading={isChildDataLoading}
+              handleReject={handleReject}
+              handleOpenNDA={handleOpenNDA}
+            />
+          );
+        } else if (isDataLoading || isWorkHistoryDataLoading) {
+          return <LoadingComponent />;
+        } else if (data && data.length === 0) {
+          let message;
+          if (pathname === '/allprojects')
+            return (
+              <Alert severity="error">No available projects data found!</Alert>
+            );
+          if (pathname === '/all-users')
+            return (
+              <Alert severity="error">No available users data found!</Alert>
+            );
+          if (pathname === `/projectDetails/${id}`) {
+            if (antRoles.includes(role)) {
+              return <DetailsPage skillAlert={skillAlert} />;
+            } else {
+              return (
+                <Alert severity="error">
+                  No available users history data found!
+                </Alert>
+              );
+            }
+          }
+        } else if (role === 'recruitment_manager') {
+          const message = 'No Users found!!!';
+          return <Alert severity="error">{message}</Alert>;
+        } else if (role !== 'admin' && role !== 'account_manager') {
           return <DetailsPage skillAlert={skillAlert} />;
         } else {
-          return <Alert severity="error">{message}</Alert>;
+          return <Alert severity="error">No data found!</Alert>;
         }
-      } else if (role === "recruitment_manager") {
-        const message = "No Users history found for this projects!";
-        return <Alert severity="error">{message}</Alert>;
-      } else if (role !== "admin" && role !== "account_manager") {
-        return <DetailsPage skillAlert={skillAlert} />;
-      } else {
-        return null;
       }
+    } else {
+      return <LoadingComponent />;
     }
   };
 

@@ -17,10 +17,10 @@
 import styled from "@emotion/styled";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { FilledInput, FormControl, Grid, InputAdornment, InputLabel, MenuItem, Select } from "@mui/material";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllSkills } from "../../../../features/slice/skillSlice";
+import {FilledInput, FormControl, Grid, InputAdornment, InputLabel, MenuItem, Select} from "@mui/material";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getAllSkills} from "../../../../features/slice/skillSlice";
 import SkillField from "../../Course/InputFields/SkillField";
 
 const ITEM_HEIGHT = 48;

@@ -7,24 +7,12 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import {
-  Box,
-  Chip,
-  FilledInput,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  Typography,
-  styled,
-} from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import { MyFormControl } from "../../../shared/CustomField/CustomDatePicker";
+import {Box, Chip, Grid, MenuItem, Select, styled, Typography,} from "@mui/material";
+import React, {useState} from "react";
+import {useSelector} from "react-redux";
+import {useLocation} from "react-router-dom";
+import {MyFormControl} from "../../../shared/CustomField/CustomDatePicker";
+
 export const MySelect = styled(Select)(() => ({
   border: "2px solid #E6ECF5",
   // padding: "5px 0px 0px 0px",

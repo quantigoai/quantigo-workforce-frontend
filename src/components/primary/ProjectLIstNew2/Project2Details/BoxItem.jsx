@@ -1,6 +1,6 @@
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import {Box, Grid, Stack, Typography} from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 
 const BoxItem = ({ Item }) => {
   const { isLightTheme } = useSelector((state) => state.theme);

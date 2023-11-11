@@ -7,7 +7,8 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Switch, styled } from "@mui/material";
+import {styled, Switch} from "@mui/material";
+
 const ThemeSwitch = styled(Switch)(({ theme }) => ({
   width: 60,
   height: 35,

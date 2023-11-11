@@ -7,10 +7,10 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Grid, Typography } from "@mui/material";
+import {Box, Grid, Typography} from "@mui/material";
 import dayjs from "dayjs";
 import React from "react";
-import { iconHandler } from "./AllNotification";
+import {iconHandler} from "./AllNotification";
 
 const convertDate = (date) => {
   return dayjs(date).format("DD MMM hh:mm A");

@@ -1,13 +1,9 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import {Box} from "@mui/material";
 import React from "react";
 import QuizHeader from "./QuizHeader";
-import CustomTextField from "../../../shared/CustomField/CustomTextField";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import {useForm} from "react-hook-form";
 import QuizNameDurationField from "./QuizNameDurationField";
-import RegistrationForm from "../../Auth/Register/RegistrationForm";
-import { LoadingButtonStyle } from "../../Auth/Login/Login";
 import QuestionType from "./QuestionType";
 
 const QuizPage = () => {

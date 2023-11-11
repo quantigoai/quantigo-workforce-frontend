@@ -6,14 +6,14 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Box, Grid, Typography } from "@mui/material";
-import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip } from "chart.js";
-import { addDays } from "date-fns";
-import React, { useEffect, useState } from "react";
-import { Bar } from "react-chartjs-2";
-import { useDispatch, useSelector } from "react-redux";
-import { getDashboardData } from "../../../../features/slice/dashboardSlice";
-import { chartValues, labelsData } from "../../../../helper/customData";
+import {Box, Grid, Typography} from "@mui/material";
+import {BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip} from "chart.js";
+import {addDays} from "date-fns";
+import React, {useEffect, useState} from "react";
+import {Bar} from "react-chartjs-2";
+import {useDispatch, useSelector} from "react-redux";
+import {getDashboardData} from "../../../../features/slice/dashboardSlice";
+import {chartValues, labelsData} from "../../../../helper/customData";
 import DateRangeComponentForDashboard from "../DatePicker/DateRangeComponent";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -171,18 +171,18 @@ const BarChart = ({ startDate, setStartDate, endDate, setEndDate, loading }) => 
 
   useEffect(() => {
     const transformed = {
-      labels: estimatedPaymentForProjects.slice(0, 3).map((item) => item.projectName || "test"),
+      labels: estimatedPaymentForProjects?.slice(0, 3).map((item) => item?.projectName || "test"),
       datasets: [
         {
           label: "Estimated Hours",
-          data: estimatedPaymentForProjects.slice(0, 3).map((item) => item.estimatedWorkingHours),
+          data: estimatedPaymentForProjects?.slice(0, 3).map((item) => item?.estimatedWorkingHours),
           backgroundColor: "#B6C9F0",
           borderWidth: 1,
           borderRadius: 10,
         },
         {
           label: "Estimated Payment (in thousands)",
-          data: estimatedPaymentForProjects.slice(0, 3).map((item) => item.estimatedPayment / 1000),
+          data: estimatedPaymentForProjects?.slice(0, 3).map((item) => item?.estimatedPayment / 1000),
           backgroundColor: "#2E58FF",
           borderWidth: 1,
           borderRadius: 10,

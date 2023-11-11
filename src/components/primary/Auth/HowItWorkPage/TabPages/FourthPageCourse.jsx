@@ -1,6 +1,5 @@
-import { Box, Typography } from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import React from "react";
-import DashboardHowItWorkPage from "./DashboardHowItWorkPage";
 
 const FourthPageCourse = () => {
   var checkmark = "✔";

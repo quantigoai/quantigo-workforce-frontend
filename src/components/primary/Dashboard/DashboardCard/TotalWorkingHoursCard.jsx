@@ -6,10 +6,11 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Grid, Typography } from "@mui/material";
+import {Grid, Typography} from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 import iconPendding from "../../../../assets/images/pendingRequest.svg";
+
 const TotalWorkingHoursCard = () => {
   const {
     user: { totalWorkingHours },

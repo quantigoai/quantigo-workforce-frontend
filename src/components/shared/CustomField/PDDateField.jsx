@@ -1,11 +1,11 @@
-import { Box, styled, TextField, Typography } from "@mui/material";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import {Box, styled, TextField, Typography} from "@mui/material";
+import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import PropTypes from "prop-types";
-import { Controller, useFormContext } from "react-hook-form";
-import { convertDate } from "../../../helper/customData";
-import { CustomFormControl } from "./CustomSelectField";
+import {Controller, useFormContext} from "react-hook-form";
+import {convertDate} from "../../../helper/customData";
+import {CustomFormControl} from "./CustomSelectField";
 
 PDDateField.propTypes = {
   name: PropTypes.string,
@@ -62,24 +62,31 @@ export default function PDDateField({
                 variant="wpf_h7_medium"
                 sx={{
                   mb: 0,
-                  color: "neutral.N300",
+                  color: 'neutral.N300',
                 }}
               >
                 {label}
               </Typography>
-              <Box sx={{ width: "100%" }}>
+              <Box sx={{ width: '100%' }}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <MyDatePicker
                     sx={{
-                      width: "100%",
-                      backgroundColor: "neutral.N000",
-                      borderRadius: "5px",
+                      width: '100%',
+                      backgroundColor: 'neutral.N000',
+                      borderRadius: '5px',
                     }}
                     format="DD MMM YYYY"
-                    defaultValue={defaultValue ? dayjs(defaultValue) : field.value}
+                    defaultValue={
+                      defaultValue ? dayjs(defaultValue) : field.value
+                    }
                     onChange={handleChange}
                   >
-                    <TextField sx={{}} error={!!error} helperText={error && error?.message} id="date-picker" />
+                    <TextField
+                      variant="caption"
+                      error={!!error}
+                      helperText={error && error?.message}
+                      id="date-picker"
+                    />
                   </MyDatePicker>
                 </LocalizationProvider>
               </Box>

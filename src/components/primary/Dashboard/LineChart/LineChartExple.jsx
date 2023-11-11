@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
+import React, {useEffect, useState} from "react";
+import {Line} from "react-chartjs-2";
 import {
-  CategoryScale,
-  Chart as ChartJS,
-  Filler,
-  Legend,
-  LinearScale,
-  LineElement,
-  PointElement,
-  Title,
-  Tooltip,
+    CategoryScale,
+    Chart as ChartJS,
+    Filler,
+    Legend,
+    LinearScale,
+    LineElement,
+    PointElement,
+    Title,
+    Tooltip,
 } from "chart.js";
-import { Box } from "@mui/material";
-import { useSelector } from "react-redux";
-import { weeklyConver } from "../../../../helper/weeklyConver";
-import { capitalizeAllwordAndSlic } from "../../../../helper/capitalizeAllwordAndSlic";
+import {useSelector} from "react-redux";
+import {weeklyConver} from "../../../../helper/weeklyConver";
+import {capitalizeAllwordAndSlic} from "../../../../helper/capitalizeAllwordAndSlic";
 
 ChartJS.register(Title, Tooltip, LineElement, Legend, CategoryScale, LinearScale, PointElement, Filler);
 

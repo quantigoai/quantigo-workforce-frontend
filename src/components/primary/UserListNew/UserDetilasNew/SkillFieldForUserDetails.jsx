@@ -1,6 +1,6 @@
-import { Box, Button, Grid, Stack, Typography } from "@mui/material";
-import { useState } from "react"; // Import useState
-import { useSelector } from "react-redux";
+import {Box, Button, Grid, Stack, Typography} from "@mui/material";
+import {useState} from "react"; // Import useState
+import {useSelector} from "react-redux";
 import ProjectDrawerStatusChip from "../../../shared/FilterField/ProjectDrawerStatusChip";
 import SkillField from "./SkillField";
 
@@ -51,10 +51,7 @@ const SkillFieldForUserDetails = ({
                     sx={{
                       position: "absolute",
                       top: 1,
-                      // bottom: "50", // Adjust the button's position as needed
                       right: "0", // Adjust the button's position as needed
-                      //   opacity: 0, // Initially, the button is hidden
-                      //   transition: "opacity 0.3s ease-in-out",
                     }}
                     onClick={() => handleEditSkill()}
                   >

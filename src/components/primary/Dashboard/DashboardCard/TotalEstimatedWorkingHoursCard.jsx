@@ -7,10 +7,11 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Grid, Typography } from "@mui/material";
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import {Grid, Typography} from "@mui/material";
+import React, {useEffect} from "react";
+import {useSelector} from "react-redux";
 import iconPendding from "../../../../assets/images/pendingRequest.svg";
+
 const TotalEstimatedWorkingHoursCard = () => {
   const {
     user: { estimatedPaymentForProjects, role, totalPaidAmount },

@@ -6,12 +6,12 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Box, Button, Grid, Modal, styled, TextField, Typography } from "@mui/material";
+import {Box, Button, Grid, Modal, styled, TextField, Typography} from "@mui/material";
 import React from "react";
-import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import {useForm} from "react-hook-form";
+import {useSelector} from "react-redux";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
-import { LoadingButtonStyle } from "../../Auth/Login/Login";
+import {LoadingButtonStyle} from "../../Auth/Login/Login";
 
 export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {

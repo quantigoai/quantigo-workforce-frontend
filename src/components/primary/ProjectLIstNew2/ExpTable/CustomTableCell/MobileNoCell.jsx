@@ -14,7 +14,7 @@ const MobileNoCell = ({ data }) => {
     if (phoneNumberString.length > 11) {
       return phoneNumberString;
     } else if (phoneNumberString.length === 11) {
-      const firstTwoString = phoneNumberString.slice(0, 2);
+      const firstTwoString = phoneNumberString?.slice(0, 2);
       if (firstTwoString !== "01") {
         return `invalid`;
       } else {

@@ -1,6 +1,6 @@
-import { Box, CircularProgress, Typography } from "@mui/material";
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import {Box, CircularProgress, Typography} from "@mui/material";
+import React, {useEffect} from "react";
+import {useSelector} from "react-redux";
 
 const ProgressBarForDashboard = () => {
   const [progress, setProgress] = React.useState(80);

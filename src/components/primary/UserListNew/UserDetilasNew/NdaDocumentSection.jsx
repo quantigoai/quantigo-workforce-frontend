@@ -1,9 +1,9 @@
-import { Button, Grid, Typography } from "@mui/material";
+import {Button, Grid, Typography} from "@mui/material";
 import axios from "axios";
-import React, { useState } from "react";
+import React, {useState} from "react";
 import ArrowIcon from "../../../../assets/images/dashboardIcon/ArrowIcon.svg";
 import ViewIcon from "../../../../assets/images/dashboardIcon/ViewIcon.svg";
-import { realToken } from "../../../../helper/lib";
+import {realToken} from "../../../../helper/lib";
 import NidDetails from "../../Users/NidDetals/NidDetails";
 
 const styleBtn = {

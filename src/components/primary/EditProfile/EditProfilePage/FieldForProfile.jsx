@@ -35,7 +35,6 @@ const FieldForProfile = ({ label, handleChange, disableItem, defaultValue, editA
             borderRadius: "8px",
             height: "40px",
           }}
-        //   type={label === "Phone No." || label === "Nagad No." ? "number" : "text"}
           disabled={disableItem ? true : !editAble}
           value={defaultValue}
           variant="outlined"

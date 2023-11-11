@@ -46,7 +46,7 @@ const PasswordFieldForProfile = ({ label, handleChange, disableItem, defaultValu
           error={yourPhoneNumberValidationFunction(phone) ? false : true}
           helperText={
             <Typography
-              variant="subtitle2"
+              variant="caption"
               sx={{
                 fontSize: { xl: "12px", xxl: "12px", lg: "9px" }
               }}

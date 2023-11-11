@@ -72,7 +72,7 @@ const ResetPassword = ({ setResetPassword, resetPassword, handlePassword, helper
               ),
             }}
             helperText={
-              <Typography variant="wpf_p5_regular" color="red">
+              <Typography variant="caption" color="red">
                 {helperText}
               </Typography>
             }

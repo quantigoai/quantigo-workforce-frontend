@@ -122,7 +122,6 @@ const PasswordChangeIndex = () => {
             variant="contained"
             sx={{
               textTransform: "none",
-              // width: { lg: "990px", xl: "100%", xxl: "422px" },
               width: "100%",
               borderRadius: "8px",
               height: "40px",

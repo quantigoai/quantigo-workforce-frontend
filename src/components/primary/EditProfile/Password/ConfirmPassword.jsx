@@ -8,7 +8,6 @@ const MyTextField = styled(TextField)(() => ({
     border: "1px solid #E6ECF5 !important",
     borderRadius: "8px",
     fontFamily: "Inter",
-    // backgroundColor: "#F2F6FC",
   },
   "& .MuiInputBase-root": {
     height: "42px",
@@ -20,7 +19,6 @@ const MyTextField = styled(TextField)(() => ({
     "@media(min-width: 1920px)": {
       fontSize: "14px",
     },
-    // backgroundColor: editAble ? "" : "#F2F6FC",
   },
 }));
 const ConfirmPassword = ({ setConfirmPassword, confirmPassword, handlePassword, helperText }) => {
@@ -56,7 +54,6 @@ const ConfirmPassword = ({ setConfirmPassword, confirmPassword, handlePassword, 
             required={true}
             autoComplete="off"
             onChange={(e) => handlePassword(e.target.value)}
-            // inputProps={{ minLength: 6 }}
             InputProps={{
               endAdornment: (
                 <InputAdornment
@@ -70,37 +67,14 @@ const ConfirmPassword = ({ setConfirmPassword, confirmPassword, handlePassword, 
               ),
             }}
             helperText={
-              <Typography sx={{ fontSize: "12px" }} color="red">
+              <Typography variant="caption" sx={{ fontSize: "12px" }} color="red">
                 {helperText}
               </Typography>
             }
           />
         </FormControl>
       </Grid>
-      {/* <TextField
-        fullWidth
-        label="Confirm Password"
-        variant="filled"
-        type={showPassword ? "text" : "password"}
-        id="filled-adornment-password"
-        value={confirmPassword}
-        required={true}
-        autoComplete="off"
-        onChange={(e) => handlePassword(e.target.value)}
-        inputProps={{ minLength: 6 }}
-        sx={{ backgroundColor: "#FFFFFF" }}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-              sx={{ cursor: "pointer" }}
-              position="end">
-              {showPassword ? <VisibilityOff /> : <Visibility />}
-            </InputAdornment>
-          ),
-        }}
-      /> */}
+      
     </>
   );
 };

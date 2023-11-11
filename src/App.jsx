@@ -8,7 +8,7 @@ import Routers from './components/primary/Routers/Routers';
 import MobileErrorPage from './components/shared/Error/MobileErrorPage';
 import LoadingComponent from './components/shared/Loading/LoadingComponent';
 import useClearReduxData from './customHooks/useClearReduxData';
-import {availableJobsForReviewer, getAllAssignedJob, getAllJobs, getMyJobs,} from './features/slice/jobSlice';
+// import {availableJobsForReviewer, getAllAssignedJob, getAllJobs, getMyJobs,} from './features/slice/jobSlice';
 import {
     deleteBefore15DaysNotifications,
     getAllNotifications,
@@ -30,7 +30,7 @@ const LayoutNew = lazy(() => import('./components/shared/Layout/LayoutNew'));
 const jwtSecret = import.meta.env.VITE_APP_JWT_SECRET;
 
 // export const socket = io(import.meta.env.VITE_APP_SOCKET_SERVER_URL);
-let socket;
+// let socket;
 function App() {
   const dispatch = useDispatch();
   const storedUser = useSelector((state) => state.user);
@@ -50,21 +50,23 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    socketHandlers({
-      socket,
-      dispatch,
-      storedUser,
-      setNewNotification,
-      updateLoggedInUserManually,
-      updateSingleUserManually,
-      getAllJobs,
-      getMyJobs,
-      availableJobsForReviewer,
-      getAllAssignedJob,
-    });
-    return () => {};
-  }, []);
+  // TODO need to deploy socket server future and need to handle this 
+  // useEffect(() => {
+  //   socketHandlers({
+  //     socket,
+  //     dispatch,
+  //     storedUser,
+  //     setNewNotification,
+  //     updateLoggedInUserManually,
+  //     updateSingleUserManually,
+  //     getAllJobs,
+  //     getMyJobs,
+  //     availableJobsForReviewer,
+  //     getAllAssignedJob,
+  //   });
+  //   return () => {};
+  // }, []);
+
   const [isTokenLoading, setIsTokenLoading] = useState(false);
   useEffect(() => {
     dispatch(setFromPreviousTheme());

@@ -115,7 +115,8 @@ export default function UserDetailsNewIndex({ open, handleClose, role }) {
           toast.trigger("User role has been changed successfully.", "success");
           setRoleValue("");
         } else {
-          toast.trigger("Failed to change user role, try again later.", "error");
+          // toast.trigger("Failed to change user role, try again later.", "error");
+          toast.trigger(action.error.message, "error");
         }
       });
 

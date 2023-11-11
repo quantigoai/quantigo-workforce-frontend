@@ -24,7 +24,6 @@ import {createASkill, getAllSkills} from "../../../features/slice/skillSlice";
 import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
 import SkillDeleteModal from "./SkillDeleteModal";
 import SkillEdit from "./SkillEdit";
-// import io from "socket.io-client";
 
 export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {

@@ -59,10 +59,8 @@ export default function CustomTextField({ name, label, helperText, isRequired, .
 
             <MyTextField
               size="small"
-              // id="outlined-basic"
               {...field}
               fullWidth
-              // InputProps={{ disableUnderline: true }}
               variant="outlined"
               sx={{
                 mt: 0.3,

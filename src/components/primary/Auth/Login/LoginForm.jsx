@@ -117,7 +117,6 @@ const LoginForm = () => {
             isRequired={true}
             type={showPassword ? "text" : "password"}
             InputProps={{
-              // disableUnderline: true,
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton sx={{ color: "neutral.500" }} onClick={() => setShowPassword(!showPassword)} edge="end">
@@ -175,7 +174,7 @@ const LoginForm = () => {
           fullWidth
           color="inherit"
           size="large"
-          disabled={Object.keys(errors).length || false}
+          disabled={Object.keys(errors)?.length || false}
           type="submit"
           variant="contained"
           loading={isLoading}

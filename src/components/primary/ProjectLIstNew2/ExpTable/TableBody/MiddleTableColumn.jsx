@@ -59,7 +59,6 @@ const MiddleTableColumn = ({ row, column }) => {
         <TableCell
           sx={{ textAlign: 'left' }}
           key={column.id}
-          project_delivery_lead
           component="th"
           scope="row"
         >

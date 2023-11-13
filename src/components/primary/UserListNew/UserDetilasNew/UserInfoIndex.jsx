@@ -19,13 +19,13 @@ const UserInfoIndex = ({
   isEditSkill,
 }) => {
   const DOB = user.dob
-    ? moment.utc(user.dob).format('MMM Do, YYYY')
-    : 'Not Available';
+  ? moment.utc(user.dob).format('MMM Do, YYYY')
+  : 'Not Available';
   const dateObj = new Date(user.lastJobTakenAt);
   const today = new Date();
   const diffInMs = Math.abs(today - dateObj);
   const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
-
+  
   return (
     <>
       <Box sx={{}}>
@@ -40,6 +40,7 @@ const UserInfoIndex = ({
             Item1={user.name}
             Item2Title={'Id'}
             Item2={user.qaiUserName}
+            isBlocked={user.isBlocked}
             Item3Title={'Role'}
             Item3={
               user.role === 'level_1_annotator'

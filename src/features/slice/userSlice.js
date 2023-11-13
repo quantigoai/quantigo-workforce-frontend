@@ -312,7 +312,7 @@ export const deleteOrActivateUser = createAsyncThunk(
   'user/id/action',
   async (finalData) => {
     const { id, action } = finalData;
-    return axios.delete(`${url}/users/${id}/${action}`, {
+    return await axios.delete(`${url}/users/${id}/${action}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -758,12 +758,18 @@ const userSlice = createSlice({
       })
       .addCase(deleteOrActivateUser.fulfilled, (state, action) => {
         state.targetedUser = action.payload.data;
-        state.users.users = state.users.users.map((user) => {
-          if (user._id === action.payload.data._id) {
-            return action.payload.data;
-          }
-          return user;
-        });
+        if (action.payload.data.isDeleted) {
+          state.users.users = state.users.users.filter(
+            (user) => user._id !== action.payload.data._id,
+          );
+        } else {
+          state.users.users = state.users.users.map((user) => {
+            if (user._id === action.payload.data._id) {
+              return action.payload.data;
+            }
+            return user;
+          });
+        }
         state.error = null;
         state.isLoading = false;
       })

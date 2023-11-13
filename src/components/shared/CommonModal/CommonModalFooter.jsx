@@ -7,9 +7,9 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Button, Grid } from "@mui/material";
+import {Box, Button, Grid} from "@mui/material";
 import React from "react";
-import { LoadingButtonStyle } from "../../primary/Auth/Login/Login";
+import {LoadingButtonStyle} from "../../primary/Auth/Login/Login";
 
 const CommonModalFooter = ({
   isLoading,

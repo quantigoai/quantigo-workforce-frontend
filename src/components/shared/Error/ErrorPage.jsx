@@ -7,10 +7,11 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 
-import { Box, Button, Grid, Link, Paper, Typography } from "@mui/material";
+import {Box, Button, Grid, Link, Paper, Typography} from "@mui/material";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import errorPage from "../../../assets/images/pages/error.png";
+
 const ContentBox = { padding: "2%", height: "100%" };
 
 const paperStyle = {

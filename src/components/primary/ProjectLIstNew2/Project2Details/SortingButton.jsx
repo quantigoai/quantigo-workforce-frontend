@@ -1,7 +1,8 @@
-import { Box, Button } from "@mui/material";
+import {Box, Button} from "@mui/material";
 
 const SortingButton = ({ filteredCol, column }) => {
   const val = Object.keys(filteredCol);
+  // <!--  -->onsole.log("🚀 ~ file: SortingButton.jsx:5 ~ SortingButton ~ val:", val)
   const ascColorCode = (value) => {
     return value.includes(column) ? (filteredCol[column] === "asc" ? "blue" : "#7B98BA") : "#7B98BA";
   };

@@ -1,15 +1,12 @@
-import { Box, Button, Dialog, DialogTitle, Grid, styled, TextField, Typography } from "@mui/material";
-import DialogActions from "@mui/material/DialogActions";
+import {Box, Button, Dialog, DialogTitle, Grid, styled, TextField, Typography} from "@mui/material";
 import DialogContent from "@mui/material/DialogContent";
 import Tooltip from "@mui/material/Tooltip";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useEffect, useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
-import { updateASkill } from "../../../features/slice/skillSlice";
-import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
-import ProjectModalHeader from "../ProjectLIstNew2/ProjectModalHeader";
-import u_multiply from "../../../assets/images/crosIcon.svg";
+import {updateASkill} from "../../../features/slice/skillSlice";
+import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
 
 export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {

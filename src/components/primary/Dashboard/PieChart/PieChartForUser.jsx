@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { ArcElement, Chart as ChartJS, Legend, Title, Tooltip } from "chart.js";
-import { Pie } from "react-chartjs-2";
-import { useSelector } from "react-redux";
+import React, {useEffect, useState} from "react";
+import {ArcElement, Chart as ChartJS, Legend, Title, Tooltip} from "chart.js";
+import {Pie} from "react-chartjs-2";
+import {useSelector} from "react-redux";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import "./index.css";
 

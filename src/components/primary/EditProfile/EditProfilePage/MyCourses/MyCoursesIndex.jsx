@@ -1,6 +1,6 @@
-import { Box, Grid, styled, TableCell, tableCellClasses, TableRow, Typography } from "@mui/material";
+import {Box, Grid, styled, TableCell, tableCellClasses, TableRow, Typography} from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 import ProjectDrawerStatusChip from "../../../../shared/FilterField/ProjectDrawerStatusChip";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({

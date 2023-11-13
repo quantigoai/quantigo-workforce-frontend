@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Box, FormControl, Grid, InputLabel, LinearProgress, MenuItem, Paper, Select, Typography,} from "@mui/material";
+import {Box, FormControl, Grid, InputLabel, MenuItem, Paper, Select,} from "@mui/material";
 import {useSelector} from "react-redux";
 import {useOutletContext} from "react-router-dom";
 

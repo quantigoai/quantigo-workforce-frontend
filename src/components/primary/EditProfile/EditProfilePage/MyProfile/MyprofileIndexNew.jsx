@@ -1,18 +1,20 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
-import moment from "moment/moment";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import useToaster from "../../../../../customHooks/useToaster";
-import { myProfileEdit, uploadMyImage } from "../../../../../features/slice/userSlice";
-import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
+import { Box, Button, Grid, Typography } from '@mui/material';
+import moment from 'moment/moment';
 // import FormProvider from "../../../../shared/FormProvider/FormProvider";
-import { useEffect } from "react";
-import PasswordFieldForProfile from "../../PasswordFieldForProfile";
-import CommonFieldTest from "../CommonFieldTest";
-import FieldForProfile from "../FieldForProfile";
-import SelectFieldForProfile from "../SelectFieldForProfile";
-import ProfilePicture from "./ProfilePicture";
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import useToaster from '../../../../../customHooks/useToaster';
+import {
+  myProfileEdit,
+  uploadMyImage,
+} from '../../../../../features/slice/userSlice';
+import { capitalizeFirstLetter } from '../../../../../helper/capitalizeFirstWord';
+import PasswordFieldForProfile from '../../PasswordFieldForProfile';
+import CommonFieldTest from '../CommonFieldTest';
+import FieldForProfile from '../FieldForProfile';
+import SelectFieldForProfile from '../SelectFieldForProfile';
+import ProfilePicture from './ProfilePicture';
 
 const MyprofileIndexNew = () => {
   const { user, isLoading } = useSelector((state) => state.user);
@@ -22,9 +24,13 @@ const MyprofileIndexNew = () => {
   const [occupation, setOccupation] = useState(user.occupation);
   const [bloodGroup, setBloodGroup] = useState(user.bloodGroup);
   const [contactNo, setContactNo] = useState(user.contactNo);
-  const [billingAccountNo, setBillingAccountNo] = useState(user.billingAccountNo);
+  const [billingAccountNo, setBillingAccountNo] = useState(
+    user.billingAccountNo,
+  );
   const [presentAddress, setPresentAddress] = useState(user.presentAddress);
-  const [permanentAddress, setPermanentAddress] = useState(user.permanentAddress);
+  const [permanentAddress, setPermanentAddress] = useState(
+    user.permanentAddress,
+  );
   const dispatch = useDispatch();
 
   const toast = useToaster();
@@ -105,7 +111,7 @@ const MyprofileIndexNew = () => {
     };
 
     const formData = new FormData();
-    formData.append("image", coverImageFile);
+    formData.append('image', coverImageFile);
 
     const finalImageData = {
       id: user._id,
@@ -115,32 +121,32 @@ const MyprofileIndexNew = () => {
     coverImageFile &&
       dispatch(uploadMyImage(finalImageData)).then((action) => {
         if (action.payload.status === 200) {
-          toast.trigger("Profile Picture Update Successfully", "success");
+          toast.trigger('Profile Picture Update Successfully', 'success');
           setEditAble(false);
         }
       });
     //   Object.keys(filteredData).length > 0 &&
     dispatch(myProfileEdit(finalData)).then((action) => {
       if (action.error) {
-        toast.trigger(action.error.message, "error");
+        toast.trigger(action.error.message, 'error');
       }
       if (action.payload.status === 200) {
-        toast.trigger("Profile Update Successfully", "success");
+        toast.trigger('Profile Update Successfully', 'success');
         setEditAble(false);
       }
     });
   };
 
-  const DOB = moment.utc(user.dob).format("MMM Do, YYYY");
+  const DOB = moment.utc(user.dob).format('MMM Do, YYYY');
   return (
     <>
       <Box
         sx={{
-          flex: "1",
+          flex: '1',
           height: {
-            lg: "95%",
-            xl: "100%",
-            xxl: "100%",
+            lg: '95%',
+            xl: '100%',
+            xxl: '100%',
           },
         }}
       >
@@ -148,9 +154,9 @@ const MyprofileIndexNew = () => {
           sx={{
             // flex: "0 0 auto",
             height: {
-              lg: "17%",
-              xl: "17%",
-              xxl: "17%",
+              lg: '17%',
+              xl: '17%',
+              xxl: '17%',
             },
             // backgroundColor: "yellow",
           }}
@@ -167,44 +173,45 @@ const MyprofileIndexNew = () => {
 
         <Box
           sx={{
-            // flex: "1",
-            overflowY: "auto",
-            "&::-webkit-scrollbar": {
-              width: "0",
+            overflowY: 'auto',
+            '&::-webkit-scrollbar': {
+              width: '0',
             },
             height: {
-              lg: "78%",
-              xl: "71%",
-              xxl: "75%",
+              lg: '78%',
+              xl: '71%',
+              xxl: '75%',
             },
-            // backgroundColor: "black",
           }}
         >
           <Box
             sx={{
-              height: "100%",
+              height: '100%',
             }}
           >
             <Box
               sx={{
-                height: "100%",
-                "&::-webkit-scrollbar": {
-                  width: "0",
+                height: '100%',
+                '&::-webkit-scrollbar': {
+                  width: '0',
                 },
-                overflowY: "auto",
+                overflowY: 'auto',
               }}
             >
-              <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
-                <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
+              <Grid container sx={{ paddingTop: '2%', paddingBottom: '1%' }}>
+                <Typography
+                  sx={{ color: 'primary.B200' }}
+                  variant="wpf_p4_medium"
+                >
                   Personal Information
                 </Typography>
               </Grid>
 
-              <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+              <Grid container spacing={0} sx={{ paddingBottom: '20px' }}>
+                <Grid item xs={6} sx={{ paddingRight: '2%' }}>
                   <FieldForProfile
                     name="firstName"
-                    label={"First Name"}
+                    label={'First Name'}
                     handleChange={handleFirstNameChange}
                     defaultValue={firstName}
                     disableItem={false}
@@ -214,7 +221,7 @@ const MyprofileIndexNew = () => {
                 <Grid item xs={6}>
                   <FieldForProfile
                     name="lastName"
-                    label={"Last Name"}
+                    label={'Last Name'}
                     handleChange={handleLasttNameChange}
                     defaultValue={lastName}
                     disableItem={false}
@@ -222,11 +229,11 @@ const MyprofileIndexNew = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid container sx={{ paddingBottom: "20px" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+              <Grid container sx={{ paddingBottom: '20px' }}>
+                <Grid item xs={6} sx={{ paddingRight: '2%' }}>
                   <CommonFieldTest
                     name="gender"
-                    label={"Gender"}
+                    label={'Gender'}
                     defaultValue={capitalizeFirstLetter(user.gender)}
                     disableItem={true}
                     control={control}
@@ -238,7 +245,7 @@ const MyprofileIndexNew = () => {
                 <Grid item xs={6}>
                   <FieldForProfile
                     name="occupation"
-                    label={"Occupation"}
+                    label={'Occupation'}
                     defaultValue={occupation}
                     disableItem={false}
                     handleChange={handleOccupationChange}
@@ -246,11 +253,11 @@ const MyprofileIndexNew = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid container sx={{ paddingBottom: "5px" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+              <Grid container sx={{ paddingBottom: '5px' }}>
+                <Grid item xs={6} sx={{ paddingRight: '2%' }}>
                   <CommonFieldTest
                     name="dob"
-                    label={"Date Of Birth"}
+                    label={'Date Of Birth'}
                     defaultValue={DOB}
                     disableItem={true}
                     control={control}
@@ -262,7 +269,7 @@ const MyprofileIndexNew = () => {
                 <Grid item xs={6}>
                   <SelectFieldForProfile
                     name="bloodGroup"
-                    label={"Blood Group"}
+                    label={'Blood Group'}
                     defaultValue={bloodGroup}
                     disableItem={false}
                     editAble={editAble}
@@ -270,15 +277,17 @@ const MyprofileIndexNew = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
-                <Typography sx={{ fontSize: "12px", color: "primary.B200" }}>Contact Info.</Typography>
+              <Grid container sx={{ paddingTop: '2%', paddingBottom: '1%' }}>
+                <Typography sx={{ fontSize: '12px', color: 'primary.B200' }}>
+                  Contact Info.
+                </Typography>
               </Grid>
 
-              <Grid container sx={{ paddingBottom: "20px" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+              <Grid container sx={{ paddingBottom: '20px' }}>
+                <Grid item xs={6} sx={{ paddingRight: '2%' }}>
                   <PasswordFieldForProfile
                     name="phone"
-                    label={"Phone No."}
+                    label={'Phone No.'}
                     defaultValue={contactNo}
                     disableItem={false}
                     handleChange={handlePhoneNumberChange}
@@ -289,7 +298,7 @@ const MyprofileIndexNew = () => {
                 <Grid item xs={6}>
                   <PasswordFieldForProfile
                     name="billingAccountNo"
-                    label={"Nagad No."}
+                    label={'Nagad No.'}
                     defaultValue={billingAccountNo}
                     disableItem={false}
                     handleChange={handlebillingAccountNoChange}
@@ -299,11 +308,11 @@ const MyprofileIndexNew = () => {
                 </Grid>
               </Grid>
 
-              <Grid container sx={{ paddingBottom: "20px" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+              <Grid container sx={{ paddingBottom: '20px' }}>
+                <Grid item xs={6} sx={{ paddingRight: '2%' }}>
                   <CommonFieldTest
                     name="email"
-                    label={"Email"}
+                    label={'Email'}
                     defaultValue={user.email}
                     disableItem={true}
                     control={control}
@@ -315,7 +324,7 @@ const MyprofileIndexNew = () => {
                 <Grid item xs={6}>
                   <FieldForProfile
                     name="presentAddress"
-                    label={"Present Address"}
+                    label={'Present Address'}
                     defaultValue={presentAddress}
                     disableItem={false}
                     handleChange={handlePresentAddressChange}
@@ -323,11 +332,11 @@ const MyprofileIndexNew = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid container sx={{ paddingBottom: "20px" }}>
+              <Grid container sx={{ paddingBottom: '20px' }}>
                 <Grid item xs={12}>
                   <FieldForProfile
                     name="permanentAddress"
-                    label={"Permanent Address"}
+                    label={'Permanent Address'}
                     defaultValue={permanentAddress}
                     disableItem={false}
                     handleChange={handlepermanentAddressChange}
@@ -343,29 +352,25 @@ const MyprofileIndexNew = () => {
 
         <Box
           sx={{
-            // py:3,
-            // height: "10%",
             height: {
-              lg: "10%",
-              xl: "14%",
-              xxl: "8%",
+              lg: '10%',
+              xl: '14%',
+              xxl: '8%',
             },
           }}
         >
           <Grid
             container
             sx={{
-              height: "100%",
+              height: '100%',
             }}
           >
             {editAble && (
               <>
                 <Box
                   sx={{
-                    display: "flex",
-                    alignItems: "center",
-
-                    // p: 2
+                    display: 'flex',
+                    alignItems: 'center',
                   }}
                 >
                   <Button
@@ -373,49 +378,45 @@ const MyprofileIndexNew = () => {
                     disabled={isLoading}
                     sx={{
                       height: {
-                        lg: "30px",
-                        xl: "40px",
-                        xxl: "40px",
+                        lg: '30px',
+                        xl: '40px',
+                        xxl: '40px',
                       },
-                      backgroundColor: "primary.B200",
-                      color: "neutral.N000",
-                      borderRadius: "8px",
-                      textTransform: "none",
-                      fontSize: "12px",
-                      width: "150px",
+                      backgroundColor: 'primary.B200',
+                      color: 'neutral.N000',
+                      borderRadius: '8px',
+                      textTransform: 'none',
+                      fontSize: '12px',
+                      width: '150px',
                       mr: 3,
-                      "&:hover": {
-                        backgroundColor: "primary.B200",
-                        color: "neutral.N000",
+                      '&:hover': {
+                        backgroundColor: 'primary.B200',
+                        color: 'neutral.N000',
                       },
-                      "&.Mui-disabled": {
-                        background: "#B6C9F0",
-                        color: "#FFFFFF",
+                      '&.Mui-disabled': {
+                        background: '#B6C9F0',
+                        color: '#FFFFFF',
                       },
                     }}
                   >
                     Save Changes
                   </Button>
                   <Button
-                    // variant="contained"
-                    // disabled={isLoading}
-                    // onClick={() => setEditAble(false)}
                     onClick={() => handleCancel()}
                     sx={{
                       height: {
-                        lg: "30px",
-                        xl: "40px",
-                        xxl: "40px",
+                        lg: '30px',
+                        xl: '40px',
+                        xxl: '40px',
                       },
-                      textTransform: "none",
-                      backgroundColor: "#F2F6FC",
-                      borderRadius: "8px",
-                      fontSize: "12px",
-                      color: "#253E5C",
-                      // padding: " 10px 16px",
-                      width: "150px",
-                      "&:hover": {
-                        background: "#F2F6FC",
+                      textTransform: 'none',
+                      backgroundColor: '#F2F6FC',
+                      borderRadius: '8px',
+                      fontSize: '12px',
+                      color: '#253E5C',
+                      width: '150px',
+                      '&:hover': {
+                        background: '#F2F6FC',
                       },
                     }}
                   >

@@ -1,6 +1,6 @@
-import { Visibility } from "@mui/icons-material";
+import {Visibility} from "@mui/icons-material";
 import PasswordIcon from "../../../../assets/images/dashboardIcon/PasswordIcon.svg";
-import { FormControl, Grid, InputAdornment, styled, TextField, Typography } from "@mui/material";
+import {FormControl, Grid, InputAdornment, styled, TextField, Typography} from "@mui/material";
 import React from "react";
 
 const MyTextField = styled(TextField)(() => ({
@@ -36,11 +36,11 @@ const ResetPassword = ({ setResetPassword, resetPassword, handlePassword, helper
         <FormControl fullWidth>
           <Typography
             sx={{
-              fontSize: { lg: "10px", xl: "12px", xxl: "12px" },
-              color: "neutral.N300",
-              fontWeight: "500",
+              fontSize: { lg: '10px', xl: '12px', xxl: '12px' },
+              color: 'neutral.N300',
+              fontWeight: '500',
               mb: 1,
-              fontFamily: "Inter",
+              fontFamily: 'Inter',
             }}
           >
             New Password
@@ -52,7 +52,7 @@ const ResetPassword = ({ setResetPassword, resetPassword, handlePassword, helper
             variant="outlined"
             // {...field}
             fullWidth
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             id="filled-adornment-password"
             value={resetPassword}
             required={true}
@@ -64,14 +64,18 @@ const ResetPassword = ({ setResetPassword, resetPassword, handlePassword, helper
                 <InputAdornment
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
-                  sx={{ cursor: "pointer" }}
+                  sx={{ cursor: 'pointer' }}
                   position="end"
                 >
                   {!showPassword ? <img src={PasswordIcon} /> : <Visibility />}
                 </InputAdornment>
               ),
             }}
-            helperText={helperText}
+            helperText={
+              <Typography variant="caption" color="red">
+                {helperText}
+              </Typography>
+            }
           />
         </FormControl>
       </Grid>

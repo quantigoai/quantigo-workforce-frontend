@@ -13,7 +13,7 @@
  * ------------------------
  */
 
-import { toast } from "react-toastify";
+import {toast} from "react-toastify";
 import ErrorToaster from "../components/shared/Toaster/ErrorToaster";
 import SuccessToaster from "../components/shared/Toaster/SuccessToaster";
 

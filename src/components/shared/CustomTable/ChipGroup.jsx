@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { AvatarGroup } from "@mui/material";
+import {AvatarGroup} from "@mui/material";
 import Box from "@mui/material/Box";
 import Popper from "@mui/material/Popper";
 import * as React from "react";
@@ -33,7 +33,7 @@ const ChipGroup = ({ value }) => {
     <div>
       <Box aria-describedby={id}>
         <AvatarGroup onMouseOver={(e) => mouseOverEffect(e)} onMouseOut={(e) => mouseOutEffect(e)} max={3}>
-          {params.value.map((p) => (
+          {params?.value?.map((p) => (
             <ProjectDrawerStatusChip key={p._id} value={p.name} />
           ))}
         </AvatarGroup>

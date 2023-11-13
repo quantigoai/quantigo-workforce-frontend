@@ -7,16 +7,16 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Grid, Typography } from "@mui/material";
+import {Box, Grid, Typography} from "@mui/material";
 import {
-  CategoryScale,
-  Chart as ChartJS,
-  Legend,
-  LineElement,
-  LinearScale,
-  PointElement,
-  Title,
-  Tooltip,
+    CategoryScale,
+    Chart as ChartJS,
+    Legend,
+    LinearScale,
+    LineElement,
+    PointElement,
+    Title,
+    Tooltip,
 } from "chart.js";
 import React from "react";
 import LineChartExple from "./LineChartExple";

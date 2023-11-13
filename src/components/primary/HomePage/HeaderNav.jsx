@@ -7,10 +7,10 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Grid, Link, Typography } from "@mui/material";
+import {Box, Grid, Link, Typography} from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import {useSelector} from "react-redux";
+import {useLocation, useNavigate} from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
 import logoBlue from "../../../assets/images/rsz_logoblue.png";
 
@@ -64,7 +64,7 @@ const HeaderNav = ({ isForgetPassword, resetPassword, isEmailVerification, email
                 }}
                 gap={3}
               >
-                <Link
+                {/* <Link
                   color="neutral.850"
                   // onClick={() => navigate("/faq")}
                   underline="none"
@@ -82,7 +82,7 @@ const HeaderNav = ({ isForgetPassword, resetPassword, isEmailVerification, email
                   >
                     FAQ
                   </Typography>
-                </Link>
+                </Link> */}
                 <Link
                   onClick={() => navigate("/howitworks")}
                   underline="none"
@@ -103,7 +103,7 @@ const HeaderNav = ({ isForgetPassword, resetPassword, isEmailVerification, email
                   </Typography>
                 </Link>
 
-                <Link
+                {/* <Link
                   underline="none"
                   sx={{
                     color: location.pathname === "/howitworks" && "#47536B",
@@ -121,7 +121,7 @@ const HeaderNav = ({ isForgetPassword, resetPassword, isEmailVerification, email
                   >
                     About Us
                   </Typography>
-                </Link>
+                </Link> */}
               </Box>
             </Grid>
           </Grid>

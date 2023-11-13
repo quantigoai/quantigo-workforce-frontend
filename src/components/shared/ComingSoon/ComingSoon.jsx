@@ -16,10 +16,11 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 
-import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import {Box, Button, Grid, Paper, Typography} from "@mui/material";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import comingSoon from "../../../assets/images/pages/coming-soon.png";
+
 const ContentBox = { padding: "2%", height: "100%" };
 
 const paperStyle = {

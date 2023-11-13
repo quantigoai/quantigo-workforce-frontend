@@ -1,6 +1,6 @@
-import { Grid, Stack, Typography } from "@mui/material";
+import {Grid, Stack, Typography} from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 
 const DetailsItemThree = ({ Item1Title, Item1, Item2Title, Item2, Item3Title, Item3 }) => {
   const { isLightTheme } = useSelector((state) => state.theme);

@@ -1,6 +1,6 @@
-import { Chip } from "@mui/material";
+import {Chip} from "@mui/material";
 import React from "react";
-import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
+import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
 
 const basicStyle = {
   width: "70%",

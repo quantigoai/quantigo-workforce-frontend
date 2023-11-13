@@ -7,11 +7,11 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, FormControl, Select, styled } from "@mui/material";
+import {Box, FormControl, Select, styled} from "@mui/material";
 import PropTypes from "prop-types";
 import React from "react";
-import { Controller, useFormContext } from "react-hook-form";
-import { useSelector } from "react-redux";
+import {Controller, useFormContext} from "react-hook-form";
+import {useSelector} from "react-redux";
 // import {MyFormControl} from "./CustomDatePicker";
 
 CustomSelectField.propTypes = {

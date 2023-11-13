@@ -1,8 +1,8 @@
-import { Button } from "@mui/material";
+import {Button} from "@mui/material";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../../customHooks/useToaster";
-import { activateDeactivateUser } from "../../../../features/slice/userSlice";
+import {activateDeactivateUser} from "../../../../features/slice/userSlice";
 import ModalActivateAccount from "./ModalActivateAccount";
 
 const ActivateAccount = () => {

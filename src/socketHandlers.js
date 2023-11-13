@@ -14,7 +14,7 @@
  */
 
 import io from "socket.io-client";
-import { updateProjectDrawerByNotification } from "./features/slice/projectDrawerSlice";
+import {updateProjectDrawerByNotification} from "./features/slice/projectDrawerSlice";
 
 const socketHandlers = ({
   socket,

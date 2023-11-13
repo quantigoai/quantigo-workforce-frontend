@@ -1,7 +1,6 @@
-import { LoadingButton } from "@mui/lab";
-import { Button } from "@mui/material";
+import {LoadingButton} from "@mui/lab";
 import React from "react";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 
 const CheckOutButton = ({ checkOutDisable, handleCheckOutButton, handleOpen }) => {
   const { isLightTheme } = useSelector((state) => state.theme);

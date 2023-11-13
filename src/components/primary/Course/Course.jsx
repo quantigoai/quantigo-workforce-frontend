@@ -6,15 +6,15 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Button, Grid } from "@mui/material";
+import {Button, Grid} from "@mui/material";
 import Box from "@mui/material/Box";
 import * as React from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { setActivePath } from "../../../features/slice/activePathSlice";
-import { getAllCourses } from "../../../features/slice/courseSlice";
-import { getAllSkills } from "../../../features/slice/skillSlice";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {setActivePath} from "../../../features/slice/activePathSlice";
+import {getAllCourses} from "../../../features/slice/courseSlice";
+import {getAllSkills} from "../../../features/slice/skillSlice";
 import LoadingSkeleton from "../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton";
 import CourseHeader from "./CourseHeader/CourseHeader";
 import CourseTab from "./CourseTab";

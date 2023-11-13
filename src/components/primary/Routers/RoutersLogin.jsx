@@ -1,6 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import ErrorPage from "../../shared/Error/ErrorPage";
+import {Route, Routes} from "react-router-dom";
 import EmailVerification from "../Auth/EmailVerification/EmailVerification";
 import EmailVerificationConfirmation from "../Auth/EmailVerification/EmailVerificationConfirmation";
 import HowItWorkPage from "../Auth/HowItWorkPage/HowItWorkPage";
@@ -8,8 +7,6 @@ import ForgetPassword from "../ForgetPassword/ForgetPassword";
 import ResetPassword from "../ForgetPassword/ResetPassword";
 import LoginHomePage from "../HomePage/LoginHomePage";
 import RegisterHomePage from "../HomePage/RegisterHomePage";
-import Faq from "../Auth/FAQ/Faq";
-import ComingSoon from "../../shared/ComingSoon/ComingSoon";
 
 const RoutersLogin = () => {
   return (
@@ -30,6 +27,7 @@ const RoutersLogin = () => {
 
         <Route path={"/reset-password/:id/:token/"} element={<ResetPassword />} />
         <Route path={"/verify-email/:id/:token/"} element={<EmailVerificationConfirmation />} />
+        <Route path="*" element={<LoginHomePage />} />
 
         {/* <Route path="*" element={<ErrorPage />} /> */}
       </Routes>

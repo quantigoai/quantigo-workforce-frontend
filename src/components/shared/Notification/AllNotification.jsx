@@ -7,17 +7,17 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Button, Typography } from "@mui/material";
+import {Box, Button, Typography} from "@mui/material";
 import dayjs from "dayjs";
 import Lottie from "lottie-react";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
 import {
-  getAllNotifications,
-  getAllUnreadNotifications,
-  getLatestNotifications,
-  readAllNotification,
+    getAllNotifications,
+    getAllUnreadNotifications,
+    getLatestNotifications,
+    readAllNotification,
 } from "../../../features/slice/notificationSlice";
 import success from "../CustomSvgIcons/wired-lineal-37-approve-checked-simple.json";
 

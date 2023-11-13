@@ -22,7 +22,7 @@ const ndaUploadStyle = (isLightTheme) => {
 
         borderWidth: 2,
         borderRadius: 8,
-        height: "180px",
+        height: "230px",
         borderColor: "rgba(70, 70, 70, 0.2)",
         borderStyle: "dashed",
         // backgroundColor: isLightTheme ? "primary.B200" : "neutral.N400",

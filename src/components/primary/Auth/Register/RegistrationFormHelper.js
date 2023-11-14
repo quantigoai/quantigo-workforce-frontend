@@ -1,16 +1,8 @@
+import dayjs from 'dayjs';
 import * as Yup from 'yup';
 
-const today = new Date();
-const maxDOB = new Date(
-  today.getFullYear() - 18,
-  today.getMonth(),
-  today.getDate(),
-);
-const minDOB = new Date(
-  today.getFullYear() - 70,
-  today.getMonth(),
-  today.getDate(),
-);
+const maxDOB = dayjs().subtract(13, 'year');
+const minDOB = dayjs().subtract(70, 'year');
 
 const RegistrationSchema = Yup.object().shape({
   firstName: Yup.string().required('First Name is required'),
@@ -25,8 +17,8 @@ const RegistrationSchema = Yup.object().shape({
   gender: Yup.string().required('Gender is required'),
   dob: Yup.date()
     .required('Date of Birth is required')
-    .min(minDOB, 'Age must be between 13 to  70 years.')
-    .max(maxDOB, 'You must be a 13 years old.'),
+    .min(minDOB, 'User age must be in range between 13 to 70 years.')
+    .max(maxDOB, 'User must be 13 years old.'),
 
   billingAccountNo: Yup.string()
     .required('Nagad Number is required')
@@ -62,4 +54,3 @@ const hubOptions = [
 ];
 
 export { RegistrationSchema, genderOptions, hubOptions, userStatusOptions };
-

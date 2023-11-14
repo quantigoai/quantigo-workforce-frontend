@@ -70,7 +70,7 @@ export default function CustomDatePicker({
   const minDob = dayjs().subtract(70, 'year');
   const handleDate = (newValue) => {
     const convertedValue = convertDate(newValue);
-
+    
     if (dayjs(convertedValue).isAfter(maxDob)) {
       setError('dob', {
         type: 'custom',
@@ -79,7 +79,7 @@ export default function CustomDatePicker({
     } else if (dayjs(convertedValue).isBefore(minDob)) {
       setError('dob', {
         type: 'custom',
-        message: 'User age must be in range 13 to 70 years.',
+        message: 'User age must be in range between 13 to 70 years.',
       });
     } else {
       setValue('dob', convertedValue);

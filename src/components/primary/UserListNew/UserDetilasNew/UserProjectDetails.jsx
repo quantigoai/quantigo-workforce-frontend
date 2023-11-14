@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Stack,
   styled,
@@ -176,7 +177,7 @@ const UserProjectDetails = ({ id }) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {data &&
+                  {data && data?.usersCompletedProjects ? (
                     data?.usersCompletedProjects?.map((row, i) => (
                       <StyledTableRow
                         key={i}
@@ -247,7 +248,12 @@ const UserProjectDetails = ({ id }) => {
                           </Typography>
                         </StyledTableCell>
                       </StyledTableRow>
-                    ))}
+                    ))
+                  ) : (
+                    <Alert severity="error">
+                      No project work history data found!
+                    </Alert>
+                  )}
                 </TableBody>
               </Table>
             </TableContainer>

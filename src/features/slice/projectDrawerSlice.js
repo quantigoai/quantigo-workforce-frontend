@@ -25,6 +25,7 @@ const initialState = {
   projectDrawer: {},
   total: 0,
   usersWorkHistory: [],
+  userProjectWorkHistory: [],
   usersWorkHistoryCount: 0,
   myWorkHistoryCount: 0,
   error: null,
@@ -135,6 +136,20 @@ export const getProjectDrawerById = createAsyncThunk(
   async (data) => {
     try {
       return await axios.get(`${url}/project-drawer/${data}`, {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+      });
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  },
+);
+export const getMyProjectWorkHistoryById = createAsyncThunk(
+  '/project-drawer/projectDrawerWorkHistory/id',
+  async (data) => {
+    try {
+      return await axios.get(`${url}/work-history/${data}`, {
         headers: {
           Authorization: `Bearer ${realToken()}`,
         },
@@ -670,6 +685,17 @@ const projectDrawerSlice = createSlice({
         state.error = null;
       })
       .addCase(getMyAvailableProjects.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(getMyProjectWorkHistoryById.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getMyProjectWorkHistoryById.fulfilled, (state, action) => {
+        state.userProjectWorkHistory = action.payload.data.workHistory;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getMyProjectWorkHistoryById.rejected, (state) => {
         state.isLoading = false;
       });
   },

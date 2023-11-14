@@ -2,6 +2,7 @@ import {
   Alert,
   Box,
   Button,
+  Paper,
   Stack,
   Table,
   TableBody,
@@ -18,6 +19,7 @@ import React, { useEffect } from "react";
 import LoadingComponent from "../../../../shared/Loading/LoadingComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyProjectWorkHistoryById } from "../../../../../features/slice/projectDrawerSlice";
+import "./index.css";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -40,9 +42,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   //   backgroundColor: "#FFFFFF",
   // },
   // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
 }));
 
 const MyWorkHistory = () => {
@@ -80,8 +79,8 @@ const MyWorkHistory = () => {
           ) : (
             <>
               {userProjectWorkHistory.usersCompletedProjects?.length ? (
-                <TableContainer>
-                  <Table aria-label="simple table">
+                <TableContainer id="table-2">
+                  <Table>
                     <TableHead>
                       <TableRow>
                         <StyledTableCell>Name</StyledTableCell>
@@ -107,8 +106,17 @@ const MyWorkHistory = () => {
                             <StyledTableCell
                               component="th"
                               scope="row"
+                              // width={({ lg: "500px" }, { xl: "300px" }, { xxl: "600px" })}
                               sx={{
                                 backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
+                                // width: { lg: "600px", xl: "600px", xxl: "600px" },
+                                // width: "300px",
+                                minWidth: "300px",
+                                // minWidth: {
+                                //   lg: "300px",
+                                //   xl: "300px",
+                                //   xxl: "300px",
+                                // },
                               }}
                             >
                               <Typography variant="wpf_p4_medium">{row.projectDrawerName}</Typography>
@@ -180,7 +188,7 @@ const MyWorkHistory = () => {
                                 {row.paymentStatus}
                               </Typography>
                             </StyledTableCell>
-                            <StyledTableCell align="left">
+                            <StyledTableCell className="tbody-last" align="left">
                               <Typography variant="wpf_p4_medium">
                                 <Button
                                   sx={{

@@ -1,11 +1,11 @@
-import {LoadingButton} from '@mui/lab';
-import {Typography} from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+import { Typography } from '@mui/material';
 import axios from 'axios';
-import React, {useEffect, useState} from 'react';
-import {CSVDownload} from 'react-csv';
-import {useSelector} from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { CSVDownload } from 'react-csv';
+import { useSelector } from 'react-redux';
 import useToaster from '../../../../customHooks/useToaster';
-import {realToken} from '../../../../helper/lib';
+import { realToken } from '../../../../helper/lib';
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
@@ -13,7 +13,7 @@ const DownloadEffectiveHours = () => {
   const { projectDrawer, isLoading } = useSelector(
     (state) => state.projectDrawer,
   );
-  const [jsonData, setJsonData] = useState([]);
+  const [jsonData, setJsonData] = useState(null);
   const csvHeader = [
     { label: 'Quantigo ID', key: 'user.qaiUserName' },
     { label: 'Total Bill', key: 'totalBill' },
@@ -28,7 +28,7 @@ const DownloadEffectiveHours = () => {
   const [initiateDownload, setInitiateDownload] = useState(false);
 
   useEffect(() => {
-    if (jsonData?.length) {
+    if (jsonData !== null) {
       setInitiateDownload(true);
     }
   }, [jsonData]);
@@ -51,6 +51,10 @@ const DownloadEffectiveHours = () => {
         },
       );
       const data = response.data.projectHistory.projectDrawerUsers;
+      console.log(
+        '🚀 ~ file: DownloadEffectiveHours.jsx:54 ~ fetchData ~ data:',
+        data,
+      );
       setJsonData(data);
     } catch (error) {
       toast.trigger(error.response.data.message, 'error');

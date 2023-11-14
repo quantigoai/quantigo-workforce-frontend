@@ -84,19 +84,8 @@ const LoadingComponent = ({ height }) => {
         // top: 50,
       }}
     >
-      {/* hlelsdflkasdfisadfjklsdfiouresdfj */}
       <BodyBox>
-        <img
-          width={100}
-          height={100}
-          src={qaiLogo}
-          alt="Loading..."
-          style={
-            {
-              // animation: `${fadeOut} 3s ease-in-out infinite`,
-            }
-          }
-        />
+        <img width={100} height={100} src={qaiLogo} alt="Loading..." />
       </BodyBox>
     </Box>
   );

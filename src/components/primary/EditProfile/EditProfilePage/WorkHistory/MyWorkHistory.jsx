@@ -62,12 +62,21 @@ const MyWorkHistory = () => {
       <Box sx={{}}>
         <Stack
           sx={{
-            border: "1px solid #E6ECF5",
+            // border: "1px solid #E6ECF5",
             borderRadius: "8px",
           }}
         >
           {isLoading ? (
-            <LoadingComponent />
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: { lg: "500px", xl: "620px", xxl: "680px" },
+              }}
+            >
+              <LoadingComponent height={"100%"} />
+            </Box>
           ) : (
             <>
               {userProjectWorkHistory.usersCompletedProjects?.length ? (

@@ -137,8 +137,8 @@ const MyprofileIndexNew = () => {
     });
   };
 
-  const DOB = moment.utc(user.dob).format('MMM Do, YYYY');
-  return (
+    const DOB = moment.utc(user.dob).format('MMM Do, YYYY');
+    return (
     <>
       <Box
         sx={{

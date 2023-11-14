@@ -7,10 +7,15 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {TableCell, Typography} from '@mui/material';
+import { TableCell, Typography } from '@mui/material';
 import React from 'react';
-import {capitalizeFirstLetter} from '../../../../../helper/capitalizeFirstWord';
-import {calculateTimeDifference, formatDate, formatDateDob, formatTime,} from '../../../../../helper/dateConverter';
+import { capitalizeFirstLetter } from '../../../../../helper/capitalizeFirstWord';
+import {
+  calculateTimeDifference,
+  formatDate,
+  formatDateDob,
+  formatTime,
+} from '../../../../../helper/dateConverter';
 import ChipGroup from '../../../../shared/CustomTable/ChipGroup';
 import ProjectDrawerStatusChip from '../../../../shared/FilterField/ProjectDrawerStatusChip';
 import ActiveJobsCell from '../CustomTableCell/ActiveJobsCell';
@@ -306,7 +311,15 @@ const MiddleTableColumn = ({ row, column }) => {
           scope="row"
         >
           <Typography variant="wpf_p4_regular" color="neutral.700">
-            {row[column?.field] ? 'Verified' : 'Not Verified'}
+            {row[column?.field]
+              ? 'Verified'
+              : row.isDocumentsSubmitted === 'rejected' &&
+                row.isNDAApproved === 'rejected'
+              ? 'Rejected'
+              : row.isDocumentsSubmitted === 'submitted' &&
+                row.isNDAApproved === 'submitted'
+              ? 'Pending'
+              : 'Not Verified'}
           </Typography>
         </TableCell>
       );

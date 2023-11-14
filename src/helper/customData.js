@@ -18,7 +18,8 @@ export const convertDate = (date) => {
         const cDate = new Date(date["$d"]);
         const currentDate = cDate && new Date(cDate)?.setHours(6);
         const newDate = currentDate && new Date(currentDate)?.toISOString();
-        return newDate || "2000-01-01T00:00:00.000Z";
+        // return newDate || "2000-01-01T00:00:00.000Z";
+        return newDate;
     }
 };
 

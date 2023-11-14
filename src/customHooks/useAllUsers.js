@@ -15,11 +15,17 @@
 
 /* eslint-disable no-prototype-builtins */
 
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { getAllSkills } from "../features/slice/skillSlice";
+import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {getAllSkills} from '../features/slice/skillSlice';
 
-const useAllUsers = (setAddSkills, setAddRoles, setPrevSkills, setPrevRoles, clearSearch) => {
+const useAllUsers = (
+  setAddSkills,
+  setAddRoles,
+  setPrevSkills,
+  setPrevRoles,
+  clearSearch,
+) => {
   const [filterValue, setFilterValue] = useState({});
   const dispatch = useDispatch();
   const [downLoadExportOpen, setDownloadExportOpen] = React.useState(false);
@@ -39,15 +45,21 @@ const useAllUsers = (setAddSkills, setAddRoles, setPrevSkills, setPrevRoles, cle
     setDetailsUserOpen(false);
   };
 
-  const handleChange = (event, skillsId = [], addRoles = [], isSkillsSame = true, isRolesSame = true) => {
+  const handleChange = (
+    event,
+    skillsId = [],
+    addRoles = [],
+    isSkillsSame = true,
+    isRolesSame = true,
+  ) => {
     if (!isSkillsSame) {
-      const field = "skills";
+      const field = 'skills';
       const value = skillsId;
       const filteredData = { ...filterValue };
       filteredData[field] = value;
       setFilterValue(filteredData);
     } else if (!isRolesSame) {
-      const field = "role";
+      const field = 'role';
       const value = addRoles;
       const filteredData = { ...filterValue };
       filteredData[field] = value;
@@ -79,10 +91,10 @@ const useAllUsers = (setAddSkills, setAddRoles, setPrevSkills, setPrevRoles, cle
   const handleId = (field) => {
     setFilteredCol((prev) => {
       if (prev.hasOwnProperty(field)) {
-        if (prev[field] === "asc") {
+        if (prev[field] === 'asc') {
           return {
             ...prev,
-            [field]: "desc",
+            [field]: 'desc',
           };
         } else {
           delete prev[field];
@@ -93,7 +105,7 @@ const useAllUsers = (setAddSkills, setAddRoles, setPrevSkills, setPrevRoles, cle
       }
       return {
         ...prev,
-        [field]: "asc",
+        [field]: 'asc',
       };
     });
   };

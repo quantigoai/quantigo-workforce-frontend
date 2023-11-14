@@ -7,24 +7,27 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Badge, styled, TableCell, Typography } from "@mui/material";
-import React from "react";
-
+import LockPersonIcon from '@mui/icons-material/LockPerson';
+import { Badge, Box, styled, TableCell, Typography } from '@mui/material';
+import React from 'react';
 const StyledBadge = styled(Badge)(() => ({
-  "& .MuiBadge-badge": {
+  '& .MuiBadge-badge': {
     right: -8,
     top: 10,
-    padding: "0 2px",
+    padding: '0 2px',
   },
 }));
-const FirstTableColumn = ({ row, column, handleDetailsPage, currentlyCheckedInProject }) => {
+const FirstTableColumn = ({
+  row,
+  column,
+  handleDetailsPage,
+  currentlyCheckedInProject,
+}) => {
   return (
     <>
       <TableCell
         sx={{
           minWidth: column.minWidth,
-          // border: "11px solid #EBF0F5",
-          // border: "2px solid red",
         }}
         className="tableColumn1st"
         key={column.id}
@@ -33,13 +36,45 @@ const FirstTableColumn = ({ row, column, handleDetailsPage, currentlyCheckedInPr
         {currentlyCheckedInProject === row._id ? (
           <StyledBadge variant="dot" color="success">
             <Typography variant="wpf_p4_medium" color="neutral.700">
-              {column.format && typeof value === "number" ? column.format(row[column?.field]) : row[column?.field]}
+              {column.format && typeof value === 'number'
+                ? column.format(row[column?.field])
+                : row[column?.field]}
             </Typography>
           </StyledBadge>
         ) : (
-          <Typography variant="wpf_p4_medium" color="neutral.700">
-            {column.format && typeof value === "number" ? column.format(row[column?.field]) : row[column?.field]}
-          </Typography>
+          <Box
+            sx={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              alignContent: 'center',
+              justifyContent: 'center',
+              gap: '5px',
+            }}
+          >
+            <Typography variant="wpf_p4_medium" color="neutral.700">
+              {column.format && typeof value === 'number'
+                ? column.format(row[column?.field])
+                : row[column?.field]}
+            </Typography>
+            {row.isBlocked && (
+              <LockPersonIcon
+                sx={{
+                  color: 'red',
+                  px: '0px',
+                  height: {
+                    lg: '10px',
+                    xl: '12px',
+                    xxl: '14px',
+                  },
+                  width: {
+                    lg: '10px',
+                    xl: '12px',
+                    xxl: '14px',
+                  },
+                }}
+              />
+            )}
+          </Box>
         )}
       </TableCell>
     </>

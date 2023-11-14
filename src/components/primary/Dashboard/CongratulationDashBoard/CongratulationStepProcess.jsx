@@ -1,12 +1,12 @@
-import { Box, Grid, Paper, Typography } from "@mui/material";
-import { useSelector } from "react-redux";
+import {Box, Grid, Paper, Typography} from "@mui/material";
+import {useSelector} from "react-redux";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { A11y, Navigation } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import ProcessCard2, { defaultIndex } from "./ProcessCard2";
+import {A11y, Navigation} from "swiper/modules";
+import {Swiper, SwiperSlide} from "swiper/react";
+import ProcessCard2, {defaultIndex} from "./ProcessCard2";
 import processList from "./ProcessLIst";
 import SLiderPrevNext from "./SLiderPrevNext";
 
@@ -47,15 +47,7 @@ const CongratulationStepProcess = () => {
             slidesPerView={1.8}
             spaceBetween={60}
             initialSlide={defaultIndex(user)}
-            // grabCursor={true}
-            // loopedSlides={100}
-            // loop={true}
-            // navigation
-            // centeredSlides={true}
-            // pagination={{ clickable: true }}
-            // scrollbar={{ draggable: true }}
-            // onSlideChange={() => console.log("slide change")}
-            // onSwiper={(swiper) => console.log(swiper)}
+
           >
             <SLiderPrevNext />
 

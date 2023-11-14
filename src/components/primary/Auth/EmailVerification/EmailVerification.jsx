@@ -1,11 +1,11 @@
-import { Box, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import {Box, Typography} from "@mui/material";
+import {styled} from "@mui/material/styles";
 import React from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import bgimg from "../../../../assets/images/LoginBG.png";
 import HeaderNav from "../../HomePage/HeaderNav";
-import { LoadingButtonStyle } from "../Login/Login";
+import {LoadingButtonStyle} from "../Login/Login";
 
 const BgBox = styled(Box)({
   backgroundImage: `url(${bgimg})`,

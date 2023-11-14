@@ -6,15 +6,15 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Box, Grid } from "@mui/material";
+import {Box, Grid} from "@mui/material";
 import React from "react";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { A11y, Navigation } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import {A11y, Navigation} from "swiper/modules";
+import {Swiper, SwiperSlide} from "swiper/react";
 import SLiderPrevNext from "../CongratulationDashBoard/SLiderPrevNext";
 import MiniStepCard from "./MiniStepCard";
 
@@ -36,15 +36,7 @@ const StepGuide = ({ isStep }) => {
         slidesPerView={1}
         spaceBetween={60}
         initialSlide={0}
-        // grabCursor={true}
-        // loopedSlides={100}
-        // loop={true}
-        // navigation
-        // centeredSlides={true}
-        // pagination={{ clickable: true }}
-        // scrollbar={{ draggable: true }}
-        // onSlideChange={() => console.log("slide change")}
-        // onSwiper={(swiper) => console.log(swiper)}
+
       >
         <Box
           sx={{

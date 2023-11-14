@@ -1,5 +1,6 @@
-import { FormControl, TextField, Typography, styled } from "@mui/material";
+import {FormControl, styled, TextField, Typography} from "@mui/material";
 import React from "react";
+
 const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "1px solid #E6ECF5 !important",
@@ -45,7 +46,7 @@ const PasswordFieldForProfile = ({ label, handleChange, disableItem, defaultValu
           error={yourPhoneNumberValidationFunction(phone) ? false : true}
           helperText={
             <Typography
-              variant="subtitle2"
+              variant="caption"
               sx={{
                 fontSize: { xl: "12px", xxl: "12px", lg: "9px" }
               }}

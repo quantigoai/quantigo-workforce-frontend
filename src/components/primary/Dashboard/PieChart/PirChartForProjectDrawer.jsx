@@ -1,8 +1,8 @@
-import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
+import {ArcElement, Chart as ChartJS, Legend, Tooltip} from "chart.js";
 import "chartjs-plugin-datalabels";
-import React, { useEffect, useState } from "react";
-import { Doughnut } from "react-chartjs-2";
-import { useSelector } from "react-redux";
+import React, {useEffect, useState} from "react";
+import {Doughnut} from "react-chartjs-2";
+import {useSelector} from "react-redux";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 const PirChartForProjectDrawer = () => {

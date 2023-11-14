@@ -5,8 +5,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import * as React from "react";
 
-import { Box } from "@mui/material";
-import { useParams } from "react-router-dom";
+import {Box} from "@mui/material";
+import {useParams} from "react-router-dom";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import FirstTableColumn from "./TableBody/FirstTableColumn";
 import LastTableColumn from "./TableBody/LastTableCoulmn";

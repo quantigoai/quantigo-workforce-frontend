@@ -1,6 +1,6 @@
-import { Box, Grid, Paper, Typography } from "@mui/material";
+import {Box, Grid, Paper, Typography} from "@mui/material";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import iconPendding from "../../../../assets/images/dashboardIcon/ApproveRe.svg";
 
 const ApprovedRequest = () => {

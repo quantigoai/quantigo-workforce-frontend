@@ -1,6 +1,6 @@
-import { MenuItem, Select, Typography, styled } from "@mui/material";
+import {MenuItem, Select, styled, Typography} from "@mui/material";
 import React from "react";
-import { MyFormControl } from "../../shared/CustomField/CustomDatePicker";
+import {MyFormControl} from "../../shared/CustomField/CustomDatePicker";
 
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 

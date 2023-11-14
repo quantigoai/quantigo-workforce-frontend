@@ -1,7 +1,7 @@
-import { Box, Button, Grid, Modal } from "@mui/material";
+import {Box, Button, Grid, Modal} from "@mui/material";
 import React from "react";
-import { FormProvider, useForm } from "react-hook-form";
-import { courseCategoryFields, courseLevelFields } from "../../../primary/AllUsers/userFilterOptions";
+import {FormProvider, useForm} from "react-hook-form";
+import {courseCategoryFields, courseLevelFields} from "../../../primary/AllUsers/userFilterOptions";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 import CSelectField from "./CSelectField";
 // import FormProvider from "../../../shared/FormProvider/FormProvider";

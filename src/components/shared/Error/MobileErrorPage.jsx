@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Typography } from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import Lottie from "lottie-react";
 import React from "react";
 import error from "../../shared/CustomSvgIcons/wired-lineal-1140-error.json";

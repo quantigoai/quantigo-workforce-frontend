@@ -1,12 +1,12 @@
-import { LoadingButton } from "@mui/lab";
-import { Box, Button, Modal, Typography } from "@mui/material";
+import {LoadingButton} from "@mui/lab";
+import {Box, Button, Modal, Typography} from "@mui/material";
 import React from "react";
 
 const ConfirmModal = ({ open, handleClose, handleChangePasswordSubmit, isLoading }) => {
   const style = {
     position: "absolute",
-    top: "40%",
-    left: "60%",
+    top: "50%",
+    left: "50%",
     transform: "translate(-50%, -50%)",
     width: 450,
     textAlign: "center",
@@ -102,6 +102,10 @@ const ConfirmModal = ({ open, handleClose, handleChangePasswordSubmit, isLoading
                 borderRadius: "10px",
                 color: "#fff",
                 width: "150px",
+                "&.Mui-disabled": {
+                  background: "#F0D8A8",
+                  color: "#FFFFFF",
+                },
                 ":hover": {
                   backgroundColor: "#F2A200",
                 },

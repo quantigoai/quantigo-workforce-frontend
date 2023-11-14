@@ -7,23 +7,21 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Paper, styled } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {Box, Paper, styled} from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import "remixicon/fonts/remixicon.css";
 import useToaster from "../../../customHooks/useToaster";
-import { setActivePath } from "../../../features/slice/activePathSlice";
+import {setActivePath} from "../../../features/slice/activePathSlice";
 import {
+  clearProjectDrawer,
   createProjectDrawer,
-  deleteProjectDrawerById,
   getAllProjectDrawers,
   getMyAvailableProjects,
-  setCurrentProjectDrawer,
   updateProjectDrawerById,
 } from "../../../features/slice/projectDrawerSlice";
-import { getAllSkills } from "../../../features/slice/skillSlice";
-import dataBuilder from "../../shared/CustomTable/dataBuilder";
+import {getAllSkills} from "../../../features/slice/skillSlice";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import EditProjectModal from "./EditProjectModal";
@@ -74,24 +72,25 @@ export const TablePaper = styled(Paper)({
 });
 const ProjectLIstIndex2 = () => {
   const dispatch = useDispatch();
-  const { isLightTheme } = useSelector((state) => state.theme);
-  const { skills } = useSelector((state) => state.skill);
-  const { projectDrawers, projectDrawer, total, error } = useSelector((state) => state.projectDrawer);
-  const { role } = useSelector((state) => state.user.user);
-  const [isDataLoading, setIsDataLoading] = useState(true);
-  const [isChildDataLoading, setIsChildDataLoading] = useState(false);
+  const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
-  const [myColumn, setMyColumn] = useState([]);
-  const [myRows, setMyRows] = useState([]);
-  const [isEditModal, setIsEditModal] = useState(false);
-  const [editModalOpen, setEditModalOpen] = useState(false);
-  const [detailProject, setDetailProject] = useState({});
   const toast = useToaster();
-  const [pagination, setPagination] = useState({
-    currentPage: 0,
-    pageSize: 10,
-  });
+  const searchRef = React.useRef(null);
+  const { projectDrawers, projectDrawer, total, error } = useSelector((state) => state.projectDrawer);
+  const { handleChangeSkill, addSkills, setAddSkills, count } = useHandleChange();
 
+  const [isDeleted, setIsDeleted] = useState(false);
+
+  const {
+    handleClearAllSkills,
+    handleEditSkill,
+    filteredSkillInfo,
+    editCount,
+    prevSkills,
+    editSkills,
+    isEdit,
+    setIsEdit,
+  } = useHandleEditChange();
   const {
     createProjectOpen,
     detailsProjectOpen,
@@ -112,85 +111,43 @@ const ProjectLIstIndex2 = () => {
     checked,
     setChecked,
     setAnnotatorPlatform,
-  } = useAllFunc();
-
-  const handleProjectDetailsOpen = (project) => {
-    setDetailsProjectOpen(true);
-    setDetailProject(project);
-  };
-  const handleDelete = (e) => {
-    dispatch(deleteProjectDrawerById(e.id))
-      .then((action) => {
-        if (action.payload.status === 200) {
-          toast.trigger(action.payload.data.message, "success");
-          handleChangePagination();
-        }
-      })
-      .catch(() => {
-        toast.trigger(error, "error");
-      });
-  };
-  const handleChangePagination = useCallback(() => {
-    setIsChildDataLoading(true);
-
-    if (checked) {
-      dispatch(
-        getMyAvailableProjects({
-          pagination,
-          annotatorPlatform,
-        })
-      ).then(() => {
-        setIsChildDataLoading(false);
-      });
-    } else {
-      dispatch(
-        getAllProjectDrawers({
-          pagination,
-          filteredData: filterValue,
-          ascDescOption: filteredCol,
-          search,
-        })
-      ).then(() => {
-        setIsChildDataLoading(false);
-      });
-    }
-  }, [dispatch, pagination, filterValue, filteredCol, search, checked]);
-
-  const { handleChangeSkill, addSkills, setAddSkills, count } = useHandleChange();
-
-  const handleCreateProjectClose = () => {
-    setCreateProjectOpen(false);
-    setAddSkills([]);
-  };
-
-  //create and edit project submit
-
-  const {
-    handleEditSkill,
-    filteredSkillInfo,
-    editCount,
-    prevSkills,
-    editSkills,
-    isEdit,
-    setIsEdit,
+    isDataLoading,
+    isChildDataLoading,
+    myColumn,
+    myRows,
+    isEditModal,
+    editModalOpen,
+    detailProject,
+    pagination,
+    skills,
+    setIsDataLoading,
+    setIsChildDataLoading,
+    setMyColumn,
+    setMyRows,
+    setIsEditModal,
+    setEditModalOpen,
+    setDetailProject,
+    setPagination,
+    handleDelete,
+    handleProjectDetailsOpen,
+    handleCreateProjectClose,
+    handleEditProjectClose,
+    handleClick,
+    skillId,
+    handleDetailsPage,
+    handleSearch,
+    clearSearch,
+    handleChangeAnnotatorFilter,
+    handleChangeCheck,
+  } = useAllFunc({
+    addSkills,
+    setAddSkills,
+    count,
+    searchRef,
     handleClearAllSkills,
-  } = useHandleEditChange();
-  console.log("🚀 ~ file: ProjectLIstIndex2.jsx:178 ~ ProjectLIstIndex2 ~ editSkills:", editSkills);
-
-  const handleEditProjectClose = () => {
-    handleClearAllSkills();
-    setEditModalOpen(false);
-    setIsEditModal(false);
-  };
-
-  const handleClick = (e) => {
-    dispatch(setCurrentProjectDrawer(e.id));
-    setEditModalOpen(true);
-    setIsEdit(true);
-    setIsEditModal(true);
-  };
-
-  const skillId = addSkills?.map((skill) => skill?._id);
+    setIsEdit,
+    setIsDeleted,
+  });
 
   const onSubmit = (data) => {
     console.log(skillId);
@@ -209,13 +166,16 @@ const ProjectLIstIndex2 = () => {
           toast.trigger(action.payload.data.message, "success");
           handleClearAllSkills();
           setEditModalOpen(false);
+          setIsEditModal(false);
         }
       });
     } else {
       const newData = {
         ...data,
         project_skills: skillId,
-        relevantDocuments: data.relevantDocuments.filter((doc) => doc.documentName !== "" || doc.documentUrl !== ""),
+        relevantDocuments: data.relevantDocuments.filter(
+          (doc) => doc.documentName !== '' || doc.documentUrl !== '',
+        ),
       };
       dispatch(createProjectDrawer(newData)).then((action) => {
         if (action.error) {
@@ -223,72 +183,73 @@ const ProjectLIstIndex2 = () => {
         }
         if (action.payload?.status === 201) {
           toast.trigger(action.payload.data.message, "success");
-          setCreateProjectOpen(false);
-          handleClearAllSkills();
-          handleChangePagination();
+          handleCreateProjectClose();
+          // --------------concept ----------------
+          dispatch(
+            getAllProjectDrawers({
+              pagination,
+              filteredData: filterValue,
+              ascDescOption: filteredCol,
+              search,
+            })
+            // getAllProjectDrawers({ pagination })
+          ).then((res) => {
+            setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
+            // navigate(`/allprojects?page=${pagination.currentPage + 1}&limit=${pagination.pageSize}`);
+            setIsDataLoading(false);
+          });
+          // --------------concept ----------------
+          // handleChangePagination();
         }
       });
     }
   };
 
-  const handleDetailsPage = (data) => {
-    const myData = {
-      id: data._id,
-    };
-    dispatch(setCurrentProjectDrawer(myData.id));
-    navigate(`/projectDetails/${myData.id}`);
-  };
-
-  const searchRef = React.useRef(null);
-
-  useEffect(() => {
-    dispatch(setActivePath("All Projects"));
-    setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
-    projectDrawers && projectDrawers.length > 0 && setMyRows(dataBuilder(projectDrawers));
-  }, [dispatch, projectDrawers]);
-
   useEffect(() => {
     dispatch(getAllSkills());
-    dispatch(getAllProjectDrawers({ pagination })).then(() => setIsDataLoading(false));
+    dispatch(setActivePath('All Projects'));
+    dispatch(clearProjectDrawer());
   }, []);
-
-  const handleSearch = (e) => {
-    setPagination((prevPagination) => ({
-      ...prevPagination,
-      currentPage: 0,
-    }));
-    setSearch(e.target.value);
-  };
-
-  const clearSearch = () => {
-    setSearch("");
-    searchRef.current.value = "";
-  };
-  const handleChangeAnnotatorFilter = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setAnnotatorPlatform(value);
-    setChecked(false);
-  };
-
-  const handleChangeCheck = (event) => {
-    setPagination((prevPagination) => ({
-      ...prevPagination,
-      currentPage: 0,
-    }));
-    setChecked(event.target.checked);
-  };
+  useEffect(() => {
+    setIsDataLoading(true);
+    if (checked) {
+      dispatch(
+        getMyAvailableProjects({
+          pagination,
+          annotatorPlatform,
+          filteredData: filterValue,
+          ascDescOption: filteredCol,
+          search,
+        })
+      ).then(() => {
+        setIsChildDataLoading(false);
+        setIsDataLoading(false);
+      });
+    } else {
+      dispatch(
+        getAllProjectDrawers({
+          pagination,
+          filteredData: filterValue,
+          ascDescOption: filteredCol,
+          search,
+        })
+      ).then((res) => {
+        setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
+        // navigate(`/allprojects?page=${pagination.currentPage + 1}&limit=${pagination.pageSize}`);
+        setIsDataLoading(false);
+      });
+    }
+  }, [pagination, search, filterValue, filteredCol, isDeleted]);
 
   return (
     <>
       <Box className="content">
         {/* TODO Filter functionality need to be checked for last page  */}
-        <HeaderBox>
+        <HeaderBox sx={{ backgroundColor: "" }}>
           <ProjectHeader
             isFilter={isFilter}
-            role={role}
-            isLightTheme={isLightTheme}
+            role={user.role}
+            // isLightTheme={isLightTheme}
             handleIsFilter={handleIsFilter}
             handleProjectCreateOpen={() => setCreateProjectOpen(true)}
             handleSearch={handleSearch}
@@ -301,7 +262,7 @@ const ProjectLIstIndex2 = () => {
           <ProjectSelectFIlter
             isFilter={isFilter}
             handleChangeAnnotatorFilter={handleChangeAnnotatorFilter}
-            role={role}
+            role={user.role}
             handleChangeCheck={handleChangeCheck}
             checked={checked}
             filterPDR={filterPDR}
@@ -318,12 +279,12 @@ const ProjectLIstIndex2 = () => {
         </HeaderBox>
 
         <Box className="contentBody">
-          <TablePaper>
+          <TablePaper sx={{ backgroundColor: "" }}>
             {isDataLoading ? (
               <LoadingComponent />
             ) : (
               <TableWrapper
-                role={role}
+                role={user.role}
                 handleDetailsPage={handleDetailsPage}
                 handleClick={handleClick}
                 handleDelete={handleDelete}
@@ -331,22 +292,21 @@ const ProjectLIstIndex2 = () => {
                 myRows={myRows}
                 pagination={pagination}
                 setPagination={setPagination}
-                handleChangePagination={handleChangePagination}
-                totalItems={total}
                 handleId={handleId}
                 filteredCol={filteredCol}
                 handleProjectDetailsOpen={handleProjectDetailsOpen}
-                data={projectDrawers}
                 isChildDataLoading={isChildDataLoading}
                 setIsChildDataLoading={setIsChildDataLoading}
+                setMyRows={setMyRows}
               />
+              // <></>
             )}
 
             <PaginationTable
               pagination={pagination}
               setPagination={setPagination}
-              handleChangePagination={handleChangePagination}
-              totalItems={total}
+              // handleChangePagination={handleChangePagination}
+              // totalItems={total}
             />
           </TablePaper>
         </Box>

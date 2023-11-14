@@ -1,30 +1,29 @@
 import {
-  Button,
-  FormControl,
-  Grid,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TextField,
-  Typography,
+    Button,
+    FormControl,
+    Grid,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    TextField,
+    Typography,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { Box } from "@mui/system";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import {styled} from "@mui/material/styles";
+import {Box} from "@mui/system";
+import React, {useEffect, useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
-import { setActivePath } from "../../../features/slice/activePathSlice";
-import { createASkill, getAllSkills } from "../../../features/slice/skillSlice";
+import {setActivePath} from "../../../features/slice/activePathSlice";
+import {createASkill, getAllSkills} from "../../../features/slice/skillSlice";
 
-import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
+import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
 import SkillDeleteModal from "./SkillDeleteModal";
 import SkillEdit from "./SkillEdit";
-// import io from "socket.io-client";
 
 export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {

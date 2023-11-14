@@ -6,11 +6,11 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { LoadingButton } from "@mui/lab";
-import { Box, Grid, styled, Typography } from "@mui/material";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { LoadingButtonStyle } from "../Login/Login";
+import {LoadingButton} from "@mui/lab";
+import {Box, styled, Typography} from "@mui/material";
+import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {LoadingButtonStyle} from "../Login/Login";
 
 const ForgetPasswordBox = styled(Box)({
   // display: "flex",

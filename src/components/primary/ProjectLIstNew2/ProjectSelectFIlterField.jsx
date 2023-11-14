@@ -1,7 +1,7 @@
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { MenuItem, Select, styled, Typography } from "@mui/material";
+import {MenuItem, Select, styled, Typography} from "@mui/material";
 import PropTypes from "prop-types";
-import { MyFormControl } from "../../shared/CustomField/CustomDatePicker";
+import {MyFormControl} from "../../shared/CustomField/CustomDatePicker";
 
 ProjectSelectFIlterField.propTypes = {
   name: PropTypes.string,

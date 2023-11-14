@@ -1,7 +1,6 @@
-import { FormControl, MenuItem, Select, styled, TextField, Typography } from "@mui/material";
-import PropTypes from "prop-types";
+import {FormControl, MenuItem, Select, styled, Typography} from "@mui/material";
 // import { Controller, useFormContext } from "react-hook-form";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 
 export const MySelect = styled(Select)(() => ({
   border: "2px solid #E6ECF5",

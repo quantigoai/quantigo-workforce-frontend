@@ -1,9 +1,9 @@
 import AddIcon from "@mui/icons-material/Add";
-import { Box, Button, Grid } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
-import { getAChapterById } from "../../../../features/slice/courseSlice";
+import {Box, Button, Grid} from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useLocation, useNavigate} from "react-router-dom";
+import {getAChapterById} from "../../../../features/slice/courseSlice";
 import CommonHeader from "../../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import ShowQuiz from "../../Quiz/QuizPage/ShowQuiz";
 import ShowResult from "../../Quiz/QuizPage/ShowResult/ShowResult";

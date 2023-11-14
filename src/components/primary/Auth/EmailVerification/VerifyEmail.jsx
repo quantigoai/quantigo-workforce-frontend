@@ -6,14 +6,14 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Box, Grid, Link, Paper, Typography } from "@mui/material";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {Box, Grid, Link, Paper, Typography} from "@mui/material";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import useToaster from "../../../../customHooks/useToaster";
-import { setActivePath } from "../../../../features/slice/activePathSlice";
-import { resendEmailVarification } from "../../../../features/slice/userSlice";
-import { LoadingButtonStyle } from "../Login/Login";
+import {setActivePath} from "../../../../features/slice/activePathSlice";
+import {resendEmailVarification} from "../../../../features/slice/userSlice";
+import {LoadingButtonStyle} from "../Login/Login";
 
 const VerifyEmail = () => {
   const dispatch = useDispatch();

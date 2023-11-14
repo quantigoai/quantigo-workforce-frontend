@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Typography } from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import React from "react";
 import confirmIcon from "../../../../assets/images/confirmprocess.svg";
 import step1 from "../../../../assets/images/stepsLogo/0.png";

@@ -7,10 +7,10 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, Chip, Grid, Link, Typography } from "@mui/material";
+import {Box, Chip, Grid, Link, Typography} from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
-import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
+import {useSelector} from "react-redux";
+import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
 import TakenTime from "../../shared/CountDown/TakenTime";
 import CategoryChip from "../Course/CategoryChip";
 import LevelChip from "../Course/CourseCardActionLebel/LevelChip";

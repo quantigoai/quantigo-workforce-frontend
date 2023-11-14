@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import {Grid, Typography} from "@mui/material";
 import React from "react";
 import LiveIcon from "../../../../assets/images/LiveIcon.svg";
 import TakenTimeAndDate from "../../../shared/CountDown/TakenTimeAndDate";

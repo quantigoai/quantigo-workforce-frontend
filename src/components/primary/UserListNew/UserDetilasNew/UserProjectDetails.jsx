@@ -1,21 +1,22 @@
 import {
-  Box,
-  Stack,
-  styled,
-  Table,
-  TableBody,
-  TableCell,
-  tableCellClasses,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
+    Box,
+    Stack,
+    styled,
+    Table,
+    TableBody,
+    TableCell,
+    tableCellClasses,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Typography,
 } from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import starIcon from "../../../../assets/images/StarIcon.svg";
-import { realToken } from "../../../../helper/lib";
+import {realToken} from "../../../../helper/lib";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     // backgroundColor: "#FAFCFF",

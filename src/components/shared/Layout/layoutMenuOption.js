@@ -12,20 +12,20 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import BenchmarkSvg from "../../../assets/images/wmp_svg/drawer/banchmarkIcon.svg";
-import CourseSvg from "../../../assets/images/wmp_svg/drawer/courseNew.svg";
-import DashboardSvg from "../../../assets/images/wmp_svg/drawer/DashboardIcon.svg";
-import JobSvg from "../../../assets/images/wmp_svg/drawer/jobsNew.svg";
-import ProjectSvg from "../../../assets/images/wmp_svg/drawer/projectNew.svg";
-import PaymentSvg from "../../../assets/images/wmp_svg/drawer/u_credit-card.svg";
-import UserSvg from "../../../assets/images/wmp_svg/drawer/userNew.svg";
+import BenchmarkSvg from '../../../assets/images/wmp_svg/drawer/banchmarkIcon.svg';
+import CourseSvg from '../../../assets/images/wmp_svg/drawer/courseNew.svg';
+import DashboardSvg from '../../../assets/images/wmp_svg/drawer/DashboardIcon.svg';
+import JobSvg from '../../../assets/images/wmp_svg/drawer/jobsNew.svg';
+import ProjectSvg from '../../../assets/images/wmp_svg/drawer/projectNew.svg';
+import PaymentSvg from '../../../assets/images/wmp_svg/drawer/u_credit-card.svg';
+import UserSvg from '../../../assets/images/wmp_svg/drawer/userNew.svg';
 
 const layoutMenuOption = () => {
   const adminOptions = [
-    { name: "Dashboard", icon: DashboardSvg },
-    { name: "All Users", icon: UserSvg },
-    { name: "All Projects", icon: ProjectSvg },
-    { name: "Skill", icon: BenchmarkSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
+    { name: 'All Users', icon: UserSvg },
+    { name: 'All Projects', icon: ProjectSvg },
+    { name: 'Skill', icon: BenchmarkSvg },
     // { name: "Course", icon: CourseSvg },
 
     // { name: "Projects", icon: ProjectSvg },
@@ -36,9 +36,9 @@ const layoutMenuOption = () => {
     // { name: "Hour Calculation", icon: HourSvg },
   ];
   const accountManagerOptions = [
-    { name: "Dashboard", icon: DashboardSvg },
-    { name: "Identity Verification", icon: CourseSvg },
-    
+    { name: 'Dashboard', icon: DashboardSvg },
+    { name: 'Verification', icon: CourseSvg },
+
     // { name: "All Users", icon: UserSvg },
     // { name: "All Projects", icon: ProjectSvg },
 
@@ -51,9 +51,9 @@ const layoutMenuOption = () => {
     // { name: "Hour Calculation", icon: HourSvg },
   ];
   const verifiedAccountManagerOptions = [
-    { name: "Dashboard", icon: DashboardSvg },
-    { name: "All Projects", icon: ProjectSvg },
-    { name: "All Users", icon: UserSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
+    { name: 'All Projects', icon: ProjectSvg },
+    { name: 'All Users', icon: UserSvg },
 
     // { name: "Projects", icon: ProjectSvg },
     // { name: "Jobs", icon: JobSvg },
@@ -63,8 +63,8 @@ const layoutMenuOption = () => {
     // { name: "Hour Calculation", icon: HourSvg },
   ];
   const projectManagerOptions = [
-    { name: "Dashboard", icon: DashboardSvg },
-    { name: "Identity Verification", icon: CourseSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
+    { name: 'Verification', icon: CourseSvg },
     // { name: "All Users", icon: UserSvg },
     // { name: "All Projects", icon: ProjectSvg },
 
@@ -76,8 +76,8 @@ const layoutMenuOption = () => {
     // { name: "Project Directory", icon: ProjectSvg },
   ];
   const projectLeadOptions = [
-    { name: "Dashboard", icon: DashboardSvg },
-    { name: "Identity Verification", icon: CourseSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
+    { name: 'Verification', icon: CourseSvg },
     // { name: "All Projects", icon: ProjectSvg },
     // { name: "Skill", icon: CourseSvg },
     // { name: "All Users", icon: UserSvg },
@@ -89,8 +89,8 @@ const layoutMenuOption = () => {
     // { name: "Sync Server", icon: SyncIcon },
   ];
   const projectCoordinatorOptions = [
-    { name: "Dashboard", icon: DashboardSvg },
-    { name: "Identity Verification", icon: CourseSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
+    { name: 'Verification', icon: CourseSvg },
 
     // { name: "Projects", icon: ProjectSvg },
 
@@ -99,55 +99,55 @@ const layoutMenuOption = () => {
     // { name: "Project Directory", icon: ProjectSvg },
   ];
 
-  const verifiedDmOptions = [
-    { name: "Home", icon: BenchmarkSvg },
-    { name: "Dashboard", icon: DashboardSvg },
-    { name: "All Projects", icon: ProjectSvg },
+  const verifiedPDLOptions = [
+    { name: 'Home', icon: BenchmarkSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
+    { name: 'All Projects', icon: ProjectSvg },
   ];
   const verifiedTrainerOptions = [
-    { name: "Home", icon: BenchmarkSvg },
-    { name: "Dashboard", icon: DashboardSvg },
+    { name: 'Home', icon: BenchmarkSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
     // { name: "All Users", icon: UserSvg },
   ];
   const verifiedProjectManagerOptions = [
-    { name: "Home", icon: BenchmarkSvg },
-    { name: "Dashboard", icon: DashboardSvg },
-    { name: "All Projects", icon: ProjectSvg },
+    { name: 'Home', icon: BenchmarkSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
+    { name: 'All Projects', icon: ProjectSvg },
 
     // { name: "All Users", icon: UserSvg },
   ];
   const verifiedProjectLeadOptions = [
-    { name: "Home", icon: BenchmarkSvg },
-    { name: "Dashboard", icon: DashboardSvg },
-    { name: "All Projects", icon: ProjectSvg },
+    { name: 'Home', icon: BenchmarkSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
+    { name: 'All Projects', icon: ProjectSvg },
 
     // { name: "All Users", icon: UserSvg },
   ];
   const verifiedProjectCoordinatorOptions = [
-    { name: "Home", icon: BenchmarkSvg },
-    { name: "Dashboard", icon: DashboardSvg },
-    { name: "All Projects", icon: ProjectSvg },
+    { name: 'Home', icon: BenchmarkSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
+    { name: 'All Projects', icon: ProjectSvg },
 
     // { name: "Projects", icon: ProjectSvg },
     // { name: "All Users", icon: UserSvg },
   ];
   const verifiedReviewerOptions = [
     // { name: "Home", icon: BenchmarkSvg },
-    { name: "Dashboard", icon: DashboardSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
   ];
   const verifiedDevOptions = [
-    { name: "Home", icon: BenchmarkSvg },
-    { name: "Dashboard", icon: DashboardSvg },
+    { name: 'Home', icon: BenchmarkSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
   ];
   const verifiedRecruitOptions = [
     // { name: "Home", icon: BenchmarkSvg },
-    { name: "Dashboard", icon: DashboardSvg },
-    { name: "All Users", icon: UserSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
+    { name: 'All Users', icon: UserSvg },
   ];
 
-  const dmOptions = [
-    { name: "Dashboard", icon: DashboardSvg },
-    { name: "Identity Verification", icon: CourseSvg },
+  const pdlOptions = [
+    { name: 'Dashboard', icon: DashboardSvg },
+    { name: 'Verification', icon: CourseSvg },
 
     // { name: "All Projects", icon: ProjectSvg },
     // { name: "Annotator List", icon: UserSvg },
@@ -161,8 +161,8 @@ const layoutMenuOption = () => {
   ];
 
   const anntatorOptions = [
-    { name: "Dashboard", icon: DashboardSvg },
-    { name: "Identity Verification", icon: CourseSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
+    { name: 'Verification', icon: CourseSvg },
 
     // { name: "All Projects", icon: ProjectSvg },
     // { name: "Course", icon: CourseSvg },
@@ -170,79 +170,79 @@ const layoutMenuOption = () => {
     // { name: "Payment", icon: PaymentSvg },
   ];
   const verifiedAnnotatorOptions = [
-    { name: "Dashboard", icon: DashboardSvg },
-    // { name: "Identity Verification", icon: CourseSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
+    // { name: "Verification", icon: CourseSvg },
 
-    { name: "All Projects", icon: ProjectSvg },
+    { name: 'All Projects', icon: ProjectSvg },
     // { name: "Course", icon: CourseSvg },
     // { name: "Jobs", icon: JobSvg },
     // { name: "Payment", icon: PaymentSvg },
   ];
 
   const level0AnnotatorOptions = [
-    { name: "Dashboard", icon: DashboardSvg },
-    { name: "Identity Verification", icon: CourseSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
+    { name: 'Verification', icon: CourseSvg },
   ];
   const Verifiedlevel0AnnotatorOptions = [
-    { name: "Dashboard", icon: DashboardSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
     // { name: "Course", icon: CourseSvg },
   ];
   const trainerOptions = [
-    { name: "Dashboard", icon: DashboardSvg },
-    { name: "Identity Verification", icon: CourseSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
+    { name: 'Verification', icon: CourseSvg },
 
     // { name: "Course", icon: CourseSvg },
     // { name: "Skill", icon: SkillIcon },
   ];
 
   const reviewerOptions = [
-    { name: "Dashboard", icon: DashboardSvg },
-    { name: "Identity Verification", icon: CourseSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
+    { name: 'Verification', icon: CourseSvg },
 
     // { name: "Course", icon: CourseSvg },
     // { name: "Jobs", icon: JobSvg },
   ];
 
   const recruitOptions = [
-    { name: "Dashboard", icon: DashboardSvg },
-    { name: "Identity Verification", icon: CourseSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
+    { name: 'Verification', icon: CourseSvg },
     // { name: "All Projects", icon: ProjectSvg },
     // { name: "Users", icon: UserSvg },
     // { name: "All Users", icon: UserSvg },
   ];
 
   const unverifiedOptions = [
-    { name: "Dashboard", icon: DashboardSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
     {
-      name: "Verify Email",
+      name: 'Verify Email',
       icon: DashboardSvg,
     },
   ];
   const devOptions = [
-    { name: "Verify Email", icon: DashboardSvg },
-    { name: "Identity Verification", icon: CourseSvg },
-    { name: "All Users", icon: UserSvg },
-    { name: "All Projects", icon: ProjectSvg },
-    { name: "Annotator List", icon: UserSvg },
-    { name: "Archive Job", icon: JobSvg },
+    { name: 'Verify Email', icon: DashboardSvg },
+    { name: 'Verification', icon: CourseSvg },
+    { name: 'All Users', icon: UserSvg },
+    { name: 'All Projects', icon: ProjectSvg },
+    { name: 'Annotator List', icon: UserSvg },
+    { name: 'Archive Job', icon: JobSvg },
     // { name: "Calculate Annotation", icon: HourSvg },
-    { name: "Course", icon: CourseSvg },
-    { name: "Benchmark", icon: BenchmarkSvg },
-    { name: "Create Course", icon: CourseSvg },
-    { name: "Create Job", icon: JobSvg },
-    { name: "Create Quiz", icon: CourseSvg },
-    { name: "Dashboard", icon: DashboardSvg },
-    { name: "Job List", icon: JobSvg },
-    { name: "On Going Job", icon: JobSvg },
-    { name: "Projects", icon: ProjectSvg },
-    { name: "Quiz", icon: CourseSvg },
-    { name: "Reviewer Course", icon: CourseSvg },
-    { name: "Reviewer Job Lst", icon: JobSvg },
-    { name: "Reviewer List", icon: UserSvg },
-    { name: "Skill", icon: PaymentSvg },
-    { name: "Show Quiz", icon: CourseSvg },
-    { name: "Users", icon: UserSvg },
-    { name: "Sync Server", icon: BenchmarkSvg },
+    { name: 'Course', icon: CourseSvg },
+    { name: 'Benchmark', icon: BenchmarkSvg },
+    { name: 'Create Course', icon: CourseSvg },
+    { name: 'Create Job', icon: JobSvg },
+    { name: 'Create Quiz', icon: CourseSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
+    { name: 'Job List', icon: JobSvg },
+    { name: 'On Going Job', icon: JobSvg },
+    { name: 'Projects', icon: ProjectSvg },
+    { name: 'Quiz', icon: CourseSvg },
+    { name: 'Reviewer Course', icon: CourseSvg },
+    { name: 'Reviewer Job Lst', icon: JobSvg },
+    { name: 'Reviewer List', icon: UserSvg },
+    { name: 'Skill', icon: PaymentSvg },
+    { name: 'Show Quiz', icon: CourseSvg },
+    { name: 'Users', icon: UserSvg },
+    { name: 'Sync Server', icon: BenchmarkSvg },
   ];
 
   return {
@@ -250,7 +250,7 @@ const layoutMenuOption = () => {
     projectManagerOptions,
     projectLeadOptions,
     projectCoordinatorOptions,
-    verifiedDmOptions,
+    verifiedPDLOptions,
     verifiedTrainerOptions,
     verifiedProjectManagerOptions,
     verifiedProjectLeadOptions,
@@ -258,7 +258,7 @@ const layoutMenuOption = () => {
     verifiedReviewerOptions,
     verifiedDevOptions,
     verifiedRecruitOptions,
-    dmOptions,
+    pdlOptions,
     anntatorOptions,
     level0AnnotatorOptions,
     Verifiedlevel0AnnotatorOptions,

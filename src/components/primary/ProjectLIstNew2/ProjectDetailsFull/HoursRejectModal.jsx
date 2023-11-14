@@ -6,11 +6,11 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Box, Button, Grid, Modal, styled, TextField, Typography } from "@mui/material";
+import {Box, Button, Grid, Modal, styled, TextField, Typography} from "@mui/material";
 import React from "react";
 
 import ProjectModalHeader from "../ProjectModalHeader";
-import { LoadingButton } from "@mui/lab";
+import {LoadingButton} from "@mui/lab";
 
 export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {

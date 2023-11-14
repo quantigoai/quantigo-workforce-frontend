@@ -1,16 +1,16 @@
-import { Box, Button, Grid, Modal, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {Box, Button, Grid, Modal, Typography} from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import useToaster from "../../../../customHooks/useToaster";
-import { getAllCourses } from "../../../../features/slice/courseSlice";
-import { getAllSkills } from "../../../../features/slice/skillSlice";
-import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
+import {getAllCourses} from "../../../../features/slice/courseSlice";
+import {getAllSkills} from "../../../../features/slice/skillSlice";
+import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
 import {
-  courseCategoryFields,
-  courseLanguageFields,
-  courseLevelFields,
+    courseCategoryFields,
+    courseLanguageFields,
+    courseLevelFields,
 } from "../../../primary/AllUsers/userFilterOptions";
 import DocumentImageUpload from "../../Documents/DocumentImageUpload";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";

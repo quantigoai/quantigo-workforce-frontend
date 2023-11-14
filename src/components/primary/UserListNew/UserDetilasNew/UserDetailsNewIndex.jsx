@@ -1,10 +1,10 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import * as React from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../../customHooks/useToaster";
-import { changeRole, deleteOrActivateUser, updateAUserById } from "../../../../features/slice/userSlice";
+import {changeRole, deleteOrActivateUser, updateAUserById} from "../../../../features/slice/userSlice";
 import CommonModalFooter from "../../../shared/CommonModal/CommonModalFooter";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 import DetailsTab from "./DetailsTab";
@@ -115,7 +115,8 @@ export default function UserDetailsNewIndex({ open, handleClose, role }) {
           toast.trigger("User role has been changed successfully.", "success");
           setRoleValue("");
         } else {
-          toast.trigger("Failed to change user role, try again later.", "error");
+          // toast.trigger("Failed to change user role, try again later.", "error");
+          toast.trigger(action.error.message, "error");
         }
       });
 
@@ -123,9 +124,10 @@ export default function UserDetailsNewIndex({ open, handleClose, role }) {
       dispatch(deleteOrActivateUser(finalStatusData)).then((action) => {
         if (action.payload?.status === 200) {
           if (actionStatus === "delete") {
-            window.location.reload(false);
             toast.trigger("User deleted successfully from the application.", "success");
             setActionStatus("");
+            handleClose();
+
           } else {
             toast.trigger("User status has been changed successfully.", "success");
             setActionStatus("");

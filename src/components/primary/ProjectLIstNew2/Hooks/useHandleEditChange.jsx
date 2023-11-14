@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
 
 const useHandleEditChange = () => {
   const { projectDrawer } = useSelector((state) => state.projectDrawer);
@@ -11,12 +11,15 @@ const useHandleEditChange = () => {
 
   const [editSkills, setEditSkills] = useState(projectDrawer.project_skills);
   const [editCount, setEditCount] = useState(
-    projectDrawer?.project_skills?.length > 0 ? projectDrawer?.project_skills?.length : 0
-  );
-
+    projectDrawer?.project_skills?.length > 0
+    ? projectDrawer?.project_skills?.length
+    : 0,
+    );
+    
   useEffect(() => {
     setEditCount(prevSkills?.length - 1);
     setPrevSkills(projectDrawer?.project_skills);
+    setEditSkills(projectDrawer?.project_skills);
   }, [prevSkills?.length, projectDrawer?.project_skills, isEdit]);
 
   const handleEditSkill = (event) => {

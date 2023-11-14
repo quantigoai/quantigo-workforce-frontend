@@ -1,4 +1,4 @@
-import { Grid, Stack, Typography } from "@mui/material";
+import {Grid, Stack, Typography} from "@mui/material";
 import React from "react";
 
 const DetailsItem = ({ Item1Title, Item1, Item2Title, Item2, isLightTheme }) => {

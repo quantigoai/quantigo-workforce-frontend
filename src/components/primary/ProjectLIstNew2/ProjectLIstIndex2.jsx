@@ -7,13 +7,13 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Box, Paper, styled} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { Box, Paper, styled } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import "remixicon/fonts/remixicon.css";
 import useToaster from "../../../customHooks/useToaster";
-import {setActivePath} from "../../../features/slice/activePathSlice";
+import { setActivePath } from "../../../features/slice/activePathSlice";
 import {
   clearProjectDrawer,
   createProjectDrawer,
@@ -21,7 +21,7 @@ import {
   getMyAvailableProjects,
   updateProjectDrawerById,
 } from "../../../features/slice/projectDrawerSlice";
-import {getAllSkills} from "../../../features/slice/skillSlice";
+import { getAllSkills } from "../../../features/slice/skillSlice";
 import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import EditProjectModal from "./EditProjectModal";
@@ -172,9 +172,7 @@ const ProjectLIstIndex2 = () => {
       const newData = {
         ...data,
         project_skills: skillId,
-        relevantDocuments: data.relevantDocuments.filter(
-          (doc) => doc.documentName !== '' || doc.documentUrl !== '',
-        ),
+        relevantDocuments: data.relevantDocuments.filter((doc) => doc.documentName !== "" || doc.documentUrl !== ""),
       };
       dispatch(createProjectDrawer(newData)).then((action) => {
         if (action.error) {
@@ -206,7 +204,7 @@ const ProjectLIstIndex2 = () => {
 
   useEffect(() => {
     dispatch(getAllSkills());
-    dispatch(setActivePath('All Projects'));
+    dispatch(setActivePath("All Projects"));
     dispatch(clearProjectDrawer());
   }, []);
   useEffect(() => {

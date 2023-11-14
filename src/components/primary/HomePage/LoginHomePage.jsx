@@ -1,10 +1,13 @@
-import {Box, keyframes, styled} from "@mui/material";
-import React from "react";
-import {useNavigate} from "react-router-dom";
+import { Box, keyframes, styled } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Login from "../Auth/Login/Login";
 import CommonDesign from "./CommonDesign";
 import HeaderNav from "./HeaderNav";
 import "./bd.css";
+import { tokenCheck } from "../../../App";
+import { useDispatch } from "react-redux";
+import { alreadyLogin } from "../../../features/slice/userSlice";
 
 const colorbg = keyframes`
         "0%": {
@@ -38,11 +41,28 @@ const Keyframes = styled("div")({
 });
 
 const LoginHomePage = () => {
-  const navigate = useNavigate();
+  const [isTokenLoading, setIsTokenLoading] = useState(false);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    setIsTokenLoading(true);
+    if (tokenCheck()) {
+      dispatch(alreadyLogin(tokenCheck()))
+        .then((res) => {
+          setIsTokenLoading(false);
+        })
+        .catch((err) => {
+          setIsTokenLoading(false);
+        });
+    }
+    setIsTokenLoading(false);
+  }, [dispatch]);
+  // const navigate = useNavigate();
 
   return (
     <>
       {/* <Keyframes> */}
+      {/* {!isTokenLoading && */}
       <Box className="container">
         <Box sx={{ height: "8%" }}>
           <HeaderNav />
@@ -53,6 +73,7 @@ const LoginHomePage = () => {
           </CommonDesign>
         </Box>
       </Box>
+      {/* } */}
       {/* </Keyframes> */}
     </>
   );

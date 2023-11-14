@@ -64,7 +64,7 @@ const UsersFilter = ({
               flexDirection: "row",
             }}
           >
-            {role === "admin" || role === "recruitment_manager" ? (
+            {role === "admin" || role === "recruitment_manager"  || role === "account_manager" ? (
               <>
                 <Stack
                   sx={{

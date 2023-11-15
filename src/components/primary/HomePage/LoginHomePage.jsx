@@ -1,13 +1,12 @@
-import { Box, keyframes, styled } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Login from "../Auth/Login/Login";
-import CommonDesign from "./CommonDesign";
-import HeaderNav from "./HeaderNav";
-import "./bd.css";
-import { tokenCheck } from "../../../App";
-import { useDispatch } from "react-redux";
-import { alreadyLogin } from "../../../features/slice/userSlice";
+import { Box, keyframes, styled } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { tokenCheck } from '../../../App';
+import { alreadyLogin } from '../../../features/slice/userSlice';
+import Login from '../Auth/Login/Login';
+import CommonDesign from './CommonDesign';
+import HeaderNav from './HeaderNav';
+import './bd.css';
 
 const colorbg = keyframes`
         "0%": {
@@ -21,8 +20,8 @@ const colorbg = keyframes`
         },
 `;
 
-const Keyframes = styled("div")({
-  height: "100vh",
+const Keyframes = styled('div')({
+  height: '100vh',
   // width: "100%",
   //   animation: "${colorbg} 7s ease infinite",
   //   background:
@@ -41,7 +40,7 @@ const Keyframes = styled("div")({
 });
 
 const LoginHomePage = () => {
-  const [isTokenLoading, setIsTokenLoading] = useState(false);
+  const [isTokenLoading, setIsTokenLoading] = useState(true);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -64,10 +63,10 @@ const LoginHomePage = () => {
       {/* <Keyframes> */}
       {/* {!isTokenLoading && */}
       <Box className="container">
-        <Box sx={{ height: "8%" }}>
+        <Box sx={{ height: '8%' }}>
           <HeaderNav />
         </Box>
-        <Box sx={{ height: "92%" }}>
+        <Box sx={{ height: '92%' }}>
           <CommonDesign>
             <Login />
           </CommonDesign>

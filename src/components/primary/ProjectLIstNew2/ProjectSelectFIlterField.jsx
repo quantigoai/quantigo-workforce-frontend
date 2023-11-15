@@ -63,7 +63,7 @@ export default function ProjectSelectFIlterField({ options, label, handleChange,
         </MenuItem>
         {options.map((option) => (
           <MenuItem
-            sx={{ fontFamily: "Inter", fontSize: { xl: "14px", xxl: "14px", lg: "12px" } }}
+            sx={{ fontFamily: "Inter", fontSize: { xl: "14px", xxl: "16px", lg: "12px" } }}
             key={option.value}
             fullWidth
             value={option.value}

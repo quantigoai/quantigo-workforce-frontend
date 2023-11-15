@@ -53,26 +53,27 @@ const LoginHomePage = () => {
         .catch((err) => {
           setIsTokenLoading(false);
         });
+    } else {
+      setIsTokenLoading(false);
     }
-    setIsTokenLoading(false);
   }, [dispatch]);
   // const navigate = useNavigate();
 
   return (
     <>
       {/* <Keyframes> */}
-      {/* {!isTokenLoading && */}
-      <Box className="container">
-        <Box sx={{ height: '8%' }}>
-          <HeaderNav />
+      {!isTokenLoading && (
+        <Box className="container">
+          <Box sx={{ height: '8%' }}>
+            <HeaderNav />
+          </Box>
+          <Box sx={{ height: '92%' }}>
+            <CommonDesign>
+              <Login />
+            </CommonDesign>
+          </Box>
         </Box>
-        <Box sx={{ height: '92%' }}>
-          <CommonDesign>
-            <Login />
-          </CommonDesign>
-        </Box>
-      </Box>
-      {/* } */}
+      )}
       {/* </Keyframes> */}
     </>
   );

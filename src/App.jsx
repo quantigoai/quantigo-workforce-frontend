@@ -75,8 +75,9 @@ function App() {
         .catch((err) => {
           setIsTokenLoading(false);
         });
+    } else {
+      setIsTokenLoading(false);
     }
-    setIsTokenLoading(false);
   }, [dispatch]);
 
   const clearReduxData = useClearReduxData;
@@ -108,14 +109,7 @@ function App() {
       <>
         {isTokenLoading ? (
           <LoadingComponent />
-        ) :
-        
-          
-          
-        // isLoading && !isLoading ? (
-        // <LoadingComponent />
-        // ) :
-        isLoggedIn ? (
+        ) : isLoggedIn ? (
           <Suspense fallback={<LoadingComponent />}>
             <LayoutNew>{<Routers />}</LayoutNew>
           </Suspense>

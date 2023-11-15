@@ -459,14 +459,14 @@ const userSlice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(alreadyLogin.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.isLoggedIn = true;
         state.user = action.payload.data;
+        state.isLoading = false;
       })
       .addCase(alreadyLogin.rejected, (state) => {
-        state.isLoading = false;
         state.isLoggedIn = false;
         state.error = 'Login failed';
+        state.isLoading = false;
       })
       .addCase(readMyProfile.pending, (state) => {
         state.isLoading = true;
@@ -819,12 +819,12 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(emailVerificationLink.fulfilled, (state, action) => {
-        state.error = null;
+                state.error = null;
         state.user.isEmailVerified = action.payload.data.user.isEmailVerified;
         state.isLoading = false;
       })
       .addCase(emailVerificationLink.rejected, (state, action) => {
-        state.error = action.error.message;
+                state.error = action.error.message;
         state.isLoading = false;
       })
       .addCase(changePassword.pending, (state) => {

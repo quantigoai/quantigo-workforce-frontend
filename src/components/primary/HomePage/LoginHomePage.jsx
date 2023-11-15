@@ -5,7 +5,7 @@ import Login from "../Auth/Login/Login";
 import CommonDesign from "./CommonDesign";
 import HeaderNav from "./HeaderNav";
 import "./bd.css";
-import { tokenCheck } from "../../../App";
+// import { tokenCheck } from "../../../App";
 import { useDispatch } from "react-redux";
 import { alreadyLogin } from "../../../features/slice/userSlice";
 
@@ -44,19 +44,19 @@ const LoginHomePage = () => {
   const [isTokenLoading, setIsTokenLoading] = useState(false);
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    setIsTokenLoading(true);
-    if (tokenCheck()) {
-      dispatch(alreadyLogin(tokenCheck()))
-        .then((res) => {
-          setIsTokenLoading(false);
-        })
-        .catch((err) => {
-          setIsTokenLoading(false);
-        });
-    }
-    setIsTokenLoading(false);
-  }, [dispatch]);
+  // useEffect(() => {
+  //   setIsTokenLoading(true);
+  //   if (tokenCheck()) {
+  //     dispatch(alreadyLogin(tokenCheck()))
+  //       .then((res) => {
+  //         setIsTokenLoading(false);
+  //       })
+  //       .catch((err) => {
+  //         setIsTokenLoading(false);
+  //       });
+  //   }
+  //   setIsTokenLoading(false);
+  // }, [dispatch]);
   // const navigate = useNavigate();
 
   return (

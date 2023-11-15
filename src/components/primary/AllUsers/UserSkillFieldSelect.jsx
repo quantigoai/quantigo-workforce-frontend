@@ -26,19 +26,19 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
       <MyFormControl fullWidth>
         <MySelect
           sx={{
-            backgroundColor: "neutral.N000",
+            backgroundColor: 'neutral.N000',
             height: {
-              lg: "30px",
-              xl: "36px",
-              xxl: "36px",
+              lg: '30px',
+              xl: '36px',
+              xxl: '36px',
             },
 
-            fontSize: { lg: "12px", xl: "14px", xxl: "14px" },
-            fontFamily: "Inter",
+            fontSize: { lg: '12px', xl: '14px', xxl: '14px' },
+            fontFamily: 'Inter',
           }}
           displayEmpty
           multiple
-          value={addSkills?.map((skill) => skill.name) || ""}
+          value={addSkills?.map((skill) => skill.name) || ''}
           onChange={handleChangeSkill}
           IconComponent={KeyboardArrowDownIcon}
           renderValue={(selected) => {
@@ -52,11 +52,11 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
             return (
               <Box
                 sx={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(2,1fr)",
-                  alignItems: "center",
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(2,1fr)',
+                  alignItems: 'center',
                   gap: 0.5,
-                  fontFamily: "Inter",
+                  fontFamily: 'Inter',
                 }}
               >
                 {selected?.map(
@@ -65,23 +65,32 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
                       <Chip
                         sx={{
                           height: {
-                            lg: "20px",
-                            xl: "24px",
-                            xxl: "28px",
+                            lg: '20px',
+                            xl: '24px',
+                            xxl: '28px',
                           },
-                          borderRadius: "32px",
-                          border: "1px solid #E6ECF5",
-                          color: "neutral.700",
-                          fontFamily: "Inter",
-                          fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
+                          borderRadius: '32px',
+                          border: '1px solid #E6ECF5',
+                          color: 'neutral.700',
+                          fontFamily: 'Inter',
+                          fontSize: { xl: '14px', xxl: '14px', lg: '12px' },
+                          color: 'neutral.700',
                         }}
                         key={value}
                         label={value}
                       />
-                    )
+                    ),
                 )}
                 {selected?.length > 1 && (
-                  <Typography variant="h7" sx={{ fontFamily: "Inter", pl: "4px", mt: 0, color: "neutral.700" }}>
+                  <Typography
+                    variant="h7"
+                    sx={{
+                      fontFamily: 'Inter',
+                      pl: '4px',
+                      mt: 0,
+                      color: 'neutral.700',
+                    }}
+                  >
                     + {count} more
                   </Typography>
                 )}
@@ -94,9 +103,13 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
         >
           {skills?.map((skill) => (
             <MenuItem
-              sx={{ fontFamily: "Inter", fontSize: { xl: "14px", xxl: "16px", lg: "12px" } }}
+              sx={{
+                fontFamily: 'Inter',
+                color: 'neutral.700',
+                fontSize: { xl: '14px', xxl: '16px', lg: '12px' },
+              }}
               key={skill._id}
-              value={skill.name || ""}
+              value={skill.name || ''}
             >
               {skill.name}
             </MenuItem>

@@ -1,3 +1,13 @@
+/*
+ * Filename: /home/tanzim/workstation/Office/quantigo-workforce-frontend/src/components/primary/HomePage/LoginHomePage.jsx
+ * Path: /home/tanzim/workstation/Office/quantigo-workforce-frontend
+ * Created Date: Wednesday, November 15th 2023, 2:00:41 pm
+ * Author: Tanzim Ahmed
+ * 
+ * Copyright (c) 2023 Tanzim Ahmed
+ */
+
+
 import { Box, keyframes, styled } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -53,26 +63,27 @@ const LoginHomePage = () => {
         .catch((err) => {
           setIsTokenLoading(false);
         });
+    } else {
+      setIsTokenLoading(false);
     }
-    setIsTokenLoading(false);
   }, [dispatch]);
   // const navigate = useNavigate();
 
   return (
     <>
       {/* <Keyframes> */}
-      {/* {!isTokenLoading && */}
-      <Box className="container">
-        <Box sx={{ height: '8%' }}>
-          <HeaderNav />
+      {!isTokenLoading && (
+        <Box className="container">
+          <Box sx={{ height: '8%' }}>
+            <HeaderNav />
+          </Box>
+          <Box sx={{ height: '92%' }}>
+            <CommonDesign>
+              <Login />
+            </CommonDesign>
+          </Box>
         </Box>
-        <Box sx={{ height: '92%' }}>
-          <CommonDesign>
-            <Login />
-          </CommonDesign>
-        </Box>
-      </Box>
-      {/* } */}
+      )}
       {/* </Keyframes> */}
     </>
   );

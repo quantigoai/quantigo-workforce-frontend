@@ -26,6 +26,7 @@ const initialState = {
   total: 0,
   usersWorkHistory: [],
   userProjectWorkHistory: [],
+  projectMeta: {},
   usersWorkHistoryCount: 0,
   myWorkHistoryCount: 0,
   error: null,
@@ -464,7 +465,7 @@ const projectDrawerSlice = createSlice({
       .addCase(getAllProjectDrawers.fulfilled, (state, action) => {
         state.isLoading = false;
         state.projectDrawers = action.payload.data.projectDrawers;
-
+        state.projectMeta = action.payload.data.meta;
         if (action.payload.data?.filteredTotalCount === 0) {
           state.total = action.payload.data.filteredTotalCount;
         } else if (action.payload.data?.filteredTotalCount) {

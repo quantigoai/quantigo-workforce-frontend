@@ -1,9 +1,14 @@
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import {Box, Button, MenuItem, Select, Typography} from '@mui/material';
-import {useCallback, useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
-import {useLocation, useParams} from 'react-router-dom';
+import { Box, Button, MenuItem, Select, Typography } from '@mui/material';
+import { useCallback, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 
 const paginationOptions = [
   { value: 10, label: 10 },
@@ -22,36 +27,92 @@ const paginationOptions = [
  * @returns {JSX.Element} - Pagination component for the table.
  */
 const PaginationTable = ({ pagination, setPagination }) => {
-  const itemsPerPage = pagination.pageSize;
-  const { myWorkHistoryCount, usersWorkHistoryCount } = useSelector(
-    (state) => state.projectDrawer,
-  );
-  const { users, totalUsers } = useSelector((state) => state.user.users);
+  const { myWorkHistoryCount, usersWorkHistoryCount, projectMeta } =
+    useSelector((state) => state.projectDrawer);
+
   const { total } = useSelector((state) => state.projectDrawer);
+  const {
+    users,
+    totalUsers,
+    meta: userMeta,
+  } = useSelector((state) => state.user.users);
+  const [meta, setMeta] = useState(projectMeta);
+
+  const { pathname } = useLocation();
+  useEffect(() => {
+    if (pathname === '/allprojects') {
+      setMeta(projectMeta);
+    }
+    if (pathname === '/all-users') {
+      setMeta(userMeta);
+    }
+  }, [pathname, projectMeta, userMeta]);
+  const navigate = useNavigate();
+  const [params] = useSearchParams();
+
+  const limit = params.get('limit');
+  const skip = params.get('skip');
+
+  useEffect(() => {
+    if (skip && limit) {
+      if (skip / limit !== pagination.currentPage) {
+        setPagination((prevPagination) => ({
+          ...prevPagination,
+          currentPage: skip / limit,
+        }));
+      }
+    } else {
+      if (pathname === '/all-users' || pathname === '/allprojects') {
+        setPagination((prevPagination) => ({
+          ...prevPagination,
+          currentPage: 0,
+        }));
+      }
+    }
+  }, [params]);
 
   const handlePrevPage = useCallback(() => {
+    navigate(`${meta.links.previous}`);
     setPagination((prevPagination) => ({
       ...prevPagination,
       currentPage: prevPagination.currentPage - 1,
     }));
-  }, []);
+  }, [meta]);
 
   const handleNextPage = useCallback(() => {
+    navigate(`${meta.links.next}`);
     setPagination((prevPagination) => ({
       ...prevPagination,
       currentPage: prevPagination.currentPage + 1,
     }));
-  }, []);
+  }, [meta]);
 
-  const handleJumpToPage = useCallback((pageNumber) => {
-    setPagination((prevPagination) => ({
-      ...prevPagination,
-      currentPage: pageNumber,
-    }));
-  }, []);
-
-  const location = useLocation();
-  const { pathname } = location;
+  const handleJumpToPage = useCallback(
+    (pageNumber) => {
+      const manualUrl = `?limit=${pagination.pageSize}&skip=${
+        pageNumber * pagination.pageSize
+      }`;
+      setPagination((prevPagination) => ({
+        ...prevPagination,
+        currentPage: pageNumber,
+      }));
+      navigate(manualUrl);
+    },
+    [meta],
+  );
+  const handelChangeItems = useCallback(
+    (e) => {
+      const newSize = parseInt(e.target.value);
+      const manualUrl = `?limit=${newSize}&skip=0`;
+      setPagination((prevPagination) => ({
+        ...prevPagination,
+        pageSize: newSize,
+        currentPage: 0,
+      }));
+      navigate(manualUrl);
+    },
+    [meta],
+  );
   const { id } = useParams();
 
   let [totalPages, setTotalPages] = useState(0);
@@ -132,7 +193,6 @@ const PaginationTable = ({ pagination, setPagination }) => {
             border: 'none',
             '& .MuiSelect-select': {
               padding: '5px 0px 0px 10px',
-              // fontSize: "14px",
               fontSize: { xl: '14px', xxl: '16px', lg: '12px' },
               color: 'neutral.N300',
             },
@@ -143,14 +203,7 @@ const PaginationTable = ({ pagination, setPagination }) => {
           }}
           id="demo-simple-select"
           value={pagination.pageSize}
-          onChange={(e) => {
-            const newSize = parseInt(e.target.value);
-            setPagination((prevPagination) => ({
-              ...prevPagination,
-              pageSize: newSize,
-              currentPage: 0,
-            }));
-          }}
+          onChange={(e) => handelChangeItems(e)}
           labelId="demo-simple-select-label"
           name="limit"
         >

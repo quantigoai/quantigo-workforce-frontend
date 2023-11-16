@@ -1,26 +1,34 @@
-import {Box} from '@mui/material';
-import React, {useEffect, useRef} from 'react';
-import {useForm} from 'react-hook-form';
-import {useDispatch, useSelector} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
+import { Box } from '@mui/material';
+import React, { useEffect, useRef } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import useAllUsersFunc from '../../../customHooks/useAllUsersFunc';
 import useToaster from '../../../customHooks/useToaster';
-import {setActivePath} from '../../../features/slice/activePathSlice';
-import {getAllSkills} from '../../../features/slice/skillSlice';
-import {getAllUsers, updateAUserById,} from '../../../features/slice/userSlice';
+import { setActivePath } from '../../../features/slice/activePathSlice';
+import { getAllSkills } from '../../../features/slice/skillSlice';
+import {
+  getAllUsers,
+  updateAUserById,
+} from '../../../features/slice/userSlice';
 import fieldBuilder from '../../shared/CustomTable/fieldBuilder';
 import LoadingComponent from '../../shared/Loading/LoadingComponent';
 import TableWrapper from '../ProjectLIstNew2/ExpTable/TableWrapper';
 import useHandleChange from '../ProjectLIstNew2/Hooks/useHandleChange';
 import PaginationTable from '../ProjectLIstNew2/PaginationTable';
-import {HeaderBox, TablePaper} from '../ProjectLIstNew2/ProjectLIstIndex2';
+import { HeaderBox, TablePaper } from '../ProjectLIstNew2/ProjectLIstIndex2';
 import UserDetailsNewIndex from '../UserListNew/UserDetilasNew/UserDetailsNewIndex';
 import AcceptModal from '../Users/NdaAccept/AcceptModal';
 import NdaRejectModal from '../Users/NdaAccept/NdaRejectModal';
 import UsersFilter from './UsersFilter';
 import UsersHeader from './UsersHeader';
-import {fields} from './tableFields';
-import {hubOptions, roleOptionsAdmin, roleOptionsRecruitment_manager, userStatusOptions,} from './userFilterOptions';
+import { fields } from './tableFields';
+import {
+  hubOptions,
+  roleOptionsAdmin,
+  roleOptionsRecruitment_manager,
+  userStatusOptions,
+} from './userFilterOptions';
 
 const AllUserListIndex2 = () => {
   const dispatch = useDispatch();
@@ -98,24 +106,25 @@ const AllUserListIndex2 = () => {
   }, []);
 
   useEffect(() => {
-          setIsDataLoading(true);
-      dispatch(
-        getAllUsers({
-          pagination,
-          filteredData: filterValue,
-          ascDescOption: filteredCol,
-          search,
-        }),
-      )
-        .then((res) => {
-          setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
-          // navigate(`/all-users?page=${pagination.currentPage + 1}&limit=${pagination.pageSize}`);
-          setIsDataLoading(false);
-        })
-        .catch((err) => {
-          setIsDataLoading(false);
-        });
-    }, [pagination, search, filterValue, filteredCol]);
+    setIsDataLoading(true);
+    dispatch(
+      getAllUsers({
+        pagination,
+        filteredData: filterValue,
+        ascDescOption: filteredCol,
+        search,
+      }),
+    )
+      .then((res) => {
+        setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
+        // navigate(links.current);
+        // navigate(`/all-users?page=${pagination.currentPage + 1}&limit=${pagination.pageSize}`);
+        setIsDataLoading(false);
+      })
+      .catch((err) => {
+        setIsDataLoading(false);
+      });
+  }, [pagination, search, filterValue, filteredCol]);
 
   const onSubmit = (data) => {
     const finalData = {

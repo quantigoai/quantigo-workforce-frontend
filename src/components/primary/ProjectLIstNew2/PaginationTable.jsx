@@ -1,7 +1,7 @@
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Box, Button, MenuItem, Select, Typography } from '@mui/material';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   useLocation,
@@ -116,8 +116,8 @@ const PaginationTable = ({ pagination, setPagination }) => {
   const { id } = useParams();
 
   let [totalPages, setTotalPages] = useState(0);
-
-  useEffect(() => {
+  
+  useLayoutEffect(() => {
     if (pathname === '/allprojects') {
       setTotalPages(Math.ceil(total / pagination.pageSize));
     }
@@ -127,7 +127,7 @@ const PaginationTable = ({ pagination, setPagination }) => {
     if (pathname === `/projectDetails/${id}`) {
       setTotalPages(Math.ceil(usersWorkHistoryCount / pagination.pageSize));
     }
-  }, [total, totalUsers, usersWorkHistoryCount]);
+  }, [total, totalUsers, usersWorkHistoryCount, meta]);
 
   const visiblePageCount = 5;
   const firstVisiblePage = Math.max(

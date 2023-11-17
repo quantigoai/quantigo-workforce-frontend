@@ -14,6 +14,7 @@ const ButtonStyle = styled(Button)({
     color: "#1D1D1D",
   },
 });
+
 const CourseNewDetailsIndex = () => {
   const dispatch = useDispatch();
   const { course, courseChapter, courseChapters } = useSelector((state) => state.course);

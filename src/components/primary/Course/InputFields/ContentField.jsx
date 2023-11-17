@@ -14,7 +14,7 @@ import React from "react";
 const ContentField = ({ courseChapter = {}, uploadPlugin, setContent }) => {
   return (
     <>
-      <Grid item xs={12}>
+      <Grid item xs={12} sx={{backgroundColor:"",height:"100%"}}>
         <CKEditor
           config={{
             extraPlugins: [uploadPlugin],

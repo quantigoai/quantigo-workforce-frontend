@@ -124,7 +124,7 @@ export default function UserDetailsNewIndex({ open, handleClose, role }) {
       dispatch(deleteOrActivateUser(finalStatusData)).then((action) => {
         if (action.payload?.status === 200) {
           if (actionStatus === "delete") {
-            window.location.reload(false);
+            // window.location.reload(false);
             toast.trigger("User deleted successfully from the application.", "success");
             setActionStatus("");
           } else {

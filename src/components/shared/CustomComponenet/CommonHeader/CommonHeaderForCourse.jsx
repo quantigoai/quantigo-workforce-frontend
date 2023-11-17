@@ -165,16 +165,10 @@ const CommonHeaderForCourse = ({
                                   //     backgroundColor: "#FF9A45",
                                   //     color: "#1D1D1D",
                                   //   },
-<<<<<<< HEAD
                                   borderRadius: "2px",
                                   }}
                                   onClick={handleOpen}
                                 // onClick={() => handleNavigation(customButton)}
-=======
-                                  borderRadius: '2px',
-                                }}
-                                onClick={() => handleNavigation(customButton)}
->>>>>>> 35119dfc5afd36948770a21c25f8d7e0c35606f9
                               >
                                 <img src={editCourseIcon} />
                               </Button>
@@ -266,11 +260,7 @@ const CommonHeaderForCourse = ({
               container
               sx={{
                 // justifyContent: "left",
-<<<<<<< HEAD
                 padding: "1%",
-=======
-                padding: '1%',
->>>>>>> 35119dfc5afd36948770a21c25f8d7e0c35606f9
                 // paddingTop: "1%",
                 // paddingBottom: "1%",
                 // paddingLeft: "1%",

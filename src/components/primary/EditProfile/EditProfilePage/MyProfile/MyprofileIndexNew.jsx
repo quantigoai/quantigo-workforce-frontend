@@ -18,6 +18,7 @@ import ProfilePicture from './ProfilePicture';
 
 const MyprofileIndexNew = () => {
   const { user, isLoading } = useSelector((state) => state.user);
+  console.log("🚀 ~ file: MyprofileIndexNew.jsx:21 ~ MyprofileIndexNew ~ user:", user)
   const [editAble, setEditAble] = useState(false);
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
@@ -138,6 +139,8 @@ const MyprofileIndexNew = () => {
   };
 
   const DOB = moment.utc(user.dob).format('MMM Do, YYYY');
+  console.log("🚀 ~ file: MyprofileIndexNew.jsx:141 ~ MyprofileIndexNew ~ user.dob:", user.dob)
+  console.log("🚀 ~ file: MyprofileIndexNew.jsx:141 ~ MyprofileIndexNew ~ DOB:", DOB)
   return (
     <>
       <Box

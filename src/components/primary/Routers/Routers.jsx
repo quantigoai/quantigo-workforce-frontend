@@ -6,100 +6,94 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Route, Routes } from 'react-router-dom';
-import ErrorPage from '../../shared/Error/ErrorPage';
-import AllNotification from '../../shared/Notification/AllNotification';
-import AllUserListIndex2 from '../AllUsers/AllUserListIndex2';
-import EmailVerificationAfterLogin from '../Auth/EmailVerification/EmailVerificationAfterLogin';
-import VerifyEmail from '../Auth/EmailVerification/VerifyEmail';
-import UpdateChapter from '../Course/UpdateChapter';
-import AccountActivation from '../Dashboard/CongratulationDashBoard/AccountActivation';
-import Dashboard from '../Dashboard/Dashboard';
-import EditProfilePageIndex from '../EditProfile/EditProfilePage/EditProfilePageIndex';
-import ResetPassword from '../ForgetPassword/ResetPassword';
-import Home from '../Home/Home';
-import DetailsPage from '../ProjectLIstNew2/ProjectDetailsFull/DetailsPage';
-import FullProjectDetails from '../ProjectLIstNew2/ProjectDetailsFull/FullProjectDetails';
-import ProjectLIstIndex2 from '../ProjectLIstNew2/ProjectLIstIndex2';
-import CreateQuiz from '../Quiz/CreateQuiz';
-import UpdateQuiz from '../Quiz/UpdateQuiz';
-import Skills from '../Skill/Skills';
-import PrivateRoute from './PrivateRoute';
+import { Route, Routes } from "react-router-dom";
+import ErrorPage from "../../shared/Error/ErrorPage";
+import AllNotification from "../../shared/Notification/AllNotification";
+import AllUserListIndex2 from "../AllUsers/AllUserListIndex2";
+import EmailVerificationAfterLogin from "../Auth/EmailVerification/EmailVerificationAfterLogin";
+import VerifyEmail from "../Auth/EmailVerification/VerifyEmail";
+import UpdateChapter from "../Course/UpdateChapter";
+import AccountActivation from "../Dashboard/CongratulationDashBoard/AccountActivation";
+import Dashboard from "../Dashboard/Dashboard";
+import EditProfilePageIndex from "../EditProfile/EditProfilePage/EditProfilePageIndex";
+import ResetPassword from "../ForgetPassword/ResetPassword";
+import Home from "../Home/Home";
+import DetailsPage from "../ProjectLIstNew2/ProjectDetailsFull/DetailsPage";
+import FullProjectDetails from "../ProjectLIstNew2/ProjectDetailsFull/FullProjectDetails";
+import ProjectLIstIndex2 from "../ProjectLIstNew2/ProjectLIstIndex2";
+import CreateQuiz from "../Quiz/CreateQuiz";
+import UpdateQuiz from "../Quiz/UpdateQuiz";
+import Skills from "../Skill/Skills";
+import PrivateRoute from "./PrivateRoute";
+import Course from "../Course/Course";
+import CourseDetails from "../CourseNew/CourseDetails";
+import CourseNewDetailsIndex from "../CourseNew/CourseNewDetailsIndex";
+import CourseMainContent from "../CourseNew/CourseMainContent";
+import QuizPage from "../Course/QuizPage/QuizPage";
+import ChapterCreateIndex from "../Course/ChapterCreate/ChapterCreateIndex";
 
 export const roles = {
-  admin: 'admin',
-  eng_lead: 'engineering_lead',
+  admin: "admin",
+  eng_lead: "engineering_lead",
 
-  level_0: 'level_0_annotator',
+  level_0: "level_0_annotator",
 
-  level_1: 'level_1_annotator',
-  level_2: 'level_2_annotator',
-  level_3: 'level_3_annotator',
+  level_1: "level_1_annotator",
+  level_2: "level_2_annotator",
+  level_3: "level_3_annotator",
 
-  reviewer: 'reviewer',
+  reviewer: "reviewer",
 
-  trainer: 'trainer',
+  trainer: "trainer",
 
-  pro_lead: 'delivery_lead',
-  pro_co: 'project_coordinator',
-  pro_manager: 'project_manager',
+  pro_lead: "delivery_lead",
+  pro_co: "project_coordinator",
+  pro_manager: "project_manager",
 
-  del_manager: 'project_delivery_lead',
+  del_manager: "project_delivery_lead",
 
-  rec_manger: 'recruitment_manager',
-  acc_manger: 'account_manager',
+  rec_manger: "recruitment_manager",
+  acc_manger: "account_manager",
 };
 
 const Routers = () => {
   return (
     <>
       <Routes>
-        <Route path={'/'} element={<Dashboard />} />
-        <Route path={'/dashboard'} element={<Dashboard />} />
-        <Route
-          path={'/identity-verification'}
-          element={<AccountActivation />}
-        />
-        <Route path={'/home'} element={<Home />} />
-        <Route path={'/verify-email/'} element={<VerifyEmail />} />
-        <Route
-          path={'/verify-email/:id/:token/'}
-          element={<EmailVerificationAfterLogin />}
-        />
-
-  
+        <Route path={"/"} element={<Dashboard />} />
+        <Route path={"/dashboard"} element={<Dashboard />} />
+        <Route path={"/identity-verification"} element={<AccountActivation />} />
+        <Route path={"/home"} element={<Home />} />
+        <Route path={"/verify-email/"} element={<VerifyEmail />} />
+        <Route path={"/verify-email/:id/:token/"} element={<EmailVerificationAfterLogin />} />
 
         {/* ---------- Course routes ------------ */}
 
         {/* TODO Should updated and release later  */}
 
-        {/* <Route path={'/course'} element={<Course />} />
-        <Route path={'/quiz-page'} element={<QuizPage />} />
-        <Route
-          element={
-            <PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>
-          }
-        >
-          <Route path={'/create-course'} element={<CreateCourse />} />
+        <Route path={"/course"} element={<Course />} />
+        <Route path={"/quiz-page"} element={<QuizPage />} />
+        {/* <Route path={"/chapter-page"} element={<ChapterCreateIndex />} /> */}
+
+        <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}>
+          {/* <Route path={'/create-course'} element={<CreateCourse />} /> */}
         </Route>
-        <Route
-          element={
-            <PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>
-          }
-        >
-          <Route path={'/edit-course/:id'} element={<UpdateCourse />} />
-        </Route> */}
+        <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}>
+          {/* <Route path={'/edit-course/:id'} element={<UpdateCourse />} /> */}
+        </Route>
 
-        {/* <Route path={'/course-details/:id'} element={<CourseDetails />}> */}
-        {/* TODO Check it and remove this */}
-        {/* //    <Route path="index" element={<CourseDetailsIndex />} /> */}
+        <Route path={"/course-details/:id"} element={<CourseDetails />}>
+          {/* TODO Check it and remove this */}
+          {/* <Route path="index" element={<CourseDetailsIndex />} /> */}
 
-        {/* <Route path="index" element={<CourseNewDetailsIndex />} />
+          <Route path="index" element={<CourseNewDetailsIndex />} />
           <Route path="content" element={<CourseMainContent />} />
-          <Route path="show-quiz" element={<QuizShow />} />
-          <Route path={'quiz-result'} element={<ShowResult />} />
-        </Route> */}
-
+          {/* <Route path="show-quiz" element={<QuizShow />} /> */}
+          {/* <Route path={'quiz-result'} element={<ShowResult />} /> */}
+        </Route>
+        <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]} />}>
+          <Route path={"/create-chapter/:id"} element={<ChapterCreateIndex />} />
+        </Route>
         {/* ---------- ------------ ------------ */}
 
         {/* ---------- Chapter related routes ------------ */}
@@ -112,7 +106,7 @@ const Routers = () => {
           <Route path={'/update-chapter/:id'} element={<UpdateChapter />} />
         </Route> */}
         {/* <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]} />}> */}
-          {/* <Route path={"/create-chapter/:id"} element={<CreateChapter />} /> */}
+        {/* <Route path={"/create-chapter/:id"} element={<CreateChapter />} /> */}
         {/* </Route> */}
         {/* ---------- ------------ ------------ */}
 
@@ -127,10 +121,7 @@ const Routers = () => {
         {/* ---------- ------------ ---------------- */}
 
         {/* <Route path={"/forgetpassword"} element={<ForgetPassword />} /> */}
-        <Route
-          path={'/reset-password/:id/:token'}
-          element={<ResetPassword />}
-        />
+        <Route path={"/reset-password/:id/:token"} element={<ResetPassword />} />
 
         {/* ----------- Project List ------------ */}
         {/* TODO Should updated and release later  */}
@@ -173,9 +164,8 @@ const Routers = () => {
                 roles.trainer,
               ]}
             />
-          }
-        >
-          <Route path={'/skillcreate'} element={<Skills />} />
+          }>
+          <Route path={"/skillcreate"} element={<Skills />} />
         </Route>
         {/* -------- ---------- ------------ */}
 
@@ -183,21 +173,10 @@ const Routers = () => {
 
         <Route
           element={
-            <PrivateRoute
-              roles={[
-                roles.admin,
-                roles.eng_lead,
-                roles.acc_manger,
-                roles.rec_manger,
-              ]}
-            ></PrivateRoute>
-          }
-        >
+            <PrivateRoute roles={[roles.admin, roles.eng_lead, roles.acc_manger, roles.rec_manger]}></PrivateRoute>
+          }>
           {/* <Route path={"/all-users"} element={<AllUserListIndex action={"admin"} />} /> */}
-          <Route
-            path={'/all-users'}
-            element={<AllUserListIndex2 action={'admin'} />}
-          />
+          <Route path={"/all-users"} element={<AllUserListIndex2 action={"admin"} />} />
         </Route>
 
         {/* -------- --------- ------------ */}
@@ -219,14 +198,9 @@ const Routers = () => {
                 roles.level_1,
                 roles.level_2,
                 roles.level_3,
-              ]}
-            ></PrivateRoute>
-          }
-        >
-          <Route
-            path={'/allprojects'}
-            element={<ProjectLIstIndex2 action={'allprojects'} />}
-          />
+              ]}></PrivateRoute>
+          }>
+          <Route path={"/allprojects"} element={<ProjectLIstIndex2 action={"allprojects"} />} />
         </Route>
 
         <Route
@@ -244,14 +218,9 @@ const Routers = () => {
                 roles.level_1,
                 roles.level_2,
                 roles.level_3,
-              ]}
-            ></PrivateRoute>
-          }
-        >
-          <Route
-            path={'/detailsInfo/:id'}
-            element={<DetailsPage action={'detailsInfo'} />}
-          />
+              ]}></PrivateRoute>
+          }>
+          <Route path={"/detailsInfo/:id"} element={<DetailsPage action={"detailsInfo"} />} />
         </Route>
 
         <Route
@@ -269,14 +238,9 @@ const Routers = () => {
                 roles.level_1,
                 roles.level_2,
                 roles.level_3,
-              ]}
-            ></PrivateRoute>
-          }
-        >
-          <Route
-            path={'/projectDetails/:id'}
-            element={<FullProjectDetails action={'projectDetails'} />}
-          />
+              ]}></PrivateRoute>
+          }>
+          <Route path={"/projectDetails/:id"} element={<FullProjectDetails action={"projectDetails"} />} />
         </Route>
 
         {/* -------- ---------- ------------ */}
@@ -360,10 +324,7 @@ const Routers = () => {
 
         {/* -------- My Profile ---------- */}
 
-        <Route
-          path={'/edit-profile'}
-          element={<EditProfilePageIndex />}
-        ></Route>
+        <Route path={"/edit-profile"} element={<EditProfilePageIndex />}></Route>
 
         {/* -------- ------------ ---------- */}
 

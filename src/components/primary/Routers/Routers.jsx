@@ -31,6 +31,7 @@ import CourseNewDetailsIndex from "../CourseNew/CourseNewDetailsIndex";
 import CourseMainContent from "../CourseNew/CourseMainContent";
 import QuizPage from "../Course/QuizPage/QuizPage";
 import ChapterCreateIndex from "../Course/ChapterCreate/ChapterCreateIndex";
+import ChapterUpdateIndex from "../Course/ChapterCreate/ChapterUpdate/ChapterUpdateIndex";
 
 export const roles = {
   admin: "admin",
@@ -93,6 +94,7 @@ const Routers = () => {
         </Route>
         <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]} />}>
           <Route path={"/create-chapter/:id"} element={<ChapterCreateIndex />} />
+          <Route path={'/update-chapter/:id'} element={<ChapterUpdateIndex />} />
         </Route>
         {/* ---------- ------------ ------------ */}
 

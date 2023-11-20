@@ -1,29 +1,35 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
-import QuizHeader from "../QuizPage/QuizHeader";
-import ChapterField from "./ChapterField";
-import FormProvider from "../../../shared/FormProvider/FormProvider";
+
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import ChapterDescritionField from "./ChapterDescritionField";
-import ContentField from "../InputFields/ContentField";
-import { useDispatch } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { realToken } from "../../../../helper/lib";
+import { realToken } from "../../../../../helper/lib";
 import { useParams } from "react-router-dom";
-import ChapterCreateHeader from "./ChapterCreateHeader";
-import backIcon from "../../../../assets/images/dashboardIcon/GoBackIcon.svg";
-import { createCourseChapter } from "../../../../features/slice/courseSlice";
-import useToaster from "../../../../customHooks/useToaster";
-import { deleteTemporaryData, updateTemporaryData } from "../../../../features/slice/temporaryDataSlice";
-const ChapterCreateIndex = () => {
+
+import backIcon from "../../../../../assets/images/dashboardIcon/GoBackIcon.svg";
+import { createCourseChapter, updateAChapterById } from "../../../../../features/slice/courseSlice";
+import useToaster from "../../../../../customHooks/useToaster";
+import { deleteTemporaryData, updateTemporaryData } from "../../../../../features/slice/temporaryDataSlice";
+import ChapterField from "../ChapterField";
+import FormProvider from "../../../../shared/FormProvider/FormProvider";
+import ChapterDescritionField from "../ChapterDescritionField";
+import ContentField from "../../InputFields/ContentField";
+import ChapterCreateHeader from "../ChapterCreateHeader";
+const ChapterUpdateIndex = () => {
   const params = useParams();
   const toast = useToaster();
-  const id = params.id;
+  // const id = params.id;
   const UPLOAD_ENDPOINT = "courses/couseimages/uploads";
   const API_URl = import.meta.env.VITE_APP_SERVER_URL;
   const [content, setContent] = useState("");
+  const { courseChapter, course, isLoading } = useSelector((state) => state.course);
+  console.log("🚀 ~ file: ChapterUpdateIndex.jsx:32 ~ ChapterUpdateIndex ~ course:", course);
+  console.log("🚀 ~ file: ChapterUpdateIndex.jsx:32 ~ ChapterUpdateIndex ~ courseChapter:", courseChapter);
+
   const dispatch = useDispatch();
   function uploadAdapter(loader) {
     return {
@@ -32,19 +38,17 @@ const ChapterCreateIndex = () => {
           const body = new FormData();
           loader.file.then((file) => {
             body.append("uploadImg", file);
-            body.append("courseId", id);
+            body.append("courseId", courseChapter.rootCourse._id);
             axios
               .post(`${API_URl}/${UPLOAD_ENDPOINT}`, body, {
                 headers: {
                   Authorization: `Bearer ${realToken()}`,
                 },
               })
-              .then((res) => {
-                return res.data;
-              })
+              .then((res) => res.data)
               .then((res) => {
                 resolve({ default: res });
-                // dispatch(updateTemporaryData({ id, chapterNo, links: res }));
+                // resolve({ default: `${API_URl}/${res}` });
               })
               .catch((err) => {
                 reject(err);
@@ -67,34 +71,35 @@ const ChapterCreateIndex = () => {
   const methods = useForm({
     resolver: yupResolver(CourseCreateSchema),
     mode: "all",
-    // defaultValues: {
-    //   project_platform: 'encord',
-    //   project_drawer_name: 'xxxxxxxxxxxx',
-    //   project_type: 'image',
-    //   project_batch: '2',
-    //   project_alias: 'xxxxxxxxxxx',
-    //   pdr: '3',
-    //   project_status: 'in-Progress',
-    // },
+    defaultValues: {
+      description: courseChapter.description,
+      title: courseChapter.title,
+      ChapterNo: courseChapter.ChapterNo,
+      estimatedTimeToRead: courseChapter.estimatedTimeToRead,
+    },
   });
 
   const { handleSubmit } = methods;
   const onSubmit = (data) => {
     console.log("🚀 ~ file: ChapterCreateIndex.jsx:34 ~ onSubmit ~ data:", data);
     console.log(content);
-    const finalData = {
-      ...data,
-      // chapterNo,
-      rootCourse: id,
-      content,
+    data.content = content;
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+    formData.append("content", data.content);
+    formData.append("estimatedTimeToRead", data.estimatedTimeToRead);
+
+    const newData = {
+      id: courseChapter._id,
+      formData: data,
     };
-    dispatch(createCourseChapter(finalData)).then((action) => {
-      if (action.payload?.status === 201) {
-        toast.trigger("Chapter Create", "success");
-        // dispatch(deleteTemporaryData({ id, chapterNo }));
-        // navigate(`/course-details/${id}`);
+    dispatch(updateAChapterById(newData)).then((action) => {
+      if (action.payload.status === 200) {
+        // navigate(`/course-details/${course._id}`);
+        toast.trigger("chapter update Successfully", "success");
       } else {
-        toast.trigger("Can not create course chapter", "error");
+        toast.trigger("chapter do not update", "error");
       }
     });
   };
@@ -166,11 +171,21 @@ const ChapterCreateIndex = () => {
                 <Grid container sx={{ width: "100%" }}>
                   <Grid item xs={4} sx={{ paddingRight: "1%" }}>
                     {" "}
-                    <ChapterField name="ChapterNo" label="Chapter No" isRequired={false} />
+                    <ChapterField
+                      name="ChapterNo"
+                      label="Chapter No"
+                      isRequired={false}
+                      defaultValue={courseChapter.chapterNo}
+                    />
                   </Grid>
                   <Grid item xs={4} sx={{ paddingRight: "1%" }}>
                     {" "}
-                    <ChapterField name="title" label="Chapter Title" isRequired={true} />
+                    <ChapterField
+                      name="title"
+                      label="Chapter Title"
+                      isRequired={true}
+                      defaultValue={courseChapter.title}
+                    />
                   </Grid>
                   <Grid item xs={4}>
                     {" "}
@@ -178,17 +193,24 @@ const ChapterCreateIndex = () => {
                       name="estimatedTimeToRead"
                       label="Estimated Time to Read (Minutes)"
                       isRequired={false}
+                      defaultValue={courseChapter.estimatedTimeToRead}
                     />
                   </Grid>
                 </Grid>
                 <Grid container sx={{ width: "100%" }}>
                   <Grid xs={12}>
-                    <ChapterDescritionField name="description" label="Chapter Description" isRequired={true} />
+                    <ChapterDescritionField
+                      name="description"
+                      label="Chapter Description"
+                      isRequired={true}
+                      defaultValue={courseChapter.description}
+                    />
                   </Grid>
                 </Grid>
                 <Grid item xs={12} sx={{ py: 2, backgroundColor: "" }}>
                   <ContentField
                     //  course={course}
+                    courseChapter={courseChapter}
                     uploadPlugin={uploadPlugin}
                     setContent={setContent}
                   />{" "}
@@ -203,4 +225,4 @@ const ChapterCreateIndex = () => {
   );
 };
 
-export default ChapterCreateIndex;
+export default ChapterUpdateIndex;

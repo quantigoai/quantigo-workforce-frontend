@@ -6,20 +6,20 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-
-import {Box, Button, Grid, Modal, Stack, Typography} from "@mui/material";
-import {styled} from "@mui/material/styles";
-import React, {useEffect, useState} from "react";
-import {useDropzone} from "react-dropzone";
-import {useDispatch, useSelector} from "react-redux";
+import Papa from "papaparse";
+import { Box, Button, Grid, Modal, Stack, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import React, { useEffect, useState } from "react";
+import { useDropzone } from "react-dropzone";
+import { useDispatch, useSelector } from "react-redux";
 import pdfSvg from "../../../../assets/images/csvIcon.png";
 import deleteIcon from "../../../../assets/images/fi_trash-2.png";
 // import csvFile from "../../../../assets/ndifile/Template_for_effective_hours - Sheet1.csv";
 // import useToaster from "../../../../customHooks/useToaster";
 import axios from "axios";
 import useToaster from "../../../../customHooks/useToaster";
-import {updateProjectDrawerManually} from "../../../../features/slice/projectDrawerSlice";
-import {realToken} from "../../../../helper/lib";
+import { updateProjectDrawerManually } from "../../../../features/slice/projectDrawerSlice";
+import { realToken } from "../../../../helper/lib";
 import ProjectModalHeader from "../ProjectModalHeader";
 import CsvUploadField from "./CsvUploadField";
 
@@ -92,6 +92,88 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
     } catch (error) {
       throw new Error(error.response.data.message);
     }
+  };
+  const isNumeric = (value) => {
+    // console.log("🚀 ~ file: DetailsUploadHourModal.jsx:97 ~ isNumeric ~ value:", value)
+    return !isNaN(parseFloat(value)) && isFinite(value);
+  };
+  const isValidQaiId = (value) => {
+    // const pattern = /^QAI_[A-Z]{2}\d{4}$/;
+    const pattern = /^QAI_(DK||KH||SG||CD||MS)\d{4}$/;
+
+    return pattern.test(value);
+  };
+  const handleUploadFile = (e) => {
+    const file = e[0];
+
+    // Validate file type (CSV)
+    if (!file || !file.name.toLowerCase().endsWith(".csv")) {
+      // Handle invalid file type
+      console.error("Invalid file type. Please upload a CSV file.");
+      return;
+    }
+
+    // Use PapaParse to parse CSV file
+    Papa.parse(file, {
+      complete: (result) => {
+        // Assuming CSV has headers
+        const headers = result.meta.fields || [];
+
+        // Your required headers
+        // const requiredHeaders = ['userId', 'header2', 'header3'];
+        const requiredHeaders = [
+          "name",
+          "workingHours",
+          "QAI_ID",
+          "paymentRate",
+          "totalBill",
+          "penalty",
+          "bonus",
+          "due",
+          "paidAmount",
+          "workingSkills",
+        ];
+
+        const missingHeaders = requiredHeaders.filter((header) => !headers.includes(header));
+
+        if (missingHeaders.length > 0) {
+          console.log(`Missing headers: ${missingHeaders.join(", ")}`);
+        } else {
+          const userIds = result.data.map((row) => row.QAI_ID);
+          const uniqueUserIds = new Set(userIds);
+
+          if (userIds.length !== uniqueUserIds.size) {
+            console.log("UserIds must be unique.");
+          } else {
+            const invalidQaiId = result.data.some((row) => {
+              if (row.QAI_ID) {
+                return !isValidQaiId(row.QAI_ID);
+              }
+            });
+            const invalidPaymentRate = result.data.some((row) => {
+              if (row.paymentRate || row.paymentRate === "") {
+                return !isNumeric(row.paymentRate);
+              }
+            });
+            // const invalidTotalBill = result.data.some((row) => !isNumeric(row.totalBill));
+
+            if (invalidPaymentRate) {
+              console.log("PaymentRate and TotalBill must be valid numbers.");
+            } else if (invalidQaiId) {
+              console.log("QAI_ID must follow the specified pattern.");
+            } else {
+              setCoverImageFile(e[0]);
+              setSelectedFile(e[0]);
+              setIsSelected(true);
+              const url = URL.createObjectURL(file);
+              setCoverImage(url);
+              console.log("Valid File");
+            }
+          }
+        }
+      },
+      header: true, // Assumes the first row is headers
+    });
   };
 
   const handleImage = (e) => {
@@ -192,15 +274,13 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
         open={openModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+        aria-describedby="modal-modal-description">
         <Box
           sx={{
             ...style,
             height: { xl: "%", lg: "%" },
             width: { xl: "35%", lg: "40%" },
-          }}
-        >
+          }}>
           <Box sx={{ flex: "0 0 5%" }}>
             <Grid container sx={{ paddingRight: "0%" }}>
               <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Upload Effective Hour"} />
@@ -212,16 +292,14 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
               flex: "1",
               overflowY: "auto",
               padding: "3%",
-            }}
-          >
+            }}>
             <Box>
               <Box sx={{ width: "100%", paddingTop: "1%", paddingBottom: "3%", paddingLeft: "1%", paddingRight: "1%" }}>
                 <Grid container>
                   <a
                     href={"/src/assets/ndifile/Template_for_effective_hours.csv"}
                     download="Template_for_effective_hours-Sheet1.csv"
-                    style={{ textDecoration: "none", color: "#266AED" }}
-                  >
+                    style={{ textDecoration: "none", color: "#266AED" }}>
                     <i className="ri-download-2-line"></i>
                     <Typography variant="body" sx={{ ml: 1, textTransform: "none" }}>
                       Download Reference CSV
@@ -232,7 +310,7 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
             </Box>
 
             <Box sx={{ paddingLeft: "1%", paddingRight: "1%" }}>
-              <CsvUploadField handleImage={handleImage} selectedFile={selectedFile} />
+              <CsvUploadField handleImage={handleUploadFile} selectedFile={selectedFile} />
             </Box>
 
             <Box sx={{ paddingLeft: "1%", paddingRight: "1%" }}>
@@ -243,8 +321,7 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
                   fontSize: "14px",
                   mb: "7px",
                 }}
-                variant="h6"
-              >
+                variant="h6">
                 Attachment
               </Typography>
 
@@ -256,8 +333,7 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
                   backgroundColor: "neutral.N600",
                   height: "75px",
                   color: "neutral.700",
-                }}
-              >
+                }}>
                 {!selectedFile?.name || selectedFile.size > maxSize ? (
                   <></>
                 ) : (
@@ -275,8 +351,7 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
                             textAlign: "left",
                             paddingRight: "3%",
                             paddingLeft: "2%",
-                          }}
-                        >
+                          }}>
                           <Typography variant="wpf_p3_medium">{selectedFile?.name}</Typography>
                         </Grid>
                         <Grid item xs={1}>
@@ -304,8 +379,7 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
 
               bottom: "0px",
               borderRadius: "8px",
-            }}
-          >
+            }}>
             <Grid container sx={{ padding: "2%" }}>
               <Grid item xs={6}>
                 <Button
@@ -320,8 +394,7 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
                       color: "neutral.N650",
                     },
                   }}
-                  onClick={() => handleClose()}
-                >
+                  onClick={() => handleClose()}>
                   Cancel
                 </Button>
               </Grid>
@@ -347,8 +420,7 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
                         // border: "1px solid #2E58FF",
                       },
                     }}
-                    onClick={handleSubmission}
-                  >
+                    onClick={handleSubmission}>
                     Upload
                   </Button>
                 </Grid>

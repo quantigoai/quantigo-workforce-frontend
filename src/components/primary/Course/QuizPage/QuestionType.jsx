@@ -1,7 +1,10 @@
-import {Box, Radio, Tab, Tabs, Typography} from "@mui/material";
+import { Box, Radio, Tab, Tabs, Typography } from "@mui/material";
 import React from "react";
 import PropTypes from "prop-types";
 import QuestionInput1 from "./QuestionInput";
+import ImageInOptionIndex from "./QuizQuestionType/ImageInOptionIndex";
+import ImageWithTitleIndex from "./QuizQuestionType/ImageWithTitleIndex";
+import DefaultTypeIndex from "./QuizQuestionType/DefaultTypeIndex";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -11,8 +14,7 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
-      {...other}
-    >
+      {...other}>
       {value === index && (
         <Box sx={{ paddingTop: 0 }}>
           <Typography>{children}</Typography>
@@ -34,10 +36,11 @@ function a11yProps(index) {
   };
 }
 
-const QuestionType = () => {
+const QuestionType = ({ handleRemoveQA }) => {
   const [value, setValue] = React.useState(0);
   const [selectedValue, setSelectedValue] = React.useState(0);
   const handleChange = (event, newValue) => {
+    console.log("🚀 ~ file: QuestionType.jsx:43 ~ handleChange ~ event:", event);
     setValue(newValue);
     setSelectedValue(newValue);
   };
@@ -52,21 +55,23 @@ const QuestionType = () => {
     setValue(index);
   };
   return (
-    <Box>
+    <Box sx={{ border: "1px solid #E6ECF5", borderRadius: "10px" }}>
       <Box
         sx={{
           backgroundColor: "neutral.N400",
-          border: "1px solid #E6ECF5",
-          borderRadius: "10px",
+          // border: "1px solid #E6ECF5",
+          borderRadius: "10px 10px 0px 0px",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           px: 2,
           width: "100%",
-        }}
-      >
-        <Typography>Question Type: </Typography>
-        <Box sx={{ display: "flex", justifyContent: "space-between", width: "90%" }}>
+        }}>
+        <Box>
+          {" "}
+          <Typography variant="wpf_p3_semiBold">Question Type: </Typography>
+        </Box>
+        <Box sx={{ display: "flex", justifyContent: "space-between", width: "80%" }}>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -76,8 +81,7 @@ const QuestionType = () => {
               borderRadius: "8px",
               //   backgroundColor: "neutral.N600",
               padding: "1%",
-            }}
-          >
+            }}>
             <Tab
               sx={{
                 borderRadius: value === 0 ? "8px" : "none",
@@ -102,8 +106,7 @@ const QuestionType = () => {
                   <Typography
                     sx={{ textTransform: "none" }}
                     variant="wpf_p3_semiBold"
-                    color={value === 0 ? "#fff" : "neutral.700"}
-                  >
+                    color={value === 0 ? "#fff" : "neutral.700"}>
                     Default
                   </Typography>
                 </Box>
@@ -134,8 +137,7 @@ const QuestionType = () => {
                   <Typography
                     sx={{ textTransform: "none" }}
                     variant="wpf_p3_semiBold"
-                    color={value === 1 ? "#fff" : "neutral.700"}
-                  >
+                    color={value === 1 ? "#fff" : "neutral.700"}>
                     Image with title
                   </Typography>
                 </Box>
@@ -147,7 +149,7 @@ const QuestionType = () => {
                 borderRadius: value === 2 ? "8px" : "none",
                 backgroundColor: value === 2 ? "neutral.N300" : "",
                 height: "40px",
-                width: "220px",
+                width: "280px",
               }}
               label={
                 <Box>
@@ -166,8 +168,7 @@ const QuestionType = () => {
                   <Typography
                     sx={{ textTransform: "none" }}
                     variant="wpf_p3_semiBold"
-                    color={value === 2 ? "#fff" : "neutral.700"}
-                  >
+                    color={value === 2 ? "#fff" : "neutral.700"}>
                     Image in options
                   </Typography>
                 </Box>
@@ -177,16 +178,35 @@ const QuestionType = () => {
           </Tabs>
         </Box>
         <Box>
-          <i style={{ fontSize: "20px", color: "#FF4757" }} className="ri-delete-bin-6-line"></i>
+          <i
+            style={{ fontSize: "20px", color: "#FF4757" }}
+            onClick={() => handleRemoveQA()}
+            className="ri-delete-bin-6-line"></i>
         </Box>
       </Box>
-      <TabPanel
-        value={value}
-        index={0}
-        //    dir={theme.direction}
-      >
-        <QuestionInput1 />
-      </TabPanel>
+      <Box sx={{ p: 2 }}>
+        <TabPanel
+          value={value}
+          index={0}
+          //    dir={theme.direction}
+        >
+          <DefaultTypeIndex />
+        </TabPanel>
+        <TabPanel
+          value={value}
+          index={1}
+          //    dir={theme.direction}
+        >
+          <ImageWithTitleIndex />
+        </TabPanel>
+        <TabPanel
+          value={value}
+          index={2}
+          //    dir={theme.direction}
+        >
+          <ImageInOptionIndex />
+        </TabPanel>
+      </Box>
     </Box>
   );
 };

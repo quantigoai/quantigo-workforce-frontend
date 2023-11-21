@@ -1,8 +1,19 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
 import CommonHeader from "../../../shared/CustomComponenet/CommonHeader/CommonHeader";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const ChapterCreateHeader = () => {
+  const { course } = useSelector((state) => state.course);
+
+  const navigate = useNavigate();
+  const handleQuizCreate = () => {
+    navigate(`/quiz-create/${course._id}`);
+  };
+   const handleChapterCreate = () => {
+    navigate(`/create-chapter/${course._id}`);
+  };
   return (
     <>
       <Box
@@ -38,7 +49,9 @@ const ChapterCreateHeader = () => {
                   height: "36px",
                   width: "96px",
                   borderRadius: "8px",
-                }}>
+                }} 
+                onClick={() => handleChapterCreate()}  
+              >
                 Chapter
               </Button>
               <Button
@@ -53,7 +66,8 @@ const ChapterCreateHeader = () => {
                   "&:hover": {
                     color: "#000",
                   },
-                }}>
+                }}
+                onClick={() => handleQuizCreate()}>
                 Quiz
               </Button>
             </Box>

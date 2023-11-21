@@ -135,41 +135,42 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
         ];
 
         const missingHeaders = requiredHeaders.filter((header) => !headers.includes(header));
-
+        const userIds = result.data.map((row) => row.QAI_ID);
+        const uniqueUserIds = new Set(userIds);
+        const invalidQaiId = result.data.some((row) => {
+          if (row.QAI_ID) {
+            return !isValidQaiId(row.QAI_ID);
+          }
+        });
+        const invalidPaymentRate = result.data.some((row) => {
+          if (row.paymentRate || row.paymentRate === "") {
+            return !isNumeric(row.paymentRate);
+          }
+        });
         if (missingHeaders.length > 0) {
           console.log(`Missing headers: ${missingHeaders.join(", ")}`);
-        } else {
-          const userIds = result.data.map((row) => row.QAI_ID);
-          const uniqueUserIds = new Set(userIds);
+        }
 
-          if (userIds.length !== uniqueUserIds.size) {
-            console.log("UserIds must be unique.");
-          } else {
-            const invalidQaiId = result.data.some((row) => {
-              if (row.QAI_ID) {
-                return !isValidQaiId(row.QAI_ID);
-              }
-            });
-            const invalidPaymentRate = result.data.some((row) => {
-              if (row.paymentRate || row.paymentRate === "") {
-                return !isNumeric(row.paymentRate);
-              }
-            });
-            // const invalidTotalBill = result.data.some((row) => !isNumeric(row.totalBill));
-
-            if (invalidPaymentRate) {
-              console.log("PaymentRate and TotalBill must be valid numbers.");
-            } else if (invalidQaiId) {
-              console.log("QAI_ID must follow the specified pattern.");
-            } else {
-              setCoverImageFile(e[0]);
-              setSelectedFile(e[0]);
-              setIsSelected(true);
-              const url = URL.createObjectURL(file);
-              setCoverImage(url);
-              console.log("Valid File");
-            }
-          }
+        if (userIds.length !== uniqueUserIds.size) {
+          console.log("UserIds must be unique.");
+        }
+        if (invalidPaymentRate) {
+          console.log("PaymentRate and TotalBill must be valid numbers.");
+        }
+        if (invalidQaiId) {
+          console.log("QAI_ID must follow the specified pattern.");
+        } else if (
+          !invalidQaiId ||
+          !invalidPaymentRate ||
+          !userIds.length === uniqueUserIds.size ||
+          !missingHeaders.length > 0
+        ) {
+          setCoverImageFile(e[0]);
+          setSelectedFile(e[0]);
+          setIsSelected(true);
+          const url = URL.createObjectURL(file);
+          setCoverImage(url);
+          console.log("Valid File");
         }
       },
       header: true, // Assumes the first row is headers

@@ -6,10 +6,10 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Alert} from '@mui/material';
-import React, {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
-import {useLocation, useParams} from 'react-router-dom';
+import { Alert } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation, useParams } from 'react-router-dom';
 import dataBuilder from '../../../shared/CustomTable/dataBuilder';
 import LoadingComponent from '../../../shared/Loading/LoadingComponent';
 import DetailsPage from '../ProjectDetailsFull/DetailsPage';
@@ -24,7 +24,6 @@ const antRoles = [
   'trainer',
 ];
 const TableWrapper = ({
-  pagination,
   handleDetailsPage,
   myColumn,
   myRows,
@@ -35,7 +34,6 @@ const TableWrapper = ({
   handleProjectDetailsOpen,
   role,
   skillAlert,
-  // data,
   isChildDataLoading,
   handleReject,
   handleOpenNDA,
@@ -49,20 +47,21 @@ const TableWrapper = ({
   const [isDataLoading, setIsDataLoading] = useState(true);
   const [isWorkHistoryDataLoading, setIsWorkHistoryDataLoading] =
     useState(true);
+
   const stickyFirstColumn = [myColumn[0]];
   const stickyLastColumn = [myColumn[myColumn.length - 1]];
   const columns = myColumn.slice(1, myColumn.length - 1);
   const approvedPaths = ['/allprojects', '/all-users', `/projectDetails/${id}`];
   const {
-    isLoading,
+    isLoading: usersLoading,
     users: { users },
   } = useSelector((state) => state.user);
   const {
     isLoading: projectLoading,
     projectDrawers,
     usersWorkHistory,
-    usersWorkHistoryCount,
   } = useSelector((state) => state.projectDrawer);
+
   useEffect(() => {
     if (pathname === '/allprojects') {
       setIsDataLoading(true);
@@ -81,6 +80,7 @@ const TableWrapper = ({
       setIsWorkHistoryDataLoading(false);
     }
     if (pathname === `/projectDetails/${id}`) {
+      setIsDataLoading(true);
       setIsWorkHistoryDataLoading(true);
       usersWorkHistory &&
         usersWorkHistory.length > 0 &&
@@ -89,11 +89,10 @@ const TableWrapper = ({
       setIsWorkHistoryDataLoading(false);
       setIsDataLoading(false);
     }
-    // }, [pathname, users, pagination]);
   }, [pathname, users, projectDrawers, usersWorkHistory]);
 
   const renderMainContent = () => {
-    if (!isLoading || !projectLoading) {
+    if (!usersLoading || !projectLoading || !isWorkHistoryDataLoading) {
       if (approvedPaths.includes(pathname)) {
         if (data && data.length > 0) {
           return (
@@ -121,21 +120,25 @@ const TableWrapper = ({
           return <LoadingComponent />;
         } else if (data && data.length === 0) {
           let message;
-          if (pathname === '/allprojects')
+          if (pathname === '/allprojects' && !projectLoading)
             return (
               <Alert severity="error">No available projects data found!</Alert>
             );
-          if (pathname === '/all-users')
+          if (pathname === '/all-users' && !usersLoading)
             return (
               <Alert severity="error">No available users data found!</Alert>
             );
-          if (pathname === `/projectDetails/${id}`) {
+          if (
+            pathname === `/projectDetails/${id}` &&
+            !isWorkHistoryDataLoading
+          ) {
             if (antRoles.includes(role)) {
               return <DetailsPage skillAlert={skillAlert} />;
             } else {
               return (
                 <Alert severity="error">
-                  No available users history data found!
+                  No available users history data
+                  found!
                 </Alert>
               );
             }

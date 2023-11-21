@@ -1,19 +1,22 @@
-import {Box} from '@mui/material';
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
+import { Box } from '@mui/material';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useFullDetailsProject from '../../../../customHooks/useFullDetailsProject';
 import useToaster from '../../../../customHooks/useToaster';
-import {getMyWorkHistoryById, getUsersWorkHistoryById,} from '../../../../features/slice/projectDrawerSlice';
+import {
+  getMyWorkHistoryById,
+  getUsersWorkHistoryById,
+} from '../../../../features/slice/projectDrawerSlice';
 import dataBuilder from '../../../shared/CustomTable/dataBuilder';
 import fieldBuilder from '../../../shared/CustomTable/fieldBuilder';
 import LoadingComponent from '../../../shared/Loading/LoadingComponent';
-import {singleDetailsFields} from '../FIlterOptions';
+import { singleDetailsFields } from '../FIlterOptions';
 import useAllFunc from '../Hooks/useAllFunc';
 import useHandleChange from '../Hooks/useHandleChange';
 import PaginationTable from '../PaginationTable';
 import Project2DetailsModal from '../Project2Details/Project2DetailsModal';
-import {HeaderBox, TablePaper} from '../ProjectLIstIndex2';
+import { HeaderBox, TablePaper } from '../ProjectLIstIndex2';
 import CheckOutModal from './CheckOutModal';
 import ProjectDetailsHeader from './ProjectDetailsHeader';
 
@@ -73,29 +76,27 @@ const FullProjectDetails = () => {
     handleCheckOutButton,
     range,
     setRange,
-  } = useFullDetailsProject();
-
+  } = useFullDetailsProject({ filteredCol });
+  const path = useLocation();
+  const { pathname, search: searchParams } = path;
   useEffect(() => {
-    setIsLoadingDetails(false);
-    if (!isLoadingDetails) {
-      setDetailCol(fieldBuilder(singleDetailsFields));
-      setDetailRow(dataBuilder(usersWorkHistory));
-
-      // user  currentlyCheckedInProject field not available
-      if (!currentlyCheckedInProject || currentlyCheckedInProject === null) {
-        setIsDisable(false);
-      }
-      // user  currentlyCheckedInProject field match with id
-
-      if (currentlyCheckedInProject) {
-        setIsDisable(true);
-        if (id === currentlyCheckedInProject) {
-          setCheckOutDisable(false);
-        } else {
-          setCheckOutDisable(true);
-        }
+    setIsLoadingDetails(true);
+    // if (!isLoadingDetails) {
+    setDetailCol(fieldBuilder(singleDetailsFields));
+    setDetailRow(dataBuilder(usersWorkHistory));
+    if (!currentlyCheckedInProject || currentlyCheckedInProject === null) {
+      setIsDisable(false);
+    }
+    if (currentlyCheckedInProject) {
+      setIsDisable(true);
+      if (id === currentlyCheckedInProject) {
+        setCheckOutDisable(false);
+      } else {
+        setCheckOutDisable(true);
       }
     }
+    setIsLoadingDetails(false);
+    // }
   }, [
     usersWorkHistory,
     currentlyCheckedInProject,
@@ -103,7 +104,6 @@ const FullProjectDetails = () => {
     id,
     isLoadingDetails,
   ]);
-
   // TODO Need to solve this issue
   useEffect(() => {
     setIsChildDataLoading(true);
@@ -129,6 +129,7 @@ const FullProjectDetails = () => {
           setIsDataLoading(false);
         });
       } else {
+        setIsDataLoading(true);
         dispatch(
           getUsersWorkHistoryById({
             pagination,
@@ -152,7 +153,15 @@ const FullProjectDetails = () => {
         setIsDataLoading(false);
       });
     }
-  }, [role, range, pagination, filteredCol, projectDrawer._id]);
+  }, [
+    pagination,
+    filteredCol,
+    role,
+    range,
+    projectDrawer._id,
+    pathname,
+    searchParams,
+  ]);
 
   return (
     <Box className="content">
@@ -200,14 +209,11 @@ const FullProjectDetails = () => {
               setIsChildDataLoading={setIsChildDataLoading}
               setMyRows={setDetailRow}
             />
-            // <></>
           )}
 
           <PaginationTable
             pagination={pagination}
             setPagination={setPagination}
-            // handleChangePagination={handleChangePagination}
-            // totalItems={usersWorkHistoryCount}
           />
         </TablePaper>
       </Box>

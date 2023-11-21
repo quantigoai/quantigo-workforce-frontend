@@ -92,10 +92,7 @@ export default function WPFTable({
             ) : (
               <TableBody className="tableBody">
                 {myRows.map((row) => (
-                  <TableRow
-                    key={row.id}
-                    // hover
-                  >
+                  <TableRow key={row.id}>
                     {stickyFirstColumn.map((column) => (
                       <FirstTableColumn
                         key={column.id}

@@ -14,7 +14,7 @@
  */
 
 const dataBuilder = (data) => {
-    const newRows = data.map((d, index) => {
+    const newRows = data?.map((d, index) => {
         return {...d, id: d._id};
     });
     return newRows;

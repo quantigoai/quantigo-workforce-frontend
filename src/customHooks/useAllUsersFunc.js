@@ -13,12 +13,12 @@
  * ------------------------
  */
 
-import {useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {useSearchParams} from 'react-router-dom';
-import {getAllSkills} from '../features/slice/skillSlice';
-import {setTargetedUser, updateAUserById} from '../features/slice/userSlice';
-import {arraysAreEqual} from '../helper/helper';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
+import { getAllSkills } from '../features/slice/skillSlice';
+import { setTargetedUser, updateAUserById } from '../features/slice/userSlice';
+import { arraysAreEqual } from '../helper/helper';
 import useToaster from './useToaster';
 
 const useAllUsersFunc = ({
@@ -222,9 +222,10 @@ const useAllUsersFunc = ({
             [field]: 'desc',
           };
         } else {
-          delete prev[field];
+          const updatedData = { ...prev };
+          delete updatedData[field];
           return {
-            ...prev,
+            x: updatedData,
           };
         }
       }

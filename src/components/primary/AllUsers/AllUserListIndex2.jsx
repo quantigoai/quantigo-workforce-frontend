@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +7,7 @@ import useAllUsersFunc from '../../../customHooks/useAllUsersFunc';
 import useToaster from '../../../customHooks/useToaster';
 import { setActivePath } from '../../../features/slice/activePathSlice';
 import { getAllSkills } from '../../../features/slice/skillSlice';
+import { setUserFilter } from '../../../features/slice/temporaryDataSlice';
 import {
   getAllUsers,
   updateAUserById,
@@ -105,8 +106,16 @@ const AllUserListIndex2 = () => {
     dispatch(setActivePath('All Users'));
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setIsDataLoading(true);
+    dispatch(
+      setUserFilter({
+        pagination,
+        filteredData: filterValue,
+        ascDescOption: filteredCol,
+        search,
+      }),
+    );
     dispatch(
       getAllUsers({
         pagination,
@@ -116,6 +125,7 @@ const AllUserListIndex2 = () => {
       }),
     )
       .then((res) => {
+        const { links } = res.payload.data.meta;
         setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
         // navigate(links.current);
         // navigate(`/all-users?page=${pagination.currentPage + 1}&limit=${pagination.pageSize}`);

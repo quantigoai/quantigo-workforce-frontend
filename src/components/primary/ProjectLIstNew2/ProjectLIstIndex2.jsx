@@ -263,7 +263,6 @@ const ProjectLIstIndex2 = () => {
           <ProjectHeader
             isFilter={isFilter}
             role={user.role}
-            // isLightTheme={isLightTheme}
             handleIsFilter={handleIsFilter}
             handleProjectCreateOpen={() => setCreateProjectOpen(true)}
             handleSearch={handleSearch}
@@ -313,14 +312,11 @@ const ProjectLIstIndex2 = () => {
                 setIsChildDataLoading={setIsChildDataLoading}
                 setMyRows={setMyRows}
               />
-              // <></>
             )}
 
             <PaginationTable
               pagination={pagination}
               setPagination={setPagination}
-              // handleChangePagination={handleChangePagination}
-              // totalItems={total}
             />
           </TablePaper>
         </Box>

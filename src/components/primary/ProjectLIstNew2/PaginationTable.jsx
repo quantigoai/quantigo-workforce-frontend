@@ -27,8 +27,13 @@ const paginationOptions = [
  * @returns {JSX.Element} - Pagination component for the table.
  */
 const PaginationTable = ({ pagination, setPagination }) => {
-  const { myWorkHistoryCount, usersWorkHistoryCount, projectMeta } =
-    useSelector((state) => state.projectDrawer);
+  const {
+    myWorkHistoryCount,
+    usersWorkHistoryCount,
+    projectMeta,
+    workHistoryMeta,
+  } = useSelector((state) => state.projectDrawer);
+  const { id } = useParams();
 
   const { total } = useSelector((state) => state.projectDrawer);
   const {
@@ -39,6 +44,7 @@ const PaginationTable = ({ pagination, setPagination }) => {
   const [meta, setMeta] = useState(projectMeta);
 
   const { pathname } = useLocation();
+
   useEffect(() => {
     if (pathname === '/allprojects') {
       setMeta(projectMeta);
@@ -46,7 +52,10 @@ const PaginationTable = ({ pagination, setPagination }) => {
     if (pathname === '/all-users') {
       setMeta(userMeta);
     }
-  }, [pathname, projectMeta, userMeta]);
+    if (pathname === `/projectDetails/${id}`) {
+      setMeta(workHistoryMeta);
+    }
+  }, [pathname, projectMeta, userMeta, workHistoryMeta]);
   const navigate = useNavigate();
   const [params] = useSearchParams();
 
@@ -62,7 +71,11 @@ const PaginationTable = ({ pagination, setPagination }) => {
         }));
       }
     } else {
-      if (pathname === '/all-users' || pathname === '/allprojects') {
+      if (
+        pathname === '/all-users' ||
+        pathname === '/allprojects' ||
+        pathname === `/projectDetails/${id}`
+      ) {
         setPagination((prevPagination) => ({
           ...prevPagination,
           currentPage: 0,
@@ -113,10 +126,9 @@ const PaginationTable = ({ pagination, setPagination }) => {
     },
     [meta],
   );
-  const { id } = useParams();
 
   let [totalPages, setTotalPages] = useState(0);
-  
+
   useLayoutEffect(() => {
     if (pathname === '/allprojects') {
       setTotalPages(Math.ceil(total / pagination.pageSize));
@@ -159,7 +171,6 @@ const PaginationTable = ({ pagination, setPagination }) => {
         display: 'flex',
         width: '100%',
         height: { xl: '48px', xxl: '60px' },
-        // backgroundColor: "gray",
         paddingX: '16px',
         paddingY: '12px',
         justifyContent: 'space-between',

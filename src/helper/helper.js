@@ -16,12 +16,14 @@ export const arraysAreEqual = (arr1, arr2) => {
   if (arr1.length !== arr2.length) {
     return false;
   }
+  let temp1 = [...arr1];
+  let temp2 = [...arr2];
+    
+  temp1.sort();
+  temp2.sort();
 
-  arr1.sort();
-  arr2.sort();
-
-  for (let i = 0; i < arr1.length; i++) {
-    if (arr1[i] !== arr2[i]) {
+  for (let i = 0; i < temp1.length; i++) {
+    if (temp1[i] !== temp2[i]) {
       return false;
     }
   }

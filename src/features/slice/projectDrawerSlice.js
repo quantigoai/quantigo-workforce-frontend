@@ -27,6 +27,7 @@ const initialState = {
   usersWorkHistory: [],
   userProjectWorkHistory: [],
   projectMeta: {},
+  workHistoryMeta: {},
   usersWorkHistoryCount: 0,
   myWorkHistoryCount: 0,
   error: null,
@@ -530,13 +531,13 @@ const projectDrawerSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(checkInProjectDrawerById.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.error = null;
-        state.usersWorkHistory = [
-          action.payload.data.projectDrawer.checkedInUsersHistory[0],
-          ...state.usersWorkHistory,
-        ];
-        state.myWorkHistoryCount = state.myWorkHistoryCount + 1;
+        state.isLoading = false;
+        // state.usersWorkHistory = [
+        //   action.payload.data.projectDrawer.checkedInUsersHistory[0],
+        //   ...state.usersWorkHistory,
+        // ];
+        // state.myWorkHistoryCount = state.myWorkHistoryCount + 1;
       })
       .addCase(checkInProjectDrawerById.rejected, (state, action) => {
         state.error = action.error.message;
@@ -602,10 +603,11 @@ const projectDrawerSlice = createSlice({
       })
       .addCase(getUsersWorkHistoryById.fulfilled, (state, action) => {
         state.usersWorkHistoryCount =
-          action.payload.data.projectDrawer.totalCount;
+          action.payload.data.projectDrawer?.totalCount ;
         state.usersWorkHistory =
-          action.payload.data.projectDrawer.checkedInUsersHistory;
+          action.payload.data.projectDrawer?.checkedInUsersHistory;
         state.error = null;
+        state.workHistoryMeta = action.payload.data.meta;
         state.isLoading = false;
       })
       .addCase(getUsersWorkHistoryById.rejected, (state, action) => {

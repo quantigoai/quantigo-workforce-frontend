@@ -13,15 +13,15 @@
  * ------------------------
  */
 
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useSearchParams } from 'react-router-dom';
-import { roleOptionsAdmin } from '../components/primary/AllUsers/userFilterOptions';
-import { getAllSkills } from '../features/slice/skillSlice';
-import { setUserFilter } from '../features/slice/temporaryDataSlice';
-import { setTargetedUser, updateAUserById } from '../features/slice/userSlice';
-import { arraysAreEqual } from '../helper/helper';
-import useToaster from './useToaster';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useSearchParams } from "react-router-dom";
+import { roleOptionsAdmin } from "../components/primary/AllUsers/userFilterOptions";
+import { getAllSkills } from "../features/slice/skillSlice";
+import { setUserFilter } from "../features/slice/temporaryDataSlice";
+import { setTargetedUser, updateAUserById } from "../features/slice/userSlice";
+import { arraysAreEqual } from "../helper/helper";
+import useToaster from "./useToaster";
 const useAllUsersFunc = ({
   userSearchRef,
   addSkills,
@@ -31,7 +31,7 @@ const useAllUsersFunc = ({
   setAddRoles,
   setSkillCount,
 }) => {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   const [pagination, setPagination] = useState({
     currentPage: 0,
@@ -55,7 +55,7 @@ const useAllUsersFunc = ({
   const [selectedUser, setSelectedUser] = useState({});
   const [open, setOpen] = useState(false);
   const [openAccepet, setOpenAccepet] = useState(false);
-  const [rejectionCause, setRejectionCause] = useState('');
+  const [rejectionCause, setRejectionCause] = useState("");
   const toast = useToaster();
   const { pathname } = useLocation();
   const { userFilter } = useSelector((state) => state.tempData);
@@ -63,21 +63,19 @@ const useAllUsersFunc = ({
   const { skills } = useSelector((state) => state.skill);
 
   useEffect(() => {
-    if (pathname === '/all-users') {
-      setFilteredCol(userFilter.ascDescOption);
-      setFilterValue(userFilter.filteredData);
-      setSearch(userFilter.search);
-      userSearchRef.current.value = userFilter.search || '';
+    if (pathname === "/all-users") {
+      setFilteredCol(userFilter?.ascDescOption);
+      setFilterValue(userFilter?.filteredData);
+      setSearch(userFilter?.search);
+      userSearchRef.current.value = userFilter?.search || "";
       setIsComplete(true);
     }
   }, []);
 
   useEffect(() => {
-    if (pathname === '/all-users') {
+    if (pathname === "/all-users") {
       if (isComplete) {
-        const isValueExists =
-          filterValue &&
-          Object.keys(filterValue).some((key) => filterValue[key] !== '');
+        const isValueExists = filterValue && Object.keys(filterValue).some((key) => filterValue[key] !== "");
         if (filterValue) {
           if (filterValue.skills && filterValue.skills?.length > 0) {
             const value = filterValue.skills.map((skill) => {
@@ -88,12 +86,9 @@ const useAllUsersFunc = ({
             });
             setAddSkills(selectedSkills);
 
-            filterValue.skills.length &&
-              setSkillCount(filterValue.skills.length - 1);
+            filterValue.skills.length && setSkillCount(filterValue.skills.length - 1);
             setAddSkills((s) => {
-              return typeof selectedSkills === 'string'
-                ? value.split(',')
-                : selectedSkills;
+              return typeof selectedSkills === "string" ? value.split(",") : selectedSkills;
             });
           }
           if (filterValue.role && filterValue.role?.length > 0) {
@@ -111,7 +106,7 @@ const useAllUsersFunc = ({
             filteredData: filterValue,
             ascDescOption: filteredCol,
             search,
-          }),
+          })
         );
       }
     }
@@ -120,9 +115,9 @@ const useAllUsersFunc = ({
   const handleClose = () => setOpen(false);
 
   const clearSearch = () => {
-    setSearch('');
+    setSearch("");
     setIsDataLoading(true);
-    userSearchRef.current.value = '';
+    userSearchRef.current.value = "";
   };
   const handleClickAway = () => {
     const skillsId = addSkills.map((skill) => skill._id);
@@ -183,7 +178,7 @@ const useAllUsersFunc = ({
   const handleCloseModal = () => {
     setOpenAccepet(false);
     setOpenModal(false);
-    setRejectionCause('');
+    setRejectionCause("");
   };
   // accept NDA
   const handleOpenNDA = (params) => {
@@ -199,14 +194,11 @@ const useAllUsersFunc = ({
     };
     dispatch(updateAUserById(data)).then((action) => {
       if (action.payload?.status === 200) {
-        toast.trigger('User has been verified successfully.', 'success');
+        toast.trigger("User has been verified successfully.", "success");
         setOpenAccepet(false);
         setOpenModal(false);
       } else {
-        toast.trigger(
-          'Failed to verify the user, please try again later.',
-          'error',
-        );
+        toast.trigger("Failed to verify the user, please try again later.", "error");
       }
     });
   };
@@ -224,21 +216,15 @@ const useAllUsersFunc = ({
     setDetailsUserOpen(false);
   };
 
-  const handleChange = (
-    event,
-    skillsId = [],
-    addRoles = [],
-    isSkillsSame = true,
-    isRolesSame = true,
-  ) => {
+  const handleChange = (event, skillsId = [], addRoles = [], isSkillsSame = true, isRolesSame = true) => {
     if (!isSkillsSame) {
-      const field = 'skills';
+      const field = "skills";
       const value = skillsId;
       const filteredData = { ...filterValue };
       filteredData[field] = value;
       setFilterValue(filteredData);
     } else if (!isRolesSame) {
-      const field = 'role';
+      const field = "role";
       const value = addRoles;
       const filteredData = { ...filterValue };
       filteredData[field] = value;
@@ -276,10 +262,10 @@ const useAllUsersFunc = ({
       const updatedData = { ...prev };
       // eslint-disable-next-line no-prototype-builtins
       if (prev?.hasOwnProperty(field)) {
-        if (prev[field] === 'asc') {
+        if (prev[field] === "asc") {
           return {
             ...prev,
-            [field]: 'desc',
+            [field]: "desc",
           };
         } else {
           delete updatedData[field];
@@ -288,7 +274,7 @@ const useAllUsersFunc = ({
       }
       return {
         ...prev,
-        [field]: 'asc',
+        [field]: "asc",
       };
     });
   };

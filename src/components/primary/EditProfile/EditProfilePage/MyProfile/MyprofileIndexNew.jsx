@@ -116,6 +116,7 @@ const MyprofileIndexNew = () => {
         if (action.payload.status === 200) {
           toast.trigger("Profile Picture Update Successfully", "success");
           setEditAble(false);
+          setCoverImageFile(null);
         }
       });
     //   Object.keys(filteredData).length > 0 &&

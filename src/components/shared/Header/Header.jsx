@@ -8,21 +8,26 @@
  */
 import LogoutIcon from '@mui/icons-material/Logout';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import {Avatar, FormControlLabel, Stack, styled, Typography,} from '@mui/material';
+import {
+  Avatar,
+  FormControlLabel,
+  Stack,
+  styled,
+  Typography,
+} from '@mui/material';
 import Box from '@mui/material/Box';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {useLocation, useNavigate} from 'react-router-dom';
-import useAllUsersFunc from '../../../customHooks/useAllUsersFunc';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useReset from '../../../customHooks/useReset';
-import {setTheme} from '../../../features/slice/themeSlice';
-import {logout} from '../../../features/slice/userSlice';
-import {persistor} from '../../../features/store/store';
-import {capitalizeFirstLetter} from '../../../helper/capitalizeFirstWord';
+import { setTheme } from '../../../features/slice/themeSlice';
+import { logout } from '../../../features/slice/userSlice';
+import { persistor } from '../../../features/store/store';
+import { capitalizeFirstLetter } from '../../../helper/capitalizeFirstWord';
 import NotificationModal from '../Notification/NotificationModal';
 import GoBackButton from './GoBackButton';
 import ThemeSwitch from './ThemeSwitch';
@@ -38,7 +43,6 @@ const Header = () => {
   );
   const { isLoading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const { goBackHandle } = useAllUsersFunc({});
   const [notificationOpen, setNotificationOpen] = React.useState(null);
   const handleNotificationOpen = (e) => {
     setNotificationOpen(e.currentTarget);
@@ -82,7 +86,6 @@ const Header = () => {
   const handleGoBack = () => {
     if (location.pathname !== '/' && location.pathname !== '/dashboard') {
       navigate(-1);
-      // goBackHandle();
     }
   };
   const openPopover = Boolean(notificationOpen);

@@ -26,7 +26,12 @@ const paginationOptions = [
  * @param {function} handleChangePagination - A callback function invoked when pagination changes.
  * @returns {JSX.Element} - Pagination component for the table.
  */
-const PaginationTable = ({ pagination, setPagination }) => {
+const PaginationTable = ({
+  pagination,
+  setPagination,
+  setFilterValue,
+  setFilteredCol,
+}) => {
   const {
     myWorkHistoryCount,
     usersWorkHistoryCount,
@@ -34,6 +39,9 @@ const PaginationTable = ({ pagination, setPagination }) => {
     workHistoryMeta,
   } = useSelector((state) => state.projectDrawer);
   const { id } = useParams();
+  const { userFilter, projectDrawerFilter } = useSelector(
+    (state) => state.tempData,
+  );
 
   const { total } = useSelector((state) => state.projectDrawer);
   const {
@@ -62,13 +70,17 @@ const PaginationTable = ({ pagination, setPagination }) => {
   const limit = params.get('limit');
   const skip = params.get('skip');
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (skip && limit) {
       if (skip / limit !== pagination.currentPage) {
         setPagination((prevPagination) => ({
           ...prevPagination,
           currentPage: skip / limit,
         }));
+        if (pathname === '/allprojects') {
+          setFilteredCol(projectDrawerFilter.ascDescOption);
+          setFilterValue(projectDrawerFilter.filteredData);
+        }
       }
     } else {
       if (

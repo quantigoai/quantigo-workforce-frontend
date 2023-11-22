@@ -7,7 +7,6 @@ import useAllUsersFunc from '../../../customHooks/useAllUsersFunc';
 import useToaster from '../../../customHooks/useToaster';
 import { setActivePath } from '../../../features/slice/activePathSlice';
 import { getAllSkills } from '../../../features/slice/skillSlice';
-import { setUserFilter } from '../../../features/slice/temporaryDataSlice';
 import {
   getAllUsers,
   updateAUserById,
@@ -33,7 +32,7 @@ import {
 
 const AllUserListIndex2 = () => {
   const dispatch = useDispatch();
-  const searchRef = useRef(null);
+  const userSearchRef = useRef(null);
   const { register } = useForm();
   const toast = useToaster();
   const { user } = useSelector((state) => state.user);
@@ -43,14 +42,17 @@ const AllUserListIndex2 = () => {
     addSkills,
     setAddSkills,
     count,
+    setCount,
     addRoles,
     handleChangeRoles,
     setAddRoles,
-    search,
-    setSearch,
+    skillCount,
+    setSkillCount,
   } = useHandleChange();
 
   const {
+    search,
+    setSearch,
     isDataLoading,
     isChildDataLoading,
     openModal,
@@ -92,13 +94,15 @@ const AllUserListIndex2 = () => {
     handleChange,
     handleClearFilter,
     goBackHandle,
+    isComplete,
   } = useAllUsersFunc({
-    setSearch,
-    searchRef,
+    userSearchRef,
     addSkills,
     addRoles,
     setAddSkills,
     setAddRoles,
+    setCount,
+    setSkillCount,
   });
 
   useEffect(() => {
@@ -108,32 +112,24 @@ const AllUserListIndex2 = () => {
 
   useLayoutEffect(() => {
     setIsDataLoading(true);
-    dispatch(
-      setUserFilter({
-        pagination,
-        filteredData: filterValue,
-        ascDescOption: filteredCol,
-        search,
-      }),
-    );
-    dispatch(
-      getAllUsers({
-        pagination,
-        filteredData: filterValue,
-        ascDescOption: filteredCol,
-        search,
-      }),
-    )
-      .then((res) => {
-        const { links } = res.payload.data.meta;
-        setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
-        // navigate(links.current);
-        // navigate(`/all-users?page=${pagination.currentPage + 1}&limit=${pagination.pageSize}`);
-        setIsDataLoading(false);
-      })
-      .catch((err) => {
-        setIsDataLoading(false);
-      });
+
+    if (isComplete) {
+      dispatch(
+        getAllUsers({
+          pagination,
+          filteredData: filterValue,
+          ascDescOption: filteredCol,
+          search,
+        }),
+      )
+        .then((res) => {
+          setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
+          setIsDataLoading(false);
+        })
+        .catch((err) => {
+          setIsDataLoading(false);
+        });
+    }
   }, [pagination, search, filterValue, filteredCol]);
 
   const onSubmit = (data) => {
@@ -173,7 +169,7 @@ const AllUserListIndex2 = () => {
           handleSearch={handleSearch}
           setSearch={setSearch}
           search={search}
-          searchRef={searchRef}
+          userSearchRef={userSearchRef}
           clearSearch={clearSearch}
         />
         <UsersFilter
@@ -193,6 +189,7 @@ const AllUserListIndex2 = () => {
           handleChangeSkill={handleChangeSkill}
           addSkills={addSkills}
           count={count}
+          skillCount = {skillCount}
           handleClickAway={handleClickAway}
           addRoles={addRoles}
           handleChangeRoles={handleChangeRoles}

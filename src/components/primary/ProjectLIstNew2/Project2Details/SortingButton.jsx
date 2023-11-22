@@ -1,36 +1,43 @@
-import {Box, Button} from "@mui/material";
+import { Box, Button } from '@mui/material';
 
 const SortingButton = ({ filteredCol, column }) => {
-  const val = Object.keys(filteredCol);
-  // <!--  -->onsole.log("🚀 ~ file: SortingButton.jsx:5 ~ SortingButton ~ val:", val)
+  const val = filteredCol && Object.keys(filteredCol);
   const ascColorCode = (value) => {
-    return value.includes(column) ? (filteredCol[column] === "asc" ? "blue" : "#7B98BA") : "#7B98BA";
+    return value?.includes(column)
+      ? filteredCol[column] === 'asc'
+        ? 'blue'
+        : '#7B98BA'
+      : '#7B98BA';
   };
   const descColorCode = (value) => {
-    return value.includes(column) ? (filteredCol[column] === "desc" ? "blue" : "#7B98BA") : "#7B98BA";
+    return value?.includes(column)
+      ? filteredCol[column] === 'desc'
+        ? 'blue'
+        : '#7B98BA'
+      : '#7B98BA';
   };
   return (
     <Button
       sx={{
-        minWidth: "15px",
-        ":hover": {
-          backgroundColor: "transparent",
-          color: "black",
+        minWidth: '15px',
+        ':hover': {
+          backgroundColor: 'transparent',
+          color: 'black',
         },
       }}
     >
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          gap: "8px",
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          gap: '8px',
         }}
       >
         <i
           className="ri-arrow-up-s-fill"
           style={{
-            fontSize: "14px",
+            fontSize: '14px',
             color: ascColorCode(val),
             lineHeight: 0,
           }}
@@ -38,7 +45,7 @@ const SortingButton = ({ filteredCol, column }) => {
         <i
           className="ri-arrow-down-s-fill"
           style={{
-            fontSize: "14px",
+            fontSize: '14px',
             color: descColorCode(val),
             lineHeight: 0,
           }}

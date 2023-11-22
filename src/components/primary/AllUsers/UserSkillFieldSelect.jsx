@@ -1,26 +1,33 @@
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import {Box, Chip, MenuItem, Select, styled, Typography} from "@mui/material";
-import React from "react";
-import {MyFormControl} from "../../shared/CustomField/CustomDatePicker";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { Box, Chip, MenuItem, Select, styled, Typography } from '@mui/material';
+import React from 'react';
+import { MyFormControl } from '../../shared/CustomField/CustomDatePicker';
 
 export const MySelect = styled(Select)(() => ({
-  border: "1px solid #E6ECF5",
-  // padding: "5px 0px 0px 0px",
-  // background: "white",
-  borderRadius: "8px",
+  border: '1px solid #E6ECF5',
+  borderRadius: '8px',
 }));
 const ITEM_HEIGHT = 40;
 const ITEM_PADDING_TOP = 2;
 const MenuProps = {
   PaperProps: {
     style: {
-      fontFamily: "Inter",
+      fontFamily: 'Inter',
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
       width: 110,
     },
   },
 };
-const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, count, handleClickAway, label }) => {
+const UserSkillFieldSelect = ({
+  name,
+  addSkills,
+  handleChangeSkill,
+  skills,
+  count,
+  handleClickAway,
+  label,
+}) => {
+
   return (
     <>
       <MyFormControl fullWidth>
@@ -38,7 +45,7 @@ const UserSkillFieldSelect = ({ name, addSkills, handleChangeSkill, skills, coun
           }}
           displayEmpty
           multiple
-          value={addSkills?.map((skill) => skill.name) || ''}
+          value={addSkills?.map((skill) => skill?.name) || ''}
           onChange={handleChangeSkill}
           IconComponent={KeyboardArrowDownIcon}
           renderValue={(selected) => {

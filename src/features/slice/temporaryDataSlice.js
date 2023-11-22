@@ -89,6 +89,18 @@ const temporaryDataSlice = createSlice({
     clearUserFilter: (state) => {
       state.userFilter = {};
     },
+    setProjectDrawerFilter: (state, action) => {
+      state.projectDrawerFilter = action.payload;
+    },
+    clearProjectDrawerFilter: (state) => {
+      state.projectDrawerFilter = {};
+    },
+    setWorkHistoryFilter: (state, action) => {
+      state.workHistoryFilter = action.payload;
+    },
+    clearWorkHistoryFilter: (state) => {
+      state.workHistoryFilter = {};
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -130,6 +142,10 @@ export const {
   resetTemporaryDatas,
   setUserFilter,
   clearUserFilter,
+  setProjectDrawerFilter,
+  clearProjectDrawerFilter,
+  setWorkHistoryFilter,
+  clearWorkHistoryFilter,
 } = temporaryDataSlice.actions;
 
 export default temporaryDataSlice.reducer;

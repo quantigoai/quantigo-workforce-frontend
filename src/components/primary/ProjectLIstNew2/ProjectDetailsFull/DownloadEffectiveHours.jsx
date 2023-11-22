@@ -51,10 +51,6 @@ const DownloadEffectiveHours = () => {
         },
       );
       const data = response.data.projectHistory.projectDrawerUsers;
-      console.log(
-        '🚀 ~ file: DownloadEffectiveHours.jsx:54 ~ fetchData ~ data:',
-        data,
-      );
       setJsonData(data);
     } catch (error) {
       toast.trigger(error.response.data.message, 'error');

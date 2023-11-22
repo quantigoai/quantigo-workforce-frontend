@@ -22,15 +22,12 @@ export default function ProjectSelectFIlterField({ options, label, handleChange,
         px: 0,
         py: 0,
         minWidth: { lg: "20%", xl: "25%", xxl: "25%" },
-        // minHeight: "36px",
-        // height: "36px",
-        // fontFamily: "Inter",
+
       }}
     >
       <MySelect
         displayEmpty
         sx={{
-          // height: "36px",
           height: {
             lg: "30px",
             xl: "36px",

@@ -82,14 +82,16 @@ export const getAllProjectDrawers = createAsyncThunk(
       let query = `limit=${pagination.pageSize}&skip=${
         pagination.currentPage * pagination.pageSize
       }`;
-
-      const filterOptions = Object.keys(filteredData);
-      filterOptions.map((f) => (query += `&${f}=${filteredData[f]}`));
-
-      const ascDescOptions = Object.keys(ascDescOption);
-      ascDescOptions.map(
-        (ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`),
-      );
+      const filterOptions = filteredData && Object.keys(filteredData);
+      if (filterOptions?.length > 0) {
+        filterOptions.map((f) => (query += `&${f}=${filteredData[f]}`));
+      }
+      const ascDescOptions = ascDescOption && Object.keys(ascDescOption);
+      if (ascDescOptions?.length > 0) {
+        ascDescOptions.map(
+          (ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`),
+        );
+      }
       if (search) {
         query += `&search=${search}`;
       }
@@ -392,11 +394,13 @@ export const getMyAvailableProjects = createAsyncThunk(
       query += `&project_platform=${annotatorPlatform}`;
     }
 
-    const filterOptions = Object.keys(filteredData);
-    filterOptions.map((f) => (query += `&${f}=${filteredData[f]}`));
+    const ascDescOptions = ascDescOption && Object.keys(ascDescOption);
+    if (ascDescOptions?.length > 0) {
+      ascDescOptions.map(
+        (ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`),
+      );
+    }
 
-    const ascDescOptions = Object.keys(ascDescOption);
-    ascDescOptions.map((ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`));
     if (search) {
       query += `&search=${search}`;
     }
@@ -464,7 +468,6 @@ const projectDrawerSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getAllProjectDrawers.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.projectDrawers = action.payload.data.projectDrawers;
         state.projectMeta = action.payload.data.meta;
         if (action.payload.data?.filteredTotalCount === 0) {
@@ -475,6 +478,7 @@ const projectDrawerSlice = createSlice({
           state.total = action.payload.data.count;
         }
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(getAllProjectDrawers.rejected, (state, action) => {
         state.error = action.error.message;
@@ -603,7 +607,7 @@ const projectDrawerSlice = createSlice({
       })
       .addCase(getUsersWorkHistoryById.fulfilled, (state, action) => {
         state.usersWorkHistoryCount =
-          action.payload.data.projectDrawer?.totalCount ;
+          action.payload.data.projectDrawer?.totalCount;
         state.usersWorkHistory =
           action.payload.data.projectDrawer?.checkedInUsersHistory;
         state.error = null;

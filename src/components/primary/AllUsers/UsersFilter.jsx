@@ -29,6 +29,7 @@ const UsersFilter = ({
   handleClickAway,
   addRoles,
   handleChangeRoles,
+  skillCount,
 }) => {
   const { skills } = useSelector((state) => state.skill);
 
@@ -100,7 +101,7 @@ const UsersFilter = ({
                     label={'Users Skills'}
                     handleChangeSkill={handleChangeSkill}
                     skills={skills}
-                    count={count}
+                    count={skillCount}
                     handleClickAway={handleClickAway}
                   />
                   <ProjectSelectFIlterField

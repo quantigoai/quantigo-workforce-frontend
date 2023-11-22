@@ -79,8 +79,14 @@ const ProjectLIstIndex2 = () => {
   const { projectDrawer, total, error, projectMeta } = useSelector(
     (state) => state.projectDrawer,
   );
-  const { handleChangeSkill, addSkills, setAddSkills, count } =
-    useHandleChange();
+  const {
+    handleChangeSkill,
+    addSkills,
+    setAddSkills,
+    count,
+    skillCount,
+    setSkillCount,
+  } = useHandleChange();
 
   const [isDeleted, setIsDeleted] = useState(false);
 
@@ -142,10 +148,12 @@ const ProjectLIstIndex2 = () => {
     clearSearch,
     handleChangeAnnotatorFilter,
     handleChangeCheck,
+    setFilterValue,
+    setFilteredCol,
+    isComplete,
   } = useAllFunc({
     addSkills,
     setAddSkills,
-    count,
     searchRef,
     handleClearAllSkills,
     setIsEdit,
@@ -188,7 +196,6 @@ const ProjectLIstIndex2 = () => {
         if (action.payload?.status === 201) {
           toast.trigger(action.payload.data.message, 'success');
           handleCreateProjectClose();
-          // --------------concept ----------------
           dispatch(
             getAllProjectDrawers({
               pagination,
@@ -196,14 +203,10 @@ const ProjectLIstIndex2 = () => {
               ascDescOption: filteredCol,
               search,
             }),
-            // getAllProjectDrawers({ pagination })
           ).then((res) => {
             setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
-            // navigate(`/allprojects?page=${pagination.currentPage + 1}&limit=${pagination.pageSize}`);
             setIsDataLoading(false);
           });
-          // --------------concept ----------------
-          // handleChangePagination();
         }
       });
     }
@@ -220,30 +223,33 @@ const ProjectLIstIndex2 = () => {
   useLayoutEffect(() => {
     setIsDataLoading(true);
     if (checked) {
-      dispatch(
-        getMyAvailableProjects({
-          pagination,
-          annotatorPlatform,
-          filteredData: filterValue,
-          ascDescOption: filteredCol,
-          search,
-        }),
-      ).then(() => {
-        setIsChildDataLoading(false);
-        setIsDataLoading(false);
-      });
+      isComplete &&
+        dispatch(
+          getMyAvailableProjects({
+            pagination,
+            annotatorPlatform,
+            filteredData: filterValue,
+            ascDescOption: filteredCol,
+            search,
+          }),
+        ).then(() => {
+          setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
+          setIsChildDataLoading(false);
+          setIsDataLoading(false);
+        });
     } else {
-      dispatch(
-        getAllProjectDrawers({
-          pagination,
-          filteredData: filterValue,
-          ascDescOption: filteredCol,
-          search,
-        }),
-      ).then((res) => {
-        setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
-        setIsDataLoading(false);
-      });
+      isComplete &&
+        dispatch(
+          getAllProjectDrawers({
+            pagination,
+            filteredData: filterValue,
+            ascDescOption: filteredCol,
+            search,
+          }),
+        ).then((res) => {
+          setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
+          setIsDataLoading(false);
+        });
     }
   }, [
     pagination,
@@ -253,6 +259,8 @@ const ProjectLIstIndex2 = () => {
     isDeleted,
     pathname,
     searchParams,
+    isComplete,
+    checked,
   ]);
 
   return (
@@ -317,6 +325,8 @@ const ProjectLIstIndex2 = () => {
             <PaginationTable
               pagination={pagination}
               setPagination={setPagination}
+              setFilterValue={setFilterValue}
+              setFilteredCol={setFilteredCol}
             />
           </TablePaper>
         </Box>
@@ -364,7 +374,7 @@ const ProjectLIstIndex2 = () => {
               projectTypeCreateOptions={projectTypeCreateOptions}
               statusCreateOptions={statusCreateOptions}
               handleChangeSkill={handleChangeSkill}
-              count={count}
+              count={skillCount}
               onSubmit={onSubmit}
               addSkills={addSkills}
               skills={skills}

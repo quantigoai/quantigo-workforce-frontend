@@ -1,19 +1,21 @@
 /* eslint-disable no-prototype-builtins */
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useToaster from '../../../../customHooks/useToaster';
 import {
-    clearProjectDrawer,
-    deleteProjectDrawerById,
-    setCurrentProjectDrawer,
+  clearProjectDrawer,
+  deleteProjectDrawerById,
+  setCurrentProjectDrawer,
 } from '../../../../features/slice/projectDrawerSlice';
-import {getAllSkills} from '../../../../features/slice/skillSlice';
-
+import { getAllSkills } from '../../../../features/slice/skillSlice';
+import {
+  clearProjectDrawerFilter,
+  setProjectDrawerFilter,
+} from '../../../../features/slice/temporaryDataSlice';
 const useAllFunc = ({
   addSkills,
   setAddSkills,
-  count,
   handleClearAllSkills,
   setIsEdit,
   searchRef,
@@ -46,6 +48,45 @@ const useAllFunc = ({
   const handleDetailsProjectClose = () => {
     setDetailsProjectOpen(false);
   };
+  const { pathname } = useLocation();
+  const { projectDrawerFilter } = useSelector((state) => state.tempData);
+  const [isComplete, setIsComplete] = useState(false);
+
+  useEffect(() => {
+    if (pathname === '/allprojects') {
+      setFilteredCol(projectDrawerFilter.ascDescOption);
+      setFilterValue(projectDrawerFilter.filteredData);
+      setSearch(projectDrawerFilter.search);
+      searchRef.current.value = projectDrawerFilter.search || '';
+      setChecked(projectDrawerFilter.checked);
+      setAnnotatorPlatform(
+        projectDrawerFilter.checked ? projectDrawerFilter.annotatorPlatform : '',
+      );
+      setIsComplete(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (pathname === '/allprojects') {
+      if (isComplete) {
+        const isValueExists =
+          filterValue &&
+          Object.keys(filterValue).some((key) => filterValue[key] !== '');
+        isValueExists && setIsFilter(true);
+        checked && setIsFilter(true);
+
+        dispatch(
+          setProjectDrawerFilter({
+            filteredData: filterValue,
+            ascDescOption: filteredCol,
+            search,
+            annotatorPlatform,
+            checked,
+          }),
+        );
+      }
+    }
+  }, [filterValue, filteredCol, search, isComplete, checked]);
 
   const handleProjectCreateOpen = () => {
     setCreateProjectOpen(true);
@@ -74,21 +115,22 @@ const useAllFunc = ({
     setFilteredCol({});
     setChecked(false);
     setAnnotatorPlatform('');
+    clearSearch();
+    dispatch(clearProjectDrawerFilter());
   };
 
   const handleId = (field) => {
     setFilteredCol((prev) => {
-      if (prev.hasOwnProperty(field)) {
+      const updatedData = { ...prev };
+      if (prev?.hasOwnProperty(field)) {
         if (prev[field] === 'asc') {
           return {
             ...prev,
             [field]: 'desc',
           };
         } else {
-          delete prev[field];
-          return {
-            ...prev,
-          };
+          delete updatedData[field];
+          return updatedData;
         }
       }
       return {
@@ -223,6 +265,9 @@ const useAllFunc = ({
     clearSearch,
     handleChangeAnnotatorFilter,
     handleChangeCheck,
+    setFilterValue,
+    setFilteredCol,
+    isComplete,
   };
 };
 

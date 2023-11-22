@@ -13,22 +13,26 @@
  * ------------------------
  */
 
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useSearchParams } from 'react-router-dom';
+import { roleOptionsAdmin } from '../components/primary/AllUsers/userFilterOptions';
 import { getAllSkills } from '../features/slice/skillSlice';
+import { setUserFilter } from '../features/slice/temporaryDataSlice';
 import { setTargetedUser, updateAUserById } from '../features/slice/userSlice';
 import { arraysAreEqual } from '../helper/helper';
 import useToaster from './useToaster';
-
 const useAllUsersFunc = ({
-  setSearch,
-  searchRef,
+  userSearchRef,
   addSkills,
+  setCount,
   addRoles,
   setAddSkills,
   setAddRoles,
+  setSkillCount,
 }) => {
+  const [search, setSearch] = useState('');
+
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
@@ -53,13 +57,72 @@ const useAllUsersFunc = ({
   const [openAccepet, setOpenAccepet] = useState(false);
   const [rejectionCause, setRejectionCause] = useState('');
   const toast = useToaster();
+  const { pathname } = useLocation();
+  const { userFilter } = useSelector((state) => state.tempData);
+  const [isComplete, setIsComplete] = useState(false);
+  const { skills } = useSelector((state) => state.skill);
+
+  useEffect(() => {
+    if (pathname === '/all-users') {
+      setFilteredCol(userFilter.ascDescOption);
+      setFilterValue(userFilter.filteredData);
+      setSearch(userFilter.search);
+      userSearchRef.current.value = userFilter.search || '';
+      setIsComplete(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (pathname === '/all-users') {
+      if (isComplete) {
+        const isValueExists =
+          filterValue &&
+          Object.keys(filterValue).some((key) => filterValue[key] !== '');
+        if (filterValue) {
+          if (filterValue.skills && filterValue.skills?.length > 0) {
+            const value = filterValue.skills.map((skill) => {
+              return skills.find((s) => s._id === skill)?.name;
+            });
+            const selectedSkills = filterValue.skills.map((skill) => {
+              return skills.find((s) => s._id === skill);
+            });
+            setAddSkills(selectedSkills);
+
+            filterValue.skills.length &&
+              setSkillCount(filterValue.skills.length - 1);
+            setAddSkills((s) => {
+              return typeof selectedSkills === 'string'
+                ? value.split(',')
+                : selectedSkills;
+            });
+          }
+          if (filterValue.role && filterValue.role?.length > 0) {
+            const updatedRoleOptions = filterValue.role.map((role) => {
+              return roleOptionsAdmin.find((r) => r.value === role);
+            });
+            setAddRoles(updatedRoleOptions);
+            setCount(updatedRoleOptions.length);
+          }
+        }
+
+        isValueExists && setIsFilter(true);
+        dispatch(
+          setUserFilter({
+            filteredData: filterValue,
+            ascDescOption: filteredCol,
+            search,
+          }),
+        );
+      }
+    }
+  }, [filterValue, filteredCol, search]);
   // const { handleChange } = useAllUsers();
   const handleClose = () => setOpen(false);
 
   const clearSearch = () => {
     setSearch('');
     setIsDataLoading(true);
-    searchRef.current.value = '';
+    userSearchRef.current.value = '';
   };
   const handleClickAway = () => {
     const skillsId = addSkills.map((skill) => skill._id);
@@ -208,25 +271,19 @@ const useAllUsersFunc = ({
     clearSearch();
   };
 
-  // setFilteredCol((prev) => {
-  //   if (Object.prototype.hasOwnProperty.call(prev, field)) {
-  //     if (prev[field] === "asc") {
-
   const handleId = (field) => {
     setFilteredCol((prev) => {
+      const updatedData = { ...prev };
       // eslint-disable-next-line no-prototype-builtins
-      if (prev.hasOwnProperty(field)) {
+      if (prev?.hasOwnProperty(field)) {
         if (prev[field] === 'asc') {
           return {
             ...prev,
             [field]: 'desc',
           };
         } else {
-          const updatedData = { ...prev };
           delete updatedData[field];
-          return {
-            x: updatedData,
-          };
+          return updatedData;
         }
       }
       return {
@@ -287,6 +344,9 @@ const useAllUsersFunc = ({
     handleChange,
     handleClearFilter,
     goBackHandle,
+    isComplete,
+    search,
+    setSearch,
   };
 };
 

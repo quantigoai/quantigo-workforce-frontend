@@ -26,7 +26,6 @@ import { fields } from './tableFields';
 import {
   hubOptions,
   roleOptionsAdmin,
-  roleOptionsRecruitment_manager,
   userStatusOptions,
 } from './userFilterOptions';
 
@@ -178,18 +177,19 @@ const AllUserListIndex2 = () => {
           handleChange={handleChange}
           handleClearFilter={handleClearFilter}
           filterValue={filterValue}
-          roleOptions={
-            user.role === 'admin'
-              ? roleOptionsAdmin
-              : roleOptionsRecruitment_manager
-          }
+          roleOptions={roleOptionsAdmin}
+          // roleOptions={
+          //   user.role === 'admin'
+          //     ? roleOptionsAdmin
+          //     : roleOptionsRecruitment_manager
+          // }
           hubOptions={hubOptions}
           skillOptions={skillsOptions}
           userStatusOptions={userStatusOptions}
           handleChangeSkill={handleChangeSkill}
           addSkills={addSkills}
           count={count}
-          skillCount = {skillCount}
+          skillCount={skillCount}
           handleClickAway={handleClickAway}
           addRoles={addRoles}
           handleChangeRoles={handleChangeRoles}

@@ -28,6 +28,7 @@ export const roleOptionsAdmin = [
   { value: 'engineering_lead', label: 'Engineering lead' },
   { value: 'admin', label: 'Admin' },
 ];
+
 export const roleOptionsRecruitment_manager = [
   { value: 'level_0_annotator', label: 'Level 0 annotator' },
   { value: 'level_1_annotator', label: 'Level 1 annotator' },
@@ -39,6 +40,7 @@ export const roleOptionsRecruitment_manager = [
   { value: 'project_coordinator', label: 'Project coordinator' },
   { value: 'project_delivery_lead', label: 'Project Delivery Lead ' },
   { value: 'project_manager', label: 'Project manager' },
+  { value: 'account_manager', label: 'Account manager' },
   { value: 'recruitment_manager', label: 'Recruitment manager' },
   { value: 'engineering_lead', label: 'Engineering lead' },
 ];

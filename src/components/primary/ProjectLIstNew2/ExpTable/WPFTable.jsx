@@ -67,7 +67,7 @@ export default function WPFTable({
                   />
                 ))}
 
-                {role === 'recruitment_manager' &&
+                {(role === 'recruitment_manager' || role === 'admin') &&
                   location.pathname === `/all-users` && (
                     <StickyDocViewTableHead column={{ width: '100px' }} />
                   )}
@@ -111,7 +111,7 @@ export default function WPFTable({
                       />
                     ))}
 
-                    {role === 'recruitment_manager' &&
+                    {(role === 'recruitment_manager' || role === 'admin') &&
                       location.pathname === `/all-users` && (
                         <StickyDocViewTableColumn column={row} />
                       )}

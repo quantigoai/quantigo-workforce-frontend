@@ -82,16 +82,17 @@ export const getAllProjectDrawers = createAsyncThunk(
       let query = `limit=${pagination.pageSize}&skip=${
         pagination.currentPage * pagination.pageSize
       }`;
-      const filterOptions = filteredData && Object.keys(filteredData);
-      if (filterOptions?.length > 0) {
+      if (filteredData) {
+        const filterOptions = filteredData && Object.keys(filteredData);
         filterOptions.map((f) => (query += `&${f}=${filteredData[f]}`));
       }
-      const ascDescOptions = ascDescOption && Object.keys(ascDescOption);
-      if (ascDescOptions?.length > 0) {
+      if (ascDescOption) {
+        const ascDescOptions = ascDescOption && Object.keys(ascDescOption);
         ascDescOptions.map(
           (ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`),
         );
       }
+
       if (search) {
         query += `&search=${search}`;
       }
@@ -263,13 +264,23 @@ export const getUsersWorkHistoryById = createAsyncThunk(
         pagination.currentPage * pagination.pageSize
       }`;
 
-      const ascDescOptions = Object.keys(ascDescOption);
-      if (ascDescOptions.length === 0) {
-        query += `&sortBy=checkedInDate:desc&sortBy=checkedInTime:desc`;
+      // const ascDescOptions = Object.keys(ascDescOption);
+      // if (ascDescOptions.length === 0) {
+      //   query += `&sortBy=checkedInDate:desc&sortBy=checkedInTime:desc`;
+      // }
+      // ascDescOptions.map(
+      //   (ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`),
+      // );
+
+      if (ascDescOption) {
+        const ascDescOptions = ascDescOption && Object.keys(ascDescOption);
+        if (ascDescOptions.length === 0) {
+          query += `&sortBy=checkedInDate:desc&sortBy=checkedInTime:desc`;
+        }
+        ascDescOptions.map(
+          (ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`),
+        );
       }
-      ascDescOptions.map(
-        (ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`),
-      );
       if (range) {
         const startDate = rangeDateFormatter(range[0].startDate);
         const endDate = rangeDateFormatter(range[0].endDate);
@@ -298,14 +309,22 @@ export const getMyWorkHistoryById = createAsyncThunk(
         pagination.currentPage * pagination.pageSize
       }`;
 
-      const ascDescOptions = Object.keys(ascDescOption);
-      if (ascDescOptions.length === 0) {
-        query += `&sortBy=checkedInDate:desc&sortBy=checkedInTime:desc`;
+      // const ascDescOptions = Object.keys(ascDescOption);
+      // if (ascDescOptions.length === 0) {
+      //   query += `&sortBy=checkedInDate:desc&sortBy=checkedInTime:desc`;
+      // }
+      // ascDescOptions.map(
+      //   (ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`),
+      // );
+      if (ascDescOption) {
+        const ascDescOptions = ascDescOption && Object.keys(ascDescOption);
+        if (ascDescOptions.length === 0) {
+          query += `&sortBy=checkedInDate:desc&sortBy=checkedInTime:desc`;
+        }
+        ascDescOptions.map(
+          (ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`),
+        );
       }
-      ascDescOptions.map(
-        (ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`),
-      );
-
       return await axios.get(
         `${url}/project-drawer/my-work-history/${id}?${query}`,
         {
@@ -394,13 +413,21 @@ export const getMyAvailableProjects = createAsyncThunk(
       query += `&project_platform=${annotatorPlatform}`;
     }
 
-    const ascDescOptions = ascDescOption && Object.keys(ascDescOption);
-    if (ascDescOptions?.length > 0) {
+    // const ascDescOptions = ascDescOption && Object.keys(ascDescOption);
+    // if (ascDescOptions?.length > 0) {
+    //   ascDescOptions.map(
+    //     (ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`),
+    //   );
+    // }
+    if (ascDescOption) {
+      const ascDescOptions = ascDescOption && Object.keys(ascDescOption);
+      if (ascDescOptions.length === 0) {
+        query += `&sortBy=checkedInDate:desc&sortBy=checkedInTime:desc`;
+      }
       ascDescOptions.map(
         (ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`),
       );
     }
-
     if (search) {
       query += `&search=${search}`;
     }

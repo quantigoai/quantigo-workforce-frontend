@@ -72,8 +72,9 @@ export const logout = createAsyncThunk('user/logout', async () => {
 
 export const alreadyLogin = createAsyncThunk(
   'user/alreadyLogin',
-  async (id) => {
-    return axios.get(`${url}/users/${id}`);
+  async (data)  => {
+    const { _id, originalToken } = data;
+    return axios.post(`${url}/users/check-login/${_id}`, { originalToken });
   },
 );
 
@@ -819,12 +820,12 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(emailVerificationLink.fulfilled, (state, action) => {
-                state.error = null;
+        state.error = null;
         state.user.isEmailVerified = action.payload.data.user.isEmailVerified;
         state.isLoading = false;
       })
       .addCase(emailVerificationLink.rejected, (state, action) => {
-                state.error = action.error.message;
+        state.error = action.error.message;
         state.isLoading = false;
       })
       .addCase(changePassword.pending, (state) => {

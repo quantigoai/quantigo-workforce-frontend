@@ -82,7 +82,7 @@ export default function PDDateField({
                     onChange={handleChange}
                   >
                     <TextField
-                      variant="caption"
+                      variant="outlined"
                       error={!!error}
                       helperText={error && error?.message}
                       id="date-picker"

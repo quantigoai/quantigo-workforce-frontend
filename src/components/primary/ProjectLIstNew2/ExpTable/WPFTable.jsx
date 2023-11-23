@@ -67,7 +67,7 @@ export default function WPFTable({
                   />
                 ))}
 
-                {role === 'recruitment_manager' &&
+                {(role === 'recruitment_manager' || role === 'admin') &&
                   location.pathname === `/all-users` && (
                     <StickyDocViewTableHead column={{ width: '100px' }} />
                   )}
@@ -92,10 +92,7 @@ export default function WPFTable({
             ) : (
               <TableBody className="tableBody">
                 {myRows.map((row) => (
-                  <TableRow
-                    key={row.id}
-                    // hover
-                  >
+                  <TableRow key={row.id}>
                     {stickyFirstColumn.map((column) => (
                       <FirstTableColumn
                         key={column.id}
@@ -114,7 +111,7 @@ export default function WPFTable({
                       />
                     ))}
 
-                    {role === 'recruitment_manager' &&
+                    {(role === 'recruitment_manager' || role === 'admin') &&
                       location.pathname === `/all-users` && (
                         <StickyDocViewTableColumn column={row} />
                       )}

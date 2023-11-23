@@ -1,30 +1,37 @@
-import {Box} from '@mui/material';
-import React, {useEffect, useRef} from 'react';
-import {useForm} from 'react-hook-form';
-import {useDispatch, useSelector} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
+import { Box } from '@mui/material';
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import useAllUsersFunc from '../../../customHooks/useAllUsersFunc';
 import useToaster from '../../../customHooks/useToaster';
-import {setActivePath} from '../../../features/slice/activePathSlice';
-import {getAllSkills} from '../../../features/slice/skillSlice';
-import {getAllUsers, updateAUserById,} from '../../../features/slice/userSlice';
+import { setActivePath } from '../../../features/slice/activePathSlice';
+import { getAllSkills } from '../../../features/slice/skillSlice';
+import {
+  getAllUsers,
+  updateAUserById,
+} from '../../../features/slice/userSlice';
 import fieldBuilder from '../../shared/CustomTable/fieldBuilder';
 import LoadingComponent from '../../shared/Loading/LoadingComponent';
 import TableWrapper from '../ProjectLIstNew2/ExpTable/TableWrapper';
 import useHandleChange from '../ProjectLIstNew2/Hooks/useHandleChange';
 import PaginationTable from '../ProjectLIstNew2/PaginationTable';
-import {HeaderBox, TablePaper} from '../ProjectLIstNew2/ProjectLIstIndex2';
+import { HeaderBox, TablePaper } from '../ProjectLIstNew2/ProjectLIstIndex2';
 import UserDetailsNewIndex from '../UserListNew/UserDetilasNew/UserDetailsNewIndex';
 import AcceptModal from '../Users/NdaAccept/AcceptModal';
 import NdaRejectModal from '../Users/NdaAccept/NdaRejectModal';
 import UsersFilter from './UsersFilter';
 import UsersHeader from './UsersHeader';
-import {fields} from './tableFields';
-import {hubOptions, roleOptionsAdmin, roleOptionsRecruitment_manager, userStatusOptions,} from './userFilterOptions';
+import { fields } from './tableFields';
+import {
+  hubOptions,
+  roleOptionsAdmin,
+  userStatusOptions,
+} from './userFilterOptions';
 
 const AllUserListIndex2 = () => {
   const dispatch = useDispatch();
-  const searchRef = useRef(null);
+  const userSearchRef = useRef(null);
   const { register } = useForm();
   const toast = useToaster();
   const { user } = useSelector((state) => state.user);
@@ -34,14 +41,17 @@ const AllUserListIndex2 = () => {
     addSkills,
     setAddSkills,
     count,
+    setCount,
     addRoles,
     handleChangeRoles,
     setAddRoles,
-    search,
-    setSearch,
+    skillCount,
+    setSkillCount,
   } = useHandleChange();
 
   const {
+    search,
+    setSearch,
     isDataLoading,
     isChildDataLoading,
     openModal,
@@ -83,13 +93,15 @@ const AllUserListIndex2 = () => {
     handleChange,
     handleClearFilter,
     goBackHandle,
+    isComplete,
   } = useAllUsersFunc({
-    setSearch,
-    searchRef,
+    userSearchRef,
     addSkills,
     addRoles,
     setAddSkills,
     setAddRoles,
+    setCount,
+    setSkillCount,
   });
 
   useEffect(() => {
@@ -97,8 +109,10 @@ const AllUserListIndex2 = () => {
     dispatch(setActivePath('All Users'));
   }, []);
 
-  useEffect(() => {
-          setIsDataLoading(true);
+  useLayoutEffect(() => {
+    setIsDataLoading(true);
+
+    if (isComplete) {
       dispatch(
         getAllUsers({
           pagination,
@@ -109,13 +123,13 @@ const AllUserListIndex2 = () => {
       )
         .then((res) => {
           setMyColumn(fieldBuilder(fields, handleClick, handleDelete));
-          // navigate(`/all-users?page=${pagination.currentPage + 1}&limit=${pagination.pageSize}`);
           setIsDataLoading(false);
         })
         .catch((err) => {
           setIsDataLoading(false);
         });
-    }, [pagination, search, filterValue, filteredCol]);
+    }
+  }, [pagination, search, filterValue, filteredCol]);
 
   const onSubmit = (data) => {
     const finalData = {
@@ -154,7 +168,7 @@ const AllUserListIndex2 = () => {
           handleSearch={handleSearch}
           setSearch={setSearch}
           search={search}
-          searchRef={searchRef}
+          userSearchRef={userSearchRef}
           clearSearch={clearSearch}
         />
         <UsersFilter
@@ -163,17 +177,19 @@ const AllUserListIndex2 = () => {
           handleChange={handleChange}
           handleClearFilter={handleClearFilter}
           filterValue={filterValue}
-          roleOptions={
-            user.role === 'admin'
-              ? roleOptionsAdmin
-              : roleOptionsRecruitment_manager
-          }
+          roleOptions={roleOptionsAdmin}
+          // roleOptions={
+          //   user.role === 'admin'
+          //     ? roleOptionsAdmin
+          //     : roleOptionsRecruitment_manager
+          // }
           hubOptions={hubOptions}
           skillOptions={skillsOptions}
           userStatusOptions={userStatusOptions}
           handleChangeSkill={handleChangeSkill}
           addSkills={addSkills}
           count={count}
+          skillCount={skillCount}
           handleClickAway={handleClickAway}
           addRoles={addRoles}
           handleChangeRoles={handleChangeRoles}

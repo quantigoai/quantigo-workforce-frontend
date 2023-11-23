@@ -25,7 +25,7 @@ const UsersHeader = ({
   handleProjectCreateOpen,
   handleSearch,
   search,
-  searchRef,
+  userSearchRef,
   clearSearch,
 }) => {
   return (
@@ -79,7 +79,7 @@ const UsersHeader = ({
               <SearchIcon />
             </IconButton>
             <InputBase
-              inputRef={searchRef}
+              inputRef={userSearchRef}
               sx={{
                 ml: 0,
                 flex: 1,

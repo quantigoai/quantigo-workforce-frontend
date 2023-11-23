@@ -41,8 +41,8 @@ export const statusCreateOptions = [
   { value: "payment-done", label: "Payment Done" },
 ];
 export const fields = [
-  { field: "project_drawer_name", width: 200, textAlign: "left", columnDataAlign: "left" },
-  { field: "project_alias", width: 200, textAlign: "left", columnDataAlign: "left" },
+  { field: "project_drawer_name", width: 250, textAlign: "left", columnDataAlign: "left" },
+  { field: "project_alias", width: 250, textAlign: "left", columnDataAlign: "left" },
   { field: "project_platform", textAlign: "center", columnDataAlign: "center" },
   { field: "project_batch", width: 150, textAlign: "center", columnDataAlign: "center" },
   { field: "project_status", renderCell: "chip", textAlign: "center", columnDataAlign: "left" },

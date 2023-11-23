@@ -13,96 +13,139 @@
  * ------------------------
  */
 
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import axios from "axios";
-import {realToken} from "../../helper/lib";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { realToken } from '../../helper/lib';
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
 const initialState = {
-    isLoading: false,
-    temporaryData: {},
-    temporaryDatas: [],
-    error: "null",
+  isLoading: false,
+  temporaryData: {},
+  temporaryDatas: [],
+  userFilter: {},
+  projectDrawerFilter: {},
+  workHistoryFilter: {},
+  error: 'null',
 };
 
-export const updateTemporaryData = createAsyncThunk("resources/temporaryDatas", async (data) => {
+export const updateTemporaryData = createAsyncThunk(
+  'resources/temporaryDatas',
+  async (data) => {
     return axios.post(`${url}/courses/temporaryDataRouter/`, data, {
-        headers: {
-            Authorization: `Bearer ${realToken()}`,
-        },
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
     });
-});
+  },
+);
 
-export const deleteTemporaryData = createAsyncThunk("resources/temporaryDatas/delete", async (data) => {
-    const {id, chapterNo} = data;
+export const deleteTemporaryData = createAsyncThunk(
+  'resources/temporaryDatas/delete',
+  async (data) => {
+    const { id, chapterNo } = data;
     return axios.delete(
-        `${url}/courses/temporaryDataRouter/${id}/${chapterNo}`,
+      `${url}/courses/temporaryDataRouter/${id}/${chapterNo}`,
 
-        {
-            headers: {
-                Authorization: `Bearer ${realToken()}`,
-            },
-        }
-    );
-});
-
-export const clearTemporaryData = createAsyncThunk("resources/temporaryDatas/clear", async (data) => {
-    return axios.post(`${url}/courses/temporaryDataRouter/cleartemporaryData`, data, {
+      {
         headers: {
-            Authorization: `Bearer ${realToken()}`,
+          Authorization: `Bearer ${realToken()}`,
         },
-    });
-});
+      },
+    );
+  },
+);
+
+export const clearTemporaryData = createAsyncThunk(
+  'resources/temporaryDatas/clear',
+  async (data) => {
+    return axios.post(
+      `${url}/courses/temporaryDataRouter/cleartemporaryData`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+      },
+    );
+  },
+);
 
 // Clear all temporaryDatas data from state
 
 const temporaryDataSlice = createSlice({
-    name: "temporaryData",
-    initialState: initialState,
-    reducers: {
-        resetTemporaryDatas: (state) => {
-            state.temporaryDatas = [];
-        },
-        resetTemporaryDataSlice: () => {
-            return initialState;
-        },
+  name: 'temporaryData',
+  initialState: initialState,
+  reducers: {
+    resetTemporaryDatas: (state) => {
+      state.temporaryDatas = [];
     },
-    extraReducers: (builder) => {
-        builder
-            .addCase(updateTemporaryData.pending, (state) => {
-                state.isLoading = true;
-            })
-            .addCase(updateTemporaryData.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.error = null;
-            })
-            .addCase(updateTemporaryData.rejected, (state) => {
-                state.isLoading = false;
-            })
-            .addCase(deleteTemporaryData.pending, (state) => {
-                state.isLoading = true;
-            })
-            .addCase(deleteTemporaryData.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.error = null;
-            })
-            .addCase(deleteTemporaryData.rejected, (state) => {
-                state.isLoading = false;
-            })
-            .addCase(clearTemporaryData.pending, (state) => {
-                state.isLoading = true;
-            })
-            .addCase(clearTemporaryData.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.error = null;
-            })
-            .addCase(clearTemporaryData.rejected, (state) => {
-                state.isLoading = false;
-            });
+    resetTemporaryDataSlice: () => {
+      return initialState;
     },
+    setUserFilter: (state, action) => {
+      state.userFilter = action.payload;
+    },
+    clearUserFilter: (state) => {
+      state.userFilter = {};
+    },
+    setProjectDrawerFilter: (state, action) => {
+      state.projectDrawerFilter = action.payload;
+    },
+    clearProjectDrawerFilter: (state) => {
+      state.projectDrawerFilter = {};
+    },
+    setWorkHistoryFilter: (state, action) => {
+      state.workHistoryFilter = action.payload;
+    },
+    clearWorkHistoryFilter: (state) => {
+      state.workHistoryFilter = {};
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(updateTemporaryData.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateTemporaryData.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(updateTemporaryData.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(deleteTemporaryData.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteTemporaryData.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(deleteTemporaryData.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(clearTemporaryData.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(clearTemporaryData.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(clearTemporaryData.rejected, (state) => {
+        state.isLoading = false;
+      });
+  },
 });
 
-export const {resetTemporaryDataSlice, resetTemporaryDatas} = temporaryDataSlice.actions;
+export const {
+  resetTemporaryDataSlice,
+  resetTemporaryDatas,
+  setUserFilter,
+  clearUserFilter,
+  setProjectDrawerFilter,
+  clearProjectDrawerFilter,
+  setWorkHistoryFilter,
+  clearWorkHistoryFilter,
+} = temporaryDataSlice.actions;
 
 export default temporaryDataSlice.reducer;

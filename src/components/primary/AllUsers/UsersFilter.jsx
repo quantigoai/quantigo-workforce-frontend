@@ -7,9 +7,9 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Box, Button, Stack} from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import React from "react";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import ProjectSelectFIlterField from "../ProjectLIstNew2/ProjectSelectFIlterField";
 import ProjectMultipleSelectRole from "./ProjectMultipleSelectRole";
 import UserSkillFieldSelect from "./UserSkillFieldSelect";
@@ -29,6 +29,7 @@ const UsersFilter = ({
   handleClickAway,
   addRoles,
   handleChangeRoles,
+  skillCount,
 }) => {
   const { skills } = useSelector((state) => state.skill);
 
@@ -44,7 +45,6 @@ const UsersFilter = ({
           pr: 2,
           pl: 2,
           pY: "6px",
-          // transition: "all 0.5s ease-in-out",
         }}
       >
         <Stack
@@ -64,7 +64,7 @@ const UsersFilter = ({
               flexDirection: "row",
             }}
           >
-            {role === "admin" || role === "recruitment_manager"  || role === "account_manager" ? (
+            {role === "admin" || role === "recruitment_manager" || role === "account_manager" ? (
               <>
                 <Stack
                   sx={{
@@ -99,11 +99,11 @@ const UsersFilter = ({
                     label={"Users Skills"}
                     handleChangeSkill={handleChangeSkill}
                     skills={skills}
-                    count={count}
+                    count={skillCount}
                     handleClickAway={handleClickAway}
                   />
                   <ProjectSelectFIlterField
-                    label={"Users Status"}
+                    label={"Users Job Status"}
                     name="activeAnnotator"
                     filterValue={filterValue}
                     options={userStatusOptions}
@@ -112,7 +112,14 @@ const UsersFilter = ({
                 </Stack>
               </>
             ) : (
-              <Box sx={{ display: "flex", alignItems: "center", paddingX: "40px", width: "70%" }}></Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  paddingX: "40px",
+                  width: "70%",
+                }}
+              ></Box>
             )}
 
             <Stack sx={{ width: { lg: "10%", xl: "7%" }, pl: 2 }}>

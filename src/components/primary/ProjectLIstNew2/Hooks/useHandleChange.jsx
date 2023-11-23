@@ -4,9 +4,9 @@ import useToaster from "../../../../customHooks/useToaster";
 // import { roleOptions } from "./userFilterOptions";
 const useHandleChange = () => {
   const { skills } = useSelector((state) => state.skill);
-  const [search, setSearch] = useState("");
   const [addSkills, setAddSkills] = useState([]);
   const [count, setCount] = useState(0);
+  const [skillCount, setSkillCount] = useState(0);
   const [addRoles, setAddRoles] = useState([]);
 
   const toast = useToaster();
@@ -15,12 +15,12 @@ const useHandleChange = () => {
     const {
       target: { value },
     } = event;
-
+   
     const selectedSkills = value.map((skill) => {
       return skills.find((s) => s.name === skill);
     });
 
-    setCount(value.length - 1);
+    setSkillCount(value.length - 1);
     setAddSkills((s) => {
       return typeof selectedSkills === "string" ? value.split(",") : selectedSkills;
     });
@@ -38,11 +38,12 @@ const useHandleChange = () => {
     addSkills,
     setAddSkills,
     count,
+    setCount,
     addRoles,
-    search,
-    setSearch,
     setAddRoles,
     handleChangeRoles,
+    skillCount,
+    setSkillCount,
   };
 };
 

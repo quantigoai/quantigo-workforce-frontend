@@ -79,10 +79,6 @@ const LoadingComponent = ({ height }) => {
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center',
-        // position: "absolute",
-        
-        // left: "50%",
-        // top: "50%",
       }}
     >
       <BodyBox>

@@ -35,7 +35,6 @@ const EmailVerificationAfterLogin = () => {
   const { isLoading } = useSelector((state) => state.user);
 
   useEffect(() => {
-    console.log('2');
     dispatch(emailVerificationLink(data)).then((action) => {
       if (action.error) {
         setMessage(action.error.message);

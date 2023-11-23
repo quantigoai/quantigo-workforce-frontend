@@ -37,7 +37,7 @@ const ConfirmPassword = ({ setConfirmPassword, confirmPassword, handlePassword, 
           <Typography
             sx={{
               fontSize: { lg: "10px", xl: "12px", xxl: "12px" },
-              color: "neutral.N300",
+              color: "neutrarl.N300",
               fontWeight: "500",
               mb: 1,
               fontFamily: "Inter",

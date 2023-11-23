@@ -86,13 +86,13 @@ const ProjectModal = ({
     resolver: yupResolver(ProjectDrawerSchema),
     mode: 'all',
     // defaultValues: {
-    //   project_platform: 'encord',
-    //   project_drawer_name: 'xxxxxxxxxxxx',
-    //   project_type: 'image',
-    //   project_batch: '2',
-    //   project_alias: 'xxxxxxxxxxx',
-    //   pdr: '3',
-    //   project_status: 'in-Progress',
+      //   project_platform: 'encord',
+      //   project_drawer_name: 'xxxxxxxxxxxx',
+      //   project_type: 'image',
+      //   project_batch: '2',
+      //   project_alias: 'xxxxxxxxxxx',
+      //   pdr: '3',
+      //   project_status: 'in-Progress',
     // },
   });
 

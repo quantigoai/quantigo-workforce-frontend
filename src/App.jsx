@@ -9,6 +9,7 @@ import MobileErrorPage from './components/shared/Error/MobileErrorPage';
 import LoadingComponent from './components/shared/Loading/LoadingComponent';
 import useClearReduxData from './customHooks/useClearReduxData';
 // import {availableJobsForReviewer, getAllAssignedJob, getAllJobs, getMyJobs,} from './features/slice/jobSlice';
+import { useNavigate } from 'react-router-dom';
 import {
   deleteBefore15DaysNotifications,
   getAllNotifications,
@@ -16,7 +17,7 @@ import {
   getLatestNotifications,
 } from './features/slice/notificationSlice';
 import { setFromPreviousTheme } from './features/slice/themeSlice';
-import { alreadyLogin } from './features/slice/userSlice';
+import { alreadyLogin, resetUserSlice } from './features/slice/userSlice';
 
 const RoutersLogin = lazy(() =>
   import('./components/primary/Routers/RoutersLogin'),
@@ -35,7 +36,8 @@ export const tokenCheck = () => {
     var originalToken = bytes.toString(CryptoJS.enc.Utf8);
     var decoded = jwt_decode(originalToken);
     const { _id } = decoded;
-    return _id;
+    const data = { _id, originalToken };
+    return data;
   }
 };
 function App() {
@@ -66,7 +68,6 @@ function App() {
   const [isTokenLoading, setIsTokenLoading] = useState(true);
   useEffect(() => {
     dispatch(setFromPreviousTheme());
-    // setIsTokenLoading(true);
     if (tokenCheck()) {
       dispatch(alreadyLogin(tokenCheck()))
         .then((res) => {
@@ -76,6 +77,7 @@ function App() {
           setIsTokenLoading(false);
         });
     } else {
+      dispatch(resetUserSlice());
       setIsTokenLoading(false);
     }
   }, [dispatch]);
@@ -94,7 +96,7 @@ function App() {
         dispatch(getAllUnreadNotifications());
       });
     }
-  }, [dispatch, isLoggedIn, user.role]);
+  }, [dispatch, isLoggedIn, user?.role]);
 
   const isMobile = window.innerWidth < 1024;
 

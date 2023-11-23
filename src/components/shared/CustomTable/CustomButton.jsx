@@ -46,8 +46,7 @@ const CustomButton = ({
         justifyContent: 'center',
       }}
     >
-      {(
-        // role === 'admin' ||
+      {(role === 'admin' ||
         role === 'project_delivery_lead' ||
         role === 'project_manager') &&
         pathname === '/allprojects' && (
@@ -71,7 +70,8 @@ const CustomButton = ({
             </Button>
           </>
         )}
-      {role === 'recruitment_manager' || role === 'admin' ? (
+      {(role === 'recruitment_manager' || role === 'admin') &&
+      pathname === '/all-users' ? (
         <>
           {params.isVerified ? (
             <Box

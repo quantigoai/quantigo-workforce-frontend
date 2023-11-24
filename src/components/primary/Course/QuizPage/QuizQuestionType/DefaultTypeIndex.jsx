@@ -3,14 +3,14 @@ import React from "react";
 import QuestionName from "../QuistionField/QuestionName";
 import BasicOptionField from "../QuistionField/BasicOptionField";
 
-const DefaultTypeIndex = () => {
+const DefaultTypeIndex = ({ handleChangeInput, inputField, inputFields }) => {
   return (
     <>
       <Box>
-        <QuestionName />
+        <QuestionName handleChangeInput={handleChangeInput} inputField={inputField} inputFields={inputFields} />
       </Box>
       <Box>
-        <BasicOptionField />
+        <BasicOptionField handleChangeInput={handleChangeInput} inputField={inputField} />
       </Box>
     </>
   );

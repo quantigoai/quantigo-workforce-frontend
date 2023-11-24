@@ -11,7 +11,8 @@ const QuizCreateIndex = () => {
   const [inputFields, setInputFields] = useState([
     {
       uniqueId: new Date().getTime(),
-      question: "",
+      question: {},
+      correctAnswerIndex:"",
       possibleAnswers: [],
       correctAnswer: "",
     },
@@ -21,7 +22,8 @@ const QuizCreateIndex = () => {
       ...inputFields,
       {
         uniqueId: new Date().getTime(),
-        question: "",
+        question: {},
+        correctAnswerIndex:"",
         possibleAnswers: [],
         correctAnswer: "",
       },
@@ -35,7 +37,25 @@ const QuizCreateIndex = () => {
     );
     setInputFields(values);
   };
+  const handleChangeInput = (uniqueId, event) => {
+    console.log("🚀 ~ file: QuizCreateIndex.jsx:41 ~ handleChangeInput ~ event:", event)
+    // console.log("🚀 ~ file: QuizCreateIndex.jsx:39 ~ handleChangeInput ~ event:", event.target.name)
+    const newInputFields = inputFields.map((i) => {
+      if (event?.target?.name == "questionText") {
+        i.question[event.target.name] = event.target.value;
+      }
+      if (event?.target?.name == "questionImage") {
+        i.question[event.target.name] = event.target.value;
+      } else {
+        if (uniqueId === i.uniqueId) {
+          i[event.target.name] = event.target.value;
+        }
+      }
+      return i;
+    });
 
+    setInputFields(newInputFields);
+  };
   const methods = useForm({
     // resolver: yupResolver(LoginSchema),
     // defaultValues,
@@ -114,7 +134,12 @@ const QuizCreateIndex = () => {
                 {inputFields.map((inputField) => (
                   <Box key={inputField.uniqueId} sx={{ paddingBottom: "2%" }}>
                     {" "}
-                    <QuestionType handleRemoveQA={handleRemoveQA} />
+                    <QuestionType
+                      handleRemoveQA={handleRemoveQA}
+                      handleChangeInput={handleChangeInput}
+                      inputField={inputField}
+                      inputFields={inputFields}
+                    />
                   </Box>
                 ))}
               </Box>

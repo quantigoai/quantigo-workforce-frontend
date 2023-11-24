@@ -34,6 +34,7 @@ const baseUploadBoxStyle = {
   transition: "border .24s ease-in-out",
 };
 const ImageUploadIndex = ({ coverImageFile, coverImage, removeImage, handleImage, update }) => {
+
   const screenSize = window.innerWidth;
   const { isLightTheme } = useSelector((state) => state.theme);
 

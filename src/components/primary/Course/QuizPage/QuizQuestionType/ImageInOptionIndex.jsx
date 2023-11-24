@@ -4,15 +4,15 @@ import QuestionName from "../QuistionField/QuestionName";
 import BasicOptionField from "../QuistionField/BasicOptionField";
 import ImageOptionField from "../QuistionField/ImageOptionField/ImageOptionField";
 
-const ImageInOptionIndex = () => {
+const ImageInOptionIndex = ({handleChangeInput, inputField, inputFields }) => {
   return (
     <>
       <Box>
-        <QuestionName />
+        <QuestionName handleChangeInput={handleChangeInput} inputField={inputField} inputFields={inputFields} />
       </Box>
           <Box>
               
-        <ImageOptionField />
+        <ImageOptionField handleChangeInput={handleChangeInput} inputField={inputField} inputFields={inputFields}/>
       </Box>
     </>
   );

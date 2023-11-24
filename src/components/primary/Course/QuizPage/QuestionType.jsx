@@ -36,11 +36,17 @@ function a11yProps(index) {
   };
 }
 
-const QuestionType = ({ handleRemoveQA }) => {
+const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFields }) => {
   const [value, setValue] = React.useState(0);
   const [selectedValue, setSelectedValue] = React.useState(0);
   const handleChange = (event, newValue) => {
-    console.log("🚀 ~ file: QuestionType.jsx:43 ~ handleChange ~ event:", event);
+    console.log("🚀 ~ file: QuestionType.jsx:43 ~ handleChange ~ newValue:", newValue);
+    console.log("🚀 ~ file: QuestionType.jsx:43 ~ handleChange ~ event:", event.target.value);
+    handleChangeInput(
+      (inputField.questionType =
+        newValue === 0 ? "default" : newValue === 1 ? "imageAndOptions" : newValue === 2 ? "imageInOptions" : newValue),
+      event
+    );
     setValue(newValue);
     setSelectedValue(newValue);
   };
@@ -111,7 +117,7 @@ const QuestionType = ({ handleRemoveQA }) => {
                   </Typography>
                 </Box>
               }
-              {...a11yProps(0)}
+              {...a11yProps("sddsf")}
             />
             <Tab
               sx={{
@@ -190,21 +196,21 @@ const QuestionType = ({ handleRemoveQA }) => {
           index={0}
           //    dir={theme.direction}
         >
-          <DefaultTypeIndex />
+          <DefaultTypeIndex handleChangeInput={handleChangeInput} inputField={inputField} inputFields={inputFields} />
         </TabPanel>
         <TabPanel
           value={value}
           index={1}
           //    dir={theme.direction}
         >
-          <ImageWithTitleIndex />
+          <ImageWithTitleIndex handleChangeInput={handleChangeInput} inputField={inputField} inputFields={inputFields} />
         </TabPanel>
         <TabPanel
           value={value}
           index={2}
           //    dir={theme.direction}
         >
-          <ImageInOptionIndex />
+          <ImageInOptionIndex handleChangeInput={handleChangeInput} inputField={inputField} inputFields={inputFields}/>
         </TabPanel>
       </Box>
     </Box>

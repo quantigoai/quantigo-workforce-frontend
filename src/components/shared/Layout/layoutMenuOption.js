@@ -222,6 +222,7 @@ const layoutMenuOption = () => {
     { name: 'Verify Email', icon: DashboardSvg },
     { name: 'Verification', icon: CourseSvg },
     { name: 'All Users', icon: UserSvg },
+    { name: "Project Directory", icon: ProjectSvg },
     { name: 'All Projects', icon: ProjectSvg },
     { name: 'Annotator List', icon: UserSvg },
     { name: 'Archive Job', icon: JobSvg },

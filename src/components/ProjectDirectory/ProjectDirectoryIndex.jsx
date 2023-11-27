@@ -1,39 +1,39 @@
-import FirstPageIcon from "@mui/icons-material/FirstPage";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import LastPageIcon from "@mui/icons-material/LastPage";
+import FirstPageIcon from '@mui/icons-material/FirstPage';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import LastPageIcon from '@mui/icons-material/LastPage';
 import {
-    Box,
-    Grid,
-    IconButton,
-    Paper,
-    Skeleton,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TablePagination,
-    TableRow,
-    TableSortLabel,
-    Typography,
-    useTheme,
-} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import useToaster from "../../customHooks/useToaster";
-import {getProjectByDirectory} from "../../features/slice/ProjectDirectorySlice";
-import {setActivePath} from "../../features/slice/activePathSlice";
-import CreateProjectDirectory from "./CreateProjectDirectory/CreateProjectDirectory";
-import UpdateProjectDirectory from "./CreateProjectDirectory/UpdateProjectDirectory";
-import ProjectDirectoryDeleteModal from "./ProjectDirectoryDeleteModal";
-import ProjectDirectoryDetailsIndex from "./ProjectDirectoryDetails/ProjectDirectoryDetailsIndex";
-import SearchProjectDirectory from "./ProjectDirectoryFilter/SearchProjectDirectory";
+  Box,
+  Grid,
+  IconButton,
+  Paper,
+  Skeleton,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
+  TableSortLabel,
+  Typography,
+  useTheme,
+} from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import useToaster from '../../customHooks/useToaster';
+import { getProjectByDirectory } from '../../features/slice/ProjectDirectorySlice';
+import { setActivePath } from '../../features/slice/activePathSlice';
+import CreateProjectDirectory from './CreateProjectDirectory/CreateProjectDirectory';
+import UpdateProjectDirectory from './CreateProjectDirectory/UpdateProjectDirectory';
+import ProjectDirectoryDeleteModal from './ProjectDirectoryDeleteModal';
+import ProjectDirectoryDetailsIndex from './ProjectDirectoryDetails/ProjectDirectoryDetailsIndex';
+import SearchProjectDirectory from './ProjectDirectoryFilter/SearchProjectDirectory';
 
 const paperStyle = {
-  padding: "0px 0px",
-  width: "100%",
-  height: "100%",
+  padding: '0px 0px',
+  width: '100%',
+  height: '100%',
 };
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -57,25 +57,41 @@ function TablePaginationActions(props) {
 
   return (
     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-      <IconButton onClick={handleFirstPageButtonClick} disabled={page === 0} aria-label="first page">
-        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
+      <IconButton
+        onClick={handleFirstPageButtonClick}
+        disabled={page === 0}
+        aria-label="first page"
+      >
+        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
-      <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
-        {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+      <IconButton
+        onClick={handleBackButtonClick}
+        disabled={page === 0}
+        aria-label="previous page"
+      >
+        {theme.direction === 'rtl' ? (
+          <KeyboardArrowRight />
+        ) : (
+          <KeyboardArrowLeft />
+        )}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        {theme.direction === 'rtl' ? (
+          <KeyboardArrowLeft />
+        ) : (
+          <KeyboardArrowRight />
+        )}
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
+        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
   );
@@ -86,36 +102,41 @@ const ProjectDirectoryIndex = () => {
   const { role } = user.user;
   const [projectDirectorys, setProjectDirectory] = useState([]);
   const dispatch = useDispatch();
-  const { projectDirectory, isLoading } = useSelector((state) => state.projectDirectory);
-  const [search, setSearch] = useState("");
+  const { projectDirectory, isLoading } = useSelector(
+    (state) => state.projectDirectory,
+  );
+  const [search, setSearch] = useState('');
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
 
   const toast = useToaster();
   const [anchorE2, setAnchorE2] = React.useState(null);
-  const [industryType, setIndustryType] = useState("");
-  const [clientAliasFilter, setClientAliasesFilter] = useState("");
-  const [dataTypeFilter, setDataTypeFilter] = useState("");
-  const [pDRFilter, setPDRFilter] = useState("");
-  const [annotationFilter, setAnnotationFilter] = useState("");
-  const [platformFieldFilter, setPlatformFieldFilter] = useState("");
-  const [projectTypeFieldFilter, setProjectTypeFieldFilter] = useState("");
-  const [actionItemsFieldFilter, setActionItemsFieldFilter] = useState("");
-  const [qaCheckPointFieldFilter, setQaCheckPointFieldFilter] = useState("");
-  const [objBenchMarkFieldFilter, setObjBenchMarkFieldFilter] = useState("");
-  const [imgBenchMarkFieldFilter, setImgBenchMarkFieldFilter] = useState("");
-  const [deletionFieldFilter, setDeletionFieldFilter] = useState("");
-  const [toolTypeFieldFilter, setToolTypeFieldFilter] = useState("");
+  const [industryType, setIndustryType] = useState('');
+  const [clientAliasFilter, setClientAliasesFilter] = useState('');
+  const [dataTypeFilter, setDataTypeFilter] = useState('');
+  const [pDRFilter, setPDRFilter] = useState('');
+  const [annotationFilter, setAnnotationFilter] = useState('');
+  const [platformFieldFilter, setPlatformFieldFilter] = useState('');
+  const [projectTypeFieldFilter, setProjectTypeFieldFilter] = useState('');
+  const [actionItemsFieldFilter, setActionItemsFieldFilter] = useState('');
+  const [qaCheckPointFieldFilter, setQaCheckPointFieldFilter] = useState('');
+  const [objBenchMarkFieldFilter, setObjBenchMarkFieldFilter] = useState('');
+  const [imgBenchMarkFieldFilter, setImgBenchMarkFieldFilter] = useState('');
+  const [deletionFieldFilter, setDeletionFieldFilter] = useState('');
+  const [toolTypeFieldFilter, setToolTypeFieldFilter] = useState('');
   const [qAField, setQAFilter] = useState(false);
-  const [qAFieldFilter, setQAFieldFilter] = useState("");
-  const [qABenchmarkFieldFilter, setQABenchmarkFieldFilter] = useState("");
-  const [judgementTimeFieldFilter, setJudgementTimeFieldFilter] = useState("");
-  const [skipImageFieldFilter, setSkipImageFieldFilter] = useState("");
-  const [imageLoadingFieldFilter, setImageLoadingFieldFilter] = useState("");
-  const [objectSavingTimeFieldFilter, setobjectSavingTimeFieldFilter] = useState("");
-  const [videoWatchTimeFieldFilter, setVideoWatchTimeFieldFilter] = useState("");
-  const [taggingBenchMarkFieldFilter, setTaggingBenchMarkFieldFilter] = useState("");
-  const [date, setDate] = useState("");
+  const [qAFieldFilter, setQAFieldFilter] = useState('');
+  const [qABenchmarkFieldFilter, setQABenchmarkFieldFilter] = useState('');
+  const [judgementTimeFieldFilter, setJudgementTimeFieldFilter] = useState('');
+  const [skipImageFieldFilter, setSkipImageFieldFilter] = useState('');
+  const [imageLoadingFieldFilter, setImageLoadingFieldFilter] = useState('');
+  const [objectSavingTimeFieldFilter, setobjectSavingTimeFieldFilter] =
+    useState('');
+  const [videoWatchTimeFieldFilter, setVideoWatchTimeFieldFilter] =
+    useState('');
+  const [taggingBenchMarkFieldFilter, setTaggingBenchMarkFieldFilter] =
+    useState('');
+  const [date, setDate] = useState('');
 
   const [pdrSetFilter, setPdrSetFilter] = useState(false);
   const [Client_AliasSetFilter, setClient_AliasSetFilter] = useState(false);
@@ -150,64 +171,64 @@ const ProjectDirectoryIndex = () => {
   };
 
   const handleMenuItemClick = (e) => {
-    if (e === "PDR") {
+    if (e === 'PDR') {
       setPdrSetFilter(true);
     }
-    if (e === "QA") {
+    if (e === 'QA') {
       setQAFilter(true);
     }
-    if (e === "QA_Benchmark") {
+    if (e === 'QA_Benchmark') {
       setQABenchmarkField(true);
     }
-    if (e === "Judgement_Time") {
+    if (e === 'Judgement_Time') {
       setJudgementTimeFilter(true);
     }
-    if (e === "Skip_Image") {
+    if (e === 'Skip_Image') {
       setSkipImageFilter(true);
     }
-    if (e === "Image_Loading") {
+    if (e === 'Image_Loading') {
       setImageLoadingFilter(true);
     }
-    if (e === "Object_Saving_Time") {
+    if (e === 'Object_Saving_Time') {
       setObjectSavingTimeFilter(true);
     }
-    if (e === "Video_Watch_Time") {
+    if (e === 'Video_Watch_Time') {
       setVideoWatchTimeFilter(true);
     }
-    if (e === "Deletion") {
+    if (e === 'Deletion') {
       setDeletionFilter(true);
     }
-    if (e === "Tagging_Benchmark") {
+    if (e === 'Tagging_Benchmark') {
       setTagingBenchMarkFilter(true);
     }
-    if (e === "Img_Benchmark") {
+    if (e === 'Img_Benchmark') {
       setImageBenchMarkFilter(true);
     }
-    if (e === "Obj_Benchmark") {
+    if (e === 'Obj_Benchmark') {
       setObjBenchMarkFilter(true);
     }
-    if (e === "QA_Check_Points") {
+    if (e === 'QA_Check_Points') {
       setQaCheckPointFilter(true);
     }
-    if (e === "Action_Items") {
+    if (e === 'Action_Items') {
       setActionItemsFilter(true);
     }
-    if (e === "Project_Type") {
+    if (e === 'Project_Type') {
       setProjectTypeFilter(true);
     }
-    if (e === "Tool_Type") {
+    if (e === 'Tool_Type') {
       setToolTypeFilter(true);
     }
-    if (e === "Platform") {
+    if (e === 'Platform') {
       setPlatformField(true);
     }
-    if (e === "Client_Alias") {
+    if (e === 'Client_Alias') {
       setClient_AliasSetFilter(true);
     }
-    if (e === "Industry") {
+    if (e === 'Industry') {
       setIndustrySetFilter(true);
     }
-    if (e === "Annotation") {
+    if (e === 'Annotation') {
       setAnnotationSetFilter(true);
     }
     setAnchorEl(null);
@@ -217,24 +238,54 @@ const ProjectDirectoryIndex = () => {
       ...(industryType ? { industryType: industryType } : {}),
       ...(clientAliasFilter ? { clientAliasFilter: clientAliasFilter } : {}),
       ...(dataTypeFilter ? { dataTypeFilter: dataTypeFilter } : {}),
-      ...(actionItemsFieldFilter ? { actionItemsFieldFilter: actionItemsFieldFilter } : {}),
+      ...(actionItemsFieldFilter
+        ? { actionItemsFieldFilter: actionItemsFieldFilter }
+        : {}),
       ...(qAFieldFilter ? { qAFieldFilter: qAFieldFilter } : {}),
-      ...(qABenchmarkFieldFilter ? { qABenchmarkFieldFilter: qABenchmarkFieldFilter } : {}),
-      ...(judgementTimeFieldFilter ? { judgementTimeFieldFilter: judgementTimeFieldFilter } : {}),
-      ...(skipImageFieldFilter ? { skipImageFieldFilter: skipImageFieldFilter } : {}),
-      ...(imageLoadingFieldFilter ? { imageLoadingFieldFilter: imageLoadingFieldFilter } : {}),
-      ...(objectSavingTimeFieldFilter ? { objectSavingTimeFieldFilter: objectSavingTimeFieldFilter } : {}),
-      ...(videoWatchTimeFieldFilter ? { videoWatchTimeFieldFilter: videoWatchTimeFieldFilter } : {}),
-      ...(toolTypeFieldFilter ? { toolTypeFieldFilter: toolTypeFieldFilter } : {}),
-      ...(deletionFieldFilter ? { deletionFieldFilter: deletionFieldFilter } : {}),
-      ...(platformFieldFilter ? { platformFieldFilter: platformFieldFilter } : {}),
-      ...(projectTypeFieldFilter ? { projectTypeFieldFilter: projectTypeFieldFilter } : {}),
+      ...(qABenchmarkFieldFilter
+        ? { qABenchmarkFieldFilter: qABenchmarkFieldFilter }
+        : {}),
+      ...(judgementTimeFieldFilter
+        ? { judgementTimeFieldFilter: judgementTimeFieldFilter }
+        : {}),
+      ...(skipImageFieldFilter
+        ? { skipImageFieldFilter: skipImageFieldFilter }
+        : {}),
+      ...(imageLoadingFieldFilter
+        ? { imageLoadingFieldFilter: imageLoadingFieldFilter }
+        : {}),
+      ...(objectSavingTimeFieldFilter
+        ? { objectSavingTimeFieldFilter: objectSavingTimeFieldFilter }
+        : {}),
+      ...(videoWatchTimeFieldFilter
+        ? { videoWatchTimeFieldFilter: videoWatchTimeFieldFilter }
+        : {}),
+      ...(toolTypeFieldFilter
+        ? { toolTypeFieldFilter: toolTypeFieldFilter }
+        : {}),
+      ...(deletionFieldFilter
+        ? { deletionFieldFilter: deletionFieldFilter }
+        : {}),
+      ...(platformFieldFilter
+        ? { platformFieldFilter: platformFieldFilter }
+        : {}),
+      ...(projectTypeFieldFilter
+        ? { projectTypeFieldFilter: projectTypeFieldFilter }
+        : {}),
       ...(annotationFilter ? { annotationFilter: annotationFilter } : {}),
       ...(pDRFilter ? { pdr: pDRFilter } : {}),
-      ...(qaCheckPointFieldFilter ? { qaCheckPointFieldFilter: qaCheckPointFieldFilter } : {}),
-      ...(imgBenchMarkFieldFilter ? { imgBenchMarkFieldFilter: imgBenchMarkFieldFilter } : {}),
-      ...(taggingBenchMarkFieldFilter ? { taggingBenchMarkFieldFilter: taggingBenchMarkFieldFilter } : {}),
-      ...(objBenchMarkFieldFilter ? { objBenchMarkFieldFilter: objBenchMarkFieldFilter } : {}),
+      ...(qaCheckPointFieldFilter
+        ? { qaCheckPointFieldFilter: qaCheckPointFieldFilter }
+        : {}),
+      ...(imgBenchMarkFieldFilter
+        ? { imgBenchMarkFieldFilter: imgBenchMarkFieldFilter }
+        : {}),
+      ...(taggingBenchMarkFieldFilter
+        ? { taggingBenchMarkFieldFilter: taggingBenchMarkFieldFilter }
+        : {}),
+      ...(objBenchMarkFieldFilter
+        ? { objBenchMarkFieldFilter: objBenchMarkFieldFilter }
+        : {}),
       ...(date ? { date } : {}),
     };
     dispatch(getProjectByDirectory(data)).then((action) => {
@@ -244,26 +295,26 @@ const ProjectDirectoryIndex = () => {
     });
   };
   const handleResetProjectDirectory = () => {
-    setVideoWatchTimeFieldFilter("");
-    setPlatformFieldFilter("");
-    setProjectTypeFieldFilter("");
-    setActionItemsFieldFilter("");
-    setObjBenchMarkFieldFilter("");
-    setImgBenchMarkFieldFilter("");
-    setDeletionFieldFilter("");
-    setToolTypeFieldFilter("");
-    setQAFieldFilter("");
-    setQABenchmarkFieldFilter("");
-    setJudgementTimeFieldFilter("");
-    setSkipImageFieldFilter("");
-    setImageLoadingFieldFilter("");
-    setobjectSavingTimeFieldFilter("");
-    setTaggingBenchMarkFieldFilter("");
-    setIndustryType("");
-    setClientAliasesFilter("");
-    setDataTypeFilter("");
-    setPDRFilter("");
-    setAnnotationFilter("");
+    setVideoWatchTimeFieldFilter('');
+    setPlatformFieldFilter('');
+    setProjectTypeFieldFilter('');
+    setActionItemsFieldFilter('');
+    setObjBenchMarkFieldFilter('');
+    setImgBenchMarkFieldFilter('');
+    setDeletionFieldFilter('');
+    setToolTypeFieldFilter('');
+    setQAFieldFilter('');
+    setQABenchmarkFieldFilter('');
+    setJudgementTimeFieldFilter('');
+    setSkipImageFieldFilter('');
+    setImageLoadingFieldFilter('');
+    setobjectSavingTimeFieldFilter('');
+    setTaggingBenchMarkFieldFilter('');
+    setIndustryType('');
+    setClientAliasesFilter('');
+    setDataTypeFilter('');
+    setPDRFilter('');
+    setAnnotationFilter('');
     setQAFilter(false);
     setPdrSetFilter(false);
     setQABenchmarkField(false);
@@ -311,7 +362,7 @@ const ProjectDirectoryIndex = () => {
     setArrayList(sortedArray);
   };
   useEffect(() => {
-    dispatch(setActivePath("Project Directory"));
+    dispatch(setActivePath('Project Directory'));
     dispatch(getProjectByDirectory()).then((action) => {
       if (action.payload.status === 200) {
         setProjectDirectory(action.payload.data);
@@ -319,26 +370,33 @@ const ProjectDirectoryIndex = () => {
     });
   }, []);
   const filtered = projectDirectory.filter((entry) =>
-    Object.values(entry).some((val) => typeof val === "string" && val.toLowerCase().includes(search.toLowerCase()))
+    Object.values(entry).some(
+      (val) =>
+        typeof val === 'string' &&
+        val.toLowerCase().includes(search.toLowerCase()),
+    ),
   );
 
   const skeletonCount = 5;
-  const skeletonArray = Array.from({ length: skeletonCount }, (_, index) => index + 1);
+  const skeletonArray = Array.from(
+    { length: skeletonCount },
+    (_, index) => index + 1,
+  );
 
   return (
     <>
-      <Box sx={{ paddingBottom: "1%" }}>
+      <Box sx={{ paddingBottom: '1%' }}>
         <Grid container>
           <Grid
             item
             xs={7}
             sx={{
-              marginLeft: "0%",
-              display: "flex",
+              marginLeft: '0%',
+              display: 'flex',
             }}
             container
           >
-            <Typography variant="h4" style={{ color: "#090080" }}>
+            <Typography variant="h4" style={{ color: '#090080' }}>
               Projects Directory
             </Typography>
           </Grid>
@@ -346,9 +404,9 @@ const ProjectDirectoryIndex = () => {
             item
             xs={5}
             sx={{
-              textAlign: "right",
-              justifyContent: "end",
-              paddingLeft: "0%",
+              textAlign: 'right',
+              justifyContent: 'end',
+              paddingLeft: '0%',
             }}
           >
             <Grid container>
@@ -356,9 +414,9 @@ const ProjectDirectoryIndex = () => {
                 <Grid
                   container
                   sx={{
-                    textAlign: "right",
-                    justifyContent: "end",
-                    paddingLeft: "0%",
+                    textAlign: 'right',
+                    justifyContent: 'end',
+                    paddingLeft: '0%',
                   }}
                 >
                   {/* //! need to moved */}
@@ -390,7 +448,7 @@ const ProjectDirectoryIndex = () => {
                 </Grid>
               </Grid>
               <Grid item xs={6}>
-                {role === "admin" || role == "project_manager" ? (
+                {role === 'admin' || role == 'project_manager' ? (
                   <>
                     <CreateProjectDirectory />
                   </>
@@ -407,10 +465,10 @@ const ProjectDirectoryIndex = () => {
           <Grid
             container
             style={{
-              paddingTop: "1%",
-              paddingLeft: "1%",
-              paddingRight: "3%",
-              paddingBottom: "0%",
+              paddingTop: '1%',
+              paddingLeft: '1%',
+              paddingRight: '3%',
+              paddingBottom: '0%',
             }}
           >
             <SearchProjectDirectory
@@ -492,17 +550,17 @@ const ProjectDirectoryIndex = () => {
           <Grid
             container
             style={{
-              paddingTop: "1%",
-              paddingLeft: "1%",
-              paddingRight: "3%",
+              paddingTop: '1%',
+              paddingLeft: '1%',
+              paddingRight: '3%',
               // paddingBottom: "3%",
             }}
           >
             {isLoading ? (
               <>
-                <Grid container sx={{ paddingTop: "0%" }}>
-                  {" "}
-                  <Box sx={{ width: "100%" }}>
+                <Grid container sx={{ paddingTop: '0%' }}>
+                  {' '}
+                  <Box sx={{ width: '100%' }}>
                     {skeletonArray.map((item) => (
                       <>
                         <Box key={item}>
@@ -517,100 +575,145 @@ const ProjectDirectoryIndex = () => {
               </>
             ) : projectDirectory.length === 0 ? (
               <>
-                <Grid container sx={{ paddingTop: "0%", justifyContent: "center" }}>
-                  {" "}
-                  <Typography variant="h6" sx={{ justifyItems: "center" }}>
+                <Grid
+                  container
+                  sx={{ paddingTop: '0%', justifyContent: 'center' }}
+                >
+                  {' '}
+                  <Typography variant="h6" sx={{ justifyItems: 'center' }}>
                     Project not found
                   </Typography>
                 </Grid>
               </>
             ) : (
               <>
-                {" "}
+                {' '}
                 <TableContainer>
-                  <Table aria-label="simple table" sx={{ border: "1px solid #DADCDF" }}>
+                  <Table
+                    aria-label="simple table"
+                    sx={{ border: '1px solid #DADCDF' }}
+                  >
                     {/* TODO : Convert this in a separate component  */}
-                    <TableHead sx={{ background: "#F8F8F8", height: "80px" }}>
+                    <TableHead sx={{ background: '#F8F8F8', height: '80px' }}>
                       <TableRow>
-                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        <TableCell
+                          align="center"
+                          sx={{ color: '#969CAF', fontSize: '20px' }}
+                        >
                           SL
                         </TableCell>
-                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        <TableCell
+                          align="center"
+                          sx={{ color: '#969CAF', fontSize: '20px' }}
+                        >
                           Project Name
                         </TableCell>
 
-                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        <TableCell
+                          align="center"
+                          sx={{ color: '#969CAF', fontSize: '20px' }}
+                        >
                           Client Alias
                         </TableCell>
 
-                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        <TableCell
+                          align="center"
+                          sx={{ color: '#969CAF', fontSize: '20px' }}
+                        >
                           Industry
                         </TableCell>
 
-                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        <TableCell
+                          align="center"
+                          sx={{ color: '#969CAF', fontSize: '20px' }}
+                        >
                           Tool Type
                         </TableCell>
-                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        <TableCell
+                          align="center"
+                          sx={{ color: '#969CAF', fontSize: '20px' }}
+                        >
                           Project Type
                         </TableCell>
 
                         <TableCell
                           align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}
+                          sx={{ color: '#969CAF', fontSize: '20px' }}
                           // direction={orderSortTimeLimit ? "asc" : "dsc"}
                           // onClick={() => createSortHandler()}
                           // onClick={() => sortArray("PDR")}
                         >
                           <TableSortLabel
-                            direction={orderSortTimeLimit ? "asc" : "dsc"}
+                            direction={orderSortTimeLimit ? 'asc' : 'dsc'}
                             // onClick={() => sortArray("PDR")}
                           >
                             PDR
                           </TableSortLabel>
                         </TableCell>
-                        {role === "admin" || role == "project_manager" ? (
+                        {role === 'admin' || role == 'project_manager' ? (
                           <>
-                            {" "}
-                            <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
+                            {' '}
+                            <TableCell
+                              align="center"
+                              sx={{ color: '#969CAF', fontSize: '20px' }}
+                            >
                               Action
                             </TableCell>
                           </>
                         ) : (
                           <></>
                         )}
-                        {role === "admin" || role == "project_manager" ? (
+                        {role === 'admin' || role == 'project_manager' ? (
                           <>
-                            {" "}
-                            <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
+                            {' '}
+                            <TableCell
+                              align="center"
+                              sx={{ color: '#969CAF', fontSize: '20px' }}
+                            >
                               Update
                             </TableCell>
                           </>
                         ) : (
                           <></>
                         )}
-                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
+                        <TableCell
+                          align="center"
+                          sx={{ color: '#969CAF', fontSize: '20px' }}
+                        >
                           Details
                         </TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
                       {(rowsPerPage > 0
-                        ? filtered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                        ? filtered.slice(
+                            page * rowsPerPage,
+                            page * rowsPerPage + rowsPerPage,
+                          )
                         : filtered
                       ).map((item, i) => (
                         <TableRow key={item._id}>
-                          <TableCell align="center"> {page * rowsPerPage + i + 1}</TableCell>
-                          <TableCell align="center">{item.Project_Name}</TableCell>
+                          <TableCell align="center">
+                            {' '}
+                            {page * rowsPerPage + i + 1}
+                          </TableCell>
+                          <TableCell align="center">
+                            {item.Project_Name}
+                          </TableCell>
 
-                          <TableCell align="center">{item.Client_Alias}</TableCell>
+                          <TableCell align="center">
+                            {item.Client_Alias}
+                          </TableCell>
 
                           <TableCell align="center">{item.Industry}</TableCell>
 
                           <TableCell align="center">{item.Tool_Type}</TableCell>
-                          <TableCell align="center">{item.Project_Type}</TableCell>
+                          <TableCell align="center">
+                            {item.Project_Type}
+                          </TableCell>
 
                           <TableCell align="center">{item.PDR}</TableCell>
-                          {role === "admin" || role == "project_manager" ? (
+                          {role === 'admin' || role == 'project_manager' ? (
                             <>
                               <TableCell align="center">
                                 <ProjectDirectoryDeleteModal item={item} />
@@ -620,7 +723,7 @@ const ProjectDirectoryIndex = () => {
                             <></>
                           )}
 
-                          {role === "admin" || role == "project_manager" ? (
+                          {role === 'admin' || role == 'project_manager' ? (
                             <>
                               <TableCell align="center">
                                 <UpdateProjectDirectory item={item} />
@@ -645,17 +748,17 @@ const ProjectDirectoryIndex = () => {
       </Box>
 
       <Box>
-        <Paper elevation={0} style={paperStyle} sx={{ padding: "0%" }}>
-          <Grid container sx={{ justifyContent: "right", paddingRight: "3%" }}>
+        <Paper elevation={0} style={paperStyle} sx={{ padding: '0%' }}>
+          <Grid container sx={{ justifyContent: 'right', paddingRight: '3%' }}>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
               count={projectDirectory.length}
               rowsPerPage={rowsPerPage}
               page={page}
               SelectProps={{
                 inputProps: {
-                  "aria-label": "rows per page",
+                  'aria-label': 'rows per page',
                 },
                 native: true,
               }}

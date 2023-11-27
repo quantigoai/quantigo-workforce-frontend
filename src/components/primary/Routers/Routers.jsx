@@ -8,11 +8,9 @@
  */
 import { Route, Routes } from 'react-router-dom';
 import ErrorPage from '../../shared/Error/ErrorPage';
-import AllNotification from '../../shared/Notification/AllNotification';
 import AllUserListIndex2 from '../AllUsers/AllUserListIndex2';
 import EmailVerificationAfterLogin from '../Auth/EmailVerification/EmailVerificationAfterLogin';
 import VerifyEmail from '../Auth/EmailVerification/VerifyEmail';
-import UpdateChapter from '../Course/UpdateChapter';
 import AccountActivation from '../Dashboard/CongratulationDashBoard/AccountActivation';
 import Dashboard from '../Dashboard/Dashboard';
 import EditProfilePageIndex from '../EditProfile/EditProfilePage/EditProfilePageIndex';
@@ -21,10 +19,9 @@ import Home from '../Home/Home';
 import DetailsPage from '../ProjectLIstNew2/ProjectDetailsFull/DetailsPage';
 import FullProjectDetails from '../ProjectLIstNew2/ProjectDetailsFull/FullProjectDetails';
 import ProjectLIstIndex2 from '../ProjectLIstNew2/ProjectLIstIndex2';
-import CreateQuiz from '../Quiz/CreateQuiz';
-import UpdateQuiz from '../Quiz/UpdateQuiz';
 import Skills from '../Skill/Skills';
 import PrivateRoute from './PrivateRoute';
+import ProjectDirectoryIndex from '../../ProjectDirectory/ProjectDirectoryIndex';
 
 export const roles = {
   admin: 'admin',
@@ -66,8 +63,6 @@ const Routers = () => {
           path={'/verify-email/:id/:token/'}
           element={<EmailVerificationAfterLogin />}
         />
-
-  
 
         {/* ---------- Course routes ------------ */}
 
@@ -112,7 +107,7 @@ const Routers = () => {
           <Route path={'/update-chapter/:id'} element={<UpdateChapter />} />
         </Route> */}
         {/* <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]} />}> */}
-          {/* <Route path={"/create-chapter/:id"} element={<CreateChapter />} /> */}
+        {/* <Route path={"/create-chapter/:id"} element={<CreateChapter />} /> */}
         {/* </Route> */}
         {/* ---------- ------------ ------------ */}
 
@@ -376,15 +371,25 @@ const Routers = () => {
 
         {/* ---------- Project Directory ----------- */}
         {/* TODO Should updated and release later  */}
-        {/* <Route
+        <Route
           element={
             <PrivateRoute
-              roles={[roles.admin, roles.eng_lead, roles.pro_lead, roles.pro_co, roles.pro_manager, roles.del_manager]}
+              roles={[
+                roles.admin,
+                roles.eng_lead,
+                roles.pro_lead,
+                roles.pro_co,
+                roles.pro_manager,
+                roles.del_manager,
+              ]}
             />
           }
         >
-          <Route path={"/projectDirectory"} element={<ProjectDirectoryIndex />} />
-        </Route> */}
+          <Route
+            path={'/projectDirectory'}
+            element={<ProjectDirectoryIndex />}
+          />
+        </Route>
         {/* ---------- ---------- ----------- */}
 
         {/* ---------- Error Page ----------- */}

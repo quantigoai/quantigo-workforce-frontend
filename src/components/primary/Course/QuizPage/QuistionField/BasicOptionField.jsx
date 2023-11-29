@@ -8,7 +8,7 @@ import {
   Typography,
   styled,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 export const TextFieldOption = styled(TextField)(() => ({
   borderRadius: "5px",
 
@@ -42,14 +42,18 @@ export const TextFieldOption = styled(TextField)(() => ({
 export const RadioOption = styled(Radio)(() => ({
   // ... your existing styles
 }));
-const BasicOptionField = ({ handleChangeInput, inputField }) => {
-  console.log("🚀 ~ file: BasicOptionField.jsx:46 ~ BasicOptionField ~ inputField:", inputField)
+const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate }) => {
+  console.log(inputField?.correctAnswerIndex);
+  const [checkValue, setCheckValue] = useState(null);
   const handleCorrectAnswerChange = (event, index, value) => {
-    console.log("🚀 ~ file: BasicOptionField.jsx:38 ~ handleCorrectAnswerChange ~ value:", value);
-    console.log("🚀 ~ file: BasicOptionField.jsx:38 ~ handleCorrectAnswerChange ~ index:", index);
-    console.log("🚀 ~ file: BasicOptionField.jsx:38 ~ handleCorrectAnswerChange ~ event:", event);
-    handleChangeInput((inputField.correctAnswerIndex = index), event);
-    handleChangeInput((inputField.correctAnswer = value), event);
+    if (update) {
+      setCheckValue(index);
+      handleUpdate(index, "correctAnswerIndex", inputField);
+      handleUpdate(value, "correctAnswer", inputField);
+    } else {
+      handleChangeInput((inputField.correctAnswerIndex = index), event);
+      handleChangeInput((inputField.correctAnswer = value), event);
+    }
   };
   return (
     <>
@@ -90,34 +94,48 @@ const BasicOptionField = ({ handleChangeInput, inputField }) => {
           <TextFieldOption
             name="possibleAnswer1"
             fullWidth
+            defaultValue={inputField.possibleAnswers[0]}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
                   <RadioOption
-                    checked={inputField?.correctAnswerIndex === 0}
+                    checked={update ? checkValue === 0 : inputField?.correctAnswerIndex === 0}
+                    // checked={inputField?.correctAnswerIndex === 0}
                     onChange={(event) => handleCorrectAnswerChange(event, 0, inputField.possibleAnswers[0])}
                   />
                 </InputAdornment>
               ),
             }}
-            onChange={(event) => handleChangeInput((inputField.possibleAnswers[0] = event.target.value), event)}
+            // onChange={(event) => handleChangeInput((inputField.possibleAnswers[0] = event.target.value), event)}
+            onChange={(event) =>
+              update
+                ? handleUpdate(event.target.value, 0, inputField)
+                : handleChangeInput((inputField.possibleAnswers[0] = event.target.value), event)
+            }
           />
         </Grid>
         <Grid item xs={12}>
           <TextFieldOption
             name="possibleAnswer1"
             fullWidth
+            defaultValue={inputField.possibleAnswers[1]}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
                   <RadioOption
-                    checked={inputField?.correctAnswerIndex === 1}
+                    checked={update ? checkValue === 1 : inputField?.correctAnswerIndex === 1}
+                    // checked={inputField?.correctAnswerIndex === 1}
                     onChange={(event) => handleCorrectAnswerChange(event, 1, inputField.possibleAnswers[1])}
                   />
                 </InputAdornment>
               ),
             }}
-            onChange={(event) => handleChangeInput((inputField.possibleAnswers[1] = event.target.value), event)}
+            // onChange={(event) => handleChangeInput((inputField.possibleAnswers[1] = event.target.value), event)}
+            onChange={(event) =>
+              update
+                ? handleUpdate(event.target.value, 1, inputField)
+                : handleChangeInput((inputField.possibleAnswers[1] = event.target.value), event)
+            }
           />
 
           {/* <TextFieldOption
@@ -129,35 +147,49 @@ const BasicOptionField = ({ handleChangeInput, inputField }) => {
         <Grid item xs={12}>
           <TextFieldOption
             name="possibleAnswer1"
+            defaultValue={inputField.possibleAnswers[2]}
             fullWidth
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
                   <RadioOption
-                    checked={inputField?.correctAnswerIndex === 2}
+                    checked={update ? checkValue === 2 : inputField?.correctAnswerIndex === 2}
+                    // checked={inputField?.correctAnswerIndex === 2}
                     onChange={(event) => handleCorrectAnswerChange(event, 2, inputField.possibleAnswers[2])}
                   />
                 </InputAdornment>
               ),
             }}
-            onChange={(event) => handleChangeInput((inputField.possibleAnswers[2] = event.target.value), event)}
+            // onChange={(event) => handleChangeInput((inputField.possibleAnswers[2] = event.target.value), event)}
+            onChange={(event) =>
+              update
+                ? handleUpdate(event.target.value, 2, inputField)
+                : handleChangeInput((inputField.possibleAnswers[2] = event.target.value), event)
+            }
           />
         </Grid>
         <Grid item xs={12}>
           <TextFieldOption
             name="possibleAnswer1"
             fullWidth
+            defaultValue={inputField.possibleAnswers[2]}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
                   <RadioOption
-                    checked={inputField?.correctAnswerIndex === 3}
+                    checked={update ? checkValue === 3 : inputField?.correctAnswerIndex === 3}
+                    // checked={inputField?.correctAnswerIndex === 3}
                     onChange={(event) => handleCorrectAnswerChange(event, 3, inputField.possibleAnswers[3])}
                   />
                 </InputAdornment>
               ),
             }}
-            onChange={(event) => handleChangeInput((inputField.possibleAnswers[3] = event.target.value), event)}
+            // onChange={(event) => handleChangeInput((inputField.possibleAnswers[3] = event.target.value), event)}
+            onChange={(event) =>
+              update
+                ? handleUpdate(event.target.value, 3, inputField)
+                : handleChangeInput((inputField.possibleAnswers[3] = event.target.value), event)
+            }
           />
         </Grid>
         {/* </RadioGroup> */}

@@ -30,11 +30,9 @@ export const TextFieldQuestion = styled(TextField)(() => ({
     },
   },
 }));
-const QuestionWithImage = ({ handleChangeInput, inputField, inputFields }) => {
+const QuestionWithImage = ({ handleChangeInput, inputField, inputFields, handleUpdate, update }) => {
   const [coverImageFile, setCoverImageFile] = useState(null);
-  console.log("🚀 ~ file: QuestionWithImage.jsx:35 ~ QuestionWithImage ~ coverImageFile:", coverImageFile)
   const [coverImage, setCoverImage] = useState(null);
-  console.log("🚀 ~ file: QuestionWithImage.jsx:37 ~ QuestionWithImage ~ coverImage:", coverImage)
 
   const handleImage = (e) => {
     setCoverImageFile(e.target.files[0]);
@@ -43,7 +41,11 @@ const QuestionWithImage = ({ handleChangeInput, inputField, inputFields }) => {
       const url = URL.createObjectURL(file);
       setCoverImage(url);
     }
-    handleChangeInput(inputField.uniqueId, e)
+    if (update) {
+      handleUpdate(e.target.files[0], "questionImage", inputField);
+    } else {
+      handleChangeInput(inputField.uniqueId, e);
+    }
   };
 
   return (
@@ -69,8 +71,14 @@ const QuestionWithImage = ({ handleChangeInput, inputField, inputFields }) => {
                 fullWidth
                 variant="outlined"
                 name="questionText"
+                defaultValue={inputField.question.questionText}
                 // required={label === "Benchmark" ? false : true}
-                onChange={(event) => handleChangeInput(inputField.uniqueId, event)}
+                // onChange={(event) => handleChangeInput(inputField.uniqueId, event)}
+                onChange={(event) =>
+                  update
+                    ? handleUpdate(event.target.value, "question", inputField)
+                    : handleChangeInput(inputField.uniqueId, event)
+                }
                 sx={{
                   backgroundColor: "neutral.N000",
                 }}
@@ -88,42 +96,65 @@ const QuestionWithImage = ({ handleChangeInput, inputField, inputFields }) => {
               Upload Image
             </Typography>
             <Box sx={{ width: "100%" }}>
-              <TextFieldQuestion
-                size="small"
-                type={"text"}
-                id="outlined-basic"
-                // {...field}
-                fullWidth
-                variant="outlined"
-                // required={label === "Benchmark" ? false : true}
-                sx={{
-                  backgroundColor: "neutral.N000",
-                }}
-              />
-              <input
-                style={{ display: "none" }}
-                id="upload-photo"
-                name="questionImage"
-                type="file"
-                accept="image/png,  image/jpeg, image/jpg"
-                onChange={handleImage}
-                // onchange="handleImageChange"
-              />
-              <label htmlFor="upload-photo">
-                <Button
-                  sx={{
-                    border: "1px solid #ff1744",
-                  
-                   
-                    zIndex: 2,
-                  }}
-                  color="primary"
-                  aria-label="upload picture"
-                  component="span">
-                  {/* <img src={EditIconProfile} /> */}
-                  {/* <PhotoCameraIcon /> */}
-                </Button>
-              </label>
+              <Grid container>
+                <Box sx={{ width: "70%" }}>
+                  <TextField
+                    sx={{
+                      height: "35px",
+                      fontSize: "14px",
+                      border: "2px solid #E6ECF5 !important",
+                      borderRadius: "8px 0px 0px 8px",
+                    }}
+                    size="small"
+                    type={"text"}
+                    id="outlined-basic"
+                    // placeholder="Choose "
+                    // {...field}
+                    fullWidth
+                    variant="outlined"
+                    // required={label === "Benchmark" ? false : true}
+                  />
+                </Box>
+
+                <Box sx={{ width: "30%" }}>
+                  {" "}
+                  <input
+                    style={{ display: "none" }}
+                    id="upload-photo"
+                    name="questionImage"
+                    type="file"
+                    accept="image/png,  image/jpeg, image/jpg"
+                    onChange={handleImage}
+                    // onchange="handleImageChange"
+                  />
+                  <label htmlFor="upload-photo">
+                    <Button
+                      sx={{
+                        height: "35px",
+                        width: "100%",
+                        fontSize: "14px",
+                        border: "2px solid #E6ECF5 !important",
+
+                        borderRadius: "0px 8px 8px 0px",
+                        zIndex: 2,
+                      }}
+                      color="primary"
+                      aria-label="upload picture"
+                      component="span">
+                      <i className="ri-upload-2-line"></i>
+                      <Typography
+                        variant="wpf_h7_medium"
+                        sx={{
+                          pl: 1,
+                          textTransform: "none",
+                          color: "#2E58FF",
+                        }}>
+                        Upload
+                      </Typography>
+                    </Button>
+                  </label>
+                </Box>
+              </Grid>
             </Box>
           </Grid>
         </Grid>

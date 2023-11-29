@@ -1,5 +1,5 @@
 import { Box, Radio, Tab, Tabs, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import QuestionInput1 from "./QuestionInput";
 import ImageInOptionIndex from "./QuizQuestionType/ImageInOptionIndex";
@@ -36,19 +36,51 @@ function a11yProps(index) {
   };
 }
 
-const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFields }) => {
+const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFields, update, handleUpdate }) => {
   const [value, setValue] = React.useState(0);
   const [selectedValue, setSelectedValue] = React.useState(0);
+  useEffect(() => {
+    if (inputField.questionType === "default") {
+      setValue(0);
+      setSelectedValue(0);
+    }
+    if (inputField.questionType === "imageAndOptions") {
+      setValue(1);
+
+      setSelectedValue(1);
+    }
+    if (inputField.questionType === "imageInOptions") {
+      setValue(2);
+      setSelectedValue(2);
+    }
+  }, []);
+
   const handleChange = (event, newValue) => {
-    console.log("🚀 ~ file: QuestionType.jsx:43 ~ handleChange ~ newValue:", newValue);
-    console.log("🚀 ~ file: QuestionType.jsx:43 ~ handleChange ~ event:", event.target.value);
-    handleChangeInput(
-      (inputField.questionType =
-        newValue === 0 ? "default" : newValue === 1 ? "imageAndOptions" : newValue === 2 ? "imageInOptions" : newValue),
-      event
-    );
-    setValue(newValue);
-    setSelectedValue(newValue);
+    console.log("🚀 ~ file: QuestionType.jsx:59 ~ handleChange ~ newValue:", newValue);
+    if (update) {
+      handleUpdate(
+        newValue === 0 ? "default" : newValue === 1 ? "imageAndOptions" : newValue === 2 ? "imageInOptions" : newValue,
+        "questionType",
+        inputField
+      );
+      setValue(newValue);
+      setSelectedValue(newValue);
+    } else {
+      handleChangeInput(
+        (inputField.questionType =
+          newValue === 0
+            ? "default"
+            : newValue === 1
+            ? "imageAndOptions"
+            : newValue === 2
+            ? "imageInOptions"
+            : newValue),
+        event
+      );
+      // handleChangeInput((inputField.questionType = "default"), event);
+      setValue(newValue);
+      setSelectedValue(newValue);
+    }
   };
   const controlProps = (item) => ({
     checked: selectedValue === item,
@@ -196,21 +228,39 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
           index={0}
           //    dir={theme.direction}
         >
-          <DefaultTypeIndex handleChangeInput={handleChangeInput} inputField={inputField} inputFields={inputFields} />
+          <DefaultTypeIndex
+            handleChangeInput={handleChangeInput}
+            inputField={inputField}
+            inputFields={inputFields}
+            handleUpdate={handleUpdate}
+            update={update}
+          />
         </TabPanel>
         <TabPanel
           value={value}
           index={1}
           //    dir={theme.direction}
         >
-          <ImageWithTitleIndex handleChangeInput={handleChangeInput} inputField={inputField} inputFields={inputFields} />
+          <ImageWithTitleIndex
+            handleChangeInput={handleChangeInput}
+            inputField={inputField}
+            inputFields={inputFields}
+            handleUpdate={handleUpdate}
+            update={update}
+          />
         </TabPanel>
         <TabPanel
           value={value}
           index={2}
           //    dir={theme.direction}
         >
-          <ImageInOptionIndex handleChangeInput={handleChangeInput} inputField={inputField} inputFields={inputFields}/>
+          <ImageInOptionIndex
+            handleChangeInput={handleChangeInput}
+            inputField={inputField}
+            inputFields={inputFields}
+            handleUpdate={handleUpdate}
+            update={update}
+          />
         </TabPanel>
       </Box>
     </Box>

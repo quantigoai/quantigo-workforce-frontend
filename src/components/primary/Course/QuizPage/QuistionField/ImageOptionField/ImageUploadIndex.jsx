@@ -28,13 +28,12 @@ const baseUploadBoxStyle = {
   borderColor: "rgba(70, 70, 70, 0.2)",
   borderStyle: "dashed",
   // backgroundColor: isLightTheme ? "primary.B200" : "neutral.N400",
-  backgroundColor: "#FAFBFC"    ,
+  backgroundColor: "#FAFBFC",
   color: "#fff",
   outline: "none",
   transition: "border .24s ease-in-out",
 };
-const ImageUploadIndex = ({ coverImageFile, coverImage, removeImage, handleImage, update }) => {
-
+const ImageUploadIndex = ({ coverImageFile, coverImage, removeImage, handleImage, update, defaultImage }) => {
   const screenSize = window.innerWidth;
   const { isLightTheme } = useSelector((state) => state.theme);
 
@@ -149,48 +148,47 @@ const ImageUploadIndex = ({ coverImageFile, coverImage, removeImage, handleImage
                 </>
               )}
             </>
-          ) : (
-            //           : update && course.images ? (
-            // <>
-            //   <Box
-            //     sx={{
-            //       position: "relative",
-            //       borderRadius: "8px",
-            //     }}
-            //     onMouseEnter={handleMouseEnter}
-            //     onMouseLeave={handleMouseLeave}>
-            //     <img height={175} src={course.images} alt="Course Image" style={{ width, borderRadius: "8px" }} />
-            //     {isHovered && (
-            //       <Box sx={{ color: "red", cursor: "pointer", position: "absolute", top: "45%", right: "43%" }}>
-            //         <Button
-            //           onClick={removeImage}
-            //           sx={{
-            //             width: "100px",
-            //             textTransform: "none",
-            //             backgroundColor: "#FFFFFF",
-            //             color: "#2E58FF",
-            //             borderRadius: "20px",
+          ) : update ? (
+            <>
+              <Box
+                sx={{
+                  position: "relative",
+                  borderRadius: "8px",
+                }}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}>
+                <img height={175} src={defaultImage} alt="Course Image" style={{ width, borderRadius: "8px" }} />
+                {isHovered && (
+                  <Box sx={{ color: "red", cursor: "pointer", position: "absolute", top: "45%", right: "43%" }}>
+                    <Button
+                      onClick={removeImage}
+                      sx={{
+                        width: "100px",
+                        textTransform: "none",
+                        backgroundColor: "#FFFFFF",
+                        color: "#2E58FF",
+                        borderRadius: "20px",
 
-            //             "&:hover": {
-            //               backgroundColor: "#FFFFFF",
-            //               color: "#2E58FF",
-            //               // border: "1px solid #2E58FF",
-            //             },
-            //           }}>
-            //           Replace
-            //         </Button>
-            //         {/* <DeleteIcon onClick={removeImage} sx={{ color: "red" }} /> */}
-            //       </Box>
-            //     )}
-            //   </Box>
-            // </>
-            //           )
+                        "&:hover": {
+                          backgroundColor: "#FFFFFF",
+                          color: "#2E58FF",
+                          // border: "1px solid #2E58FF",
+                        },
+                      }}>
+                      Replace
+                    </Button>
+                    {/* <DeleteIcon onClick={removeImage} sx={{ color: "red" }} /> */}
+                  </Box>
+                )}
+              </Box>
+            </>
+          ) : (
             <>
               <input {...getInputProps()} />
               <br />
               <img src={IconImage} />
               <Typography variant="wpf_p2_regular" sx={{ paddingTop: "1%" }}>
-             Upload image
+                Upload image
               </Typography>
               {/* <Typography variant="wpf_p2_regular" sx={{ paddingBottom: "2%" }}>
                 Maximum file size: 1Mb.

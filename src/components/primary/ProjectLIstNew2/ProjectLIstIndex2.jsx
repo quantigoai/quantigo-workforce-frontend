@@ -367,9 +367,9 @@ const ProjectLIstIndex2 = () => {
           <Box>
             <ProjectModal
               createProjectOpen={createProjectOpen}
+              setCreateProjectOpen={setCreateProjectOpen}
               handleProjectCreateOpen={handleProjectCreateOpen}
               handleCreateProjectClose={handleCreateProjectClose}
-              setCreateProjectOpen={setCreateProjectOpen}
               platformCreateOptions={platformCreateOptions}
               projectTypeCreateOptions={projectTypeCreateOptions}
               statusCreateOptions={statusCreateOptions}

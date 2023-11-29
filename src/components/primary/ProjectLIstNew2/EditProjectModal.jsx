@@ -61,6 +61,7 @@ const EditProjectModal = ({
       pdr: projectDrawer.pdr,
       project_status: projectDrawer.project_status,
     },
+    mode: 'all',
   });
 
   const { handleSubmit } = methods;

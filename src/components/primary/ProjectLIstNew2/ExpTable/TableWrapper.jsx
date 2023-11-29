@@ -53,13 +53,14 @@ const TableWrapper = ({
   const { pathname } = location;
   const { id } = useParams();
   const [data, setData] = useState([]);
+
   const [isDataLoading, setIsDataLoading] = useState(true);
   const [isWorkHistoryDataLoading, setIsWorkHistoryDataLoading] = useState(true);
-
+  const { projectDirectory, isLoading } = useSelector((state) => state.projectDirectory);
   const stickyFirstColumn = [myColumn[0]];
   const stickyLastColumn = [myColumn[myColumn.length - 1]];
   const columns = myColumn.slice(1, myColumn.length - 1);
-  const approvedPaths = ["/allprojects", "/all-users", `/projectDetails/${id}`];
+  const approvedPaths = ["/allprojects", "/all-users", "/projectDetails/${id}", "/projectDirectory"];
   const {
     isLoading: usersLoading,
     users: { users },
@@ -89,10 +90,17 @@ const TableWrapper = ({
       setIsWorkHistoryDataLoading(false);
       setIsDataLoading(false);
     }
-  }, [pathname, users, projectDrawers, usersWorkHistory]);
+    if (pathname === `/projectDirectory`) {
+      setIsDataLoading(true);
+      projectDirectory && projectDirectory.length > 0 && setMyRows(dataBuilder(projectDirectory));
+      setData(projectDirectory);
+      setIsDataLoading(false);
+      setIsWorkHistoryDataLoading(false);
+    }
+  }, [pathname, users, projectDrawers, usersWorkHistory, projectDirectory]);
 
   const renderMainContent = () => {
-    if (!usersLoading || !projectLoading || !isWorkHistoryDataLoading) {
+    if (!usersLoading || !projectLoading || !isWorkHistoryDataLoading || !isLoading) {
       if (approvedPaths.includes(pathname)) {
         if (data && data.length > 0) {
           return (

@@ -1,9 +1,9 @@
-import {Box, Button, Grid, Modal, Paper, styled, TextField, Typography} from "@mui/material";
-import React, {useState} from "react";
-import {useForm} from "react-hook-form";
-import {useDispatch} from "react-redux";
+import { Box, Button, Grid, Modal, Paper, styled, TextField, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
-import {updateProjectDirectory} from "../../../features/slice/ProjectDirectorySlice";
+import { updateProjectDirectory } from "../../../features/slice/ProjectDirectorySlice";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -32,17 +32,13 @@ const style = {
 
 const paperstyle = { width: 1000 };
 
-const UpdateProjectDirectory = ({ item }) => {
-  const [open, setOpen] = useState(false);
+const UpdateProjectDirectory = ({ item, openProjectModalEdit, setOpenProjectModalEdit, handleEditClose }) => {
+  // const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
   const toast = useToaster();
-  const [openModal, setOpenModal] = useState(false);
+  // const [openModal, setOpenModal] = useState(false);
   const { register, handleSubmit } = useForm();
-  const handleUpdateModal = () => {
-    setOpenModal(true);
-  };
-  const handleClose = () => setOpenModal(false);
 
   const onSubmit = (data) => {
     data._id = item._id;
@@ -53,7 +49,7 @@ const UpdateProjectDirectory = ({ item }) => {
 
     dispatch(updateProjectDirectory(finalData)).then((action) => {
       if (action?.payload?.status === 200) {
-        setOpenModal(false);
+        setOpenProjectModalEdit(false);
         toast.trigger("Successfully Updated Project Directory", "success");
       } else {
         toast.trigger("Project Directory can not Updated", "error");
@@ -61,38 +57,15 @@ const UpdateProjectDirectory = ({ item }) => {
     });
   };
   const handleUpdateProjectDirectory = (projectDirectory) => {
-    setOpenModal(true);
+    setOpenProjectModalEdit(true);
   };
 
   return (
     <>
-      <Button
-        variant="outlined"
-        sx={{
-          // backgroundColor: "#2D58FF",
-          // color: "#FFFFFF",
-          "&:hover": {
-            backgroundColor: "#FF9A45",
-            color: "#1D1D1D",
-          },
-        }}
-        onClick={() => handleUpdateProjectDirectory(item)}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            gap: 1,
-            justifyContent: "center",
-          }}
-        >
-          Update
-        </Box>
-      </Button>
-
       <Box>
         <Modal
-          open={openModal}
-          onClose={handleClose}
+          open={openProjectModalEdit}
+          onClose={handleEditClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >

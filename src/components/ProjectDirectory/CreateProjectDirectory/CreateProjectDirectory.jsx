@@ -1,9 +1,9 @@
 import AddIcon from "@mui/icons-material/Add";
-import {Box, Button} from "@mui/material";
-import React, {useState} from "react";
-import {useDispatch} from "react-redux";
+import { Box, Button } from "@mui/material";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
-import {createProjectDirectory} from "../../../features/slice/ProjectDirectorySlice";
+import { createProjectDirectory } from "../../../features/slice/ProjectDirectorySlice";
 import CreateProjectDirectoryModal from "./CreateProjectDirectoryModal";
 
 const CreateProjectDirectory = () => {
@@ -59,7 +59,7 @@ const CreateProjectDirectory = () => {
           </Box>
         </Button>
       </Box>
-      <CreateProjectDirectoryModal openModal={openModal} handleClose={handleClose} onSubmit={onSubmit} />
+      {/* <CreateProjectDirectoryModal openModal={openModal} handleClose={handleClose} onSubmit={onSubmit} /> */}
     </>
   );
 };

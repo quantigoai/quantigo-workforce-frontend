@@ -71,3 +71,33 @@ export const singleDetailsFields = [
     width: 80,
   },
 ];
+
+export const projectDirectoryField = [
+  { field: "Client_Alias", width: 140, textAlign: "left", columnDataAlign: "left" },
+  { field: "Industry", width: 140, textAlign: "left", columnDataAlign: "left" },
+  { field: "Project_Name", width: 140, textAlign: "left", columnDataAlign: "left" },
+  { field: "Platform", width: 140, textAlign: "left", columnDataAlign: "left" },
+  { field: "PDR", width: 140, textAlign: "left", columnDataAlign: "left" },
+  { field: "Project_Type", width: 180, textAlign: "left", columnDataAlign: "left" },
+  { field: "Action_Items", width: 220, textAlign: "left", columnDataAlign: "left" },
+  { field: "QA_Check_Points", width: 180, textAlign: "left", columnDataAlign: "left" },
+  { field: "Obj_Benchmark", width: 180, textAlign: "left", columnDataAlign: "left" },
+  { field: "Img_Benchmark", width: 200, textAlign: "left", columnDataAlign: "left" },
+  { field: "Tagging_Benchmark", width: 250, textAlign: "left", columnDataAlign: "left" },
+  { field: "Deletion", width: 140, textAlign: "left", columnDataAlign: "left" },
+  { field: "Skip_Image", width: 140, textAlign: "left", columnDataAlign: "left" },
+  { field: "Update", width: 140, textAlign: "left", columnDataAlign: "left" },
+  { field: "Image_Loading", width: 180, textAlign: "left", columnDataAlign: "left" },
+  { field: "Object_Saving_Time", width: 220, textAlign: "left", columnDataAlign: "left" },
+  { field: "Video_Watch_Time", width: 220, textAlign: "left", columnDataAlign: "left" },
+  { field: "Judgement_Time", width: 180, textAlign: "left", columnDataAlign: "left" },
+  { field: "QA_Benchmark", width: 180, textAlign: "left", columnDataAlign: "left" },
+  { field: "Annotation", width: 140, textAlign: "left", columnDataAlign: "left" },
+  { field: "QA", width: 140, textAlign: "left", columnDataAlign: "left" },
+  { field: "Remarks", width: 140, textAlign: "left", columnDataAlign: "left" },
+  {
+    field: "ACTIONS",
+    renderCell: "button",
+    width: 80,
+  },
+];

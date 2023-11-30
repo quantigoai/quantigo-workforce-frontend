@@ -39,6 +39,7 @@ const DetailChartarButton = () => {
       );
 
       const data = response.data.projectDrawer.checkedInUsersHistory;
+      console.log("🚀 ~ file: DetailChartarButton.jsx:51 ~ fetchData ~ data:", data)
 
       if (data.length) {
         data.map((f) =>

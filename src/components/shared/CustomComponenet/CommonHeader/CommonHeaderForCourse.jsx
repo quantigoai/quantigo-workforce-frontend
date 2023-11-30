@@ -6,14 +6,15 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Alert, AlertTitle, Box, Button, Grid, Typography,} from '@mui/material';
-import React from 'react';
-import {useSelector} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
-import RectangleIcon from '../../../../assets/images/Rectangle 3.svg';
-import editCourseIcon from '../../../../assets/images/edit.svg';
-import CourseDeleteModal from '../../../primary/Course/CourseDetailsPage/CourseDeleteModal';
-import CourseNewHeaderBottom from '../../../primary/CourseNew/CourseNewHeaderBottom/CourseNewHeaderBottom';
+import { Alert, AlertTitle, Box, Button, Grid, Typography } from "@mui/material";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import CourseDeleteModal from "../../../primary/Course/CourseDetailsPage/CourseDeleteModal";
+import CourseNewHeaderBottom from "../../../primary/CourseNew/CourseNewHeaderBottom/CourseNewHeaderBottom";
+import editCourseIcon from "../../../../assets/images/edit.svg";
+import RectangleIcon from "../../../../assets/images/Rectangle 3.svg";
+import EditCourseModal from "../../../primary/Course/CreateCourseModal/EditCourseModal";
 
 const CommonHeaderForCourse = ({
   isLoading,
@@ -25,6 +26,9 @@ const CommonHeaderForCourse = ({
   const navigate = useNavigate();
   const { course } = useSelector((state) => state.course);
   const { user } = useSelector((state) => state.user);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const handleNavigation = (navigateLink) => {
     switch (navigateLink) {
       case 'Create Course':
@@ -161,12 +165,16 @@ const CommonHeaderForCourse = ({
                                   //     backgroundColor: "#FF9A45",
                                   //     color: "#1D1D1D",
                                   //   },
-                                  borderRadius: '2px',
-                                }}
-                                onClick={() => handleNavigation(customButton)}
+                                  borderRadius: "2px",
+                                  }}
+                                  onClick={handleOpen}
+                                // onClick={() => handleNavigation(customButton)}
                               >
                                 <img src={editCourseIcon} />
                               </Button>
+                              {/* <Button onClick={handleOpen}>Create Course</Button> */}
+                              <EditCourseModal open={open} handleClose={handleClose} />
+
                               <CourseDeleteModal
                                 course={course}
                                 // handleDeleteCourse={handleDeleteCourse}
@@ -252,7 +260,7 @@ const CommonHeaderForCourse = ({
               container
               sx={{
                 // justifyContent: "left",
-                padding: '1%',
+                padding: "1%",
                 // paddingTop: "1%",
                 // paddingBottom: "1%",
                 // paddingLeft: "1%",

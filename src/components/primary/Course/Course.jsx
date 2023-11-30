@@ -20,6 +20,7 @@ import CourseHeader from "./CourseHeader/CourseHeader";
 import CourseTab from "./CourseTab";
 import CreateCourseModal from "./CreateCourseModal/CreateCourseModal";
 import CustomCard from "./CustomCard";
+import CourseCreateModal from "./CreateCourseModal/CourseCreateModal";
 
 const Course = () => {
   const { role } = useSelector((state) => state.user.user);
@@ -49,7 +50,7 @@ const Course = () => {
         show quiz
       </Button>
 
-      <CreateCourseModal open={open} handleClose={handleClose} />
+      <CourseCreateModal open={open} handleClose={handleClose} />
 
       <Box className="content">
         <Box className="contentHeader">

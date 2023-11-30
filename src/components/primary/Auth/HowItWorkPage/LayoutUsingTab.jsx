@@ -20,11 +20,7 @@ function TabPanel(props) {
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
       {...other}>
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
 }
@@ -48,23 +44,26 @@ export default function LayoutUsingTab() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  const isMobile = window.innerWidth <= 600;
   return (
     <>
       <Tabs
         orientation="vertical"
+        // orientation={isMobile ? "horizontal" : "vertical"} // Use horizontal tabs for mobile, vertical for others
+       
+        // orientation="horizontal"
         // variant="scrollable"
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
         sx={{
-          height: "80vh",
+          height: "86vh",
           width: "230px",
           borderRight: "1px solid #E1E8F5",
           // borderRight: 1,
           borderColor: "divider",
           paddingTop: "1%",
-          
+
           textAlign: "left",
         }}>
         <Tab
@@ -72,29 +71,51 @@ export default function LayoutUsingTab() {
             width: "290px",
             color: "#828894",
             alignItems: "flex-start",
+      
           }}
-          label="What is QAI Workforce"
+       
+          label={
+            <Typography variant="wpf_p3_medium_3" sx={{ textTransform: "none" }}>
+              What is QAI Workforce
+            </Typography>
+          }
           {...a11yProps(0)}
         />
         <Tab
           sx={{ width: "290px", color: "#828894", alignItems: "flex-start" }}
-          label="Setting up account"
+          label={
+            <Typography variant="wpf_p3_medium_3" sx={{ textTransform: "none" }}>
+              Setting up account
+            </Typography>
+          }
           {...a11yProps(1)}
         />
 
         <Tab
           sx={{ width: "290px", color: "#828894", alignItems: "flex-start" }}
-          label="Profile Setup"
+          label={
+            <Typography variant="wpf_p3_medium_3" sx={{ textTransform: "none" }}>
+              Profile Setup
+            </Typography>
+          }
           {...a11yProps(2)}
         />
         <Tab
           sx={{ width: "290px", color: "#828894", alignItems: "flex-start" }}
-          label="Course"
+          label={
+            <Typography variant="wpf_p3_medium_3" sx={{ textTransform: "none" }}>
+              Course
+            </Typography>
+          }
           {...a11yProps(3)}
         />
         <Tab
           sx={{ width: "290px", color: "#828894", alignItems: "flex-start" }}
-          label="Job"
+          label={
+            <Typography variant="wpf_p3_medium_3" sx={{ textTransform: "none" }}>
+              Job
+            </Typography>
+          }
           {...a11yProps(4)}
         />
       </Tabs>

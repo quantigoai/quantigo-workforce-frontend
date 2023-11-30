@@ -182,14 +182,14 @@ const CourseCreateModal = ({ handleClose, open }) => {
 
     formData.append("prerequisiteCourses", preRequisiteCoursesColl);
     formData.append("skills", skillColl);
-    // dispatch(createCourse(formData)).then((action) => {
-    //   if (action.payload?.status === 200) {
-    //     // navigate("/course");
-    //     toast.trigger("Course created successfully", "success");
-    //   } else {
-    //     toast.trigger("Can not create course", "error");
-    //   }
-    // });
+    dispatch(createCourse(formData)).then((action) => {
+      if (action.payload?.status === 200) {
+        // navigate("/course");
+        toast.trigger("Course created successfully", "success");
+      } else {
+        toast.trigger("Can not create course", "error");
+      }
+    });
   };
   return (
     <>

@@ -4,7 +4,7 @@ import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import useToaster from "../../../../customHooks/useToaster";
-import {getAllCourses} from "../../../../features/slice/courseSlice";
+import {createCourse, getAllCourses} from "../../../../features/slice/courseSlice";
 import {getAllSkills} from "../../../../features/slice/skillSlice";
 import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
 import {
@@ -124,31 +124,31 @@ const CreateCourseModal = ({ handleClose, open }) => {
   };
   const handleCreateCourse = (data) => {};
   const onSubmit = (data) => {
-    // const preRequisiteCoursesColl = preRequisiteCourses.map((preRequisite) => {
-    //   return preRequisite._id;
-    // });
-    // const skillColl = skill.map((skill) => {
-    //   return skill._id;
-    // });
+    const preRequisiteCoursesColl = preRequisiteCourses.map((preRequisite) => {
+      return preRequisite._id;
+    });
+    const skillColl = skill.map((skill) => {
+      return skill._id;
+    });
 
-    // const formData = new FormData();
-    // formData.append("name", name);
-    // formData.append("category", data.category);
-    // formData.append("level", data.level);
-    // formData.append("language", data.language);
-    // formData.append("description", data.description);
-    // formData.append("images", coverImageFile);
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("category", data.category);
+    formData.append("level", data.level);
+    formData.append("language", data.language);
+    formData.append("description", data.description);
+    formData.append("images", coverImageFile);
 
-    // formData.append("prerequisiteCourses", preRequisiteCoursesColl);
-    // formData.append("skills", skillColl);
-    // dispatch(createCourse(formData)).then((action) => {
-    //   if (action.payload?.status === 200) {
-    //     navigate("/course");
-    //     toast.trigger("Course created successfully", "success");
-    //   } else {
-    //     toast.trigger("Can not create course", "error");
-    //   }
-    // });
+    formData.append("prerequisiteCourses", preRequisiteCoursesColl);
+    formData.append("skills", skillColl);
+    dispatch(createCourse(formData)).then((action) => {
+      if (action.payload?.status === 200) {
+        navigate("/course");
+        toast.trigger("Course created successfully", "success");
+      } else {
+        toast.trigger("Can not create course", "error");
+      }
+    });
   };
   return (
     <>
@@ -172,7 +172,7 @@ const CreateCourseModal = ({ handleClose, open }) => {
               position: "relative",
             }}
           >
-            {/* <form onSubmit={handleSubmit(onSubmit)}> */}
+            <form onSubmit={handleSubmit(onSubmit)}>
             <Box sx={{ height: "8%", backgroundColor: "" }}>
               <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Create Project"} />
             </Box>
@@ -306,7 +306,7 @@ const CreateCourseModal = ({ handleClose, open }) => {
                             // border: "1px solid #2E58FF",
                           },
                         }}
-                        onClick={() => handleCreateCourse()}
+                        // onClick={() => handleCreateCourse()}
                         // onClick={handleSubmission}
                       >
                         Create
@@ -317,7 +317,7 @@ const CreateCourseModal = ({ handleClose, open }) => {
                 {/* </Box> */}
               </Box>
             </Box>
-            {/* </form> */}
+            </form>
           </Box>
         </Box>
       </Modal>

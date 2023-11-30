@@ -43,8 +43,9 @@ export const RadioOption = styled(Radio)(() => ({
   // ... your existing styles
 }));
 const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate }) => {
+  console.log("🚀 ~ file: BasicOptionField.jsx:46 ~ BasicOptionField ~ inputField:", inputField)
   console.log(inputField?.correctAnswerIndex);
-  const [checkValue, setCheckValue] = useState(null);
+  const [checkValue, setCheckValue] = useState(inputField?.correctAnswerIndex);
   const handleCorrectAnswerChange = (event, index, value) => {
     if (update) {
       setCheckValue(index);

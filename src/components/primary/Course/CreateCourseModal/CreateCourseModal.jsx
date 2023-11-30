@@ -1,10 +1,13 @@
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { default as React, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import useToaster from '../../../../customHooks/useToaster';
-import { getAllCourses } from '../../../../features/slice/courseSlice';
+import {
+  createCourse,
+  getAllCourses,
+} from '../../../../features/slice/courseSlice';
 import { getAllSkills } from '../../../../features/slice/skillSlice';
 import { capitalizeFirstLetter } from '../../../../helper/capitalizeFirstWord';
 import {
@@ -174,113 +177,113 @@ const CreateCourseModal = ({ handleClose, open }) => {
               position: 'relative',
             }}
           >
-            {/* <form onSubmit={handleSubmit(onSubmit)}> */}
-            <Box sx={{ height: '8%', backgroundColor: '' }}>
-              <ProjectModalHeader
-                handleCreateProjectClose={handleClose}
-                modalTitle={'Create Project'}
-              />
-            </Box>
-            <Box
-              sx={{
-                height: '92%',
-                backgroundColor: '',
-              }}
-            >
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Box sx={{ height: '8%', backgroundColor: '' }}>
+                <ProjectModalHeader
+                  handleCreateProjectClose={handleClose}
+                  modalTitle={'Create Project'}
+                />
+              </Box>
               <Box
                 sx={{
-                  height: '80%',
-                  // backgroundColor: "red",
-                  // overflowY: "auto",
-                  padding: '3%',
-                  '&::-webkit-scrollbar': {
-                    width: '0',
-                  },
-                  overflowY: 'auto',
-                  zIndex: 1,
+                  height: '92%',
+                  backgroundColor: '',
                 }}
               >
-                <>
-                  <Grid container>
-                    {' '}
-                    <CTextField
-                      nameValidation={nameValidation}
-                      register={register}
-                    />
-                  </Grid>
-                  <Grid container>
-                    <CTextFieldDescription register={register} />
-                  </Grid>
-                  <Grid container>
-                    <PreRequisiteCourseFiled
-                      perRequisiteCourses={preRequisiteCourses}
-                    />
-                  </Grid>
-                  <Grid container>
-                    <Grid item xs={6} sx={{ paddingRight: '1%' }}>
-                      <CSelectField
-                        name={'level'}
-                        options={courseLevelFields}
-                        level={'Level'}
+                <Box
+                  sx={{
+                    height: '80%',
+                    // backgroundColor: "red",
+                    // overflowY: "auto",
+                    padding: '3%',
+                    '&::-webkit-scrollbar': {
+                      width: '0',
+                    },
+                    overflowY: 'auto',
+                    zIndex: 1,
+                  }}
+                >
+                  <>
+                    <Grid container>
+                      {' '}
+                      <CTextField
+                        nameValidation={nameValidation}
                         register={register}
                       />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid container>
+                      <CTextFieldDescription register={register} />
+                    </Grid>
+                    <Grid container>
+                      <PreRequisiteCourseFiled
+                        perRequisiteCourses={preRequisiteCourses}
+                      />
+                    </Grid>
+                    <Grid container>
+                      <Grid item xs={6} sx={{ paddingRight: '1%' }}>
+                        <CSelectField
+                          name={'level'}
+                          options={courseLevelFields}
+                          level={'Level'}
+                          register={register}
+                        />
+                      </Grid>
+                      <Grid item xs={6}>
+                        {' '}
+                        <CSelectField
+                          name={'category'}
+                          options={courseCategoryFields}
+                          level={'Category'}
+                          register={register}
+                        />
+                      </Grid>
+                    </Grid>
+                    <Grid container>
+                      <CourseSkillfiled
+                        skills={skills}
+                        register={register}
+                        skillSet={skill}
+                        handleChangeSkills={handleChangeSkills}
+                        // MenuProps={MenuProps}
+                      />
+                    </Grid>
+
+                    <Grid container>
                       {' '}
                       <CSelectField
-                        name={'category'}
-                        options={courseCategoryFields}
-                        level={'Category'}
+                        name={'language'}
+                        options={courseLanguageFields}
+                        level={'Language'}
                         register={register}
                       />
                     </Grid>
-                  </Grid>
-                  <Grid container>
-                    <CourseSkillfiled
-                      skills={skills}
-                      register={register}
-                      skillSet={skill}
-                      handleChangeSkills={handleChangeSkills}
-                      // MenuProps={MenuProps}
-                    />
-                  </Grid>
-
-                  <Grid container>
-                    {' '}
-                    <CSelectField
-                      name={'language'}
-                      options={courseLanguageFields}
-                      level={'Language'}
-                      register={register}
-                    />
-                  </Grid>
-                  <Grid
-                    item
-                    xs={12}
-                    sx={{ paddingLeft: '0%', paddingBottom: '1%' }}
-                  >
-                    <Typography
-                      sx={{
-                        fontSize: '12px',
-                        fontWeight: '500',
-                        mb: 1,
-                        color: isLightTheme ? '#091E42' : '#FFFFFF',
-                        // paddingBottom:"1%"
-                      }}
+                    <Grid
+                      item
+                      xs={12}
+                      sx={{ paddingLeft: '0%', paddingBottom: '1%' }}
                     >
-                      Course Cover Image
-                    </Typography>
-                  </Grid>
-                  <DocumentImageUpload
-                    coverImage={coverImage}
-                    removeImage={removeImage}
-                    handleImage={handleImage}
-                  />
-                  {/* <CoverImageField coverImage={coverImage} removeImage={removeImage} handleImage={handleImage} /> */}
-                </>
-              </Box>
-              <Box sx={{ height: '10%', backgroundColor: '', zIndex: 0 }}>
-                {/* <Box
+                      <Typography
+                        sx={{
+                          fontSize: '12px',
+                          fontWeight: '500',
+                          mb: 1,
+                          color: isLightTheme ? '#091E42' : '#FFFFFF',
+                          // paddingBottom:"1%"
+                        }}
+                      >
+                        Course Cover Image
+                      </Typography>
+                    </Grid>
+                    <DocumentImageUpload
+                      coverImage={coverImage}
+                      removeImage={removeImage}
+                      handleImage={handleImage}
+                    />
+                    {/* <CoverImageField coverImage={coverImage} removeImage={removeImage} handleImage={handleImage} /> */}
+                  </>
+                </Box>
+                <Box sx={{ height: '10%', backgroundColor: '', zIndex: 0 }}>
+                  {/* <Box
                     sx={{
                       display: "flex",
                       justifyContent: "space-between",
@@ -289,58 +292,58 @@ const CreateCourseModal = ({ handleClose, open }) => {
                       mt: 2,
                       borderTop: "2px solid #F2F6FC",
                     }}> */}
-                <Grid container sx={{ padding: '2%' }}>
-                  <Grid item xs={6}>
-                    <Button
-                      sx={{
-                        width: '120px',
-                        textTransform: 'none',
-                        backgroundColor: 'primary.B008',
-                        color: 'neutral.N650',
-                        borderRadius: '8px',
-                        '&:hover': {
-                          backgroundColor: 'neutral.N600',
-                          color: 'neutral.N650',
-                        },
-                      }}
-                      onClick={() => handleClose()}
-                    >
-                      Cancel
-                    </Button>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Grid container sx={{ justifyContent: 'right' }}>
+                  <Grid container sx={{ padding: '2%' }}>
+                    <Grid item xs={6}>
                       <Button
-                        type="submit"
                         sx={{
-                          width: '128px',
+                          width: '120px',
                           textTransform: 'none',
-                          backgroundColor: '#2E58FF',
-                          color: '#FFFFFF',
-
+                          backgroundColor: 'primary.B008',
+                          color: 'neutral.N650',
                           borderRadius: '8px',
-                          '&.Mui-disabled': {
-                            background: '#B6C9F0',
-                            color: '#FFFFFF',
-                          },
                           '&:hover': {
-                            backgroundColor: '#2E58FF',
-                            color: '#FFFFFF',
-                            // border: "1px solid #2E58FF",
+                            backgroundColor: 'neutral.N600',
+                            color: 'neutral.N650',
                           },
                         }}
-                        onClick={() => handleCreateCourse()}
-                        // onClick={handleSubmission}
+                        onClick={() => handleClose()}
                       >
-                        Create
+                        Cancel
                       </Button>
                     </Grid>
+                    <Grid item xs={6}>
+                      <Grid container sx={{ justifyContent: 'right' }}>
+                        <Button
+                          type="submit"
+                          sx={{
+                            width: '128px',
+                            textTransform: 'none',
+                            backgroundColor: '#2E58FF',
+                            color: '#FFFFFF',
+
+                            borderRadius: '8px',
+                            '&.Mui-disabled': {
+                              background: '#B6C9F0',
+                              color: '#FFFFFF',
+                            },
+                            '&:hover': {
+                              backgroundColor: '#2E58FF',
+                              color: '#FFFFFF',
+                              // border: "1px solid #2E58FF",
+                            },
+                          }}
+                          // onClick={() => handleCreateCourse()}
+                          // onClick={handleSubmission}
+                        >
+                          Create
+                        </Button>
+                      </Grid>
+                    </Grid>
                   </Grid>
-                </Grid>
-                {/* </Box> */}
+                  {/* </Box> */}
+                </Box>
               </Box>
-            </Box>
-            {/* </form> */}
+            </form>
           </Box>
         </Box>
       </Modal>

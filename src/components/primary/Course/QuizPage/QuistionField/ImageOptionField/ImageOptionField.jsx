@@ -76,13 +76,8 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
     }
   };
   const handleImage4 = (e) => {
-    // const file = e[0];
-    // if (file) {
-    //   const url = URL.createObjectURL(file);
-    //   setCoverImage4(url);
-    // }
-    setCoverImageFile(e[0]);
 
+    setCoverImageFile(e[0]);
     // {
     //   inputField?.possibleAnswers?.map((possibleAnswer, index) => (
     // )) }
@@ -99,7 +94,7 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
       const file = e[0];
       if (file) {
         const url = URL.createObjectURL(file);
-        setCoverImage3(url);
+        setCoverImage4(url);
       }
     }
   };

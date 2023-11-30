@@ -11,7 +11,81 @@ const initialState = {
   isCreated: false,
 };
 
-export const getProjectByDirectory = createAsyncThunk("/project/directory", async (data) => {
+export const getProjectByDirectory = createAsyncThunk("/project/directory", async () => {
+  // let query = ``;
+  // if (data) {
+  //   query += `?`;
+  // }
+  // if (industryType) {
+  //   query += `&Industry=${industryType}`;
+  // }
+  // if (judgementTimeFieldFilter) {
+  //   query += `&Judgement_Time=${judgementTimeFieldFilter}`;
+  // }
+  // if (qABenchmarkFieldFilter) {
+  //   query += `&QA_Benchmark=${qABenchmarkFieldFilter}`;
+  // }
+  // if (qAFieldFilter) {
+  //   query += `&QA=${qAFieldFilter}`;
+  // }
+  // if (skipImageFieldFilter) {
+  //   query += `&Skip_Image=${skipImageFieldFilter}`;
+  // }
+  // if (imageLoadingFieldFilter) {
+  //   query += `&Image_Loading=${imageLoadingFieldFilter}`;
+  // }
+  // if (objectSavingTimeFieldFilter) {
+  //   query += `&Object_Saving_Time=${objectSavingTimeFieldFilter}`;
+  // }
+  // if (videoWatchTimeFieldFilter) {
+  //   query += `&Video_Watch_Time=${videoWatchTimeFieldFilter}`;
+  // }
+  // if (toolTypeFieldFilter) {
+  //   query += `&Tool_Type=${toolTypeFieldFilter}`;
+  // }
+  // if (deletionFieldFilter) {
+  //   query += `&Deletion=${deletionFieldFilter}`;
+  // }
+  // if (objBenchMarkFieldFilter) {
+  //   query += `&Obj_Benchmark=${objBenchMarkFieldFilter}`;
+  // }
+  // if (imgBenchMarkFieldFilter) {
+  //   query += `&Img_Benchmark=${imgBenchMarkFieldFilter}`;
+  // }
+  // if (taggingBenchMarkFieldFilter) {
+  //   query += `&Tagging_Benchmark=${taggingBenchMarkFieldFilter}`;
+  // }
+  // if (actionItemsFieldFilter) {
+  //   query += `&Action_Items=${actionItemsFieldFilter}`;
+  // }
+  // if (qaCheckPointFieldFilter) {
+  //   query += `&QA_Check_Points=${qaCheckPointFieldFilter}`;
+  // }
+  // if (projectTypeFieldFilter) {
+  //   query += `&Project_Type=${projectTypeFieldFilter}`;
+  // }
+  // if (platformFieldFilter) {
+  //   query += `&Platform=${platformFieldFilter}`;
+  // }
+  // if (clientAliasFilter) {
+  //   query += `&Client_Alias=${clientAliasFilter}`;
+  // }
+  // if (dataTypeFilter) {
+  //   query += `&Data_Type=${dataTypeFilter}`;
+  // }
+  // if (annotationFilter) {
+  //   query += `&Annotation=${annotationFilter}`;
+  // }
+  // if (pdr) {
+  //   query += `&PDR=${pdr}`;
+  // }
+  try {
+    return axios.get(`${url}/api/getprojects/?perpage=1&limit=100`);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+export const filterProjectByDirectory = createAsyncThunk("/project/filterDirectory", async (data) => {
   const {
     industryType,
     clientAliasFilter,
@@ -102,38 +176,75 @@ export const getProjectByDirectory = createAsyncThunk("/project/directory", asyn
   if (pdr) {
     query += `&PDR=${pdr}`;
   }
-  return axios.get(`${url}/api/ProjectList${query}`);
+  try {
+    return axios.get(`${url}/api/ProjectList/filter/${query}`);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+export const filterProjectDirBySearch = createAsyncThunk("/project/search", async (data) => {
+  let query = `?query=${data}&skip=1&limit=20`;
+  try {
+    return await axios.get(`${url}/api/search/${query}`);
+  } catch (error) {
+    throw new Error(error);
+  }
 });
 
 //  type Select
 export const getType = createAsyncThunk("/project/Directory/Type", async (type) => {
-  return axios.get(`${url}/api/ProjectList/Type/${type}`);
+  try {
+    return await axios.get(`${url}/api/ProjectList/Type/${type}`);
+  } catch (error) {
+    throw new Error(error);
+  }
 });
 
 // Industry type
 export const getIndustryType = createAsyncThunk("/project/IndustryType", async () => {
-  return axios.get(`${url}/api/Industry_Types/`);
+  try {
+    return await axios.get(`${url}/api/Industry_Types/`);
+  } catch (error) {
+    throw new Error(error);
+  }
 });
 
 // Client Aliases
 export const getClientAliases = createAsyncThunk("/project/Client/Aliases", async () => {
-  return axios.get(`${url}/api/Client_Aliases/`);
+  try {
+    return axios.get(`${url}/api/Client_Aliases/`);
+  } catch (error) {
+    throw new Error(error);
+  }
 });
 // create Project Directory
 export const createProjectDirectory = createAsyncThunk("Project/Directory/create", async (data) => {
-  return axios.post(`${url}/api/ProjectList/`, data);
+  try {
+    return await axios.post(`${url}/api/ProjectList/`, data);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // update Project Directory
 
 export const updateProjectDirectory = createAsyncThunk("Project/Directory/update", async (finalData) => {
   const { data, id } = finalData;
-  return axios.patch(`${url}/api/ProjectList/${id}/update`, data);
+  try {
+    return axios.patch(`${url}/api/ProjectList/${id}/update`, data);
+  } catch (error) {
+    throw new Error(error);
+  }
 });
 
 // Delete project
 export const deleteProjectDirectory = createAsyncThunk("delete/project/directory", async (id) => {
-  return axios.delete(`${url}/api/ProjectList/remove?id=${id}`);
+  try {
+    return axios.delete(`${url}/api/ProjectList/remove?id=${id}`);
+  } catch (error) {
+    throw new Error(error);
+  }
 });
 
 const ProjectDirectory = createSlice({
@@ -165,6 +276,28 @@ const ProjectDirectory = createSlice({
         state.error = null;
       })
       .addCase(getProjectByDirectory.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(filterProjectByDirectory.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(filterProjectByDirectory.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.projectDirectory = action.payload.data;
+        state.error = null;
+      })
+      .addCase(filterProjectByDirectory.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(filterProjectDirBySearch.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(filterProjectDirBySearch.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.projectDirectory = action.payload.data;
+        state.error = null;
+      })
+      .addCase(filterProjectDirBySearch.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(deleteProjectDirectory.pending, (state) => {

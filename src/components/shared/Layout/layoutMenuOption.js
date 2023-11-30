@@ -22,11 +22,11 @@ import UserSvg from "../../../assets/images/wmp_svg/drawer/userNew.svg";
 
 const layoutMenuOption = () => {
   const adminOptions = [
-    { name: "Dashboard", icon: DashboardSvg },
-    { name: "All Users", icon: UserSvg },
-    { name: "All Projects", icon: ProjectSvg },
-    { name: "Skill", icon: BenchmarkSvg },
-    // { name: "Course", icon: CourseSvg },
+    { name: 'Dashboard', icon: DashboardSvg },
+    { name: 'All Users', icon: UserSvg },
+    { name: 'All Projects', icon: ProjectSvg },
+    { name: 'Skill', icon: BenchmarkSvg },
+    { name: "Course", icon: CourseSvg },
 
     // { name: "Projects", icon: ProjectSvg },
     // { name: "Jobs", icon: JobSvg },

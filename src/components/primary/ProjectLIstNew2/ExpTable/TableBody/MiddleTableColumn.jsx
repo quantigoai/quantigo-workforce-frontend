@@ -8,7 +8,7 @@
  */
 
 import { TableCell, Typography } from '@mui/material';
-import React from 'react';
+import { default as React } from 'react';
 import { capitalizeFirstLetter } from '../../../../../helper/capitalizeFirstWord';
 import {
   calculateTimeDifference,
@@ -29,6 +29,14 @@ import UserBasicInfoCell from '../CustomTableCell/UserBasicInfoCell';
 import UserRoleCell from '../CustomTableCell/UserRoleCell';
 
 const MiddleTableColumn = ({ row, column }) => {
+  console.log(
+    '🚀 ~ file: MiddleTableColumn.jsx:27 ~ MiddleTableColumn ~ row:',
+    row,
+  );
+  console.log(
+    '🚀 ~ file: MiddleTableColumn.jsx:27 ~ MiddleTableColumn ~ column:',
+    column,
+  );
   const dateObj = new Date(row.lastJobTakenAt);
   const today = new Date();
   const diffInMs = Math.abs(today - dateObj);

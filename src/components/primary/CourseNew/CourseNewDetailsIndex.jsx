@@ -1,9 +1,10 @@
-import {Box, Button, Grid, Paper, styled, Typography} from "@mui/material";
+import { Box, Button, Grid, Paper, styled, Typography } from "@mui/material";
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {enrollACourse} from "../../../features/slice/courseSlice";
-import {updateUserEnrollCourse} from "../../../features/slice/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { enrollACourse } from "../../../features/slice/courseSlice";
+import { updateUserEnrollCourse } from "../../../features/slice/userSlice";
+import { getAQuizById } from "../../../features/slice/quizSlice";
 
 const ButtonStyle = styled(Button)({
   border: "8px",
@@ -14,12 +15,20 @@ const ButtonStyle = styled(Button)({
     color: "#1D1D1D",
   },
 });
+
 const CourseNewDetailsIndex = () => {
   const dispatch = useDispatch();
   const { course, courseChapter, courseChapters } = useSelector((state) => state.course);
+  console.log("🚀 ~ file: CourseNewDetailsIndex.jsx:22 ~ CourseNewDetailsIndex ~ courseChapter:", courseChapter)
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
-
+  const handleEditChapter = () => {
+    navigate(`/update-chapter/${courseChapter._id}`);
+  };
+  const handleEditQuiz = () => {
+    navigate(`/update-quiz/${courseChapter._id}`);
+    dispatch(getAQuizById(courseChapter.quiz.id))
+  }
   const handleStart = (id) => {
     navigate(`/course-details/${id}/content`);
     if (
@@ -50,6 +59,26 @@ const CourseNewDetailsIndex = () => {
                   <Typography variant="h5" sx={{ fontWeight: "bold", color: "#1D1D1D" }}>
                     {courseChapter?.title}
                   </Typography>
+                  <Button
+                    onClick={() => handleEditChapter()}
+                    variant="outlined"
+                    sx={{
+                      border: "1px solid #2D58FF",
+                      borderRadius: "2px",
+                      // width: "128px",
+                    }}>
+                    Edit Chapter
+                  </Button>
+                  <Button
+                    onClick={() => handleEditQuiz()}
+                    variant="outlined"
+                    sx={{
+                      border: "1px solid #2D58FF",
+                      borderRadius: "2px",
+                      // width: "128px",
+                    }}>
+                    Edit Quiz
+                  </Button>
                 </Grid>
                 <Grid item xs={12}>
                   {" "}

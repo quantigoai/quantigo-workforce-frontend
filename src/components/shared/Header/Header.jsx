@@ -158,8 +158,7 @@ const Header = () => {
                   },
                 }}
                 aria-describedby={id}
-                onClick={handleNotificationOpen}
-              >
+                onClick={handleNotificationOpen}>
                 {allUnreadNotifications.length === 0 ? (
                   <>
                     <Lottie animationData={bell} {...lottieOptions} />
@@ -186,8 +185,7 @@ const Header = () => {
                       sx={{
                         color: 'neutral.800',
                       }}
-                      variant="wpf_p3_medium"
-                    >
+                      variant="wpf_p3_medium">
                       {firstName} {lastName}
                     </Typography>
 
@@ -238,8 +236,7 @@ const Header = () => {
                       anchorEl={anchorEl}
                       open={open}
                       autoFocus={false}
-                      onClose={handleClose}
-                    >
+                      onClose={handleClose}>
                       <MenuItem
                         sx={{
                           borderBottom: '1px solid #F0F5FA',
@@ -250,8 +247,7 @@ const Header = () => {
                           // height: "50px",
                           height: { xl: '50px', xxl: '50px', lg: '37px' },
                         }}
-                        onClick={handleEditProfile}
-                      >
+                        onClick={handleEditProfile}>
                         <ListItemIcon>
                           <PersonOutlineIcon
                             sx={{
@@ -278,7 +274,7 @@ const Header = () => {
                           height: { xl: '50px', xxl: '50px', lg: '37px' },
                           width: { xl: '182px', xxl: '182px', lg: '155px' },
                         }}
-                      >
+                        disabled={isLoading}>
                         <ListItemIcon>
                           <LogoutIcon
                             sx={{

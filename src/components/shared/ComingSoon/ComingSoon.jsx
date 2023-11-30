@@ -26,7 +26,7 @@ const ContentBox = { padding: "2%", height: "100%" };
 const paperStyle = {
   backgroundColor: "neutral.N000",
   padding: "3%",
-  height: "86vh",
+  height: "80vh",
   borderRadius: "2px",
 };
 

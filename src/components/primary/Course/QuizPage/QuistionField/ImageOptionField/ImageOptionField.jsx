@@ -9,6 +9,8 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
   const [coverImage2, setCoverImage2] = useState(null);
   const [coverImage3, setCoverImage3] = useState(null);
   const [coverImage4, setCoverImage4] = useState(null);
+  const [checkValue, setCheckValue] = useState(inputField?.correctAnswerIndex);
+ 
   const handleImage1 = (e) => {
     setCoverImageFile(e[0]);
 
@@ -21,7 +23,7 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
         const url = URL.createObjectURL(file);
         setCoverImage1(url);
       }
-      handleUpdate(e[0], "question1", inputField);
+      handleUpdate(e[0], "possibleAnswers_0", inputField);
     } else {
       handleChangeInput((inputField.possibleAnswers[0] = e[0]), e[0]);
       const file = e[0];
@@ -43,7 +45,7 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
         const url = URL.createObjectURL(file);
         setCoverImage2(url);
       }
-      handleUpdate(e[0], "question2", inputField);
+      handleUpdate(e[0], "possibleAnswers_1", inputField);
     } else {
       handleChangeInput((inputField.possibleAnswers[1] = e[0]), e[0]);
       const file = e[0];
@@ -65,7 +67,7 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
         const url = URL.createObjectURL(file);
         setCoverImage3(url);
       }
-      handleUpdate(e[0], "question3", inputField);
+      handleUpdate(e[0], "possibleAnswers_2", inputField);
     } else {
       handleChangeInput((inputField.possibleAnswers[2] = e[0]), e[0]);
       const file = e[0];
@@ -88,7 +90,7 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
         const url = URL.createObjectURL(file);
         setCoverImage4(url);
       }
-      handleUpdate(e[0], "question4", inputField);
+      handleUpdate(e[0], "possibleAnswers_3", inputField);
     } else {
       handleChangeInput((inputField.possibleAnswers[3] = e[0]), e[0]);
       const file = e[0];
@@ -104,8 +106,17 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
     setCoverImage1(null);
   };
   const handleCorrectAnswerChange = (event, index, value) => {
-    handleChangeInput((inputField.correctAnswerIndex = index), event);
-    handleChangeInput((inputField.correctAnswer = value), event);
+    if (update) {
+      setCheckValue(index);
+      handleUpdate(index, "correctAnswerIndex", inputField);
+      // handleUpdate(value, "correctAnswer", inputField);
+    } else {
+      handleChangeInput((inputField.correctAnswerIndex = index), event);
+      // handleChangeInput((inputField.correctAnswer = value), event);
+    }
+
+    // handleChangeInput((inputField.correctAnswerIndex = index), event);
+    // handleChangeInput((inputField.correctAnswer = value), event);
   };
   return (
     <>
@@ -124,7 +135,7 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
             <Grid container spacing={1}>
               <Grid item xs={3}>
                 <RadioOption
-                  checked={inputField?.correctAnswerIndex === 0}
+                  checked={checkValue === 0}
                   onChange={(event) => handleCorrectAnswerChange(event, 0, inputField.possibleAnswers[0])}
                 />
                 <Typography
@@ -146,7 +157,7 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
               </Grid>
               <Grid item xs={3}>
                 <RadioOption
-                  checked={inputField?.correctAnswerIndex === 1}
+                  checked={checkValue === 1}
                   onChange={(event) => handleCorrectAnswerChange(event, 1, inputField.possibleAnswers[1])}
                 />
                 <Typography
@@ -167,7 +178,7 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
               </Grid>
               <Grid item xs={3}>
                 <RadioOption
-                  checked={inputField?.correctAnswerIndex === 2}
+                  checked={checkValue === 2}
                   onChange={(event) => handleCorrectAnswerChange(event, 2, inputField.possibleAnswers[2])}
                 />
                 <Typography
@@ -188,7 +199,7 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
               </Grid>
               <Grid item xs={3}>
                 <RadioOption
-                  checked={inputField?.correctAnswerIndex === 3}
+                  checked={checkValue === 3}
                   onChange={(event) => handleCorrectAnswerChange(event, 3, inputField.possibleAnswers[3])}
                 />
                 <Typography

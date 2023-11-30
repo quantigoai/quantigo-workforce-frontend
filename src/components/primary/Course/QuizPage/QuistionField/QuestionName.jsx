@@ -55,7 +55,7 @@ const QuestionName = ({ handleChangeInput, inputField, inputFields, handleUpdate
             // required={label === "Benchmark" ? false : true}
             // onChange={(event) => handleChangeInput(inputField.uniqueId, event)}
             onChange={(event) =>
-              update ? handleUpdate(event.target.value, "question", inputField) : handleChangeInput(inputField.uniqueId, event)
+              update ? handleUpdate(event.target.value, "questionText", inputField) : handleChangeInput(inputField.uniqueId, event)
             }
             sx={{
               backgroundColor: "neutral.N000",

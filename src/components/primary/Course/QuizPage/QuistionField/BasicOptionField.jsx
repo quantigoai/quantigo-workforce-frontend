@@ -109,7 +109,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
             // onChange={(event) => handleChangeInput((inputField.possibleAnswers[0] = event.target.value), event)}
             onChange={(event) =>
               update
-                ? handleUpdate(event.target.value, 0, inputField)
+                ? handleUpdate(event.target.value, "possibleAnswers_0", inputField)
                 : handleChangeInput((inputField.possibleAnswers[0] = event.target.value), event)
             }
           />
@@ -133,7 +133,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
             // onChange={(event) => handleChangeInput((inputField.possibleAnswers[1] = event.target.value), event)}
             onChange={(event) =>
               update
-                ? handleUpdate(event.target.value, 1, inputField)
+                ? handleUpdate(event.target.value, "possibleAnswers_1", inputField)
                 : handleChangeInput((inputField.possibleAnswers[1] = event.target.value), event)
             }
           />
@@ -163,7 +163,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
             // onChange={(event) => handleChangeInput((inputField.possibleAnswers[2] = event.target.value), event)}
             onChange={(event) =>
               update
-                ? handleUpdate(event.target.value, 2, inputField)
+                ? handleUpdate(event.target.value, "possibleAnswers_2", inputField)
                 : handleChangeInput((inputField.possibleAnswers[2] = event.target.value), event)
             }
           />
@@ -187,7 +187,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
             // onChange={(event) => handleChangeInput((inputField.possibleAnswers[3] = event.target.value), event)}
             onChange={(event) =>
               update
-                ? handleUpdate(event.target.value, 3, inputField)
+                ? handleUpdate(event.target.value, "possibleAnswers_3", inputField)
                 : handleChangeInput((inputField.possibleAnswers[3] = event.target.value), event)
             }
           />

@@ -69,6 +69,17 @@ const QuizUpdateIndex = () => {
     console.log("🚀 ~ file: QuizUpdateIndex.jsx:72 ~ handleUpdate ~ newTempData1:", newTempData1);
   };
   console.log(tempData);
+  const handleRemoveQA = (uniqueId) => {
+    console.log("🚀 ~ file: QuizUpdateIndex.jsx:73 ~ handleRemoveQA ~ uniqueId:", uniqueId)
+    console.log("hitttttss");
+
+    const values = [...inputFields];
+    values.splice(
+      values.findIndex((value) => value.uniqueId === uniqueId),
+      1
+    );
+    setInputFields(values);
+  };
   const {
     reset,
     setError,
@@ -136,7 +147,7 @@ const QuizUpdateIndex = () => {
                     <Box key={inputField.uniqueId} sx={{ paddingBottom: "2%" }}>
                       {" "}
                       <QuestionType
-                        //   handleRemoveQA={handleRemoveQA}
+                        handleRemoveQA={handleRemoveQA}
                         handleChangeInput={handleChangeInput}
                         inputField={inputField}
                         inputFields={inputFields}

@@ -50,10 +50,10 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
     if (update) {
       setCheckValue(index);
       handleUpdate(index, "correctAnswerIndex", inputField);
-      handleUpdate(value, "correctAnswer", inputField);
+      // handleUpdate(value, "correctAnswer", inputField);
     } else {
       handleChangeInput((inputField.correctAnswerIndex = index), event);
-      handleChangeInput((inputField.correctAnswer = value), event);
+      // handleChangeInput((inputField.correctAnswer = value), event);
     }
   };
   return (

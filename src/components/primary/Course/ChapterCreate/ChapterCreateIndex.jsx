@@ -80,8 +80,6 @@ const ChapterCreateIndex = () => {
 
   const { handleSubmit } = methods;
   const onSubmit = (data) => {
-    console.log("🚀 ~ file: ChapterCreateIndex.jsx:34 ~ onSubmit ~ data:", data);
-    console.log(content);
     const finalData = {
       ...data,
       // chapterNo,
@@ -152,7 +150,8 @@ const ChapterCreateIndex = () => {
                 //   mt: 2,
                 // pr: 5,
                 // pl: 5,
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   // height: "76vh",
@@ -162,7 +161,8 @@ const ChapterCreateIndex = () => {
                     width: "0", // Hide the scrollbar
                   },
                   // backgroundColor: "blue",
-                }}>
+                }}
+              >
                 <Grid container sx={{ width: "100%" }}>
                   <Grid item xs={4} sx={{ paddingRight: "1%" }}>
                     {" "}

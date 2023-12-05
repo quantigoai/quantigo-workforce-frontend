@@ -55,50 +55,47 @@ export default function PDTextFIeld({
       name={name}
       control={control}
       render={({ field, fieldState: { error } }) => (
-        console.log("🚀 ~ file: PDTextFIeld.jsx:58 ~ field:", field),
-        (
-          <Box>
-            <Typography
-              variant="wpf_h7_medium"
+        <Box>
+          <Typography
+            variant="wpf_h7_medium"
+            sx={{
+              mb: 0,
+              color: "neutral.N300",
+            }}
+          >
+            {label} {<span style={{ color: "#F04438" }}>{isRequired && "*"}</span>}
+          </Typography>
+          <Box sx={{ width: "100%" }}>
+            <PdTextField
+              size="small"
+              type={isNumber || isNumberPdr ? "number" : "text"}
+              id="outlined-basic"
+              {...field}
+              fullWidth
+              variant="outlined"
+              // required={label === "Benchmark" ? false : true}
               sx={{
-                mb: 0,
-                color: "neutral.N300",
+                backgroundColor: "neutral.N000",
               }}
-            >
-              {label} {<span style={{ color: "#F04438" }}>{isRequired && "*"}</span>}
-            </Typography>
-            <Box sx={{ width: "100%" }}>
-              <PdTextField
-                size="small"
-                type={isNumber || isNumberPdr ? "number" : "text"}
-                id="outlined-basic"
-                {...field}
-                fullWidth
-                variant="outlined"
-                // required={label === "Benchmark" ? false : true}
-                sx={{
-                  backgroundColor: "neutral.N000",
-                }}
-                defaultValue={defaultValue}
-                value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
-                error={!!error}
-                helperText={error ? error?.message : helperText}
-                autoComplete="off"
-                {...other}
-                InputProps={{
-                  inputProps: isNumberPdr
-                    ? {
-                        min: 1,
-                        max: 5,
-                      }
-                    : {
-                        min: 1,
-                      },
-                }}
-              />
-            </Box>
+              defaultValue={defaultValue}
+              value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
+              error={!!error}
+              helperText={error ? error?.message : helperText}
+              autoComplete="off"
+              {...other}
+              InputProps={{
+                inputProps: isNumberPdr
+                  ? {
+                      min: 1,
+                      max: 5,
+                    }
+                  : {
+                      min: 1,
+                    },
+              }}
+            />
           </Box>
-        )
+        </Box>
       )}
     />
   );

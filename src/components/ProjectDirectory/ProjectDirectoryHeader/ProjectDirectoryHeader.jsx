@@ -1,10 +1,94 @@
-import { Box, Button, Grid, IconButton, InputBase, Paper } from "@mui/material";
+import { Box, Button, Grid, IconButton, InputBase, Paper, Popover } from "@mui/material";
 import React from "react";
 import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import FilterListOffIcon from "@mui/icons-material/FilterListOff";
-const ProjectDirectoryHeader = ({ role, handleCreateModal }) => {
+import MiniModalProjectDirectoryNew from "../ProjectDirectoryFilter/MiniModalProjectDirectoryNew";
+import { ClearIcon } from "@mui/x-date-pickers";
+const ProjectDirectoryHeader = ({
+  search,
+  setSearch,
+  searchRef,
+  clearSearch,
+  handleSearch,
+  placeholder,
+  handleClickFilter,
+  anchorE2,
+  handleCloseFilter,
+  setIndustryType,
+  handleFilterProjectDirectory,
+  handleResetProjectDirectory,
+  industryType,
+  setClientAliasesFilter,
+  clientAliasFilter,
+  setPDRFilter,
+  pDRFilter,
+  setDataTypeFilter,
+  dataTypeFilter,
+  setAnnotationFilter,
+  annotationFilter,
+  platformFieldFilter,
+  setPlatformFieldFilter,
+  projectTypeFieldFilter,
+  setProjectTypeFieldFilter,
+  actionItemsFieldFilter,
+  setActionItemsFieldFilter,
+  qaCheckPointFieldFilter,
+  setQaCheckPointFieldFilter,
+  objBenchMarkFieldFilter,
+  setObjBenchMarkFieldFilter,
+  imgBenchMarkFieldFilter,
+  setImgBenchMarkFieldFilter,
+  taggingBenchMarkFieldFilter,
+  setTaggingBenchMarkFieldFilter,
+  deletionFieldFilter,
+  setDeletionFieldFilter,
+  toolTypeFieldFilter,
+  setToolTypeFieldFilter,
+  skipImageFieldFilter,
+  setSkipImageFieldFilter,
+  imageLoadingFieldFilter,
+  setImageLoadingFieldFilter,
+  objectSavingTimeFieldFilter,
+  setobjectSavingTimeFieldFilter,
+  videoWatchTimeFieldFilter,
+  setVideoWatchTimeFieldFilter,
+  qAFieldFilter,
+  setQAFieldFilter,
+  judgementTimeFieldFilter,
+  setJudgementTimeFieldFilter,
+  qABenchmarkFieldFilter,
+  setQABenchmarkFieldFilter,
+  setQAFilter,
+  qAField,
+  pdrSetFilter,
+  Client_AliasSetFilter,
+  annotationSetFilter,
+  platformField,
+  industrySetFilter,
+  toolTypeField,
+  actionItemsField,
+  projectTypeField,
+  qaCheckPointField,
+  objBenchMarkField,
+  imageBenchMarkField,
+  tagingBenchMarkField,
+  skipImageField,
+  imageLoadingField,
+  objectSavingTimeFilter,
+  videoWatchTimeFilter,
+  DeletionField,
+  judgementTimeFilter,
+  qABenchmarkField,
+  handleMenuItemClick,
+  setAnchorEl,
+  anchorEl,
+  role,
+  handleCreateModal,
+}) => {
+  const open = Boolean(anchorE2);
+  const id = open ? "simple-popover" : undefined;
   return (
     <Box
       className="contentHeader"
@@ -22,7 +106,7 @@ const ProjectDirectoryHeader = ({ role, handleCreateModal }) => {
           }}
         >
           {/* TODO Need to remove the unnecessary custom button */}
-          <CommonHeader title="Projects" customButton="Create User" />
+          <CommonHeader title="Project Directory" customButton="Create User" />
         </Grid>
       </Box>
 
@@ -55,48 +139,48 @@ const ProjectDirectoryHeader = ({ role, handleCreateModal }) => {
           <IconButton disabled type="button" sx={{ p: "5px" }} aria-label="search">
             <SearchIcon />
           </IconButton>
-          {/* <InputBase
-              inputRef={searchRef}
+          <InputBase
+            inputRef={searchRef}
+            sx={{
+              ml: 0,
+              flex: 1,
+              fontFamily: "Inter",
+              fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
+            }}
+            placeholder="Search"
+            onKeyDown={(ev) => {
+              if (ev.key === "Enter") {
+                handleSearch(ev);
+                ev.preventDefault();
+              }
+            }}
+          />
+          {search && (
+            <Button
               sx={{
-                ml: 0,
-                flex: 1,
-                fontFamily: 'Inter',
-                fontSize: { xl: '14px', xxl: '16px', lg: '12px' },
+                height: "30px",
+                minWidth: "40px",
               }}
-              placeholder="Search"
-              onKeyDown={(ev) => {
-                if (ev.key === 'Enter') {
-                  handleSearch(ev);
-                  ev.preventDefault();
-                }
-              }}
-            /> */}
-          {/* {search && (
-              <Button
+            >
+              <ClearIcon
                 sx={{
-                  height: '30px',
-                  minWidth: '40px',
+                  height: {
+                    lg: "20px",
+                    xl: "40px",
+                    xxl: "40px",
+                  },
+                  color: "neutral.N300",
+                  "&:hover": {
+                    color: "#F04438",
+                  },
                 }}
-              >
-                <ClearIcon
-                  sx={{
-                    height: {
-                      lg: '20px',
-                      xl: '40px',
-                      xxl: '40px',
-                    },
-                    color: 'neutral.N300',
-                    '&:hover': {
-                      color: '#F04438',
-                    },
-                  }}
-                  onClick={clearSearch}
-                />
-              </Button>
-            )} */}
+                onClick={clearSearch}
+              />
+            </Button>
+          )}
         </Paper>
         <IconButton
-          //   onClick={handleIsFilter}
+          onClick={handleClickFilter}
           sx={{
             px: "0px 0px",
             backgroundColor: "primary.B008",
@@ -118,6 +202,104 @@ const ProjectDirectoryHeader = ({ role, handleCreateModal }) => {
           <FilterListIcon sx={{ color: "primary.main" }} />
           {/* )} */}
         </IconButton>
+
+        <Popover
+          id={id}
+          open={open}
+          anchorEl={anchorE2}
+          onClose={handleCloseFilter}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+        >
+          {/* <MiniModelProjectDirectory
+          handleCloseFilter={handleCloseFilter}
+          setIndustryType={setIndustryType}
+          handleFilterProjectDirectory={handleFilterProjectDirectory}
+          handleResetProjectDirectory={handleResetProjectDirectory}
+          industryType={industryType}
+          setClientAliasesFilter={setClientAliasesFilter}
+          clientAliasFilter={clientAliasFilter}
+          setPDRFilter={setPDRFilter}
+          pDRFilter={pDRFilter}
+          setDataTypeFilter={setDataTypeFilter}
+          dataTypeFilter={dataTypeFilter}
+          setAnnotationFilter={setAnnotationFilter}
+          annotationFilter={annotationFilter}
+        /> */}
+          <MiniModalProjectDirectoryNew
+            handleCloseFilter={handleCloseFilter}
+            setIndustryType={setIndustryType}
+            handleFilterProjectDirectory={handleFilterProjectDirectory}
+            handleResetProjectDirectory={handleResetProjectDirectory}
+            industryType={industryType}
+            setClientAliasesFilter={setClientAliasesFilter}
+            clientAliasFilter={clientAliasFilter}
+            setPDRFilter={setPDRFilter}
+            pDRFilter={pDRFilter}
+            setDataTypeFilter={setDataTypeFilter}
+            dataTypeFilter={dataTypeFilter}
+            setAnnotationFilter={setAnnotationFilter}
+            annotationFilter={annotationFilter}
+            platformFieldFilter={platformFieldFilter}
+            setPlatformFieldFilter={setPlatformFieldFilter}
+            projectTypeFieldFilter={projectTypeFieldFilter}
+            setProjectTypeFieldFilter={setProjectTypeFieldFilter}
+            actionItemsFieldFilter={actionItemsFieldFilter}
+            setActionItemsFieldFilter={setActionItemsFieldFilter}
+            qaCheckPointFieldFilter={qaCheckPointFieldFilter}
+            setQaCheckPointFieldFilter={setQaCheckPointFieldFilter}
+            objBenchMarkFieldFilter={objBenchMarkFieldFilter}
+            setObjBenchMarkFieldFilter={setObjBenchMarkFieldFilter}
+            imgBenchMarkFieldFilter={imgBenchMarkFieldFilter}
+            setImgBenchMarkFieldFilter={setImgBenchMarkFieldFilter}
+            taggingBenchMarkFieldFilter={taggingBenchMarkFieldFilter}
+            setTaggingBenchMarkFieldFilter={setTaggingBenchMarkFieldFilter}
+            deletionFieldFilter={deletionFieldFilter}
+            setDeletionFieldFilter={setDeletionFieldFilter}
+            toolTypeFieldFilter={toolTypeFieldFilter}
+            setToolTypeFieldFilter={setToolTypeFieldFilter}
+            skipImageFieldFilter={skipImageFieldFilter}
+            setSkipImageFieldFilter={setSkipImageFieldFilter}
+            imageLoadingFieldFilter={imageLoadingFieldFilter}
+            setImageLoadingFieldFilter={setImageLoadingFieldFilter}
+            objectSavingTimeFieldFilter={objectSavingTimeFieldFilter}
+            setobjectSavingTimeFieldFilter={setobjectSavingTimeFieldFilter}
+            videoWatchTimeFieldFilter={videoWatchTimeFieldFilter}
+            setVideoWatchTimeFieldFilter={setVideoWatchTimeFieldFilter}
+            qAFieldFilter={qAFieldFilter}
+            setQAFieldFilter={setQAFieldFilter}
+            judgementTimeFieldFilter={judgementTimeFieldFilter}
+            setJudgementTimeFieldFilter={setJudgementTimeFieldFilter}
+            qABenchmarkFieldFilter={qABenchmarkFieldFilter}
+            setQABenchmarkFieldFilter={setQABenchmarkFieldFilter}
+            setQAFilter={setQAFilter}
+            qAField={qAField}
+            pdrSetFilter={pdrSetFilter}
+            Client_AliasSetFilter={Client_AliasSetFilter}
+            annotationSetFilter={annotationSetFilter}
+            platformField={platformField}
+            industrySetFilter={industrySetFilter}
+            toolTypeField={toolTypeField}
+            actionItemsField={actionItemsField}
+            projectTypeField={projectTypeField}
+            qaCheckPointField={qaCheckPointField}
+            objBenchMarkField={objBenchMarkField}
+            imageBenchMarkField={imageBenchMarkField}
+            tagingBenchMarkField={tagingBenchMarkField}
+            skipImageField={skipImageField}
+            imageLoadingField={imageLoadingField}
+            objectSavingTimeFilter={objectSavingTimeFilter}
+            videoWatchTimeFilter={videoWatchTimeFilter}
+            DeletionField={DeletionField}
+            judgementTimeFilter={judgementTimeFilter}
+            qABenchmarkField={qABenchmarkField}
+            handleMenuItemClick={handleMenuItemClick}
+            setAnchorEl={setAnchorEl}
+            anchorEl={anchorEl}
+          />
+        </Popover>
 
         <Button
           sx={{

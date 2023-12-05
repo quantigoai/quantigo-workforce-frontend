@@ -36,6 +36,7 @@ export const lightColors = {
     950: "#FFF",
     970: "#000C1F",
     990: "#EAECF0",
+    995:"#1D2939"
   },
   primary: {
     main: "#266AED",

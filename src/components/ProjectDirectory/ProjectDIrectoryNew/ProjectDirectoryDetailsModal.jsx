@@ -104,7 +104,7 @@ const ProjectDirectoryDetailsModal = ({ openProjectModalDetails, item, handleDet
                 <DetailsItem
                   isLightTheme={isLightTheme}
                   Item1Title={"Image Benchmark"}
-                  Item1={item?.Img_Benchmark ? item.Img_Benchmark : "10 sec/object, 5 sec/tag"}
+                  Item1={item?.Img_Benchmark}
                   Item2Title={"Tagging Benchmark"}
                   Item2={item?.Tagging_Benchmark}
                 />

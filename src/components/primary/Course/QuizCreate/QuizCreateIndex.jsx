@@ -110,6 +110,10 @@ const QuizCreateIndex = () => {
         );
         formData.append(`question_${index}`, qa.question.questionImage);
         // formData.append(`questionAndAnswer[${index}][question][questionImage]`, qa.question.questionImage);
+        console.log(
+          '🚀 ~ file: QuizCreateIndex.jsx:98 ~ inputFields.forEach ~ qa.question.questionImage:',
+          qa.question.questionImage,
+        );
       }
       qa.possibleAnswers.forEach((answer, answerIndex) => {
         if (qa.questionType === 'imageInOptions') {
@@ -240,3 +244,11 @@ const QuizCreateIndex = () => {
 };
 
 export default QuizCreateIndex;
+
+// data = {
+//   quizId: "sdsdssdsad",
+//   questionId: "15414587414654",
+//   formData: {
+//     // formData.append(`questionAndAnswer[${index}][question][questionText]`, qa.question.questionText);
+//   }
+// }

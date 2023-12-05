@@ -47,14 +47,16 @@ const BasicOptionField = ({
   handleUpdate,
 }) => {
   const [checkValue, setCheckValue] = useState(inputField?.correctAnswerIndex);
+
+  // TO change the correct answer Index
   const handleCorrectAnswerChange = (event, index, value) => {
     if (update) {
       setCheckValue(index);
       handleUpdate(index, 'correctAnswerIndex', inputField);
-      handleUpdate(value, 'correctAnswer', inputField);
+      // handleUpdate(value, "correctAnswer", inputField);
     } else {
       handleChangeInput((inputField.correctAnswerIndex = index), event);
-      handleChangeInput((inputField.correctAnswer = value), event);
+      // handleChangeInput((inputField.correctAnswer = value), event);
     }
   };
   return (
@@ -97,7 +99,13 @@ const BasicOptionField = ({
           <TextFieldOption
             name="possibleAnswer1"
             fullWidth
-            defaultValue={inputField.possibleAnswers[0]}
+            defaultValue={
+              inputField.questionType === 'imageInOptions'
+                ? ''
+                : inputField.possibleAnswers[0]
+            }
+            // defaultValue={"ssdffsd"}
+
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -122,7 +130,11 @@ const BasicOptionField = ({
             // onChange={(event) => handleChangeInput((inputField.possibleAnswers[0] = event.target.value), event)}
             onChange={(event) =>
               update
-                ? handleUpdate(event.target.value, 0, inputField)
+                ? handleUpdate(
+                    event.target.value,
+                    'possibleAnswers_0',
+                    inputField,
+                  )
                 : handleChangeInput(
                     (inputField.possibleAnswers[0] = event.target.value),
                     event,
@@ -134,7 +146,12 @@ const BasicOptionField = ({
           <TextFieldOption
             name="possibleAnswer1"
             fullWidth
-            defaultValue={inputField.possibleAnswers[1]}
+            defaultValue={
+              inputField.questionType === 'imageInOptions'
+                ? ''
+                : inputField.possibleAnswers[1]
+            }
+            // defaultValue={inputField.possibleAnswers[1]}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -159,7 +176,11 @@ const BasicOptionField = ({
             // onChange={(event) => handleChangeInput((inputField.possibleAnswers[1] = event.target.value), event)}
             onChange={(event) =>
               update
-                ? handleUpdate(event.target.value, 1, inputField)
+                ? handleUpdate(
+                    event.target.value,
+                    'possibleAnswers_1',
+                    inputField,
+                  )
                 : handleChangeInput(
                     (inputField.possibleAnswers[1] = event.target.value),
                     event,
@@ -176,7 +197,12 @@ const BasicOptionField = ({
         <Grid item xs={12}>
           <TextFieldOption
             name="possibleAnswer1"
-            defaultValue={inputField.possibleAnswers[2]}
+            // defaultValue={inputField.possibleAnswers[2]}
+            defaultValue={
+              inputField.questionType === 'imageInOptions'
+                ? ''
+                : inputField.possibleAnswers[2]
+            }
             fullWidth
             InputProps={{
               startAdornment: (
@@ -202,7 +228,11 @@ const BasicOptionField = ({
             // onChange={(event) => handleChangeInput((inputField.possibleAnswers[2] = event.target.value), event)}
             onChange={(event) =>
               update
-                ? handleUpdate(event.target.value, 2, inputField)
+                ? handleUpdate(
+                    event.target.value,
+                    'possibleAnswers_2',
+                    inputField,
+                  )
                 : handleChangeInput(
                     (inputField.possibleAnswers[2] = event.target.value),
                     event,
@@ -214,7 +244,12 @@ const BasicOptionField = ({
           <TextFieldOption
             name="possibleAnswer1"
             fullWidth
-            defaultValue={inputField.possibleAnswers[2]}
+            // defaultValue={inputField.possibleAnswers[2]}
+            defaultValue={
+              inputField.questionType === 'imageInOptions'
+                ? ''
+                : inputField.possibleAnswers[3]
+            }
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -239,7 +274,11 @@ const BasicOptionField = ({
             // onChange={(event) => handleChangeInput((inputField.possibleAnswers[3] = event.target.value), event)}
             onChange={(event) =>
               update
-                ? handleUpdate(event.target.value, 3, inputField)
+                ? handleUpdate(
+                    event.target.value,
+                    'possibleAnswers_3',
+                    inputField,
+                  )
                 : handleChangeInput(
                     (inputField.possibleAnswers[3] = event.target.value),
                     event,

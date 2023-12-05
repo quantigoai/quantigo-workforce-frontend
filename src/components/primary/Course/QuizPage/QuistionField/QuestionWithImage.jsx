@@ -76,7 +76,7 @@ const QuestionWithImage = ({ handleChangeInput, inputField, inputFields, handleU
                 // onChange={(event) => handleChangeInput(inputField.uniqueId, event)}
                 onChange={(event) =>
                   update
-                    ? handleUpdate(event.target.value, "question", inputField)
+                    ? handleUpdate(event.target.value, "questionText", inputField)
                     : handleChangeInput(inputField.uniqueId, event)
                 }
                 sx={{

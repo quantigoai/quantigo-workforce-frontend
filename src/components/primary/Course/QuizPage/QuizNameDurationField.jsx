@@ -5,16 +5,9 @@ import CustomTextField from '../../../shared/CustomField/CustomTextField';
 
 const QuizNameDurationField = ({ methods, onSubmit, handleSubmit }) => {
   const { quiz } = useSelector((state) => state.quiz);
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        paddingBottom: '2%',
-      }}
-      gap={2}
-    >
-      <Box sx={{ width: '100%', height: '100%' }}>
+ return (
+    <Box sx={{ display: "flex", justifyContent: "space-between" ,paddingBottom:"2%"}} gap={2}>
+      <Box sx={{ width: "100%", height: "100%" }}>
         <CustomTextField
           name="quiz_name"
           label="Quiz Name"

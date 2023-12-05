@@ -95,6 +95,7 @@ const QuizCreateIndex = () => {
         formData.append(`questionAndAnswer[${index}][question][questionText]`, qa.question.questionText);
         formData.append(`question_${index}`, qa.question.questionImage);
         // formData.append(`questionAndAnswer[${index}][question][questionImage]`, qa.question.questionImage);
+        console.log("🚀 ~ file: QuizCreateIndex.jsx:98 ~ inputFields.forEach ~ qa.question.questionImage:", qa.question.questionImage)
       }
       qa.possibleAnswers.forEach((answer, answerIndex) => {
         if (qa.questionType === "imageInOptions") {
@@ -113,17 +114,17 @@ const QuizCreateIndex = () => {
 
     data.questionAndAnswer = inputFields;
     console.log(formData);
-    // dispatch(createAQuiz(formData)).then((action) => {
-    //   if (action.payload?.status === 200) {
-    //     // const courseId = action.payload.data.course._id;
-    //     // const { _id, name } = action.payload.data;
-    //     // dispatch(manuallyUpdateCourse({ id: _id, name }));
-    //     // navigate(`/course-details/${courseId}/content`);
-    //     toast.trigger("Quiz Create Successfully", "success");
-    //   } else {
-    //     toast.trigger("Quiz can not create", "error");
-    //   }
-    // });
+    dispatch(createAQuiz(formData)).then((action) => {
+      if (action.payload?.status === 200) {
+        // const courseId = action.payload.data.course._id;
+        // const { _id, name } = action.payload.data;
+        // dispatch(manuallyUpdateCourse({ id: _id, name }));
+        // navigate(`/course-details/${courseId}/content`);
+        toast.trigger("Quiz Create Successfully", "success");
+      } else {
+        toast.trigger("Quiz can not create", "error");
+      }
+    });
     for (let pair of formData.entries()) {
       console.log(pair[0] + ", " + pair[1]);
     }

@@ -54,16 +54,25 @@ const QuizUpdateIndex = () => {
     // setInputFields(newInputFields);
   };
   const handleUpdate = (v, i, f) => {
+    console.log("🚀 ~ file: QuizUpdateIndex.jsx:57 ~ handleUpdate ~ f:", f);
     console.log("🚀 ~ file: QuizUpdateIndex.jsx:57 ~ handleUpdate ~ i:", i);
-    console.log("🚀 ~ file: QuizUpdateIndex.jsx:57 ~ handleUpdate ~ f:", f.questionType);
+
     const qaID = f._id;
     const newTempData1 = { ...tempData };
     newTempData1.quizId = quiz._id;
 
     newTempData1.questionAndAnswer[qaID] = {
       pa: {
-        ...newTempData1.questionAndAnswer[qaID]?.pa,
-        [i]: v,
+        ...(i !== "questionType"
+          ? {
+              [i]: v,
+              questionType: f.questionType,
+            }
+          : {
+              [i]: v,
+            }),
+        // ...newTempData1.questionAndAnswer[qaID]?.pa,
+        // [i]: v,
       },
     };
     setTempData(newTempData1);
@@ -85,6 +94,7 @@ const QuizUpdateIndex = () => {
   } = methods;
   const onSubmit = (data) => {
     let tempQA;
+    console.log(tempData.questionAndAnswer);
     const formData = new FormData();
     {
       Object.entries(tempData.questionAndAnswer).map(([key, val], i) => {
@@ -92,15 +102,18 @@ const QuizUpdateIndex = () => {
         const data1 = {
           quizId: quiz._id,
           questionId: key,
-          formDataQ: {},
+          formDataQ: null,
         };
         Object.entries(val.pa).map(([k, v], i) => {
-          // console.log(k)
+          console.log(k)
+          console.log(v)
           // data1.formDataQ[k] = v;
-          data1.formDataQ[k] = v;
+          // data1.formDataQ[k] = v;
+          console.log("🚀 ~ file: QuizUpdateIndex.jsx:102 ~ Object.entries ~ v:", v);
 
           // Append values to the FormData object
           formData.append(`${k}`, v);
+          data1.formDataQ=formData
           // console.log(v);
           // data1 = {
           //   formDataQ: {
@@ -115,8 +128,10 @@ const QuizUpdateIndex = () => {
           //   console.log(pair[0] + ", " + pair[1]);
           // }
         });
+        console.log("🚀 ~ file: QuizUpdateIndex.jsx:130 ~ Object.entries ~ data1:", data1)
         dispatch(updateQuizQA(data1));
-        console.log("🚀 ~ file: QuizUpdateIndex.jsx:96 ~ Object.entries ~ data1:", data1);
+     
+
         for (let pair of formData.entries()) {
           console.log(pair[0] + ", " + pair[1]);
         }

@@ -5,8 +5,7 @@ import { useSelector } from "react-redux";
 
 const QuizNameDurationField = ({ methods, onSubmit, handleSubmit }) => {
   const { quiz } = useSelector((state) => state.quiz);
-  console.log("🚀 ~ file: QuizNameDurationField.jsx:8 ~ QuizNameDurationField ~ quiz:", quiz)
-  return (
+ return (
     <Box sx={{ display: "flex", justifyContent: "space-between" ,paddingBottom:"2%"}} gap={2}>
       <Box sx={{ width: "100%", height: "100%" }}>
         <CustomTextField

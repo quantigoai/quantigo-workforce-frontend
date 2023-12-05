@@ -209,3 +209,13 @@ const QuizCreateIndex = () => {
 };
 
 export default QuizCreateIndex;
+
+
+
+// data = {
+//   quizId: "sdsdssdsad",
+//   questionId: "15414587414654",
+//   formData: {
+//     // formData.append(`questionAndAnswer[${index}][question][questionText]`, qa.question.questionText);
+//   }
+// }

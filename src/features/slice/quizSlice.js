@@ -57,8 +57,8 @@ export const getAQuizById = createAsyncThunk("/quizzes/:id", async (id) => {
 
 // update a Question Answer
 export const updateQuizQA = createAsyncThunk("/quiz/update/quizId/questionId", async (data) => {
-  const { quizId, questionId, formData } = data;
-  return axios.patch(`${url}/quizzes/${quizId}/${questionId}`, formData, {
+  const { quizId, questionId, formDataQ } = data;
+  return axios.patch(`${url}/quizzes/${quizId}/${questionId}`, formDataQ, {
     headers: {
       Authorization: `Bearer ${realToken()}`,
     },

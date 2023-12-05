@@ -4,12 +4,14 @@ import ChapterCreateHeader from "../ChapterCreate/ChapterCreateHeader";
 import { useForm } from "react-hook-form";
 import QuizNameDurationField from "../QuizPage/QuizNameDurationField";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import QuestionType from "../QuizPage/QuestionType";
+import { updateQuizQA } from "../../../../features/slice/quizSlice";
 
 const QuizUpdateIndex = () => {
   const [inputFields, setInputFields] = useState([]);
   const { quiz } = useSelector((state) => state.quiz);
+  const dispatch = useDispatch();
   const [tempData, setTempData] = useState({
     quizId: "",
     questionAndAnswer: {},
@@ -52,13 +54,12 @@ const QuizUpdateIndex = () => {
     // setInputFields(newInputFields);
   };
   const handleUpdate = (v, i, f) => {
+    console.log("🚀 ~ file: QuizUpdateIndex.jsx:57 ~ handleUpdate ~ i:", i);
+    console.log("🚀 ~ file: QuizUpdateIndex.jsx:57 ~ handleUpdate ~ f:", f.questionType);
     const qaID = f._id;
     const newTempData1 = { ...tempData };
     newTempData1.quizId = quiz._id;
-    // if (i === 4 || i === 5) {
-    //   i === 4 ? (newTempData1.question = v) : (newTempData1.correctAnswer = v);
-    // }
-    console.log("🚀 ~ file: QuizUpdateIndex.jsx:55 ~ handleUpdate ~ i:", i);
+
     newTempData1.questionAndAnswer[qaID] = {
       pa: {
         ...newTempData1.questionAndAnswer[qaID]?.pa,
@@ -66,13 +67,9 @@ const QuizUpdateIndex = () => {
       },
     };
     setTempData(newTempData1);
-    console.log("🚀 ~ file: QuizUpdateIndex.jsx:72 ~ handleUpdate ~ newTempData1:", newTempData1);
   };
   console.log(tempData);
   const handleRemoveQA = (uniqueId) => {
-    console.log("🚀 ~ file: QuizUpdateIndex.jsx:73 ~ handleRemoveQA ~ uniqueId:", uniqueId)
-    console.log("hitttttss");
-
     const values = [...inputFields];
     values.splice(
       values.findIndex((value) => value.uniqueId === uniqueId),
@@ -86,8 +83,78 @@ const QuizUpdateIndex = () => {
     handleSubmit,
     formState: { errors },
   } = methods;
-  const onSubmit = (data) => {};
-  console.log(inputFields);
+  const onSubmit = (data) => {
+    let tempQA;
+    const formData = new FormData();
+    {
+      Object.entries(tempData.questionAndAnswer).map(([key, val], i) => {
+        console.log("🚀 ~ file: QuizUpdateIndex.jsx:90 ~ Object.entries ~ val:", val);
+        const data1 = {
+          quizId: quiz._id,
+          questionId: key,
+          formDataQ: {},
+        };
+        Object.entries(val.pa).map(([k, v], i) => {
+          // console.log(k)
+          // data1.formDataQ[k] = v;
+          data1.formDataQ[k] = v;
+
+          // Append values to the FormData object
+          formData.append(`${k}`, v);
+          // console.log(v);
+          // data1 = {
+          //   formDataQ: {
+          //     ...formData.append(k, v),
+          //   },
+          // };
+          // const data1 = {
+          //   ...formData.append(k, v),
+          // };
+
+          // for (let pair of formData.entries()) {
+          //   console.log(pair[0] + ", " + pair[1]);
+          // }
+        });
+        dispatch(updateQuizQA(data1));
+        console.log("🚀 ~ file: QuizUpdateIndex.jsx:96 ~ Object.entries ~ data1:", data1);
+        for (let pair of formData.entries()) {
+          console.log(pair[0] + ", " + pair[1]);
+        }
+      });
+    }
+
+    // {
+    //   Object.keys(tempData.questionAndAnswer).map((item, i) => {
+    //     console.log("🚀 ~ file: QuizUpdateIndex.jsx:89 ~ Object.keys ~ item:", item);
+    //     console.log(i);
+    //   });
+    // }
+    // const modifiedQA = tempData.questionAndAnswer.map((i) => {
+    //   tempQA = { ...i };
+    //   if (tempData.questionAndAnswer[i._id]) {
+    //     const tempPossibleAnswer = tempData.questionAndAnswer[i._id].pa;
+    //     const paIndex = Object.keys(tempPossibleAnswer);
+    //     let paCopy = [...tempQA.possibleAnswers];
+    //     const updatedPA = paIndex.map((j) => {
+    //       if (j !== "4" && j !== "5") {
+    //         paCopy.splice(j, 1, tempPossibleAnswer[j]);
+    //       } else {
+    //         j === "4" ? (tempQA.question = tempPossibleAnswer[j]) : (tempQA.correctAnswer = tempPossibleAnswer[j]);
+    //       }
+    //       tempQA.possibleAnswers = paCopy;
+    //     });
+    //     return tempQA;
+    //   }
+    // });
+    // filter out undefined values
+    // data.questionAndAnswer = modifiedQA.filter((i) => i !== undefined);
+    // data.deletedQuestion = removeId;
+    const bulkData = {
+      id: quiz._id,
+      data,
+    };
+  };
+
   return (
     <>
       <Box className="content" sx={{ backgroundColor: "neutral.N000" }}>

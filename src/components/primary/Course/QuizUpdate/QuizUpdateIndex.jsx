@@ -95,43 +95,24 @@ const QuizUpdateIndex = () => {
   const onSubmit = (data) => {
     let tempQA;
     console.log(tempData.questionAndAnswer);
-    const formData = new FormData();
+  
     {
       Object.entries(tempData.questionAndAnswer).map(([key, val], i) => {
-        console.log("🚀 ~ file: QuizUpdateIndex.jsx:90 ~ Object.entries ~ val:", val);
         const data1 = {
           quizId: quiz._id,
           questionId: key,
           formDataQ: null,
         };
+        const formData = new FormData();
         Object.entries(val.pa).map(([k, v], i) => {
           console.log(k)
           console.log(v)
-          // data1.formDataQ[k] = v;
-          // data1.formDataQ[k] = v;
-          console.log("🚀 ~ file: QuizUpdateIndex.jsx:102 ~ Object.entries ~ v:", v);
-
-          // Append values to the FormData object
+         
           formData.append(`${k}`, v);
           data1.formDataQ=formData
-          // console.log(v);
-          // data1 = {
-          //   formDataQ: {
-          //     ...formData.append(k, v),
-          //   },
-          // };
-          // const data1 = {
-          //   ...formData.append(k, v),
-          // };
-
-          // for (let pair of formData.entries()) {
-          //   console.log(pair[0] + ", " + pair[1]);
-          // }
+         
         });
-        console.log("🚀 ~ file: QuizUpdateIndex.jsx:130 ~ Object.entries ~ data1:", data1)
         dispatch(updateQuizQA(data1));
-     
-
         for (let pair of formData.entries()) {
           console.log(pair[0] + ", " + pair[1]);
         }

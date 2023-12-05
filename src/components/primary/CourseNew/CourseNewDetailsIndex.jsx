@@ -19,7 +19,6 @@ const ButtonStyle = styled(Button)({
 const CourseNewDetailsIndex = () => {
   const dispatch = useDispatch();
   const { course, courseChapter, courseChapters } = useSelector((state) => state.course);
-  console.log("🚀 ~ file: CourseNewDetailsIndex.jsx:22 ~ CourseNewDetailsIndex ~ courseChapter:", courseChapter)
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const handleEditChapter = () => {

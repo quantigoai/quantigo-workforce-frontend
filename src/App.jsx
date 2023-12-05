@@ -9,7 +9,6 @@ import MobileErrorPage from './components/shared/Error/MobileErrorPage';
 import LoadingComponent from './components/shared/Loading/LoadingComponent';
 import useClearReduxData from './customHooks/useClearReduxData';
 // import {availableJobsForReviewer, getAllAssignedJob, getAllJobs, getMyJobs,} from './features/slice/jobSlice';
-import { useNavigate } from 'react-router-dom';
 import {
   deleteBefore15DaysNotifications,
   getAllNotifications,

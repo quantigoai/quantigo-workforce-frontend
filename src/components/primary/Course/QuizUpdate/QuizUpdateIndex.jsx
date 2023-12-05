@@ -58,7 +58,7 @@ const QuizUpdateIndex = () => {
     // if (i === 4 || i === 5) {
     //   i === 4 ? (newTempData1.question = v) : (newTempData1.correctAnswer = v);
     // }
-    console.log("🚀 ~ file: QuizUpdateIndex.jsx:55 ~ handleUpdate ~ i:", i);
+    // console.log("🚀 ~ file: QuizUpdateIndex.jsx:55 ~ handleUpdate ~ i:", i);
     newTempData1.questionAndAnswer[qaID] = {
       pa: {
         ...newTempData1.questionAndAnswer[qaID]?.pa,
@@ -76,7 +76,7 @@ const QuizUpdateIndex = () => {
     formState: { errors },
   } = methods;
   const onSubmit = (data) => {};
-  console.log(inputFields);
+  // console.log(inputFields);
   return (
     <>
       <Box className="content" sx={{ backgroundColor: "neutral.N000" }}>

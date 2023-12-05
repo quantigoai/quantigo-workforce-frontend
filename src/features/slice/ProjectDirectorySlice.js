@@ -11,7 +11,7 @@ const initialState = {
   isCreated: false,
 };
 
-export const getProjectByDirectory = createAsyncThunk("/project/directory", async () => {
+export const getProjectByDirectory = createAsyncThunk("/project/directory", async (data) => {
   // let query = ``;
   // if (data) {
   //   query += `?`;
@@ -79,8 +79,13 @@ export const getProjectByDirectory = createAsyncThunk("/project/directory", asyn
   // if (pdr) {
   //   query += `&PDR=${pdr}`;
   // }
+  let query = `?&skip=1&limit=100`;
+
+  if (data) {
+    query = `?query=${data}?&skip=1&limit=100`;
+  }
   try {
-    return axios.get(`${url}/api/getprojects/?perpage=1&limit=100`);
+    return axios.get(`${url}/api/getprojects/${query}`);
   } catch (error) {
     throw new Error(error);
   }
@@ -183,14 +188,14 @@ export const filterProjectByDirectory = createAsyncThunk("/project/filterDirecto
   }
 });
 
-export const filterProjectDirBySearch = createAsyncThunk("/project/search", async (data) => {
-  let query = `?query=${data}&skip=1&limit=20`;
-  try {
-    return await axios.get(`${url}/api/search/${query}`);
-  } catch (error) {
-    throw new Error(error);
-  }
-});
+// export const filterProjectDirBySearch = createAsyncThunk("/project/search", async (data) => {
+//   let query = `?query=${data}&skip=1&limit=20`;
+//   try {
+//     return await axios.get(`${url}/api/search/${query}`);
+//   } catch (error) {
+//     throw new Error(error);
+//   }
+// });
 
 //  type Select
 export const getType = createAsyncThunk("/project/Directory/Type", async (type) => {
@@ -289,17 +294,17 @@ const ProjectDirectory = createSlice({
       .addCase(filterProjectByDirectory.rejected, (state) => {
         state.isLoading = false;
       })
-      .addCase(filterProjectDirBySearch.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(filterProjectDirBySearch.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.projectDirectory = action.payload.data;
-        state.error = null;
-      })
-      .addCase(filterProjectDirBySearch.rejected, (state) => {
-        state.isLoading = false;
-      })
+      // .addCase(filterProjectDirBySearch.pending, (state) => {
+      //   state.isLoading = true;
+      // })
+      // .addCase(filterProjectDirBySearch.fulfilled, (state, action) => {
+      //   state.isLoading = false;
+      //   state.projectDirectory = action.payload.data;
+      //   state.error = null;
+      // })
+      // .addCase(filterProjectDirBySearch.rejected, (state) => {
+      //   state.isLoading = false;
+      // })
       .addCase(deleteProjectDirectory.pending, (state) => {
         state.isLoading = false;
       })

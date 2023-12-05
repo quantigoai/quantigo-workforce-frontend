@@ -132,6 +132,8 @@ const TableWrapper = ({
             return <Alert severity="error">No available projects data found!</Alert>;
           if (pathname === "/all-users" && !usersLoading)
             return <Alert severity="error">No available users data found!</Alert>;
+          if (pathname === "/projectDirectory" && !isLoading)
+            return <Alert severity="error">No available projects found!</Alert>;
           if (pathname === `/projectDetails/${id}` && !isWorkHistoryDataLoading) {
             if (antRoles.includes(role)) {
               return <DetailsPage skillAlert={skillAlert} />;

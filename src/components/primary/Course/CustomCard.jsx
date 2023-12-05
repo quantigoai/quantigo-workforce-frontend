@@ -6,13 +6,13 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Box, Grid, Typography} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { Box, Grid, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import imageSample from "../../../assets/images/img.png";
-import {setActiveChapterIndex, setActiveCourseId} from "../../../features/slice/activePathSlice";
-import {getACourseByID, getAllChapterFromACourse, getCourseQuizzesResults} from "../../../features/slice/courseSlice";
+import { setActiveChapterIndex, setActiveCourseId } from "../../../features/slice/activePathSlice";
+import { getACourseByID, getAllChapterFromACourse, getCourseQuizzesResults } from "../../../features/slice/courseSlice";
 import CategoryChip from "./CategoryChip";
 import LevelChip from "./CourseCardActionLebel/LevelChip";
 import LanguageChip from "./LanguageChip";
@@ -132,7 +132,7 @@ const CustomCard = ({ course }) => {
             pt: 0,
             mb: 0,
             overflow: "hidden",
-            cursor:"pointer"  
+            cursor: "pointer",
           }}
         >
           <img
@@ -150,11 +150,12 @@ const CustomCard = ({ course }) => {
           sx={{
             height: "60%",
             backgroundColor: "neutral.N000",
+            borderRadius: "10px",
           }}
         >
-          <Box sx={{ px: "4%", height: "40%", pb: "0" }}>
-            <Grid container   onClick={() => handleViewDetailsButton(course._id)}>
-              <Typography variant="wpf_h6_semiBold" color={"grey.500"} sx={{cursor:"pointer"}}>
+          <Box sx={{ px: "4%", height: "40%", pb: "0", py: 2 }}>
+            <Grid container onClick={() => handleViewDetailsButton(course._id)}>
+              <Typography variant="wpf_h6_semiBold" color={"grey.500"} sx={{ cursor: "pointer" }}>
                 {course.name}
               </Typography>
             </Grid>

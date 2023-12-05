@@ -12,7 +12,6 @@ import {
   createProjectDirectory,
   deleteProjectDirectory,
   filterProjectByDirectory,
-  filterProjectDirBySearch,
   getProjectByDirectory,
   setCurrentProjectDirectory,
   updateProjectDirectory,
@@ -366,25 +365,24 @@ const ProjectDirectoryIndex = () => {
     //   currentPage: 0,
     // }));
     setSearch(e.target.value);
-    dispatch(filterProjectDirBySearch(e.target.value));
   };
 
   const clearSearch = () => {
     setSearch("");
     searchRef.current.value = "";
-    dispatch(getProjectByDirectory());
+    dispatch(getProjectByDirectory(""));
   };
 
   useEffect(() => {
     setIsDataLoading(true);
     dispatch(setActivePath("Project Directory"));
     dispatch(clearProjectDirectory());
-    dispatch(getProjectByDirectory()).then((action) => {
+    dispatch(getProjectByDirectory(search)).then((action) => {
       setMyColumn(fieldBuilder(projectDirectoryField, handleClick, handleDelete));
       setIsChildDataLoading(false);
       setIsDataLoading(false);
     });
-  }, []);
+  }, [search]);
 
   const onSubmit = (data) => {
     dispatch(createProjectDirectory(data)).then((action) => {

@@ -33,7 +33,16 @@ const baseUploadBoxStyle = {
   outline: "none",
   transition: "border .24s ease-in-out",
 };
-const ImageUploadIndex = ({ coverImageFile, coverImage, removeImage, handleImage, update, defaultImage }) => {
+const ImageUploadIndex = ({
+  coverImageFile,
+  coverImage,
+  removeImage,
+  handleImage,
+  update,
+  defaultImage,
+  inputField,
+}) => {
+  console.log("🚀 ~ file: ImageUploadIndex.jsx:37 ~ ImageUploadIndex ~ inputField:", inputField.questionType);
   const screenSize = window.innerWidth;
   const { isLightTheme } = useSelector((state) => state.theme);
 
@@ -148,7 +157,7 @@ const ImageUploadIndex = ({ coverImageFile, coverImage, removeImage, handleImage
                 </>
               )}
             </>
-          ) : update ? (
+          ) : update && inputField.questionType === "imageInOptions" ? (
             <>
               <Box
                 sx={{

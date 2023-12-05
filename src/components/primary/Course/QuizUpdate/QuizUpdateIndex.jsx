@@ -63,6 +63,7 @@ const QuizUpdateIndex = () => {
 
     newTempData1.questionAndAnswer[qaID] = {
       pa: {
+        ...newTempData1.questionAndAnswer[qaID]?.pa,
         ...(i !== "questionType"
           ? {
               [i]: v,
@@ -95,7 +96,7 @@ const QuizUpdateIndex = () => {
   const onSubmit = (data) => {
     let tempQA;
     console.log(tempData.questionAndAnswer);
-  
+
     {
       Object.entries(tempData.questionAndAnswer).map(([key, val], i) => {
         const data1 = {
@@ -105,12 +106,11 @@ const QuizUpdateIndex = () => {
         };
         const formData = new FormData();
         Object.entries(val.pa).map(([k, v], i) => {
-          console.log(k)
-          console.log(v)
-         
+          console.log(k);
+          console.log(v);
+
           formData.append(`${k}`, v);
-          data1.formDataQ=formData
-         
+          data1.formDataQ = formData;
         });
         dispatch(updateQuizQA(data1));
         for (let pair of formData.entries()) {
@@ -118,37 +118,6 @@ const QuizUpdateIndex = () => {
         }
       });
     }
-
-    // {
-    //   Object.keys(tempData.questionAndAnswer).map((item, i) => {
-    //     console.log("🚀 ~ file: QuizUpdateIndex.jsx:89 ~ Object.keys ~ item:", item);
-    //     console.log(i);
-    //   });
-    // }
-    // const modifiedQA = tempData.questionAndAnswer.map((i) => {
-    //   tempQA = { ...i };
-    //   if (tempData.questionAndAnswer[i._id]) {
-    //     const tempPossibleAnswer = tempData.questionAndAnswer[i._id].pa;
-    //     const paIndex = Object.keys(tempPossibleAnswer);
-    //     let paCopy = [...tempQA.possibleAnswers];
-    //     const updatedPA = paIndex.map((j) => {
-    //       if (j !== "4" && j !== "5") {
-    //         paCopy.splice(j, 1, tempPossibleAnswer[j]);
-    //       } else {
-    //         j === "4" ? (tempQA.question = tempPossibleAnswer[j]) : (tempQA.correctAnswer = tempPossibleAnswer[j]);
-    //       }
-    //       tempQA.possibleAnswers = paCopy;
-    //     });
-    //     return tempQA;
-    //   }
-    // });
-    // filter out undefined values
-    // data.questionAndAnswer = modifiedQA.filter((i) => i !== undefined);
-    // data.deletedQuestion = removeId;
-    const bulkData = {
-      id: quiz._id,
-      data,
-    };
   };
 
   return (

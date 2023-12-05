@@ -4,6 +4,8 @@ import ImageUploadIndex from "./ImageUploadIndex";
 import { RadioOption } from "../BasicOptionField";
 
 const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUpdate, update }) => {
+  console.log("🚀 ~ file: ImageOptionField.jsx:7 ~ ImageOptionField ~ update:", update)
+  console.log("🚀 ~ file: ImageOptionField.jsx:7 ~ ImageOptionField ~ inputField:", inputField)
   const [coverImageFile, setCoverImageFile] = useState([]);
   const [coverImage1, setCoverImage1] = useState(null);
   const [coverImage2, setCoverImage2] = useState(null);
@@ -153,6 +155,7 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
                   // handleImage={(event) => handleChangeInput((inputField.possibleAnswers[0] = event.target.value), event)}
                   update={true}
                   defaultImage={inputField.possibleAnswers[0]}
+                  inputField={inputField}
                 />
               </Grid>
               <Grid item xs={3}>
@@ -174,6 +177,7 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
                   handleImage={handleImage2}
                   update={true}
                   defaultImage={inputField.possibleAnswers[1]}
+                  inputField={inputField}
                 />
               </Grid>
               <Grid item xs={3}>
@@ -195,6 +199,7 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
                   handleImage={handleImage3}
                   update={true}
                   defaultImage={inputField.possibleAnswers[2]}
+                  inputField={inputField}
                 />
               </Grid>
               <Grid item xs={3}>
@@ -216,6 +221,7 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
                   handleImage={handleImage4}
                   update={true}
                   defaultImage={inputField.possibleAnswers[3]}
+                  inputField={inputField}
                 />
               </Grid>
             </Grid>

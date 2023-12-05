@@ -43,7 +43,7 @@ export const RadioOption = styled(Radio)(() => ({
   // ... your existing styles
 }));
 const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate }) => {
-  
+
   const [checkValue, setCheckValue] = useState(inputField?.correctAnswerIndex);
   const handleCorrectAnswerChange = (event, index, value) => {
     if (update) {
@@ -94,8 +94,11 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
           <TextFieldOption
             name="possibleAnswer1"
             fullWidth
-            defaultValue={inputField.possibleAnswers[0]}
+            defaultValue={inputField.questionType === "imageInOptions" ? "" : inputField.possibleAnswers[0]}
+            // defaultValue={"ssdffsd"}
+
             InputProps={{
+
               startAdornment: (
                 <InputAdornment position="start">
                   <RadioOption
@@ -118,7 +121,8 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
           <TextFieldOption
             name="possibleAnswer1"
             fullWidth
-            defaultValue={inputField.possibleAnswers[1]}
+            defaultValue={inputField.questionType === "imageInOptions" ? "" : inputField.possibleAnswers[1]}
+            // defaultValue={inputField.possibleAnswers[1]}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -147,7 +151,8 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
         <Grid item xs={12}>
           <TextFieldOption
             name="possibleAnswer1"
-            defaultValue={inputField.possibleAnswers[2]}
+            // defaultValue={inputField.possibleAnswers[2]}
+            defaultValue={inputField.questionType === "imageInOptions" ? "" : inputField.possibleAnswers[2]}
             fullWidth
             InputProps={{
               startAdornment: (
@@ -172,7 +177,8 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
           <TextFieldOption
             name="possibleAnswer1"
             fullWidth
-            defaultValue={inputField.possibleAnswers[2]}
+            // defaultValue={inputField.possibleAnswers[2]}
+            defaultValue={inputField.questionType === "imageInOptions" ? "" : inputField.possibleAnswers[3]}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">

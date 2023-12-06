@@ -42,7 +42,7 @@ const ImageUploadIndex = ({
   defaultImage,
   inputField,
 }) => {
-  console.log("🚀 ~ file: ImageUploadIndex.jsx:37 ~ ImageUploadIndex ~ inputField:", inputField.questionType);
+  console.log("🚀 ~ file: ImageUploadIndex.jsx:37 ~ ImageUploadIndex ~ inputField:", inputField?.questionType);
   const screenSize = window.innerWidth;
   const { isLightTheme } = useSelector((state) => state.theme);
 

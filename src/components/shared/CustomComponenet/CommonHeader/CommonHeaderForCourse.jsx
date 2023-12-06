@@ -258,6 +258,7 @@ const CommonHeaderForCourse = ({ isLoading, title, description, customButton, ha
                 // paddingBottom: "1%",
                 // paddingLeft: "1%",
                 backgroundColor: isLightTheme ? "#fff" : "#121212",
+
               }}
             >
               <CourseNewHeaderBottom course={course} isLightTheme={isLightTheme} />

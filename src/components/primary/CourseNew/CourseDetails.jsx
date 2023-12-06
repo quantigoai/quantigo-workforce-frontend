@@ -62,18 +62,36 @@ const CourseDetails = () => {
           />
         </Box>
         <Box className="courseContent">
-          <Box sx={{ height: "100%" }}>
-            <Grid container sx={{ gap: "20px" }}>
+          <Box sx={{ height: "100%", mt: { lg: 9, xl: 2, xxl: 0 } }}>
+            <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
               {!isInContent && (
-                <Grid item xs={3} sx={{ backgroundColor: isLightTheme ? "#fff" : "#212121" }}>
+                <Box
+                  sx={{
+                    backgroundColor: isLightTheme ? "#fff" : "#212121",
+                    width: {
+                      lg: "30%",
+                      xl: "25%",
+                      xxl: "22% ",
+                    },
+                  }}
+                >
                   {/* <CourseDrawer handleChapterClick={handleChapterClick} /> */}
                   <CourseDrawerNew handleChapterClick={handleChapterClick} />
-                </Grid>
+                </Box>
               )}
-              <Grid item xs={isInContent ? 12 : 8.8}>
+              <Box
+                sx={{
+                  width: {
+                    lg: "69%",
+                    xl: "74%",
+                    xxl: "77% ",
+                  },
+                  height: "100%",
+                }}
+              >
                 <Outlet context={[handleChapterClick]} />
-              </Grid>
-            </Grid>
+              </Box>
+            </Box>
           </Box>
         </Box>
       </Box>

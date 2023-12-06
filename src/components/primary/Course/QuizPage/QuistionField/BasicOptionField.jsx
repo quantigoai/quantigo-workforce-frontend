@@ -43,8 +43,6 @@ export const RadioOption = styled(Radio)(() => ({
   // ... your existing styles
 }));
 const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate }) => {
-  console.log("🚀 ~ file: BasicOptionField.jsx:46 ~ BasicOptionField ~ inputField:", inputField)
-  console.log(inputField?.correctAnswerIndex);
   const [checkValue, setCheckValue] = useState(inputField?.correctAnswerIndex);
   const handleCorrectAnswerChange = (event, index, value) => {
     if (update) {
@@ -63,7 +61,8 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
         sx={{
           mb: 0,
           color: "neutral.N300",
-        }}>
+        }}
+      >
         List of Options
       </Typography>
       {/* <Grid container gap={1}>

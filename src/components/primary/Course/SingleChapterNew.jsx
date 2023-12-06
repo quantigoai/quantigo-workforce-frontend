@@ -52,63 +52,75 @@ const SingleChapterNew = ({ courseChapter, index, role }) => {
 
   return (
     <>
-      <Grid
-        container
+      <Box
         sx={{
           fontFamily: "Inter",
           display: "flex",
-          justifyContent: "space-evenly",
-          alignItems: "center",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
           height: "20px",
+          width: "100%",
         }}
       >
-        <Grid item xs={1} sx={{ height: "100%" }}>
-          {role === "admin" ? (
-            // // <img src={activeChapterIndex === index ? chapterBlueIcon : iconChapter}  />
-            <Box
+        <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
+          <Box sx={{ height: "100%" }}>
+            {role === "admin" ? (
+              // // <img src={activeChapterIndex === index ? chapterBlueIcon : iconChapter}  />
+
+              <Typography
+                sx={{
+                  color: activeChapterIndex === index ? "#2E58FF" : isLightTheme ? "#1D2939" : "#fff",
+                  fontWeight: activeChapterIndex === index ? "500" : "400",
+                }}
+                variant="wpf_p3_regular"
+              >
+                {index + 1}.
+              </Typography>
+            ) : (
+              <>
+                <Box
+                  sx={{
+                    background: "#2EBD56",
+                    fontWeight: "500",
+                    color: "#fff",
+                    textAlign: "center",
+                    borderRadius: "20px",
+                    width: "25px",
+                    height: "25px",
+                  }}
+                >
+                  {index + 1}
+                </Box>
+                {/* <CourseProgressBar index={index} /> */}
+              </>
+            )}
+          </Box>
+          <Box sx={{ display: "flex", height: "100%" }}>
+            <Typography
+              variant="wpf_p3_regular"
               sx={{
-                background: "#2EBD56",
-                fontWeight: "500",
-                color: "#fff",
-                textAlign: "center",
-                borderRadius: "20px",
-                width: "25px",
-                height: "25px",
+                color: activeChapterIndex === index ? "#2E58FF" : isLightTheme ? "#1D2939" : "#fff",
+                fontWeight: activeChapterIndex === index ? "500" : "400",
+                fontFamily: "Inter",
+                textTransform: "none",
+                marginLeft: "10px",
+                fontSize: "11px",
               }}
             >
-              {index + 1}
-            </Box>
-          ) : (
-            // <CourseProgressBar index={index} />
-            <CourseProgressBar index={index} />
-          )}
-        </Grid>
-        <Grid item xs={9} sx={{ display: "flex", height: "100%" }}>
-          <Typography
-            variant="wpf_p3_regular"
-            sx={{
-              color: activeChapterIndex === index ? "#2E58FF" : isLightTheme ? "#1D2939" : "#fff",
-              fontWeight: activeChapterIndex === index ? "500" : "400",
-              fontFamily: "Inter",
-              textTransform: "none",
-              marginLeft: "10px",
-              fontSize: "11px",
-            }}
-          >
-            <span style={{ marginLeft: "2px" }}>{courseChapter.title}</span>
-          </Typography>
-        </Grid>
-        {courseChapter.score !== undefined && (
-          <Grid item xs={4}>
-            <Chip label={`Avg: ${courseChapter.scoreAverage}`} sx={scoreStyle(courseChapter.scoreAverage)}></Chip>
-          </Grid>
-        )}
-      </Grid>
-
-      <Grid item xs={1} sx={{ justifyContent: "right", color: "#1D2939", height: "100%" }}>
-        {/* <img src={activeChapterIndex === index ? iconBlue : iconButton} /> */}
-        <i className="ri-arrow-right-s-line"></i>
-      </Grid>
+              <span style={{}}> {courseChapter.title}</span>
+            </Typography>
+          </Box>
+        </Box>
+        {/* {courseChapter.score !== undefined && ( */}
+        {/* <Box>
+          <Chip label={`Avg: ${courseChapter.scoreAverage}`} sx={scoreStyle(courseChapter.scoreAverage)}></Chip>
+        </Box> */}
+        {/* )} */}
+        <Box sx={{ color: "#1D2939", height: "100%" }}>
+          {/* <img src={activeChapterIndex === index ? iconBlue : iconButton} /> */}
+          <i className="ri-arrow-right-s-line"></i>
+        </Box>
+      </Box>
     </>
   );
 };

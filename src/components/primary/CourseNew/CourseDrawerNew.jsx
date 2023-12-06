@@ -40,7 +40,7 @@ const CourseDrawerNew = ({ handleChapterClick }) => {
             }}
           >
             <Grid container sx={{ justifyContent: "space-between", paddingX: "10px" }}>
-              <Grid item xs={9}>
+              <Grid item xs={8}>
                 <Grid item xs={12}>
                   <Typography variant="wpf_h6_semiBold" color="neutral.995">
                     <b>All Chapters </b>
@@ -64,7 +64,7 @@ const CourseDrawerNew = ({ handleChapterClick }) => {
                 </Grid> */}
               </Grid>
               {user.role === "trainer" || user.role === "admin" ? (
-                <Grid item xs={3}>
+                <Grid item xs={4}>
                   <Button
                     variant="contained"
                     disabled={isLoading}
@@ -72,7 +72,8 @@ const CourseDrawerNew = ({ handleChapterClick }) => {
                     sx={{
                       backgroundColor: "#2D58FF",
                       color: "#FFFFFF",
-                      width: "95px",
+                      width: { xl: "90px", xxl: "95px", lg: "60px" },
+                      fontSize: { xl: "12px", lg: "9px", xxl: "14px" },
                       "&:hover": {
                         backgroundColor: "#244EF5",
                       },

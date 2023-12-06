@@ -82,7 +82,7 @@ export const getProjectByDirectory = createAsyncThunk("/project/directory", asyn
   let query = `?&skip=1&limit=100`;
 
   if (data) {
-    query = `?query=${data}?&skip=1&limit=100`;
+    query += `?query=${data}?&skip=1&limit=100`;
   }
   try {
     return axios.get(`${url}/api/getprojects/${query}`);

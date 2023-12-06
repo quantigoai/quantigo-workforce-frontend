@@ -25,14 +25,9 @@ const QuizUpdateIndex = () => {
   }, [quiz]);
 
   const handleChangeInput = (uniqueId, event) => {
-    console.log("🚀 ~ file: QuizUpdateIndex.jsx:23 ~ handleChangeInput ~ uniqueId:", uniqueId);
-    console.log("🚀 ~ file: QuizUpdateIndex.jsx:23 ~ handleChangeInput ~ event:", event);
-    console.log("hittt");
     console.log(inputFields);
 
-    const newInputFields = inputFields.map((i) => {
-      console.log("🚀 ~ file: QuizUpdateIndex.jsx:31 ~ newInputFields ~ i:", i);
-    });
+    const newInputFields = inputFields.map((i) => {});
 
     // const newInputFields = inputFields.map((i) => {
     //   if (event?.target?.name === "questionText") {
@@ -66,9 +61,8 @@ const QuizUpdateIndex = () => {
       },
     };
     setTempData(newTempData1);
-    console.log("🚀 ~ file: QuizUpdateIndex.jsx:72 ~ handleUpdate ~ newTempData1:", newTempData1);
   };
-  console.log(tempData);
+
   const {
     reset,
     setError,
@@ -76,7 +70,7 @@ const QuizUpdateIndex = () => {
     formState: { errors },
   } = methods;
   const onSubmit = (data) => {};
-  console.log(inputFields);
+
   return (
     <>
       <Box className="content" sx={{ backgroundColor: "neutral.N000" }}>
@@ -130,7 +124,8 @@ const QuizUpdateIndex = () => {
                     width: "0", // Hide the scrollbar
                   },
                   // backgroundColor: "blue",
-                }}>
+                }}
+              >
                 {inputFields &&
                   inputFields.map((inputField) => (
                     <Box key={inputField.uniqueId} sx={{ paddingBottom: "2%" }}>

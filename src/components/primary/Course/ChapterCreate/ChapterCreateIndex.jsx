@@ -1,32 +1,33 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
-import React, { useState } from "react";
-import QuizHeader from "../QuizPage/QuizHeader";
-import ChapterField from "./ChapterField";
-import FormProvider from "../../../shared/FormProvider/FormProvider";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
-import ChapterDescritionField from "./ChapterDescritionField";
-import ContentField from "../InputFields/ContentField";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import { realToken } from "../../../../helper/lib";
-import { useParams } from "react-router-dom";
-import ChapterCreateHeader from "./ChapterCreateHeader";
-import backIcon from "../../../../assets/images/dashboardIcon/GoBackIcon.svg";
-import { createCourseChapter } from "../../../../features/slice/courseSlice";
-import useToaster from "../../../../customHooks/useToaster";
-import { deleteTemporaryData, updateTemporaryData } from "../../../../features/slice/temporaryDataSlice";
-import ChapterDIsableNoFIeld from "./ChapterDIsableNoFIeld";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Box, Grid } from '@mui/material';
+import axios from 'axios';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import * as Yup from 'yup';
+import useToaster from '../../../../customHooks/useToaster';
+import { createCourseChapter } from '../../../../features/slice/courseSlice';
+import { realToken } from '../../../../helper/lib';
+import FormProvider from '../../../shared/FormProvider/FormProvider';
+import ContentField from '../InputFields/ContentField';
+import ChapterCreateHeader from './ChapterCreateHeader';
+import ChapterDIsableNoFIeld from './ChapterDIsableNoFIeld';
+import ChapterDescritionField from './ChapterDescritionField';
+import ChapterField from './ChapterField';
 const ChapterCreateIndex = () => {
   const { courseChapters } = useSelector((state) => state.course);
+  console.log(
+    '🚀 ~ file: ChapterCreateIndex.jsx:20 ~ ChapterCreateIndex ~ courseChapters:',
+    courseChapters?.length,
+  );
   const { course, isLoading } = useSelector((state) => state.course);
   const params = useParams();
   const toast = useToaster();
   const id = params.id;
-  const UPLOAD_ENDPOINT = "courses/couseimages/uploads";
+  const UPLOAD_ENDPOINT = 'courses/couseimages/uploads';
   const API_URl = import.meta.env.VITE_APP_SERVER_URL;
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState('');
   const dispatch = useDispatch();
   function uploadAdapter(loader) {
     return {
@@ -34,8 +35,8 @@ const ChapterCreateIndex = () => {
         return new Promise((resolve, reject) => {
           const body = new FormData();
           loader.file.then((file) => {
-            body.append("uploadImg", file);
-            body.append("courseId", id);
+            body.append('uploadImg', file);
+            body.append('courseId', id);
             axios
               .post(`${API_URl}/${UPLOAD_ENDPOINT}`, body, {
                 headers: {
@@ -59,18 +60,18 @@ const ChapterCreateIndex = () => {
   }
 
   function uploadPlugin(editor) {
-    editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
+    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
       return uploadAdapter(loader);
     };
   }
   const CourseCreateSchema = Yup.object().shape({
-    title: Yup.string().required("Course title is required"),
-    estimatedTimeToRead: Yup.string().required("estimated time is required"),
-    description: Yup.string().required("Course description is required"),
+    title: Yup.string().required('Course title is required'),
+    estimatedTimeToRead: Yup.string().required('estimated time is required'),
+    description: Yup.string().required('Course description is required'),
   });
   const methods = useForm({
     resolver: yupResolver(CourseCreateSchema),
-    mode: "all",
+    mode: 'all',
     // defaultValues: {
     //   project_platform: 'encord',
     //   project_drawer_name: 'xxxxxxxxxxxx',
@@ -92,17 +93,17 @@ const ChapterCreateIndex = () => {
     };
     dispatch(createCourseChapter(finalData)).then((action) => {
       if (action.payload?.status === 201) {
-        toast.trigger("Chapter Create", "success");
+        toast.trigger('Chapter Create', 'success');
         // dispatch(deleteTemporaryData({ id, chapterNo }));
         // navigate(`/course-details/${id}`);
       } else {
-        toast.trigger("Can not create course chapter", "error");
+        toast.trigger('Can not create course chapter', 'error');
       }
     });
   };
   return (
-    <Box className="content" sx={{ backgroundColor: "neutral.N000" }}>
-      <Grid container sx={{ borderTop: "1px solid #E6ECF5", paddingTop: "1%" }}>
+    <Box className="content" sx={{ backgroundColor: 'neutral.N000' }}>
+      <Grid container sx={{ borderTop: '1px solid #E6ECF5', paddingTop: '1%' }}>
         <Grid xs={2}>
           {/* <Button
             sx={{
@@ -144,12 +145,12 @@ const ChapterCreateIndex = () => {
 
             <Box
               sx={{
-                height: "85%",
+                height: '85%',
                 // overflow: "scroll",
                 // overflowY: "auto",
                 // height: "50vh",
                 // backgroundColor: "red",
-                width: "100%",
+                width: '100%',
                 pt: 2,
                 //   mt: 2,
                 // pr: 5,
@@ -159,51 +160,57 @@ const ChapterCreateIndex = () => {
               <Box
                 sx={{
                   // height: "76vh",
-                  height: { lg: "73vh", xl: "74vh", xxl: "78vh" },
-                  overflowY: "auto  ",
-                  "&::-webkit-scrollbar": {
-                    width: "0", // Hide the scrollbar
+                  height: { lg: '73vh', xl: '74vh', xxl: '78vh' },
+                  overflowY: 'auto  ',
+                  '&::-webkit-scrollbar': {
+                    width: '0', // Hide the scrollbar
                   },
                   // backgroundColor: "blue",
                 }}
               >
-                <Grid container sx={{ width: "100%" }}>
-                  <Grid item xs={4} sx={{ paddingRight: "1%" }}>
-                    {" "}
+                <Grid container sx={{ width: '100%' }}>
+                  <Grid item xs={4} sx={{ paddingRight: '1%' }}>
+                    {' '}
                     <ChapterDIsableNoFIeld
                       name="ChapterNo"
                       label="Chapter No"
                       isRequired={false}
-                      defaultValue={courseChapters.length + 1}
+                      defaultValue={
+                        courseChapters?.length ? courseChapters.length + 1 : 1
+                      }
                     />
                   </Grid>
                   <Grid
                     item
                     xs={4}
                     sx={{
-                      paddingRight: "1%",
+                      paddingRight: '1%',
                       height: {
-                        lg: "60px",
-                        xl: "72px",
-                        xxl: "70px",
+                        lg: '60px',
+                        xl: '72px',
+                        xxl: '70px',
                       },
                     }}
                   >
-                    {" "}
-                    <ChapterField name="title" label="Chapter Title" isRequired={true} />
+                    {' '}
+                    <ChapterField
+                      name="title"
+                      label="Chapter Title"
+                      isRequired={true}
+                    />
                   </Grid>
                   <Grid
                     item
                     xs={4}
                     sx={{
                       height: {
-                        lg: "60px",
-                        xl: "72px",
-                        xxl: "70px",
+                        lg: '60px',
+                        xl: '72px',
+                        xxl: '70px',
                       },
                     }}
                   >
-                    {" "}
+                    {' '}
                     <ChapterField
                       name="estimatedTimeToRead"
                       label="Estimated Time to Read (Minutes)"
@@ -215,24 +222,28 @@ const ChapterCreateIndex = () => {
                 <Grid
                   container
                   sx={{
-                    width: "100%",
+                    width: '100%',
                     height: {
-                      lg: "110px",
-                      xl: "120px",
-                      xxl: "125px",
+                      lg: '110px',
+                      xl: '120px',
+                      xxl: '125px',
                     },
                   }}
                 >
                   <Grid xs={12}>
-                    <ChapterDescritionField name="description" label="Chapter Description" isRequired={true} />
+                    <ChapterDescritionField
+                      name="description"
+                      label="Chapter Description"
+                      isRequired={true}
+                    />
                   </Grid>
                 </Grid>
-                <Grid item xs={12} sx={{ py: 2, backgroundColor: "" }}>
+                <Grid item xs={12} sx={{ py: 2, backgroundColor: '' }}>
                   <ContentField
                     //  course={course}
                     uploadPlugin={uploadPlugin}
                     setContent={setContent}
-                  />{" "}
+                  />{' '}
                 </Grid>
               </Box>
             </Box>

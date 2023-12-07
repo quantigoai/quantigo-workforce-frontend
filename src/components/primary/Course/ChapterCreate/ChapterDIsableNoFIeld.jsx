@@ -1,5 +1,5 @@
-import { Box, styled, TextField, Typography } from "@mui/material";
-import PropTypes from "prop-types";
+import { Box, TextField, Typography, styled } from "@mui/material";
+import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
 export const ChapterTextField = styled(TextField)(() => ({
@@ -32,19 +32,18 @@ export const ChapterTextField = styled(TextField)(() => ({
     },
   },
 }));
-export default function ChapterField({
+
+const ChapterDIsableNoFIeld = ({
   name,
   helperText,
   isNumber,
   isNumberPdr,
-  InputProps,
   label,
   defaultValue,
   isRequired,
   ...other
-}) {
+}) => {
   const { control } = useFormContext();
-
   return (
     <Controller
       name={name}
@@ -70,10 +69,10 @@ export default function ChapterField({
               variant="outlined"
               // required={label === "Benchmark" ? false : true}
               sx={{
-                backgroundColor: "neutral.N000",
+                backgroundColor: "neutral.N400",
               }}
               defaultValue={defaultValue}
-              // disabled
+              disabled
               value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
               error={!!error}
               helperText={error ? error?.message : helperText}
@@ -95,4 +94,6 @@ export default function ChapterField({
       )}
     />
   );
-}
+};
+
+export default ChapterDIsableNoFIeld;

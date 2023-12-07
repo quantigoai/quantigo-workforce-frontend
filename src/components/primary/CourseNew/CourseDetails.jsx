@@ -62,16 +62,16 @@ const CourseDetails = () => {
           />
         </Box>
         <Box className="courseContent">
-          <Box sx={{ height: "100%", mt: { lg: 9, xl: 2, xxl: 0 } }}>
+          <Box sx={{ height: "100%", mt: { lg: 4, xl: 5, xxl: 3 } }}>
             <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
               {!isInContent && (
                 <Box
                   sx={{
                     backgroundColor: isLightTheme ? "#fff" : "#212121",
                     width: {
-                      lg: "30%",
-                      xl: "25%",
-                      xxl: "22% ",
+                      lg: "32%",
+                      xl: "30%",
+                      xxl: "24% ",
                     },
                   }}
                 >
@@ -82,9 +82,9 @@ const CourseDetails = () => {
               <Box
                 sx={{
                   width: {
-                    lg: "69%",
-                    xl: "74%",
-                    xxl: "77% ",
+                    lg: "67%",
+                    xl: "69%",
+                    xxl: "74% ",
                   },
                   height: "100%",
                 }}

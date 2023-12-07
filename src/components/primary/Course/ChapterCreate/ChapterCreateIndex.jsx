@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import ChapterDescritionField from "./ChapterDescritionField";
 import ContentField from "../InputFields/ContentField";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { realToken } from "../../../../helper/lib";
 import { useParams } from "react-router-dom";
@@ -17,7 +17,10 @@ import backIcon from "../../../../assets/images/dashboardIcon/GoBackIcon.svg";
 import { createCourseChapter } from "../../../../features/slice/courseSlice";
 import useToaster from "../../../../customHooks/useToaster";
 import { deleteTemporaryData, updateTemporaryData } from "../../../../features/slice/temporaryDataSlice";
+import ChapterDIsableNoFIeld from "./ChapterDIsableNoFIeld";
 const ChapterCreateIndex = () => {
+  const { courseChapters } = useSelector((state) => state.course);
+  const { course, isLoading } = useSelector((state) => state.course);
   const params = useParams();
   const toast = useToaster();
   const id = params.id;
@@ -62,6 +65,7 @@ const ChapterCreateIndex = () => {
   }
   const CourseCreateSchema = Yup.object().shape({
     title: Yup.string().required("Course title is required"),
+    estimatedTimeToRead: Yup.string().required("estimated time is required"),
     description: Yup.string().required("Course description is required"),
   });
   const methods = useForm({
@@ -100,7 +104,7 @@ const ChapterCreateIndex = () => {
     <Box className="content" sx={{ backgroundColor: "neutral.N000" }}>
       <Grid container sx={{ borderTop: "1px solid #E6ECF5", paddingTop: "1%" }}>
         <Grid xs={2}>
-          <Button
+          {/* <Button
             sx={{
               color: "neutral.800",
               // width: {
@@ -128,7 +132,7 @@ const ChapterCreateIndex = () => {
             <Typography variant="wpf_p4_medium" sx={{ paddingLeft: "0%" }}>
               Back to Course
             </Typography>
-          </Button>
+          </Button> */}
         </Grid>
         <Grid xs={8}>
           <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -166,22 +170,59 @@ const ChapterCreateIndex = () => {
                 <Grid container sx={{ width: "100%" }}>
                   <Grid item xs={4} sx={{ paddingRight: "1%" }}>
                     {" "}
-                    <ChapterField name="ChapterNo" label="Chapter No" isRequired={false} />
+                    <ChapterDIsableNoFIeld
+                      name="ChapterNo"
+                      label="Chapter No"
+                      isRequired={false}
+                      defaultValue={courseChapters.length + 1}
+                    />
                   </Grid>
-                  <Grid item xs={4} sx={{ paddingRight: "1%" }}>
+                  <Grid
+                    item
+                    xs={4}
+                    sx={{
+                      paddingRight: "1%",
+                      height: {
+                        lg: "60px",
+                        xl: "72px",
+                        xxl: "70px",
+                      },
+                    }}
+                  >
                     {" "}
                     <ChapterField name="title" label="Chapter Title" isRequired={true} />
                   </Grid>
-                  <Grid item xs={4}>
+                  <Grid
+                    item
+                    xs={4}
+                    sx={{
+                      height: {
+                        lg: "60px",
+                        xl: "72px",
+                        xxl: "70px",
+                      },
+                    }}
+                  >
                     {" "}
                     <ChapterField
                       name="estimatedTimeToRead"
                       label="Estimated Time to Read (Minutes)"
-                      isRequired={false}
+                      isRequired={true}
+                      isNumber={true}
                     />
                   </Grid>
                 </Grid>
-                <Grid container sx={{ width: "100%" }}>
+                <Grid
+                  container
+                  sx={{
+                    width: "100%",
+                    height: {
+                      lg: "110px",
+                      xl: "120px",
+                      xxl: "125px",
+                    },
+                  }}
+                >
                   <Grid xs={12}>
                     <ChapterDescritionField name="description" label="Chapter Description" isRequired={true} />
                   </Grid>

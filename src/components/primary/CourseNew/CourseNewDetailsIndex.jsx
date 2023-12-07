@@ -19,7 +19,6 @@ const ButtonStyle = styled(Button)({
 const CourseNewDetailsIndex = () => {
   const dispatch = useDispatch();
   const { course, courseChapter, courseChapters } = useSelector((state) => state.course);
-  console.log("🚀 ~ file: CourseNewDetailsIndex.jsx:22 ~ CourseNewDetailsIndex ~ courseChapter:", courseChapter)
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const handleEditChapter = () => {
@@ -27,8 +26,8 @@ const CourseNewDetailsIndex = () => {
   };
   const handleEditQuiz = () => {
     navigate(`/update-quiz/${courseChapter._id}`);
-    dispatch(getAQuizById(courseChapter.quiz.id))
-  }
+    dispatch(getAQuizById(courseChapter.quiz.id));
+  };
   const handleStart = (id) => {
     navigate(`/course-details/${id}/content`);
     if (
@@ -66,7 +65,8 @@ const CourseNewDetailsIndex = () => {
                       border: "1px solid #2D58FF",
                       borderRadius: "2px",
                       // width: "128px",
-                    }}>
+                    }}
+                  >
                     Edit Chapter
                   </Button>
                   <Button
@@ -76,7 +76,8 @@ const CourseNewDetailsIndex = () => {
                       border: "1px solid #2D58FF",
                       borderRadius: "2px",
                       // width: "128px",
-                    }}>
+                    }}
+                  >
                     Edit Quiz
                   </Button>
                 </Grid>
@@ -92,7 +93,8 @@ const CourseNewDetailsIndex = () => {
               sx={{
                 height: "92%",
                 // backgroundColor: "rgba(69, 88, 123, 0.567);",
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   // backgroundColor: "rgba(69, 88, 123, 0.567);",
@@ -112,7 +114,8 @@ const CourseNewDetailsIndex = () => {
                   // "&::-webkit-scrollbar-thumb:hover": {
                   //   background: "#555",
                   // },
-                }}>
+                }}
+              >
                 <Grid container>
                   <Typography variant="h6" sx={{ fontWeight: "bold", color: "#1D1D1D" }}>
                     OverView

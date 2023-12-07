@@ -177,7 +177,7 @@ const CourseDeleteModal = ({ course }) => {
             id="modal-modal-title"
             variant="h6"
           >
-            Delete Project
+            Delete Course
           </Typography>
 
           <Typography

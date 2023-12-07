@@ -19,6 +19,7 @@ import FormProvider from "../../../../shared/FormProvider/FormProvider";
 import ChapterDescritionField from "../ChapterDescritionField";
 import ContentField from "../../InputFields/ContentField";
 import ChapterCreateHeader from "../ChapterCreateHeader";
+import ChapterDIsableNoFIeld from "../ChapterDIsableNoFIeld";
 const ChapterUpdateIndex = () => {
   const params = useParams();
   const toast = useToaster();
@@ -27,8 +28,7 @@ const ChapterUpdateIndex = () => {
   const API_URl = import.meta.env.VITE_APP_SERVER_URL;
   const [content, setContent] = useState("");
   const { courseChapter, course, isLoading } = useSelector((state) => state.course);
-  console.log("🚀 ~ file: ChapterUpdateIndex.jsx:32 ~ ChapterUpdateIndex ~ course:", course);
-  console.log("🚀 ~ file: ChapterUpdateIndex.jsx:32 ~ ChapterUpdateIndex ~ courseChapter:", courseChapter);
+  const { activeChapterIndex } = useSelector((state) => state.activePath);
 
   const dispatch = useDispatch();
   function uploadAdapter(loader) {
@@ -66,6 +66,7 @@ const ChapterUpdateIndex = () => {
   }
   const CourseCreateSchema = Yup.object().shape({
     title: Yup.string().required("Course title is required"),
+    estimatedTimeToRead: Yup.string().required("estimated time is required"),
     description: Yup.string().required("Course description is required"),
   });
   const methods = useForm({
@@ -81,8 +82,6 @@ const ChapterUpdateIndex = () => {
 
   const { handleSubmit } = methods;
   const onSubmit = (data) => {
-    console.log("🚀 ~ file: ChapterCreateIndex.jsx:34 ~ onSubmit ~ data:", data);
-    console.log(content);
     data.content = content;
     const formData = new FormData();
     formData.append("title", data.title);
@@ -107,7 +106,7 @@ const ChapterUpdateIndex = () => {
     <Box className="content" sx={{ backgroundColor: "neutral.N000" }}>
       <Grid container sx={{ borderTop: "1px solid #E6ECF5", paddingTop: "1%" }}>
         <Grid xs={2}>
-          <Button
+          {/* <Button
             sx={{
               color: "neutral.800",
               // width: {
@@ -135,14 +134,14 @@ const ChapterUpdateIndex = () => {
             <Typography variant="wpf_p4_medium" sx={{ paddingLeft: "0%" }}>
               Back to Course
             </Typography>
-          </Button>
+          </Button> */}
         </Grid>
         <Grid xs={8}>
           <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
             <Box className="">
               {/* <QuizHeader />
           <Button type="submit"> Create</Button> */}
-              <ChapterCreateHeader />
+              <ChapterCreateHeader isEditChapter={true} />
             </Box>
 
             <Box
@@ -157,7 +156,8 @@ const ChapterUpdateIndex = () => {
                 //   mt: 2,
                 // pr: 5,
                 // pl: 5,
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   // height: "76vh",
@@ -167,18 +167,30 @@ const ChapterUpdateIndex = () => {
                     width: "0", // Hide the scrollbar
                   },
                   // backgroundColor: "blue",
-                }}>
+                }}
+              >
                 <Grid container sx={{ width: "100%" }}>
                   <Grid item xs={4} sx={{ paddingRight: "1%" }}>
                     {" "}
-                    <ChapterField
+                    <ChapterDIsableNoFIeld
                       name="ChapterNo"
                       label="Chapter No"
                       isRequired={false}
-                      defaultValue={courseChapter.chapterNo}
+                      defaultValue={activeChapterIndex + 1}
                     />
                   </Grid>
-                  <Grid item xs={4} sx={{ paddingRight: "1%" }}>
+                  <Grid
+                    item
+                    xs={4}
+                    sx={{
+                      paddingRight: "1%",
+                      height: {
+                        lg: "60px",
+                        xl: "72px",
+                        xxl: "70px",
+                      },
+                    }}
+                  >
                     {" "}
                     <ChapterField
                       name="title"
@@ -187,17 +199,38 @@ const ChapterUpdateIndex = () => {
                       defaultValue={courseChapter.title}
                     />
                   </Grid>
-                  <Grid item xs={4}>
+                  <Grid
+                    item
+                    xs={4}
+                    sx={{
+                      height: {
+                        lg: "60px",
+                        xl: "72px",
+                        xxl: "70px",
+                      },
+                    }}
+                  >
                     {" "}
                     <ChapterField
                       name="estimatedTimeToRead"
                       label="Estimated Time to Read (Minutes)"
-                      isRequired={false}
+                      isRequired={true}
                       defaultValue={courseChapter.estimatedTimeToRead}
+                      isNumber={true}
                     />
                   </Grid>
                 </Grid>
-                <Grid container sx={{ width: "100%" }}>
+                <Grid
+                  container
+                  sx={{
+                    width: "100%",
+                    height: {
+                      lg: "110px",
+                      xl: "120px",
+                      xxl: "125px",
+                    },
+                  }}
+                >
                   <Grid xs={12}>
                     <ChapterDescritionField
                       name="description"

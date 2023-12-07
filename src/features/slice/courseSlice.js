@@ -72,11 +72,15 @@ export const validateCourseName = createAsyncThunk("validate/A/course", async (d
 
 // Delate a course by Id
 export const deleteACourseById = createAsyncThunk("/courses/delete/:id", async (id) => {
+  try {
     return axios.delete(`${url}/courses/${id}`, {
         headers: {
             Authorization: `Bearer ${realToken()}`,
         },
     });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
 });
 
 //delete A Chapter by id

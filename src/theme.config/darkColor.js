@@ -64,7 +64,7 @@ export const darkColors = {
   grey: {
     500: "#F4F7FE",
     550: "#fff",
-    700: "#344054",
+    700: "#fff",
     800: "#1D2939",
   },
   warning: {

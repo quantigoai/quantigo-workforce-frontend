@@ -14,6 +14,7 @@ import SingleChapterNew from "../Course/SingleChapterNew";
 
 const CourseDrawerNew = ({ handleChapterClick }) => {
   const { courseChapters } = useSelector((state) => state.course);
+
   const { activeChapterIndex } = useSelector((state) => state.activePath);
   const { user } = useSelector((state) => state.user);
   const { course, isLoading } = useSelector((state) => state.course);
@@ -30,28 +31,30 @@ const CourseDrawerNew = ({ handleChapterClick }) => {
           {/* TODO Handle this smartly */}
           {/* If there are no chapters under this course */}
           {!courseChapters && <p>No Chapters found for this course</p>}
-          <Grid
-            item
-            xs={12}
+          <Box
             sx={{
               paddingX: "12px",
               paddingY: "16px",
               borderBottom: "2px solid #EBEDF5",
             }}
           >
-            <Grid container sx={{ justifyContent: "space-between", paddingX: "10px" }}>
-              <Grid item xs={8}>
-                <Grid item xs={12}>
+            <Box sx={{ display: "flex", justifyContent: "space-between", paddingX: "10px" }}>
+              <Box>
+                <Box>
                   <Typography variant="wpf_h6_semiBold" color="neutral.995">
                     <b>All Chapters </b>
                   </Typography>
-                </Grid>
+                </Box>
 
-                <Grid item xs={12}>
-                  <Typography sx={{ opacity: "0.8" }} variant="wpf_p4_regular" color="neutral.995">
+                <Box>
+                  <Typography
+                    sx={{ opacity: "0.8", fontSize: { lg: "10px", xl: "12px" } }}
+                    variant="wpf_p4_regular"
+                    color="neutral.995"
+                  >
                     6 Chapters , 4 hrs 32 min
                   </Typography>
-                </Grid>
+                </Box>
                 {/* <Grid item xs={12}>
                   <Button sx={{ fontSize: "20px", color: "#000" }}>
                     {" "}
@@ -62,9 +65,9 @@ const CourseDrawerNew = ({ handleChapterClick }) => {
                     <i className="ri-menu-unfold-line"></i>
                   </Button>
                 </Grid> */}
-              </Grid>
+              </Box>
               {user.role === "trainer" || user.role === "admin" ? (
-                <Grid item xs={4}>
+                <Box>
                   <Button
                     variant="contained"
                     disabled={isLoading}
@@ -72,8 +75,9 @@ const CourseDrawerNew = ({ handleChapterClick }) => {
                     sx={{
                       backgroundColor: "#2D58FF",
                       color: "#FFFFFF",
-                      width: { xl: "90px", xxl: "95px", lg: "60px" },
-                      fontSize: { xl: "12px", lg: "9px", xxl: "14px" },
+                      width: { xl: "100px", xxl: "105px", lg: "80px" },
+                      fontSize: { xl: "12px", lg: "9px", xxl: "12px" },
+
                       "&:hover": {
                         backgroundColor: "#244EF5",
                       },
@@ -81,25 +85,15 @@ const CourseDrawerNew = ({ handleChapterClick }) => {
                     }}
                     onClick={() => handleCreateChapter(course._id)}
                   >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        textTransform: "none",
-                        fontWeight: "500",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <AddIcon sx={{ fontSize: "20px" }} />
-                      Create
-                    </Box>
+                    <AddIcon />
+                    Create
                   </Button>
-                </Grid>
+                </Box>
               ) : (
                 <></>
               )}
-            </Grid>
-          </Grid>
+            </Box>
+          </Box>
           {/* If there are chapters under this course */}
           {courseChapters?.length &&
             courseChapters.map((courseChapter, index) => (

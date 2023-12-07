@@ -60,12 +60,12 @@ const CommonHeaderForCourse = ({ isLoading, title, description, customButton, ha
       {user.role === "reviewer" && !user.active ? (
         <>
           {" "}
-          <Grid container sx={{ paddingBottom: "1%" }}>
+          <Box sx={{ paddingBottom: "1%" }}>
             <Alert sx={{ width: "100%" }} severity="error">
               <AlertTitle>Warning</AlertTitle>
               Please activate your account .
             </Alert>
-          </Grid>
+          </Box>
         </>
       ) : (
         <></>
@@ -74,197 +74,191 @@ const CommonHeaderForCourse = ({ isLoading, title, description, customButton, ha
       <Box
         sx={{
           display: "flex",
+          flexDirection: "column",
           alignItems: "start",
           width: "100%",
           backgroundColor: isLightTheme ? "#fff" : "#121212",
         }}
       >
-        <Grid container>
-          <Grid
-            item
-            xs={12}
+        <Box
+          sx={{
+            display: "flex",
+            padding: "1%",
+            width: "100%",
+            justifyContent: "space-between",
+            // paddingTop: "1%",
+            // paddingLeft: "1%",
+            // paddingBottom: "1%",
+            // backgroundColor: "#FFFFFF",
+            backgroundColor: isLightTheme ? "#fff" : "#121212",
+            // backgroundColor: "red",
+            borderBottom: "1px solid #EBEDF5",
+          }}
+        >
+          <Box sx={{ width: "50%" }}>
+            <Box>
+              <Typography variant="wpf_h4_semiBold">
+                <b> {title} </b>
+              </Typography>
+            </Box>
+            <Box>
+              <Typography color={"grey.700"} variant="wpf_p3_regular">
+                {course.description}
+              </Typography>
+            </Box>
+            <Box>
+              <Typography color={"grey.700"} variant="wpf_p3_regular">
+                Course Duration: <span style={{ fontWeight: "bold" }}>4 hrs, 32 min</span>
+              </Typography>
+            </Box>
+          </Box>
+          <Box
             sx={{
               display: "flex",
-              padding: "1%",
-              // paddingTop: "1%",
-              // paddingLeft: "1%",
-              // paddingBottom: "1%",
-              // backgroundColor: "#FFFFFF",
-              backgroundColor: isLightTheme ? "#fff" : "#121212",
-              // backgroundColor: "red",
-              borderBottom: "1px solid #EBEDF5",
+              flexDirection: "row",
+              justifyContent: "end",
             }}
           >
-            <Grid item xs={8}>
-              <Grid item xs={12}>
-                <Typography variant="wpf_h4_medium">
-                  <b> {title} </b>
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography variant="wpf_p5_regular" sx={{ opacity: "0.8" }}>
-                  <b> {course.description} </b>
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography sx={{ color: "#969CAF" }} variant="caption">
-                  Course Duration: <b>4 hrs 32 mins </b>
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid
-              item
-              xs={4}
+            <Box
               sx={{
+                textAlign: "right",
                 justifyContent: "end",
+                paddingLeft: "0%",
+                // borderBottom: "1px solid #EBEDF5",
               }}
             >
-              <Grid
-                container
-                gap={4}
-                sx={{
-                  textAlign: "right",
-                  justifyContent: "end",
-                  paddingLeft: "0%",
-                  // borderBottom: "1px solid #EBEDF5",
-                }}
-              >
-                {customButton === "dashboard" || customButton === "Create User" || customButton === "null" ? (
-                  <></>
-                ) : customButton ? (
-                  <Grid item xs={6}>
-                    <>
-                      {user.role === "trainer" || user.role === "admin" || user.role === "project_delivery_lead" ? (
-                        <>
-                          <Grid
-                            container
-                            sx={{
-                              paddingTop: "2%",
-                              justifyContent: "right",
-                            }}
-                          >
-                            <Grid item xs={8} sx={{}}>
-                              <Button
-                                // variant="contained"
-                                disabled={isLoading}
-                                type="submit"
-                                sx={{
-                                  //   width: "100%",
-                                  //   height: "45px",
-                                  //   backgroundColor: "#2D58FF",
-                                  //   color: "#FFFFFF",
-                                  //   "&:hover": {
-                                  //     backgroundColor: "#FF9A45",
-                                  //     color: "#1D1D1D",
-                                  //   },
-                                  borderRadius: "2px",
-                                }}
-                                onClick={handleOpen}
-                                // onClick={() => handleNavigation(customButton)}
-                              >
-                                <img src={editCourseIcon} />
-                              </Button>
-                              {/* <Button onClick={handleOpen}>Create Course</Button> */}
-                              <EditCourseModal open={open} handleClose={handleClose} />
-
-                              <CourseDeleteModal
-                                course={course}
-                                // handleDeleteCourse={handleDeleteCourse}
-                              />
-                            </Grid>
-                          </Grid>
-                        </>
-                      ) : (
-                        <Box sx={{ display: "flex", justifyContent: "end" }}>
-                          <CommonHeaderProgress />
-                        </Box>
-                      )}
-                    </>
-                  </Grid>
-                ) : (
+              {customButton === "dashboard" || customButton === "Create User" || customButton === "null" ? (
+                <></>
+              ) : customButton ? (
+                <Grid item xs={6}>
                   <>
-                    <Grid item xs={3}>
-                      <Button
-                        onClick={goPreviousPage}
-                        variant="outlined"
-                        sx={{
-                          width: "100%",
-                          color: "#2D58FF",
-                          height: "45px",
-                          borderRadius: "2px",
-                        }}
-                      >
-                        CANCEL
-                      </Button>
-                    </Grid>
+                    {user.role === "trainer" || user.role === "admin" || user.role === "project_delivery_lead" ? (
+                      <>
+                        <Box
+                          sx={{
+                            paddingTop: "2%",
+                            justifyContent: "right",
+                          }}
+                        >
+                          <Box>
+                            <Button
+                              // variant="contained"
+                              disabled={isLoading}
+                              type="submit"
+                              sx={{
+                                //   width: "100%",
+                                //   height: "45px",
+                                //   backgroundColor: "#2D58FF",
+                                //   color: "#FFFFFF",
+                                //   "&:hover": {
+                                //     backgroundColor: "#FF9A45",
+                                //     color: "#1D1D1D",
+                                //   },
+                                borderRadius: "2px",
+                              }}
+                              onClick={handleOpen}
+                              // onClick={() => handleNavigation(customButton)}
+                            >
+                              <img src={editCourseIcon} />
+                            </Button>
+                            {/* <Button onClick={handleOpen}>Create Course</Button> */}
+                            <EditCourseModal open={open} handleClose={handleClose} />
 
-                    <Grid item xs={3}>
-                      {title === "Create Job Pool" || title === "Create a Benchmark" ? (
-                        <>
-                          <Button
-                            variant="contained"
-                            disabled={isLoading}
-                            type="submit"
-                            sx={{
-                              width: "100%",
-                              height: "45px",
-                              backgroundColor: "#2D58FF",
-                              color: "#FFFFFF",
-                              "&:hover": {
-                                backgroundColor: "#FF9A45",
-                                color: "#1D1D1D",
-                              },
-                              borderRadius: "2px",
-                            }}
-                          >
-                            Create
-                          </Button>
-                        </>
-                      ) : (
-                        <>
-                          <Button
-                            variant="contained"
-                            disabled={isLoading}
-                            type="submit"
-                            sx={{
-                              width: "100%",
-                              height: "45px",
-                              backgroundColor: "#2D58FF",
-                              color: "#FFFFFF",
-                              "&:hover": {
-                                backgroundColor: "#FF9A45",
-                                color: "#1D1D1D",
-                              },
-                              borderRadius: "2px",
-                            }}
-                          >
-                            Save
-                          </Button>
-                        </>
-                      )}
-                    </Grid>
+                            <CourseDeleteModal
+                              course={course}
+                              // handleDeleteCourse={handleDeleteCourse}
+                            />
+                          </Box>
+                        </Box>
+                      </>
+                    ) : (
+                      <Box sx={{ display: "flex", justifyContent: "end" }}>
+                        <CommonHeaderProgress />
+                      </Box>
+                    )}
                   </>
-                )}
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item xs={12}>
-            <Grid
-              container
-              sx={{
-                // justifyContent: "left",
-                padding: "1%",
-                // paddingTop: "1%",
-                // paddingBottom: "1%",
-                // paddingLeft: "1%",
-                backgroundColor: isLightTheme ? "#fff" : "#121212",
+                </Grid>
+              ) : (
+                <>
+                  <Grid item xs={3}>
+                    <Button
+                      onClick={goPreviousPage}
+                      variant="outlined"
+                      sx={{
+                        width: "100%",
+                        color: "#2D58FF",
+                        height: "45px",
+                        borderRadius: "2px",
+                      }}
+                    >
+                      CANCEL
+                    </Button>
+                  </Grid>
 
-              }}
-            >
-              <CourseNewHeaderBottom course={course} isLightTheme={isLightTheme} />
-            </Grid>
-          </Grid>
-        </Grid>
+                  <Grid item xs={3}>
+                    {title === "Create Job Pool" || title === "Create a Benchmark" ? (
+                      <>
+                        <Button
+                          variant="contained"
+                          disabled={isLoading}
+                          type="submit"
+                          sx={{
+                            width: "100%",
+                            height: "45px",
+                            backgroundColor: "#2D58FF",
+                            color: "#FFFFFF",
+                            "&:hover": {
+                              backgroundColor: "#FF9A45",
+                              color: "#1D1D1D",
+                            },
+                            borderRadius: "2px",
+                          }}
+                        >
+                          Create
+                        </Button>
+                      </>
+                    ) : (
+                      <>
+                        <Button
+                          variant="contained"
+                          disabled={isLoading}
+                          type="submit"
+                          sx={{
+                            width: "100%",
+                            height: "45px",
+                            backgroundColor: "#2D58FF",
+                            color: "#FFFFFF",
+                            "&:hover": {
+                              backgroundColor: "#FF9A45",
+                              color: "#1D1D1D",
+                            },
+                            borderRadius: "2px",
+                          }}
+                        >
+                          Save
+                        </Button>
+                      </>
+                    )}
+                  </Grid>
+                </>
+              )}
+            </Box>
+          </Box>
+        </Box>
+        <Box sx={{ width: "100%" }}>
+          <Box
+            sx={{
+              // justifyContent: "left",
+              padding: "1%",
+              // paddingTop: "1%",
+              // paddingBottom: "1%",
+              // paddingLeft: "1%",
+              backgroundColor: isLightTheme ? "#fff" : "#121212",
+            }}
+          >
+            <CourseNewHeaderBottom course={course} isLightTheme={isLightTheme} />
+          </Box>
+        </Box>
       </Box>
     </>
   );

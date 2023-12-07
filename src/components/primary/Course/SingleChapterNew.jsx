@@ -57,20 +57,21 @@ const SingleChapterNew = ({ courseChapter, index, role }) => {
           fontFamily: "Inter",
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "flex-start",
-          height: "20px",
+          // alignItems: "flex-start",
+          alignContent: "center",
+          height: "25px",
           width: "100%",
         }}
       >
-        <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
-          <Box sx={{ height: "100%" }}>
+        {/* <Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "start" }}> */}
+        <Box sx={{ display: "flex", alignItems: "start", justifyContent: "center" }}>
+          <Box>
             {role === "admin" ? (
-              // // <img src={activeChapterIndex === index ? chapterBlueIcon : iconChapter}  />
-
               <Typography
                 sx={{
                   color: activeChapterIndex === index ? "#2E58FF" : isLightTheme ? "#1D2939" : "#fff",
                   fontWeight: activeChapterIndex === index ? "500" : "400",
+                  marginRight: "10px",
                 }}
                 variant="wpf_p3_regular"
               >
@@ -95,7 +96,7 @@ const SingleChapterNew = ({ courseChapter, index, role }) => {
               </>
             )}
           </Box>
-          <Box sx={{ display: "flex", height: "100%" }}>
+          <Box sx={{}}>
             <Typography
               variant="wpf_p3_regular"
               sx={{
@@ -103,11 +104,9 @@ const SingleChapterNew = ({ courseChapter, index, role }) => {
                 fontWeight: activeChapterIndex === index ? "500" : "400",
                 fontFamily: "Inter",
                 textTransform: "none",
-                marginLeft: "10px",
-                fontSize: "11px",
               }}
             >
-              <span style={{}}> {courseChapter.title}</span>
+              {courseChapter.title}
             </Typography>
           </Box>
         </Box>
@@ -116,7 +115,8 @@ const SingleChapterNew = ({ courseChapter, index, role }) => {
           <Chip label={`Avg: ${courseChapter.scoreAverage}`} sx={scoreStyle(courseChapter.scoreAverage)}></Chip>
         </Box> */}
         {/* )} */}
-        <Box sx={{ color: "#1D2939", height: "100%" }}>
+
+        <Box sx={{ color: "#1D2939" }}>
           {/* <img src={activeChapterIndex === index ? iconBlue : iconButton} /> */}
           <i className="ri-arrow-right-s-line"></i>
         </Box>

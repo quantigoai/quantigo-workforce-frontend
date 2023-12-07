@@ -4,14 +4,15 @@ import CommonHeader from "../../../shared/CustomComponenet/CommonHeader/CommonHe
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const ChapterCreateHeader = () => {
+const ChapterCreateHeader = ({ isEditChapter }) => {
   const { course } = useSelector((state) => state.course);
+  // console.log("🚀 ~ file: ChapterCreateHeader.jsx:9 ~ ChapterCreateHeader ~ course:", course);
 
   const navigate = useNavigate();
   const handleQuizCreate = () => {
     navigate(`/quiz-create/${course._id}`);
   };
-   const handleChapterCreate = () => {
+  const handleChapterCreate = () => {
     navigate(`/create-chapter/${course._id}`);
   };
   return (
@@ -25,7 +26,8 @@ const ChapterCreateHeader = () => {
           width: "100%",
           //   align-items: center;
           backgroundColor: "neutral.N000",
-        }}>
+        }}
+      >
         <Box sx={{ width: "60%" }}>
           <Grid
             container
@@ -35,9 +37,10 @@ const ChapterCreateHeader = () => {
               alignContent: "start",
               alignItems: "start",
               //   paddingX: "10px",
-            }}>
-            <CommonHeader title="Interaction Design for Usability" customButton="Create User" />
-            <Typography sx={{ mt: 1 }} variant="wpf_p3_regular">
+            }}
+          >
+            <CommonHeader title={course.name} customButton="Create User" />
+            <Typography sx={{ mt: 1 }} variant="wpf_p4_regular">
               Course Duration: <span style={{ fontWeight: "bold" }}>4 hrs 32 mins</span>{" "}
             </Typography>
             <Box sx={{ mt: 1 }}>
@@ -49,8 +52,8 @@ const ChapterCreateHeader = () => {
                   height: "36px",
                   width: "96px",
                   borderRadius: "8px",
-                }} 
-                onClick={() => handleChapterCreate()}  
+                }}
+                onClick={() => handleChapterCreate()}
               >
                 Chapter
               </Button>
@@ -67,7 +70,8 @@ const ChapterCreateHeader = () => {
                     color: "#000",
                   },
                 }}
-                onClick={() => handleQuizCreate()}>
+                onClick={() => handleQuizCreate()}
+              >
                 Quiz
               </Button>
             </Box>
@@ -80,7 +84,8 @@ const ChapterCreateHeader = () => {
             justifyContent: "space-between",
             alignItems: "center",
             // padding: "12px 20px",
-          }}>
+          }}
+        >
           <Button
             type="submit"
             sx={{
@@ -92,10 +97,11 @@ const ChapterCreateHeader = () => {
               ml: 2,
               width: "128px",
               "&:hover": {
-                color: "#000",
+                backgroundColor: "#244EF5",
               },
-            }}>
-            Save Changes
+            }}
+          >
+            {isEditChapter ? " Save changes" : "Create chapter"}
           </Button>
         </Box>
       </Box>

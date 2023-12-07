@@ -179,7 +179,18 @@ const ChapterUpdateIndex = () => {
                       defaultValue={activeChapterIndex + 1}
                     />
                   </Grid>
-                  <Grid item xs={4} sx={{ paddingRight: "1%" }}>
+                  <Grid
+                    item
+                    xs={4}
+                    sx={{
+                      paddingRight: "1%",
+                      height: {
+                        lg: "60px",
+                        xl: "72px",
+                        xxl: "70px",
+                      },
+                    }}
+                  >
                     {" "}
                     <ChapterField
                       name="title"
@@ -188,7 +199,17 @@ const ChapterUpdateIndex = () => {
                       defaultValue={courseChapter.title}
                     />
                   </Grid>
-                  <Grid item xs={4}>
+                  <Grid
+                    item
+                    xs={4}
+                    sx={{
+                      height: {
+                        lg: "60px",
+                        xl: "72px",
+                        xxl: "70px",
+                      },
+                    }}
+                  >
                     {" "}
                     <ChapterField
                       name="estimatedTimeToRead"
@@ -199,7 +220,17 @@ const ChapterUpdateIndex = () => {
                     />
                   </Grid>
                 </Grid>
-                <Grid container sx={{ width: "100%" }}>
+                <Grid
+                  container
+                  sx={{
+                    width: "100%",
+                    height: {
+                      lg: "110px",
+                      xl: "120px",
+                      xxl: "125px",
+                    },
+                  }}
+                >
                   <Grid xs={12}>
                     <ChapterDescritionField
                       name="description"

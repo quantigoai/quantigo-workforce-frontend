@@ -40,12 +40,7 @@ export const TextFieldOption = styled(TextField)(() => ({
 export const RadioOption = styled(Radio)(() => ({
   // ... your existing styles
 }));
-const BasicOptionField = ({
-  handleChangeInput,
-  inputField,
-  update,
-  handleUpdate,
-}) => {
+const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate }) => {
   const [checkValue, setCheckValue] = useState(inputField?.correctAnswerIndex);
 
   // TO change the correct answer Index
@@ -65,7 +60,7 @@ const BasicOptionField = ({
         variant="wpf_h7_medium"
         sx={{
           mb: 0,
-          color: 'neutral.N300',
+          color: "neutral.N300",
         }}
       >
         List of Options

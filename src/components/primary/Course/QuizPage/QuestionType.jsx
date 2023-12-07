@@ -1,7 +1,6 @@
-import { Box, Radio, Tab, Tabs, Typography } from "@mui/material";
+import { Box, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Tab, Tabs, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import QuestionInput1 from "./QuestionInput";
 import ImageInOptionIndex from "./QuizQuestionType/ImageInOptionIndex";
 import ImageWithTitleIndex from "./QuizQuestionType/ImageWithTitleIndex";
 import DefaultTypeIndex from "./QuizQuestionType/DefaultTypeIndex";
@@ -14,7 +13,8 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
-      {...other}>
+      {...other}
+    >
       {value === index && (
         <Box sx={{ paddingTop: 0 }}>
           <Typography>{children}</Typography>
@@ -37,26 +37,30 @@ function a11yProps(index) {
 }
 
 const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFields, update, handleUpdate }) => {
-  const [value, setValue] = React.useState(0);
-  const [selectedValue, setSelectedValue] = React.useState(0);
+  const [value, setValue] = React.useState("");
+  const [radioValue, setRadioValue] = React.useState("");
+
+  const handleChangeRadio = (event) => {
+    setRadioValue(event.target.value);
+  };
   useEffect(() => {
     if (inputField.questionType === "default") {
       setValue(0);
-      setSelectedValue(0);
+      setRadioValue("a");
     }
     if (inputField.questionType === "imageAndOptions") {
       setValue(1);
-
-      setSelectedValue(1);
+      setRadioValue("b");
+      // setSelectedValue(1);
     }
     if (inputField.questionType === "imageInOptions") {
       setValue(2);
-      setSelectedValue(2);
+      setRadioValue("c");
+      // setSelectedValue(2);
     }
   }, []);
 
   const handleChange = (event, newValue) => {
-    console.log("🚀 ~ file: QuestionType.jsx:59 ~ handleChange ~ newValue:", newValue);
     if (update) {
       handleUpdate(
         newValue === 0 ? "default" : newValue === 1 ? "imageAndOptions" : newValue === 2 ? "imageInOptions" : newValue,
@@ -64,7 +68,7 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
         inputField
       );
       setValue(newValue);
-      setSelectedValue(newValue);
+      // setSelectedValue(newValue);
     } else {
       handleChangeInput(
         (inputField.questionType =
@@ -79,21 +83,21 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
       );
       // handleChangeInput((inputField.questionType = "default"), event);
       setValue(newValue);
-      setSelectedValue(newValue);
+      // setSelectedValue(newValue);
     }
   };
-  const controlProps = (item) => ({
-    checked: selectedValue === item,
-    onChange: handleChange,
-    value: item,
-    name: "color-radio-button-demo",
-    inputProps: { "aria-label": item },
-  });
-  const handleChangeIndex = (index) => {
-    setValue(index);
-  };
+  // const controlProps = (item) => ({
+  //   checked: selectedValue === item,
+  //   onChange: handleChange,
+  //   value: item,
+  //   name: "color-radio-button-demo",
+  //   inputProps: { "aria-label": item },
+  // });
+  // const handleChangeIndex = (index) => {
+  //   setValue(index);
+  // };
   return (
-    <Box sx={{ border: "1px solid #E6ECF5", borderRadius: "10px" }}>
+    <Box sx={{ border: "1px solid #E6ECF5", borderRadius: "10px", fontFamily: "Inter" }}>
       <Box
         sx={{
           backgroundColor: "neutral.N400",
@@ -104,122 +108,244 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
           alignItems: "center",
           px: 2,
           width: "100%",
-        }}>
-        <Box>
-          {" "}
-          <Typography variant="wpf_p3_semiBold">Question Type: </Typography>
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "start",
+            alignItems: "center",
+          }}
+        >
+          <Box sx={{ width: "25%" }}>
+            {" "}
+            <Typography variant="wpf_p3_semiBold">Question Type: </Typography>
+          </Box>
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              indicatorColor=""
+              variant="fullWidth"
+              sx={{
+                //   backgroundColor: "neutral.N600",
+                padding: "1%",
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              <Tab
+                sx={{
+                  borderRadius: "8px",
+                  // backgroundColor: value === 0 ? "#3C4D6B" : "#DCE5F2",
+                  // height: "30px",
+                  padding: 0,
+                  height: "40px",
+                }}
+                label={
+                  // <Box>
+                  //   <Radio
+                  //     sx={{
+                  //       p: 0,
+                  //       mr: 1,
+
+                  //       "&.Mui-checked": {
+                  //         color: "white",
+                  //       },
+                  //     }}
+                  //     {...controlProps(0)}
+                  //   />
+                  //   <Typography
+                  //     sx={{ textTransform: "none" }}
+                  //     variant="wpf_p3_semiBold"
+                  //     color={value === 0 ? "#fff" : "neutral.700"}
+                  //   >
+                  //     Default
+                  //   </Typography>
+                  // </Box>
+                  <FormControl>
+                    <RadioGroup
+                      value={radioValue}
+                      onChange={handleChangeRadio}
+                      sx={{
+                        // width: "50%",
+                        color: value === 0 ? "#fff" : "neutral.700",
+                        fontWeight: "600",
+                        textTransform: "none",
+                        // border: "2px solid yellow",
+                      }}
+                    >
+                      <FormControlLabel
+                        sx={{
+                          fontFamily: "Inter",
+                          fontWeight: "600",
+                          width: "120px",
+                          borderRadius: "8px",
+                          backgroundColor: value === 0 ? "#3C4D6B" : "#DCE5F2",
+                        }}
+                        value="a"
+                        control={
+                          <Radio
+                            sx={{
+                              fontFamily: "Inter",
+                              "&.Mui-checked": {
+                                color: "white",
+                              },
+                            }}
+                          />
+                        }
+                        label="Default"
+                      />
+                    </RadioGroup>
+                  </FormControl>
+                }
+                {...a11yProps("a")}
+              />
+              <Tab
+                sx={{
+                  borderRadius: "8px",
+                  // backgroundColor: value === 1 ? "#3C4D6B" : "#DCE5F2",
+                  height: "40px",
+                }}
+                label={
+                  // <Box>
+                  //   {" "}
+                  //   <Radio
+                  //     sx={{
+                  //       p: 0,
+                  //       mr: 1,
+
+                  //       "&.Mui-checked": {
+                  //         color: "white",
+                  //       },
+                  //     }}
+                  //     {...controlProps(1)}
+                  //   />
+                  //   <Typography
+                  //     sx={{ textTransform: "none" }}
+                  //     variant="wpf_p3_semiBold"
+                  //     color={value === 1 ? "#fff" : "neutral.700"}
+                  //   >
+                  //     Image with title
+                  //   </Typography>
+                  // </Box>
+                  <FormControl>
+                    <RadioGroup
+                      aria-labelledby="demo-controlled-radio-buttons-group"
+                      name="controlled-radio-buttons-group"
+                      value={radioValue}
+                      onChange={handleChangeRadio}
+                      sx={{
+                        color: value === 1 ? "#fff" : "neutral.700",
+                        fontWeight: "600",
+                        textTransform: "none",
+                      }}
+                    >
+                      <FormControlLabel
+                        sx={{
+                          fontFamily: "Inter",
+                          fontWeight: "600",
+                          width: "160px",
+                          // padding: "10px",
+                          textAlign: "center",
+                          borderRadius: "8px",
+                          backgroundColor: value === 1 ? "#3C4D6B" : "#DCE5F2",
+                        }}
+                        value="b"
+                        control={
+                          <Radio
+                            sx={{
+                              fontFamily: "Inter",
+                              "&.Mui-checked": {
+                                color: "white",
+                              },
+                            }}
+                          />
+                        }
+                        label=" Image with title"
+                      />
+                    </RadioGroup>
+                  </FormControl>
+                }
+                {...a11yProps("b")}
+              />
+              <Tab
+                sx={{
+                  borderRadius: "8px",
+                  // backgroundColor: value === 2 ? "#3C4D6B" : "#DCE5F2",
+                  height: "40px",
+                  // width: "280px",
+                }}
+                label={
+                  // <Box>
+                  //   {" "}
+                  //   <Radio
+                  //     sx={{
+                  //       p: 0,
+                  //       mr: 1,
+
+                  //       "&.Mui-checked": {
+                  //         color: "white",
+                  //       },
+                  //     }}
+                  //     {...controlProps(2)}
+                  //   />
+                  //   <Typography
+                  //     sx={{ textTransform: "none" }}
+                  //     variant="wpf_p3_semiBold"
+                  //     color={value === 2 ? "#fff" : "neutral.700"}
+                  //   >
+                  //     Image in options
+                  //   </Typography>
+                  // </Box>
+                  <FormControl>
+                    <RadioGroup
+                      aria-labelledby="demo-controlled-radio-buttons-group"
+                      name="controlled-radio-buttons-group"
+                      value={radioValue}
+                      onChange={handleChangeRadio}
+                      sx={{
+                        color: value === 2 ? "#fff" : "neutral.700",
+                        fontWeight: "600",
+                        textTransform: "none",
+                      }}
+                    >
+                      <FormControlLabel
+                        sx={{
+                          fontFamily: "Inter",
+                          fontWeight: "600",
+                          width: "168px",
+                          textAlign: "center",
+                          borderRadius: "8px",
+                          backgroundColor: value === 2 ? "#3C4D6B" : "#DCE5F2",
+                        }}
+                        value="c"
+                        control={
+                          <Radio
+                            sx={{
+                              fontFamily: "Inter",
+                              "&.Mui-checked": {
+                                color: "white",
+                              },
+                            }}
+                          />
+                        }
+                        label="Image in options"
+                      />
+                    </RadioGroup>
+                  </FormControl>
+                }
+                {...a11yProps("c")}
+              />
+            </Tabs>
+          </Box>
         </Box>
-        <Box sx={{ display: "flex", justifyContent: "space-between", width: "80%" }}>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            indicatorColor=""
-            variant="fullWidth"
-            sx={{
-              borderRadius: "8px",
-              //   backgroundColor: "neutral.N600",
-              padding: "1%",
-            }}>
-            <Tab
-              sx={{
-                borderRadius: value === 0 ? "8px" : "none",
-                backgroundColor: value === 0 ? "neutral.N300" : "",
-                height: "40px",
-                padding: 0,
-                // width: "200px",
-              }}
-              label={
-                <Box>
-                  <Radio
-                    sx={{
-                      p: 0,
-                      mr: 1,
-
-                      "&.Mui-checked": {
-                        color: "white",
-                      },
-                    }}
-                    {...controlProps(0)}
-                  />
-                  <Typography
-                    sx={{ textTransform: "none" }}
-                    variant="wpf_p3_semiBold"
-                    color={value === 0 ? "#fff" : "neutral.700"}>
-                    Default
-                  </Typography>
-                </Box>
-              }
-              {...a11yProps("sddsf")}
-            />
-            <Tab
-              sx={{
-                borderRadius: value === 1 ? "8px" : "none",
-                backgroundColor: value === 1 ? "neutral.N300" : "",
-                height: "40px",
-                width: "220px",
-              }}
-              label={
-                <Box>
-                  {" "}
-                  <Radio
-                    sx={{
-                      p: 0,
-                      mr: 1,
-
-                      "&.Mui-checked": {
-                        color: "white",
-                      },
-                    }}
-                    {...controlProps(1)}
-                  />
-                  <Typography
-                    sx={{ textTransform: "none" }}
-                    variant="wpf_p3_semiBold"
-                    color={value === 1 ? "#fff" : "neutral.700"}>
-                    Image with title
-                  </Typography>
-                </Box>
-              }
-              {...a11yProps(1)}
-            />
-            <Tab
-              sx={{
-                borderRadius: value === 2 ? "8px" : "none",
-                backgroundColor: value === 2 ? "neutral.N300" : "",
-                height: "40px",
-                width: "280px",
-              }}
-              label={
-                <Box>
-                  {" "}
-                  <Radio
-                    sx={{
-                      p: 0,
-                      mr: 1,
-
-                      "&.Mui-checked": {
-                        color: "white",
-                      },
-                    }}
-                    {...controlProps(2)}
-                  />
-                  <Typography
-                    sx={{ textTransform: "none" }}
-                    variant="wpf_p3_semiBold"
-                    color={value === 2 ? "#fff" : "neutral.700"}>
-                    Image in options
-                  </Typography>
-                </Box>
-              }
-              {...a11yProps(1)}
-            />
-          </Tabs>
-        </Box>
-        <Box>
+        <Box sx={{}}>
           <i
             style={{ fontSize: "20px", color: "#FF4757" }}
             onClick={() => handleRemoveQA()}
-            className="ri-delete-bin-6-line"></i>
+            className="ri-delete-bin-6-line"
+          ></i>
         </Box>
       </Box>
       <Box sx={{ p: 2 }}>

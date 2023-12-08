@@ -6,16 +6,18 @@ export const ChapterTextField = styled(TextField)(() => ({
   borderRadius: "5px",
 
   "& .MuiOutlinedInput-root": {
-    height: "35px",
+    height: "40px",
     fontSize: "14px",
     border: "2px solid #E6ECF5 !important",
     borderRadius: "8px",
 
     "@media (max-width: 1439px)": {
       fontSize: "12px",
+      height: "30px",
     },
     "@media (mix-width: 1920px)": {
       fontSize: "14px",
+      height: "40px",
     },
   },
   "& .MuiOutlinedInput-input": {

@@ -174,7 +174,7 @@ const ChapterCreateIndex = () => {
                       name="ChapterNo"
                       label="Chapter No"
                       isRequired={false}
-                      defaultValue={courseChapters.length + 1}
+                      defaultValue={courseChapters.length ? courseChapters?.length + 1 : 0}
                     />
                   </Grid>
                   <Grid
@@ -223,7 +223,7 @@ const ChapterCreateIndex = () => {
                     },
                   }}
                 >
-                  <Grid xs={12}>
+                  <Grid xs={12} sx={{ mt: 3 }}>
                     <ChapterDescritionField name="description" label="Chapter Description" isRequired={true} />
                   </Grid>
                 </Grid>

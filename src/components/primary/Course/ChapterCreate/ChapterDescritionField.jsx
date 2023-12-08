@@ -2,14 +2,13 @@ import { Box, styled, TextField, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import { Controller, useFormContext } from "react-hook-form";
 
-
 export const CCTextField = styled(TextField)(() => ({
   borderRadius: "5px",
-
   "& .MuiOutlinedInput-root": {
-    // height: "35px",
+    height: "80px",
+    padding: "10px 12px",
     fontSize: "14px",
-    border: "2px solid #E6ECF5 !important",
+    border: "1.2px solid #E6ECF5 !important",
     borderRadius: "8px",
 
     "@media (max-width: 1439px)": {
@@ -56,7 +55,7 @@ export default function ChapterDescritionField({
             variant="wpf_h7_medium"
             sx={{
               mb: 0,
-              color: "neutral.N300",
+              color: "neutral.750",
             }}
           >
             {label} {<span style={{ color: "#F04438" }}>{isRequired && "*"}</span>}

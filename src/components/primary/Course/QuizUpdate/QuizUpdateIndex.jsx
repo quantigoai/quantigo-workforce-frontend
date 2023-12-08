@@ -76,7 +76,7 @@ const QuizUpdateIndex = () => {
       <Box className="content" sx={{ backgroundColor: "neutral.N000" }}>
         <Grid container sx={{ borderTop: "1px solid #E6ECF5", paddingTop: "1%" }}>
           <Grid xs={2}>
-            <Button
+            {/* <Button
               sx={{
                 color: "neutral.800",
                 // width: {
@@ -104,7 +104,7 @@ const QuizUpdateIndex = () => {
               <Typography variant="wpf_p4_medium" sx={{ paddingLeft: "0%" }}>
                 Back to Course
               </Typography>
-            </Button>
+            </Button> */}
           </Grid>
           <Grid xs={8}>
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

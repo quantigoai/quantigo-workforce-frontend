@@ -18,7 +18,15 @@ import EditCourseModal from "../../../primary/Course/CreateCourseModal/EditCours
 import CourseProgressBar from "../../../primary/Course/CourseProgressBar";
 import CommonHeaderProgress from "./CommonHeaderProgress";
 
-const CommonHeaderForCourse = ({ isLoading, title, description, customButton, handleCancel, isLightTheme }) => {
+const CommonHeaderForCourse = ({
+  isLoading,
+  title,
+  description,
+  customButton,
+  handleCancel,
+  isLightTheme,
+  durationTime,
+}) => {
   const navigate = useNavigate();
   const { course } = useSelector((state) => state.course);
   const { user } = useSelector((state) => state.user);
@@ -97,9 +105,7 @@ const CommonHeaderForCourse = ({ isLoading, title, description, customButton, ha
         >
           <Box sx={{ width: "50%" }}>
             <Box>
-              <Typography variant="wpf_h4_semiBold">
-                <b> {title} </b>
-              </Typography>
+              <Typography variant="wpf_h4_semiBold">{title}</Typography>
             </Box>
             <Box>
               <Typography color={"grey.700"} variant="wpf_p3_regular">
@@ -108,7 +114,7 @@ const CommonHeaderForCourse = ({ isLoading, title, description, customButton, ha
             </Box>
             <Box>
               <Typography color={"grey.700"} variant="wpf_p3_regular">
-                Course Duration: <span style={{ fontWeight: "bold" }}>4 hrs, 32 min</span>
+                Course Duration: <span style={{ fontWeight: "bold" }}>{durationTime}</span>
               </Typography>
             </Box>
           </Box>

@@ -8,7 +8,7 @@
  */
 
 import { Box, Grid } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import { setActiveChapterIndex } from "../../../features/slice/activePathSlice";
@@ -16,20 +16,32 @@ import { getAChapterById, getACourseByID } from "../../../features/slice/courseS
 import CommonHeaderForCourse from "../../shared/CustomComponenet/CommonHeader/CommonHeaderForCourse";
 import CourseDrawerNew from "./CourseDrawerNew";
 const CourseDetails = () => {
-  const { course, courseChapter, isLoading } = useSelector((state) => state.course);
+  const { course, courseChapter, isLoading, courseChapters } = useSelector((state) => state.course);
+
   const { isLightTheme } = useSelector((state) => state.theme);
   const params = useParams();
   const dispatch = useDispatch();
   const location = useLocation();
   const [isInContent, setIsInContent] = React.useState(false);
   const navigate = useNavigate();
-
+  const [durationTime, setDurationTime] = useState("");
   useEffect(() => {
     if (!course._id) {
       dispatch(getACourseByID(params.id));
     }
+    const duration = courseChapters.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue.estimatedTimeToRead || 0;
+    }, 0);
+    const hours = Math.floor(duration / 60);
+    const minutes = duration % 60;
+    if (hours === 0) {
+      setDurationTime(minutes + " minutes");
+    } else {
+      setDurationTime(hours + " hours " + minutes + " minutes");
+    }
+
     // navigate(`/course-details/${course._id}/index`);
-  }, []);
+  }, [course._id]);
 
   useEffect(() => {
     navigate(`/course-details/${course._id}/index`);
@@ -54,6 +66,7 @@ const CourseDetails = () => {
       <Box className="projectBox">
         <Box className="courseHeader">
           <CommonHeaderForCourse
+            durationTime={durationTime}
             title={course.name}
             description={course.description}
             isLoading={isLoading}
@@ -62,7 +75,7 @@ const CourseDetails = () => {
           />
         </Box>
         <Box className="courseContent">
-          <Box sx={{ height: "100%", mt: { lg: 4, xl: 5, xxl: 3 } }}>
+          <Box sx={{ height: "100%", mt: { lg: 4, xl: 5, xxl: 0 } }}>
             <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
               {!isInContent && (
                 <Box
@@ -76,7 +89,7 @@ const CourseDetails = () => {
                   }}
                 >
                   {/* <CourseDrawer handleChapterClick={handleChapterClick} /> */}
-                  <CourseDrawerNew handleChapterClick={handleChapterClick} />
+                  <CourseDrawerNew durationTime={durationTime} handleChapterClick={handleChapterClick} />
                 </Box>
               )}
               <Box
@@ -84,7 +97,7 @@ const CourseDetails = () => {
                   width: {
                     lg: "67%",
                     xl: "69%",
-                    xxl: "74% ",
+                    xxl: "75% ",
                   },
                   height: "100%",
                 }}

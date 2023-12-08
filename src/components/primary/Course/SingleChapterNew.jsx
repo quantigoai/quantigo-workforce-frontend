@@ -88,6 +88,7 @@ const SingleChapterNew = ({ courseChapter, index, role }) => {
                     borderRadius: "20px",
                     width: "25px",
                     height: "25px",
+                    // marginRight: "10px",
                   }}
                 >
                   {index + 1}

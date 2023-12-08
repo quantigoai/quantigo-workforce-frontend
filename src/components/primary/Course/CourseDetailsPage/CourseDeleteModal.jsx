@@ -85,68 +85,6 @@ const CourseDeleteModal = ({ course }) => {
           <img src={deleteIcon} />
         </Box>
       </Button>
-      {/* <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          <Typography sx={{ mt: "28%", color: isLightTheme ? "#091E42" : "#fff" }} id="modal-modal-title" variant="h6">
-            Delete Course
-          </Typography>
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            <Typography
-              id="modal-modal-description"
-              sx={{
-                fontSize: "14px",
-                color: isLightTheme ? "#3C4D6B" : "#fff",
-                fontWeight: "400",
-                lineHeight: "20px",
-              }}
-            >
-              Are you sure you want to delete this {course.name}? If you delete your project, you will lose all the
-              charter information.
-            </Typography>
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions sx={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
-          <Button
-            sx={{
-              textTransform: "none",
-              backgroundColor: "#FFF0F2",
-              border: "1px solid #FFF0F2",
-              color: "black",
-              borderRadius: "10px",
-              width: "150px",
-              "&:hover": {
-                backgroundColor: "#FAE4C3",
-              },
-            }}
-            onClick={handleClose}
-          >
-            No
-          </Button>
-          <Button
-            sx={{
-              textTransform: "none",
-              background: "#FF4757",
-              borderRadius: "10px",
-              color: "#fff",
-              width: "150px",
-              ":hover": {
-                backgroundColor: "#F53142",
-              },
-            }}
-            onClick={() => handleDeleteCourse(course._id)}
-            autoFocus
-          >
-            YES
-          </Button>
-        </DialogActions>
-      </Dialog> */}
       <Modal
         open={open}
         onClose={handleClose}
@@ -173,7 +111,7 @@ const CourseDeleteModal = ({ course }) => {
           </Box>
 
           <Typography
-            sx={{ mt: "30%", pb: 3, color: isLightTheme ? "#091E42" : "#fff", fontSize: "18px", fontWeight: "600" }}
+            sx={{ mt: "30%", pb: 1, color: isLightTheme ? "#091E42" : "#fff", fontSize: "18px", fontWeight: "600" }}
             id="modal-modal-title"
             variant="h6"
           >

@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SingleChapterNew from "../Course/SingleChapterNew";
 
-const CourseDrawerNew = ({ handleChapterClick }) => {
+const CourseDrawerNew = ({ handleChapterClick, durationTime }) => {
   const { courseChapters } = useSelector((state) => state.course);
 
   const { activeChapterIndex } = useSelector((state) => state.activePath);
@@ -42,17 +42,20 @@ const CourseDrawerNew = ({ handleChapterClick }) => {
               <Box>
                 <Box>
                   <Typography variant="wpf_h6_semiBold" color="neutral.995">
-                    <b>All Chapters </b>
+                    All Chapters
                   </Typography>
                 </Box>
 
                 <Box>
                   <Typography
                     sx={{ opacity: "0.8", fontSize: { lg: "10px", xl: "12px" } }}
-                    variant="wpf_p4_regular"
+                    variant="wpf_h7_regular"
                     color="neutral.995"
                   >
-                    6 Chapters , 4 hrs 32 min
+                    {courseChapters?.length === 1
+                      ? courseChapters?.length + " Chapter"
+                      : courseChapters?.length + " Chapters"}
+                    , {durationTime}
                   </Typography>
                 </Box>
                 {/* <Grid item xs={12}>

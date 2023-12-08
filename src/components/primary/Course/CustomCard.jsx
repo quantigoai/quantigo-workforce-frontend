@@ -134,12 +134,12 @@ const CustomCard = ({ course }) => {
             overflow: "hidden",
             cursor: "pointer",
           }}
+          onClick={() => handleViewDetailsButton(course._id)}
         >
           <img
             style={hovering ? { ...MyCustomCard, ...MyCustomCardHover } : MyCustomCard}
             src={imageUrl}
             alt={course.name}
-            onClick={() => handleViewDetailsButton(course._id)}
           />
         </Box>
 

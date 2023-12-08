@@ -6,16 +6,19 @@ export const ChapterTextField = styled(TextField)(() => ({
   borderRadius: "5px",
 
   "& .MuiOutlinedInput-root": {
-    height: "35px",
+    height: "42px",
     fontSize: "14px",
-    border: "2px solid #E6ECF5 !important",
+    border: "1.2px solid #E6ECF5 !important",
     borderRadius: "8px",
+    padding: "10px 12px",
 
     "@media (max-width: 1439px)": {
       fontSize: "12px",
+      height: "30px",
     },
     "@media (mix-width: 1920px)": {
       fontSize: "14px",
+      height: "40px",
     },
   },
   "& .MuiOutlinedInput-input": {
@@ -55,7 +58,7 @@ export default function ChapterField({
             variant="wpf_h7_medium"
             sx={{
               mb: 0,
-              color: "neutral.N300",
+              color: "neutral.750",
             }}
           >
             {label} {<span style={{ color: "#F04438" }}>{isRequired && "*"}</span>}

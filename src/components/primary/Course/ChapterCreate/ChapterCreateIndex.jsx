@@ -230,12 +230,8 @@ const ChapterCreateIndex = () => {
                     },
                   }}
                 >
-                  <Grid xs={12}>
-                    <ChapterDescritionField
-                      name="description"
-                      label="Chapter Description"
-                      isRequired={true}
-                    />
+                  <Grid xs={12} sx={{ mt: 3 }}>
+                    <ChapterDescritionField name="description" label="Chapter Description" isRequired={true} />
                   </Grid>
                 </Grid>
                 <Grid item xs={12} sx={{ py: 2, backgroundColor: '' }}>

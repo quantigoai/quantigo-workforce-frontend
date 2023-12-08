@@ -1,20 +1,33 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CommonHeader from "../../../shared/CustomComponenet/CommonHeader/CommonHeader";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const ChapterCreateHeader = ({ isEditChapter }) => {
   const { course } = useSelector((state) => state.course);
-  // console.log("🚀 ~ file: ChapterCreateHeader.jsx:9 ~ ChapterCreateHeader ~ course:", course);
 
+  const [isActiveChapter, setIsActiveChapter] = useState(false);
+  const [isActiveQuiz, setIsActiveQuiz] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname.includes("create-chapter") || location.pathname.includes("update-chapter")) {
+      setIsActiveChapter(true);
+    } else {
+      setIsActiveQuiz(true);
+    }
+  }, [location.pathname]);
   const navigate = useNavigate();
   const handleQuizCreate = () => {
+    // setIsActiveChapter(true);
     navigate(`/quiz-create/${course._id}`);
   };
   const handleChapterCreate = () => {
+    // setIsActiveChapter(true);
     navigate(`/create-chapter/${course._id}`);
   };
+
   return (
     <>
       <Box
@@ -46,31 +59,38 @@ const ChapterCreateHeader = ({ isEditChapter }) => {
             <Box sx={{ mt: 1 }}>
               <Button
                 sx={{
-                  backgroundColor: "#36B37E",
-                  color: "#fff",
+                  backgroundColor: isActiveChapter ? "#36B37E" : "#DFF2EA",
+                  color: isActiveChapter ? "#fff" : "#36B37E",
                   textTransform: "none",
                   height: "36px",
                   width: "96px",
                   borderRadius: "8px",
                 }}
-                onClick={() => handleChapterCreate()}
+                onClick={handleChapterCreate}
               >
                 Chapter
               </Button>
               <Button
                 sx={{
-                  backgroundColor: "#DFF2EA",
-                  color: "#36B37E",
+                  backgroundColor: isActiveQuiz ? "#36B37E" : "#DFF2EA",
+                  color: isActiveQuiz ? "#fff" : "#36B37E",
                   textTransform: "none",
                   height: "36px",
                   borderRadius: "8px",
                   ml: 2,
                   width: "96px",
                   "&:hover": {
-                    color: "#000",
+                    backgroundColor: "#FAFCFF",
+                  },
+                  "&:focus": {
+                    backgroundColor: "#36B37E",
+                    color: "#DFF2EA",
+                  },
+                  "&:selected": {
+                    backgroundColor: "#36B37E",
                   },
                 }}
-                onClick={() => handleQuizCreate()}
+                onClick={handleQuizCreate}
               >
                 Quiz
               </Button>

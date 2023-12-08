@@ -231,7 +231,7 @@ const ChapterUpdateIndex = () => {
                     },
                   }}
                 >
-                  <Grid xs={12}>
+                  <Grid xs={12} sx={{ mt: 3 }}>
                     <ChapterDescritionField
                       name="description"
                       label="Chapter Description"

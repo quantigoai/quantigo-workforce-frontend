@@ -10,6 +10,8 @@ import QuizNameDurationField from '../QuizPage/QuizNameDurationField';
 
 const QuizUpdateIndex = () => {
   const [inputFields, setInputFields] = useState([]);
+  const [disabledButton, setDisabledButton] = useState(true);
+
   const { quiz } = useSelector((state) => state.quiz);
   const dispatch = useDispatch();
   const [tempData, setTempData] = useState({
@@ -60,8 +62,6 @@ const QuizUpdateIndex = () => {
     // setInputFields(newInputFields);
   };
   const handleUpdate = (v, i, f) => {
-    console.log('🚀 ~ file: QuizUpdateIndex.jsx:57 ~ handleUpdate ~ f:', f);
-    console.log('🚀 ~ file: QuizUpdateIndex.jsx:57 ~ handleUpdate ~ i:', i);
 
     const qaID = f._id;
     const newTempData1 = { ...tempData };
@@ -71,19 +71,75 @@ const QuizUpdateIndex = () => {
         ...newTempData1.questionAndAnswer[qaID]?.pa,
         ...(i !== 'questionType'
           ? {
-              [i]: v,
-              questionType: f.questionType,
-            }
+            [i]: v,
+            ...(newTempData1.questionAndAnswer[qaID]?.pa?.questionType
+              ? {}
+              : { questionType: f.questionType }),
+          }
           : {
-              [i]: v,
-            }),
-        // ...newTempData1.questionAndAnswer[qaID]?.pa,
-        // [i]: v,
+            [i]: v,
+          }),
       },
     };
+    // newTempData1.questionAndAnswer[qaID] = {
+    //   pa: {
+    //     ...newTempData1.questionAndAnswer[qaID]?.pa,
+    //     ...(i !== "questionType"
+    //       ? {
+    //           [i]: v,
+    //           questionType: f.questionType,
+    //         }
+    //       : {
+    //           [i]: v,
+    //         }),
+    //     // ...newTempData1.questionAndAnswer[qaID]?.pa,
+    //     // [i]: v,
+    //   },
+    // };
     setTempData(newTempData1);
   };
-  console.log(tempData);
+
+  useEffect(() => {
+
+    Object.entries(tempData.questionAndAnswer).map(([key, val], i) => {
+      inputFields.map((i) => {
+
+        console.log(val)
+        if (i._id === key) {
+          if (val.pa.questionType != i.questionType) {
+
+            if (val.pa.questionType === "imageAndOptions") {
+              setDisabledButton(true);
+              if ('questionImage' in val.pa) {
+                setDisabledButton(false)
+              }
+              // else {
+              //   setDisabledButton(true)
+              // }
+            }
+            if (val.pa.questionType === "imageInOptions") {
+              setDisabledButton(true);
+              const possibleAnswersArray = ['possibleAnswers_0', 'possibleAnswers_1', 'possibleAnswers_2', 'possibleAnswers_3'];
+              const allPossibleAnswersPresent = possibleAnswersArray.every((answer) => answer in val.pa);
+
+              if (allPossibleAnswersPresent) {
+                console.log("s555s")
+                setDisabledButton(false);
+              }
+            }
+          }
+          if (val.pa.questionType === i.questionType) {
+            setDisabledButton(false)
+          }
+        }
+      });
+
+
+    });
+
+
+
+  }, [tempData]);
   const handleRemoveQA = (uniqueId) => {
     const values = [...inputFields];
     values.splice(
@@ -92,6 +148,7 @@ const QuizUpdateIndex = () => {
     );
     setInputFields(values);
   };
+  console.log(tempData)
   const {
     reset,
     setError,
@@ -100,7 +157,6 @@ const QuizUpdateIndex = () => {
   } = methods;
   const onSubmit = (data) => {
     let tempQA;
-    console.log(tempData.questionAndAnswer);
 
     {
       Object.entries(tempData.questionAndAnswer).map(([key, val], i) => {
@@ -111,16 +167,15 @@ const QuizUpdateIndex = () => {
         };
         const formData = new FormData();
         Object.entries(val.pa).map(([k, v], i) => {
-          console.log(k);
-          console.log(v);
+
 
           formData.append(`${k}`, v);
           data1.formDataQ = formData;
         });
         dispatch(updateQuizQA(data1));
-        for (let pair of formData.entries()) {
-          console.log(pair[0] + ', ' + pair[1]);
-        }
+        // for (let pair of formData.entries()) {
+        //   console.log(pair[0] + ", " + pair[1]);
+        // }
       });
     }
   };
@@ -148,14 +203,14 @@ const QuizUpdateIndex = () => {
                 display: 'flex',
                 gap: 1,
               }}
-              // onClick={handleGoBack}
+            // onClick={handleGoBack}
             >
               <img
                 style={{
                   width: '15px',
                   height: '15px',
                 }}
-                // src={backIcon}
+              // src={backIcon}
               />
 
               <Typography variant="wpf_p4_medium" sx={{ paddingLeft: '0%' }}>
@@ -166,7 +221,7 @@ const QuizUpdateIndex = () => {
           <Grid xs={8}>
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
               <Box className="">
-                <ChapterCreateHeader />
+                <ChapterCreateHeader disabledButton={disabledButton} />
               </Box>
 
               <Box sx={{ backgroundColor: '' }}>

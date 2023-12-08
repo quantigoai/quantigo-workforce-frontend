@@ -1,10 +1,10 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import CommonHeader from "../../../shared/CustomComponenet/CommonHeader/CommonHeader";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Box, Button, Grid, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import CommonHeader from '../../../shared/CustomComponenet/CommonHeader/CommonHeader';
 
-const ChapterCreateHeader = ({ isEditChapter }) => {
+const ChapterCreateHeader = ({ isEditChapter, disabledButton }) => {
   const { course } = useSelector((state) => state.course);
 
   const [isActiveChapter, setIsActiveChapter] = useState(false);
@@ -12,7 +12,10 @@ const ChapterCreateHeader = ({ isEditChapter }) => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname.includes("create-chapter") || location.pathname.includes("update-chapter")) {
+    if (
+      location.pathname.includes('create-chapter') ||
+      location.pathname.includes('update-chapter')
+    ) {
       setIsActiveChapter(true);
     } else {
       setIsActiveQuiz(true);
@@ -33,38 +36,39 @@ const ChapterCreateHeader = ({ isEditChapter }) => {
       <Box
         // className="headerBox"
         sx={{
-          height: "100%",
-          display: "flex",
-          justifyContent: "space-between",
-          width: "100%",
+          height: '100%',
+          display: 'flex',
+          justifyContent: 'space-between',
+          width: '100%',
           //   align-items: center;
-          backgroundColor: "neutral.N000",
+          backgroundColor: 'neutral.N000',
         }}
       >
-        <Box sx={{ width: "60%" }}>
+        <Box sx={{ width: '60%' }}>
           <Grid
             container
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignContent: "start",
-              alignItems: "start",
+              display: 'flex',
+              flexDirection: 'column',
+              alignContent: 'start',
+              alignItems: 'start',
               //   paddingX: "10px",
             }}
           >
             <CommonHeader title={course.name} customButton="Create User" />
             <Typography sx={{ mt: 1 }} variant="wpf_p4_regular">
-              Course Duration: <span style={{ fontWeight: "bold" }}>4 hrs 32 mins</span>{" "}
+              Course Duration:{' '}
+              <span style={{ fontWeight: 'bold' }}>4 hrs 32 mins</span>{' '}
             </Typography>
             <Box sx={{ mt: 1 }}>
               <Button
                 sx={{
-                  backgroundColor: isActiveChapter ? "#36B37E" : "#DFF2EA",
-                  color: isActiveChapter ? "#fff" : "#36B37E",
-                  textTransform: "none",
-                  height: "36px",
-                  width: "96px",
-                  borderRadius: "8px",
+                  backgroundColor: isActiveChapter ? '#36B37E' : '#DFF2EA',
+                  color: isActiveChapter ? '#fff' : '#36B37E',
+                  textTransform: 'none',
+                  height: '36px',
+                  width: '96px',
+                  borderRadius: '8px',
                 }}
                 onClick={handleChapterCreate}
               >
@@ -72,22 +76,22 @@ const ChapterCreateHeader = ({ isEditChapter }) => {
               </Button>
               <Button
                 sx={{
-                  backgroundColor: isActiveQuiz ? "#36B37E" : "#DFF2EA",
-                  color: isActiveQuiz ? "#fff" : "#36B37E",
-                  textTransform: "none",
-                  height: "36px",
-                  borderRadius: "8px",
+                  backgroundColor: isActiveQuiz ? '#36B37E' : '#DFF2EA',
+                  color: isActiveQuiz ? '#fff' : '#36B37E',
+                  textTransform: 'none',
+                  height: '36px',
+                  borderRadius: '8px',
                   ml: 2,
-                  width: "96px",
-                  "&:hover": {
-                    backgroundColor: "#FAFCFF",
+                  width: '96px',
+                  '&:hover': {
+                    backgroundColor: '#FAFCFF',
                   },
-                  "&:focus": {
-                    backgroundColor: "#36B37E",
-                    color: "#DFF2EA",
+                  '&:focus': {
+                    backgroundColor: '#36B37E',
+                    color: '#DFF2EA',
                   },
-                  "&:selected": {
-                    backgroundColor: "#36B37E",
+                  '&:selected': {
+                    backgroundColor: '#36B37E',
                   },
                 }}
                 onClick={handleQuizCreate}
@@ -100,28 +104,30 @@ const ChapterCreateHeader = ({ isEditChapter }) => {
 
         <Box
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
             // padding: "12px 20px",
           }}
         >
           <Button
             type="submit"
+            disabled={disabledButton}
+            // disabled={true}
             sx={{
-              backgroundColor: "#2E58FF",
-              color: "#fff",
-              textTransform: "none",
-              height: "40px",
-              borderRadius: "8px",
+              backgroundColor: '#2E58FF',
+              color: '#fff',
+              textTransform: 'none',
+              height: '40px',
+              borderRadius: '8px',
               ml: 2,
-              width: "128px",
-              "&:hover": {
-                backgroundColor: "#244EF5",
+              width: '128px',
+              '&:hover': {
+                backgroundColor: '#244EF5',
               },
             }}
           >
-            {isEditChapter ? " Save changes" : "Create chapter"}
+            {isEditChapter ? ' Save changes' : 'Create chapter'}
           </Button>
         </Box>
       </Box>

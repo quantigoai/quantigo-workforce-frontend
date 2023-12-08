@@ -4,15 +4,12 @@ import ImageUploadIndex from "./ImageUploadIndex";
 import { RadioOption } from "../BasicOptionField";
 
 const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUpdate, update }) => {
-  console.log("🚀 ~ file: ImageOptionField.jsx:7 ~ ImageOptionField ~ update:", update)
-  console.log("🚀 ~ file: ImageOptionField.jsx:7 ~ ImageOptionField ~ inputField:", inputField)
   const [coverImageFile, setCoverImageFile] = useState([]);
   const [coverImage1, setCoverImage1] = useState(null);
   const [coverImage2, setCoverImage2] = useState(null);
   const [coverImage3, setCoverImage3] = useState(null);
   const [coverImage4, setCoverImage4] = useState(null);
   const [checkValue, setCheckValue] = useState(inputField?.correctAnswerIndex);
- 
   const handleImage1 = (e) => {
     setCoverImageFile(e[0]);
 
@@ -105,7 +102,7 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
 
   const removeImage = () => {
     setCoverImageFile(null);
-    setCoverImage1(null);
+    // setCoverImage1(null);
   };
   const handleCorrectAnswerChange = (event, index, value) => {
     if (update) {

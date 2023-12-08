@@ -95,7 +95,7 @@ const QuizUpdateIndex = () => {
     Object.entries(tempData.questionAndAnswer).map(([key, val], i) => {
       inputFields.map((i) => {
 
-        // console.log(val)
+        console.log(val)
         if (i._id === key) {
           if (val.pa.questionType != i.questionType) {
 

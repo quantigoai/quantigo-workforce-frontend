@@ -4,7 +4,7 @@ import CommonHeader from "../../../shared/CustomComponenet/CommonHeader/CommonHe
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const ChapterCreateHeader = () => {
+const ChapterCreateHeader = ({disabledButton}) => {
   const { course } = useSelector((state) => state.course);
 
   const navigate = useNavigate();
@@ -83,6 +83,8 @@ const ChapterCreateHeader = () => {
           }}>
           <Button
             type="submit"
+            disabled={disabledButton}
+            // disabled={true}
             sx={{
               backgroundColor: "#2E58FF",
               color: "#fff",

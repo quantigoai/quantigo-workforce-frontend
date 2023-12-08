@@ -56,8 +56,7 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
   }, []);
 
   const handleChange = (event, newValue) => {
-    console.log("🚀 ~ file: QuestionType.jsx:59 ~ handleChange ~ newValue:", newValue);
-    if (update) {
+     if (update) {
       handleUpdate(
         newValue === 0 ? "default" : newValue === 1 ? "imageAndOptions" : newValue === 2 ? "imageInOptions" : newValue,
         "questionType",

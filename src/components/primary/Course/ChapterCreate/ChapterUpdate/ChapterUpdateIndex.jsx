@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -27,10 +27,25 @@ const ChapterUpdateIndex = () => {
   const UPLOAD_ENDPOINT = "courses/couseimages/uploads";
   const API_URl = import.meta.env.VITE_APP_SERVER_URL;
   const [content, setContent] = useState("");
-  const { courseChapter, course, isLoading } = useSelector((state) => state.course);
+  const { courseChapter, course, courseChapters, isLoading } = useSelector((state) => state.course);
   const { activeChapterIndex } = useSelector((state) => state.activePath);
+  const [durationTime, setDurationTime] = useState("");
 
   const dispatch = useDispatch();
+  useEffect(() => {
+    const duration = courseChapters.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue.estimatedTimeToRead || 0;
+    }, 0);
+    const hours = Math.floor(duration / 60);
+    const minutes = duration % 60;
+    if (hours === 0) {
+      setDurationTime(minutes + " minutes");
+    } else {
+      setDurationTime(hours + " hours " + minutes + " minutes");
+    }
+
+    // navigate(`/course-details/${course._id}/index`);
+  }, []);
   function uploadAdapter(loader) {
     return {
       upload: () => {
@@ -141,7 +156,7 @@ const ChapterUpdateIndex = () => {
             <Box className="">
               {/* <QuizHeader />
           <Button type="submit"> Create</Button> */}
-              <ChapterCreateHeader isEditChapter={true} />
+              <ChapterCreateHeader isEditChapter={true} durationTime={durationTime} />
             </Box>
 
             <Box

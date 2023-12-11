@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import backIcon from "../../../../assets/images/dashboardIcon/GoBackIcon.svg";
@@ -11,9 +11,10 @@ import QuestionType from "../QuizPage/QuestionType";
 import QuizNameDurationField from "../QuizPage/QuizNameDurationField";
 
 const QuizCreateIndex = () => {
-  const { courseChapter } = useSelector((state) => state.course);
+  const { courseChapter, courseChapters } = useSelector((state) => state.course);
   const toast = useToaster();
   const dispatch = useDispatch();
+  const [durationTime, setDurationTime] = useState("");
   const [inputFields, setInputFields] = useState([
     {
       uniqueId: new Date().getTime(),
@@ -37,6 +38,20 @@ const QuizCreateIndex = () => {
       },
     ]);
   };
+  useEffect(() => {
+    const duration = courseChapters.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue.estimatedTimeToRead || 0;
+    }, 0);
+    const hours = Math.floor(duration / 60);
+    const minutes = duration % 60;
+    if (hours === 0) {
+      setDurationTime(minutes + " minutes");
+    } else {
+      setDurationTime(hours + " hours " + minutes + " minutes");
+    }
+
+    // navigate(`/course-details/${course._id}/index`);
+  }, []);
   const handleRemoveQA = (uniqueId) => {
     const values = [...inputFields];
     values.splice(
@@ -96,8 +111,8 @@ const QuizCreateIndex = () => {
         formData.append(`question_${index}`, qa.question.questionImage);
         // formData.append(`questionAndAnswer[${index}][question][questionImage]`, qa.question.questionImage);
         console.log(
-          '🚀 ~ file: QuizCreateIndex.jsx:98 ~ inputFields.forEach ~ qa.question.questionImage:',
-          qa.question.questionImage,
+          "🚀 ~ file: QuizCreateIndex.jsx:98 ~ inputFields.forEach ~ qa.question.questionImage:",
+          qa.question.questionImage
         );
       }
       qa.possibleAnswers.forEach((answer, answerIndex) => {
@@ -132,7 +147,6 @@ const QuizCreateIndex = () => {
       console.log(pair[0] + ", " + pair[1]);
     }
   };
-  console.log(inputFields);
 
   return (
     <>
@@ -172,7 +186,7 @@ const QuizCreateIndex = () => {
           <Grid xs={8}>
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
               <Box className="">
-                <ChapterCreateHeader />
+                <ChapterCreateHeader durationTime={durationTime} />
               </Box>
 
               <Box sx={{ backgroundColor: "" }}>

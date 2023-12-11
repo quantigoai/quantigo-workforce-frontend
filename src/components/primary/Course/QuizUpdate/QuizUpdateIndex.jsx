@@ -10,8 +10,10 @@ import QuizNameDurationField from "../QuizPage/QuizNameDurationField";
 
 const QuizUpdateIndex = () => {
   const [inputFields, setInputFields] = useState([]);
-  const [disabledButton, setDisabledButton] = useState(true);
+  const { courseChapters } = useSelector((state) => state.course);
 
+  const [disabledButton, setDisabledButton] = useState(true);
+  const [durationTime, setDurationTime] = useState("");
   const { quiz } = useSelector((state) => state.quiz);
   const dispatch = useDispatch();
   const [tempData, setTempData] = useState({
@@ -26,6 +28,16 @@ const QuizUpdateIndex = () => {
   useEffect(() => {
     setInputFields(quiz.questionAndAnswer);
     // quiz && setMd({ ...quiz });
+    const duration = courseChapters.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue.estimatedTimeToRead || 0;
+    }, 0);
+    const hours = Math.floor(duration / 60);
+    const minutes = duration % 60;
+    if (hours === 0) {
+      setDurationTime(minutes + " minutes");
+    } else {
+      setDurationTime(hours + " hours " + minutes + " minutes");
+    }
   }, [quiz]);
 
   const handleChangeInput = (uniqueId, event) => {
@@ -88,7 +100,6 @@ const QuizUpdateIndex = () => {
   useEffect(() => {
     Object.entries(tempData.questionAndAnswer).map(([key, val], i) => {
       inputFields.map((i) => {
-        console.log(val);
         if (i._id === key) {
           if (val.pa.questionType != i.questionType) {
             if (val.pa.questionType === "imageAndOptions") {
@@ -111,7 +122,6 @@ const QuizUpdateIndex = () => {
               const allPossibleAnswersPresent = possibleAnswersArray.every((answer) => answer in val.pa);
 
               if (allPossibleAnswersPresent) {
-                console.log("s555s");
                 setDisabledButton(false);
               }
             }
@@ -199,7 +209,7 @@ const QuizUpdateIndex = () => {
           <Grid xs={8}>
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
               <Box className="">
-                <ChapterCreateHeader disabledButton={disabledButton} />
+                <ChapterCreateHeader disabledButton={disabledButton} durationTime={durationTime} />
               </Box>
 
               <Box sx={{ backgroundColor: "" }}>

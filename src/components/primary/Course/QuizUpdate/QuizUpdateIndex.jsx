@@ -28,13 +28,17 @@ const QuizUpdateIndex = () => {
   useEffect(() => {
     setInputFields(quiz.questionAndAnswer);
     // quiz && setMd({ ...quiz });
-    const duration = courseChapters.reduce((accumulator, currentValue) => {
+    const duration = courseChapters?.reduce((accumulator, currentValue) => {
       return accumulator + currentValue.estimatedTimeToRead || 0;
     }, 0);
-    const hours = Math.floor(duration / 60);
-    const minutes = duration % 60;
+    const hours = Math.floor(duration / 60) || 0;
+    const minutes = duration % 60 || 0;
     if (hours === 0) {
-      setDurationTime(minutes + " minutes");
+      if (minutes === 0) {
+        setDurationTime(minutes + " minute");
+      } else {
+        setDurationTime(minutes + " minutes");
+      }
     } else {
       setDurationTime(hours + " hours " + minutes + " minutes");
     }
@@ -105,16 +109,26 @@ const QuizUpdateIndex = () => {
             if (i.questionType === "imageInOptions") {
               if (val.pa.questionType === "imageAndOptions") {
                 setDisabledButton(true);
-                const possibleAnswersArray = ['possibleAnswers_0', 'possibleAnswers_1', 'possibleAnswers_2', 'possibleAnswers_3'];
+                const possibleAnswersArray = [
+                  "possibleAnswers_0",
+                  "possibleAnswers_1",
+                  "possibleAnswers_2",
+                  "possibleAnswers_3",
+                ];
                 const allPossibleAnswersPresent = possibleAnswersArray.every((answer) => answer in val.pa);
 
-                if (allPossibleAnswersPresent && 'questionImage' in val.pa) {
+                if (allPossibleAnswersPresent && "questionImage" in val.pa) {
                   setDisabledButton(false);
                 }
               }
               if (val.pa.questionType === "default") {
                 setDisabledButton(true);
-                const possibleAnswersArray = ['possibleAnswers_0', 'possibleAnswers_1', 'possibleAnswers_2', 'possibleAnswers_3'];
+                const possibleAnswersArray = [
+                  "possibleAnswers_0",
+                  "possibleAnswers_1",
+                  "possibleAnswers_2",
+                  "possibleAnswers_3",
+                ];
                 const allPossibleAnswersPresent = possibleAnswersArray.every((answer) => answer in val.pa);
 
                 if (allPossibleAnswersPresent) {

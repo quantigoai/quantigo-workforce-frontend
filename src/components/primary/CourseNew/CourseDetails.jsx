@@ -29,13 +29,17 @@ const CourseDetails = () => {
     if (!course._id) {
       dispatch(getACourseByID(params.id));
     }
-    const duration = courseChapters.reduce((accumulator, currentValue) => {
+    const duration = courseChapters?.reduce((accumulator, currentValue) => {
       return accumulator + currentValue.estimatedTimeToRead || 0;
     }, 0);
-    const hours = Math.floor(duration / 60);
-    const minutes = duration % 60;
+    const hours = Math.floor(duration / 60) || 0;
+    const minutes = duration % 60 || 0;
     if (hours === 0) {
-      setDurationTime(minutes + " minutes");
+      if (minutes === 0) {
+        setDurationTime(minutes + " minute");
+      } else {
+        setDurationTime(minutes + " minutes");
+      }
     } else {
       setDurationTime(hours + " hours " + minutes + " minutes");
     }

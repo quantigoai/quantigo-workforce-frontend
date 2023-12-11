@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import CommonHeader from "../../../shared/CustomComponenet/CommonHeader/CommonHeader";
 
-const ChapterCreateHeader = ({ isEditChapter, disabledButton, durationTime }) => {
+const ChapterUpdateHeader = ({ isEditChapter, disabledButton, durationTime }) => {
   const { course, courseChapter } = useSelector((state) => state.course);
   const [isActiveChapter, setIsActiveChapter] = useState(false);
   const [isActiveQuiz, setIsActiveQuiz] = useState(false);
@@ -18,14 +18,15 @@ const ChapterCreateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
     }
   }, [location.pathname]);
   const navigate = useNavigate();
-  const handleQuizCreate = () => {
+  const handleQuizUpdate = () => {
     // setIsActiveChapter(true);
 
-    navigate(`/quiz-create/${course._id}`);
+    navigate(`/update-quiz/${courseChapter._id}`);
   };
-  const handleChapterCreate = () => {
+  const handleChapterUpdate = () => {
     // setIsActiveChapter(true);
-    navigate(`/create-chapter/${course._id}`);
+    navigate(`/update-chapter/${courseChapter._id}`);
+    // navigate(`/create-chapter/${course._id}`);
   };
 
   return (
@@ -70,7 +71,7 @@ const ChapterCreateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
                     color: isActiveChapter ? "#fff" : "#36B37E",
                   },
                 }}
-                onClick={handleChapterCreate}
+                onClick={handleChapterUpdate}
               >
                 Chapter
               </Button>
@@ -88,7 +89,7 @@ const ChapterCreateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
                     color: isActiveQuiz ? "#fff" : "#36B37E",
                   },
                 }}
-                onClick={handleQuizCreate}
+                onClick={handleQuizUpdate}
               >
                 Quiz
               </Button>
@@ -129,4 +130,4 @@ const ChapterCreateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
   );
 };
 
-export default ChapterCreateHeader;
+export default ChapterUpdateHeader;

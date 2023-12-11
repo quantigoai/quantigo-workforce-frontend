@@ -20,6 +20,7 @@ import ChapterDescritionField from "../ChapterDescritionField";
 import ContentField from "../../InputFields/ContentField";
 import ChapterCreateHeader from "../ChapterCreateHeader";
 import ChapterDIsableNoFIeld from "../ChapterDIsableNoFIeld";
+import ChapterUpdateHeader from "../ChapterUpdateHeader";
 const ChapterUpdateIndex = () => {
   const params = useParams();
   const toast = useToaster();
@@ -33,13 +34,17 @@ const ChapterUpdateIndex = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    const duration = courseChapters.reduce((accumulator, currentValue) => {
+    const duration = courseChapters?.reduce((accumulator, currentValue) => {
       return accumulator + currentValue.estimatedTimeToRead || 0;
     }, 0);
-    const hours = Math.floor(duration / 60);
-    const minutes = duration % 60;
+    const hours = Math.floor(duration / 60) || 0;
+    const minutes = duration % 60 || 0;
     if (hours === 0) {
-      setDurationTime(minutes + " minutes");
+      if (minutes === 0) {
+        setDurationTime(minutes + " minute");
+      } else {
+        setDurationTime(minutes + " minutes");
+      }
     } else {
       setDurationTime(hours + " hours " + minutes + " minutes");
     }
@@ -156,7 +161,8 @@ const ChapterUpdateIndex = () => {
             <Box className="">
               {/* <QuizHeader />
           <Button type="submit"> Create</Button> */}
-              <ChapterCreateHeader isEditChapter={true} durationTime={durationTime} />
+              {/* <ChapterCreateHeader isEditChapter={true} durationTime={durationTime} /> */}
+              <ChapterUpdateHeader isEditChapter={true} durationTime={durationTime} />
             </Box>
 
             <Box

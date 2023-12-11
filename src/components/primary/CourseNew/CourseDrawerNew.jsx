@@ -88,7 +88,7 @@ const CourseDrawerNew = ({ handleChapterClick, durationTime }) => {
                     }}
                     onClick={() => handleCreateChapter(course._id)}
                   >
-                    <AddIcon />
+                  <AddIcon />
                     Create
                   </Button>
                 </Box>

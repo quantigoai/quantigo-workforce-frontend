@@ -9,6 +9,7 @@ import FormProvider from "../../../shared/FormProvider/FormProvider";
 import ChapterCreateHeader from "../ChapterCreate/ChapterCreateHeader";
 import QuestionType from "../QuizPage/QuestionType";
 import QuizNameDurationField from "../QuizPage/QuizNameDurationField";
+import ChapterUpdateHeader from "../ChapterCreate/ChapterUpdateHeader";
 
 const QuizCreateIndex = () => {
   const { courseChapter, courseChapters } = useSelector((state) => state.course);
@@ -190,7 +191,7 @@ const QuizCreateIndex = () => {
           <Grid xs={8}>
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
               <Box className="">
-                <ChapterCreateHeader durationTime={durationTime} />
+                <ChapterUpdateHeader durationTime={durationTime} />
               </Box>
 
               <Box sx={{ backgroundColor: "" }}>

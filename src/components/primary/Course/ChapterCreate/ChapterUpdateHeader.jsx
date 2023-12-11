@@ -54,7 +54,7 @@ const ChapterUpdateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
               //   paddingX: "10px",
             }}
           >
-            <CommonHeader title={course.name} customButton="Create User" />
+            <CommonHeader title={courseChapter.title} customButton="Create User" />
             <Typography sx={{ mt: 1 }} variant="wpf_p4_regular">
               Course Duration: <span style={{ fontWeight: "bold" }}>{durationTime}</span>{" "}
             </Typography>

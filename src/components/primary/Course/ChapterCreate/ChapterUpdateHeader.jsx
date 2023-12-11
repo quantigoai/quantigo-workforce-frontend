@@ -21,7 +21,8 @@ const ChapterUpdateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
   const handleQuizUpdate = () => {
     // setIsActiveChapter(true);
 
-    navigate(`/update-quiz/${courseChapter._id}`);
+    // navigate(`/update-quiz/${courseChapter._id}`);
+    navigate(`/quiz-create/${course._id}`);
   };
   const handleChapterUpdate = () => {
     // setIsActiveChapter(true);

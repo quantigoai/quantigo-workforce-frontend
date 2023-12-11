@@ -107,7 +107,26 @@ const QuizUpdateIndex = () => {
         console.log(val)
         if (i._id === key) {
           if (val.pa.questionType != i.questionType) {
+            if (i.questionType === "imageInOptions") {
+              if (val.pa.questionType === "imageAndOptions") {
+                setDisabledButton(true);
+                const possibleAnswersArray = ['possibleAnswers_0', 'possibleAnswers_1', 'possibleAnswers_2', 'possibleAnswers_3'];
+                const allPossibleAnswersPresent = possibleAnswersArray.every((answer) => answer in val.pa);
 
+                if (allPossibleAnswersPresent && 'questionImage' in val.pa) {
+                  setDisabledButton(false);
+                }
+              }
+              if (val.pa.questionType === "default") {
+                setDisabledButton(true);
+                const possibleAnswersArray = ['possibleAnswers_0', 'possibleAnswers_1', 'possibleAnswers_2', 'possibleAnswers_3'];
+                const allPossibleAnswersPresent = possibleAnswersArray.every((answer) => answer in val.pa);
+
+                if (allPossibleAnswersPresent) {
+                  setDisabledButton(false);
+                }
+              }
+            }
             if (val.pa.questionType === "imageAndOptions") {
               setDisabledButton(true);
               if ('questionImage' in val.pa) {
@@ -123,7 +142,6 @@ const QuizUpdateIndex = () => {
               const allPossibleAnswersPresent = possibleAnswersArray.every((answer) => answer in val.pa);
 
               if (allPossibleAnswersPresent) {
-                console.log("s555s")
                 setDisabledButton(false);
               }
             }

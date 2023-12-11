@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -102,6 +102,26 @@ const QuizUpdateIndex = () => {
       inputFields.map((i) => {
         if (i._id === key) {
           if (val.pa.questionType != i.questionType) {
+            if (i.questionType === "imageInOptions") {
+              if (val.pa.questionType === "imageAndOptions") {
+                setDisabledButton(true);
+                const possibleAnswersArray = ['possibleAnswers_0', 'possibleAnswers_1', 'possibleAnswers_2', 'possibleAnswers_3'];
+                const allPossibleAnswersPresent = possibleAnswersArray.every((answer) => answer in val.pa);
+
+                if (allPossibleAnswersPresent && 'questionImage' in val.pa) {
+                  setDisabledButton(false);
+                }
+              }
+              if (val.pa.questionType === "default") {
+                setDisabledButton(true);
+                const possibleAnswersArray = ['possibleAnswers_0', 'possibleAnswers_1', 'possibleAnswers_2', 'possibleAnswers_3'];
+                const allPossibleAnswersPresent = possibleAnswersArray.every((answer) => answer in val.pa);
+
+                if (allPossibleAnswersPresent) {
+                  setDisabledButton(false);
+                }
+              }
+            }
             if (val.pa.questionType === "imageAndOptions") {
               setDisabledButton(true);
               if ("questionImage" in val.pa) {

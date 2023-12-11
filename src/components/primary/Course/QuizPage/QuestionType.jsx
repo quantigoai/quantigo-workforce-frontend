@@ -75,10 +75,10 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
           newValue === 0
             ? "default"
             : newValue === 1
-            ? "imageAndOptions"
-            : newValue === 2
-            ? "imageInOptions"
-            : newValue),
+              ? "imageAndOptions"
+              : newValue === 2
+                ? "imageInOptions"
+                : newValue),
         event
       );
       // handleChangeInput((inputField.questionType = "default"), event);
@@ -143,26 +143,7 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
                   height: "40px",
                 }}
                 label={
-                  // <Box>
-                  //   <Radio
-                  //     sx={{
-                  //       p: 0,
-                  //       mr: 1,
-
-                  //       "&.Mui-checked": {
-                  //         color: "white",
-                  //       },
-                  //     }}
-                  //     {...controlProps(0)}
-                  //   />
-                  //   <Typography
-                  //     sx={{ textTransform: "none" }}
-                  //     variant="wpf_p3_semiBold"
-                  //     color={value === 0 ? "#fff" : "neutral.700"}
-                  //   >
-                  //     Default
-                  //   </Typography>
-                  // </Box>
+                 
                   <FormControl>
                     <RadioGroup
                       value={radioValue}
@@ -194,7 +175,19 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
                             }}
                           />
                         }
-                        label="Default"
+                        // label="Default"
+                        label={
+                          <Typography
+                            variant="wpf_p4_medium"
+                            sx={{
+
+
+                              color: value === 0 ? "white" : "#000", // Set label color based on the condition
+                            }}
+                          >
+                            Default
+                          </Typography>
+                        }
                       />
                     </RadioGroup>
                   </FormControl>
@@ -208,27 +201,7 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
                   height: "40px",
                 }}
                 label={
-                  // <Box>
-                  //   {" "}
-                  //   <Radio
-                  //     sx={{
-                  //       p: 0,
-                  //       mr: 1,
-
-                  //       "&.Mui-checked": {
-                  //         color: "white",
-                  //       },
-                  //     }}
-                  //     {...controlProps(1)}
-                  //   />
-                  //   <Typography
-                  //     sx={{ textTransform: "none" }}
-                  //     variant="wpf_p3_semiBold"
-                  //     color={value === 1 ? "#fff" : "neutral.700"}
-                  //   >
-                  //     Image with title
-                  //   </Typography>
-                  // </Box>
+                
                   <FormControl>
                     <RadioGroup
                       aria-labelledby="demo-controlled-radio-buttons-group"
@@ -262,7 +235,19 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
                             }}
                           />
                         }
-                        label=" Image with title"
+
+                        label={
+                          <Typography
+                            variant="wpf_p4_medium"
+                            sx={{
+
+
+                              color: value === 1 ? "white" : "#000", // Set label color based on the condition
+                            }}
+                          >
+                           Image with Title
+                          </Typography>
+                        }
                       />
                     </RadioGroup>
                   </FormControl>
@@ -274,30 +259,10 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
                   borderRadius: "8px",
                   // backgroundColor: value === 2 ? "#3C4D6B" : "#DCE5F2",
                   height: "40px",
-                  // width: "280px",
+                  width: "280px",
                 }}
                 label={
-                  // <Box>
-                  //   {" "}
-                  //   <Radio
-                  //     sx={{
-                  //       p: 0,
-                  //       mr: 1,
-
-                  //       "&.Mui-checked": {
-                  //         color: "white",
-                  //       },
-                  //     }}
-                  //     {...controlProps(2)}
-                  //   />
-                  //   <Typography
-                  //     sx={{ textTransform: "none" }}
-                  //     variant="wpf_p3_semiBold"
-                  //     color={value === 2 ? "#fff" : "neutral.700"}
-                  //   >
-                  //     Image in options
-                  //   </Typography>
-                  // </Box>
+                
                   <FormControl>
                     <RadioGroup
                       aria-labelledby="demo-controlled-radio-buttons-group"
@@ -312,10 +277,8 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
                     >
                       <FormControlLabel
                         sx={{
-                          fontFamily: "Inter",
-                          fontWeight: "600",
-                          width: "168px",
-                          textAlign: "center",
+                       
+                          width: "178px",
                           borderRadius: "8px",
                           backgroundColor: value === 2 ? "#3C4D6B" : "#DCE5F2",
                         }}
@@ -330,7 +293,19 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
                             }}
                           />
                         }
-                        label="Image in options"
+
+                        label={
+                          <Typography
+                            variant="wpf_p4_medium"
+                            sx={{
+
+
+                              color: value === 2 ? "white" : "#000", // Set label color based on the condition
+                            }}
+                          >
+                            Image in Options
+                          </Typography>
+                        }
                       />
                     </RadioGroup>
                   </FormControl>
@@ -352,7 +327,7 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
         <TabPanel
           value={value}
           index={0}
-          //    dir={theme.direction}
+        //    dir={theme.direction}
         >
           <DefaultTypeIndex
             handleChangeInput={handleChangeInput}
@@ -365,7 +340,7 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
         <TabPanel
           value={value}
           index={1}
-          //    dir={theme.direction}
+        //    dir={theme.direction}
         >
           <ImageWithTitleIndex
             handleChangeInput={handleChangeInput}
@@ -378,7 +353,7 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
         <TabPanel
           value={value}
           index={2}
-          //    dir={theme.direction}
+        //    dir={theme.direction}
         >
           <ImageInOptionIndex
             handleChangeInput={handleChangeInput}

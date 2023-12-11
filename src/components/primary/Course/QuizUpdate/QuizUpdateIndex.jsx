@@ -71,12 +71,12 @@ const QuizUpdateIndex = () => {
         ...newTempData1.questionAndAnswer[qaID]?.pa,
         ...(i !== "questionType"
           ? {
-              [i]: v,
-              ...(newTempData1.questionAndAnswer[qaID]?.pa?.questionType ? {} : { questionType: f.questionType }),
-            }
+            [i]: v,
+            ...(newTempData1.questionAndAnswer[qaID]?.pa?.questionType ? {} : { questionType: f.questionType }),
+          }
           : {
-              [i]: v,
-            }),
+            [i]: v,
+          }),
       },
     };
     // newTempData1.questionAndAnswer[qaID] = {
@@ -121,6 +121,12 @@ const QuizUpdateIndex = () => {
                   setDisabledButton(false);
                 }
               }
+            }
+            if (i.questionType === "imageAndOptions") {
+              if (val.pa.questionType === "default") {
+                setDisabledButton(false);
+              }
+
             }
             if (val.pa.questionType === "imageAndOptions") {
               setDisabledButton(true);

@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { enrollACourse } from "../../../features/slice/courseSlice";
 import { updateUserEnrollCourse } from "../../../features/slice/userSlice";
 import { getAQuizById } from "../../../features/slice/quizSlice";
+import editCourseIcon from "../../../assets/images/edit.svg";
+import deleteIcon from "../../../assets/images/delete.svg";
 
 const ButtonStyle = styled(Button)({
   border: "8px",
@@ -19,6 +21,7 @@ const ButtonStyle = styled(Button)({
 const CourseNewDetailsIndex = () => {
   const dispatch = useDispatch();
   const { course, courseChapter, courseChapters } = useSelector((state) => state.course);
+
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const handleEditChapter = () => {
@@ -53,41 +56,44 @@ const CourseNewDetailsIndex = () => {
         <Box sx={{ position: "" }}>
           <Box sx={{ height: "100%", position: "" }}>
             <Box sx={{ height: "8%", backgroundColor: "" }}>
-              <Grid container sx={{ paddingLeft: "2%", borderBottom: "1px solid #EBEDF5" }}>
-                <Grid item xs={12}>
-                  <Typography variant="h5" sx={{ fontWeight: "bold", color: "#1D1D1D" }}>
-                    {courseChapter?.title}
-                  </Typography>
-                  <Button
-                    onClick={() => handleEditChapter()}
-                    variant="outlined"
-                    sx={{
-                      border: "1px solid #2D58FF",
-                      borderRadius: "2px",
-                      // width: "128px",
-                    }}
-                  >
-                    Edit Chapter
-                  </Button>
-                  <Button
-                    onClick={() => handleEditQuiz()}
-                    variant="outlined"
-                    sx={{
-                      border: "1px solid #2D58FF",
-                      borderRadius: "2px",
-                      // width: "128px",
-                    }}
-                  >
-                    Edit Quiz
-                  </Button>
-                </Grid>
+              <Box sx={{ paddingLeft: "2%", borderBottom: "1px solid #EBEDF5" }}>
+                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "Center" }}>
+                  <Box i>
+                    <Typography variant="h5" sx={{ fontWeight: "bold", color: "#1D1D1D" }}>
+                      {courseChapter?.title}
+                    </Typography>
+                  </Box>
+                  <Box>
+                    {courseChapters && (
+                      <>
+                        <Button
+                          sx={{
+                            borderRadius: "2px",
+                          }}
+                          onClick={() => handleEditChapter()}
+                          // onClick={() => handleNavigation(customButton)}
+                        >
+                          <img src={editCourseIcon} />
+                        </Button>
+                        <Button
+                          sx={{
+                            borderRadius: "2px",
+                          }}
+                          // onClick={() => handleEditChapter()}
+                        >
+                          <img src={deleteIcon} />
+                        </Button>
+                      </>
+                    )}
+                  </Box>
+                </Box>
                 <Grid item xs={12}>
                   {" "}
                   <Typography variant="caption" sx={{ fontWeight: "bold", color: "#969CAF" }}>
                     7 min read
                   </Typography>
                 </Grid>
-              </Grid>
+              </Box>
             </Box>
             <Box
               sx={{

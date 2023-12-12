@@ -61,7 +61,8 @@ export const LineStackSingle = ({ children }) => (
         xl: "80px",
         xxl: "85px",
       },
-    }}>
+    }}
+  >
     {children}
   </Stack>
 );
@@ -76,7 +77,8 @@ export const LineStack = ({ children }) => (
         xl: "80px",
         xxl: "85px",
       },
-    }}>
+    }}
+  >
     {children}
   </Stack>
 );
@@ -90,7 +92,8 @@ export const FieldBox = ({ children }) => (
         xl: "82px",
         xxl: "85px",
       },
-    }}>
+    }}
+  >
     {children}
   </Box>
 );
@@ -209,7 +212,6 @@ const EditCourseModal = ({ handleClose, open }) => {
   };
   const { handleSubmit } = methods;
   const onSubmit = (data) => {
-    console.log(data);
     const preRequisiteCoursesColl = preRequisiteCourses.map((preRequisite) => {
       return preRequisite._id;
     });
@@ -224,8 +226,8 @@ const EditCourseModal = ({ handleClose, open }) => {
     formData.append("language", data.language);
     formData.append("description", data.description);
     formData.append("images", coverImageFile);
-    console.log("🚀 ~ file: EditCourseModal.jsx:227 ~ onSubmit ~ coverImageFile:", coverImageFile)
-   
+    console.log("🚀 ~ file: EditCourseModal.jsx:227 ~ onSubmit ~ coverImageFile:", coverImageFile);
+
     // preRequisiteCourses.length && formData.append("prerequisiteCourses", preRequisiteCoursesColl);
     // isPreRequisiteCourseEmpty && formData.append("prerequisiteCourses", []);
     // skill.length && formData.append("skills", skillColl);
@@ -261,7 +263,8 @@ const EditCourseModal = ({ handleClose, open }) => {
           backdrop: {
             timeout: 500,
           },
-        }}>
+        }}
+      >
         <Fade in={open}>
           <Box sx={style}>
             <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={`Edit ${course.name}`} />
@@ -280,13 +283,15 @@ const EditCourseModal = ({ handleClose, open }) => {
                     "&::-webkit-scrollbar": {
                       width: "0", // Hide the scrollbar
                     },
-                  }}>
+                  }}
+                >
                   <Box
                     sx={{
                       paddingLeft: "16px",
                       paddingTop: "1%",
                       paddingRight: "16px",
-                    }}>
+                    }}
+                  >
                     <LineStackSingle>
                       <TextFieldCourse name="name" label="Course Name" defaultValue={course.name} isRequired={true} />
                     </LineStackSingle>
@@ -301,7 +306,8 @@ const EditCourseModal = ({ handleClose, open }) => {
                           xl: "110px",
                           xxl: "115px",
                         },
-                      }}>
+                      }}
+                    >
                       <CTextFieldDescription
                         name="description"
                         label="Course Description"
@@ -320,7 +326,8 @@ const EditCourseModal = ({ handleClose, open }) => {
                           xl: "70px",
                           xxl: "80px",
                         },
-                      }}>
+                      }}
+                    >
                       <PreRequisiteCourseFiled
                         perRequisiteCourses={preRequisiteCourses}
                         handleChange_Pre_Requisite_Course={handleChange_Pre_Requisite_Course}
@@ -357,7 +364,8 @@ const EditCourseModal = ({ handleClose, open }) => {
                           xl: "70px",
                           xxl: "80px",
                         },
-                      }}>
+                      }}
+                    >
                       <CourseSkillfiled
                         skills={skills}
                         // register={register}
@@ -382,13 +390,15 @@ const EditCourseModal = ({ handleClose, open }) => {
                         {
                           // backgroundColor:"red",
                         }
-                      }>
+                      }
+                    >
                       <Typography
                         variant="wpf_h7_medium"
                         sx={{
                           mb: 0,
                           color: "neutral.N300",
-                        }}>
+                        }}
+                      >
                         Course Cover Image
                       </Typography>
                       <CourseCoverImageField
@@ -410,9 +420,10 @@ const EditCourseModal = ({ handleClose, open }) => {
                   paddingX: { lg: "14px", xl: "16px", xxl: "16px" },
                   mt: 1,
                   borderTop: "2px solid #F2F6FC",
-                }}>
+                }}
+              >
                 <Button
-                  // onClick={handleCreateProjectClose}
+                  onClick={handleClose}
                   sx={{
                     textTransform: "none",
                     paddingX: { lg: "20px", xl: "30px", xxl: "30px" },
@@ -432,7 +443,8 @@ const EditCourseModal = ({ handleClose, open }) => {
                       backgroundColor: "#F4F7FE",
                     },
                   }}
-                  variant="filled">
+                  variant="filled"
+                >
                   Cancel
                 </Button>
                 <LoadingButton
@@ -459,7 +471,8 @@ const EditCourseModal = ({ handleClose, open }) => {
                       color: "#FFFFFF",
                     },
                   }}
-                  variant="contained">
+                  variant="contained"
+                >
                   Create
                 </LoadingButton>
               </Box>

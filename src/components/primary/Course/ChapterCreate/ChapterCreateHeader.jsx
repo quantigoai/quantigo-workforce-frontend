@@ -7,7 +7,9 @@ import CommonHeader from "../../../shared/CustomComponenet/CommonHeader/CommonHe
 const ChapterCreateHeader = ({ isEditChapter, disabledButton, durationTime }) => {
   const { course, courseChapter } = useSelector((state) => state.course);
   const [isActiveChapter, setIsActiveChapter] = useState(false);
+  console.log("🚀 ~ file: ChapterCreateHeader.jsx:10 ~ ChapterCreateHeader ~ isActiveChapter:", isActiveChapter);
   const [isActiveQuiz, setIsActiveQuiz] = useState(false);
+  console.log("🚀 ~ file: ChapterCreateHeader.jsx:12 ~ ChapterCreateHeader ~ isActiveQuiz:", isActiveQuiz);
   const location = useLocation();
 
   useEffect(() => {
@@ -121,7 +123,7 @@ const ChapterCreateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
               },
             }}
           >
-            {isEditChapter ? " Save changes" : "Create chapter"}
+            {isActiveChapter ? "Create chapter " : "Create Quiz"}
           </Button>
         </Box>
       </Box>

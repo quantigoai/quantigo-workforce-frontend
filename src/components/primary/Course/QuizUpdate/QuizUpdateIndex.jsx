@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -101,7 +101,7 @@ const QuizUpdateIndex = () => {
     // };
     setTempData(newTempData1);
   };
-
+console.log(tempData)
   useEffect(() => {
     Object.entries(tempData.questionAndAnswer).map(([key, val], i) => {
       inputFields.map((i) => {
@@ -182,6 +182,20 @@ const QuizUpdateIndex = () => {
     setInputFields(values);
   };
 
+  const handleAddQA = () => {
+    setInputFields([
+      ...inputFields,
+      {
+        uniqueId: new Date().getTime(),
+        question: {},
+        correctAnswerIndex: "",
+        possibleAnswers: [],
+        correctAnswer: "",
+        questionType: "default",
+      },
+    ]);
+  };
+
   const {
     reset,
     setError,
@@ -189,6 +203,7 @@ const QuizUpdateIndex = () => {
     formState: { errors },
   } = methods;
   const onSubmit = (data) => {
+    console.log(data);
     let tempQA;
 
     {
@@ -282,7 +297,9 @@ const QuizUpdateIndex = () => {
                   ))}
               </Box>
             </FormProvider>
-            <Box>{/* <Button onClick={() => handleAddQA()}>Add another question</Button> */}</Box>
+            <Box>
+              <Button onClick={() => handleAddQA()}>Add another question</Button>
+            </Box>
           </Grid>
           <Grid xs={2}></Grid>
         </Grid>

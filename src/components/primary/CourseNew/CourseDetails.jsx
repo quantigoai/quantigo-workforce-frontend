@@ -17,6 +17,7 @@ import CommonHeaderForCourse from "../../shared/CustomComponenet/CommonHeader/Co
 import CourseDrawerNew from "./CourseDrawerNew";
 const CourseDetails = () => {
   const { course, courseChapter, isLoading, courseChapters } = useSelector((state) => state.course);
+  console.log("🚀 ~ file: CourseDetails.jsx:20 ~ CourseDetails ~ courseChapters:", courseChapters);
 
   const { isLightTheme } = useSelector((state) => state.theme);
   const params = useParams();

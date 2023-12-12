@@ -4,7 +4,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
 import useToaster from "../../../../customHooks/useToaster";
 import { createCourseChapter } from "../../../../features/slice/courseSlice";
@@ -18,6 +18,7 @@ import ChapterField from "./ChapterField";
 const ChapterCreateIndex = () => {
   const { courseChapters } = useSelector((state) => state.course);
   const { course, isLoading } = useSelector((state) => state.course);
+  const navigate = useNavigate();
   const params = useParams();
   const toast = useToaster();
   const id = params.id;
@@ -108,7 +109,7 @@ const ChapterCreateIndex = () => {
       if (action.payload?.status === 201) {
         toast.trigger("Chapter Create", "success");
         // dispatch(deleteTemporaryData({ id, chapterNo }));
-        // navigate(`/course-details/${id}`);
+        navigate(`/quiz-create/${id}`);
       } else {
         toast.trigger("Can not create course chapter", "error");
       }

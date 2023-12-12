@@ -191,7 +191,7 @@ const QuizCreateIndex = () => {
           <Grid xs={8}>
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
               <Box className="">
-                <ChapterUpdateHeader durationTime={durationTime} />
+                <ChapterCreateHeader durationTime={durationTime} />
               </Box>
 
               <Box sx={{ backgroundColor: "" }}>

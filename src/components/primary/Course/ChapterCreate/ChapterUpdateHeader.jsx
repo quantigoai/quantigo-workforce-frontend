@@ -1,11 +1,14 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import CommonHeader from "../../../shared/CustomComponenet/CommonHeader/CommonHeader";
+import { getAQuizById } from "../../../../features/slice/quizSlice";
 
 const ChapterUpdateHeader = ({ isEditChapter, disabledButton, durationTime }) => {
   const { course, courseChapter } = useSelector((state) => state.course);
+  const dispatch = useDispatch();
+
   const [isActiveChapter, setIsActiveChapter] = useState(false);
   const [isActiveQuiz, setIsActiveQuiz] = useState(false);
   const location = useLocation();
@@ -19,10 +22,12 @@ const ChapterUpdateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
   }, [location.pathname]);
   const navigate = useNavigate();
   const handleQuizUpdate = () => {
-    // setIsActiveChapter(true);
-
-    // navigate(`/update-quiz/${courseChapter._id}`);
-    navigate(`/quiz-create/${course._id}`);
+    if (!courseChapter.quiz) {
+      navigate(`/quiz-create/${course._id}`);
+    } else {
+      navigate(`/update-quiz/${courseChapter._id}`);
+      dispatch(getAQuizById(courseChapter.quiz.id));
+    }
   };
   const handleChapterUpdate = () => {
     // setIsActiveChapter(true);
@@ -123,7 +128,7 @@ const ChapterUpdateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
               },
             }}
           >
-            {isEditChapter ? " Save changes" : "Create chapter"}
+            {setIsActiveChapter ? " Save Changes" : "Save Changes"}
           </Button>
         </Box>
       </Box>

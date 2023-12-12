@@ -7,6 +7,7 @@ import { getAQuizById } from "../../../../features/slice/quizSlice";
 
 const ChapterUpdateHeader = ({ isEditChapter, disabledButton, durationTime }) => {
   const { course, courseChapter } = useSelector((state) => state.course);
+  console.log("🚀 ~ file: ChapterUpdateHeader.jsx:10 ~ ChapterUpdateHeader ~ courseChapter:", courseChapter);
   const { isLoading } = useSelector((state) => state.quiz);
   const dispatch = useDispatch();
 

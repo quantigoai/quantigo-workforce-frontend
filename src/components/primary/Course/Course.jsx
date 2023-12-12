@@ -27,7 +27,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 const Course = () => {
-  console.log("ghhhhhhhh")
+  console.log("ghhhhhhhh");
   const { role } = useSelector((state) => state.user.user);
   const [filterCourses, setFilterCourses] = React.useState([]);
   const [isLoading, setIsLoading] = useState(true);

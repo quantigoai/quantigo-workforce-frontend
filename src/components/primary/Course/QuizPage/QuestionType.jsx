@@ -75,10 +75,10 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
           newValue === 0
             ? "default"
             : newValue === 1
-              ? "imageAndOptions"
-              : newValue === 2
-                ? "imageInOptions"
-                : newValue),
+            ? "imageAndOptions"
+            : newValue === 2
+            ? "imageInOptions"
+            : newValue),
         event
       );
       // handleChangeInput((inputField.questionType = "default"), event);
@@ -143,7 +143,6 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
                   height: "40px",
                 }}
                 label={
-                 
                   <FormControl>
                     <RadioGroup
                       value={radioValue}
@@ -180,8 +179,6 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
                           <Typography
                             variant="wpf_p4_medium"
                             sx={{
-
-
                               color: value === 0 ? "white" : "#000", // Set label color based on the condition
                             }}
                           >
@@ -201,7 +198,6 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
                   height: "40px",
                 }}
                 label={
-                
                   <FormControl>
                     <RadioGroup
                       aria-labelledby="demo-controlled-radio-buttons-group"
@@ -235,17 +231,14 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
                             }}
                           />
                         }
-
                         label={
                           <Typography
                             variant="wpf_p4_medium"
                             sx={{
-
-
                               color: value === 1 ? "white" : "#000", // Set label color based on the condition
                             }}
                           >
-                           Image with Title
+                            Image with Title
                           </Typography>
                         }
                       />
@@ -262,7 +255,6 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
                   width: "280px",
                 }}
                 label={
-                
                   <FormControl>
                     <RadioGroup
                       aria-labelledby="demo-controlled-radio-buttons-group"
@@ -277,7 +269,6 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
                     >
                       <FormControlLabel
                         sx={{
-                       
                           width: "178px",
                           borderRadius: "8px",
                           backgroundColor: value === 2 ? "#3C4D6B" : "#DCE5F2",
@@ -293,13 +284,10 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
                             }}
                           />
                         }
-
                         label={
                           <Typography
                             variant="wpf_p4_medium"
                             sx={{
-
-
                               color: value === 2 ? "white" : "#000", // Set label color based on the condition
                             }}
                           >
@@ -327,7 +315,7 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
         <TabPanel
           value={value}
           index={0}
-        //    dir={theme.direction}
+          //    dir={theme.direction}
         >
           <DefaultTypeIndex
             handleChangeInput={handleChangeInput}
@@ -340,7 +328,7 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
         <TabPanel
           value={value}
           index={1}
-        //    dir={theme.direction}
+          //    dir={theme.direction}
         >
           <ImageWithTitleIndex
             handleChangeInput={handleChangeInput}
@@ -353,7 +341,7 @@ const QuestionType = ({ handleRemoveQA, handleChangeInput, inputField, inputFiel
         <TabPanel
           value={value}
           index={2}
-        //    dir={theme.direction}
+          //    dir={theme.direction}
         >
           <ImageInOptionIndex
             handleChangeInput={handleChangeInput}

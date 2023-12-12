@@ -214,7 +214,7 @@ const ChapterCreateIndex = () => {
                     <ChapterDescritionField name="description" label="Chapter Description" isRequired={true} />
                   </Grid>
                 </Grid>
-                <Grid item xs={12} sx={{ py: 5, backgroundColor: "" }}>
+                <Grid item xs={12} sx={{ py: 2, backgroundColor: "" }}>
                   <ContentField
                     //  course={course}
                     uploadPlugin={uploadPlugin}

@@ -7,15 +7,20 @@ import CommonHeader from "../../../shared/CustomComponenet/CommonHeader/CommonHe
 const ChapterCreateHeader = ({ isEditChapter, disabledButton, durationTime }) => {
   const { course, courseChapter } = useSelector((state) => state.course);
   const [isActiveChapter, setIsActiveChapter] = useState(false);
-  console.log("🚀 ~ file: ChapterCreateHeader.jsx:10 ~ ChapterCreateHeader ~ isActiveChapter:", isActiveChapter);
+  const [isDIsable, setIsDisable] = useState(false);
+  const [isDisableChapterBtn,setIsDisableChapter]=useState(false)
   const [isActiveQuiz, setIsActiveQuiz] = useState(false);
-  console.log("🚀 ~ file: ChapterCreateHeader.jsx:12 ~ ChapterCreateHeader ~ isActiveQuiz:", isActiveQuiz);
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname.includes("create-chapter") || location.pathname.includes("update-chapter")) {
+    if (location.pathname.includes("create-chapter")) {
       setIsActiveChapter(true);
-    } else {
+      setIsDisable(true);
+    } else if(location.pathname.includes("quiz-create")){
+
+
+    }
+     else {
       setIsActiveQuiz(true);
     }
   }, [location.pathname]);
@@ -28,6 +33,7 @@ const ChapterCreateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
   const handleChapterCreate = () => {
     // setIsActiveChapter(true);
     navigate(`/create-chapter/${course._id}`);
+    setIsDisable(false);
   };
 
   return (
@@ -91,6 +97,7 @@ const ChapterCreateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
                   },
                 }}
                 onClick={handleQuizCreate}
+                disabled={isDIsable}
               >
                 Quiz
               </Button>

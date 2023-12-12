@@ -119,35 +119,7 @@ const ChapterCreateIndex = () => {
     <Box className="content" sx={{ backgroundColor: "neutral.N000" }}>
       <Grid container sx={{ borderTop: "1px solid #E6ECF5", paddingTop: "1%" }}>
         <Grid xs={2}>
-          {/* <Button
-            sx={{
-              color: "neutral.800",
-              // width: {
-              //   xl: "110px",
-              //   lg: "110px",
-              // },
-              height: {
-                xl: "32px",
-                lg: "100%",
-              },
-              textTransform: "none",
-              display: "flex",
-              gap: 1,
-            }}
-            // onClick={handleGoBack}
-          >
-            <img
-              style={{
-                width: "15px",
-                height: "15px",
-              }}
-              src={backIcon}
-            />
-
-            <Typography variant="wpf_p4_medium" sx={{ paddingLeft: "0%" }}>
-              Back to Course
-            </Typography>
-          </Button> */}
+          
         </Grid>
         <Grid xs={8}>
           <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

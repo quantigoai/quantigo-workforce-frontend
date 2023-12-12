@@ -12,10 +12,10 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {realToken} from "../../helper/lib";
-import {calculateProgress} from "../../helper/scoreStore";
+import { realToken } from "../../helper/lib";
+import { calculateProgress } from "../../helper/scoreStore";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
@@ -72,15 +72,15 @@ export const validateCourseName = createAsyncThunk("validate/A/course", async (d
 
 // Delate a course by Id
 export const deleteACourseById = createAsyncThunk("/courses/delete/:id", async (id) => {
-  try {
-    return axios.delete(`${url}/courses/${id}`, {
-        headers: {
-            Authorization: `Bearer ${realToken()}`,
-        },
-    });
-  } catch (error) {
-    throw new Error(error.response.data.message);
-  }
+    try {
+        return axios.delete(`${url}/courses/${id}`, {
+            headers: {
+                Authorization: `Bearer ${realToken()}`,
+            },
+        });
+    } catch (error) {
+        throw new Error(error.response.data.message);
+    }
 });
 
 //delete A Chapter by id
@@ -94,7 +94,7 @@ export const deleteAChapterById = createAsyncThunk("/chapter/delete/:id", async 
 // Update A Course
 
 export const updateACourseById = createAsyncThunk("/courses/update/:id", async (data) => {
-    const {id, formData} = data;
+    const { id, formData } = data;
     return axios.patch(`${url}/courses/${id}`, formData, {
         headers: {
             Authorization: `Bearer ${realToken()}`,
@@ -107,7 +107,7 @@ export const updateACourseById = createAsyncThunk("/courses/update/:id", async (
 
 // update a chapter by chapter ID
 export const updateAChapterById = createAsyncThunk("/courses/chapter/update/:id", async (newData) => {
-    const {id, formData} = newData;
+    const { id, formData } = newData;
     return axios.patch(`${url}/coursechapter/${id}`, formData, {
         headers: {
             Authorization: `Bearer ${realToken()}`,
@@ -231,8 +231,14 @@ const courseSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(getAllCourses.fulfilled, (state, action) => {
-                state.isLoading = false;
+                state.course = {};
+                state.courseChapters = [];
+                state.courseChapter = {};
+                state.quizzesResult = [];
+                // state.quiz = {},
+                // state.quizs = [],
                 state.courses = action.payload.data;
+                state.isLoading = false;
             })
             .addCase(getAllCourses.rejected, (state) => {
                 state.isLoading = false;

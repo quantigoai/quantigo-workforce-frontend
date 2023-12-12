@@ -28,8 +28,14 @@ const CourseNewDetailsIndex = () => {
     navigate(`/update-chapter/${courseChapter._id}`);
   };
   const handleEditQuiz = () => {
-    navigate(`/update-quiz/${courseChapter._id}`);
-    dispatch(getAQuizById(courseChapter.quiz.id));
+    dispatch(getAQuizById(courseChapter.quiz.id)).then((action) => {
+      console.log(action)
+      if (action.payload.status === 200) {
+        navigate(`/update-quiz/${courseChapter._id}`);
+
+      }
+    })
+
   };
   const handleStart = (id) => {
     navigate(`/course-details/${id}/content`);

@@ -8,7 +8,7 @@ const ChapterCreateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
   const { course, courseChapter } = useSelector((state) => state.course);
   const [isActiveChapter, setIsActiveChapter] = useState(false);
   const [isDIsable, setIsDisable] = useState(false);
-  const [isDisableChapterBtn,setIsDisableChapter]=useState(false)
+  const [isDisableChapterBtn, setIsDisableChapter] = useState(false);
   const [isActiveQuiz, setIsActiveQuiz] = useState(false);
   const location = useLocation();
 
@@ -16,11 +16,10 @@ const ChapterCreateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
     if (location.pathname.includes("create-chapter")) {
       setIsActiveChapter(true);
       setIsDisable(true);
-    } else if(location.pathname.includes("quiz-create")){
-
-
-    }
-     else {
+    } else if (location.pathname.includes("quiz-create")) {
+      setIsActiveQuiz(true);
+      setIsDisableChapter(true);
+    } else {
       setIsActiveQuiz(true);
     }
   }, [location.pathname]);
@@ -79,6 +78,7 @@ const ChapterCreateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
                   },
                 }}
                 onClick={handleChapterCreate}
+                disabled={isDisableChapterBtn}
               >
                 Chapter
               </Button>

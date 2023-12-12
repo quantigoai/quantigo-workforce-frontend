@@ -27,6 +27,7 @@ const ChapterCreateIndex = () => {
   const [content, setContent] = useState("");
   const dispatch = useDispatch();
   const [durationTime, setDurationTime] = useState("");
+  const [isDisable, setIsDisable] = useState(true);
   useEffect(() => {
     const duration = courseChapters?.reduce((accumulator, currentValue) => {
       return accumulator + currentValue.estimatedTimeToRead || 0;
@@ -86,18 +87,19 @@ const ChapterCreateIndex = () => {
   const methods = useForm({
     resolver: yupResolver(CourseCreateSchema),
     mode: "all",
-    // defaultValues: {
-    //   project_platform: 'encord',
-    //   project_drawer_name: 'xxxxxxxxxxxx',
-    //   project_type: 'image',
-    //   project_batch: '2',
-    //   project_alias: 'xxxxxxxxxxx',
-    //   pdr: '3',
-    //   project_status: 'in-Progress',
-    // },
   });
 
-  const { handleSubmit } = methods;
+  const { watch, handleSubmit } = methods;
+  const { title, estimatedTimeToRead, description } = watch();
+  const isFieldNotEmpty = !!title && !!estimatedTimeToRead && !!description;
+
+  useEffect(() => {
+    if (isFieldNotEmpty) {
+      setIsDisable(false);
+    } else {
+      setIsDisable(true);
+    }
+  }, [isFieldNotEmpty]);
   const onSubmit = (data) => {
     const finalData = {
       ...data,
@@ -118,15 +120,13 @@ const ChapterCreateIndex = () => {
   return (
     <Box className="content" sx={{ backgroundColor: "neutral.N000" }}>
       <Grid container sx={{ borderTop: "1px solid #E6ECF5", paddingTop: "1%" }}>
-        <Grid xs={2}>
-          
-        </Grid>
+        <Grid xs={2}></Grid>
         <Grid xs={8}>
           <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
             <Box className="">
               {/* <QuizHeader />
           <Button type="submit"> Create</Button> */}
-              <ChapterCreateHeader durationTime={durationTime} />
+              <ChapterCreateHeader isDisable={isDisable} isLoading={isLoading} durationTime={durationTime} />
             </Box>
 
             <Box
@@ -214,7 +214,7 @@ const ChapterCreateIndex = () => {
                     <ChapterDescritionField name="description" label="Chapter Description" isRequired={true} />
                   </Grid>
                 </Grid>
-                <Grid item xs={12} sx={{ py: 2, backgroundColor: "" }}>
+                <Grid item xs={12} sx={{ py: 5, backgroundColor: "" }}>
                   <ContentField
                     //  course={course}
                     uploadPlugin={uploadPlugin}

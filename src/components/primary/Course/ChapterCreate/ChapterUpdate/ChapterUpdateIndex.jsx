@@ -261,7 +261,7 @@ const ChapterUpdateIndex = () => {
                     />
                   </Grid>
                 </Grid>
-                <Grid item xs={12} sx={{ py: 2, backgroundColor: "" }}>
+                <Grid item xs={12} sx={{ py: 5, backgroundColor: "" }}>
                   <ContentField
                     //  course={course}
                     courseChapter={courseChapter}

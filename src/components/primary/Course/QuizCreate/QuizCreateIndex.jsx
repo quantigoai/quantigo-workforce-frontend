@@ -1,15 +1,13 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import backIcon from "../../../../assets/images/dashboardIcon/GoBackIcon.svg";
 import useToaster from "../../../../customHooks/useToaster";
 import { createAQuiz } from "../../../../features/slice/quizSlice";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
 import ChapterCreateHeader from "../ChapterCreate/ChapterCreateHeader";
 import QuestionType from "../QuizPage/QuestionType";
 import QuizNameDurationField from "../QuizPage/QuizNameDurationField";
-import ChapterUpdateHeader from "../ChapterCreate/ChapterUpdateHeader";
 
 const QuizCreateIndex = () => {
   const { courseChapter, courseChapters } = useSelector((state) => state.course);
@@ -138,14 +136,14 @@ const QuizCreateIndex = () => {
     data.questionAndAnswer = inputFields;
     console.log(formData);
     dispatch(createAQuiz(formData)).then((action) => {
-      if (action.payload?.status === 200) {
+      if (action.error) {
+        toast.trigger(action.error.message, "error");
+      } else {
         // const courseId = action.payload.data.course._id;
         // const { _id, name } = action.payload.data;
         // dispatch(manuallyUpdateCourse({ id: _id, name }));
         // navigate(`/course-details/${courseId}/content`);
         toast.trigger("Quiz Create Successfully", "success");
-      } else {
-        toast.trigger("Quiz can not create", "error");
       }
     });
     for (let pair of formData.entries()) {

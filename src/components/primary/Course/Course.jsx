@@ -23,6 +23,7 @@ import CustomCard from "./CustomCard";
 import CourseCreateModal from "./CreateCourseModal/CourseCreateModal";
 
 const Course = () => {
+  console.log("ghhhhhhhh")
   const { role } = useSelector((state) => state.user.user);
   const { courses } = useSelector((state) => state.course);
   const { isLightTheme } = useSelector((state) => state.theme);

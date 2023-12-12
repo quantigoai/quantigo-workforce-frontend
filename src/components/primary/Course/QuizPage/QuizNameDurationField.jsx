@@ -3,21 +3,22 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CustomTextField from "../../../shared/CustomField/CustomTextField";
 
-const QuizNameDurationField = ({ methods, onSubmit, handleSubmit }) => {
+const QuizNameDurationField = ({ methods, onSubmit, handleSubmit, update }) => {
   const { quiz } = useSelector((state) => state.quiz);
-  console.log("🚀 ~ file: QuizNameDurationField.jsx:8 ~ QuizNameDurationField ~ quiz:", quiz);
+
   return (
     <Box sx={{ display: "flex", justifyContent: "space-between", paddingBottom: "2%" }} gap={2}>
-      <Box sx={{ width: "100%", height: "100%" }}>
+      <Box sx={{ width: "100%", height: "100px" }}>
         <CustomTextField
           name="quiz_name"
           label="Quiz Name"
-          defaultValue={quiz.name}
+          defaultValue={update ? quiz.name : ""}
           InputProps={
             {
               //disableUnderline: true,
             }
           }
+          isRequired={true}
         />
       </Box>
 
@@ -28,14 +29,11 @@ const QuizNameDurationField = ({ methods, onSubmit, handleSubmit }) => {
         }}
       >
         <CustomTextField
+          placeholder={"Duration between 1 to 20"}
           name="duration"
-          label="duration"
-          defaultValue={quiz.duration}
-          InputProps={
-            {
-              //disableUnderline: true,
-            }
-          }
+          label="Duration (Minutes)"
+          defaultValue={update ? quiz.duration : ""}
+          isNumber={true}
         />
       </Box>
     </Box>

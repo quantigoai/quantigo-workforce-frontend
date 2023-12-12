@@ -76,12 +76,12 @@ const QuizUpdateIndex = () => {
         ...newTempData1.questionAndAnswer[qaID]?.pa,
         ...(i !== "questionType"
           ? {
-            [i]: v,
-            ...(newTempData1.questionAndAnswer[qaID]?.pa?.questionType ? {} : { questionType: f.questionType }),
-          }
+              [i]: v,
+              ...(newTempData1.questionAndAnswer[qaID]?.pa?.questionType ? {} : { questionType: f.questionType }),
+            }
           : {
-            [i]: v,
-          }),
+              [i]: v,
+            }),
       },
     };
     // newTempData1.questionAndAnswer[qaID] = {
@@ -141,7 +141,6 @@ const QuizUpdateIndex = () => {
               if (val.pa.questionType === "default") {
                 setDisabledButton(false);
               }
-
             }
             if (val.pa.questionType === "imageAndOptions") {
               setDisabledButton(true);
@@ -254,7 +253,7 @@ const QuizUpdateIndex = () => {
               </Box>
 
               <Box sx={{ backgroundColor: "" }}>
-                <QuizNameDurationField method={methods} onSubmit={onSubmit} handleSubmit={handleSubmit} />
+                <QuizNameDurationField update={true} method={methods} onSubmit={onSubmit} handleSubmit={handleSubmit} />
               </Box>
               <Box
                 sx={{

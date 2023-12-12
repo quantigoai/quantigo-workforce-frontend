@@ -7,6 +7,8 @@ import { getAQuizById } from "../../../../features/slice/quizSlice";
 
 const ChapterUpdateHeader = ({ isEditChapter, disabledButton, durationTime }) => {
   const { course, courseChapter } = useSelector((state) => state.course);
+  console.log("🚀 ~ file: ChapterUpdateHeader.jsx:10 ~ ChapterUpdateHeader ~ courseChapter:", courseChapter);
+  const { isLoading } = useSelector((state) => state.quiz);
   const dispatch = useDispatch();
 
   const [isActiveChapter, setIsActiveChapter] = useState(false);
@@ -25,8 +27,11 @@ const ChapterUpdateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
     if (!courseChapter.quiz) {
       navigate(`/quiz-create/${course._id}`);
     } else {
-      navigate(`/update-quiz/${courseChapter._id}`);
-      dispatch(getAQuizById(courseChapter.quiz.id));
+      dispatch(getAQuizById(courseChapter.quiz.id)).then((action) => {
+        if (action.payload.status === 200) {
+          navigate(`/update-quiz/${courseChapter._id}`);
+        }
+      });
     }
   };
   const handleChapterUpdate = () => {
@@ -95,6 +100,7 @@ const ChapterUpdateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
                     color: isActiveQuiz ? "#fff" : "#36B37E",
                   },
                 }}
+                disabled={isLoading}
                 onClick={handleQuizUpdate}
               >
                 Quiz

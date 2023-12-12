@@ -10,7 +10,8 @@ import ChapterCreateHeader from "../ChapterCreate/ChapterCreateHeader";
 import QuestionType from "../QuizPage/QuestionType";
 import QuizNameDurationField from "../QuizPage/QuizNameDurationField";
 import ChapterUpdateHeader from "../ChapterCreate/ChapterUpdateHeader";
-
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 const QuizCreateIndex = () => {
   const { courseChapter, courseChapters } = useSelector((state) => state.course);
   const toast = useToaster();
@@ -83,9 +84,18 @@ const QuizCreateIndex = () => {
 
     setInputFields(newInputFields);
   };
+  const quizSchema = Yup.object().shape({
+    quiz_name: Yup.string().required("Quiz name is required"),
+    // duration: Yup.string().required(" Quiz duration is required"),
+    duration: Yup.number()
+      .required("Quiz duration is required")
+      .lessThan(21, "Quiz duration must be in range between 1 to 20")
+      .transform((value) => (isNaN(value) ? undefined : value)),
+  });
   const methods = useForm({
-    // resolver: yupResolver(LoginSchema),
+    resolver: yupResolver(quizSchema),
     // defaultValues,
+    mode: "all",
   });
   const {
     reset,
@@ -194,8 +204,13 @@ const QuizCreateIndex = () => {
                 <ChapterCreateHeader durationTime={durationTime} />
               </Box>
 
-              <Box sx={{ backgroundColor: "" }}>
-                <QuizNameDurationField method={methods} onSubmit={onSubmit} handleSubmit={handleSubmit} />
+              <Box sx={{ backgroundColor: "", mt: 3 }}>
+                <QuizNameDurationField
+                  method={methods}
+                  onSubmit={onSubmit}
+                  handleSubmit={handleSubmit}
+                  update={false}
+                />
               </Box>
               <Box
                 sx={{

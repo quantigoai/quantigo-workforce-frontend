@@ -37,6 +37,7 @@ const useToaster = () => {
     request,
     setDataLading,
     { initialMessage = 'Loading...', inPending, afterSuccess, afterError },
+    forProjectDirectory = false,
   ) => {
     await toast.promise(request, {
       pending: {
@@ -49,6 +50,7 @@ const useToaster = () => {
       },
       success: {
         render({ data }) {
+          console.log('🚀 ~ file: useToaster.jsx:52 ~ render ~ data:', data);
           afterSuccess(data);
           setDataLading(false);
           return `${data.data.message}`;
@@ -59,7 +61,9 @@ const useToaster = () => {
         render({ data }) {
           afterError(data);
           setDataLading(false);
-          return data.response.data.message;
+          return forProjectDirectory
+            ? data.response.data.detail
+            : data.response.data.message;
         },
       },
     });

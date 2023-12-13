@@ -9,7 +9,7 @@
 import { Alert, AlertTitle, Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CourseDeleteModal from "../../../primary/Course/CourseDetailsPage/CourseDeleteModal";
 import CourseNewHeaderBottom from "../../../primary/CourseNew/CourseNewHeaderBottom/CourseNewHeaderBottom";
 import editCourseIcon from "../../../../assets/images/edit.svg";
@@ -17,7 +17,12 @@ import RectangleIcon from "../../../../assets/images/Rectangle 3.svg";
 import EditCourseModal from "../../../primary/Course/CreateCourseModal/EditCourseModal";
 import CourseProgressBar from "../../../primary/Course/CourseProgressBar";
 import CommonHeaderProgress from "./CommonHeaderProgress";
-
+import useToaster from "../../../../customHooks/useToaster";
+import * as Yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
+import { updateACourseById } from "../../../../features/slice/courseSlice.js";
 const CommonHeaderForCourse = ({
   isLoading,
   title,
@@ -28,11 +33,10 @@ const CommonHeaderForCourse = ({
   durationTime,
 }) => {
   const navigate = useNavigate();
-  const { course } = useSelector((state) => state.course);
   const { user } = useSelector((state) => state.user);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+
   const handleNavigation = (navigateLink) => {
     switch (navigateLink) {
       case "Create Course":
@@ -56,6 +60,139 @@ const CommonHeaderForCourse = ({
       default:
         break;
     }
+  };
+
+  const { course, courses } = useSelector((state) => state.course);
+  console.log("🚀 ~ file: CommonHeaderForCourse.jsx:66 ~ course:", course);
+  const [preRequisiteCourses, setPreRequisiteCourses] = useState([]);
+  const { skills } = useSelector((state) => state.skill);
+  const dispatch = useDispatch();
+  const toast = useToaster();
+  const [skillSet1, setSkillSet1] = useState([]);
+  const [skillSet2, setSkillSet2] = useState([]);
+  const [skill, setSkill] = useState([]);
+  const [isSkillEmpty, setIsSkillEmpty] = useState(false);
+  const [isPreRequisiteCourseEmpty, setIsPreRequisiteCourseEmpty] = useState(false);
+  const [preRequisite, setPreRequisite] = useState([]);
+  const [preRequisite1, setPreRequisite1] = useState([]);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleChangeSkills = (event) => {
+    const {
+      target: { value },
+    } = event;
+    const selectedSkills = value.map((skill) => {
+      return skills.find((s) => s.name === skill);
+    });
+
+    // value.map((skill) => {
+    selectedSkills.map((skill) => {
+      const preData = {
+        name: skill.name,
+        id: skill._id,
+      };
+      setSkillSet1([
+        {
+          ...preData,
+        },
+      ]);
+    });
+    setSkillSet2([
+      {
+        ...skillSet1,
+      },
+    ]);
+    !selectedSkills.length && setIsSkillEmpty(true);
+    setSkill(
+      // On autofill we get a stringified value.
+      typeof selectedSkills === "string" ? value.split(",") : selectedSkills
+    );
+  };
+  const [coverImageFile, setCoverImageFile] = useState([]);
+  const [coverImage, setCoverImage] = useState(null);
+  const handleImage = (e) => {
+    setCoverImageFile(e[0]);
+    const file = e[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setCoverImage(url);
+    }
+  };
+
+  const removeImage = () => {
+    setCoverImageFile(null);
+    setCoverImage(null);
+  };
+  const handleChange_Pre_Requisite_Course = (event) => {
+    const {
+      target: { value },
+    } = event;
+
+    const selectedPreRequisiteCourses = value.map((course) => {
+      return courses.find((c) => c.name === course);
+    });
+
+    selectedPreRequisiteCourses.map((preRequisite) => {
+      const preData = {
+        name: preRequisite.name,
+        id: preRequisite._id,
+      };
+      setPreRequisite([
+        {
+          ...preData,
+        },
+      ]);
+    });
+    setPreRequisite1([
+      {
+        ...preRequisite,
+      },
+    ]);
+    !selectedPreRequisiteCourses.length && setIsPreRequisiteCourseEmpty(true);
+    setPreRequisiteCourses(
+      typeof selectedPreRequisiteCourses === "string" ? value.split(",") : selectedPreRequisiteCourses
+    );
+  };
+
+  const onSubmit = (data) => {
+    const preRequisiteCoursesColl = preRequisiteCourses.map((preRequisite) => {
+      return preRequisite._id;
+    });
+    const skillColl = skill.map((skill) => {
+      return skill._id;
+    });
+
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("category", data.category);
+    formData.append("level", data.level);
+    formData.append("language", data.language);
+    formData.append("description", data.description);
+    formData.append("images", coverImageFile);
+    formData.append("prerequisiteCourses", preRequisiteCoursesColl);
+    formData.append("skills", skillColl);
+    // preRequisiteCourses.length && formData.append("prerequisiteCourses", preRequisiteCoursesColl);
+    // isPreRequisiteCourseEmpty && formData.append("prerequisiteCourses", []);
+    // skill.length && formData.append("skills", skillColl);
+    // isSkillEmpty && formData.append("skills", []);
+
+    const newData = {
+      id: course._id,
+      formData,
+    };
+
+    dispatch(updateACourseById(newData)).then((action) => {
+      if (action.payload?.status === 200) {
+        // navigate("/course");
+        toast.trigger("Course updated successfully", "success");
+        handleClose();
+        // setOpen(false);
+      } else {
+        toast.trigger("Can not create course", "error");
+      }
+    });
   };
 
   const goPreviousPage = () => {
@@ -168,7 +305,21 @@ const CommonHeaderForCourse = ({
                               <img src={editCourseIcon} />
                             </Button>
                             {/* <Button onClick={handleOpen}>Create Course</Button> */}
-                            <EditCourseModal open={open} handleClose={handleClose} />
+                            <EditCourseModal
+                              open={open}
+                              handleClose={handleClose}
+                              onSubmit={onSubmit}
+                              course={course}
+                              preRequisiteCourses={preRequisiteCourses}
+                              handleChange_Pre_Requisite_Course={handleChange_Pre_Requisite_Course}
+                              skills={skills}
+                              handleChangeSkills={handleChangeSkills}
+                              coverImage={coverImage}
+                              removeImage={removeImage}
+                              handleImage={handleImage}
+                              isLoading={isLoading}
+                              skill={skill}
+                            />
 
                             <CourseDeleteModal
                               course={course}

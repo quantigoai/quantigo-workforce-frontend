@@ -1,32 +1,35 @@
-import FirstPageIcon from "@mui/icons-material/FirstPage";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import LastPageIcon from "@mui/icons-material/LastPage";
-import { Box, Grid, IconButton, useTheme } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import useToaster from "../../../customHooks/useToaster";
+import FirstPageIcon from '@mui/icons-material/FirstPage';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import LastPageIcon from '@mui/icons-material/LastPage';
+import { Box, IconButton, useTheme } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import useToaster from '../../../customHooks/useToaster';
 import {
   clearProjectDirectory,
   createProjectDirectory,
   deleteProjectDirectory,
   filterProjectByDirectory,
   getProjectByDirectory,
+  getProjectSyncFunction,
   setCurrentProjectDirectory,
   updateProjectDirectory,
-} from "../../../features/slice/ProjectDirectorySlice";
-import { setActivePath } from "../../../features/slice/activePathSlice";
-import TableWrapper from "../../primary/ProjectLIstNew2/ExpTable/TableWrapper";
-import { projectDirectoryField } from "../../primary/ProjectLIstNew2/FIlterOptions";
-import { HeaderBox, TablePaper } from "../../primary/ProjectLIstNew2/ProjectLIstIndex2";
-import fieldBuilder from "../../shared/CustomTable/fieldBuilder";
-import LoadingComponent from "../../shared/Loading/LoadingComponent";
-import CreateProjectDirectoryModal from "../CreateProjectDirectory/CreateProjectDirectoryModal";
-import SearchProjectDirectory from "../ProjectDirectoryFilter/SearchProjectDirectory";
-import ProjectDirectoryHeader from "../ProjectDirectoryHeader/ProjectDirectoryHeader";
-import ProjectDirectoryDetailsModal from "./ProjectDirectoryDetailsModal";
-import ProjectDirectoryEditModal from "./ProjectDirectoryEditModal";
+} from '../../../features/slice/ProjectDirectorySlice';
+import { setActivePath } from '../../../features/slice/activePathSlice';
+import TableWrapper from '../../primary/ProjectLIstNew2/ExpTable/TableWrapper';
+import { projectDirectoryField } from '../../primary/ProjectLIstNew2/FIlterOptions';
+import {
+  HeaderBox,
+  TablePaper,
+} from '../../primary/ProjectLIstNew2/ProjectLIstIndex2';
+import fieldBuilder from '../../shared/CustomTable/fieldBuilder';
+import LoadingComponent from '../../shared/Loading/LoadingComponent';
+import CreateProjectDirectoryModal from '../CreateProjectDirectory/CreateProjectDirectoryModal';
+import ProjectDirectoryHeader from '../ProjectDirectoryHeader/ProjectDirectoryHeader';
+import ProjectDirectoryDetailsModal from './ProjectDirectoryDetailsModal';
+import ProjectDirectoryEditModal from './ProjectDirectoryEditModal';
 // import ProjectDirectoryDetailsModal from "./ProjectDirectoryDetailsModal";
 
 function TablePaginationActions(props) {
@@ -51,25 +54,41 @@ function TablePaginationActions(props) {
 
   return (
     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-      <IconButton onClick={handleFirstPageButtonClick} disabled={page === 0} aria-label="first page">
-        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
+      <IconButton
+        onClick={handleFirstPageButtonClick}
+        disabled={page === 0}
+        aria-label="first page"
+      >
+        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
-      <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
-        {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+      <IconButton
+        onClick={handleBackButtonClick}
+        disabled={page === 0}
+        aria-label="previous page"
+      >
+        {theme.direction === 'rtl' ? (
+          <KeyboardArrowRight />
+        ) : (
+          <KeyboardArrowLeft />
+        )}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        {theme.direction === 'rtl' ? (
+          <KeyboardArrowLeft />
+        ) : (
+          <KeyboardArrowRight />
+        )}
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
+        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
   );
@@ -80,34 +99,39 @@ const ProjectDirectoryIndex = () => {
   const { role } = user.user;
   const [projectDirectorys, setProjectDirectory] = useState([]);
   const dispatch = useDispatch();
-  const { projectDirectory, isLoading } = useSelector((state) => state.projectDirectory);
+  const { projectDirectory, isLoading } = useSelector(
+    (state) => state.projectDirectory,
+  );
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const toast = useToaster();
   const [anchorE2, setAnchorE2] = React.useState(null);
-  const [industryType, setIndustryType] = useState("");
-  const [clientAliasFilter, setClientAliasesFilter] = useState("");
-  const [dataTypeFilter, setDataTypeFilter] = useState("");
-  const [pDRFilter, setPDRFilter] = useState("");
-  const [annotationFilter, setAnnotationFilter] = useState("");
-  const [platformFieldFilter, setPlatformFieldFilter] = useState("");
-  const [projectTypeFieldFilter, setProjectTypeFieldFilter] = useState("");
-  const [actionItemsFieldFilter, setActionItemsFieldFilter] = useState("");
-  const [qaCheckPointFieldFilter, setQaCheckPointFieldFilter] = useState("");
-  const [objBenchMarkFieldFilter, setObjBenchMarkFieldFilter] = useState("");
-  const [imgBenchMarkFieldFilter, setImgBenchMarkFieldFilter] = useState("");
-  const [deletionFieldFilter, setDeletionFieldFilter] = useState("");
-  const [toolTypeFieldFilter, setToolTypeFieldFilter] = useState("");
+  const [industryType, setIndustryType] = useState('');
+  const [clientAliasFilter, setClientAliasesFilter] = useState('');
+  const [dataTypeFilter, setDataTypeFilter] = useState('');
+  const [pDRFilter, setPDRFilter] = useState('');
+  const [annotationFilter, setAnnotationFilter] = useState('');
+  const [platformFieldFilter, setPlatformFieldFilter] = useState('');
+  const [projectTypeFieldFilter, setProjectTypeFieldFilter] = useState('');
+  const [actionItemsFieldFilter, setActionItemsFieldFilter] = useState('');
+  const [qaCheckPointFieldFilter, setQaCheckPointFieldFilter] = useState('');
+  const [objBenchMarkFieldFilter, setObjBenchMarkFieldFilter] = useState('');
+  const [imgBenchMarkFieldFilter, setImgBenchMarkFieldFilter] = useState('');
+  const [deletionFieldFilter, setDeletionFieldFilter] = useState('');
+  const [toolTypeFieldFilter, setToolTypeFieldFilter] = useState('');
   const [qAField, setQAFilter] = useState(false);
-  const [qAFieldFilter, setQAFieldFilter] = useState("");
-  const [qABenchmarkFieldFilter, setQABenchmarkFieldFilter] = useState("");
-  const [judgementTimeFieldFilter, setJudgementTimeFieldFilter] = useState("");
-  const [skipImageFieldFilter, setSkipImageFieldFilter] = useState("");
-  const [imageLoadingFieldFilter, setImageLoadingFieldFilter] = useState("");
-  const [objectSavingTimeFieldFilter, setobjectSavingTimeFieldFilter] = useState("");
-  const [videoWatchTimeFieldFilter, setVideoWatchTimeFieldFilter] = useState("");
-  const [taggingBenchMarkFieldFilter, setTaggingBenchMarkFieldFilter] = useState("");
-  const [date, setDate] = useState("");
+  const [qAFieldFilter, setQAFieldFilter] = useState('');
+  const [qABenchmarkFieldFilter, setQABenchmarkFieldFilter] = useState('');
+  const [judgementTimeFieldFilter, setJudgementTimeFieldFilter] = useState('');
+  const [skipImageFieldFilter, setSkipImageFieldFilter] = useState('');
+  const [imageLoadingFieldFilter, setImageLoadingFieldFilter] = useState('');
+  const [objectSavingTimeFieldFilter, setobjectSavingTimeFieldFilter] =
+    useState('');
+  const [videoWatchTimeFieldFilter, setVideoWatchTimeFieldFilter] =
+    useState('');
+  const [taggingBenchMarkFieldFilter, setTaggingBenchMarkFieldFilter] =
+    useState('');
+  const [date, setDate] = useState('');
   const [pdrSetFilter, setPdrSetFilter] = useState(false);
   const [Client_AliasSetFilter, setClient_AliasSetFilter] = useState(false);
   const [annotationSetFilter, setAnnotationSetFilter] = useState(false);
@@ -140,64 +164,64 @@ const ProjectDirectoryIndex = () => {
   };
 
   const handleMenuItemClick = (e) => {
-    if (e === "PDR") {
+    if (e === 'PDR') {
       setPdrSetFilter(true);
     }
-    if (e === "QA") {
+    if (e === 'QA') {
       setQAFilter(true);
     }
-    if (e === "QA_Benchmark") {
+    if (e === 'QA_Benchmark') {
       setQABenchmarkField(true);
     }
-    if (e === "Judgement_Time") {
+    if (e === 'Judgement_Time') {
       setJudgementTimeFilter(true);
     }
-    if (e === "Skip_Image") {
+    if (e === 'Skip_Image') {
       setSkipImageFilter(true);
     }
-    if (e === "Image_Loading") {
+    if (e === 'Image_Loading') {
       setImageLoadingFilter(true);
     }
-    if (e === "Object_Saving_Time") {
+    if (e === 'Object_Saving_Time') {
       setObjectSavingTimeFilter(true);
     }
-    if (e === "Video_Watch_Time") {
+    if (e === 'Video_Watch_Time') {
       setVideoWatchTimeFilter(true);
     }
-    if (e === "Deletion") {
+    if (e === 'Deletion') {
       setDeletionFilter(true);
     }
-    if (e === "Tagging_Benchmark") {
+    if (e === 'Tagging_Benchmark') {
       setTagingBenchMarkFilter(true);
     }
-    if (e === "Img_Benchmark") {
+    if (e === 'Img_Benchmark') {
       setImageBenchMarkFilter(true);
     }
-    if (e === "Obj_Benchmark") {
+    if (e === 'Obj_Benchmark') {
       setObjBenchMarkFilter(true);
     }
-    if (e === "QA_Check_Points") {
+    if (e === 'QA_Check_Points') {
       setQaCheckPointFilter(true);
     }
-    if (e === "Action_Items") {
+    if (e === 'Action_Items') {
       setActionItemsFilter(true);
     }
-    if (e === "Project_Type") {
+    if (e === 'Project_Type') {
       setProjectTypeFilter(true);
     }
-    if (e === "Tool_Type") {
+    if (e === 'Tool_Type') {
       setToolTypeFilter(true);
     }
-    if (e === "Platform") {
+    if (e === 'Platform') {
       setPlatformField(true);
     }
-    if (e === "Client_Alias") {
+    if (e === 'Client_Alias') {
       setClient_AliasSetFilter(true);
     }
-    if (e === "Industry") {
+    if (e === 'Industry') {
       setIndustrySetFilter(true);
     }
-    if (e === "Annotation") {
+    if (e === 'Annotation') {
       setAnnotationSetFilter(true);
     }
     setAnchorEl(null);
@@ -207,24 +231,54 @@ const ProjectDirectoryIndex = () => {
       ...(industryType ? { industryType: industryType } : {}),
       ...(clientAliasFilter ? { clientAliasFilter: clientAliasFilter } : {}),
       ...(dataTypeFilter ? { dataTypeFilter: dataTypeFilter } : {}),
-      ...(actionItemsFieldFilter ? { actionItemsFieldFilter: actionItemsFieldFilter } : {}),
+      ...(actionItemsFieldFilter
+        ? { actionItemsFieldFilter: actionItemsFieldFilter }
+        : {}),
       ...(qAFieldFilter ? { qAFieldFilter: qAFieldFilter } : {}),
-      ...(qABenchmarkFieldFilter ? { qABenchmarkFieldFilter: qABenchmarkFieldFilter } : {}),
-      ...(judgementTimeFieldFilter ? { judgementTimeFieldFilter: judgementTimeFieldFilter } : {}),
-      ...(skipImageFieldFilter ? { skipImageFieldFilter: skipImageFieldFilter } : {}),
-      ...(imageLoadingFieldFilter ? { imageLoadingFieldFilter: imageLoadingFieldFilter } : {}),
-      ...(objectSavingTimeFieldFilter ? { objectSavingTimeFieldFilter: objectSavingTimeFieldFilter } : {}),
-      ...(videoWatchTimeFieldFilter ? { videoWatchTimeFieldFilter: videoWatchTimeFieldFilter } : {}),
-      ...(toolTypeFieldFilter ? { toolTypeFieldFilter: toolTypeFieldFilter } : {}),
-      ...(deletionFieldFilter ? { deletionFieldFilter: deletionFieldFilter } : {}),
-      ...(platformFieldFilter ? { platformFieldFilter: platformFieldFilter } : {}),
-      ...(projectTypeFieldFilter ? { projectTypeFieldFilter: projectTypeFieldFilter } : {}),
+      ...(qABenchmarkFieldFilter
+        ? { qABenchmarkFieldFilter: qABenchmarkFieldFilter }
+        : {}),
+      ...(judgementTimeFieldFilter
+        ? { judgementTimeFieldFilter: judgementTimeFieldFilter }
+        : {}),
+      ...(skipImageFieldFilter
+        ? { skipImageFieldFilter: skipImageFieldFilter }
+        : {}),
+      ...(imageLoadingFieldFilter
+        ? { imageLoadingFieldFilter: imageLoadingFieldFilter }
+        : {}),
+      ...(objectSavingTimeFieldFilter
+        ? { objectSavingTimeFieldFilter: objectSavingTimeFieldFilter }
+        : {}),
+      ...(videoWatchTimeFieldFilter
+        ? { videoWatchTimeFieldFilter: videoWatchTimeFieldFilter }
+        : {}),
+      ...(toolTypeFieldFilter
+        ? { toolTypeFieldFilter: toolTypeFieldFilter }
+        : {}),
+      ...(deletionFieldFilter
+        ? { deletionFieldFilter: deletionFieldFilter }
+        : {}),
+      ...(platformFieldFilter
+        ? { platformFieldFilter: platformFieldFilter }
+        : {}),
+      ...(projectTypeFieldFilter
+        ? { projectTypeFieldFilter: projectTypeFieldFilter }
+        : {}),
       ...(annotationFilter ? { annotationFilter: annotationFilter } : {}),
       ...(pDRFilter ? { pdr: pDRFilter } : {}),
-      ...(qaCheckPointFieldFilter ? { qaCheckPointFieldFilter: qaCheckPointFieldFilter } : {}),
-      ...(imgBenchMarkFieldFilter ? { imgBenchMarkFieldFilter: imgBenchMarkFieldFilter } : {}),
-      ...(taggingBenchMarkFieldFilter ? { taggingBenchMarkFieldFilter: taggingBenchMarkFieldFilter } : {}),
-      ...(objBenchMarkFieldFilter ? { objBenchMarkFieldFilter: objBenchMarkFieldFilter } : {}),
+      ...(qaCheckPointFieldFilter
+        ? { qaCheckPointFieldFilter: qaCheckPointFieldFilter }
+        : {}),
+      ...(imgBenchMarkFieldFilter
+        ? { imgBenchMarkFieldFilter: imgBenchMarkFieldFilter }
+        : {}),
+      ...(taggingBenchMarkFieldFilter
+        ? { taggingBenchMarkFieldFilter: taggingBenchMarkFieldFilter }
+        : {}),
+      ...(objBenchMarkFieldFilter
+        ? { objBenchMarkFieldFilter: objBenchMarkFieldFilter }
+        : {}),
       ...(date ? { date } : {}),
     };
     dispatch(filterProjectByDirectory(data)).then((action) => {
@@ -234,26 +288,26 @@ const ProjectDirectoryIndex = () => {
     });
   };
   const handleResetProjectDirectory = () => {
-    setVideoWatchTimeFieldFilter("");
-    setPlatformFieldFilter("");
-    setProjectTypeFieldFilter("");
-    setActionItemsFieldFilter("");
-    setObjBenchMarkFieldFilter("");
-    setImgBenchMarkFieldFilter("");
-    setDeletionFieldFilter("");
-    setToolTypeFieldFilter("");
-    setQAFieldFilter("");
-    setQABenchmarkFieldFilter("");
-    setJudgementTimeFieldFilter("");
-    setSkipImageFieldFilter("");
-    setImageLoadingFieldFilter("");
-    setobjectSavingTimeFieldFilter("");
-    setTaggingBenchMarkFieldFilter("");
-    setIndustryType("");
-    setClientAliasesFilter("");
-    setDataTypeFilter("");
-    setPDRFilter("");
-    setAnnotationFilter("");
+    setVideoWatchTimeFieldFilter('');
+    setPlatformFieldFilter('');
+    setProjectTypeFieldFilter('');
+    setActionItemsFieldFilter('');
+    setObjBenchMarkFieldFilter('');
+    setImgBenchMarkFieldFilter('');
+    setDeletionFieldFilter('');
+    setToolTypeFieldFilter('');
+    setQAFieldFilter('');
+    setQABenchmarkFieldFilter('');
+    setJudgementTimeFieldFilter('');
+    setSkipImageFieldFilter('');
+    setImageLoadingFieldFilter('');
+    setobjectSavingTimeFieldFilter('');
+    setTaggingBenchMarkFieldFilter('');
+    setIndustryType('');
+    setClientAliasesFilter('');
+    setDataTypeFilter('');
+    setPDRFilter('');
+    setAnnotationFilter('');
     setQAFilter(false);
     setPdrSetFilter(false);
     setQABenchmarkField(false);
@@ -316,12 +370,16 @@ const ProjectDirectoryIndex = () => {
   const [isDataLoading, setIsDataLoading] = useState(true);
   const [isChildDataLoading, setIsChildDataLoading] = useState(false);
   const [myRows, setMyRows] = useState([]);
-  const { projectDirectorySingle } = useSelector((state) => state.projectDirectory);
+  const { projectDirectorySingle } = useSelector(
+    (state) => state.projectDirectory,
+  );
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
   });
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
+  const [openReject, setOpenReject] = React.useState(false);
+  const [isSyncLoading, setIsSyncLoading] = useState(false);
   const searchRef = React.useRef(null);
   const handleEditClose = () => {
     setOpenProjectModalEdit(false);
@@ -341,9 +399,9 @@ const ProjectDirectoryIndex = () => {
   const handleDelete = (e) => {
     dispatch(deleteProjectDirectory(e.id)).then((action) => {
       if (action?.payload?.status === 200) {
-        toast.trigger("Successfully Deleted Project Directory", "success");
+        toast.trigger('Successfully Deleted Project Directory', 'success');
       } else {
-        toast.trigger("Project Directory do not Delete", "error");
+        toast.trigger('Project Directory do not Delete', 'error');
       }
     });
   };
@@ -368,30 +426,63 @@ const ProjectDirectoryIndex = () => {
   };
 
   const clearSearch = () => {
-    setSearch("");
-    searchRef.current.value = "";
-    dispatch(getProjectByDirectory(""));
+    setSearch('');
+    searchRef.current.value = '';
+    dispatch(getProjectByDirectory(''));
   };
 
   useEffect(() => {
     setIsDataLoading(true);
-    dispatch(setActivePath("Project Directory"));
+    dispatch(setActivePath('Project Directory'));
     dispatch(clearProjectDirectory());
     dispatch(getProjectByDirectory(search)).then((action) => {
-      setMyColumn(fieldBuilder(projectDirectoryField, handleClick, handleDelete));
+      setMyColumn(
+        fieldBuilder(projectDirectoryField, handleClick, handleDelete),
+      );
       setIsChildDataLoading(false);
       setIsDataLoading(false);
     });
   }, [search]);
 
+  const handleGetSync = async () => {
+    await toast.responsePromise(
+      getProjectSyncFunction(),
+      setIsSyncLoading,
+      {
+        initialMessage: 'project directory is syncing ...',
+        inPending: () => {
+          setOpenReject(false);
+        },
+        afterSuccess: (data) => {
+          setOpenReject(false);
+          dispatch(getProjectByDirectory());
+        },
+        afterError: () => {
+          setOpenReject(false);
+        },
+      },
+      true,
+    );
+    // dispatch(getProjectSync()).then((action) => {
+    //   setIsSyncLoading(true);
+    //   if (action.payload.status === 200) {
+    //     toast.trigger(action.payload.data, "success");
+    //     setIsSyncLoading(false);
+    //   } else {
+    //     toast.trigger(action.payload.data, "error");
+    //     setIsSyncLoading(false);
+    //   }
+    // });
+  };
+
   const onSubmit = (data) => {
     dispatch(createProjectDirectory(data)).then((action) => {
       if (action.payload.status === 200) {
         setOpenModal(false);
-        toast.trigger("Successfully created Project Directory", "success");
+        toast.trigger('Successfully created Project Directory', 'success');
         reset();
       } else {
-        toast.trigger("Project Directory do not create", "error");
+        toast.trigger('Project Directory do not create', 'error');
         reset();
       }
     });
@@ -405,17 +496,19 @@ const ProjectDirectoryIndex = () => {
     dispatch(updateProjectDirectory(finalData)).then((action) => {
       if (action?.payload?.status === 200) {
         setOpenProjectModalEdit(false);
-        toast.trigger("Successfully Updated Project Directory", "success");
+        toast.trigger('Successfully Updated Project Directory', 'success');
       } else {
-        toast.trigger("Project Directory can not Updated", "error");
+        toast.trigger('Project Directory can not Updated', 'error');
       }
     });
   };
   return (
     <Box>
-      <Box sx={{ paddingBottom: "1%" }}>
-        <HeaderBox sx={{ backgroundColor: "" }}>
+      <Box sx={{ paddingBottom: '1%' }}>
+        <HeaderBox sx={{ backgroundColor: '' }}>
           <ProjectDirectoryHeader
+            handleGetSync={handleGetSync}
+            isSyncLoading={isSyncLoading}
             search={search}
             setSearch={setSearch}
             searchRef={searchRef}
@@ -499,7 +592,7 @@ const ProjectDirectoryIndex = () => {
       </Box>
       <Box>
         <Box className="contentBody">
-          <TablePaper sx={{ backgroundColor: "" }}>
+          <TablePaper sx={{ backgroundColor: '' }}>
             {isDataLoading ? (
               <LoadingComponent />
             ) : (
@@ -552,7 +645,9 @@ const ProjectDirectoryIndex = () => {
         <ProjectDirectoryDetailsModal
           openProjectModalDetails={openProjectModalDetails}
           item={projectDirectorySingle}
-          handleDetailsProjectDirectoryClose={handleDetailsProjectDirectoryClose}
+          handleDetailsProjectDirectoryClose={
+            handleDetailsProjectDirectoryClose
+          }
         />
       )}
     </Box>

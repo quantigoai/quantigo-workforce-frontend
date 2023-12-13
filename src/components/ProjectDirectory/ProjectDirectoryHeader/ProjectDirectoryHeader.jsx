@@ -6,7 +6,12 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import FilterListOffIcon from "@mui/icons-material/FilterListOff";
 import MiniModalProjectDirectoryNew from "../ProjectDirectoryFilter/MiniModalProjectDirectoryNew";
 import { ClearIcon } from "@mui/x-date-pickers";
+import SyncIcon from "@mui/icons-material/Sync";
+import { LoadingButton } from "@mui/lab";
+import { is } from "date-fns/locale";
 const ProjectDirectoryHeader = ({
+  handleGetSync,
+  isSyncLoading,
   search,
   setSearch,
   searchRef,
@@ -213,21 +218,6 @@ const ProjectDirectoryHeader = ({
             horizontal: "left",
           }}
         >
-          {/* <MiniModelProjectDirectory
-          handleCloseFilter={handleCloseFilter}
-          setIndustryType={setIndustryType}
-          handleFilterProjectDirectory={handleFilterProjectDirectory}
-          handleResetProjectDirectory={handleResetProjectDirectory}
-          industryType={industryType}
-          setClientAliasesFilter={setClientAliasesFilter}
-          clientAliasFilter={clientAliasFilter}
-          setPDRFilter={setPDRFilter}
-          pDRFilter={pDRFilter}
-          setDataTypeFilter={setDataTypeFilter}
-          dataTypeFilter={dataTypeFilter}
-          setAnnotationFilter={setAnnotationFilter}
-          annotationFilter={annotationFilter}
-        /> */}
           <MiniModalProjectDirectoryNew
             handleCloseFilter={handleCloseFilter}
             setIndustryType={setIndustryType}
@@ -300,7 +290,36 @@ const ProjectDirectoryHeader = ({
             anchorEl={anchorEl}
           />
         </Popover>
+        <LoadingButton
+          disabled={isSyncLoading}
+          loading={isSyncLoading}
+          sx={{
+            textTransform: "none",
+            borderRadius: "8px",
+            backgroundColor: "#FFAB00",
+            height: {
+              lg: "30px",
+              xl: "40px",
+              xxl: "40px",
+            },
 
+            fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
+            lineHeight: "20px",
+            width: {
+              lg: "128px",
+              xl: "128px",
+              xxl: "140px",
+            },
+            color: "white",
+            "&:hover": {
+              background: "#F2A200",
+            },
+            padding: "16px 10px",
+          }}
+          onClick={handleGetSync}
+        >
+          <SyncIcon sx={{ fontSize: "20px" }} /> Sync
+        </LoadingButton>
         <Button
           sx={{
             textTransform: "none",
@@ -311,6 +330,7 @@ const ProjectDirectoryHeader = ({
               xl: "40px",
               xxl: "40px",
             },
+            marginLeft: "13px",
             fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
             lineHeight: "20px",
             width: {

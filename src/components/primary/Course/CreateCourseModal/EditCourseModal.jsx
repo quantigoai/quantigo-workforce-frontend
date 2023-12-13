@@ -218,20 +218,19 @@ const EditCourseModal = ({ handleClose, open }) => {
     const skillColl = skill.map((skill) => {
       return skill._id;
     });
-
+    console.log("🚀 ~ file: EditCourseModal.jsx:227 ~ onSubmit ~ coverImageFile:", coverImageFile);
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("category", data.category);
     formData.append("level", data.level);
     formData.append("language", data.language);
     formData.append("description", data.description);
-    formData.append("images", coverImageFile);
-    console.log("🚀 ~ file: EditCourseModal.jsx:227 ~ onSubmit ~ coverImageFile:", coverImageFile);
+    coverImageFile.length !== 0 && formData.append("images", coverImageFile);
 
-    // preRequisiteCourses.length && formData.append("prerequisiteCourses", preRequisiteCoursesColl);
-    // isPreRequisiteCourseEmpty && formData.append("prerequisiteCourses", []);
-    // skill.length && formData.append("skills", skillColl);
-    // isSkillEmpty && formData.append("skills", []);
+    preRequisiteCourses.length && formData.append("prerequisiteCourses", preRequisiteCoursesColl);
+    isPreRequisiteCourseEmpty && formData.append("prerequisiteCourses", []);
+    skill.length && formData.append("skills", skillColl);
+    isSkillEmpty && formData.append("skills", []);
 
     const newData = {
       id: course._id,

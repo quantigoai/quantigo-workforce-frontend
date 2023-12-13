@@ -81,25 +81,32 @@ const ChapterCreateIndex = () => {
   }
   const CourseCreateSchema = Yup.object().shape({
     title: Yup.string().required("Course title is required"),
-    estimatedTimeToRead: Yup.string().required("estimated time is required"),
-    description: Yup.string().required("Course description is required"),
+    estimatedTimeToRead: Yup.number()
+      .required("Chapter estimated time is required")
+      .lessThan(21, "Chapter estimated time must be in range between 1 to 20")
+      .transform((value) => (isNaN(value) ? undefined : value)),
+    description: Yup.string().required("Chapter description is required"),
   });
   const methods = useForm({
     resolver: yupResolver(CourseCreateSchema),
     mode: "all",
   });
 
-  const { watch, handleSubmit } = methods;
+  const {
+    watch,
+    handleSubmit,
+    formState: { errors },
+  } = methods;
   const { title, estimatedTimeToRead, description } = watch();
   const isFieldNotEmpty = !!title && !!estimatedTimeToRead && !!description;
-
+  const isInValid = errors.estimatedTimeToRead;
   useEffect(() => {
-    if (isFieldNotEmpty) {
+    if (isFieldNotEmpty && !isInValid?.message) {
       setIsDisable(false);
     } else {
       setIsDisable(true);
     }
-  }, [isFieldNotEmpty]);
+  }, [isFieldNotEmpty, isInValid?.message]);
   const onSubmit = (data) => {
     const finalData = {
       ...data,

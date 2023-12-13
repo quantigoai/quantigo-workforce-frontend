@@ -13,6 +13,8 @@ import {
   deleteProjectDirectory,
   filterProjectByDirectory,
   getProjectByDirectory,
+  getProjectSync,
+  getProjectSyncFunction,
   setCurrentProjectDirectory,
   updateProjectDirectory,
 } from "../../../features/slice/ProjectDirectorySlice";
@@ -322,6 +324,8 @@ const ProjectDirectoryIndex = () => {
     pageSize: 10,
   });
   const [search, setSearch] = useState("");
+  const [openReject, setOpenReject] = React.useState(false);
+  const [isSyncLoading, setIsSyncLoading] = useState(false);
   const searchRef = React.useRef(null);
   const handleEditClose = () => {
     setOpenProjectModalEdit(false);
@@ -384,6 +388,33 @@ const ProjectDirectoryIndex = () => {
     });
   }, [search]);
 
+  const handleGetSync = async () => {
+    await toast.responsePromise(getProjectSyncFunction(), setIsSyncLoading, {
+      initialMessage: "project directory is syncing ...",
+      inPending: () => {
+        setOpenReject(false);
+      },
+      afterSuccess: (data) => {
+        console.log("🚀 ~ file: ProjectDirectoryIndex.jsx:405 ~ awaittoast.responsePromise ~ data:", data);
+        setOpenReject(false);
+        // dispatch(getProjectByDirectory());
+      },
+      afterError: () => {
+        setOpenReject(false);
+      },
+    });
+    // dispatch(getProjectSync()).then((action) => {
+    //   setIsSyncLoading(true);
+    //   if (action.payload.status === 200) {
+    //     toast.trigger(action.payload.data, "success");
+    //     setIsSyncLoading(false);
+    //   } else {
+    //     toast.trigger(action.payload.data, "error");
+    //     setIsSyncLoading(false);
+    //   }
+    // });
+  };
+
   const onSubmit = (data) => {
     dispatch(createProjectDirectory(data)).then((action) => {
       if (action.payload.status === 200) {
@@ -416,6 +447,8 @@ const ProjectDirectoryIndex = () => {
       <Box sx={{ paddingBottom: "1%" }}>
         <HeaderBox sx={{ backgroundColor: "" }}>
           <ProjectDirectoryHeader
+            handleGetSync={handleGetSync}
+            isSyncLoading={isSyncLoading}
             search={search}
             setSearch={setSearch}
             searchRef={searchRef}

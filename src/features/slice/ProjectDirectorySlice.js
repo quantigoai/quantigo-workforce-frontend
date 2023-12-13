@@ -223,6 +223,21 @@ export const getClientAliases = createAsyncThunk("/project/Client/Aliases", asyn
     throw new Error(error);
   }
 });
+// get sync
+export const getProjectSync = createAsyncThunk("/project/Client/sync", async () => {
+  try {
+    return axios.get(`${url}/api/ProjectList/sync/`);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+export const getProjectSyncFunction = async () => {
+  try {
+    return axios.get(`${url}/api/ProjectList/sync`);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
 // create Project Directory
 export const createProjectDirectory = createAsyncThunk("Project/Directory/create", async (data) => {
   try {
@@ -336,6 +351,16 @@ const ProjectDirectory = createSlice({
         state.error = null;
       })
       .addCase(getIndustryType.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(getProjectSync.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getProjectSync.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getProjectSync.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(getClientAliases.pending, (state) => {

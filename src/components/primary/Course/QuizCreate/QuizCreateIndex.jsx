@@ -10,9 +10,12 @@ import FormProvider from "../../../shared/FormProvider/FormProvider";
 import ChapterCreateHeader from "../ChapterCreate/ChapterCreateHeader";
 import QuestionType from "../QuizPage/QuestionType";
 import QuizNameDurationField from "../QuizPage/QuizNameDurationField";
+import { useNavigate, useParams } from "react-router-dom";
 const QuizCreateIndex = () => {
   const { courseChapter, courseChapters } = useSelector((state) => state.course);
   const toast = useToaster();
+  const { id } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isDisable, setIsDisable] = useState(true);
   const [durationTime, setDurationTime] = useState("");
@@ -168,6 +171,7 @@ const QuizCreateIndex = () => {
         // dispatch(manuallyUpdateCourse({ id: _id, name }));
         // navigate(`/course-details/${courseId}/content`);
         toast.trigger("Quiz Create Successfully", "success");
+        navigate(`/course-details/${id}/index`);
       }
     });
     for (let pair of formData.entries()) {

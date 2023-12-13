@@ -118,7 +118,7 @@ const ChapterUpdateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
         >
           <Button
             type="submit"
-            disabled={disabledButton}
+            // disabled={disabledButton}
             // disabled={true}
             sx={{
               backgroundColor: "#2E58FF",

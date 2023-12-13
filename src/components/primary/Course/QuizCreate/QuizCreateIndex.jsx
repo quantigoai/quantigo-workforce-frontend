@@ -68,10 +68,14 @@ const QuizCreateIndex = () => {
   const handleChangeInput = (uniqueId, event) => {
     const newInputFields = inputFields.map((i) => {
       if (event?.target?.name === "questionText") {
-        i.question[event.target.name] = event.target.value;
+        if (uniqueId === i.uniqueId) {
+          i.question[event.target.name] = event.target.value;
+        }
       }
       if (event?.target?.name === "questionImage") {
-        i.question[event.target.name] = event.target.files[0];
+        if (uniqueId === i.uniqueId) {
+          i.question[event.target.name] = event.target.files[0];
+        }
       }
       if (event?.target?.name === "questionText" && event?.target?.name === "questionImage") {
         if (uniqueId === i.uniqueId) {
@@ -157,6 +161,7 @@ const QuizCreateIndex = () => {
       // formData.append(`questionAndAnswer[${index}][correctAnswer]`, qa.correctAnswer);
       formData.append(`questionAndAnswer[${index}][correctAnswerIndex]`, qa.correctAnswerIndex);
     });
+    console.log("🚀 ~ file: QuizCreateIndex.jsx:160 ~ inputFields.forEach ~ inputFields:", inputFields);
 
     data.questionAndAnswer = inputFields;
     dispatch(createAQuiz(formData)).then((action) => {

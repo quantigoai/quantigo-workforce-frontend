@@ -5,6 +5,7 @@ import BasicOptionField from "../QuistionField/BasicOptionField";
 import QuestionWithImage from "../QuistionField/QuestionWithImage";
 
 const ImageWithTitleIndex = ({ handleChangeInput, inputField, inputFields, handleUpdate, update }) => {
+  console.log("🚀 ~ file: ImageWithTitleIndex.jsx:8 ~ ImageWithTitleIndex ~ inputField:", inputField)
   return (
     <>
       <Box>

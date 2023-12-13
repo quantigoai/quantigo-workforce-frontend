@@ -84,21 +84,7 @@ const QuizUpdateIndex = () => {
             }),
       },
     };
-    // newTempData1.questionAndAnswer[qaID] = {
-    //   pa: {
-    //     ...newTempData1.questionAndAnswer[qaID]?.pa,
-    //     ...(i !== "questionType"
-    //       ? {
-    //           [i]: v,
-    //           questionType: f.questionType,
-    //         }
-    //       : {
-    //           [i]: v,
-    //         }),
-    //     // ...newTempData1.questionAndAnswer[qaID]?.pa,
-    //     // [i]: v,
-    //   },
-    // };
+    
     setTempData(newTempData1);
   };
 console.log(tempData)
@@ -185,6 +171,7 @@ console.log(tempData)
   const handleAddQA = () => {
     setInputFields([
       ...inputFields,
+    
       {
         uniqueId: new Date().getTime(),
         question: {},
@@ -195,7 +182,7 @@ console.log(tempData)
       },
     ]);
   };
-
+  console.log("🚀 ~ file: QuizUpdateIndex.jsx:188 ~ handleAddQA ~ inputFields:", inputFields)
   const {
     reset,
     setError,

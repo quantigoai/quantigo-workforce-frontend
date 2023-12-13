@@ -31,6 +31,7 @@ export const TextFieldQuestion = styled(TextField)(() => ({
   },
 }));
 const QuestionWithImage = ({ handleChangeInput, inputField, inputFields, handleUpdate, update }) => {
+
   const [coverImageFile, setCoverImageFile] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
 
@@ -43,6 +44,7 @@ const QuestionWithImage = ({ handleChangeInput, inputField, inputFields, handleU
     }
     if (update) {
       handleUpdate(e.target.files[0], "questionImage", inputField);
+   
     } else {
       handleChangeInput(inputField.uniqueId, e);
     }
@@ -59,7 +61,8 @@ const QuestionWithImage = ({ handleChangeInput, inputField, inputFields, handleU
               sx={{
                 mb: 0,
                 color: "neutral.N300",
-              }}>
+              }}
+            >
               Question Name
             </Typography>
             <Box sx={{ width: "100%" }}>
@@ -92,7 +95,8 @@ const QuestionWithImage = ({ handleChangeInput, inputField, inputFields, handleU
               sx={{
                 mb: 0,
                 color: "neutral.N300",
-              }}>
+              }}
+            >
               Upload Image
             </Typography>
             <Box sx={{ width: "100%" }}>
@@ -140,7 +144,8 @@ const QuestionWithImage = ({ handleChangeInput, inputField, inputFields, handleU
                       }}
                       color="primary"
                       aria-label="upload picture"
-                      component="span">
+                      component="span"
+                    >
                       <i className="ri-upload-2-line"></i>
                       <Typography
                         variant="wpf_h7_medium"
@@ -148,7 +153,8 @@ const QuestionWithImage = ({ handleChangeInput, inputField, inputFields, handleU
                           pl: 1,
                           textTransform: "none",
                           color: "#2E58FF",
-                        }}>
+                        }}
+                      >
                         Upload
                       </Typography>
                     </Button>

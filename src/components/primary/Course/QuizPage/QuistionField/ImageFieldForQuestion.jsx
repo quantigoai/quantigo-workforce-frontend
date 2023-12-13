@@ -30,22 +30,8 @@ const VisuallyHiddenInput = styled("input")({
   width: 10,
 });
 
-const ImageFieldForQuestion = ({ inputField, handleUpdate, handleChangeInput, update, handleImageFn }) => {
-  const handleImage = (e, id) => {
-    console.log("🚀 ~ file: QuestionWithImage.jsx:56 ~ handleImage ~ id:", id);
-    // setCoverImageFile(e.target.files[0]);
-    const file = e.target.files[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
-      // setCoverImage(url);
-    }
-    if (update) {
-      console.log("🚀 ~ file: QuestionWithImage.jsx:68 ~ handleImage ~ inputField:", inputField);
-      handleUpdate(e.target.files[0], "questionImage", inputField);
-    } else {
-      handleChangeInput(inputField.uniqueId, e);
-    }
-  };
+const ImageFieldForQuestion = ({ inputField, handleUpdate, handleChangeInput, update }) => {
+ 
 
   return (
     <>

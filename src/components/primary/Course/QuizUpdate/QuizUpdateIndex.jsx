@@ -87,46 +87,7 @@ const QuizUpdateIndex = () => {
 
     setTempData(newTempData1);
   };
-  // const handleImageFn = (value, index, field, id) => {
-  const handleImageFn = (e, id) => {
-    console.log(
-      '🚀 ~ file: QuizUpdateIndex.jsx:103 ~ handleImageFn ~ e:',
-      e.target.files[0],
-    );
-    console.log('🚀 ~ file: QuizUpdateIndex.jsx:102 ~ handleImageFn ~ id:', id);
-    // console.log(
-    //   '🚀 ~ file: QuizUpdateIndex.jsx:71 ~ handleUpdate ~ field:',
-    //   field,
-    // );
-    // console.log(
-    //   '🚀 ~ file: QuizUpdateIndex.jsx:71 ~ handleUpdate ~ index:',
-    //   index,
-    // );
-    // console.log(
-    //   '🚀 ~ file: QuizUpdateIndex.jsx:71 ~ handleUpdate ~ value:',
-    //   value,
-    // );
-    // const qaID = field._id;
-    // const newTempData1 = { ...tempData };
-    // newTempData1.quizId = quiz._id;
-    // newTempData1.questionAndAnswer[qaID] = {
-    //   pa: {
-    //     ...newTempData1.questionAndAnswer[qaID]?.pa,
-    //     ...(index !== 'questionType'
-    //       ? {
-    //           [index]: value,
-    //           ...(newTempData1.questionAndAnswer[qaID]?.pa?.questionType
-    //             ? {}
-    //             : { questionType: field.questionType }),
-    //         }
-    //       : {
-    //           [index]: value,
-    //         }),
-    //   },
-    // };
-
-    // setTempData(newTempData1);
-  };
+ 
   console.log(tempData);
   useEffect(() => {
     Object.entries(tempData.questionAndAnswer).map(([key, val], i) => {
@@ -335,7 +296,6 @@ const QuizUpdateIndex = () => {
                         inputField={inputField}
                         inputFields={inputFields}
                         handleUpdate={handleUpdate}
-                        handleImageFn={handleImageFn}
                         update={true}
                       />
                     </Box>

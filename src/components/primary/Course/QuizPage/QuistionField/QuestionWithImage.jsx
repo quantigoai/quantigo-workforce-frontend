@@ -37,7 +37,7 @@ const QuestionWithImage = ({
   inputFields,
   handleUpdate,
   update,
-  handleImageFn,
+
 }) => {
   const [coverImageFile, setCoverImageFile] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
@@ -89,7 +89,7 @@ const QuestionWithImage = ({
             // handleImage={handleImage}
             handleUpdate={handleUpdate}
             handleChangeInput={handleChangeInput}
-            handleImageFn={handleImageFn}
+        
             update={update}
           />
         </Grid>

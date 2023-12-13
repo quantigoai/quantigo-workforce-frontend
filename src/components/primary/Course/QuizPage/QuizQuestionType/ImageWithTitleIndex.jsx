@@ -10,7 +10,7 @@ const ImageWithTitleIndex = ({
   inputFields,
   handleUpdate,
   update,
-  handleImageFn,
+  
 }) => {
   return (
     <>
@@ -21,7 +21,7 @@ const ImageWithTitleIndex = ({
           inputFields={inputFields}
           handleUpdate={handleUpdate}
           update={update}
-          handleImageFn={handleImageFn}
+     
         />
       </Box>
       <Box>

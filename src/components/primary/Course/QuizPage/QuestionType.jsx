@@ -43,7 +43,7 @@ const QuestionType = ({
   inputFields,
   update,
   handleUpdate,
-  handleImageFn,
+  
 }) => {
   const [value, setValue] = React.useState('');
   const [radioValue, setRadioValue] = React.useState('');
@@ -362,7 +362,7 @@ const QuestionType = ({
             inputFields={inputFields}
             handleUpdate={handleUpdate}
             update={update}
-            handleImageFn={handleImageFn}
+          
           />
         </TabPanel>
         <TabPanel

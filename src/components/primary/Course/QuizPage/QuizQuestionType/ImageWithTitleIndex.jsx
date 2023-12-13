@@ -4,8 +4,14 @@ import QuestionName from "../QuistionField/QuestionName";
 import BasicOptionField from "../QuistionField/BasicOptionField";
 import QuestionWithImage from "../QuistionField/QuestionWithImage";
 
-const ImageWithTitleIndex = ({ handleChangeInput, inputField, inputFields, handleUpdate, update }) => {
-  console.log("🚀 ~ file: ImageWithTitleIndex.jsx:8 ~ ImageWithTitleIndex ~ inputField:", inputField)
+const ImageWithTitleIndex = ({
+  handleChangeInput,
+  inputField,
+  inputFields,
+  handleUpdate,
+  update,
+  handleImageFn,
+}) => {
   return (
     <>
       <Box>
@@ -15,6 +21,7 @@ const ImageWithTitleIndex = ({ handleChangeInput, inputField, inputFields, handl
           inputFields={inputFields}
           handleUpdate={handleUpdate}
           update={update}
+          handleImageFn={handleImageFn}
         />
       </Box>
       <Box>

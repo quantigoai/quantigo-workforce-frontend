@@ -1,24 +1,23 @@
-import { Box, Button, Grid } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { updateQuizQA } from "../../../../features/slice/quizSlice";
-import FormProvider from "../../../shared/FormProvider/FormProvider";
-import ChapterCreateHeader from "../ChapterCreate/ChapterCreateHeader";
-import QuestionType from "../QuizPage/QuestionType";
-import QuizNameDurationField from "../QuizPage/QuizNameDurationField";
-import ChapterUpdateHeader from "../ChapterCreate/ChapterUpdateHeader";
+import { Box, Button, Grid } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateQuizQA } from '../../../../features/slice/quizSlice';
+import FormProvider from '../../../shared/FormProvider/FormProvider';
+import ChapterUpdateHeader from '../ChapterCreate/ChapterUpdateHeader';
+import QuestionType from '../QuizPage/QuestionType';
+import QuizNameDurationField from '../QuizPage/QuizNameDurationField';
 
 const QuizUpdateIndex = () => {
   const [inputFields, setInputFields] = useState([]);
   const { courseChapters } = useSelector((state) => state.course);
 
   const [disabledButton, setDisabledButton] = useState(true);
-  const [durationTime, setDurationTime] = useState("");
+  const [durationTime, setDurationTime] = useState('');
   const { quiz } = useSelector((state) => state.quiz);
   const dispatch = useDispatch();
   const [tempData, setTempData] = useState({
-    quizId: "",
+    quizId: '',
     questionAndAnswer: {},
   });
 
@@ -36,19 +35,17 @@ const QuizUpdateIndex = () => {
     const minutes = duration % 60 || 0;
     if (hours === 0) {
       if (minutes === 0) {
-        setDurationTime(minutes + " minute");
+        setDurationTime(minutes + ' minute');
       } else {
-        setDurationTime(minutes + " minutes");
+        setDurationTime(minutes + ' minutes');
       }
     } else {
-      setDurationTime(hours + " hours " + minutes + " minutes");
+      setDurationTime(hours + ' hours ' + minutes + ' minutes');
     }
   }, [quiz]);
 
   const handleChangeInput = (uniqueId, event) => {
-    const newInputFields = inputFields.map((i) => {
-      console.log("🚀 ~ file: QuizUpdateIndex.jsx:31 ~ newInputFields ~ i:", i);
-    });
+    const newInputFields = inputFields.map((i) => {});
 
     // const newInputFields = inputFields.map((i) => {
     //   if (event?.target?.name === "questionText") {
@@ -67,85 +64,145 @@ const QuizUpdateIndex = () => {
 
     // setInputFields(newInputFields);
   };
-  const handleUpdate = (v, i, f) => {
-    const qaID = f._id;
+  const handleUpdate = (value, index, field) => {
+    console.log(
+      '🚀 ~ file: QuizUpdateIndex.jsx:71 ~ handleUpdate ~ field:',
+      field,
+    );
+    console.log(
+      '🚀 ~ file: QuizUpdateIndex.jsx:71 ~ handleUpdate ~ index:',
+      index,
+    );
+    console.log(
+      '🚀 ~ file: QuizUpdateIndex.jsx:71 ~ handleUpdate ~ value:',
+      value,
+    );
+    const qaID = field._id;
     const newTempData1 = { ...tempData };
     newTempData1.quizId = quiz._id;
     newTempData1.questionAndAnswer[qaID] = {
       pa: {
         ...newTempData1.questionAndAnswer[qaID]?.pa,
-        ...(i !== "questionType"
+        ...(index !== 'questionType'
           ? {
-              [i]: v,
-              ...(newTempData1.questionAndAnswer[qaID]?.pa?.questionType ? {} : { questionType: f.questionType }),
+              [index]: value,
+              ...(newTempData1.questionAndAnswer[qaID]?.pa?.questionType
+                ? {}
+                : { questionType: field.questionType }),
             }
           : {
-              [i]: v,
+              [index]: value,
             }),
       },
     };
-    
+
     setTempData(newTempData1);
   };
-console.log(tempData)
+  // const handleImageFn = (value, index, field, id) => {
+  const handleImageFn = (e, id) => {
+    console.log(
+      '🚀 ~ file: QuizUpdateIndex.jsx:103 ~ handleImageFn ~ e:',
+      e.target.files[0],
+    );
+    console.log('🚀 ~ file: QuizUpdateIndex.jsx:102 ~ handleImageFn ~ id:', id);
+    // console.log(
+    //   '🚀 ~ file: QuizUpdateIndex.jsx:71 ~ handleUpdate ~ field:',
+    //   field,
+    // );
+    // console.log(
+    //   '🚀 ~ file: QuizUpdateIndex.jsx:71 ~ handleUpdate ~ index:',
+    //   index,
+    // );
+    // console.log(
+    //   '🚀 ~ file: QuizUpdateIndex.jsx:71 ~ handleUpdate ~ value:',
+    //   value,
+    // );
+    // const qaID = field._id;
+    // const newTempData1 = { ...tempData };
+    // newTempData1.quizId = quiz._id;
+    // newTempData1.questionAndAnswer[qaID] = {
+    //   pa: {
+    //     ...newTempData1.questionAndAnswer[qaID]?.pa,
+    //     ...(index !== 'questionType'
+    //       ? {
+    //           [index]: value,
+    //           ...(newTempData1.questionAndAnswer[qaID]?.pa?.questionType
+    //             ? {}
+    //             : { questionType: field.questionType }),
+    //         }
+    //       : {
+    //           [index]: value,
+    //         }),
+    //   },
+    // };
+
+    // setTempData(newTempData1);
+  };
+  console.log(tempData);
   useEffect(() => {
     Object.entries(tempData.questionAndAnswer).map(([key, val], i) => {
       inputFields.map((i) => {
         if (i._id === key) {
           if (val.pa.questionType != i.questionType) {
-            if (i.questionType === "imageInOptions") {
-              if (val.pa.questionType === "imageAndOptions") {
+            if (i.questionType === 'imageInOptions') {
+              if (val.pa.questionType === 'imageAndOptions') {
                 setDisabledButton(true);
                 const possibleAnswersArray = [
-                  "possibleAnswers_0",
-                  "possibleAnswers_1",
-                  "possibleAnswers_2",
-                  "possibleAnswers_3",
+                  'possibleAnswers_0',
+                  'possibleAnswers_1',
+                  'possibleAnswers_2',
+                  'possibleAnswers_3',
                 ];
-                const allPossibleAnswersPresent = possibleAnswersArray.every((answer) => answer in val.pa);
+                const allPossibleAnswersPresent = possibleAnswersArray.every(
+                  (answer) => answer in val.pa,
+                );
 
-                if (allPossibleAnswersPresent && "questionImage" in val.pa) {
+                if (allPossibleAnswersPresent && 'questionImage' in val.pa) {
                   setDisabledButton(false);
                 }
               }
-              if (val.pa.questionType === "default") {
+              if (val.pa.questionType === 'default') {
                 setDisabledButton(true);
                 const possibleAnswersArray = [
-                  "possibleAnswers_0",
-                  "possibleAnswers_1",
-                  "possibleAnswers_2",
-                  "possibleAnswers_3",
+                  'possibleAnswers_0',
+                  'possibleAnswers_1',
+                  'possibleAnswers_2',
+                  'possibleAnswers_3',
                 ];
-                const allPossibleAnswersPresent = possibleAnswersArray.every((answer) => answer in val.pa);
+                const allPossibleAnswersPresent = possibleAnswersArray.every(
+                  (answer) => answer in val.pa,
+                );
 
                 if (allPossibleAnswersPresent) {
                   setDisabledButton(false);
                 }
               }
             }
-            if (i.questionType === "imageAndOptions") {
-              if (val.pa.questionType === "default") {
+            if (i.questionType === 'imageAndOptions') {
+              if (val.pa.questionType === 'default') {
                 setDisabledButton(false);
               }
             }
-            if (val.pa.questionType === "imageAndOptions") {
+            if (val.pa.questionType === 'imageAndOptions') {
               setDisabledButton(true);
-              if ("questionImage" in val.pa) {
+              if ('questionImage' in val.pa) {
                 setDisabledButton(false);
               }
               // else {
               //   setDisabledButton(true)
               // }
             }
-            if (val.pa.questionType === "imageInOptions") {
+            if (val.pa.questionType === 'imageInOptions') {
               setDisabledButton(true);
               const possibleAnswersArray = [
-                "possibleAnswers_0",
-                "possibleAnswers_1",
-                "possibleAnswers_2",
-                "possibleAnswers_3",
+                'possibleAnswers_0',
+                'possibleAnswers_1',
+                'possibleAnswers_2',
+                'possibleAnswers_3',
               ];
-              const allPossibleAnswersPresent = possibleAnswersArray.every((answer) => answer in val.pa);
+              const allPossibleAnswersPresent = possibleAnswersArray.every(
+                (answer) => answer in val.pa,
+              );
 
               if (allPossibleAnswersPresent) {
                 setDisabledButton(false);
@@ -163,7 +220,7 @@ console.log(tempData)
     const values = [...inputFields];
     values.splice(
       values.findIndex((value) => value.uniqueId === uniqueId),
-      1
+      1,
     );
     setInputFields(values);
   };
@@ -171,18 +228,18 @@ console.log(tempData)
   const handleAddQA = () => {
     setInputFields([
       ...inputFields,
-    
+
       {
         uniqueId: new Date().getTime(),
         question: {},
-        correctAnswerIndex: "",
+        correctAnswerIndex: '',
         possibleAnswers: [],
-        correctAnswer: "",
-        questionType: "default",
+        correctAnswer: '',
+        questionType: 'default',
       },
     ]);
   };
-  console.log("🚀 ~ file: QuizUpdateIndex.jsx:188 ~ handleAddQA ~ inputFields:", inputFields)
+
   const {
     reset,
     setError,
@@ -215,8 +272,11 @@ console.log(tempData)
 
   return (
     <>
-      <Box className="content" sx={{ backgroundColor: "neutral.N000" }}>
-        <Grid container sx={{ borderTop: "1px solid #E6ECF5", paddingTop: "1%" }}>
+      <Box className="content" sx={{ backgroundColor: 'neutral.N000' }}>
+        <Grid
+          container
+          sx={{ borderTop: '1px solid #E6ECF5', paddingTop: '1%' }}
+        >
           <Grid xs={2}>
             {/* <Button
               sx={{
@@ -251,33 +311,42 @@ console.log(tempData)
           <Grid xs={8}>
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
               <Box className="">
-                <ChapterUpdateHeader disabledButton={disabledButton} durationTime={durationTime} />
+                <ChapterUpdateHeader
+                  disabledButton={disabledButton}
+                  durationTime={durationTime}
+                />
               </Box>
 
-              <Box sx={{ backgroundColor: "" }}>
-                <QuizNameDurationField update={true} method={methods} onSubmit={onSubmit} handleSubmit={handleSubmit} />
+              <Box sx={{ backgroundColor: '' }}>
+                <QuizNameDurationField
+                  update={true}
+                  method={methods}
+                  onSubmit={onSubmit}
+                  handleSubmit={handleSubmit}
+                />
               </Box>
               <Box
                 sx={{
                   // height: "76vh",
-                  height: { lg: "73vh", xl: "60vh", xxl: "67vh" },
-                  overflowY: "auto  ",
-                  "&::-webkit-scrollbar": {
-                    width: "0", // Hide the scrollbar
+                  height: { lg: '73vh', xl: '60vh', xxl: '67vh' },
+                  overflowY: 'auto  ',
+                  '&::-webkit-scrollbar': {
+                    width: '0', // Hide the scrollbar
                   },
                   // backgroundColor: "blue",
                 }}
               >
                 {inputFields &&
                   inputFields.map((inputField) => (
-                    <Box key={inputField.uniqueId} sx={{ paddingBottom: "2%" }}>
-                      {" "}
+                    <Box key={inputField.uniqueId} sx={{ paddingBottom: '2%' }}>
+                      {' '}
                       <QuestionType
                         handleRemoveQA={handleRemoveQA}
                         handleChangeInput={handleChangeInput}
                         inputField={inputField}
                         inputFields={inputFields}
                         handleUpdate={handleUpdate}
+                        handleImageFn={handleImageFn}
                         update={true}
                       />
                     </Box>
@@ -285,7 +354,9 @@ console.log(tempData)
               </Box>
             </FormProvider>
             <Box>
-              <Button onClick={() => handleAddQA()}>Add another question</Button>
+              <Button onClick={() => handleAddQA()}>
+                Add another question
+              </Button>
             </Box>
           </Grid>
           <Grid xs={2}></Grid>

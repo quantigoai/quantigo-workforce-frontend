@@ -65,18 +65,7 @@ const QuizUpdateIndex = () => {
     // setInputFields(newInputFields);
   };
   const handleUpdate = (value, index, field) => {
-    console.log(
-      '🚀 ~ file: QuizUpdateIndex.jsx:71 ~ handleUpdate ~ field:',
-      field,
-    );
-    console.log(
-      '🚀 ~ file: QuizUpdateIndex.jsx:71 ~ handleUpdate ~ index:',
-      index,
-    );
-    console.log(
-      '🚀 ~ file: QuizUpdateIndex.jsx:71 ~ handleUpdate ~ value:',
-      value,
-    );
+    
     const qaID = field._id;
     const newTempData1 = { ...tempData };
     newTempData1.quizId = quiz._id;

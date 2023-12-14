@@ -65,10 +65,11 @@ const MenuProps = {
   },
 };
 
-const CourseSkillfiled = ({  skills, skillSet, handleChangeSkills, MenuProps, isUpdate }) => {
+const CourseSkillfiled = ({ skills, skillSet, handleChangeSkills, MenuProps, isUpdate }) => {
+  console.log("🚀 ~ file: CourseSkillfiled.jsx:69 ~ CourseSkillfiled ~ skillSet:", skillSet);
   const location = useLocation();
-  const {  course } = useSelector((state) => state.course);
- 
+  const { course } = useSelector((state) => state.course);
+
   // const [isUpdate, setIsUpdate] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
   const { isLightTheme } = useSelector((state) => state.theme);
@@ -94,7 +95,8 @@ const CourseSkillfiled = ({  skills, skillSet, handleChangeSkills, MenuProps, is
           sx={{
             mb: 0,
             color: "neutral.N300",
-          }}>
+          }}
+        >
           Skill
         </Typography>
         <MySelect
@@ -106,15 +108,11 @@ const CourseSkillfiled = ({  skills, skillSet, handleChangeSkills, MenuProps, is
           multiple
           fullWidth
           variant="outlined"
-         
           onOpen={handleOpenClose}
           onClose={handleOpenClose}
           IconComponent={KeyboardArrowDownIcon}
-         
           defaultValue={isUpdate ? course?.skills.map((s) => s.name) : skillSet}
           onChange={handleChangeSkills}
-        
-
           renderValue={(selected) => (
             <Box
               sx={{
@@ -123,7 +121,8 @@ const CourseSkillfiled = ({  skills, skillSet, handleChangeSkills, MenuProps, is
                 gap: 0.5,
                 fontSize: "12px",
                 height: "20px",
-              }}>
+              }}
+            >
               {selected?.map(
                 (value, i) =>
                   [0].includes(i) && <Chip sx={{ fontSize: "12px", height: "95%" }} key={value} label={value} />
@@ -136,9 +135,10 @@ const CourseSkillfiled = ({  skills, skillSet, handleChangeSkills, MenuProps, is
               )}
             </Box>
           )}
-          MenuProps={MenuProps}>
+          MenuProps={MenuProps}
+        >
           {skills.map((skill) => (
-            <MenuItem sx={{ fontSize: "12px" }}  key={skill._id} value={skill.name}>
+            <MenuItem sx={{ fontSize: "12px" }} key={skill._id} value={skill.name}>
               {skill.name}
             </MenuItem>
           ))}

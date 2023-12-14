@@ -8,7 +8,7 @@
  */
 import { Alert, AlertTitle, Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import CourseDeleteModal from "../../../primary/Course/CourseDetailsPage/CourseDeleteModal";
 import CourseNewHeaderBottom from "../../../primary/CourseNew/CourseNewHeaderBottom/CourseNewHeaderBottom";
@@ -22,20 +22,16 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { updateACourseById } from "../../../../features/slice/courseSlice.js";
-const CommonHeaderForCourse = ({
-  isLoading,
-  title,
-  description,
-  customButton,
-  handleCancel,
-  isLightTheme,
-  durationTime,
-}) => {
+import { getACourseByID, updateACourseById } from "../../../../features/slice/courseSlice.js";
+const CommonHeaderForCourse = ({ durationTime, title, description, isLoading, isLightTheme, customButton }) => {
+  const { course, courses } = useSelector((state) => state.course);
   const navigate = useNavigate();
+  const params = useParams();
   const { user } = useSelector((state) => state.user);
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   const handleNavigation = (navigateLink) => {
     switch (navigateLink) {
@@ -62,12 +58,13 @@ const CommonHeaderForCourse = ({
     }
   };
 
-  const { course, courses } = useSelector((state) => state.course);
-  console.log("🚀 ~ file: CommonHeaderForCourse.jsx:66 ~ course:", course);
+  // const { course, courses } = useSelector((state) => state.course);
+
   const [preRequisiteCourses, setPreRequisiteCourses] = useState([]);
   const { skills } = useSelector((state) => state.skill);
   const dispatch = useDispatch();
   const toast = useToaster();
+
   const [skillSet1, setSkillSet1] = useState([]);
   const [skillSet2, setSkillSet2] = useState([]);
   const [skill, setSkill] = useState([]);
@@ -187,18 +184,19 @@ const CommonHeaderForCourse = ({
       if (action.payload?.status === 200) {
         // navigate("/course");
         toast.trigger("Course updated successfully", "success");
-        handleClose();
-        // setOpen(false);
+        // handleClose();
+        // reset();
+        setOpen(false);
       } else {
         toast.trigger("Can not create course", "error");
       }
     });
   };
 
-  const goPreviousPage = () => {
-    handleCancel && handleCancel();
-    navigate(-1);
-  };
+  // const goPreviousPage = () => {
+  //   handleCancel && handleCancel();
+  //   navigate(-1);
+  // };
 
   return (
     <>

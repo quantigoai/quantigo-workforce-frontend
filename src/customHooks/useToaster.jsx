@@ -13,22 +13,22 @@
  * ------------------------
  */
 
-import { toast } from 'react-toastify';
-import ErrorToaster from '../components/shared/Toaster/ErrorToaster';
-import SuccessToaster from '../components/shared/Toaster/SuccessToaster';
+import { toast } from "react-toastify";
+import ErrorToaster from "../components/shared/Toaster/ErrorToaster";
+import SuccessToaster from "../components/shared/Toaster/SuccessToaster";
 
 const useToaster = () => {
   const trigger = (message, type) => {
-    if (type === 'success') {
+    if (type === "success") {
       toast(<SuccessToaster message={message} />, {
-        className: 'success-toast-background',
-        progressClassName: 'success-progress-bar',
+        className: "success-toast-background",
+        progressClassName: "success-progress-bar",
       });
     }
-    if (type === 'error') {
+    if (type === "error") {
       toast(<ErrorToaster message={message} />, {
-        className: 'error-toast-background',
-        progressClassName: 'error-progress-bar',
+        className: "error-toast-background",
+        progressClassName: "error-progress-bar",
       });
     }
   };
@@ -36,8 +36,8 @@ const useToaster = () => {
   const responsePromise = async (
     request,
     setDataLading,
-    { initialMessage = 'Loading...', inPending, afterSuccess, afterError },
-    forProjectDirectory = false,
+    { initialMessage = "Loading...", inPending, afterSuccess, afterError },
+    forProjectDirectory = false
   ) => {
     await toast.promise(request, {
       pending: {
@@ -50,27 +50,24 @@ const useToaster = () => {
       },
       success: {
         render({ data }) {
-          console.log('🚀 ~ file: useToaster.jsx:52 ~ render ~ data:', data);
           afterSuccess(data);
           setDataLading(false);
           return `${data.data.message}`;
         },
-        icon: '🤙',
+        icon: "🤙",
       },
       error: {
         render({ data }) {
           afterError(data);
           setDataLading(false);
-          return forProjectDirectory
-            ? data.response.data.detail
-            : data.response.data.message;
+          return forProjectDirectory ? data.response.data.detail : data.response.data.message;
         },
       },
     });
   };
 
   const comp = (type) => {
-    if (type === 'success') {
+    if (type === "success") {
       return toast(<h1>Success</h1>);
     } else {
       return toast(<h2>err</h2>);

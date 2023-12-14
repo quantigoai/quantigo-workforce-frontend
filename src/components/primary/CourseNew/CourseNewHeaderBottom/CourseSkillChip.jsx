@@ -1,4 +1,4 @@
-import {Grid, Tooltip, Typography} from "@mui/material";
+import { Grid, Tooltip, Typography } from "@mui/material";
 import React from "react";
 import skillImage from "../../../../assets/images/skillsIcon.svg";
 

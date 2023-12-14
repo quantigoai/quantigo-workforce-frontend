@@ -106,6 +106,7 @@ const ImageFieldForQuestion = ({ inputField, handleUpdate, handleChangeInput, up
                 <VisuallyHiddenInput
                   type="file"
                   accept="image/png,  image/jpeg, image/jpg"
+                  name="questionImage"
                   onChange={
                     update
                       ? (e) => handleUpdate(e.target.files[0], "questionImage", inputField)

@@ -41,6 +41,7 @@ export const createAQuiz = createAsyncThunk('/quizzes', async (data) => {
     throw new Error(error.response.data.message);
   }
 });
+
 // get all Quiz
 // export const getAllQuiz = createAsyncThunk("courses", async (data) => {
 //   return axios.get(`${url}/quizzes`, {
@@ -115,7 +116,21 @@ export const deleteQuestionFromQuiz = createAsyncThunk(
     });
   },
 );
-
+export const insertAQuestionInQuiz = createAsyncThunk('/quizzes/question/:quizId', async (data) => {
+  const { quizId,  formDataQ } = data;
+  try {
+    return await axios.patch(`${url}/quizzes/question/${quizId}`, formDataQ, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+      content: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
 const quizSlice = createSlice({
   name: 'quiz',
   initialState: initialState,
@@ -188,6 +203,24 @@ const quizSlice = createSlice({
         });
       })
       .addCase(updateQuizById.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(insertAQuestionInQuiz.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(insertAQuestionInQuiz.fulfilled, (state, action) => {
+        state.isLoading = false;
+        // state.error = null;
+        // state.quiz = action.payload.data.data;
+        // state.quizs = state.quizs.map((quiz) => {
+        //   if (quiz._id === action.payload.data.data._id) {
+        //     return action.payload.data;
+        //   }
+        //   return quiz;
+        // });
+      })
+      .addCase(insertAQuestionInQuiz.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
       })

@@ -61,6 +61,7 @@ const QuizCreateIndex = () => {
     // navigate(`/course-details/${course._id}/index`);
   }, []);
   const handleRemoveQA = (uniqueId) => {
+    console.log("🚀 ~ file: QuizCreateIndex.jsx:64 ~ handleRemoveQA ~ uniqueId:", uniqueId);
     const values = [...inputFields];
     values.splice(
       values.findIndex((value) => value.uniqueId === uniqueId),
@@ -69,7 +70,10 @@ const QuizCreateIndex = () => {
     setInputFields(values);
   };
   const handleChangeInput = (uniqueId, event) => {
+    console.log("🚀 ~ file: QuizCreateIndex.jsx:73 ~ handleChangeInput ~ uniqueId:", uniqueId)
+    console.log(event.target.name);
     const newInputFields = inputFields.map((i) => {
+     
       if (event?.target?.name === "questionText") {
         if (uniqueId === i.uniqueId) {
           i.question[event.target.name] = event.target.value;
@@ -90,6 +94,7 @@ const QuizCreateIndex = () => {
 
     setInputFields(newInputFields);
   };
+  console.log(inputFields);
   const quizSchema = Yup.object().shape({
     quiz_name: Yup.string().required("Quiz name is required"),
     // duration: Yup.string().required(" Quiz duration is required"),

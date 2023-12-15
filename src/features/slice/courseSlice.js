@@ -277,10 +277,10 @@ const courseSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(deleteAChapterById.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.courseChapters = state.courseChapters.filter((chapter) => {
           return chapter._id !== action.payload.data.courseChapter._id;
         });
+        state.isLoading = false;
       })
       .addCase(deleteAChapterById.rejected, (state, action) => {
         state.isLoading = false;

@@ -45,7 +45,7 @@ const CourseDetails = () => {
     }
 
     // navigate(`/course-details/${course._id}/index`);
-  }, [course._id, params.id]);
+  }, [course._id, params.id, courseChapters.length]);
 
   useEffect(() => {
     navigate(`/course-details/${course._id}/index`);

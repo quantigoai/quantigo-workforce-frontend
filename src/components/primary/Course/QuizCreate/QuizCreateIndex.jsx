@@ -176,7 +176,7 @@ const QuizCreateIndex = () => {
         // dispatch(manuallyUpdateCourse({ id: _id, name }));
         // navigate(`/course-details/${courseId}/content`);
         toast.trigger("Quiz Create Successfully", "success");
-        navigate(`/course-details/${id}/index`);
+        // navigate(`/course-details/${id}/index`);
       }
     });
     for (let pair of formData.entries()) {

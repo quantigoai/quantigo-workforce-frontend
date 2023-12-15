@@ -138,10 +138,6 @@ const ChapterUpdateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
           </Button>
         </Box>
       </Box>
-      <CourseDeleteModal
-        course={course}
-        // handleDeleteCourse={handleDeleteCourse}
-      />
     </>
   );
 };

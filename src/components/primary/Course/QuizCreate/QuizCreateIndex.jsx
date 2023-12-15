@@ -70,10 +70,14 @@ const QuizCreateIndex = () => {
     setInputFields(values);
   };
   const handleChangeInput = (uniqueId, event) => {
-    console.log("🚀 ~ file: QuizCreateIndex.jsx:73 ~ handleChangeInput ~ uniqueId:", uniqueId)
-    console.log(event.target.name);
     const newInputFields = inputFields.map((i) => {
-     
+      if (uniqueId === "imageAndOptions" || uniqueId === "default" || uniqueId === "imageInOptions") {
+        i["possibleAnswers"] = [];
+      }
+      if(uniqueId === "default" || uniqueId === "imageInOptions"){
+        console.log(i.question.questionImage)
+      }
+      console.log("🚀 ~ file: QuizCreateIndex.jsx:94 ~ newInputFields ~ i:", i);
       if (event?.target?.name === "questionText") {
         if (uniqueId === i.uniqueId) {
           i.question[event.target.name] = event.target.value;
@@ -94,6 +98,7 @@ const QuizCreateIndex = () => {
 
     setInputFields(newInputFields);
   };
+  useEffect(() => {}, [inputFields]);
   console.log(inputFields);
   const quizSchema = Yup.object().shape({
     quiz_name: Yup.string().required("Quiz name is required"),

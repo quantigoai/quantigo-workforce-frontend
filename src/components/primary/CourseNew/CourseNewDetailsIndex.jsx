@@ -2,11 +2,14 @@ import { Box, Button, Grid, Paper, styled, Typography } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { enrollACourse } from "../../../features/slice/courseSlice";
+import { deleteAChapterById, enrollACourse } from "../../../features/slice/courseSlice";
 import { updateUserEnrollCourse } from "../../../features/slice/userSlice";
 import { getAQuizById } from "../../../features/slice/quizSlice";
 import editCourseIcon from "../../../assets/images/edit.svg";
 import deleteIcon from "../../../assets/images/delete.svg";
+import useToaster from "../../../customHooks/useToaster";
+import CourseDeleteModal from "../Course/CourseDetailsPage/CourseDeleteModal";
+import ChapterDeleteModal from "./ChapterDeleteModal";
 
 const ButtonStyle = styled(Button)({
   border: "8px",
@@ -24,6 +27,7 @@ const CourseNewDetailsIndex = () => {
 
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const toast = useToaster();
   const handleEditChapter = () => {
     navigate(`/update-chapter/${courseChapter._id}`);
   };
@@ -49,6 +53,13 @@ const CourseNewDetailsIndex = () => {
           dispatch(updateUserEnrollCourse(action.payload.data._id));
         });
     }
+  };
+  const handleDeleteChapter = () => {
+    dispatch(deleteAChapterById(courseChapter._id)).then((action) => {
+      if (action.payload.status === 200) {
+        toast.trigger("Chapter Deleted Successfully", "success");
+      }
+    });
   };
   const paperStyle = {
     // padding: "1%",
@@ -79,14 +90,15 @@ const CourseNewDetailsIndex = () => {
                         >
                           <img src={editCourseIcon} />
                         </Button>
-                        <Button
+                        {/* <Button
                           sx={{
                             borderRadius: "2px",
                           }}
-                          // onClick={() => handleEditChapter()}
+                          onClick={() => handleDeleteChapter()}
                         >
                           <img src={deleteIcon} />
-                        </Button>
+                        </Button> */}
+                        <ChapterDeleteModal courseChapter={courseChapter} />
                       </>
                     )}
                   </Box>

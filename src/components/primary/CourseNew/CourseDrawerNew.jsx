@@ -88,7 +88,7 @@ const CourseDrawerNew = ({ handleChapterClick, durationTime }) => {
                     }}
                     onClick={() => handleCreateChapter(course._id)}
                   >
-                  <AddIcon />
+                    <AddIcon />
                     Create
                   </Button>
                 </Box>
@@ -98,7 +98,7 @@ const CourseDrawerNew = ({ handleChapterClick, durationTime }) => {
             </Box>
           </Box>
           {/* If there are chapters under this course */}
-          {courseChapters?.length &&
+          {courseChapters?.length ? (
             courseChapters.map((courseChapter, index) => (
               <Grid container key={index} sx={{ paddingX: "8px", paddingY: "5px" }}>
                 <Box
@@ -123,7 +123,10 @@ const CourseDrawerNew = ({ handleChapterClick, durationTime }) => {
                   <SingleChapterNew role={user.role} courseChapter={courseChapter} index={index} />
                 </Box>
               </Grid>
-            ))}
+            ))
+          ) : (
+            <></>
+          )}
           <br />
         </Paper>
       </Box>

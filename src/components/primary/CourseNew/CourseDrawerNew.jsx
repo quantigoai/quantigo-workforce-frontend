@@ -14,7 +14,6 @@ import SingleChapterNew from "../Course/SingleChapterNew";
 
 const CourseDrawerNew = ({ handleChapterClick, durationTime }) => {
   const { courseChapters } = useSelector((state) => state.course);
-
   const { activeChapterIndex } = useSelector((state) => state.activePath);
   const { user } = useSelector((state) => state.user);
   const { course, isLoading } = useSelector((state) => state.course);
@@ -30,7 +29,7 @@ const CourseDrawerNew = ({ handleChapterClick, durationTime }) => {
         <Paper elevation={0} sx={{ paddingTop: "0%" }}>
           {/* TODO Handle this smartly */}
           {/* If there are no chapters under this course */}
-          {!courseChapters && <p>No Chapters found for this course</p>}
+
           <Box
             sx={{
               paddingX: "12px",
@@ -52,10 +51,16 @@ const CourseDrawerNew = ({ handleChapterClick, durationTime }) => {
                     variant="wpf_h7_regular"
                     color="neutral.995"
                   >
-                    {courseChapters?.length === 1
-                      ? courseChapters?.length + " Chapter"
-                      : courseChapters?.length + " Chapters"}
-                    , {durationTime}
+                    {!courseChapters?.length ? (
+                      <Typography variant="wpf_h7_regular" color="neutral.995">
+                        No Chapters found for this course
+                      </Typography>
+                    ) : courseChapters?.length === 1 ? (
+                      courseChapters?.length + " Chapter, "
+                    ) : (
+                      courseChapters?.length + " Chapters, "
+                    )}
+                    {!courseChapters?.length ? "" : durationTime}
                   </Typography>
                 </Box>
                 {/* <Grid item xs={12}>

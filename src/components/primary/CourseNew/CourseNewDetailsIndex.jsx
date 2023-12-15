@@ -54,13 +54,7 @@ const CourseNewDetailsIndex = () => {
         });
     }
   };
-  const handleDeleteChapter = () => {
-    dispatch(deleteAChapterById(courseChapter._id)).then((action) => {
-      if (action.payload.status === 200) {
-        toast.trigger("Chapter Deleted Successfully", "success");
-      }
-    });
-  };
+
   const paperStyle = {
     // padding: "1%",
     height: "100%",
@@ -79,7 +73,7 @@ const CourseNewDetailsIndex = () => {
                     </Typography>
                   </Box>
                   <Box>
-                    {courseChapters && (
+                    {courseChapters?.length ? (
                       <>
                         <Button
                           sx={{
@@ -100,6 +94,8 @@ const CourseNewDetailsIndex = () => {
                         </Button> */}
                         <ChapterDeleteModal courseChapter={courseChapter} />
                       </>
+                    ) : (
+                      <></>
                     )}
                   </Box>
                 </Box>

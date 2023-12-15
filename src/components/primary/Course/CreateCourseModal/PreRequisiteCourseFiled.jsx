@@ -44,13 +44,7 @@ const containsText = (text, searchText) => text?.toLowerCase().indexOf(searchTex
 const PreRequisiteCourseFiled = ({ perRequisiteCourses, handleChange_Pre_Requisite_Course, isUpdate }) => {
   const [isOpen, SetIsOpen] = useState(false);
   const location = useLocation();
-  // const [isUpdate, setIsUpdate] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [setCourse, setSetCourse] = React.useState();
   const { courses, course } = useSelector((state) => state.course);
-
-  const { isLightTheme } = useSelector((state) => state.theme);
-  const [value, setValue] = React.useState([]);
 
   const [myOptions, setMyOptions] = useState([]);
 
@@ -72,10 +66,6 @@ const PreRequisiteCourseFiled = ({ perRequisiteCourses, handleChange_Pre_Requisi
     return prerequisiteCourseNames;
   };
   const prerequisiteCourseNames = getPrerequisiteCourseNames(courses, course._id);
-  console.log(
-    "🚀 ~ file: PreRequisiteCourseFiled.jsx:75 ~ PreRequisiteCourseFiled ~ prerequisiteCourseNames:",
-    prerequisiteCourseNames
-  );
 
   useEffect(() => {
     if (!isUpdate) {
@@ -184,15 +174,8 @@ const PreRequisiteCourseFiled = ({ perRequisiteCourses, handleChange_Pre_Requisi
             />
           </ListSubheader>
 
-          {/* <MenuItem disabled value="">
-           
-              {prerequisiteCourseNames.map((pre, idx) => (
-                <p key={idx}>{pre}</p>
-              ))}
-            </span>
-          </MenuItem> */}
           {prerequisiteCourseNames.map((pre, idx) => (
-            <MenuItem sx={{ fontSize: "12px", py: 0.5 }} disabled key={idx}>
+            <MenuItem Item sx={{ fontSize: "12px", py: 0.5 }} disabled key={idx}>
               {pre}
             </MenuItem>
           ))}

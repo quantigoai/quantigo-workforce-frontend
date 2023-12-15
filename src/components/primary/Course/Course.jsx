@@ -54,7 +54,7 @@ const Course = () => {
     dispatch(getAllCourses()).then(() => {
       setIsLoading(false);
     });
-  }, [isLoading]);
+  }, []);
 
   const navigate = useNavigate();
   const [preRequisiteCourses, setPreRequisiteCourses] = React.useState([]);

@@ -71,12 +71,17 @@ const QuizCreateIndex = () => {
   };
   const handleChangeInput = (uniqueId, event) => {
     const newInputFields = inputFields.map((i) => {
-      if (uniqueId === "imageAndOptions" || uniqueId === "default" || uniqueId === "imageInOptions") {
-        i["possibleAnswers"] = [];
+      if (event === "imageAndOptions" || event === "default" || event === "imageInOptions") {
+        if (uniqueId === i.uniqueId) {
+          i["possibleAnswers"] = [];
+        }
       }
-      if (uniqueId === "default" || uniqueId === "imageInOptions") {
-        console.log(i.question.questionImage);
-        i.question["questionImage"] = "";
+      if (event === "default" || event === "imageInOptions") {
+        if (uniqueId === i.uniqueId) {
+          if (i.question.questionImage) {
+            delete i.question.questionImage;
+          }
+        }
       }
       console.log("🚀 ~ file: QuizCreateIndex.jsx:94 ~ newInputFields ~ i:", i);
       if (event?.target?.name === "questionText") {
@@ -175,7 +180,7 @@ const QuizCreateIndex = () => {
       });
 
       // formData.append(`questionAndAnswer[${index}][correctAnswer]`, qa.correctAnswer);
-      if (qa.correctAnswerIndex) {
+      if (qa.correctAnswerIndex >= 0 && qa.correctAnswerIndex < 4) {
         formData.append(`questionAndAnswer[${index}][correctAnswerIndex]`, qa.correctAnswerIndex);
       }
     });

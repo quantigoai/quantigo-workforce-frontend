@@ -90,6 +90,7 @@ const QuestionType = ({
       // setSelectedValue(newValue);
     } else {
       handleChangeInput(
+        inputField.uniqueId,
         (inputField.questionType =
           newValue === 0
             ? "default"
@@ -97,8 +98,7 @@ const QuestionType = ({
             ? "imageAndOptions"
             : newValue === 2
             ? "imageInOptions"
-            : newValue),
-        event
+            : newValue)
       );
       // handleChangeInput((inputField.questionType = "default"), event);
       setValue(newValue);

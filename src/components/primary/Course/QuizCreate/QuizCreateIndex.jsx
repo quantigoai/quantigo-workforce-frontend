@@ -175,26 +175,27 @@ const QuizCreateIndex = () => {
       });
 
       // formData.append(`questionAndAnswer[${index}][correctAnswer]`, qa.correctAnswer);
-      formData.append(`questionAndAnswer[${index}][correctAnswerIndex]`, qa.correctAnswerIndex);
+      if (qa.correctAnswerIndex) {
+        formData.append(`questionAndAnswer[${index}][correctAnswerIndex]`, qa.correctAnswerIndex);
+      }
     });
-    
 
     data.questionAndAnswer = inputFields;
-    // dispatch(createAQuiz(formData)).then((action) => {
-    //   if (action.error) {
-    //     toast.trigger(action.error.message, "error");
-    //   } else {
-    //     // const courseId = action.payload.data.course._id;
-    //     // const { _id, name } = action.payload.data;
-    //     // dispatch(manuallyUpdateCourse({ id: _id, name }));
-    //     // navigate(`/course-details/${courseId}/content`);
-    //     toast.trigger("Quiz Create Successfully", "success");
-    //     navigate(`/course-details/${id}/index`);
-    //   }
-    // });
-    // for (let pair of formData.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
-    // }
+    dispatch(createAQuiz(formData)).then((action) => {
+      if (action.error) {
+        toast.trigger(action.error.message, "error");
+      } else {
+        // const courseId = action.payload.data.course._id;
+        // const { _id, name } = action.payload.data;
+        // dispatch(manuallyUpdateCourse({ id: _id, name }));
+        // navigate(`/course-details/${courseId}/content`);
+        toast.trigger("Quiz Create Successfully", "success");
+        navigate(`/course-details/${id}/index`);
+      }
+    });
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
   };
 
   return (

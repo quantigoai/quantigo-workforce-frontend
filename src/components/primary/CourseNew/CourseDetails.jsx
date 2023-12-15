@@ -12,12 +12,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import { setActiveChapterIndex } from "../../../features/slice/activePathSlice";
-import { getAChapterById, getACourseByID } from "../../../features/slice/courseSlice";
+import { getAChapterById, getACourseByID, updateACourseById } from "../../../features/slice/courseSlice";
 import CommonHeaderForCourse from "../../shared/CustomComponenet/CommonHeader/CommonHeaderForCourse";
 import CourseDrawerNew from "./CourseDrawerNew";
 const CourseDetails = () => {
   const { course, courseChapter, isLoading, courseChapters } = useSelector((state) => state.course);
-  console.log("🚀 ~ file: CourseDetails.jsx:20 ~ CourseDetails ~ courseChapters:", courseChapters);
 
   const { isLightTheme } = useSelector((state) => state.theme);
   const params = useParams();
@@ -46,7 +45,7 @@ const CourseDetails = () => {
     }
 
     // navigate(`/course-details/${course._id}/index`);
-  }, [course._id]);
+  }, [course._id, params.id]);
 
   useEffect(() => {
     navigate(`/course-details/${course._id}/index`);
@@ -71,6 +70,7 @@ const CourseDetails = () => {
       <Box className="projectBox">
         <Box className="courseHeader">
           <CommonHeaderForCourse
+            course={course}
             durationTime={durationTime}
             title={course.name}
             description={course.description}

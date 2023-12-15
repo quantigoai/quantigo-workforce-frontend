@@ -20,11 +20,10 @@ const rejectStyle = {
 };
 
 const CourseCoverImageField = ({ coverImageFile, coverImage, removeImage, handleImage, update }) => {
-  console.log("🚀 ~ file: CourseCoverImageField.jsx:24 ~ CourseCoverImageField ~ update:", update);
   const screenSize = window.innerWidth;
   const { isLightTheme } = useSelector((state) => state.theme);
   const { isLoading, course } = useSelector((state) => state.course);
-  console.log("🚀 ~ file: CourseCoverImageField.jsx:27 ~ CourseCoverImageField ~ course:", course.images);
+
   const { baseUploadBoxStyle } = ndaUploadStyle(isLightTheme);
   const maxSize = 1024000;
   const [isHovered, setIsHovered] = useState(false);
@@ -110,7 +109,8 @@ const CourseCoverImageField = ({ coverImageFile, coverImage, removeImage, handle
                       borderRadius: "8px",
                     }}
                     onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}>
+                    onMouseLeave={handleMouseLeave}
+                  >
                     <img height={175} src={coverImage} alt="" style={{ width, borderRadius: "8px" }} />
                     {/* <p>File : {files}</p> */}
                     {isHovered && (
@@ -129,7 +129,8 @@ const CourseCoverImageField = ({ coverImageFile, coverImage, removeImage, handle
                               color: "#2E58FF",
                               // border: "1px solid #2E58FF",
                             },
-                          }}>
+                          }}
+                        >
                           Replace
                         </Button>
                         {/* <DeleteIcon onClick={removeImage} sx={{ color: "red" }} /> */}
@@ -147,7 +148,8 @@ const CourseCoverImageField = ({ coverImageFile, coverImage, removeImage, handle
                   borderRadius: "8px",
                 }}
                 onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}>
+                onMouseLeave={handleMouseLeave}
+              >
                 <img height={175} src={course.images} alt="Course Image" style={{ width, borderRadius: "8px" }} />
                 {isHovered && (
                   <Box sx={{ color: "red", cursor: "pointer", position: "absolute", top: "45%", right: "43%" }}>
@@ -165,7 +167,8 @@ const CourseCoverImageField = ({ coverImageFile, coverImage, removeImage, handle
                           color: "#2E58FF",
                           // border: "1px solid #2E58FF",
                         },
-                      }}>
+                      }}
+                    >
                       Replace
                     </Button>
                     {/* <DeleteIcon onClick={removeImage} sx={{ color: "red" }} /> */}

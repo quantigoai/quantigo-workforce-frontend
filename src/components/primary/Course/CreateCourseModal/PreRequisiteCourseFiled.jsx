@@ -1,13 +1,13 @@
 import {
-    Box,
-    Chip,
-    InputAdornment,
-    ListSubheader,
-    MenuItem,
-    Select,
-    styled,
-    TextField,
-    Typography,
+  Box,
+  Chip,
+  InputAdornment,
+  ListSubheader,
+  MenuItem,
+  Select,
+  styled,
+  TextField,
+  Typography,
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import React, { useEffect, useMemo, useState } from "react";
@@ -42,42 +42,58 @@ export const MySelect = styled(Select)(() => ({
 const containsText = (text, searchText) => text?.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
 
 const PreRequisiteCourseFiled = ({ perRequisiteCourses, handleChange_Pre_Requisite_Course, isUpdate }) => {
-
   const [isOpen, SetIsOpen] = useState(false);
   const location = useLocation();
-  // const [isUpdate, setIsUpdate] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [setCourse, setSetCourse] = React.useState();
   const { courses, course } = useSelector((state) => state.course);
-  const { isLightTheme } = useSelector((state) => state.theme);
 
   const [myOptions, setMyOptions] = useState([]);
-  useEffect(() => {
 
+  const getPrerequisiteCourseNames = (courseArray, targetId) => {
+    const prerequisiteCourseNames = [];
+
+    for (const course of courseArray) {
+      if (course.prerequisiteCourses && course.prerequisiteCourses.length > 0) {
+        const matchingPrerequisites = course.prerequisiteCourses.filter(
+          (prerequisite) => prerequisite._id === targetId
+        );
+
+        matchingPrerequisites.forEach((prerequisite) => {
+          prerequisiteCourseNames.push(course.name);
+        });
+      }
+    }
+
+    return prerequisiteCourseNames;
+  };
+  const prerequisiteCourseNames = getPrerequisiteCourseNames(courses, course._id);
+
+  useEffect(() => {
     if (!isUpdate) {
       setMyOptions(courses.map((option) => option.name));
     } else {
       setMyOptions(
         courses.map((option) => {
           if (option._id != course._id) {
-            console.log("sds");
-            return option.name;
+            const newOption = option.prerequisiteCourses.find((c) => c._id === course._id);
+            if (!newOption) {
+              return option.name;
+            }
           }
         })
       );
-   
     }
     // setMyOptions(courses.map((option) => option.name));
-  }, []);
+  }, [course._id]);
 
   const [searchText, setSearchText] = useState("");
   const displayedOptions = useMemo(
     () => myOptions.filter((option) => containsText(option, searchText)),
     [myOptions, searchText]
   );
+
   const handleOpenClose = () => {
     SetIsOpen(!isOpen);
-    setSearchText("")
+    setSearchText("");
   };
   // useEffect(() => {
   //   if (!isUpdate) {
@@ -94,7 +110,8 @@ const PreRequisiteCourseFiled = ({ perRequisiteCourses, handleChange_Pre_Requisi
           sx={{
             mb: 0,
             color: "neutral.N300",
-          }}>
+          }}
+        >
           Pre Requisite Courses
         </Typography>
         <MySelect
@@ -116,7 +133,8 @@ const PreRequisiteCourseFiled = ({ perRequisiteCourses, handleChange_Pre_Requisi
                 gap: 0.5,
                 fontSize: "12px",
                 height: "20px",
-              }}>
+              }}
+            >
               {selected?.map(
                 (value, i) =>
                   [0].includes(i) && <Chip sx={{ fontSize: "12px", height: "95%" }} key={value} label={value} />
@@ -145,8 +163,7 @@ const PreRequisiteCourseFiled = ({ perRequisiteCourses, handleChange_Pre_Requisi
                 ),
               }}
               onChange={(e) => {
-                console.log("ss")
-                setSearchText(e.target.value)
+                setSearchText(e.target.value);
               }}
               onKeyDown={(e) => {
                 if (e.key !== "Escape") {
@@ -156,6 +173,12 @@ const PreRequisiteCourseFiled = ({ perRequisiteCourses, handleChange_Pre_Requisi
               }}
             />
           </ListSubheader>
+
+          {prerequisiteCourseNames.map((pre, idx) => (
+            <MenuItem Item sx={{ fontSize: "12px", py: 0.5 }} disabled key={idx}>
+              {pre}
+            </MenuItem>
+          ))}
           {displayedOptions.map((item, i) => (
             <MenuItem sx={{ fontSize: "12px" }} key={i} value={item}>
               {item}

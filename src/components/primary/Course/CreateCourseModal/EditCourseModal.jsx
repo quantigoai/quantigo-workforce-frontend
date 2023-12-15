@@ -3,10 +3,9 @@
  * Path: /home/tanzim/workstation/Office/quantigo-workforce-frontend
  * Created Date: Wednesday, December 13th 2023, 7:09:04 pm
  * Author: Tanzim Ahmed
- * 
+ *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoadingButton } from "@mui/lab";
@@ -137,7 +136,6 @@ const EditCourseModal = ({
     mode: "all",
   });
   const { handleSubmit } = methods;
-  
   return (
     <>
       <Modal

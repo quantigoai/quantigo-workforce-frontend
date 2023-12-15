@@ -52,22 +52,10 @@ const ButtonHover = {
   backgroundColor: "rgba(255, 154, 69, 0.1)",
 };
 
-const CustomCard = ({ course }) => {
-
+const CustomCard = ({ course, handleViewDetailsButton }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoading } = useSelector((state) => state.course);
-  const handleViewDetailsButton = (id) => {
-    dispatch(getACourseByID(id)).then((res) => {
-      dispatch(setActiveCourseId(id));
-      dispatch(setActiveChapterIndex(0));
-      dispatch(getAllChapterFromACourse(id)).then((res) => {
-        dispatch(getCourseQuizzesResults(id)).then((results) => {
-          navigate(`/course-details/${id}/index`);
-        });
-      });
-    });
-  };
 
   const imageUrl = course.images?.length ? `${course.images[0]}` : imageSample;
 

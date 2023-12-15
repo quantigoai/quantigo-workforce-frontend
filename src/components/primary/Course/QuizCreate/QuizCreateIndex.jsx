@@ -61,6 +61,7 @@ const QuizCreateIndex = () => {
     // navigate(`/course-details/${course._id}/index`);
   }, []);
   const handleRemoveQA = (uniqueId) => {
+    console.log("🚀 ~ file: QuizCreateIndex.jsx:64 ~ handleRemoveQA ~ uniqueId:", uniqueId);
     const values = [...inputFields];
     values.splice(
       values.findIndex((value) => value.uniqueId === uniqueId),
@@ -70,6 +71,13 @@ const QuizCreateIndex = () => {
   };
   const handleChangeInput = (uniqueId, event) => {
     const newInputFields = inputFields.map((i) => {
+      if (uniqueId === "imageAndOptions" || uniqueId === "default" || uniqueId === "imageInOptions") {
+        i["possibleAnswers"] = [];
+      }
+      if(uniqueId === "default" || uniqueId === "imageInOptions"){
+        console.log(i.question.questionImage)
+      }
+      console.log("🚀 ~ file: QuizCreateIndex.jsx:94 ~ newInputFields ~ i:", i);
       if (event?.target?.name === "questionText") {
         if (uniqueId === i.uniqueId) {
           i.question[event.target.name] = event.target.value;
@@ -90,6 +98,8 @@ const QuizCreateIndex = () => {
 
     setInputFields(newInputFields);
   };
+  useEffect(() => {}, [inputFields]);
+  console.log(inputFields);
   const quizSchema = Yup.object().shape({
     quiz_name: Yup.string().required("Quiz name is required"),
     // duration: Yup.string().required(" Quiz duration is required"),

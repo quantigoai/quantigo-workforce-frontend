@@ -109,6 +109,7 @@ const ImageFieldForQuestion = ({
                   type="file"
                   name="questionImage"
                   accept="image/png,  image/jpeg, image/jpg"
+                  name="questionImage"
                   onChange={
                     update
                       ? (e) =>

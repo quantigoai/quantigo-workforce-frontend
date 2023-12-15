@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import CommonHeader from "../../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import { getAQuizById } from "../../../../features/slice/quizSlice";
+import CourseDeleteModal from "../CourseDetailsPage/CourseDeleteModal";
 
 const ChapterUpdateHeader = ({ isEditChapter, disabledButton, durationTime }) => {
   const { course, courseChapter } = useSelector((state) => state.course);
@@ -137,6 +138,10 @@ const ChapterUpdateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
           </Button>
         </Box>
       </Box>
+      <CourseDeleteModal
+        course={course}
+        // handleDeleteCourse={handleDeleteCourse}
+      />
     </>
   );
 };

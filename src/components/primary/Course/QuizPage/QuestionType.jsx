@@ -55,6 +55,8 @@ const QuestionType = ({
   update,
   handleUpdate,
   handleRestoreQuestion,
+  RestoreQuestionID,
+  deleteQuestionIds,
 }) => {
   const [value, setValue] = React.useState("");
   const [radioValue, setRadioValue] = React.useState("");
@@ -335,7 +337,7 @@ const QuestionType = ({
           </Box>
         </Box>
         <Box>
-          {update && !inputField.newQuiz && (
+          {update && !inputField.newQuiz && deleteQuestionIds.includes(inputField._id) && (
             <Button onClick={() => handleRestoreQuestion(inputField._id)}>
               <RestoreIcon />
             </Button>

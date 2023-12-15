@@ -2,7 +2,7 @@ import { Box, Button, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { insertAQuestionInQuiz, updateQuizQA } from "../../../../features/slice/quizSlice";
+import { deleteQuestionFromQuiz, insertAQuestionInQuiz, updateQuizQA } from "../../../../features/slice/quizSlice";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
 import ChapterUpdateHeader from "../ChapterCreate/ChapterUpdateHeader";
 import QuestionType from "../QuizPage/QuestionType";
@@ -184,8 +184,11 @@ const QuizUpdateIndex = () => {
       });
     });
   }, [tempData]);
+  const [deleteQuestionIds, setDeleteQuestionIds] = useState([]);
+  const [RestoreQuestionID, setRestoreQuestionID] = useState("");
   const handleRemoveQA = (uniqueId) => {
     console.log("🚀 ~ file: QuizUpdateIndex.jsx:188 ~ handleRemoveQA ~ uniqueId:", uniqueId);
+    setDeleteQuestionIds((current) => [...current, uniqueId]);
     // const values = [...inputFields];
     // values.splice(
     //   values.findIndex((value) => value.uniqueId === uniqueId),
@@ -193,10 +196,16 @@ const QuizUpdateIndex = () => {
     // );
     // setInputFields(values);
   };
-  const handleRestoreQuestion = (id) => {
-    console.log("🚀 ~ file: QuizUpdateIndex.jsx:197 ~ handleRestoreQuestion ~ id:", id);
-    console.log("sdsd");
+  const handleRestoreQuestion = (uniqueId) => {
+    setRestoreQuestionID(uniqueId);
+    const updatedDeleteQuestionIds = deleteQuestionIds.filter((id) => id !== uniqueId);
+
+    setDeleteQuestionIds(updatedDeleteQuestionIds);
+    // setRestoreQuestionID((current) => [...current, uniqueId]);
   };
+
+  console.log("🚀 ~ file: QuizUpdateIndex.jsx:188 ~ QuizUpdateIndex ~ RestoreQuestionID:", deleteQuestionIds);
+
   const handleAddQA = () => {
     setInputFields([
       ...inputFields,
@@ -222,6 +231,16 @@ const QuizUpdateIndex = () => {
   const onSubmit = (data) => {
     console.log(data);
     let tempQA;
+    // Delete Question in a Quiz
+    if (deleteQuestionIds.length !== 0) {
+      const deleteQuizData = {
+        quizId: quiz._id,
+        data: {
+          questionIds: deleteQuestionIds,
+        },
+      };
+      dispatch(deleteQuestionFromQuiz(deleteQuizData));
+    }
     // update  Quiz Question Answer
 
     {
@@ -322,8 +341,29 @@ const QuizUpdateIndex = () => {
                 }}
               >
                 {inputFields &&
+                  inputFields.map((inputField) => {
+                    const isDeleted = deleteQuestionIds.includes(inputField._id);
+                    const backgroundColor = isDeleted ? "red" : "";
+
+                    return (
+                      <Box key={inputField.uniqueId} sx={{ paddingBottom: "2%", backgroundColor }}>
+                        <QuestionType
+                          handleRemoveQA={handleRemoveQA}
+                          handleChangeInput={handleChangeInput}
+                          inputField={inputField}
+                          inputFields={inputFields}
+                          handleUpdate={handleUpdate}
+                          update={true}
+                          handleRestoreQuestion={handleRestoreQuestion}
+                          RestoreQuestionID={RestoreQuestionID}
+                          deleteQuestionIds={deleteQuestionIds}
+                        />
+                      </Box>
+                    );
+                  })}
+                {/* {inputFields &&
                   inputFields.map((inputField) => (
-                    <Box key={inputField.uniqueId} sx={{ paddingBottom: "2%" }}>
+                    <Box key={inputField.uniqueId} sx={{ paddingBottom: "2%" ,backgroundColor:"red" }}>
                       {" "}
                       <QuestionType
                         handleRemoveQA={handleRemoveQA}
@@ -335,7 +375,7 @@ const QuizUpdateIndex = () => {
                         handleRestoreQuestion={handleRestoreQuestion}
                       />
                     </Box>
-                  ))}
+                  ))} */}
               </Box>
             </FormProvider>
             <Box>

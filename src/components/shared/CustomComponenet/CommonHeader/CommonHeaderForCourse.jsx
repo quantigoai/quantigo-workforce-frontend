@@ -18,12 +18,9 @@ import EditCourseModal from "../../../primary/Course/CreateCourseModal/EditCours
 import CourseProgressBar from "../../../primary/Course/CourseProgressBar";
 import CommonHeaderProgress from "./CommonHeaderProgress";
 import useToaster from "../../../../customHooks/useToaster";
-import * as Yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { getACourseByID, updateACourseById } from "../../../../features/slice/courseSlice.js";
-const CommonHeaderForCourse = ({ durationTime, title, description, isLoading, isLightTheme, customButton }) => {
+import { updateACourseById } from "../../../../features/slice/courseSlice.js";
+const CommonHeaderForCourse = ({ durationTime, title, isLoading, isLightTheme, customButton }) => {
   const { course, courses } = useSelector((state) => state.course);
   const navigate = useNavigate();
   const params = useParams();

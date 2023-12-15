@@ -12,8 +12,14 @@ import * as React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setActivePath } from "../../../features/slice/activePathSlice";
-import { createCourse, getAllCourses } from "../../../features/slice/courseSlice";
+import { setActiveChapterIndex, setActiveCourseId, setActivePath } from "../../../features/slice/activePathSlice";
+import {
+  createCourse,
+  getACourseByID,
+  getAllChapterFromACourse,
+  getAllCourses,
+  getCourseQuizzesResults,
+} from "../../../features/slice/courseSlice";
 import { getAllSkills } from "../../../features/slice/skillSlice";
 import LoadingSkeleton from "../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton";
 import CourseHeader from "./CourseHeader/CourseHeader";
@@ -26,6 +32,7 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
+import LoadingComponent from "../../shared/Loading/LoadingComponent";
 const Course = () => {
   const { role } = useSelector((state) => state.user.user);
   const [filterCourses, setFilterCourses] = React.useState([]);
@@ -70,6 +77,7 @@ const Course = () => {
     category: Yup.string().required("Course category is required"),
     language: Yup.string().required("Course language is required"),
   });
+  const [isCourseLoading, setIsCourseLoading] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
@@ -153,8 +161,76 @@ const Course = () => {
       }
     });
   };
+
+  const handleViewDetailsButton = (id) => {
+    setIsCourseLoading(true);
+    dispatch(getACourseByID(id))
+      .then((res) => {
+        dispatch(setActiveCourseId(id));
+        dispatch(setActiveChapterIndex(0));
+        dispatch(getAllChapterFromACourse(id)).then((res) => {
+          dispatch(getCourseQuizzesResults(id)).then((results) => {
+            setIsCourseLoading(false);
+            navigate(`/course-details/${id}/index`);
+          });
+        });
+      })
+      .catch(() => {
+        setIsCourseLoading(false);
+      });
+  };
   return (
     <>
+      {isCourseLoading ? (
+        <LoadingComponent />
+      ) : (
+        <Box className="content">
+          <Box className="contentHeader">
+            <CourseHeader open={open} setOpen={setOpen} handleOpen={handleOpen} />
+          </Box>
+          <CoursePaper>
+            <>
+              {isLoading ? (
+                <>
+                  <LoadingSkeleton />
+                </>
+              ) : (
+                <>
+                  {role === "level_0_annotator" ||
+                  role === "level_1_annotator" ||
+                  role === "level_2_annotator" ||
+                  role === "level_3_annotator" ||
+                  role === "reviewer" ? (
+                    <>
+                      {" "}
+                      <CourseTab filterCourses={filterCourses} isLoading={isLoading} />
+                    </>
+                  ) : (
+                    <>
+                      {/* <CourseTab filterCourses={filterCourses} isLoading={isLoading} /> */}
+                      <Grid
+                        container
+                        spacing={2}
+                        sx={{
+                          height: "100%",
+                          width: "100%",
+                        }}
+                      >
+                        {courses.map((course) => (
+                          <Grid key={course._id} item xs={12} px={1} sm={6} md={3} sx={{ height: "50%" }}>
+                            <CustomCard handleViewDetailsButton={handleViewDetailsButton} course={course} />
+                          </Grid>
+                        ))}
+                      </Grid>
+                    </>
+                  )}
+                </>
+              )}
+            </>
+          </CoursePaper>
+        </Box>
+      )}
+
       <CourseCreateModal
         handleSubmit={handleSubmit}
         methods={methods}
@@ -172,51 +248,6 @@ const Course = () => {
         handleImage={handleImage}
         isLoading={isLoading}
       />
-      <Box className="content">
-        <Box className="contentHeader">
-          <CourseHeader open={open} setOpen={setOpen} handleOpen={handleOpen} />
-        </Box>
-        <CoursePaper>
-          <>
-            {isLoading ? (
-              <>
-                <LoadingSkeleton />
-              </>
-            ) : (
-              <>
-                {role === "level_0_annotator" ||
-                role === "level_1_annotator" ||
-                role === "level_2_annotator" ||
-                role === "level_3_annotator" ||
-                role === "reviewer" ? (
-                  <>
-                    {" "}
-                    <CourseTab filterCourses={filterCourses} isLoading={isLoading} />
-                  </>
-                ) : (
-                  <>
-                    {/* <CourseTab filterCourses={filterCourses} isLoading={isLoading} /> */}
-                    <Grid
-                      container
-                      spacing={2}
-                      sx={{
-                        height: "100%",
-                        width: "100%",
-                      }}
-                    >
-                      {courses.map((course) => (
-                        <Grid key={course._id} item xs={12} px={1} sm={6} md={3} sx={{ height: "50%" }}>
-                          <CustomCard course={course} />
-                        </Grid>
-                      ))}
-                    </Grid>
-                  </>
-                )}
-              </>
-            )}
-          </>
-        </CoursePaper>
-      </Box>
     </>
   );
 };

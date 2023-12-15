@@ -251,16 +251,16 @@ const courseSlice = createSlice({
         state.error = action.error.data;
       })
       .addCase(getACourseByID.pending, (state) => {
-        state.isLoading = true;
         state.course = {};
+        state.isLoading = true;
       })
       .addCase(getACourseByID.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.course = action.payload.data;
+        state.isLoading = false;
       })
       .addCase(getACourseByID.rejected, (state) => {
         state.isLoading = false;
-        state.error = "Login failed";
+        state.error = "";
       })
       .addCase(deleteACourseById.pending, (state) => {
         state.isLoading = true;
@@ -331,13 +331,13 @@ const courseSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getAllChapterFromACourse.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.courseChapters = action.payload.data.courseChapters;
         state.courseChapter = action.payload.data.courseChapters ? action.payload.data.courseChapters[0] : {};
         state.course = {
           ...state.course,
           progress: calculateProgress(action.payload.data.courseChapters),
         };
+        state.isLoading = false;
       })
       .addCase(getAllChapterFromACourse.rejected, (state) => {
         state.isLoading = false;

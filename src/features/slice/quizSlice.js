@@ -107,9 +107,9 @@ export const submitQuizById = createAsyncThunk(
 // Delete questions from Quizzes
 export const deleteQuestionFromQuiz = createAsyncThunk(
   '/quizzes/delete/:quizId',
-  async (bulkData) => {
-    const { quizId, questionIds } = bulkData;
-    return axios.patch(`${url}/quizzes/delete/${quizId}`, questionIds, {
+  async (deleteQuizData) => {
+    const { quizId, data } = deleteQuizData;
+    return axios.patch(`${url}/quizzes/delete/${quizId}`, data, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },

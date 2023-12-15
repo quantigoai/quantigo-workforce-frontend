@@ -74,8 +74,9 @@ const QuizCreateIndex = () => {
       if (uniqueId === "imageAndOptions" || uniqueId === "default" || uniqueId === "imageInOptions") {
         i["possibleAnswers"] = [];
       }
-      if(uniqueId === "default" || uniqueId === "imageInOptions"){
-        console.log(i.question.questionImage)
+      if (uniqueId === "default" || uniqueId === "imageInOptions") {
+        console.log(i.question.questionImage);
+        i.question["questionImage"] = "";
       }
       console.log("🚀 ~ file: QuizCreateIndex.jsx:94 ~ newInputFields ~ i:", i);
       if (event?.target?.name === "questionText") {
@@ -150,15 +151,17 @@ const QuizCreateIndex = () => {
     inputFields.forEach((qa, index) => {
       formData.append(`questionAndAnswer[${index}][questionType]`, qa.questionType);
       if (qa.questionType === "default" || qa.questionType === "imageInOptions") {
-        formData.append(`questionAndAnswer[${index}][question][questionText]`, qa.question.questionText);
+        if (qa.question.questionText) {
+          formData.append(`questionAndAnswer[${index}][question][questionText]`, qa.question.questionText);
+        }
       } else {
-        formData.append(`questionAndAnswer[${index}][question][questionText]`, qa.question.questionText);
-        formData.append(`question_${index}`, qa.question.questionImage);
-        // formData.append(`questionAndAnswer[${index}][question][questionImage]`, qa.question.questionImage);
-        console.log(
-          "🚀 ~ file: QuizCreateIndex.jsx:98 ~ inputFields.forEach ~ qa.question.questionImage:",
-          qa.question.questionImage
-        );
+        if (qa.question.questionText) {
+          formData.append(`questionAndAnswer[${index}][question][questionText]`, qa.question.questionText);
+        }
+        if (qa.question.questionImage) {
+          formData.append(`question_${index}`, qa.question.questionImage);
+          // formData.append(`questionAndAnswer[${index}][question][questionImage]`, qa.question.questionImage);
+        }
       }
       qa.possibleAnswers.forEach((answer, answerIndex) => {
         if (qa.questionType === "imageInOptions") {
@@ -172,9 +175,10 @@ const QuizCreateIndex = () => {
       });
 
       // formData.append(`questionAndAnswer[${index}][correctAnswer]`, qa.correctAnswer);
-      formData.append(`questionAndAnswer[${index}][correctAnswerIndex]`, qa.correctAnswerIndex);
+      if (qa.correctAnswerIndex) {
+        formData.append(`questionAndAnswer[${index}][correctAnswerIndex]`, qa.correctAnswerIndex);
+      }
     });
-    console.log("🚀 ~ file: QuizCreateIndex.jsx:160 ~ inputFields.forEach ~ inputFields:", inputFields);
 
     data.questionAndAnswer = inputFields;
     dispatch(createAQuiz(formData)).then((action) => {

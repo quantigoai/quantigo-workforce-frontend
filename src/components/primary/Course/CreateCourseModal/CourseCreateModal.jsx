@@ -92,7 +92,6 @@ export const FieldBox = ({ children }) => (
 const CourseCreateModal = ({
   handleClose,
   open,
-  setOpen,
   handleSubmit,
   onSubmit,
   methods,

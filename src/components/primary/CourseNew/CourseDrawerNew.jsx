@@ -8,28 +8,16 @@
  */
 import AddIcon from "@mui/icons-material/Add";
 import { Box, Button, Grid, Paper, Typography } from "@mui/material";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import SingleChapterNew from "../Course/SingleChapterNew";
+import useCourseDetails from "../Course/hooks/courseDetailshooks/useCourseDetails";
 
 const CourseDrawerNew = ({ handleChapterClick, durationTime }) => {
-  const { courseChapters } = useSelector((state) => state.course);
-  const { activeChapterIndex } = useSelector((state) => state.activePath);
-  const { user } = useSelector((state) => state.user);
-  const { course, isLoading } = useSelector((state) => state.course);
-  const navigate = useNavigate();
-
-  const handleCreateChapter = (id) => {
-    navigate(`/create-chapter/${id}`);
-  };
+  const { activeChapterIndex, handleCreateChapter, user, courseChapters, isLoading, course } = useCourseDetails();
 
   return (
     <>
       <Box sx={{ width: "100%" }}>
         <Paper elevation={0} sx={{ paddingTop: "0%" }}>
-          {/* TODO Handle this smartly */}
-          {/* If there are no chapters under this course */}
-
           <Box
             sx={{
               paddingX: "12px",

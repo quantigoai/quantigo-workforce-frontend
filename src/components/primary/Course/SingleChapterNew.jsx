@@ -1,31 +1,28 @@
-import { Box, Chip, Grid, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
-import CourseProgressBar from "./CourseProgressBar";
+import useCourseDetails from "./hooks/courseDetailshooks/useCourseDetails";
+const Style80 = {
+  background: "#82BD40",
+  color: "#FFFFFF",
+  FontSize: "12px",
+  width: "100%",
+};
+const Style75 = {
+  background: "#4A2D8B ",
+  color: "#FFFFFF",
+  FontSize: "12px",
+  width: "100%",
+};
+const Style70 = {
+  background: "#EB6651 ",
+  color: "#FFFFFF",
+  FontSize: "12px",
+  width: "100%",
+};
 
 const SingleChapterNew = ({ courseChapter, index, role }) => {
-  const { activeChapterIndex } = useSelector((state) => state.activePath);
-  const { isLightTheme } = useSelector((state) => state.theme);
+  const { isLightTheme, setProgress, activeChapterIndex } = useCourseDetails();
 
-  const Style80 = {
-    background: "#82BD40",
-    color: "#FFFFFF",
-    FontSize: "12px",
-    width: "100%",
-  };
-  const Style75 = {
-    background: "#4A2D8B ",
-    color: "#FFFFFF",
-    FontSize: "12px",
-    width: "100%",
-  };
-  const Style70 = {
-    background: "#EB6651 ",
-    color: "#FFFFFF",
-    FontSize: "12px",
-    width: "100%",
-  };
-  const [progress, setProgress] = React.useState(0);
   React.useEffect(() => {
     const timer = setInterval(() => {
       setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
@@ -57,13 +54,11 @@ const SingleChapterNew = ({ courseChapter, index, role }) => {
           fontFamily: "Inter",
           display: "flex",
           justifyContent: "space-between",
-          // alignItems: "flex-start",
           alignContent: "center",
           height: "25px",
           width: "100%",
         }}
       >
-        {/* <Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "start" }}> */}
         <Box sx={{ display: "flex", alignItems: "start", justifyContent: "center" }}>
           <Box>
             {role === "admin" ? (

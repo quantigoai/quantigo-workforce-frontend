@@ -52,7 +52,7 @@ const PreRequisiteCourseFiled = ({ perRequisiteCourses, handleChange_Pre_Requisi
     const prerequisiteCourseNames = [];
 
     for (const course of courseArray) {
-      if (course.prerequisiteCourses && course.prerequisiteCourses.length > 0) {
+      if (course?.prerequisiteCourses && course.prerequisiteCourses?.length > 0) {
         const matchingPrerequisites = course.prerequisiteCourses.filter(
           (prerequisite) => prerequisite._id === targetId
         );
@@ -72,9 +72,9 @@ const PreRequisiteCourseFiled = ({ perRequisiteCourses, handleChange_Pre_Requisi
       setMyOptions(courses.map((option) => option.name));
     } else {
       setMyOptions(
-        courses.map((option) => {
-          if (option._id != course._id) {
-            const newOption = option.prerequisiteCourses.find((c) => c._id === course._id);
+        courses?.map((option) => {
+          if (option?._id != course?._id) {
+            const newOption = option.prerequisiteCourses.find((c) => c._id === course?._id);
             if (!newOption) {
               return option.name;
             }
@@ -119,7 +119,7 @@ const PreRequisiteCourseFiled = ({ perRequisiteCourses, handleChange_Pre_Requisi
           id="demo-multiple-chip"
           multiple
           // value={perRequisiteCourses}
-          defaultValue={isUpdate ? course.prerequisiteCourses.map((c) => c.name) : perRequisiteCourses}
+          defaultValue={isUpdate ? course.prerequisiteCourses?.map((c) => c.name) : perRequisiteCourses}
           onChange={handleChange_Pre_Requisite_Course}
           onOpen={handleOpenClose}
           // value={courses.map((c) => c.name)}

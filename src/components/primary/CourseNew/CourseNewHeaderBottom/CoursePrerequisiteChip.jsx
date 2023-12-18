@@ -1,4 +1,4 @@
-import {Grid, styled, Tooltip, tooltipClasses, Typography,} from "@mui/material";
+import { Grid, styled, Tooltip, tooltipClasses, Typography } from "@mui/material";
 import React from "react";
 import preIcon from "../../../../assets/images/PreIcon.svg";
 
@@ -27,18 +27,18 @@ const CoursePrerequisiteChip = ({ prerequisiteCourses }) => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            {prerequisiteCourses.length === 1 ? (
+            {prerequisiteCourses?.length === 1 ? (
               <>
                 {prerequisiteCourses.map((prerequisiteCourse) => (
-                  <Grid key={prerequisiteCourse._id} item gap={1}>
+                  <Grid key={prerequisiteCourse?._id} item gap={1}>
                     <Typography>
                       {" "}
-                      <b>{prerequisiteCourse.name} </b>
+                      <b>{prerequisiteCourse?.name} </b>
                     </Typography>
                   </Grid>
                 ))}
               </>
-            ) : prerequisiteCourses.length === 0 ? (
+            ) : prerequisiteCourses?.length === 0 ? (
               <>
                 <Typography>
                   {" "}
@@ -50,16 +50,17 @@ const CoursePrerequisiteChip = ({ prerequisiteCourses }) => {
                 <Grid container>
                   <Typography>
                     {" "}
-                    <b>{prerequisiteCourses[0]?.name}, </b>
+                    <b>{prerequisiteCourses?.name}, </b>
                   </Typography>
                   <Tooltip
-                    title={prerequisiteCourses.map((prerequisiteCourse) => (
+                    title={prerequisiteCourses?.map((prerequisiteCourse) => (
                       <Grid key={prerequisiteCourse._id} item gap={1}>
                         <Typography> {prerequisiteCourse.name}</Typography>
                       </Grid>
                     ))}
-                    arrow>
-                    <b> + {prerequisiteCourses.length} more</b>
+                    arrow
+                  >
+                    <b> + {prerequisiteCourses?.length} more</b>
                   </Tooltip>
                 </Grid>
               </>

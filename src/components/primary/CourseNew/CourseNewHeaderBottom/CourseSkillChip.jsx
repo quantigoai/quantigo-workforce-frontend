@@ -1,8 +1,8 @@
 import { Grid, Tooltip, Typography } from "@mui/material";
-import React from "react";
 import skillImage from "../../../../assets/images/skillsIcon.svg";
 
 const CourseSkillChip = ({ skills }) => {
+  console.log("🚀 ~ file: CourseSkillChip.jsx:5 ~ CourseSkillChip ~ skills:", skills);
   return (
     <>
       <Grid container>
@@ -19,11 +19,11 @@ const CourseSkillChip = ({ skills }) => {
           <Grid item xs={12}>
             {skills?.length === 1 ? (
               <>
-                {skills.map((skill) => (
+                {skills?.map((skill) => (
                   <Grid key={skill._id} item gap={1}>
                     <Typography>
                       {" "}
-                      <b>{skill.name} </b>
+                      <b>{skill?.name} </b>
                     </Typography>
                   </Grid>
                 ))}
@@ -33,18 +33,18 @@ const CourseSkillChip = ({ skills }) => {
                 <Grid container>
                   <Typography>
                     {" "}
-                    <b>{skills[0]?.name} , </b>
+                    <b>{skills?.name} , </b>
                   </Typography>
                   <Tooltip
-                    title={skills.map((skill) => (
-                      <Grid key={skill._id} item gap={1}>
-                        <Typography> {skill.name}</Typography>
+                    title={skills?.map((skill) => (
+                      <Grid key={skill?._id} item gap={1}>
+                        <Typography> {skill?.name}</Typography>
                       </Grid>
                     ))}
                     arrow
                   >
                     <Typography sx={{ cursor: "pointer" }}>
-                      <b> +{skills.length} more</b>
+                      <b> +{skills?.length} more</b>
                     </Typography>
                   </Tooltip>
                 </Grid>

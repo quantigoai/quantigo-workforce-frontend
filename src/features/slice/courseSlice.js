@@ -32,28 +32,40 @@ const initialState = {
 };
 // All Courses get request
 export const getAllCourses = createAsyncThunk("courses", async (data) => {
-  return axios.get(`${url}/courses`, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
+  try {
+    return axios.get(`${url}/courses`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
 });
 export const getACourseByID = createAsyncThunk("course/:id", async (id) => {
-  return axios.get(`${url}/courses/${id}`, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
+  try {
+    return axios.get(`${url}/courses/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
 });
 export const createCourse = createAsyncThunk("courses/createCourse", async (data) => {
-  return axios.post(`${url}/courses`, data, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-    content: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  try {
+    return axios.post(`${url}/courses`, data, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+      content: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
 });
 
 // validate course
@@ -85,90 +97,122 @@ export const deleteACourseById = createAsyncThunk("/courses/delete/:id", async (
 
 //delete A Chapter by id
 export const deleteAChapterById = createAsyncThunk("/chapter/delete/:id", async (id) => {
-  return axios.delete(`${url}/coursechapter/${id}`, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
+  try {
+    return axios.delete(`${url}/coursechapter/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
 });
 // Update A Course
 
 export const updateACourseById = createAsyncThunk("/courses/update/:id", async (data) => {
   const { id, formData } = data;
-  return axios.patch(`${url}/courses/${id}`, formData, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-    content: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  try {
+    return axios.patch(`${url}/courses/${id}`, formData, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+      content: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
 });
 
 // update a chapter by chapter ID
 export const updateAChapterById = createAsyncThunk("/courses/chapter/update/:id", async (newData) => {
   const { id, formData } = newData;
-  return axios.patch(`${url}/coursechapter/${id}`, formData, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
-});
-
-export const enrollACourse = createAsyncThunk("/enroll/course", async (courseId) => {
-  return axios.patch(
-    `${url}/courses/enroll/${courseId}`,
-    {},
-    {
+  try {
+    return axios.patch(`${url}/coursechapter/${id}`, formData, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
-    }
-  );
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
+export const enrollACourse = createAsyncThunk("/enroll/course", async (courseId) => {
+  try {
+    return axios.patch(
+      `${url}/courses/enroll/${courseId}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+      }
+    );
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
 });
 
 // get All chapter from a course
 
 export const getAllChapterFromACourse = createAsyncThunk("course/chapters/:id", async (id) => {
-  return axios.get(`${url}/coursechapter?rootCourse=${id}`, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
+  try {
+    return axios.get(`${url}/coursechapter?rootCourse=${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
 });
 
 // get a chapter by ID
 
 export const getAChapterById = createAsyncThunk("course/a/chapter/:id", async (id) => {
-  return axios.get(`${url}/coursechapter/${id}`, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
+  try {
+    return axios.get(`${url}/coursechapter/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
 });
 
 // create Course Chapter
 
 export const createCourseChapter = createAsyncThunk("/createCourse/chapter", async (data) => {
-  return axios.post(`${url}/coursechapter`, data, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-    content: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  try {
+    return axios.post(`${url}/coursechapter`, data, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+      content: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
 });
 // Get quiz results of a coursr
 export const getCourseQuizzesResults = createAsyncThunk("/courses/quizzes/results", async (courseId) => {
-  return axios.get(`${url}/courses/results/${courseId}`, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-    content: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  try {
+    return axios.get(`${url}/courses/results/${courseId}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+      content: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
 });
 
 const courseSlice = createSlice({
@@ -207,7 +251,7 @@ const courseSlice = createSlice({
       })
       .addCase(createCourse.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.courses = [...state.courses, action.payload.data];
+        state.courses = [...state.courses, action.payload.data.course];
       })
       .addCase(createCourse.rejected, (state, action) => {
         state.isLoading = false;
@@ -234,7 +278,7 @@ const courseSlice = createSlice({
       })
       .addCase(getAllCourses.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.courses = action.payload.data;
+        state.courses = action.payload.data.courses;
       })
       .addCase(getAllCourses.rejected, (state) => {
         state.isLoading = false;
@@ -255,7 +299,7 @@ const courseSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getACourseByID.fulfilled, (state, action) => {
-        state.course = action.payload.data;
+        state.course = action.payload.data.course;
         state.isLoading = false;
       })
       .addCase(getACourseByID.rejected, (state) => {
@@ -267,7 +311,7 @@ const courseSlice = createSlice({
       })
       .addCase(deleteACourseById.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.courses = [...state.courses.filter((course) => course._id !== action.payload.data._id)];
+        state.courses = [...state.courses.filter((course) => course._id !== action.payload.data.course._id)];
       })
       .addCase(deleteACourseById.rejected, (state, action) => {
         state.isLoading = false;
@@ -294,7 +338,7 @@ const courseSlice = createSlice({
         state.isLoading = false;
         state.course = action.payload.data;
         state.error = null;
-        state.courses = [...state.courses, action.payload.data];
+        state.courses = [...state.courses, action.payload.data.course];
       })
       .addCase(updateACourseById.rejected, (state, action) => {
         state.isLoading = false;

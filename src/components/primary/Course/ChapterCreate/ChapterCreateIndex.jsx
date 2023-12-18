@@ -116,11 +116,11 @@ const ChapterCreateIndex = () => {
     };
     dispatch(createCourseChapter(finalData)).then((action) => {
       if (action.payload?.status === 201) {
-        toast.trigger("Chapter Create", "success");
+        toast.trigger(action.payload.data.message, "success");
         // dispatch(deleteTemporaryData({ id, chapterNo }));
         navigate(`/quiz-create/${id}`);
       } else {
-        toast.trigger("Can not create course chapter", "error");
+        toast.trigger(action.error.message, "error");
       }
     });
   };

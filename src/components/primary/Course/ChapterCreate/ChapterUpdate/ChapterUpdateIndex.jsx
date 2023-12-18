@@ -116,9 +116,9 @@ const ChapterUpdateIndex = () => {
     dispatch(updateAChapterById(newData)).then((action) => {
       if (action.payload.status === 200) {
         // navigate(`/course-details/${course._id}`);
-        toast.trigger("chapter update Successfully", "success");
+        toast.trigger(action.payload.data.message, "success");
       } else {
-        toast.trigger("chapter do not update", "error");
+        toast.trigger(action.error.message, "error");
       }
     });
   };

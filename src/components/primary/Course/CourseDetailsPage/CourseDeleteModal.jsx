@@ -40,10 +40,10 @@ const CourseDeleteModal = ({ course }) => {
     setOpen(false);
     dispatch(deleteACourseById(id)).then((action) => {
       if (action.payload.status === 200) {
+        toast.trigger(action.payload.data.message, "success");
         navigate("/course");
-        toast.trigger("Course Deleted Successfully", "success");
       } else {
-        toast.trigger("Course do not Delete", "error");
+        toast.trigger(action.error.message, "error");
       }
     });
   };

@@ -23,11 +23,13 @@ const ChapterUpdateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
     }
   }, [location.pathname]);
   const navigate = useNavigate();
+
   const handleQuizUpdate = () => {
     if (!courseChapter.quiz) {
       navigate(`/quiz-create/${course._id}`);
     } else {
       dispatch(getAQuizById(courseChapter.quiz.id)).then((action) => {
+        console.log("🚀 ~ file: ChapterUpdateHeader.jsx:33 ~ dispatch ~ action:", action);
         if (action.payload.status === 200) {
           navigate(`/update-quiz/${courseChapter._id}`);
         }

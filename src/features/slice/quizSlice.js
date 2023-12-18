@@ -169,7 +169,7 @@ const quizSlice = createSlice({
       })
       .addCase(getAQuizById.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.quiz = action.payload.data;
+        state.quiz = action.payload.data.quiz;
       })
       .addCase(getAQuizById.rejected, (state, action) => {
         state.isLoading = false;
@@ -181,7 +181,6 @@ const quizSlice = createSlice({
       })
       .addCase(updateQuizQA.fulfilled, (state) => {
         state.isLoading = false;
-
         state.error = null;
       })
       .addCase(updateQuizQA.rejected, (state, action) => {

@@ -7,6 +7,7 @@ import FormProvider from "../../../shared/FormProvider/FormProvider";
 import ChapterUpdateHeader from "../ChapterCreate/ChapterUpdateHeader";
 import QuestionType from "../QuizPage/QuestionType";
 import QuizNameDurationField from "../QuizPage/QuizNameDurationField";
+import useToaster from "../../../../customHooks/useToaster";
 
 const QuizUpdateIndex = () => {
   const [inputFields, setInputFields] = useState([]);
@@ -68,7 +69,6 @@ const QuizUpdateIndex = () => {
     // setInputFields(newInputFields);
   };
   const handleUpdate = (value, index, field) => {
-    console.log("🚀 ~ file: QuizUpdateIndex.jsx:68 ~ handleUpdate ~ field:", field.newQuiz);
     if (field.newQuiz) {
       const qaID = field.uniqueId;
       const newAddData1 = { ...addQuiz };
@@ -109,9 +109,6 @@ const QuizUpdateIndex = () => {
       setTempData(newTempData1);
     }
   };
-
-  console.log(tempData);
-  console.log(addQuiz);
 
   useEffect(() => {
     Object.entries(tempData.questionAndAnswer).map(([key, val], i) => {
@@ -221,7 +218,7 @@ const QuizUpdateIndex = () => {
       },
     ]);
   };
-
+  const toast = useToaster();
   const {
     reset,
     setError,
@@ -229,7 +226,6 @@ const QuizUpdateIndex = () => {
     formState: { errors },
   } = methods;
   const onSubmit = (data) => {
-    console.log(data);
     let tempQA;
     // Delete Question in a Quiz
     if (deleteQuestionIds.length !== 0) {
@@ -256,7 +252,16 @@ const QuizUpdateIndex = () => {
             formData.append(`${k}`, v);
             data1.formDataQ = formData;
           });
-          dispatch(updateQuizQA(data1));
+          dispatch(updateQuizQA(data1)).then((action) => {
+            console.log("🚀 ~ file: QuizUpdateIndex.jsx:256 ~ dispatch ~ action:", action);
+            if (action.payload.status === 200) {
+              // navigate(`/course-details/${course._id}`);
+              toast.trigger(action.payload.data.message, "success");
+            } else {
+              toast.trigger(action.error.message, "error");
+            }
+          });
+
           // for (let pair of formData.entries()) {
           //   console.log(pair[0] + ", " + pair[1]);
           // }

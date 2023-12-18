@@ -34,14 +34,13 @@ const ChapterDeleteModal = ({ courseChapter }) => {
   };
 
   const handleDeleteCourse = (id) => {
-    console.log("🚀 ~ file: ChapterDeleteModal.jsx:37 ~ handleDeleteCourse ~ id:", id);
     setOpen(false);
     dispatch(deleteAChapterById(id)).then((action) => {
       if (action.payload.status === 200) {
-        // navigate("/course");
-        toast.trigger("Chapter Deleted Successfully", "success");
+        // navigate(`/course-details/${course._id}`);
+        toast.trigger(action.payload.data.message, "success");
       } else {
-        toast.trigger("Error occurred", "error");
+        toast.trigger(action.error.message, "error");
       }
     });
   };

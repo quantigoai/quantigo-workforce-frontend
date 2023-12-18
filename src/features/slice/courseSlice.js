@@ -349,10 +349,10 @@ const courseSlice = createSlice({
       })
       .addCase(updateAChapterById.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.courseChapter = action.payload.data;
+        state.courseChapter = action.payload.data.courseChapter;
         state.courseChapters = [
           ...state.courseChapters.map((chapter) =>
-            chapter._id === action.payload.data._id ? action.payload.data : chapter
+            chapter._id === action.payload.data.courseChapter._id ? action.payload.data.courseChapter : chapter
           ),
         ];
       })

@@ -253,7 +253,6 @@ const QuizUpdateIndex = () => {
             data1.formDataQ = formData;
           });
           dispatch(updateQuizQA(data1)).then((action) => {
-            console.log("🚀 ~ file: QuizUpdateIndex.jsx:256 ~ dispatch ~ action:", action);
             if (action.payload.status === 200) {
               // navigate(`/course-details/${course._id}`);
               toast.trigger(action.payload.data.message, "success");

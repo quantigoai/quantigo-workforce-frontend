@@ -86,12 +86,12 @@ const useChapterCreateManage = () => {
       content,
     };
     dispatch(createCourseChapter(finalData)).then((action) => {
-      if (action.payload?.status === 201) {
-        toast.trigger(action.payload.data.message, "success");
-        // dispatch(deleteTemporaryData({ id, chapterNo }));
-        navigate(`/quiz-create/${id}`);
-      } else {
+      // dispatch(deleteTemporaryData({ id, chapterNo }));
+      if (action.error) {
         toast.trigger(action.error.message, "error");
+      } else {
+        toast.trigger(action.payload.data.message, "success");
+        navigate(`/quiz-create/${id}`);
       }
     });
   };

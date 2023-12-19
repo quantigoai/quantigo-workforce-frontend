@@ -39,11 +39,11 @@ const CourseDeleteModal = ({ course }) => {
   const handleDeleteCourse = (id) => {
     setOpen(false);
     dispatch(deleteACourseById(id)).then((action) => {
-      if (action.payload.status === 200) {
+      if (action.error) {
+        toast.trigger(action.error.message, "error");
+      } else {
         toast.trigger(action.payload.data.message, "success");
         navigate("/course");
-      } else {
-        toast.trigger(action.error.message, "error");
       }
     });
   };

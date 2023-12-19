@@ -109,11 +109,11 @@ const useCourseManagement = () => {
     formData.append("prerequisiteCourses", preRequisiteCoursesColl);
     formData.append("skills", skillColl);
     dispatch(createCourse(formData)).then((action) => {
-      if (action.payload?.status === 200) {
+      if (action.error) {
+        toast.trigger(action.error.message, "error");
+      } else {
         toast.trigger(action.payload.data.message, "success");
         handleClose();
-      } else {
-        toast.trigger(action.error.message, "error");
       }
     });
   };

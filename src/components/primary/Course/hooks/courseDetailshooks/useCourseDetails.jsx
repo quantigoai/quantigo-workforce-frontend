@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { setActiveChapterIndex } from "../../../../../features/slice/activePathSlice";
 import { getAChapterById, updateACourseById } from "../../../../../features/slice/courseSlice";
 import useToaster from "../../../../../customHooks/useToaster";
@@ -55,17 +55,9 @@ const useCourseDetails = () => {
         name: skill.name,
         id: skill._id,
       };
-      setSkillSet1([
-        {
-          ...preData,
-        },
-      ]);
+      setSkillSet1([{ ...preData }]);
     });
-    setSkillSet2([
-      {
-        ...skillSet1,
-      },
-    ]);
+    setSkillSet2([{ ...skillSet1 }]);
     !selectedSkills.length && setIsSkillEmpty(true);
     setSkill(typeof selectedSkills === "string" ? value.split(",") : selectedSkills);
   };
@@ -83,6 +75,7 @@ const useCourseDetails = () => {
     setCoverImageFile(null);
     setCoverImage(null);
   };
+
   const handleChange_Pre_Requisite_Course = (event) => {
     const {
       target: { value },
@@ -95,17 +88,9 @@ const useCourseDetails = () => {
         name: preRequisite.name,
         id: preRequisite._id,
       };
-      setPreRequisite([
-        {
-          ...preData,
-        },
-      ]);
+      setPreRequisite([{ ...preData }]);
     });
-    setPreRequisite1([
-      {
-        ...preRequisite,
-      },
-    ]);
+    setPreRequisite1([{ ...preRequisite }]);
     !selectedPreRequisiteCourses.length && setIsPreRequisiteCourseEmpty(true);
     setPreRequisiteCourses(
       typeof selectedPreRequisiteCourses === "string" ? value.split(",") : selectedPreRequisiteCourses
@@ -137,12 +122,12 @@ const useCourseDetails = () => {
       formData,
     };
     dispatch(updateACourseById(newData)).then((action) => {
-      if (action.payload?.status === 200) {
+      if (action.error) {
+        toast.trigger(action.error.message, "error");
+      } else {
         toast.trigger(action.payload.data.message, "success");
         handleClose();
         setOpen(false);
-      } else {
-        toast.trigger(action.error.message, "error");
       }
     });
   };

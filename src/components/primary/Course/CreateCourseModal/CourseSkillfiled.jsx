@@ -66,6 +66,7 @@ const MenuProps = {
 };
 
 const CourseSkillfiled = ({ skills, skillSet, handleChangeSkills, MenuProps, isUpdate }) => {
+  console.log("🚀 ~ file: CourseSkillfiled.jsx:69 ~ CourseSkillfiled ~ skillSet:", skillSet);
   const location = useLocation();
   const { course } = useSelector((state) => state.course);
 
@@ -129,7 +130,7 @@ const CourseSkillfiled = ({ skills, skillSet, handleChangeSkills, MenuProps, isU
               {selected.length > 1 && (
                 <Typography variant="p" sx={{ ml: 2, mt: 0 }}>
                   {" "}
-                  + {selected.length} more
+                  + {selected.length - 1} more
                 </Typography>
               )}
             </Box>

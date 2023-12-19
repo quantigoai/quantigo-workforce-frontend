@@ -81,11 +81,11 @@ const useChapterUpdateManage = () => {
       formData: data,
     };
     dispatch(updateAChapterById(newData)).then((action) => {
-      if (action.payload.status === 200) {
-        // navigate(`/course-details/${course._id}`);
-        toast.trigger(action.payload.data.message, "success");
-      } else {
+      if (action.error) {
         toast.trigger(action.error.message, "error");
+      } else {
+        toast.trigger(action.payload.data.message, "success");
+        // navigate(`/course-details/${course._id}`);
       }
     });
   };

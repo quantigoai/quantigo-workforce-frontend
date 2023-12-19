@@ -69,8 +69,9 @@ const QuizUpdateIndex = () => {
     // setInputFields(newInputFields);
   };
   const handleUpdate = (value, index, field) => {
+    console.log("🚀 ~ file: QuizUpdateIndex.jsx:72 ~ handleUpdate ~ field:", field);
     if (field.newQuiz) {
-      const qaID = field.uniqueId;
+      const qaID = field._id;
       const newAddData1 = { ...addQuiz };
       newAddData1.quizId = quiz._id;
       newAddData1.questionAndAnswer[qaID] = {
@@ -183,15 +184,21 @@ const QuizUpdateIndex = () => {
   }, [tempData]);
   const [deleteQuestionIds, setDeleteQuestionIds] = useState([]);
   const [RestoreQuestionID, setRestoreQuestionID] = useState("");
-  const handleRemoveQA = (uniqueId) => {
-    console.log("🚀 ~ file: QuizUpdateIndex.jsx:188 ~ handleRemoveQA ~ uniqueId:", uniqueId);
-    setDeleteQuestionIds((current) => [...current, uniqueId]);
-    // const values = [...inputFields];
-    // values.splice(
-    //   values.findIndex((value) => value.uniqueId === uniqueId),
-    //   1
-    // );
-    // setInputFields(values);
+  const handleRemoveQA = (field) => {
+    console.log("🚀 ~ file: QuizUpdateIndex.jsx:189 ~ handleRemoveQA ~ field:", field._id);
+    if (field.newQuiz) {
+      // const values = [...inputFields];
+      // values.splice(
+      //   values.findIndex((value) => value._id === field._id),
+      //   1
+      // );
+      const filteredArr = inputFields.filter((item) => item._id !== field._id);
+
+      delete addQuiz.questionAndAnswer[field._id];
+      setInputFields(filteredArr);
+    } else {
+      setDeleteQuestionIds((current) => [...current, field._id]);
+    }
   };
   const handleRestoreQuestion = (uniqueId) => {
     setRestoreQuestionID(uniqueId);
@@ -201,8 +208,8 @@ const QuizUpdateIndex = () => {
     // setRestoreQuestionID((current) => [...current, uniqueId]);
   };
 
-  console.log("🚀 ~ file: QuizUpdateIndex.jsx:188 ~ QuizUpdateIndex ~ RestoreQuestionID:", deleteQuestionIds);
-
+  console.log("🚀 ~ file: QuizUpdateIndex.jsx:188 ~ QuizUpdateIndex ~ RestoreQuestionID:", inputFields);
+  console.log("🚀 ~ file: QuizUpdateIndex.jsx:188 ~ QuizUpdateIndex ~ AddQuiz:", addQuiz);
   const handleAddQA = () => {
     setInputFields([
       ...inputFields,
@@ -228,6 +235,7 @@ const QuizUpdateIndex = () => {
   const onSubmit = (data) => {
     let tempQA;
     // Delete Question in a Quiz
+    console.log(addQuiz);
     if (deleteQuestionIds.length !== 0) {
       const deleteQuizData = {
         quizId: quiz._id,

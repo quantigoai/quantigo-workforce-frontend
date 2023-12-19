@@ -2,7 +2,7 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import React, { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import ctaImage from "../../../../../../assets/images/CTA.png";
-import IconImage from "../../../../../../assets/images/Icon.png";
+import IconImage from "../../../../../../assets/images/uploadImageIcon.svg";
 import { useDropzone } from "react-dropzone";
 const focusedStyle = {
   borderColor: "#2196f3",
@@ -24,7 +24,8 @@ const baseUploadBoxStyle = {
 
   borderWidth: 2,
   borderRadius: 8,
-  height: "230px",
+  height: "162px",
+  // width: "12px",
   borderColor: "rgba(70, 70, 70, 0.2)",
   borderStyle: "dashed",
   // backgroundColor: isLightTheme ? "primary.B200" : "neutral.N400",
@@ -91,18 +92,18 @@ const ImageUploadIndex = ({
 
   if (screenSize >= 1500) {
     // Extra-large screens
-    width = 260;
+    width = 240;
   } else if (screenSize === 1440) {
     // Large screens
-    width = 200;
+    width = 178;
   } else if (screenSize >= 992) {
     // Large screens
-    width = 200;
+    width = 150;
   }
   return (
     <>
       <Grid container>
-        <Box {...getRootProps({ style })}>
+        <Box {...getRootProps({ width, style })}>
           {acceptedFiles.length ? (
             <>
               {acceptedFiles[0].size > maxSize ? (
@@ -131,10 +132,10 @@ const ImageUploadIndex = ({
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <img height={225} src={coverImage} alt="" style={{ width, borderRadius: "8px" }} />
+                    <img height={155} src={coverImage} alt="" style={{ width, borderRadius: "8px" }} />
                     {/* <p>File : {files}</p> */}
                     {isHovered && (
-                      <Box sx={{ color: "red", cursor: "pointer", position: "absolute", top: "45%", right: "43%" }}>
+                      <Box sx={{ color: "red", cursor: "pointer", position: "absolute", top: "40%", left: "30%" }}>
                         <Button
                           onClick={removeImage}
                           sx={{
@@ -170,9 +171,9 @@ const ImageUploadIndex = ({
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                <img height={175} src={defaultImage} alt="Course Image" style={{ width, borderRadius: "8px" }} />
+                <img height={160} src={defaultImage} alt="Course Image" style={{ width, borderRadius: "8px" }} />
                 {isHovered && (
-                  <Box sx={{ color: "red", cursor: "pointer", position: "absolute", top: "45%", right: "43%" }}>
+                  <Box sx={{ color: "red", cursor: "pointer", position: "absolute", top: "40%", left: "30%" }}>
                     <Button
                       onClick={removeImage}
                       sx={{
@@ -204,9 +205,9 @@ const ImageUploadIndex = ({
               <Typography variant="wpf_p2_regular" sx={{ paddingTop: "1%" }}>
                 Upload image
               </Typography>
-              {/* <Typography variant="wpf_p2_regular" sx={{ paddingBottom: "2%" }}>
-                Maximum file size: 1Mb.
-              </Typography> */}
+              <Typography variant="wpf_p2_regular" sx={{ paddingBottom: "2%" }}>
+                Maximum file size: 512KB.
+              </Typography>
               <img src={ctaImage} />
             </>
           )}

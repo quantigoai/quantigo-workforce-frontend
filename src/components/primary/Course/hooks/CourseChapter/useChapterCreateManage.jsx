@@ -7,9 +7,10 @@ import { createCourseChapter } from "../../../../../features/slice/courseSlice";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { realToken } from "../../../../../helper/lib";
-const useChapterManage = () => {
+import axios from "axios";
+const useChapterCreateManage = () => {
   const { courseChapters } = useSelector((state) => state.course);
-  const { course, isLoading } = useSelector((state) => state.course);
+  const { isLoading } = useSelector((state) => state.course);
   const navigate = useNavigate();
   const params = useParams();
   const toast = useToaster();
@@ -94,6 +95,7 @@ const useChapterManage = () => {
       }
     });
   };
+
   return {
     methods,
     handleSubmit,
@@ -111,4 +113,4 @@ const useChapterManage = () => {
   };
 };
 
-export default useChapterManage;
+export default useChapterCreateManage;

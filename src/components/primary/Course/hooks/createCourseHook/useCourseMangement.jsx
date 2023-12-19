@@ -15,9 +15,9 @@ import { setActiveChapterIndex, setActiveCourseId } from "../../../../../feature
 const useCourseManagement = () => {
   const { role } = useSelector((state) => state.user.user);
   const [filterCourses, setFilterCourses] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isDataLoading, setIsDataLoading] = useState(true);
   const [open, setOpen] = useState(false);
-  const { courses } = useSelector((state) => state.course);
+  const { courses, isLoading } = useSelector((state) => state.course);
   const { isLightTheme } = useSelector((state) => state.theme);
   const navigate = useNavigate();
   const [preRequisiteCourses, setPreRequisiteCourses] = React.useState([]);
@@ -141,7 +141,8 @@ const useCourseManagement = () => {
     handleOpen,
     isCourseLoading,
     isLoading,
-    setIsLoading,
+    isDataLoading,
+    setIsDataLoading,
     filterCourses,
     courses,
     handleViewDetailsButton,

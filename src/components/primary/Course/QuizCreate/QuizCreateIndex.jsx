@@ -187,11 +187,11 @@ const QuizCreateIndex = () => {
 
     data.questionAndAnswer = inputFields;
     dispatch(createAQuiz(formData)).then((action) => {
-      if (action.payload.status === 200) {
-        // navigate(`/course-details/${course._id}`);
-        toast.trigger(action.payload.data.message, "success");
-      } else {
+      // navigate(`/course-details/${course._id}`);
+      if (action.error) {
         toast.trigger(action.error.message, "error");
+      } else {
+        toast.trigger(action.payload.data.message, "success");
       }
     });
     for (let pair of formData.entries()) {

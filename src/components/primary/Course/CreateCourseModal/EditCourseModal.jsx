@@ -115,7 +115,6 @@ const EditCourseModal = ({
   isLoading,
   skill,
 }) => {
-  console.log("🚀 ~ file: EditCourseModal.jsx:118 ~ preRequisiteCourses:", preRequisiteCourses);
   const CourseCreateSchema = Yup.object().shape({
     name: Yup.string().required("Course name is required"),
     description: Yup.string().required("Course description is required"),

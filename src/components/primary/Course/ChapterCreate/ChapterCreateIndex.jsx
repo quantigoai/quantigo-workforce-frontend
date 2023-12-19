@@ -5,7 +5,7 @@ import ChapterCreateHeader from "./ChapterCreateHeader";
 import ChapterDIsableNoFIeld from "./ChapterDIsableNoFIeld";
 import ChapterDescritionField from "./ChapterDescritionField";
 import ChapterField from "./ChapterField";
-import useChapterManage from "../hooks/CourseChapter/useChapterManage";
+import useChapterCreateManage from "../hooks/CourseChapter/useChapterCreateManage";
 import { useEffect } from "react";
 
 const ChapterCreateIndex = () => {
@@ -23,7 +23,7 @@ const ChapterCreateIndex = () => {
     isInValid,
     setDurationTime,
     setIsDisable,
-  } = useChapterManage();
+  } = useChapterCreateManage();
 
   useEffect(() => {
     const duration = courseChapters?.reduce((accumulator, currentValue) => {

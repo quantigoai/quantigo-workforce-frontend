@@ -1,6 +1,5 @@
 import { Box, Button, Modal, Typography } from "@mui/material";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import useToaster from "../../../customHooks/useToaster";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteAChapterById } from "../../../features/slice/courseSlice";
@@ -20,7 +19,6 @@ const style = {
 };
 const ChapterDeleteModal = ({ courseChapter }) => {
   const [open, setOpen] = React.useState(false);
-  const navigate = useNavigate();
 
   const toast = useToaster();
   const dispatch = useDispatch();

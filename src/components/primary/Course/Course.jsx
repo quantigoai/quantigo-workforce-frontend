@@ -43,7 +43,8 @@ const Course = () => {
     coverImage,
     removeImage,
     handleImage,
-    setIsLoading,
+    isDataLoading,
+    setIsDataLoading,
     role,
     isLightTheme,
   } = useCourseManagement();
@@ -65,7 +66,7 @@ const Course = () => {
     dispatch(setActivePath("Course"));
     dispatch(getAllSkills());
     dispatch(getAllCourses()).then(() => {
-      setIsLoading(false);
+      setIsDataLoading(false);
     });
   }, []);
 
@@ -80,7 +81,7 @@ const Course = () => {
           </Box>
           <CoursePaper>
             <>
-              {isLoading ? (
+              {isDataLoading ? (
                 <>
                   <LoadingSkeleton />
                 </>

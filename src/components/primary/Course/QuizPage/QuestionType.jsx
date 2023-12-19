@@ -336,6 +336,8 @@ const QuestionType = ({
             </Tabs>
           </Box>
         </Box>
+
+        {/* // Restore Question */}
         <Box>
           {update && !inputField.newQuiz && deleteQuestionIds.includes(inputField._id) && (
             <Button onClick={() => handleRestoreQuestion(inputField._id)}>
@@ -343,12 +345,15 @@ const QuestionType = ({
             </Button>
           )}
         </Box>
+        {/* Delete Question */}
         <Box sx={{}}>
-          <i
-            style={{ fontSize: "20px", color: "#FF4757" }}
-            onClick={update ? () => handleRemoveQA(inputField._id) : () => handleRemoveQA(inputField.uniqueId)}
-            className="ri-delete-bin-6-line"
-          ></i>
+          {/* {update && !deleteQuestionIds.includes(inputField._id) && ( */}
+            <i
+              style={{ fontSize: "20px", color: "#FF4757" }}
+              onClick={update ? () => handleRemoveQA(inputField) : () => handleRemoveQA(inputField.uniqueId)}
+              className="ri-delete-bin-6-line"
+            ></i>
+          {/* )} */}
         </Box>
       </Box>
       <Box sx={{ p: 2 }}>

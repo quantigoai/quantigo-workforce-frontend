@@ -45,7 +45,8 @@ const ImageUploadIndex = ({
   const screenSize = window.innerWidth;
   const { isLightTheme } = useSelector((state) => state.theme);
 
-  const maxSize = 1024000;
+  // const maxSize = 1024000;
+  const maxSize = 512000;
   const [isHovered, setIsHovered] = useState(false);
   const { acceptedFiles, getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({
     accept: { "image/jpeg": [], "image/png": [], "image/jpg": [] },
@@ -60,7 +61,8 @@ const ImageUploadIndex = ({
   };
   const style = useMemo(() => {
     const fileSize = acceptedFiles ? acceptedFiles[0]?.size : null;
-    const maxSize = 1024000; // 1MB in bytes
+    // const maxSize = 1024000; // 1MB in bytes
+    const maxSize = 512000;
     if (fileSize && fileSize > maxSize) {
       return {
         ...baseUploadBoxStyle,
@@ -127,7 +129,8 @@ const ImageUploadIndex = ({
                       borderRadius: "8px",
                     }}
                     onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}>
+                    onMouseLeave={handleMouseLeave}
+                  >
                     <img height={225} src={coverImage} alt="" style={{ width, borderRadius: "8px" }} />
                     {/* <p>File : {files}</p> */}
                     {isHovered && (
@@ -146,7 +149,8 @@ const ImageUploadIndex = ({
                               color: "#2E58FF",
                               // border: "1px solid #2E58FF",
                             },
-                          }}>
+                          }}
+                        >
                           Replace
                         </Button>
                         {/* <DeleteIcon onClick={removeImage} sx={{ color: "red" }} /> */}
@@ -164,7 +168,8 @@ const ImageUploadIndex = ({
                   borderRadius: "8px",
                 }}
                 onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}>
+                onMouseLeave={handleMouseLeave}
+              >
                 <img height={175} src={defaultImage} alt="Course Image" style={{ width, borderRadius: "8px" }} />
                 {isHovered && (
                   <Box sx={{ color: "red", cursor: "pointer", position: "absolute", top: "45%", right: "43%" }}>
@@ -182,7 +187,8 @@ const ImageUploadIndex = ({
                           color: "#2E58FF",
                           // border: "1px solid #2E58FF",
                         },
-                      }}>
+                      }}
+                    >
                       Replace
                     </Button>
                     {/* <DeleteIcon onClick={removeImage} sx={{ color: "red" }} /> */}

@@ -83,7 +83,6 @@ const QuizCreateIndex = () => {
           }
         }
       }
-      console.log("🚀 ~ file: QuizCreateIndex.jsx:94 ~ newInputFields ~ i:", i);
       if (event?.target?.name === "questionText") {
         if (uniqueId === i.uniqueId) {
           i.question[event.target.name] = event.target.value;
@@ -285,10 +284,11 @@ const QuizCreateIndex = () => {
 
 export default QuizCreateIndex;
 
-// data = {
+// addQuiz = {
 //   quizId: "sdsdssdsad",
-//   questionId: "15414587414654",
-//   formData: {
-//     // formData.append(`questionAndAnswer[${index}][question][questionText]`, qa.question.questionText);
+ 
+//   questionAndAnswer: {
+//     1702967148440 :[],
+//     1702967148440 :[],
 //   }
 // }

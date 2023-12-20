@@ -118,6 +118,18 @@ const RegistrationForm = () => {
 
     dispatch(signup(rest)).then((action) => {
       if (action.error) {
+        if (action.error.message === 'This QAI User Name is already taken') {
+          setValue('hub', null);
+          setHelperMessage('');
+          setGeneratedHubId('');
+          setValue('qaiUserName', null);
+          if (!data.isNewUser) {
+            setError('qaiUserName', {
+              type: 'custom',
+              message: 'This QAI User Name is already taken',
+            });
+          }
+        }
         toast.trigger(action.error.message, 'error');
       } else if (
         action.payload?.status === 200 ||

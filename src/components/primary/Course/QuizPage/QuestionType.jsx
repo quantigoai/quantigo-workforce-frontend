@@ -58,6 +58,7 @@ const QuestionType = ({
   RestoreQuestionID,
   deleteQuestionIds,
 }) => {
+  // console.log("🚀 ~ file: QuestionType.jsx:61 ~ inputField:", inputField)
   const [value, setValue] = React.useState("");
   const [radioValue, setRadioValue] = React.useState("");
 

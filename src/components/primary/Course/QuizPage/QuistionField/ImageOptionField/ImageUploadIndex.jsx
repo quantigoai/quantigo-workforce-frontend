@@ -92,7 +92,7 @@ const ImageUploadIndex = ({
 
   if (screenSize >= 1500) {
     // Extra-large screens
-    width = 240;
+    width = 275;
   } else if (screenSize === 1440) {
     // Large screens
     width = 178;
@@ -111,14 +111,17 @@ const ImageUploadIndex = ({
                   {/* <Typography>sfsf</Typography> */}
                   <br />
                   <br />
-                  <Typography variant="wpf_p3_regular" sx={{ color: "#ff1744" }}>
+                  <Typography variant="wpf_p4_medium" sx={{ color: "#ff1744" }}>
                     File : {files}
                   </Typography>
-                  <Typography variant="wpf_p3_regular" sx={{ color: "#ff1744", textDecoration: "justify" }}>
+                  <Typography
+                    variant="wpf_p4_medium"
+                    sx={{ color: "#ff1744", textDecoration: "justify", }}
+                  >
                     The selected file is too large. Please choose a file less than 1Mb.
                   </Typography>
-                  <Typography variant="wpf_p3_regular" sx={{ color: "#ff1744", textDecoration: "justify" }}>
-                    Click here again to change the file.
+                  <Typography variant="wpf_p4_medium" sx={{ color: "#ff1744", textDecoration: "justify" }}>
+                    {/* Click here again to change the file. */}
                   </Typography>
                 </>
               ) : (
@@ -202,13 +205,13 @@ const ImageUploadIndex = ({
               <input {...getInputProps()} />
               <br />
               <img src={IconImage} />
-              <Typography variant="wpf_p2_regular" sx={{ paddingTop: "1%" }}>
+              <Typography variant="wpf_p4_medium" sx={{ paddingTop: "5%" }}>
                 Upload image
               </Typography>
-              <Typography variant="wpf_p2_regular" sx={{ paddingBottom: "2%" }}>
+              <Typography variant="wpf_p4_medium" sx={{ paddingBottom: "2%" }}>
                 Maximum file size: 512KB.
               </Typography>
-              <img src={ctaImage} />
+              {/* <img src={ctaImage} /> */}
             </>
           )}
         </Box>

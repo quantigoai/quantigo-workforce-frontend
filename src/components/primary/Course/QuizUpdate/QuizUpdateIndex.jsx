@@ -12,7 +12,7 @@ import useToaster from "../../../../customHooks/useToaster";
 const QuizUpdateIndex = () => {
   const [inputFields, setInputFields] = useState([]);
   const { courseChapters } = useSelector((state) => state.course);
-
+  const [isCompleted, setIsCompleted] = useState(false);
   const [disabledButton, setDisabledButton] = useState(true);
   const [durationTime, setDurationTime] = useState("");
   const { quiz } = useSelector((state) => state.quiz);
@@ -196,6 +196,7 @@ const QuizUpdateIndex = () => {
 
       delete addQuiz.questionAndAnswer[field._id];
       setInputFields(filteredArr);
+      setIsCompleted(true);
     } else {
       setDeleteQuestionIds((current) => [...current, field._id]);
     }

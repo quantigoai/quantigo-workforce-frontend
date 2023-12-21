@@ -39,7 +39,8 @@ const QuestionName = ({ handleChangeInput, inputField, inputFields, handleUpdate
           sx={{
             mb: 0,
             color: "neutral.N300",
-          }}>
+          }}
+        >
           Question Name+{inputField._id}
         </Typography>
         <Box sx={{ width: "100%" }}>
@@ -51,11 +52,13 @@ const QuestionName = ({ handleChangeInput, inputField, inputFields, handleUpdate
             fullWidth
             name="questionText"
             variant="outlined"
-            defaultValue={inputField.question.questionText}
+            value={inputField.question.questionText && inputField.question.questionText}
             // required={label === "Benchmark" ? false : true}
             // onChange={(event) => handleChangeInput(inputField.uniqueId, event)}
             onChange={(event) =>
-              update ? handleUpdate(event.target.value, "questionText", inputField) : handleChangeInput(inputField.uniqueId, event)
+              update
+                ? handleUpdate(event.target.value, "questionText", inputField)
+                : handleChangeInput(inputField.uniqueId, event)
             }
             sx={{
               backgroundColor: "neutral.N000",

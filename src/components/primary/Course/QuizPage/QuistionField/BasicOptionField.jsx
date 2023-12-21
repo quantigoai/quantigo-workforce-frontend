@@ -41,6 +41,7 @@ export const RadioOption = styled(Radio)(() => ({
   // ... your existing styles
 }));
 const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate }) => {
+  console.log("🚀 ~ file: BasicOptionField.jsx:44 ~ BasicOptionField ~ inputField:", inputField)
   const [checkValue, setCheckValue] = useState(inputField?.correctAnswerIndex);
 
   // TO change the correct answer Index
@@ -99,8 +100,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
                 ? ''
                 : inputField.possibleAnswers[0]
             }
-            // defaultValue={"ssdffsd"}
-
+         
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -141,7 +141,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
           <TextFieldOption
             name="possibleAnswer1"
             fullWidth
-            defaultValue={
+            value={
               inputField.questionType === 'imageInOptions'
                 ? ''
                 : inputField.possibleAnswers[1]
@@ -193,7 +193,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
           <TextFieldOption
             name="possibleAnswer1"
             // defaultValue={inputField.possibleAnswers[2]}
-            defaultValue={
+            value={
               inputField.questionType === 'imageInOptions'
                 ? ''
                 : inputField.possibleAnswers[2]
@@ -240,7 +240,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
             name="possibleAnswer1"
             fullWidth
             // defaultValue={inputField.possibleAnswers[2]}
-            defaultValue={
+            value={
               inputField.questionType === 'imageInOptions'
                 ? ''
                 : inputField.possibleAnswers[3]

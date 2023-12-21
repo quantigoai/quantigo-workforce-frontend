@@ -4,6 +4,7 @@ import ImageUploadIndex from "./ImageUploadIndex";
 import { RadioOption } from "../BasicOptionField";
 
 const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUpdate, update }) => {
+  console.log("🚀 ~ file: ImageOptionField.jsx:7 ~ ImageOptionField ~ inputField:", inputField)
   const [coverImageFile, setCoverImageFile] = useState([]);
   const [coverImage1, setCoverImage1] = useState(null);
   const [coverImage2, setCoverImage2] = useState(null);

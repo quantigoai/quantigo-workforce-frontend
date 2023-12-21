@@ -58,8 +58,6 @@ const QuestionType = ({
   RestoreQuestionID,
   deleteQuestionIds,
 }) => {
-  console.log("🚀 ~ file: QuestionType.jsx:61 ~ inputFields:", inputFields)
-  // console.log("🚀 ~ file: QuestionType.jsx:61 ~ inputField:", inputField)
   const [value, setValue] = React.useState("");
   const [radioValue, setRadioValue] = React.useState("");
 
@@ -350,11 +348,11 @@ const QuestionType = ({
         {/* Delete Question */}
         <Box sx={{}}>
           {/* {update && !deleteQuestionIds.includes(inputField._id) && ( */}
-            <i
-              style={{ fontSize: "20px", color: "#FF4757" }}
-              onClick={update ? () => handleRemoveQA(inputField) : () => handleRemoveQA(inputField.uniqueId)}
-              className="ri-delete-bin-6-line"
-            ></i>
+          <i
+            style={{ fontSize: "20px", color: "#FF4757" }}
+            onClick={update ? () => handleRemoveQA(inputField) : () => handleRemoveQA(inputField.uniqueId)}
+            className="ri-delete-bin-6-line"
+          ></i>
           {/* )} */}
         </Box>
       </Box>

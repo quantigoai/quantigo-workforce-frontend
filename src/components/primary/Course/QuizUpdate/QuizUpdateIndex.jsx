@@ -15,12 +15,14 @@ import QuizNameDurationField from "../QuizPage/QuizNameDurationField";
 import useToaster from "../../../../customHooks/useToaster";
 
 const QuizUpdateIndex = () => {
-  const [inputFields, setInputFields] = useState([]);
+  const [inputFieldsCopy, setInputFieldsCopy] = useState([]);
   const { courseChapters } = useSelector((state) => state.course);
   const [isCompleted, setIsCompleted] = useState(false);
   const [disabledButton, setDisabledButton] = useState(true);
   const [durationTime, setDurationTime] = useState("");
   const { quiz } = useSelector((state) => state.quiz);
+  const [inputFields, setInputFields] = useState(quiz.questionAndAnswer);
+
   const dispatch = useDispatch();
   const [tempData, setTempData] = useState({
     quizId: "",
@@ -35,8 +37,9 @@ const QuizUpdateIndex = () => {
     // defaultValues,
   });
   useEffect(() => {
-    setInputFields(quiz.questionAndAnswer);
+    // setInputFields(quiz.questionAndAnswer);
     // quiz && setMd({ ...quiz });
+    setInputFieldsCopy([...inputFields]);
     const duration = courseChapters?.reduce((accumulator, currentValue) => {
       return accumulator + currentValue.estimatedTimeToRead || 0;
     }, 0);
@@ -52,6 +55,7 @@ const QuizUpdateIndex = () => {
       setDurationTime(hours + " hours " + minutes + " minutes");
     }
   }, [quiz]);
+  console.log("🚀 ~ file: QuizUpdateIndex.jsx:14 ~ QuizUpdateIndex ~ inputFieldsCopy:", inputFieldsCopy);
 
   const handleChangeInput = (uniqueId, event) => {
     const newInputFields = inputFields.map((i) => {});
@@ -74,8 +78,50 @@ const QuizUpdateIndex = () => {
     // setInputFields(newInputFields);
   };
   const handleUpdate = (value, index, field) => {
-    console.log("🚀 ~ file: QuizUpdateIndex.jsx:72 ~ handleUpdate ~ field:", field);
     if (field.newQuiz) {
+      const newInputFields = inputFields.map((item) => {
+        if (item._id === field._id) {
+          if (index === "questionText") {
+            item.question[index] = value;
+          }
+          if (index === "questionImage") {
+            item.question[index] = value;
+          }
+          if (index === "correctAnswerIndex") {
+            item.correctAnswerIndex = value;
+          }
+
+          if (index === "questionType") {
+            item.questionType = value;
+            if (value === "imageAndOptions" || value === "default" || value === "imageInOptions") {
+              console.log("jdjdjd");
+              item.possibleAnswers = [];
+            }
+          }
+          if (index === "correctAnswerIndex") {
+            item.correctAnswerIndex = value;
+          }
+          if (index === "possibleAnswers_0") {
+            item.possibleAnswers[0] = value;
+          }
+          if (index === "possibleAnswers_1") {
+            item.possibleAnswers[1] = value;
+          }
+
+          if (index === "possibleAnswers_2") {
+            item.possibleAnswers[2] = value;
+          }
+
+          if (index === "possibleAnswers_3") {
+            item.possibleAnswers[3] = value;
+          }
+        }
+        return item;
+      });
+      console.log("🚀 ~ file: QuizUpdateIndex.jsx:106 ~ newInputFields ~ newInputFields:", newInputFields);
+      setInputFieldsCopy(newInputFields);
+      setInputFields(newInputFields);
+
       const qaID = field._id;
       const newAddData1 = { ...addQuiz };
       newAddData1.quizId = quiz._id;
@@ -197,9 +243,10 @@ const QuizUpdateIndex = () => {
       //   values.findIndex((value) => value._id === field._id),
       //   1
       // );
-      const filteredArr = inputFields.filter((item) => item._id !== field._id);
+      const filteredArr = inputFieldsCopy.filter((item) => item._id !== field._id);
 
       delete addQuiz.questionAndAnswer[field._id];
+      setInputFieldsCopy(filteredArr);
       setInputFields(filteredArr);
       setIsCompleted(true);
     } else {
@@ -214,9 +261,25 @@ const QuizUpdateIndex = () => {
     // setRestoreQuestionID((current) => [...current, uniqueId]);
   };
 
-  console.log("🚀 ~ file: QuizUpdateIndex.jsx:188 ~ QuizUpdateIndex ~ RestoreQuestionID:", inputFields);
+  // solve this
+  useEffect(() => {}, [inputFieldsCopy]);
+
+  console.log("🚀 ~ file: QuizUpdateIndex.jsx:188 ~ QuizUpdateIndex ~ inputFields:", inputFields);
   console.log("🚀 ~ file: QuizUpdateIndex.jsx:188 ~ QuizUpdateIndex ~ AddQuiz:", addQuiz);
   const handleAddQA = () => {
+    setInputFieldsCopy([
+      ...inputFields,
+
+      {
+        _id: new Date().getTime(),
+        newQuiz: true,
+        question: {},
+        correctAnswerIndex: "",
+        possibleAnswers: [],
+        correctAnswer: "",
+        questionType: "default",
+      },
+    ]);
     setInputFields([
       ...inputFields,
 
@@ -381,8 +444,8 @@ const QuizUpdateIndex = () => {
                   // backgroundColor: "blue",
                 }}
               >
-                {inputFields &&
-                  inputFields.map((inputField) => {
+                {inputFieldsCopy &&
+                  inputFieldsCopy.map((inputField) => {
                     const isDeleted = deleteQuestionIds.includes(inputField._id);
                     const backgroundColor = isDeleted ? "red" : "";
 
@@ -398,6 +461,7 @@ const QuizUpdateIndex = () => {
                           handleRestoreQuestion={handleRestoreQuestion}
                           RestoreQuestionID={RestoreQuestionID}
                           deleteQuestionIds={deleteQuestionIds}
+                          isCompleted={isCompleted}
                         />
                       </Box>
                     );

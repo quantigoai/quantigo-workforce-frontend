@@ -114,10 +114,7 @@ const ImageUploadIndex = ({
                   <Typography variant="wpf_p4_medium" sx={{ color: "#ff1744" }}>
                     File : {files}
                   </Typography>
-                  <Typography
-                    variant="wpf_p4_medium"
-                    sx={{ color: "#ff1744", textDecoration: "justify", }}
-                  >
+                  <Typography variant="wpf_p4_medium" sx={{ color: "#ff1744", textDecoration: "justify" }}>
                     The selected file is too large. Please choose a file less than 1Mb.
                   </Typography>
                   <Typography variant="wpf_p4_medium" sx={{ color: "#ff1744", textDecoration: "justify" }}>
@@ -164,7 +161,7 @@ const ImageUploadIndex = ({
                 </>
               )}
             </>
-          ) : update && inputField.questionType === "imageInOptions" ? (
+          ) : update && inputField.questionType === "imageInOptions" && !inputField.newQuiz ? (
             <>
               <Box
                 sx={{

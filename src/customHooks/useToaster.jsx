@@ -37,7 +37,9 @@ const useToaster = () => {
     request,
     setDataLading,
     { initialMessage = "Loading...", inPending, afterSuccess, afterError },
-    forProjectDirectory = false
+    forProjectDirectory = false,
+    forQuizCreate = false,
+    forQUizUpdate = false
   ) => {
     await toast.promise(request, {
       pending: {
@@ -60,7 +62,8 @@ const useToaster = () => {
         render({ data }) {
           afterError(data);
           setDataLading(false);
-          return forProjectDirectory ? data.response.data.detail : data.response.data.message;
+          return forProjectDirectory || forQuizCreate ? data.response.data.detail : data.response.data.message;
+          // return forProjectDirectory || forQuizCreate ? data.message : data.response.data.message;
         },
       },
     });

@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import CommonHeader from "../../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import { LoadingButton } from "@mui/lab";
 
-const ChapterCreateHeader = ({ isLoading, durationTime, isDisable }) => {
+const ChapterCreateHeader = ({ isLoading, durationTime, isDisable, quizLoading }) => {
   const { course } = useSelector((state) => state.course);
   const [isActiveChapter, setIsActiveChapter] = useState(false);
   const [isChapterBtnDis, setIsChapterBtnDis] = useState(false);
@@ -113,7 +113,7 @@ const ChapterCreateHeader = ({ isLoading, durationTime, isDisable }) => {
         >
           <LoadingButton
             type="submit"
-            loading={isLoading}
+            loading={quizLoading}
             disabled={isDisable}
             sx={{
               backgroundColor: "#2E58FF",

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import useToaster from "../../../../customHooks/useToaster";
-import { createAQuiz } from "../../../../features/slice/quizSlice";
+import { createAQuiz, createQuizFunction } from "../../../../features/slice/quizSlice";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
 import ChapterCreateHeader from "../ChapterCreate/ChapterCreateHeader";
 import QuestionType from "../QuizPage/QuestionType";
@@ -138,7 +138,8 @@ const QuizCreateIndex = () => {
       setIsDisable(true);
     }
   }, [isFieldNotEmpty, isInValid?.message]);
-
+  const [quizLoading, setQuizLoading] = useState(false);
+  const [reject, setReject] = React.useState(false);
   const onSubmit = async (data) => {
     const formData = new FormData();
     data.courseId = courseChapter.rootCourse._id;
@@ -183,16 +184,34 @@ const QuizCreateIndex = () => {
         formData.append(`questionAndAnswer[${index}][correctAnswerIndex]`, qa.correctAnswerIndex);
       }
     });
-
     data.questionAndAnswer = inputFields;
-    dispatch(createAQuiz(formData)).then((action) => {
-      // navigate(`/course-details/${course._id}`);
-      if (action.error) {
-        toast.trigger(action.error.message, "error");
-      } else {
-        toast.trigger(action.payload.data.message, "success");
-      }
-    });
+    await toast.responsePromise(
+      createQuizFunction(formData),
+      setQuizLoading,
+      {
+        initialMessage: "quiz is creating ...",
+        inPending: () => {
+          setReject(false);
+        },
+        afterSuccess: (data) => {
+          setReject(false);
+        },
+        afterError: (data) => {
+          setReject(false);
+        },
+      },
+      false,
+      true
+    );
+
+    // dispatch(createAQuiz(formData)).then((action) => {
+    //   // navigate(`/course-details/${course._id}`);
+    //   if (action.error) {
+    //     toast.trigger(action.error.message, "error");
+    //   } else {
+    //     toast.trigger(action.payload.data.message, "success");
+    //   }
+    // });
     for (let pair of formData.entries()) {
       console.log(pair[0] + ", " + pair[1]);
     }
@@ -236,7 +255,7 @@ const QuizCreateIndex = () => {
           <Grid xs={8}>
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
               <Box className="">
-                <ChapterCreateHeader isDisable={isDisable} durationTime={durationTime} />
+                <ChapterCreateHeader quizLoading={quizLoading} isDisable={isDisable} durationTime={durationTime} />
               </Box>
 
               <Box sx={{ backgroundColor: "", mt: 3 }}>
@@ -286,7 +305,7 @@ export default QuizCreateIndex;
 
 // addQuiz = {
 //   quizId: "sdsdssdsad",
- 
+
 //   questionAndAnswer: {
 //     1702967148440 :[],
 //     1702967148440 :[],

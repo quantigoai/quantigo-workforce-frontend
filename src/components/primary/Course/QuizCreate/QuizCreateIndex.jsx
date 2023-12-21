@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import useToaster from "../../../../customHooks/useToaster";
-import { createAQuiz, createQuizFunction } from "../../../../features/slice/quizSlice";
+import { createQuizFunction } from "../../../../features/slice/quizSlice";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
 import ChapterCreateHeader from "../ChapterCreate/ChapterCreateHeader";
 import QuestionType from "../QuizPage/QuestionType";

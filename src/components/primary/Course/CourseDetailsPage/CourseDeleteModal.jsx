@@ -127,7 +127,7 @@ const CourseDeleteModal = ({ course }) => {
               lineHeight: "20px",
             }}
           >
-            Are you sure you want to delete this Course? If you delete your project, you will lose all the course
+            Are you sure you want to delete this Course? If you delete this course, you will lose all the course
             information.
           </Typography>
           <Box

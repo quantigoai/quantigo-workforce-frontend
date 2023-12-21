@@ -1,8 +1,13 @@
 import { Box, Button, Grid } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteQuestionFromQuiz, insertAQuestionInQuiz, updateQuizQA } from "../../../../features/slice/quizSlice";
+import {
+  deleteQuestionFromQuiz,
+  insertAQuestionInQuiz,
+  updateQuizQA,
+  updateQuizQAFunction,
+} from "../../../../features/slice/quizSlice";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
 import ChapterUpdateHeader from "../ChapterCreate/ChapterUpdateHeader";
 import QuestionType from "../QuizPage/QuestionType";
@@ -233,7 +238,10 @@ const QuizUpdateIndex = () => {
     handleSubmit,
     formState: { errors },
   } = methods;
-  const onSubmit = (data) => {
+  const [quizaUpdateLoading, setQuizUpdateLoading] = useState(false);
+  const [accept, setAccept] = useState(false);
+
+  const onSubmit = async (data) => {
     let tempQA;
     // Delete Question in a Quiz
     console.log(addQuiz);
@@ -250,7 +258,7 @@ const QuizUpdateIndex = () => {
 
     {
       tempData.questionAndAnswer.length !== 0 &&
-        Object.entries(tempData.questionAndAnswer).map(([key, val], i) => {
+        Object.entries(tempData.questionAndAnswer).map(async ([key, val], i) => {
           const data1 = {
             quizId: quiz._id,
             questionId: key,
@@ -261,18 +269,38 @@ const QuizUpdateIndex = () => {
             formData.append(`${k}`, v);
             data1.formDataQ = formData;
           });
-          dispatch(updateQuizQA(data1)).then((action) => {
-            // navigate(`/course-details/${course._id}`);
-            if (action.error) {
-              toast.trigger(action.error.message, "error");
-            } else {
-              toast.trigger(action.payload.data.message, "success");
-            }
-          });
+          await toast.responsePromise(
+            updateQuizQAFunction(data1),
+            setQuizUpdateLoading,
+            {
+              initialMessage: "quiz is updating ...",
+              inPending: () => {
+                setAccept(false);
+              },
+              afterSuccess: (data) => {
+                setAccept(false);
+              },
+              afterError: (data) => {
+                setAccept(false);
+              },
+            },
+            false,
+            true,
+            true
+          );
 
-          // for (let pair of formData.entries()) {
-          //   console.log(pair[0] + ", " + pair[1]);
-          // }
+          // dispatch(updateQuizQA(data1)).then((action) => {
+          //   // navigate(`/course-details/${course._id}`);
+          //   if (action.error) {
+          //     toast.trigger(action.error.message, "error");
+          //   } else {
+          //     toast.trigger(action.payload.data.message, "success");
+          //   }
+          // });
+
+          for (let pair of formData.entries()) {
+            console.log(pair[0] + ", " + pair[1]);
+          }
         });
     }
 

@@ -15,6 +15,7 @@ import { getACourseByID } from "../../../features/slice/courseSlice";
 import CommonHeaderForCourse from "../../shared/CustomComponenet/CommonHeader/CommonHeaderForCourse";
 import CourseDrawerNew from "./CourseDrawerNew";
 import useCourseDetails from "../Course/hooks/courseDetailshooks/useCourseDetails";
+import { getAllSkills } from "../../../features/slice/skillSlice";
 
 const CourseDetails = () => {
   const params = useParams();

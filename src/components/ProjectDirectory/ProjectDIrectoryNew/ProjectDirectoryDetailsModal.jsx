@@ -82,14 +82,30 @@ const ProjectDirectoryDetailsModal = ({ openProjectModalDetails, item, handleDet
                 <DetailsItem
                   Item1Title={"Project Name"}
                   isLightTheme={isLightTheme}
-                  Item1={item?.Project_Name}
+                  Item1={item?.project_Name}
                   Item2Title={"Platform"}
-                  Item2={item?.Platform}
+                  Item2={item?.platform}
+                />
+
+                <DetailsItem
+                  Item1Title={"Client alias"}
+                  isLightTheme={isLightTheme}
+                  Item1={item?.client_Alias}
+                  Item2Title={"Industry"}
+                  Item2={item?.industry}
+                />
+
+                <DetailsItem
+                  Item1Title={"Tool type"}
+                  isLightTheme={isLightTheme}
+                  Item1={item?.tool_Type}
+                  Item2Title={"Project Type"}
+                  Item2={item?.project_Type}
                 />
                 <DetailsItem
                   isLightTheme={isLightTheme}
                   Item1Title={"Action Items"}
-                  Item1={item?.Action_Items}
+                  Item1={item?.action_Items}
                   Item2Title={"Guideline"}
                   Item2={capitalizeFirstLetter(item?.Guideline)}
                 />
@@ -99,56 +115,56 @@ const ProjectDirectoryDetailsModal = ({ openProjectModalDetails, item, handleDet
                   Item1Title={"QA Check Points"}
                   Item1={item?.QA_Check_Points}
                   Item2Title={"Objective Benchmark"}
-                  Item2={item?.Obj_Benchmark}
+                  Item2={item?.obj_Benchmark}
                 />
                 <DetailsItem
                   isLightTheme={isLightTheme}
                   Item1Title={"Image Benchmark"}
-                  Item1={item?.Img_Benchmark}
+                  Item1={item?.img_Benchmark}
                   Item2Title={"Tagging Benchmark"}
-                  Item2={item?.Tagging_Benchmark}
+                  Item2={item?.tagging_Benchmark}
                 />
                 <DetailsItem
                   isLightTheme={isLightTheme}
                   Item1Title={"Skip Image"}
-                  Item1={item?.Skip_Image}
+                  Item1={item?.skip_Image}
                   Item2Title={"Update"}
-                  Item2={item?.Update}
+                  Item2={item?.update}
                 />
                 <DetailsItem
                   isLightTheme={isLightTheme}
                   Item1Title={"Image Loading"}
-                  Item1={item?.Image_Loading}
+                  Item1={item?.image_Loading}
                   Item2Title={"PDR"}
                   Item2={item?.PDR}
                 />
                 <DetailsItem
                   isLightTheme={isLightTheme}
                   Item1Title={"Object Saving Time"}
-                  Item1={item?.Object_Saving_Time}
+                  Item1={item?.object_Saving_Time}
                   Item2Title={"Tagging Benchmark"}
-                  Item2={item?.Tagging_Benchmark}
+                  Item2={item?.tagging_Benchmark}
                 />
                 <DetailsItem
                   isLightTheme={isLightTheme}
                   Item1Title={"Video Watch Time"}
-                  Item1={item?.Video_Watch_Time}
+                  Item1={item?.video_Watch_Time}
                   Item2Title={"Judgement Time"}
-                  Item2={item?.Judgement_Time}
+                  Item2={item?.judgement_Time}
                 />
                 <DetailsItem
                   isLightTheme={isLightTheme}
                   Item1Title={"QA Benchmark"}
                   Item1={item?.QA_Benchmark}
                   Item2Title={"Annotation "}
-                  Item2={item?.Annotation}
+                  Item2={item?.annotation}
                 />
                 <DetailsItem
                   isLightTheme={isLightTheme}
                   Item1Title={"QA"}
                   Item1={item?.QA}
                   Item2Title={"Remarks"}
-                  Item2={item?.Remarks}
+                  Item2={item?.remarks}
                 />
               </Stack>
             </Box>

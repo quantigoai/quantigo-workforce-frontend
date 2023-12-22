@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
@@ -28,6 +29,8 @@ import ProjectDirectoryHeader from "../ProjectDirectoryHeader/ProjectDirectoryHe
 import ProjectDirectoryDetailsModal from "./ProjectDirectoryDetailsModal";
 import ProjectDirectoryEditModal from "./ProjectDirectoryEditModal";
 import PaginationTable from "../../primary/ProjectLIstNew2/PaginationTable";
+import { useLocation } from "react-router-dom";
+import { setProjectDirectoryFilter } from "../../../features/slice/temporaryDataSlice";
 // import ProjectDirectoryDetailsModal from "./ProjectDirectoryDetailsModal";
 
 function TablePaginationActions(props) {
@@ -322,8 +325,11 @@ const ProjectDirectoryIndex = () => {
     currentPage: 0,
     pageSize: 10,
   });
-  const [isDeleted, setIsDeleted] = useState(false);
+  const { projectDirectoryFilter } = useSelector((state) => state.tempData);
 
+  const { pathname } = useLocation();
+  const [isDeleted, setIsDeleted] = useState(false);
+  const [ascDesc, setAscDesc] = useState({});
   const [search, setSearch] = useState("");
   const [openReject, setOpenReject] = React.useState(false);
   const [isSyncLoading, setIsSyncLoading] = useState(false);
@@ -350,7 +356,7 @@ const ProjectDirectoryIndex = () => {
         toast.trigger(action.error?.message, "error");
       } else {
         toast.trigger(action.payload.data.message, "success");
-        setIsDeleted(false);
+        setIsDeleted(true);
       }
     });
   };
@@ -367,10 +373,10 @@ const ProjectDirectoryIndex = () => {
   };
 
   const handleSearch = (e) => {
-    // setPagination((prevPagination) => ({
-    //   ...prevPagination,
-    //   currentPage: 0,
-    // }));
+    setPagination((prevPagination) => ({
+      ...prevPagination,
+      currentPage: 0,
+    }));
     setSearch(e.target.value);
   };
 
@@ -379,6 +385,20 @@ const ProjectDirectoryIndex = () => {
     searchRef.current.value = "";
     dispatch(getProjectByDirectory(""));
   };
+  useEffect(() => {
+    if (pathname === "/projectDirectory") {
+      // setAscDesc(projectDirectoryFilter.ascDescOption);
+      setSearch(projectDirectoryFilter?.search);
+      searchRef.current.value = projectDirectoryFilter?.search || "";
+    }
+  }, []);
+  useEffect(() => {
+    dispatch(
+      setProjectDirectoryFilter({
+        search,
+      })
+    );
+  }, [search]);
 
   useEffect(() => {
     dispatch(setActivePath("Project Directory"));
@@ -437,7 +457,6 @@ const ProjectDirectoryIndex = () => {
     });
   };
   const onSubmitEdit = (data) => {
-    // data._id = projectDirectorySingle._id;
     const finalData = {
       data,
       id: projectDirectorySingle._id,
@@ -453,6 +472,28 @@ const ProjectDirectoryIndex = () => {
       }
     });
   };
+
+  const handleAscDesc = (field) => {
+    setAscDesc((prev) => {
+      const updatedData = { ...prev };
+      if (prev?.hasOwnProperty(field)) {
+        if (prev[field] === "asc") {
+          return {
+            ...prev,
+            [field]: "desc",
+          };
+        } else {
+          delete updatedData[field];
+          return updatedData;
+        }
+      }
+      return {
+        ...prev,
+        [field]: "asc",
+      };
+    });
+  };
+
   return (
     <Box className="content">
       <HeaderBox sx={{ backgroundColor: "" }}>
@@ -553,9 +594,8 @@ const ProjectDirectoryIndex = () => {
               myColumn={myColumn}
               myRows={myRows}
               pagination={pagination}
-              // setPagination={setPagination}
-              // handleId={handleId}
-              // filteredCol={filteredCol}
+              setPagination={setPagination}
+              handleId={handleAscDesc}
               handleProjectDetailsOpen={handleProjectDetailsOpen}
               isChildDataLoading={isChildDataLoading}
               setIsChildDataLoading={setIsChildDataLoading}
@@ -567,7 +607,7 @@ const ProjectDirectoryIndex = () => {
             pagination={pagination}
             setPagination={setPagination}
             // setFilterValue={setFilterValue}
-            // setFilteredCol={setFilteredCol}
+            setFilteredCol={setAscDesc}
           />
         </TablePaper>
       </Box>

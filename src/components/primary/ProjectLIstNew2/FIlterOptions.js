@@ -73,9 +73,9 @@ export const singleDetailsFields = [
 ];
 
 export const projectDirectoryField = [
-  { field: "client_Alias", width: 160, textAlign: "left", columnDataAlign: "left" },
-  { field: "industry", width: 140, textAlign: "left", columnDataAlign: "left" },
-  { field: "project_Name", width: 140, textAlign: "left", columnDataAlign: "left" },
+  { field: "project_Name", width: 180, textAlign: "left", columnDataAlign: "left" },
+  { field: "industry", width: 180, textAlign: "left", columnDataAlign: "left" },
+  { field: "client_Alias", width: 180, textAlign: "left", columnDataAlign: "left" },
   { field: "platform", width: 140, textAlign: "left", columnDataAlign: "left" },
   { field: "tool_Type", width: 140, textAlign: "left", columnDataAlign: "left" },
   { field: "PDR", width: 140, textAlign: "left", columnDataAlign: "left" },

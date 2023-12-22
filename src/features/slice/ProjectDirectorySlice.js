@@ -16,7 +16,7 @@ const initialState = {
 };
 
 export const getProjectByDirectory = createAsyncThunk("/project/directory", async (data) => {
-  const { search, pagination } = data;
+  const { search, pagination, ascDescOption } = data;
 
   // let query = ``;
   // if (data) {
@@ -88,7 +88,11 @@ export const getProjectByDirectory = createAsyncThunk("/project/directory", asyn
   // let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
   let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
   if (search) {
-    query += `?query=${search}?&skip=1&limit=10`;
+    query += `&search=${search}`;
+  }
+  if (ascDescOption) {
+    const ascDescOptions = ascDescOption && Object.keys(ascDescOption);
+    ascDescOptions.map((ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`));
   }
   try {
     return axios.get(`${url}/project-directory/get-all-projects?${query}`, {
@@ -276,6 +280,17 @@ export const updateProjectDirectory = createAsyncThunk("Project/Directory/update
     throw new Error(error.response.data.message);
   }
 });
+export const getProjectDirectoryById = createAsyncThunk("Project/Directory/update", async (id) => {
+  try {
+    return axios.get(`${url}/project-directory/get-project/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
 
 // Delete project
 export const deleteProjectDirectory = createAsyncThunk("delete/project/directory", async (id) => {
@@ -302,7 +317,6 @@ const ProjectDirectory = createSlice({
       return initialState;
     },
     setCurrentProjectDirectory: (state, action) => {
-      console.log("🚀 ~ file: ProjectDirectorySlice.js:301 ~ action:", action);
       state.projectDirectorySingle = state.projectDirectory.find((p) => p._id === action.payload);
     },
     clearProjectDirectory: (state) => {

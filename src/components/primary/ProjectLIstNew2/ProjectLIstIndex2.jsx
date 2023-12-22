@@ -73,11 +73,10 @@ export const TablePaper = styled(Paper)({
 const ProjectLIstIndex2 = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-  const navigate = useNavigate();
   const toast = useToaster();
   const searchRef = React.useRef(null);
-  const { projectDrawer, total, error, projectMeta } = useSelector((state) => state.projectDrawer);
-  const { handleChangeSkill, addSkills, setAddSkills, count, skillCount, setSkillCount } = useHandleChange();
+  const { projectDrawer } = useSelector((state) => state.projectDrawer);
+  const { handleChangeSkill, addSkills, setAddSkills, skillCount } = useHandleChange();
 
   const [isDeleted, setIsDeleted] = useState(false);
 

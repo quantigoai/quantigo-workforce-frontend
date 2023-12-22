@@ -7,11 +7,11 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { keyframes } from '@emotion/react';
-import Box from '@mui/material/Box';
-import { styled } from '@mui/system';
-import qaiLogo from '../../../assets/images/qai.png';
-import './index.css';
+import { keyframes } from "@emotion/react";
+import Box from "@mui/material/Box";
+import { styled } from "@mui/system";
+import qaiLogo from "../../../assets/images/qai.png";
+import "./index.css";
 const fadeInOut = keyframes`
 0%, 20%, 50%, 80%, 100% {
   transform: translateY(0);
@@ -73,12 +73,12 @@ const LoadingComponent = ({ height }) => {
   return (
     <Box
       sx={{
-        height: height || '100vh',
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignContent: 'center',
+        height: height || "100vh",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        alignContent: "center",
       }}
     >
       <BodyBox>

@@ -1,26 +1,16 @@
 /* eslint-disable no-prototype-builtins */
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
-import useToaster from '../../../../customHooks/useToaster';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import useToaster from "../../../../customHooks/useToaster";
 import {
   clearProjectDrawer,
   deleteProjectDrawerById,
   setCurrentProjectDrawer,
-} from '../../../../features/slice/projectDrawerSlice';
-import { getAllSkills } from '../../../../features/slice/skillSlice';
-import {
-  clearProjectDrawerFilter,
-  setProjectDrawerFilter,
-} from '../../../../features/slice/temporaryDataSlice';
-const useAllFunc = ({
-  addSkills,
-  setAddSkills,
-  handleClearAllSkills,
-  setIsEdit,
-  searchRef,
-  setIsDeleted,
-}) => {
+} from "../../../../features/slice/projectDrawerSlice";
+import { getAllSkills } from "../../../../features/slice/skillSlice";
+import { clearProjectDrawerFilter, setProjectDrawerFilter } from "../../../../features/slice/temporaryDataSlice";
+const useAllFunc = ({ addSkills, setAddSkills, handleClearAllSkills, setIsEdit, searchRef, setIsDeleted }) => {
   const { skills } = useSelector((state) => state.skill);
   const [isDataLoading, setIsDataLoading] = useState(true);
   const [isChildDataLoading, setIsChildDataLoading] = useState(false);
@@ -33,12 +23,12 @@ const useAllFunc = ({
     currentPage: 0,
     pageSize: 10,
   });
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [filterValue, setFilterValue] = useState({});
   const dispatch = useDispatch();
   const [createProjectOpen, setCreateProjectOpen] = React.useState(false);
   const [detailsProjectOpen, setDetailsProjectOpen] = React.useState(false);
-  const [annotatorPlatform, setAnnotatorPlatform] = useState('');
+  const [annotatorPlatform, setAnnotatorPlatform] = useState("");
   const [checked, setChecked] = useState(false);
   const [filteredCol, setFilteredCol] = useState({});
   const [isFilter, setIsFilter] = useState(false);
@@ -50,28 +40,25 @@ const useAllFunc = ({
   };
   const { pathname } = useLocation();
   const { projectDrawerFilter } = useSelector((state) => state.tempData);
+  console.log("🚀 ~ file: useAllFunc.jsx:43 ~ useAllFunc ~ projectDrawerFilter:", projectDrawerFilter)
   const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
-    if (pathname === '/allprojects') {
+    if (pathname === "/allprojects") {
       setFilteredCol(projectDrawerFilter.ascDescOption);
       setFilterValue(projectDrawerFilter.filteredData);
       setSearch(projectDrawerFilter.search);
-      searchRef.current.value = projectDrawerFilter.search || '';
+      searchRef.current.value = projectDrawerFilter.search || "";
       setChecked(projectDrawerFilter.checked);
-      setAnnotatorPlatform(
-        projectDrawerFilter.checked ? projectDrawerFilter.annotatorPlatform : '',
-      );
+      setAnnotatorPlatform(projectDrawerFilter.checked ? projectDrawerFilter.annotatorPlatform : "");
       setIsComplete(true);
     }
   }, []);
 
   useEffect(() => {
-    if (pathname === '/allprojects') {
+    if (pathname === "/allprojects") {
       if (isComplete) {
-        const isValueExists =
-          filterValue &&
-          Object.keys(filterValue).some((key) => filterValue[key] !== '');
+        const isValueExists = filterValue && Object.keys(filterValue).some((key) => filterValue[key] !== "");
         isValueExists && setIsFilter(true);
         checked && setIsFilter(true);
 
@@ -82,7 +69,7 @@ const useAllFunc = ({
             search,
             annotatorPlatform,
             checked,
-          }),
+          })
         );
       }
     }
@@ -104,17 +91,17 @@ const useAllFunc = ({
     }));
   };
   const defaultState = {
-    pdr: '',
-    project_platform: '',
-    project_type: '',
-    project_status: '',
+    pdr: "",
+    project_platform: "",
+    project_type: "",
+    project_status: "",
   };
 
   const handleClearFilter = () => {
     setFilterValue(defaultState);
     setFilteredCol({});
     setChecked(false);
-    setAnnotatorPlatform('');
+    setAnnotatorPlatform("");
     clearSearch();
     dispatch(clearProjectDrawerFilter());
   };
@@ -123,10 +110,10 @@ const useAllFunc = ({
     setFilteredCol((prev) => {
       const updatedData = { ...prev };
       if (prev?.hasOwnProperty(field)) {
-        if (prev[field] === 'asc') {
+        if (prev[field] === "asc") {
           return {
             ...prev,
-            [field]: 'desc',
+            [field]: "desc",
           };
         } else {
           delete updatedData[field];
@@ -135,7 +122,7 @@ const useAllFunc = ({
       }
       return {
         ...prev,
-        [field]: 'asc',
+        [field]: "asc",
       };
     });
   };
@@ -152,12 +139,12 @@ const useAllFunc = ({
     dispatch(deleteProjectDrawerById(e.id))
       .then((action) => {
         if (action.payload.status === 200) {
-          toast.trigger(action.payload.data.message, 'success');
+          toast.trigger(action.payload.data.message, "success");
           setIsDeleted(true);
         }
       })
       .catch(() => {
-        toast.trigger(error, 'error');
+        toast.trigger(error, "error");
       });
   };
   const handleCreateProjectClose = () => {
@@ -198,8 +185,8 @@ const useAllFunc = ({
   };
 
   const clearSearch = () => {
-    setSearch('');
-    searchRef.current.value = '';
+    setSearch("");
+    searchRef.current.value = "";
   };
   const handleChangeAnnotatorFilter = (event) => {
     const {

@@ -16,7 +16,7 @@ const initialState = {
 };
 
 export const getProjectByDirectory = createAsyncThunk("/project/directory", async (data) => {
-  const { search, pagination } = data;
+  const { search, pagination, ascDescOption } = data;
 
   // let query = ``;
   // if (data) {
@@ -89,6 +89,10 @@ export const getProjectByDirectory = createAsyncThunk("/project/directory", asyn
   let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
   if (search) {
     query += `&search=${search}`;
+  }
+  if (ascDescOption) {
+    const ascDescOptions = ascDescOption && Object.keys(ascDescOption);
+    ascDescOptions.map((ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`));
   }
   try {
     return axios.get(`${url}/project-directory/get-all-projects?${query}`, {

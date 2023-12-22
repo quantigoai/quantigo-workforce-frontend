@@ -22,10 +22,10 @@ import UserSvg from "../../../assets/images/wmp_svg/drawer/userNew.svg";
 
 const layoutMenuOption = () => {
   const adminOptions = [
-    { name: 'Dashboard', icon: DashboardSvg },
-    { name: 'All Users', icon: UserSvg },
-    { name: 'All Projects', icon: ProjectSvg },
-    { name: 'Skill', icon: BenchmarkSvg },
+    { name: "Dashboard", icon: DashboardSvg },
+    { name: "All Users", icon: UserSvg },
+    { name: "All Projects", icon: ProjectSvg },
+    { name: "Skill", icon: BenchmarkSvg },
     { name: "Course", icon: CourseSvg },
 
     // { name: "Projects", icon: ProjectSvg },
@@ -73,7 +73,7 @@ const layoutMenuOption = () => {
     // { name: "Jobs", icon: JobSvg },
     // { name: "Benchmark", icon: BenchmarkSvg },
     // { name: "Sync Server", icon: SyncIcon },
-    // { name: "Project Directory", icon: ProjectSvg },
+    { name: "Project Directory", icon: ProjectSvg },
   ];
   const projectLeadOptions = [
     { name: "Dashboard", icon: DashboardSvg },
@@ -85,7 +85,7 @@ const layoutMenuOption = () => {
     // { name: "Projects", icon: ProjectSvg },
     // { name: "Jobs", icon: JobSvg },
     // { name: "Benchmark", icon: BenchmarkSvg },
-    // { name: "Project Directory", icon: ProjectSvg },
+    { name: "Project Directory", icon: ProjectSvg },
     // { name: "Sync Server", icon: SyncIcon },
   ];
   const projectCoordinatorOptions = [
@@ -96,7 +96,7 @@ const layoutMenuOption = () => {
 
     // { name: "Jobs", icon: JobSvg },
     // { name: "Sync Server", icon: SyncIcon },
-    // { name: "Project Directory", icon: ProjectSvg },
+    { name: "Project Directory", icon: ProjectSvg },
   ];
 
   const verifiedPDLOptions = [

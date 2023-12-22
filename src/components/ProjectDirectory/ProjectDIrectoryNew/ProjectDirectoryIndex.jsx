@@ -341,7 +341,7 @@ const ProjectDirectoryIndex = () => {
   };
   useEffect(() => {
     if (pathname === "/projectDirectory") {
-      // setAscDesc(projectDirectoryFilter.ascDescOption);
+      setAscDesc(projectDirectoryFilter?.ascDescOption);
       setSearch(projectDirectoryFilter?.search);
       searchRef.current.value = projectDirectoryFilter?.search || "";
     }
@@ -350,9 +350,10 @@ const ProjectDirectoryIndex = () => {
     dispatch(
       setProjectDirectoryFilter({
         search,
+        ascDescOption: ascDesc,
       })
     );
-  }, [search]);
+  }, [search, ascDesc]);
 
   useEffect(() => {
     dispatch(setActivePath("Project Directory"));
@@ -361,12 +362,12 @@ const ProjectDirectoryIndex = () => {
 
   useLayoutEffect(() => {
     setIsDataLoading(true);
-    dispatch(getProjectByDirectory({ search, pagination })).then((action) => {
+    dispatch(getProjectByDirectory({ search, pagination, ascDescOption: ascDesc })).then((action) => {
       setMyColumn(fieldBuilder(projectDirectoryField, handleClick, handleDelete));
       setIsChildDataLoading(false);
       setIsDataLoading(false);
     });
-  }, [pagination, search, isDeleted]);
+  }, [pagination, search, isDeleted, ascDesc]);
 
   const handleGetSync = async () => {
     await toast.responsePromise(
@@ -550,6 +551,7 @@ const ProjectDirectoryIndex = () => {
               pagination={pagination}
               setPagination={setPagination}
               handleId={handleAscDesc}
+              filteredCol={ascDesc}
               handleProjectDetailsOpen={handleProjectDetailsOpen}
               isChildDataLoading={isChildDataLoading}
               setIsChildDataLoading={setIsChildDataLoading}

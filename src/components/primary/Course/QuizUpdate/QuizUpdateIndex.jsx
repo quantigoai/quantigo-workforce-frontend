@@ -378,7 +378,6 @@ const QuizUpdateIndex = () => {
         Object.entries(addQuiz.questionAndAnswer).map(([key, val], i) => {
           const data1 = {
             quizId: quiz._id,
-            // questionId: key,
             formDataQ: null,
           };
           const formData = new FormData();

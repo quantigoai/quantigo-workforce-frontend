@@ -1,5 +1,5 @@
 import { Box, TextField, Typography, styled } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 export const PdTextField = styled(TextField)(() => ({
   borderRadius: "5px",
 
@@ -31,6 +31,8 @@ export const PdTextField = styled(TextField)(() => ({
   },
 }));
 const QuestionName = ({ handleChangeInput, inputField, inputFields, handleUpdate, update }) => {
+  const [questionNameField, setQuestionNameField] = useState(inputField.question.questionText);
+
   return (
     <>
       <Box>
@@ -48,18 +50,23 @@ const QuestionName = ({ handleChangeInput, inputField, inputFields, handleUpdate
             size="small"
             type={"text"}
             id="outlined-basic"
-            // {...field}
             fullWidth
             name="questionText"
             variant="outlined"
-            value={inputField.question.questionText && inputField.question.questionText}
+            // defaultValue={inputField.question.questionText && inputField.question.questionText}
+            // value={inputField.question.questionText && inputField.question.questionText}
+            // value={isCompleted}
+            value={inputField.newQuiz ? inputField.question.questionText : questionNameField}
             // required={label === "Benchmark" ? false : true}
             // onChange={(event) => handleChangeInput(inputField.uniqueId, event)}
-            onChange={(event) =>
-              update
-                ? handleUpdate(event.target.value, "questionText", inputField)
-                : handleChangeInput(inputField.uniqueId, event)
-            }
+            onChange={(event) => {
+              setQuestionNameField(event.target.value);
+              if (update) {
+                handleUpdate(event.target.value, "questionText", inputField);
+              } else {
+                handleChangeInput(inputField.uniqueId, event);
+              }
+            }}
             sx={{
               backgroundColor: "neutral.N000",
             }}

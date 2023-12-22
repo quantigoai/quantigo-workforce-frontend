@@ -78,6 +78,9 @@ const QuizUpdateIndex = () => {
     // setInputFields(newInputFields);
   };
   const handleUpdate = (value, index, field) => {
+    console.log("🚀 ~ file: QuizUpdateIndex.jsx:76 ~ handleUpdate ~ field:", field)
+    console.log("🚀 ~ file: QuizUpdateIndex.jsx:76 ~ handleUpdate ~ index:", index)
+    console.log("🚀 ~ file: QuizUpdateIndex.jsx:76 ~ handleUpdate ~ value:", value)
     if (field.newQuiz) {
       const newInputFields = inputFields.map((item) => {
         if (item._id === field._id) {
@@ -94,8 +97,10 @@ const QuizUpdateIndex = () => {
           if (index === "questionType") {
             item.questionType = value;
             if (value === "imageAndOptions" || value === "default" || value === "imageInOptions") {
-              console.log("jdjdjd");
               item.possibleAnswers = [];
+            }
+            if (value === "default" || value === "imageInOptions") {
+              delete item.question.questionImage;
             }
           }
           if (index === "correctAnswerIndex") {
@@ -118,7 +123,7 @@ const QuizUpdateIndex = () => {
         }
         return item;
       });
-      console.log("🚀 ~ file: QuizUpdateIndex.jsx:106 ~ newInputFields ~ newInputFields:", newInputFields);
+
       setInputFieldsCopy(newInputFields);
       setInputFields(newInputFields);
 

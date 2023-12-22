@@ -91,10 +91,19 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
         {/* <RadioGroup aria-labelledby="demo-radio-buttons-group-label" defaultValue="female" name="radio-buttons-group"> */}
         <Grid item xs={12}>
           <TextFieldOption
+            sx={{ border: checkValue === 0 ? "1px solid #2E58FF" : "1px solid #E6ECF5 " }}
             name="possibleAnswer1"
+            // multiline
+            // maxRows={2}
             fullWidth
             // value={inputField.questionType === "imageInOptions" ? "" : inputField.possibleAnswers[0]}
-            value={inputField.newQuiz ? inputField.possibleAnswers[0] : optionField0}
+            value={
+              inputField.newQuiz
+                ? inputField.possibleAnswers[0]
+                : inputField.questionType === "imageInOptions"
+                ? ""
+                : optionField0
+            }
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -120,6 +129,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
         </Grid>
         <Grid item xs={12}>
           <TextFieldOption
+            sx={{ border: checkValue === 1 ? "1px solid #2E58FF" : "1px solid #E6ECF5 " }}
             name="possibleAnswer1"
             fullWidth
             // value={
@@ -128,7 +138,13 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
             //     : inputField.possibleAnswers[1]
             // }
             // value={inputField.possibleAnswers[1]}
-            value={inputField.newQuiz ? inputField.possibleAnswers[1] : optionField1}
+            value={
+              inputField.newQuiz
+                ? inputField.possibleAnswers[1]
+                : inputField.questionType === "imageInOptions"
+                ? ""
+                : optionField1
+            }
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -164,8 +180,15 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
         </Grid>
         <Grid item xs={12}>
           <TextFieldOption
+            sx={{ border: checkValue === 2 ? "1px solid #2E58FF" : "1px solid #E6ECF5 " }}
             name="possibleAnswer1"
-            value={inputField.newQuiz ? inputField.possibleAnswers[2] : optionField2}
+            value={
+              inputField.newQuiz
+                ? inputField.possibleAnswers[2]
+                : inputField.questionType === "imageInOptions"
+                ? ""
+                : optionField2
+            }
             // value={inputField.possibleAnswers[2]}
             // defaultValue={inputField.questionType === "imageInOptions" ? "" : inputField.possibleAnswers[2]}
             // value={optionField2}
@@ -199,9 +222,16 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
         </Grid>
         <Grid item xs={12}>
           <TextFieldOption
+            sx={{ border: checkValue === 3 ? "1px solid #2E58FF" : "1px solid #E6ECF5 " }}
             name="possibleAnswer1"
             fullWidth
-            value={inputField.newQuiz ? inputField.possibleAnswers[3] : optionField3}
+            value={
+              inputField.newQuiz
+                ? inputField.possibleAnswers[3]
+                : inputField.questionType === "imageInOptions"
+                ? ""
+                : optionField3
+            }
             // value={inputField.possibleAnswers[2]}
             // defaultValue={inputField.questionType === "imageInOptions" ? "" : inputField.possibleAnswers[3]}
             // value={optionField3}

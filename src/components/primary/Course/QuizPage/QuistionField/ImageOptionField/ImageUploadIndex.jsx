@@ -92,13 +92,19 @@ const ImageUploadIndex = ({
 
   if (screenSize >= 1500) {
     // Extra-large screens
-    width = 275;
-  } else if (screenSize === 1440) {
+    width = (12.97 * screenSize) / 100;
+  } else if (screenSize >= 1440) {
     // Large screens
-    width = 178;
-  } else if (screenSize >= 992) {
+    width = (10 * screenSize) / 100;
+  } else if (screenSize >= 1366) {
     // Large screens
-    width = 150;
+    width = (10 * screenSize) / 100;
+  } else if (screenSize >= 1280) {
+    // Large screens
+    width = (10 * screenSize) / 100;
+  } else if (screenSize >= 1024) {
+    // Large screens
+    width = (12 * screenSize) / 100;
   }
   return (
     <>
@@ -132,7 +138,7 @@ const ImageUploadIndex = ({
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <img height={155} src={coverImage} alt="" style={{ width, borderRadius: "8px" }} />
+                    <img height={160} src={coverImage} alt="" style={{ width, borderRadius: "8px" }} />
                     {/* <p>File : {files}</p> */}
                     {isHovered && (
                       <Box sx={{ color: "red", cursor: "pointer", position: "absolute", top: "40%", left: "30%" }}>

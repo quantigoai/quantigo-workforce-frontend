@@ -62,335 +62,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
   const { handleSubmit } = methods;
 
   return (
-    <>
-      {/* <Modal
-        open={openModal}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Paper elevation={5} style={paperstyle} sx={{}}>
-            <Grid container sx={{ justifyContent: "center", paddingTop: "1%", height: "20%" }}>
-              <Typography variant="h4">Create Project Directory</Typography>
-            </Grid>
-            <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-              <Grid container sx={{ padding: "1%", height: "40%" }}>
-                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
-                    label="Project Name"
-                    {...register("Project_Name", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="Project_Timeline"
-                    label="Client Alias"
-                    {...register("Client_Alias", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-
-                <Grid item xs={4} sx={{ paddingRight: "0%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
-                    label="Industry"
-                    {...register("Industry", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-              </Grid>
-              <Grid container sx={{ padding: "1%" }}>
-                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="Project_Timeline"
-                    label="Platform"
-                    {...register("Platform", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
-                    label="Tool Type"
-                    {...register("Tool_Type", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-                <Grid item xs={4}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="Project_Timeline"
-                    label="PDR"
-                    {...register("PDR", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-              </Grid>
-              <Grid container sx={{ padding: "1%" }}>
-                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
-                    label="Project Type"
-                    {...register("Project_Type", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="Project_Timeline"
-                    label="Action Items"
-                    {...register("Action_Items", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-                <Grid item xs={4} sx={{ paddingRight: "0%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
-                    label="QA Check Points"
-                    {...register("QA_Check_Points", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-              </Grid>
-
-              <Grid container sx={{ padding: "1%" }}>
-                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="Project_Timeline"
-                    label="Object Benchmark"
-                    {...register("Obj_Benchmark", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
-                    label="Image Benchmark"
-                    {...register("Img_Benchmark", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-                <Grid item xs={4}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="Project_Timeline"
-                    label="Tagging Benchmark"
-                    {...register("Tagging_Benchmark", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-              </Grid>
-
-              <Grid container sx={{ padding: "1%" }}>
-                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
-                    label="Deletion"
-                    {...register("Deletion", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="Project_Timeline"
-                    label="Skip Image"
-                    {...register("Skip_Image", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-                <Grid item xs={4} sx={{ paddingRight: "0%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
-                    label="Update"
-                    {...register("Update", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-              </Grid>
-              <Grid container sx={{ padding: "1%" }}>
-                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
-                    label="Image Loading"
-                    {...register("Image_Loading", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
-                    label="Object Saving Time"
-                    {...register("Object_Saving_Time", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-                <Grid item xs={4} sx={{ paddingRight: "0%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
-                    label="Video Watch Time"
-                    {...register("Video_Watch_Time", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-              </Grid>
-
-              <Grid container sx={{ padding: "1%" }}>
-                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
-                    label="Judgement Time"
-                    {...register("Judgement_Time", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-                <Grid item xs={4} sx={{ paddingRight: "2%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
-                    label="QA Benchmark"
-                    {...register("QA_Benchmark", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-                <Grid item xs={4} sx={{ paddingRight: "0%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
-                    label="Annotation"
-                    {...register("Annotation", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-              </Grid>
-              <Grid container sx={{ padding: "1%" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
-                    label="QA"
-                    {...register("QA", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-                <Grid item xs={6} sx={{ paddingRight: "0%" }}>
-                  <TextField
-                    fullWidth
-                    sx={{ backgroundColor: "#FFFFFF" }}
-                    variant="filled"
-                    name="SINo"
-                    label="Remarks"
-                    {...register("Remarks", {
-                      required: false,
-                    })}
-                  ></TextField>
-                </Grid>
-              </Grid>
-
-              <Grid
-                container
-                xs={12}
-                style={{
-                  paddingLeft: "10%",
-                  paddingRight: "10%",
-                  paddingBottom: "2%",
-                  justifyContent: "center",
-                  height: "20%",
-                }}
-              >
-                <ButtonStyle variant="contained" type="submit">
-                  Create
-                </ButtonStyle>
-              </Grid>
-            </FormProvider>
-          </Paper>
-        </Box>
-      </Modal> */}
+     <>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -420,21 +92,21 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                 >
                   <LineStack>
                     <FieldBox>
-                      <PDTextFIeld name="Project_Name" label="Project Name" isRequired={true} />
+                      <PDTextFIeld name="project_Name" label="Project Name" isRequired={true} />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="Client_Alias" label="Client Alias" isRequired={true} />
+                      <PDTextFIeld name="client_Alias" label="Client Alias" isRequired={true} />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="Industry" label="Industry" isRequired={true} />
+                      <PDTextFIeld name="industry" label="Industry" isRequired={true} />
                     </FieldBox>
                   </LineStack>
                   <LineStack>
                     <FieldBox>
-                      <PDTextFIeld name="Platform" label="Platform" isRequired={true} />
+                      <PDTextFIeld name="platform" label="Platform" isRequired={true} />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="Tool_Type" label="Tool Type" isRequired={true} />
+                      <PDTextFIeld name="tool_Type" label="Tool Type" isRequired={true} />
                     </FieldBox>
                     <FieldBox>
                       <PDTextFIeld name="QA" label="QA" />
@@ -451,62 +123,62 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                       />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="Project_Type" label="Project Type" isRequired={true} />
+                      <PDTextFIeld name="project_Type" label="Project Type" isRequired={true} />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="Annotation" label="Annotation" />
-                    </FieldBox>
-                  </LineStack>
-                  <LineStack>
-                    <FieldBox>
-                      <PDTextFIeld name="Action_Items" label="Action Items" isRequired={true} />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="QA_Check_Points" label="QA Check Points" isRequired={true} />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="QA_Benchmark" label="QA Benchmark" isRequired={true} />
+                      <PDTextFIeld name="annotation" label="Annotation" />
                     </FieldBox>
                   </LineStack>
                   <LineStack>
                     <FieldBox>
-                      <PDTextFIeld name="Img_Benchmark" label="Image Benchmark" />
+                      <PDTextFIeld name="action_Items" label="Action Items" isRequired={true} />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="Tagging_Benchmark" label="Tagging Benchmark" />
+                      <PDTextFIeld name="qA_Check_Points" label="QA Check Points" isRequired={true} />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="Deletion" label="Deletion" />
-                    </FieldBox>
-                  </LineStack>
-                  <LineStack>
-                    <FieldBox>
-                      <PDTextFIeld name="Skip_Image" label="Skip Image" />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="Update" label="Update" />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="Image_Loading" label="Image Loading" />
+                      <PDTextFIeld name="qA_Benchmark" label="QA Benchmark" isRequired={true} />
                     </FieldBox>
                   </LineStack>
                   <LineStack>
                     <FieldBox>
-                      <PDTextFIeld name="Object_Saving_Time" label="Object Saving Time" />
+                      <PDTextFIeld name="img_Benchmark" label="Image Benchmark" />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="Video_Watch_Time" label="Video Watch Time" />
+                      <PDTextFIeld name="tagging_Benchmark" label="Tagging Benchmark" />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="Judgement_Time" label="Judgement Time" />
+                      <PDTextFIeld name="deletion" label="Deletion" />
                     </FieldBox>
                   </LineStack>
                   <LineStack>
                     <FieldBox>
-                      <PDTextFIeld name="Remarks" label="Remarks" />
+                      <PDTextFIeld name="skip_Image" label="Skip Image" />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="Obj_Benchmark" label="Object Benchmark" />
+                      <PDTextFIeld name="update" label="Update" />
+                    </FieldBox>
+                    <FieldBox>
+                      <PDTextFIeld name="image_Loading" label="Image Loading" />
+                    </FieldBox>
+                  </LineStack>
+                  <LineStack>
+                    <FieldBox>
+                      <PDTextFIeld name="object_Saving_Time" label="Object Saving Time" />
+                    </FieldBox>
+                    <FieldBox>
+                      <PDTextFIeld name="video_Watch_Time" label="Video Watch Time" />
+                    </FieldBox>
+                    <FieldBox>
+                      <PDTextFIeld name="judgement_Time" label="Judgement Time" />
+                    </FieldBox>
+                  </LineStack>
+                  <LineStack>
+                    <FieldBox>
+                      <PDTextFIeld name="remarks" label="Remarks" />
+                    </FieldBox>
+                    <FieldBox>
+                      <PDTextFIeld name="obj_Benchmark" label="Object Benchmark" />
                     </FieldBox>
                   </LineStack>
                 </Box>

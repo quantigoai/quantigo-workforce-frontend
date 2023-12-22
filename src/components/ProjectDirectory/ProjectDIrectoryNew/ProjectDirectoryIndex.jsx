@@ -3,7 +3,7 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import { Box, IconButton, useTheme } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
@@ -322,6 +322,8 @@ const ProjectDirectoryIndex = () => {
     currentPage: 0,
     pageSize: 10,
   });
+  const [isDeleted, setIsDeleted] = useState(false);
+
   const [search, setSearch] = useState("");
   const [openReject, setOpenReject] = React.useState(false);
   const [isSyncLoading, setIsSyncLoading] = useState(false);
@@ -338,15 +340,17 @@ const ProjectDirectoryIndex = () => {
     reset();
   };
   const handleClick = (e) => {
-    dispatch(setCurrentProjectDirectory(e.id));
+    dispatch(setCurrentProjectDirectory(e._id));
     setOpenProjectModalEdit(true);
   };
   const handleDelete = (e) => {
-    dispatch(deleteProjectDirectory(e.id)).then((action) => {
-      if (action?.payload?.status === 200) {
-        toast.trigger("Successfully Deleted Project Directory", "success");
+    setIsDeleted(false);
+    dispatch(deleteProjectDirectory(e._id)).then((action) => {
+      if (action.error?.message) {
+        toast.trigger(action.error?.message, "error");
       } else {
-        toast.trigger("Project Directory do not Delete", "error");
+        toast.trigger(action.payload.data.message, "success");
+        setIsDeleted(false);
       }
     });
   };
@@ -377,15 +381,18 @@ const ProjectDirectoryIndex = () => {
   };
 
   useEffect(() => {
-    setIsDataLoading(true);
     dispatch(setActivePath("Project Directory"));
     dispatch(clearProjectDirectory());
-    dispatch(getProjectByDirectory(search)).then((action) => {
+  }, []);
+
+  useLayoutEffect(() => {
+    setIsDataLoading(true);
+    dispatch(getProjectByDirectory({ search, pagination })).then((action) => {
       setMyColumn(fieldBuilder(projectDirectoryField, handleClick, handleDelete));
       setIsChildDataLoading(false);
       setIsDataLoading(false);
     });
-  }, [search]);
+  }, [pagination, search, isDeleted]);
 
   const handleGetSync = async () => {
     await toast.responsePromise(
@@ -420,28 +427,29 @@ const ProjectDirectoryIndex = () => {
 
   const onSubmit = (data) => {
     dispatch(createProjectDirectory(data)).then((action) => {
-      if (action.payload.status === 200) {
-        setOpenModal(false);
-        toast.trigger("Successfully created Project Directory", "success");
-        reset();
+      if (action.error?.message) {
+        toast.trigger(action.error?.message, "error");
       } else {
-        toast.trigger("Project Directory do not create", "error");
+        toast.trigger(action.payload.data.message, "success");
+        handleClose();
         reset();
       }
     });
   };
   const onSubmitEdit = (data) => {
-    data._id = projectDirectorySingle._id;
+    // data._id = projectDirectorySingle._id;
     const finalData = {
       data,
       id: projectDirectorySingle._id,
     };
     dispatch(updateProjectDirectory(finalData)).then((action) => {
-      if (action?.payload?.status === 200) {
-        setOpenProjectModalEdit(false);
-        toast.trigger("Successfully Updated Project Directory", "success");
+      if (action.error?.message) {
+        toast.trigger(action.error?.message, "error");
       } else {
-        toast.trigger("Project Directory can not Updated", "error");
+        toast.trigger(action.payload.data.message, "success");
+        setOpenProjectModalEdit(false);
+        handleClose();
+        reset();
       }
     });
   };

@@ -102,7 +102,7 @@ const ChapterDeleteModal = ({ courseChapter }) => {
               lineHeight: "20px",
             }}
           >
-            Are you sure you want to delete this Chapter? If you delete your project, you will lose all the Chapter
+            Are you sure you want to delete this chapter? If you delete your chapter, you will lose all the chapter
             information.
           </Typography>
           <Box

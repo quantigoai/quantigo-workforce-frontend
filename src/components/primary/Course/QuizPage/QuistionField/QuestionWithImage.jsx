@@ -5,11 +5,12 @@ export const TextFieldQuestion = styled(TextField)(() => ({
   borderRadius: '5px',
 
   '& .MuiOutlinedInput-root': {
-    height: '35px',
+    height: '40px',
     fontSize: '14px',
     border: '2px solid #E6ECF5 !important',
     borderRadius: '8px',
 
+    backgroundColor: "#F9FAFB",
     '@media (max-width: 1439px)': {
       fontSize: '12px',
     },

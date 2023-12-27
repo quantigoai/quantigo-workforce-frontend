@@ -79,7 +79,7 @@ export const getProjectByDirectory = createAsyncThunk("/project/directory", asyn
   // if (pdr) {
   //   query += `&PDR=${pdr}`;
   // }
-  let query = `?&skip=1&limit=100`;
+  let query = `?&skip=1&limit=500`;
 
   if (data) {
     query += `?query=${data}?&skip=1&limit=10`;

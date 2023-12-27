@@ -20,9 +20,10 @@ import React, { useState } from "react";
 export const TextFieldQuestion = styled(TextField)(() => ({
   // borderRadius: "8px 0px 0px 8px",
   "& .MuiOutlinedInput-root": {
-    height: "35px",
+    height: "40px",
     fontSize: "14px",
     border: "2px solid #E6ECF5 !important",
+    backgroundColor: "#F9FAFB",
     // borderRadius: "8px",
     borderRadius: "8px 0px 0px 8px",
     "@media (max-width: 1439px)": {
@@ -115,7 +116,7 @@ const ImageFieldForQuestion = ({ inputField, handleUpdate, handleChangeInput, up
                 // startIcon={<CloudUploadIcon />}
                 // onSubmit={(e) => e.preventDefault()}
                 sx={{
-                  height: "35px",
+                  height: "40px",
                   width: "100%",
                   fontSize: "14px",
                   border: "2px solid #E6ECF5 !important",

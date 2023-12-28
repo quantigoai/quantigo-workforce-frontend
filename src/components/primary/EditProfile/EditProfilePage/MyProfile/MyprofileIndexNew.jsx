@@ -15,7 +15,8 @@ import ProfilePicture from "./ProfilePicture";
 
 const MyprofileIndexNew = () => {
   const { user, isLoading } = useSelector((state) => state.user);
- const [editAble, setEditAble] = useState(false);
+
+  const [editAble, setEditAble] = useState(false);
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
   const [occupation, setOccupation] = useState(user.occupation);

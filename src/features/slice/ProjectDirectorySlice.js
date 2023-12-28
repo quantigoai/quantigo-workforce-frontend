@@ -240,14 +240,22 @@ export const getClientAliases = createAsyncThunk("/project/Client/Aliases", asyn
 // get sync
 export const getProjectSync = createAsyncThunk("/project/Client/sync", async () => {
   try {
-    return axios.get(`${url}/sync-project`);
+    return axios.get(`${url}/project-directory/sync-project`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
   } catch (error) {
     throw new Error(error);
   }
 });
 export const getProjectSyncFunction = async () => {
   try {
-    return axios.get(`${url}/sync-project`);
+    return axios.get(`${url}/project-directory/sync-project`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
   } catch (error) {
     throw new Error(error);
   }
@@ -397,6 +405,7 @@ const ProjectDirectory = createSlice({
         state.isLoading = true;
       })
       .addCase(getProjectSync.fulfilled, (state, action) => {
+        console.log("🚀 ~ file: ProjectDirectorySlice.js:404 ~ .addCase ~ action:", action);
         state.isLoading = false;
         state.error = null;
       })

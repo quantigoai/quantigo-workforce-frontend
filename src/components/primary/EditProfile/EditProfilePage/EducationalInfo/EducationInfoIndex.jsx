@@ -1,19 +1,30 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
-import moment from "moment/moment";
-// import FormProvider from "../../../../shared/FormProvider/FormProvider";
+import { Box, Button, Grid, Typography, styled } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import FieldForProfile from "../FieldForProfile";
+import ProfilePicture from "../MyProfile/ProfilePicture";
+import { myProfileEdit, uploadMyImage } from "../../../../../features/slice/userSlice";
+import moment from "moment";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../../customHooks/useToaster";
-import { myProfileEdit, uploadMyImage } from "../../../../../features/slice/userSlice";
-import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
-import PasswordFieldForProfile from "../../PasswordFieldForProfile";
-import CommonFieldTest from "../CommonFieldTest";
-import FieldForProfile from "../FieldForProfile";
-import SelectFieldForProfile from "../SelectFieldForProfile";
-import ProfilePicture from "./ProfilePicture";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-const MyprofileIndexNew = () => {
+export const MyDatePicker = styled(DatePicker)(() => ({
+  "& .MuiOutlinedInput-notchedOutline": {
+    border: "1px solid #E6ECF5 !important",
+    borderRadius: "8px",
+  },
+  "& .MuiInputBase-root": { height: "40px", fontSize: "14px", color: "#3C4D6B" },
+  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    border: `1px solid #2E58FF !important`,
+  },
+  "& .MuiInputBase-input.Mui-focused": {
+    color: "blue",
+  },
+}));
+const EducationInfoIndex = () => {
   const { user, isLoading } = useSelector((state) => state.user);
 
   const [editAble, setEditAble] = useState(false);
@@ -25,6 +36,7 @@ const MyprofileIndexNew = () => {
   const [billingAccountNo, setBillingAccountNo] = useState(user.billingAccountNo);
   const [presentAddress, setPresentAddress] = useState(user.presentAddress);
   const [permanentAddress, setPermanentAddress] = useState(user.permanentAddress);
+
   const dispatch = useDispatch();
 
   const toast = useToaster();
@@ -43,7 +55,7 @@ const MyprofileIndexNew = () => {
     }
   };
 
-  const { handleSubmit, control, errors } = useForm();
+  const { handleSubmit, control, errors, setValue } = useForm();
 
   const handleFirstNameChange = (e) => {
     setFirstName(e.target.value);
@@ -132,7 +144,6 @@ const MyprofileIndexNew = () => {
     });
   };
 
-  const DOB = moment.utc(user.dob).format("MMM Do, YYYY");
   return (
     <>
       <Box
@@ -195,143 +206,102 @@ const MyprofileIndexNew = () => {
             >
               <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
                 <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
-                  Personal Information
+                  Educational Information
                 </Typography>
               </Grid>
 
               <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <FieldForProfile
-                    name="firstName"
-                    label={"First Name"}
+                    name="degree"
+                    label={"Highest level of degree"}
                     handleChange={handleFirstNameChange}
                     defaultValue={firstName}
                     disableItem={false}
                     editAble={editAble}
                   />
                 </Grid>
-                <Grid item xs={6}>
-                  <FieldForProfile
-                    name="lastName"
-                    label={"Last Name"}
-                    handleChange={handleLasttNameChange}
-                    defaultValue={lastName}
-                    disableItem={false}
-                    editAble={editAble}
-                  />
-                </Grid>
-              </Grid>
-              <Grid container sx={{ paddingBottom: "20px" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <CommonFieldTest
-                    name="gender"
-                    label={"Gender"}
-                    defaultValue={capitalizeFirstLetter(user.gender)}
-                    disableItem={true}
-                    control={control}
-                    rules={{ required: false }}
-                    errors={errors}
-                    editAble={editAble}
-                  />
-                </Grid>
-                <Grid item xs={6}>
                   <FieldForProfile
-                    name="occupation"
-                    label={"Occupation"}
-                    defaultValue={occupation}
+                    name="study"
+                    label={"Field of Study"}
+                    handleChange={handleFirstNameChange}
+                    defaultValue={firstName}
                     disableItem={false}
-                    handleChange={handleOccupationChange}
                     editAble={editAble}
                   />
                 </Grid>
               </Grid>
-              <Grid container sx={{ paddingBottom: "5px" }}>
+              <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <CommonFieldTest
-                    name="dob"
-                    label={"Date Of Birth"}
-                    defaultValue={DOB}
-                    disableItem={true}
-                    control={control}
-                    rules={{ required: false }}
-                    errors={errors}
-                    editAble={editAble}
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <SelectFieldForProfile
-                    name="bloodGroup"
-                    label={"Blood Group"}
-                    defaultValue={bloodGroup}
-                    disableItem={false}
-                    editAble={editAble}
-                    handleChange={handleChangeBloodGroup}
-                  />
-                </Grid>
-              </Grid>
-              <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
-                <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
-                  Contact Info.
-                </Typography>
-              </Grid>
-
-              <Grid container sx={{ paddingBottom: "20px" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <PasswordFieldForProfile
-                    name="phone"
-                    label={"Phone No."}
-                    defaultValue={contactNo}
-                    disableItem={false}
-                    handleChange={handlePhoneNumberChange}
-                    editAble={editAble}
-                    phone={contactNo}
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <PasswordFieldForProfile
-                    name="billingAccountNo"
-                    label={"Nagad No."}
-                    defaultValue={billingAccountNo}
-                    disableItem={false}
-                    handleChange={handlebillingAccountNoChange}
-                    editAble={editAble}
-                    phone={billingAccountNo}
-                  />
-                </Grid>
-              </Grid>
-
-              <Grid container sx={{ paddingBottom: "20px" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <CommonFieldTest
-                    name="email"
-                    label={"Email"}
-                    defaultValue={user.email}
-                    disableItem={true}
-                    control={control}
-                    rules={{ required: false }}
-                    errors={errors}
-                    editAble={editAble}
-                  />
-                </Grid>
-                <Grid item xs={6}>
                   <FieldForProfile
-                    name="presentAddress"
-                    label={"Present Address"}
-                    defaultValue={presentAddress}
+                    name="institution"
+                    label={"Institution Name"}
+                    handleChange={handleFirstNameChange}
+                    defaultValue={firstName}
                     disableItem={false}
-                    handleChange={handlePresentAddressChange}
                     editAble={editAble}
                   />
                 </Grid>
-              </Grid>
-              <Grid container sx={{ paddingBottom: "20px" }}>
-                <Grid item xs={12}>
-                  <FieldForProfile
-                    name="permanentAddress"
-                    label={"Permanent Address"}
-                    defaultValue={permanentAddress}
+                <Grid item xs={6} sx={{ paddingRight: "2%", display: "flex", flexDirection: "column" }}>
+                  {/* <FieldForProfile
+                    name="year"
+                    label={"Year of Completion"}
+                    handleChange={handleFirstNameChange}
+                    defaultValue={firstName}
                     disableItem={false}
-                    handleChange={handlepermanentAddressChange}
+                    editAble={editAble}
+                  /> */}
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <Typography sx={{ mb: "10px" }} variant="wpf_p4_medium" color="#3c4d6b">
+                      Year of completion
+                    </Typography>
+                    <MyDatePicker
+                      size="small"
+                      sx={{
+                        backgroundColor: "#FFFFFF",
+                        color: "#3c4d6b",
+                      }}
+                      inputFormat="DD-MM-YYYY"
+                      // minDate={minDob}
+                      // maxDate={maxDob}
+                      // onChange={(newValue) => {
+                      //   handleDate(newValue);
+                      // }}
+                      // slotProps={{
+                      //   textField: {
+                      //     error: !!error,
+                      //     helperText: error && error?.message,
+                      //     id: 'date-picker',
+                      //     sx: {
+                      //       color: '#3c4d6b',
+                      //       mt: '6px',
+                      //     },
+                      //   },
+                      // }}
+                    >
+                      {/* <TextField
+                  size="small"
+                  sx={{
+                    color: '#3c4d6b',
+                    // border: '2px solid green.800',
+                  }}
+                  error={!!error}
+                  helperText={error && error?.message}
+                  id="date-picker"
+                /> */}
+                    </MyDatePicker>
+                  </LocalizationProvider>
+                </Grid>
+              </Grid>
+              <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
+                <Grid item xs={12} sx={{ paddingRight: "2%" }}>
+                  <FieldForProfile
+                    name="certificate"
+                    label={"Upload Your Certificate Copy"}
+                    handleChange={handleFirstNameChange}
+                    defaultValue={firstName}
+                    disableItem={false}
                     editAble={editAble}
                   />
                 </Grid>
@@ -424,4 +394,4 @@ const MyprofileIndexNew = () => {
   );
 };
 
-export default MyprofileIndexNew;
+export default EducationInfoIndex;

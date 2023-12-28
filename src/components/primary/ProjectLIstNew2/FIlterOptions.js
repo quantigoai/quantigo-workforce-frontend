@@ -73,7 +73,7 @@ export const singleDetailsFields = [
 ];
 
 export const projectDirectoryField = [
-  { field: "project_Name", width: 180, textAlign: "left", columnDataAlign: "left" },
+  { field: "project_Name", width: 280, textAlign: "left", columnDataAlign: "left" },
   { field: "industry", width: 180, textAlign: "left", columnDataAlign: "left" },
   { field: "client_Alias", width: 180, textAlign: "left", columnDataAlign: "left" },
   { field: "platform", width: 140, textAlign: "left", columnDataAlign: "left" },

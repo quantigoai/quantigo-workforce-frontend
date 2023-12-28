@@ -150,7 +150,7 @@ export default function EditProfilePageIndex() {
                       variant="wpf_p3_semiBold"
                       color={value === 1 ? "primary.B200" : "neutral.700"}
                     >
-                      Skills
+                      Verification Info
                     </Typography>
                   }
                   {...a11yProps(1)}
@@ -167,7 +167,7 @@ export default function EditProfilePageIndex() {
                       variant="wpf_p3_semiBold"
                       color={value === 2 ? "primary.B200" : "neutral.700"}
                     >
-                      Password & Security
+                      Contact Info.
                     </Typography>
                   }
                   {...a11yProps(2)}
@@ -184,10 +184,61 @@ export default function EditProfilePageIndex() {
                       variant="wpf_p3_semiBold"
                       color={value === 3 ? "primary.B200" : "neutral.700"}
                     >
-                      My Work History
+                      Educational Info
                     </Typography>
                   }
                   {...a11yProps(3)}
+                />
+                <Tab
+                  sx={{
+                    alignItems: "flex-start",
+                    borderRadius: value === 4 ? "8px" : "none",
+                    backgroundColor: value === 4 ? "primary.B008" : "",
+                  }}
+                  label={
+                    <Typography
+                      sx={{ textTransform: "none" }}
+                      variant="wpf_p3_semiBold"
+                      color={value === 4 ? "primary.B200" : "neutral.700"}
+                    >
+                      Password & Security
+                    </Typography>
+                  }
+                  {...a11yProps(4)}
+                />
+                <Tab
+                  sx={{
+                    alignItems: "flex-start",
+                    borderRadius: value === 5 ? "8px" : "none",
+                    backgroundColor: value === 5 ? "primary.B008" : "",
+                  }}
+                  label={
+                    <Typography
+                      sx={{ textTransform: "none" }}
+                      variant="wpf_p3_semiBold"
+                      color={value === 5 ? "primary.B200" : "neutral.700"}
+                    >
+                      Skills
+                    </Typography>
+                  }
+                  {...a11yProps(5)}
+                />
+                <Tab
+                  sx={{
+                    alignItems: "flex-start",
+                    borderRadius: value === 6 ? "8px" : "none",
+                    backgroundColor: value === 6 ? "primary.B008" : "",
+                  }}
+                  label={
+                    <Typography
+                      sx={{ textTransform: "none" }}
+                      variant="wpf_p3_semiBold"
+                      color={value === 6 ? "primary.B200" : "neutral.700"}
+                    >
+                      My Work History
+                    </Typography>
+                  }
+                  {...a11yProps(6)}
                 />
               </Tabs>
 
@@ -235,14 +286,17 @@ export default function EditProfilePageIndex() {
                   <MyprofileIndexNew />
                 </TabPanel>
 
-                <TabPanel value={value} index={1}>
-                  <MyCoursesIndex />
-                </TabPanel>
+                <TabPanel value={value} index={1}></TabPanel>
 
-                <TabPanel sx={{ position: "absolute" }} value={value} index={2}>
+                <TabPanel sx={{ position: "absolute" }} value={value} index={2}></TabPanel>
+                <TabPanel sx={{ position: "absolute" }} value={value} index={3}></TabPanel>
+                <TabPanel sx={{ position: "absolute" }} value={value} index={4}>
                   <PasswordChangeIndex />
                 </TabPanel>
-                <TabPanel sx={{ position: "absolute" }} value={value} index={3}>
+                <TabPanel sx={{ position: "absolute" }} value={value} index={5}>
+                  <MyCoursesIndex />
+                </TabPanel>
+                <TabPanel sx={{ position: "absolute" }} value={value} index={6}>
                   <MyWorkHistory />
                 </TabPanel>
               </Box>

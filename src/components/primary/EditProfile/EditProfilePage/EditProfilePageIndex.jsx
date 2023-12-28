@@ -11,6 +11,9 @@ import MyCoursesIndex from "./MyCourses/MyCoursesIndex";
 import MyprofileIndexNew from "./MyProfile/MyprofileIndexNew";
 import PasswordChangeIndex from "./PasswordChange/PasswordChangeIndex";
 import MyWorkHistory from "./WorkHistory/MyWorkHistory";
+import EducationInfoIndex from "./EducationalInfo/EducationInfoIndex";
+import ContactInfoIndex from "./ContactInfo/ContactInfoIndex";
+import VerificationInfoIndex from "./VerificationInfo/VerificationInfoIndex";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -286,10 +289,16 @@ export default function EditProfilePageIndex() {
                   <MyprofileIndexNew />
                 </TabPanel>
 
-                <TabPanel value={value} index={1}></TabPanel>
+                <TabPanel value={value} index={1}>
+                  <VerificationInfoIndex />
+                </TabPanel>
 
-                <TabPanel sx={{ position: "absolute" }} value={value} index={2}></TabPanel>
-                <TabPanel sx={{ position: "absolute" }} value={value} index={3}></TabPanel>
+                <TabPanel sx={{ position: "absolute" }} value={value} index={2}>
+                  <ContactInfoIndex />
+                </TabPanel>
+                <TabPanel sx={{ position: "absolute" }} value={value} index={3}>
+                  <EducationInfoIndex />
+                </TabPanel>
                 <TabPanel sx={{ position: "absolute" }} value={value} index={4}>
                   <PasswordChangeIndex />
                 </TabPanel>

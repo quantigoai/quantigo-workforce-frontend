@@ -32,8 +32,8 @@ const ProjectDrawerSchema = Yup.object().shape({
 });
 
 const ProjectDirectorySchema = Yup.object().shape({
-  Project_Name: Yup.string().required("Project name is required"),
-  Client_Alias: Yup.string().required("client alias is required"),
+  project_Name: Yup.string().required("Project name is required"),
+  client_Alias: Yup.string().required("client alias is required"),
   PDR: Yup.number()
     .required("Pdr is required")
     .lessThan(6, "PDR must be in range between 1 to 5")

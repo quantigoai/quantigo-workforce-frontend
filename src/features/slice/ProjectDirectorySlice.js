@@ -1,17 +1,23 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { realToken } from "../../helper/lib";
 
-const url = "https://centralprojectdirectory.as.r.appspot.com";
+// const url = "https://centralprojectdirectory.as.r.appspot.com";
+const url = import.meta.env.VITE_APP_SERVER_URL;
 
 const initialState = {
   isLoading: false,
   projectDirectory: [],
   projectDirectorySingle: {},
-  error: "null",
+  directoryMeta: {},
+  total: 0,
+  error: null,
   isCreated: false,
 };
 
 export const getProjectByDirectory = createAsyncThunk("/project/directory", async (data) => {
+  const { search, pagination, ascDescOption } = data;
+
   // let query = ``;
   // if (data) {
   //   query += `?`;
@@ -79,13 +85,21 @@ export const getProjectByDirectory = createAsyncThunk("/project/directory", asyn
   // if (pdr) {
   //   query += `&PDR=${pdr}`;
   // }
-  let query = `?&skip=1&limit=500`;
-
-  if (data) {
-    query += `?query=${data}?&skip=1&limit=10`;
+  // let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
+  let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
+  if (search) {
+    query += `&search=${search}`;
+  }
+  if (ascDescOption) {
+    const ascDescOptions = ascDescOption && Object.keys(ascDescOption);
+    ascDescOptions.map((ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`));
   }
   try {
-    return axios.get(`${url}/api/getprojects/${query}`);
+    return axios.get(`${url}/project-directory/get-all-projects?${query}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
   } catch (error) {
     throw new Error(error);
   }
@@ -226,24 +240,37 @@ export const getClientAliases = createAsyncThunk("/project/Client/Aliases", asyn
 // get sync
 export const getProjectSync = createAsyncThunk("/project/Client/sync", async () => {
   try {
-    return axios.get(`${url}/api/ProjectList/sync/`);
+    return axios.get(`${url}/project-directory/sync-project`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
   } catch (error) {
     throw new Error(error);
   }
 });
 export const getProjectSyncFunction = async () => {
   try {
-    return axios.get(`${url}/api/ProjectList/sync/`);
+    return axios.get(`${url}/project-directory/sync-project`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
   } catch (error) {
     throw new Error(error);
   }
 };
+
 // create Project Directory
 export const createProjectDirectory = createAsyncThunk("Project/Directory/create", async (data) => {
   try {
-    return await axios.post(`${url}/api/ProjectList/`, data);
+    return await axios.post(`${url}/project-directory/create-project`, data, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
   } catch (error) {
-    console.log(error);
+    throw new Error(error.response.data.message);
   }
 });
 
@@ -252,16 +279,35 @@ export const createProjectDirectory = createAsyncThunk("Project/Directory/create
 export const updateProjectDirectory = createAsyncThunk("Project/Directory/update", async (finalData) => {
   const { data, id } = finalData;
   try {
-    return axios.patch(`${url}/api/ProjectList/${id}/update`, data);
+    return axios.patch(`${url}/project-directory/update-project/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error.response.data.message);
+  }
+});
+export const getProjectDirectoryById = createAsyncThunk("Project/Directory/update", async (id) => {
+  try {
+    return axios.get(`${url}/project-directory/get-project/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
   }
 });
 
 // Delete project
 export const deleteProjectDirectory = createAsyncThunk("delete/project/directory", async (id) => {
   try {
-    return axios.delete(`${url}/api/ProjectList/remove?id=${id}`);
+    return axios.delete(`${url}/project-directory/delete-project/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
   } catch (error) {
     throw new Error(error);
   }
@@ -291,8 +337,10 @@ const ProjectDirectory = createSlice({
         state.isLoading = true;
       })
       .addCase(getProjectByDirectory.fulfilled, (state, action) => {
+        state.projectDirectory = action.payload.data.projectDirectory;
+        state.totalDirectory = action.payload.data.count;
+        state.directoryMeta = action.payload.data.meta;
         state.isLoading = false;
-        state.projectDirectory = action.payload.data;
         state.error = null;
       })
       .addCase(getProjectByDirectory.rejected, (state) => {
@@ -324,10 +372,10 @@ const ProjectDirectory = createSlice({
         state.isLoading = false;
       })
       .addCase(deleteProjectDirectory.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.projectDirectory = [
-          ...state.projectDirectory.filter((item) => item.Project_Name !== action.payload.data.Project_Name),
+          ...state.projectDirectory.filter((item) => item._id !== action.payload.data.projectDirectory._id),
         ];
+        state.isLoading = false;
         state.error = null;
       })
       .addCase(deleteProjectDirectory.rejected, (state) => {
@@ -357,6 +405,7 @@ const ProjectDirectory = createSlice({
         state.isLoading = true;
       })
       .addCase(getProjectSync.fulfilled, (state, action) => {
+        console.log("🚀 ~ file: ProjectDirectorySlice.js:404 ~ .addCase ~ action:", action);
         state.isLoading = false;
         state.error = null;
       })
@@ -378,7 +427,7 @@ const ProjectDirectory = createSlice({
       })
       .addCase(createProjectDirectory.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.projectDirectory = [...state.projectDirectory, action.payload.data];
+        state.projectDirectory = [...state.projectDirectory, action.payload.data.projectDirectory];
         state.error = null;
       })
       .addCase(createProjectDirectory.rejected, (state) => {
@@ -388,14 +437,15 @@ const ProjectDirectory = createSlice({
         state.isLoading = false;
       })
       .addCase(updateProjectDirectory.fulfilled, (state, action) => {
-        state.isLoading = false;
+        console.log("🚀 ~ file: ProjectDirectorySlice.js:412 ~ .addCase ~ action:", action);
         state.projectDirectory = state.projectDirectory.map((item) => {
-          if (item._id !== action.payload.data._id) {
+          if (item._id !== action.payload.data.projectDirectory._id) {
             return item;
           } else {
-            return action.payload.data;
+            return action.payload.data.projectDirectory;
           }
         });
+        state.isLoading = false;
         state.error = null;
       })
       .addCase(updateProjectDirectory.rejected, (state) => {

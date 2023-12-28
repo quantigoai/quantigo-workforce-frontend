@@ -30,6 +30,8 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
 
   const { total } = useSelector((state) => state.projectDrawer);
   const { users, totalUsers, meta: userMeta } = useSelector((state) => state.user.users);
+  const { projectDirectory, totalDirectory, directoryMeta } = useSelector((state) => state.projectDirectory);
+
   const [meta, setMeta] = useState(projectMeta);
 
   const { pathname } = useLocation();
@@ -44,7 +46,10 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
     if (pathname === `/projectDetails/${id}`) {
       setMeta(workHistoryMeta);
     }
-  }, [pathname, projectMeta, userMeta, workHistoryMeta]);
+    if (pathname === "/projectDirectory") {
+      setMeta(directoryMeta);
+    }
+  }, [pathname, projectMeta, userMeta, workHistoryMeta, directoryMeta]);
   const navigate = useNavigate();
   const [params] = useSearchParams();
 
@@ -64,7 +69,12 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
         }
       }
     } else {
-      if (pathname === "/all-users" || pathname === "/allprojects" || pathname === `/projectDetails/${id}`) {
+      if (
+        pathname === "/all-users" ||
+        pathname === "/allprojects" ||
+        pathname === `/projectDetails/${id}` ||
+        pathname === "/projectDirectory"
+      ) {
         setPagination((prevPagination) => ({
           ...prevPagination,
           currentPage: 0,
@@ -123,6 +133,9 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
     if (pathname === "/all-users") {
       setTotalPages(Math.ceil(totalUsers / pagination.pageSize));
     }
+    if (pathname === "/projectDirectory") {
+      setTotalPages(Math.ceil(totalDirectory / pagination.pageSize));
+    }
     if (pathname === `/projectDetails/${id}`) {
       setTotalPages(Math.ceil(usersWorkHistoryCount / pagination.pageSize));
     }
@@ -141,7 +154,7 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
 
   const approvedPaths = ["/allprojects", "/all-users", "/projectDirectory"];
 
-  const approvedData = [myWorkHistoryCount, usersWorkHistoryCount, users?.length];
+  const approvedData = [myWorkHistoryCount, usersWorkHistoryCount, users?.length, projectDirectory?.length];
   return approvedPaths.includes(pathname) || approvedData.some((s) => s > 0) ? (
     <Box
       sx={{

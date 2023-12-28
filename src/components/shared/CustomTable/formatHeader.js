@@ -125,49 +125,51 @@ const customHeader = (params) => {
       return "SKILLS";
     case "currentlyCheckedInProject":
       return "PROJECT ENROLLED";
-    case "Client_Alias":
+    case "client_Alias":
       return "CLIENT ALIAS";
-    case "Industry":
+    case "industry":
       return "INDUSTRY";
-    case "Project_Name":
+    case "project_Name":
       return " PROJECT NAME";
-    case "Platform":
+    case "platform":
       return "PLATFORM";
+    case "tool_Type":
+      return "TOOL TYPE";
     case "PDR":
       return "PDR";
-    case "Project_Type":
+    case "project_Type":
       return "PROJECT TYPE";
-    case "Action_Items":
+    case "action_Items":
       return " ACTION ITEMS";
     case "QA_Check_Points":
       return " QA CHECK POINTS";
-    case "Obj_Benchmark":
+    case "obj_Benchmark":
       return "OBJ BENCHMARK";
-    case "Img_Benchmark":
+    case "img_Benchmark":
       return "IMG BENCHMARK";
-    case "Tagging_Benchmark":
+    case "tagging_Benchmark":
       return "TAGGING BENCHMARK";
-    case "Deletion":
+    case "deletion":
       return "DELETION";
-    case "Skip_Image":
+    case "skip_Image":
       return "SKIP IMAGE";
-    case "Update":
+    case "update":
       return "UPDATE";
-    case "Image_Loading":
+    case "image_Loading":
       return "IMAGE LOADING";
-    case "Object_Saving_Time":
+    case "object_Saving_Time":
       return "OBJECT SAVING TIME";
-    case "Video_Watch_Time":
+    case "video_Watch_Time":
       return "VIDEO WATCH TIME";
-    case "Judgement_Time":
+    case "judgement_Time":
       return " JUDGEMENT TIME";
     case "QA_Benchmark":
       return "QA BENCHMARK";
-    case "Annotation":
+    case "annotation":
       return "ANNOTATION";
     case "QA":
       return "QA";
-    case "Remarks":
+    case "remarks":
       return "REMARKS";
 
     default:

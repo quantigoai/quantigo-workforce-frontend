@@ -36,6 +36,7 @@ export default function WPFTable({
   handleReject,
   handleOpenNDA,
 }) {
+  console.log("🚀 ~ file: WPFTable.jsx:39 ~ columns:", columns);
   const { id } = useParams();
   return (
     myColumn.length > 0 && (
@@ -91,6 +92,7 @@ export default function WPFTable({
                     ))}
 
                     {columns.map((column) => (
+                      // console.log("🚀 ~ file: WPFTable.jsx:96 ~ columns:", columns)
                       <MiddleTableColumn key={column.id} row={row} column={column} />
                     ))}
 

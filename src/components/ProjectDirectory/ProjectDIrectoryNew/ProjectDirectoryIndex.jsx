@@ -1,9 +1,10 @@
+/* eslint-disable no-prototype-builtins */
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import { Box, IconButton, useTheme } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
@@ -28,53 +29,9 @@ import ProjectDirectoryHeader from "../ProjectDirectoryHeader/ProjectDirectoryHe
 import ProjectDirectoryDetailsModal from "./ProjectDirectoryDetailsModal";
 import ProjectDirectoryEditModal from "./ProjectDirectoryEditModal";
 import PaginationTable from "../../primary/ProjectLIstNew2/PaginationTable";
+import { useLocation } from "react-router-dom";
+import { setProjectDirectoryFilter } from "../../../features/slice/temporaryDataSlice";
 // import ProjectDirectoryDetailsModal from "./ProjectDirectoryDetailsModal";
-
-function TablePaginationActions(props) {
-  const theme = useTheme();
-  const { count, page, rowsPerPage, onPageChange } = props;
-
-  const handleFirstPageButtonClick = (event) => {
-    onPageChange(event, 0);
-  };
-
-  const handleBackButtonClick = (event) => {
-    onPageChange(event, page - 1);
-  };
-
-  const handleNextButtonClick = (event) => {
-    onPageChange(event, page + 1);
-  };
-
-  const handleLastPageButtonClick = (event) => {
-    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-  };
-
-  return (
-    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-      <IconButton onClick={handleFirstPageButtonClick} disabled={page === 0} aria-label="first page">
-        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
-      </IconButton>
-      <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
-        {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-      </IconButton>
-      <IconButton
-        onClick={handleNextButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page"
-      >
-        {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-      </IconButton>
-      <IconButton
-        onClick={handleLastPageButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page"
-      >
-        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
-      </IconButton>
-    </Box>
-  );
-}
 
 const ProjectDirectoryIndex = () => {
   const user = useSelector((state) => state.user);
@@ -322,6 +279,11 @@ const ProjectDirectoryIndex = () => {
     currentPage: 0,
     pageSize: 10,
   });
+  const { projectDirectoryFilter } = useSelector((state) => state.tempData);
+
+  const { pathname } = useLocation();
+  const [isDeleted, setIsDeleted] = useState(false);
+  const [ascDesc, setAscDesc] = useState({});
   const [search, setSearch] = useState("");
   const [openReject, setOpenReject] = React.useState(false);
   const [isSyncLoading, setIsSyncLoading] = useState(false);
@@ -338,15 +300,17 @@ const ProjectDirectoryIndex = () => {
     reset();
   };
   const handleClick = (e) => {
-    dispatch(setCurrentProjectDirectory(e.id));
+    dispatch(setCurrentProjectDirectory(e._id));
     setOpenProjectModalEdit(true);
   };
   const handleDelete = (e) => {
-    dispatch(deleteProjectDirectory(e.id)).then((action) => {
-      if (action?.payload?.status === 200) {
-        toast.trigger("Successfully Deleted Project Directory", "success");
+    setIsDeleted(false);
+    dispatch(deleteProjectDirectory(e._id)).then((action) => {
+      if (action.error?.message) {
+        toast.trigger(action.error?.message, "error");
       } else {
-        toast.trigger("Project Directory do not Delete", "error");
+        toast.trigger(action.payload.data.message, "success");
+        setIsDeleted(true);
       }
     });
   };
@@ -363,10 +327,10 @@ const ProjectDirectoryIndex = () => {
   };
 
   const handleSearch = (e) => {
-    // setPagination((prevPagination) => ({
-    //   ...prevPagination,
-    //   currentPage: 0,
-    // }));
+    setPagination((prevPagination) => ({
+      ...prevPagination,
+      currentPage: 0,
+    }));
     setSearch(e.target.value);
   };
 
@@ -375,17 +339,35 @@ const ProjectDirectoryIndex = () => {
     searchRef.current.value = "";
     dispatch(getProjectByDirectory(""));
   };
+  useEffect(() => {
+    if (pathname === "/projectDirectory") {
+      setAscDesc(projectDirectoryFilter?.ascDescOption);
+      setSearch(projectDirectoryFilter?.search);
+      searchRef.current.value = projectDirectoryFilter?.search || "";
+    }
+  }, []);
+  useEffect(() => {
+    dispatch(
+      setProjectDirectoryFilter({
+        search,
+        ascDescOption: ascDesc,
+      })
+    );
+  }, [search, ascDesc]);
 
   useEffect(() => {
-    setIsDataLoading(true);
     dispatch(setActivePath("Project Directory"));
     dispatch(clearProjectDirectory());
-    dispatch(getProjectByDirectory(search)).then((action) => {
+  }, []);
+
+  useLayoutEffect(() => {
+    setIsDataLoading(true);
+    dispatch(getProjectByDirectory({ search, pagination, ascDescOption: ascDesc })).then((action) => {
       setMyColumn(fieldBuilder(projectDirectoryField, handleClick, handleDelete));
       setIsChildDataLoading(false);
       setIsDataLoading(false);
     });
-  }, [search]);
+  }, [pagination, search, isDeleted, ascDesc]);
 
   const handleGetSync = async () => {
     await toast.responsePromise(
@@ -420,31 +402,53 @@ const ProjectDirectoryIndex = () => {
 
   const onSubmit = (data) => {
     dispatch(createProjectDirectory(data)).then((action) => {
-      if (action.payload.status === 200) {
-        setOpenModal(false);
-        toast.trigger("Successfully created Project Directory", "success");
-        reset();
+      if (action.error?.message) {
+        toast.trigger(action.error?.message, "error");
       } else {
-        toast.trigger("Project Directory do not create", "error");
+        toast.trigger(action.payload.data.message, "success");
+        handleClose();
         reset();
       }
     });
   };
   const onSubmitEdit = (data) => {
-    data._id = projectDirectorySingle._id;
     const finalData = {
       data,
       id: projectDirectorySingle._id,
     };
     dispatch(updateProjectDirectory(finalData)).then((action) => {
-      if (action?.payload?.status === 200) {
-        setOpenProjectModalEdit(false);
-        toast.trigger("Successfully Updated Project Directory", "success");
+      if (action.error?.message) {
+        toast.trigger(action.error?.message, "error");
       } else {
-        toast.trigger("Project Directory can not Updated", "error");
+        toast.trigger(action.payload.data.message, "success");
+        setOpenProjectModalEdit(false);
+        handleClose();
+        reset();
       }
     });
   };
+
+  const handleAscDesc = (field) => {
+    setAscDesc((prev) => {
+      const updatedData = { ...prev };
+      if (prev?.hasOwnProperty(field)) {
+        if (prev[field] === "asc") {
+          return {
+            ...prev,
+            [field]: "desc",
+          };
+        } else {
+          delete updatedData[field];
+          return updatedData;
+        }
+      }
+      return {
+        ...prev,
+        [field]: "asc",
+      };
+    });
+  };
+
   return (
     <Box className="content">
       <HeaderBox sx={{ backgroundColor: "" }}>
@@ -535,7 +539,7 @@ const ProjectDirectoryIndex = () => {
       <Box className="contentBody">
         <TablePaper sx={{ backgroundColor: "" }}>
           {isDataLoading ? (
-            <LoadingComponent />
+            <LoadingComponent height={"80vh"} />
           ) : (
             <TableWrapper
               role={role}
@@ -545,9 +549,9 @@ const ProjectDirectoryIndex = () => {
               myColumn={myColumn}
               myRows={myRows}
               pagination={pagination}
-              // setPagination={setPagination}
-              // handleId={handleId}
-              // filteredCol={filteredCol}
+              setPagination={setPagination}
+              handleId={handleAscDesc}
+              filteredCol={ascDesc}
               handleProjectDetailsOpen={handleProjectDetailsOpen}
               isChildDataLoading={isChildDataLoading}
               setIsChildDataLoading={setIsChildDataLoading}
@@ -559,7 +563,7 @@ const ProjectDirectoryIndex = () => {
             pagination={pagination}
             setPagination={setPagination}
             // setFilterValue={setFilterValue}
-            // setFilteredCol={setFilteredCol}
+            setFilteredCol={setAscDesc}
           />
         </TablePaper>
       </Box>

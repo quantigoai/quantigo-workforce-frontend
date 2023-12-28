@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   deleteQuestionFromQuiz,
   insertAQuestionInQuiz,
+  updateQuizById,
   updateQuizQA,
   updateQuizQAFunction,
 } from "../../../../features/slice/quizSlice";
@@ -13,7 +14,8 @@ import ChapterUpdateHeader from "../ChapterCreate/ChapterUpdateHeader";
 import QuestionType from "../QuizPage/QuestionType";
 import QuizNameDurationField from "../QuizPage/QuizNameDurationField";
 import useToaster from "../../../../customHooks/useToaster";
-
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 const QuizUpdateIndex = () => {
   const [inputFieldsCopy, setInputFieldsCopy] = useState([]);
   const { courseChapters } = useSelector((state) => state.course);
@@ -21,6 +23,7 @@ const QuizUpdateIndex = () => {
   const [disabledButton, setDisabledButton] = useState(true);
   const [durationTime, setDurationTime] = useState("");
   const { quiz } = useSelector((state) => state.quiz);
+  console.log("🚀 ~ file: QuizUpdateIndex.jsx:24 ~ QuizUpdateIndex ~ quiz:", quiz);
   const [inputFields, setInputFields] = useState(quiz.questionAndAnswer);
 
   const dispatch = useDispatch();
@@ -32,9 +35,21 @@ const QuizUpdateIndex = () => {
     quizId: "",
     questionAndAnswer: {},
   });
+  const QuizEditSchema = Yup.object().shape({
+    name: Yup.string().required("Quiz name is required"),
+    // duration: Yup.string().required("Quiz duration is required"),
+    duration: Yup.number()
+      .required("Quiz duration is required")
+      .lessThan(21, "Quiz duration must be in range between 1 to 20")
+      .transform((value) => (isNaN(value) ? undefined : value)),
+  });
   const methods = useForm({
-    // resolver: yupResolver(LoginSchema),
-    // defaultValues,
+    resolver: yupResolver(QuizEditSchema),
+    defaultValues: {
+      name: quiz.name,
+      duration: quiz.duration,
+    },
+    mode: "all",
   });
   useEffect(() => {
     // setInputFields(quiz.questionAndAnswer);
@@ -55,7 +70,6 @@ const QuizUpdateIndex = () => {
       setDurationTime(hours + " hours " + minutes + " minutes");
     }
   }, [quiz]);
-  console.log("🚀 ~ file: QuizUpdateIndex.jsx:14 ~ QuizUpdateIndex ~ inputFieldsCopy:", inputFieldsCopy);
 
   const handleChangeInput = (uniqueId, event) => {
     const newInputFields = inputFields.map((i) => {});
@@ -78,9 +92,6 @@ const QuizUpdateIndex = () => {
     // setInputFields(newInputFields);
   };
   const handleUpdate = (value, index, field) => {
-    console.log("🚀 ~ file: QuizUpdateIndex.jsx:76 ~ handleUpdate ~ field:", field)
-    console.log("🚀 ~ file: QuizUpdateIndex.jsx:76 ~ handleUpdate ~ index:", index)
-    console.log("🚀 ~ file: QuizUpdateIndex.jsx:76 ~ handleUpdate ~ value:", value)
     if (field.newQuiz) {
       const newInputFields = inputFields.map((item) => {
         if (item._id === field._id) {
@@ -241,7 +252,6 @@ const QuizUpdateIndex = () => {
   const [deleteQuestionIds, setDeleteQuestionIds] = useState([]);
   const [RestoreQuestionID, setRestoreQuestionID] = useState("");
   const handleRemoveQA = (field) => {
-    console.log("🚀 ~ file: QuizUpdateIndex.jsx:189 ~ handleRemoveQA ~ field:", field._id);
     if (field.newQuiz) {
       // const values = [...inputFields];
       // values.splice(
@@ -268,9 +278,6 @@ const QuizUpdateIndex = () => {
 
   // solve this
   useEffect(() => {}, [inputFieldsCopy]);
-
-  console.log("🚀 ~ file: QuizUpdateIndex.jsx:188 ~ QuizUpdateIndex ~ inputFields:", inputFields);
-  console.log("🚀 ~ file: QuizUpdateIndex.jsx:188 ~ QuizUpdateIndex ~ AddQuiz:", addQuiz);
   const handleAddQA = () => {
     setInputFieldsCopy([
       ...inputFields,
@@ -310,18 +317,27 @@ const QuizUpdateIndex = () => {
   const [accept, setAccept] = useState(false);
 
   const onSubmit = async (data) => {
-    let tempQA;
-    // Delete Question in a Quiz
-    console.log(addQuiz);
-    if (deleteQuestionIds.length !== 0) {
-      const deleteQuizData = {
-        quizId: quiz._id,
-        data: {
-          questionIds: deleteQuestionIds,
+    await toast.responsePromise(
+      // updateQuizQAFunction(data1),
+      setQuizUpdateLoading,
+      {
+        initialMessage: "quiz is updating ...",
+        inPending: () => {
+          setAccept(false);
         },
-      };
-      dispatch(deleteQuestionFromQuiz(deleteQuizData));
-    }
+        afterSuccess: (data) => {
+          setAccept(false);
+        },
+        afterError: (data) => {
+          setAccept(false);
+        },
+      },
+      false,
+      true,
+      true
+    );
+    let tempQA;
+
     // update  Quiz Question Answer
 
     {
@@ -337,42 +353,36 @@ const QuizUpdateIndex = () => {
             formData.append(`${k}`, v);
             data1.formDataQ = formData;
           });
-          await toast.responsePromise(
-            updateQuizQAFunction(data1),
-            setQuizUpdateLoading,
-            {
-              initialMessage: "quiz is updating ...",
-              inPending: () => {
-                setAccept(false);
-              },
-              afterSuccess: (data) => {
-                setAccept(false);
-              },
-              afterError: (data) => {
-                setAccept(false);
-              },
-            },
-            false,
-            true,
-            true
-          );
 
-          // dispatch(updateQuizQA(data1)).then((action) => {
-          //   // navigate(`/course-details/${course._id}`);
-          //   if (action.error) {
-          //     toast.trigger(action.error.message, "error");
-          //   } else {
-          //     toast.trigger(action.payload.data.message, "success");
-          //   }
-          // });
+          dispatch(updateQuizQA(data1)).then((action) => {
+            // navigate(`/course-details/${course._id}`);
+            if (action.error) {
+              toast.trigger(action.error.message, "error");
+            } else {
+              toast.trigger(action.payload.data.message, "success");
+            }
+          });
 
-          for (let pair of formData.entries()) {
-            console.log(pair[0] + ", " + pair[1]);
-          }
+          // for (let pair of formData.entries()) {
+          //   console.log(pair[0] + ", " + pair[1]);
+          // }
         });
     }
 
+    // Delete Question in a Quiz
+
+    if (deleteQuestionIds.length !== 0) {
+      const deleteQuizData = {
+        quizId: quiz._id,
+        data: {
+          questionIds: deleteQuestionIds,
+        },
+      };
+      dispatch(deleteQuestionFromQuiz(deleteQuizData));
+    }
+
     // add a new question in Quiz
+    console.log(addQuiz.questionAndAnswer);
     {
       addQuiz.questionAndAnswer.length !== 0 &&
         Object.entries(addQuiz.questionAndAnswer).map(([key, val], i) => {
@@ -391,6 +401,20 @@ const QuizUpdateIndex = () => {
           // }
         });
     }
+
+    // Update a quiz name and duration
+
+    const finalData = {
+      id: quiz._id,
+      data,
+    };
+    dispatch(updateQuizById(finalData)).then((action) => {
+      if (action.error) {
+        toast.trigger(action.error.message, "error");
+      } else {
+        toast.trigger(action.payload.data.message, "success");
+      }
+    });
   };
 
   return (

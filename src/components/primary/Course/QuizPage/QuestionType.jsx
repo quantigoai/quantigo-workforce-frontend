@@ -345,15 +345,24 @@ const QuestionType = ({
             </Button>
           )}
         </Box>
-        {/* Delete Question */}
+        {/* Delete Question for update Quiz */}
         <Box sx={{}}>
-          {/* {update && !deleteQuestionIds.includes(inputField._id) && ( */}
-          <i
-            style={{ fontSize: "20px", color: "#FF4757" }}
-            onClick={update ? () => handleRemoveQA(inputField) : () => handleRemoveQA(inputField.uniqueId)}
-            className="ri-delete-bin-6-line"
-          ></i>
-          {/* )} */}
+          {update && !deleteQuestionIds.includes(inputField._id) && (
+            <i
+              style={{ fontSize: "20px", color: "#FF4757", cursor: "pointer" }}
+              onClick={update ? () => handleRemoveQA(inputField) : () => handleRemoveQA(inputField.uniqueId)}
+              className="ri-delete-bin-6-line"
+            ></i>
+          )}
+
+          {/* Delete Question for Create Quiz */}
+          {!update && (
+            <i
+              style={{ fontSize: "20px", color: "#FF4757", cursor: "pointer" }}
+              onClick={update ? () => handleRemoveQA(inputField) : () => handleRemoveQA(inputField.uniqueId)}
+              className="ri-delete-bin-6-line"
+            ></i>
+          )}
         </Box>
       </Box>
       <Box sx={{ p: 2 }}>

@@ -10,7 +10,7 @@ const QuizNameDurationField = ({ methods, onSubmit, handleSubmit, update }) => {
     <Box sx={{ display: "flex", justifyContent: "space-between", paddingBottom: "2%" }} gap={2}>
       <Box sx={{ width: "100%", height: "100px" }}>
         <CustomTextField
-          name="quiz_name"
+          name={update ? "name" : "quiz_name"}
           label="Quiz Name"
           defaultValue={update ? quiz.name : ""}
           InputProps={

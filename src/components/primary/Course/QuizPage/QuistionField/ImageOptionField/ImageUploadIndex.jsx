@@ -92,10 +92,10 @@ const ImageUploadIndex = ({
 
   if (screenSize >= 1500) {
     // Extra-large screens
-    width = (12.97 * screenSize) / 100;
+    width = (12.56 * screenSize) / 100;
   } else if (screenSize >= 1440) {
     // Large screens
-    width = (10 * screenSize) / 100;
+    width = (11 * screenSize) / 100;
   } else if (screenSize >= 1366) {
     // Large screens
     width = (10 * screenSize) / 100;

@@ -47,13 +47,41 @@ const VisuallyHiddenInput = styled("input")({
 });
 const VerificationInfoIndex = () => {
   const { user, isLoading } = useSelector((state) => state.user);
-  console.log("🚀 ~ file: MyprofileIndexNew.jsx:21 ~ MyprofileIndexNew ~ user:", user);
   const [editAble, setEditAble] = useState(false);
+  const [nidNumber, setNidNumber] = useState("");
+  const [nameAsNid, setNameAsNid] = useState("");
+  const [photo, setPhoto] = useState([]);
+  const [resume, setResume] = useState([]);
+  const [errorPhoto, setErrorPhoto] = useState("");
+  const [errorResume, setErrorResume] = useState("");
   const handleEditProfile = () => {
     setEditAble(true);
   };
+  const handleNidNumber = (e) => {
+    setNidNumber(e.target.value);
+    console.log("🚀 ~ file: VerificationInfoIndex.jsx:59 ~ handleNidNumber ~ e.target.value:", e.target.value);
+  };
+  const handleNameAdNid = (e) => {
+    setNameAsNid(e.target.value);
+  };
   const handleCancel = () => {
     setEditAble(false);
+  };
+  const handlePhoto = (e) => {
+    setPhoto(e.target.files[0]);
+  };
+  const handleResume = (e) => {
+    setResume(e.target.files[0]);
+  };
+
+  const handleSubmitChange = () => {
+    const data = {
+      nidNumber,
+      nameAsNid,
+      photo,
+      resume,
+    };
+    console.log(data);
   };
   return (
     <>
@@ -122,17 +150,17 @@ const VerificationInfoIndex = () => {
                     label={"Nid Number"}
                     //   defaultValue={presentAddress}
                     disableItem={false}
-                    //   handleChange={handlePresentAddressChange}
+                    handleChange={handleNidNumber}
                     editAble={editAble}
                   />
                 </Grid>
                 <Grid item xs={6}>
                   <FieldForProfile
-                    name="presentAddress"
+                    name="Name [as per your  NID]"
                     label={"Name [as per your  NID]"}
                     //   defaultValue={presentAddress}
                     disableItem={false}
-                    //   handleChange={handlePresentAddressChange}
+                    handleChange={handleNameAdNid}
                     editAble={editAble}
                   />
                 </Grid>
@@ -161,6 +189,7 @@ const VerificationInfoIndex = () => {
                             // borderRadius: '8px 0px 0px 8px',
                           }
                         }
+                        placeholder={photo.name}
                         disabled={true}
                         size="small"
                         type={"text"}
@@ -168,21 +197,13 @@ const VerificationInfoIndex = () => {
                         // {...field}
                         fullWidth
                         variant="outlined"
+                        helperText={errorPhoto}
                       />
                     </Box>
 
                     <Box sx={{ width: "30%" }}>
-                      {/* <input
-                style={{ display: 'none' }}
-                id="upload-photo"
-                name="questionImage"
-                type="file"
-                accept="image/png,  image/jpeg, image/jpg"
-                // onChange={(e) => handleImage(e, inputField._id)}
-                onChange={(e) => handleImageFn(e, inputField._id)}
-                // onchange="handleImageChange"
-              /> */}
                       <Button
+                        disabled={!editAble}
                         component="label"
                         // variant="contained"
                         // startIcon={<CloudUploadIcon />}
@@ -212,19 +233,24 @@ const VerificationInfoIndex = () => {
                           type="file"
                           name="questionImage"
                           accept="image/png, image/jpeg, image/jpg"
-                        />
+                          // onChange={(e) => handlePhoto(e)}
+                          onChange={(e) => {
+                            const selectedFile = e.target.files[0];
 
-                        {/* <VisuallyHiddenInput
-                  type="file"
-                  name="questionImage"
-                  accept="image/png,  image/jpeg, image/jpg"
-                  name="questionImage"
-                  onChange={
-                    update
-                      ? (e) => handleUpdate(e.target.files[0], "questionImage", inputField)
-                      : (e) => handleChangeInput(inputField.uniqueId, e)
-                  }
-                /> */}
+                            // Check if a file is selected
+                            if (selectedFile) {
+                              const fileSize = selectedFile.size; // Size in bytes
+                              const maxSizeInBytes = 512 * 1024; // 512KB
+
+                              if (fileSize <= maxSizeInBytes) {
+                                setErrorPhoto("");
+                                handlePhoto(e);
+                              } else {
+                                setErrorPhoto("Error: File size exceeds 512KB");
+                              }
+                            }
+                          }}
+                        />
                       </Button>
                     </Box>
                   </Grid>
@@ -243,14 +269,7 @@ const VerificationInfoIndex = () => {
                     </Typography>
                     <Box sx={{ width: "70%" }}>
                       <TextFieldQuestion
-                        sx={
-                          {
-                            // height: '35px',
-                            // fontSize: '14px',
-                            // border: '2px solid #E6ECF5 !important',
-                            // borderRadius: '8px 0px 0px 8px',
-                          }
-                        }
+                        placeholder={resume.name}
                         disabled={true}
                         size="small"
                         type={"text"}
@@ -258,21 +277,13 @@ const VerificationInfoIndex = () => {
                         // {...field}
                         fullWidth
                         variant="outlined"
+                        helperText={errorResume}
                       />
                     </Box>
 
                     <Box sx={{ width: "30%" }}>
-                      {/* <input
-                style={{ display: 'none' }}
-                id="upload-photo"
-                name="questionImage"
-                type="file"
-                accept="image/png,  image/jpeg, image/jpg"
-                // onChange={(e) => handleImage(e, inputField._id)}
-                onChange={(e) => handleImageFn(e, inputField._id)}
-                // onchange="handleImageChange"
-              /> */}
                       <Button
+                        disabled={!editAble}
                         component="label"
                         // variant="contained"
                         // startIcon={<CloudUploadIcon />}
@@ -301,20 +312,25 @@ const VerificationInfoIndex = () => {
                         <VisuallyHiddenInput
                           type="file"
                           name="questionImage"
-                          accept="image/png, image/jpeg, image/jpg"
-                        />
+                          accept=".pdf, .doc, .docx"
+                          onChange={(e) => handleResume(e)}
+                          onChange={(e) => {
+                            const selectedFile = e.target.files[0];
 
-                        {/* <VisuallyHiddenInput
-                  type="file"
-                  name="questionImage"
-                  accept="image/png,  image/jpeg, image/jpg"
-                  name="questionImage"
-                  onChange={
-                    update
-                      ? (e) => handleUpdate(e.target.files[0], "questionImage", inputField)
-                      : (e) => handleChangeInput(inputField.uniqueId, e)
-                  }
-                /> */}
+                            // Check if a file is selected
+                            if (selectedFile) {
+                              const fileSize = selectedFile.size; // Size in bytes
+                              const maxSizeInBytes = 512 * 1024; // 512KB
+
+                              if (fileSize <= maxSizeInBytes) {
+                                setErrorResume("");
+                                handleResume(e);
+                              } else {
+                                setErrorResume("Error: File size exceeds 512KB");
+                              }
+                            }
+                          }}
+                        />
                       </Button>
                     </Box>
                   </Grid>
@@ -350,7 +366,7 @@ const VerificationInfoIndex = () => {
                   }}
                 >
                   <Button
-                    // onClick={() => handleSubmitChange()}
+                    onClick={() => handleSubmitChange()}
                     disabled={isLoading}
                     sx={{
                       height: {

@@ -1,5 +1,5 @@
-import { Box, Button, Grid, Typography, styled } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Box, Button, Grid, InputAdornment, TextField, Typography, styled } from "@mui/material";
+import React, { useEffect, useRef, useState } from "react";
 import FieldForProfile from "../FieldForProfile";
 import ProfilePicture from "../MyProfile/ProfilePicture";
 import { myProfileEdit, uploadMyImage } from "../../../../../features/slice/userSlice";
@@ -10,6 +10,7 @@ import useToaster from "../../../../../customHooks/useToaster";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
 
 export const MyDatePicker = styled(DatePicker)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
@@ -26,16 +27,10 @@ export const MyDatePicker = styled(DatePicker)(() => ({
 }));
 const EducationInfoIndex = () => {
   const { user, isLoading } = useSelector((state) => state.user);
-
   const [editAble, setEditAble] = useState(false);
-  const [firstName, setFirstName] = useState(user.firstName);
-  const [lastName, setLastName] = useState(user.lastName);
-  const [occupation, setOccupation] = useState(user.occupation);
-  const [bloodGroup, setBloodGroup] = useState(user.bloodGroup);
-  const [contactNo, setContactNo] = useState(user.contactNo);
-  const [billingAccountNo, setBillingAccountNo] = useState(user.billingAccountNo);
-  const [presentAddress, setPresentAddress] = useState(user.presentAddress);
-  const [permanentAddress, setPermanentAddress] = useState(user.permanentAddress);
+  const [degree, setDegree] = useState("");
+  const [study, setStudy] = useState("");
+  const [institution, setInstitution] = useState("");
 
   const dispatch = useDispatch();
 
@@ -45,6 +40,7 @@ const EducationInfoIndex = () => {
   };
   const [coverImageFile, setCoverImageFile] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
+  const dateRef = useRef(null);
 
   const handleImage = (e) => {
     setCoverImageFile(e.target.files[0]);
@@ -57,58 +53,38 @@ const EducationInfoIndex = () => {
 
   const { handleSubmit, control, errors, setValue } = useForm();
 
-  const handleFirstNameChange = (e) => {
-    setFirstName(e.target.value);
+  const handleDegreeChange = (e) => {
+    setDegree(e.target.value);
   };
-  const handleLasttNameChange = (e) => {
-    setLastName(e.target.value);
+  const handleStudyChange = (e) => {
+    setStudy(e.target.value);
   };
-  const handleOccupationChange = (e) => {
-    setOccupation(e.target.value);
-  };
-  const handlePhoneNumberChange = (e) => {
-    setContactNo(e.target.value);
-  };
-  const handlebillingAccountNoChange = (e) => {
-    setBillingAccountNo(e.target.value);
-  };
-  const handlePresentAddressChange = (e) => {
-    setPresentAddress(e.target.value);
-  };
-  const handlepermanentAddressChange = (e) => {
-    setPermanentAddress(e.target.value);
-  };
-
-  const handleChangeBloodGroup = (e) => {
-    setBloodGroup(e.target.value);
+  const handleInstitutionChange = (e) => {
+    setInstitution(e.target.value);
   };
 
   const handleCancel = () => {
     setEditAble(false);
   };
 
-  useEffect(() => {
-    setFirstName(user.firstName);
-    setLastName(user.lastName);
-    setContactNo(user.contactNo);
-    setOccupation(user.occupation);
-    setBloodGroup(user.bloodGroup);
-    setPermanentAddress(user.permanentAddress);
-    setPresentAddress(user.presentAddress);
-    setBillingAccountNo(user.billingAccountNo);
-    setCoverImage(null);
-  }, [editAble]);
+  // useEffect(() => {
+  //   setDegree(user.firstName);
+  //   setStudy(user.lastName);
+  //   setContactNo(user.contactNo);
+  //   setOccupation(user.occupation);
+  //   setBloodGroup(user.bloodGroup);
+  //   setPermanentAddress(user.permanentAddress);
+  //   setPresentAddress(user.presentAddress);
+  //   setBillingAccountNo(user.billingAccountNo);
+  //   setCoverImage(null);
+  // }, [editAble]);
 
   const handleSubmitChange = () => {
     const data = {
-      firstName,
-      lastName,
-      occupation,
-      bloodGroup,
-      contactNo,
-      billingAccountNo,
-      presentAddress,
-      permanentAddress,
+      degree,
+      study,
+      institution,
+      completion: dateRef.current.value,
     };
 
     const finalData = {
@@ -116,33 +92,34 @@ const EducationInfoIndex = () => {
       data,
     };
 
-    const formData = new FormData();
-    formData.append("image", coverImageFile);
+    // const formData = new FormData();
+    // formData.append("image", coverImageFile);
 
-    const finalImageData = {
-      id: user._id,
-      formData,
-    };
+    // const finalImageData = {
+    //   id: user._id,
+    //   formData,
+    // };
 
-    coverImageFile &&
-      dispatch(uploadMyImage(finalImageData)).then((action) => {
-        if (action.payload.status === 200) {
-          toast.trigger("Profile Picture Update Successfully", "success");
-          setEditAble(false);
-          setCoverImageFile(null);
-        }
-      });
-    //   Object.keys(filteredData).length > 0 &&
-    dispatch(myProfileEdit(finalData)).then((action) => {
-      if (action.error) {
-        toast.trigger(action.error.message, "error");
-      }
-      if (action.payload.status === 200) {
-        toast.trigger("Profile Update Successfully", "success");
-        setEditAble(false);
-      }
-    });
+    // coverImageFile &&
+    //   dispatch(uploadMyImage(finalImageData)).then((action) => {
+    //     if (action.payload.status === 200) {
+    //       toast.trigger("Profile Picture Update Successfully", "success");
+    //       setEditAble(false);
+    //       setCoverImageFile(null);
+    //     }
+    //   });
+    // //   Object.keys(filteredData).length > 0 &&
+    // dispatch(myProfileEdit(finalData)).then((action) => {
+    //   if (action.error) {
+    //     toast.trigger(action.error.message, "error");
+    //   }
+    //   if (action.payload.status === 200) {
+    //     toast.trigger("Profile Update Successfully", "success");
+    //     setEditAble(false);
+    //   }
+    // });
   };
+  const handleImageFn = () => {};
 
   return (
     <>
@@ -215,8 +192,8 @@ const EducationInfoIndex = () => {
                   <FieldForProfile
                     name="degree"
                     label={"Highest level of degree"}
-                    handleChange={handleFirstNameChange}
-                    defaultValue={firstName}
+                    handleChange={handleDegreeChange}
+                    // defaultValue={firstName}
                     disableItem={false}
                     editAble={editAble}
                   />
@@ -225,8 +202,8 @@ const EducationInfoIndex = () => {
                   <FieldForProfile
                     name="study"
                     label={"Field of Study"}
-                    handleChange={handleFirstNameChange}
-                    defaultValue={firstName}
+                    handleChange={handleStudyChange}
+                    // defaultValue={firstName}
                     disableItem={false}
                     editAble={editAble}
                   />
@@ -237,8 +214,8 @@ const EducationInfoIndex = () => {
                   <FieldForProfile
                     name="institution"
                     label={"Institution Name"}
-                    handleChange={handleFirstNameChange}
-                    defaultValue={firstName}
+                    handleChange={handleInstitutionChange}
+                    // defaultValue={firstName}
                     disableItem={false}
                     editAble={editAble}
                   />
@@ -253,57 +230,134 @@ const EducationInfoIndex = () => {
                     editAble={editAble}
                   /> */}
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <Typography sx={{ mb: "10px" }} variant="wpf_p4_medium" color="#3c4d6b">
+                    <Typography sx={{ mb: "10px" }} variant="wpf_p4_medium" color="neutral.N300">
                       Year of completion
                     </Typography>
                     <MyDatePicker
+                      disabled={!editAble}
                       size="small"
                       sx={{
-                        backgroundColor: "#FFFFFF",
+                        backgroundColor: editAble ? "" : "neutral.N400",
                         color: "#3c4d6b",
                       }}
-                      inputFormat="DD-MM-YYYY"
-                      // minDate={minDob}
-                      // maxDate={maxDob}
-                      // onChange={(newValue) => {
-                      //   handleDate(newValue);
-                      // }}
-                      // slotProps={{
-                      //   textField: {
-                      //     error: !!error,
-                      //     helperText: error && error?.message,
-                      //     id: 'date-picker',
-                      //     sx: {
-                      //       color: '#3c4d6b',
-                      //       mt: '6px',
-                      //     },
-                      //   },
-                      // }}
-                    >
-                      {/* <TextField
-                  size="small"
-                  sx={{
-                    color: '#3c4d6b',
-                    // border: '2px solid green.800',
-                  }}
-                  error={!!error}
-                  helperText={error && error?.message}
-                  id="date-picker"
-                /> */}
-                    </MyDatePicker>
+                      views={["year"]}
+                      openTo="year"
+                      inputRef={dateRef}
+                    ></MyDatePicker>
                   </LocalizationProvider>
                 </Grid>
               </Grid>
               <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
                 <Grid item xs={12} sx={{ paddingRight: "2%" }}>
-                  <FieldForProfile
-                    name="certificate"
-                    label={"Upload Your Certificate Copy"}
-                    handleChange={handleFirstNameChange}
-                    defaultValue={firstName}
-                    disableItem={false}
-                    editAble={editAble}
-                  />
+                  <Grid item xs={12}>
+                    <Typography
+                      variant="wpf_h7_medium"
+                      sx={{
+                        mb: 0,
+                        color: "neutral.N300",
+                      }}
+                    >
+                      Upload Relevant Certificates
+                    </Typography>
+                    <Box sx={{ width: "100%", height: "50px" }}>
+                      <Grid container>
+                        <Box sx={{ width: "90%" }}>
+                          <TextFieldQuestion
+                            sx={{
+                              backgroundColor: editAble ? "" : "neutral.N400",
+                              color: "#3c4d6b",
+                            }}
+                            // defaultValue={inputField?.question?.questionImage?.name}
+                            disabled={!editAble}
+                            size="small"
+                            type={"text"}
+                            id="outlined-basic"
+                            // placeholder={inputField?.question?.questionImage?.name}
+                            // {...field}
+                            fullWidth
+                            variant="outlined"
+                            // required={label === "Benchmark" ? false : true}
+                            // helperText={error}
+                          />
+                        </Box>
+
+                        <Box sx={{ width: "10%" }}>
+                          <input
+                            style={{ display: "none" }}
+                            id="upload-photo"
+                            name="questionImage"
+                            type="file"
+                            accept="image/png,  image/jpeg, image/jpg"
+                            // onChange={(e) => handleImage(e, inputField._id)}
+                            onChange={(e) => handleImageFn(e)}
+                            // onchange="handleImageChange"
+                          />
+                          <Button
+                            component="label"
+                            // variant="contained"
+                            // startIcon={<CloudUploadIcon />}
+                            onSubmit={(e) => e.preventDefault()}
+                            sx={{
+                              height: "40px",
+                              width: "100%",
+                              fontSize: "14px",
+                              border: "2px solid #E6ECF5 !important",
+                              borderRadius: "0px 8px 8px 0px",
+                              zIndex: 2,
+                              backgroundColor: "#fff",
+                            }}
+                          >
+                            <i color="#2E58FF" className="ri-upload-2-line"></i>
+                            <Typography
+                              variant="wpf_h7_medium"
+                              sx={{
+                                pl: 1,
+                                textTransform: "none",
+                                color: "#2E58FF",
+                              }}
+                            >
+                              Upload
+                            </Typography>
+                            {/* <VisuallyHiddenInput
+                              type="file"
+                              name="questionImage"
+                              accept="image/png, image/jpeg, image/jpg"
+                              onChange={(e) => {
+                                const selectedFile = e.target.files[0];
+
+                                // Check if a file is selected
+                                // if (selectedFile) {
+                                //   const fileSize = selectedFile.size; // Size in bytes
+                                //   const maxSizeInBytes = 512 * 1024; // 512KB
+
+                                //   if (fileSize <= maxSizeInBytes) {
+                                //     setError("");
+                                //     update
+                                //       ? handleUpdate(selectedFile, "questionImage", inputField)
+                                //       : handleChangeInput(inputField.uniqueId, e);
+                                //   } else {
+                                //     setError("Error: File size exceeds 512KB");
+                                //   }
+                                // }
+                              }}
+                            /> */}
+
+                            {/* <VisuallyHiddenInput
+                  type="file"
+                  name="questionImage"
+                  accept="image/png,  image/jpeg, image/jpg"
+                  name="questionImage"
+                  onChange={
+                    update
+                      ? (e) => handleUpdate(e.target.files[0], "questionImage", inputField)
+                      : (e) => handleChangeInput(inputField.uniqueId, e)
+                  }
+                /> */}
+                          </Button>
+                        </Box>
+                      </Grid>
+                    </Box>
+                  </Grid>
                 </Grid>
               </Grid>
             </Box>

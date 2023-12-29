@@ -1,4 +1,4 @@
-import {FormControl, styled, TextField, Typography} from "@mui/material";
+import { FormControl, styled, TextField, Typography } from "@mui/material";
 import React from "react";
 
 const MyTextField = styled(TextField)(() => ({
@@ -15,7 +15,6 @@ const MyTextField = styled(TextField)(() => ({
   },
 }));
 const FieldForProfile = ({ label, handleChange, disableItem, defaultValue, editAble }) => {
-
   return (
     <>
       <FormControl fullWidth>
@@ -25,7 +24,8 @@ const FieldForProfile = ({ label, handleChange, disableItem, defaultValue, editA
 
             mb: 1,
           }}
-          variant="wpf_p4_medium">
+          variant="wpf_p4_medium"
+        >
           {label}
         </Typography>
         <MyTextField
@@ -36,7 +36,7 @@ const FieldForProfile = ({ label, handleChange, disableItem, defaultValue, editA
             height: "40px",
           }}
           disabled={disableItem ? true : !editAble}
-          value={defaultValue}
+          value={defaultValue && defaultValue}
           variant="outlined"
           onChange={(e) => handleChange(e)}
         />

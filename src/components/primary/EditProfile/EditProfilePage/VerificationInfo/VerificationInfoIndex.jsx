@@ -4,36 +4,8 @@ import ProfilePicture from "../MyProfile/ProfilePicture";
 import { Box, Button, Grid, TextField, Typography, styled } from "@mui/material";
 import FieldForProfile from "../FieldForProfile";
 import PasswordFieldForProfile from "../../PasswordFieldForProfile";
-export const TextFieldQuestion = styled(TextField)(() => ({
-  // borderRadius: "8px 0px 0px 8px",
-  "& .MuiOutlinedInput-root": {
-    height: "40px",
-    fontSize: "14px",
-    border: "2px solid #E6ECF5 !important",
-    backgroundColor: "#F9FAFB",
-    // borderRadius: "8px",
-    borderRadius: "8px 0px 0px 8px",
-    "@media (max-width: 1439px)": {
-      fontSize: "12px",
-    },
-    "@media (mix-width: 1920px)": {
-      fontSize: "14px",
-    },
-  },
-  "& .MuiOutlinedInput-input": {
-    padding: "0px 0px 0px 8px",
-  },
-  "& .MuiOutlinedInput-notchedOutline ": {},
-  "& .MuiInputBase-input.Mui-disabled": {
-    WebkitTextFillColor: "#56627a",
-  },
-  "& .MuiFormHelperText-root": {
-    color: "#F04438",
-    "&.Mui-error": {
-      color: "#F04438",
-    },
-  },
-}));
+import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
+
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
   clipPath: "inset(50%)",
@@ -246,6 +218,7 @@ const VerificationInfoIndex = () => {
                                 setErrorPhoto("");
                                 handlePhoto(e);
                               } else {
+                                setPhoto([]);
                                 setErrorPhoto("Error: File size exceeds 512KB");
                               }
                             }
@@ -313,7 +286,7 @@ const VerificationInfoIndex = () => {
                           type="file"
                           name="questionImage"
                           accept=".pdf, .doc, .docx"
-                          onChange={(e) => handleResume(e)}
+                          // onChange={(e) => handleResume(e)}
                           onChange={(e) => {
                             const selectedFile = e.target.files[0];
 
@@ -326,7 +299,8 @@ const VerificationInfoIndex = () => {
                                 setErrorResume("");
                                 handleResume(e);
                               } else {
-                                setErrorResume("Error: File size exceeds 512KB");
+                                setResume([]);
+                                setErrorResume("Error: File size exceeds 1MB");
                               }
                             }
                           }}

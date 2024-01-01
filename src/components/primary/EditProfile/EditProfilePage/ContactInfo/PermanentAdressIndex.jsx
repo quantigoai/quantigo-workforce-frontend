@@ -2,7 +2,7 @@ import { Checkbox, FormControlLabel, Grid, Typography } from "@mui/material";
 import React from "react";
 import FieldForProfile from "../FieldForProfile";
 
-const PermanentAdressIndex = ({editAble}) => {
+const PermanentAdressIndex = ({ editAble }) => {
   return (
     <>
       <Grid container sx={{ paddingTop: "2%", paddingBottom: "0%" }}>
@@ -11,7 +11,21 @@ const PermanentAdressIndex = ({editAble}) => {
         </Typography>
       </Grid>
       <Grid container>
-        <FormControlLabel control={<Checkbox />} label="Same as Present Address" />
+        <FormControlLabel
+          control={<Checkbox />}
+          label={
+            <Typography
+              sx={{
+                color: "neutral.N300",
+
+                // mb: 1,
+              }}
+              variant="wpf_p4_medium"
+            >
+              Same as Present Address{" "}
+            </Typography>
+          }
+        />
       </Grid>
 
       <Grid container sx={{ paddingBottom: "20px" }}>

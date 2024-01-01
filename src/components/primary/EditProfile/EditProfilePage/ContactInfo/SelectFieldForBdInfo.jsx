@@ -19,6 +19,7 @@ export const MySelect = styled(Select)(() => ({
 //   { value: "(AB-)", label: "AB-" },
 // ];
 const SelectFieldForBdInfo = ({ name, label, defaultValue, disableItem, editAble, handleChange, options }) => {
+  console.log("🚀 ~ file: SelectFieldForBdInfo.jsx:22 ~ SelectFieldForBdInfo ~ defaultValue:", defaultValue);
   return (
     <>
       <>
@@ -45,7 +46,8 @@ const SelectFieldForBdInfo = ({ name, label, defaultValue, disableItem, editAble
               fontSize: "14px",
             }}
             disabled={disableItem ? true : !editAble}
-            value={defaultValue}
+            // value={defaultValue}
+            value={defaultValue && defaultValue}
             // onChange={(e) => handleChange(e)}
           >
             {options.map((option) => (

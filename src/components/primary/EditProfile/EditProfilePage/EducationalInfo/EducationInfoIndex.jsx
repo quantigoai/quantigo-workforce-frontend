@@ -1,5 +1,5 @@
-import { Box, Button, Grid, InputAdornment, TextField, Typography, styled } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import { Box, Button, Grid, Input, InputAdornment, TextField, Typography, styled } from "@mui/material";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import FieldForProfile from "../FieldForProfile";
 import ProfilePicture from "../MyProfile/ProfilePicture";
 import { myProfileEdit, uploadMyImage } from "../../../../../features/slice/userSlice";
@@ -11,6 +11,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
+import { useDropzone } from "react-dropzone";
 
 export const MyDatePicker = styled(DatePicker)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
@@ -25,6 +26,38 @@ export const MyDatePicker = styled(DatePicker)(() => ({
     color: "blue",
   },
 }));
+
+const thumbsContainer = {
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+  marginTop: 16,
+};
+
+const thumb = {
+  display: "inline-flex",
+  borderRadius: 2,
+  // border: "1px solid #eaeaea",
+  marginBottom: 8,
+  marginRight: 8,
+  width: 100,
+  height: 50,
+  padding: 4,
+  boxSizing: "border-box",
+};
+
+const thumbInner = {
+  display: "flex",
+  minWidth: 0,
+  overflow: "hidden",
+};
+
+const img = {
+  // display: "block",
+  width: "300px",
+  height: "100%",
+};
+
 const EducationInfoIndex = () => {
   const { user, isLoading } = useSelector((state) => state.user);
   const [editAble, setEditAble] = useState(false);
@@ -38,6 +71,7 @@ const EducationInfoIndex = () => {
   const handleEditProfile = () => {
     setEditAble(true);
   };
+
   const [coverImageFile, setCoverImageFile] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
   const dateRef = useRef(null);
@@ -119,6 +153,60 @@ const EducationInfoIndex = () => {
     //   }
     // });
   };
+
+  const [files, setFiles] = useState([]);
+  const { getRootProps, getInputProps, acceptedFiles, fileRejections } = useDropzone({
+    maxFiles: 5,
+    accept: {
+      "image/*": [],
+    },
+    onDrop: (acceptedFiles) => {
+      setFiles(
+        acceptedFiles.map((file) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          })
+        )
+      );
+    },
+  });
+  const acceptedFileItems = acceptedFiles.map((file) => (
+    <li key={file.path}>
+      {file.path} - {file.size} bytes
+    </li>
+  ));
+  const fileRejectionItems = fileRejections.map(({ file, errors }) => {
+    return (
+      <p key={file.path}>
+        {errors.map((e) => (
+          <li key={e.code}>{e.message}</li>
+        ))}
+      </p>
+    );
+  });
+  console.log("🚀 ~ file: EducationInfoIndex.jsx:187 ~ fileRejectionItems ~ fileRejectionItems:", fileRejectionItems);
+
+  const thumbs = files.map((file) => {
+    return (
+      <div style={thumb} key={file.name}>
+        <div style={thumbInner}>
+          <img
+            src={file.preview}
+            style={img}
+            // Revoke data uri after image is loaded
+            onLoad={() => {
+              URL.revokeObjectURL(file.preview);
+            }}
+          />
+        </div>
+      </div>
+    );
+  });
+
+  useEffect(() => {
+    return () => files.forEach((file) => URL.revokeObjectURL(file.preview));
+  }, []);
+
   const handleImageFn = () => {};
 
   return (
@@ -318,41 +406,6 @@ const EducationInfoIndex = () => {
                             >
                               Upload
                             </Typography>
-                            {/* <VisuallyHiddenInput
-                              type="file"
-                              name="questionImage"
-                              accept="image/png, image/jpeg, image/jpg"
-                              onChange={(e) => {
-                                const selectedFile = e.target.files[0];
-
-                                // Check if a file is selected
-                                // if (selectedFile) {
-                                //   const fileSize = selectedFile.size; // Size in bytes
-                                //   const maxSizeInBytes = 512 * 1024; // 512KB
-
-                                //   if (fileSize <= maxSizeInBytes) {
-                                //     setError("");
-                                //     update
-                                //       ? handleUpdate(selectedFile, "questionImage", inputField)
-                                //       : handleChangeInput(inputField.uniqueId, e);
-                                //   } else {
-                                //     setError("Error: File size exceeds 512KB");
-                                //   }
-                                // }
-                              }}
-                            /> */}
-
-                            {/* <VisuallyHiddenInput
-                  type="file"
-                  name="questionImage"
-                  accept="image/png,  image/jpeg, image/jpg"
-                  name="questionImage"
-                  onChange={
-                    update
-                      ? (e) => handleUpdate(e.target.files[0], "questionImage", inputField)
-                      : (e) => handleChangeInput(inputField.uniqueId, e)
-                  }
-                /> */}
                           </Button>
                         </Box>
                       </Grid>
@@ -360,9 +413,21 @@ const EducationInfoIndex = () => {
                   </Grid>
                 </Grid>
               </Grid>
-            </Box>
 
-            {/* <button type="submit">Submit</button> */}
+              <Box sx={{ display: "flex", flexDirection: "column" }}>
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  <Button variant="contained">upload</Button>
+                </div>
+                <Box sx={{ mt: 2, border: " 1px solid  #EAECF0" }}>
+                  <p>{thumbs}</p>
+                  {/* <p>{acceptedFileItems}</p> */}
+                  <Typography variant="wpf_p4_medium" color="">
+                    {fileRejectionItems.length > 0 ? "you have selected more than 5 files" : ""}
+                  </Typography>
+                </Box>
+              </Box>
+            </Box>
           </Box>
         </Box>
 

@@ -18,11 +18,19 @@ export const MySelect = styled(Select)(() => ({
 //   { value: "(AB+)", label: "AB+" },
 //   { value: "(AB-)", label: "AB-" },
 // ];
-const SelectFieldForBdInfo = ({ name, label, defaultValue, disableItem, editAble, handleChange, options }) => {
-  console.log("🚀 ~ file: SelectFieldForBdInfo.jsx:22 ~ SelectFieldForBdInfo ~ defaultValue:", defaultValue);
+const SelectFieldForBdInfo = ({
+  name,
+  label,
+  defaultValue,
+  disableItem,
+  editAble,
+  handleChange,
+  options,
+  isChecked,
+}) => {
   return (
     <>
-      <>
+      {options && (
         <FormControl fullWidth>
           <Typography
             sx={{
@@ -45,26 +53,28 @@ const SelectFieldForBdInfo = ({ name, label, defaultValue, disableItem, editAble
               backgroundColor: editAble ? "" : "neutral.N400",
               fontSize: "14px",
             }}
-            disabled={disableItem ? true : !editAble}
-            // value={defaultValue}
+            disabled={disableItem ? true : isChecked ? true : !editAble}
+            // defaultValue={defaultValue && defaultValue}
             value={defaultValue && defaultValue}
             // onChange={(e) => handleChange(e)}
           >
-            {options.map((option) => (
-              <MenuItem
-                sx={{ fontSize: "14px" }}
-                key={option.value}
-                fullWidth
-                value={option.id}
-                onClick={() => handleChange(option.id, option.name)}
-                //   value={(() => setValue(field.name, field.value), option.value)}
-              >
-                {option.name}
-              </MenuItem>
-            ))}
+            {options &&
+              options.map((option) => (
+                <MenuItem
+                  sx={{ fontSize: "14px" }}
+                  key={option.name}
+                  fullWidth
+                  // value={option.id}
+                  value={option.name}
+                  onClick={() => handleChange(option.id, option.name)}
+                  //   value={(() => setValue(field.name, field.value), option.value)}
+                >
+                  {option.name}
+                </MenuItem>
+              ))}
           </MySelect>
         </FormControl>
-      </>
+      )}
     </>
   );
 };

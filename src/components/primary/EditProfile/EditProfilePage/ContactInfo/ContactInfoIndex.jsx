@@ -22,6 +22,7 @@ const ContactInfoIndex = () => {
 
   const [divisionsPermanent, setDivisionsPermanent] = useState([]);
   const [districtsPermanent, setDistrictsPermanent] = useState([]);
+  console.log("🚀 ~ file: ContactInfoIndex.jsx:25 ~ ContactInfoIndex ~ districtsPermanent:", districtsPermanent);
   const [subdistrictsPermanent, setSubDistrictsPermanent] = useState([]);
 
   const [divisionsEmergency, setDivisionsEmergency] = useState([]);
@@ -75,8 +76,7 @@ const ContactInfoIndex = () => {
     // }
   };
   useEffect(() => {
-    console.log("🚀 ~ file: ContactInfoIndex.jsx:79 ~ useEffect ~ isChecked:", isChecked);
-
+ 
     if (isChecked) {
       setPermanentAddress({
         division: presentAddress.division,
@@ -86,9 +86,28 @@ const ContactInfoIndex = () => {
         roadNumber: presentAddress.roadNumber,
         houseNumber: presentAddress.houseNumber,
       });
-      setDivisionsPermanent(divisions);
-      setDistrictsPermanent(districtsPermanent);
-      setSubDistricts(subdistricts);
+
+      setDistrictsPermanent([...districts]);
+      setSubDistrictsPermanent([...subdistricts]);
+      // setDivisionsPermanent((prevSubDistricts) => [...prevSubDistricts, ...divisions]);
+      // setDistrictsPermanent((prev) => [...prev, districts]);
+      // setSubDistrictsPermanent((prev) => [...prev, subdistricts]);
+    }
+    if (!isChecked) {
+      setPermanentAddress({
+        division: "",
+        district: "",
+        subdistrict: "",
+        city: "",
+        roadNumber: "",
+        houseNumber: "",
+      });
+
+      setDistrictsPermanent([]);
+      setSubDistrictsPermanent([]);
+      // setDivisionsPermanent((prevSubDistricts) => [...prevSubDistricts, ...divisions]);
+      // setDistrictsPermanent((prev) => [...prev, districts]);
+      // setSubDistrictsPermanent((prev) => [...prev, subdistricts]);
     }
   }, [isChecked]);
   const handleEditProfile = () => {
@@ -391,7 +410,7 @@ const ContactInfoIndex = () => {
                     <SelectFieldForBdInfo
                       name="Division"
                       label={"Division"}
-                      // defaultValue={bloodGroup}
+                      defaultValue={presentAddress.division}
                       disableItem={false}
                       editAble={editAble}
                       handleChange={handleChangeDivision}
@@ -402,7 +421,7 @@ const ContactInfoIndex = () => {
                     <SelectFieldForBdInfo
                       name="District"
                       label={"District"}
-                      // defaultValue={bloodGroup}
+                      defaultValue={presentAddress.district}
                       disableItem={false}
                       editAble={editAble}
                       handleChange={handleChangeDistricts}
@@ -415,7 +434,7 @@ const ContactInfoIndex = () => {
                     <SelectFieldForBdInfo
                       name="Sub-District"
                       label={"Sub-District"}
-                      // defaultValue={bloodGroup}
+                      defaultValue={presentAddress.subdistrict}
                       disableItem={false}
                       editAble={editAble}
                       handleChange={handleChangeSubDistricts}
@@ -487,22 +506,24 @@ const ContactInfoIndex = () => {
                       <SelectFieldForBdInfo
                         name="Division"
                         label={"Division"}
-                        // defaultValue={permanentAddress.division}
+                        defaultValue={permanentAddress.division}
                         disableItem={false}
                         editAble={editAble}
                         handleChange={handleChangeDivisionPermanent}
                         options={divisionsPermanent}
+                        isChecked={isChecked}
                       />
                     </Grid>
                     <Grid item xs={6}>
                       <SelectFieldForBdInfo
                         name="District"
                         label={"District"}
-                        // defaultValue={permanentAddress.district}
+                        defaultValue={permanentAddress.district}
                         disableItem={false}
                         editAble={editAble}
                         handleChange={handleChangeDistrictsPermanent}
                         options={districtsPermanent}
+                        isChecked={isChecked}
                       />
                     </Grid>
                   </Grid>
@@ -511,11 +532,12 @@ const ContactInfoIndex = () => {
                       <SelectFieldForBdInfo
                         name="Sub-District"
                         label={"Sub-District"}
-                        // defaultValue={permanentAddress.subdistrict}
+                        defaultValue={permanentAddress.subdistrict}
                         disableItem={false}
                         editAble={editAble}
                         handleChange={handleChangeSubDistrictsPermanent}
                         options={subdistrictsPermanent}
+                        isChecked={isChecked}
                       />
                     </Grid>
                     <Grid item xs={6}>
@@ -526,6 +548,7 @@ const ContactInfoIndex = () => {
                         disableItem={false}
                         handleChange={handleChangePermanentCity}
                         editAble={editAble}
+                        isChecked={isChecked}
                       />
                     </Grid>
                   </Grid>
@@ -538,6 +561,7 @@ const ContactInfoIndex = () => {
                         disableItem={false}
                         handleChange={handleChangePermanentRoadNumber}
                         editAble={editAble}
+                        isChecked={isChecked}
                       />
                     </Grid>
                     <Grid item xs={6}>
@@ -548,6 +572,7 @@ const ContactInfoIndex = () => {
                         disableItem={false}
                         handleChange={handleChangePermanentHouseNumber}
                         editAble={editAble}
+                        isChecked={isChecked}
                       />
                     </Grid>
                   </Grid>

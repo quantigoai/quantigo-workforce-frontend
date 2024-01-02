@@ -41,6 +41,7 @@ const PasswordFieldForProfile = ({ label, handleChange, disableItem, defaultValu
           //   type={label === "Phone No." || label === "Nagad No." ? "number" : "text"}
           disabled={disableItem ? true : !editAble}
           value={defaultValue}
+          placeholder="01XXXXXXXXX"
           variant="outlined"
           onChange={(e) => handleChange(e)}
           error={yourPhoneNumberValidationFunction(phone) ? false : true}

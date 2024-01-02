@@ -14,7 +14,7 @@ const MyTextField = styled(TextField)(() => ({
     color: "blue",
   },
 }));
-const FieldForProfile = ({ label, handleChange, disableItem, defaultValue, editAble }) => {
+const FieldForProfile = ({ label, handleChange, disableItem, defaultValue, editAble, isChecked }) => {
   return (
     <>
       <FormControl fullWidth>
@@ -35,7 +35,7 @@ const FieldForProfile = ({ label, handleChange, disableItem, defaultValue, editA
             borderRadius: "8px",
             height: "40px",
           }}
-          disabled={disableItem ? true : !editAble}
+          disabled={disableItem ? true : isChecked ? true : !editAble}
           value={defaultValue && defaultValue}
           variant="outlined"
           onChange={(e) => handleChange(e)}

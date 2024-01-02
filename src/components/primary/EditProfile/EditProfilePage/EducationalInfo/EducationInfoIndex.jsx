@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Input, InputAdornment, TextField, Typography, styled } from "@mui/material";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import FieldForProfile from "../FieldForProfile";
 import ProfilePicture from "../MyProfile/ProfilePicture";
 import { myProfileEdit, uploadMyImage } from "../../../../../features/slice/userSlice";
@@ -12,7 +12,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
 import { useDropzone } from "react-dropzone";
-
+import CloseIcon from "@mui/icons-material/Close";
 export const MyDatePicker = styled(DatePicker)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "1px solid #E6ECF5 !important",
@@ -26,12 +26,24 @@ export const MyDatePicker = styled(DatePicker)(() => ({
     color: "blue",
   },
 }));
-
-const thumbsContainer = {
+const baseStyle = {
+  flex: 1,
   display: "flex",
-  flexDirection: "row",
-  flexWrap: "wrap",
-  marginTop: 16,
+  flexDirection: "column",
+  alignItems: "center",
+  padding: "20px",
+  borderWidth: 2,
+  borderRadius: 2,
+  borderColor: "#000",
+  // borderStyle: "dashed",
+  backgroundColor: "#fafafa",
+  color: "#bdbdbd",
+  outline: "none",
+  transition: "border .24s ease-in-out",
+};
+
+const focusedStyle = {
+  borderColor: "#2196f3",
 };
 
 const thumb = {
@@ -40,22 +52,24 @@ const thumb = {
   // border: "1px solid #eaeaea",
   marginBottom: 8,
   marginRight: 8,
-  width: 100,
-  height: 50,
+  width: 300,
+  height: 200,
   padding: 4,
   boxSizing: "border-box",
 };
 
 const thumbInner = {
   display: "flex",
+  position: "relative",
   minWidth: 0,
   overflow: "hidden",
 };
 
 const img = {
   // display: "block",
-  width: "300px",
+  width: "100%",
   height: "100%",
+  borderRadius: "15px",
 };
 
 const EducationInfoIndex = () => {
@@ -155,26 +169,34 @@ const EducationInfoIndex = () => {
   };
 
   const [files, setFiles] = useState([]);
-  const { getRootProps, getInputProps, acceptedFiles, fileRejections } = useDropzone({
+
+  const { getRootProps, getInputProps, acceptedFiles, fileRejections, isFocused } = useDropzone({
+    disabled: editAble,
     maxFiles: 5,
     accept: {
-      "image/*": [],
+      "image/jpeg": [],
+      "image/png": [],
     },
     onDrop: (acceptedFiles) => {
-      setFiles(
-        acceptedFiles.map((file) =>
+      setFiles((prev) => [
+        ...prev,
+        ...acceptedFiles.map((file) =>
           Object.assign(file, {
             preview: URL.createObjectURL(file),
           })
-        )
-      );
+        ),
+      ]);
     },
   });
-  const acceptedFileItems = acceptedFiles.map((file) => (
-    <li key={file.path}>
-      {file.path} - {file.size} bytes
-    </li>
-  ));
+
+  const style = useMemo(
+    () => ({
+      ...baseStyle,
+      ...(isFocused ? focusedStyle : {}),
+    }),
+    [isFocused]
+  );
+
   const fileRejectionItems = fileRejections.map(({ file, errors }) => {
     return (
       <p key={file.path}>
@@ -184,25 +206,45 @@ const EducationInfoIndex = () => {
       </p>
     );
   });
-  console.log("🚀 ~ file: EducationInfoIndex.jsx:187 ~ fileRejectionItems ~ fileRejectionItems:", fileRejectionItems);
 
-  const thumbs = files.map((file) => {
+  const thumbs = files.map((file, index) => {
     return (
-      <div style={thumb} key={file.name}>
-        <div style={thumbInner}>
+      <Box style={thumb} key={index}>
+        <Box onClick={() => handleDelete(file.lastModified)} style={thumbInner}>
+          <Box
+            sx={{
+              position: "absolute",
+              top: -1,
+              right: 0,
+              backgroundColor: "#FF4757",
+              color: "#fff",
+              width: "35px",
+              // fontSize: "10px",
+              height: "35px",
+              textAlign: "center",
+              borderRadius: "50%",
+              "&:hover": { backgroundColor: "#F53142" },
+              cursor: "pointer",
+            }}
+          >
+            <CloseIcon sx={{ fontSize: "18px", mt: "8px" }} />
+          </Box>
           <img
             src={file.preview}
             style={img}
-            // Revoke data uri after image is loaded
             onLoad={() => {
               URL.revokeObjectURL(file.preview);
             }}
+            alt={file.name}
           />
-        </div>
-      </div>
+        </Box>
+      </Box>
     );
   });
 
+  const handleDelete = (modifiedDate) => {
+    setFiles((prevFiles) => prevFiles.filter((file) => file.lastModified !== modifiedDate));
+  };
   useEffect(() => {
     return () => files.forEach((file) => URL.revokeObjectURL(file.preview));
   }, []);
@@ -335,95 +377,17 @@ const EducationInfoIndex = () => {
                   </LocalizationProvider>
                 </Grid>
               </Grid>
-              <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
-                <Grid item xs={12} sx={{ paddingRight: "2%" }}>
-                  <Grid item xs={12}>
-                    <Typography
-                      variant="wpf_h7_medium"
-                      sx={{
-                        mb: 0,
-                        color: "neutral.N300",
-                      }}
-                    >
-                      Upload Relevant Certificates
-                    </Typography>
-                    <Box sx={{ width: "100%", height: "50px" }}>
-                      <Grid container>
-                        <Box sx={{ width: "90%" }}>
-                          <TextFieldQuestion
-                            sx={{
-                              backgroundColor: editAble ? "" : "neutral.N400",
-                              color: "#3c4d6b",
-                            }}
-                            // defaultValue={inputField?.question?.questionImage?.name}
-                            disabled={!editAble}
-                            size="small"
-                            type={"text"}
-                            id="outlined-basic"
-                            // placeholder={inputField?.question?.questionImage?.name}
-                            // {...field}
-                            fullWidth
-                            variant="outlined"
-                            // required={label === "Benchmark" ? false : true}
-                            // helperText={error}
-                          />
-                        </Box>
+              <Grid container spacing={0} sx={{ paddingBottom: "20px" }}></Grid>
 
-                        <Box sx={{ width: "10%" }}>
-                          <input
-                            style={{ display: "none" }}
-                            id="upload-photo"
-                            name="questionImage"
-                            type="file"
-                            accept="image/png,  image/jpeg, image/jpg"
-                            // onChange={(e) => handleImage(e, inputField._id)}
-                            onChange={(e) => handleImageFn(e)}
-                            // onchange="handleImageChange"
-                          />
-                          <Button
-                            component="label"
-                            // variant="contained"
-                            // startIcon={<CloudUploadIcon />}
-                            onSubmit={(e) => e.preventDefault()}
-                            sx={{
-                              height: "40px",
-                              width: "100%",
-                              fontSize: "14px",
-                              border: "2px solid #E6ECF5 !important",
-                              borderRadius: "0px 8px 8px 0px",
-                              zIndex: 2,
-                              backgroundColor: "#fff",
-                            }}
-                          >
-                            <i color="#2E58FF" className="ri-upload-2-line"></i>
-                            <Typography
-                              variant="wpf_h7_medium"
-                              sx={{
-                                pl: 1,
-                                textTransform: "none",
-                                color: "#2E58FF",
-                              }}
-                            >
-                              Upload
-                            </Typography>
-                          </Button>
-                        </Box>
-                      </Grid>
-                    </Box>
-                  </Grid>
-                </Grid>
-              </Grid>
-
-              <Box sx={{ display: "flex", flexDirection: "column" }}>
-                <div {...getRootProps()}>
+              <Box className="container" sx={{ width: "100%" }}>
+                <div {...getRootProps({ className: "dropzone" })}>
                   <input {...getInputProps()} />
-                  <Button variant="contained">upload</Button>
+                  <Typography variant="contained">Upload your relevant certificates</Typography>
                 </div>
                 <Box sx={{ mt: 2, border: " 1px solid  #EAECF0" }}>
-                  <p>{thumbs}</p>
-                  {/* <p>{acceptedFileItems}</p> */}
-                  <Typography variant="wpf_p4_medium" color="">
-                    {fileRejectionItems.length > 0 ? "you have selected more than 5 files" : ""}
+                  <Box>{files.length <= 5 && thumbs} </Box>
+                  <Typography variant="wpf_p4_medium" color="error.500">
+                    {fileRejectionItems.length > 0 || files.length > 5 ? "you have selected more than 5 files" : ""}
                   </Typography>
                 </Box>
               </Box>

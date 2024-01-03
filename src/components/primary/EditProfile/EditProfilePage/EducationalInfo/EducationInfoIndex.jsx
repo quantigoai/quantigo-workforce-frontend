@@ -169,29 +169,32 @@ const EducationInfoIndex = () => {
   };
 
   const [files, setFiles] = useState([]);
+
   const [error, setError] = useState(false);
 
   const { getRootProps, getInputProps, acceptedFiles, fileRejections, isFocused } = useDropzone({
     disabled: files.length === 5 ? true : false,
-    maxFiles: 5,
     accept: {
       "image/jpeg": [],
       "image/png": [],
     },
     onDrop: (acceptedFiles) => {
       if (files.length === 0) {
-        setFiles((prev) => [
-          ...prev,
-          ...acceptedFiles.map((file) =>
-            Object.assign(file, {
-              preview: URL.createObjectURL(file),
-            })
-          ),
-        ]);
-        setError(false);
+        if (acceptedFiles.length > 5) {
+          setError(true);
+        } else {
+          setFiles((prev) => [
+            ...prev,
+            ...acceptedFiles.map((file) =>
+              Object.assign(file, {
+                preview: URL.createObjectURL(file),
+              })
+            ),
+          ]);
+          setError(false);
+        }
       } else if (files.length !== 0 && files.length <= 5) {
         if (acceptedFiles.length + files.length === 5) {
-          console.log("hit2");
           setFiles((prev) => [
             ...prev,
             ...acceptedFiles.map((file) =>
@@ -202,7 +205,6 @@ const EducationInfoIndex = () => {
           ]);
           setError(false);
         } else {
-          console.log("hit3");
           setFiles([]);
           setError(true);
         }
@@ -217,17 +219,6 @@ const EducationInfoIndex = () => {
     }),
     [isFocused]
   );
-
-  const fileRejectionItems = fileRejections.map(({ file, errors }) => {
-    setFiles([]);
-    return (
-      <p key={file.path}>
-        {errors.map((e) => (
-          <li key={e.code}>{e.message}</li>
-        ))}
-      </p>
-    );
-  });
 
   const thumbs = files.map((file, index) => {
     return (
@@ -411,9 +402,7 @@ const EducationInfoIndex = () => {
                 <Box sx={{ mt: 2, border: " 1px solid  #EAECF0" }}>
                   <Box>{files.length <= 5 && thumbs} </Box>
                   <Typography variant="wpf_p4_medium" color="error.500">
-                    {fileRejectionItems.length > 0 || files.length > 5 || error
-                      ? "you have selected more than 5 files"
-                      : ""}
+                    {files.length > 5 || error ? "you have selected more than 5 files" : ""}
                   </Typography>
                 </Box>
               </Box>

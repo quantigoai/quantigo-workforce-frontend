@@ -156,7 +156,7 @@ const UploadImagesField = ({ editAble, label }) => {
         <Box sx={{ mt: 2, border: " 1px solid  #EAECF0" }}>
           <Box>{files.length <= 5 && thumbs} </Box>
           <Typography variant="wpf_p4_medium" color="error.500">
-            {fileRejectionItems.length > 0 || files.length > 5 || error ? "you have selected more than 5 files" : ""}
+            {files.length > 5 || error ? "you have selected more than 5 files" : ""}
           </Typography>
         </Box>
       </Box>

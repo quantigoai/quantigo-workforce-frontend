@@ -135,7 +135,7 @@ export default function EditProfilePageIndex() {
                       variant="wpf_p3_semiBold"
                       color={value === 0 ? "primary.B200" : "neutral.700"}
                     >
-                      My Profile
+                    Personal Info
                     </Typography>
                   }
                   {...a11yProps(0)}
@@ -170,7 +170,7 @@ export default function EditProfilePageIndex() {
                       variant="wpf_p3_semiBold"
                       color={value === 2 ? "primary.B200" : "neutral.700"}
                     >
-                      Contact Info.
+                      Contact Info
                     </Typography>
                   }
                   {...a11yProps(2)}

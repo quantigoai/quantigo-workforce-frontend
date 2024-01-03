@@ -59,7 +59,6 @@ const ContactInfoIndex = () => {
   });
 
   const [isChecked, setIsChecked] = useState(false);
-  console.log("🚀 ~ file: ContactInfoIndex.jsx:61 ~ ContactInfoIndex ~ isChecked:", isChecked);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);

@@ -8,17 +8,17 @@ export const MySelect = styled(Select)(() => ({
   background: "none",
   height: "40px",
 }));
-const options = [
-  { value: "(A+)", label: "A+" },
-  { value: "(A-)", label: "A-" },
-  { value: "(B+)", label: "B+" },
-  { value: "(B-)", label: "B-" },
-  { value: "(O+)", label: "O+" },
-  { value: "(O-)", label: "O-" },
-  { value: "(AB+)", label: "AB+" },
-  { value: "(AB-)", label: "AB-" },
-];
-const SelectFieldForProfile = ({ name, label, defaultValue, disableItem, editAble, handleChange }) => {
+// const options = [
+//   { value: "(A+)", label: "A+" },
+//   { value: "(A-)", label: "A-" },
+//   { value: "(B+)", label: "B+" },
+//   { value: "(B-)", label: "B-" },
+//   { value: "(O+)", label: "O+" },
+//   { value: "(O-)", label: "O-" },
+//   { value: "(AB+)", label: "AB+" },
+//   { value: "(AB-)", label: "AB-" },
+// ];
+const SelectFieldForProfile = ({ name, label, defaultValue, disableItem, editAble, handleChange ,options}) => {
   console.log("🚀 ~ file: SelectFieldForProfile.jsx:22 ~ SelectFieldForProfile ~ defaultValue:", defaultValue)
   return (
     <>

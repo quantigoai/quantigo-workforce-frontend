@@ -11,7 +11,28 @@ import CommonFieldTest from "../CommonFieldTest";
 import FieldForProfile from "../FieldForProfile";
 import SelectFieldForProfile from "../SelectFieldForProfile";
 import ProfilePicture from "./ProfilePicture";
-
+const maritalStatusOption = [
+  { value: "married", label: "Married" },
+  { value: "single", label: "Single" },
+  { value: "others", label: "Other" },
+];
+const bloodGroupOption = [
+  { value: "(A+)", label: "A+" },
+  { value: "(A-)", label: "A-" },
+  { value: "(B+)", label: "B+" },
+  { value: "(B-)", label: "B-" },
+  { value: "(O+)", label: "O+" },
+  { value: "(O-)", label: "O-" },
+  { value: "(AB+)", label: "AB+" },
+  { value: "(AB-)", label: "AB-" },
+];
+const religionOption = [
+  { value: "islam", label: "Islam" },
+  { value: "christian", label: "Christian" },
+  { value: "hindu", label: "Hindu" },
+  { value: "buddhism", label: "Buddhism" },
+  { value: "others", label: "Other" },
+];
 const MyprofileIndexNew = () => {
   const { user, isLoading } = useSelector((state) => state.user);
 
@@ -20,10 +41,12 @@ const MyprofileIndexNew = () => {
   const [lastName, setLastName] = useState(user.lastName);
   const [occupation, setOccupation] = useState(user.occupation);
   const [bloodGroup, setBloodGroup] = useState(user.bloodGroup);
+  const [religion, setReligion] = useState("");
+  const [maritalStatus, setMaritalStatus] = useState("");
   const [contactNo, setContactNo] = useState(user.contactNo);
   const [billingAccountNo, setBillingAccountNo] = useState(user.billingAccountNo);
-  const [presentAddress, setPresentAddress] = useState(user.presentAddress);
-  const [permanentAddress, setPermanentAddress] = useState(user.permanentAddress);
+  const [fatherName, setFatherName] = useState("");
+  const [motherName, setMotherName] = useState("");
   const dispatch = useDispatch();
 
   const toast = useToaster();
@@ -59,15 +82,22 @@ const MyprofileIndexNew = () => {
   const handlebillingAccountNoChange = (e) => {
     setBillingAccountNo(e.target.value);
   };
-  const handlePresentAddressChange = (e) => {
-    setPresentAddress(e.target.value);
+  const handleFatherNameChange = (e) => {
+    setFatherName(e.target.value);
   };
-  const handlepermanentAddressChange = (e) => {
-    setPermanentAddress(e.target.value);
+  const handleMotherName = (e) => {
+    setMotherName(e.target.value);
   };
 
   const handleChangeBloodGroup = (e) => {
     setBloodGroup(e.target.value);
+  };
+  const handleChangeReligion = (e) => {
+    setReligion(e.target.value);
+  };
+
+  const handleChangeMaritalStatus = (e) => {
+    setMaritalStatus(e.target.value);
   };
 
   const handleCancel = () => {
@@ -77,12 +107,12 @@ const MyprofileIndexNew = () => {
   useEffect(() => {
     setFirstName(user.firstName);
     setLastName(user.lastName);
-    setContactNo(user.contactNo);
+    // setContactNo(user.contactNo);
     setOccupation(user.occupation);
     setBloodGroup(user.bloodGroup);
-    setPermanentAddress(user.permanentAddress);
-    setPresentAddress(user.presentAddress);
-    setBillingAccountNo(user.billingAccountNo);
+    // setPermanentAddress(user.permanentAddress);
+    // setPresentAddress(user.presentAddress);
+    // setBillingAccountNo(user.billingAccountNo);
     setCoverImage(null);
   }, [editAble]);
 
@@ -92,10 +122,10 @@ const MyprofileIndexNew = () => {
       lastName,
       occupation,
       bloodGroup,
-      contactNo,
-      billingAccountNo,
-      presentAddress,
-      permanentAddress,
+      religion,
+      maritalStatus,
+      fatherName,
+      motherName,
     };
 
     const finalData = {
@@ -244,7 +274,7 @@ const MyprofileIndexNew = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid container sx={{ paddingBottom: "5px" }}>
+              <Grid container sx={{ paddingBottom: "20px" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <CommonFieldTest
                     name="dob"
@@ -265,42 +295,65 @@ const MyprofileIndexNew = () => {
                     disableItem={false}
                     editAble={editAble}
                     handleChange={handleChangeBloodGroup}
+                    options={bloodGroupOption}
                   />
                 </Grid>
               </Grid>
-              <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
+              {/* <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
                 <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
                   Contact Info.
                 </Typography>
-              </Grid>
+              </Grid> */}
 
               <Grid container sx={{ paddingBottom: "20px" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <PasswordFieldForProfile
-                    name="phone"
-                    label={"Phone No."}
-                    defaultValue={contactNo}
+                  <SelectFieldForProfile
+                    name="bloodGroup"
+                    label={"Marital Status"}
+                    defaultValue={maritalStatus}
                     disableItem={false}
-                    handleChange={handlePhoneNumberChange}
                     editAble={editAble}
-                    phone={contactNo}
+                    handleChange={handleChangeMaritalStatus}
+                    options={maritalStatusOption}
                   />
                 </Grid>
                 <Grid item xs={6}>
-                  <PasswordFieldForProfile
-                    name="billingAccountNo"
-                    label={"Nagad No."}
-                    defaultValue={billingAccountNo}
+                  <SelectFieldForProfile
+                    name="bloodGroup"
+                    label={"Religion"}
+                    defaultValue={religion}
                     disableItem={false}
-                    handleChange={handlebillingAccountNoChange}
                     editAble={editAble}
-                    phone={billingAccountNo}
+                    handleChange={handleChangeReligion}
+                    options={religionOption}
                   />
                 </Grid>
               </Grid>
 
               <Grid container sx={{ paddingBottom: "20px" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                  <FieldForProfile
+                    name="presentAddress"
+                    label={"Father's Name"}
+                    defaultValue={fatherName}
+                    disableItem={false}
+                    handleChange={handleFatherNameChange}
+                    editAble={editAble}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <FieldForProfile
+                    name="presentAddress"
+                    label={"Mother's Name"}
+                    defaultValue={motherName}
+                    disableItem={false}
+                    handleChange={handleMotherName}
+                    editAble={editAble}
+                  />
+                </Grid>
+              </Grid>
+              <Grid container sx={{ paddingBottom: "20px", paddingTop: "%" }}>
+                <Grid item xs={12}>
                   <CommonFieldTest
                     name="email"
                     label={"Email"}
@@ -309,28 +362,6 @@ const MyprofileIndexNew = () => {
                     control={control}
                     rules={{ required: false }}
                     errors={errors}
-                    editAble={editAble}
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <FieldForProfile
-                    name="presentAddress"
-                    label={"Present Address"}
-                    defaultValue={presentAddress}
-                    disableItem={false}
-                    handleChange={handlePresentAddressChange}
-                    editAble={editAble}
-                  />
-                </Grid>
-              </Grid>
-              <Grid container sx={{ paddingBottom: "20px" }}>
-                <Grid item xs={12}>
-                  <FieldForProfile
-                    name="permanentAddress"
-                    label={"Permanent Address"}
-                    defaultValue={permanentAddress}
-                    disableItem={false}
-                    handleChange={handlepermanentAddressChange}
                     editAble={editAble}
                   />
                 </Grid>

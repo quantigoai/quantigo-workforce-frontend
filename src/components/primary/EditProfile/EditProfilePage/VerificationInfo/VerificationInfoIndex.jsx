@@ -5,6 +5,7 @@ import { Box, Button, Grid, TextField, Typography, styled } from "@mui/material"
 import FieldForProfile from "../FieldForProfile";
 import PasswordFieldForProfile from "../../PasswordFieldForProfile";
 import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
+import UploadImagesField from "./UploadImagesField";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -115,7 +116,12 @@ const VerificationInfoIndex = () => {
                 overflowY: "auto",
               }}
             >
-              <Grid container sx={{ paddingBottom: "20px" }}>
+              <Grid container sx={{ paddingTop: "1%", paddingBottom: "%" }}>
+                <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
+                  Nid
+                </Typography>
+              </Grid>
+              <Grid container sx={{ paddingBottom: "20px", paddingTop: "2%" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <FieldForProfile
                     name="presentAddress"
@@ -137,8 +143,74 @@ const VerificationInfoIndex = () => {
                   />
                 </Grid>
               </Grid>
+              <Grid container>
+                <UploadImagesField editAble={editAble}   label={"Nid Photo"}/>
+              </Grid>
 
-              <Grid container sx={{ paddingBottom: "20px" }}>
+              <Grid container sx={{ paddingTop: "2%", paddingBottom: "%" }}>
+                <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
+                  Passport
+                </Typography>
+              </Grid>
+
+              <Grid container sx={{ paddingBottom: "20px", paddingTop: "1%" }}>
+                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                  <FieldForProfile
+                    name="presentAddress"
+                    label={"Passport Number"}
+                    //   defaultValue={presentAddress}
+                    disableItem={false}
+                    handleChange={handleNidNumber}
+                    editAble={editAble}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <FieldForProfile
+                    name="Name [as per your  NID]"
+                    label={"Name [as per your  Passport]"}
+                    //   defaultValue={presentAddress}
+                    disableItem={false}
+                    handleChange={handleNameAdNid}
+                    editAble={editAble}
+                  />
+                </Grid>
+              </Grid>
+
+              <Grid container>
+                <UploadImagesField editAble={editAble}  label={"Passport Photo"}/>
+              </Grid>
+
+              <Grid container sx={{ paddingTop: "2%", paddingBottom: "%" }}>
+                <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
+                  Birth Certificate
+                </Typography>
+              </Grid>
+              <Grid container sx={{ paddingBottom: "20px", paddingTop: "1%" }}>
+                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                  <FieldForProfile
+                    name="presentAddress"
+                    label={"Birth Certificate Number"}
+                    //   defaultValue={presentAddress}
+                    disableItem={false}
+                    handleChange={handleNidNumber}
+                    editAble={editAble}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <FieldForProfile
+                    name="Name [as per your  NID]"
+                    label={"Name [as per your  Birth Certificate]"}
+                    //   defaultValue={presentAddress}
+                    disableItem={false}
+                    handleChange={handleNameAdNid}
+                    editAble={editAble}
+                  />
+                </Grid>
+              </Grid>
+              <Grid container>
+                <UploadImagesField editAble={editAble}  label={"Birth Certificate Photo"}/>
+              </Grid>
+              <Grid container sx={{ paddingBottom: "20px", paddingTop: "1%" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <Grid container>
                     <Typography

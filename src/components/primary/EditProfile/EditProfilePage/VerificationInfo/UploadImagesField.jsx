@@ -48,25 +48,46 @@ const img = {
   borderRadius: "15px",
 };
 
-const UploadImagesField = ({ editAble,label }) => {
+const UploadImagesField = ({ editAble, label }) => {
   const [files, setFiles] = useState([]);
+  const [error, setError] = useState(false);
 
   const { getRootProps, getInputProps, acceptedFiles, fileRejections, isFocused } = useDropzone({
-    disabled: !editAble,
+    disabled: files.length === 5 ? true : false,
     maxFiles: 5,
     accept: {
       "image/jpeg": [],
       "image/png": [],
     },
     onDrop: (acceptedFiles) => {
-      setFiles((prev) => [
-        ...prev,
-        ...acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        ),
-      ]);
+      if (files.length === 0) {
+        setFiles((prev) => [
+          ...prev,
+          ...acceptedFiles.map((file) =>
+            Object.assign(file, {
+              preview: URL.createObjectURL(file),
+            })
+          ),
+        ]);
+        setError(false);
+      } else if (files.length !== 0 && files.length <= 5) {
+        if (acceptedFiles.length + files.length === 5) {
+          console.log("hit2");
+          setFiles((prev) => [
+            ...prev,
+            ...acceptedFiles.map((file) =>
+              Object.assign(file, {
+                preview: URL.createObjectURL(file),
+              })
+            ),
+          ]);
+          setError(false);
+        } else {
+          console.log("hit3");
+          setFiles([]);
+          setError(true);
+        }
+      }
     },
   });
 
@@ -79,6 +100,7 @@ const UploadImagesField = ({ editAble,label }) => {
   );
 
   const fileRejectionItems = fileRejections.map(({ file, errors }) => {
+    setFiles([]);
     return (
       <p key={file.path}>
         {errors.map((e) => (
@@ -90,9 +112,10 @@ const UploadImagesField = ({ editAble,label }) => {
 
   const thumbs = files.map((file, index) => {
     return (
-      <Box style={thumb} key={index}>
-        <Box onClick={() => handleDelete(file.lastModified)} style={thumbInner}>
+      <Box style={thumb} key={file.name}>
+        <Box style={thumbInner}>
           <Box
+            onClick={() => handleDelete(file)}
             sx={{
               position: "absolute",
               top: -1,
@@ -123,26 +146,26 @@ const UploadImagesField = ({ editAble,label }) => {
     );
   });
 
-  const handleDelete = (modifiedDate) => {
-    setFiles((prevFiles) => prevFiles.filter((file) => file.lastModified !== modifiedDate));
+  const handleDelete = (fileToDelete) => {
+    setFiles((prevFiles) => prevFiles.filter((file) => file !== fileToDelete));
   };
   useEffect(() => {
-    return () => files.forEach((file) => URL.revokeObjectURL(file.preview));
-  }, []);
+    return () => {
+      files.forEach((file) => URL.revokeObjectURL(file.preview));
+    };
+  }, [files]);
 
   return (
     <>
       <Box className="container" sx={{ width: "100%" }}>
-        <div {...getRootProps({ className: "dropzone" })}>
+        <div {...getRootProps({ className: `dropzone ${files.length === 5 ? "disabled" : ""}` })}>
           <input {...getInputProps()} />
-          <Typography variant="contained">Upload your {label}</Typography>
-          
-          {/* <Typography variant="contained">Upload your relevant certificates</Typography> */}
+          <Typography variant="contained">Upload your relevant certificates</Typography>
         </div>
         <Box sx={{ mt: 2, border: " 1px solid  #EAECF0" }}>
           <Box>{files.length <= 5 && thumbs} </Box>
           <Typography variant="wpf_p4_medium" color="error.500">
-            {fileRejectionItems.length > 0 || files.length > 5 ? "you have selected more than 5 files" : ""}
+            {fileRejectionItems.length > 0 || files.length > 5 || error ? "you have selected more than 5 files" : ""}
           </Typography>
         </Box>
       </Box>

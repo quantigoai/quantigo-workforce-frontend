@@ -52,7 +52,7 @@ const UploadImagesField = ({ editAble,label }) => {
   const [files, setFiles] = useState([]);
 
   const { getRootProps, getInputProps, acceptedFiles, fileRejections, isFocused } = useDropzone({
-    disabled: editAble,
+    disabled: !editAble,
     maxFiles: 5,
     accept: {
       "image/jpeg": [],

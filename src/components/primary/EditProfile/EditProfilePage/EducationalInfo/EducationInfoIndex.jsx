@@ -169,7 +169,7 @@ const EducationInfoIndex = () => {
   };
 
   const [files, setFiles] = useState([]);
-  console.log("🚀 ~ file: EducationInfoIndex.jsx:172 ~ EducationInfoIndex ~ files:", files);
+
   const [error, setError] = useState(false);
 
   const { getRootProps, getInputProps, acceptedFiles, fileRejections, isFocused } = useDropzone({

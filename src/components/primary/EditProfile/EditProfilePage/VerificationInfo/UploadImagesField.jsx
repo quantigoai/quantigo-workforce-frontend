@@ -160,7 +160,7 @@ const UploadImagesField = ({ editAble, label }) => {
       <Box className="container" sx={{ width: "100%" }}>
         <div {...getRootProps({ className: `dropzone ${files.length === 5 ? "disabled" : ""}` })}>
           <input {...getInputProps()} />
-          <Typography variant="contained">Upload your relevant certificates</Typography>
+          <Typography variant="contained">Upload your {label} </Typography>
         </div>
         <Box sx={{ mt: 2, border: " 1px solid  #EAECF0" }}>
           <Box>{files.length <= 5 && thumbs} </Box>

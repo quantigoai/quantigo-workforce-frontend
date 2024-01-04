@@ -48,8 +48,8 @@ const img = {
   borderRadius: "15px",
 };
 
-const UploadImagesField = ({ editAble, label }) => {
-  const [files, setFiles] = useState([]);
+const UploadImagesField = ({ editAble, label, files, setFiles }) => {
+  // const [files, setFiles] = useState([]);
 
   const [error, setError] = useState(false);
 
@@ -151,7 +151,7 @@ const UploadImagesField = ({ editAble, label }) => {
       <Box className="container" sx={{ width: "100%" }}>
         <div {...getRootProps({ className: `dropzone ${files.length === 5 ? "disabled" : ""}` })}>
           <input {...getInputProps()} />
-          <Typography variant="contained">Upload your {label} certificates</Typography>
+          <Typography variant="contained">Upload your {label} </Typography>
         </div>
         <Box sx={{ mt: 2, border: " 1px solid  #EAECF0" }}>
           <Box>{files.length <= 5 && thumbs} </Box>

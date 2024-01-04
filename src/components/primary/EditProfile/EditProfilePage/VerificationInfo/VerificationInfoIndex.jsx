@@ -6,6 +6,7 @@ import FieldForProfile from "../FieldForProfile";
 import PasswordFieldForProfile from "../../PasswordFieldForProfile";
 import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
 import UploadImagesField from "./UploadImagesField";
+import SelectFieldForProfile from "../SelectFieldForProfile";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -18,6 +19,11 @@ const VisuallyHiddenInput = styled("input")({
   whiteSpace: "nowrap",
   width: 10,
 });
+const TypeVerificationOption = [
+  { value: "NID", label: "NID" },
+  { value: "Passport", label: "Passport" },
+  { value: "BirthCertificat", label: "Birth Certificate" },
+];
 const VerificationInfoIndex = () => {
   const { user, isLoading } = useSelector((state) => state.user);
   const [editAble, setEditAble] = useState(false);
@@ -27,8 +33,14 @@ const VerificationInfoIndex = () => {
   const [resume, setResume] = useState([]);
   const [errorPhoto, setErrorPhoto] = useState("");
   const [errorResume, setErrorResume] = useState("");
+  const [documentType, setDocumentType] = useState("");
+  const [images, setImages] = useState([]);
+
   const handleEditProfile = () => {
     setEditAble(true);
+  };
+  const handleChangeDocumentType = (e) => {
+    setDocumentType(e.target.value);
   };
   const handleNidNumber = (e) => {
     setNidNumber(e.target.value);
@@ -49,10 +61,12 @@ const VerificationInfoIndex = () => {
 
   const handleSubmitChange = () => {
     const data = {
+      documentType,
       nidNumber,
       nameAsNid,
       photo,
       resume,
+      images,
     };
     console.log(data);
   };
@@ -116,13 +130,19 @@ const VerificationInfoIndex = () => {
                 overflowY: "auto",
               }}
             >
-              <Grid container sx={{ paddingTop: "1%", paddingBottom: "%" }}>
-                <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
-                  Nid
-                </Typography>
-              </Grid>
               <Grid container sx={{ paddingBottom: "20px", paddingTop: "2%" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                <Grid item xs={12} sx={{ paddingRight: "2%" }}>
+                  <SelectFieldForProfile
+                    name="bloodGroup"
+                    label={"Type"}
+                    defaultValue={documentType}
+                    disableItem={false}
+                    editAble={editAble}
+                    handleChange={handleChangeDocumentType}
+                    options={TypeVerificationOption}
+                  />
+                </Grid>
+                {/* <Grid item xs={6}>
                   <FieldForProfile
                     name="presentAddress"
                     label={"Nid Number"}
@@ -131,33 +151,15 @@ const VerificationInfoIndex = () => {
                     handleChange={handleNidNumber}
                     editAble={editAble}
                   />
-                </Grid>
-                <Grid item xs={6}>
-                  <FieldForProfile
-                    name="Name [as per your  NID]"
-                    label={"Name [as per your  NID]"}
-                    //   defaultValue={presentAddress}
-                    disableItem={false}
-                    handleChange={handleNameAdNid}
-                    editAble={editAble}
-                  />
-                </Grid>
-              </Grid>
-              <Grid container>
-                <UploadImagesField editAble={editAble}   label={"Nid Photo"}/>
+                </Grid> */}
               </Grid>
 
-              <Grid container sx={{ paddingTop: "2%", paddingBottom: "%" }}>
-                <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
-                  Passport
-                </Typography>
-              </Grid>
-
-              <Grid container sx={{ paddingBottom: "20px", paddingTop: "1%" }}>
+              <Grid container sx={{ paddingBottom: "20px", paddingTop: "2%" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <FieldForProfile
                     name="presentAddress"
-                    label={"Passport Number"}
+                    // label={"Nid Number"}
+                    label={`${documentType} Number`}
                     //   defaultValue={presentAddress}
                     disableItem={false}
                     handleChange={handleNidNumber}
@@ -167,39 +169,8 @@ const VerificationInfoIndex = () => {
                 <Grid item xs={6}>
                   <FieldForProfile
                     name="Name [as per your  NID]"
-                    label={"Name [as per your  Passport]"}
-                    //   defaultValue={presentAddress}
-                    disableItem={false}
-                    handleChange={handleNameAdNid}
-                    editAble={editAble}
-                  />
-                </Grid>
-              </Grid>
-
-              <Grid container>
-                <UploadImagesField editAble={editAble}  label={"Passport Photo"}/>
-              </Grid>
-
-              <Grid container sx={{ paddingTop: "2%", paddingBottom: "%" }}>
-                <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
-                  Birth Certificate
-                </Typography>
-              </Grid>
-              <Grid container sx={{ paddingBottom: "20px", paddingTop: "1%" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <FieldForProfile
-                    name="presentAddress"
-                    label={"Birth Certificate Number"}
-                    //   defaultValue={presentAddress}
-                    disableItem={false}
-                    handleChange={handleNidNumber}
-                    editAble={editAble}
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <FieldForProfile
-                    name="Name [as per your  NID]"
-                    label={"Name [as per your  Birth Certificate]"}
+                    label={` Name [as per your  ${documentType}]  `}
+                    // label={"Name [as per your  NID]"}
                     //   defaultValue={presentAddress}
                     disableItem={false}
                     handleChange={handleNameAdNid}
@@ -208,8 +179,14 @@ const VerificationInfoIndex = () => {
                 </Grid>
               </Grid>
               <Grid container>
-                <UploadImagesField editAble={editAble}  label={"Birth Certificate Photo"}/>
+                <UploadImagesField
+                  editAble={editAble}
+                  label={`${documentType} Photo`}
+                  files={images}
+                  setFiles={setImages}
+                />
               </Grid>
+
               <Grid container sx={{ paddingBottom: "20px", paddingTop: "1%" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <Grid container>

@@ -1,4 +1,4 @@
-import {FormControl, MenuItem, Select, styled, Typography} from "@mui/material";
+import { FormControl, MenuItem, Select, styled, Typography } from "@mui/material";
 import React from "react";
 
 export const MySelect = styled(Select)(() => ({
@@ -18,8 +18,8 @@ export const MySelect = styled(Select)(() => ({
 //   { value: "(AB+)", label: "AB+" },
 //   { value: "(AB-)", label: "AB-" },
 // ];
-const SelectFieldForProfile = ({ name, label, defaultValue, disableItem, editAble, handleChange ,options}) => {
-  console.log("🚀 ~ file: SelectFieldForProfile.jsx:22 ~ SelectFieldForProfile ~ defaultValue:", defaultValue)
+const SelectFieldForProfile = ({ name, label, defaultValue, disableItem, editAble, handleChange, options }) => {
+  console.log("🚀 ~ file: SelectFieldForProfile.jsx:22 ~ SelectFieldForProfile ~ defaultValue:", defaultValue);
   return (
     <>
       <FormControl fullWidth>
@@ -29,7 +29,8 @@ const SelectFieldForProfile = ({ name, label, defaultValue, disableItem, editAbl
 
             mb: 1,
           }}
-          variant="wpf_p4_medium">
+          variant="wpf_p4_medium"
+        >
           {label}
         </Typography>
 
@@ -45,7 +46,8 @@ const SelectFieldForProfile = ({ name, label, defaultValue, disableItem, editAbl
           }}
           disabled={disableItem ? true : !editAble}
           value={defaultValue}
-          onChange={(e) => handleChange(e)}>
+          onChange={(e) => handleChange(e)}
+        >
           {options.map((option) => (
             <MenuItem
               sx={{ fontSize: "14px" }}

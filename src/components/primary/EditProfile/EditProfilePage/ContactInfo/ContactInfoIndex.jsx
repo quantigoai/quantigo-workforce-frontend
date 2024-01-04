@@ -398,7 +398,7 @@ const ContactInfoIndex = () => {
                   </Grid>
                 </Grid>
 
-                <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
+                <Grid container sx={{ paddingTop: "%", paddingBottom: "1%" }}>
                   <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
                     Present Address
                   </Typography>
@@ -477,7 +477,7 @@ const ContactInfoIndex = () => {
                 {/* Permanent Address */}
 
                 <>
-                  <Grid container sx={{ paddingTop: "2%", paddingBottom: "0%" }}>
+                  <Grid container sx={{ paddingTop: "%", paddingBottom: "0%" }}>
                     <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
                       Permanent Address
                     </Typography>
@@ -580,7 +580,7 @@ const ContactInfoIndex = () => {
                 {/* EmergencyContactInformation */}
 
                 <>
-                  <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
+                  <Grid container sx={{ paddingTop: "%", paddingBottom: "1%" }}>
                     <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
                       Emergency Contact Information
                     </Typography>

@@ -2,11 +2,12 @@ import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import Typography from "@mui/material/Typography";
-import {useTheme} from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import PropTypes from "prop-types";
 import * as React from "react";
 import UserInfoIndex from "./UserInfoIndex";
 import UserProjectDetails from "./UserProjectDetails";
+import UserInfoTabIndex from "./UserInfoTabIndex";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -75,7 +76,8 @@ export default function DetailsTab({
       <Box
         sx={{
           padding: "1% 3%",
-          backgroundColor: "background.paper",
+          // backgroundColor:"red",
+          // backgroundColor: "background.paper",
         }}
       >
         <Tabs
@@ -132,15 +134,18 @@ export default function DetailsTab({
 
       <Box
         sx={{
+          // backgroundColor:"blue",
           overflowY: "scroll",
           height: "90%",
-          padding: "1% 3%",
+          padding: "0% 3%",
           "&::-webkit-scrollbar": {
             width: "0",
           },
         }}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
+          <UserInfoTabIndex />
+
           <UserInfoIndex
             role={role}
             user={user}

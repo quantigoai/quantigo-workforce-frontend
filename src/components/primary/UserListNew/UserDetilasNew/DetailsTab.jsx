@@ -75,7 +75,10 @@ export default function DetailsTab({
     >
       <Box
         sx={{
-          padding: "1% 3%",
+          // padding: "1%g 3%",
+          paddingTop: "1%",
+          paddingX: "3%",
+          // paddingY:"",
           // backgroundColor:"red",
           // backgroundColor: "background.paper",
         }}
@@ -144,9 +147,7 @@ export default function DetailsTab({
         }}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <UserInfoTabIndex />
-
-          <UserInfoIndex
+          <UserInfoTabIndex
             role={role}
             user={user}
             handleSetRole={handleSetRole}
@@ -156,6 +157,17 @@ export default function DetailsTab({
             setIsEditSkill={setIsEditSkill}
             isEditSkill={isEditSkill}
           />
+
+          {/* <UserInfoIndex
+            role={role}
+            user={user}
+            handleSetRole={handleSetRole}
+            handleSetStatus={handleSetStatus}
+            skillSet={skillSet}
+            handleChangeSkills={handleChangeSkills}
+            setIsEditSkill={setIsEditSkill}
+            isEditSkill={isEditSkill}
+          /> */}
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <UserProjectDetails id={user._id} />

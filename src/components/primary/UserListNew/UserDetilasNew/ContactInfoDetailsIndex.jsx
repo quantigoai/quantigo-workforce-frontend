@@ -8,7 +8,7 @@ import DetailsItemThree from "./DetailsItemThree";
 import NdaDocumentSection from "./NdaDocumentSection";
 import SkillFieldForUserDetails from "./SkillFieldForUserDetails";
 
-const UserInfoIndex = ({
+const ContactInfoDetailsIndex = ({
   user,
   role,
   handleSetRole,
@@ -33,13 +33,15 @@ const UserInfoIndex = ({
             borderRadius: "8px",
           }}
         >
+          <SingleItem ItemTitle={"Present Address"} Item={user.presentAddress} />
+          <SingleItem ItemTitle={"Permanent Address"} Item={user.presentAddress} />
           <DetailsItemThree
-            Item1Title={"Name"}
+            Item1Title={"Emergency Contact Person"}
             Item1={user.name}
-            Item2Title={"Id"}
+            Item2Title={"Relation"}
             Item2={user.qaiUserName}
             isBlocked={user.isBlocked}
-            Item3Title={"Role"}
+            Item3Title={"Mobile Number"}
             Item3={
               user.role === "level_1_annotator"
                 ? "Level 1 Annotator"
@@ -62,45 +64,9 @@ const UserInfoIndex = ({
                 : capitalizeFirstLetter(user?.role)
             }
           />
-          <DetailsItemThree
-            Item1Title={"Email"}
-            Item1={user.email}
-            Item2Title={"Annotation Status"}
-            Item2={
-              user.role === "project_delivery_lead" ||
-              user.role === "delivery_lead" ||
-              user.role === "recruitment_manager" ||
-              user.role === "admin" ||
-              user.role === "trainer" ||
-              user.role === "reviewer"
-                ? "Active"
-                : user.lastJobTakenAt && diffInDays <= 15
-                ? "Active"
-                : "Inactive"
-            }
-            Item3Title={"Rating"}
-            Item3={5}
-          />
-          <DetailsItemThree
-            Item1Title={"Date Of Birth"}
-            Item1={DOB}
-            Item2Title={"Phone"}
-            Item2={user.contactNo}
-            Item3Title={"Completed Course"}
-            Item3={"No Course Completed"}
-          />
           <SingleItem ItemTitle={"Address"} Item={user.presentAddress} />
+
           {/* <SingleItem ItemTitle={"Skills"} Item={user.skills} /> */}
-          <SkillFieldForUserDetails
-            ItemTitle={"Skills"}
-            Item={user.skills}
-            user={user}
-            skillSet={skillSet}
-            handleChangeSkills={handleChangeSkills}
-            setIsEditSkill={setIsEditSkill}
-            isEditSkill={isEditSkill}
-          />
-          <NdaDocumentSection user={user} />
         </Stack>
       </Box>
 
@@ -116,4 +82,4 @@ const UserInfoIndex = ({
   );
 };
 
-export default UserInfoIndex;
+export default ContactInfoDetailsIndex;

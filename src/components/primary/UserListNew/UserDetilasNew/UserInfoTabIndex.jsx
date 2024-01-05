@@ -2,6 +2,11 @@ import { Box, Tab, Tabs, Typography } from "@mui/material";
 import React from "react";
 import PropTypes from "prop-types";
 import { useTheme } from "@mui/material/styles";
+import ChangeInfoIndex from "./ChangeInfoIndex";
+import UserInfoIndex from "./UserInfoIndex";
+import ContactInfoDetailsIndex from "./ContactInfoDetailsIndex";
+import EducationInfoDetails from "./EducationInfoDetails";
+import VerificationInfoDetails from "./VerificationInfoDetails";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -34,7 +39,16 @@ function a11yProps(index) {
   };
 }
 
-const UserInfoTabIndex = () => {
+const UserInfoTabIndex = ({
+  user,
+  role,
+  handleSetRole,
+  handleSetStatus,
+  skillSet,
+  handleChangeSkills,
+  setIsEditSkill,
+  isEditSkill,
+}) => {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
@@ -55,11 +69,12 @@ const UserInfoTabIndex = () => {
             width: "0",
           },
           overflowY: "hidden",
+          // backgroundColor:"blue",
         }}
       >
         <Box
           sx={{
-            padding: "1%",
+            padding: "%",
             backgroundColor: "background.paper",
           }}
         >
@@ -73,15 +88,15 @@ const UserInfoTabIndex = () => {
               backgroundColor: "neutral.N600",
               padding: "1%",
               minHeight: "36px",
-              height: "50px",
+              height: "45px",
             }}
           >
             <Tab
               sx={{
                 borderRadius: value === 0 ? "8px" : "none",
                 backgroundColor: value === 0 ? "neutral.N000" : "",
-                minHeight: "36px",
-                height: "36px",
+                minHeight: "30px",
+                height: "30px",
               }}
               label={
                 <Typography
@@ -98,8 +113,8 @@ const UserInfoTabIndex = () => {
               sx={{
                 borderRadius: value === 1 ? "8px" : "none",
                 backgroundColor: value === 1 ? "neutral.N000" : "",
-                minHeight: "36px",
-                height: "36px",
+                minHeight: "30px",
+                height: "30px",
               }}
               label={
                 <Typography
@@ -116,8 +131,8 @@ const UserInfoTabIndex = () => {
               sx={{
                 borderRadius: value === 2 ? "8px" : "none",
                 backgroundColor: value === 2 ? "neutral.N000" : "",
-                minHeight: "36px",
-                height: "36px",
+                minHeight: "30px",
+                height: "30px",
               }}
               label={
                 <Typography
@@ -130,6 +145,24 @@ const UserInfoTabIndex = () => {
               }
               {...a11yProps(1)}
             />
+            <Tab
+              sx={{
+                borderRadius: value === 3 ? "8px" : "none",
+                backgroundColor: value === 3 ? "neutral.N000" : "",
+                minHeight: "30px",
+                height: "30px",
+              }}
+              label={
+                <Typography
+                  sx={{ textTransform: "none" }}
+                  variant="wpf_p3_semiBold"
+                  color={value === 3 ? "primary.B200" : "neutral.700"}
+                >
+                  Verification Info
+                </Typography>
+              }
+              {...a11yProps(1)}
+            />
           </Tabs>
         </Box>
 
@@ -137,15 +170,14 @@ const UserInfoTabIndex = () => {
           sx={{
             overflowY: "scroll",
             height: "90%",
-            padding: "1% 3%",
+            padding: "1% 0%",
             "&::-webkit-scrollbar": {
               width: "0",
             },
           }}
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
-            {/* <UserInfoIndex
-              role={role}
+            <UserInfoIndex
               user={user}
               handleSetRole={handleSetRole}
               handleSetStatus={handleSetStatus}
@@ -153,14 +185,42 @@ const UserInfoTabIndex = () => {
               handleChangeSkills={handleChangeSkills}
               setIsEditSkill={setIsEditSkill}
               isEditSkill={isEditSkill}
-            /> */}
+            />
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
-            {/* <UserProjectDetails id={user._id} /> */}
+            <ContactInfoDetailsIndex
+              user={user}
+              handleSetRole={handleSetRole}
+              handleSetStatus={handleSetStatus}
+              skillSet={skillSet}
+              handleChangeSkills={handleChangeSkills}
+              setIsEditSkill={setIsEditSkill}
+              isEditSkill={isEditSkill}
+            />
           </TabPanel>
           <TabPanel value={value} index={2} dir={theme.direction}>
-            {/* <UserProjectDetails id={user._id} /> */}
+            <EducationInfoDetails
+              user={user}
+              handleSetRole={handleSetRole}
+              handleSetStatus={handleSetStatus}
+              skillSet={skillSet}
+              handleChangeSkills={handleChangeSkills}
+              setIsEditSkill={setIsEditSkill}
+              isEditSkill={isEditSkill}
+            />
           </TabPanel>
+          <TabPanel value={value} index={3} dir={theme.direction}>
+            <VerificationInfoDetails
+              user={user}
+              handleSetRole={handleSetRole}
+              handleSetStatus={handleSetStatus}
+              skillSet={skillSet}
+              handleChangeSkills={handleChangeSkills}
+              setIsEditSkill={setIsEditSkill}
+              isEditSkill={isEditSkill}
+            />
+          </TabPanel>
+          <ChangeInfoIndex role={role} user={user} handleSetRole={handleSetRole} handleSetStatus={handleSetStatus} />
         </Box>
       </Box>
     </>

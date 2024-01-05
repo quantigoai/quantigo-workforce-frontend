@@ -26,25 +26,6 @@ export const MyDatePicker = styled(DatePicker)(() => ({
     color: "blue",
   },
 }));
-const baseStyle = {
-  flex: 1,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  padding: "20px",
-  borderWidth: 2,
-  borderRadius: 2,
-  borderColor: "#000",
-  // borderStyle: "dashed",
-  backgroundColor: "#fafafa",
-  color: "#bdbdbd",
-  outline: "none",
-  transition: "border .24s ease-in-out",
-};
-
-const focusedStyle = {
-  borderColor: "#2196f3",
-};
 
 const thumb = {
   display: "inline-flex",
@@ -78,7 +59,9 @@ const EducationInfoIndex = () => {
   const [degree, setDegree] = useState("");
   const [study, setStudy] = useState("");
   const [institution, setInstitution] = useState("");
-
+  const [files, setFiles] = useState([]);
+  const [error, setError] = useState(false);
+  const { handleSubmit, control, errors, setValue } = useForm();
   const dispatch = useDispatch();
 
   const toast = useToaster();
@@ -98,81 +81,7 @@ const EducationInfoIndex = () => {
       setCoverImage(url);
     }
   };
-
-  const { handleSubmit, control, errors, setValue } = useForm();
-
-  const handleDegreeChange = (e) => {
-    setDegree(e.target.value);
-  };
-  const handleStudyChange = (e) => {
-    setStudy(e.target.value);
-  };
-  const handleInstitutionChange = (e) => {
-    setInstitution(e.target.value);
-  };
-
-  const handleCancel = () => {
-    setEditAble(false);
-  };
-
-  // useEffect(() => {
-  //   setDegree(user.firstName);
-  //   setStudy(user.lastName);
-  //   setContactNo(user.contactNo);
-  //   setOccupation(user.occupation);
-  //   setBloodGroup(user.bloodGroup);
-  //   setPermanentAddress(user.permanentAddress);
-  //   setPresentAddress(user.presentAddress);
-  //   setBillingAccountNo(user.billingAccountNo);
-  //   setCoverImage(null);
-  // }, [editAble]);
-
-  const handleSubmitChange = () => {
-    const data = {
-      degree,
-      study,
-      institution,
-      completion: dateRef.current.value,
-    };
-
-    const finalData = {
-      id: user._id,
-      data,
-    };
-
-    // const formData = new FormData();
-    // formData.append("image", coverImageFile);
-
-    // const finalImageData = {
-    //   id: user._id,
-    //   formData,
-    // };
-
-    // coverImageFile &&
-    //   dispatch(uploadMyImage(finalImageData)).then((action) => {
-    //     if (action.payload.status === 200) {
-    //       toast.trigger("Profile Picture Update Successfully", "success");
-    //       setEditAble(false);
-    //       setCoverImageFile(null);
-    //     }
-    //   });
-    // //   Object.keys(filteredData).length > 0 &&
-    // dispatch(myProfileEdit(finalData)).then((action) => {
-    //   if (action.error) {
-    //     toast.trigger(action.error.message, "error");
-    //   }
-    //   if (action.payload.status === 200) {
-    //     toast.trigger("Profile Update Successfully", "success");
-    //     setEditAble(false);
-    //   }
-    // });
-  };
-
-  const [files, setFiles] = useState([]);
-
-  const [error, setError] = useState(false);
-
-  const { getRootProps, getInputProps, acceptedFiles, fileRejections, isFocused } = useDropzone({
+  const { getRootProps, getInputProps, isFocused } = useDropzone({
     disabled: files.length === 5 ? true : false,
     accept: {
       "image/jpeg": [],
@@ -204,6 +113,16 @@ const EducationInfoIndex = () => {
             ),
           ]);
           setError(false);
+        } else if (acceptedFiles.length + files.length < 5) {
+          setFiles((prev) => [
+            ...prev,
+            ...acceptedFiles.map((file) =>
+              Object.assign(file, {
+                preview: URL.createObjectURL(file),
+              })
+            ),
+          ]);
+          setError(false);
         } else {
           setFiles([]);
           setError(true);
@@ -211,14 +130,6 @@ const EducationInfoIndex = () => {
       }
     },
   });
-
-  const style = useMemo(
-    () => ({
-      ...baseStyle,
-      ...(isFocused ? focusedStyle : {}),
-    }),
-    [isFocused]
-  );
 
   const thumbs = files.map((file, index) => {
     return (
@@ -265,7 +176,75 @@ const EducationInfoIndex = () => {
     };
   }, [files]);
 
-  const handleImageFn = () => {};
+  const handleDegreeChange = (e) => {
+    setDegree(e.target.value);
+  };
+  const handleStudyChange = (e) => {
+    setStudy(e.target.value);
+  };
+  const handleInstitutionChange = (e) => {
+    setInstitution(e.target.value);
+  };
+
+  const handleCancel = () => {
+    setEditAble(false);
+  };
+
+  // useEffect(() => {
+  //   setDegree(user.firstName);
+  //   setStudy(user.lastName);
+  //   setContactNo(user.contactNo);
+  //   setOccupation(user.occupation);
+  //   setBloodGroup(user.bloodGroup);
+  //   setPermanentAddress(user.permanentAddress);
+  //   setPresentAddress(user.presentAddress);
+  //   setBillingAccountNo(user.billingAccountNo);
+  //   setCoverImage(null);
+  // }, [editAble]);
+
+  const handleSubmitChange = () => {
+    const data = {
+      degree,
+      study,
+      institution,
+      completion: dateRef.current.value,
+    };
+
+    const finalData = {
+      id: user._id,
+      data,
+      certificates: files,
+    };
+
+    const formData = new FormData();
+    formData.append("image", coverImageFile);
+    const formDataUpload = new FormData();
+    formData.append("certificates", files);
+
+    // const finalImageData = {
+    //   id: user._id,
+    //   formData,
+    // };
+
+    // coverImageFile &&
+    //   dispatch(uploadMyImage(finalImageData)).then((action) => {
+    //     if (action.payload.status === 200) {
+    //       toast.trigger("Profile Picture Update Successfully", "success");
+    //       setEditAble(false);
+    //       setCoverImageFile(null);
+    //     }
+    //   });
+    // //   Object.keys(filteredData).length > 0 &&
+    // dispatch(myProfileEdit(finalData)).then((action) => {
+    //   if (action.error) {
+    //     toast.trigger(action.error.message, "error");
+    //   }
+    //   if (action.payload.status === 200) {
+    //     toast.trigger("Profile Update Successfully", "success");
+    //     setEditAble(false);
+    //   }
+    // });
+  };
 
   return (
     <>

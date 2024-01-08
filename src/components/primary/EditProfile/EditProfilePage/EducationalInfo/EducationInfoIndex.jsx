@@ -13,6 +13,8 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
 import { useDropzone } from "react-dropzone";
 import CloseIcon from "@mui/icons-material/Close";
+import DegreeSelect from "./DegreeSelect";
+import FieldSelectAdd from "./FieldSelectAdd";
 export const MyDatePicker = styled(DatePicker)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "1px solid #E6ECF5 !important",
@@ -61,7 +63,7 @@ const EducationInfoIndex = () => {
   const [institution, setInstitution] = useState("");
   const [files, setFiles] = useState([]);
   const [error, setError] = useState(false);
-  const { handleSubmit, control, errors, setValue } = useForm();
+  const { handleSubmit, control, errors } = useForm();
   const dispatch = useDispatch();
 
   const toast = useToaster();
@@ -314,24 +316,26 @@ const EducationInfoIndex = () => {
 
               <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <FieldForProfile
+                  {/* <FieldForProfile
                     name="degree"
                     label={"Highest level of degree"}
                     handleChange={handleDegreeChange}
                     // defaultValue={firstName}
                     disableItem={false}
                     editAble={editAble}
-                  />
+                  /> */}
+                  <DegreeSelect label={"Highest level of degree"} disableItem={false} editAble={editAble} />
                 </Grid>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <FieldForProfile
+                  {/* <FieldForProfile
                     name="study"
                     label={"Field of Study"}
                     handleChange={handleStudyChange}
                     // defaultValue={firstName}
                     disableItem={false}
                     editAble={editAble}
-                  />
+                  /> */}
+                  <FieldSelectAdd label={"Field of Study"} disableItem={false} editAble={editAble} />
                 </Grid>
               </Grid>
               <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>

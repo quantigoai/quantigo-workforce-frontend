@@ -132,7 +132,7 @@ const ContactInfoIndex = () => {
     }
     if (user.presentAddress?.district) {
       axios
-        .get(`${url}/bd-info/district/get-districts-by-division-id/${user.presentAddress?.division.id}`)
+        .get(`${url}/bd-info/district/get-districts-by-division-id/${user.presentAddress?.division?.id}`)
         .then((res) => {
           setDistricts(res.data);
           // setSubDistricts([]);
@@ -140,7 +140,7 @@ const ContactInfoIndex = () => {
     }
     if (user.permanentAddress?.district) {
       axios
-        .get(`${url}/bd-info/district/get-districts-by-division-id/${user.permanentAddress.division.id}`)
+        .get(`${url}/bd-info/district/get-districts-by-division-id/${user.permanentAddress?.division?.id}`)
         .then((res) => {
           setDistrictsPermanent(res.data);
           // setSubDistricts([]);

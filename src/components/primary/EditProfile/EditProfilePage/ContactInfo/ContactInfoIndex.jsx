@@ -52,16 +52,16 @@ const ContactInfoIndex = () => {
 
   const [permanentAddress, setPermanentAddress] = useState({
     division: {
-      id: user.permanentAddress.division?.id,
-      name: user.permanentAddress.division?.name,
+      id: user.permanentAddress?.division?.id,
+      name: user.permanentAddress?.division?.name,
     },
     district: {
-      id: user.permanentAddress.district?.id,
-      name: user.permanentAddress.district?.name,
+      id: user.permanentAddress?.district?.id,
+      name: user.permanentAddress?.district?.name,
     },
     subdistrict: {
-      id: user.permanentAddress.subdistrict?.id,
-      name: user.permanentAddress.subdistrict?.name,
+      id: user.permanentAddress?.subdistrict?.id,
+      name: user.permanentAddress?.subdistrict?.name,
     },
     area: user.permanentAddress?.area,
     roadNo: user.permanentAddress?.roadNo,

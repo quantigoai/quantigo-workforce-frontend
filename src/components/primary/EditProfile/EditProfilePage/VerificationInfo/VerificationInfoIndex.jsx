@@ -44,7 +44,6 @@ const VerificationInfoIndex = () => {
   };
   const handleNidNumber = (e) => {
     setNidNumber(e.target.value);
-    console.log("🚀 ~ file: VerificationInfoIndex.jsx:59 ~ handleNidNumber ~ e.target.value:", e.target.value);
   };
   const handleNameAdNid = (e) => {
     setNameAsNid(e.target.value);

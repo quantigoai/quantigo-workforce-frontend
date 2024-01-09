@@ -65,7 +65,7 @@ const UploadImagesField = ({ editAble, label, files, setFiles }) => {
     borderWidth: 2,
     borderRadius: 8,
     height: "100px",
-    borderColor: "rgba(70, 70, 70, 0.2)",
+    borderColor: files.length === 5 ? "rgba(70, 70, 70, 0.1)" : "rgba(70, 70, 70, 0.2)",
     borderStyle: "dashed",
     // backgroundColor: isLightTheme ? "primary.B200" : "neutral.N400",
     backgroundColor: isLightTheme ? "#FAFBFC" : "#2C2C2C",
@@ -73,7 +73,7 @@ const UploadImagesField = ({ editAble, label, files, setFiles }) => {
     outline: "none",
     transition: "border .24s ease-in-out",
   };
-  const { getRootProps, getInputProps, acceptedFiles, fileRejections, isFocused } = useDropzone({
+  const { getRootProps, getInputProps, isFocused } = useDropzone({
     disabled: files.length === 5 ? true : false,
     accept: {
       "image/jpeg": [],
@@ -96,6 +96,16 @@ const UploadImagesField = ({ editAble, label, files, setFiles }) => {
         }
       } else if (files.length !== 0 && files.length <= 5) {
         if (acceptedFiles.length + files.length === 5) {
+          setFiles((prev) => [
+            ...prev,
+            ...acceptedFiles.map((file) =>
+              Object.assign(file, {
+                preview: URL.createObjectURL(file),
+              })
+            ),
+          ]);
+          setError(false);
+        } else if (acceptedFiles.length + files.length < 5) {
           setFiles((prev) => [
             ...prev,
             ...acceptedFiles.map((file) =>
@@ -181,7 +191,9 @@ const UploadImagesField = ({ editAble, label, files, setFiles }) => {
           {...getRootProps({ style })}
         >
           <input {...getInputProps()} />
-          <Typography variant="contained">Upload your {label} </Typography>
+          <Typography variant="contained" sx={{ color: files.length === 5 ? "gray" : "#000" }}>
+            Upload your {label}{" "}
+          </Typography>
         </Box>
         <Box sx={{ mt: 2, border: " 1px solid  #EAECF0" }}>
           <Box>{files.length <= 5 && thumbs} </Box>

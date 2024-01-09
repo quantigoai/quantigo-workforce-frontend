@@ -36,14 +36,15 @@ const thumb = {
   // border: "1px solid #eaeaea",
   marginBottom: 8,
   marginRight: 8,
-  width: 300,
-  height: 200,
+  width: "200px",
+  height: "200px",
   padding: 4,
+
   boxSizing: "border-box",
 };
 
 const thumbInner = {
-  display: "flex",
+  // display: "flex",e
   position: "relative",
   minWidth: 0,
   overflow: "hidden",
@@ -55,8 +56,12 @@ const img = {
   height: "100%",
   borderRadius: "15px",
 };
+const focusedStyle = {
+  borderColor: "#2196f3",
+};
 
 const EducationInfoIndex = () => {
+  const { isLightTheme } = useSelector((state) => state.theme);
   const { user, isLoading } = useSelector((state) => state.user);
   const [editAble, setEditAble] = useState(false);
   const [degree, setDegree] = useState("");
@@ -134,6 +139,23 @@ const EducationInfoIndex = () => {
     },
   });
 
+  const baseUploadBoxStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    borderWidth: 3,
+    padding: "10px",
+    borderRadius: 8,
+    borderColor: files.length === 5 ? "rgba(70, 70, 70, 0.1)" : "rgba(70, 70, 70, 0.2)",
+    borderStyle: "dashed",
+    backgroundColor: isLightTheme ? "#FAFBFC" : "#2C2C2C",
+    color: isLightTheme ? "#1D1D1D" : "#fff",
+    outline: "none",
+    width: "200px",
+    height: "200px",
+    transition: "border .24s ease-in-out",
+  };
   const thumbs = files.map((file, index) => {
     return (
       <Box style={thumb} key={file.name}>
@@ -146,16 +168,16 @@ const EducationInfoIndex = () => {
               right: 0,
               backgroundColor: "#FF4757",
               color: "#fff",
-              width: "35px",
+              width: "30px",
               // fontSize: "10px",
-              height: "35px",
+              height: "30px",
               textAlign: "center",
               borderRadius: "50%",
               "&:hover": { backgroundColor: "#F53142" },
               cursor: "pointer",
             }}
           >
-            <CloseIcon sx={{ fontSize: "18px", mt: "8px" }} />
+            <CloseIcon sx={{ fontSize: "18px", mt: "5px" }} />
           </Box>
           <img
             src={file.preview}
@@ -173,21 +195,18 @@ const EducationInfoIndex = () => {
   const handleDelete = (fileToDelete) => {
     setFiles((prevFiles) => prevFiles.filter((file) => file !== fileToDelete));
   };
+  const style = useMemo(
+    () => ({
+      ...baseUploadBoxStyle,
+      ...(isFocused ? focusedStyle : {}),
+    }),
+    [isFocused]
+  );
   useEffect(() => {
     return () => {
       files.forEach((file) => URL.revokeObjectURL(file.preview));
     };
   }, [files]);
-
-  // const handleDegreeChange = (e) => {
-  //   setDegree(e.target.value);
-  // };
-  // const handleStudyChange = (e) => {
-  //   setStudy(e.target.value);
-  // };
-  // const handleInstitutionChange = (e) => {
-  //   setInstitution(e.target.value);
-  // };
 
   const handleCancel = () => {
     setEditAble(false);
@@ -362,15 +381,44 @@ const EducationInfoIndex = () => {
               </Grid>
 
               <Box className="container" sx={{ width: "100%" }}>
-                <div {...getRootProps({ className: `dropzone ${files.length === 5 ? "disabled" : ""}` })}>
-                  <input {...getInputProps()} />
-                  <Typography variant="contained">Upload your relevant certificates</Typography>
-                </div>
-                <Box sx={{ mt: 2, border: " 1px solid  #EAECF0" }}>
-                  <Box>{files.length <= 5 && thumbs} </Box>
-                  <Typography variant="wpf_p4_medium" color="error.500">
-                    {files.length > 5 || error ? "you have selected more than 5 files" : ""}
-                  </Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    width: "100%",
+                    borderWidth: 2,
+                    borderRadius: 8,
+                    height: "100%",
+                    borderColor: files.length === 5 ? "rgba(70, 70, 70, 0.1)" : "rgba(70, 70, 70, 0.2)",
+                    borderStyle: "dashed",
+                    backgroundColor: isLightTheme ? "#FAFBFC" : "#2C2C2C",
+                    color: isLightTheme ? "#1D1D1D" : "#fff",
+                    outline: "none",
+                    transition: "border .24s ease-in-out",
+                  }}
+                >
+                  <Box
+                    sx={{ width: "20%", ml: 2 }}
+                    {...getRootProps({
+                      // className: `dropzone ${files.length === 5 ? "disabled" : ""}`
+                      style,
+                    })}
+                  >
+                    <input {...getInputProps()} />
+                    <Box>
+                      <Typography sx={{ color: files.length === 5 ? "gray" : "#000" }} variant="contained">
+                        Upload your relevant certificates
+                      </Typography>
+                    </Box>
+                  </Box>
+                  <Box sx={{ display: "flex", width: "80%", justifyContent: "center" }}>
+                    <Box>{files.length <= 5 && thumbs} </Box>
+                    <Typography variant="wpf_p4_medium" color="error.500">
+                      {files.length > 5 || error ? "you have selected more than 5 files" : ""}
+                    </Typography>
+                  </Box>
                 </Box>
               </Box>
             </Box>

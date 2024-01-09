@@ -73,20 +73,20 @@ const ContactInfoIndex = () => {
     contactNumber: user.emergencyContact?.contactNumber,
     address: {
       division: {
-        id: user.emergencyContact.address?.division?.id,
-        name: user.emergencyContact.address?.division?.name,
+        id: user.emergencyContact?.address?.division?.id,
+        name: user.emergencyContact?.address?.division?.name,
       },
       district: {
-        id: user.emergencyContact.address?.district?.id,
-        name: user.emergencyContact.address?.district?.name,
+        id: user.emergencyContact?.address?.district?.id,
+        name: user.emergencyContact?.address?.district?.name,
       },
       subdistrict: {
-        id: user.emergencyContact.address?.subdistrict?.id,
-        name: user.emergencyContact.address?.subdistrict?.name,
+        id: user.emergencyContact?.address?.subdistrict?.id,
+        name: user.emergencyContact?.address?.subdistrict?.name,
       },
-      area: user.emergencyContact.address?.area,
-      roadNo: user.emergencyContact.address?.roadNo,
-      houseNo: user.emergencyContact.address?.houseNo,
+      area: user.emergencyContact?.address?.area,
+      roadNo: user.emergencyContact?.address?.roadNo,
+      houseNo: user.emergencyContact?.address?.houseNo,
     },
   });
 
@@ -107,38 +107,38 @@ const ContactInfoIndex = () => {
     // }
   };
   useEffect(() => {
-    if (user.presentAddress.district) {
+    if (user.presentAddress?.district) {
       axios
         .get(`${url}/bd-info/sub-district/get-sub-districts-by-district-id/${user.presentAddress.district.id}`)
         .then((res) => {
           setSubDistricts(res.data);
         });
     }
-    if (user.permanentAddress.district) {
+    if (user.permanentAddress?.district) {
       axios
-        .get(`${url}/bd-info/sub-district/get-sub-districts-by-district-id/${user.permanentAddress.district.id}`)
+        .get(`${url}/bd-info/sub-district/get-sub-districts-by-district-id/${user.permanentAddress?.district?.id}`)
         .then((res) => {
           setSubDistrictsPermanent(res.data);
         });
     }
-    if (user.emergencyContact.address) {
+    if (user.emergencyContact?.address) {
       axios
         .get(
-          `${url}/bd-info/sub-district/get-sub-districts-by-district-id/${user.emergencyContact.address.district.id}`
+          `${url}/bd-info/sub-district/get-sub-districts-by-district-id/${user.emergencyContact?.address?.district.id}`
         )
         .then((res) => {
           setSubDistrictsEmergency(res.data);
         });
     }
-    if (user.presentAddress.district) {
+    if (user.presentAddress?.district) {
       axios
-        .get(`${url}/bd-info/district/get-districts-by-division-id/${user.presentAddress.division.id}`)
+        .get(`${url}/bd-info/district/get-districts-by-division-id/${user.presentAddress?.division.id}`)
         .then((res) => {
           setDistricts(res.data);
           // setSubDistricts([]);
         });
     }
-    if (user.permanentAddress.district) {
+    if (user.permanentAddress?.district) {
       axios
         .get(`${url}/bd-info/district/get-districts-by-division-id/${user.permanentAddress.division.id}`)
         .then((res) => {
@@ -146,9 +146,9 @@ const ContactInfoIndex = () => {
           // setSubDistricts([]);
         });
     }
-    if (user.emergencyContact.address) {
+    if (user.emergencyContact?.address) {
       axios
-        .get(`${url}/bd-info/district/get-districts-by-division-id/${user.emergencyContact.address.division.id}`)
+        .get(`${url}/bd-info/district/get-districts-by-division-id/${user.emergencyContact?.address?.division.id}`)
         .then((res) => {
           setDistrictsEmergency(res.data);
           // setSubDistricts([]);

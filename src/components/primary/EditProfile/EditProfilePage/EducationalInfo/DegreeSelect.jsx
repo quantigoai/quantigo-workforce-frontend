@@ -1,23 +1,13 @@
 import * as React from "react";
-import TextField from "@mui/material/TextField";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Typography,
-  styled,
-} from "@mui/material";
+import { Box, TextField, Typography, styled } from "@mui/material";
 const filter = createFilterOptions();
 const MyTextField = styled(TextField)(() => ({
-  //   "& .MuiOutlinedInput-notchedOutline": {
-  //     border: "1px solid #E6ECF5 !important",
-  //     borderRadius: "8px",
-  //   },
-  //   "& .MuiInputBase-root": { fontSize: "14px", color: "#3C4D6B", p: 0, height: "20px" },
+  "& .MuiOutlinedInput-notchedOutline": {
+    border: "1px solid #E6ECF5 !important",
+    borderRadius: "8px",
+  },
+  "& .MuiInputBase-root": { height: "40px", fontSize: "14px", color: "#3C4D6B", padding: "0px 5px" },
   "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
     border: `1px solid #2E58FF !important`,
   },
@@ -26,9 +16,9 @@ const MyTextField = styled(TextField)(() => ({
   },
 }));
 
-const DegreeSelect = ({ label, disableItem, defaultValue, editAble, isChecked }) => {
+const DegreeSelect = ({ label, higherDegree, setHigherDegree, disableItem, editAble, isChecked }) => {
   const [open, toggleOpen] = React.useState(false);
-  const [value, setValue] = React.useState(null);
+
   const handleClose = () => {
     setDialogValue({
       title: "",
@@ -43,35 +33,31 @@ const DegreeSelect = ({ label, disableItem, defaultValue, editAble, isChecked })
   });
   const handleSubmit = (event) => {
     event.preventDefault();
-    setValue({
+    setHigherDegree({
       title: dialogValue.title,
-      year: parseInt(dialogValue.year, 10),
     });
     handleClose();
   };
-  const higerStudies = [
-    { title: "SSC", year: 1994 },
-    { title: "HSC", year: 1972 },
-    { title: "B.Sc", year: 1974 },
-    { title: "M.Sc", year: 2008 },
-
-    { title: "BBA", year: 1993 },
-    { title: "MBA", year: 1994 },
+  const higherStudies = [
+    { title: "SSC" },
+    { title: "HSC" },
+    { title: "B.Sc" },
+    { title: "M.Sc" },
+    { title: "BBA" },
+    { title: "MBA" },
   ];
   return (
-    <React.Fragment>
+    <Box>
       <Typography
         sx={{
           color: "neutral.N300",
-
-          mb: 1,
         }}
         variant="wpf_p4_medium"
       >
         {label}
       </Typography>
       <Autocomplete
-        value={value}
+        value={higherDegree}
         onChange={(event, newValue) => {
           if (typeof newValue === "string") {
             // timeout to avoid instant validation of the dialog's form.
@@ -89,7 +75,7 @@ const DegreeSelect = ({ label, disableItem, defaultValue, editAble, isChecked })
               year: "",
             });
           } else {
-            setValue(newValue);
+            setHigherDegree(newValue);
           }
         }}
         filterOptions={(options, params) => {
@@ -104,7 +90,7 @@ const DegreeSelect = ({ label, disableItem, defaultValue, editAble, isChecked })
 
           return filtered;
         }}
-        options={higerStudies}
+        options={higherStudies}
         getOptionLabel={(option) => {
           // e.g. value selected with enter, right from the input
           if (typeof option === "string") {
@@ -115,41 +101,33 @@ const DegreeSelect = ({ label, disableItem, defaultValue, editAble, isChecked })
           }
           return option.title;
         }}
+        disabled={disableItem ? true : isChecked ? true : !editAble}
         selectOnFocus
         clearOnBlur
         handleHomeEndKeys
         renderOption={(props, option) => <li {...props}>{option.title}</li>}
-        sx={{ border: "1px solid #E6ECF5 !important", borderRadius: "8px", height: 42 }}
+        sx={{
+          border: "1px solid #E6ECF5 !important",
+          borderRadius: "8px",
+          height: "40px",
+          mt: 0.6,
+        }}
         freeSolo
-        renderInput={(params) => <TextField sx={{ mt: 0.5 }} {...params} />}
+        renderInput={(params) => (
+          <MyTextField
+            {...params}
+            sx={{
+              backgroundColor: editAble ? "" : "neutral.N400",
+              fontSize: "14px",
+              borderRadius: "8px",
+              height: "40px",
+            }}
+            disabled={disableItem ? true : isChecked ? true : !editAble}
+            variant="outlined"
+          />
+        )}
       />
-      <Dialog open={open} onClose={handleClose}>
-        <form onSubmit={handleSubmit}>
-          <DialogTitle>Add a new Degree</DialogTitle>
-          <DialogContent>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              value={dialogValue.title}
-              onChange={(event) =>
-                setDialogValue({
-                  ...dialogValue,
-                  title: event.target.value,
-                })
-              }
-              label="title"
-              type="text"
-              variant="standard"
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button type="submit">Add</Button>
-          </DialogActions>
-        </form>
-      </Dialog>
-    </React.Fragment>
+    </Box>
   );
 };
 

@@ -1,9 +1,17 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
-import { Box, Typography, styled } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Typography,
+  styled,
+} from "@mui/material";
 const filter = createFilterOptions();
-
 const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "1px solid #E6ECF5 !important",
@@ -18,7 +26,7 @@ const MyTextField = styled(TextField)(() => ({
   },
 }));
 
-const FieldSelectAdd = ({ label, disableItem, editAble, field, setField, isChecked }) => {
+const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChecked, setInstitution }) => {
   const [open, toggleOpen] = React.useState(false);
 
   const handleClose = () => {
@@ -35,21 +43,14 @@ const FieldSelectAdd = ({ label, disableItem, editAble, field, setField, isCheck
   });
   const handleSubmit = (event) => {
     event.preventDefault();
-    setField({
+    setInstitution({
       title: dialogValue.title,
     });
     handleClose();
   };
-  const fieldStudies = [
-    { title: "CSE" },
-    { title: "EEE" },
-    { title: "ME" },
-    { title: "Marketing" },
-    { title: "Accounting" },
-    { title: "Economics" },
-  ];
+  const institutions = [{ title: "1" }, { title: "2" }, { title: "3" }, { title: "4" }, { title: "5" }];
   return (
-    <Box sx={{ p: 0 }}>
+    <React.Fragment>
       <Typography
         sx={{
           color: "neutral.N300",
@@ -61,7 +62,8 @@ const FieldSelectAdd = ({ label, disableItem, editAble, field, setField, isCheck
         {label}
       </Typography>
       <Autocomplete
-        value={field}
+        style={{ padding: 0 }}
+        value={institution}
         onChange={(event, newValue) => {
           if (typeof newValue === "string") {
             setTimeout(() => {
@@ -78,7 +80,7 @@ const FieldSelectAdd = ({ label, disableItem, editAble, field, setField, isCheck
               year: "",
             });
           } else {
-            setField(newValue);
+            setInstitution(newValue);
           }
         }}
         filterOptions={(options, params) => {
@@ -93,8 +95,9 @@ const FieldSelectAdd = ({ label, disableItem, editAble, field, setField, isCheck
 
           return filtered;
         }}
-        options={fieldStudies}
+        options={institutions}
         getOptionLabel={(option) => {
+          // e.g. value selected with enter, right from the input
           if (typeof option === "string") {
             return option;
           }
@@ -108,7 +111,11 @@ const FieldSelectAdd = ({ label, disableItem, editAble, field, setField, isCheck
         clearOnBlur
         handleHomeEndKeys
         renderOption={(props, option) => <li {...props}>{option.title}</li>}
-        sx={{ border: "1px solid #E6ECF5 !important", borderRadius: "8px", height: "40px", mt: 0.6 }}
+        sx={{
+          border: "1px solid #E6ECF5 !important",
+          height: "40px",
+          mt: 0.6,
+        }}
         freeSolo
         renderInput={(params) => (
           <MyTextField
@@ -118,16 +125,16 @@ const FieldSelectAdd = ({ label, disableItem, editAble, field, setField, isCheck
               fontSize: "14px",
               borderRadius: "8px",
               height: "40px",
-              padding: "0px",
             }}
             disabled={disableItem ? true : isChecked ? true : !editAble}
             // value={defaultValue && defaultValue}
             variant="outlined"
+            // onChange={(e) => handleChange(e)}
           />
         )}
       />
-    </Box>
+    </React.Fragment>
   );
 };
 
-export default FieldSelectAdd;
+export default InstitutionSelectAdd;

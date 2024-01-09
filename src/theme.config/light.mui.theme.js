@@ -7,8 +7,8 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {createTheme} from "@mui/material";
-import {lightColors} from "./lightColor";
+import { createTheme } from "@mui/material";
+import { lightColors } from "./lightColor";
 import typography from "./typography";
 
 const lightTheme = createTheme({

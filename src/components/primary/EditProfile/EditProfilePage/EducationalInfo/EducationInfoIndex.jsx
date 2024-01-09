@@ -13,6 +13,9 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
 import { useDropzone } from "react-dropzone";
 import CloseIcon from "@mui/icons-material/Close";
+import DegreeSelect from "./DegreeSelect";
+import FieldSelectAdd from "./FieldSelectAdd";
+import InstitutionSelectAdd from "./InstitutionSelectAdd";
 export const MyDatePicker = styled(DatePicker)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "1px solid #E6ECF5 !important",
@@ -57,18 +60,18 @@ const EducationInfoIndex = () => {
   const { user, isLoading } = useSelector((state) => state.user);
   const [editAble, setEditAble] = useState(false);
   const [degree, setDegree] = useState("");
-  const [study, setStudy] = useState("");
-  const [institution, setInstitution] = useState("");
+  const [higherDegree, setHigherDegree] = useState(null);
+  const [field, setField] = useState(null);
+  const [institution, setInstitution] = useState(null);
   const [files, setFiles] = useState([]);
   const [error, setError] = useState(false);
-  const { handleSubmit, control, errors, setValue } = useForm();
+  const [studies, setStudies] = useState(null);
+  const { handleSubmit, control, errors } = useForm();
   const dispatch = useDispatch();
-
   const toast = useToaster();
   const handleEditProfile = () => {
     setEditAble(true);
   };
-
   const [coverImageFile, setCoverImageFile] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
   const dateRef = useRef(null);
@@ -176,15 +179,15 @@ const EducationInfoIndex = () => {
     };
   }, [files]);
 
-  const handleDegreeChange = (e) => {
-    setDegree(e.target.value);
-  };
-  const handleStudyChange = (e) => {
-    setStudy(e.target.value);
-  };
-  const handleInstitutionChange = (e) => {
-    setInstitution(e.target.value);
-  };
+  // const handleDegreeChange = (e) => {
+  //   setDegree(e.target.value);
+  // };
+  // const handleStudyChange = (e) => {
+  //   setStudy(e.target.value);
+  // };
+  // const handleInstitutionChange = (e) => {
+  //   setInstitution(e.target.value);
+  // };
 
   const handleCancel = () => {
     setEditAble(false);
@@ -203,22 +206,18 @@ const EducationInfoIndex = () => {
   // }, [editAble]);
 
   const handleSubmitChange = () => {
-    const data = {
-      degree,
-      study,
-      institution,
-      completion: dateRef.current.value,
-    };
-
     const finalData = {
       id: user._id,
-      data,
+      completion: dateRef.current.value,
       certificates: files,
+      higherStudy: higherDegree,
+      field: field,
+      institution: institution,
     };
 
     const formData = new FormData();
     formData.append("image", coverImageFile);
-    const formDataUpload = new FormData();
+    const formDataUploadImage = new FormData();
     formData.append("certificates", files);
 
     // const finalImageData = {
@@ -314,46 +313,35 @@ const EducationInfoIndex = () => {
 
               <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <FieldForProfile
-                    name="degree"
+                  <DegreeSelect
                     label={"Highest level of degree"}
-                    handleChange={handleDegreeChange}
-                    // defaultValue={firstName}
                     disableItem={false}
                     editAble={editAble}
+                    higherDegree={higherDegree}
+                    setHigherDegree={setHigherDegree}
                   />
                 </Grid>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <FieldForProfile
-                    name="study"
+                  <FieldSelectAdd
                     label={"Field of Study"}
-                    handleChange={handleStudyChange}
-                    // defaultValue={firstName}
                     disableItem={false}
                     editAble={editAble}
+                    field={field}
+                    setField={setField}
                   />
                 </Grid>
               </Grid>
               <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <FieldForProfile
-                    name="institution"
+                  <InstitutionSelectAdd
                     label={"Institution Name"}
-                    handleChange={handleInstitutionChange}
-                    // defaultValue={firstName}
                     disableItem={false}
                     editAble={editAble}
+                    institution={institution}
+                    setInstitution={setInstitution}
                   />
                 </Grid>
                 <Grid item xs={6} sx={{ paddingRight: "2%", display: "flex", flexDirection: "column" }}>
-                  {/* <FieldForProfile
-                    name="year"
-                    label={"Year of Completion"}
-                    handleChange={handleFirstNameChange}
-                    defaultValue={firstName}
-                    disableItem={false}
-                    editAble={editAble}
-                  /> */}
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <Typography sx={{ mb: "10px" }} variant="wpf_p4_medium" color="neutral.N300">
                       Year of completion

@@ -5,7 +5,7 @@ import Tabs from "@mui/material/Tabs";
 import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
 import * as React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ActivateAccount from "./ActivateAccount";
 import MyCoursesIndex from "./MyCourses/MyCoursesIndex";
 import MyprofileIndexNew from "./MyProfile/MyprofileIndexNew";
@@ -14,6 +14,7 @@ import MyWorkHistory from "./WorkHistory/MyWorkHistory";
 import EducationInfoIndex from "./EducationalInfo/EducationInfoIndex";
 import ContactInfoIndex from "./ContactInfo/ContactInfoIndex";
 import VerificationInfoIndex from "./VerificationInfo/VerificationInfoIndex";
+import { readMyProfile } from "../../../../features/slice/userSlice";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -60,6 +61,7 @@ function a11yProps(index) {
 }
 
 export default function EditProfilePageIndex() {
+  const dispatch = useDispatch();
   const [value, setValue] = React.useState(0);
   const { isLightTheme } = useSelector((state) => state.theme);
   const handleChange = (event, newValue) => {
@@ -135,7 +137,7 @@ export default function EditProfilePageIndex() {
                       variant="wpf_p3_semiBold"
                       color={value === 0 ? "primary.B200" : "neutral.700"}
                     >
-                    Personal Info
+                      Personal Info
                     </Typography>
                   }
                   {...a11yProps(0)}

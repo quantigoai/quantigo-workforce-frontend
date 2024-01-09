@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../../customHooks/useToaster";
-import { myProfileEdit, uploadMyImage } from "../../../../../features/slice/userSlice";
+import { myProfileEdit, readMyProfile, uploadMyImage } from "../../../../../features/slice/userSlice";
 import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
 import PasswordFieldForProfile from "../../PasswordFieldForProfile";
 import CommonFieldTest from "../CommonFieldTest";
@@ -41,13 +41,17 @@ const MyprofileIndexNew = () => {
   const [lastName, setLastName] = useState(user.lastName);
   const [occupation, setOccupation] = useState(user.occupation);
   const [bloodGroup, setBloodGroup] = useState(user.bloodGroup);
-  const [religion, setReligion] = useState("");
-  const [maritalStatus, setMaritalStatus] = useState("");
+  const [religion, setReligion] = useState(user.religion);
+  const [maritalStatus, setMaritalStatus] = useState(user.maritalStatus);
   const [contactNo, setContactNo] = useState(user.contactNo);
   const [billingAccountNo, setBillingAccountNo] = useState(user.billingAccountNo);
-  const [fatherName, setFatherName] = useState("");
-  const [motherName, setMotherName] = useState("");
+  const [fathersName, setFatherName] = useState(user.fathersName);
+  const [mothersName, setMotherName] = useState(user.mothersName);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(readMyProfile());
+  }, [dispatch]);
 
   const toast = useToaster();
   const handleEditProfile = () => {
@@ -124,8 +128,8 @@ const MyprofileIndexNew = () => {
       bloodGroup,
       religion,
       maritalStatus,
-      fatherName,
-      motherName,
+      fathersName,
+      mothersName,
     };
 
     const finalData = {
@@ -192,6 +196,7 @@ const MyprofileIndexNew = () => {
             coverImage={coverImage}
             handleImage={handleImage}
             coverImageFile={coverImageFile}
+            profileImageChange={true}
           />
         </Box>
 
@@ -335,7 +340,7 @@ const MyprofileIndexNew = () => {
                   <FieldForProfile
                     name="presentAddress"
                     label={"Father's Name"}
-                    defaultValue={fatherName}
+                    defaultValue={fathersName}
                     disableItem={false}
                     handleChange={handleFatherNameChange}
                     editAble={editAble}
@@ -345,7 +350,7 @@ const MyprofileIndexNew = () => {
                   <FieldForProfile
                     name="presentAddress"
                     label={"Mother's Name"}
-                    defaultValue={motherName}
+                    defaultValue={mothersName}
                     disableItem={false}
                     handleChange={handleMotherName}
                     editAble={editAble}

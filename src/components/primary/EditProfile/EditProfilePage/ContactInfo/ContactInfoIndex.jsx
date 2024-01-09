@@ -4,25 +4,28 @@ import { Box, Button, Checkbox, FormControlLabel, Grid, Typography } from "@mui/
 import FieldForProfile from "../FieldForProfile";
 import CommonFieldTest from "../CommonFieldTest";
 import SelectFieldForProfile from "../SelectFieldForProfile";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PasswordFieldForProfile from "../../PasswordFieldForProfile";
 import PermanentAdressIndex from "./PermanentAdressIndex";
 import EmergencyContactInformation from "./EmergencyContactInformation";
 import SelectFieldForBdInfo from "./SelectFieldForBdInfo";
 import axios from "axios";
+import useToaster from "../../../../../customHooks/useToaster";
+import { readMyProfile, updateMyContact } from "../../../../../features/slice/userSlice";
 const ContactInfoIndex = () => {
+  const toast = useToaster();
   const url = import.meta.env.VITE_APP_SERVER_URL;
   const { user, isLoading } = useSelector((state) => state.user);
+  console.log("🚀 ~ file: ContactInfoIndex.jsx:19 ~ ContactInfoIndex ~ user:", user);
   const [contactNo, setContactNo] = useState(user.contactNo);
   const [billingAccountNo, setBillingAccountNo] = useState(user.billingAccountNo);
   const [editAble, setEditAble] = useState(false);
   const [divisions, setDivisions] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [subdistricts, setSubDistricts] = useState([]);
-
+  const dispatch = useDispatch();
   const [divisionsPermanent, setDivisionsPermanent] = useState([]);
   const [districtsPermanent, setDistrictsPermanent] = useState([]);
-  console.log("🚀 ~ file: ContactInfoIndex.jsx:25 ~ ContactInfoIndex ~ districtsPermanent:", districtsPermanent);
   const [subdistrictsPermanent, setSubDistrictsPermanent] = useState([]);
 
   const [divisionsEmergency, setDivisionsEmergency] = useState([]);
@@ -30,32 +33,61 @@ const ContactInfoIndex = () => {
   const [subdistrictsEmergency, setSubDistrictsEmergency] = useState([]);
 
   const [presentAddress, setPresentAddress] = useState({
-    division: "",
-    district: "",
-    subdistrict: "",
-    city: "",
-    roadNumber: "",
-    houseNumber: "",
+    division: {
+      id: user.presentAddress?.division?.id,
+      name: user.presentAddress?.division?.name,
+    },
+    district: {
+      id: user.presentAddress?.district?.id,
+      name: user.presentAddress?.district?.name,
+    },
+    subdistrict: {
+      id: user.presentAddress?.subdistrict?.id,
+      name: user.presentAddress?.subdistrict?.name,
+    },
+    area: user.presentAddress?.area,
+    roadNo: user.presentAddress?.roadNo,
+    houseNo: user.presentAddress?.houseNo,
   });
 
   const [permanentAddress, setPermanentAddress] = useState({
-    division: "",
-    district: "",
-    subdistrict: "",
-    city: "",
-    roadNumber: "",
-    houseNumber: "",
+    division: {
+      id: user.permanentAddress.division?.id,
+      name: user.permanentAddress.division?.name,
+    },
+    district: {
+      id: user.permanentAddress.district?.id,
+      name: user.permanentAddress.district?.name,
+    },
+    subdistrict: {
+      id: user.permanentAddress.subdistrict?.id,
+      name: user.permanentAddress.subdistrict?.name,
+    },
+    area: user.permanentAddress?.area,
+    roadNo: user.permanentAddress?.roadNo,
+    houseNo: user.permanentAddress?.houseNo,
   });
   const [emergencyContact, setEmergencyContact] = useState({
-    nameContactPerson: "",
-    relationship: "",
-    mobileNumber: "",
-    division: "",
-    district: "",
-    subdistrict: "",
-    city: "",
-    roadNumber: "",
-    houseNumber: "",
+    contactPersonName: user.emergencyContact?.contactPersonName,
+    relationship: user.emergencyContact?.relationship,
+    contactNumber: user.emergencyContact?.contactNumber,
+    address: {
+      division: {
+        id: user.emergencyContact.address?.division?.id,
+        name: user.emergencyContact.address?.division?.name,
+      },
+      district: {
+        id: user.emergencyContact.address?.district?.id,
+        name: user.emergencyContact.address?.district?.name,
+      },
+      subdistrict: {
+        id: user.emergencyContact.address?.subdistrict?.id,
+        name: user.emergencyContact.address?.subdistrict?.name,
+      },
+      area: user.emergencyContact.address?.area,
+      roadNo: user.emergencyContact.address?.roadNo,
+      houseNo: user.emergencyContact.address?.houseNo,
+    },
   });
 
   const [isChecked, setIsChecked] = useState(false);
@@ -75,39 +107,84 @@ const ContactInfoIndex = () => {
     // }
   };
   useEffect(() => {
- 
-    if (isChecked) {
-      setPermanentAddress({
-        division: presentAddress.division,
-        district: presentAddress.district,
-        subdistrict: presentAddress.subdistrict,
-        city: presentAddress.city,
-        roadNumber: presentAddress.roadNumber,
-        houseNumber: presentAddress.houseNumber,
-      });
-
-      setDistrictsPermanent([...districts]);
-      setSubDistrictsPermanent([...subdistricts]);
-      // setDivisionsPermanent((prevSubDistricts) => [...prevSubDistricts, ...divisions]);
-      // setDistrictsPermanent((prev) => [...prev, districts]);
-      // setSubDistrictsPermanent((prev) => [...prev, subdistricts]);
+    if (user.presentAddress.district) {
+      axios
+        .get(`${url}/bd-info/sub-district/get-sub-districts-by-district-id/${user.presentAddress.district.id}`)
+        .then((res) => {
+          setSubDistricts(res.data);
+        });
     }
-    if (!isChecked) {
-      setPermanentAddress({
-        division: "",
-        district: "",
-        subdistrict: "",
-        city: "",
-        roadNumber: "",
-        houseNumber: "",
-      });
-
-      setDistrictsPermanent([]);
-      setSubDistrictsPermanent([]);
-      // setDivisionsPermanent((prevSubDistricts) => [...prevSubDistricts, ...divisions]);
-      // setDistrictsPermanent((prev) => [...prev, districts]);
-      // setSubDistrictsPermanent((prev) => [...prev, subdistricts]);
+    if (user.permanentAddress.district) {
+      axios
+        .get(`${url}/bd-info/sub-district/get-sub-districts-by-district-id/${user.permanentAddress.district.id}`)
+        .then((res) => {
+          setSubDistrictsPermanent(res.data);
+        });
     }
+    if (user.emergencyContact.address) {
+      axios
+        .get(
+          `${url}/bd-info/sub-district/get-sub-districts-by-district-id/${user.emergencyContact.address.district.id}`
+        )
+        .then((res) => {
+          setSubDistrictsEmergency(res.data);
+        });
+    }
+    if (user.presentAddress.district) {
+      axios
+        .get(`${url}/bd-info/district/get-districts-by-division-id/${user.presentAddress.division.id}`)
+        .then((res) => {
+          setDistricts(res.data);
+          // setSubDistricts([]);
+        });
+    }
+    if (user.permanentAddress.district) {
+      axios
+        .get(`${url}/bd-info/district/get-districts-by-division-id/${user.permanentAddress.division.id}`)
+        .then((res) => {
+          setDistrictsPermanent(res.data);
+          // setSubDistricts([]);
+        });
+    }
+    if (user.emergencyContact.address) {
+      axios
+        .get(`${url}/bd-info/district/get-districts-by-division-id/${user.emergencyContact.address.division.id}`)
+        .then((res) => {
+          setDistrictsEmergency(res.data);
+          // setSubDistricts([]);
+        });
+    }
+
+    // if (isChecked) {
+    //   setPermanentAddress({
+    //     division: presentAddress.division,
+    //     district: presentAddress.district,
+    //     subdistrict: presentAddress.subdistrict,
+    //     city: presentAddress.city,
+    //     roadNumber: presentAddress.roadNumber,
+    //     houseNumber: presentAddress.houseNumber,
+    //   });
+    //   setDistrictsPermanent([...districts]);
+    //   setSubDistrictsPermanent([...subdistricts]);
+    //   // setDivisionsPermanent((prevSubDistricts) => [...prevSubDistricts, ...divisions]);
+    //   // setDistrictsPermanent((prev) => [...prev, districts]);
+    //   // setSubDistrictsPermanent((prev) => [...prev, subdistricts]);
+    // }
+    // if (!isChecked) {
+    //   setPermanentAddress({
+    //     division: "",
+    //     district: "",
+    //     subdistrict: "",
+    //     city: "",
+    //     roadNumber: "",
+    //     houseNumber: "",
+    //   });
+    //   setDistrictsPermanent([]);
+    //   setSubDistrictsPermanent([]);
+    //   // setDivisionsPermanent((prevSubDistricts) => [...prevSubDistricts, ...divisions]);
+    //   // setDistrictsPermanent((prev) => [...prev, districts]);
+    //   // setSubDistrictsPermanent((prev) => [...prev, subdistricts]);
+    // }
   }, [isChecked]);
   const handleEditProfile = () => {
     setEditAble(true);
@@ -137,7 +214,10 @@ const ContactInfoIndex = () => {
     // setPresentAddress({})
     setPresentAddress((prevAddress) => ({
       ...prevAddress,
-      division: name,
+      division: {
+        name: name,
+        id: id,
+      },
     }));
     axios.get(`${url}/bd-info/district/get-districts-by-division-id/${id}`).then((res) => {
       setDistricts(res.data);
@@ -148,7 +228,10 @@ const ContactInfoIndex = () => {
     console.log(id);
     setPresentAddress((prevAddress) => ({
       ...prevAddress,
-      district: name,
+      district: {
+        name: name,
+        id: id,
+      },
     }));
     axios.get(`${url}/bd-info/sub-district/get-sub-districts-by-district-id/${id}`).then((res) => {
       setSubDistricts(res.data);
@@ -159,26 +242,29 @@ const ContactInfoIndex = () => {
     console.log(id);
     setPresentAddress((prevAddress) => ({
       ...prevAddress,
-      subdistrict: name,
+      subdistrict: {
+        name: name,
+        id: id,
+      },
     }));
   };
 
   const handleChangeSubDistrictsCity = (e) => {
     setPresentAddress((prevAddress) => ({
       ...prevAddress,
-      city: e.target.value,
+      area: e.target.value,
     }));
   };
   const handleChangeSubDistrictsRoadNumber = (e) => {
     setPresentAddress((prevAddress) => ({
       ...prevAddress,
-      roadNumber: e.target.value,
+      roadNo: e.target.value,
     }));
   };
   const handleChangeSubDistrictsHouseNumber = (e) => {
     setPresentAddress((prevAddress) => ({
       ...prevAddress,
-      houseNumber: e.target.value,
+      houseNo: e.target.value,
     }));
   };
   // permanent Address
@@ -186,7 +272,10 @@ const ContactInfoIndex = () => {
   const handleChangeDivisionPermanent = (id, name) => {
     setPermanentAddress((prevAddress) => ({
       ...prevAddress,
-      division: name,
+      division: {
+        name: name,
+        id: id,
+      },
     }));
     axios.get(`${url}/bd-info/district/get-districts-by-division-id/${id}`).then((res) => {
       setDistrictsPermanent(res.data);
@@ -196,7 +285,10 @@ const ContactInfoIndex = () => {
   const handleChangeDistrictsPermanent = (id, name) => {
     setPermanentAddress((prevAddress) => ({
       ...prevAddress,
-      district: name,
+      district: {
+        name: name,
+        id: id,
+      },
     }));
     axios.get(`${url}/bd-info/sub-district/get-sub-districts-by-district-id/${id}`).then((res) => {
       setSubDistrictsPermanent(res.data);
@@ -205,35 +297,45 @@ const ContactInfoIndex = () => {
   const handleChangeSubDistrictsPermanent = (id, name) => {
     setPermanentAddress((prevAddress) => ({
       ...prevAddress,
-      subdistrict: name,
+      subdistrict: {
+        name: name,
+        id: id,
+      },
     }));
   };
   const handleChangePermanentCity = (e) => {
     setPermanentAddress((prevAddress) => ({
       ...prevAddress,
-      city: e.target.value,
+      area: e.target.value,
     }));
   };
   const handleChangePermanentRoadNumber = (e) => {
     setPermanentAddress((prevAddress) => ({
       ...prevAddress,
-      roadNumber: e.target.value,
+      roadNo: e.target.value,
     }));
   };
   const handleChangePermanentHouseNumber = (e) => {
     setPermanentAddress((prevAddress) => ({
       ...prevAddress,
-      houseNumber: e.target.value,
+      houseNo: e.target.value,
     }));
   };
 
   // Emergency Contact Information
 
   const handleChangeDivisionEmergency = (id, name) => {
+    console.log("🚀 ~ file: ContactInfoIndex.jsx:276 ~ handleChangeDivisionEmergency ~ name:", name);
     // setPresentAddress({})
     setEmergencyContact((prevAddress) => ({
       ...prevAddress,
-      division: name,
+      address: {
+        ...prevAddress.address,
+        division: {
+          name: name,
+          id: id,
+        },
+      },
     }));
     axios.get(`${url}/bd-info/district/get-districts-by-division-id/${id}`).then((res) => {
       setDistrictsEmergency(res.data);
@@ -243,7 +345,13 @@ const ContactInfoIndex = () => {
   const handleChangeDistrictsEmergency = (id, name) => {
     setEmergencyContact((prevAddress) => ({
       ...prevAddress,
-      district: name,
+      address: {
+        ...prevAddress.address,
+        district: {
+          name: name,
+          id: id,
+        },
+      },
     }));
     axios.get(`${url}/bd-info/sub-district/get-sub-districts-by-district-id/${id}`).then((res) => {
       setSubDistrictsEmergency(res.data);
@@ -252,13 +360,19 @@ const ContactInfoIndex = () => {
   const handleChangeSubDistrictsEmergency = (id, name) => {
     setEmergencyContact((prevAddress) => ({
       ...prevAddress,
-      subdistrict: name,
+      address: {
+        ...prevAddress.address,
+        subdistrict: {
+          name: name,
+          id: id,
+        },
+      },
     }));
   };
   const handleChangeEmergencyNamePerson = (e) => {
     setEmergencyContact((prevAddress) => ({
       ...prevAddress,
-      nameContactPerson: e.target.value,
+      contactPersonName: e.target.value,
     }));
   };
   const handleChangeEmergencyRelation = (e) => {
@@ -271,28 +385,37 @@ const ContactInfoIndex = () => {
   const handleChangeEmergencyMobileNumber = (e) => {
     setEmergencyContact((prevAddress) => ({
       ...prevAddress,
-      mobileNumber: e.target.value,
+      contactNumber: e.target.value,
     }));
   };
 
   const handleChangeEmergencyCity = (e) => {
     setEmergencyContact((prevAddress) => ({
       ...prevAddress,
-      city: e.target.value,
+      address: {
+        ...prevAddress.address,
+        area: e.target.value,
+      },
     }));
   };
 
   const handleChangeEmergencyRoadNumber = (e) => {
     setEmergencyContact((prevAddress) => ({
       ...prevAddress,
-      roadNumber: e.target.value,
+      address: {
+        ...prevAddress.address,
+        roadNo: e.target.value,
+      },
     }));
   };
 
   const handleChangeEmergencyHouseNumber = (e) => {
     setEmergencyContact((prevAddress) => ({
       ...prevAddress,
-      houseNumber: e.target.value,
+      address: {
+        ...prevAddress.address,
+        houseNo: e.target.value,
+      },
     }));
   };
 
@@ -300,10 +423,24 @@ const ContactInfoIndex = () => {
     const data = {
       contactNo,
       billingAccountNo,
+      presentAddress: presentAddress,
+      permanentAddress: permanentAddress,
+      emergencyContact: emergencyContact,
     };
-    console.log(presentAddress);
-    console.log(permanentAddress);
-    console.log(emergencyContact);
+    const finalData = {
+      id: user._id,
+      data,
+    };
+    console.log("🚀 ~ file: ContactInfoIndex.jsx:385 ~ handleSubmitChange ~ finalData:", finalData);
+    dispatch(updateMyContact(finalData)).then((action) => {
+      if (action.error) {
+        toast.trigger(action.error.message, "error");
+      }
+      if (action.payload.status === 200) {
+        toast.trigger("Profile Update Successfully", "success");
+        setEditAble(false);
+      }
+    });
   };
 
   return (
@@ -409,7 +546,7 @@ const ContactInfoIndex = () => {
                     <SelectFieldForBdInfo
                       name="Division"
                       label={"Division"}
-                      defaultValue={presentAddress.division}
+                      defaultValue={presentAddress.division.name}
                       disableItem={false}
                       editAble={editAble}
                       handleChange={handleChangeDivision}
@@ -420,7 +557,7 @@ const ContactInfoIndex = () => {
                     <SelectFieldForBdInfo
                       name="District"
                       label={"District"}
-                      defaultValue={presentAddress.district}
+                      defaultValue={presentAddress.district.name}
                       disableItem={false}
                       editAble={editAble}
                       handleChange={handleChangeDistricts}
@@ -433,7 +570,7 @@ const ContactInfoIndex = () => {
                     <SelectFieldForBdInfo
                       name="Sub-District"
                       label={"Sub-District"}
-                      defaultValue={presentAddress.subdistrict}
+                      defaultValue={presentAddress.subdistrict.name}
                       disableItem={false}
                       editAble={editAble}
                       handleChange={handleChangeSubDistricts}
@@ -444,7 +581,7 @@ const ContactInfoIndex = () => {
                     <FieldForProfile
                       name="presentAddress"
                       label={"City / Village"}
-                      //   defaultValue={presentAddress}
+                      defaultValue={presentAddress.area}
                       disableItem={false}
                       handleChange={handleChangeSubDistrictsCity}
                       editAble={editAble}
@@ -456,7 +593,7 @@ const ContactInfoIndex = () => {
                     <FieldForProfile
                       name="presentAddress"
                       label={"Road Number"}
-                      //   defaultValue={presentAddress}
+                      defaultValue={presentAddress.roadNo}
                       disableItem={false}
                       handleChange={handleChangeSubDistrictsRoadNumber}
                       editAble={editAble}
@@ -466,7 +603,7 @@ const ContactInfoIndex = () => {
                     <FieldForProfile
                       name="presentAddress"
                       label={"House Number"}
-                      //   defaultValue={presentAddress}
+                      defaultValue={presentAddress.houseNo}
                       disableItem={false}
                       handleChange={handleChangeSubDistrictsHouseNumber}
                       editAble={editAble}
@@ -505,7 +642,7 @@ const ContactInfoIndex = () => {
                       <SelectFieldForBdInfo
                         name="Division"
                         label={"Division"}
-                        defaultValue={permanentAddress.division}
+                        defaultValue={permanentAddress.division.name}
                         disableItem={false}
                         editAble={editAble}
                         handleChange={handleChangeDivisionPermanent}
@@ -517,7 +654,7 @@ const ContactInfoIndex = () => {
                       <SelectFieldForBdInfo
                         name="District"
                         label={"District"}
-                        defaultValue={permanentAddress.district}
+                        defaultValue={permanentAddress.district.name}
                         disableItem={false}
                         editAble={editAble}
                         handleChange={handleChangeDistrictsPermanent}
@@ -531,7 +668,7 @@ const ContactInfoIndex = () => {
                       <SelectFieldForBdInfo
                         name="Sub-District"
                         label={"Sub-District"}
-                        defaultValue={permanentAddress.subdistrict}
+                        defaultValue={permanentAddress.subdistrict.name}
                         disableItem={false}
                         editAble={editAble}
                         handleChange={handleChangeSubDistrictsPermanent}
@@ -543,7 +680,7 @@ const ContactInfoIndex = () => {
                       <FieldForProfile
                         name="presentAddress"
                         label={"Area"}
-                        defaultValue={permanentAddress.city}
+                        defaultValue={permanentAddress.area}
                         disableItem={false}
                         handleChange={handleChangePermanentCity}
                         editAble={editAble}
@@ -556,7 +693,7 @@ const ContactInfoIndex = () => {
                       <FieldForProfile
                         name="presentAddress"
                         label={"Road Number"}
-                        defaultValue={permanentAddress.roadNumber}
+                        defaultValue={permanentAddress.roadNo}
                         disableItem={false}
                         handleChange={handleChangePermanentRoadNumber}
                         editAble={editAble}
@@ -567,7 +704,7 @@ const ContactInfoIndex = () => {
                       <FieldForProfile
                         name="presentAddress"
                         label={"House Number"}
-                        defaultValue={permanentAddress.houseNumber}
+                        defaultValue={permanentAddress.houseNo}
                         disableItem={false}
                         handleChange={handleChangePermanentHouseNumber}
                         editAble={editAble}
@@ -591,7 +728,7 @@ const ContactInfoIndex = () => {
                       <FieldForProfile
                         name="presentAddress"
                         label={"Name of Contact Person"}
-                        //   defaultValue={presentAddress}
+                        defaultValue={emergencyContact.contactPersonName}
                         disableItem={false}
                         handleChange={handleChangeEmergencyNamePerson}
                         editAble={editAble}
@@ -601,7 +738,7 @@ const ContactInfoIndex = () => {
                       <FieldForProfile
                         name="presentAddress"
                         label={"Relationship"}
-                        //   defaultValue={presentAddress}
+                        defaultValue={emergencyContact.relationship}
                         disableItem={false}
                         handleChange={handleChangeEmergencyRelation}
                         editAble={editAble}
@@ -613,11 +750,11 @@ const ContactInfoIndex = () => {
                       <PasswordFieldForProfile
                         name="mobileNumber"
                         label={"Mobile Number"}
-                        defaultValue={emergencyContact.mobileNumber}
+                        defaultValue={emergencyContact.contactNumber}
                         disableItem={false}
                         handleChange={handleChangeEmergencyMobileNumber}
                         editAble={editAble}
-                        phone={emergencyContact.mobileNumber}
+                        phone={emergencyContact.contactNumber}
                       />
                     </Grid>
                   </Grid>
@@ -626,7 +763,7 @@ const ContactInfoIndex = () => {
                       <SelectFieldForBdInfo
                         name="Division"
                         label={"Division"}
-                        // defaultValue={bloodGroup}
+                        defaultValue={emergencyContact.address?.division?.name}
                         disableItem={false}
                         editAble={editAble}
                         handleChange={handleChangeDivisionEmergency}
@@ -637,7 +774,7 @@ const ContactInfoIndex = () => {
                       <SelectFieldForBdInfo
                         name="District"
                         label={"District"}
-                        // defaultValue={bloodGroup}
+                        defaultValue={emergencyContact.address?.district?.name}
                         disableItem={false}
                         editAble={editAble}
                         handleChange={handleChangeDistrictsEmergency}
@@ -650,7 +787,7 @@ const ContactInfoIndex = () => {
                       <SelectFieldForBdInfo
                         name="Sub-District"
                         label={"Sub-District"}
-                        // defaultValue={bloodGroup}
+                        defaultValue={emergencyContact?.address?.subdistrict?.name}
                         disableItem={false}
                         editAble={editAble}
                         handleChange={handleChangeSubDistrictsEmergency}
@@ -661,7 +798,7 @@ const ContactInfoIndex = () => {
                       <FieldForProfile
                         name="presentAddress"
                         label={"City / Village"}
-                        //   defaultValue={presentAddress}
+                        defaultValue={emergencyContact?.address?.area}
                         disableItem={false}
                         handleChange={handleChangeEmergencyCity}
                         editAble={editAble}
@@ -673,7 +810,7 @@ const ContactInfoIndex = () => {
                       <FieldForProfile
                         name="presentAddress"
                         label={"Road Number"}
-                        //   defaultValue={presentAddress}
+                        defaultValue={emergencyContact?.address?.roadNo}
                         disableItem={false}
                         handleChange={handleChangeEmergencyRoadNumber}
                         editAble={editAble}
@@ -683,7 +820,7 @@ const ContactInfoIndex = () => {
                       <FieldForProfile
                         name="presentAddress"
                         label={"House Number"}
-                        //   defaultValue={presentAddress}
+                        defaultValue={emergencyContact?.address?.houseNo}
                         disableItem={false}
                         handleChange={handleChangeEmergencyHouseNumber}
                         editAble={editAble}

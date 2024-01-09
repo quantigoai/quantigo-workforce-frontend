@@ -2,6 +2,8 @@ import { Box, Typography } from "@mui/material";
 import React, { useEffect, useMemo, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import CloseIcon from "@mui/icons-material/Close";
+import ndaUploadStyle from "../../../Nda/ndaUploadStyle";
+import { useSelector } from "react-redux";
 const baseStyle = {
   flex: 1,
   display: "flex",
@@ -50,9 +52,27 @@ const img = {
 
 const UploadImagesField = ({ editAble, label, files, setFiles }) => {
   // const [files, setFiles] = useState([]);
-
+  const { isLightTheme } = useSelector((state) => state.theme);
+  // const { baseUploadBoxStyle } = ndaUploadStyle(isLightTheme);
   const [error, setError] = useState(false);
+  const baseUploadBoxStyle = {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    // padding: "20px",
 
+    borderWidth: 2,
+    borderRadius: 8,
+    height: "100px",
+    borderColor: "rgba(70, 70, 70, 0.2)",
+    borderStyle: "dashed",
+    // backgroundColor: isLightTheme ? "primary.B200" : "neutral.N400",
+    backgroundColor: isLightTheme ? "#FAFBFC" : "#2C2C2C",
+    color: isLightTheme ? "#1D1D1D" : "#fff",
+    outline: "none",
+    transition: "border .24s ease-in-out",
+  };
   const { getRootProps, getInputProps, acceptedFiles, fileRejections, isFocused } = useDropzone({
     disabled: files.length === 5 ? true : false,
     accept: {
@@ -95,7 +115,7 @@ const UploadImagesField = ({ editAble, label, files, setFiles }) => {
 
   const style = useMemo(
     () => ({
-      ...baseStyle,
+      ...baseUploadBoxStyle,
       ...(isFocused ? focusedStyle : {}),
     }),
     [isFocused]
@@ -149,10 +169,20 @@ const UploadImagesField = ({ editAble, label, files, setFiles }) => {
   return (
     <>
       <Box className="container" sx={{ width: "100%" }}>
-        <div {...getRootProps({ className: `dropzone ${files.length === 5 ? "disabled" : ""}` })}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+          }}
+          // {...getRootProps({ className: `dropzone ${files.length === 5 ? "disabled" : ""}` })}
+          {...getRootProps({ style })}
+        >
           <input {...getInputProps()} />
           <Typography variant="contained">Upload your {label} </Typography>
-        </div>
+        </Box>
         <Box sx={{ mt: 2, border: " 1px solid  #EAECF0" }}>
           <Box>{files.length <= 5 && thumbs} </Box>
           <Typography variant="wpf_p4_medium" color="error.500">

@@ -97,6 +97,7 @@ const VerificationInfoIndex = () => {
             user={user}
             editAble={editAble}
             handleEditProfile={handleEditProfile}
+            profileImageChange={false}
             //   coverImage={coverImage}
             //   handleImage={handleImage}
             //   coverImageFile={coverImageFile}
@@ -131,6 +132,179 @@ const VerificationInfoIndex = () => {
               }}
             >
               <Grid container sx={{ paddingBottom: "20px", paddingTop: "2%" }}>
+                <Grid container sx={{ paddingBottom: "20px", paddingTop: "1%" }}>
+                  <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                    <Grid container>
+                      <Typography
+                        sx={{
+                          color: "neutral.N300",
+
+                          mb: 1,
+                        }}
+                        variant="wpf_p4_medium"
+                      >
+                        Please Upload Your Passport Size Photo*
+                      </Typography>
+                      <Box sx={{ width: "70%" }}>
+                        <TextFieldQuestion
+                          sx={
+                            {
+                              // height: '35px',
+                              // fontSize: '14px',
+                              // border: '2px solid #E6ECF5 !important',
+                              // borderRadius: '8px 0px 0px 8px',
+                            }
+                          }
+                          placeholder={photo.name}
+                          disabled={true}
+                          size="small"
+                          type={"text"}
+                          id="outlined-basic"
+                          // {...field}
+                          fullWidth
+                          variant="outlined"
+                          helperText={errorPhoto}
+                        />
+                      </Box>
+
+                      <Box sx={{ width: "30%" }}>
+                        <Button
+                          disabled={!editAble}
+                          component="label"
+                          // variant="contained"
+                          // startIcon={<CloudUploadIcon />}
+                          // onSubmit={(e) => e.preventDefault()}
+                          sx={{
+                            height: "40px",
+                            width: "100%",
+                            fontSize: "14px",
+                            border: "2px solid #E6ECF5 !important",
+                            borderRadius: "0px 8px 8px 0px",
+                            zIndex: 2,
+                            backgroundColor: "#fff",
+                          }}
+                        >
+                          <i color="#2E58FF" className="ri-upload-2-line"></i>
+                          <Typography
+                            variant="wpf_h7_medium"
+                            sx={{
+                              pl: 1,
+                              textTransform: "none",
+                              color: "#2E58FF",
+                            }}
+                          >
+                            Upload
+                          </Typography>
+                          <VisuallyHiddenInput
+                            type="file"
+                            name="questionImage"
+                            accept="image/png, image/jpeg, image/jpg"
+                            // onChange={(e) => handlePhoto(e)}
+                            onChange={(e) => {
+                              const selectedFile = e.target.files[0];
+
+                              // Check if a file is selected
+                              if (selectedFile) {
+                                const fileSize = selectedFile.size; // Size in bytes
+                                const maxSizeInBytes = 512 * 1024; // 512KB
+
+                                if (fileSize <= maxSizeInBytes) {
+                                  setErrorPhoto("");
+                                  handlePhoto(e);
+                                } else {
+                                  setPhoto([]);
+                                  setErrorPhoto("Error: File size exceeds 512KB");
+                                }
+                              }
+                            }}
+                          />
+                        </Button>
+                      </Box>
+                    </Grid>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Grid container>
+                      <Typography
+                        sx={{
+                          color: "neutral.N300",
+
+                          mb: 1,
+                        }}
+                        variant="wpf_p4_medium"
+                      >
+                        Please Upload Your Updated Resume *
+                      </Typography>
+                      <Box sx={{ width: "70%" }}>
+                        <TextFieldQuestion
+                          placeholder={resume.name}
+                          disabled={true}
+                          size="small"
+                          type={"text"}
+                          id="outlined-basic"
+                          // {...field}
+                          fullWidth
+                          variant="outlined"
+                          helperText={errorResume}
+                        />
+                      </Box>
+
+                      <Box sx={{ width: "30%" }}>
+                        <Button
+                          disabled={!editAble}
+                          component="label"
+                          // variant="contained"
+                          // startIcon={<CloudUploadIcon />}
+                          // onSubmit={(e) => e.preventDefault()}
+                          sx={{
+                            height: "40px",
+                            width: "100%",
+                            fontSize: "14px",
+                            border: "2px solid #E6ECF5 !important",
+                            borderRadius: "0px 8px 8px 0px",
+                            zIndex: 2,
+                            backgroundColor: "#fff",
+                          }}
+                        >
+                          <i color="#2E58FF" className="ri-upload-2-line"></i>
+                          <Typography
+                            variant="wpf_h7_medium"
+                            sx={{
+                              pl: 1,
+                              textTransform: "none",
+                              color: "#2E58FF",
+                            }}
+                          >
+                            Upload
+                          </Typography>
+                          <VisuallyHiddenInput
+                            type="file"
+                            name="questionImage"
+                            accept=".pdf, .doc, .docx"
+                            // onChange={(e) => handleResume(e)}
+                            onChange={(e) => {
+                              const selectedFile = e.target.files[0];
+
+                              // Check if a file is selected
+                              if (selectedFile) {
+                                const fileSize = selectedFile.size; // Size in bytes
+                                const maxSizeInBytes = 512 * 1024; // 512KB
+
+                                if (fileSize <= maxSizeInBytes) {
+                                  setErrorResume("");
+                                  handleResume(e);
+                                } else {
+                                  setResume([]);
+                                  setErrorResume("Error: File size exceeds 1MB");
+                                }
+                              }
+                            }}
+                          />
+                        </Button>
+                      </Box>
+                    </Grid>
+                  </Grid>
+                </Grid>
+
                 <Grid item xs={12} sx={{ paddingRight: "2%" }}>
                   <SelectFieldForProfile
                     name="bloodGroup"
@@ -185,179 +359,6 @@ const VerificationInfoIndex = () => {
                   files={images}
                   setFiles={setImages}
                 />
-              </Grid>
-
-              <Grid container sx={{ paddingBottom: "20px", paddingTop: "1%" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <Grid container>
-                    <Typography
-                      sx={{
-                        color: "neutral.N300",
-
-                        mb: 1,
-                      }}
-                      variant="wpf_p4_medium"
-                    >
-                      Please Upload Your Passport Size Photo*
-                    </Typography>
-                    <Box sx={{ width: "70%" }}>
-                      <TextFieldQuestion
-                        sx={
-                          {
-                            // height: '35px',
-                            // fontSize: '14px',
-                            // border: '2px solid #E6ECF5 !important',
-                            // borderRadius: '8px 0px 0px 8px',
-                          }
-                        }
-                        placeholder={photo.name}
-                        disabled={true}
-                        size="small"
-                        type={"text"}
-                        id="outlined-basic"
-                        // {...field}
-                        fullWidth
-                        variant="outlined"
-                        helperText={errorPhoto}
-                      />
-                    </Box>
-
-                    <Box sx={{ width: "30%" }}>
-                      <Button
-                        disabled={!editAble}
-                        component="label"
-                        // variant="contained"
-                        // startIcon={<CloudUploadIcon />}
-                        // onSubmit={(e) => e.preventDefault()}
-                        sx={{
-                          height: "40px",
-                          width: "100%",
-                          fontSize: "14px",
-                          border: "2px solid #E6ECF5 !important",
-                          borderRadius: "0px 8px 8px 0px",
-                          zIndex: 2,
-                          backgroundColor: "#fff",
-                        }}
-                      >
-                        <i color="#2E58FF" className="ri-upload-2-line"></i>
-                        <Typography
-                          variant="wpf_h7_medium"
-                          sx={{
-                            pl: 1,
-                            textTransform: "none",
-                            color: "#2E58FF",
-                          }}
-                        >
-                          Upload
-                        </Typography>
-                        <VisuallyHiddenInput
-                          type="file"
-                          name="questionImage"
-                          accept="image/png, image/jpeg, image/jpg"
-                          // onChange={(e) => handlePhoto(e)}
-                          onChange={(e) => {
-                            const selectedFile = e.target.files[0];
-
-                            // Check if a file is selected
-                            if (selectedFile) {
-                              const fileSize = selectedFile.size; // Size in bytes
-                              const maxSizeInBytes = 512 * 1024; // 512KB
-
-                              if (fileSize <= maxSizeInBytes) {
-                                setErrorPhoto("");
-                                handlePhoto(e);
-                              } else {
-                                setPhoto([]);
-                                setErrorPhoto("Error: File size exceeds 512KB");
-                              }
-                            }
-                          }}
-                        />
-                      </Button>
-                    </Box>
-                  </Grid>
-                </Grid>
-                <Grid item xs={6}>
-                  <Grid container>
-                    <Typography
-                      sx={{
-                        color: "neutral.N300",
-
-                        mb: 1,
-                      }}
-                      variant="wpf_p4_medium"
-                    >
-                      Please Upload Your Updated Resume *
-                    </Typography>
-                    <Box sx={{ width: "70%" }}>
-                      <TextFieldQuestion
-                        placeholder={resume.name}
-                        disabled={true}
-                        size="small"
-                        type={"text"}
-                        id="outlined-basic"
-                        // {...field}
-                        fullWidth
-                        variant="outlined"
-                        helperText={errorResume}
-                      />
-                    </Box>
-
-                    <Box sx={{ width: "30%" }}>
-                      <Button
-                        disabled={!editAble}
-                        component="label"
-                        // variant="contained"
-                        // startIcon={<CloudUploadIcon />}
-                        // onSubmit={(e) => e.preventDefault()}
-                        sx={{
-                          height: "40px",
-                          width: "100%",
-                          fontSize: "14px",
-                          border: "2px solid #E6ECF5 !important",
-                          borderRadius: "0px 8px 8px 0px",
-                          zIndex: 2,
-                          backgroundColor: "#fff",
-                        }}
-                      >
-                        <i color="#2E58FF" className="ri-upload-2-line"></i>
-                        <Typography
-                          variant="wpf_h7_medium"
-                          sx={{
-                            pl: 1,
-                            textTransform: "none",
-                            color: "#2E58FF",
-                          }}
-                        >
-                          Upload
-                        </Typography>
-                        <VisuallyHiddenInput
-                          type="file"
-                          name="questionImage"
-                          accept=".pdf, .doc, .docx"
-                          // onChange={(e) => handleResume(e)}
-                          onChange={(e) => {
-                            const selectedFile = e.target.files[0];
-
-                            // Check if a file is selected
-                            if (selectedFile) {
-                              const fileSize = selectedFile.size; // Size in bytes
-                              const maxSizeInBytes = 512 * 1024; // 512KB
-
-                              if (fileSize <= maxSizeInBytes) {
-                                setErrorResume("");
-                                handleResume(e);
-                              } else {
-                                setResume([]);
-                                setErrorResume("Error: File size exceeds 1MB");
-                              }
-                            }
-                          }}
-                        />
-                      </Button>
-                    </Box>
-                  </Grid>
-                </Grid>
               </Grid>
             </Box>
 

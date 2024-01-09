@@ -103,6 +103,47 @@ export const myProfileEdit = createAsyncThunk(
   },
 );
 
+
+// update My contact
+export const updateMyContact = createAsyncThunk(
+  'user/updateMyContact',
+  async (finalData) => {
+    try {
+      const { id, data } = finalData;
+      return await axios.patch(`${url}/users/my-contact/${id}`, data, {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+      });
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  },
+);
+
+// update My Verification
+
+export const updateMyVerification = createAsyncThunk(
+  'user/updateMyVerification',
+  async (finalData) => {
+    try {
+      const { id, data } = finalData;
+      return await axios.patch(`${url}/users/my-verification/${id}`, data, {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+        content: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  },
+);
+
+
+
 // upload My Image
 
 export const uploadMyImage = createAsyncThunk(
@@ -471,17 +512,17 @@ const userSlice = createSlice({
       })
       .addCase(readMyProfile.pending, (state) => {
         state.isLoading = true;
-        state.isLoggedIn = false;
+        // state.isLoggedIn = false;
       })
       .addCase(readMyProfile.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isLoggedIn = true;
+        // state.isLoggedIn = true;
         state.user = action.payload.data;
       })
       .addCase(readMyProfile.rejected, (state) => {
         state.isLoading = false;
-        state.isLoggedIn = false;
-        state.error = 'Login failed';
+        // state.isLoggedIn = false;
+        // state.error = 'Login failed';
       })
       .addCase(login.pending, (state) => {
         state.isLoading = true;
@@ -546,6 +587,32 @@ const userSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(myProfileEdit.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(updateMyContact.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateMyContact.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.user = action.payload.data;
+        state.isLoggedIn = true;
+      })
+      .addCase(updateMyContact.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(updateMyVerification.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateMyVerification.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.user = action.payload.data;
+        state.isLoggedIn = true;
+      })
+      .addCase(updateMyVerification.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
       })

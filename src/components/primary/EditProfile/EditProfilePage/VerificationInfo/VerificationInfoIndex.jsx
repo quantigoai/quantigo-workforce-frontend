@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProfilePicture from "../MyProfile/ProfilePicture";
 import { Box, Button, Grid, TextField, Typography, styled } from "@mui/material";
 import FieldForProfile from "../FieldForProfile";
@@ -7,6 +7,9 @@ import PasswordFieldForProfile from "../../PasswordFieldForProfile";
 import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
 import UploadImagesField from "./UploadImagesField";
 import SelectFieldForProfile from "../SelectFieldForProfile";
+import { updateMyVerification } from "../../../../../features/slice/userSlice";
+import useToaster from "../../../../../customHooks/useToaster";
+import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -21,21 +24,22 @@ const VisuallyHiddenInput = styled("input")({
 });
 const TypeVerificationOption = [
   { value: "NID", label: "NID" },
-  { value: "Passport", label: "Passport" },
-  { value: "BirthCertificat", label: "Birth Certificate" },
+  { value: "passport", label: "Passport" },
+  { value: "birthCertificate", label: "Birth Certificate" },
 ];
 const VerificationInfoIndex = () => {
   const { user, isLoading } = useSelector((state) => state.user);
   const [editAble, setEditAble] = useState(false);
-  const [nidNumber, setNidNumber] = useState("");
-  const [nameAsNid, setNameAsNid] = useState("");
+  const [nidNumber, setNidNumber] = useState(user.extraDocumentNo);
+  const [nameAsNid, setNameAsNid] = useState(user.extraDocumentName);
   const [photo, setPhoto] = useState([]);
   const [resume, setResume] = useState([]);
   const [errorPhoto, setErrorPhoto] = useState("");
   const [errorResume, setErrorResume] = useState("");
-  const [documentType, setDocumentType] = useState("");
+  const [documentType, setDocumentType] = useState(user.extraDocumentType ? user.extraDocumentType : "NID");
   const [images, setImages] = useState([]);
-
+  const dispatch = useDispatch();
+  const toast = useToaster();
   const handleEditProfile = () => {
     setEditAble(true);
   };
@@ -58,7 +62,9 @@ const VerificationInfoIndex = () => {
   const handleResume = (e) => {
     setResume(e.target.files[0]);
   };
-
+  const handleClick = (signNda) => {
+    window.open(signNda);
+  };
   const handleSubmitChange = () => {
     const data = {
       documentType,
@@ -68,7 +74,35 @@ const VerificationInfoIndex = () => {
       resume,
       images,
     };
-    console.log(data);
+    const formData = new FormData();
+    formData.append("extraDocumentType", documentType);
+    formData.append("extraDocumentNo", nidNumber);
+    formData.append("extraDocumentName", nameAsNid);
+
+    images.forEach((item) => {
+      formData.append("images", item);
+    });
+
+    formData.append("photo", photo);
+    formData.append("resume", resume);
+
+    const finalImageData = {
+      id: user._id,
+      formData,
+    };
+
+    dispatch(updateMyVerification(finalImageData)).then((action) => {
+      if (action.error) {
+        toast.trigger(action.error.message, "error");
+      }
+      if (action.payload.status === 200) {
+        toast.trigger("Profile Update Successfully", "success");
+        setEditAble(false);
+      }
+    });
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
   };
   return (
     <>
@@ -146,79 +180,114 @@ const VerificationInfoIndex = () => {
                         Please Upload Your Passport Size Photo*
                       </Typography>
                       <Box sx={{ width: "70%" }}>
-                        <TextFieldQuestion
-                          sx={
-                            {
-                              // height: '35px',
-                              // fontSize: '14px',
-                              // border: '2px solid #E6ECF5 !important',
-                              // borderRadius: '8px 0px 0px 8px',
+                        {user.standardPhoto && editAble && (
+                          <TextFieldQuestion
+                            sx={
+                              {
+                                // height: '35px',
+                                // fontSize: '14px',
+                                // border: '2px solid #E6ECF5 !important',
+                                // borderRadius: '8px 0px 0px 8px',
+                              }
                             }
-                          }
-                          placeholder={photo.name}
-                          disabled={true}
-                          size="small"
-                          type={"text"}
-                          id="outlined-basic"
-                          // {...field}
-                          fullWidth
-                          variant="outlined"
-                          helperText={errorPhoto}
-                        />
+                            placeholder={photo.name}
+                            disabled={true}
+                            size="small"
+                            type={"text"}
+                            id="outlined-basic"
+                            // {...field}
+                            fullWidth
+                            variant="outlined"
+                            helperText={errorPhoto}
+                          />
+                        )}
                       </Box>
 
-                      <Box sx={{ width: "30%" }}>
-                        <Button
-                          disabled={!editAble}
-                          component="label"
-                          // variant="contained"
-                          // startIcon={<CloudUploadIcon />}
-                          // onSubmit={(e) => e.preventDefault()}
-                          sx={{
-                            height: "40px",
-                            width: "100%",
-                            fontSize: "14px",
-                            border: "2px solid #E6ECF5 !important",
-                            borderRadius: "0px 8px 8px 0px",
-                            zIndex: 2,
-                            backgroundColor: "#fff",
-                          }}
-                        >
-                          <i color="#2E58FF" className="ri-upload-2-line"></i>
-                          <Typography
-                            variant="wpf_h7_medium"
-                            sx={{
-                              pl: 1,
-                              textTransform: "none",
-                              color: "#2E58FF",
-                            }}
-                          >
-                            Upload
-                          </Typography>
-                          <VisuallyHiddenInput
-                            type="file"
-                            name="questionImage"
-                            accept="image/png, image/jpeg, image/jpg"
-                            // onChange={(e) => handlePhoto(e)}
-                            onChange={(e) => {
-                              const selectedFile = e.target.files[0];
+                      <Box sx={{ width: user.resume && !editAble ? "100%" : "30%" }}>
+                        {user.standardPhoto && !editAble ? (
+                          <>
+                            <Button
+                              sx={{
+                                height: "40px",
+                                width: "100%",
+                                fontSize: "14px",
+                                border: "2px solid #E6ECF5 !important",
+                                // borderRadius: "0px 8px 8px 0px",
+                                borderRadius: "8px",
 
-                              // Check if a file is selected
-                              if (selectedFile) {
-                                const fileSize = selectedFile.size; // Size in bytes
-                                const maxSizeInBytes = 512 * 1024; // 512KB
+                                zIndex: 2,
+                                backgroundColor: "#fff",
+                              }}
+                              onClick={() => handleClick(user.standardPhoto)}
+                            >
+                              <Typography
+                                variant="wpf_h7_medium"
+                                sx={{
+                                  pl: 1,
+                                  textTransform: "none",
+                                  color: "#2E58FF",
+                                }}
+                              >
+                                View
+                              </Typography>
+                            </Button>
+                          </>
+                        ) : (
+                          <>
+                            {" "}
+                            <Button
+                              disabled={!editAble}
+                              component="label"
+                              // variant="contained"
+                              // startIcon={<CloudUploadIcon />}
+                              // onSubmit={(e) => e.preventDefault()}
+                              sx={{
+                                height: "40px",
+                                width: "100%",
+                                fontSize: "14px",
+                                border: "2px solid #E6ECF5 !important",
+                                borderRadius: "0px 8px 8px 0px",
+                                zIndex: 2,
+                                backgroundColor: "#fff",
+                              }}
+                            >
+                              <i color="#2E58FF" className="ri-upload-2-line"></i>
+                              <Typography
+                                variant="wpf_h7_medium"
+                                sx={{
+                                  pl: 1,
+                                  textTransform: "none",
+                                  color: "#2E58FF",
+                                }}
+                              >
+                                Upload
+                              </Typography>
+                              <VisuallyHiddenInput
+                                type="file"
+                                name="questionImage"
+                                accept="image/png, image/jpeg, image/jpg"
+                                // onChange={(e) => handlePhoto(e)}
+                                onChange={(e) => {
+                                  const selectedFile = e.target.files[0];
 
-                                if (fileSize <= maxSizeInBytes) {
-                                  setErrorPhoto("");
-                                  handlePhoto(e);
-                                } else {
-                                  setPhoto([]);
-                                  setErrorPhoto("Error: File size exceeds 512KB");
-                                }
-                              }
-                            }}
-                          />
-                        </Button>
+                                  // Check if a file is selected
+                                  if (selectedFile) {
+                                    const fileSize = selectedFile.size; // Size in bytes
+                                    const maxSizeInBytes = 512 * 1024; // 512KB
+
+                                    if (fileSize <= maxSizeInBytes) {
+                                      setErrorPhoto("");
+                                      handlePhoto(e);
+                                    } else {
+                                      setPhoto([]);
+                                      setErrorPhoto("Error: File size exceeds 512KB");
+                                    }
+                                  }
+                                }}
+                              />
+                            </Button>
+                          </>
+                        )}
                       </Box>
                     </Grid>
                   </Grid>
@@ -235,80 +304,113 @@ const VerificationInfoIndex = () => {
                         Please Upload Your Updated Resume *
                       </Typography>
                       <Box sx={{ width: "70%" }}>
-                        <TextFieldQuestion
-                          placeholder={resume.name}
-                          disabled={true}
-                          size="small"
-                          type={"text"}
-                          id="outlined-basic"
-                          // {...field}
-                          fullWidth
-                          variant="outlined"
-                          helperText={errorResume}
-                        />
+                        {user.resume && editAble && (
+                          <TextFieldQuestion
+                            placeholder={resume.name}
+                            disabled={true}
+                            size="small"
+                            type={"text"}
+                            id="outlined-basic"
+                            // {...field}
+                            fullWidth
+                            variant="outlined"
+                            helperText={errorResume}
+                          />
+                        )}
                       </Box>
 
-                      <Box sx={{ width: "30%" }}>
-                        <Button
-                          disabled={!editAble}
-                          component="label"
-                          // variant="contained"
-                          // startIcon={<CloudUploadIcon />}
-                          // onSubmit={(e) => e.preventDefault()}
-                          sx={{
-                            height: "40px",
-                            width: "100%",
-                            fontSize: "14px",
-                            border: "2px solid #E6ECF5 !important",
-                            borderRadius: "0px 8px 8px 0px",
-                            zIndex: 2,
-                            backgroundColor: "#fff",
-                          }}
-                        >
-                          <i color="#2E58FF" className="ri-upload-2-line"></i>
-                          <Typography
-                            variant="wpf_h7_medium"
-                            sx={{
-                              pl: 1,
-                              textTransform: "none",
-                              color: "#2E58FF",
-                            }}
-                          >
-                            Upload
-                          </Typography>
-                          <VisuallyHiddenInput
-                            type="file"
-                            name="questionImage"
-                            accept=".pdf, .doc, .docx"
-                            // onChange={(e) => handleResume(e)}
-                            onChange={(e) => {
-                              const selectedFile = e.target.files[0];
+                      <Box sx={{ width: user.resume && !editAble ? "100%" : "30%" }}>
+                        {user.resume && !editAble ? (
+                          <>
+                            <Button
+                              sx={{
+                                height: "40px",
+                                width: "100%",
+                                fontSize: "14px",
+                                border: "2px solid #E6ECF5 !important",
+                                borderRadius: "8px",
+                                zIndex: 2,
+                                backgroundColor: "#fff",
+                              }}
+                              onClick={() => handleClick(user.resume)}
+                            >
+                              <Typography
+                                variant="wpf_h7_medium"
+                                sx={{
+                                  pl: 1,
+                                  textTransform: "none",
+                                  color: "#2E58FF",
+                                }}
+                              >
+                                View
+                              </Typography>
+                            </Button>
+                          </>
+                        ) : (
+                          <>
+                            {" "}
+                            <Button
+                              disabled={!editAble}
+                              component="label"
+                              // variant="contained"
+                              // startIcon={<CloudUploadIcon />}
+                              // onSubmit={(e) => e.preventDefault()}
+                              sx={{
+                                height: "40px",
+                                width: "100%",
+                                fontSize: "14px",
+                                border: "2px solid #E6ECF5 !important",
+                                borderRadius: "0px 8px 8px 0px",
+                                zIndex: 2,
+                                backgroundColor: "#fff",
+                              }}
+                            >
+                              <i color="#2E58FF" className="ri-upload-2-line"></i>
+                              <Typography
+                                variant="wpf_h7_medium"
+                                sx={{
+                                  pl: 1,
+                                  textTransform: "none",
+                                  color: "#2E58FF",
+                                }}
+                              >
+                                Upload
+                              </Typography>
+                              <VisuallyHiddenInput
+                                type="file"
+                                name="questionImage"
+                                accept=".pdf, .doc, .docx"
+                                // onChange={(e) => handleResume(e)}
+                                onChange={(e) => {
+                                  const selectedFile = e.target.files[0];
 
-                              // Check if a file is selected
-                              if (selectedFile) {
-                                const fileSize = selectedFile.size; // Size in bytes
-                                const maxSizeInBytes = 512 * 1024; // 512KB
+                                  // Check if a file is selected
+                                  if (selectedFile) {
+                                    const fileSize = selectedFile.size; // Size in bytes
+                                    const maxSizeInBytes = 512 * 1024; // 512KB
 
-                                if (fileSize <= maxSizeInBytes) {
-                                  setErrorResume("");
-                                  handleResume(e);
-                                } else {
-                                  setResume([]);
-                                  setErrorResume("Error: File size exceeds 1MB");
-                                }
-                              }
-                            }}
-                          />
-                        </Button>
+                                    if (fileSize <= maxSizeInBytes) {
+                                      setErrorResume("");
+                                      handleResume(e);
+                                    } else {
+                                      setResume([]);
+                                      setErrorResume("Error: File size exceeds 1MB");
+                                    }
+                                  }
+                                }}
+                              />
+                            </Button>
+                          </>
+                        )}
                       </Box>
                     </Grid>
                   </Grid>
                 </Grid>
 
-                <Grid item xs={12} sx={{ paddingRight: "2%" }}>
+                <Grid item xs={12} sx={{ paddingRight: "0%" }}>
                   <SelectFieldForProfile
                     name="bloodGroup"
-                    label={"Type"}
+                    label={"Document Type"}
                     defaultValue={documentType}
                     disableItem={false}
                     editAble={editAble}
@@ -316,16 +418,6 @@ const VerificationInfoIndex = () => {
                     options={TypeVerificationOption}
                   />
                 </Grid>
-                {/* <Grid item xs={6}>
-                  <FieldForProfile
-                    name="presentAddress"
-                    label={"Nid Number"}
-                    //   defaultValue={presentAddress}
-                    disableItem={false}
-                    handleChange={handleNidNumber}
-                    editAble={editAble}
-                  />
-                </Grid> */}
               </Grid>
 
               <Grid container sx={{ paddingBottom: "20px", paddingTop: "2%" }}>
@@ -333,8 +425,8 @@ const VerificationInfoIndex = () => {
                   <FieldForProfile
                     name="presentAddress"
                     // label={"Nid Number"}
-                    label={`${documentType} Number`}
-                    //   defaultValue={presentAddress}
+                    label={`${capitalizeFirstLetter(documentType)} Number`}
+                    defaultValue={nidNumber}
                     disableItem={false}
                     handleChange={handleNidNumber}
                     editAble={editAble}
@@ -345,7 +437,7 @@ const VerificationInfoIndex = () => {
                     name="Name [as per your  NID]"
                     label={` Name [as per your  ${documentType}]  `}
                     // label={"Name [as per your  NID]"}
-                    //   defaultValue={presentAddress}
+                    defaultValue={nameAsNid}
                     disableItem={false}
                     handleChange={handleNameAdNid}
                     editAble={editAble}

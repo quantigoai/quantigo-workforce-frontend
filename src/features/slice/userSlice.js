@@ -127,8 +127,8 @@ export const updateMyVerification = createAsyncThunk(
   'user/updateMyVerification',
   async (finalData) => {
     try {
-      const { id, data } = finalData;
-      return await axios.patch(`${url}/users/my-verification/${id}`, data, {
+      const { id, formData } = finalData;
+      return await axios.patch(`${url}/users/my-verification/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${realToken()}`,
         },

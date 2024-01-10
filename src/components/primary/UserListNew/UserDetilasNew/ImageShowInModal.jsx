@@ -31,8 +31,8 @@ const ImageShowInModal = () => {
           >
             <Typography
               variant="wpf_p3_medium"
-            //   color={user.documentNo ? "primary.B200" : ""}
-            //   sx={{ paddingRight: "4%", filter: isDisabled ? "grayscale(100%) opacity(50%)" : "" }}
+              //   color={user.documentNo ? "primary.B200" : ""}
+              //   sx={{ paddingRight: "4%", filter: isDisabled ? "grayscale(100%) opacity(50%)" : "" }}
             >
               Document
             </Typography>

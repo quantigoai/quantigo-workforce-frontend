@@ -143,6 +143,73 @@ export const updateMyEducation = createAsyncThunk("user/updateMyEducation", asyn
   }
 });
 
+// get User Personal Info
+
+export const getUserPersonalInfo = createAsyncThunk("user/getUserPersonalInfo", async (id) => {
+  try {
+   
+    return await axios.get(`${url}/users/personal-info/${id}`,  {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+      
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
+// get User Verification  Info
+
+export const getUserVerificationInfo = createAsyncThunk("user/getUserVerificationInfo", async (id) => {
+  try {
+   
+    return await axios.get(`${url}/users/verification-info/${id}`,  {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+      
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
+// get User contact  Info
+
+export const getUserContactInfo = createAsyncThunk("user/getUserContactInfo", async (id) => {
+  try {
+   
+    return await axios.get(`${url}/users/contact-info/${id}`,  {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+      
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
+// get User Education  Info
+
+export const getUserEducationInfo = createAsyncThunk("user/getUserEducationInfo", async (id) => {
+  try {
+   
+    return await axios.get(`${url}/users/educational-info/${id}`,  {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+      
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
+
+
+
 // upload My Image
 
 export const uploadMyImage = createAsyncThunk("upload/my/image", async (finalImageData) => {
@@ -856,6 +923,54 @@ const userSlice = createSlice({
       .addCase(changePassword.rejected, (state, action) => {
         state.error = action.error.message;
         state.isLoading = false;
+      })
+      .addCase(getUserPersonalInfo.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUserPersonalInfo.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+
+      })
+      .addCase(getUserPersonalInfo.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(getUserVerificationInfo.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUserVerificationInfo.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+
+      })
+      .addCase(getUserVerificationInfo.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(getUserContactInfo.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUserContactInfo.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+
+      })
+      .addCase(getUserContactInfo.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(getUserEducationInfo.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUserEducationInfo.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+
+      })
+      .addCase(getUserEducationInfo.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
       });
   },
 });

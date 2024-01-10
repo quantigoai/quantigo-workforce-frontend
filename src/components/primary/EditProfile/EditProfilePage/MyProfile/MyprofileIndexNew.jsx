@@ -4,7 +4,12 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../../customHooks/useToaster";
-import { myProfileEdit, readMyProfile, uploadMyImage } from "../../../../../features/slice/userSlice";
+import {
+  getUserPersonalInfo,
+  myProfileEdit,
+  readMyProfile,
+  uploadMyImage,
+} from "../../../../../features/slice/userSlice";
 import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
 import PasswordFieldForProfile from "../../PasswordFieldForProfile";
 import CommonFieldTest from "../CommonFieldTest";
@@ -51,6 +56,7 @@ const MyprofileIndexNew = () => {
 
   useEffect(() => {
     dispatch(readMyProfile());
+    dispatch(getUserPersonalInfo(user._id));
   }, [dispatch]);
 
   const toast = useToaster();

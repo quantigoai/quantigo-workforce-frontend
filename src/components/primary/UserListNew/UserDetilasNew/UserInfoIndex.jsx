@@ -7,6 +7,7 @@ import ChangeInfoIndex from "./ChangeInfoIndex";
 import DetailsItemThree from "./DetailsItemThree";
 import NdaDocumentSection from "./NdaDocumentSection";
 import SkillFieldForUserDetails from "./SkillFieldForUserDetails";
+import { useDispatch } from "react-redux";
 
 const UserInfoIndex = ({
   user,
@@ -18,6 +19,7 @@ const UserInfoIndex = ({
   setIsEditSkill,
   isEditSkill,
 }) => {
+  const dispatch = useDispatch();
   const DOB = user.dob ? moment.utc(user.dob).format("MMM Do, YYYY") : "Not Available";
   const dateObj = new Date(user.lastJobTakenAt);
   const today = new Date();

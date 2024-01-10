@@ -89,20 +89,19 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
           }
         }}
         filterOptions={(options, params) => {
+          console.log("🚀 ~ InstitutionSelectAdd ~ params:", params);
           const filtered = filter(options, params);
-          const data = { name: params.inputValue };
-          let addInstitute;
-          console.log(addInstitute);
 
           if (params.inputValue !== "") {
             filtered.push({
               inputValue: params.inputValue,
               name: `Add "${params.inputValue}"`,
             });
-            addInstitute = axios.post(`${url}/educational-institute/add-educational-institute`, data);
+            const data = { name: params.inputValue };
+            const addInstitute = axios.post(`${url}/educational-institute/`, data);
           }
 
-          return addInstitute;
+          return filtered;
         }}
         options={allInstitute}
         getOptionLabel={(option) => {

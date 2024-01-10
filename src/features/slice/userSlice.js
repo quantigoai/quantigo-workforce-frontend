@@ -526,7 +526,7 @@ const userSlice = createSlice({
       .addCase(myProfileEdit.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.user = action.payload.data;
+        // state.user = action.payload.data;
         state.isLoggedIn = true;
       })
       .addCase(myProfileEdit.rejected, (state, action) => {
@@ -539,7 +539,7 @@ const userSlice = createSlice({
       .addCase(updateMyContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.user = action.payload.data;
+        // state.user = action.payload.data;
         state.isLoggedIn = true;
       })
       .addCase(updateMyContact.rejected, (state, action) => {
@@ -552,7 +552,7 @@ const userSlice = createSlice({
       .addCase(updateMyVerification.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.user = action.payload.data;
+        // state.user = action.payload.data;
         state.isLoggedIn = true;
       })
       .addCase(updateMyVerification.rejected, (state, action) => {
@@ -565,7 +565,7 @@ const userSlice = createSlice({
       .addCase(updateMyEducation.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.user = action.payload.data;
+        // state.user = action.payload.data;
         state.isLoggedIn = true;
       })
       .addCase(updateMyEducation.rejected, (state, action) => {

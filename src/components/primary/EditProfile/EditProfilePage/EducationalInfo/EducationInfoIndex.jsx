@@ -2,7 +2,7 @@ import { Box, Button, Grid, Input, InputAdornment, TextField, Typography, styled
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import FieldForProfile from "../FieldForProfile";
 import ProfilePicture from "../MyProfile/ProfilePicture";
-import { myProfileEdit, uploadMyImage } from "../../../../../features/slice/userSlice";
+import { myProfileEdit, updateMyEducation, uploadMyImage } from "../../../../../features/slice/userSlice";
 import moment from "moment";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -64,7 +64,6 @@ const EducationInfoIndex = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { user, isLoading } = useSelector((state) => state.user);
   const [editAble, setEditAble] = useState(false);
-  const [degree, setDegree] = useState("");
   const [higherDegree, setHigherDegree] = useState(null);
   const [field, setField] = useState(null);
   const [institution, setInstitution] = useState(null);
@@ -225,43 +224,33 @@ const EducationInfoIndex = () => {
   // }, [editAble]);
 
   const handleSubmitChange = () => {
+    const formData = new FormData();
+    formData.append("highestLevelOfDegree", higherDegree.title);
+    formData.append("instituteName", institution.name);
+    formData.append("fieldOfStudy", field.title);
+    formData.append("completedYear", dateRef.current.value);
+
+    files.forEach((item) => {
+      console.log("🚀 ~ files.forEach ~ item:", item);
+      formData.append("certificateImages", item);
+    });
+
     const finalData = {
       id: user._id,
-      completion: dateRef.current.value,
-      certificates: files,
-      higherStudy: higherDegree,
-      field: field,
-      institution: institution,
+      formData,
     };
-
-    const formData = new FormData();
-    formData.append("image", coverImageFile);
-    const formDataUploadImage = new FormData();
-    formData.append("certificates", files);
-
-    // const finalImageData = {
-    //   id: user._id,
-    //   formData,
-    // };
-
-    // coverImageFile &&
-    //   dispatch(uploadMyImage(finalImageData)).then((action) => {
-    //     if (action.payload.status === 200) {
-    //       toast.trigger("Profile Picture Update Successfully", "success");
-    //       setEditAble(false);
-    //       setCoverImageFile(null);
-    //     }
-    //   });
-    // //   Object.keys(filteredData).length > 0 &&
-    // dispatch(myProfileEdit(finalData)).then((action) => {
-    //   if (action.error) {
-    //     toast.trigger(action.error.message, "error");
-    //   }
-    //   if (action.payload.status === 200) {
-    //     toast.trigger("Profile Update Successfully", "success");
-    //     setEditAble(false);
-    //   }
-    // });
+    // for (let pair of formData.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
+    dispatch(updateMyEducation(finalData)).then((action) => {
+      if (action.error) {
+        toast.trigger(action.error.message, "error");
+      }
+      if (action.payload.status === 200) {
+        toast.trigger("Profile Update Successfully", "success");
+        setEditAble(false);
+      }
+    });
   };
 
   return (

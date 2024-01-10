@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import {
@@ -11,6 +11,7 @@ import {
   Typography,
   styled,
 } from "@mui/material";
+import axios from "axios";
 const filter = createFilterOptions();
 const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
@@ -25,30 +26,35 @@ const MyTextField = styled(TextField)(() => ({
     color: "blue",
   },
 }));
+const url = import.meta.env.VITE_APP_SERVER_URL;
 
 const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChecked, setInstitution }) => {
   const [open, toggleOpen] = React.useState(false);
-
-  const handleClose = () => {
-    setDialogValue({
-      title: "",
-      year: "",
-    });
-    toggleOpen(false);
-  };
-
-  const [dialogValue, setDialogValue] = React.useState({
-    title: "",
-    year: "",
-  });
+  const [allInstitute, setAllInstitute] = useState([]);
+  console.log("🚀 ~ InstitutionSelectAdd ~ allInstitute:", allInstitute);
+  const [newInput, setNewInput] = useState("");
+  console.log("🚀 ~ InstitutionSelectAdd ~ newInput:", newInput);
   const handleSubmit = (event) => {
     event.preventDefault();
-    setInstitution({
-      title: dialogValue.title,
-    });
-    handleClose();
+
+    const data = { name: newInput.name };
+    const finalData = axios
+      .post(`${url}/educational-institute/add-educational-institute`, data)
+      .then((data) =>
+        setInstitution({
+          name: data?.educationalInstitute?.name,
+          _id: data?.educationalInstitute?._id,
+        })
+      )
+      .finally(() => {
+        axios.get(`${url}/educational-institute`).then((data) => setAllInstitute(data.data.educationalInstitute));
+      });
+    // handleClose();
   };
-  const institutions = [{ title: "1" }, { title: "2" }, { title: "3" }, { title: "4" }, { title: "5" }];
+  useEffect(() => {
+    axios.get(`${url}/educational-institute`).then((data) => setAllInstitute(data.data.educationalInstitute));
+  }, [editAble]);
+
   return (
     <React.Fragment>
       <Typography
@@ -64,20 +70,50 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
       <Autocomplete
         style={{ padding: 0 }}
         value={institution}
+        // onChange={(event, newValue) => {
+        //   if (typeof newValue === "string") {
+        //     setTimeout(() => {
+        //       toggleOpen(true);
+        //       setDialogValue({
+        //         title: newValue,
+        //       });
+        //     });
+        //   } else if (newValue && newValue.inputValue) {
+        //     toggleOpen(true);
+        //     setDialogValue({
+        //       title: newValue.inputValue,
+        //     });
+        //   } else {
+        //     setInstitution(newValue);
+        //   }
+        // }}
+        // filterOptions={(options, params) => {
+        //   const filtered = filter(options, params);
+
+        //   if (params.inputValue !== "") {
+        //     filtered.push({
+        //       inputValue: params.inputValue,
+        //       name: `Add "${params.inputValue}"`,
+        //     });
+        //   }
+
+        //   return filtered;
+        // }}
+
         onChange={(event, newValue) => {
+          console.log("🚀 ~ InstitutionSelectAdd ~ newValue:", newValue);
           if (typeof newValue === "string") {
-            setTimeout(() => {
-              toggleOpen(true);
-              setDialogValue({
-                title: newValue,
-                year: "",
-              });
+            setInstitution({
+              name: newValue,
             });
           } else if (newValue && newValue.inputValue) {
-            toggleOpen(true);
-            setDialogValue({
-              title: newValue.inputValue,
-              year: "",
+            // Create a new value from the user input
+            console.log("hit");
+            setInstitution({
+              name: newValue.inputValue,
+            });
+            setNewInput({
+              name: newValue.inputValue,
             });
           } else {
             setInstitution(newValue);
@@ -86,31 +122,45 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
         filterOptions={(options, params) => {
           const filtered = filter(options, params);
 
-          if (params.inputValue !== "") {
+          const { inputValue } = params;
+          // Suggest the creation of a new value
+          const isExisting = options.some((option) => inputValue === option.name);
+          if (inputValue !== "" && !isExisting) {
             filtered.push({
-              inputValue: params.inputValue,
-              title: `Add "${params.inputValue}"`,
+              inputValue,
+              name: `Add "${inputValue}"`,
             });
           }
 
           return filtered;
         }}
-        options={institutions}
+        options={allInstitute}
+        // getOptionLabel={(option) => {
+        //   if (typeof option === "string") {
+        //     return option.name;
+        //   }
+        //   if (option.inputValue) {
+        //     return option.inputValue;
+        //   }
+        //   return option.name;
+        // }}
         getOptionLabel={(option) => {
-          // e.g. value selected with enter, right from the input
+          // Value selected with enter, right from the input
           if (typeof option === "string") {
             return option;
           }
-          if (option.inputValue) {
-            return option.inputValue;
+          // Add "xxx" option created dynamically
+          if (option.name) {
+            return option.name;
           }
-          return option.title;
+          // Regular option
+          return option.name;
         }}
         disabled={disableItem ? true : isChecked ? true : !editAble}
         selectOnFocus
         clearOnBlur
         handleHomeEndKeys
-        renderOption={(props, option) => <li {...props}>{option.title}</li>}
+        renderOption={(props, option) => <li {...props}>{option.name}</li>}
         sx={{
           border: "1px solid #E6ECF5 !important",
           height: "40px",
@@ -119,6 +169,12 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
         freeSolo
         renderInput={(params) => (
           <MyTextField
+            onKeyDown={(ev) => {
+              if (ev.key === "Enter") {
+                handleSubmit(ev);
+                ev.preventDefault();
+              }
+            }}
             {...params}
             sx={{
               backgroundColor: editAble ? "" : "neutral.N400",

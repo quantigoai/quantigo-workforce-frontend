@@ -178,8 +178,11 @@ const VerificationInfoIndex = () => {
                       >
                         Please Upload Your Passport Size Photo*
                       </Typography>
+
+                     
+
                       <Box sx={{ width: "70%" }}>
-                        {user.standardPhoto && editAble && (
+                        {user.standardPhoto && editAble ? (
                           <TextFieldQuestion
                             sx={
                               {
@@ -199,6 +202,29 @@ const VerificationInfoIndex = () => {
                             variant="outlined"
                             helperText={errorPhoto}
                           />
+                        ) : (
+                          <>
+                            {" "}
+                            <TextFieldQuestion
+                              sx={
+                                {
+                                  // height: '35px',
+                                  // fontSize: '14px',
+                                  // border: '2px solid #E6ECF5 !important',
+                                  // borderRadius: '8px 0px 0px 8px',
+                                }
+                              }
+                              placeholder={photo.name}
+                              disabled={true}
+                              size="small"
+                              type={"text"}
+                              id="outlined-basic"
+                              // {...field}
+                              fullWidth
+                              variant="outlined"
+                              helperText={errorPhoto}
+                            />
+                          </>
                         )}
                       </Box>
 
@@ -443,14 +469,14 @@ const VerificationInfoIndex = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid container>
-                <UploadImagesField
-                  editAble={editAble}
-                  label={`${documentType} Photo`}
-                  files={images}
-                  setFiles={setImages}
-                />
-              </Grid>
+              {/* <Grid container> */}
+              <UploadImagesField
+                editAble={editAble}
+                label={`${documentType} Photo`}
+                files={images}
+                setFiles={setImages}
+              />
+              {/* </Grid> */}
             </Box>
 
             {/* <button type="submit">Submit</button> */}

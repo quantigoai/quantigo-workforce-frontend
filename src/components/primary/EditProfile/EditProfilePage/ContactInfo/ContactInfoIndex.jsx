@@ -124,7 +124,7 @@ const ContactInfoIndex = () => {
     if (user.emergencyContact?.address) {
       axios
         .get(
-          `${url}/bd-info/sub-district/get-sub-districts-by-district-id/${user.emergencyContact?.address?.district.id}`
+          `${url}/bd-info/sub-district/get-sub-districts-by-district-id/${user.emergencyContact?.address?.district?.id}`
         )
         .then((res) => {
           setSubDistrictsEmergency(res.data);
@@ -148,7 +148,7 @@ const ContactInfoIndex = () => {
     }
     if (user.emergencyContact?.address) {
       axios
-        .get(`${url}/bd-info/district/get-districts-by-division-id/${user.emergencyContact?.address?.division.id}`)
+        .get(`${url}/bd-info/district/get-districts-by-division-id/${user.emergencyContact?.address?.division?.id}`)
         .then((res) => {
           setDistrictsEmergency(res.data);
           // setSubDistricts([]);

@@ -58,13 +58,13 @@ const UploadImagesField = ({ editAble, label, files, setFiles }) => {
   const baseUploadBoxStyle = {
     flex: 1,
     display: "flex",
-    flexDirection: "column",
+    justifyContent: "center",
     alignItems: "center",
+    textAlign: "center",
     // padding: "20px",
-
     borderWidth: 2,
-    borderRadius: 8,
-    height: "100px",
+    borderRadius: 10,
+    height: "200px",
     borderColor: files.length === 5 ? "rgba(70, 70, 70, 0.1)" : "rgba(70, 70, 70, 0.2)",
     borderStyle: "dashed",
     // backgroundColor: isLightTheme ? "primary.B200" : "neutral.N400",
@@ -182,6 +182,47 @@ const UploadImagesField = ({ editAble, label, files, setFiles }) => {
         <Box
           sx={{
             display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "100%",
+            borderWidth: 2,
+            borderRadius: 4,
+            height: "100%",
+            borderColor: files.length === 5 ? "rgba(70, 70, 70, 0.1)" : "rgba(70, 70, 70, 0.2)",
+            borderStyle: "dashed",
+            backgroundColor: isLightTheme ? "#FAFBFC" : "#2C2C2C",
+            color: isLightTheme ? "#1D1D1D" : "#fff",
+            outline: "none",
+            transition: "border .24s ease-in-out",
+          }}
+        >
+          <Box
+            sx={{ width: "20%", ml: 1 }}
+            {...getRootProps({
+              // className: `dropzone ${files.length === 5 ? "disabled" : ""}`
+              style,
+            })}
+          >
+            <input {...getInputProps()} />
+            <Box>
+              <Typography sx={{ color: files.length === 5 ? "gray" : "#000" }} variant="contained">
+                Upload your relevant certificates
+              </Typography>
+            </Box>
+          </Box>
+          <Box sx={{ display: "flex", width: "80%", justifyContent: "center" }}>
+            <Box>{files.length <= 5 && thumbs} </Box>
+            <Typography variant="wpf_p4_medium" color="error.500">
+              {files.length > 5 || error ? "you have selected more than 5 files" : ""}
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
+      {/* <Box className="container" sx={{ width: "100%" }}>
+        <Box
+          sx={{
+            display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
@@ -201,7 +242,7 @@ const UploadImagesField = ({ editAble, label, files, setFiles }) => {
             {files.length > 5 || error ? "you have selected more than 5 files" : ""}
           </Typography>
         </Box>
-      </Box>
+      </Box> */}
     </>
   );
 };

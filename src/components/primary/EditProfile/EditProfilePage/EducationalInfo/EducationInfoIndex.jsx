@@ -63,13 +63,13 @@ const focusedStyle = {
 const EducationInfoIndex = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { user, isLoading } = useSelector((state) => state.user);
-  console.log("🚀 ~ EducationInfoIndex ~ user:", user);
+
   const [editAble, setEditAble] = useState(false);
-  const [higherDegree, setHigherDegree] = useState(user.highestLevelOfDegree);
-  console.log("🚀 ~ EducationInfoIndex ~ higherDegree:", higherDegree);
-  const [field, setField] = useState(user.fieldOfStudy);
-  const [institution, setInstitution] = useState(user.instituteName);
-  const [files, setFiles] = useState(user.certificateImages);
+  const [higherDegree, setHigherDegree] = useState(user?.highestLevelOfDegree);
+
+  const [field, setField] = useState(user?.fieldOfStudy);
+  const [institution, setInstitution] = useState(user?.instituteName);
+  const [files, setFiles] = useState(user?.certificateImages);
   const [error, setError] = useState(false);
   const dispatch = useDispatch();
   const toast = useToaster();

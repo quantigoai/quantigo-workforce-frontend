@@ -63,14 +63,14 @@ const focusedStyle = {
 const EducationInfoIndex = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { user, isLoading } = useSelector((state) => state.user);
+  console.log("🚀 ~ EducationInfoIndex ~ user:", user);
   const [editAble, setEditAble] = useState(false);
-  const [higherDegree, setHigherDegree] = useState(null);
-  const [field, setField] = useState(null);
-  const [institution, setInstitution] = useState(null);
-  const [files, setFiles] = useState([]);
+  const [higherDegree, setHigherDegree] = useState(user.highestLevelOfDegree);
+  console.log("🚀 ~ EducationInfoIndex ~ higherDegree:", higherDegree);
+  const [field, setField] = useState(user.fieldOfStudy);
+  const [institution, setInstitution] = useState(user.instituteName);
+  const [files, setFiles] = useState(user.certificateImages);
   const [error, setError] = useState(false);
-  const [studies, setStudies] = useState(null);
-  const { handleSubmit, control, errors } = useForm();
   const dispatch = useDispatch();
   const toast = useToaster();
   const handleEditProfile = () => {
@@ -161,27 +161,29 @@ const EducationInfoIndex = () => {
     return (
       <Box style={thumb} key={file.name}>
         <Box style={thumbInner}>
-          <Box
-            onClick={() => handleDelete(file)}
-            sx={{
-              position: "absolute",
-              top: -1,
-              right: 0,
-              backgroundColor: "#FF4757",
-              color: "#fff",
-              width: "30px",
-              // fontSize: "10px",
-              height: "30px",
-              textAlign: "center",
-              borderRadius: "50%",
-              "&:hover": { backgroundColor: "#F53142" },
-              cursor: "pointer",
-            }}
-          >
-            <CloseIcon sx={{ fontSize: "18px", mt: "5px" }} />
-          </Box>
+          {editAble && (
+            <Box
+              onClick={() => handleDelete(file)}
+              sx={{
+                position: "absolute",
+                top: -1,
+                right: 0,
+                backgroundColor: "#FF4757",
+                color: "#fff",
+                width: "35px",
+                // fontSize: "10px",
+                height: "35px",
+                textAlign: "center",
+                borderRadius: "50%",
+                "&:hover": { backgroundColor: "#F53142" },
+                cursor: "pointer",
+              }}
+            >
+              <CloseIcon sx={{ fontSize: "18px", mt: "8px" }} />
+            </Box>
+          )}
           <img
-            src={file.preview}
+            src={file.preview ? file.preview : file}
             style={img}
             onLoad={() => {
               URL.revokeObjectURL(file.preview);
@@ -227,14 +229,15 @@ const EducationInfoIndex = () => {
 
   const handleSubmitChange = () => {
     const formData = new FormData();
-    formData.append("highestLevelOfDegree", higherDegree.title);
-    formData.append("instituteName", institution.name);
-    formData.append("fieldOfStudy", field.title);
+    higherDegree.title !== undefined && formData.append("highestLevelOfDegree", higherDegree.title);
+    institution.name !== undefined && formData.append("instituteName", institution.name);
+    field.title !== undefined && formData.append("fieldOfStudy", field.title);
     formData.append("completedYear", dateRef.current.value);
 
     files.forEach((item) => {
-      console.log("🚀 ~ files.forEach ~ item:", item);
-      formData.append("certificateImages", item);
+      if (item.name) {
+        formData.append("certificateImages", item);
+      }
     });
 
     const finalData = {

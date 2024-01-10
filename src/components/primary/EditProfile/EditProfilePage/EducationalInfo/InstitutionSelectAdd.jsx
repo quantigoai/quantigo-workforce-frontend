@@ -31,24 +31,25 @@ const url = import.meta.env.VITE_APP_SERVER_URL;
 const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChecked, setInstitution }) => {
   const [open, toggleOpen] = React.useState(false);
   const [allInstitute, setAllInstitute] = useState([]);
-  const handleClose = () => {
-    setDialogValue({
-      title: "",
-      year: "",
-    });
-    toggleOpen(false);
-  };
-
-  const [dialogValue, setDialogValue] = React.useState({
-    title: "",
-    year: "",
-  });
+  console.log("🚀 ~ InstitutionSelectAdd ~ allInstitute:", allInstitute);
+  const [newInput, setNewInput] = useState("");
+  console.log("🚀 ~ InstitutionSelectAdd ~ newInput:", newInput);
   const handleSubmit = (event) => {
     event.preventDefault();
-    setInstitution({
-      title: dialogValue.title,
-    });
-    handleClose();
+
+    const data = { name: newInput.name };
+    const finalData = axios
+      .post(`${url}/educational-institute/add-educational-institute`, data)
+      .then((data) =>
+        setInstitution({
+          name: data?.educationalInstitute?.name,
+          _id: data?.educationalInstitute?._id,
+        })
+      )
+      .finally(() => {
+        axios.get(`${url}/educational-institute`).then((data) => setAllInstitute(data.data.educationalInstitute));
+      });
+    // handleClose();
   };
   useEffect(() => {
     axios.get(`${url}/educational-institute`).then((data) => setAllInstitute(data.data.educationalInstitute));
@@ -69,48 +70,90 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
       <Autocomplete
         style={{ padding: 0 }}
         value={institution}
+        // onChange={(event, newValue) => {
+        //   if (typeof newValue === "string") {
+        //     setTimeout(() => {
+        //       toggleOpen(true);
+        //       setDialogValue({
+        //         title: newValue,
+        //       });
+        //     });
+        //   } else if (newValue && newValue.inputValue) {
+        //     toggleOpen(true);
+        //     setDialogValue({
+        //       title: newValue.inputValue,
+        //     });
+        //   } else {
+        //     setInstitution(newValue);
+        //   }
+        // }}
+        // filterOptions={(options, params) => {
+        //   const filtered = filter(options, params);
+
+        //   if (params.inputValue !== "") {
+        //     filtered.push({
+        //       inputValue: params.inputValue,
+        //       name: `Add "${params.inputValue}"`,
+        //     });
+        //   }
+
+        //   return filtered;
+        // }}
+
         onChange={(event, newValue) => {
+          console.log("🚀 ~ InstitutionSelectAdd ~ newValue:", newValue);
           if (typeof newValue === "string") {
-            setTimeout(() => {
-              toggleOpen(true);
-              setDialogValue({
-                title: newValue,
-                year: "",
-              });
+            setInstitution({
+              name: newValue,
             });
           } else if (newValue && newValue.inputValue) {
-            toggleOpen(true);
-            setDialogValue({
-              title: newValue.inputValue,
-              year: "",
+            // Create a new value from the user input
+            console.log("hit");
+            setInstitution({
+              name: newValue.inputValue,
+            });
+            setNewInput({
+              name: newValue.inputValue,
             });
           } else {
             setInstitution(newValue);
           }
         }}
         filterOptions={(options, params) => {
-          console.log("🚀 ~ InstitutionSelectAdd ~ params:", params);
           const filtered = filter(options, params);
 
-          if (params.inputValue !== "") {
+          const { inputValue } = params;
+          // Suggest the creation of a new value
+          const isExisting = options.some((option) => inputValue === option.name);
+          if (inputValue !== "" && !isExisting) {
             filtered.push({
-              inputValue: params.inputValue,
-              name: `Add "${params.inputValue}"`,
+              inputValue,
+              name: `Add "${inputValue}"`,
             });
-            const data = { name: params.inputValue };
-            const addInstitute = axios.post(`${url}/educational-institute/`, data);
           }
 
           return filtered;
         }}
         options={allInstitute}
+        // getOptionLabel={(option) => {
+        //   if (typeof option === "string") {
+        //     return option.name;
+        //   }
+        //   if (option.inputValue) {
+        //     return option.inputValue;
+        //   }
+        //   return option.name;
+        // }}
         getOptionLabel={(option) => {
+          // Value selected with enter, right from the input
           if (typeof option === "string") {
+            return option;
+          }
+          // Add "xxx" option created dynamically
+          if (option.name) {
             return option.name;
           }
-          if (option.inputValue) {
-            return option.inputValue;
-          }
+          // Regular option
           return option.name;
         }}
         disabled={disableItem ? true : isChecked ? true : !editAble}
@@ -126,6 +169,12 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
         freeSolo
         renderInput={(params) => (
           <MyTextField
+            onKeyDown={(ev) => {
+              if (ev.key === "Enter") {
+                handleSubmit(ev);
+                ev.preventDefault();
+              }
+            }}
             {...params}
             sx={{
               backgroundColor: editAble ? "" : "neutral.N400",

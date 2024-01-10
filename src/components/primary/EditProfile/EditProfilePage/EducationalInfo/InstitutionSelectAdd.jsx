@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import {
@@ -11,6 +11,7 @@ import {
   Typography,
   styled,
 } from "@mui/material";
+import axios from "axios";
 const filter = createFilterOptions();
 const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
@@ -25,10 +26,11 @@ const MyTextField = styled(TextField)(() => ({
     color: "blue",
   },
 }));
+const url = import.meta.env.VITE_APP_SERVER_URL;
 
 const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChecked, setInstitution }) => {
   const [open, toggleOpen] = React.useState(false);
-
+  const [allInstitute, setAllInstitute] = useState([]);
   const handleClose = () => {
     setDialogValue({
       title: "",
@@ -48,7 +50,10 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
     });
     handleClose();
   };
-  const institutions = [{ title: "1" }, { title: "2" }, { title: "3" }, { title: "4" }, { title: "5" }];
+  useEffect(() => {
+    axios.get(`${url}/educational-institute`).then((data) => setAllInstitute(data.data.educationalInstitute));
+  }, [editAble]);
+
   return (
     <React.Fragment>
       <Typography
@@ -85,32 +90,35 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
         }}
         filterOptions={(options, params) => {
           const filtered = filter(options, params);
+          const data = { name: params.inputValue };
+          let addInstitute;
+          console.log(addInstitute);
 
           if (params.inputValue !== "") {
             filtered.push({
               inputValue: params.inputValue,
-              title: `Add "${params.inputValue}"`,
+              name: `Add "${params.inputValue}"`,
             });
+            addInstitute = axios.post(`${url}/educational-institute/add-educational-institute`, data);
           }
 
-          return filtered;
+          return addInstitute;
         }}
-        options={institutions}
+        options={allInstitute}
         getOptionLabel={(option) => {
-          // e.g. value selected with enter, right from the input
           if (typeof option === "string") {
-            return option;
+            return option.name;
           }
           if (option.inputValue) {
             return option.inputValue;
           }
-          return option.title;
+          return option.name;
         }}
         disabled={disableItem ? true : isChecked ? true : !editAble}
         selectOnFocus
         clearOnBlur
         handleHomeEndKeys
-        renderOption={(props, option) => <li {...props}>{option.title}</li>}
+        renderOption={(props, option) => <li {...props}>{option.name}</li>}
         sx={{
           border: "1px solid #E6ECF5 !important",
           height: "40px",

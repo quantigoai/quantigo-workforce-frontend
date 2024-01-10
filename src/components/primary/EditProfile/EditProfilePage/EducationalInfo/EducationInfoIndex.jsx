@@ -36,8 +36,8 @@ const thumb = {
   // border: "1px solid #eaeaea",
   marginBottom: 8,
   marginRight: 8,
-  width: "200px",
-  height: "200px",
+  width: "140px",
+  height: "140px",
   padding: 4,
 
   boxSizing: "border-box",
@@ -89,7 +89,7 @@ const EducationInfoIndex = () => {
     }
   };
   const { getRootProps, getInputProps, isFocused } = useDropzone({
-    disabled: files.length === 5 ? true : false,
+    disabled: files.length === 5 || !editAble ? true : false,
     accept: {
       "image/jpeg": [],
       "image/png": [],
@@ -146,9 +146,11 @@ const EducationInfoIndex = () => {
     borderWidth: 3,
     padding: "10px",
     borderRadius: 8,
-    borderColor: files.length === 5 ? "rgba(70, 70, 70, 0.1)" : "rgba(70, 70, 70, 0.2)",
+    borderColor:
+      files.length === 5 ? "rgba(70, 70, 70, 0.1)" : isLightTheme ? "rgba(70, 70, 70, 0.2)" : "rgba(70, 70, 70, 0.8)",
     borderStyle: "dashed",
-    backgroundColor: isLightTheme ? "#FAFBFC" : "#2C2C2C",
+    // background: isLightTheme ? "#FAFBFC" : "#2C2C2C",
+    background: isLightTheme ? "#FAFBFC" : "#2C2C2C",
     color: isLightTheme ? "#1D1D1D" : "#fff",
     outline: "none",
     width: "200px",
@@ -199,7 +201,7 @@ const EducationInfoIndex = () => {
       ...baseUploadBoxStyle,
       ...(isFocused ? focusedStyle : {}),
     }),
-    [isFocused]
+    [isFocused, isLightTheme]
   );
   useEffect(() => {
     return () => {
@@ -389,7 +391,11 @@ const EducationInfoIndex = () => {
                   }}
                 >
                   <Box
-                    sx={{ width: "20%", ml: 2 }}
+                    sx={{
+                      width: "20%",
+                      ml: 2,
+                      backgroundColor: isLightTheme ? "red" : "#2C2C2C",
+                    }}
                     {...getRootProps({
                       // className: `dropzone ${files.length === 5 ? "disabled" : ""}`
                       style,
@@ -397,7 +403,10 @@ const EducationInfoIndex = () => {
                   >
                     <input {...getInputProps()} />
                     <Box>
-                      <Typography sx={{ color: files.length === 5 ? "gray" : "#000" }} variant="contained">
+                      <Typography
+                        sx={{ color: files.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff" }}
+                        variant="contained"
+                      >
                         Upload your relevant certificates
                       </Typography>
                     </Box>

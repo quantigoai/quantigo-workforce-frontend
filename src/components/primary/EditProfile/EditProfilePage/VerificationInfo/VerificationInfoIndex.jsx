@@ -36,8 +36,8 @@ const VerificationInfoIndex = () => {
   const [resume, setResume] = useState([]);
   const [errorPhoto, setErrorPhoto] = useState("");
   const [errorResume, setErrorResume] = useState("");
-  const [documentType, setDocumentType] = useState(user.extraDocumentType ? user.extraDocumentType : "NID");
-  const [images, setImages] = useState([]);
+  const [documentType, setDocumentType] = useState(user.extraDocumentType);
+  const [images, setImages] = useState(user.extraDocumentImages);
   const dispatch = useDispatch();
   const toast = useToaster();
   const handleEditProfile = () => {
@@ -179,29 +179,29 @@ const VerificationInfoIndex = () => {
                         Please Upload Your Passport Size Photo*
                       </Typography>
 
-                     
-
                       <Box sx={{ width: "70%" }}>
-                        {user.standardPhoto && editAble ? (
-                          <TextFieldQuestion
-                            sx={
-                              {
-                                // height: '35px',
-                                // fontSize: '14px',
-                                // border: '2px solid #E6ECF5 !important',
-                                // borderRadius: '8px 0px 0px 8px',
+                        {user.standardPhoto && !editAble ? (
+                          <>
+                            {/* <TextFieldQuestion
+                              sx={
+                                {
+                                  // height: '35px',
+                                  // fontSize: '14px',
+                                  // border: '2px solid #E6ECF5 !important',
+                                  // borderRadius: '8px 0px 0px 8px',
+                                }
                               }
-                            }
-                            placeholder={photo.name}
-                            disabled={true}
-                            size="small"
-                            type={"text"}
-                            id="outlined-basic"
-                            // {...field}
-                            fullWidth
-                            variant="outlined"
-                            helperText={errorPhoto}
-                          />
+                              placeholder={photo.name}
+                              disabled={true}
+                              size="small"
+                              type={"text"}
+                              id="outlined-basic"
+                              // {...field}
+                              fullWidth
+                              variant="outlined"
+                              helperText={errorPhoto}
+                            /> */}
+                          </>
                         ) : (
                           <>
                             {" "}
@@ -329,18 +329,22 @@ const VerificationInfoIndex = () => {
                         Please Upload Your Updated Resume *
                       </Typography>
                       <Box sx={{ width: "70%" }}>
-                        {user.resume && editAble && (
-                          <TextFieldQuestion
-                            placeholder={resume.name}
-                            disabled={true}
-                            size="small"
-                            type={"text"}
-                            id="outlined-basic"
-                            // {...field}
-                            fullWidth
-                            variant="outlined"
-                            helperText={errorResume}
-                          />
+                        {user.resume && !editAble ? (
+                          <></>
+                        ) : (
+                          <>
+                            <TextFieldQuestion
+                              placeholder={resume.name}
+                              disabled={true}
+                              size="small"
+                              type={"text"}
+                              id="outlined-basic"
+                              // {...field}
+                              fullWidth
+                              variant="outlined"
+                              helperText={errorResume}
+                            />
+                          </>
                         )}
                       </Box>
 
@@ -475,6 +479,7 @@ const VerificationInfoIndex = () => {
                 label={`${documentType} Photo`}
                 files={images}
                 setFiles={setImages}
+
               />
               {/* </Grid> */}
             </Box>

@@ -2,10 +2,15 @@ import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css/navigation";
-// import './styles.css';
+import "./styles.css";
 import { Navigation } from "swiper/modules";
 import { Box } from "@mui/material";
+import image1 from "../../../../assets/images/img.png";
+import image2 from "../../../../assets/images/image-annotation.jpg";
+import image3 from "../../../../assets/images/logoBlue.png";
+import image4 from "../../../../assets/images/loginWMP.png";
 
+const images = [image1, image2, image3, image4];
 const ImageSwiperIndex = () => {
   const pagination = {
     clickable: true,
@@ -16,17 +21,20 @@ const ImageSwiperIndex = () => {
 
   return (
     <>
-      <Box sx={{ height: "200px" }}>
-        <Swiper pagination={pagination} modules={[Pagination]} className="mySwiper">
-          <SwiperSlide>Slide 1</SwiperSlide>
-          <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
-          <SwiperSlide>Slide 4</SwiperSlide>
-          <SwiperSlide>Slide 5</SwiperSlide>
-          <SwiperSlide>Slide 6</SwiperSlide>
-          <SwiperSlide>Slide 7</SwiperSlide>
-          <SwiperSlide>Slide 8</SwiperSlide>
-          <SwiperSlide>Slide 9</SwiperSlide>
+      <Box sx={{ height: "300px" }}>
+        <Swiper
+          pagination={{
+            type: "fraction",
+          }}
+          navigation={true}
+          modules={[Pagination, Navigation]}
+          className="mySwiper"
+        >
+          {images.map((item) => (
+            <SwiperSlide key={item}>
+              <img src={item} />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </Box>
     </>

@@ -7,6 +7,7 @@ import ChangeInfoIndex from "./ChangeInfoIndex";
 import DetailsItemThree from "./DetailsItemThree";
 import NdaDocumentSection from "./NdaDocumentSection";
 import SkillFieldForUserDetails from "./SkillFieldForUserDetails";
+import ImageShowInModal from "./ImageShowInModal";
 
 const EducationInfoDetails = ({
   user,
@@ -62,9 +63,10 @@ const EducationInfoDetails = ({
                 : capitalizeFirstLetter(user?.role)
             }
           />
-        
+
           <SingleItem ItemTitle={"Institution Name"} Item={user.presentAddress} />
           {/* <SingleItem ItemTitle={"Skills"} Item={user.skills} /> */}
+          <ImageShowInModal />
         </Stack>
       </Box>
     </>

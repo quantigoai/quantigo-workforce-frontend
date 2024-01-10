@@ -51,6 +51,7 @@ const img = {
 };
 
 const UploadImagesField = ({ editAble, label, files, setFiles }) => {
+  console.log("🚀 ~ UploadImagesField ~ files:", files);
   // const [files, setFiles] = useState([]);
   const { isLightTheme } = useSelector((state) => state.theme);
   // const { baseUploadBoxStyle } = ndaUploadStyle(isLightTheme);
@@ -74,7 +75,7 @@ const UploadImagesField = ({ editAble, label, files, setFiles }) => {
     transition: "border .24s ease-in-out",
   };
   const { getRootProps, getInputProps, isFocused } = useDropzone({
-    disabled: files.length === 5 ? true : false,
+    disabled: files.length === 5 || !editAble ? true : false,
     accept: {
       "image/jpeg": [],
       "image/png": [],
@@ -135,27 +136,29 @@ const UploadImagesField = ({ editAble, label, files, setFiles }) => {
     return (
       <Box style={thumb} key={file.name}>
         <Box style={thumbInner}>
-          <Box
-            onClick={() => handleDelete(file)}
-            sx={{
-              position: "absolute",
-              top: -1,
-              right: 0,
-              backgroundColor: "#FF4757",
-              color: "#fff",
-              width: "35px",
-              // fontSize: "10px",
-              height: "35px",
-              textAlign: "center",
-              borderRadius: "50%",
-              "&:hover": { backgroundColor: "#F53142" },
-              cursor: "pointer",
-            }}
-          >
-            <CloseIcon sx={{ fontSize: "18px", mt: "8px" }} />
-          </Box>
+          {editAble && (
+            <Box
+              onClick={() => handleDelete(file)}
+              sx={{
+                position: "absolute",
+                top: -1,
+                right: 0,
+                backgroundColor: "#FF4757",
+                color: "#fff",
+                width: "35px",
+                // fontSize: "10px",
+                height: "35px",
+                textAlign: "center",
+                borderRadius: "50%",
+                "&:hover": { backgroundColor: "#F53142" },
+                cursor: "pointer",
+              }}
+            >
+              <CloseIcon sx={{ fontSize: "18px", mt: "8px" }} />
+            </Box>
+          )}
           <img
-            src={file.preview}
+            src={file.preview ? file.preview : file}
             style={img}
             onLoad={() => {
               URL.revokeObjectURL(file.preview);
@@ -198,7 +201,7 @@ const UploadImagesField = ({ editAble, label, files, setFiles }) => {
           }}
         >
           <Box
-            sx={{ width: "20%", ml: 1 }}
+            sx={{ width: "20%", ml: 1, disabled: "true" }}
             {...getRootProps({
               // className: `dropzone ${files.length === 5 ? "disabled" : ""}`
               style,
@@ -207,7 +210,7 @@ const UploadImagesField = ({ editAble, label, files, setFiles }) => {
             <input {...getInputProps()} />
             <Box>
               <Typography sx={{ color: files.length === 5 ? "gray" : "#000" }} variant="contained">
-                Upload your relevant certificates
+                Upload your {label}
               </Typography>
             </Box>
           </Box>

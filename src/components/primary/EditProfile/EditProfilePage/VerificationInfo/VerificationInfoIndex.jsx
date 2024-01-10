@@ -79,11 +79,14 @@ const VerificationInfoIndex = () => {
     formData.append("extraDocumentName", nameAsNid);
 
     images.forEach((item) => {
-      formData.append("images", item);
+      console.log("🚀 ~ images.forEach ~ item:", item);
+      if (item.name) {
+        formData.append("images", item);
+      }
     });
 
-    formData.append("photo", photo);
-    formData.append("resume", resume);
+    photo.length != 0 && formData.append("photo", photo);
+    resume.length != 0 && formData.append("resume", resume);
 
     const finalImageData = {
       id: user._id,
@@ -479,7 +482,6 @@ const VerificationInfoIndex = () => {
                 label={`${documentType} Photo`}
                 files={images}
                 setFiles={setImages}
-
               />
               {/* </Grid> */}
             </Box>

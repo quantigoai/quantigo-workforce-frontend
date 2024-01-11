@@ -7,7 +7,15 @@ const MyTextField = styled(TextField)(() => ({
     border: "1px solid #E6ECF5 !important",
     borderRadius: "8px",
   },
-  "& .MuiInputBase-root": { height: "40px", fontSize: "14px", color: "#3C4D6B", padding: "0px 5px" },
+  "& .MuiInputBase-root": {
+    height: "40px",
+    fontSize: "14px",
+    color: "#3C4D6B",
+    padding: "0px 5px",
+    "&:disabled": {
+      padding: "0px 5px",
+    },
+  },
   "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
     border: `1px solid #2E58FF !important`,
   },
@@ -105,6 +113,7 @@ const DegreeSelect = ({ label, higherDegree, setHigherDegree, disableItem, editA
         selectOnFocus
         clearOnBlur
         handleHomeEndKeys
+        placeholder="find your institution or add a new one"
         renderOption={(props, option) => <li {...props}>{option.title}</li>}
         sx={{
           border: "1px solid #E6ECF5 !important",
@@ -115,6 +124,7 @@ const DegreeSelect = ({ label, higherDegree, setHigherDegree, disableItem, editA
         freeSolo
         renderInput={(params) => (
           <MyTextField
+            placeholder="select your highest level of degree "
             {...params}
             sx={{
               backgroundColor: editAble ? "" : "neutral.N400",

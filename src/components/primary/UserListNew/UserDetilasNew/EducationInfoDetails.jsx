@@ -10,6 +10,7 @@ import SkillFieldForUserDetails from "./SkillFieldForUserDetails";
 import ImageShowInModal from "./ImageShowInModal";
 import { useDispatch } from "react-redux";
 import { getUserEducationInfo } from "../../../../features/slice/userSlice";
+import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 
 const EducationInfoDetails = ({
   user,
@@ -23,7 +24,7 @@ const EducationInfoDetails = ({
 }) => {
   const [isDataLoading, setIsDataLoading] = useState(true);
   const [data, setData] = useState([]);
-  console.log("🚀 ~ data:", data)
+  console.log("🚀 ~ data:", data);
   const dispatch = useDispatch();
 
   const DOB = user.dob ? moment.utc(user.dob).format("MMM Do, YYYY") : "Not Available";
@@ -46,39 +47,36 @@ const EducationInfoDetails = ({
             borderRadius: "8px",
           }}
         >
-          <DetailsItemThree
-            Item1Title={"Highest level of degree"}
-            Item1={user.name}
-            Item2Title={"Field of Study"}
-            Item2={user.qaiUserName}
-            isBlocked={user.isBlocked}
-            Item3Title={"Year of completion"}
-            Item3={
-              user.role === "level_1_annotator"
-                ? "Level 1 Annotator"
-                : user.role === "level_2_annotator"
-                ? "Level 2 Annotator"
-                : user.role === "level_0_annotator"
-                ? "Level 0 Annotator"
-                : user.role === "level_3_annotator"
-                ? "Level 3 Annotator"
-                : user.role === "project_delivery_lead"
-                ? "Project Delivery Lead"
-                : user.role === "delivery_lead"
-                ? "Delivery Lead"
-                : user.role === "project_coordinator"
-                ? "Project Coordinator"
-                : user.role === "project_manager"
-                ? "Project Manager"
-                : user.role === "recruitment_manager"
-                ? "Recruitment Manager"
-                : capitalizeFirstLetter(user?.role)
-            }
-          />
+          {isDataLoading ? (
+            <>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "50vh",
+                }}
+              >
+                <LoadingComponent />
+              </Box>
+            </>
+          ) : (
+            <>
+              <DetailsItemThree
+                Item1Title={"Highest level of degree"}
+                Item1={data.highestLevelOfDegree}
+                Item2Title={"Field of Study"}
+                Item2={data.fieldOfStudy}
+                isBlocked={user.isBlocked}
+                Item3Title={"Year of completion"}
+                Item3={data.completedYear}
+              />
 
-          <SingleItem ItemTitle={"Institution Name"} Item={user.presentAddress} />
-          {/* <SingleItem ItemTitle={"Skills"} Item={user.skills} /> */}
-          <ImageShowInModal />
+              <SingleItem ItemTitle={"Institution Name"} Item={data.instituteName} />
+              {/* <SingleItem ItemTitle={"Skills"} Item={user.skills} /> */}
+              <ImageShowInModal images={data.certificateImages} level={"Certificate Images"} />
+            </>
+          )}
         </Stack>
       </Box>
     </>

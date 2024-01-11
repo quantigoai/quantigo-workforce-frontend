@@ -10,6 +10,7 @@ import SkillFieldForUserDetails from "./SkillFieldForUserDetails";
 import { useDispatch } from "react-redux";
 import { getUserContactInfo } from "../../../../features/slice/userSlice";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
+import AddressField from "./AddressField";
 
 const ContactInfoDetailsIndex = ({
   user,
@@ -62,8 +63,9 @@ const ContactInfoDetailsIndex = ({
             </>
           ) : (
             <>
-              <SingleItem ItemTitle={"Present Address"} Item={user.presentAddress} />
-              <SingleItem ItemTitle={"Permanent Address"} Item={user.presentAddress} />
+              <AddressField ItemTitle={"Present Address"} Item={data.presentAddress} />
+              <AddressField ItemTitle={"Permanent Address"} Item={data.permanentAddress} />
+          
               <DetailsItemThree
                 Item1Title={"Emergency Contact Person"}
                 Item1={data.emergencyContact?.contactPersonName}
@@ -73,7 +75,9 @@ const ContactInfoDetailsIndex = ({
                 Item3Title={"Mobile Number"}
                 Item3={data.emergencyContact?.contactNumber}
               />
-              <SingleItem ItemTitle={"Address"} Item={user.presentAddress} />
+               {/* <AddressField ItemTitle={"Permanent Address"} Item={data.permanentAddress} /> */}
+          
+              <AddressField ItemTitle={"Emergency Contact Person Address"} Item={data.emergencyContact?.address} />
 
               {/* <SingleItem ItemTitle={"Skills"} Item={user.skills} /> */}
             </>

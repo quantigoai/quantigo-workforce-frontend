@@ -25,7 +25,7 @@ const style = {
   },
 };
 
-const ModalImage = ({ openModal, handleClose }) => {
+const ModalImage = ({ openModal, handleClose, images }) => {
   return (
     <>
       <Modal
@@ -83,7 +83,7 @@ const ModalImage = ({ openModal, handleClose }) => {
                     padding: "2%",
                   }}
                 >
-                  <ImageSwiperIndex />
+                  <ImageSwiperIndex images={images}  />
                 </Box>
               </Box>
             </Paper>

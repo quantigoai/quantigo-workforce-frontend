@@ -102,7 +102,23 @@ const UserInfoIndex = ({
             Item3Title={"Completed Course"}
             Item3={"No Course Completed"}
           />
-          <SingleItem ItemTitle={"Address"} Item={user.presentAddress} />
+          <DetailsItemThree
+            Item1Title={"Father`s Name"}
+            Item1={data.fathersName}
+            Item2Title={"Mother`s Name"}
+            Item2={data.mothersName}
+            Item3Title={"Marital Status"}
+            Item3={"data.maritalStatus"}
+          />
+           <DetailsItemThree
+            Item1Title={"Religion"}
+            Item1={data.religion}
+            Item2Title={"Blood Group"}
+            Item2={data.bloodGroup}
+            Item3Title={"Billing Account No"}
+            Item3={data.billingAccountNo}
+          />
+          {/* <SingleItem ItemTitle={"Address"} Item={user.presentAddress} /> */}
           {/* <SingleItem ItemTitle={"Skills"} Item={user.skills} /> */}
           <SkillFieldForUserDetails
             ItemTitle={"Skills"}
@@ -113,7 +129,7 @@ const UserInfoIndex = ({
             setIsEditSkill={setIsEditSkill}
             isEditSkill={isEditSkill}
           />
-          <NdaDocumentSection user={user} />
+          {/* <NdaDocumentSection user={user} /> */}
         </Stack>
       </Box>
 

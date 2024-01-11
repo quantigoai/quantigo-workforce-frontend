@@ -182,7 +182,7 @@ const CourseCoverImageField = ({ coverImageFile, coverImage, removeImage, handle
               <br />
               <img src={IconImage} />
               <Typography variant="wpf_p2_regular" sx={{ paddingTop: "1%" }}>
-                Drag and Drop a file here or Browse” (JPG/ JPEG / PNG){" "}
+                Drag and Drop a file here or Browse” (JPG/ JPEG / PNG)
               </Typography>
               <Typography variant="wpf_p2_regular" sx={{ paddingBottom: "2%" }}>
                 Maximum file size: 1Mb.

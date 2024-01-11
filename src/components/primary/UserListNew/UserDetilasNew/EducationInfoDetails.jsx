@@ -1,6 +1,6 @@
 import { Box, Stack } from "@mui/material";
 import moment from "moment/moment";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 import SingleItem from "../../ProjectLIstNew2/Project2Details/SingleItem";
 import ChangeInfoIndex from "./ChangeInfoIndex";
@@ -8,6 +8,8 @@ import DetailsItemThree from "./DetailsItemThree";
 import NdaDocumentSection from "./NdaDocumentSection";
 import SkillFieldForUserDetails from "./SkillFieldForUserDetails";
 import ImageShowInModal from "./ImageShowInModal";
+import { useDispatch } from "react-redux";
+import { getUserEducationInfo } from "../../../../features/slice/userSlice";
 
 const EducationInfoDetails = ({
   user,
@@ -19,12 +21,22 @@ const EducationInfoDetails = ({
   setIsEditSkill,
   isEditSkill,
 }) => {
+  const [isDataLoading, setIsDataLoading] = useState(true);
+  const [data, setData] = useState([]);
+  console.log("🚀 ~ data:", data)
+  const dispatch = useDispatch();
+
   const DOB = user.dob ? moment.utc(user.dob).format("MMM Do, YYYY") : "Not Available";
   const dateObj = new Date(user.lastJobTakenAt);
   const today = new Date();
   const diffInMs = Math.abs(today - dateObj);
   const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
-
+  useEffect(() => {
+    dispatch(getUserEducationInfo(user._id)).then((action) => {
+      setData(action.payload.data);
+      setIsDataLoading(false);
+    });
+  }, [user]);
   return (
     <>
       <Box sx={{}}>

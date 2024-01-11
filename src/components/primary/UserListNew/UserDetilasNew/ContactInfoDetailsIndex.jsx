@@ -66,32 +66,12 @@ const ContactInfoDetailsIndex = ({
               <SingleItem ItemTitle={"Permanent Address"} Item={user.presentAddress} />
               <DetailsItemThree
                 Item1Title={"Emergency Contact Person"}
-                Item1={data.emergencyContact.contactPersonName}
+                Item1={data.emergencyContact?.contactPersonName}
                 Item2Title={"Relation"}
-                Item2={user.qaiUserName}
+                Item2={data.emergencyContact?.relationship}
                 isBlocked={user.isBlocked}
                 Item3Title={"Mobile Number"}
-                Item3={
-                  user.role === "level_1_annotator"
-                    ? "Level 1 Annotator"
-                    : user.role === "level_2_annotator"
-                    ? "Level 2 Annotator"
-                    : user.role === "level_0_annotator"
-                    ? "Level 0 Annotator"
-                    : user.role === "level_3_annotator"
-                    ? "Level 3 Annotator"
-                    : user.role === "project_delivery_lead"
-                    ? "Project Delivery Lead"
-                    : user.role === "delivery_lead"
-                    ? "Delivery Lead"
-                    : user.role === "project_coordinator"
-                    ? "Project Coordinator"
-                    : user.role === "project_manager"
-                    ? "Project Manager"
-                    : user.role === "recruitment_manager"
-                    ? "Recruitment Manager"
-                    : capitalizeFirstLetter(user?.role)
-                }
+                Item3={data.emergencyContact?.contactNumber}
               />
               <SingleItem ItemTitle={"Address"} Item={user.presentAddress} />
 

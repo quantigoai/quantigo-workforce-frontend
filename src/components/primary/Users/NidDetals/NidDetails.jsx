@@ -1,4 +1,4 @@
-import {Box, Grid, IconButton, Modal, Paper, Skeleton, Stack, Typography} from "@mui/material";
+import { Box, Grid, IconButton, Modal, Paper, Skeleton, Stack, Typography } from "@mui/material";
 import u_multiply from "../../../../assets/images/crosIcon.svg"; // Import your close (cross) button icon here
 import ImageSwiperIndex from "./ImageSwiperIndex";
 
@@ -148,7 +148,7 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                         </Stack>
                       </Box>
                       <Box sx={{ paddingTop: "2%" }}>
-                        <ImageSwiperIndex/>
+                        <ImageSwiperIndex images={documentImage} />
                         {/* <img
                           // src={`data:image/jpeg;base64,${documentImage}`}
                           src={documentImage}

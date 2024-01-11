@@ -144,6 +144,7 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
         renderInput={(params) => (
           <MyTextField
             {...params}
+            placeholder="select your institution or add a new one"
             sx={{
               backgroundColor: editAble ? "" : "neutral.N400",
               fontSize: "14px",

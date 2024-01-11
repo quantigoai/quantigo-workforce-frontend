@@ -10,8 +10,8 @@ import image2 from "../../../../assets/images/image-annotation.jpg";
 import image3 from "../../../../assets/images/logoBlue.png";
 import image4 from "../../../../assets/images/loginWMP.png";
 
-const images = [image1, image2, image3, image4];
-const ImageSwiperIndex = () => {
+// const images = [image1, image2, image3, image4];
+const ImageSwiperIndex = ({ images }) => {
   const pagination = {
     clickable: true,
     renderBullet: function (index, className) {
@@ -30,11 +30,12 @@ const ImageSwiperIndex = () => {
           modules={[Pagination, Navigation]}
           className="mySwiper"
         >
-          {images.map((item) => (
-            <SwiperSlide key={item}>
-              <img src={item} />
-            </SwiperSlide>
-          ))}
+          {images &&
+            images.map((item) => (
+              <SwiperSlide key={item}>
+                <img src={item} />
+              </SwiperSlide>
+            ))}
         </Swiper>
       </Box>
     </>

@@ -1,6 +1,7 @@
 import { Button, Grid, Typography } from "@mui/material";
 import React from "react";
 import ModalImage from "./ModalImage";
+import ViewIcon from "../../../../assets/images/dashboardIcon/ViewIcon.svg";
 const styleBtn = {
   width: "100%",
   textTransform: "none",
@@ -14,7 +15,7 @@ const styleBtn = {
     border: "1px solid #2E58FF",
   },
 };
-const ImageShowInModal = () => {
+const ImageShowInModal = ({ images, level }) => {
   const [openModal, setOpenModal] = React.useState(false);
   const handleDetailNid = () => {
     setOpenModal(true);
@@ -23,29 +24,25 @@ const ImageShowInModal = () => {
   return (
     <>
       <Grid>
-        <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-          <Button
-            sx={styleBtn}
-            // disabled={isDisabled}
-            onClick={() => handleDetailNid()}
-          >
+        <Grid item xs={12} sx={{ paddingRight: "0%" }}>
+          <Button sx={styleBtn} disabled={images.length === 0 ? true : false} onClick={() => handleDetailNid()}>
             <Typography
               variant="wpf_p3_medium"
-              //   color={user.documentNo ? "primary.B200" : ""}
-              //   sx={{ paddingRight: "4%", filter: isDisabled ? "grayscale(100%) opacity(50%)" : "" }}
+              color={images.length != 0 ? "primary.B200" : ""}
+              sx={{ paddingRight: "4%", filter: images.length === 0 ? "grayscale(100%) opacity(50%)" : "" }}
             >
-              Document
+              {level}
             </Typography>
-            {/* <img
+            <img
               style={{
-                filter: "grayscale(100%) opacity(50%)"
+                filter: images.length === 0 ? "grayscale(100%) opacity(50%)" : "",
               }}
               src={ViewIcon}
-            /> */}
+            />
           </Button>
         </Grid>
       </Grid>
-      <ModalImage openModal={openModal} handleClose={handleClose} />
+      <ModalImage openModal={openModal} handleClose={handleClose} images={images} />
     </>
   );
 };

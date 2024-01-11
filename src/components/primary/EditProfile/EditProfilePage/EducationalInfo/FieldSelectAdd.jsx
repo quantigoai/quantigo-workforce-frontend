@@ -113,6 +113,7 @@ const FieldSelectAdd = ({ label, disableItem, editAble, field, setField, isCheck
         renderInput={(params) => (
           <MyTextField
             {...params}
+            placeholder="select your Field of Study"
             sx={{
               backgroundColor: editAble ? "" : "neutral.N400",
               fontSize: "14px",

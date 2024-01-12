@@ -157,8 +157,7 @@ const InstitutionSelectAdd = ({
         selectOnFocus={true}
         clearOnBlur
         handleHomeEndKeys
-        renderOption={(props, option) => <li {...props}>{option.name} </li>;
-        }
+        renderOption={(props, option) => <li {...props}>{option.name} </li>}
         sx={{
           border: '1px solid #E6ECF5 !important',
           height: '40px',

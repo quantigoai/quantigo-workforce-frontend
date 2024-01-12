@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Typography,
-  styled,
-} from "@mui/material";
+import { Typography, styled } from "@mui/material";
 import axios from "axios";
 const filter = createFilterOptions();
 const MyTextField = styled(TextField)(() => ({
@@ -107,7 +98,6 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
           const filtered = filter(options, params);
 
           const { inputValue } = params;
-          // Suggest the creation of a new value
           const isExisting = options.some((option) => inputValue === option.name);
           if (inputValue !== "" && !isExisting) {
             filtered.push({
@@ -123,18 +113,23 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
           if (typeof option === "string") {
             return option;
           }
-
+          if (option && option.inputValue) {
+            return option.inputValue;
+          }
           if (option && option.name) {
             return option.name;
           }
 
           return "";
         }}
+        getOptionSelected={(option, value) =>
+          option.inputValue ? value.inputValue === option.inputValue : value.name === option.name
+        }
         disabled={disableItem ? true : isChecked ? true : !editAble}
         selectOnFocus
         clearOnBlur
         handleHomeEndKeys
-        renderOption={(props, option) => <li {...props}>{option.name}</li>}
+        renderOption={(props, option) => <li {...props}>{option.name} </li>}
         sx={{
           border: "1px solid #E6ECF5 !important",
           height: "40px",

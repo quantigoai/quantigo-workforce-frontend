@@ -4,6 +4,8 @@ import { useDropzone } from "react-dropzone";
 import CloseIcon from "@mui/icons-material/Close";
 import ndaUploadStyle from "../../../Nda/ndaUploadStyle";
 import { useSelector } from "react-redux";
+import ctaImage from "../../../../../assets/images/CTA.png";
+import IconImage from "../../../../../assets/images/Icon.png";
 const baseStyle = {
   flex: 1,
   display: "flex",
@@ -30,14 +32,15 @@ const thumb = {
   // border: "1px solid #eaeaea",
   marginBottom: 8,
   marginRight: 8,
-  width: 300,
-  height: 200,
+  width: "140px",
+  height: "140px",
   padding: 4,
+
   boxSizing: "border-box",
 };
 
 const thumbInner = {
-  display: "flex",
+  // display: "flex",e
   position: "relative",
   minWidth: 0,
   overflow: "hidden",
@@ -50,7 +53,7 @@ const img = {
   borderRadius: "15px",
 };
 
-const UploadImagesField = ({ editAble, label, files, setFiles }) => {
+const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, imagesCopy, setRemoveImages }) => {
   console.log("🚀 ~ UploadImagesField ~ files:", files);
   // const [files, setFiles] = useState([]);
   const { isLightTheme } = useSelector((state) => state.theme);
@@ -141,13 +144,13 @@ const UploadImagesField = ({ editAble, label, files, setFiles }) => {
               onClick={() => handleDelete(file)}
               sx={{
                 position: "absolute",
-                top: -1,
-                right: 0,
+                top: -2,
+                right: -1,
                 backgroundColor: "#FF4757",
                 color: "#fff",
-                width: "35px",
+                width: "30px",
                 // fontSize: "10px",
-                height: "35px",
+                height: "30px",
                 textAlign: "center",
                 borderRadius: "50%",
                 "&:hover": { backgroundColor: "#F53142" },
@@ -171,6 +174,9 @@ const UploadImagesField = ({ editAble, label, files, setFiles }) => {
   });
 
   const handleDelete = (fileToDelete) => {
+    if (!fileToDelete.name) {
+      setRemoveImages((prevRemoveImages) => [...prevRemoveImages, fileToDelete]);
+    }
     setFiles((prevFiles) => prevFiles.filter((file) => file !== fileToDelete));
   };
   useEffect(() => {
@@ -185,12 +191,12 @@ const UploadImagesField = ({ editAble, label, files, setFiles }) => {
         <Box
           sx={{
             display: "flex",
-            flexDirection: "row",
+            flexDirection: "column",
             justifyContent: "space-between",
             alignItems: "center",
             width: "100%",
             borderWidth: 2,
-            borderRadius: 4,
+            borderRadius: 8,
             height: "100%",
             borderColor: files.length === 5 ? "rgba(70, 70, 70, 0.1)" : "rgba(70, 70, 70, 0.2)",
             borderStyle: "dashed",
@@ -201,20 +207,48 @@ const UploadImagesField = ({ editAble, label, files, setFiles }) => {
           }}
         >
           <Box
-            sx={{ width: "20%", ml: 1, disabled: "true" }}
+            sx={{
+              width: "95%",
+              ml: 2,
+              mt: 2,
+              backgroundColor: isLightTheme ? "red" : "#2C2C2C",
+            }}
             {...getRootProps({
               // className: `dropzone ${files.length === 5 ? "disabled" : ""}`
               style,
             })}
           >
             <input {...getInputProps()} />
-            <Box>
-              <Typography sx={{ color: files.length === 5 ? "gray" : "#000" }} variant="contained">
-                Upload your {label}
+            <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "20px", mb: 2 }}>
+              <img
+                style={{
+                  width: "30px",
+                  filter: files.length === 5 || !editAble ? "grayscale(100%)" : "",
+                }}
+                src={IconImage}
+              />
+              <Typography
+                sx={{ color: files.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff" }}
+                variant="wpf_p2_regular"
+              >
+                Drag and Drop your Certificate files here or Browse” (JPG/ JPEG / PNG)
               </Typography>
+              <Typography
+                variant="wpf_p2_regular"
+                sx={{
+                  paddingBottom: "2%",
+                  color: files.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff",
+                }}
+              >
+                Maximum file size: 1Mb.
+              </Typography>
+              <img
+                style={{ width: "30px", filter: files.length === 5 || !editAble ? "grayscale(100%)" : "" }}
+                src={ctaImage}
+              />
             </Box>
           </Box>
-          <Box sx={{ display: "flex", width: "80%", justifyContent: "center" }}>
+          <Box sx={{ display: "flex", width: "100%", justifyContent: "center", padding: "20px" }}>
             <Box>{files.length <= 5 && thumbs} </Box>
             <Typography variant="wpf_p4_medium" color="error.500">
               {files.length > 5 || error ? "you have selected more than 5 files" : ""}
@@ -222,30 +256,6 @@ const UploadImagesField = ({ editAble, label, files, setFiles }) => {
           </Box>
         </Box>
       </Box>
-      {/* <Box className="container" sx={{ width: "100%" }}>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "100%",
-          }}
-          // {...getRootProps({ className: `dropzone ${files.length === 5 ? "disabled" : ""}` })}
-          {...getRootProps({ style })}
-        >
-          <input {...getInputProps()} />
-          <Typography variant="contained" sx={{ color: files.length === 5 ? "gray" : "#000" }}>
-            Upload your {label}{" "}
-          </Typography>
-        </Box>
-        <Box sx={{ mt: 2, border: " 1px solid  #EAECF0" }}>
-          <Box>{files.length <= 5 && thumbs} </Box>
-          <Typography variant="wpf_p4_medium" color="error.500">
-            {files.length > 5 || error ? "you have selected more than 5 files" : ""}
-          </Typography>
-        </Box>
-      </Box> */}
     </>
   );
 };

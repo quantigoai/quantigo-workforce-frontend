@@ -4,12 +4,45 @@ import ProfilePicture from "../MyProfile/ProfilePicture";
 import { Box, Button, Grid, TextField, Typography, styled } from "@mui/material";
 import FieldForProfile from "../FieldForProfile";
 import PasswordFieldForProfile from "../../PasswordFieldForProfile";
-import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
+// import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
 import UploadImagesField from "./UploadImagesField";
 import SelectFieldForProfile from "../SelectFieldForProfile";
 import { updateMyVerification } from "../../../../../features/slice/userSlice";
 import useToaster from "../../../../../customHooks/useToaster";
 import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
+
+const TextFieldQuestion = styled(TextField)(() => ({
+  // borderRadius: "8px 0px 0px 8px",
+  "& .MuiOutlinedInput-root": {
+    height: "40px",
+    fontSize: "14px",
+    border: "2px solid #E6ECF5 !important",
+    backgroundColor: "#F9FAFB",
+    backgroundColor: "neutral.N000",
+
+    // borderRadius: "8px",
+    borderRadius: "8px 0px 0px 8px",
+    "@media (max-width: 1439px)": {
+      fontSize: "12px",
+    },
+    "@media (mix-width: 1920px)": {
+      fontSize: "14px",
+    },
+  },
+  "& .MuiOutlinedInput-input": {
+    padding: "0px 0px 0px 8px",
+  },
+  "& .MuiOutlinedInput-notchedOutline ": {},
+  "& .MuiInputBase-input.Mui-disabled": {
+    WebkitTextFillColor: "#56627a",
+  },
+  "& .MuiFormHelperText-root": {
+    color: "#F04438",
+    "&.Mui-error": {
+      color: "#F04438",
+    },
+  },
+}));
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -38,6 +71,16 @@ const VerificationInfoIndex = () => {
   const [errorResume, setErrorResume] = useState("");
   const [documentType, setDocumentType] = useState(user.extraDocumentType);
   const [images, setImages] = useState(user.extraDocumentImages);
+  const [imagesCopy, setImagesCopy] = useState(user.extraDocumentImages);
+  const [removeImagesUpdate, setRemoveImagesUpdate] = useState([
+    {
+      name: "",
+      isRemoved: false,
+    },
+  ]);
+  const [removeImages, setRemoveImages] = useState([]);
+  console.log("🚀 ~ VerificationInfoIndex ~ removeImages:", removeImages);
+
   const dispatch = useDispatch();
   const toast = useToaster();
   const handleEditProfile = () => {
@@ -73,6 +116,8 @@ const VerificationInfoIndex = () => {
       resume,
       images,
     };
+
+    console.log(removeImagesUpdate);
     const formData = new FormData();
     formData.append("extraDocumentType", documentType);
     formData.append("extraDocumentNo", nidNumber);
@@ -84,9 +129,41 @@ const VerificationInfoIndex = () => {
         formData.append("images", item);
       }
     });
+    console.log("🚀 ~ images.forEach ~ images:", images);
 
     photo.length != 0 && formData.append("photo", photo);
     resume.length != 0 && formData.append("resume", resume);
+
+    if (user.extraDocumentImages.length != 0) {
+      user.extraDocumentImages.map((item, index) => {
+        console.log(user.extraDocumentImages);
+        console.log("🚀 ~ user.extraDocumentImages.map ~ index:", index, item);
+        const tempData = {
+          name: "",
+          isRemoved: false,
+        };
+        if (removeImages.length != 0) {
+          removeImages.map((removeImage) => {
+            if (item === removeImage) {
+              tempData.name = item;
+              tempData.isRemoved = true;
+            } else {
+              tempData.name = item;
+              tempData.isRemoved = false;
+            }
+            console.log(tempData);
+            formData.append(`removedImages[${index}][name]`, tempData.name);
+            formData.append(`removedImages[${index}][isRemoved]`, tempData.isRemoved);
+            // setRemoveImagesUpdate(...tempData);
+          });
+        } else {
+          tempData.name = item;
+          tempData.isRemoved = false;
+          formData.append(`removedImages[${index}][name]`, tempData.name);
+          formData.append(`removedImages[${index}][isRemoved]`, tempData.isRemoved);
+        }
+      });
+    }
 
     const finalImageData = {
       id: user._id,
@@ -244,7 +321,7 @@ const VerificationInfoIndex = () => {
                                 borderRadius: "8px",
 
                                 zIndex: 2,
-                                backgroundColor: "#fff",
+                                backgroundColor: "neutral.N00",
                               }}
                               onClick={() => handleClick(user.standardPhoto)}
                             >
@@ -276,7 +353,7 @@ const VerificationInfoIndex = () => {
                                 border: "2px solid #E6ECF5 !important",
                                 borderRadius: "0px 8px 8px 0px",
                                 zIndex: 2,
-                                backgroundColor: "#fff",
+                                backgroundColor: "neutral.N00",
                               }}
                             >
                               <i color="#2E58FF" className="ri-upload-2-line"></i>
@@ -362,7 +439,7 @@ const VerificationInfoIndex = () => {
                                 border: "2px solid #E6ECF5 !important",
                                 borderRadius: "8px",
                                 zIndex: 2,
-                                backgroundColor: "#fff",
+                                backgroundColor: "neutral.N00",
                               }}
                               onClick={() => handleClick(user.resume)}
                             >
@@ -394,7 +471,7 @@ const VerificationInfoIndex = () => {
                                 border: "2px solid #E6ECF5 !important",
                                 borderRadius: "0px 8px 8px 0px",
                                 zIndex: 2,
-                                backgroundColor: "#fff",
+                                backgroundColor: "neutral.N00",
                               }}
                             >
                               <i color="#2E58FF" className="ri-upload-2-line"></i>
@@ -482,6 +559,9 @@ const VerificationInfoIndex = () => {
                 label={`${documentType} Photo`}
                 files={images}
                 setFiles={setImages}
+                setImagesCopy={setImagesCopy}
+                imagesCopy={imagesCopy}
+                setRemoveImages={setRemoveImages}
               />
               {/* </Grid> */}
             </Box>

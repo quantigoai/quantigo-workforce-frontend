@@ -7,7 +7,7 @@ const style = {
   flexDirection: "column",
   position: "absolute",
   top: "50%",
-  left: "50%",
+  left: "41%",
   transform: "translate(-50%, -50%)",
   // bgcolor: "background.paper",
   // border: "none",
@@ -77,7 +77,7 @@ const ModalImage = ({ openModal, handleClose, images }) => {
                 <Box
                   // container
                   sx={{
-                    width: "600px",
+                    width: "920px",
                     justifyContent: "center",
                     borderRadius: "10px",
                     padding: "2%",

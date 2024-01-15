@@ -13,10 +13,10 @@ import axios from "axios";
 import useToaster from "../../../../../customHooks/useToaster";
 import { readMyProfile, updateMyContact } from "../../../../../features/slice/userSlice";
 const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
-  console.log("🚀 ~ ContactInfoIndex ~ user:", user)
+  console.log("🚀 ~ ContactInfoIndex ~ user:", user);
   const toast = useToaster();
   const url = import.meta.env.VITE_APP_SERVER_URL;
-  // const { user, isLoading } = useSelector((state) => state.user);
+  const { isLoading } = useSelector((state) => state.user);
   const [contactNo, setContactNo] = useState(user.contactNo);
   const [billingAccountNo, setBillingAccountNo] = useState(user.billingAccountNo);
   // const [editAble, setEditAble] = useState(false);

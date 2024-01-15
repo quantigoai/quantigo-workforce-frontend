@@ -24,6 +24,10 @@ const ImageSwiperIndex = ({ images, level }) => {
       {/* <Box sx={{ height: "518px" }}> */}
       <Box sx={{ height: level === "Standard Photo" ? "400px" : "518px" }}>
         <Swiper
+          style={{
+            "--swiper-navigation-color": "#fff",
+            "--swiper-pagination-color": "#fff",
+          }}
           pagination={{
             type: "fraction",
           }}
@@ -34,7 +38,7 @@ const ImageSwiperIndex = ({ images, level }) => {
           {images &&
             images.map((item) => (
               <SwiperSlide key={item}>
-                <img src={item} />
+                <img src={item} style={{ borderRadius: "8px" }} />
               </SwiperSlide>
             ))}
         </Swiper>

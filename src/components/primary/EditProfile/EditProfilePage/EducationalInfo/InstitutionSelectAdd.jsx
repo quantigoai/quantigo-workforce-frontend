@@ -1,42 +1,35 @@
-import { Typography, styled } from '@mui/material';
-import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { Typography, styled } from "@mui/material";
+import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 const filter = createFilterOptions();
 const MyTextField = styled(TextField)(() => ({
-  '& .MuiOutlinedInput-notchedOutline': {
-    border: '1px solid #E6ECF5 !important',
-    borderRadius: '8px',
+  "& .MuiOutlinedInput-notchedOutline": {
+    border: "1px solid #E6ECF5 !important",
+    borderRadius: "8px",
   },
-  '& .MuiInputBase-root': {
-    height: '40px',
-    fontSize: '14px',
-    color: '#3C4D6B',
-    padding: '0px 5px',
+  "& .MuiInputBase-root": {
+    height: "40px",
+    fontSize: "14px",
+    color: "#3C4D6B",
+    padding: "0px 5px",
   },
-  '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
     border: `1px solid #2E58FF !important`,
   },
-  '& .MuiInputBase-input.Mui-focused': {
-    color: 'blue',
+  "& .MuiInputBase-input.Mui-focused": {
+    color: "blue",
   },
 }));
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
-const InstitutionSelectAdd = ({
-  label,
-  disableItem,
-  editAble,
-  institution,
-  isChecked,
-  setInstitution,
-}) => {
+const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChecked, setInstitution }) => {
   const [open, toggleOpen] = React.useState(false);
   const [allInstitute, setAllInstitute] = useState([]);
 
-  const [newInput, setNewInput] = useState('');
-  const [tempName, setTempName] = useState('');
+  const [newInput, setNewInput] = useState("");
+  const [tempName, setTempName] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -52,16 +45,12 @@ const InstitutionSelectAdd = ({
         });
       })
       .finally(() => {
-        axios
-          .get(`${url}/educational-institute`)
-          .then((data) => setAllInstitute(data.data.educationalInstitute));
+        axios.get(`${url}/educational-institute`).then((data) => setAllInstitute(data.data.educationalInstitute));
       });
     // handleClose();
   };
   useEffect(() => {
-    axios
-      .get(`${url}/educational-institute`)
-      .then((data) => setAllInstitute(data.data.educationalInstitute));
+    axios.get(`${url}/educational-institute`).then((data) => setAllInstitute(data.data.educationalInstitute));
   }, [editAble]);
 
   const addNewValue = (value) => {
@@ -76,16 +65,14 @@ const InstitutionSelectAdd = ({
         });
       })
       .finally(() => {
-        axios
-          .get(`${url}/educational-institute`)
-          .then((data) => setAllInstitute(data.data.educationalInstitute));
+        axios.get(`${url}/educational-institute`).then((data) => setAllInstitute(data.data.educationalInstitute));
       });
   };
   return (
     <React.Fragment>
       <Typography
         sx={{
-          color: 'neutral.N300',
+          color: "neutral.N300",
 
           // mb: 1.5,
         }}
@@ -96,7 +83,7 @@ const InstitutionSelectAdd = ({
       <Autocomplete
         style={{ padding: 0 }}
         value={institution}
-        onChange={(newValue) => {
+        onChange={(event, newValue) => {
           if (newValue && newValue.inputValue) {
             setInstitution({
               name: newValue.inputValue,
@@ -112,7 +99,7 @@ const InstitutionSelectAdd = ({
         onKeyDown={(ev) => {
           const institutes = allInstitute.map((item) => item.name);
           if (!institutes.includes(ev.target.value)) {
-            if (ev.key === 'Enter') {
+            if (ev.key === "Enter") {
               ev.preventDefault();
               handleSubmit(ev);
             }
@@ -122,10 +109,8 @@ const InstitutionSelectAdd = ({
           const filtered = filter(options, params);
 
           const { inputValue } = params;
-          const isExisting = options.some(
-            (option) => inputValue === option.name,
-          );
-          if (inputValue !== '' && !isExisting) {
+          const isExisting = options.some((option) => inputValue === option.name);
+          if (inputValue !== "" && !isExisting) {
             filtered.push({
               inputValue,
               name: `Add "${inputValue}"`,
@@ -136,7 +121,7 @@ const InstitutionSelectAdd = ({
         }}
         options={allInstitute}
         getOptionLabel={(option) => {
-          if (typeof option === 'string') {
+          if (typeof option === "string") {
             return option;
           }
           if (option && option.inputValue) {
@@ -146,21 +131,19 @@ const InstitutionSelectAdd = ({
             return option.name;
           }
 
-          return tempName || '';
+          return tempName || "";
         }}
         getOptionSelected={(option, value) =>
-          option.inputValue
-            ? value.inputValue === option.inputValue
-            : value.name === option.name
+          option.inputValue ? value.inputValue === option.inputValue : value.name === option.name
         }
         disabled={disableItem ? true : isChecked ? true : !editAble}
-        selectOnFocus={true}
+        selectOnFocus
         clearOnBlur
         handleHomeEndKeys
         renderOption={(props, option) => <li {...props}>{option.name} </li>}
         sx={{
-          border: '1px solid #E6ECF5 !important',
-          height: '40px',
+          border: "1px solid #E6ECF5 !important",
+          height: "40px",
           mt: 0.6,
         }}
         freeSolo
@@ -169,10 +152,10 @@ const InstitutionSelectAdd = ({
             {...params}
             placeholder="select your institution or add a new one"
             sx={{
-              backgroundColor: editAble ? '' : 'neutral.N400',
-              fontSize: '14px',
-              borderRadius: '8px',
-              height: '40px',
+              backgroundColor: editAble ? "" : "neutral.N400",
+              fontSize: "14px",
+              borderRadius: "8px",
+              height: "40px",
             }}
             disabled={disableItem ? true : isChecked ? true : !editAble}
             variant="outlined"

@@ -54,7 +54,6 @@ const img = {
 };
 
 const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, imagesCopy, setRemoveImages }) => {
-  console.log("🚀 ~ UploadImagesField ~ files:", files);
   // const [files, setFiles] = useState([]);
   const { isLightTheme } = useSelector((state) => state.theme);
   // const { baseUploadBoxStyle } = ndaUploadStyle(isLightTheme);
@@ -69,7 +68,7 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
     borderWidth: 2,
     borderRadius: 10,
     height: "200px",
-    borderColor: files?.length === 5 ? "rgba(70, 70, 70, 0.1)" : "rgba(70, 70, 70, 0.2)",
+    borderColor: files?.length === 5 ? "rgba(70, 70, 70, 0.2)" : "rgba(70, 70, 70, 0.6)",
     borderStyle: "dashed",
     // backgroundColor: isLightTheme ? "primary.B200" : "neutral.N400",
     backgroundColor: isLightTheme ? "#FAFBFC" : "#2C2C2C",
@@ -132,7 +131,7 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
       ...baseUploadBoxStyle,
       ...(isFocused ? focusedStyle : {}),
     }),
-    [isFocused]
+    [isFocused, isLightTheme]
   );
 
   const thumbs = files?.map((file, index) => {
@@ -211,7 +210,6 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
               width: "95%",
               ml: 2,
               mt: 2,
-              backgroundColor: isLightTheme ? "red" : "#2C2C2C",
             }}
             {...getRootProps({
               // className: `dropzone ${files.length === 5 ? "disabled" : ""}`

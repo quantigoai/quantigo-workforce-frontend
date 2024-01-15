@@ -104,9 +104,6 @@ const EducationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
     // console.log(params.current);
   };
 
-
- 
-
   const handleCancel = () => {
     setEditAble(false);
   };
@@ -171,14 +168,14 @@ const EducationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
     for (let pair of formData.entries()) {
       console.log(pair[0] + ", " + pair[1]);
     }
-    // dispatch(updateMyEducation(finalData)).then((action) => {
-    //   if (action.error) {
-    //     toast.trigger(action.error.message, "error");
-    //   } else {
-    //     toast.trigger("Profile Update Successfully", "success");
-    //     setEditAble(false);
-    //   }
-    // });
+    dispatch(updateMyEducation(finalData)).then((action) => {
+      if (action.error) {
+        toast.trigger(action.error.message, "error");
+      } else {
+        toast.trigger("Profile Update Successfully", "success");
+        setEditAble(false);
+      }
+    });
   };
 
   return (

@@ -12,14 +12,14 @@ import SelectFieldForBdInfo from "./SelectFieldForBdInfo";
 import axios from "axios";
 import useToaster from "../../../../../customHooks/useToaster";
 import { readMyProfile, updateMyContact } from "../../../../../features/slice/userSlice";
-const ContactInfoIndex = () => {
+const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
+  console.log("🚀 ~ ContactInfoIndex ~ user:", user)
   const toast = useToaster();
   const url = import.meta.env.VITE_APP_SERVER_URL;
-  const { user, isLoading } = useSelector((state) => state.user);
-  console.log("🚀 ~ file: ContactInfoIndex.jsx:19 ~ ContactInfoIndex ~ user:", user);
+  // const { user, isLoading } = useSelector((state) => state.user);
   const [contactNo, setContactNo] = useState(user.contactNo);
   const [billingAccountNo, setBillingAccountNo] = useState(user.billingAccountNo);
-  const [editAble, setEditAble] = useState(false);
+  // const [editAble, setEditAble] = useState(false);
   const [divisions, setDivisions] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [subdistricts, setSubDistricts] = useState([]);
@@ -448,97 +448,162 @@ const ContactInfoIndex = () => {
       <>
         <Box
           sx={{
-            flex: "1",
+            overflowY: "auto",
+            "&::-webkit-scrollbar": {
+              width: "0",
+            },
             height: {
-              lg: "95%",
-              xl: "100%",
-              xxl: "100%",
+              lg: "78%",
+              xl: "71%",
+              xxl: "75%",
             },
           }}
         >
           <Box
             sx={{
-              // flex: "0 0 auto",
-              height: {
-                lg: "17%",
-                xl: "17%",
-                xxl: "17%",
-              },
-              // backgroundColor: "yellow",
-            }}
-          >
-            <ProfilePicture
-              user={user}
-              editAble={editAble}
-              handleEditProfile={handleEditProfile}
-              //   coverImage={coverImage}
-              //   handleImage={handleImage}
-              //   coverImageFile={coverImageFile}
-            />
-          </Box>
-
-          <Box
-            sx={{
-              overflowY: "auto",
-              "&::-webkit-scrollbar": {
-                width: "0",
-              },
-              height: {
-                lg: "78%",
-                xl: "71%",
-                xxl: "75%",
-              },
+              height: "100%",
             }}
           >
             <Box
               sx={{
                 height: "100%",
+                "&::-webkit-scrollbar": {
+                  width: "0",
+                },
+                overflowY: "auto",
               }}
             >
-              <Box
-                sx={{
-                  height: "100%",
-                  "&::-webkit-scrollbar": {
-                    width: "0",
-                  },
-                  overflowY: "auto",
-                }}
-              >
-                {/* <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
+              {/* <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
                   <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
                     Personal Information
                   </Typography>
                 </Grid> */}
 
-                <Grid container sx={{ paddingBottom: "20px" }}>
-                  <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                    <PasswordFieldForProfile
-                      name="phone"
-                      label={"Phone No."}
-                      defaultValue={contactNo}
-                      disableItem={false}
-                      handleChange={handlePhoneNumberChange}
-                      editAble={editAble}
-                      phone={contactNo}
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <PasswordFieldForProfile
-                      name="billingAccountNo"
-                      label={"Nagad No."}
-                      defaultValue={billingAccountNo}
-                      disableItem={false}
-                      handleChange={handlebillingAccountNoChange}
-                      editAble={editAble}
-                      phone={billingAccountNo}
-                    />
-                  </Grid>
+              <Grid container sx={{ paddingBottom: "20px" }}>
+                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                  <PasswordFieldForProfile
+                    name="phone"
+                    label={"Phone No."}
+                    defaultValue={contactNo}
+                    disableItem={false}
+                    handleChange={handlePhoneNumberChange}
+                    editAble={editAble}
+                    phone={contactNo}
+                  />
                 </Grid>
+                <Grid item xs={6}>
+                  <PasswordFieldForProfile
+                    name="billingAccountNo"
+                    label={"Nagad No."}
+                    defaultValue={billingAccountNo}
+                    disableItem={false}
+                    handleChange={handlebillingAccountNoChange}
+                    editAble={editAble}
+                    phone={billingAccountNo}
+                  />
+                </Grid>
+              </Grid>
 
-                <Grid container sx={{ paddingTop: "%", paddingBottom: "1%" }}>
+              <Grid container sx={{ paddingTop: "%", paddingBottom: "1%" }}>
+                <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
+                  Present Address
+                </Typography>
+              </Grid>
+
+              <Grid container sx={{ paddingBottom: "20px" }}>
+                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                  <SelectFieldForBdInfo
+                    name="Division"
+                    label={"Division"}
+                    defaultValue={presentAddress.division.name}
+                    disableItem={false}
+                    editAble={editAble}
+                    handleChange={handleChangeDivision}
+                    options={divisions}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <SelectFieldForBdInfo
+                    name="District"
+                    label={"District"}
+                    defaultValue={presentAddress.district.name}
+                    disableItem={false}
+                    editAble={editAble}
+                    handleChange={handleChangeDistricts}
+                    options={districts}
+                  />
+                </Grid>
+              </Grid>
+              <Grid container sx={{ paddingBottom: "20px" }}>
+                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                  <SelectFieldForBdInfo
+                    name="Sub-District"
+                    label={"Sub-District"}
+                    defaultValue={presentAddress.subdistrict.name}
+                    disableItem={false}
+                    editAble={editAble}
+                    handleChange={handleChangeSubDistricts}
+                    options={subdistricts}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <FieldForProfile
+                    name="presentAddress"
+                    label={"City / Village"}
+                    defaultValue={presentAddress.area}
+                    disableItem={false}
+                    handleChange={handleChangeSubDistrictsCity}
+                    editAble={editAble}
+                  />
+                </Grid>
+              </Grid>
+              <Grid container sx={{ paddingBottom: "20px" }}>
+                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                  <FieldForProfile
+                    name="presentAddress"
+                    label={"Road Number"}
+                    defaultValue={presentAddress.roadNo}
+                    disableItem={false}
+                    handleChange={handleChangeSubDistrictsRoadNumber}
+                    editAble={editAble}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <FieldForProfile
+                    name="presentAddress"
+                    label={"House Number"}
+                    defaultValue={presentAddress.houseNo}
+                    disableItem={false}
+                    handleChange={handleChangeSubDistrictsHouseNumber}
+                    editAble={editAble}
+                  />
+                </Grid>
+              </Grid>
+
+              {/* Permanent Address */}
+
+              <>
+                <Grid container sx={{ paddingTop: "%", paddingBottom: "0%" }}>
                   <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
-                    Present Address
+                    Permanent Address
                   </Typography>
+                </Grid>
+                <Grid container>
+                  <FormControlLabel
+                    control={<Checkbox checked={isChecked} onChange={handleCheckboxChange} />}
+                    label={
+                      <Typography
+                        sx={{
+                          color: "neutral.N300",
+
+                          // mb: 1,
+                        }}
+                        variant="wpf_p4_medium"
+                      >
+                        Same as Present Address{" "}
+                      </Typography>
+                    }
+                  />
                 </Grid>
 
                 <Grid container sx={{ paddingBottom: "20px" }}>
@@ -546,22 +611,24 @@ const ContactInfoIndex = () => {
                     <SelectFieldForBdInfo
                       name="Division"
                       label={"Division"}
-                      defaultValue={presentAddress.division.name}
+                      defaultValue={permanentAddress.division.name}
                       disableItem={false}
                       editAble={editAble}
-                      handleChange={handleChangeDivision}
-                      options={divisions}
+                      handleChange={handleChangeDivisionPermanent}
+                      options={divisionsPermanent}
+                      isChecked={isChecked}
                     />
                   </Grid>
                   <Grid item xs={6}>
                     <SelectFieldForBdInfo
                       name="District"
                       label={"District"}
-                      defaultValue={presentAddress.district.name}
+                      defaultValue={permanentAddress.district.name}
                       disableItem={false}
                       editAble={editAble}
-                      handleChange={handleChangeDistricts}
-                      options={districts}
+                      handleChange={handleChangeDistrictsPermanent}
+                      options={districtsPermanent}
+                      isChecked={isChecked}
                     />
                   </Grid>
                 </Grid>
@@ -570,20 +637,139 @@ const ContactInfoIndex = () => {
                     <SelectFieldForBdInfo
                       name="Sub-District"
                       label={"Sub-District"}
-                      defaultValue={presentAddress.subdistrict.name}
+                      defaultValue={permanentAddress.subdistrict.name}
                       disableItem={false}
                       editAble={editAble}
-                      handleChange={handleChangeSubDistricts}
-                      options={subdistricts}
+                      handleChange={handleChangeSubDistrictsPermanent}
+                      options={subdistrictsPermanent}
+                      isChecked={isChecked}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <FieldForProfile
+                      name="presentAddress"
+                      label={"Area"}
+                      defaultValue={permanentAddress.area}
+                      disableItem={false}
+                      handleChange={handleChangePermanentCity}
+                      editAble={editAble}
+                      isChecked={isChecked}
+                    />
+                  </Grid>
+                </Grid>
+                <Grid container sx={{ paddingBottom: "20px" }}>
+                  <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                    <FieldForProfile
+                      name="presentAddress"
+                      label={"Road Number"}
+                      defaultValue={permanentAddress.roadNo}
+                      disableItem={false}
+                      handleChange={handleChangePermanentRoadNumber}
+                      editAble={editAble}
+                      isChecked={isChecked}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <FieldForProfile
+                      name="presentAddress"
+                      label={"House Number"}
+                      defaultValue={permanentAddress.houseNo}
+                      disableItem={false}
+                      handleChange={handleChangePermanentHouseNumber}
+                      editAble={editAble}
+                      isChecked={isChecked}
+                    />
+                  </Grid>
+                </Grid>
+              </>
+
+              {/* EmergencyContactInformation */}
+
+              <>
+                <Grid container sx={{ paddingTop: "%", paddingBottom: "1%" }}>
+                  <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
+                    Emergency Contact Information
+                  </Typography>
+                </Grid>
+
+                <Grid container sx={{ paddingBottom: "20px" }}>
+                  <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                    <FieldForProfile
+                      name="presentAddress"
+                      label={"Name of Contact Person"}
+                      defaultValue={emergencyContact.contactPersonName}
+                      disableItem={false}
+                      handleChange={handleChangeEmergencyNamePerson}
+                      editAble={editAble}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <FieldForProfile
+                      name="presentAddress"
+                      label={"Relationship"}
+                      defaultValue={emergencyContact.relationship}
+                      disableItem={false}
+                      handleChange={handleChangeEmergencyRelation}
+                      editAble={editAble}
+                    />
+                  </Grid>
+                </Grid>
+                <Grid container sx={{ paddingBottom: "20px" }}>
+                  <Grid item xs={12} sx={{ paddingRight: "0%" }}>
+                    <PasswordFieldForProfile
+                      name="mobileNumber"
+                      label={"Mobile Number"}
+                      defaultValue={emergencyContact.contactNumber}
+                      disableItem={false}
+                      handleChange={handleChangeEmergencyMobileNumber}
+                      editAble={editAble}
+                      phone={emergencyContact.contactNumber}
+                    />
+                  </Grid>
+                </Grid>
+                <Grid container sx={{ paddingBottom: "20px" }}>
+                  <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                    <SelectFieldForBdInfo
+                      name="Division"
+                      label={"Division"}
+                      defaultValue={emergencyContact.address?.division?.name}
+                      disableItem={false}
+                      editAble={editAble}
+                      handleChange={handleChangeDivisionEmergency}
+                      options={divisionsEmergency}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <SelectFieldForBdInfo
+                      name="District"
+                      label={"District"}
+                      defaultValue={emergencyContact.address?.district?.name}
+                      disableItem={false}
+                      editAble={editAble}
+                      handleChange={handleChangeDistrictsEmergency}
+                      options={districtsEmergency}
+                    />
+                  </Grid>
+                </Grid>
+                <Grid container sx={{ paddingBottom: "20px" }}>
+                  <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                    <SelectFieldForBdInfo
+                      name="Sub-District"
+                      label={"Sub-District"}
+                      defaultValue={emergencyContact?.address?.subdistrict?.name}
+                      disableItem={false}
+                      editAble={editAble}
+                      handleChange={handleChangeSubDistrictsEmergency}
+                      options={subdistrictsEmergency}
                     />
                   </Grid>
                   <Grid item xs={6}>
                     <FieldForProfile
                       name="presentAddress"
                       label={"City / Village"}
-                      defaultValue={presentAddress.area}
+                      defaultValue={emergencyContact?.address?.area}
                       disableItem={false}
-                      handleChange={handleChangeSubDistrictsCity}
+                      handleChange={handleChangeEmergencyCity}
                       editAble={editAble}
                     />
                   </Grid>
@@ -593,9 +779,9 @@ const ContactInfoIndex = () => {
                     <FieldForProfile
                       name="presentAddress"
                       label={"Road Number"}
-                      defaultValue={presentAddress.roadNo}
+                      defaultValue={emergencyContact?.address?.roadNo}
                       disableItem={false}
-                      handleChange={handleChangeSubDistrictsRoadNumber}
+                      handleChange={handleChangeEmergencyRoadNumber}
                       editAble={editAble}
                     />
                   </Grid>
@@ -603,314 +789,96 @@ const ContactInfoIndex = () => {
                     <FieldForProfile
                       name="presentAddress"
                       label={"House Number"}
-                      defaultValue={presentAddress.houseNo}
+                      defaultValue={emergencyContact?.address?.houseNo}
                       disableItem={false}
-                      handleChange={handleChangeSubDistrictsHouseNumber}
+                      handleChange={handleChangeEmergencyHouseNumber}
                       editAble={editAble}
                     />
                   </Grid>
                 </Grid>
-
-                {/* Permanent Address */}
-
-                <>
-                  <Grid container sx={{ paddingTop: "%", paddingBottom: "0%" }}>
-                    <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
-                      Permanent Address
-                    </Typography>
-                  </Grid>
-                  <Grid container>
-                    <FormControlLabel
-                      control={<Checkbox checked={isChecked} onChange={handleCheckboxChange} />}
-                      label={
-                        <Typography
-                          sx={{
-                            color: "neutral.N300",
-
-                            // mb: 1,
-                          }}
-                          variant="wpf_p4_medium"
-                        >
-                          Same as Present Address{" "}
-                        </Typography>
-                      }
-                    />
-                  </Grid>
-
-                  <Grid container sx={{ paddingBottom: "20px" }}>
-                    <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                      <SelectFieldForBdInfo
-                        name="Division"
-                        label={"Division"}
-                        defaultValue={permanentAddress.division.name}
-                        disableItem={false}
-                        editAble={editAble}
-                        handleChange={handleChangeDivisionPermanent}
-                        options={divisionsPermanent}
-                        isChecked={isChecked}
-                      />
-                    </Grid>
-                    <Grid item xs={6}>
-                      <SelectFieldForBdInfo
-                        name="District"
-                        label={"District"}
-                        defaultValue={permanentAddress.district.name}
-                        disableItem={false}
-                        editAble={editAble}
-                        handleChange={handleChangeDistrictsPermanent}
-                        options={districtsPermanent}
-                        isChecked={isChecked}
-                      />
-                    </Grid>
-                  </Grid>
-                  <Grid container sx={{ paddingBottom: "20px" }}>
-                    <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                      <SelectFieldForBdInfo
-                        name="Sub-District"
-                        label={"Sub-District"}
-                        defaultValue={permanentAddress.subdistrict.name}
-                        disableItem={false}
-                        editAble={editAble}
-                        handleChange={handleChangeSubDistrictsPermanent}
-                        options={subdistrictsPermanent}
-                        isChecked={isChecked}
-                      />
-                    </Grid>
-                    <Grid item xs={6}>
-                      <FieldForProfile
-                        name="presentAddress"
-                        label={"Area"}
-                        defaultValue={permanentAddress.area}
-                        disableItem={false}
-                        handleChange={handleChangePermanentCity}
-                        editAble={editAble}
-                        isChecked={isChecked}
-                      />
-                    </Grid>
-                  </Grid>
-                  <Grid container sx={{ paddingBottom: "20px" }}>
-                    <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                      <FieldForProfile
-                        name="presentAddress"
-                        label={"Road Number"}
-                        defaultValue={permanentAddress.roadNo}
-                        disableItem={false}
-                        handleChange={handleChangePermanentRoadNumber}
-                        editAble={editAble}
-                        isChecked={isChecked}
-                      />
-                    </Grid>
-                    <Grid item xs={6}>
-                      <FieldForProfile
-                        name="presentAddress"
-                        label={"House Number"}
-                        defaultValue={permanentAddress.houseNo}
-                        disableItem={false}
-                        handleChange={handleChangePermanentHouseNumber}
-                        editAble={editAble}
-                        isChecked={isChecked}
-                      />
-                    </Grid>
-                  </Grid>
-                </>
-
-                {/* EmergencyContactInformation */}
-
-                <>
-                  <Grid container sx={{ paddingTop: "%", paddingBottom: "1%" }}>
-                    <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
-                      Emergency Contact Information
-                    </Typography>
-                  </Grid>
-
-                  <Grid container sx={{ paddingBottom: "20px" }}>
-                    <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                      <FieldForProfile
-                        name="presentAddress"
-                        label={"Name of Contact Person"}
-                        defaultValue={emergencyContact.contactPersonName}
-                        disableItem={false}
-                        handleChange={handleChangeEmergencyNamePerson}
-                        editAble={editAble}
-                      />
-                    </Grid>
-                    <Grid item xs={6}>
-                      <FieldForProfile
-                        name="presentAddress"
-                        label={"Relationship"}
-                        defaultValue={emergencyContact.relationship}
-                        disableItem={false}
-                        handleChange={handleChangeEmergencyRelation}
-                        editAble={editAble}
-                      />
-                    </Grid>
-                  </Grid>
-                  <Grid container sx={{ paddingBottom: "20px" }}>
-                    <Grid item xs={12} sx={{ paddingRight: "0%" }}>
-                      <PasswordFieldForProfile
-                        name="mobileNumber"
-                        label={"Mobile Number"}
-                        defaultValue={emergencyContact.contactNumber}
-                        disableItem={false}
-                        handleChange={handleChangeEmergencyMobileNumber}
-                        editAble={editAble}
-                        phone={emergencyContact.contactNumber}
-                      />
-                    </Grid>
-                  </Grid>
-                  <Grid container sx={{ paddingBottom: "20px" }}>
-                    <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                      <SelectFieldForBdInfo
-                        name="Division"
-                        label={"Division"}
-                        defaultValue={emergencyContact.address?.division?.name}
-                        disableItem={false}
-                        editAble={editAble}
-                        handleChange={handleChangeDivisionEmergency}
-                        options={divisionsEmergency}
-                      />
-                    </Grid>
-                    <Grid item xs={6}>
-                      <SelectFieldForBdInfo
-                        name="District"
-                        label={"District"}
-                        defaultValue={emergencyContact.address?.district?.name}
-                        disableItem={false}
-                        editAble={editAble}
-                        handleChange={handleChangeDistrictsEmergency}
-                        options={districtsEmergency}
-                      />
-                    </Grid>
-                  </Grid>
-                  <Grid container sx={{ paddingBottom: "20px" }}>
-                    <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                      <SelectFieldForBdInfo
-                        name="Sub-District"
-                        label={"Sub-District"}
-                        defaultValue={emergencyContact?.address?.subdistrict?.name}
-                        disableItem={false}
-                        editAble={editAble}
-                        handleChange={handleChangeSubDistrictsEmergency}
-                        options={subdistrictsEmergency}
-                      />
-                    </Grid>
-                    <Grid item xs={6}>
-                      <FieldForProfile
-                        name="presentAddress"
-                        label={"City / Village"}
-                        defaultValue={emergencyContact?.address?.area}
-                        disableItem={false}
-                        handleChange={handleChangeEmergencyCity}
-                        editAble={editAble}
-                      />
-                    </Grid>
-                  </Grid>
-                  <Grid container sx={{ paddingBottom: "20px" }}>
-                    <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                      <FieldForProfile
-                        name="presentAddress"
-                        label={"Road Number"}
-                        defaultValue={emergencyContact?.address?.roadNo}
-                        disableItem={false}
-                        handleChange={handleChangeEmergencyRoadNumber}
-                        editAble={editAble}
-                      />
-                    </Grid>
-                    <Grid item xs={6}>
-                      <FieldForProfile
-                        name="presentAddress"
-                        label={"House Number"}
-                        defaultValue={emergencyContact?.address?.houseNo}
-                        disableItem={false}
-                        handleChange={handleChangeEmergencyHouseNumber}
-                        editAble={editAble}
-                      />
-                    </Grid>
-                  </Grid>
-                </>
-              </Box>
-
-              {/* <button type="submit">Submit</button> */}
+              </>
             </Box>
-          </Box>
 
-          <Box
+            {/* <button type="submit">Submit</button> */}
+          </Box>
+        </Box>
+
+        <Box
+          sx={{
+            height: {
+              lg: "10%",
+              xl: "14%",
+              xxl: "8%",
+            },
+          }}
+        >
+          <Grid
+            container
             sx={{
-              height: {
-                lg: "10%",
-                xl: "14%",
-                xxl: "8%",
-              },
+              height: "100%",
             }}
           >
-            <Grid
-              container
-              sx={{
-                height: "100%",
-              }}
-            >
-              {editAble && (
-                <>
-                  <Box
+            {editAble && (
+              <>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Button
+                    onClick={() => handleSubmitChange()}
+                    disabled={isLoading}
                     sx={{
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Button
-                      onClick={() => handleSubmitChange()}
-                      disabled={isLoading}
-                      sx={{
-                        height: {
-                          lg: "30px",
-                          xl: "40px",
-                          xxl: "40px",
-                        },
+                      height: {
+                        lg: "30px",
+                        xl: "40px",
+                        xxl: "40px",
+                      },
+                      backgroundColor: "primary.B200",
+                      color: "neutral.N000",
+                      borderRadius: "8px",
+                      textTransform: "none",
+                      fontSize: "12px",
+                      width: "150px",
+                      mr: 3,
+                      "&:hover": {
                         backgroundColor: "primary.B200",
                         color: "neutral.N000",
-                        borderRadius: "8px",
-                        textTransform: "none",
-                        fontSize: "12px",
-                        width: "150px",
-                        mr: 3,
-                        "&:hover": {
-                          backgroundColor: "primary.B200",
-                          color: "neutral.N000",
-                        },
-                        "&.Mui-disabled": {
-                          background: "#B6C9F0",
-                          color: "#FFFFFF",
-                        },
-                      }}
-                    >
-                      Save Changes
-                    </Button>
-                    <Button
-                      onClick={() => handleCancel()}
-                      sx={{
-                        height: {
-                          lg: "30px",
-                          xl: "40px",
-                          xxl: "40px",
-                        },
-                        textTransform: "none",
-                        backgroundColor: "#F2F6FC",
-                        borderRadius: "8px",
-                        fontSize: "12px",
-                        color: "#253E5C",
-                        width: "150px",
-                        "&:hover": {
-                          background: "#F2F6FC",
-                        },
-                      }}
-                    >
-                      Cancel
-                    </Button>
-                  </Box>
-                </>
-              )}
-            </Grid>
-          </Box>
+                      },
+                      "&.Mui-disabled": {
+                        background: "#B6C9F0",
+                        color: "#FFFFFF",
+                      },
+                    }}
+                  >
+                    Save Changes
+                  </Button>
+                  <Button
+                    onClick={() => handleCancel()}
+                    sx={{
+                      height: {
+                        lg: "30px",
+                        xl: "40px",
+                        xxl: "40px",
+                      },
+                      textTransform: "none",
+                      backgroundColor: "#F2F6FC",
+                      borderRadius: "8px",
+                      fontSize: "12px",
+                      color: "#253E5C",
+                      width: "150px",
+                      "&:hover": {
+                        background: "#F2F6FC",
+                      },
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                </Box>
+              </>
+            )}
+          </Grid>
         </Box>
       </>
     </>

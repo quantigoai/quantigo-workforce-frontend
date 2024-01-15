@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import VerificationInfoIndex from "./VerificationInfoIndex";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserVerificationInfo } from "../../../../../features/slice/userSlice";
+import { getUserPersonalInfo, getUserVerificationInfo } from "../../../../../features/slice/userSlice";
 import { Box } from "@mui/material";
 import ProfilePicture from "../MyProfile/ProfilePicture";
 import LoadingComponent from "../../../../shared/Loading/LoadingComponent";
+import MyprofileIndexNew from "./MyprofileIndexNew";
 
 const PersonalInfo = () => {
   const [editAble, setEditAble] = useState(false);
@@ -16,7 +16,7 @@ const PersonalInfo = () => {
     setEditAble(true);
   };
   useEffect(() => {
-    dispatch(getUserVerificationInfo(user._id)).then((action) => {
+    dispatch(getUserPersonalInfo(user._id)).then((action) => {
       setData(action.payload.data);
       setIsDataLoading(false);
     });
@@ -70,7 +70,7 @@ const PersonalInfo = () => {
           </>
         ) : (
           <>
-            <VerificationInfoIndex data={data} isDataLoading={isDataLoading} editAble={editAble} setEditAble={setEditAble}/>
+            <MyprofileIndexNew data={data} isDataLoading={isDataLoading} editAble={editAble} setEditAble={setEditAble}/>
           </>
         )}
       </Box>

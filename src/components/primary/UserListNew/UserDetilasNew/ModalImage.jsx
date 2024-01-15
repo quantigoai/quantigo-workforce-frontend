@@ -25,7 +25,7 @@ const style = {
   },
 };
 
-const ModalImage = ({ openModal, handleClose, images }) => {
+const ModalImage = ({ openModal, handleClose, images, level }) => {
   return (
     <>
       <Modal
@@ -34,7 +34,7 @@ const ModalImage = ({ openModal, handleClose, images }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={{...style, left: '50%'}}>
+        <Box sx={{ ...style, left: level === "Standard Photo" ? "56%" : "41%" }}>
           <Grid container sx={{}}>
             <Paper sx={{ borderRadius: "10px" }}>
               <Box sx={{ position: "relative", borderRadius: "10px" }}>
@@ -78,13 +78,13 @@ const ModalImage = ({ openModal, handleClose, images }) => {
                   // container
                   sx={{
                     // width: "920px",
-                    width: "300px",
+                    width: level === "Standard Photo" ? "300px" : "920px",
                     justifyContent: "center",
                     borderRadius: "10px",
                     padding: "2%",
                   }}
                 >
-                  <ImageSwiperIndex images={images}  />
+                  <ImageSwiperIndex images={images} level={level}/>
                 </Box>
               </Box>
             </Paper>

@@ -218,13 +218,13 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
           >
             <input {...getInputProps()} />
             <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "20px", mb: 2 }}>
-              <img
+              {/* <img
                 style={{
                   width: "30px",
                   filter: files?.length === 5 || !editAble ? "grayscale(100%)" : "",
                 }}
                 src={IconImage}
-              />
+              /> */}
               <Typography
                 sx={{ color: files?.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff" }}
                 variant="wpf_p2_regular"

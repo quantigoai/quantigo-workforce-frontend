@@ -11,7 +11,7 @@ import image3 from "../../../../assets/images/logoBlue.png";
 import image4 from "../../../../assets/images/loginWMP.png";
 
 // const images = [image1, image2, image3, image4];
-const ImageSwiperIndex = ({ images }) => {
+const ImageSwiperIndex = ({ images, level }) => {
   const pagination = {
     clickable: true,
     renderBullet: function (index, className) {
@@ -22,7 +22,7 @@ const ImageSwiperIndex = ({ images }) => {
   return (
     <>
       {/* <Box sx={{ height: "518px" }}> */}
-      <Box sx={{ height: "400px" }}>
+      <Box sx={{ height: level === "Standard Photo" ? "400px" : "518px" }}>
         <Swiper
           pagination={{
             type: "fraction",

@@ -190,7 +190,7 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
                 overflowY: "auto",
               }}
             >
-              <Grid container sx={{ paddingBottom: "20px", paddingTop: "2%" }}>
+              <Grid container sx={{ paddingBottom: "20px", paddingTop: "%" }}>
                 <Grid container sx={{ paddingBottom: "20px", paddingTop: "1%" }}>
                   <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                     <Grid container>
@@ -202,7 +202,7 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
                         }}
                         variant="wpf_p4_medium"
                       >
-                        Please Upload Your Passport Size Photo*
+                        Please Upload Your Passport Size Photo
                       </Typography>
 
                       <Box sx={{ width: "70%" }}>
@@ -352,7 +352,7 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
                         }}
                         variant="wpf_p4_medium"
                       >
-                        Please Upload Your Updated Resume *
+                        Please Upload Your Updated Resume
                       </Typography>
                       <Box sx={{ width: "70%" }}>
                         {data.resume && !editAble ? (

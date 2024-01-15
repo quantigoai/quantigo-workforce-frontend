@@ -235,9 +235,21 @@ const EducationInfoIndex = () => {
 
   const handleSubmitChange = () => {
     const formData = new FormData();
-    higherDegree.title !== undefined && formData.append("highestLevelOfDegree", higherDegree.title);
-    institution.name !== undefined && formData.append("instituteName", institution.name);
-    field.title !== undefined && formData.append("fieldOfStudy", field.title);
+    if (higherDegree === null) {
+      formData.append("highestLevelOfDegree", "");
+    } else {
+      higherDegree.title !== undefined && formData.append("highestLevelOfDegree", higherDegree.title);
+    }
+    if (institution === null) {
+      formData.append("instituteName", "");
+    } else {
+      institution.name !== undefined && formData.append("instituteName", institution.name);
+    }
+    if (field === null) {
+      formData.append("fieldOfStudy", "");
+    } else {
+      field.title !== undefined && formData.append("fieldOfStudy", field.title);
+    }
     formData.append("completedYear", value?.$y);
 
     files.forEach((item) => {
@@ -250,6 +262,7 @@ const EducationInfoIndex = () => {
       id: user._id,
       formData,
     };
+
     // for (let pair of formData.entries()) {
     //   console.log(pair[0] + ", " + pair[1]);
     // }

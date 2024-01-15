@@ -25,10 +25,12 @@ const MyTextField = styled(TextField)(() => ({
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
 const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChecked, setInstitution }) => {
+  console.log("🚀 ~ InstitutionSelectAdd ~ institution:", institution);
   const [open, toggleOpen] = React.useState(false);
   const [allInstitute, setAllInstitute] = useState([]);
 
   const [newInput, setNewInput] = useState("");
+  console.log("🚀 ~ InstitutionSelectAdd ~ newInput:", newInput);
   const [tempName, setTempName] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -93,6 +95,8 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
             });
             addNewValue(newValue.inputValue);
           } else if (newValue && newValue.name) {
+            setInstitution(newValue);
+          } else {
             setInstitution(newValue);
           }
         }}

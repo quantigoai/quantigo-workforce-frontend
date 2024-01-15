@@ -19,6 +19,7 @@ const MyTextField = styled(TextField)(() => ({
 }));
 
 const FieldSelectAdd = ({ label, disableItem, editAble, field, setField, isChecked }) => {
+  console.log("🚀 ~ FieldSelectAdd ~ field:", field);
   const [open, toggleOpen] = React.useState(false);
 
   const handleClose = () => {
@@ -40,21 +41,12 @@ const FieldSelectAdd = ({ label, disableItem, editAble, field, setField, isCheck
     });
     handleClose();
   };
-  const fieldStudies = [
-    { title: "CSE" },
-    { title: "EEE" },
-    { title: "ME" },
-    { title: "Marketing" },
-    { title: "Accounting" },
-    { title: "Economics" },
-  ];
+  const fieldStudies = [{ title: "Engineering" }, { title: "Business studies" }, { title: "others" }];
   return (
     <Box sx={{ p: 0 }}>
       <Typography
         sx={{
           color: "neutral.N300",
-
-          // mb: 1.5,
         }}
         variant="wpf_p4_medium"
       >
@@ -68,14 +60,12 @@ const FieldSelectAdd = ({ label, disableItem, editAble, field, setField, isCheck
               toggleOpen(true);
               setDialogValue({
                 title: newValue,
-                year: "",
               });
             });
           } else if (newValue && newValue.inputValue) {
             toggleOpen(true);
             setDialogValue({
               title: newValue.inputValue,
-              year: "",
             });
           } else {
             setField(newValue);
@@ -87,7 +77,7 @@ const FieldSelectAdd = ({ label, disableItem, editAble, field, setField, isCheck
           if (params.inputValue !== "") {
             filtered.push({
               inputValue: params.inputValue,
-              title: `Add "${params.inputValue}"`,
+              // title: `Add "${params.inputValue}"`,
             });
           }
 
@@ -110,22 +100,24 @@ const FieldSelectAdd = ({ label, disableItem, editAble, field, setField, isCheck
         renderOption={(props, option) => <li {...props}>{option.title}</li>}
         sx={{ border: "1px solid #E6ECF5 !important", borderRadius: "8px", height: "40px", mt: 0.6 }}
         freeSolo
-        renderInput={(params) => (
-          <MyTextField
-            {...params}
-            placeholder="select your Field of Study"
-            sx={{
-              backgroundColor: editAble ? "" : "neutral.N400",
-              fontSize: "14px",
-              borderRadius: "8px",
-              height: "40px",
-              padding: "0px",
-            }}
-            disabled={disableItem ? true : isChecked ? true : !editAble}
-            // value={defaultValue && defaultValue}
-            variant="outlined"
-          />
-        )}
+        renderInput={(params) => {
+          return (
+            <MyTextField
+              {...params}
+              placeholder="select your Field of Study"
+              sx={{
+                backgroundColor: editAble ? "" : "neutral.N400",
+                fontSize: "14px",
+                borderRadius: "8px",
+                height: "40px",
+                padding: "0px",
+              }}
+              disabled={disableItem ? true : isChecked ? true : !editAble}
+              // value={defaultValue && defaultValue}
+              variant="outlined"
+            />
+          );
+        }}
       />
     </Box>
   );

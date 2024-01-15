@@ -79,8 +79,7 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
     },
   ]);
   const [removeImages, setRemoveImages] = useState([]);
-  console.log("🚀 ~ VerificationInfoIndex ~ removeImages:", removeImages);
-
+  
   const dispatch = useDispatch();
   const toast = useToaster();
 

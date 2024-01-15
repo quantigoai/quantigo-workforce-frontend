@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProfilePicture from "../MyProfile/ProfilePicture";
 import { Box, Button, Grid, TextField, Typography, styled } from "@mui/material";
@@ -7,9 +7,10 @@ import PasswordFieldForProfile from "../../PasswordFieldForProfile";
 // import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
 import UploadImagesField from "./UploadImagesField";
 import SelectFieldForProfile from "../SelectFieldForProfile";
-import { updateMyVerification } from "../../../../../features/slice/userSlice";
+import { getUserVerificationInfo, updateMyVerification } from "../../../../../features/slice/userSlice";
 import useToaster from "../../../../../customHooks/useToaster";
 import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
+import LoadingComponent from "../../../../shared/Loading/LoadingComponent";
 
 const TextFieldQuestion = styled(TextField)(() => ({
   // borderRadius: "8px 0px 0px 8px",
@@ -60,18 +61,17 @@ const TypeVerificationOption = [
   { value: "passport", label: "Passport" },
   { value: "birthCertificate", label: "Birth Certificate" },
 ];
-const VerificationInfoIndex = () => {
+const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
   const { user, isLoading } = useSelector((state) => state.user);
-  const [editAble, setEditAble] = useState(false);
-  const [nidNumber, setNidNumber] = useState(user.extraDocumentNo);
-  const [nameAsNid, setNameAsNid] = useState(user.extraDocumentName);
+  const [nidNumber, setNidNumber] = useState(data?.extraDocumentNo);
+  const [nameAsNid, setNameAsNid] = useState(data?.extraDocumentName);
   const [photo, setPhoto] = useState([]);
   const [resume, setResume] = useState([]);
   const [errorPhoto, setErrorPhoto] = useState("");
   const [errorResume, setErrorResume] = useState("");
-  const [documentType, setDocumentType] = useState(user.extraDocumentType);
-  const [images, setImages] = useState(user.extraDocumentImages);
-  const [imagesCopy, setImagesCopy] = useState(user.extraDocumentImages);
+  const [documentType, setDocumentType] = useState(data?.extraDocumentType);
+  const [images, setImages] = useState(data?.extraDocumentImages);
+  const [imagesCopy, setImagesCopy] = useState(data?.extraDocumentImages);
   const [removeImagesUpdate, setRemoveImagesUpdate] = useState([
     {
       name: "",
@@ -83,9 +83,7 @@ const VerificationInfoIndex = () => {
 
   const dispatch = useDispatch();
   const toast = useToaster();
-  const handleEditProfile = () => {
-    setEditAble(true);
-  };
+
   const handleChangeDocumentType = (e) => {
     setDocumentType(e.target.value);
   };
@@ -127,7 +125,7 @@ const VerificationInfoIndex = () => {
         formData.append("images", item);
       }
     });
-   
+
     photo.length != 0 && formData.append("photo", photo);
     resume.length != 0 && formData.append("resume", resume);
 
@@ -165,38 +163,7 @@ const VerificationInfoIndex = () => {
   };
   return (
     <>
-      <Box
-        sx={{
-          flex: "1",
-          height: {
-            lg: "95%",
-            xl: "100%",
-            xxl: "100%",
-          },
-        }}
-      >
-        <Box
-          sx={{
-            // flex: "0 0 auto",
-            height: {
-              lg: "17%",
-              xl: "17%",
-              xxl: "17%",
-            },
-            // backgroundColor: "yellow",
-          }}
-        >
-          <ProfilePicture
-            user={user}
-            editAble={editAble}
-            handleEditProfile={handleEditProfile}
-            profileImageChange={false}
-            //   coverImage={coverImage}
-            //   handleImage={handleImage}
-            //   coverImageFile={coverImageFile}
-          />
-        </Box>
-
+      <>
         <Box
           sx={{
             overflowY: "auto",
@@ -240,7 +207,7 @@ const VerificationInfoIndex = () => {
                       </Typography>
 
                       <Box sx={{ width: "70%" }}>
-                        {user.standardPhoto && !editAble ? (
+                        {data.standardPhoto && !editAble ? (
                           <>
                             {/* <TextFieldQuestion
                               sx={
@@ -288,8 +255,8 @@ const VerificationInfoIndex = () => {
                         )}
                       </Box>
 
-                      <Box sx={{ width: user.resume && !editAble ? "100%" : "30%" }}>
-                        {user.standardPhoto && !editAble ? (
+                      <Box sx={{ width: data.resume && !editAble ? "100%" : "30%" }}>
+                        {data.standardPhoto && !editAble ? (
                           <>
                             <Button
                               sx={{
@@ -303,7 +270,7 @@ const VerificationInfoIndex = () => {
                                 zIndex: 2,
                                 backgroundColor: "neutral.N00",
                               }}
-                              onClick={() => handleClick(user.standardPhoto)}
+                              onClick={() => handleClick(data.standardPhoto)}
                             >
                               <Typography
                                 variant="wpf_h7_medium"
@@ -389,7 +356,7 @@ const VerificationInfoIndex = () => {
                         Please Upload Your Updated Resume *
                       </Typography>
                       <Box sx={{ width: "70%" }}>
-                        {user.resume && !editAble ? (
+                        {data.resume && !editAble ? (
                           <></>
                         ) : (
                           <>
@@ -408,8 +375,8 @@ const VerificationInfoIndex = () => {
                         )}
                       </Box>
 
-                      <Box sx={{ width: user.resume && !editAble ? "100%" : "30%" }}>
-                        {user.resume && !editAble ? (
+                      <Box sx={{ width: data.resume && !editAble ? "100%" : "30%" }}>
+                        {data.resume && !editAble ? (
                           <>
                             <Button
                               sx={{
@@ -421,7 +388,7 @@ const VerificationInfoIndex = () => {
                                 zIndex: 2,
                                 backgroundColor: "neutral.N00",
                               }}
-                              onClick={() => handleClick(user.resume)}
+                              onClick={() => handleClick(data.resume)}
                             >
                               <Typography
                                 variant="wpf_h7_medium"
@@ -509,7 +476,7 @@ const VerificationInfoIndex = () => {
                 </Grid>
               </Grid>
 
-              <Grid container sx={{ paddingBottom: "20px", paddingTop: "2%" }}>
+              <Grid container sx={{ paddingBottom: "20px", paddingTop: "%" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <FieldForProfile
                     name="presentAddress"
@@ -627,7 +594,7 @@ const VerificationInfoIndex = () => {
             )}
           </Grid>
         </Box>
-      </Box>
+      </>
     </>
   );
 };

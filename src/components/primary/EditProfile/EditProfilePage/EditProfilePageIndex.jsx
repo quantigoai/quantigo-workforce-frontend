@@ -15,6 +15,7 @@ import EducationInfoIndex from "./EducationalInfo/EducationInfoIndex";
 import ContactInfoIndex from "./ContactInfo/ContactInfoIndex";
 import VerificationInfoIndex from "./VerificationInfo/VerificationInfoIndex";
 import { readMyProfile } from "../../../../features/slice/userSlice";
+import VerificationInfo from "./VerificationInfo/VerificationInfo";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -292,7 +293,8 @@ export default function EditProfilePageIndex() {
                 </TabPanel>
 
                 <TabPanel value={value} index={1}>
-                  <VerificationInfoIndex />
+                  {/* <VerificationInfoIndex /> */}
+                  <VerificationInfo/>
                 </TabPanel>
 
                 <TabPanel sx={{ position: "absolute" }} value={value} index={2}>

@@ -45,6 +45,7 @@ const ModalImage = ({ openModal, handleClose, images, level }) => {
                     alignItems: "center",
                     position: "relative",
                     bottom: "10px",
+                    
                     // right: "0px",
                     left: "8px",
                     justifyContent: "right",
@@ -80,11 +81,12 @@ const ModalImage = ({ openModal, handleClose, images, level }) => {
                     // width: "920px",
                     width: level === "Standard Photo" ? "300px" : "920px",
                     justifyContent: "center",
-                    borderRadius: "10px",
+                    borderRadius: "8px",
                     padding: "2%",
+                   
                   }}
                 >
-                  <ImageSwiperIndex images={images} level={level}/>
+                  <ImageSwiperIndex images={images} level={level} />
                 </Box>
               </Box>
             </Paper>

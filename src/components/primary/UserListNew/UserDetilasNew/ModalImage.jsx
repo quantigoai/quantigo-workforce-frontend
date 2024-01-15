@@ -7,7 +7,7 @@ const style = {
   flexDirection: "column",
   position: "absolute",
   top: "50%",
-  left: "41%",
+  // left: "41%",
   transform: "translate(-50%, -50%)",
   // bgcolor: "background.paper",
   // border: "none",
@@ -34,7 +34,7 @@ const ModalImage = ({ openModal, handleClose, images }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={{...style, left: '50%'}}>
           <Grid container sx={{}}>
             <Paper sx={{ borderRadius: "10px" }}>
               <Box sx={{ position: "relative", borderRadius: "10px" }}>
@@ -77,7 +77,8 @@ const ModalImage = ({ openModal, handleClose, images }) => {
                 <Box
                   // container
                   sx={{
-                    width: "920px",
+                    // width: "920px",
+                    width: "300px",
                     justifyContent: "center",
                     borderRadius: "10px",
                     padding: "2%",

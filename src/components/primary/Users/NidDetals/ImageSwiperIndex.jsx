@@ -21,7 +21,8 @@ const ImageSwiperIndex = ({ images }) => {
 
   return (
     <>
-      <Box sx={{ height: "518px" }}>
+      {/* <Box sx={{ height: "518px" }}> */}
+      <Box sx={{ height: "400px" }}>
         <Swiper
           pagination={{
             type: "fraction",

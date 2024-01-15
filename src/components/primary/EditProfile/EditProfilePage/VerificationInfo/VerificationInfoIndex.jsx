@@ -117,51 +117,31 @@ const VerificationInfoIndex = () => {
       images,
     };
 
-    console.log(removeImagesUpdate);
     const formData = new FormData();
-    formData.append("extraDocumentType", documentType);
-    formData.append("extraDocumentNo", nidNumber);
-    formData.append("extraDocumentName", nameAsNid);
+    documentType && formData.append("extraDocumentType", documentType);
+    nidNumber && formData.append("extraDocumentNo", nidNumber);
+    nameAsNid && formData.append("extraDocumentName", nameAsNid);
 
     images.forEach((item) => {
-      console.log("🚀 ~ images.forEach ~ item:", item);
       if (item.name) {
         formData.append("images", item);
       }
     });
-    console.log("🚀 ~ images.forEach ~ images:", images);
-
+   
     photo.length != 0 && formData.append("photo", photo);
     resume.length != 0 && formData.append("resume", resume);
 
-    if (user.extraDocumentImages.length != 0) {
-      user.extraDocumentImages.map((item, index) => {
-        console.log(user.extraDocumentImages);
-        console.log("🚀 ~ user.extraDocumentImages.map ~ index:", index, item);
+    if (imagesCopy.length != 0) {
+      imagesCopy.map((item, index) => {
         const tempData = {
           name: "",
           isRemoved: false,
         };
-        if (removeImages.length != 0) {
-          removeImages.map((removeImage) => {
-            if (item === removeImage) {
-              tempData.name = item;
-              tempData.isRemoved = true;
-            } else {
-              tempData.name = item;
-              tempData.isRemoved = false;
-            }
-            console.log(tempData);
-            formData.append(`removedImages[${index}][name]`, tempData.name);
-            formData.append(`removedImages[${index}][isRemoved]`, tempData.isRemoved);
-            // setRemoveImagesUpdate(...tempData);
-          });
-        } else {
-          tempData.name = item;
-          tempData.isRemoved = false;
-          formData.append(`removedImages[${index}][name]`, tempData.name);
-          formData.append(`removedImages[${index}][isRemoved]`, tempData.isRemoved);
-        }
+        const isRemoved = removeImages.includes(item);
+        tempData.name = item;
+        tempData.isRemoved = isRemoved;
+        formData.append(`removedImages[${index}][name]`, tempData.name);
+        formData.append(`removedImages[${index}][isRemoved]`, tempData.isRemoved);
       });
     }
 

@@ -1,6 +1,7 @@
 import * as React from "react";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import { Box, TextField, Typography, styled } from "@mui/material";
+import { useSelector } from "react-redux";
 const filter = createFilterOptions();
 const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
@@ -10,7 +11,7 @@ const MyTextField = styled(TextField)(() => ({
   "& .MuiInputBase-root": {
     height: "40px",
     fontSize: "14px",
-    color: "#3C4D6B",
+    color: "neutral.N300",
     padding: "0px 5px",
     "&:disabled": {
       padding: "0px 5px",
@@ -53,6 +54,7 @@ const DegreeSelect = ({ label, higherDegree, setHigherDegree, disableItem, editA
     { title: "M.Sc" },
     { title: "BBA" },
     { title: "MBA" },
+    { title: "others" },
   ];
   return (
     <Box>
@@ -90,10 +92,10 @@ const DegreeSelect = ({ label, higherDegree, setHigherDegree, disableItem, editA
           const filtered = filter(options, params);
 
           if (params.inputValue !== "") {
-            filtered.push({
-              inputValue: params.inputValue,
-              title: `Add "${params.inputValue}"`,
-            });
+            // filtered.push({
+            //   inputValue: params.inputValue,
+            //   title: `Add "${params.inputValue}"`,
+            // });
           }
 
           return filtered;
@@ -128,7 +130,7 @@ const DegreeSelect = ({ label, higherDegree, setHigherDegree, disableItem, editA
             {...params}
             sx={{
               backgroundColor: editAble ? "" : "neutral.N400",
-              
+
               fontSize: "14px",
               borderRadius: "8px",
               height: "40px",

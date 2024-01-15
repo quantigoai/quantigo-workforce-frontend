@@ -25,7 +25,7 @@ export const MyDatePicker = styled(DatePicker)(() => ({
     border: "1px solid #E6ECF5 !important",
     borderRadius: "8px",
   },
-  "& .MuiInputBase-root": { height: "40px", fontSize: "14px", color: "#3C4D6B" },
+  "& .MuiInputBase-root": { height: "40px", fontSize: "14px" },
   "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
     border: `1px solid #2E58FF !important`,
   },
@@ -65,7 +65,6 @@ const focusedStyle = {
 };
 
 const EducationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
-  console.log("🚀 ~ EducationInfoIndex ~ data:", data)
   const { isLightTheme } = useSelector((state) => state.theme);
   const { user, isLoading } = useSelector((state) => state.user);
   // const [editAble, setEditAble] = useState(false);
@@ -350,7 +349,6 @@ const EducationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
                   <MyDatePicker
                     sx={{
                       backgroundColor: editAble ? "" : "neutral.N400",
-                      color: "#3c4d6b",
                     }}
                     disabled={!editAble}
                     views={["year"]}

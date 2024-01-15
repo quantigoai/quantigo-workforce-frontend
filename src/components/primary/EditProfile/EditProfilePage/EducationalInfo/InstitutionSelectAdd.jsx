@@ -12,7 +12,7 @@ const MyTextField = styled(TextField)(() => ({
   "& .MuiInputBase-root": {
     height: "40px",
     fontSize: "14px",
-    color: "#3C4D6B",
+    color: "neutral.N300",
     padding: "0px 5px",
   },
   "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
@@ -25,12 +25,9 @@ const MyTextField = styled(TextField)(() => ({
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
 const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChecked, setInstitution }) => {
-  console.log("🚀 ~ InstitutionSelectAdd ~ institution:", institution);
   const [open, toggleOpen] = React.useState(false);
   const [allInstitute, setAllInstitute] = useState([]);
-
   const [newInput, setNewInput] = useState("");
-  console.log("🚀 ~ InstitutionSelectAdd ~ newInput:", newInput);
   const [tempName, setTempName] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -93,7 +90,7 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
             setNewInput({
               name: newValue.inputValue,
             });
-            addNewValue(newValue.inputValue);
+            // addNewValue(newValue.inputValue);
           } else if (newValue && newValue.name) {
             setInstitution(newValue);
           } else {
@@ -105,7 +102,7 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
           if (!institutes.includes(ev.target.value)) {
             if (ev.key === "Enter") {
               ev.preventDefault();
-              handleSubmit(ev);
+              // handleSubmit(ev);
             }
           }
         }}
@@ -115,10 +112,10 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
           const { inputValue } = params;
           const isExisting = options.some((option) => inputValue === option.name);
           if (inputValue !== "" && !isExisting) {
-            filtered.push({
-              inputValue,
-              name: `Add "${inputValue}"`,
-            });
+            // filtered.push({
+            //   inputValue,
+            //   // name: `Add "${inputValue}"`,
+            // });
           }
 
           return filtered;
@@ -147,6 +144,7 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
         renderOption={(props, option) => <li {...props}>{option.name} </li>}
         sx={{
           border: "1px solid #E6ECF5 !important",
+          borderRadius: "8px",
           height: "40px",
           mt: 0.6,
         }}
@@ -154,7 +152,7 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
         renderInput={(params) => (
           <MyTextField
             {...params}
-            placeholder="select your institution or add a new one"
+            placeholder="select your institution or select others if institution is not in the list"
             sx={{
               backgroundColor: editAble ? "" : "neutral.N400",
               fontSize: "14px",

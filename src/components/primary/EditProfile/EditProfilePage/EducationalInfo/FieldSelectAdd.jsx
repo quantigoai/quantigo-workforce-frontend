@@ -9,7 +9,7 @@ const MyTextField = styled(TextField)(() => ({
     border: "1px solid #E6ECF5 !important",
     borderRadius: "8px",
   },
-  "& .MuiInputBase-root": { height: "40px", fontSize: "14px", color: "#3C4D6B", padding: "0px 5px" },
+  "& .MuiInputBase-root": { height: "40px", fontSize: "14px", padding: "0px 5px" },
   "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
     border: `1px solid #2E58FF !important`,
   },
@@ -19,7 +19,6 @@ const MyTextField = styled(TextField)(() => ({
 }));
 
 const FieldSelectAdd = ({ label, disableItem, editAble, field, setField, isChecked }) => {
-  console.log("🚀 ~ FieldSelectAdd ~ field:", field);
   const [open, toggleOpen] = React.useState(false);
 
   const handleClose = () => {
@@ -75,10 +74,10 @@ const FieldSelectAdd = ({ label, disableItem, editAble, field, setField, isCheck
           const filtered = filter(options, params);
 
           if (params.inputValue !== "") {
-            filtered.push({
-              inputValue: params.inputValue,
-              // title: `Add "${params.inputValue}"`,
-            });
+            // filtered.push({
+            //   inputValue: params.inputValue,
+            //   // title: `Add "${params.inputValue}"`,
+            // });
           }
 
           return filtered;

@@ -73,7 +73,7 @@ const LoadingComponent = ({ height }) => {
   return (
     <Box
       sx={{
-        height: height || "100vh",
+        height: height || "95vh",
         width: "100%",
         display: "flex",
         justifyContent: "center",

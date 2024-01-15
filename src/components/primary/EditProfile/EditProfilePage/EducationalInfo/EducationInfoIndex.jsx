@@ -64,20 +64,21 @@ const focusedStyle = {
   borderColor: "#2196f3",
 };
 
-const EducationInfoIndex = () => {
+const EducationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
+  console.log("🚀 ~ EducationInfoIndex ~ data:", data)
   const { isLightTheme } = useSelector((state) => state.theme);
   const { user, isLoading } = useSelector((state) => state.user);
-  const [editAble, setEditAble] = useState(false);
-  const [higherDegree, setHigherDegree] = useState(user?.highestLevelOfDegree);
-  const [field, setField] = useState(user?.fieldOfStudy);
-  const [institution, setInstitution] = useState(user?.instituteName);
-  const [files, setFiles] = useState(user?.certificateImages);
+  // const [editAble, setEditAble] = useState(false);
+  const [higherDegree, setHigherDegree] = useState(data?.highestLevelOfDegree);
+  const [field, setField] = useState(data?.fieldOfStudy);
+  const [institution, setInstitution] = useState(data?.instituteName);
+  const [files, setFiles] = useState(data?.certificateImages);
   const [error, setError] = useState(false);
   const dispatch = useDispatch();
   const toast = useToaster();
   const [coverImageFile, setCoverImageFile] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
-  const [value, setValue] = React.useState(dayjs(user?.completedYear));
+  const [value, setValue] = React.useState(dayjs(data?.completedYear));
 
   const handleImage = (e) => {
     setCoverImageFile(e.target.files[0]);
@@ -235,9 +236,21 @@ const EducationInfoIndex = () => {
 
   const handleSubmitChange = () => {
     const formData = new FormData();
-    higherDegree.title !== undefined && formData.append("highestLevelOfDegree", higherDegree.title);
-    institution.name !== undefined && formData.append("instituteName", institution.name);
-    field.title !== undefined && formData.append("fieldOfStudy", field.title);
+    if (higherDegree === null) {
+      formData.append("highestLevelOfDegree", "");
+    } else {
+      higherDegree.title !== undefined && formData.append("highestLevelOfDegree", higherDegree.title);
+    }
+    if (institution === null) {
+      formData.append("instituteName", "");
+    } else {
+      institution.name !== undefined && formData.append("instituteName", institution.name);
+    }
+    if (field === null) {
+      formData.append("fieldOfStudy", "");
+    } else {
+      field.title !== undefined && formData.append("fieldOfStudy", field.title);
+    }
     formData.append("completedYear", value?.$y);
 
     files.forEach((item) => {
@@ -250,6 +263,7 @@ const EducationInfoIndex = () => {
       id: user._id,
       formData,
     };
+
     // for (let pair of formData.entries()) {
     //   console.log(pair[0] + ", " + pair[1]);
     // }
@@ -266,6 +280,242 @@ const EducationInfoIndex = () => {
   return (
     <>
       <Box
+        sx={{
+          overflowY: "auto",
+          "&::-webkit-scrollbar": {
+            width: "0",
+          },
+          height: {
+            lg: "78%",
+            xl: "71%",
+            xxl: "75%",
+          },
+        }}
+      >
+        <Box
+          sx={{
+            height: "100%",
+          }}
+        >
+          <Box
+            sx={{
+              height: "100%",
+              "&::-webkit-scrollbar": {
+                width: "0",
+              },
+              overflowY: "auto",
+            }}
+          >
+            <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
+              <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
+                Educational Information
+              </Typography>
+            </Grid>
+
+            <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
+              <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                <DegreeSelect
+                  label={"Highest level of degree"}
+                  disableItem={false}
+                  editAble={editAble}
+                  higherDegree={higherDegree}
+                  setHigherDegree={setHigherDegree}
+                />
+              </Grid>
+              <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                <FieldSelectAdd
+                  label={"Field of Study"}
+                  disableItem={false}
+                  editAble={editAble}
+                  field={field}
+                  setField={setField}
+                />
+              </Grid>
+            </Grid>
+            <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
+              <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+                <InstitutionSelectAdd
+                  label={"Institution Name"}
+                  disableItem={false}
+                  editAble={editAble}
+                  institution={institution}
+                  setInstitution={setInstitution}
+                />
+              </Grid>
+              <Grid item xs={6} sx={{ paddingRight: "2%", display: "flex", flexDirection: "column" }}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <Typography sx={{ mb: "10px" }} variant="wpf_p4_medium" color="neutral.N300">
+                    Year of completion
+                  </Typography>
+                  <MyDatePicker
+                    sx={{
+                      backgroundColor: editAble ? "" : "neutral.N400",
+                      color: "#3c4d6b",
+                    }}
+                    disabled={!editAble}
+                    views={["year"]}
+                    openTo="year"
+                    value={value}
+                    onChange={(newValue) => setValue(newValue)}
+                  />
+                </LocalizationProvider>
+              </Grid>
+            </Grid>
+
+            <Box className="container" sx={{ width: "100%" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  width: "100%",
+                  borderWidth: 2,
+                  borderRadius: 8,
+                  height: "100%",
+                  borderColor: files.length === 5 ? "rgba(70, 70, 70, 0.1)" : "rgba(70, 70, 70, 0.2)",
+                  borderStyle: "dashed",
+                  backgroundColor: isLightTheme ? "#FAFBFC" : "#2C2C2C",
+                  color: isLightTheme ? "#1D1D1D" : "#fff",
+                  outline: "none",
+                  transition: "border .24s ease-in-out",
+                }}
+              >
+                <Box
+                  sx={{
+                    width: "95%",
+                    ml: 2,
+                    mt: 2,
+                    backgroundColor: isLightTheme ? "red" : "#2C2C2C",
+                  }}
+                  {...getRootProps({
+                    // className: `dropzone ${files.length === 5 ? "disabled" : ""}`
+                    style,
+                  })}
+                >
+                  <input {...getInputProps()} />
+                  <Box
+                    sx={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "20px", mb: 2 }}
+                  >
+                    <img
+                      style={{
+                        width: "30px",
+                        filter: files.length === 5 || !editAble ? "grayscale(100%)" : "",
+                      }}
+                      src={IconImage}
+                    />
+                    <Typography
+                      sx={{ color: files.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff" }}
+                      variant="wpf_p2_regular"
+                    >
+                      Drag and Drop your Certificate files here or Browse” (JPG/ JPEG / PNG)
+                    </Typography>
+                    <Typography
+                      variant="wpf_p2_regular"
+                      sx={{
+                        paddingBottom: "2%",
+                        color: files.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff",
+                      }}
+                    >
+                      Maximum file size: 1Mb.
+                    </Typography>
+                    <img
+                      style={{ width: "30px", filter: files.length === 5 || !editAble ? "grayscale(100%)" : "" }}
+                      src={ctaImage}
+                    />
+                  </Box>
+                </Box>
+                <Box sx={{ display: "flex", width: "100%", justifyContent: "center", padding: "20px" }}>
+                  <Box>{files.length <= 5 && thumbs} </Box>
+                  <Typography variant="wpf_p4_medium" color="error.500">
+                    {files.length > 5 || error ? "you have selected more than 5 files" : ""}
+                  </Typography>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+
+      <Box
+        sx={{
+          height: {
+            lg: "10%",
+            xl: "14%",
+            xxl: "8%",
+          },
+        }}
+      >
+        <Grid
+          container
+          sx={{
+            height: "100%",
+          }}
+        >
+          {editAble && (
+            <>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <Button
+                  onClick={() => handleSubmitChange()}
+                  disabled={isLoading}
+                  sx={{
+                    height: {
+                      lg: "30px",
+                      xl: "40px",
+                      xxl: "40px",
+                    },
+                    backgroundColor: "primary.B200",
+                    color: "neutral.N000",
+                    borderRadius: "8px",
+                    textTransform: "none",
+                    fontSize: "12px",
+                    width: "150px",
+                    mr: 3,
+                    "&:hover": {
+                      backgroundColor: "primary.B200",
+                      color: "neutral.N000",
+                    },
+                    "&.Mui-disabled": {
+                      background: "#B6C9F0",
+                      color: "#FFFFFF",
+                    },
+                  }}
+                >
+                  Save Changes
+                </Button>
+                <Button
+                  onClick={() => handleCancel()}
+                  sx={{
+                    height: {
+                      lg: "30px",
+                      xl: "40px",
+                      xxl: "40px",
+                    },
+                    textTransform: "none",
+                    backgroundColor: "#F2F6FC",
+                    borderRadius: "8px",
+                    fontSize: "12px",
+                    color: "#253E5C",
+                    width: "150px",
+                    "&:hover": {
+                      background: "#F2F6FC",
+                    },
+                  }}
+                >
+                  Cancel
+                </Button>
+              </Box>
+            </>
+          )}
+        </Grid>
+      </Box>
+
+      {/* <Box
         sx={{
           flex: "1",
           height: {
@@ -296,242 +546,8 @@ const EducationInfoIndex = () => {
           />
         </Box>
 
-        <Box
-          sx={{
-            overflowY: "auto",
-            "&::-webkit-scrollbar": {
-              width: "0",
-            },
-            height: {
-              lg: "78%",
-              xl: "71%",
-              xxl: "75%",
-            },
-          }}
-        >
-          <Box
-            sx={{
-              height: "100%",
-            }}
-          >
-            <Box
-              sx={{
-                height: "100%",
-                "&::-webkit-scrollbar": {
-                  width: "0",
-                },
-                overflowY: "auto",
-              }}
-            >
-              <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
-                <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
-                  Educational Information
-                </Typography>
-              </Grid>
-
-              <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <DegreeSelect
-                    label={"Highest level of degree"}
-                    disableItem={false}
-                    editAble={editAble}
-                    higherDegree={higherDegree}
-                    setHigherDegree={setHigherDegree}
-                  />
-                </Grid>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <FieldSelectAdd
-                    label={"Field of Study"}
-                    disableItem={false}
-                    editAble={editAble}
-                    field={field}
-                    setField={setField}
-                  />
-                </Grid>
-              </Grid>
-              <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                  <InstitutionSelectAdd
-                    label={"Institution Name"}
-                    disableItem={false}
-                    editAble={editAble}
-                    institution={institution}
-                    setInstitution={setInstitution}
-                  />
-                </Grid>
-                <Grid item xs={6} sx={{ paddingRight: "2%", display: "flex", flexDirection: "column" }}>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <Typography sx={{ mb: "10px" }} variant="wpf_p4_medium" color="neutral.N300">
-                      Year of completion
-                    </Typography>
-                    <MyDatePicker
-                      sx={{
-                        backgroundColor: editAble ? "" : "neutral.N400",
-                        color: "#3c4d6b",
-                      }}
-                      disabled={!editAble}
-                      views={["year"]}
-                      openTo="year"
-                      value={value}
-                      onChange={(newValue) => setValue(newValue)}
-                    />
-                  </LocalizationProvider>
-                </Grid>
-              </Grid>
-
-              <Box className="container" sx={{ width: "100%" }}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    width: "100%",
-                    borderWidth: 2,
-                    borderRadius: 8,
-                    height: "100%",
-                    borderColor: files.length === 5 ? "rgba(70, 70, 70, 0.1)" : "rgba(70, 70, 70, 0.2)",
-                    borderStyle: "dashed",
-                    backgroundColor: isLightTheme ? "#FAFBFC" : "#2C2C2C",
-                    color: isLightTheme ? "#1D1D1D" : "#fff",
-                    outline: "none",
-                    transition: "border .24s ease-in-out",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      width: "95%",
-                      ml: 2,
-                      mt: 2,
-                      backgroundColor: isLightTheme ? "red" : "#2C2C2C",
-                    }}
-                    {...getRootProps({
-                      // className: `dropzone ${files.length === 5 ? "disabled" : ""}`
-                      style,
-                    })}
-                  >
-                    <input {...getInputProps()} />
-                    <Box
-                      sx={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "20px", mb: 2 }}
-                    >
-                      <img
-                        style={{
-                          width: "30px",
-                          filter: files.length === 5 || !editAble ? "grayscale(100%)" : "",
-                        }}
-                        src={IconImage}
-                      />
-                      <Typography
-                        sx={{ color: files.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff" }}
-                        variant="wpf_p2_regular"
-                      >
-                        Drag and Drop your Certificate files here or Browse” (JPG/ JPEG / PNG)
-                      </Typography>
-                      <Typography
-                        variant="wpf_p2_regular"
-                        sx={{
-                          paddingBottom: "2%",
-                          color: files.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff",
-                        }}
-                      >
-                        Maximum file size: 1Mb.
-                      </Typography>
-                      <img
-                        style={{ width: "30px", filter: files.length === 5 || !editAble ? "grayscale(100%)" : "" }}
-                        src={ctaImage}
-                      />
-                    </Box>
-                  </Box>
-                  <Box sx={{ display: "flex", width: "100%", justifyContent: "center", padding: "20px" }}>
-                    <Box>{files.length <= 5 && thumbs} </Box>
-                    <Typography variant="wpf_p4_medium" color="error.500">
-                      {files.length > 5 || error ? "you have selected more than 5 files" : ""}
-                    </Typography>
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-
-        <Box
-          sx={{
-            height: {
-              lg: "10%",
-              xl: "14%",
-              xxl: "8%",
-            },
-          }}
-        >
-          <Grid
-            container
-            sx={{
-              height: "100%",
-            }}
-          >
-            {editAble && (
-              <>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <Button
-                    onClick={() => handleSubmitChange()}
-                    disabled={isLoading}
-                    sx={{
-                      height: {
-                        lg: "30px",
-                        xl: "40px",
-                        xxl: "40px",
-                      },
-                      backgroundColor: "primary.B200",
-                      color: "neutral.N000",
-                      borderRadius: "8px",
-                      textTransform: "none",
-                      fontSize: "12px",
-                      width: "150px",
-                      mr: 3,
-                      "&:hover": {
-                        backgroundColor: "primary.B200",
-                        color: "neutral.N000",
-                      },
-                      "&.Mui-disabled": {
-                        background: "#B6C9F0",
-                        color: "#FFFFFF",
-                      },
-                    }}
-                  >
-                    Save Changes
-                  </Button>
-                  <Button
-                    onClick={() => handleCancel()}
-                    sx={{
-                      height: {
-                        lg: "30px",
-                        xl: "40px",
-                        xxl: "40px",
-                      },
-                      textTransform: "none",
-                      backgroundColor: "#F2F6FC",
-                      borderRadius: "8px",
-                      fontSize: "12px",
-                      color: "#253E5C",
-                      width: "150px",
-                      "&:hover": {
-                        background: "#F2F6FC",
-                      },
-                    }}
-                  >
-                    Cancel
-                  </Button>
-                </Box>
-              </>
-            )}
-          </Grid>
-        </Box>
-      </Box>
+        
+      </Box> */}
     </>
   );
 };

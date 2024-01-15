@@ -128,6 +128,7 @@ const DegreeSelect = ({ label, higherDegree, setHigherDegree, disableItem, editA
             {...params}
             sx={{
               backgroundColor: editAble ? "" : "neutral.N400",
+              
               fontSize: "14px",
               borderRadius: "8px",
               height: "40px",

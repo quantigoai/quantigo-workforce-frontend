@@ -1,24 +1,20 @@
-import React, { useEffect, useState } from "react";
-import TextField from "@mui/material/TextField";
+import { Typography, styled } from "@mui/material";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Typography,
-  styled,
-} from "@mui/material";
+import TextField from "@mui/material/TextField";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 const filter = createFilterOptions();
 const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "1px solid #E6ECF5 !important",
     borderRadius: "8px",
   },
-  "& .MuiInputBase-root": { height: "40px", fontSize: "14px", color: "#3C4D6B", padding: "0px 5px" },
+  "& .MuiInputBase-root": {
+    height: "40px",
+    fontSize: "14px",
+    color: "#3C4D6B",
+    padding: "0px 5px",
+  },
   "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
     border: `1px solid #2E58FF !important`,
   },
@@ -29,9 +25,13 @@ const MyTextField = styled(TextField)(() => ({
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
 const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChecked, setInstitution }) => {
+  console.log("🚀 ~ InstitutionSelectAdd ~ institution:", institution);
   const [open, toggleOpen] = React.useState(false);
   const [allInstitute, setAllInstitute] = useState([]);
+
   const [newInput, setNewInput] = useState("");
+  console.log("🚀 ~ InstitutionSelectAdd ~ newInput:", newInput);
+  const [tempName, setTempName] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -56,6 +56,7 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
   }, [editAble]);
 
   const addNewValue = (value) => {
+    setTempName(value);
     const data = { name: value };
     const finalData = axios
       .post(`${url}/educational-institute/add-educational-institute`, data)
@@ -95,19 +96,23 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
             addNewValue(newValue.inputValue);
           } else if (newValue && newValue.name) {
             setInstitution(newValue);
+          } else {
+            setInstitution(newValue);
           }
         }}
         onKeyDown={(ev) => {
-          if (ev.key === "Enter") {
-            ev.preventDefault();
-            handleSubmit(ev);
+          const institutes = allInstitute.map((item) => item.name);
+          if (!institutes.includes(ev.target.value)) {
+            if (ev.key === "Enter") {
+              ev.preventDefault();
+              handleSubmit(ev);
+            }
           }
         }}
         filterOptions={(options, params) => {
           const filtered = filter(options, params);
 
           const { inputValue } = params;
-          // Suggest the creation of a new value
           const isExisting = options.some((option) => inputValue === option.name);
           if (inputValue !== "" && !isExisting) {
             filtered.push({
@@ -123,18 +128,23 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
           if (typeof option === "string") {
             return option;
           }
-
+          if (option && option.inputValue) {
+            return option.inputValue;
+          }
           if (option && option.name) {
             return option.name;
           }
 
-          return "";
+          return tempName || "";
         }}
+        getOptionSelected={(option, value) =>
+          option.inputValue ? value.inputValue === option.inputValue : value.name === option.name
+        }
         disabled={disableItem ? true : isChecked ? true : !editAble}
         selectOnFocus
         clearOnBlur
         handleHomeEndKeys
-        renderOption={(props, option) => <li {...props}>{option.name}</li>}
+        renderOption={(props, option) => <li {...props}>{option.name} </li>}
         sx={{
           border: "1px solid #E6ECF5 !important",
           height: "40px",

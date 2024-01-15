@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import VerificationInfoIndex from "./VerificationInfoIndex";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserVerificationInfo } from "../../../../../features/slice/userSlice";
+import { getUserContactInfo, getUserVerificationInfo } from "../../../../../features/slice/userSlice";
 import { Box } from "@mui/material";
 import ProfilePicture from "../MyProfile/ProfilePicture";
 import LoadingComponent from "../../../../shared/Loading/LoadingComponent";
+import ContactInfoIndex from "./ContactInfoIndex";
 
-const VerificationInfo = () => {
+const ContactInfo = () => {
   const [editAble, setEditAble] = useState(false);
   const { user, isLoading } = useSelector((state) => state.user);
   const [isDataLoading, setIsDataLoading] = useState(true);
@@ -16,7 +16,7 @@ const VerificationInfo = () => {
     setEditAble(true);
   };
   useEffect(() => {
-    dispatch(getUserVerificationInfo(user._id)).then((action) => {
+    dispatch(getUserContactInfo(user._id)).then((action) => {
       setData(action.payload.data);
       setIsDataLoading(false);
     });
@@ -70,8 +70,8 @@ const VerificationInfo = () => {
           </>
         ) : (
           <>
-            <VerificationInfoIndex
-              data={data}
+            <ContactInfoIndex
+              user={data}
               isDataLoading={isDataLoading}
               editAble={editAble}
               setEditAble={setEditAble}
@@ -83,4 +83,4 @@ const VerificationInfo = () => {
   );
 };
 
-export default VerificationInfo;
+export default ContactInfo;

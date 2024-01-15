@@ -20,6 +20,7 @@ import IconImage from "../../../../../assets/images/Icon.png";
 import InstitutionSelectAdd from "./InstitutionSelectAdd";
 import { DateField } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
+import UploadImagesField from "../VerificationInfo/UploadImagesField";
 export const MyDatePicker = styled(DatePicker)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "1px solid #E6ECF5 !important",
@@ -65,7 +66,7 @@ const focusedStyle = {
 };
 
 const EducationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
-  console.log("🚀 ~ EducationInfoIndex ~ data:", data)
+  console.log("🚀 ~ EducationInfoIndex ~ data:", data);
   const { isLightTheme } = useSelector((state) => state.theme);
   const { user, isLoading } = useSelector((state) => state.user);
   // const [editAble, setEditAble] = useState(false);
@@ -79,6 +80,14 @@ const EducationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
   const [coverImageFile, setCoverImageFile] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
   const [value, setValue] = React.useState(dayjs(data?.completedYear));
+  const [imagesCopy, setImagesCopy] = useState(data?.certificateImages);
+  const [removeImagesUpdate, setRemoveImagesUpdate] = useState([
+    {
+      name: "",
+      isRemoved: false,
+    },
+  ]);
+  const [removeImages, setRemoveImages] = useState([]);
 
   const handleImage = (e) => {
     setCoverImageFile(e.target.files[0]);
@@ -94,129 +103,6 @@ const EducationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
   const handleDate = (params) => {
     // console.log(params.current);
   };
-
-  const { getRootProps, getInputProps, isFocused } = useDropzone({
-    disabled: files.length === 5 || !editAble ? true : false,
-    accept: {
-      "image/jpeg": [],
-      "image/png": [],
-    },
-    onDrop: (acceptedFiles) => {
-      if (files.length === 0) {
-        if (acceptedFiles.length > 5) {
-          setError(true);
-        } else {
-          setFiles((prev) => [
-            ...prev,
-            ...acceptedFiles.map((file) =>
-              Object.assign(file, {
-                preview: URL.createObjectURL(file),
-              })
-            ),
-          ]);
-          setError(false);
-        }
-      } else if (files.length !== 0 && files.length <= 5) {
-        if (acceptedFiles.length + files.length === 5) {
-          setFiles((prev) => [
-            ...prev,
-            ...acceptedFiles.map((file) =>
-              Object.assign(file, {
-                preview: URL.createObjectURL(file),
-              })
-            ),
-          ]);
-          setError(false);
-        } else if (acceptedFiles.length + files.length < 5) {
-          setFiles((prev) => [
-            ...prev,
-            ...acceptedFiles.map((file) =>
-              Object.assign(file, {
-                preview: URL.createObjectURL(file),
-              })
-            ),
-          ]);
-          setError(false);
-        } else {
-          setFiles([]);
-          setError(true);
-        }
-      }
-    },
-  });
-
-  const baseUploadBoxStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-    borderWidth: 3,
-    padding: "10px",
-    borderRadius: 8,
-    borderColor:
-      files.length === 5 ? "rgba(70, 70, 70, 0.1)" : isLightTheme ? "rgba(70, 70, 70, 0.2)" : "rgba(70, 70, 70, 0.8)",
-    borderStyle: "dashed",
-    // background: isLightTheme ? "#FAFBFC" : "#2C2C2C",
-    background: isLightTheme ? "#FAFBFC" : "#2C2C2C",
-    color: isLightTheme ? "#1D1D1D" : "#fff",
-    outline: "none",
-    // width: "200px",
-    height: "150px",
-    transition: "border .24s ease-in-out",
-  };
-  const thumbs = files.map((file, index) => {
-    return (
-      <Box style={thumb} key={file.name}>
-        <Box style={thumbInner}>
-          {editAble && (
-            <Box
-              onClick={() => handleDelete(file)}
-              sx={{
-                position: "absolute",
-                top: -2,
-                right: -1,
-                backgroundColor: "#FF4757",
-                color: "#fff",
-                width: "30px",
-                // fontSize: "10px",
-                height: "30px",
-                textAlign: "center",
-                borderRadius: "50%",
-                "&:hover": { backgroundColor: "#F53142" },
-                cursor: "pointer",
-              }}
-            >
-              <CloseIcon sx={{ fontSize: "18px", mt: "6px" }} />
-            </Box>
-          )}
-          <img
-            src={file.preview ? file.preview : file}
-            style={img}
-            onLoad={() => {
-              URL.revokeObjectURL(file.preview);
-            }}
-            alt={file.name}
-          />
-        </Box>
-      </Box>
-    );
-  });
-
-  const handleDelete = (fileToDelete) => {
-    setFiles((prevFiles) => prevFiles.filter((file) => file !== fileToDelete));
-  };
-  const style = useMemo(
-    () => ({
-      ...baseUploadBoxStyle,
-      ...(isFocused ? focusedStyle : {}),
-    }),
-    [isFocused, isLightTheme]
-  );
-  useEffect(() => {
-    return () => {
-      files.forEach((file) => URL.revokeObjectURL(file.preview));
-    };
-  }, [files]);
 
   const handleCancel = () => {
     setEditAble(false);
@@ -259,14 +145,29 @@ const EducationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
       }
     });
 
+    if (imagesCopy?.length != 0) {
+      imagesCopy?.map((item, index) => {
+        const tempData = {
+          name: "",
+          isRemoved: false,
+        };
+        const isRemoved = removeImages.includes(item);
+        tempData.name = item;
+        tempData.isRemoved = isRemoved;
+        formData.append(`removedImages[${index}][name]`, tempData.name);
+        formData.append(`removedImages[${index}][isRemoved]`, tempData.isRemoved);
+      });
+    }
+    console.log("🚀 ~ files.forEach ~ files:", files);
+
     const finalData = {
       id: user._id,
       formData,
     };
 
-    // for (let pair of formData.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
-    // }
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
     dispatch(updateMyEducation(finalData)).then((action) => {
       if (action.error) {
         toast.trigger(action.error.message, "error");
@@ -362,7 +263,16 @@ const EducationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
               </Grid>
             </Grid>
 
-            <Box className="container" sx={{ width: "100%" }}>
+            <UploadImagesField
+              editAble={editAble}
+              label={"sdsadasd"}
+              files={files}
+              setFiles={setFiles}
+              setImagesCopy={setImagesCopy}
+              imagesCopy={imagesCopy}
+              setRemoveImages={setRemoveImages}
+            />
+            {/* <Box className="container" sx={{ width: "100%" }}>
               <Box
                 sx={{
                   display: "flex",
@@ -432,7 +342,7 @@ const EducationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
                   </Typography>
                 </Box>
               </Box>
-            </Box>
+            </Box> */}
           </Box>
         </Box>
       </Box>

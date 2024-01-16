@@ -11,7 +11,8 @@ import { getUserVerificationInfo, updateMyVerification } from "../../../../../fe
 import useToaster from "../../../../../customHooks/useToaster";
 import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
 import LoadingComponent from "../../../../shared/Loading/LoadingComponent";
-
+import axios from "axios";
+import { realToken } from "../../../../../helper/lib";
 const TextFieldQuestion = styled(TextField)(() => ({
   // borderRadius: "8px 0px 0px 8px",
   "& .MuiOutlinedInput-root": {
@@ -80,7 +81,21 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
     },
   ]);
   const [removeImages, setRemoveImages] = useState([]);
-
+  const uploadRequest = async (finalImageData) => {
+    try {
+      const { id, formData } = finalImageData;
+      return await axios.patch(`${url}/users/my-verification/${id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+        content: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  };
   const dispatch = useDispatch();
   const toast = useToaster();
 
@@ -105,7 +120,7 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
   const handleClick = (signNda) => {
     window.open(signNda);
   };
-  const handleSubmitChange = async () => {
+  const handleSubmitChange = () => {
     const data = {
       documentType,
       nidNumber,
@@ -148,24 +163,24 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
       formData,
     };
 
-    await toast.responsePromise(updateMyVerification(finalImageData), setDataLoading, {
-      initialMessage: "Effective hours is Uploading...",
-      inPending: () => {},
-      afterSuccess: (finalImageData) => {
-        // dispatch(updateProjectDrawerManually(data.data.projectDrawer));
-      },
-      afterError: () => {},
-    });
-
-    // dispatch(updateMyVerification(finalImageData)).then((action) => {
-    //   if (action.error) {
-    //     toast.trigger(action.error.message, "error");
-    //   }
-    //   if (action.payload.status === 200) {
-    //     toast.trigger("Profile Update Successfully", "success");
-    //     setEditAble(false);
-    //   }
+    // await toast.responsePromise(uploadRequest(finalImageData), setDataLoading, {
+    //   initialMessage: "  is Uploading...",
+    //   inPending: () => {},
+    //   afterSuccess: (finalImageData) => {
+    //     // dispatch(updateProjectDrawerManually(data.data.projectDrawer));
+    //   },
+    //   afterError: () => {},
     // });
+
+    dispatch(updateMyVerification(finalImageData)).then((action) => {
+      if (action.error) {
+        toast.trigger(action.error.message, "error");
+      }
+      if (action.payload.status === 200) {
+        toast.trigger("Profile Update Successfully", "success");
+        setEditAble(false);
+      }
+    });
     for (let pair of formData.entries()) {
       console.log(pair[0] + ", " + pair[1]);
     }

@@ -55,11 +55,19 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
   const dispatch = useDispatch();
   const [documentsType, setDocumentsType] = useState(user?.documentsType);
   const [documentNo, setDocumentNo] = useState(user?.documentNo);
+  const [imagesCopy, setImagesCopy] = useState(user?.documentsImage);
 
   const [isDocumentNoValid, setDocumentNoValid] = useState(false);
   const [isDocumentTypeValid, setDocumentTypeValid] = useState(false);
   const [images, setImages] = useState(user?.documentsImage);
   console.log("🚀 ~ images:", images);
+  const [removeImagesUpdate, setRemoveImagesUpdate] = useState([
+    {
+      name: "",
+      isRemoved: false,
+    },
+  ]);
+  const [removeImages, setRemoveImages] = useState([]);
 
   const toast = useToaster();
   const maxSize = 1024000;
@@ -103,10 +111,26 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
         formData.append("documentsImage", item);
       }
     });
+    if (imagesCopy.length != 0) {
+      imagesCopy.map((item, index) => {
+        const tempData = {
+          name: "",
+          isRemoved: false,
+        };
+        const isRemoved = removeImages.includes(item);
+        tempData.name = item;
+        tempData.isRemoved = isRemoved;
+        formData.append(`removedImages[${index}][name]`, tempData.name);
+        formData.append(`removedImages[${index}][isRemoved]`, tempData.isRemoved);
+      });
+    }
     const finalData = {
       id: user._id,
       formData: formData,
     };
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
     dispatch(updateMyDocuments(finalData)).then((action) => {
       if (action.payload?.status === 200 || action.payload?.status === 201) {
         toast.trigger("Your Documents has been update successfully.", "success");
@@ -221,9 +245,9 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                   label={"sdfsfdsf"}
                   files={images}
                   setFiles={setImages}
-                  // setImagesCopy={setImagesCopy}
-                  // imagesCopy={imagesCopy}
-                  // setRemoveImages={setRemoveImages}
+                  setImagesCopy={setImagesCopy}
+                  imagesCopy={imagesCopy}
+                  setRemoveImages={setRemoveImages}
                 />
                 {/* <DocumentImageUpload
                   coverImageFile={coverImageFile}

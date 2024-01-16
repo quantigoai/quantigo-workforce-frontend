@@ -8,6 +8,7 @@ import { updateMyDocuments } from "../../../features/slice/userSlice";
 import ProjectModalHeader from "../ProjectLIstNew2/ProjectModalHeader";
 import DocumentImageUpload from "./DocumentImageUpload";
 import UploadMultipleImage from "../EditProfile/EditProfilePage/EducationalInfo/UploadMultipleImage";
+import UploadImagesField from "../EditProfile/EditProfilePage/VerificationInfo/UploadImagesField";
 
 export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
@@ -48,14 +49,18 @@ const style = {
 };
 
 const UpdateDocumentModal = ({ openModal, handleClose }) => {
+  const { user, isLoading } = useSelector((state) => state.user);
   const [coverImageFile, setCoverImageFile] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
   const dispatch = useDispatch();
-  const [documentsType, setDocumentsType] = useState("");
-  const [documentNo, setDocumentNo] = useState("");
-  const { user, isLoading } = useSelector((state) => state.user);
+  const [documentsType, setDocumentsType] = useState(user?.documentsType);
+  const [documentNo, setDocumentNo] = useState(user?.documentNo);
+
   const [isDocumentNoValid, setDocumentNoValid] = useState(false);
   const [isDocumentTypeValid, setDocumentTypeValid] = useState(false);
+  const [images, setImages] = useState(user?.documentsImage);
+  console.log("🚀 ~ images:", images);
+
   const toast = useToaster();
   const maxSize = 1024000;
   const handleDocumentNoChange = (e) => {
@@ -89,10 +94,15 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
   // const onSubmit = (data) => {
   const handleChange = (data) => {
     const formData = new FormData();
-    formData.append("documentsImage", coverImageFile);
+    // formData.append("documentsImage", coverImageFile);
     formData.append("documentsType", documentsType);
     formData.append("documentNo", documentNo);
-
+    console.log(images);
+    images.forEach((item) => {
+      if (item.name) {
+        formData.append("documentsImage", item);
+      }
+    });
     const finalData = {
       id: user._id,
       formData: formData,
@@ -161,6 +171,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                   variant="outlined"
                   fullWidth
                   placeholder="Select"
+                  value={documentsType}
                   sx={{
                     border: "2px solid #E6ECF5",
                     borderRadius: "8px",
@@ -194,6 +205,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                 <MyTextField
                   variant="outlined"
                   fullWidth
+                  value={documentNo}
                   InputProps={{ disableUnderline: true }}
                   placeholder="Enter Document No."
                   onChange={(e) => {
@@ -204,13 +216,22 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
               </Grid>
 
               <Grid container sx={{}}>
+                <UploadImagesField
+                  editAble={true}
+                  label={"sdfsfdsf"}
+                  files={images}
+                  setFiles={setImages}
+                  // setImagesCopy={setImagesCopy}
+                  // imagesCopy={imagesCopy}
+                  // setRemoveImages={setRemoveImages}
+                />
                 {/* <DocumentImageUpload
                   coverImageFile={coverImageFile}
                   coverImage={coverImage}
                   removeImage={removeImage}
                   handleImage={handleImage}
                 /> */}
-                <UploadMultipleImage />
+                {/* <UploadMultipleImage /> */}
               </Grid>
             </Box>
           </Box>
@@ -254,13 +275,13 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                     type="submit"
                     // disabled={true}
                     loading={isLoading}
-                    disabled={
-                      !isDocumentNoValid ||
-                      !isDocumentTypeValid ||
-                      !coverImage ||
-                      // isLoading ||
-                      coverImageFile?.size > maxSize
-                    }
+                    // disabled={
+                    //   !isDocumentNoValid ||
+                    //   !isDocumentTypeValid ||
+                    //   !coverImage ||
+                    //   // isLoading ||
+                    //   coverImageFile?.size > maxSize
+                    // }
                     sx={{
                       width: "128px",
                       textTransform: "none",

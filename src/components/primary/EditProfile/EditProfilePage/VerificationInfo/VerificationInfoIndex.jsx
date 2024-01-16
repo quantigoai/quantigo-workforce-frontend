@@ -72,6 +72,7 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
   const [documentType, setDocumentType] = useState(data?.extraDocumentType);
   const [images, setImages] = useState(data?.extraDocumentImages);
   const [imagesCopy, setImagesCopy] = useState(data?.extraDocumentImages);
+  const [dataLoading, setDataLoading] = useState(false);
   const [removeImagesUpdate, setRemoveImagesUpdate] = useState([
     {
       name: "",
@@ -79,7 +80,7 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
     },
   ]);
   const [removeImages, setRemoveImages] = useState([]);
-  
+
   const dispatch = useDispatch();
   const toast = useToaster();
 
@@ -104,7 +105,7 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
   const handleClick = (signNda) => {
     window.open(signNda);
   };
-  const handleSubmitChange = () => {
+  const handleSubmitChange = async () => {
     const data = {
       documentType,
       nidNumber,
@@ -147,15 +148,24 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
       formData,
     };
 
-    dispatch(updateMyVerification(finalImageData)).then((action) => {
-      if (action.error) {
-        toast.trigger(action.error.message, "error");
-      }
-      if (action.payload.status === 200) {
-        toast.trigger("Profile Update Successfully", "success");
-        setEditAble(false);
-      }
+    await toast.responsePromise(updateMyVerification(finalImageData), setDataLoading, {
+      initialMessage: "Effective hours is Uploading...",
+      inPending: () => {},
+      afterSuccess: (finalImageData) => {
+        // dispatch(updateProjectDrawerManually(data.data.projectDrawer));
+      },
+      afterError: () => {},
     });
+
+    // dispatch(updateMyVerification(finalImageData)).then((action) => {
+    //   if (action.error) {
+    //     toast.trigger(action.error.message, "error");
+    //   }
+    //   if (action.payload.status === 200) {
+    //     toast.trigger("Profile Update Successfully", "success");
+    //     setEditAble(false);
+    //   }
+    // });
     for (let pair of formData.entries()) {
       console.log(pair[0] + ", " + pair[1]);
     }

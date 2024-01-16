@@ -1,24 +1,14 @@
-import { Box, Button, Grid, Input, InputAdornment, TextField, Typography, styled } from "@mui/material";
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import FieldForProfile from "../FieldForProfile";
-import ProfilePicture from "../MyProfile/ProfilePicture";
-import { myProfileEdit, updateMyEducation, uploadMyImage } from "../../../../../features/slice/userSlice";
-import moment from "moment";
-import { useForm } from "react-hook-form";
+import { Box, Button, Grid, Typography, styled } from "@mui/material";
+import React, { useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../../customHooks/useToaster";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
-import { useDropzone } from "react-dropzone";
-import CloseIcon from "@mui/icons-material/Close";
-import DegreeSelect from "./DegreeSelect";
-import FieldSelectAdd from "./FieldSelectAdd";
-import ctaImage from "../../../../../assets/images/CTA.png";
-import IconImage from "../../../../../assets/images/Icon.png";
+
 import InstitutionSelectAdd from "./InstitutionSelectAdd";
-import { DateField } from "@mui/x-date-pickers";
+
 import dayjs from "dayjs";
 import UploadImagesField from "../VerificationInfo/UploadImagesField";
 import EducationSelect from "./EducationSelect";
@@ -37,39 +27,7 @@ export const MyDatePicker = styled(DatePicker)(() => ({
   },
 }));
 
-const thumb = {
-  display: "inline-flex",
-  borderRadius: 2,
-  // border: "1px solid #eaeaea",
-  marginBottom: 8,
-  marginRight: 8,
-  width: "140px",
-  height: "140px",
-  padding: 4,
-
-  boxSizing: "border-box",
-};
-
-const thumbInner = {
-  // display: "flex",e
-  position: "relative",
-  minWidth: 0,
-  overflow: "hidden",
-};
-
-const img = {
-  // display: "block",
-  width: "100%",
-  height: "100%",
-  borderRadius: "15px",
-};
-const focusedStyle = {
-  borderColor: "#2196f3",
-};
-
-const EducationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
-  console.log("🚀 ~ EducationInfoIndex ~ data:", data);
-  const { isLightTheme } = useSelector((state) => state.theme);
+const EducationInfoIndex = ({ data, editAble, setEditAble }) => {
   const { user, isLoading } = useSelector((state) => state.user);
 
   // const [editAble, setEditAble] = useState(false);
@@ -78,7 +36,7 @@ const EducationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
   const [field, setField] = useState(data?.fieldOfStudy || "");
   const [institution, setInstitution] = useState(data?.instituteName);
   const [files, setFiles] = useState(data?.certificateImages || "");
-  const [error, setError] = useState(false);
+
   const dispatch = useDispatch();
   const toast = useToaster();
   const [coverImageFile, setCoverImageFile] = useState(null);

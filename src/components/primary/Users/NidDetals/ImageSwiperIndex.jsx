@@ -27,18 +27,19 @@ const ImageSwiperIndex = ({ images, level }) => {
           style={{
             "--swiper-navigation-color": "#fff",
             "--swiper-pagination-color": "#fff",
+           
           }}
           pagination={{
             type: "fraction",
           }}
           navigation={true}
           modules={[Pagination, Navigation]}
-          className="mySwiper"
+          // className="mySwiper"
         >
           {images &&
             images.map((item) => (
-              <SwiperSlide key={item}>
-                <img src={item} style={{ borderRadius: "8px" }} />
+              <SwiperSlide style={{}} key={item}>
+                <img src={item} style={{ borderRadius: "8px" ,width:"100%",height:"100%" }} />
               </SwiperSlide>
             ))}
         </Swiper>

@@ -11,7 +11,8 @@ import { getUserVerificationInfo, updateMyVerification } from "../../../../../fe
 import useToaster from "../../../../../customHooks/useToaster";
 import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
 import LoadingComponent from "../../../../shared/Loading/LoadingComponent";
-
+import axios from "axios";
+import { realToken } from "../../../../../helper/lib";
 const TextFieldQuestion = styled(TextField)(() => ({
   // borderRadius: "8px 0px 0px 8px",
   "& .MuiOutlinedInput-root": {
@@ -72,6 +73,7 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
   const [documentType, setDocumentType] = useState(data?.extraDocumentType);
   const [images, setImages] = useState(data?.extraDocumentImages);
   const [imagesCopy, setImagesCopy] = useState(data?.extraDocumentImages);
+  const [dataLoading, setDataLoading] = useState(false);
   const [removeImagesUpdate, setRemoveImagesUpdate] = useState([
     {
       name: "",
@@ -79,7 +81,21 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
     },
   ]);
   const [removeImages, setRemoveImages] = useState([]);
-  
+  const uploadRequest = async (finalImageData) => {
+    try {
+      const { id, formData } = finalImageData;
+      return await axios.patch(`${url}/users/my-verification/${id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+        content: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  };
   const dispatch = useDispatch();
   const toast = useToaster();
 
@@ -146,6 +162,15 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
       id: user._id,
       formData,
     };
+
+    // await toast.responsePromise(uploadRequest(finalImageData), setDataLoading, {
+    //   initialMessage: "  is Uploading...",
+    //   inPending: () => {},
+    //   afterSuccess: (finalImageData) => {
+    //     // dispatch(updateProjectDrawerManually(data.data.projectDrawer));
+    //   },
+    //   afterError: () => {},
+    // });
 
     dispatch(updateMyVerification(finalImageData)).then((action) => {
       if (action.error) {

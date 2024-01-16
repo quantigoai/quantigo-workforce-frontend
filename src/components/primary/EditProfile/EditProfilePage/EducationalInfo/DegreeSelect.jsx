@@ -2,7 +2,11 @@ import * as React from "react";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import { Box, TextField, Typography, styled } from "@mui/material";
 import { useSelector } from "react-redux";
+
+
 const filter = createFilterOptions();
+
+
 const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "1px solid #E6ECF5 !important",
@@ -102,7 +106,6 @@ const DegreeSelect = ({ label, higherDegree, setHigherDegree, disableItem, editA
         }}
         options={higherStudies}
         getOptionLabel={(option) => {
-          // e.g. value selected with enter, right from the input
           if (typeof option === "string") {
             return option;
           }

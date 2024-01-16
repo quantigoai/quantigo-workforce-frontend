@@ -6,13 +6,13 @@ import useToaster from "../../../../../customHooks/useToaster";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-
+import { updateMyEducation } from "../../../../../features/slice/userSlice";
 import InstitutionSelectAdd from "./InstitutionSelectAdd";
-
 import dayjs from "dayjs";
 import UploadImagesField from "../VerificationInfo/UploadImagesField";
 import EducationSelect from "./EducationSelect";
 import EducationFieldSelect from "./EducationFieldSelect";
+
 export const MyDatePicker = styled(DatePicker)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "1px solid #E6ECF5 !important",
@@ -29,19 +29,15 @@ export const MyDatePicker = styled(DatePicker)(() => ({
 
 const EducationInfoIndex = ({ data, editAble, setEditAble }) => {
   const { user, isLoading } = useSelector((state) => state.user);
-
-  // const [editAble, setEditAble] = useState(false);
-  const [higherDegree, setHigherDegree] = useState(data?.highestLevelOfDegree);
-
+  const [higherDegree, setHigherDegree] = useState(data?.highestLevelOfDegree || "");
+  console.log(data?.highestLevelOfDegree);
   const [field, setField] = useState(data?.fieldOfStudy || "");
   const [institution, setInstitution] = useState(data?.instituteName);
   const [files, setFiles] = useState(data?.certificateImages || "");
-
   const dispatch = useDispatch();
   const toast = useToaster();
   const [coverImageFile, setCoverImageFile] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
-  // const [value, setValue] = React.useState(dayjs(data?.completedYear));
   const [value, setValue] = React.useState(dayjs(data?.completedYear || ""));
   const [imagesCopy, setImagesCopy] = useState(data?.certificateImages);
   const [removeImagesUpdate, setRemoveImagesUpdate] = useState([
@@ -69,13 +65,13 @@ const EducationInfoIndex = ({ data, editAble, setEditAble }) => {
     const formData = new FormData();
 
     formData.append("highestLevelOfDegree", higherDegree);
+    formData.append("fieldOfStudy", field);
 
     if (institution === null) {
       formData.append("instituteName", "");
     } else {
       institution.name !== undefined && formData.append("instituteName", institution.name);
     }
-    formData.append("fieldOfStudy", field);
 
     formData.append("completedYear", value?.$y);
 

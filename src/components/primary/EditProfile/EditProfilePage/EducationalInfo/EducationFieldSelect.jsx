@@ -1,8 +1,7 @@
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { Box, FormControl, FormHelperText, MenuItem, Select, styled, Typography } from "@mui/material";
+import { Box, FormControl, MenuItem, Select, styled, Typography } from "@mui/material";
 import PropTypes from "prop-types";
-import { Controller, useFormContext } from "react-hook-form";
-import { CustomFormControl } from "../../../../shared/CustomField/CustomSelectField";
+
 EducationFieldSelect.propTypes = {
   name: PropTypes.string,
   helperText: PropTypes.node,
@@ -35,7 +34,6 @@ export const MySelect = styled(Select)(() => ({
 }));
 
 export default function EducationFieldSelect({ handleChangeField, field, options, label, editAble, defaultValue }) {
-  console.log("🚀 ~ EducationFieldSelect ~ defaultValue:", defaultValue);
   return (
     <Box>
       <Typography
@@ -49,12 +47,16 @@ export default function EducationFieldSelect({ handleChangeField, field, options
       </Typography>
       <FormControl fullWidth>
         <MySelect
+          displayEmpty
           defaultValue={defaultValue}
           sx={{ backgroundColor: editAble ? "" : "neutral.N400" }}
           disabled={!editAble}
           value={field}
           onChange={handleChangeField}
         >
+          <MenuItem disabled value="">
+            <span>select your field of study</span>
+          </MenuItem>
           {options.map((option) => (
             <MenuItem
               sx={{

@@ -1,26 +1,18 @@
-import { Box, Button, Grid, Input, InputAdornment, TextField, Typography, styled } from "@mui/material";
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import FieldForProfile from "../FieldForProfile";
-import ProfilePicture from "../MyProfile/ProfilePicture";
-import { myProfileEdit, updateMyEducation, uploadMyImage } from "../../../../../features/slice/userSlice";
-import moment from "moment";
-import { useForm } from "react-hook-form";
+import { Box, Button, Grid, Typography, styled } from "@mui/material";
+import React, { useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../../customHooks/useToaster";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
-import { useDropzone } from "react-dropzone";
-import CloseIcon from "@mui/icons-material/Close";
-import DegreeSelect from "./DegreeSelect";
-import FieldSelectAdd from "./FieldSelectAdd";
-import ctaImage from "../../../../../assets/images/CTA.png";
-import IconImage from "../../../../../assets/images/Icon.png";
+import { updateMyEducation } from "../../../../../features/slice/userSlice";
 import InstitutionSelectAdd from "./InstitutionSelectAdd";
-import { DateField } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import UploadImagesField from "../VerificationInfo/UploadImagesField";
+import EducationSelect from "./EducationSelect";
+import EducationFieldSelect from "./EducationFieldSelect";
+
 export const MyDatePicker = styled(DatePicker)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "1px solid #E6ECF5 !important",
@@ -35,50 +27,18 @@ export const MyDatePicker = styled(DatePicker)(() => ({
   },
 }));
 
-const thumb = {
-  display: "inline-flex",
-  borderRadius: 2,
-  // border: "1px solid #eaeaea",
-  marginBottom: 8,
-  marginRight: 8,
-  width: "140px",
-  height: "140px",
-  padding: 4,
-
-  boxSizing: "border-box",
-};
-
-const thumbInner = {
-  // display: "flex",e
-  position: "relative",
-  minWidth: 0,
-  overflow: "hidden",
-};
-
-const img = {
-  // display: "block",
-  width: "100%",
-  height: "100%",
-  borderRadius: "15px",
-};
-const focusedStyle = {
-  borderColor: "#2196f3",
-};
-
-const EducationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
-  const { isLightTheme } = useSelector((state) => state.theme);
+const EducationInfoIndex = ({ data, editAble, setEditAble }) => {
   const { user, isLoading } = useSelector((state) => state.user);
-  // const [editAble, setEditAble] = useState(false);
-  const [higherDegree, setHigherDegree] = useState(data?.highestLevelOfDegree);
-  const [field, setField] = useState(data?.fieldOfStudy);
+  const [higherDegree, setHigherDegree] = useState(data?.highestLevelOfDegree || "");
+  console.log(data?.highestLevelOfDegree);
+  const [field, setField] = useState(data?.fieldOfStudy || "");
   const [institution, setInstitution] = useState(data?.instituteName);
-  const [files, setFiles] = useState(data?.certificateImages);
-  const [error, setError] = useState(false);
+  const [files, setFiles] = useState(data?.certificateImages || "");
   const dispatch = useDispatch();
   const toast = useToaster();
   const [coverImageFile, setCoverImageFile] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
-  const [value, setValue] = React.useState(dayjs(data?.completedYear));
+  const [value, setValue] = React.useState(dayjs(data?.completedYear || ""));
   const [imagesCopy, setImagesCopy] = useState(data?.certificateImages);
   const [removeImagesUpdate, setRemoveImagesUpdate] = useState([
     {
@@ -96,46 +56,23 @@ const EducationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
       setCoverImage(url);
     }
   };
-  const handleEditProfile = () => {
-    setEditAble(true);
-  };
-  const handleDate = (params) => {
-    // console.log(params.current);
-  };
 
   const handleCancel = () => {
     setEditAble(false);
   };
 
-  // useEffect(() => {
-  //   setDegree(user.firstName);
-  //   setStudy(user.lastName);
-  //   setContactNo(user.contactNo);
-  //   setOccupation(user.occupation);
-  //   setBloodGroup(user.bloodGroup);
-  //   setPermanentAddress(user.permanentAddress);
-  //   setPresentAddress(user.presentAddress);
-  //   setBillingAccountNo(user.billingAccountNo);
-  //   setCoverImage(null);
-  // }, [editAble]);
-
   const handleSubmitChange = () => {
     const formData = new FormData();
-    if (higherDegree === null) {
-      formData.append("highestLevelOfDegree", "");
-    } else {
-      higherDegree.title !== undefined && formData.append("highestLevelOfDegree", higherDegree.title);
-    }
+
+    formData.append("highestLevelOfDegree", higherDegree);
+    formData.append("fieldOfStudy", field);
+
     if (institution === null) {
       formData.append("instituteName", "");
     } else {
       institution.name !== undefined && formData.append("instituteName", institution.name);
     }
-    if (field === null) {
-      formData.append("fieldOfStudy", "");
-    } else {
-      field.title !== undefined && formData.append("fieldOfStudy", field.title);
-    }
+
     formData.append("completedYear", value?.$y);
 
     files.forEach((item) => {
@@ -157,16 +94,12 @@ const EducationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
         formData.append(`removedImages[${index}][isRemoved]`, tempData.isRemoved);
       });
     }
-    console.log("🚀 ~ files.forEach ~ files:", files);
 
     const finalData = {
       id: user._id,
       formData,
     };
 
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
     dispatch(updateMyEducation(finalData)).then((action) => {
       if (action.error) {
         toast.trigger(action.error.message, "error");
@@ -175,6 +108,26 @@ const EducationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
         setEditAble(false);
       }
     });
+  };
+  const higherStudies = [
+    { value: "SSC", label: "SSC" },
+    { value: "HSC", label: "HSC" },
+    { value: "B.Sc", label: "B.Sc" },
+    { value: "M.Sc", label: "M.Sc" },
+    { value: "BBA", label: "BBA" },
+    { value: "MBA", label: "MBA" },
+    { value: "others", label: "others" },
+  ];
+  const fieldStudies = [
+    { value: "engineering", label: "Engineering" },
+    { value: "business_studies", label: "Business Studies" },
+    { value: "others", label: "others" },
+  ];
+  const handleChangeDegree = (event) => {
+    setHigherDegree(event.target.value);
+  };
+  const handleChangeField = (event) => {
+    setField(event.target.value);
   };
 
   return (
@@ -214,21 +167,25 @@ const EducationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
 
             <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
               <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                <DegreeSelect
+                <EducationSelect
+                  name={"highestLevelOfDegree"}
                   label={"Highest level of degree"}
-                  disableItem={false}
+                  options={higherStudies}
                   editAble={editAble}
+                  handleChangeDegree={handleChangeDegree}
                   higherDegree={higherDegree}
-                  setHigherDegree={setHigherDegree}
+                  defaultValue={data?.highestLevelOfDegree}
                 />
               </Grid>
               <Grid item xs={6} sx={{ paddingRight: "2%" }}>
-                <FieldSelectAdd
+                <EducationFieldSelect
+                  name={"fieldOfStudy"}
                   label={"Field of Study"}
-                  disableItem={false}
+                  options={fieldStudies}
                   editAble={editAble}
+                  handleChangeField={handleChangeField}
                   field={field}
-                  setField={setField}
+                  defaultValue={data?.fieldOfStudy}
                 />
               </Grid>
             </Grid>
@@ -270,77 +227,6 @@ const EducationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
               imagesCopy={imagesCopy}
               setRemoveImages={setRemoveImages}
             />
-            {/* <Box className="container" sx={{ width: "100%" }}>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  width: "100%",
-                  borderWidth: 2,
-                  borderRadius: 8,
-                  height: "100%",
-                  borderColor: files.length === 5 ? "rgba(70, 70, 70, 0.1)" : "rgba(70, 70, 70, 0.2)",
-                  borderStyle: "dashed",
-                  backgroundColor: isLightTheme ? "#FAFBFC" : "#2C2C2C",
-                  color: isLightTheme ? "#1D1D1D" : "#fff",
-                  outline: "none",
-                  transition: "border .24s ease-in-out",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: "95%",
-                    ml: 2,
-                    mt: 2,
-                    backgroundColor: isLightTheme ? "red" : "#2C2C2C",
-                  }}
-                  {...getRootProps({
-                    // className: `dropzone ${files.length === 5 ? "disabled" : ""}`
-                    style,
-                  })}
-                >
-                  <input {...getInputProps()} />
-                  <Box
-                    sx={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "20px", mb: 2 }}
-                  >
-                    <img
-                      style={{
-                        width: "30px",
-                        filter: files.length === 5 || !editAble ? "grayscale(100%)" : "",
-                      }}
-                      src={IconImage}
-                    />
-                    <Typography
-                      sx={{ color: files.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff" }}
-                      variant="wpf_p2_regular"
-                    >
-                      Drag and Drop your Certificate files here or Browse” (JPG/ JPEG / PNG)
-                    </Typography>
-                    <Typography
-                      variant="wpf_p2_regular"
-                      sx={{
-                        paddingBottom: "2%",
-                        color: files.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff",
-                      }}
-                    >
-                      Maximum file size: 1Mb.
-                    </Typography>
-                    <img
-                      style={{ width: "30px", filter: files.length === 5 || !editAble ? "grayscale(100%)" : "" }}
-                      src={ctaImage}
-                    />
-                  </Box>
-                </Box>
-                <Box sx={{ display: "flex", width: "100%", justifyContent: "center", padding: "20px" }}>
-                  <Box>{files.length <= 5 && thumbs} </Box>
-                  <Typography variant="wpf_p4_medium" color="error.500">
-                    {files.length > 5 || error ? "you have selected more than 5 files" : ""}
-                  </Typography>
-                </Box>
-              </Box>
-            </Box> */}
           </Box>
         </Box>
       </Box>

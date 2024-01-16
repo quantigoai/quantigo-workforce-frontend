@@ -22,8 +22,7 @@ const UserInfoIndex = ({
 }) => {
   const [isDataLoading, setIsDataLoading] = useState(true);
   const [data, setData] = useState([]);
-  console.log("🚀 ~ data:", data)
- 
+
   const dispatch = useDispatch();
   const DOB = user.dob ? moment.utc(user.dob).format("MMM Do, YYYY") : "Not Available";
   const dateObj = new Date(user.lastJobTakenAt);
@@ -108,11 +107,11 @@ const UserInfoIndex = ({
             Item2Title={"Mother`s Name"}
             Item2={data.mothersName}
             Item3Title={"Marital Status"}
-            Item3={"data.maritalStatus"}
+            Item3={capitalizeFirstLetter(data.maritalStatus)}
           />
-           <DetailsItemThree
+          <DetailsItemThree
             Item1Title={"Religion"}
-            Item1={data.religion}
+            Item1={capitalizeFirstLetter(data.religion)}
             Item2Title={"Blood Group"}
             Item2={data.bloodGroup}
             Item3Title={"Billing Account No"}

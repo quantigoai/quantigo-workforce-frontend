@@ -6,7 +6,7 @@ const MyTextField = styled(TextField)(() => ({
     border: "1px solid #E6ECF5 !important",
     borderRadius: "8px",
   },
-  "& .MuiInputBase-root": { height: "40px", fontSize: "14px", color: "#3C4D6B" },
+  "& .MuiInputBase-root": { height: "40px", fontSize: "14px", color: "neutral.N300" },
   "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
     border: `1px solid #2E58FF !important`,
   },

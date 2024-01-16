@@ -1,4 +1,4 @@
-import {FormControl, styled, TextField, Typography} from "@mui/material";
+import { FormControl, styled, TextField, Typography } from "@mui/material";
 import React from "react";
 
 const MyTextField = styled(TextField)(() => ({
@@ -6,7 +6,7 @@ const MyTextField = styled(TextField)(() => ({
     border: "1px solid #E6ECF5 !important",
     borderRadius: "8px",
   },
-  "& .MuiInputBase-root": { height: "40px", fontSize: "14px", color: "#3C4D6B" },
+  "& .MuiInputBase-root": { height: "40px", fontSize: "14px", color: "neutral.N300" },
   "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
     border: `1px solid #2E58FF !important`,
   },
@@ -28,7 +28,8 @@ const PasswordFieldForProfile = ({ label, handleChange, disableItem, defaultValu
 
             mb: 1,
           }}
-          variant="wpf_p4_medium">
+          variant="wpf_p4_medium"
+        >
           {label}
         </Typography>
         <MyTextField
@@ -49,15 +50,14 @@ const PasswordFieldForProfile = ({ label, handleChange, disableItem, defaultValu
             <Typography
               variant="caption"
               sx={{
-                fontSize: { xl: "12px", xxl: "12px", lg: "9px" }
+                fontSize: { xl: "12px", xxl: "12px", lg: "9px" },
               }}
-              color={yourPhoneNumberValidationFunction(phone) ? "text.primary" : "error"} 
+              color={yourPhoneNumberValidationFunction(phone) ? "text.primary" : "error"}
             >
               {yourPhoneNumberValidationFunction(phone)
                 ? ""
                 : "Contact Number must be a valid Bangladeshi phone number"}
             </Typography>
-            
           }
         />
       </FormControl>

@@ -42,7 +42,7 @@ const ImageShowInModal = ({ images, level }) => {
           </Button>
         </Grid>
       </Grid>
-      <ModalImage openModal={openModal} handleClose={handleClose} images={images} />
+        <ModalImage openModal={openModal} handleClose={handleClose} images={images} level={level}/>
     </>
   );
 };

@@ -159,13 +159,13 @@ const EducationInfoIndex = ({ data, editAble, setEditAble }) => {
               overflowY: "auto",
             }}
           >
-            <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
+            {/* <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
               <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
                 Educational Information
               </Typography>
-            </Grid>
+            </Grid> */}
 
-            <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
+            <Grid container spacing={0} sx={{ paddingBottom: "15px" }}>
               <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                 <EducationSelect
                   name={"highestLevelOfDegree"}
@@ -189,7 +189,7 @@ const EducationInfoIndex = ({ data, editAble, setEditAble }) => {
                 />
               </Grid>
             </Grid>
-            <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
+            <Grid container spacing={0} sx={{ paddingBottom: "15px" }}>
               <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                 <InstitutionSelectAdd
                   label={"Institution Name"}

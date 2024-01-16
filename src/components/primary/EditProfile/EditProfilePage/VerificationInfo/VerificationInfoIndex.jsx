@@ -172,6 +172,7 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
     //   afterError: () => {},
     // });
 
+    
     dispatch(updateMyVerification(finalImageData)).then((action) => {
       if (action.error) {
         toast.trigger(action.error.message, "error");

@@ -190,6 +190,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
         setData(data.data.user);
         setImages(data.data.user.extraDocumentImages);
         setEditAble(false);
+        setImagesCopy(data.data.user.extraDocumentImages);
       },
       afterError: (data) => {
         setOpenReject(false);

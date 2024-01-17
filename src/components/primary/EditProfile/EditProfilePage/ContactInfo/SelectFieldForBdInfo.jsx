@@ -8,16 +8,7 @@ export const MySelect = styled(Select)(() => ({
   background: "none",
   height: "40px",
 }));
-// const options = [
-//   { value: "(A+)", label: "A+" },
-//   { value: "(A-)", label: "A-" },
-//   { value: "(B+)", label: "B+" },
-//   { value: "(B-)", label: "B-" },
-//   { value: "(O+)", label: "O+" },
-//   { value: "(O-)", label: "O-" },
-//   { value: "(AB+)", label: "AB+" },
-//   { value: "(AB-)", label: "AB-" },
-// ];
+
 const SelectFieldForBdInfo = ({
   name,
   label,
@@ -28,6 +19,7 @@ const SelectFieldForBdInfo = ({
   options,
   isChecked,
 }) => {
+  console.log("🚀 ~ defaultValue:", defaultValue)
   return (
     <>
       {options && (

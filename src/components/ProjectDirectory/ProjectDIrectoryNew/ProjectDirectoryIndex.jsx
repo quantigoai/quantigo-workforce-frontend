@@ -368,7 +368,7 @@ const ProjectDirectoryIndex = () => {
       setIsDataLoading(false);
     });
   }, [pagination, search, isDeleted, ascDesc]);
-
+  //TODO CHECK THIS LATER
   const handleGetSync = async () => {
     await toast.responsePromise(
       getProjectSyncFunction(),
@@ -386,7 +386,7 @@ const ProjectDirectoryIndex = () => {
           setOpenReject(false);
         },
       },
-      true
+      "forProjectDirectory"
     );
     // dispatch(getProjectSync()).then((action) => {
     //   setIsSyncLoading(true);

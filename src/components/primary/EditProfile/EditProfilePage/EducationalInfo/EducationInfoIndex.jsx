@@ -6,7 +6,7 @@ import useToaster from "../../../../../customHooks/useToaster";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { updateMyEducation } from "../../../../../features/slice/userSlice";
+import { updateMyEducation, updateMyEducationFunction } from "../../../../../features/slice/userSlice";
 import InstitutionSelectAdd from "./InstitutionSelectAdd";
 import dayjs from "dayjs";
 import UploadImagesField from "../VerificationInfo/UploadImagesField";
@@ -27,10 +27,9 @@ export const MyDatePicker = styled(DatePicker)(() => ({
   },
 }));
 
-const EducationInfoIndex = ({ data, editAble, setEditAble }) => {
+const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
   const { user, isLoading } = useSelector((state) => state.user);
   const [higherDegree, setHigherDegree] = useState(data?.highestLevelOfDegree || "");
-  console.log(data?.highestLevelOfDegree);
   const [field, setField] = useState(data?.fieldOfStudy || "");
   const [institution, setInstitution] = useState(data?.instituteName);
   const [files, setFiles] = useState(data?.certificateImages || "");
@@ -39,6 +38,8 @@ const EducationInfoIndex = ({ data, editAble, setEditAble }) => {
   const [coverImageFile, setCoverImageFile] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
   const [value, setValue] = React.useState(dayjs(data?.completedYear || ""));
+  const [isSyncLoading, setIsSyncLoading] = useState(false);
+  const [openReject, setOpenReject] = React.useState(false);
   const [imagesCopy, setImagesCopy] = useState(data?.certificateImages);
   const [removeImagesUpdate, setRemoveImagesUpdate] = useState([
     {
@@ -61,7 +62,7 @@ const EducationInfoIndex = ({ data, editAble, setEditAble }) => {
     setEditAble(false);
   };
 
-  const handleSubmitChange = () => {
+  const handleSubmitChange = async () => {
     const formData = new FormData();
 
     formData.append("highestLevelOfDegree", higherDegree);
@@ -100,13 +101,28 @@ const EducationInfoIndex = ({ data, editAble, setEditAble }) => {
       formData,
     };
 
-    dispatch(updateMyEducation(finalData)).then((action) => {
-      if (action.error) {
-        toast.trigger(action.error.message, "error");
-      } else {
-        toast.trigger("Profile Update Successfully", "success");
-        setEditAble(false);
-      }
+    // dispatch(updateMyEducation(finalData)).then((action) => {
+    //   if (action.error) {
+    //     toast.trigger(action.error.message, "error");
+    //   } else {
+    //     toast.trigger(action.payload.data.message, "success");
+    //     setEditAble(false);
+    //   }
+    // });
+    await toast.responsePromise(updateMyEducationFunction(finalData), setIsSyncLoading, {
+      initialMessage: "Education info is updating...",
+      inPending: () => {
+        setOpenReject(false);
+      },
+      afterSuccess: (data) => {
+        setOpenReject(false);
+        dispatch(updateMyEducation(finalData));
+        setData(data.data.user);
+        setFiles(data.data.user.certificateImages);
+      },
+      afterError: (data) => {
+        setOpenReject(false);
+      },
     });
   };
   const higherStudies = [
@@ -159,13 +175,13 @@ const EducationInfoIndex = ({ data, editAble, setEditAble }) => {
               overflowY: "auto",
             }}
           >
-            <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
+            {/* <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
               <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
                 Educational Information
               </Typography>
-            </Grid>
+            </Grid> */}
 
-            <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
+            <Grid container spacing={0} sx={{ paddingBottom: "15px" }}>
               <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                 <EducationSelect
                   name={"highestLevelOfDegree"}
@@ -189,7 +205,7 @@ const EducationInfoIndex = ({ data, editAble, setEditAble }) => {
                 />
               </Grid>
             </Grid>
-            <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
+            <Grid container spacing={0} sx={{ paddingBottom: "15px" }}>
               <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                 <InstitutionSelectAdd
                   label={"Institution Name"}

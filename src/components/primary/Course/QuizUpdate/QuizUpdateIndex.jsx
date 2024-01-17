@@ -332,9 +332,7 @@ const QuizUpdateIndex = () => {
           setAccept(false);
         },
       },
-      false,
-      true,
-      true
+      "forQuizCreate"
     );
     let tempQA;
 

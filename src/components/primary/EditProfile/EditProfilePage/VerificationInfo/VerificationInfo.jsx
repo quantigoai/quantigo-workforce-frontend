@@ -20,7 +20,7 @@ const VerificationInfo = () => {
       setData(action.payload.data);
       setIsDataLoading(false);
     });
-  }, [user, editAble]);
+  }, [user]);
 
   return (
     <>
@@ -71,6 +71,7 @@ const VerificationInfo = () => {
         ) : (
           <>
             <VerificationInfoIndex
+              setData={setData}
               data={data}
               isDataLoading={isDataLoading}
               editAble={editAble}

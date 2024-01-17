@@ -113,15 +113,17 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
       initialMessage: "Education info is updating...",
       inPending: () => {
         setOpenReject(false);
+        setIsSyncLoading(true);
       },
       afterSuccess: (data) => {
         setOpenReject(false);
-        dispatch(updateMyEducation(finalData));
+        setIsSyncLoading(false);
         setData(data.data.user);
         setFiles(data.data.user.certificateImages);
       },
       afterError: (data) => {
         setOpenReject(false);
+        setIsSyncLoading(false);
       },
     });
   };
@@ -272,7 +274,7 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
               >
                 <Button
                   onClick={() => handleSubmitChange()}
-                  disabled={isLoading}
+                  disabled={isSyncLoading}
                   sx={{
                     height: {
                       lg: "30px",

@@ -25,6 +25,13 @@ const baseStyle = {
 const focusedStyle = {
   borderColor: "#2196f3",
 };
+const acceptStyle = {
+  borderColor: "#00e676",
+};
+
+const rejectStyle = {
+  borderColor: "#ff1744",
+};
 
 const thumb = {
   display: "inline-flex",
@@ -77,7 +84,7 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
     outline: "none",
     transition: "border .24s ease-in-out",
   };
-  const { getRootProps, getInputProps, isFocused } = useDropzone({
+  const { getRootProps, getInputProps, isFocused, acceptedFiles, isDragAccept, isDragReject } = useDropzone({
     disabled: files?.length === 5 || !editAble ? true : false,
     accept: {
       "image/jpeg": [],
@@ -99,7 +106,7 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
           setError(false);
         }
       } else if (files.length !== 0 && files.length <= 5) {
-        if (acceptedFiles.length + files.length === 5) {
+        if (acceptedFiles.length + files.length > 5) {
           setFiles((prev) => [
             ...prev,
             ...acceptedFiles.map((file) =>
@@ -126,14 +133,25 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
       }
     },
   });
+  const style = useMemo(() => {
+    const maxSize = 1024000;
 
-  const style = useMemo(
-    () => ({
-      ...baseUploadBoxStyle,
-      ...(isFocused ? focusedStyle : {}),
-    }),
-    [isFocused, isLightTheme]
-  );
+    if ((acceptedFiles.length > 5 && maxSize) || files.length > 5) {
+      setError(true);
+      return {
+        ...baseUploadBoxStyle,
+        ...rejectStyle,
+      };
+    } else {
+      setError(false);
+      return {
+        ...baseUploadBoxStyle,
+        ...(isFocused ? focusedStyle : {}),
+        ...(isDragAccept ? acceptStyle : {}),
+        ...(isDragReject ? rejectStyle : {}),
+      };
+    }
+  }, [isFocused, isLightTheme, isDragAccept, isDragReject, acceptedFiles]);
 
   const thumbs = files?.map((file, index) => {
     return (
@@ -161,12 +179,12 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
             </Box>
           )}
           <img
-            src={file.preview ? file.preview : file}
+            src={file?.preview ? file.preview : file}
             style={img}
             onLoad={() => {
               URL.revokeObjectURL(file.preview);
             }}
-            alt={file.name}
+            alt={file?.name}
           />
         </Box>
       </Box>

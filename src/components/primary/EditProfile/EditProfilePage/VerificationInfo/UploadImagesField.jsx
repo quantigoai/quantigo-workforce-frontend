@@ -54,6 +54,7 @@ const img = {
 };
 
 const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, imagesCopy, setRemoveImages }) => {
+  console.log("🚀 ~ UploadImagesField ~ files:", files)
   // const [files, setFiles] = useState([]);
   const { isLightTheme } = useSelector((state) => state.theme);
   // const { baseUploadBoxStyle } = ndaUploadStyle(isLightTheme);

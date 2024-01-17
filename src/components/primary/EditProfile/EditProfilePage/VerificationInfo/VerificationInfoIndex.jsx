@@ -7,7 +7,11 @@ import PasswordFieldForProfile from "../../PasswordFieldForProfile";
 // import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
 import UploadImagesField from "./UploadImagesField";
 import SelectFieldForProfile from "../SelectFieldForProfile";
-import { getUserVerificationInfo, updateMyVerification } from "../../../../../features/slice/userSlice";
+import {
+  getUserVerificationInfo,
+  updateMyVerification,
+  updateMyVerificationFunction,
+} from "../../../../../features/slice/userSlice";
 import useToaster from "../../../../../customHooks/useToaster";
 import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
 import LoadingComponent from "../../../../shared/Loading/LoadingComponent";
@@ -62,7 +66,7 @@ const TypeVerificationOption = [
   { value: "passport", label: "Passport" },
   { value: "birthCertificate", label: "Birth Certificate" },
 ];
-const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
+const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEditAble }) => {
   const { user, isLoading } = useSelector((state) => state.user);
   const [nidNumber, setNidNumber] = useState(data?.extraDocumentNo);
   const [nameAsNid, setNameAsNid] = useState(data?.extraDocumentName);
@@ -73,6 +77,8 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
   const [documentType, setDocumentType] = useState(data?.extraDocumentType);
   const [images, setImages] = useState(data?.extraDocumentImages);
   const [imagesCopy, setImagesCopy] = useState(data?.extraDocumentImages);
+  const [isSyncLoading, setIsSyncLoading] = useState(false);
+  const [openReject, setOpenReject] = React.useState(false);
   const [dataLoading, setDataLoading] = useState(false);
   const [removeImagesUpdate, setRemoveImagesUpdate] = useState([
     {
@@ -120,7 +126,7 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
   const handleClick = (signNda) => {
     window.open(signNda);
   };
-  const handleSubmitChange = () => {
+  const handleSubmitChange = async () => {
     const data = {
       documentType,
       nidNumber,
@@ -172,16 +178,33 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
     //   afterError: () => {},
     // });
 
-    
-    dispatch(updateMyVerification(finalImageData)).then((action) => {
-      if (action.error) {
-        toast.trigger(action.error.message, "error");
-      }
-      if (action.payload.status === 200) {
-        toast.trigger("Profile Update Successfully", "success");
+    await toast.responsePromise(updateMyVerificationFunction(finalImageData), setIsSyncLoading, {
+      initialMessage: "Verification info is updating...",
+      inPending: () => {
+        setOpenReject(false);
+        setIsSyncLoading(true);
+      },
+      afterSuccess: (data) => {
+        setOpenReject(false);
+        setIsSyncLoading(false);
+        setData(data.data.user);
+        setImages(data.data.user.extraDocumentImages);
         setEditAble(false);
-      }
+      },
+      afterError: (data) => {
+        setOpenReject(false);
+      },
     });
+
+    // dispatch(updateMyVerification(finalImageData)).then((action) => {
+    //   if (action.error) {
+    //     toast.trigger(action.error.message, "error");
+    //   }
+    //   if (action.payload.status === 200) {
+    //     toast.trigger("Profile Update Successfully", "success");
+    //     setEditAble(false);
+    //   }
+    // });
     for (let pair of formData.entries()) {
       console.log(pair[0] + ", " + pair[1]);
     }
@@ -567,7 +590,7 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
                 >
                   <Button
                     onClick={() => handleSubmitChange()}
-                    disabled={isLoading}
+                    disabled={isSyncLoading}
                     sx={{
                       height: {
                         lg: "30px",

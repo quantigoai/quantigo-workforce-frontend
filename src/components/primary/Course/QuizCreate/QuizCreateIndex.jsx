@@ -200,8 +200,7 @@ const QuizCreateIndex = () => {
           setReject(false);
         },
       },
-      false,
-      true
+      "forQuizCreate"
     );
 
     // dispatch(createAQuiz(formData)).then((action) => {

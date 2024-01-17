@@ -7,7 +7,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
 import { useDispatch, useSelector } from 'react-redux';
 import useToaster from '../../../../../customHooks/useToaster';
-import { updateMyEducation } from '../../../../../features/slice/userSlice';
+import { updateMyEducationFunction } from '../../../../../features/slice/userSlice';
 import UploadImagesField from '../VerificationInfo/UploadImagesField';
 import EducationFieldSelect from './EducationFieldSelect';
 import EducationSelect from './EducationSelect';
@@ -27,7 +27,7 @@ export const MyDatePicker = styled(DatePicker)(() => ({
   },
 }));
 
-const EducationInfoIndex = ({ data, editAble, setEditAble }) => {
+const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
   const { user, isLoading } = useSelector((state) => state.user);
   const [higherDegree, setHigherDegree] = useState(
     data?.highestLevelOfDegree || '',
@@ -43,6 +43,8 @@ const EducationInfoIndex = ({ data, editAble, setEditAble }) => {
   const [coverImageFile, setCoverImageFile] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
   const [value, setValue] = React.useState(dayjs(data?.completedYear || ''));
+  const [isSyncLoading, setIsSyncLoading] = useState(false);
+  const [openReject, setOpenReject] = React.useState(false);
   const [imagesCopy, setImagesCopy] = useState(
     data?.certificateImages.map((i) => i.url),
   );
@@ -67,7 +69,7 @@ const EducationInfoIndex = ({ data, editAble, setEditAble }) => {
     setEditAble(false);
   };
 
-  const handleSubmitChange = () => {
+  const handleSubmitChange = async () => {
     const formData = new FormData();
 
     formData.append('highestLevelOfDegree', higherDegree);
@@ -110,14 +112,36 @@ const EducationInfoIndex = ({ data, editAble, setEditAble }) => {
       formData,
     };
 
-    dispatch(updateMyEducation(finalData)).then((action) => {
-      if (action.error) {
-        toast.trigger(action.error.message, 'error');
-      } else {
-        toast.trigger('Profile Update Successfully', 'success');
-        setEditAble(false);
-      }
-    });
+    // dispatch(updateMyEducation(finalData)).then((action) => {
+    //   if (action.error) {
+    //     toast.trigger(action.error.message, "error");
+    //   } else {
+    //     toast.trigger(action.payload.data.message, "success");
+    //     setEditAble(false);
+    //   }
+    // });
+    await toast.responsePromise(
+      updateMyEducationFunction(finalData),
+      setIsSyncLoading,
+      {
+        initialMessage: 'Education info is updating...',
+        inPending: () => {
+          setOpenReject(false);
+          setIsSyncLoading(true);
+        },
+        afterSuccess: (data) => {
+          setOpenReject(false);
+          setIsSyncLoading(false);
+          setData(data.data.user);
+          setFiles(data.data.user.certificateImages);
+          setEditAble(false);
+        },
+        afterError: (data) => {
+          setOpenReject(false);
+          setIsSyncLoading(false);
+        },
+      },
+    );
   };
   const higherStudies = [
     { value: 'SSC', label: 'SSC' },
@@ -278,7 +302,7 @@ const EducationInfoIndex = ({ data, editAble, setEditAble }) => {
               >
                 <Button
                   onClick={() => handleSubmitChange()}
-                  disabled={isLoading}
+                  disabled={isSyncLoading}
                   sx={{
                     height: {
                       lg: '30px',

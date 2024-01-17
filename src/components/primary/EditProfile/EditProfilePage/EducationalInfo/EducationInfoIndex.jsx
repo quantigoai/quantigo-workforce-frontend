@@ -120,6 +120,7 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
         setIsSyncLoading(false);
         setData(data.data.user);
         setFiles(data.data.user.certificateImages);
+        setEditAble(false);
       },
       afterError: (data) => {
         setOpenReject(false);

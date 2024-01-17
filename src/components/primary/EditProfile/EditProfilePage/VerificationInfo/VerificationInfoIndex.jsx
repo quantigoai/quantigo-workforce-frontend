@@ -182,11 +182,14 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
       initialMessage: "Verification info is updating...",
       inPending: () => {
         setOpenReject(false);
+        setIsSyncLoading(true);
       },
       afterSuccess: (data) => {
         setOpenReject(false);
+        setIsSyncLoading(false);
         setData(data.data.user);
         setImages(data.data.user.extraDocumentImages);
+        setEditAble(false);
       },
       afterError: (data) => {
         setOpenReject(false);
@@ -587,7 +590,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                 >
                   <Button
                     onClick={() => handleSubmitChange()}
-                    disabled={isLoading}
+                    disabled={isSyncLoading}
                     sx={{
                       height: {
                         lg: "30px",

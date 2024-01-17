@@ -75,8 +75,8 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
   const [errorPhoto, setErrorPhoto] = useState("");
   const [errorResume, setErrorResume] = useState("");
   const [documentType, setDocumentType] = useState(data?.extraDocumentType);
-  const [images, setImages] = useState(data?.extraDocumentImages);
-  const [imagesCopy, setImagesCopy] = useState(data?.extraDocumentImages);
+  const [images, setImages] = useState(data?.extraDocumentImages.map((i) => i.url));
+  const [imagesCopy, setImagesCopy] = useState(data?.extraDocumentImages.map((i) => i.url));
   const [isSyncLoading, setIsSyncLoading] = useState(false);
   const [openReject, setOpenReject] = React.useState(false);
   const [dataLoading, setDataLoading] = useState(false);

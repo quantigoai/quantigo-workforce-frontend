@@ -179,12 +179,12 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
             </Box>
           )}
           <img
-            src={file.preview ? file.preview : file}
+            src={file?.preview ? file.preview : file}
             style={img}
             onLoad={() => {
               URL.revokeObjectURL(file.preview);
             }}
-            alt={file.name}
+            alt={file?.name}
           />
         </Box>
       </Box>

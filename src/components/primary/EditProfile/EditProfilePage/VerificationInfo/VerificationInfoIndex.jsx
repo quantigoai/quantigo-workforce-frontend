@@ -66,7 +66,7 @@ const TypeVerificationOption = [
   { value: "passport", label: "Passport" },
   { value: "birthCertificate", label: "Birth Certificate" },
 ];
-const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) => {
+const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEditAble }) => {
   const { user, isLoading } = useSelector((state) => state.user);
   const [nidNumber, setNidNumber] = useState(data?.extraDocumentNo);
   const [nameAsNid, setNameAsNid] = useState(data?.extraDocumentName);
@@ -182,12 +182,14 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
       initialMessage: "Verification info is updating...",
       inPending: () => {
         setOpenReject(false);
+        setIsSyncLoading(true);
       },
       afterSuccess: (data) => {
         setOpenReject(false);
-        dispatch(updateMyVerification(finalImageData));
-        // setData(data.data.user);
-        // setFiles(data.data.user.certificateImages);
+        setIsSyncLoading(false);
+        setData(data.data.user);
+        setImages(data.data.user.extraDocumentImages);
+        setEditAble(false);
       },
       afterError: (data) => {
         setOpenReject(false);
@@ -588,7 +590,7 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
                 >
                   <Button
                     onClick={() => handleSubmitChange()}
-                    disabled={isLoading}
+                    disabled={isSyncLoading}
                     sx={{
                       height: {
                         lg: "30px",

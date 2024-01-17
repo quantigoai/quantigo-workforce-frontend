@@ -60,7 +60,6 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
   const [isDocumentNoValid, setDocumentNoValid] = useState(false);
   const [isDocumentTypeValid, setDocumentTypeValid] = useState(false);
   const [images, setImages] = useState(user?.documentsImage);
-  console.log("🚀 ~ images:", images);
   const [removeImagesUpdate, setRemoveImagesUpdate] = useState([
     {
       name: "",
@@ -299,13 +298,15 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                     type="submit"
                     // disabled={true}
                     loading={isLoading}
-                    // disabled={
-                    //   !isDocumentNoValid ||
-                    //   !isDocumentTypeValid ||
-                    //   !coverImage ||
-                    //   // isLoading ||
-                    //   coverImageFile?.size > maxSize
-                    // }
+                    disabled={
+                      !isDocumentNoValid ||
+                      !isDocumentTypeValid ||
+                      // !coverImage ||
+                      // isLoading ||
+                      // coverImageFile?.size > maxSize
+                      // documentNo && documentsType &&
+                      images.length === 0
+                    }
                     sx={{
                       width: "128px",
                       textTransform: "none",

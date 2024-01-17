@@ -48,12 +48,17 @@ export default function EducationSelect({ handleChangeDegree, higherDegree, opti
       </Typography>
       <FormControl fullWidth>
         <MySelect
+          displayEmpty
           defaultValue={defaultValue}
           sx={{ backgroundColor: editAble ? "" : "neutral.N400" }}
           disabled={!editAble}
           value={higherDegree}
           onChange={handleChangeDegree}
         >
+          <MenuItem disabled value="">
+            <span>select your highest degree</span>
+          </MenuItem>
+
           {options.map((option) => (
             <MenuItem
               sx={{

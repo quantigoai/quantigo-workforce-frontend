@@ -190,21 +190,22 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
         setData(data.data.user);
         setImages(data.data.user.extraDocumentImages);
         setEditAble(false);
+        setImagesCopy(data.data.user.extraDocumentImages);
       },
       afterError: (data) => {
         setOpenReject(false);
       },
     });
 
-    dispatch(updateMyVerification(finalImageData)).then((action) => {
-      if (action.error) {
-        toast.trigger(action.error.message, "error");
-      }
-      if (action.payload.status === 200) {
-        toast.trigger("Profile Update Successfully", "success");
-        setEditAble(false);
-      }
-    });
+    // dispatch(updateMyVerification(finalImageData)).then((action) => {
+    //   if (action.error) {
+    //     toast.trigger(action.error.message, "error");
+    //   }
+    //   if (action.payload.status === 200) {
+    //     toast.trigger("Profile Update Successfully", "success");
+    //     setEditAble(false);
+    //   }
+    // });
     for (let pair of formData.entries()) {
       console.log(pair[0] + ", " + pair[1]);
     }

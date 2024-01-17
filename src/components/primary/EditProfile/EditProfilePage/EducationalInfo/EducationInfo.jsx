@@ -21,7 +21,7 @@ const EducationInfo = () => {
       setData(action.payload.data);
       setIsDataLoading(false);
     });
-  }, [user]);
+  }, [user, editAble]);
   return (
     <>
       <Box
@@ -71,6 +71,7 @@ const EducationInfo = () => {
         ) : (
           <>
             <EducationInfoIndex
+              setData={setData}
               data={data}
               isDataLoading={isDataLoading}
               editAble={editAble}

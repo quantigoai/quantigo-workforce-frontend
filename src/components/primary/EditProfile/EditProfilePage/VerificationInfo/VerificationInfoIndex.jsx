@@ -7,7 +7,11 @@ import PasswordFieldForProfile from "../../PasswordFieldForProfile";
 // import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
 import UploadImagesField from "./UploadImagesField";
 import SelectFieldForProfile from "../SelectFieldForProfile";
-import { getUserVerificationInfo, updateMyVerification } from "../../../../../features/slice/userSlice";
+import {
+  getUserVerificationInfo,
+  updateMyVerification,
+  updateMyVerificationFunction,
+} from "../../../../../features/slice/userSlice";
 import useToaster from "../../../../../customHooks/useToaster";
 import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
 import LoadingComponent from "../../../../shared/Loading/LoadingComponent";
@@ -73,6 +77,8 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
   const [documentType, setDocumentType] = useState(data?.extraDocumentType);
   const [images, setImages] = useState(data?.extraDocumentImages);
   const [imagesCopy, setImagesCopy] = useState(data?.extraDocumentImages);
+  const [isSyncLoading, setIsSyncLoading] = useState(false);
+  const [openReject, setOpenReject] = React.useState(false);
   const [dataLoading, setDataLoading] = useState(false);
   const [removeImagesUpdate, setRemoveImagesUpdate] = useState([
     {
@@ -120,7 +126,7 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
   const handleClick = (signNda) => {
     window.open(signNda);
   };
-  const handleSubmitChange = () => {
+  const handleSubmitChange = async () => {
     const data = {
       documentType,
       nidNumber,
@@ -172,7 +178,22 @@ const VerificationInfoIndex = ({ data, isDataLoading, editAble, setEditAble }) =
     //   afterError: () => {},
     // });
 
-    
+    await toast.responsePromise(updateMyVerificationFunction(finalImageData), setIsSyncLoading, {
+      initialMessage: "Verification info is updating...",
+      inPending: () => {
+        setOpenReject(false);
+      },
+      afterSuccess: (data) => {
+        setOpenReject(false);
+        dispatch(updateMyVerification(finalImageData));
+        // setData(data.data.user);
+        // setFiles(data.data.user.certificateImages);
+      },
+      afterError: (data) => {
+        setOpenReject(false);
+      },
+    });
+
     dispatch(updateMyVerification(finalImageData)).then((action) => {
       if (action.error) {
         toast.trigger(action.error.message, "error");

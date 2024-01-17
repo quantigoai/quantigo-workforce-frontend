@@ -98,7 +98,7 @@ export const myProfileEdit = createAsyncThunk("user/myProfileEdit", async (final
 export const updateMyContact = createAsyncThunk("user/updateMyContact", async (finalData) => {
   try {
     const { id, data } = finalData;
-    return await axios.patch(`${url}/users/my-contact/${id}`, data, {
+    return axios.patch(`${url}/users/my-contact/${id}`, data, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -125,12 +125,27 @@ export const updateMyVerification = createAsyncThunk("user/updateMyVerification"
     throw new Error(error.response.data.message);
   }
 });
+export const updateMyVerificationFunction = async (finalData) => {
+  try {
+    const { id, formData } = finalData;
+    return axios.patch(`${url}/users/my-verification/${id}`, formData, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+      content: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};
 // update My education
 
 export const updateMyEducation = createAsyncThunk("user/updateMyEducation", async (finalData) => {
   try {
     const { id, formData } = finalData;
-    return await axios.patch(`${url}/users/my-education/${id}`, formData, {
+    return axios.patch(`${url}/users/my-education/${id}`, formData, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -142,17 +157,32 @@ export const updateMyEducation = createAsyncThunk("user/updateMyEducation", asyn
     throw new Error(error.response.data.message);
   }
 });
+export const updateMyEducationFunction = async (finalData) => {
+  try {
+    const { id, formData } = finalData;
+    return axios.patch(`${url}/users/my-education/${id}`, formData, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+      content: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  } catch (error) {
+    console.log("🚀 ~ updateMyEducation ~ error:", error);
+    throw new Error(error.response.data.message);
+    // throw new Error(error);
+  }
+};
 
 // get User Personal Info
 
 export const getUserPersonalInfo = createAsyncThunk("user/getUserPersonalInfo", async (id) => {
   try {
-   
-    return await axios.get(`${url}/users/personal-info/${id}`,  {
+    return await axios.get(`${url}/users/personal-info/${id}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
-      
     });
   } catch (error) {
     throw new Error(error.response.data.message);
@@ -163,12 +193,10 @@ export const getUserPersonalInfo = createAsyncThunk("user/getUserPersonalInfo", 
 
 export const getUserVerificationInfo = createAsyncThunk("user/getUserVerificationInfo", async (id) => {
   try {
-   
-    return await axios.get(`${url}/users/verification-info/${id}`,  {
+    return await axios.get(`${url}/users/verification-info/${id}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
-      
     });
   } catch (error) {
     throw new Error(error.response.data.message);
@@ -179,12 +207,10 @@ export const getUserVerificationInfo = createAsyncThunk("user/getUserVerificatio
 
 export const getUserContactInfo = createAsyncThunk("user/getUserContactInfo", async (id) => {
   try {
-   
-    return await axios.get(`${url}/users/contact-info/${id}`,  {
+    return await axios.get(`${url}/users/contact-info/${id}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
-      
     });
   } catch (error) {
     throw new Error(error.response.data.message);
@@ -195,20 +221,15 @@ export const getUserContactInfo = createAsyncThunk("user/getUserContactInfo", as
 
 export const getUserEducationInfo = createAsyncThunk("user/getUserEducationInfo", async (id) => {
   try {
-   
-    return await axios.get(`${url}/users/educational-info/${id}`,  {
+    return await axios.get(`${url}/users/educational-info/${id}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
-      
     });
   } catch (error) {
     throw new Error(error.response.data.message);
   }
 });
-
-
-
 
 // upload My Image
 
@@ -930,7 +951,6 @@ const userSlice = createSlice({
       .addCase(getUserPersonalInfo.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-
       })
       .addCase(getUserPersonalInfo.rejected, (state, action) => {
         state.isLoading = false;
@@ -942,7 +962,6 @@ const userSlice = createSlice({
       .addCase(getUserVerificationInfo.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-
       })
       .addCase(getUserVerificationInfo.rejected, (state, action) => {
         state.isLoading = false;
@@ -954,7 +973,6 @@ const userSlice = createSlice({
       .addCase(getUserContactInfo.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-
       })
       .addCase(getUserContactInfo.rejected, (state, action) => {
         state.isLoading = false;
@@ -966,7 +984,6 @@ const userSlice = createSlice({
       .addCase(getUserEducationInfo.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-
       })
       .addCase(getUserEducationInfo.rejected, (state, action) => {
         state.isLoading = false;

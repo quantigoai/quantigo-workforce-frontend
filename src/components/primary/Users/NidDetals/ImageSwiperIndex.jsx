@@ -12,6 +12,7 @@ import image4 from "../../../../assets/images/loginWMP.png";
 
 // const images = [image1, image2, image3, image4];
 const ImageSwiperIndex = ({ images, level }) => {
+  console.log("🚀 ~ ImageSwiperIndex ~ images:", images)
   const pagination = {
     clickable: true,
     renderBullet: function (index, className) {
@@ -23,6 +24,7 @@ const ImageSwiperIndex = ({ images, level }) => {
     <>
       {/* <Box sx={{ height: "518px" }}> */}
       <Box sx={{ height: level === "Standard Photo" ? "400px" : "518px" }}>
+        
         <Swiper
           style={{
             "--swiper-navigation-color": "#fff",

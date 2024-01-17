@@ -298,15 +298,15 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                     type="submit"
                     // disabled={true}
                     loading={isLoading}
-                    disabled={
-                      !isDocumentNoValid ||
-                      !isDocumentTypeValid ||
-                      // !coverImage ||
-                      // isLoading ||
-                      // coverImageFile?.size > maxSize
-                      // documentNo && documentsType &&
-                      images.length === 0
-                    }
+                    // disabled={
+                    //   !isDocumentNoValid ||
+                    //   !isDocumentTypeValid ||
+                    //   // !coverImage ||
+                    //   // isLoading ||
+                    //   // coverImageFile?.size > maxSize
+                    //   // documentNo && documentsType &&
+                    //   images.length === 0
+                    // }
                     sx={{
                       width: "128px",
                       textTransform: "none",

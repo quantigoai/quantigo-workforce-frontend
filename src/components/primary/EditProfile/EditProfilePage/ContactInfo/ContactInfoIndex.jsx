@@ -13,7 +13,6 @@ import axios from "axios";
 import useToaster from "../../../../../customHooks/useToaster";
 import { readMyProfile, updateMyContact } from "../../../../../features/slice/userSlice";
 const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
-  console.log("🚀 ~ ContactInfoIndex ~ user:", user);
   const toast = useToaster();
   const url = import.meta.env.VITE_APP_SERVER_URL;
   const { isLoading } = useSelector((state) => state.user);
@@ -107,6 +106,30 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
     // }
   };
   useEffect(() => {
+    if (isChecked) {
+      setPermanentAddress({
+        division: {
+          name: presentAddress.division.name,
+          id: presentAddress.division.id,
+        },
+        district: {
+          name: presentAddress.district.name,
+          id: presentAddress.district.id,
+        },
+        subdistrict: {
+          name: presentAddress.subdistrict.name,
+          id: presentAddress.subdistrict.id,
+        },
+        area: presentAddress.area,
+        roadNo: presentAddress.roadNo,
+        houseNo: presentAddress.houseNo,
+      });
+      setDistrictsPermanent([...districts]);
+      setSubDistrictsPermanent([...subdistricts]);
+      // setDivisionsPermanent((prevSubDistricts) => [...prevSubDistricts, ...divisions]);
+      // setDistrictsPermanent((prev) => [...prev, districts]);
+      // setSubDistrictsPermanent((prev) => [...prev, subdistricts]);
+    }
     if (user.presentAddress?.district) {
       axios
         .get(`${url}/bd-info/sub-district/get-sub-districts-by-district-id/${user.presentAddress.district.id}`)
@@ -154,22 +177,8 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
           // setSubDistricts([]);
         });
     }
+    console.log("🚀 ~ useEffect ~ presentAddress.division.id:", presentAddress.division.id);
 
-    // if (isChecked) {
-    //   setPermanentAddress({
-    //     division: presentAddress.division,
-    //     district: presentAddress.district,
-    //     subdistrict: presentAddress.subdistrict,
-    //     city: presentAddress.city,
-    //     roadNumber: presentAddress.roadNumber,
-    //     houseNumber: presentAddress.houseNumber,
-    //   });
-    //   setDistrictsPermanent([...districts]);
-    //   setSubDistrictsPermanent([...subdistricts]);
-    //   // setDivisionsPermanent((prevSubDistricts) => [...prevSubDistricts, ...divisions]);
-    //   // setDistrictsPermanent((prev) => [...prev, districts]);
-    //   // setSubDistrictsPermanent((prev) => [...prev, subdistricts]);
-    // }
     // if (!isChecked) {
     //   setPermanentAddress({
     //     division: "",
@@ -186,6 +195,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
     //   // setSubDistrictsPermanent((prev) => [...prev, subdistricts]);
     // }
   }, [isChecked]);
+  console.log(districtsPermanent);
   const handleEditProfile = () => {
     setEditAble(true);
   };
@@ -583,27 +593,29 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
               {/* Permanent Address */}
 
               <>
-                <Grid container sx={{ paddingTop: "%", paddingBottom: "0%" }}>
+                <Grid container sx={{ paddingTop: "1%", paddingBottom: "0%" }}>
                   <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
                     Permanent Address
                   </Typography>
                 </Grid>
-                <Grid container>
-                  <FormControlLabel
-                    control={<Checkbox checked={isChecked} onChange={handleCheckboxChange} />}
-                    label={
-                      <Typography
-                        sx={{
-                          color: "neutral.N300",
+                <Grid container sx={{ paddingTop: "%", paddingBottom: "%", height: "38px" }}>
+                  {editAble && (
+                    <FormControlLabel
+                      control={<Checkbox checked={isChecked} onChange={handleCheckboxChange} />}
+                      label={
+                        <Typography
+                          sx={{
+                            color: "neutral.N300",
 
-                          // mb: 1,
-                        }}
-                        variant="wpf_p4_medium"
-                      >
-                        Same as Present Address{" "}
-                      </Typography>
-                    }
-                  />
+                            // mb: 1,
+                          }}
+                          variant="wpf_p4_medium"
+                        >
+                          Same as Present Address{" "}
+                        </Typography>
+                      }
+                    />
+                  )}
                 </Grid>
 
                 <Grid container sx={{ paddingBottom: "20px" }}>

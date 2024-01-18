@@ -1,9 +1,9 @@
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import { Box, Button, MenuItem, Select, Typography } from "@mui/material";
-import { useCallback, useEffect, useLayoutEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import {Box, Button, MenuItem, Select, Typography} from "@mui/material";
+import {useCallback, useEffect, useLayoutEffect, useState} from "react";
+import {useSelector} from "react-redux";
+import {useLocation, useNavigate, useParams, useSearchParams} from "react-router-dom";
 
 const paginationOptions = [
   { value: 10, label: 10 },

@@ -7,10 +7,10 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { TableCell, Typography } from "@mui/material";
-import { default as React } from "react";
-import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
-import { calculateTimeDifference, formatDate, formatDateDob, formatTime } from "../../../../../helper/dateConverter";
+import {TableCell, Typography} from "@mui/material";
+import {default as React} from "react";
+import {capitalizeFirstLetter} from "../../../../../helper/capitalizeFirstWord";
+import {calculateTimeDifference, formatDate, formatDateDob, formatTime} from "../../../../../helper/dateConverter";
 import ChipGroup from "../../../../shared/CustomTable/ChipGroup";
 import ProjectDrawerStatusChip from "../../../../shared/FilterField/ProjectDrawerStatusChip";
 import ActiveJobsCell from "../CustomTableCell/ActiveJobsCell";

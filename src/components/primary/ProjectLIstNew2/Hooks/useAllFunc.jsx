@@ -1,15 +1,16 @@
 /* eslint-disable no-prototype-builtins */
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useLocation, useNavigate} from "react-router-dom";
 import useToaster from "../../../../customHooks/useToaster";
 import {
-  clearProjectDrawer,
-  deleteProjectDrawerById,
-  setCurrentProjectDrawer,
+    clearProjectDrawer,
+    deleteProjectDrawerById,
+    setCurrentProjectDrawer,
 } from "../../../../features/slice/projectDrawerSlice";
-import { getAllSkills } from "../../../../features/slice/skillSlice";
-import { clearProjectDrawerFilter, setProjectDrawerFilter } from "../../../../features/slice/temporaryDataSlice";
+import {getAllSkills} from "../../../../features/slice/skillSlice";
+import {clearProjectDrawerFilter, setProjectDrawerFilter} from "../../../../features/slice/temporaryDataSlice";
+
 const useAllFunc = ({ addSkills, setAddSkills, handleClearAllSkills, setIsEdit, searchRef, setIsDeleted }) => {
   const { skills } = useSelector((state) => state.skill);
   const [isDataLoading, setIsDataLoading] = useState(true);

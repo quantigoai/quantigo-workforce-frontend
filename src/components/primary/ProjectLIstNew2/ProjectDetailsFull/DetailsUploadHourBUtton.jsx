@@ -1,12 +1,12 @@
-import { LoadingButton } from "@mui/lab";
-import { Typography } from "@mui/material";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {LoadingButton} from "@mui/lab";
+import {Typography} from "@mui/material";
+import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../../customHooks/useToaster";
 import {
-  approveProjectHistoryAPIRequest,
-  rejectHistoryAPIRequest,
-  updateProjectDrawerManually,
+    approveProjectHistoryAPIRequest,
+    rejectHistoryAPIRequest,
+    updateProjectDrawerManually,
 } from "../../../../features/slice/projectDrawerSlice";
 import DetailsUploadHourModal from "./DetailsUploadHourModal";
 import HoursRejectModal from "./HoursRejectModal";

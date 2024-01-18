@@ -1,14 +1,9 @@
-import { Box, Stack } from "@mui/material";
+import {Box, Stack} from "@mui/material";
 import moment from "moment/moment";
-import React, { useEffect, useState } from "react";
-import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
-import SingleItem from "../../ProjectLIstNew2/Project2Details/SingleItem";
-import ChangeInfoIndex from "./ChangeInfoIndex";
+import React, {useEffect, useState} from "react";
 import DetailsItemThree from "./DetailsItemThree";
-import NdaDocumentSection from "./NdaDocumentSection";
-import SkillFieldForUserDetails from "./SkillFieldForUserDetails";
-import { useDispatch } from "react-redux";
-import { getUserContactInfo } from "../../../../features/slice/userSlice";
+import {useDispatch} from "react-redux";
+import {getUserContactInfo} from "../../../../features/slice/userSlice";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import AddressField from "./AddressField";
 

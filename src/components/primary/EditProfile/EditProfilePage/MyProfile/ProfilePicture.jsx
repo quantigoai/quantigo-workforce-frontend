@@ -1,9 +1,9 @@
-import { Avatar, Box, Button, Chip, Grid, Stack, Typography } from "@mui/material";
+import {Avatar, Box, Button, Chip, Grid, Stack, Typography} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import React from "react";
 import editIcon from "../../../../../assets/images/EditIcon.svg";
 import EditIconProfile from "../../../../../assets/images/Group.svg";
-import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
+import {capitalizeFirstLetter} from "../../../../../helper/capitalizeFirstWord";
 
 const ProfilePicture = ({
   user,

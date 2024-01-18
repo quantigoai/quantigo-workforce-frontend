@@ -13,15 +13,16 @@
  * ------------------------
  */
 
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useSearchParams } from "react-router-dom";
-import { roleOptionsAdmin } from "../components/primary/AllUsers/userFilterOptions";
-import { getAllSkills } from "../features/slice/skillSlice";
-import { setUserFilter } from "../features/slice/temporaryDataSlice";
-import { setTargetedUser, updateAUserById } from "../features/slice/userSlice";
-import { arraysAreEqual } from "../helper/helper";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useLocation, useSearchParams} from "react-router-dom";
+import {roleOptionsAdmin} from "../components/primary/AllUsers/userFilterOptions";
+import {getAllSkills} from "../features/slice/skillSlice";
+import {setUserFilter} from "../features/slice/temporaryDataSlice";
+import {setTargetedUser, updateAUserById} from "../features/slice/userSlice";
+import {arraysAreEqual} from "../helper/helper";
 import useToaster from "./useToaster";
+
 const useAllUsersFunc = ({
   userSearchRef,
   addSkills,

@@ -1,11 +1,10 @@
-import { Box, Typography } from "@mui/material";
-import React, { useEffect, useMemo, useState } from "react";
-import { useDropzone } from "react-dropzone";
+import {Box, Typography} from "@mui/material";
+import React, {useEffect, useMemo, useState} from "react";
+import {useDropzone} from "react-dropzone";
 import CloseIcon from "@mui/icons-material/Close";
-import ndaUploadStyle from "../../../Nda/ndaUploadStyle";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 import ctaImage from "../../../../../assets/images/CTA.png";
-import IconImage from "../../../../../assets/images/Icon.png";
+
 const baseStyle = {
   flex: 1,
   display: "flex",

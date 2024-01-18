@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 import AddIcon from "@mui/icons-material/Add";
-import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import {Box, Button, Grid, Paper, Typography} from "@mui/material";
 import SingleChapterNew from "../Course/SingleChapterNew";
 import useCourseDetails from "../Course/hooks/courseDetailshooks/useCourseDetails";
 

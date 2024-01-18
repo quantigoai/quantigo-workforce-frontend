@@ -1,8 +1,8 @@
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import { Box, Grid, Link, Typography } from "@mui/material";
+import {Box, Grid, Link, Typography} from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import confirmIcon from "../../../../assets/images/confirmprocess.svg";
 
 export const defaultIndex = (user) => {

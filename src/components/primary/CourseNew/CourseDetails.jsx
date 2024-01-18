@@ -7,15 +7,14 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box } from "@mui/material";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Outlet, useNavigate, useParams } from "react-router-dom";
-import { getACourseByID } from "../../../features/slice/courseSlice";
+import {Box} from "@mui/material";
+import {useEffect} from "react";
+import {useDispatch} from "react-redux";
+import {Outlet, useNavigate, useParams} from "react-router-dom";
+import {getACourseByID} from "../../../features/slice/courseSlice";
 import CommonHeaderForCourse from "../../shared/CustomComponenet/CommonHeader/CommonHeaderForCourse";
 import CourseDrawerNew from "./CourseDrawerNew";
 import useCourseDetails from "../Course/hooks/courseDetailshooks/useCourseDetails";
-import { getAllSkills } from "../../../features/slice/skillSlice";
 
 const CourseDetails = () => {
   const params = useParams();

@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel, Grid, Typography } from "@mui/material";
+import {Checkbox, FormControlLabel, Grid, Typography} from "@mui/material";
 import React from "react";
 import FieldForProfile from "../FieldForProfile";
 

@@ -74,7 +74,7 @@ const EducationInfoDetails = ({
 
               <SingleItem ItemTitle={"Institution Name"} Item={data.instituteName} />
               {/* <SingleItem ItemTitle={"Skills"} Item={user.skills} /> */}
-              <ImageShowInModal images={data.certificateImages} level={"Certificate Images"} />
+              <ImageShowInModal images={data.certificateImages.map((i) => i.url)} level={"Certificate Images"} />
             </>
           )}
         </Stack>

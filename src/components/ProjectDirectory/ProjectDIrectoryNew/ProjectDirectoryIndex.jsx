@@ -185,11 +185,11 @@ const ProjectDirectoryIndex = () => {
       ...(objBenchMarkFieldFilter ? { objBenchMarkFieldFilter: objBenchMarkFieldFilter } : {}),
       ...(date ? { date } : {}),
     };
-    dispatch(filterProjectByDirectory(data)).then((action) => {
-      if (action.payload.status === 200) {
-        setProjectDirectory(action.payload.data);
-      }
-    });
+    // dispatch(filterProjectByDirectory(data)).then((action) => {
+    //   if (action.payload.status === 200) {
+    //     setProjectDirectory(action.payload.data);
+    //   }
+    // });
   };
   const handleResetProjectDirectory = () => {
     setVideoWatchTimeFieldFilter("");

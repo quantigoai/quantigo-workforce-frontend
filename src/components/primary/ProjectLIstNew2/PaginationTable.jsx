@@ -31,6 +31,7 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
   const { total } = useSelector((state) => state.projectDrawer);
   const { users, totalUsers, meta: userMeta } = useSelector((state) => state.user.users);
   const { projectDirectory, totalDirectory, directoryMeta } = useSelector((state) => state.projectDirectory);
+  console.log("🚀 ~ PaginationTable ~ totalDirectory:", totalDirectory);
 
   const [meta, setMeta] = useState(projectMeta);
 
@@ -140,7 +141,7 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
       setTotalPages(Math.ceil(usersWorkHistoryCount / pagination.pageSize));
     }
   }, [total, totalUsers, usersWorkHistoryCount, meta]);
-
+  console.log(projectDirectory?.length);
   const visiblePageCount = 5;
   const firstVisiblePage = Math.max(0, pagination.currentPage - Math.floor(visiblePageCount / 2));
   const lastVisiblePage = Math.min(totalPages - 1, firstVisiblePage + visiblePageCount - 1);

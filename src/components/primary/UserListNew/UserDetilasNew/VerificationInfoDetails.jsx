@@ -98,7 +98,7 @@ const VerificationInfoDetails = ({
                 <NdaDocumentSection user={user} />
                 <Grid container sx={{ padding: "2%" }}>
                   <Grid item xs={4} sx={{ paddingRight: "1%" }}>
-                    <ImageShowInModal images={[data.standardPhoto.url]} level={"Standard Photo"} />
+                    <ImageShowInModal images={[data?.standardPhoto?.url]} level={"Standard Photo"} />
                   </Grid>
                   <Grid item xs={4} sx={{ paddingRight: "1%" }}>
                     <ImageShowInModal
@@ -110,7 +110,7 @@ const VerificationInfoDetails = ({
                     <Button
                       sx={styleBtn}
                       // disabled={!user.signImage}
-                      onClick={() => handleClick(data.resume.url)}
+                      onClick={() => handleClick(data?.resume?.url)}
                     >
                       <Typography
                         variant="wpf_p3_medium"

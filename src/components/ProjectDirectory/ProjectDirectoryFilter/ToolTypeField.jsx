@@ -7,9 +7,9 @@ const ToolTypeField = ({ setToolTypeFieldFilter, toolTypeFieldFilter }) => {
   const [industryAllType, setIndustryAllType] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getType("Tool_Type")).then((action) => {
+    dispatch(getType("tool_Type")).then((action) => {
       if (action.payload.status === 200) {
-        setIndustryAllType(action.payload.data);
+        setIndustryAllType(action.payload.data.types);
       }
     });
   }, []);

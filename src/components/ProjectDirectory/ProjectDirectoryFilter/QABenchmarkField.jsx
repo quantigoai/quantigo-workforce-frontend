@@ -12,7 +12,7 @@ const QABenchmarkField = ({
   useEffect(() => {
     dispatch(getType("QA_Benchmark")).then((action) => {
       if (action.payload.status === 200) {
-        setIndustryAllType(action.payload.data);
+        setIndustryAllType(action.payload.data.types);
       }
     });
   }, []);

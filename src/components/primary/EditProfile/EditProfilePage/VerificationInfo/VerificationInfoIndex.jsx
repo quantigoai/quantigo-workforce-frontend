@@ -67,6 +67,7 @@ const TypeVerificationOption = [
   { value: "birthCertificate", label: "Birth Certificate" },
 ];
 const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEditAble }) => {
+  console.log("🚀 ~ VerificationInfoIndex ~ data:", data)
   const { user, isLoading } = useSelector((state) => state.user);
   const [nidNumber, setNidNumber] = useState(data?.extraDocumentNo);
   const [nameAsNid, setNameAsNid] = useState(data?.extraDocumentName);
@@ -188,9 +189,10 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
         setOpenReject(false);
         setIsSyncLoading(false);
         setData(data.data.user);
-        setImages(data.data.user.extraDocumentImages);
+        setImages(data.data.user.extraDocumentImages.map((i) => i.url));
         setEditAble(false);
-        setImagesCopy(data.data.user.extraDocumentImages);
+        setImagesCopy(data.data.user.extraDocumentImages.map((i) => i.url));
+        setPhoto([]);
       },
       afterError: (data) => {
         setOpenReject(false);
@@ -256,7 +258,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                       </Typography>
 
                       <Box sx={{ width: "70%" }}>
-                        {data.standardPhoto && !editAble ? (
+                        {data.standardPhoto.url && !editAble ? (
                           <>
                             {/* <TextFieldQuestion
                               sx={
@@ -304,7 +306,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                         )}
                       </Box>
 
-                      <Box sx={{ width: data.resume && !editAble ? "100%" : "30%" }}>
+                      <Box sx={{ width: data.standardPhoto && !editAble ? "100%" : "30%" }}>
                         {data.standardPhoto && !editAble ? (
                           <>
                             <Button
@@ -319,7 +321,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                 zIndex: 2,
                                 backgroundColor: "neutral.N00",
                               }}
-                              onClick={() => handleClick(data.standardPhoto)}
+                              onClick={() => handleClick(data.standardPhoto.url)}
                             >
                               <Typography
                                 variant="wpf_h7_medium"
@@ -437,7 +439,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                 zIndex: 2,
                                 backgroundColor: "neutral.N00",
                               }}
-                              onClick={() => handleClick(data.resume)}
+                              onClick={() => handleClick(data.resume?.url)}
                             >
                               <Typography
                                 variant="wpf_h7_medium"

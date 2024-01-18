@@ -241,7 +241,11 @@ export const getType = createAsyncThunk(
   '/project/Directory/Type',
   async (type) => {
     try {
-      return await axios.get(`${url}/api/ProjectList/Type/${type}`);
+      return await axios.get(`${url}/project-directory/filter-type?type=${type}`,{
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+      });
     } catch (error) {
       throw new Error(error);
     }

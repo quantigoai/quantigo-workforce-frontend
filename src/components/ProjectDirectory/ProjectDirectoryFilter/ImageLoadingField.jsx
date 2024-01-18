@@ -10,9 +10,9 @@ const ImageLoadingField = ({
   const [industryAllType, setIndustryAllType] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getType("Image_Loading")).then((action) => {
+    dispatch(getType("image_Loading")).then((action) => {
       if (action.payload.status === 200) {
-        setIndustryAllType(action.payload.data);
+        setIndustryAllType(action.payload.data.types);
       }
     });
   }, []);

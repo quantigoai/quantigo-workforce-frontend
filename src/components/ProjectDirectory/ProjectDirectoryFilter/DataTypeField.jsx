@@ -7,9 +7,9 @@ const DataTypeField = ({ setDataTypeFilter, dataTypeFilter }) => {
   const [dataTypes, setDataTypes] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getType("Data_Type")).then((action) => {
+    dispatch(getType("data_Type")).then((action) => {
       if (action.payload.status === 200) {
-        setDataTypes(action.payload.data);
+        setDataTypes(action.payload.data.types);
       }
     });
   }, []);

@@ -142,7 +142,7 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
 
   const thumbs = files?.map((file, index) => {
     return (
-      <Box style={thumb} key={file.name}>
+      <Box style={thumb} key={file?.name}>
         <Box style={thumbInner}>
           {editAble && (
             <Box
@@ -186,7 +186,7 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
   };
   useEffect(() => {
     return () => {
-      files?.forEach((file) => URL.revokeObjectURL(file.preview));
+      files?.forEach((file) => URL.revokeObjectURL(file?.preview));
     };
   }, [files]);
 

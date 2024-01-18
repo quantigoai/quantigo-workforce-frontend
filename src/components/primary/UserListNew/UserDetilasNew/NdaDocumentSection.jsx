@@ -76,7 +76,7 @@ const NdaDocumentSection = ({ user }) => {
           <Button sx={styleBtn} disabled={!user.signImage} onClick={() => handleClick(user.signImage)}>
             <Typography
               variant="wpf_p3_medium"
-              color={!user.signImage ? "primary.B200" : ""}
+              color={!user.signImage ? "" : "primary.B200"}
               sx={{
                 paddingRight: "4%",
                 filter: !user?.signImage ? "grayscale(100%) opacity(50%)" : "",

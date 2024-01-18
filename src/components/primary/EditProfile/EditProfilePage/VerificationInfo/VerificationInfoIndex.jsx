@@ -81,21 +81,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
     },
   ]);
   const [removeImages, setRemoveImages] = useState([]);
-  const uploadRequest = async (finalImageData) => {
-    try {
-      const { id, formData } = finalImageData;
-      return await axios.patch(`${url}/users/my-verification/${id}`, formData, {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-        content: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
-  };
+
   const dispatch = useDispatch();
   const toast = useToaster();
 
@@ -163,15 +149,6 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
       formData,
     };
 
-    // await toast.responsePromise(uploadRequest(finalImageData), setDataLoading, {
-    //   initialMessage: "  is Uploading...",
-    //   inPending: () => {},
-    //   afterSuccess: (finalImageData) => {
-    //     // dispatch(updateProjectDrawerManually(data.data.projectDrawer));
-    //   },
-    //   afterError: () => {},
-    // });
-
     await toast.responsePromise(updateMyVerificationFunction(finalImageData), setIsSyncLoading, {
       initialMessage: "Verification info is updating...",
       inPending: () => {
@@ -201,9 +178,6 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
     //     setEditAble(false);
     //   }
     // });
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
   };
   return (
     <>

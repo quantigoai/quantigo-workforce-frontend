@@ -1,9 +1,9 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
-import React, { useMemo, useState } from "react";
-import { useSelector } from "react-redux";
-import ctaImage from "../../../../../../assets/images/CTA.png";
+import {Box, Button, Grid, Typography} from "@mui/material";
+import React, {useMemo, useState} from "react";
+import {useSelector} from "react-redux";
 import IconImage from "../../../../../../assets/images/uploadImageIcon.svg";
-import { useDropzone } from "react-dropzone";
+import {useDropzone} from "react-dropzone";
+
 const focusedStyle = {
   borderColor: "#2196f3",
 };

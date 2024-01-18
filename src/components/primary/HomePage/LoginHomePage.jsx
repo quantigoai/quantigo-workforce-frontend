@@ -1,8 +1,8 @@
-import { Box, keyframes, styled } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { tokenCheck } from '../../../App';
-import { alreadyLogin } from '../../../features/slice/userSlice';
+import {Box, keyframes, styled} from '@mui/material';
+import React, {useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {tokenCheck} from '../../../App';
+import {alreadyLogin} from '../../../features/slice/userSlice';
 import Login from '../Auth/Login/Login';
 import CommonDesign from './CommonDesign';
 import HeaderNav from './HeaderNav';

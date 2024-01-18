@@ -7,19 +7,19 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import { LoadingButton } from "@mui/lab";
-import { Stack } from "@mui/material";
+import {yupResolver} from "@hookform/resolvers/yup";
+import {LoadingButton} from "@mui/lab";
+import {Stack} from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Fade from "@mui/material/Fade";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import { useForm } from "react-hook-form";
+import {useForm} from "react-hook-form";
 import * as Yup from "yup";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
-import { courseCategoryFields, courseLanguageFields, courseLevelFields } from "../../AllUsers/userFilterOptions";
+import {courseCategoryFields, courseLanguageFields, courseLevelFields} from "../../AllUsers/userFilterOptions";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 import CSelectField from "./CSelectField";
 import CTextFieldDescription from "./CTextFieldDescription";
@@ -27,6 +27,7 @@ import CourseCoverImageField from "./CourseCoverImageField";
 import CourseSkillfiled from "./CourseSkillfiled";
 import PreRequisiteCourseFiled from "./PreRequisiteCourseFiled";
 import TextFieldCourse from "./TextFieldCourse";
+
 const style = {
   position: "relative",
   top: "50%",

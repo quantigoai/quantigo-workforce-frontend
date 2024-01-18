@@ -1,5 +1,5 @@
-import { Box, CircularProgress, Typography } from "@mui/material";
-import React, { useState } from "react";
+import {Box, CircularProgress, Typography} from "@mui/material";
+import React, {useState} from "react";
 
 const CommonHeaderProgress = () => {
   const [progress, setProgress] = useState(75);

@@ -1,21 +1,11 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
-  Tab,
-  Tabs,
-  Typography,
-} from "@mui/material";
-import React, { useEffect } from "react";
+import {Box, Button, FormControl, FormControlLabel, Radio, RadioGroup, Tab, Tabs, Typography,} from "@mui/material";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import ImageInOptionIndex from "./QuizQuestionType/ImageInOptionIndex";
 import ImageWithTitleIndex from "./QuizQuestionType/ImageWithTitleIndex";
 import DefaultTypeIndex from "./QuizQuestionType/DefaultTypeIndex";
 import RestoreIcon from "@mui/icons-material/Restore";
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (

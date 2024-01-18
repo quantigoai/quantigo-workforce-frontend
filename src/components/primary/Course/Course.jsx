@@ -6,13 +6,13 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Grid, Paper, styled } from "@mui/material";
+import {Grid, Paper, styled} from "@mui/material";
 import Box from "@mui/material/Box";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { setActivePath } from "../../../features/slice/activePathSlice";
-import { getAllCourses } from "../../../features/slice/courseSlice";
-import { getAllSkills } from "../../../features/slice/skillSlice";
+import {useEffect} from "react";
+import {useDispatch} from "react-redux";
+import {setActivePath} from "../../../features/slice/activePathSlice";
+import {getAllCourses} from "../../../features/slice/courseSlice";
+import {getAllSkills} from "../../../features/slice/skillSlice";
 import LoadingSkeleton from "../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton";
 import CourseHeader from "./CourseHeader/CourseHeader";
 import CourseTab from "./CourseTab";
@@ -21,6 +21,7 @@ import CourseCreateModal from "./CreateCourseModal/CourseCreateModal";
 
 import LoadingComponent from "../../shared/Loading/LoadingComponent";
 import useCourseManagement from "./hooks/createCourseHook/useCourseMangement";
+
 const Course = () => {
   const {
     open,

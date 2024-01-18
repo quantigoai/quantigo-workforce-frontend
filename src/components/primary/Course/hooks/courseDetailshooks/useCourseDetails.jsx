@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { setActiveChapterIndex } from "../../../../../features/slice/activePathSlice";
-import { getAChapterById, updateACourseById } from "../../../../../features/slice/courseSlice";
+import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {setActiveChapterIndex} from "../../../../../features/slice/activePathSlice";
+import {getAChapterById, updateACourseById} from "../../../../../features/slice/courseSlice";
 import useToaster from "../../../../../customHooks/useToaster";
 
 const useCourseDetails = () => {

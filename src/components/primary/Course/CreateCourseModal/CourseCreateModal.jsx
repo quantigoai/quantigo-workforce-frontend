@@ -1,5 +1,5 @@
-import { LoadingButton } from "@mui/lab";
-import { Stack } from "@mui/material";
+import {LoadingButton} from "@mui/lab";
+import {Stack} from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -8,7 +8,7 @@ import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 
 import FormProvider from "../../../shared/FormProvider/FormProvider";
-import { courseCategoryFields, courseLanguageFields, courseLevelFields } from "../../AllUsers/userFilterOptions";
+import {courseCategoryFields, courseLanguageFields, courseLevelFields} from "../../AllUsers/userFilterOptions";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 import CSelectField from "./CSelectField";
 import CTextFieldDescription from "./CTextFieldDescription";
@@ -16,6 +16,7 @@ import CourseCoverImageField from "./CourseCoverImageField";
 import CourseSkillfiled from "./CourseSkillfiled";
 import PreRequisiteCourseFiled from "./PreRequisiteCourseFiled";
 import TextFieldCourse from "./TextFieldCourse";
+
 const style = {
   position: "relative",
   top: "50%",

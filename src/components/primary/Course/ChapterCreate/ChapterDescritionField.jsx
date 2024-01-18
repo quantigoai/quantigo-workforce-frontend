@@ -1,6 +1,5 @@
-import { Box, styled, TextField, Typography } from "@mui/material";
-import PropTypes from "prop-types";
-import { Controller, useFormContext } from "react-hook-form";
+import {Box, styled, TextField, Typography} from "@mui/material";
+import {Controller, useFormContext} from "react-hook-form";
 
 export const CCTextField = styled(TextField)(() => ({
   borderRadius: "5px",

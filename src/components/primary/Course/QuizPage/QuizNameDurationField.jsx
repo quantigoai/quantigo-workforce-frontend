@@ -1,6 +1,6 @@
-import { Box } from "@mui/material";
+import {Box} from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 import CustomTextField from "../../../shared/CustomField/CustomTextField";
 
 const QuizNameDurationField = ({ methods, onSubmit, handleSubmit, update }) => {

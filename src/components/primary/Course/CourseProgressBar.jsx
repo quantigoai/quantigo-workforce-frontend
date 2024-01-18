@@ -1,5 +1,5 @@
-import { Box, CircularProgress, Typography } from "@mui/material";
-import React, { useState } from "react";
+import {Box, CircularProgress, Typography} from "@mui/material";
+import React, {useState} from "react";
 
 const CourseProgressBar = ({ index }) => {
   const [progress, setProgress] = useState(75);

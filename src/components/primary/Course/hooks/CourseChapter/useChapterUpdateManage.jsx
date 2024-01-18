@@ -1,10 +1,10 @@
 import useToaster from "../../../../../customHooks/useToaster";
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { updateAChapterById } from "../../../../../features/slice/courseSlice";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { realToken } from "../../../../../helper/lib";
+import {useDispatch, useSelector} from "react-redux";
+import {useState} from "react";
+import {updateAChapterById} from "../../../../../features/slice/courseSlice";
+import {useForm} from "react-hook-form";
+import {yupResolver} from "@hookform/resolvers/yup";
+import {realToken} from "../../../../../helper/lib";
 import * as Yup from "yup";
 import axios from "axios";
 

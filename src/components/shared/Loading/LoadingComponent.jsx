@@ -7,11 +7,12 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { keyframes } from "@emotion/react";
+import {keyframes} from "@emotion/react";
 import Box from "@mui/material/Box";
-import { styled } from "@mui/system";
+import {styled} from "@mui/system";
 import qaiLogo from "../../../assets/images/qai.png";
 import "./index.css";
+
 const fadeInOut = keyframes`
 0%, 20%, 50%, 80%, 100% {
   transform: translateY(0);

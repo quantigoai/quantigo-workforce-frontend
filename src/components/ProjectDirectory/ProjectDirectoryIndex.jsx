@@ -26,7 +26,7 @@ import {
 import fieldBuilder from '../../shared/CustomTable/fieldBuilder';
 import LoadingComponent from '../../shared/Loading/LoadingComponent';
 import CreateProjectDirectoryModal from './CreateProjectDirectoryModal.jsx';
-import ProjectDirectoryHeader from '../ProjectDirectoryHeader/ProjectDirectoryHeader';
+import ProjectDirectoryHeader from './ProjectDirectoryHeader.jsx';
 import ProjectDirectoryDetailsModal from './ProjectDirectoryDetailsModal';
 import ProjectDirectoryEditModal from './ProjectDirectoryEditModal';
 // import ProjectDirectoryDetailsModal from "./ProjectDirectoryDetailsModal";

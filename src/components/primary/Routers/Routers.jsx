@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Route, Routes } from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import ProjectDirectoryIndex from '../../ProjectDirectory/ProjectDIrectoryNew/ProjectDirectoryIndex';
 import ErrorPage from '../../shared/Error/ErrorPage';
 import AllUserListIndex2 from '../AllUsers/AllUserListIndex2';

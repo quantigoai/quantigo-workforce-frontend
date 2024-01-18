@@ -1,10 +1,9 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import {Box, Button, Grid, Typography} from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useLocation, useNavigate} from "react-router-dom";
 import CommonHeader from "../../../shared/CustomComponenet/CommonHeader/CommonHeader";
-import { getAQuizById } from "../../../../features/slice/quizSlice";
-import CourseDeleteModal from "../CourseDetailsPage/CourseDeleteModal";
+import {getAQuizById} from "../../../../features/slice/quizSlice";
 
 const ChapterUpdateHeader = ({ isEditChapter, disabledButton, durationTime }) => {
   const { course, courseChapter } = useSelector((state) => state.course);

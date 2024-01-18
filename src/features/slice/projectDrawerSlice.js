@@ -12,10 +12,10 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import { rangeDateFormatter } from "../../helper/dateConverter";
-import { realToken } from "../../helper/lib";
+import {rangeDateFormatter} from "../../helper/dateConverter";
+import {realToken} from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 

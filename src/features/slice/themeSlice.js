@@ -12,7 +12,7 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialTheme = {
   theme: 'light',

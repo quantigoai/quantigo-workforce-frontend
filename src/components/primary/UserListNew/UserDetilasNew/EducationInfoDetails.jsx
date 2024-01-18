@@ -24,7 +24,6 @@ const EducationInfoDetails = ({
 }) => {
   const [isDataLoading, setIsDataLoading] = useState(true);
   const [data, setData] = useState([]);
-  console.log("🚀 ~ data:", data);
   const dispatch = useDispatch();
 
   const DOB = user.dob ? moment.utc(user.dob).format("MMM Do, YYYY") : "Not Available";

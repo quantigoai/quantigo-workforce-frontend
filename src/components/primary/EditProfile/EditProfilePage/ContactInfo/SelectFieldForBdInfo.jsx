@@ -19,7 +19,6 @@ const SelectFieldForBdInfo = ({
   options,
   isChecked,
 }) => {
-  console.log("🚀 ~ defaultValue:", defaultValue)
   return (
     <>
       {options && (

@@ -31,7 +31,6 @@ const style = {
 };
 
 const ProjectDirectoryDetailsModal = ({ openProjectModalDetails, item, handleDetailsProjectDirectoryClose }) => {
-  console.log("🚀 ~ ProjectDirectoryDetailsModal ~ item:", item);
   const { isLightTheme } = useSelector((state) => state.theme);
   return (
     <>

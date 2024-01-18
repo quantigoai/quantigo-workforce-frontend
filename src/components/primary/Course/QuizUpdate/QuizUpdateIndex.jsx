@@ -23,7 +23,6 @@ const QuizUpdateIndex = () => {
   const [disabledButton, setDisabledButton] = useState(true);
   const [durationTime, setDurationTime] = useState("");
   const { quiz } = useSelector((state) => state.quiz);
-  console.log("🚀 ~ file: QuizUpdateIndex.jsx:24 ~ QuizUpdateIndex ~ quiz:", quiz);
   const [inputFields, setInputFields] = useState(quiz.questionAndAnswer);
 
   const dispatch = useDispatch();
@@ -361,9 +360,7 @@ const QuizUpdateIndex = () => {
             }
           });
 
-          // for (let pair of formData.entries()) {
-          //   console.log(pair[0] + ", " + pair[1]);
-          // }
+
         });
     }
 
@@ -379,8 +376,7 @@ const QuizUpdateIndex = () => {
       dispatch(deleteQuestionFromQuiz(deleteQuizData));
     }
 
-    // add a new question in Quiz
-    console.log(addQuiz.questionAndAnswer);
+
     {
       addQuiz.questionAndAnswer.length !== 0 &&
         Object.entries(addQuiz.questionAndAnswer).map(([key, val], i) => {
@@ -394,9 +390,7 @@ const QuizUpdateIndex = () => {
             data1.formDataQ = formData;
           });
           dispatch(insertAQuestionInQuiz(data1));
-          // for (let pair of formData.entries()) {
-          //   console.log(pair[0] + ", " + pair[1]);
-          // }
+
         });
     }
 

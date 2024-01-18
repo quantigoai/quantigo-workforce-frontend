@@ -104,7 +104,6 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
     // formData.append("documentsImage", coverImageFile);
     formData.append("documentsType", documentsType);
     formData.append("documentNo", documentNo);
-    console.log(images);
     images.forEach((item) => {
       if (item.name) {
         formData.append("documentsImage", item);
@@ -127,9 +126,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
       id: user._id,
       formData: formData,
     };
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
+    
     dispatch(updateMyDocuments(finalData)).then((action) => {
       if (action.payload?.status === 200 || action.payload?.status === 201) {
         toast.trigger("Your Documents has been update successfully.", "success");

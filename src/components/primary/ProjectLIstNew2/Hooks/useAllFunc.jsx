@@ -40,7 +40,6 @@ const useAllFunc = ({ addSkills, setAddSkills, handleClearAllSkills, setIsEdit, 
   };
   const { pathname } = useLocation();
   const { projectDrawerFilter } = useSelector((state) => state.tempData);
-  console.log("🚀 ~ file: useAllFunc.jsx:43 ~ useAllFunc ~ projectDrawerFilter:", projectDrawerFilter)
   const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {

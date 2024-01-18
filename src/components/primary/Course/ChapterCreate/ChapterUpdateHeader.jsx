@@ -29,7 +29,6 @@ const ChapterUpdateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
       navigate(`/quiz-create/${course._id}`);
     } else {
       dispatch(getAQuizById(courseChapter.quiz.id)).then((action) => {
-        console.log("🚀 ~ file: ChapterUpdateHeader.jsx:33 ~ dispatch ~ action:", action);
         if (action.payload.status === 200) {
           navigate(`/update-quiz/${courseChapter._id}`);
         }

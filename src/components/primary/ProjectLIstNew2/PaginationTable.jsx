@@ -31,8 +31,6 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
   const { total } = useSelector((state) => state.projectDrawer);
   const { users, totalUsers, meta: userMeta } = useSelector((state) => state.user.users);
   const { projectDirectory, totalDirectory, directoryMeta } = useSelector((state) => state.projectDirectory);
-  console.log("🚀 ~ PaginationTable ~ totalDirectory:", totalDirectory);
-
   const [meta, setMeta] = useState(projectMeta);
 
   const { pathname } = useLocation();

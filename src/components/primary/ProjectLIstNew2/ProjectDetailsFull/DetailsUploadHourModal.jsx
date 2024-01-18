@@ -94,7 +94,6 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
     }
   };
   const isNumeric = (value) => {
-    // console.log("🚀 ~ file: DetailsUploadHourModal.jsx:97 ~ isNumeric ~ value:", value)
     return !isNaN(parseFloat(value)) && isFinite(value);
   };
   const isValidQaiId = (value) => {
@@ -170,7 +169,6 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
           setIsSelected(true);
           const url = URL.createObjectURL(file);
           setCoverImage(url);
-          console.log("Valid File");
         }
       },
       header: true, // Assumes the first row is headers

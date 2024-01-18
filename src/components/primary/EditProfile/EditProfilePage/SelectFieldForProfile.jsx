@@ -19,7 +19,6 @@ export const MySelect = styled(Select)(() => ({
 //   { value: "(AB-)", label: "AB-" },
 // ];
 const SelectFieldForProfile = ({ name, label, defaultValue, disableItem, editAble, handleChange, options }) => {
-  console.log("🚀 ~ file: SelectFieldForProfile.jsx:22 ~ SelectFieldForProfile ~ defaultValue:", defaultValue);
   return (
     <>
       <FormControl fullWidth>

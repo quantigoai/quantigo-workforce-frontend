@@ -2,7 +2,6 @@ import { Box, Grid, Stack, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 
 const AddressField = ({ ItemTitle, Item }) => {
-  console.log("🚀 ~ AddressField ~ Item:", Item)
   const { isLightTheme } = useSelector((state) => state.theme);
   return (
     <>

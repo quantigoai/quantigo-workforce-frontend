@@ -67,7 +67,6 @@ const TypeVerificationOption = [
   { value: "birthCertificate", label: "Birth Certificate" },
 ];
 const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEditAble }) => {
-  console.log("🚀 ~ VerificationInfoIndex ~ data:", data)
   const { user, isLoading } = useSelector((state) => state.user);
   const [nidNumber, setNidNumber] = useState(data?.extraDocumentNo);
   const [nameAsNid, setNameAsNid] = useState(data?.extraDocumentName);

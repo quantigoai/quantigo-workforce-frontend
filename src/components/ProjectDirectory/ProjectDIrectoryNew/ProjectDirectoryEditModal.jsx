@@ -29,7 +29,6 @@ const ProjectDirectoryEditModal = ({
   setOpenProjectModalEdit,
   onSubmitEdit,
 }) => {
-  console.log("🚀 ~ item:", item);
   const dispatch = useDispatch();
   const toast = useToaster();
   const { isLoading } = useSelector((state) => state.projectDirectory);

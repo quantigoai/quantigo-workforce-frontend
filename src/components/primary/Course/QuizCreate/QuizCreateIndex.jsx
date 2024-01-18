@@ -61,7 +61,6 @@ const QuizCreateIndex = () => {
     // navigate(`/course-details/${course._id}/index`);
   }, []);
   const handleRemoveQA = (uniqueId) => {
-    console.log("🚀 ~ file: QuizCreateIndex.jsx:64 ~ handleRemoveQA ~ uniqueId:", uniqueId);
     const values = [...inputFields];
     values.splice(
       values.findIndex((value) => value.uniqueId === uniqueId),
@@ -104,7 +103,7 @@ const QuizCreateIndex = () => {
     setInputFields(newInputFields);
   };
   useEffect(() => {}, [inputFields]);
-  console.log(inputFields);
+
   const quizSchema = Yup.object().shape({
     quiz_name: Yup.string().required("Quiz name is required"),
     // duration: Yup.string().required(" Quiz duration is required"),
@@ -175,7 +174,6 @@ const QuizCreateIndex = () => {
           formData.append(`questionAndAnswer[${index}][possibleAnswers][${answerIndex}]`, answer);
         }
         // const key = Object.keys(answer)[0];
-        // console.log("🚀 ~ file: QuizCreateIndex.jsx:101 ~ qa.possibleAnswers.forEach ~ answer:", answer);
         // formData.append(`questionAndAnswer[${index}][possibleAnswers][${answerIndex}]`, answer);
       });
 
@@ -211,9 +209,7 @@ const QuizCreateIndex = () => {
     //     toast.trigger(action.payload.data.message, "success");
     //   }
     // });
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
+ 
   };
 
   return (

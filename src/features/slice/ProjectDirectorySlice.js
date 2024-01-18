@@ -25,7 +25,7 @@ const initialState = {
   projectDirectory: [],
   projectDirectorySingle: {},
   directoryMeta: {},
-  total: 0,
+  totalDirectory: 0,
   error: null,
   isCreated: false,
 };
@@ -33,82 +33,19 @@ const initialState = {
 export const getProjectByDirectory = createAsyncThunk(
   '/project/directory',
   async (data) => {
-    const { search, pagination, ascDescOption } = data;
+    const { search, pagination, ascDescOption, filteredData } = data;
 
-    // let query = ``;
-    // if (data) {
-    //   query += `?`;
-    // }
-    // if (industryType) {
-    //   query += `&Industry=${industryType}`;
-    // }
-    // if (judgementTimeFieldFilter) {
-    //   query += `&Judgement_Time=${judgementTimeFieldFilter}`;
-    // }
-    // if (qABenchmarkFieldFilter) {
-    //   query += `&QA_Benchmark=${qABenchmarkFieldFilter}`;
-    // }
-    // if (qAFieldFilter) {
-    //   query += `&QA=${qAFieldFilter}`;
-    // }
-    // if (skipImageFieldFilter) {
-    //   query += `&Skip_Image=${skipImageFieldFilter}`;
-    // }
-    // if (imageLoadingFieldFilter) {
-    //   query += `&Image_Loading=${imageLoadingFieldFilter}`;
-    // }
-    // if (objectSavingTimeFieldFilter) {
-    //   query += `&Object_Saving_Time=${objectSavingTimeFieldFilter}`;
-    // }
-    // if (videoWatchTimeFieldFilter) {
-    //   query += `&Video_Watch_Time=${videoWatchTimeFieldFilter}`;
-    // }
-    // if (toolTypeFieldFilter) {
-    //   query += `&Tool_Type=${toolTypeFieldFilter}`;
-    // }
-    // if (deletionFieldFilter) {
-    //   query += `&Deletion=${deletionFieldFilter}`;
-    // }
-    // if (objBenchMarkFieldFilter) {
-    //   query += `&Obj_Benchmark=${objBenchMarkFieldFilter}`;
-    // }
-    // if (imgBenchMarkFieldFilter) {
-    //   query += `&Img_Benchmark=${imgBenchMarkFieldFilter}`;
-    // }
-    // if (taggingBenchMarkFieldFilter) {
-    //   query += `&Tagging_Benchmark=${taggingBenchMarkFieldFilter}`;
-    // }
-    // if (actionItemsFieldFilter) {
-    //   query += `&Action_Items=${actionItemsFieldFilter}`;
-    // }
-    // if (qaCheckPointFieldFilter) {
-    //   query += `&QA_Check_Points=${qaCheckPointFieldFilter}`;
-    // }
-    // if (projectTypeFieldFilter) {
-    //   query += `&Project_Type=${projectTypeFieldFilter}`;
-    // }
-    // if (platformFieldFilter) {
-    //   query += `&Platform=${platformFieldFilter}`;
-    // }
-    // if (clientAliasFilter) {
-    //   query += `&Client_Alias=${clientAliasFilter}`;
-    // }
-    // if (dataTypeFilter) {
-    //   query += `&Data_Type=${dataTypeFilter}`;
-    // }
-    // if (annotationFilter) {
-    //   query += `&Annotation=${annotationFilter}`;
-    // }
-    // if (pdr) {
-    //   query += `&PDR=${pdr}`;
-    // }
-    // let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
     let query = `limit=${pagination.pageSize}&skip=${
       pagination.currentPage * pagination.pageSize
     }`;
     if (search) {
       query += `&search=${search}`;
     }
+    const filterOptions = filteredData && Object.keys(filteredData);
+    if (filterOptions) {
+      filterOptions.map((f) => (query += `&${f}=${filteredData[f]}`));
+    }
+
     if (ascDescOption) {
       const ascDescOptions = ascDescOption && Object.keys(ascDescOption);
       ascDescOptions.map(
@@ -241,11 +178,14 @@ export const getType = createAsyncThunk(
   '/project/Directory/Type',
   async (type) => {
     try {
-      return await axios.get(`${url}/project-directory/filter-type?type=${type}`,{
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
+      return await axios.get(
+        `${url}/project-directory/filter-type?type=${type}`,
+        {
+          headers: {
+            Authorization: `Bearer ${realToken()}`,
+          },
         },
-      });
+      );
     } catch (error) {
       throw new Error(error);
     }
@@ -397,8 +337,14 @@ const ProjectDirectory = createSlice({
       })
       .addCase(getProjectByDirectory.fulfilled, (state, action) => {
         state.projectDirectory = action.payload.data.projectDirectory;
-        state.totalDirectory = action.payload.data.count;
         state.directoryMeta = action.payload.data.meta;
+        if (action.payload.data?.filteredTotalCount === 0) {
+          state.totalDirectory = action.payload.data.filteredTotalCount;
+        } else if (action.payload.data?.filteredTotalCount) {
+          state.totalDirectory = action.payload.data.filteredTotalCount;
+        } else {
+          state.totalDirectory = action.payload.data.count;
+        }
         state.isLoading = false;
         state.error = null;
       })

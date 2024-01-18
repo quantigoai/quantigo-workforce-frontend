@@ -18,11 +18,8 @@ import EstimatedTimeToRead from "./InputFields/EstimatedTimeToRead";
 
 const UpdateChapter = () => {
   const API_URl = import.meta.env.VITE_APP_SERVER_URL;
-  console.log("🚀 ~ file: UpdateChapter.jsx:21 ~ UpdateChapter ~ API_URl:", API_URl)
   const UPLOAD_ENDPOINT = "courses/couseimages/uploads";
   const { courseChapter, course, isLoading } = useSelector((state) => state.course);
-  console.log("🚀 ~ file: UpdateChapter.jsx:23 ~ UpdateChapter ~ course:", course)
-  console.log("🚀 ~ file: UpdateChapter.jsx:23 ~ UpdateChapter ~ courseChapter:", courseChapter)
   const [content, setContent] = useState("");
   const dispatch = useDispatch();
 

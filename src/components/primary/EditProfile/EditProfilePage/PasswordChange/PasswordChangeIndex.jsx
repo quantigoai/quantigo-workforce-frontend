@@ -50,7 +50,6 @@ const PasswordChangeIndex = () => {
   };
   // 3rd input
   const handleConfirmPassword = (confirmPassword) => {
-    console.log("🚀 ~ file: PasswordChangeIndex.jsx:52 ~ handleConfirmPassword ~ confirmPassword:", confirmPassword);
     setConfirmPassword(confirmPassword);
     if (confirmPassword.length >= 6) {
       if (currentPassword !== confirmPassword) {

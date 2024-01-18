@@ -66,7 +66,6 @@ const MenuProps = {
 };
 
 const CourseSkillfiled = ({ skills, skillSet, handleChangeSkills, MenuProps, isUpdate }) => {
-  console.log("🚀 ~ file: CourseSkillfiled.jsx:69 ~ CourseSkillfiled ~ skillSet:", skillSet);
   const location = useLocation();
   const { course } = useSelector((state) => state.course);
 

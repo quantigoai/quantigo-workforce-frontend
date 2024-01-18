@@ -169,7 +169,6 @@ export const updateMyEducationFunction = async (finalData) => {
       },
     });
   } catch (error) {
-    console.log("🚀 ~ updateMyEducation ~ error:", error);
     throw new Error(error.response.data.message);
     // throw new Error(error);
   }

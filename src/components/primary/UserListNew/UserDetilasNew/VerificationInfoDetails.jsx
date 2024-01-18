@@ -39,7 +39,6 @@ const VerificationInfoDetails = ({
   const dispatch = useDispatch();
   const [isDataLoading, setIsDataLoading] = useState(true);
   const [data, setData] = useState([]);
-  console.log("🚀 ~ data:", data);
   const { isLightTheme } = useSelector((state) => state.theme);
   const DOB = user.dob ? moment.utc(user.dob).format("MMM Do, YYYY") : "Not Available";
   const dateObj = new Date(user.lastJobTakenAt);

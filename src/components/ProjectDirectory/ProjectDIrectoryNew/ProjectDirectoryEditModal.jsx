@@ -47,7 +47,7 @@ const ProjectDirectoryEditModal = ({
       obj_Benchmark: item.obj_Benchmark,
       img_Benchmark: item.img_Benchmark,
       tagging_Benchmark: item.tagging_Benchmark,
-      Deletion: item.Deletion,
+      deletion: item.deletion,
       skip_Image: item.skip_Image,
       update: item.update,
       image_Loading: item.image_Loading,
@@ -57,7 +57,7 @@ const ProjectDirectoryEditModal = ({
       QA_Benchmark: item.QA_Benchmark,
       annotation: item.annotation,
       QA: item.QA,
-      Remarks: item.remarks,
+      remarks: item.remarks,
     },
     mode: "all",
   });
@@ -80,7 +80,7 @@ const ProjectDirectoryEditModal = ({
       >
         <Fade in={openProjectModalEdit}>
           <Box sx={style}>
-            <ProjectModalHeader handleCreateProjectClose={handleEditClose} modalTitle={`Edit ${item.Project_Name}`} />
+            <ProjectModalHeader handleCreateProjectClose={handleEditClose} modalTitle={`Edit ${item.project_Name}`} />
             <Box>
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitEdit)}>
                 <Box
@@ -93,22 +93,22 @@ const ProjectDirectoryEditModal = ({
                 >
                   <LineStack>
                     <FieldBox>
-                      <PDTextFIeld name="project_Name" label="Project Name" defaultValue={item.Project_Name} />
+                      <PDTextFIeld name="project_Name" label="Project Name" defaultValue={item.project_Name} />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="client_Alias" label="Client Alias" defaultValue={item.Client_Alias} />
+                      <PDTextFIeld name="client_Alias" label="Client Alias" defaultValue={item.client_Alias} />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="industry" label="Industry" defaultValue={item.Industry} />
+                      <PDTextFIeld name="industry" label="Industry" defaultValue={item.industry} />
                     </FieldBox>
                   </LineStack>
 
                   <LineStack>
                     <FieldBox>
-                      <PDTextFIeld name="platform" label="Batch" defaultValue={item.Platform} />
+                      <PDTextFIeld name="platform" label="Batch" defaultValue={item.platform} />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="tool_Type" label="Tool Type" defaultValue={item.Tool_Type} />
+                      <PDTextFIeld name="tool_Type" label="Tool Type" defaultValue={item.tool_Type} />
                     </FieldBox>
                     <FieldBox>
                       <PDTextFIeld
@@ -126,10 +126,10 @@ const ProjectDirectoryEditModal = ({
 
                   <LineStack>
                     <FieldBox>
-                      <PDTextFIeld name="project_Type" label="Project Type" defaultValue={item.Project_Type} />
+                      <PDTextFIeld name="project_Type" label="Project Type" defaultValue={item.project_Type} />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="action_Items" label="Action Items" defaultValue={item.Action_Items} />
+                      <PDTextFIeld name="action_Items" label="Action Items" defaultValue={item.action_Items} />
                     </FieldBox>
                     <FieldBox>
                       <PDTextFIeld name="QA_Check_Points" label="QA Check Points" defaultValue={item.QA_Check_Points} />
@@ -141,45 +141,45 @@ const ProjectDirectoryEditModal = ({
                       <PDTextFIeld name="obj_Benchmark" label="Object Benchmark" defaultValue={item.Obj_Benchmark} />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="img_Benchmark" label="Image Benchmark" defaultValue={item.Img_Benchmark} />
+                      <PDTextFIeld name="img_Benchmark" label="Image Benchmark" defaultValue={item.img_Benchmark} />
                     </FieldBox>
                     <FieldBox>
                       <PDTextFIeld
                         name="tagging_Benchmark"
                         label="Tagging Benchmark"
-                        defaultValue={item.Tagging_Benchmark}
+                        defaultValue={item.tagging_Benchmark}
                       />
                     </FieldBox>
                   </LineStack>
 
                   <LineStack>
                     <FieldBox>
-                      <PDTextFIeld name="deletion" label="Deletion" defaultValue={item.Deletion} />
+                      <PDTextFIeld name="deletion" label="Deletion" defaultValue={item.deletion} />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="skip_Image" label="Skip Image" defaultValue={item.Skip_Image} />
+                      <PDTextFIeld name="skip_Image" label="Skip Image" defaultValue={item.skip_Image} />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="update" label="Update" defaultValue={item.Update} />
+                      <PDTextFIeld name="update" label="Update" defaultValue={item.update} />
                     </FieldBox>
                   </LineStack>
 
                   <LineStack>
                     <FieldBox>
-                      <PDTextFIeld name="image_Loading" label="Image Loading" defaultValue={item.Image_Loading} />
+                      <PDTextFIeld name="image_Loading" label="Image Loading" defaultValue={item.image_Loading} />
                     </FieldBox>
                     <FieldBox>
                       <PDTextFIeld
                         name="object_Saving_Time"
                         label="Object_Saving_Time"
-                        defaultValue={item.Object_Saving_Time}
+                        defaultValue={item.object_Saving_Time}
                       />
                     </FieldBox>
                     <FieldBox>
                       <PDTextFIeld
                         name="video_Watch_Time"
                         label="Video Watch Time"
-                        defaultValue={item.Video_Watch_Time}
+                        defaultValue={item.video_Watch_Time}
                       />
                     </FieldBox>
                   </LineStack>
@@ -189,14 +189,14 @@ const ProjectDirectoryEditModal = ({
                       <PDTextFIeld
                         name="judgement_Time"
                         label="Judgement Time Loading"
-                        defaultValue={item.Judgement_Time}
+                        defaultValue={item.judgement_Time}
                       />
                     </FieldBox>
                     <FieldBox>
                       <PDTextFIeld name="QA_Benchmark" label="QA Benchmark" defaultValue={item.QA_Benchmark} />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="annotation" label="Annotation" defaultValue={item.Annotation} />
+                      <PDTextFIeld name="annotation" label="Annotation" defaultValue={item.annotation} />
                     </FieldBox>
                   </LineStack>
                   <LineStack>
@@ -204,7 +204,7 @@ const ProjectDirectoryEditModal = ({
                       <PDTextFIeld name="QA" label="QA" defaultValue={item.QA} />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="remarks" label="Remarks" defaultValue={item.Remarks} />
+                      <PDTextFIeld name="remarks" label="Remarks" defaultValue={item.remarks} />
                     </FieldBox>
                   </LineStack>
                 </Box>

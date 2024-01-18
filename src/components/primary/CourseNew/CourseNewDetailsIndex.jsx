@@ -33,7 +33,6 @@ const CourseNewDetailsIndex = () => {
   };
   const handleEditQuiz = () => {
     dispatch(getAQuizById(courseChapter.quiz.id)).then((action) => {
-      console.log(action);
       if (action.payload.status === 200) {
         navigate(`/update-quiz/${courseChapter._id}`);
       }

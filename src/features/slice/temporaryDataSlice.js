@@ -31,7 +31,6 @@ const initialState = {
 };
 
 export const updateTemporaryData = createAsyncThunk("resources/temporaryDatas", async (data) => {
-  console.log("🚀 ~ file: temporaryDataSlice.js:34 ~ updateTemporaryData ~ data:", data);
   return axios.post(`${url}/courses/temporaryDataRouter/`, data, {
     headers: {
       Authorization: `Bearer ${realToken()}`,

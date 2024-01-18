@@ -1,11 +1,11 @@
-import {Box, Button, Grid, Stack, Typography} from "@mui/material";
+import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import moment from "moment/moment";
-import React, {useEffect, useState} from "react";
-import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
+import React, { useEffect, useState } from "react";
+import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 import DetailsItemThree from "./DetailsItemThree";
 import NdaDocumentSection from "./NdaDocumentSection";
-import {useDispatch, useSelector} from "react-redux";
-import {getUserVerificationInfo} from "../../../../features/slice/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserVerificationInfo } from "../../../../features/slice/userSlice";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import ImageShowInModal from "./ImageShowInModal";
 import DetailsItem from "../../ProjectLIstNew2/Project2Details/DetailsItem";
@@ -80,38 +80,37 @@ const VerificationInfoDetails = ({
               <Box>
                 <DetailsItem
                   Item1Title={"Document Type"}
-                  Item1={capitalizeFirstLetter(data.documentsType)}
+                  Item1={capitalizeFirstLetter(data.documentsType || "N/A")}
                   isLightTheme={isLightTheme}
-                  Item2Title={`${capitalizeFirstLetter(data.documentsType)} Number`}
+                  Item2Title={`${capitalizeFirstLetter(data.documentsType || "Document")} Number`}
                   Item2={data.documentNo}
                 />
                 <DetailsItemThree
                   Item1Title={"Type"}
-                  Item1={capitalizeFirstLetter(data.extraDocumentType)}
-                  Item2Title={`${capitalizeFirstLetter(data.extraDocumentType)} Number`}
-                  Item2={data.extraDocumentNo}
+                  Item1={capitalizeFirstLetter(data.extraDocumentType || "N/A")}
+                  Item2Title={`${capitalizeFirstLetter(data.extraDocumentType || "Extra Document")} Number`}
+                  Item2={data.extraDocumentNo || "N/A"}
                   isBlocked={user.isBlocked}
-                  Item3Title={`Name As ${capitalizeFirstLetter(data.extraDocumentType)}`}
-                  Item3={user.extraDocumentName}
+                  Item3Title={`Name As ${capitalizeFirstLetter(data.extraDocumentType || "Extra Document")}`}
+                  Item3={user.extraDocumentName || "N/A"}
                 />
 
                 <NdaDocumentSection user={user} />
                 <Grid container sx={{ padding: "2%" }}>
                   <Grid item xs={4} sx={{ paddingRight: "1%" }}>
-                    <ImageShowInModal images={[data?.standardPhoto?.url]} level={"Standard Photo"} />
+                    <ImageShowInModal
+                      images={data?.standardPhoto?.url ? [data?.standardPhoto?.url] : []}
+                      level={"Standard Photo"}
+                    />
                   </Grid>
                   <Grid item xs={4} sx={{ paddingRight: "1%" }}>
                     <ImageShowInModal
                       images={data.extraDocumentImages.map((i) => i.url)}
-                      level={`${capitalizeFirstLetter(data.extraDocumentType)} Images`}
+                      level={`${capitalizeFirstLetter(data.extraDocumentType || "Extra Document ")}Images`}
                     />
                   </Grid>
                   <Grid item xs={4}>
-                    <Button
-                      sx={styleBtn}
-                      // disabled={!user.signImage}
-                      onClick={() => handleClick(data?.resume?.url)}
-                    >
+                    <Button sx={styleBtn} disabled={!data?.resume?.url} onClick={() => handleClick(data?.resume?.url)}>
                       <Typography
                         variant="wpf_p3_medium"
                         color={user.documentNo ? "primary.B200" : ""}

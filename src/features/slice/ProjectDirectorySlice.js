@@ -227,13 +227,20 @@ export const filterProjectByDirectory = createAsyncThunk("/project/filterDirecto
 // });
 
 //  type Select
-export const getType = createAsyncThunk("/project/Directory/Type", async (type) => {
-  try {
-    return await axios.get(`${url}/api/ProjectList/Type/${type}`);
-  } catch (error) {
-    throw new Error(error);
-  }
-});
+export const getType = createAsyncThunk(
+  '/project/Directory/Type',
+  async (type) => {
+    try {
+      return await axios.get(`${url}/project-directory/filter-type?type=${type}`,{
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+);
 
 // Industry type
 export const getIndustryType = createAsyncThunk("/project/IndustryType", async () => {

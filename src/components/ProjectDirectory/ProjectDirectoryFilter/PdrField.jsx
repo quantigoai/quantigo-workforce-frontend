@@ -9,7 +9,7 @@ const PdrField = ({ setPDRFilter, pDRFilter }) => {
   useEffect(() => {
     dispatch(getType("PDR")).then((action) => {
       if (action.payload.status === 200) {
-        setPDR(action.payload.data);
+        setPDR(action.payload.data.types);
       }
     });
   }, []);

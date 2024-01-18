@@ -7,9 +7,9 @@ const ClientAliasField = ({ setClientAliasesFilter, clientAliasFilter }) => {
   const [clientAlias, setClientAliases] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getType("Client_Alias")).then((action) => {
+    dispatch(getType("client_Alias")).then((action) => {
       if (action.payload.status === 200) {
-        setClientAliases(action.payload.data);
+        setClientAliases(action.payload.data.types);
       }
     });
   }, []);

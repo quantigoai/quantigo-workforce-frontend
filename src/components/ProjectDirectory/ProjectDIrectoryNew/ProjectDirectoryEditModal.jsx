@@ -29,6 +29,7 @@ const ProjectDirectoryEditModal = ({
   setOpenProjectModalEdit,
   onSubmitEdit,
 }) => {
+  console.log("🚀 ~ item:", item);
   const dispatch = useDispatch();
   const toast = useToaster();
   const { isLoading } = useSelector((state) => state.projectDirectory);
@@ -47,7 +48,7 @@ const ProjectDirectoryEditModal = ({
       obj_Benchmark: item.obj_Benchmark,
       img_Benchmark: item.img_Benchmark,
       tagging_Benchmark: item.tagging_Benchmark,
-      Deletion: item.Deletion,
+      deletion: item.deletion,
       skip_Image: item.skip_Image,
       update: item.update,
       image_Loading: item.image_Loading,
@@ -154,7 +155,7 @@ const ProjectDirectoryEditModal = ({
 
                   <LineStack>
                     <FieldBox>
-                      <PDTextFIeld name="deletion" label="Deletion" defaultValue={item.Deletion} />
+                      <PDTextFIeld name="deletion" label="Deletion" defaultValue={item.deletion} />
                     </FieldBox>
                     <FieldBox>
                       <PDTextFIeld name="skip_Image" label="Skip Image" defaultValue={item.skip_Image} />

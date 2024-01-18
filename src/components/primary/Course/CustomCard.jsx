@@ -11,8 +11,6 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import imageSample from "../../../assets/images/img.png";
-import {setActiveChapterIndex, setActiveCourseId} from "../../../features/slice/activePathSlice";
-import {getACourseByID, getAllChapterFromACourse, getCourseQuizzesResults} from "../../../features/slice/courseSlice";
 import CategoryChip from "./CategoryChip";
 import LevelChip from "./CourseCardActionLebel/LevelChip";
 import LanguageChip from "./LanguageChip";
@@ -52,21 +50,10 @@ const ButtonHover = {
   backgroundColor: "rgba(255, 154, 69, 0.1)",
 };
 
-const CustomCard = ({ course }) => {
+const CustomCard = ({ course, handleViewDetailsButton }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoading } = useSelector((state) => state.course);
-  const handleViewDetailsButton = (id) => {
-    dispatch(getACourseByID(id)).then((res) => {
-      dispatch(setActiveCourseId(id));
-      dispatch(setActiveChapterIndex(0));
-      dispatch(getAllChapterFromACourse(id)).then((res) => {
-        dispatch(getCourseQuizzesResults(id)).then((results) => {
-          navigate(`/course-details/${id}/index`);
-        });
-      });
-    });
-  };
 
   const imageUrl = course.images?.length ? `${course.images[0]}` : imageSample;
 
@@ -132,14 +119,14 @@ const CustomCard = ({ course }) => {
             pt: 0,
             mb: 0,
             overflow: "hidden",
-            cursor:"pointer"  
+            cursor: "pointer",
           }}
+          onClick={() => handleViewDetailsButton(course._id)}
         >
           <img
             style={hovering ? { ...MyCustomCard, ...MyCustomCardHover } : MyCustomCard}
             src={imageUrl}
             alt={course.name}
-            onClick={() => handleViewDetailsButton(course._id)}
           />
         </Box>
 
@@ -150,11 +137,12 @@ const CustomCard = ({ course }) => {
           sx={{
             height: "60%",
             backgroundColor: "neutral.N000",
+            borderRadius: "10px",
           }}
         >
-          <Box sx={{ px: "4%", height: "40%", pb: "0" }}>
-            <Grid container   onClick={() => handleViewDetailsButton(course._id)}>
-              <Typography variant="wpf_h6_semiBold" color={"grey.500"} sx={{cursor:"pointer"}}>
+          <Box sx={{ px: "4%", height: "40%", pb: "0", py: 2 }}>
+            <Grid container onClick={() => handleViewDetailsButton(course._id)}>
+              <Typography variant="wpf_h6_semiBold" color={"grey.500"} sx={{ cursor: "pointer" }}>
                 {course.name}
               </Typography>
             </Grid>

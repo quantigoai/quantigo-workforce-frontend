@@ -8,153 +8,120 @@
  */
 import AddIcon from "@mui/icons-material/Add";
 import {Box, Button, Grid, Paper, Typography} from "@mui/material";
-import React from "react";
-import {useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
 import SingleChapterNew from "../Course/SingleChapterNew";
+import useCourseDetails from "../Course/hooks/courseDetailshooks/useCourseDetails";
 
-const CourseDrawerNew = ({ handleChapterClick }) => {
-  const { courseChapters } = useSelector((state) => state.course);
-  const { activeChapterIndex } = useSelector((state) => state.activePath);
-  const { user } = useSelector((state) => state.user);
-  const { course, isLoading } = useSelector((state) => state.course);
-  const navigate = useNavigate();
-
-  
-  const handleCreateChapter = (id) => {
-    navigate(`/create-chapter/${id}`);
-  };
+const CourseDrawerNew = ({ handleChapterClick, durationTime }) => {
+  const { activeChapterIndex, handleCreateChapter, user, courseChapters, isLoading, course } = useCourseDetails();
 
   return (
     <>
       <Box sx={{ width: "100%" }}>
         <Paper elevation={0} sx={{ paddingTop: "0%" }}>
-          {/* TODO Handle this smartly */}
-          {/* If there are no chapters under this course */}
-          {!courseChapters && <p>No Chapters found for this course</p>}
-          <Grid
-            item
-            xs={12}
+          <Box
             sx={{
-              paddingLeft: "10%",
-              paddingTop: "3%",
-              paddingBottom: "3%",
-              borderBottom: "1px solid #EBEDF5",
-            }}>
-            <Grid container sx={{ justifyContent: "space-between" }}>
-              <Grid item xs={7}>
-                <Grid item xs={12}>
-                  <Typography variant="16px">
-                    <b>All Chapters</b>
+              paddingX: "12px",
+              paddingY: "16px",
+              borderBottom: "2px solid #EBEDF5",
+            }}
+          >
+            <Box sx={{ display: "flex", justifyContent: "space-between", paddingX: "10px" }}>
+              <Box>
+                <Box>
+                  <Typography variant="wpf_h6_semiBold" color="neutral.995">
+                    All Chapters
                   </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography sx={{ color: "#969CAF" }} variant="caption">
-                    6 Chapters , 4 hrs 32 min
+                </Box>
+
+                <Box>
+                  <Typography
+                    sx={{ opacity: "0.8", fontSize: { lg: "10px", xl: "12px" } }}
+                    variant="wpf_h7_regular"
+                    color="neutral.995"
+                  >
+                    {!courseChapters?.length ? (
+                      <Typography variant="wpf_h7_regular" color="neutral.995">
+                        No Chapters found for this course
+                      </Typography>
+                    ) : courseChapters?.length === 1 ? (
+                      courseChapters?.length + " Chapter, "
+                    ) : (
+                      courseChapters?.length + " Chapters, "
+                    )}
+                    {!courseChapters?.length ? "" : durationTime}
                   </Typography>
-                </Grid>
-              </Grid>
-              <Grid item xs={5}>
-                <Button
-                  variant="contained"
-                  disabled={isLoading}
-                  type="submit"
-                  sx={{
-                    width: "80%",
-                    height: "28px",
-                    backgroundColor: "#2D58FF",
-                    color: "#FFFFFF",
-                    "&:hover": {
-                      backgroundColor: "#FF9A45",
-                      color: "#1D1D1D",
-                    },
-                    borderRadius: "32px",
-                  }}>
-                  <Box
+                </Box>
+                {/* <Grid item xs={12}>
+                  <Button sx={{ fontSize: "20px", color: "#000" }}>
+                    {" "}
+                    <i className="ri-menu-fold-line"></i>
+                  </Button>
+                  <Button sx={{ fontSize: "20px", color: "#000" }}>
+                    {" "}
+                    <i className="ri-menu-unfold-line"></i>
+                  </Button>
+                </Grid> */}
+              </Box>
+              {user.role === "trainer" || user.role === "admin" ? (
+                <Box>
+                  <Button
+                    variant="contained"
+                    disabled={isLoading}
+                    type="submit"
                     sx={{
-                      display: "flex",
-                      gap: 1,
-                      justifyContent: "center",
-                    }}>
+                      backgroundColor: "#2D58FF",
+                      color: "#FFFFFF",
+                      width: { xl: "100px", xxl: "105px", lg: "80px" },
+                      fontSize: { xl: "12px", lg: "9px", xxl: "12px" },
+
+                      "&:hover": {
+                        backgroundColor: "#244EF5",
+                      },
+                      borderRadius: "32px",
+                    }}
+                    onClick={() => handleCreateChapter(course._id)}
+                  >
                     <AddIcon />
-                    create
-                  </Box>
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
+                    Create
+                  </Button>
+                </Box>
+              ) : (
+                <></>
+              )}
+            </Box>
+          </Box>
           {/* If there are chapters under this course */}
-          {courseChapters?.length &&
+          {courseChapters?.length ? (
             courseChapters.map((courseChapter, index) => (
-              <Grid container key={index} sx={{ padding: "2%" }}>
-                <Button
+              <Grid container key={index} sx={{ paddingX: "8px", paddingY: "5px" }}>
+                <Box
                   fullWidth
                   key={courseChapter._id}
                   sx={{
                     borderRadius: "6px",
-                    height: "56px",
+                    padding: "8px",
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    width: "100%",
+                    cursor: "pointer",
                     "&:hover": {
-                      backgroundColor: "rgba(255, 154, 69, 0.1)",
+                      backgroundColor: "rgba(45, 88, 255, 0.04)",
                     },
-                    backgroundColor:
-                      activeChapterIndex === index && "rgba(45, 88, 255, 0.04)",
+                    backgroundColor: activeChapterIndex === index && "rgba(45, 88, 255, 0.04)",
                     // color: activeChapterIndex === index && "#2D58FF",
                   }}
-                  onClick={() => handleChapterClick(courseChapter, index)}>
-                  <SingleChapterNew
-                    courseChapter={courseChapter}
-                    index={index}
-                  />
-                </Button>
-              </Grid>
-            ))}
-          <br />
-        </Paper>
-        {user.role === "trainer" || user.role === "admin" ? (
-          <>
-            <Grid container>
-              <Grid
-                item
-                sx={{ paddingTop: "4%", justifyContent: "right" }}
-                xs={12}>
-                <Box>
-                  <Button
-                    // variant="contained"
-                    variant="text"
-                    disabled={isLoading}
-                    type="submit"
-                    fullWidth
-                    sx={{
-                      paddingLeft: "5%",
-                      justifyContent: "left",
-                      // width: "100%",
-                      height: "45px",
-                      // backgroundColor: "#2D58FF",
-                      color: "#2D58FF",
-                      "&:hover": {
-                        backgroundColor: "#FF9A45",
-                        color: "#1D1D1D",
-                      },
-                      borderRadius: "2px",
-                    }}
-                    onClick={() => handleCreateChapter(course._id)}>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        gap: 1,
-                        justifyContent: "center",
-                      }}>
-                      <AddIcon />
-                      Create a new Chapter
-                    </Box>
-                  </Button>
+                  onClick={() => handleChapterClick(courseChapter, index)}
+                >
+                  <SingleChapterNew role={user.role} courseChapter={courseChapter} index={index} />
                 </Box>
               </Grid>
-            </Grid>
-          </>
-        ) : (
-          <></>
-        )}
+            ))
+          ) : (
+            <></>
+          )}
+          <br />
+        </Paper>
       </Box>
     </>
   );

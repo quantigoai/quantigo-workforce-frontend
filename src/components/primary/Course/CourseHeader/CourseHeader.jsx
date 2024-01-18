@@ -1,10 +1,9 @@
 import {Box, Button, Grid, IconButton, InputBase, Paper} from "@mui/material";
-import React from "react";
 import CommonHeader from "../../../shared/CustomComponenet/CommonHeader/CommonHeader";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import SearchIcon from "@mui/icons-material/Search";
 
-const CourseHeader = ({handleOpen}) => {
+const CourseHeader = ({ handleOpen, open, setOpen }) => {
   return (
     <>
       <Box
@@ -65,8 +64,7 @@ const CourseHeader = ({handleOpen}) => {
               //     }
               //   }}
             />
-
-            <Button
+            {/* <Button
               sx={{
                 minWidth: "40px",
               }}
@@ -80,7 +78,7 @@ const CourseHeader = ({handleOpen}) => {
                 }}
                 onClick={clearSearch}
               /> */}
-            </Button>
+            {/* </Button> */}
           </Paper>
 
           <IconButton

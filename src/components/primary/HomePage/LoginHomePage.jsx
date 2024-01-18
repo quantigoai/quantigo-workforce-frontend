@@ -3,10 +3,9 @@
  * Path: /home/tanzim/workstation/Office/quantigo-workforce-frontend
  * Created Date: Wednesday, November 15th 2023, 2:00:41 pm
  * Author: Tanzim Ahmed
- * 
+ *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-
 
 import { Box, keyframes, styled } from '@mui/material';
 import React, { useEffect, useState } from 'react';

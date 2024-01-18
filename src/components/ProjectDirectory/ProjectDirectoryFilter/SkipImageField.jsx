@@ -7,9 +7,9 @@ const SkipImageField = ({ setSkipImageFieldFilter, skipImageFieldFilter }) => {
   const [industryAllType, setIndustryAllType] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getType("Skip_Image")).then((action) => {
+    dispatch(getType("skip_Image")).then((action) => {
       if (action.payload.status === 200) {
-        setIndustryAllType(action.payload.data);
+        setIndustryAllType(action.payload.data.types);
       }
     });
   }, []);

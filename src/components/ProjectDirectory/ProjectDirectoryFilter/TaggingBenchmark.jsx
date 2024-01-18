@@ -10,9 +10,9 @@ const TaggingBenchmark = ({
   const [industryAllType, setIndustryAllType] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getType("Tagging_Benchmark")).then((action) => {
+    dispatch(getType("tagging_Benchmark")).then((action) => {
       if (action.payload.status === 200) {
-        setIndustryAllType(action.payload.data);
+        setIndustryAllType(action.payload.data.types);
       }
     });
   }, []);

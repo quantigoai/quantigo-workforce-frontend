@@ -12,11 +12,11 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-import CryptoJS from 'crypto-js';
-import Cookies from 'js-cookie';
-import { realToken } from '../../helper/lib';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import CryptoJS from "crypto-js";
+import Cookies from "js-cookie";
+import { realToken } from "../../helper/lib";
 
 // const CryptoJS =
 
@@ -28,12 +28,12 @@ const initialState = {
   user: {},
   users: {},
   targetedUser: {},
-  error: 'null',
+  error: "null",
   isCreated: false,
   isLoggedIn: false,
 };
 
-export const login = createAsyncThunk('user/login', async (data) => {
+export const login = createAsyncThunk("user/login", async (data) => {
   try {
     return await axios.post(`${url}/users/login`, data);
   } catch (error) {
@@ -42,14 +42,11 @@ export const login = createAsyncThunk('user/login', async (data) => {
 });
 
 //social login
-export const socialLogin = createAsyncThunk(
-  'users/sociallogin',
-  async (data) => {
-    return await axios.post(`${url}/users/sociallogin`, data);
-  },
-);
+export const socialLogin = createAsyncThunk("users/sociallogin", async (data) => {
+  return await axios.post(`${url}/users/sociallogin`, data);
+});
 
-export const signup = createAsyncThunk('user/users', async (data) => {
+export const signup = createAsyncThunk("user/users", async (data) => {
   try {
     const response = await axios.post(`${url}/users`, data);
     return response;
@@ -58,7 +55,7 @@ export const signup = createAsyncThunk('user/users', async (data) => {
   }
 });
 
-export const logout = createAsyncThunk('user/logout', async () => {
+export const logout = createAsyncThunk("user/logout", async () => {
   return await axios.post(
     `${url}/users/logout`,
     {},
@@ -66,20 +63,17 @@ export const logout = createAsyncThunk('user/logout', async () => {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
-    },
+    }
   );
 });
 
-export const alreadyLogin = createAsyncThunk(
-  'user/alreadyLogin',
-  async (data)  => {
-    const { _id, originalToken } = data;
-    return axios.post(`${url}/users/check-login/${_id}`, { originalToken });
-  },
-);
+export const alreadyLogin = createAsyncThunk("user/alreadyLogin", async (data) => {
+  const { _id, originalToken } = data;
+  return axios.post(`${url}/users/check-login/${_id}`, { originalToken });
+});
 
 // read My Profile
-export const readMyProfile = createAsyncThunk('read/myProfile', async () => {
+export const readMyProfile = createAsyncThunk("read/myProfile", async () => {
   return axios.get(`${url}/users/my-profile`, {
     headers: {
       Authorization: `Bearer ${realToken()}`,
@@ -87,40 +81,170 @@ export const readMyProfile = createAsyncThunk('read/myProfile', async () => {
   });
 });
 
-export const myProfileEdit = createAsyncThunk(
-  'user/myProfileEdit',
-  async (finalData) => {
-    try {
-      const { id, data } = finalData;
-      return await axios.patch(`${url}/users/my-profile/${id}`, data, {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      });
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
-  },
-);
+export const myProfileEdit = createAsyncThunk("user/myProfileEdit", async (finalData) => {
+  try {
+    const { id, data } = finalData;
+    return await axios.patch(`${url}/users/my-profile/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
 
-// upload My Image
+// update My contact
+export const updateMyContact = createAsyncThunk("user/updateMyContact", async (finalData) => {
+  try {
+    const { id, data } = finalData;
+    return axios.patch(`${url}/users/my-contact/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
 
-export const uploadMyImage = createAsyncThunk(
-  'upload/my/image',
-  async (finalImageData) => {
-    const { formData, id } = finalImageData;
-    return axios.patch(`${url}/users/my-image/${id}`, formData, {
+// update My Verification
+
+export const updateMyVerification = createAsyncThunk("user/updateMyVerification", async (finalData) => {
+  try {
+    const { id, formData } = finalData;
+    return await axios.patch(`${url}/users/my-verification/${id}`, formData, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
       content: {
-        'Content-Type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
     });
-  },
-);
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+export const updateMyVerificationFunction = async (finalData) => {
+  try {
+    const { id, formData } = finalData;
+    return axios.patch(`${url}/users/my-verification/${id}`, formData, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+      content: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};
+// update My education
 
-export const removeMyImage = createAsyncThunk('remove/my/image', async (id) => {
+export const updateMyEducation = createAsyncThunk("user/updateMyEducation", async (finalData) => {
+  try {
+    const { id, formData } = finalData;
+    return axios.patch(`${url}/users/my-education/${id}`, formData, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+      content: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+export const updateMyEducationFunction = async (finalData) => {
+  try {
+    const { id, formData } = finalData;
+    return axios.patch(`${url}/users/my-education/${id}`, formData, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+      content: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+    // throw new Error(error);
+  }
+};
+
+// get User Personal Info
+
+export const getUserPersonalInfo = createAsyncThunk("user/getUserPersonalInfo", async (id) => {
+  try {
+    return await axios.get(`${url}/users/personal-info/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
+// get User Verification  Info
+
+export const getUserVerificationInfo = createAsyncThunk("user/getUserVerificationInfo", async (id) => {
+  try {
+    return await axios.get(`${url}/users/verification-info/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
+// get User contact  Info
+
+export const getUserContactInfo = createAsyncThunk("user/getUserContactInfo", async (id) => {
+  try {
+    return await axios.get(`${url}/users/contact-info/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
+// get User Education  Info
+
+export const getUserEducationInfo = createAsyncThunk("user/getUserEducationInfo", async (id) => {
+  try {
+    return await axios.get(`${url}/users/educational-info/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
+// upload My Image
+
+export const uploadMyImage = createAsyncThunk("upload/my/image", async (finalImageData) => {
+  const { formData, id } = finalImageData;
+  return axios.patch(`${url}/users/my-image/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+    content: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+});
+
+export const removeMyImage = createAsyncThunk("remove/my/image", async (id) => {
   return axios.delete(`${url}/users/my-image/${id}`, {
     headers: {
       Authorization: `Bearer ${realToken()}`,
@@ -129,17 +253,18 @@ export const removeMyImage = createAsyncThunk('remove/my/image', async (id) => {
 });
 
 //Update My Documents
-export const updateMyDocuments = createAsyncThunk(
-  'users/my-documents',
-  async (finalData) => {
-    const { id, formData } = finalData;
-    return axios.patch(`${url}/users/my-documents/${id}`, formData, {
+export const updateMyDocuments = createAsyncThunk("users/my-documents", async (finalData) => {
+  const { id, formData } = finalData;
+  try {
+    return await axios.patch(`${url}/users/my-documents/${id}`, formData, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
     });
-  },
-);
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
 
 // export const verifyUser = createAsyncThunk("user/verifyUser", async () => {
 //     return axios.get(`${url}/users`, {
@@ -159,14 +284,12 @@ export const updateMyDocuments = createAsyncThunk(
 
 // filter User
 
-export const getAllUsers = createAsyncThunk('user/getAllUser', async (data) => {
+export const getAllUsers = createAsyncThunk("user/getAllUser", async (data) => {
   const { search, pagination, filteredData, ascDescOption } = data || {};
 
   let query;
   if (pagination) {
-    query = `limit=${pagination.pageSize}&skip=${
-      pagination.currentPage * pagination.pageSize
-    }`;
+    query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
   } else {
     query = `sortBy=createdAt:asc`;
   }
@@ -202,90 +325,69 @@ export const getAllUsers = createAsyncThunk('user/getAllUser', async (data) => {
 });
 
 //forget password
-export const forgetPasswordSlice = createAsyncThunk(
-  'users/forget-password',
-  async (data) => {
-    try {
-      return await axios.post(`${url}/users/forgot-password`, data);
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
-  },
-);
+export const forgetPasswordSlice = createAsyncThunk("users/forget-password", async (data) => {
+  try {
+    return await axios.post(`${url}/users/forgot-password`, data);
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
 //set new password
-export const setNewPassword = createAsyncThunk(
-  'users/reset-password/:id/:token',
-  async (resetdata) => {
-    const { id, token, data } = resetdata;
+export const setNewPassword = createAsyncThunk("users/reset-password/:id/:token", async (resetdata) => {
+  const { id, token, data } = resetdata;
 
-    return axios.post(`${url}/users/reset-password/${id}/${token}`, data);
-  },
-);
+  return axios.post(`${url}/users/reset-password/${id}/${token}`, data);
+});
 
 // qui database
-export const getAUserQuiId = createAsyncThunk('qaiusers/:id', async (id) => {
+export const getAUserQuiId = createAsyncThunk("qaiusers/:id", async (id) => {
   return axios.get(`${url}/qaiusers/${id}`);
 });
 
-export const generateQuiId = createAsyncThunk(
-  'qaiusers/hubs/:hub',
-  async (hub) => {
-    return axios.get(`${url}/qaiusers/hubs/${hub}`);
-  },
-);
+export const generateQuiId = createAsyncThunk("qaiusers/hubs/:hub", async (hub) => {
+  return axios.get(`${url}/qaiusers/hubs/${hub}`);
+});
 
 //  create Qai User
 
-export const createQaiUser = createAsyncThunk(
-  'qaiusers/createqaiuser',
-  async (data) => {
-    try {
-      return axios.post(`${url}/qaiusers/createqaiuser`, data);
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
-  },
-);
+export const createQaiUser = createAsyncThunk("qaiusers/createqaiuser", async (data) => {
+  try {
+    return axios.post(`${url}/qaiusers/createqaiuser`, data);
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
 
-export const createAgUser = createAsyncThunk(
-  'agusers/createaguser',
-  async (data) => {
-    return axios.post(`${url}/agusers/createaguser`, data);
-  },
-);
+export const createAgUser = createAsyncThunk("agusers/createaguser", async (data) => {
+  return axios.post(`${url}/agusers/createaguser`, data);
+});
 
 // NDA Signing upload
 
-export const signingNda = createAsyncThunk(
-  'user/myNda/userID',
-  async (data) => {
-    const { id, signImage } = data;
+export const signingNda = createAsyncThunk("user/myNda/userID", async (data) => {
+  const { id, signImage } = data;
 
-    return axios.patch(`${url}/users/my-nda/${id}`, signImage, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-      content: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-  },
-);
+  return axios.patch(`${url}/users/my-nda/${id}`, signImage, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+    content: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+});
 
 // update a user by id
-export const updateAUserById = createAsyncThunk(
-  'updateA/user/Id',
-  async (data) => {
-    const { id, varifiedData } = data;
-    return axios.patch(`${url}/users/${id}`, varifiedData, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  },
-);
+export const updateAUserById = createAsyncThunk("updateA/user/Id", async (data) => {
+  const { id, varifiedData } = data;
+  return axios.patch(`${url}/users/${id}`, varifiedData, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
-export const getAUserById = createAsyncThunk('getUser/user/Id', async (id) => {
+export const getAUserById = createAsyncThunk("getUser/user/Id", async (id) => {
   return axios.get(`${url}/users/${id}`, {
     headers: {
       Authorization: `Bearer ${realToken()}`,
@@ -294,7 +396,7 @@ export const getAUserById = createAsyncThunk('getUser/user/Id', async (id) => {
 });
 
 // Change user Role
-export const changeRole = createAsyncThunk('change/role', async (finalData) => {
+export const changeRole = createAsyncThunk("change/role", async (finalData) => {
   const { id, data } = finalData;
   try {
     return await axios.patch(`${url}/users/change-role/${id}`, data, {
@@ -309,108 +411,84 @@ export const changeRole = createAsyncThunk('change/role', async (finalData) => {
 
 // user Action
 
-export const deleteOrActivateUser = createAsyncThunk(
-  'user/id/action',
-  async (finalData) => {
-    const { id, action } = finalData;
-    return await axios.delete(`${url}/users/${id}/${action}`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  },
-);
+export const deleteOrActivateUser = createAsyncThunk("user/id/action", async (finalData) => {
+  const { id, action } = finalData;
+  return await axios.delete(`${url}/users/${id}/${action}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // Unblock Job For user
 
-export const UnblockJobsForUser = createAsyncThunk(
-  'user/Jov/Unblock/id/action',
-  async (data) => {
-    const { id, updatedJobLimit } = data;
-    return axios.post(`${url}/users/unblockjob/${id}`, updatedJobLimit, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  },
-);
+export const UnblockJobsForUser = createAsyncThunk("user/Jov/Unblock/id/action", async (data) => {
+  const { id, updatedJobLimit } = data;
+  return axios.post(`${url}/users/unblockjob/${id}`, updatedJobLimit, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // user Activate deactivate account
 
-export const activateDeactivateUser = createAsyncThunk(
-  'user/id/activate/deactivate',
-  async (finalData) => {
-    const { id, action } = finalData;
-    return axios.delete(`${url}/users/${id}/${action}`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  },
-);
+export const activateDeactivateUser = createAsyncThunk("user/id/activate/deactivate", async (finalData) => {
+  const { id, action } = finalData;
+  return axios.delete(`${url}/users/${id}/${action}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 // email verification check
-export const emailVerificationCheck = createAsyncThunk(
-  '/users/verificationcheck',
-  async () => {
-    return axios.post(`${url}/users/verificationcheck`);
-  },
-);
+export const emailVerificationCheck = createAsyncThunk("/users/verificationcheck", async () => {
+  return axios.post(`${url}/users/verificationcheck`);
+});
 
 // verified email Link
-export const emailVerificationLink = createAsyncThunk(
-  '/users/verify-email/:id/:token',
-  async (resetdata) => {
-    try {
-      const { id, token } = resetdata;
-      return await axios.post(`${url}/users/verify-email/${id}/${token}`, {});
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
-  },
-);
+export const emailVerificationLink = createAsyncThunk("/users/verify-email/:id/:token", async (resetdata) => {
+  try {
+    const { id, token } = resetdata;
+    return await axios.post(`${url}/users/verify-email/${id}/${token}`, {});
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
 
 // resend email
 
-export const resendEmailVarification = createAsyncThunk(
-  'resend/email/verification',
-  async () => {
-    return axios.get(`${url}/users/resendverificationemail`, {
+export const resendEmailVarification = createAsyncThunk("resend/email/verification", async () => {
+  return axios.get(`${url}/users/resendverificationemail`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
+
+// change Password
+export const changePassword = createAsyncThunk("change/password", async (data) => {
+  try {
+    return await axios.post(`${url}/users/change-password`, data, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
     });
-  },
-);
+  } catch (err) {
+    throw new Error(err.response.data.message);
+  }
+});
 
-// change Password
-export const changePassword = createAsyncThunk(
-  'change/password',
-  async (data) => {
-    try {
-      return await axios.post(`${url}/users/change-password`, data, {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      });
-    } catch (err) {
-      throw new Error(err.response.data.message);
-    }
-  },
-);
-
-export const checkUserByUserName = createAsyncThunk(
-  'check/user/userName',
-  async (qaiUserName) => {
-    try {
-      return await axios.get(`${url}/qaiusers/checkuser/${qaiUserName}`);
-    } catch (err) {
-      throw new Error(err.response.data.message);
-    }
-  },
-);
+export const checkUserByUserName = createAsyncThunk("check/user/userName", async (qaiUserName) => {
+  try {
+    return await axios.get(`${url}/qaiusers/checkuser/${qaiUserName}`);
+  } catch (err) {
+    throw new Error(err.response.data.message);
+  }
+});
 
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState: initialState,
   reducers: {
     updateLoggedInUserManually: (state, action) => {
@@ -466,22 +544,22 @@ const userSlice = createSlice({
       })
       .addCase(alreadyLogin.rejected, (state) => {
         state.isLoggedIn = false;
-        state.error = 'Login failed';
+        state.error = "Login failed";
         state.isLoading = false;
       })
       .addCase(readMyProfile.pending, (state) => {
         state.isLoading = true;
-        state.isLoggedIn = false;
+        // state.isLoggedIn = false;
       })
       .addCase(readMyProfile.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isLoggedIn = true;
+        // state.isLoggedIn = true;
         state.user = action.payload.data;
       })
       .addCase(readMyProfile.rejected, (state) => {
         state.isLoading = false;
-        state.isLoggedIn = false;
-        state.error = 'Login failed';
+        // state.isLoggedIn = false;
+        // state.error = 'Login failed';
       })
       .addCase(login.pending, (state) => {
         state.isLoading = true;
@@ -491,11 +569,8 @@ const userSlice = createSlice({
         state.user = action.payload.data.user;
         state.isLoggedIn = true;
         const token = action.payload.data.token;
-        var encryptedToken = CryptoJS.AES.encrypt(
-          JSON.stringify(token),
-          jwtSecret,
-        ).toString();
-        Cookies.set('token', encryptedToken, { expires: 10 });
+        var encryptedToken = CryptoJS.AES.encrypt(JSON.stringify(token), jwtSecret).toString();
+        Cookies.set("token", encryptedToken, { expires: 10 });
         state.isLoading = false;
       })
       .addCase(login.rejected, (state, action) => {
@@ -524,7 +599,7 @@ const userSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state) => {
         state.isLoading = false;
-        Cookies.remove('token');
+        Cookies.remove("token");
         state.error = null;
         state.user = {};
         state.users = {};
@@ -542,10 +617,49 @@ const userSlice = createSlice({
       .addCase(myProfileEdit.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.user = action.payload.data;
+        // state.user = action.payload.data;
         state.isLoggedIn = true;
       })
       .addCase(myProfileEdit.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(updateMyContact.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateMyContact.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        // state.user = action.payload.data;
+        state.isLoggedIn = true;
+      })
+      .addCase(updateMyContact.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(updateMyVerification.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateMyVerification.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        // state.user = action.payload.data;
+        state.isLoggedIn = true;
+      })
+      .addCase(updateMyVerification.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(updateMyEducation.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateMyEducation.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        // state.user = action.payload.data;
+        state.isLoggedIn = true;
+      })
+      .addCase(updateMyEducation.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
       })
@@ -630,11 +744,8 @@ const userSlice = createSlice({
         state.user = action.payload.data.user;
         state.isLoggedIn = true;
         const token = action.payload.data.token;
-        var encryptedToken = CryptoJS.AES.encrypt(
-          JSON.stringify(token),
-          jwtSecret,
-        ).toString();
-        Cookies.set('token', encryptedToken, { expires: 10 });
+        var encryptedToken = CryptoJS.AES.encrypt(JSON.stringify(token), jwtSecret).toString();
+        Cookies.set("token", encryptedToken, { expires: 10 });
       })
       .addCase(socialLogin.rejected, (state, action) => {
         state.user = {};
@@ -760,9 +871,7 @@ const userSlice = createSlice({
       .addCase(deleteOrActivateUser.fulfilled, (state, action) => {
         state.targetedUser = action.payload.data;
         if (action.payload.data.isDeleted) {
-          state.users.users = state.users.users.filter(
-            (user) => user._id !== action.payload.data._id,
-          );
+          state.users.users = state.users.users.filter((user) => user._id !== action.payload.data._id);
         } else {
           state.users.users = state.users.users.map((user) => {
             if (user._id === action.payload.data._id) {
@@ -838,6 +947,50 @@ const userSlice = createSlice({
       .addCase(changePassword.rejected, (state, action) => {
         state.error = action.error.message;
         state.isLoading = false;
+      })
+      .addCase(getUserPersonalInfo.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUserPersonalInfo.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getUserPersonalInfo.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(getUserVerificationInfo.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUserVerificationInfo.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getUserVerificationInfo.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(getUserContactInfo.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUserContactInfo.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getUserContactInfo.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(getUserEducationInfo.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUserEducationInfo.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getUserEducationInfo.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
       });
   },
 });

@@ -35,7 +35,8 @@ export const darkColors = {
     850: "#444444",
     900: "#23314D",
     920: "#56627A",
-    950: "#FFF", // Lighter border color
+    950: "#FFF",
+    995: "#fff", // Lighter border color
   },
   primary: {
     main: "#266AED", // Primary color
@@ -63,7 +64,7 @@ export const darkColors = {
   grey: {
     500: "#F4F7FE",
     550: "#fff",
-    700: "#344054",
+    700: "#fff",
     800: "#1D2939",
   },
   warning: {

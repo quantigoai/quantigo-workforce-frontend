@@ -6,7 +6,7 @@ const MyTextField = styled(TextField)(() => ({
     border: "1px solid #E6ECF5 !important",
     borderRadius: "8px",
   },
-  "& .MuiInputBase-root": { height: "40px", fontSize: "14px", color: "#3C4D6B" },
+  "& .MuiInputBase-root": { height: "40px", fontSize: "14px", color: "neutral.N300" },
   "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
     border: `1px solid #2E58FF !important`,
   },
@@ -14,8 +14,7 @@ const MyTextField = styled(TextField)(() => ({
     color: "blue",
   },
 }));
-const FieldForProfile = ({ label, handleChange, disableItem, defaultValue, editAble }) => {
-
+const FieldForProfile = ({ label, handleChange, disableItem, defaultValue, editAble, isChecked }) => {
   return (
     <>
       <FormControl fullWidth>
@@ -25,7 +24,8 @@ const FieldForProfile = ({ label, handleChange, disableItem, defaultValue, editA
 
             mb: 1,
           }}
-          variant="wpf_p4_medium">
+          variant="wpf_p4_medium"
+        >
           {label}
         </Typography>
         <MyTextField
@@ -35,8 +35,8 @@ const FieldForProfile = ({ label, handleChange, disableItem, defaultValue, editA
             borderRadius: "8px",
             height: "40px",
           }}
-          disabled={disableItem ? true : !editAble}
-          value={defaultValue}
+          disabled={disableItem ? true : isChecked ? true : !editAble}
+          value={defaultValue && defaultValue}
           variant="outlined"
           onChange={(e) => handleChange(e)}
         />

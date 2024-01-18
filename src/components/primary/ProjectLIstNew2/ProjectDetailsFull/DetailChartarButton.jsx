@@ -39,7 +39,6 @@ const DetailChartarButton = () => {
       );
 
       const data = response.data.projectDrawer.checkedInUsersHistory;
-
       if (data.length) {
         data.map((f) =>
           f.workingTimeInMs

@@ -3,16 +3,13 @@ import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import {getType} from "../../../features/slice/ProjectDirectorySlice";
 
-const VideoWatchTimeField = ({
-  setVideoWatchTimeFieldFilter,
-  videoWatchTimeFieldFilter,
-}) => {
+const VideoWatchTimeField = ({ setVideoWatchTimeFieldFilter, videoWatchTimeFieldFilter }) => {
   const [industryAllType, setIndustryAllType] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getType("Video_Watch_Time")).then((action) => {
+    dispatch(getType("video_Watch_Time")).then((action) => {
       if (action.payload.status === 200) {
-        setIndustryAllType(action.payload.data);
+        setIndustryAllType(action.payload.data.types);
       }
     });
   }, []);

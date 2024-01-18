@@ -47,7 +47,6 @@ const CongratulationStepProcess = () => {
             slidesPerView={1.8}
             spaceBetween={60}
             initialSlide={defaultIndex(user)}
-
           >
             <SLiderPrevNext />
 

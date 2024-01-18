@@ -1,85 +1,34 @@
-import FirstPageIcon from "@mui/icons-material/FirstPage";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import LastPageIcon from "@mui/icons-material/LastPage";
+/* eslint-disable no-prototype-builtins */
+import { Box } from "@mui/material";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+
 import {
-    Box,
-    Grid,
-    IconButton,
-    Paper,
-    Skeleton,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TablePagination,
-    TableRow,
-    TableSortLabel,
-    Typography,
-    useTheme,
-} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import useToaster from "../../customHooks/useToaster";
-import {getProjectByDirectory} from "../../features/slice/ProjectDirectorySlice";
-import {setActivePath} from "../../features/slice/activePathSlice";
-import CreateProjectDirectory from "./CreateProjectDirectory/CreateProjectDirectory";
-import UpdateProjectDirectory from "./CreateProjectDirectory/UpdateProjectDirectory";
-import ProjectDirectoryDeleteModal from "./ProjectDirectoryDeleteModal";
-import ProjectDirectoryDetailsIndex from "./ProjectDirectoryDetails/ProjectDirectoryDetailsIndex";
-import SearchProjectDirectory from "./ProjectDirectoryFilter/SearchProjectDirectory";
-
-const paperStyle = {
-  padding: "0px 0px",
-  width: "100%",
-  height: "100%",
-};
-function TablePaginationActions(props) {
-  const theme = useTheme();
-  const { count, page, rowsPerPage, onPageChange } = props;
-
-  const handleFirstPageButtonClick = (event) => {
-    onPageChange(event, 0);
-  };
-
-  const handleBackButtonClick = (event) => {
-    onPageChange(event, page - 1);
-  };
-
-  const handleNextButtonClick = (event) => {
-    onPageChange(event, page + 1);
-  };
-
-  const handleLastPageButtonClick = (event) => {
-    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-  };
-
-  return (
-    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-      <IconButton onClick={handleFirstPageButtonClick} disabled={page === 0} aria-label="first page">
-        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
-      </IconButton>
-      <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
-        {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-      </IconButton>
-      <IconButton
-        onClick={handleNextButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page"
-      >
-        {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-      </IconButton>
-      <IconButton
-        onClick={handleLastPageButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page"
-      >
-        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
-      </IconButton>
-    </Box>
-  );
-}
+  clearProjectDirectory,
+  createProjectDirectory,
+  deleteProjectDirectory,
+  getProjectByDirectory,
+  getProjectSyncFunction,
+  setCurrentProjectDirectory,
+  updateProjectDirectory,
+} from "../../features/slice/ProjectDirectorySlice.js";
+import { setActivePath } from "../../features/slice/activePathSlice";
+import { setProjectDirectoryFilter } from "../../features/slice/temporaryDataSlice";
+// /ProjectLIstNew2/ExpTable/TableWrapper
+import TableWrapper from "../primary/ProjectLIstNew2/ExpTable/TableWrapper.jsx";
+import { projectDirectoryField } from "../primary/ProjectLIstNew2/FIlterOptions";
+import PaginationTable from "../primary/ProjectLIstNew2/PaginationTable";
+import { HeaderBox, TablePaper } from "../primary/ProjectLIstNew2/ProjectLIstIndex2";
+import fieldBuilder from "../shared/CustomTable/fieldBuilder";
+import LoadingComponent from "../shared/Loading/LoadingComponent";
+import CreateProjectDirectoryModal from "./CreateProjectDirectoryModal.jsx";
+import ProjectDirectoryDetailsModal from "./ProjectDirectoryDetailsModal";
+import ProjectDirectoryEditModal from "./ProjectDirectoryEditModal";
+import ProjectDirectoryHeader from "./ProjectDirectoryHeader.jsx";
+import useToaster from "../../customHooks/useToaster.jsx";
+// import ProjectDirectoryDetailsModal from "./ProjectDirectoryDetailsModal";
 
 const ProjectDirectoryIndex = () => {
   const user = useSelector((state) => state.user);
@@ -87,11 +36,10 @@ const ProjectDirectoryIndex = () => {
   const [projectDirectorys, setProjectDirectory] = useState([]);
   const dispatch = useDispatch();
   const { projectDirectory, isLoading } = useSelector((state) => state.projectDirectory);
-  const [search, setSearch] = useState("");
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
-
   const toast = useToaster();
+  const [filterData, setFilterData] = useState({});
   const [anchorE2, setAnchorE2] = React.useState(null);
   const [industryType, setIndustryType] = useState("");
   const [clientAliasFilter, setClientAliasesFilter] = useState("");
@@ -116,7 +64,6 @@ const ProjectDirectoryIndex = () => {
   const [videoWatchTimeFieldFilter, setVideoWatchTimeFieldFilter] = useState("");
   const [taggingBenchMarkFieldFilter, setTaggingBenchMarkFieldFilter] = useState("");
   const [date, setDate] = useState("");
-
   const [pdrSetFilter, setPdrSetFilter] = useState(false);
   const [Client_AliasSetFilter, setClient_AliasSetFilter] = useState(false);
   const [annotationSetFilter, setAnnotationSetFilter] = useState(false);
@@ -136,7 +83,6 @@ const ProjectDirectoryIndex = () => {
   const [DeletionField, setDeletionFilter] = useState(false);
   const [judgementTimeFilter, setJudgementTimeFilter] = useState(false);
   const [qABenchmarkField, setQABenchmarkField] = useState(false);
-
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClickFilter = (event) => {
@@ -213,30 +159,36 @@ const ProjectDirectoryIndex = () => {
     setAnchorEl(null);
   };
   const handleFilterProjectDirectory = () => {
-    const data = {
-      ...(industryType ? { industryType: industryType } : {}),
-      ...(clientAliasFilter ? { clientAliasFilter: clientAliasFilter } : {}),
-      ...(dataTypeFilter ? { dataTypeFilter: dataTypeFilter } : {}),
-      ...(actionItemsFieldFilter ? { actionItemsFieldFilter: actionItemsFieldFilter } : {}),
-      ...(qAFieldFilter ? { qAFieldFilter: qAFieldFilter } : {}),
-      ...(qABenchmarkFieldFilter ? { qABenchmarkFieldFilter: qABenchmarkFieldFilter } : {}),
-      ...(judgementTimeFieldFilter ? { judgementTimeFieldFilter: judgementTimeFieldFilter } : {}),
-      ...(skipImageFieldFilter ? { skipImageFieldFilter: skipImageFieldFilter } : {}),
-      ...(imageLoadingFieldFilter ? { imageLoadingFieldFilter: imageLoadingFieldFilter } : {}),
-      ...(objectSavingTimeFieldFilter ? { objectSavingTimeFieldFilter: objectSavingTimeFieldFilter } : {}),
-      ...(videoWatchTimeFieldFilter ? { videoWatchTimeFieldFilter: videoWatchTimeFieldFilter } : {}),
-      ...(toolTypeFieldFilter ? { toolTypeFieldFilter: toolTypeFieldFilter } : {}),
-      ...(deletionFieldFilter ? { deletionFieldFilter: deletionFieldFilter } : {}),
-      ...(platformFieldFilter ? { platformFieldFilter: platformFieldFilter } : {}),
-      ...(projectTypeFieldFilter ? { projectTypeFieldFilter: projectTypeFieldFilter } : {}),
-      ...(annotationFilter ? { annotationFilter: annotationFilter } : {}),
-      ...(pDRFilter ? { pdr: pDRFilter } : {}),
-      ...(qaCheckPointFieldFilter ? { qaCheckPointFieldFilter: qaCheckPointFieldFilter } : {}),
-      ...(imgBenchMarkFieldFilter ? { imgBenchMarkFieldFilter: imgBenchMarkFieldFilter } : {}),
-      ...(taggingBenchMarkFieldFilter ? { taggingBenchMarkFieldFilter: taggingBenchMarkFieldFilter } : {}),
-      ...(objBenchMarkFieldFilter ? { objBenchMarkFieldFilter: objBenchMarkFieldFilter } : {}),
+    const filteredData = {
+      ...(industryType ? { industry: industryType } : {}),
+      ...(clientAliasFilter ? { client_Alias: clientAliasFilter } : {}),
+      ...(actionItemsFieldFilter ? { action_Items: actionItemsFieldFilter } : {}),
+      ...(qAFieldFilter ? { QA: qAFieldFilter } : {}),
+      ...(qABenchmarkFieldFilter ? { QA_Benchmark: qABenchmarkFieldFilter } : {}),
+      ...(judgementTimeFieldFilter ? { judgement_Time: judgementTimeFieldFilter } : {}),
+      ...(skipImageFieldFilter ? { skip_Image: skipImageFieldFilter } : {}),
+      ...(imageLoadingFieldFilter ? { image_Loading: imageLoadingFieldFilter } : {}),
+      ...(objectSavingTimeFieldFilter ? { object_Saving_Time: objectSavingTimeFieldFilter } : {}),
+      ...(videoWatchTimeFieldFilter ? { video_Watch_Time: videoWatchTimeFieldFilter } : {}),
+      ...(toolTypeFieldFilter ? { tool_Type: toolTypeFieldFilter } : {}),
+      ...(deletionFieldFilter ? { deletion: deletionFieldFilter } : {}),
+      ...(platformFieldFilter ? { platform: platformFieldFilter } : {}),
+      ...(projectTypeFieldFilter ? { project_Type: projectTypeFieldFilter } : {}),
+      ...(annotationFilter ? { annotation: annotationFilter } : {}),
+      ...(pDRFilter ? { PDR: pDRFilter } : {}),
+      ...(qaCheckPointFieldFilter ? { QA_Check_Points: qaCheckPointFieldFilter } : {}),
+      ...(imgBenchMarkFieldFilter ? { img_Benchmark: imgBenchMarkFieldFilter } : {}),
+      ...(taggingBenchMarkFieldFilter ? { tagging_Benchmark: taggingBenchMarkFieldFilter } : {}),
+      ...(objBenchMarkFieldFilter ? { obj_Benchmark: objBenchMarkFieldFilter } : {}),
       ...(date ? { date } : {}),
     };
+    const data = {
+      filteredData,
+      search,
+      pagination,
+      ascDescOption: ascDesc,
+    };
+    setFilterData(filteredData);
     dispatch(getProjectByDirectory(data)).then((action) => {
       if (action.payload.status === 200) {
         setProjectDirectory(action.payload.data);
@@ -284,7 +236,13 @@ const ProjectDirectoryIndex = () => {
     setClient_AliasSetFilter(false);
     setIndustrySetFilter(false);
     setAnnotationSetFilter(false);
-    dispatch(getProjectByDirectory()).then((action) => {
+    const data = {
+      filterData: {},
+      search,
+      pagination,
+      ascDescOption: ascDesc,
+    };
+    dispatch(getProjectByDirectory(data)).then((action) => {
       if (action.payload.status === 200) {
         setProjectDirectory(action.payload.data);
       }
@@ -310,363 +268,365 @@ const ProjectDirectoryIndex = () => {
     });
     setArrayList(sortedArray);
   };
-  useEffect(() => {
-    dispatch(setActivePath("Project Directory"));
-    dispatch(getProjectByDirectory()).then((action) => {
-      if (action.payload.status === 200) {
-        setProjectDirectory(action.payload.data);
+
+  // const filtered = projectDirectory.filter((entry) =>
+  //   Object.values(entry).some((val) => typeof val === "string" && val.toLowerCase().includes(search.toLowerCase()))
+  // );
+  // const skeletonCount = 5;
+  // const skeletonArray = Array.from({ length: skeletonCount }, (_, index) => index + 1);
+
+  //new design states
+  const { register, handleSubmit, reset } = useForm();
+  const [openModal, setOpenModal] = useState(false);
+  const [openProjectModalEdit, setOpenProjectModalEdit] = useState(false);
+  const [openProjectModalDetails, setOpenProjectModalDetails] = useState(false);
+  const [myColumn, setMyColumn] = useState([]);
+  const [isDataLoading, setIsDataLoading] = useState(true);
+  const [isChildDataLoading, setIsChildDataLoading] = useState(false);
+  const [myRows, setMyRows] = useState([]);
+  const { projectDirectorySingle } = useSelector((state) => state.projectDirectory);
+  const [pagination, setPagination] = useState({
+    currentPage: 0,
+    pageSize: 10,
+  });
+  const { projectDirectoryFilter } = useSelector((state) => state.tempData);
+
+  const { pathname } = useLocation();
+  const [isDeleted, setIsDeleted] = useState(false);
+  const [ascDesc, setAscDesc] = useState({});
+  const [search, setSearch] = useState("");
+  const [openReject, setOpenReject] = React.useState(false);
+  const [isSyncLoading, setIsSyncLoading] = useState(false);
+  const searchRef = React.useRef(null);
+  const handleEditClose = () => {
+    setOpenProjectModalEdit(false);
+    // dispatch(clearProjectDirectory());
+  };
+  const handleCreateModal = () => {
+    setOpenModal(true);
+  };
+  const handleClose = () => {
+    setOpenModal(false);
+    reset();
+  };
+  const handleClick = (e) => {
+    dispatch(setCurrentProjectDirectory(e._id));
+    setOpenProjectModalEdit(true);
+  };
+  const handleDelete = (e) => {
+    setIsDeleted(false);
+    dispatch(deleteProjectDirectory(e._id)).then((action) => {
+      if (action.error?.message) {
+        toast.trigger(action.error?.message, "error");
+      } else {
+        toast.trigger(action.payload.data.message, "success");
+        setIsDeleted(true);
       }
     });
-  }, []);
-  const filtered = projectDirectory.filter((entry) =>
-    Object.values(entry).some((val) => typeof val === "string" && val.toLowerCase().includes(search.toLowerCase()))
-  );
+  };
 
-  const skeletonCount = 5;
-  const skeletonArray = Array.from({ length: skeletonCount }, (_, index) => index + 1);
+  const handleDetailsPage = (project) => {};
+  const handleProjectDetailsOpen = (project) => {
+    dispatch(setCurrentProjectDirectory(project.id));
+    setOpenProjectModalDetails(true);
+  };
+
+  const handleDetailsProjectDirectoryClose = () => {
+    setOpenProjectModalDetails(false);
+    dispatch(clearProjectDirectory());
+  };
+
+  const handleSearch = (e) => {
+    setPagination((prevPagination) => ({
+      ...prevPagination,
+      currentPage: 0,
+    }));
+    setSearch(e.target.value);
+  };
+
+  const clearSearch = () => {
+    setSearch("");
+    searchRef.current.value = "";
+    setPagination((prevPagination) => ({
+      ...prevPagination,
+      currentPage: 0,
+    }));
+    dispatch(
+      getProjectByDirectory({
+        pagination,
+        ascDescOption: ascDesc,
+      })
+    ); //TODO CHECK THIS LATER
+  };
+  useEffect(() => {
+    if (pathname === "/projectDirectory") {
+      setAscDesc(projectDirectoryFilter?.ascDescOption);
+      setSearch(projectDirectoryFilter?.search);
+      searchRef.current.value = projectDirectoryFilter?.search || "";
+    }
+  }, []);
+  useEffect(() => {
+    dispatch(
+      setProjectDirectoryFilter({
+        search,
+        ascDescOption: ascDesc,
+      })
+    );
+  }, [search, ascDesc]);
+
+  useEffect(() => {
+    dispatch(setActivePath("Project Directory"));
+    dispatch(clearProjectDirectory());
+  }, []);
+
+  useLayoutEffect(() => {
+    setIsDataLoading(true);
+    dispatch(
+      getProjectByDirectory({
+        filteredData: filterData,
+        search,
+        pagination,
+        ascDescOption: ascDesc,
+      })
+    ).then((action) => {
+      setMyColumn(fieldBuilder(projectDirectoryField, handleClick, handleDelete));
+      setIsChildDataLoading(false);
+      setIsDataLoading(false);
+    });
+  }, [pagination, search, isDeleted, ascDesc]);
+  //TODO CHECK THIS LATER
+  const handleGetSync = async () => {
+    await toast.responsePromise(
+      getProjectSyncFunction(),
+      setIsSyncLoading,
+      {
+        initialMessage: "project directory is syncing ...",
+        inPending: () => {
+          setOpenReject(false);
+        },
+        afterSuccess: (data) => {
+          setOpenReject(false);
+          dispatch(
+            getProjectByDirectory({
+              filteredData: filterData,
+              search,
+              pagination,
+              ascDescOption: ascDesc,
+            })
+          );
+        },
+        afterError: () => {
+          setOpenReject(false);
+        },
+      },
+      "forProjectDirectory"
+    );
+    // dispatch(getProjectSync()).then((action) => {
+    //   setIsSyncLoading(true);
+    //   if (action.payload.status === 200) {
+    //     toast.trigger(action.payload.data, "success");
+    //     setIsSyncLoading(false);
+    //   } else {
+    //     toast.trigger(action.payload.data, "error");
+    //     setIsSyncLoading(false);
+    //   }
+    // });
+  };
+
+  const onSubmit = (data) => {
+    dispatch(createProjectDirectory(data)).then((action) => {
+      if (action.error?.message) {
+        toast.trigger(action.error?.message, "error");
+      } else {
+        toast.trigger(action.payload.data.message, "success");
+        handleClose();
+        reset();
+      }
+    });
+  };
+  const onSubmitEdit = (data) => {
+    const finalData = {
+      data,
+      id: projectDirectorySingle._id,
+    };
+    dispatch(updateProjectDirectory(finalData)).then((action) => {
+      if (action.error?.message) {
+        toast.trigger(action.error?.message, "error");
+      } else {
+        toast.trigger(action.payload.data.message, "success");
+        setOpenProjectModalEdit(false);
+        handleClose();
+        reset();
+      }
+    });
+  };
+
+  const handleAscDesc = (field) => {
+    setAscDesc((prev) => {
+      const updatedData = { ...prev };
+      if (prev?.hasOwnProperty(field)) {
+        if (prev[field] === "asc") {
+          return {
+            ...prev,
+            [field]: "desc",
+          };
+        } else {
+          delete updatedData[field];
+          return updatedData;
+        }
+      }
+      return {
+        ...prev,
+        [field]: "asc",
+      };
+    });
+  };
 
   return (
-    <>
-      <Box sx={{ paddingBottom: "1%" }}>
-        <Grid container>
-          <Grid
-            item
-            xs={7}
-            sx={{
-              marginLeft: "0%",
-              display: "flex",
-            }}
-            container
-          >
-            <Typography variant="h4" style={{ color: "#090080" }}>
-              Projects Directory
-            </Typography>
-          </Grid>
-          <Grid
-            item
-            xs={5}
-            sx={{
-              textAlign: "right",
-              justifyContent: "end",
-              paddingLeft: "0%",
-            }}
-          >
-            <Grid container>
-              <Grid item xs={6}>
-                <Grid
-                  container
-                  sx={{
-                    textAlign: "right",
-                    justifyContent: "end",
-                    paddingLeft: "0%",
-                  }}
-                >
-                  {/* //! need to moved */}
-                  {/* <Box>
-                    <Button
-                      variant="contained"
-                      type="submit"
-                      sx={{
-                        // width: "40%",
-                        height: "45px",
-                        backgroundColor: "#2D58FF",
-                        color: "#FFFFFF",
-                        "&:hover": {
-                          backgroundColor: "#FF9A45",
-                          color: "#1D1D1D",
-                        },
-                        borderRadius: "2px",
-                      }}>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          gap: 1,
-                          justifyContent: "center",
-                        }}>
-                        Sync project Directory
-                      </Box>
-                    </Button>
-                  </Box> */}
-                </Grid>
-              </Grid>
-              <Grid item xs={6}>
-                {role === "admin" || role == "project_manager" ? (
-                  <>
-                    <CreateProjectDirectory />
-                  </>
-                ) : (
-                  <></>
-                )}
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Box>
-      <Box>
-        <Paper>
-          <Grid
-            container
-            style={{
-              paddingTop: "1%",
-              paddingLeft: "1%",
-              paddingRight: "3%",
-              paddingBottom: "0%",
-            }}
-          >
-            <SearchProjectDirectory
-              placeholder="Search "
-              handleClickFilter={handleClickFilter}
-              handleCloseFilter={handleCloseFilter}
-              anchorE2={anchorE2}
-              setIndustryType={setIndustryType}
-              handleFilterProjectDirectory={handleFilterProjectDirectory}
-              handleResetProjectDirectory={handleResetProjectDirectory}
-              industryType={industryType}
-              handleChange={handleChange}
-              setClientAliasesFilter={setClientAliasesFilter}
-              clientAliasFilter={clientAliasFilter}
-              setPDRFilter={setPDRFilter}
-              pDRFilter={pDRFilter}
-              setDataTypeFilter={setDataTypeFilter}
-              dataTypeFilter={dataTypeFilter}
-              setAnnotationFilter={setAnnotationFilter}
-              annotationFilter={annotationFilter}
-              platformFieldFilter={platformFieldFilter}
-              setPlatformFieldFilter={setPlatformFieldFilter}
-              projectTypeFieldFilter={projectTypeFieldFilter}
-              setProjectTypeFieldFilter={setProjectTypeFieldFilter}
-              actionItemsFieldFilter={actionItemsFieldFilter}
-              setActionItemsFieldFilter={setActionItemsFieldFilter}
-              qaCheckPointFieldFilter={qaCheckPointFieldFilter}
-              setQaCheckPointFieldFilter={setQaCheckPointFieldFilter}
-              objBenchMarkFieldFilter={objBenchMarkFieldFilter}
-              setObjBenchMarkFieldFilter={setObjBenchMarkFieldFilter}
-              imgBenchMarkFieldFilter={imgBenchMarkFieldFilter}
-              setImgBenchMarkFieldFilter={setImgBenchMarkFieldFilter}
-              taggingBenchMarkFieldFilter={taggingBenchMarkFieldFilter}
-              setTaggingBenchMarkFieldFilter={setTaggingBenchMarkFieldFilter}
-              deletionFieldFilter={deletionFieldFilter}
-              setDeletionFieldFilter={setDeletionFieldFilter}
-              toolTypeFieldFilter={toolTypeFieldFilter}
-              setToolTypeFieldFilter={setToolTypeFieldFilter}
-              skipImageFieldFilter={skipImageFieldFilter}
-              setSkipImageFieldFilter={setSkipImageFieldFilter}
-              imageLoadingFieldFilter={imageLoadingFieldFilter}
-              setImageLoadingFieldFilter={setImageLoadingFieldFilter}
-              objectSavingTimeFieldFilter={objectSavingTimeFieldFilter}
-              setobjectSavingTimeFieldFilter={setobjectSavingTimeFieldFilter}
-              videoWatchTimeFieldFilter={videoWatchTimeFieldFilter}
-              setVideoWatchTimeFieldFilter={setVideoWatchTimeFieldFilter}
-              qAFieldFilter={qAFieldFilter}
-              setQAFieldFilter={setQAFieldFilter}
-              judgementTimeFieldFilter={judgementTimeFieldFilter}
-              setJudgementTimeFieldFilter={setJudgementTimeFieldFilter}
-              qABenchmarkFieldFilter={qABenchmarkFieldFilter}
-              setQABenchmarkFieldFilter={setQABenchmarkFieldFilter}
-              setQAFilter={setQAFilter}
-              qAField={qAField}
-              pdrSetFilter={pdrSetFilter}
-              Client_AliasSetFilter={Client_AliasSetFilter}
-              annotationSetFilter={annotationSetFilter}
-              platformField={platformField}
-              industrySetFilter={industrySetFilter}
-              toolTypeField={toolTypeField}
-              actionItemsField={actionItemsField}
-              projectTypeField={projectTypeField}
-              qaCheckPointField={qaCheckPointField}
-              objBenchMarkField={objBenchMarkField}
-              imageBenchMarkField={imageBenchMarkField}
-              tagingBenchMarkField={tagingBenchMarkField}
-              skipImageField={skipImageField}
-              imageLoadingField={imageLoadingField}
-              objectSavingTimeFilter={objectSavingTimeFilter}
-              videoWatchTimeFilter={videoWatchTimeFilter}
-              DeletionField={DeletionField}
-              judgementTimeFilter={judgementTimeFilter}
-              qABenchmarkField={qABenchmarkField}
-              handleMenuItemClick={handleMenuItemClick}
-              setAnchorEl={setAnchorEl}
-              anchorEl={anchorEl}
+    <Box className="content">
+      <HeaderBox sx={{ backgroundColor: "" }}>
+        <ProjectDirectoryHeader
+          handleGetSync={handleGetSync}
+          isSyncLoading={isSyncLoading}
+          search={search}
+          setSearch={setSearch}
+          searchRef={searchRef}
+          handleClickFilter={handleClickFilter}
+          handleSearch={handleSearch}
+          clearSearch={clearSearch}
+          anchorE2={anchorE2}
+          handleCloseFilter={handleCloseFilter}
+          setIndustryType={setIndustryType}
+          handleFilterProjectDirectory={handleFilterProjectDirectory}
+          handleResetProjectDirectory={handleResetProjectDirectory}
+          industryType={industryType}
+          setClientAliasesFilter={setClientAliasesFilter}
+          clientAliasFilter={clientAliasFilter}
+          setPDRFilter={setPDRFilter}
+          pDRFilter={pDRFilter}
+          setDataTypeFilter={setDataTypeFilter}
+          dataTypeFilter={dataTypeFilter}
+          setAnnotationFilter={setAnnotationFilter}
+          annotationFilter={annotationFilter}
+          platformFieldFilter={platformFieldFilter}
+          setPlatformFieldFilter={setPlatformFieldFilter}
+          projectTypeFieldFilter={projectTypeFieldFilter}
+          setProjectTypeFieldFilter={setProjectTypeFieldFilter}
+          actionItemsFieldFilter={actionItemsFieldFilter}
+          setActionItemsFieldFilter={setActionItemsFieldFilter}
+          qaCheckPointFieldFilter={qaCheckPointFieldFilter}
+          setQaCheckPointFieldFilter={setQaCheckPointFieldFilter}
+          objBenchMarkFieldFilter={objBenchMarkFieldFilter}
+          setObjBenchMarkFieldFilter={setObjBenchMarkFieldFilter}
+          imgBenchMarkFieldFilter={imgBenchMarkFieldFilter}
+          setImgBenchMarkFieldFilter={setImgBenchMarkFieldFilter}
+          taggingBenchMarkFieldFilter={taggingBenchMarkFieldFilter}
+          setTaggingBenchMarkFieldFilter={setTaggingBenchMarkFieldFilter}
+          deletionFieldFilter={deletionFieldFilter}
+          setDeletionFieldFilter={setDeletionFieldFilter}
+          toolTypeFieldFilter={toolTypeFieldFilter}
+          setToolTypeFieldFilter={setToolTypeFieldFilter}
+          skipImageFieldFilter={skipImageFieldFilter}
+          setSkipImageFieldFilter={setSkipImageFieldFilter}
+          imageLoadingFieldFilter={imageLoadingFieldFilter}
+          setImageLoadingFieldFilter={setImageLoadingFieldFilter}
+          objectSavingTimeFieldFilter={objectSavingTimeFieldFilter}
+          setobjectSavingTimeFieldFilter={setobjectSavingTimeFieldFilter}
+          videoWatchTimeFieldFilter={videoWatchTimeFieldFilter}
+          setVideoWatchTimeFieldFilter={setVideoWatchTimeFieldFilter}
+          qAFieldFilter={qAFieldFilter}
+          setQAFieldFilter={setQAFieldFilter}
+          judgementTimeFieldFilter={judgementTimeFieldFilter}
+          setJudgementTimeFieldFilter={setJudgementTimeFieldFilter}
+          qABenchmarkFieldFilter={qABenchmarkFieldFilter}
+          setQABenchmarkFieldFilter={setQABenchmarkFieldFilter}
+          setQAFilter={setQAFilter}
+          qAField={qAField}
+          pdrSetFilter={pdrSetFilter}
+          Client_AliasSetFilter={Client_AliasSetFilter}
+          annotationSetFilter={annotationSetFilter}
+          platformField={platformField}
+          industrySetFilter={industrySetFilter}
+          toolTypeField={toolTypeField}
+          actionItemsField={actionItemsField}
+          projectTypeField={projectTypeField}
+          qaCheckPointField={qaCheckPointField}
+          objBenchMarkField={objBenchMarkField}
+          imageBenchMarkField={imageBenchMarkField}
+          tagingBenchMarkField={tagingBenchMarkField}
+          skipImageField={skipImageField}
+          imageLoadingField={imageLoadingField}
+          objectSavingTimeFilter={objectSavingTimeFilter}
+          videoWatchTimeFilter={videoWatchTimeFilter}
+          DeletionField={DeletionField}
+          judgementTimeFilter={judgementTimeFilter}
+          qABenchmarkField={qABenchmarkField}
+          handleMenuItemClick={handleMenuItemClick}
+          setAnchorEl={setAnchorEl}
+          anchorEl={anchorEl}
+          role={role}
+          handleCreateModal={handleCreateModal}
+        />
+      </HeaderBox>
+
+      <Box className="contentBody">
+        <TablePaper sx={{ backgroundColor: "" }}>
+          {isDataLoading ? (
+            <LoadingComponent height={"80vh"} />
+          ) : (
+            <TableWrapper
+              role={role}
+              handleDetailsPage={handleDetailsPage}
+              handleClick={handleClick}
+              handleDelete={handleDelete}
+              myColumn={myColumn}
+              myRows={myRows}
+              pagination={pagination}
+              setPagination={setPagination}
+              handleId={handleAscDesc}
+              filteredCol={ascDesc}
+              handleProjectDetailsOpen={handleProjectDetailsOpen}
+              isChildDataLoading={isChildDataLoading}
+              setIsChildDataLoading={setIsChildDataLoading}
+              setMyRows={setMyRows}
             />
-          </Grid>
-          <Grid
-            container
-            style={{
-              paddingTop: "1%",
-              paddingLeft: "1%",
-              paddingRight: "3%",
-              // paddingBottom: "3%",
-            }}
-          >
-            {isLoading ? (
-              <>
-                <Grid container sx={{ paddingTop: "0%" }}>
-                  {" "}
-                  <Box sx={{ width: "100%" }}>
-                    {skeletonArray.map((item) => (
-                      <>
-                        <Box key={item}>
-                          <Skeleton height={40} />
-                          <Skeleton animation="wave" height={40} />
-                          <Skeleton animation={false} height={40} />
-                        </Box>
-                      </>
-                    ))}
-                  </Box>
-                </Grid>
-              </>
-            ) : projectDirectory.length === 0 ? (
-              <>
-                <Grid container sx={{ paddingTop: "0%", justifyContent: "center" }}>
-                  {" "}
-                  <Typography variant="h6" sx={{ justifyItems: "center" }}>
-                    Project not found
-                  </Typography>
-                </Grid>
-              </>
-            ) : (
-              <>
-                {" "}
-                <TableContainer>
-                  <Table aria-label="simple table" sx={{ border: "1px solid #DADCDF" }}>
-                    {/* TODO : Convert this in a separate component  */}
-                    <TableHead sx={{ background: "#F8F8F8", height: "80px" }}>
-                      <TableRow>
-                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
-                          SL
-                        </TableCell>
-                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
-                          Project Name
-                        </TableCell>
+          )}
 
-                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
-                          Client Alias
-                        </TableCell>
-
-                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
-                          Industry
-                        </TableCell>
-
-                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
-                          Tool Type
-                        </TableCell>
-                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
-                          Project Type
-                        </TableCell>
-
-                        <TableCell
-                          align="center"
-                          sx={{ color: "#969CAF", fontSize: "20px" }}
-                          // direction={orderSortTimeLimit ? "asc" : "dsc"}
-                          // onClick={() => createSortHandler()}
-                          // onClick={() => sortArray("PDR")}
-                        >
-                          <TableSortLabel
-                            direction={orderSortTimeLimit ? "asc" : "dsc"}
-                            // onClick={() => sortArray("PDR")}
-                          >
-                            PDR
-                          </TableSortLabel>
-                        </TableCell>
-                        {role === "admin" || role == "project_manager" ? (
-                          <>
-                            {" "}
-                            <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
-                              Action
-                            </TableCell>
-                          </>
-                        ) : (
-                          <></>
-                        )}
-                        {role === "admin" || role == "project_manager" ? (
-                          <>
-                            {" "}
-                            <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
-                              Update
-                            </TableCell>
-                          </>
-                        ) : (
-                          <></>
-                        )}
-                        <TableCell align="center" sx={{ color: "#969CAF", fontSize: "20px" }}>
-                          Details
-                        </TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {(rowsPerPage > 0
-                        ? filtered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        : filtered
-                      ).map((item, i) => (
-                        <TableRow key={item._id}>
-                          <TableCell align="center"> {page * rowsPerPage + i + 1}</TableCell>
-                          <TableCell align="center">{item.Project_Name}</TableCell>
-
-                          <TableCell align="center">{item.Client_Alias}</TableCell>
-
-                          <TableCell align="center">{item.Industry}</TableCell>
-
-                          <TableCell align="center">{item.Tool_Type}</TableCell>
-                          <TableCell align="center">{item.Project_Type}</TableCell>
-
-                          <TableCell align="center">{item.PDR}</TableCell>
-                          {role === "admin" || role == "project_manager" ? (
-                            <>
-                              <TableCell align="center">
-                                <ProjectDirectoryDeleteModal item={item} />
-                              </TableCell>
-                            </>
-                          ) : (
-                            <></>
-                          )}
-
-                          {role === "admin" || role == "project_manager" ? (
-                            <>
-                              <TableCell align="center">
-                                <UpdateProjectDirectory item={item} />
-                              </TableCell>
-                            </>
-                          ) : (
-                            <></>
-                          )}
-
-                          <TableCell align="center">
-                            <ProjectDirectoryDetailsIndex item={item} />
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </>
-            )}
-          </Grid>
-        </Paper>
+          <PaginationTable
+            pagination={pagination}
+            setPagination={setPagination}
+            // setFilterValue={setFilterValue}
+            setFilteredCol={setAscDesc}
+          />
+        </TablePaper>
       </Box>
 
-      <Box>
-        <Paper elevation={0} style={paperStyle} sx={{ padding: "0%" }}>
-          <Grid container sx={{ justifyContent: "right", paddingRight: "3%" }}>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-              colSpan={3}
-              count={projectDirectory.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              SelectProps={{
-                inputProps: {
-                  "aria-label": "rows per page",
-                },
-                native: true,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-          </Grid>
-        </Paper>
-      </Box>
-    </>
+      {openModal && (
+        <CreateProjectDirectoryModal
+          openModal={openModal}
+          handleClose={handleClose}
+          onSubmit={onSubmit}
+          handleSubmit={handleSubmit}
+        />
+      )}
+
+      {openProjectModalEdit && (
+        <ProjectDirectoryEditModal
+          item={projectDirectorySingle}
+          handleEditClose={handleEditClose}
+          openProjectModalEdit={openProjectModalEdit}
+          setOpenProjectModalEdit={setOpenProjectModalEdit}
+          onSubmitEdit={onSubmitEdit}
+        />
+      )}
+      {openProjectModalDetails && (
+        <ProjectDirectoryDetailsModal
+          openProjectModalDetails={openProjectModalDetails}
+          item={projectDirectorySingle}
+          handleDetailsProjectDirectoryClose={handleDetailsProjectDirectoryClose}
+        />
+      )}
+    </Box>
   );
 };
 

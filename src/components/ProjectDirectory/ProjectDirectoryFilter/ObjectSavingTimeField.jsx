@@ -10,9 +10,9 @@ const ObjectSavingTimeField = ({
   const [industryAllType, setIndustryAllType] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getType("Object_Saving_Time")).then((action) => {
+    dispatch(getType("object_Saving_Time")).then((action) => {
       if (action.payload.status === 200) {
-        setIndustryAllType(action.payload.data);
+        setIndustryAllType(action.payload.data.types);
       }
     });
   }, []);

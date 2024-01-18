@@ -4,6 +4,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {enrollACourse} from "../../../features/slice/courseSlice";
 import {updateUserEnrollCourse} from "../../../features/slice/userSlice";
+import {getAQuizById} from "../../../features/slice/quizSlice";
+import editCourseIcon from "../../../assets/images/edit.svg";
+import useToaster from "../../../customHooks/useToaster";
+import ChapterDeleteModal from "./ChapterDeleteModal";
 
 const ButtonStyle = styled(Button)({
   border: "8px",
@@ -14,12 +18,24 @@ const ButtonStyle = styled(Button)({
     color: "#1D1D1D",
   },
 });
+
 const CourseNewDetailsIndex = () => {
   const dispatch = useDispatch();
   const { course, courseChapter, courseChapters } = useSelector((state) => state.course);
+
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
-
+  const toast = useToaster();
+  const handleEditChapter = () => {
+    navigate(`/update-chapter/${courseChapter._id}`);
+  };
+  const handleEditQuiz = () => {
+    dispatch(getAQuizById(courseChapter.quiz.id)).then((action) => {
+      if (action.payload.status === 200) {
+        navigate(`/update-quiz/${courseChapter._id}`);
+      }
+    });
+  };
   const handleStart = (id) => {
     navigate(`/course-details/${id}/content`);
     if (
@@ -35,6 +51,7 @@ const CourseNewDetailsIndex = () => {
         });
     }
   };
+
   const paperStyle = {
     // padding: "1%",
     height: "100%",
@@ -45,25 +62,54 @@ const CourseNewDetailsIndex = () => {
         <Box sx={{ position: "" }}>
           <Box sx={{ height: "100%", position: "" }}>
             <Box sx={{ height: "8%", backgroundColor: "" }}>
-              <Grid container sx={{ paddingLeft: "2%", borderBottom: "1px solid #EBEDF5" }}>
-                <Grid item xs={12}>
-                  <Typography variant="h5" sx={{ fontWeight: "bold", color: "#1D1D1D" }}>
-                    {courseChapter?.title}
-                  </Typography>
-                </Grid>
+              <Box sx={{ paddingLeft: "2%", borderBottom: "1px solid #EBEDF5" }}>
+                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "Center" }}>
+                  <Box i>
+                    <Typography variant="h5" sx={{ fontWeight: "bold", color: "#1D1D1D" }}>
+                      {courseChapter?.title}
+                    </Typography>
+                  </Box>
+                  <Box>
+                    {courseChapters?.length ? (
+                      <>
+                        <Button
+                          sx={{
+                            borderRadius: "2px",
+                          }}
+                          onClick={() => handleEditChapter()}
+                          // onClick={() => handleNavigation(customButton)}
+                        >
+                          <img src={editCourseIcon} />
+                        </Button>
+                        {/* <Button
+                          sx={{
+                            borderRadius: "2px",
+                          }}
+                          onClick={() => handleDeleteChapter()}
+                        >
+                          <img src={deleteIcon} />
+                        </Button> */}
+                        <ChapterDeleteModal courseChapter={courseChapter} />
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                  </Box>
+                </Box>
                 <Grid item xs={12}>
                   {" "}
                   <Typography variant="caption" sx={{ fontWeight: "bold", color: "#969CAF" }}>
                     7 min read
                   </Typography>
                 </Grid>
-              </Grid>
+              </Box>
             </Box>
             <Box
               sx={{
                 height: "92%",
                 // backgroundColor: "rgba(69, 88, 123, 0.567);",
-              }}>
+              }}
+            >
               <Box
                 sx={{
                   // backgroundColor: "rgba(69, 88, 123, 0.567);",
@@ -83,7 +129,8 @@ const CourseNewDetailsIndex = () => {
                   // "&::-webkit-scrollbar-thumb:hover": {
                   //   background: "#555",
                   // },
-                }}>
+                }}
+              >
                 <Grid container>
                   <Typography variant="h6" sx={{ fontWeight: "bold", color: "#1D1D1D" }}>
                     OverView

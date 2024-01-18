@@ -59,7 +59,7 @@ const ActivateAccount = () => {
           },
         }}
       >
-        {user.active ? "Deactivate Accounts" : "Activate Account"}
+        {user.active ? "Deactivate Account" : "Activate Account"}
       </Button>
       <ModalActivateAccount open={open} handleOpen={handleOpen} handleClose={handleClose} handleChange={handleChange} />
     </>

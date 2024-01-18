@@ -5,7 +5,15 @@
     width: 60%;
     margin: auto;
   }
-  .btn {
+.disabled {
+    text-align: center;
+    padding: 20px;
+    border: 2px gray dashed;
+    width: 60%;
+    margin: auto;
+    color:gray
+  }
+.btn {
     border: none;
     text-align: center;
     background-color: rgb(218, 216, 216);

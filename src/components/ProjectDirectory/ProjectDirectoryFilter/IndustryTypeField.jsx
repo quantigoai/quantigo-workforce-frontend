@@ -7,9 +7,9 @@ const IndustryTypeField = ({ setIndustryType, industryType }) => {
   const [industryAllType, setIndustryAllType] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getType("Industry")).then((action) => {
+    dispatch(getType("industry")).then((action) => {
       if (action.payload.status === 200) {
-        setIndustryAllType(action.payload.data);
+        setIndustryAllType(action.payload.data.types);
       }
     });
   }, []);

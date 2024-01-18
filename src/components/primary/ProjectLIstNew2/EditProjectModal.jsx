@@ -49,7 +49,6 @@ const EditProjectModal = ({
   const { prevSkills } = useHandleEditChange();
   const { isLightTheme } = useSelector((state) => state.theme);
   const { isLoading } = useSelector((state) => state.projectDrawer);
-
   const methods = useForm({
     resolver: yupResolver(ProjectDrawerSchema),
     defaultValues: {
@@ -61,6 +60,7 @@ const EditProjectModal = ({
       pdr: projectDrawer.pdr,
       project_status: projectDrawer.project_status,
     },
+    mode: "all",
   });
 
   const { handleSubmit } = methods;

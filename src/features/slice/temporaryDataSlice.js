@@ -13,9 +13,9 @@
  * ------------------------
  */
 
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { realToken } from '../../helper/lib';
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import axios from "axios";
+import {realToken} from "../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
@@ -25,56 +25,44 @@ const initialState = {
   temporaryDatas: [],
   userFilter: {},
   projectDrawerFilter: {},
+  projectDirectoryFilter: {},
   workHistoryFilter: {},
-  error: 'null',
+  error: "null",
 };
 
-export const updateTemporaryData = createAsyncThunk(
-  'resources/temporaryDatas',
-  async (data) => {
-    return axios.post(`${url}/courses/temporaryDataRouter/`, data, {
+export const updateTemporaryData = createAsyncThunk("resources/temporaryDatas", async (data) => {
+  return axios.post(`${url}/courses/temporaryDataRouter/`, data, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
+
+export const deleteTemporaryData = createAsyncThunk("resources/temporaryDatas/delete", async (data) => {
+  const { id, chapterNo } = data;
+  return axios.delete(
+    `${url}/courses/temporaryDataRouter/${id}/${chapterNo}`,
+
+    {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
-    });
-  },
-);
+    }
+  );
+});
 
-export const deleteTemporaryData = createAsyncThunk(
-  'resources/temporaryDatas/delete',
-  async (data) => {
-    const { id, chapterNo } = data;
-    return axios.delete(
-      `${url}/courses/temporaryDataRouter/${id}/${chapterNo}`,
-
-      {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      },
-    );
-  },
-);
-
-export const clearTemporaryData = createAsyncThunk(
-  'resources/temporaryDatas/clear',
-  async (data) => {
-    return axios.post(
-      `${url}/courses/temporaryDataRouter/cleartemporaryData`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      },
-    );
-  },
-);
+export const clearTemporaryData = createAsyncThunk("resources/temporaryDatas/clear", async (data) => {
+  return axios.post(`${url}/courses/temporaryDataRouter/cleartemporaryData`, data, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // Clear all temporaryDatas data from state
 
 const temporaryDataSlice = createSlice({
-  name: 'temporaryData',
+  name: "temporaryData",
   initialState: initialState,
   reducers: {
     resetTemporaryDatas: (state) => {
@@ -94,6 +82,12 @@ const temporaryDataSlice = createSlice({
     },
     clearProjectDrawerFilter: (state) => {
       state.projectDrawerFilter = {};
+    },
+    setProjectDirectoryFilter: (state, action) => {
+      state.projectDirectoryFilter = action.payload;
+    },
+    clearProjectDirectoryFilter: (state) => {
+      state.projectDirectoryFilter = {};
     },
     setWorkHistoryFilter: (state, action) => {
       state.workHistoryFilter = action.payload;
@@ -143,6 +137,8 @@ export const {
   setUserFilter,
   clearUserFilter,
   setProjectDrawerFilter,
+  setProjectDirectoryFilter,
+  clearProjectDirectoryFilter,
   clearProjectDrawerFilter,
   setWorkHistoryFilter,
   clearWorkHistoryFilter,

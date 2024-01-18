@@ -8,17 +8,17 @@ export const MySelect = styled(Select)(() => ({
   background: "none",
   height: "40px",
 }));
-const options = [
-  { value: "(A+)", label: "A+" },
-  { value: "(A-)", label: "A-" },
-  { value: "(B+)", label: "B+" },
-  { value: "(B-)", label: "B-" },
-  { value: "(O+)", label: "O+" },
-  { value: "(O-)", label: "O-" },
-  { value: "(AB+)", label: "AB+" },
-  { value: "(AB-)", label: "AB-" },
-];
-const SelectFieldForProfile = ({ name, label, defaultValue, disableItem, editAble, handleChange }) => {
+// const options = [
+//   { value: "(A+)", label: "A+" },
+//   { value: "(A-)", label: "A-" },
+//   { value: "(B+)", label: "B+" },
+//   { value: "(B-)", label: "B-" },
+//   { value: "(O+)", label: "O+" },
+//   { value: "(O-)", label: "O-" },
+//   { value: "(AB+)", label: "AB+" },
+//   { value: "(AB-)", label: "AB-" },
+// ];
+const SelectFieldForProfile = ({ name, label, defaultValue, disableItem, editAble, handleChange, options }) => {
   return (
     <>
       <FormControl fullWidth>
@@ -28,7 +28,8 @@ const SelectFieldForProfile = ({ name, label, defaultValue, disableItem, editAbl
 
             mb: 1,
           }}
-          variant="wpf_p4_medium">
+          variant="wpf_p4_medium"
+        >
           {label}
         </Typography>
 
@@ -44,7 +45,8 @@ const SelectFieldForProfile = ({ name, label, defaultValue, disableItem, editAbl
           }}
           disabled={disableItem ? true : !editAble}
           value={defaultValue}
-          onChange={(e) => handleChange(e)}>
+          onChange={(e) => handleChange(e)}
+        >
           {options.map((option) => (
             <MenuItem
               sx={{ fontSize: "14px" }}

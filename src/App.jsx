@@ -1,23 +1,22 @@
 import CryptoJS from 'crypto-js';
 import Cookies from 'js-cookie';
 import jwt_decode from 'jwt-decode';
-import { lazy, Suspense, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {lazy, Suspense, useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import './App.css';
 import Routers from './components/primary/Routers/Routers';
 import MobileErrorPage from './components/shared/Error/MobileErrorPage';
 import LoadingComponent from './components/shared/Loading/LoadingComponent';
 import useClearReduxData from './customHooks/useClearReduxData';
 // import {availableJobsForReviewer, getAllAssignedJob, getAllJobs, getMyJobs,} from './features/slice/jobSlice';
-import { useNavigate } from 'react-router-dom';
 import {
-  deleteBefore15DaysNotifications,
-  getAllNotifications,
-  getAllUnreadNotifications,
-  getLatestNotifications,
+    deleteBefore15DaysNotifications,
+    getAllNotifications,
+    getAllUnreadNotifications,
+    getLatestNotifications,
 } from './features/slice/notificationSlice';
-import { setFromPreviousTheme } from './features/slice/themeSlice';
-import { alreadyLogin, resetUserSlice } from './features/slice/userSlice';
+import {setFromPreviousTheme} from './features/slice/themeSlice';
+import {alreadyLogin, resetUserSlice} from './features/slice/userSlice';
 
 const RoutersLogin = lazy(() =>
   import('./components/primary/Routers/RoutersLogin'),

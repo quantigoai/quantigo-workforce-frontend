@@ -1,9 +1,9 @@
-import { Box, Button, Grid } from "@mui/material";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {Box, Button, Grid} from "@mui/material";
+import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import useToaster from "../../../../../customHooks/useToaster";
-import { changePassword, logout } from "../../../../../features/slice/userSlice";
+import {changePassword, logout} from "../../../../../features/slice/userSlice";
 import ConfirmPassword from "../../Password/ConfirmPassword";
 import CurrentPasswordfield from "../../Password/CurrentPasswordfield";
 import ResetPassword from "../../Password/ResetPassword";
@@ -50,7 +50,6 @@ const PasswordChangeIndex = () => {
   };
   // 3rd input
   const handleConfirmPassword = (confirmPassword) => {
-    console.log("🚀 ~ file: PasswordChangeIndex.jsx:52 ~ handleConfirmPassword ~ confirmPassword:", confirmPassword);
     setConfirmPassword(confirmPassword);
     if (confirmPassword.length >= 6) {
       if (currentPassword !== confirmPassword) {

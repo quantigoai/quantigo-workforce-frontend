@@ -1,10 +1,10 @@
-import { Box, Button, Grid, Paper, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import { emailVerificationLink } from '../../../../features/slice/userSlice';
-import { LoadingButtonStyle } from '../Login/Login';
+import {Box, Button, Grid, Paper, Typography} from '@mui/material';
+import {styled} from '@mui/material/styles';
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {useNavigate, useParams} from 'react-router-dom';
+import {emailVerificationLink} from '../../../../features/slice/userSlice';
+import {LoadingButtonStyle} from '../Login/Login';
 
 const paperstyleResendEmail = {
   backgroundColor: 'neutral.N100',

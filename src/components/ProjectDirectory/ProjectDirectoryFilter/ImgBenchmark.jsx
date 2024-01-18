@@ -10,9 +10,9 @@ const ImgBenchmark = ({
   const [industryAllType, setIndustryAllType] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getType("Img_Benchmark")).then((action) => {
+    dispatch(getType("img_Benchmark")).then((action) => {
       if (action.payload.status === 200) {
-        setIndustryAllType(action.payload.data);
+        setIndustryAllType(action.payload.data.types);
       }
     });
   }, []);

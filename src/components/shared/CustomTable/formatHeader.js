@@ -123,10 +123,55 @@ const customHeader = (params) => {
       return "NAGAD N0";
     case "skills":
       return "SKILLS";
-    case "status":
-      return "STATUS";
     case "currentlyCheckedInProject":
       return "PROJECT ENROLLED";
+    case "client_Alias":
+      return "CLIENT ALIAS";
+    case "industry":
+      return "INDUSTRY";
+    case "project_Name":
+      return " PROJECT NAME";
+    case "platform":
+      return "PLATFORM";
+    case "tool_Type":
+      return "TOOL TYPE";
+    case "PDR":
+      return "PDR";
+    case "project_Type":
+      return "PROJECT TYPE";
+    case "action_Items":
+      return " ACTION ITEMS";
+    case "QA_Check_Points":
+      return " QA CHECK POINTS";
+    case "obj_Benchmark":
+      return "OBJ BENCHMARK";
+    case "img_Benchmark":
+      return "IMG BENCHMARK";
+    case "tagging_Benchmark":
+      return "TAGGING BENCHMARK";
+    case "deletion":
+      return "DELETION";
+    case "skip_Image":
+      return "SKIP IMAGE";
+    case "update":
+      return "UPDATE";
+    case "image_Loading":
+      return "IMAGE LOADING";
+    case "object_Saving_Time":
+      return "OBJECT SAVING TIME";
+    case "video_Watch_Time":
+      return "VIDEO WATCH TIME";
+    case "judgement_Time":
+      return " JUDGEMENT TIME";
+    case "QA_Benchmark":
+      return "QA BENCHMARK";
+    case "annotation":
+      return "ANNOTATION";
+    case "QA":
+      return "QA";
+    case "remarks":
+      return "REMARKS";
+
     default:
       return params;
   }

@@ -7,9 +7,9 @@ const AnnotationType = ({ annotationFilter, setAnnotationFilter }) => {
   const [annotationTypes, setAnnotationTypes] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getType("Annotation")).then((action) => {
+    dispatch(getType("annotation")).then((action) => {
       if (action.payload.status === 200) {
-        setAnnotationTypes(action.payload.data);
+        setAnnotationTypes(action.payload.data.types);
       }
     });
   }, []);

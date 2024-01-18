@@ -9,7 +9,7 @@ const QAField = ({ setQAFieldFilter, qAFieldFilter }) => {
   useEffect(() => {
     dispatch(getType("QA")).then((action) => {
       if (action.payload.status === 200) {
-        setIndustryAllType(action.payload.data);
+        setIndustryAllType(action.payload.data.types);
       }
     });
   }, []);

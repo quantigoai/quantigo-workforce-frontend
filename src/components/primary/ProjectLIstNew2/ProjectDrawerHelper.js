@@ -31,4 +31,12 @@ const ProjectDrawerSchema = Yup.object().shape({
   project_status: Yup.string().required("Status is required"),
 });
 
-export { ProjectDrawerSchema };
+const ProjectDirectorySchema = Yup.object().shape({
+  project_Name: Yup.string().required("Project name is required"),
+  client_Alias: Yup.string().required("client alias is required"),
+  PDR: Yup.number()
+    .lessThan(6, "PDR must be in range between 1 to 5")
+    .transform((value) => (isNaN(value) ? undefined : value)),
+});
+
+export { ProjectDrawerSchema, ProjectDirectorySchema };

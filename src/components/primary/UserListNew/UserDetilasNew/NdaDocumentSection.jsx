@@ -1,9 +1,9 @@
-import {Button, Grid, Typography} from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import axios from "axios";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import ArrowIcon from "../../../../assets/images/dashboardIcon/ArrowIcon.svg";
 import ViewIcon from "../../../../assets/images/dashboardIcon/ViewIcon.svg";
-import {realToken} from "../../../../helper/lib";
+import { realToken } from "../../../../helper/lib";
 import NidDetails from "../../Users/NidDetals/NidDetails";
 
 const styleBtn = {
@@ -76,17 +76,17 @@ const NdaDocumentSection = ({ user }) => {
           <Button sx={styleBtn} disabled={!user.signImage} onClick={() => handleClick(user.signImage)}>
             <Typography
               variant="wpf_p3_medium"
-              color={user.documentNo ? "primary.B200" : ""}
+              color={!user.signImage ? "primary.B200" : ""}
               sx={{
                 paddingRight: "4%",
-                filter: isDisabled ? "grayscale(100%) opacity(50%)" : "",
+                filter: !user?.signImage ? "grayscale(100%) opacity(50%)" : "",
               }}
             >
               NDA
             </Typography>
             <img
               style={{
-                filter: isDisabled ? "grayscale(100%) opacity(50%)" : "",
+                filter: !user?.signImage ? "grayscale(100%) opacity(50%)" : "",
               }}
               src={ArrowIcon}
             />

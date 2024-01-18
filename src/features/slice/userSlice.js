@@ -12,11 +12,11 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import CryptoJS from "crypto-js";
 import Cookies from "js-cookie";
-import {realToken} from "../../helper/lib";
+import { realToken } from "../../helper/lib";
 
 // const CryptoJS =
 
@@ -255,11 +255,15 @@ export const removeMyImage = createAsyncThunk("remove/my/image", async (id) => {
 //Update My Documents
 export const updateMyDocuments = createAsyncThunk("users/my-documents", async (finalData) => {
   const { id, formData } = finalData;
-  return axios.patch(`${url}/users/my-documents/${id}`, formData, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
+  try {
+    return await axios.patch(`${url}/users/my-documents/${id}`, formData, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
 });
 
 // export const verifyUser = createAsyncThunk("user/verifyUser", async () => {

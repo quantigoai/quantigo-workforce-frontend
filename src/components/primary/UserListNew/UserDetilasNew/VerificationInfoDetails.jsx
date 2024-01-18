@@ -113,20 +113,18 @@ const VerificationInfoDetails = ({
                     <Button sx={styleBtn} disabled={!data?.resume?.url} onClick={() => handleClick(data?.resume?.url)}>
                       <Typography
                         variant="wpf_p3_medium"
-                        color={user.documentNo ? "primary.B200" : ""}
+                        color={!data?.resume?.url ? "primary.B200" : ""}
                         sx={{
                           paddingRight: "4%",
-                          // filter: isDisabled ? "grayscale(100%) opacity(50%)" : "",
+                          filter: !data?.resume?.url ? "grayscale(100%) opacity(50%)" : "",
                         }}
                       >
                         Resume
                       </Typography>
                       <img
-                        style={
-                          {
-                            // filter: isDisabled ? "grayscale(100%) opacity(50%)" : "",
-                          }
-                        }
+                        style={{
+                          filter: !data?.resume?.url ? "grayscale(100%) opacity(50%)" : "",
+                        }}
                         src={ArrowIcon}
                       />
                     </Button>

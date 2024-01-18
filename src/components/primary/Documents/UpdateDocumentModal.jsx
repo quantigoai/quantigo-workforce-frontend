@@ -1,10 +1,10 @@
-import {LoadingButton} from "@mui/lab";
-import {Box, Button, Grid, MenuItem, Modal, Select, TextField, Typography} from "@mui/material";
-import {styled} from "@mui/material/styles";
-import {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { LoadingButton } from "@mui/lab";
+import { Box, Button, Grid, MenuItem, Modal, Select, TextField, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
-import {updateMyDocuments} from "../../../features/slice/userSlice";
+import { updateMyDocuments } from "../../../features/slice/userSlice";
 import ProjectModalHeader from "../ProjectLIstNew2/ProjectModalHeader";
 import UploadImagesField from "../EditProfile/EditProfilePage/VerificationInfo/UploadImagesField";
 
@@ -124,16 +124,16 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
       id: user._id,
       formData: formData,
     };
-    
+
     dispatch(updateMyDocuments(finalData)).then((action) => {
-      if (action.payload?.status === 200 || action.payload?.status === 201) {
+      if (action.error) {
+        toast.trigger(action.error.message, "error");
+      } else {
         toast.trigger("Your Documents has been update successfully.", "success");
         handleClose();
         setCoverImage(null);
         setDocumentNoValid(false);
         setDocumentTypeValid(false);
-      } else {
-        toast.trigger("Failed to update User Documents", "error");
       }
     });
   };

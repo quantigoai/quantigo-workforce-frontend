@@ -61,11 +61,11 @@ const img = {
 };
 
 const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, imagesCopy, setRemoveImages }) => {
-  console.log("🚀 ~ UploadImagesField ~ files:", files)
   // const [files, setFiles] = useState([]);
   const { isLightTheme } = useSelector((state) => state.theme);
-  // const { baseUploadBoxStyle } = ndaUploadStyle(isLightTheme);
+
   const [error, setError] = useState(false);
+
   const baseUploadBoxStyle = {
     flex: 1,
     display: "flex",
@@ -107,16 +107,8 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
         }
       } else if (files.length !== 0 && files.length <= 5) {
         if (acceptedFiles.length + files.length > 5) {
-          setFiles((prev) => [
-            ...prev,
-            ...acceptedFiles.map((file) =>
-              Object.assign(file, {
-                preview: URL.createObjectURL(file),
-              })
-            ),
-          ]);
-          setError(false);
-        } else if (acceptedFiles.length + files.length < 5) {
+          setError(true);
+        } else if (acceptedFiles.length + files.length <= 5) {
           setFiles((prev) => [
             ...prev,
             ...acceptedFiles.map((file) =>
@@ -127,23 +119,19 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
           ]);
           setError(false);
         } else {
-          setFiles([]);
           setError(true);
         }
       }
     },
   });
-  const style = useMemo(() => {
-    const maxSize = 1024000;
 
-    if ((acceptedFiles.length > 5 && maxSize) || files.length > 5) {
-      setError(true);
+  const style = useMemo(() => {
+    if (error) {
       return {
         ...baseUploadBoxStyle,
         ...rejectStyle,
       };
     } else {
-      setError(false);
       return {
         ...baseUploadBoxStyle,
         ...(isFocused ? focusedStyle : {}),
@@ -151,7 +139,7 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
         ...(isDragReject ? rejectStyle : {}),
       };
     }
-  }, [isFocused, isLightTheme, isDragAccept, isDragReject, acceptedFiles]);
+  }, [isFocused, isLightTheme, isDragAccept, isDragReject, acceptedFiles, error]);
 
   const thumbs = files?.map((file, index) => {
     return (
@@ -236,40 +224,64 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
             })}
           >
             <input {...getInputProps()} />
-            <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "20px", mb: 2 }}>
-              {/* <img
+            {files?.length > 5 || error ? (
+              <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "20px", mb: 2 }}>
+                <Typography sx={{ color: "#ff1744" }} variant="wpf_p2_regular">
+                  You Have selected more than 5 images
+                </Typography>
+                <Typography
+                  variant="wpf_p2_regular"
+                  sx={{
+                    paddingBottom: "2%",
+                    color: "#ff1744",
+                  }}
+                >
+                  You have to select {5 - files.length} files
+                </Typography>
+                <img
+                  style={{ width: "30px", filter: files?.length === 5 || !editAble ? "grayscale(100%)" : "" }}
+                  src={ctaImage}
+                />
+              </Box>
+            ) : (
+              <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "20px", mb: 2 }}>
+                {/* <img
                 style={{
                   width: "30px",
                   filter: files?.length === 5 || !editAble ? "grayscale(100%)" : "",
                 }}
                 src={IconImage}
               /> */}
-              <Typography
-                sx={{ color: files?.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff" }}
-                variant="wpf_p2_regular"
-              >
-                Drag and Drop your Certificate files here or Browse” (JPG/ JPEG / PNG)
-              </Typography>
-              <Typography
-                variant="wpf_p2_regular"
-                sx={{
-                  paddingBottom: "2%",
-                  color: files?.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff",
-                }}
-              >
-                Maximum file size: 1Mb.
-              </Typography>
-              <img
-                style={{ width: "30px", filter: files?.length === 5 || !editAble ? "grayscale(100%)" : "" }}
-                src={ctaImage}
-              />
-            </Box>
+                <Typography
+                  sx={{ color: files?.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff" }}
+                  variant="wpf_p2_regular"
+                >
+                  Drag and Drop your Certificate Images here or Browse” (JPG/ JPEG / PNG)
+                </Typography>
+                <Typography
+                  sx={{ color: files?.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff" }}
+                  variant="wpf_p2_regular"
+                >
+                  Only 5 Images Can Be Added
+                </Typography>
+                <Typography
+                  variant="wpf_p2_regular"
+                  sx={{
+                    paddingBottom: "2%",
+                    color: files?.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff",
+                  }}
+                >
+                  Maximum file size: 1Mb.
+                </Typography>
+                <img
+                  style={{ width: "30px", filter: files?.length === 5 || !editAble ? "grayscale(100%)" : "" }}
+                  src={ctaImage}
+                />
+              </Box>
+            )}
           </Box>
           <Box sx={{ display: "flex", width: "100%", justifyContent: "center", padding: "20px" }}>
             <Box>{files?.length <= 5 && thumbs} </Box>
-            <Typography variant="wpf_p4_medium" color="error.500">
-              {files?.length > 5 || error ? "you have selected more than 5 files" : ""}
-            </Typography>
           </Box>
         </Box>
       </Box>

@@ -31,6 +31,7 @@ const style = {
 };
 
 const ProjectDirectoryDetailsModal = ({ openProjectModalDetails, item, handleDetailsProjectDirectoryClose }) => {
+  console.log("🚀 ~ ProjectDirectoryDetailsModal ~ item:", item);
   const { isLightTheme } = useSelector((state) => state.theme);
   return (
     <>
@@ -106,8 +107,8 @@ const ProjectDirectoryDetailsModal = ({ openProjectModalDetails, item, handleDet
                   isLightTheme={isLightTheme}
                   Item1Title={"Action Items"}
                   Item1={item?.action_Items}
-                  Item2Title={"Guideline"}
-                  Item2={capitalizeFirstLetter(item?.Guideline)}
+                  Item2Title={"QA"}
+                  Item2={item?.QA}
                 />
 
                 <DetailsItem
@@ -159,13 +160,7 @@ const ProjectDirectoryDetailsModal = ({ openProjectModalDetails, item, handleDet
                   Item2Title={"Annotation "}
                   Item2={item?.annotation}
                 />
-                <DetailsItem
-                  isLightTheme={isLightTheme}
-                  Item1Title={"QA"}
-                  Item1={item?.QA}
-                  Item2Title={"Remarks"}
-                  Item2={item?.remarks}
-                />
+                <DetailsItem isLightTheme={isLightTheme} Item1Title={"Remarks"} Item1={item?.remarks} />
               </Stack>
             </Box>
           </Box>

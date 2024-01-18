@@ -1,12 +1,12 @@
-import {Box, Button, Grid, IconButton, InputBase, Paper, Popover} from "@mui/material";
+import { Box, Button, Grid, IconButton, InputBase, Paper, Popover } from "@mui/material";
 import React from "react";
 import CommonHeader from "../shared/CustomComponenet/CommonHeader/CommonHeader.jsx";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import MiniModalProjectDirectoryNew from "./ProjectDirectoryFilter/MiniModalProjectDirectoryNew";
-import {ClearIcon} from "@mui/x-date-pickers";
+import { ClearIcon } from "@mui/x-date-pickers";
 import SyncIcon from "@mui/icons-material/Sync";
-import {LoadingButton} from "@mui/lab";
+import { LoadingButton } from "@mui/lab";
 
 const ProjectDirectoryHeader = ({
   handleGetSync,

@@ -6,16 +6,15 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Route, Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import ProjectDirectoryIndex from "../../ProjectDirectory/ProjectDirectoryIndex";
 import ErrorPage from "../../shared/Error/ErrorPage";
 import AllUserListIndex2 from "../AllUsers/AllUserListIndex2";
 import EmailVerificationAfterLogin from "../Auth/EmailVerification/EmailVerificationAfterLogin";
 import VerifyEmail from "../Auth/EmailVerification/VerifyEmail";
 import ChapterCreateIndex from "../Course/ChapterCreate/ChapterCreateIndex";
 import ChapterUpdateIndex from "../Course/ChapterCreate/ChapterUpdate/ChapterUpdateIndex";
-import Course from "../Course/Course";
 import QuizCreateIndex from "../Course/QuizCreate/QuizCreateIndex";
-import QuizPage from "../Course/QuizPage/QuizPage";
 import QuizUpdateIndex from "../Course/QuizUpdate/QuizUpdateIndex";
 import CourseDetails from "../CourseNew/CourseDetails";
 import CourseMainContent from "../CourseNew/CourseMainContent";
@@ -31,7 +30,6 @@ import ProjectLIstIndex2 from "../ProjectLIstNew2/ProjectLIstIndex2";
 import CreateQuiz from "../Quiz/CreateQuiz";
 import Skills from "../Skill/Skills";
 import PrivateRoute from "./PrivateRoute";
-import ProjectDirectoryIndex from "../../ProjectDirectory/ProjectDirectoryIndex";
 
 export const roles = {
   admin: "admin",
@@ -72,8 +70,8 @@ const Routers = () => {
 
         {/* TODO Should updated and release later  */}
 
-        <Route path={"/course"} element={<Course />} />
-        <Route path={"/quiz-page"} element={<QuizPage />} />
+        {/* <Route path={"/course"} element={<Course />} />
+        <Route path={"/quiz-page"} element={<QuizPage />} /> */}
         {/* <Route path={"/chapter-page"} element={<ChapterCreateIndex />} /> */}
 
         <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}>
@@ -83,15 +81,17 @@ const Routers = () => {
           {/* <Route path={'/edit-course/:id'} element={<UpdateCourse />} /> */}
         </Route>
 
-        <Route path={"/course-details/:id"} element={<CourseDetails />}>
+        {/* <Route path={"/course-details/:id"} element={<CourseDetails />}> */}
           {/* TODO Check it and remove this */}
           {/* <Route path="index" element={<CourseDetailsIndex />} /> */}
 
-          <Route path="index" element={<CourseNewDetailsIndex />} />
-          <Route path="content" element={<CourseMainContent />} />
+          {/* <Route path="index" element={<CourseNewDetailsIndex />} />
+          <Route path="content" element={<CourseMainContent />} /> */}
+
           {/* <Route path="show-quiz" element={<QuizShow />} /> */}
           {/* <Route path={'quiz-result'} element={<ShowResult />} /> */}
-        </Route>
+        {/* </Route> */}
+        
         <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]} />}>
           <Route path={"/create-chapter/:id"} element={<ChapterCreateIndex />} />
           <Route path={"/update-chapter/:id"} element={<ChapterUpdateIndex />} />

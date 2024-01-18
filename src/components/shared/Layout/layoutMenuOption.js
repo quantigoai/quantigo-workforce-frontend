@@ -26,7 +26,7 @@ const layoutMenuOption = () => {
     { name: "All Users", icon: UserSvg },
     { name: "All Projects", icon: ProjectSvg },
     { name: "Skill", icon: BenchmarkSvg },
-    { name: "Course", icon: CourseSvg },
+    // { name: "Course", icon: CourseSvg },
 
     // { name: "Projects", icon: ProjectSvg },
     // { name: "Jobs", icon: JobSvg },

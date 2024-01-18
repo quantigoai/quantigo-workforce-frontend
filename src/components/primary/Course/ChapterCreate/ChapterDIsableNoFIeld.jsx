@@ -1,6 +1,6 @@
-import { Box, TextField, Typography, styled } from "@mui/material";
+import {Box, styled, TextField, Typography} from "@mui/material";
 import React from "react";
-import { Controller, useFormContext } from "react-hook-form";
+import {Controller, useFormContext} from "react-hook-form";
 
 export const ChapterTextField = styled(TextField)(() => ({
   borderRadius: "5px",

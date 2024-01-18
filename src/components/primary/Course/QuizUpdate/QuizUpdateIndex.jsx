@@ -1,13 +1,12 @@
-import { Box, Button, Grid } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import {Box, Button, Grid} from "@mui/material";
+import {useEffect, useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
 import {
-  deleteQuestionFromQuiz,
-  insertAQuestionInQuiz,
-  updateQuizById,
-  updateQuizQA,
-  updateQuizQAFunction,
+    deleteQuestionFromQuiz,
+    insertAQuestionInQuiz,
+    updateQuizById,
+    updateQuizQA,
 } from "../../../../features/slice/quizSlice";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
 import ChapterUpdateHeader from "../ChapterCreate/ChapterUpdateHeader";
@@ -15,7 +14,8 @@ import QuestionType from "../QuizPage/QuestionType";
 import QuizNameDurationField from "../QuizPage/QuizNameDurationField";
 import useToaster from "../../../../customHooks/useToaster";
 import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+import {yupResolver} from "@hookform/resolvers/yup";
+
 const QuizUpdateIndex = () => {
   const [inputFieldsCopy, setInputFieldsCopy] = useState([]);
   const { courseChapters } = useSelector((state) => state.course);

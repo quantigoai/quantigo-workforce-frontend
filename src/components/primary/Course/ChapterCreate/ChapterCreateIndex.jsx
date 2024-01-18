@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import {Box, Grid} from "@mui/material";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
 import ContentField from "../InputFields/ContentField";
 import ChapterCreateHeader from "./ChapterCreateHeader";
@@ -6,7 +6,7 @@ import ChapterDIsableNoFIeld from "./ChapterDIsableNoFIeld";
 import ChapterDescritionField from "./ChapterDescritionField";
 import ChapterField from "./ChapterField";
 import useChapterCreateManage from "../hooks/CourseChapter/useChapterCreateManage";
-import { useEffect } from "react";
+import {useEffect} from "react";
 
 const ChapterCreateIndex = () => {
   const {

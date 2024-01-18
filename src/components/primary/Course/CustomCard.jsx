@@ -6,13 +6,11 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Box, Grid, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {Box, Grid, Typography} from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import imageSample from "../../../assets/images/img.png";
-import { setActiveChapterIndex, setActiveCourseId } from "../../../features/slice/activePathSlice";
-import { getACourseByID, getAllChapterFromACourse, getCourseQuizzesResults } from "../../../features/slice/courseSlice";
 import CategoryChip from "./CategoryChip";
 import LevelChip from "./CourseCardActionLebel/LevelChip";
 import LanguageChip from "./LanguageChip";

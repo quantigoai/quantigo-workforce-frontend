@@ -8,24 +8,12 @@
  */
 
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import {
-  Box,
-  Chip,
-  FilledInput,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  Typography,
-  styled,
-} from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import { MyFormControl } from "../../../shared/CustomField/CustomDatePicker";
-import { CustomFormControl } from "../../../shared/CustomField/CustomSelectField";
+import {Box, Chip, MenuItem, Select, styled, Typography,} from "@mui/material";
+import React, {useState} from "react";
+import {useSelector} from "react-redux";
+import {useLocation} from "react-router-dom";
+import {CustomFormControl} from "../../../shared/CustomField/CustomSelectField";
+
 export const MySelect = styled(Select)(() => ({
   height: "35px",
   borderRadius: "5px",

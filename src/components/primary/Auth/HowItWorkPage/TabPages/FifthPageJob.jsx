@@ -1,7 +1,5 @@
-import {Box, Typography} from "@mui/material";
+import {Box} from "@mui/material";
 import React from "react";
-import ActiveJobImage from "../../../../../assets/images/ActiveJob.png";
-import ImageModal from "../ImageModal";
 import ComingSoon from "../../../../shared/ComingSoon/ComingSoon";
 
 const FifthPageJob = () => {

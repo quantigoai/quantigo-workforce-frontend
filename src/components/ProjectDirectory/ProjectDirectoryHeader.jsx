@@ -1,6 +1,6 @@
 import { Box, Button, Grid, IconButton, InputBase, Paper, Popover } from "@mui/material";
 import React from "react";
-import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
+import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader.jsx";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import FilterListOffIcon from "@mui/icons-material/FilterListOff";

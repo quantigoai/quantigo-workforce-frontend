@@ -1,9 +1,9 @@
-import { Box, Link, Typography } from "@mui/material";
+import {Box, Link, Typography} from "@mui/material";
 import React from "react";
 
 import logImg from "../../../../../assets/images/loginWMP.png";
 import CreateAnAccountComponents from "./CreateAnAccountComponents";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import ImageModal from "../ImageModal";
 
 const SettingUpAccountPage = () => {

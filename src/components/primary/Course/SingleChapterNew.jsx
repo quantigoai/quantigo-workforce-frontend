@@ -1,6 +1,7 @@
-import { Box, Typography } from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import React from "react";
 import useCourseDetails from "./hooks/courseDetailshooks/useCourseDetails";
+
 const Style80 = {
   background: "#82BD40",
   color: "#FFFFFF",

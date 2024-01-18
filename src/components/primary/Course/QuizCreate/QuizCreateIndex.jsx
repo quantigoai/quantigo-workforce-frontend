@@ -1,16 +1,17 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Button, Grid } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import {yupResolver} from "@hookform/resolvers/yup";
+import {Box, Button, Grid} from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
 import * as Yup from "yup";
 import useToaster from "../../../../customHooks/useToaster";
-import { createQuizFunction } from "../../../../features/slice/quizSlice";
+import {createQuizFunction} from "../../../../features/slice/quizSlice";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
 import ChapterCreateHeader from "../ChapterCreate/ChapterCreateHeader";
 import QuestionType from "../QuizPage/QuestionType";
 import QuizNameDurationField from "../QuizPage/QuizNameDurationField";
-import { useNavigate, useParams } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+
 const QuizCreateIndex = () => {
   const { courseChapter, courseChapters } = useSelector((state) => state.course);
   const toast = useToaster();

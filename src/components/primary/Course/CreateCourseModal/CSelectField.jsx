@@ -1,9 +1,7 @@
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { Box, FormHelperText, MenuItem, Select, styled, Typography } from "@mui/material";
-import PropTypes from "prop-types";
+import {Box, FormHelperText, MenuItem, Select, styled, Typography} from "@mui/material";
 import React from "react";
-import { Controller, useFormContext } from "react-hook-form";
-import { CustomFormControl } from "../../../shared/CustomField/CustomSelectField";
+import {Controller, useFormContext} from "react-hook-form";
 
 
 export const MySelect = styled(Select)(() => ({

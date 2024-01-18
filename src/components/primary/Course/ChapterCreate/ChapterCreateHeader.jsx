@@ -1,9 +1,9 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import {Box, Button, Grid, Typography} from "@mui/material";
+import {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
+import {useLocation, useNavigate} from "react-router-dom";
 import CommonHeader from "../../../shared/CustomComponenet/CommonHeader/CommonHeader";
-import { LoadingButton } from "@mui/lab";
+import {LoadingButton} from "@mui/lab";
 
 const ChapterCreateHeader = ({ isLoading, durationTime, isDisable, quizLoading }) => {
   const { course } = useSelector((state) => state.course);

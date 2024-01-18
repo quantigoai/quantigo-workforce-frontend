@@ -1,7 +1,8 @@
-import { Box, Grid, Typography, styled } from "@mui/material";
-import React, { useState } from "react";
+import {Box, Grid, styled, Typography} from "@mui/material";
+import React, {useState} from "react";
 import ImageUploadIndex from "./ImageUploadIndex";
-import { RadioOption } from "../BasicOptionField";
+import {RadioOption} from "../BasicOptionField";
+
 const BpIcon = styled("span")(({ theme }) => ({
   borderRadius: "50%",
   width: 20,

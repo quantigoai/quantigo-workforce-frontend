@@ -106,7 +106,7 @@ const VerificationInfoDetails = ({
                   <Grid item xs={4} sx={{ paddingRight: "1%" }}>
                     <ImageShowInModal
                       images={data.extraDocumentImages.map((i) => i.url)}
-                      level={`${capitalizeFirstLetter(data.extraDocumentType || "Extra Document ")}Images`}
+                      level={`${capitalizeFirstLetter(data.extraDocumentType || "Ext Document ")}Images`}
                     />
                   </Grid>
                   <Grid item xs={4}>

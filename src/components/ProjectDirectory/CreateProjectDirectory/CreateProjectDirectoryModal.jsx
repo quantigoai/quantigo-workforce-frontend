@@ -62,7 +62,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
   const { handleSubmit } = methods;
 
   return (
-     <>
+    <>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -98,15 +98,15 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                       <PDTextFIeld name="client_Alias" label="Client Alias" isRequired={true} />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="industry" label="Industry" isRequired={true} />
+                      <PDTextFIeld name="industry" label="Industry" />
                     </FieldBox>
                   </LineStack>
                   <LineStack>
                     <FieldBox>
-                      <PDTextFIeld name="platform" label="Platform" isRequired={true} />
+                      <PDTextFIeld name="platform" label="Platform" />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="tool_Type" label="Tool Type" isRequired={true} />
+                      <PDTextFIeld name="tool_Type" label="Tool Type" />
                     </FieldBox>
                     <FieldBox>
                       <PDTextFIeld name="QA" label="QA" />
@@ -119,11 +119,10 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                         label="PDR"
                         placeholder="PDR must be in range between 1 to 5"
                         isNumberPdr="true"
-                        isRequired={true}
                       />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="project_Type" label="Project Type" isRequired={true} />
+                      <PDTextFIeld name="project_Type" label="Project Type" />
                     </FieldBox>
                     <FieldBox>
                       <PDTextFIeld name="annotation" label="Annotation" />
@@ -131,13 +130,13 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                   </LineStack>
                   <LineStack>
                     <FieldBox>
-                      <PDTextFIeld name="action_Items" label="Action Items" isRequired={true} />
+                      <PDTextFIeld name="action_Items" label="Action Items" />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="qA_Check_Points" label="QA Check Points" isRequired={true} />
+                      <PDTextFIeld name="qA_Check_Points" label="QA Check Points" />
                     </FieldBox>
                     <FieldBox>
-                      <PDTextFIeld name="qA_Benchmark" label="QA Benchmark" isRequired={true} />
+                      <PDTextFIeld name="qA_Benchmark" label="QA Benchmark" />
                     </FieldBox>
                   </LineStack>
                   <LineStack>

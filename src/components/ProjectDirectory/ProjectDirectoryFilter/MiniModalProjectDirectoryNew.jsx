@@ -1,5 +1,5 @@
 import CloseIcon from "@mui/icons-material/Close";
-import {Box, Button, Grid, Typography} from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
 import IndustryTypeField from "./IndustryTypeField";
 import ClientAliasField from "./ClientAliasField";
@@ -23,6 +23,7 @@ import VideoWatchTimeField from "./VideoWatchTimeField";
 import QAField from "./QAField";
 import JudgementTimeField from "./JudgementTimeField";
 import QABenchmarkField from "./QABenchmarkField";
+import BoxItem from "../../primary/ProjectLIstNew2/Project2Details/BoxItem";
 
 const MiniModalProjectDirectoryNew = ({
   handleCloseFilter,
@@ -102,24 +103,20 @@ const MiniModalProjectDirectoryNew = ({
           // border: 1,
           p: 1,
           bgcolor: "background.paper",
-          width: "540px",
+          width: "500px",
           height: "100%",
-        }}>
+        }}
+      >
         <Box
           sx={{
             display: "flex",
             alignContent: "center",
             justifyContent: "space-between",
-            paddingLeft: "3%",
-            paddingRight: "2%",
-          }}>
-          <Typography variant="h6">
-            <b>Filter By </b>
-          </Typography>
-          <CloseIcon
-            sx={{ color: "#2D58FF", cursor: "pointer", fontweight: "600 " }}
-            onClick={handleCloseFilter}
-          />
+            padding: "20px",
+          }}
+        >
+          <Typography variant="h5">Filter By</Typography>
+          <CloseIcon sx={{ color: "#2D58FF", cursor: "pointer", fontweight: "600 " }} onClick={handleCloseFilter} />
         </Box>
         <br />
         <Box sx={{ px: 2 }}>
@@ -134,10 +131,7 @@ const MiniModalProjectDirectoryNew = ({
         <br />
         {qAField ? (
           <Grid container sx={{ padding: "2%" }}>
-            <QAField
-              setQAFieldFilter={setQAFieldFilter}
-              qAFieldFilter={qAFieldFilter}
-            />
+            <QAField setQAFieldFilter={setQAFieldFilter} qAFieldFilter={qAFieldFilter} />
           </Grid>
         ) : (
           <></>
@@ -206,20 +200,14 @@ const MiniModalProjectDirectoryNew = ({
 
         {toolTypeField ? (
           <Grid container sx={{ padding: "2%" }}>
-            <ToolTypeField
-              setToolTypeFieldFilter={setToolTypeFieldFilter}
-              toolTypeFieldFilter={toolTypeFieldFilter}
-            />
+            <ToolTypeField setToolTypeFieldFilter={setToolTypeFieldFilter} toolTypeFieldFilter={toolTypeFieldFilter} />
           </Grid>
         ) : (
           <></>
         )}
         {DeletionField ? (
           <Grid container sx={{ padding: "2%" }}>
-            <Deletionfield
-              setDeletionFieldFilter={setDeletionFieldFilter}
-              deletionFieldFilter={deletionFieldFilter}
-            />
+            <Deletionfield setDeletionFieldFilter={setDeletionFieldFilter} deletionFieldFilter={deletionFieldFilter} />
           </Grid>
         ) : (
           <></>
@@ -286,10 +274,7 @@ const MiniModalProjectDirectoryNew = ({
         )}
         {platformField ? (
           <Grid container sx={{ padding: "2%" }}>
-            <PlatformField
-              platformFieldFilter={platformFieldFilter}
-              setPlatformFieldFilter={setPlatformFieldFilter}
-            />
+            <PlatformField platformFieldFilter={platformFieldFilter} setPlatformFieldFilter={setPlatformFieldFilter} />
           </Grid>
         ) : (
           <></>
@@ -303,30 +288,21 @@ const MiniModalProjectDirectoryNew = ({
         )}
         {Client_AliasSetFilter ? (
           <Grid container sx={{ padding: "2%" }}>
-            <ClientAliasField
-              setClientAliasesFilter={setClientAliasesFilter}
-              clientAliasFilter={clientAliasFilter}
-            />
+            <ClientAliasField setClientAliasesFilter={setClientAliasesFilter} clientAliasFilter={clientAliasFilter} />
           </Grid>
         ) : (
           <></>
         )}
         {industrySetFilter ? (
           <Grid container sx={{ padding: "2%" }}>
-            <IndustryTypeField
-              setIndustryType={setIndustryType}
-              industryType={industryType}
-            />
+            <IndustryTypeField setIndustryType={setIndustryType} industryType={industryType} />
           </Grid>
         ) : (
           <></>
         )}
         {annotationSetFilter ? (
           <Grid container sx={{ padding: "2%" }}>
-            <AnnotationType
-              setAnnotationFilter={setAnnotationFilter}
-              annotationFilter={annotationFilter}
-            />
+            <AnnotationType setAnnotationFilter={setAnnotationFilter} annotationFilter={annotationFilter} />
           </Grid>
         ) : (
           <></>
@@ -334,27 +310,55 @@ const MiniModalProjectDirectoryNew = ({
 
         <br />
         <Box>
-          <Grid
-            container
-            spacing={2}
-            sx={{ paddingLeft: "2%", paddingRight: "2%", paddingBottom: "2%" }}>
-            <Grid item xs={6}>
+          <Box sx={{ display: "flex", justifyContent: "space-between", padding: "20px" }}>
+            <Box>
               <Button
                 onClick={handleResetProjectDirectory}
                 fullWidth
-                variant="outlined">
+                sx={{
+                  backgroundColor: "#FF4757",
+                  color: "#FFF",
+                  fontSize: "14px",
+                  borderRadius: "6px",
+                  width: "150px",
+                  height: "40px",
+                  "&:hover": {
+                    backgroundColor: "#FF4757",
+                    color: "#FFF",
+                  },
+                  "&.Mui-disabled": {
+                    backgroundColor: "#F5C4C8",
+                    color: "#FFFFFF",
+                  },
+                }}
+              >
                 Reset
               </Button>
-            </Grid>
-            <Grid item xs={6}>
+            </Box>
+            <Box>
               <Button
+                sx={{
+                  textTransform: "none",
+                  borderRadius: "8px",
+                  backgroundColor: "#2E58FF",
+                  fontSize: "14px",
+                  lineHeight: "20px",
+                  width: "150px",
+                  height: "40px",
+                  color: "white",
+                  "&:hover": {
+                    background: "#244EF5",
+                  },
+                  padding: "16px 10px",
+                }}
                 onClick={handleFilterProjectDirectory}
                 fullWidth
-                variant="contained">
+                variant="contained"
+              >
                 Apply
               </Button>
-            </Grid>
-          </Grid>
+            </Box>
+          </Box>
         </Box>
       </Box>
     </>

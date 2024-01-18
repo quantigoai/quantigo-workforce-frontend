@@ -1,11 +1,11 @@
-import {Box, Stack} from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import moment from "moment/moment";
-import React, {useEffect, useState} from "react";
-import {capitalizeFirstLetter} from "../../../../helper/capitalizeFirstWord";
+import React, { useEffect, useState } from "react";
+import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 import DetailsItemThree from "./DetailsItemThree";
 import SkillFieldForUserDetails from "./SkillFieldForUserDetails";
-import {useDispatch} from "react-redux";
-import {getUserPersonalInfo} from "../../../../features/slice/userSlice";
+import { useDispatch } from "react-redux";
+import { getUserPersonalInfo } from "../../../../features/slice/userSlice";
 
 const UserInfoIndex = ({
   user,
@@ -104,11 +104,11 @@ const UserInfoIndex = ({
             Item2Title={"Mother`s Name"}
             Item2={data.mothersName}
             Item3Title={"Marital Status"}
-            Item3={capitalizeFirstLetter(data.maritalStatus)}
+            Item3={capitalizeFirstLetter(data.maritalStatus) || "N/A"}
           />
           <DetailsItemThree
             Item1Title={"Religion"}
-            Item1={capitalizeFirstLetter(data.religion)}
+            Item1={capitalizeFirstLetter(data.religion) || "N/A"}
             Item2Title={"Blood Group"}
             Item2={data.bloodGroup}
             Item3Title={"Billing Account No"}

@@ -25,7 +25,7 @@ import {
 } from '../../primary/ProjectLIstNew2/ProjectLIstIndex2';
 import fieldBuilder from '../../shared/CustomTable/fieldBuilder';
 import LoadingComponent from '../../shared/Loading/LoadingComponent';
-import CreateProjectDirectoryModal from '../CreateProjectDirectory/CreateProjectDirectoryModal';
+import CreateProjectDirectoryModal from './CreateProjectDirectoryModal.jsx';
 import ProjectDirectoryHeader from '../ProjectDirectoryHeader/ProjectDirectoryHeader';
 import ProjectDirectoryDetailsModal from './ProjectDirectoryDetailsModal';
 import ProjectDirectoryEditModal from './ProjectDirectoryEditModal';

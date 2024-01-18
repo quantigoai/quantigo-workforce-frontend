@@ -120,13 +120,14 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
     documentType && formData.append("extraDocumentType", documentType);
     nidNumber && formData.append("extraDocumentNo", nidNumber);
     nameAsNid && formData.append("extraDocumentName", nameAsNid);
+    console.log("🚀 ~ images.forEach ~ images:", images)
 
     images.forEach((item) => {
       if (item.name) {
         formData.append("images", item);
       }
     });
-
+    
     photo.length != 0 && formData.append("photo", photo);
     resume.length != 0 && formData.append("resume", resume);
 

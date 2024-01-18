@@ -1,21 +1,19 @@
-import {Box, Button, Checkbox, FormControlLabel, Grid, Typography,} from '@mui/material';
-import axios from 'axios';
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import useToaster from '../../../../../customHooks/useToaster';
-import {updateMyContact} from '../../../../../features/slice/userSlice';
-import PasswordFieldForProfile from '../../PasswordFieldForProfile';
-import FieldForProfile from '../FieldForProfile';
-import SelectFieldForBdInfo from './SelectFieldForBdInfo';
+import { Box, Button, Checkbox, FormControlLabel, Grid, Typography } from "@mui/material";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import useToaster from "../../../../../customHooks/useToaster";
+import { updateMyContact } from "../../../../../features/slice/userSlice";
+import PasswordFieldForProfile from "../../PasswordFieldForProfile";
+import FieldForProfile from "../FieldForProfile";
+import SelectFieldForBdInfo from "./SelectFieldForBdInfo";
 
 const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
   const toast = useToaster();
   const url = import.meta.env.VITE_APP_SERVER_URL;
   const { isLoading } = useSelector((state) => state.user);
   const [contactNo, setContactNo] = useState(user.contactNo);
-  const [billingAccountNo, setBillingAccountNo] = useState(
-    user.billingAccountNo,
-  );
+  const [billingAccountNo, setBillingAccountNo] = useState(user.billingAccountNo);
   // const [editAble, setEditAble] = useState(false);
   const [divisions, setDivisions] = useState([]);
   const [districts, setDistricts] = useState([]);
@@ -103,6 +101,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
     //   });
     // }
   };
+
   useEffect(() => {
     if (isChecked) {
       setPermanentAddress({
@@ -124,24 +123,20 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
       });
       setDistrictsPermanent([...districts]);
       setSubDistrictsPermanent([...subdistricts]);
-      // setDivisionsPermanent((prevSubDistricts) => [...prevSubDistricts, ...divisions]);
-      // setDistrictsPermanent((prev) => [...prev, districts]);
-      // setSubDistrictsPermanent((prev) => [...prev, subdistricts]);
+      
     }
+  }, [isChecked]);
+  useEffect(() => {
     if (user.presentAddress?.district) {
       axios
-        .get(
-          `${url}/bd-info/sub-district/get-sub-districts-by-district-id/${user.presentAddress.district.id}`,
-        )
+        .get(`${url}/bd-info/sub-district/get-sub-districts-by-district-id/${user.presentAddress.district.id}`)
         .then((res) => {
           setSubDistricts(res.data);
         });
     }
     if (user.permanentAddress?.district) {
       axios
-        .get(
-          `${url}/bd-info/sub-district/get-sub-districts-by-district-id/${user.permanentAddress?.district?.id}`,
-        )
+        .get(`${url}/bd-info/sub-district/get-sub-districts-by-district-id/${user.permanentAddress?.district?.id}`)
         .then((res) => {
           setSubDistrictsPermanent(res.data);
         });
@@ -149,7 +144,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
     if (user.emergencyContact?.address) {
       axios
         .get(
-          `${url}/bd-info/sub-district/get-sub-districts-by-district-id/${user.emergencyContact?.address?.district?.id}`,
+          `${url}/bd-info/sub-district/get-sub-districts-by-district-id/${user.emergencyContact?.address?.district?.id}`
         )
         .then((res) => {
           setSubDistrictsEmergency(res.data);
@@ -157,9 +152,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
     }
     if (user.presentAddress?.district) {
       axios
-        .get(
-          `${url}/bd-info/district/get-districts-by-division-id/${user.presentAddress?.division?.id}`,
-        )
+        .get(`${url}/bd-info/district/get-districts-by-division-id/${user.presentAddress?.division?.id}`)
         .then((res) => {
           setDistricts(res.data);
           // setSubDistricts([]);
@@ -167,9 +160,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
     }
     if (user.permanentAddress?.district) {
       axios
-        .get(
-          `${url}/bd-info/district/get-districts-by-division-id/${user.permanentAddress?.division?.id}`,
-        )
+        .get(`${url}/bd-info/district/get-districts-by-division-id/${user.permanentAddress?.division?.id}`)
         .then((res) => {
           setDistrictsPermanent(res.data);
           // setSubDistricts([]);
@@ -177,9 +168,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
     }
     if (user.emergencyContact?.address) {
       axios
-        .get(
-          `${url}/bd-info/district/get-districts-by-division-id/${user.emergencyContact?.address?.division?.id}`,
-        )
+        .get(`${url}/bd-info/district/get-districts-by-division-id/${user.emergencyContact?.address?.division?.id}`)
         .then((res) => {
           setDistrictsEmergency(res.data);
           // setSubDistricts([]);
@@ -200,7 +189,8 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
     //   // setDistrictsPermanent((prev) => [...prev, districts]);
     //   // setSubDistrictsPermanent((prev) => [...prev, subdistricts]);
     // }
-  }, [isChecked]);
+  }, [user]);
+
   const handleEditProfile = () => {
     setEditAble(true);
   };
@@ -232,12 +222,10 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
         id: id,
       },
     }));
-    axios
-      .get(`${url}/bd-info/district/get-districts-by-division-id/${id}`)
-      .then((res) => {
-        setDistricts(res.data);
-        setSubDistricts([]);
-      });
+    axios.get(`${url}/bd-info/district/get-districts-by-division-id/${id}`).then((res) => {
+      setDistricts(res.data);
+      setSubDistricts([]);
+    });
   };
   const handleChangeDistricts = (id, name) => {
     setPresentAddress((prevAddress) => ({
@@ -247,11 +235,9 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
         id: id,
       },
     }));
-    axios
-      .get(`${url}/bd-info/sub-district/get-sub-districts-by-district-id/${id}`)
-      .then((res) => {
-        setSubDistricts(res.data);
-      });
+    axios.get(`${url}/bd-info/sub-district/get-sub-districts-by-district-id/${id}`).then((res) => {
+      setSubDistricts(res.data);
+    });
   };
   const handleChangeSubDistricts = (id, name) => {
     setPresentAddress((prevAddress) => ({
@@ -291,12 +277,10 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
         id: id,
       },
     }));
-    axios
-      .get(`${url}/bd-info/district/get-districts-by-division-id/${id}`)
-      .then((res) => {
-        setDistrictsPermanent(res.data);
-        setSubDistrictsPermanent([]);
-      });
+    axios.get(`${url}/bd-info/district/get-districts-by-division-id/${id}`).then((res) => {
+      setDistrictsPermanent(res.data);
+      setSubDistrictsPermanent([]);
+    });
   };
   const handleChangeDistrictsPermanent = (id, name) => {
     setPermanentAddress((prevAddress) => ({
@@ -306,11 +290,9 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
         id: id,
       },
     }));
-    axios
-      .get(`${url}/bd-info/sub-district/get-sub-districts-by-district-id/${id}`)
-      .then((res) => {
-        setSubDistrictsPermanent(res.data);
-      });
+    axios.get(`${url}/bd-info/sub-district/get-sub-districts-by-district-id/${id}`).then((res) => {
+      setSubDistrictsPermanent(res.data);
+    });
   };
   const handleChangeSubDistrictsPermanent = (id, name) => {
     setPermanentAddress((prevAddress) => ({
@@ -354,12 +336,10 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
         },
       },
     }));
-    axios
-      .get(`${url}/bd-info/district/get-districts-by-division-id/${id}`)
-      .then((res) => {
-        setDistrictsEmergency(res.data);
-        setSubDistrictsEmergency([]);
-      });
+    axios.get(`${url}/bd-info/district/get-districts-by-division-id/${id}`).then((res) => {
+      setDistrictsEmergency(res.data);
+      setSubDistrictsEmergency([]);
+    });
   };
   const handleChangeDistrictsEmergency = (id, name) => {
     setEmergencyContact((prevAddress) => ({
@@ -372,11 +352,9 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
         },
       },
     }));
-    axios
-      .get(`${url}/bd-info/sub-district/get-sub-districts-by-district-id/${id}`)
-      .then((res) => {
-        setSubDistrictsEmergency(res.data);
-      });
+    axios.get(`${url}/bd-info/sub-district/get-sub-districts-by-district-id/${id}`).then((res) => {
+      setSubDistrictsEmergency(res.data);
+    });
   };
   const handleChangeSubDistrictsEmergency = (id, name) => {
     setEmergencyContact((prevAddress) => ({
@@ -454,10 +432,10 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
     };
     dispatch(updateMyContact(finalData)).then((action) => {
       if (action.error) {
-        toast.trigger(action.error.message, 'error');
+        toast.trigger(action.error.message, "error");
       }
       if (action.payload.status === 200) {
-        toast.trigger('Profile Update Successfully', 'success');
+        toast.trigger("Profile Update Successfully", "success");
         setEditAble(false);
       }
     });
@@ -468,29 +446,29 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
       <>
         <Box
           sx={{
-            overflowY: 'auto',
-            '&::-webkit-scrollbar': {
-              width: '0',
+            overflowY: "auto",
+            "&::-webkit-scrollbar": {
+              width: "0",
             },
             height: {
-              lg: '78%',
-              xl: '71%',
-              xxl: '75%',
+              lg: "78%",
+              xl: "71%",
+              xxl: "75%",
             },
           }}
         >
           <Box
             sx={{
-              height: '100%',
+              height: "100%",
             }}
           >
             <Box
               sx={{
-                height: '100%',
-                '&::-webkit-scrollbar': {
-                  width: '0',
+                height: "100%",
+                "&::-webkit-scrollbar": {
+                  width: "0",
                 },
-                overflowY: 'auto',
+                overflowY: "auto",
               }}
             >
               {/* <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
@@ -499,11 +477,11 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                   </Typography>
                 </Grid> */}
 
-              <Grid container sx={{ paddingBottom: '20px' }}>
-                <Grid item xs={6} sx={{ paddingRight: '2%' }}>
+              <Grid container sx={{ paddingBottom: "20px" }}>
+                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <PasswordFieldForProfile
                     name="phone"
-                    label={'Phone No.'}
+                    label={"Phone No."}
                     defaultValue={contactNo}
                     disableItem={false}
                     handleChange={handlePhoneNumberChange}
@@ -514,7 +492,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                 <Grid item xs={6}>
                   <PasswordFieldForProfile
                     name="billingAccountNo"
-                    label={'Nagad No.'}
+                    label={"Nagad No."}
                     defaultValue={billingAccountNo}
                     disableItem={false}
                     handleChange={handlebillingAccountNoChange}
@@ -524,20 +502,17 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                 </Grid>
               </Grid>
 
-              <Grid container sx={{ paddingTop: '%', paddingBottom: '1%' }}>
-                <Typography
-                  sx={{ color: 'primary.B200' }}
-                  variant="wpf_p4_medium"
-                >
+              <Grid container sx={{ paddingTop: "%", paddingBottom: "1%" }}>
+                <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
                   Present Address
                 </Typography>
               </Grid>
 
-              <Grid container sx={{ paddingBottom: '20px' }}>
-                <Grid item xs={6} sx={{ paddingRight: '2%' }}>
+              <Grid container sx={{ paddingBottom: "20px" }}>
+                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <SelectFieldForBdInfo
                     name="Division"
-                    label={'Division'}
+                    label={"Division"}
                     defaultValue={presentAddress.division.name}
                     disableItem={false}
                     editAble={editAble}
@@ -548,7 +523,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                 <Grid item xs={6}>
                   <SelectFieldForBdInfo
                     name="District"
-                    label={'District'}
+                    label={"District"}
                     defaultValue={presentAddress.district.name}
                     disableItem={false}
                     editAble={editAble}
@@ -557,11 +532,11 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                   />
                 </Grid>
               </Grid>
-              <Grid container sx={{ paddingBottom: '20px' }}>
-                <Grid item xs={6} sx={{ paddingRight: '2%' }}>
+              <Grid container sx={{ paddingBottom: "20px" }}>
+                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <SelectFieldForBdInfo
                     name="Sub-District"
-                    label={'Sub-District'}
+                    label={"Sub-District"}
                     defaultValue={presentAddress.subdistrict.name}
                     disableItem={false}
                     editAble={editAble}
@@ -572,7 +547,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                 <Grid item xs={6}>
                   <FieldForProfile
                     name="presentAddress"
-                    label={'City / Village'}
+                    label={"City / Village"}
                     defaultValue={presentAddress.area}
                     disableItem={false}
                     handleChange={handleChangeSubDistrictsCity}
@@ -580,11 +555,11 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                   />
                 </Grid>
               </Grid>
-              <Grid container sx={{ paddingBottom: '20px' }}>
-                <Grid item xs={6} sx={{ paddingRight: '2%' }}>
+              <Grid container sx={{ paddingBottom: "20px" }}>
+                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <FieldForProfile
                     name="presentAddress"
-                    label={'Road Number'}
+                    label={"Road Number"}
                     defaultValue={presentAddress.roadNo}
                     disableItem={false}
                     handleChange={handleChangeSubDistrictsRoadNumber}
@@ -594,7 +569,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                 <Grid item xs={6}>
                   <FieldForProfile
                     name="presentAddress"
-                    label={'House Number'}
+                    label={"House Number"}
                     defaultValue={presentAddress.houseNo}
                     disableItem={false}
                     handleChange={handleChangeSubDistrictsHouseNumber}
@@ -606,47 +581,36 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
               {/* Permanent Address */}
 
               <>
-                <Grid container sx={{ paddingTop: '1%', paddingBottom: '0%' }}>
-                  <Typography
-                    sx={{ color: 'primary.B200' }}
-                    variant="wpf_p4_medium"
-                  >
+                <Grid container sx={{ paddingTop: "1%", paddingBottom: "0%" }}>
+                  <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
                     Permanent Address
                   </Typography>
                 </Grid>
-                <Grid
-                  container
-                  sx={{ paddingTop: '%', paddingBottom: '%', height: '38px' }}
-                >
+                <Grid container sx={{ paddingTop: "%", paddingBottom: "%", height: "38px" }}>
                   {editAble && (
                     <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={isChecked}
-                          onChange={handleCheckboxChange}
-                        />
-                      }
+                      control={<Checkbox checked={isChecked} onChange={handleCheckboxChange} />}
                       label={
                         <Typography
                           sx={{
-                            color: 'neutral.N300',
+                            color: "neutral.N300",
 
                             // mb: 1,
                           }}
                           variant="wpf_p4_medium"
                         >
-                          Same as Present Address{' '}
+                          Same as Present Address{" "}
                         </Typography>
                       }
                     />
                   )}
                 </Grid>
 
-                <Grid container sx={{ paddingBottom: '20px' }}>
-                  <Grid item xs={6} sx={{ paddingRight: '2%' }}>
+                <Grid container sx={{ paddingBottom: "20px" }}>
+                  <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                     <SelectFieldForBdInfo
                       name="Division"
-                      label={'Division'}
+                      label={"Division"}
                       defaultValue={permanentAddress.division.name}
                       disableItem={false}
                       editAble={editAble}
@@ -658,7 +622,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                   <Grid item xs={6}>
                     <SelectFieldForBdInfo
                       name="District"
-                      label={'District'}
+                      label={"District"}
                       defaultValue={permanentAddress.district.name}
                       disableItem={false}
                       editAble={editAble}
@@ -668,11 +632,11 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                     />
                   </Grid>
                 </Grid>
-                <Grid container sx={{ paddingBottom: '20px' }}>
-                  <Grid item xs={6} sx={{ paddingRight: '2%' }}>
+                <Grid container sx={{ paddingBottom: "20px" }}>
+                  <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                     <SelectFieldForBdInfo
                       name="Sub-District"
-                      label={'Sub-District'}
+                      label={"Sub-District"}
                       defaultValue={permanentAddress.subdistrict.name}
                       disableItem={false}
                       editAble={editAble}
@@ -684,7 +648,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                   <Grid item xs={6}>
                     <FieldForProfile
                       name="presentAddress"
-                      label={'Area'}
+                      label={"Area"}
                       defaultValue={permanentAddress.area}
                       disableItem={false}
                       handleChange={handleChangePermanentCity}
@@ -693,11 +657,11 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                     />
                   </Grid>
                 </Grid>
-                <Grid container sx={{ paddingBottom: '20px' }}>
-                  <Grid item xs={6} sx={{ paddingRight: '2%' }}>
+                <Grid container sx={{ paddingBottom: "20px" }}>
+                  <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                     <FieldForProfile
                       name="presentAddress"
-                      label={'Road Number'}
+                      label={"Road Number"}
                       defaultValue={permanentAddress.roadNo}
                       disableItem={false}
                       handleChange={handleChangePermanentRoadNumber}
@@ -708,7 +672,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                   <Grid item xs={6}>
                     <FieldForProfile
                       name="presentAddress"
-                      label={'House Number'}
+                      label={"House Number"}
                       defaultValue={permanentAddress.houseNo}
                       disableItem={false}
                       handleChange={handleChangePermanentHouseNumber}
@@ -722,20 +686,17 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
               {/* EmergencyContactInformation */}
 
               <>
-                <Grid container sx={{ paddingTop: '%', paddingBottom: '1%' }}>
-                  <Typography
-                    sx={{ color: 'primary.B200' }}
-                    variant="wpf_p4_medium"
-                  >
+                <Grid container sx={{ paddingTop: "%", paddingBottom: "1%" }}>
+                  <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
                     Emergency Contact Information
                   </Typography>
                 </Grid>
 
-                <Grid container sx={{ paddingBottom: '20px' }}>
-                  <Grid item xs={6} sx={{ paddingRight: '2%' }}>
+                <Grid container sx={{ paddingBottom: "20px" }}>
+                  <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                     <FieldForProfile
                       name="presentAddress"
-                      label={'Name of Contact Person'}
+                      label={"Name of Contact Person"}
                       defaultValue={emergencyContact.contactPersonName}
                       disableItem={false}
                       handleChange={handleChangeEmergencyNamePerson}
@@ -745,7 +706,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                   <Grid item xs={6}>
                     <FieldForProfile
                       name="presentAddress"
-                      label={'Relationship'}
+                      label={"Relationship"}
                       defaultValue={emergencyContact.relationship}
                       disableItem={false}
                       handleChange={handleChangeEmergencyRelation}
@@ -753,11 +714,11 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                     />
                   </Grid>
                 </Grid>
-                <Grid container sx={{ paddingBottom: '20px' }}>
-                  <Grid item xs={12} sx={{ paddingRight: '0%' }}>
+                <Grid container sx={{ paddingBottom: "20px" }}>
+                  <Grid item xs={12} sx={{ paddingRight: "0%" }}>
                     <PasswordFieldForProfile
                       name="mobileNumber"
-                      label={'Mobile Number'}
+                      label={"Mobile Number"}
                       defaultValue={emergencyContact.contactNumber}
                       disableItem={false}
                       handleChange={handleChangeEmergencyMobileNumber}
@@ -766,11 +727,11 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                     />
                   </Grid>
                 </Grid>
-                <Grid container sx={{ paddingBottom: '20px' }}>
-                  <Grid item xs={6} sx={{ paddingRight: '2%' }}>
+                <Grid container sx={{ paddingBottom: "20px" }}>
+                  <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                     <SelectFieldForBdInfo
                       name="Division"
-                      label={'Division'}
+                      label={"Division"}
                       defaultValue={emergencyContact.address?.division?.name}
                       disableItem={false}
                       editAble={editAble}
@@ -781,7 +742,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                   <Grid item xs={6}>
                     <SelectFieldForBdInfo
                       name="District"
-                      label={'District'}
+                      label={"District"}
                       defaultValue={emergencyContact.address?.district?.name}
                       disableItem={false}
                       editAble={editAble}
@@ -790,14 +751,12 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                     />
                   </Grid>
                 </Grid>
-                <Grid container sx={{ paddingBottom: '20px' }}>
-                  <Grid item xs={6} sx={{ paddingRight: '2%' }}>
+                <Grid container sx={{ paddingBottom: "20px" }}>
+                  <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                     <SelectFieldForBdInfo
                       name="Sub-District"
-                      label={'Sub-District'}
-                      defaultValue={
-                        emergencyContact?.address?.subdistrict?.name
-                      }
+                      label={"Sub-District"}
+                      defaultValue={emergencyContact?.address?.subdistrict?.name}
                       disableItem={false}
                       editAble={editAble}
                       handleChange={handleChangeSubDistrictsEmergency}
@@ -807,7 +766,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                   <Grid item xs={6}>
                     <FieldForProfile
                       name="presentAddress"
-                      label={'City / Village'}
+                      label={"City / Village"}
                       defaultValue={emergencyContact?.address?.area}
                       disableItem={false}
                       handleChange={handleChangeEmergencyCity}
@@ -815,11 +774,11 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                     />
                   </Grid>
                 </Grid>
-                <Grid container sx={{ paddingBottom: '20px' }}>
-                  <Grid item xs={6} sx={{ paddingRight: '2%' }}>
+                <Grid container sx={{ paddingBottom: "20px" }}>
+                  <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                     <FieldForProfile
                       name="presentAddress"
-                      label={'Road Number'}
+                      label={"Road Number"}
                       defaultValue={emergencyContact?.address?.roadNo}
                       disableItem={false}
                       handleChange={handleChangeEmergencyRoadNumber}
@@ -829,7 +788,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                   <Grid item xs={6}>
                     <FieldForProfile
                       name="presentAddress"
-                      label={'House Number'}
+                      label={"House Number"}
                       defaultValue={emergencyContact?.address?.houseNo}
                       disableItem={false}
                       handleChange={handleChangeEmergencyHouseNumber}
@@ -847,24 +806,24 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
         <Box
           sx={{
             height: {
-              lg: '10%',
-              xl: '14%',
-              xxl: '8%',
+              lg: "10%",
+              xl: "14%",
+              xxl: "8%",
             },
           }}
         >
           <Grid
             container
             sx={{
-              height: '100%',
+              height: "100%",
             }}
           >
             {editAble && (
               <>
                 <Box
                   sx={{
-                    display: 'flex',
-                    alignItems: 'center',
+                    display: "flex",
+                    alignItems: "center",
                   }}
                 >
                   <Button
@@ -872,24 +831,24 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                     disabled={isLoading}
                     sx={{
                       height: {
-                        lg: '30px',
-                        xl: '40px',
-                        xxl: '40px',
+                        lg: "30px",
+                        xl: "40px",
+                        xxl: "40px",
                       },
-                      backgroundColor: 'primary.B200',
-                      color: 'neutral.N000',
-                      borderRadius: '8px',
-                      textTransform: 'none',
-                      fontSize: '12px',
-                      width: '150px',
+                      backgroundColor: "primary.B200",
+                      color: "neutral.N000",
+                      borderRadius: "8px",
+                      textTransform: "none",
+                      fontSize: "12px",
+                      width: "150px",
                       mr: 3,
-                      '&:hover': {
-                        backgroundColor: 'primary.B200',
-                        color: 'neutral.N000',
+                      "&:hover": {
+                        backgroundColor: "primary.B200",
+                        color: "neutral.N000",
                       },
-                      '&.Mui-disabled': {
-                        background: '#B6C9F0',
-                        color: '#FFFFFF',
+                      "&.Mui-disabled": {
+                        background: "#B6C9F0",
+                        color: "#FFFFFF",
                       },
                     }}
                   >
@@ -899,18 +858,18 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
                     onClick={() => handleCancel()}
                     sx={{
                       height: {
-                        lg: '30px',
-                        xl: '40px',
-                        xxl: '40px',
+                        lg: "30px",
+                        xl: "40px",
+                        xxl: "40px",
                       },
-                      textTransform: 'none',
-                      backgroundColor: '#F2F6FC',
-                      borderRadius: '8px',
-                      fontSize: '12px',
-                      color: '#253E5C',
-                      width: '150px',
-                      '&:hover': {
-                        background: '#F2F6FC',
+                      textTransform: "none",
+                      backgroundColor: "#F2F6FC",
+                      borderRadius: "8px",
+                      fontSize: "12px",
+                      color: "#253E5C",
+                      width: "150px",
+                      "&:hover": {
+                        background: "#F2F6FC",
                       },
                     }}
                   >

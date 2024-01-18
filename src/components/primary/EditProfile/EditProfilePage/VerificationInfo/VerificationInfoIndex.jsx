@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import ProfilePicture from "../MyProfile/ProfilePicture";
-import { Box, Button, Grid, TextField, Typography, styled } from "@mui/material";
+import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {Box, Button, Grid, styled, TextField, Typography} from "@mui/material";
 import FieldForProfile from "../FieldForProfile";
-import PasswordFieldForProfile from "../../PasswordFieldForProfile";
 // import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
 import UploadImagesField from "./UploadImagesField";
 import SelectFieldForProfile from "../SelectFieldForProfile";
-import {
-  getUserVerificationInfo,
-  updateMyVerification,
-  updateMyVerificationFunction,
-} from "../../../../../features/slice/userSlice";
+import {updateMyVerificationFunction,} from "../../../../../features/slice/userSlice";
 import useToaster from "../../../../../customHooks/useToaster";
-import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
-import LoadingComponent from "../../../../shared/Loading/LoadingComponent";
+import {capitalizeFirstLetter} from "../../../../../helper/capitalizeFirstWord";
 import axios from "axios";
-import { realToken } from "../../../../../helper/lib";
+import {realToken} from "../../../../../helper/lib";
+
 const TextFieldQuestion = styled(TextField)(() => ({
   // borderRadius: "8px 0px 0px 8px",
   "& .MuiOutlinedInput-root": {

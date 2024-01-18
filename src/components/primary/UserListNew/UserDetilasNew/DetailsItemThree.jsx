@@ -1,7 +1,7 @@
 import LockPersonIcon from '@mui/icons-material/LockPerson';
-import { Box, Grid, Stack, Typography } from '@mui/material';
+import {Box, Grid, Stack, Typography} from '@mui/material';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
 const DetailsItemThree = ({
   Item1Title,

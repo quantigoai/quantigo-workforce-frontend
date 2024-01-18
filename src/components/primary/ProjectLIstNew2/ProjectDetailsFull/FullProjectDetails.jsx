@@ -1,22 +1,19 @@
-import { Box } from '@mui/material';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import {Box} from '@mui/material';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {useLocation, useNavigate} from 'react-router-dom';
 import useFullDetailsProject from '../../../../customHooks/useFullDetailsProject';
 import useToaster from '../../../../customHooks/useToaster';
-import {
-  getMyWorkHistoryById,
-  getUsersWorkHistoryById,
-} from '../../../../features/slice/projectDrawerSlice';
+import {getMyWorkHistoryById, getUsersWorkHistoryById,} from '../../../../features/slice/projectDrawerSlice';
 import dataBuilder from '../../../shared/CustomTable/dataBuilder';
 import fieldBuilder from '../../../shared/CustomTable/fieldBuilder';
 import LoadingComponent from '../../../shared/Loading/LoadingComponent';
-import { singleDetailsFields } from '../FIlterOptions';
+import {singleDetailsFields} from '../FIlterOptions';
 import useAllFunc from '../Hooks/useAllFunc';
 import useHandleChange from '../Hooks/useHandleChange';
 import PaginationTable from '../PaginationTable';
 import Project2DetailsModal from '../Project2Details/Project2DetailsModal';
-import { HeaderBox, TablePaper } from '../ProjectLIstIndex2';
+import {HeaderBox, TablePaper} from '../ProjectLIstIndex2';
 import CheckOutModal from './CheckOutModal';
 import ProjectDetailsHeader from './ProjectDetailsHeader';
 

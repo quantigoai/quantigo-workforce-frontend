@@ -1,7 +1,6 @@
 import * as React from "react";
-import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
-import { Box, TextField, Typography, styled } from "@mui/material";
-import { useSelector } from "react-redux";
+import Autocomplete, {createFilterOptions} from "@mui/material/Autocomplete";
+import {Box, styled, TextField, Typography} from "@mui/material";
 
 
 const filter = createFilterOptions();

@@ -1,7 +1,8 @@
-import { Box, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import {Box, Typography} from "@mui/material";
+import React, {useEffect, useState} from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import { useDropzone } from "react-dropzone";
+import {useDropzone} from "react-dropzone";
+
 const thumb = {
   display: "inline-flex",
   borderRadius: 2,

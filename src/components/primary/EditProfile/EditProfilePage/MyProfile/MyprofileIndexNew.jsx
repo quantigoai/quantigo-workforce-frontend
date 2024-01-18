@@ -1,21 +1,20 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import {Box, Button, Grid, Typography} from "@mui/material";
 import moment from "moment/moment";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import {useEffect, useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../../../customHooks/useToaster";
 import {
-  getUserPersonalInfo,
-  myProfileEdit,
-  readMyProfile,
-  uploadMyImage,
+    getUserPersonalInfo,
+    myProfileEdit,
+    readMyProfile,
+    uploadMyImage,
 } from "../../../../../features/slice/userSlice";
-import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
-import PasswordFieldForProfile from "../../PasswordFieldForProfile";
+import {capitalizeFirstLetter} from "../../../../../helper/capitalizeFirstWord";
 import CommonFieldTest from "../CommonFieldTest";
 import FieldForProfile from "../FieldForProfile";
 import SelectFieldForProfile from "../SelectFieldForProfile";
-import ProfilePicture from "./ProfilePicture";
+
 const maritalStatusOption = [
   { value: "married", label: "Married" },
   { value: "single", label: "Single" },

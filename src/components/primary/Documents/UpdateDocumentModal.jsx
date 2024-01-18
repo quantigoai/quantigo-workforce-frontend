@@ -1,13 +1,11 @@
-import { LoadingButton } from "@mui/lab";
-import { Box, Button, Grid, MenuItem, Modal, Select, TextField, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {LoadingButton} from "@mui/lab";
+import {Box, Button, Grid, MenuItem, Modal, Select, TextField, Typography} from "@mui/material";
+import {styled} from "@mui/material/styles";
+import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
-import { updateMyDocuments } from "../../../features/slice/userSlice";
+import {updateMyDocuments} from "../../../features/slice/userSlice";
 import ProjectModalHeader from "../ProjectLIstNew2/ProjectModalHeader";
-import DocumentImageUpload from "./DocumentImageUpload";
-import UploadMultipleImage from "../EditProfile/EditProfilePage/EducationalInfo/UploadMultipleImage";
 import UploadImagesField from "../EditProfile/EditProfilePage/VerificationInfo/UploadImagesField";
 
 export const MyTextField = styled(TextField)(() => ({

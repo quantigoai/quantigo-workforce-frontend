@@ -8,8 +8,9 @@
  */
 
 import LockPersonIcon from '@mui/icons-material/LockPerson';
-import { Badge, Box, styled, TableCell, Typography } from '@mui/material';
+import {Badge, Box, styled, TableCell, Typography} from '@mui/material';
 import React from 'react';
+
 const StyledBadge = styled(Badge)(() => ({
   '& .MuiBadge-badge': {
     right: -8,

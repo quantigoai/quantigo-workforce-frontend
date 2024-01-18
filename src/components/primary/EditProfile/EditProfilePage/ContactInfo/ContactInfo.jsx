@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getUserContactInfo, getUserVerificationInfo } from "../../../../../features/slice/userSlice";
-import { Box } from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getUserContactInfo} from "../../../../../features/slice/userSlice";
+import {Box} from "@mui/material";
 import ProfilePicture from "../MyProfile/ProfilePicture";
 import LoadingComponent from "../../../../shared/Loading/LoadingComponent";
 import ContactInfoIndex from "./ContactInfoIndex";

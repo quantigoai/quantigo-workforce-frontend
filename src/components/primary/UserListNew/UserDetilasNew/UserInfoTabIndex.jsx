@@ -1,12 +1,13 @@
-import { Box, Tab, Tabs, Typography } from "@mui/material";
+import {Box, Tab, Tabs, Typography} from "@mui/material";
 import React from "react";
 import PropTypes from "prop-types";
-import { useTheme } from "@mui/material/styles";
+import {useTheme} from "@mui/material/styles";
 import ChangeInfoIndex from "./ChangeInfoIndex";
 import UserInfoIndex from "./UserInfoIndex";
 import ContactInfoDetailsIndex from "./ContactInfoDetailsIndex";
 import EducationInfoDetails from "./EducationInfoDetails";
 import VerificationInfoDetails from "./VerificationInfoDetails";
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (

@@ -1,22 +1,22 @@
 import {
-  Alert,
-  Box,
-  Button,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-  styled,
-  tableCellClasses,
+    Alert,
+    Box,
+    Button,
+    Stack,
+    styled,
+    Table,
+    TableBody,
+    TableCell,
+    tableCellClasses,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Typography,
 } from '@mui/material';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import starIcon from '../../../../../assets/images/StarIcon.svg';
-import { getMyProjectWorkHistoryById } from '../../../../../features/slice/projectDrawerSlice';
+import {getMyProjectWorkHistoryById} from '../../../../../features/slice/projectDrawerSlice';
 import LoadingComponent from '../../../../shared/Loading/LoadingComponent';
 import './index.css';
 

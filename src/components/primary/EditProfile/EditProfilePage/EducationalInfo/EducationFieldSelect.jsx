@@ -1,5 +1,4 @@
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { Box, FormControl, MenuItem, Select, styled, Typography } from "@mui/material";
+import {Box, FormControl, MenuItem, Select, styled, Typography} from "@mui/material";
 import PropTypes from "prop-types";
 
 EducationFieldSelect.propTypes = {

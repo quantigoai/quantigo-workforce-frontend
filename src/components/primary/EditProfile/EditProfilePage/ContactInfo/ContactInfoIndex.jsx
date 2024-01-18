@@ -1,19 +1,13 @@
-import {
-  Box,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  Grid,
-  Typography,
-} from '@mui/material';
+import {Box, Button, Checkbox, FormControlLabel, Grid, Typography,} from '@mui/material';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import useToaster from '../../../../../customHooks/useToaster';
-import { updateMyContact } from '../../../../../features/slice/userSlice';
+import {updateMyContact} from '../../../../../features/slice/userSlice';
 import PasswordFieldForProfile from '../../PasswordFieldForProfile';
 import FieldForProfile from '../FieldForProfile';
 import SelectFieldForBdInfo from './SelectFieldForBdInfo';
+
 const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
   const toast = useToaster();
   const url = import.meta.env.VITE_APP_SERVER_URL;

@@ -1,13 +1,13 @@
-import { Box, Button, Grid, Typography, styled } from '@mui/material';
-import React, { useState } from 'react';
+import {Box, Button, Grid, styled, Typography} from '@mui/material';
+import React, {useState} from 'react';
 
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
+import {DatePicker} from '@mui/x-date-pickers/DatePicker';
+import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import useToaster from '../../../../../customHooks/useToaster';
-import { updateMyEducationFunction } from '../../../../../features/slice/userSlice';
+import {updateMyEducationFunction} from '../../../../../features/slice/userSlice';
 import UploadImagesField from '../VerificationInfo/UploadImagesField';
 import EducationFieldSelect from './EducationFieldSelect';
 import EducationSelect from './EducationSelect';

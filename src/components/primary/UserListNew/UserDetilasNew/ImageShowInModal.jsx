@@ -1,7 +1,8 @@
-import { Button, Grid, Typography } from "@mui/material";
+import {Button, Grid, Typography} from "@mui/material";
 import React from "react";
 import ModalImage from "./ModalImage";
 import ViewIcon from "../../../../assets/images/dashboardIcon/ViewIcon.svg";
+
 const styleBtn = {
   width: "100%",
   textTransform: "none",

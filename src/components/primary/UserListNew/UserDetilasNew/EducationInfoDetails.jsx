@@ -1,15 +1,11 @@
-import { Box, Stack } from "@mui/material";
+import {Box, Stack} from "@mui/material";
 import moment from "moment/moment";
-import React, { useEffect, useState } from "react";
-import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
+import React, {useEffect, useState} from "react";
 import SingleItem from "../../ProjectLIstNew2/Project2Details/SingleItem";
-import ChangeInfoIndex from "./ChangeInfoIndex";
 import DetailsItemThree from "./DetailsItemThree";
-import NdaDocumentSection from "./NdaDocumentSection";
-import SkillFieldForUserDetails from "./SkillFieldForUserDetails";
 import ImageShowInModal from "./ImageShowInModal";
-import { useDispatch } from "react-redux";
-import { getUserEducationInfo } from "../../../../features/slice/userSlice";
+import {useDispatch} from "react-redux";
+import {getUserEducationInfo} from "../../../../features/slice/userSlice";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 
 const EducationInfoDetails = ({

@@ -1,16 +1,13 @@
-import { addDays } from 'date-fns';
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import {addDays} from 'date-fns';
+import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {useNavigate, useParams} from 'react-router-dom';
 import {
-  checkInProjectDrawerById,
-  checkOutProjectDrawerById,
-  getMyWorkHistoryById,
+    checkInProjectDrawerById,
+    checkOutProjectDrawerById,
+    getMyWorkHistoryById,
 } from '../features/slice/projectDrawerSlice';
-import {
-  clearUserWorkingProject,
-  updateUserWorkingProject,
-} from '../features/slice/userSlice';
+import {clearUserWorkingProject, updateUserWorkingProject,} from '../features/slice/userSlice';
 import useToaster from './useToaster';
 
 const useFullDetailsProject = ({ filteredCol }) => {

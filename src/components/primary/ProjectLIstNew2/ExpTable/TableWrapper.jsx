@@ -6,10 +6,10 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Alert } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
+import {Alert} from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
+import {useLocation, useParams} from "react-router-dom";
 import dataBuilder from "../../../shared/CustomTable/dataBuilder";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import DetailsPage from "../ProjectDetailsFull/DetailsPage";

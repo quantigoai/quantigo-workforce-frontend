@@ -1,4 +1,4 @@
-import { FormControl, MenuItem, Select, styled, Typography } from "@mui/material";
+import {FormControl, MenuItem, Select, styled, Typography} from "@mui/material";
 import React from "react";
 
 export const MySelect = styled(Select)(() => ({

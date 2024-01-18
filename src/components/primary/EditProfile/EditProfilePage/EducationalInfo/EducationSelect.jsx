@@ -1,8 +1,6 @@
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { Box, FormControl, FormHelperText, MenuItem, Select, styled, Typography } from "@mui/material";
+import {Box, FormControl, MenuItem, Select, styled, Typography} from "@mui/material";
 import PropTypes from "prop-types";
-import { Controller, useFormContext } from "react-hook-form";
-import { CustomFormControl } from "../../../../shared/CustomField/CustomSelectField";
+
 EducationSelect.propTypes = {
   name: PropTypes.string,
   helperText: PropTypes.node,

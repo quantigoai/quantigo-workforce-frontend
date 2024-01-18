@@ -1,6 +1,6 @@
-import { Grid, Tooltip, Typography } from "@mui/material";
+import {Grid, Tooltip, Typography} from "@mui/material";
 import skillImage from "../../../../assets/images/skillsIcon.svg";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 
 const CourseSkillChip = ({ skills = [] }) => {
   const { isLoading } = useSelector((state) => state.course);

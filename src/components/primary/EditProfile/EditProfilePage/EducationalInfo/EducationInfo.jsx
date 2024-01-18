@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 
-import { useDispatch, useSelector } from "react-redux";
-import { Box } from "@mui/material";
+import {useDispatch, useSelector} from "react-redux";
+import {Box} from "@mui/material";
 import ProfilePicture from "../MyProfile/ProfilePicture";
 import LoadingComponent from "../../../../shared/Loading/LoadingComponent";
 import EducationInfoIndex from "./EducationInfoIndex";
-import { getUserEducationInfo } from "../../../../../features/slice/userSlice";
+import {getUserEducationInfo} from "../../../../../features/slice/userSlice";
 
 const EducationInfo = () => {
   const [editAble, setEditAble] = useState(false);

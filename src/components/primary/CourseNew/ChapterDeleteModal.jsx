@@ -1,8 +1,8 @@
-import { Box, Button, Modal, Typography } from "@mui/material";
+import {Box, Button, Modal, Typography} from "@mui/material";
 import React from "react";
 import useToaster from "../../../customHooks/useToaster";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteAChapterById } from "../../../features/slice/courseSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {deleteAChapterById} from "../../../features/slice/courseSlice";
 import deleteIcon from "../../../assets/images/delete.svg";
 
 const style = {

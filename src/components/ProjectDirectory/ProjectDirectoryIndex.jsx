@@ -236,8 +236,9 @@ const ProjectDirectoryIndex = () => {
     setClient_AliasSetFilter(false);
     setIndustrySetFilter(false);
     setAnnotationSetFilter(false);
+    setFilterData({});
     const data = {
-      filterData: {},
+      filterData,
       search,
       pagination,
       ascDescOption: ascDesc,

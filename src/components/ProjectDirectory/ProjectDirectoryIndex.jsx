@@ -1,9 +1,9 @@
 /* eslint-disable no-prototype-builtins */
-import {Box} from "@mui/material";
-import React, {useEffect, useLayoutEffect, useState} from "react";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {useLocation} from "react-router-dom";
+import { Box } from "@mui/material";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 import {
   clearProjectDirectory,
@@ -14,13 +14,13 @@ import {
   setCurrentProjectDirectory,
   updateProjectDirectory,
 } from "../../features/slice/ProjectDirectorySlice.js";
-import {setActivePath} from "../../features/slice/activePathSlice";
-import {setProjectDirectoryFilter} from "../../features/slice/temporaryDataSlice";
+import { setActivePath } from "../../features/slice/activePathSlice";
+import { setProjectDirectoryFilter } from "../../features/slice/temporaryDataSlice";
 // /ProjectLIstNew2/ExpTable/TableWrapper
 import TableWrapper from "../primary/ProjectLIstNew2/ExpTable/TableWrapper.jsx";
-import {projectDirectoryField} from "../primary/ProjectLIstNew2/FIlterOptions";
+import { projectDirectoryField } from "../primary/ProjectLIstNew2/FIlterOptions";
 import PaginationTable from "../primary/ProjectLIstNew2/PaginationTable";
-import {HeaderBox, TablePaper} from "../primary/ProjectLIstNew2/ProjectLIstIndex2";
+import { HeaderBox, TablePaper } from "../primary/ProjectLIstNew2/ProjectLIstIndex2";
 import fieldBuilder from "../shared/CustomTable/fieldBuilder";
 import LoadingComponent from "../shared/Loading/LoadingComponent";
 import CreateProjectDirectoryModal from "./CreateProjectDirectoryModal.jsx";
@@ -237,6 +237,7 @@ const ProjectDirectoryIndex = () => {
     setIndustrySetFilter(false);
     setAnnotationSetFilter(false);
     const data = {
+      filterData: {},
       search,
       pagination,
       ascDescOption: ascDesc,

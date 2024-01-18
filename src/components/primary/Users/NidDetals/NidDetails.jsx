@@ -1,4 +1,4 @@
-import {Box, Grid, IconButton, Modal, Paper, Skeleton, Stack, Typography} from "@mui/material";
+import { Box, Grid, IconButton, Modal, Paper, Skeleton, Stack, Typography } from "@mui/material";
 import u_multiply from "../../../../assets/images/crosIcon.svg"; // Import your close (cross) button icon here
 import ImageSwiperIndex from "./ImageSwiperIndex";
 
@@ -135,15 +135,15 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
 
                           <Typography variant="wpf_p2_semiBold" sx={{ color: "primary.B200", marginLeft: "6px" }}>
                             {" "}
-                            {drawerStatus(documentsType)}
+                            {drawerStatus(documentsType) || "N/A"}
                           </Typography>
                         </Stack>
                         <Stack direction="row" sx={{ justifyContent: "center" }}>
                           <Typography variant="wpf_p2_semiBold" sx={{ color: "neutral.N300" }}>
-                            Document No. :{" "}
+                            Document No :{" "}
                           </Typography>
                           <Typography variant="wpf_p2_semiBold" sx={{ color: "neutral.N300", marginLeft: "6px" }}>
-                            {documentsNo}
+                            {!documentsNo ? "N/A" : documentsNo}
                           </Typography>
                         </Stack>
                       </Box>

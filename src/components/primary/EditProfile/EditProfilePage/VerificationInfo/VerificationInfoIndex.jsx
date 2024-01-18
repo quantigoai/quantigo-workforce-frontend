@@ -1,15 +1,15 @@
-import React, {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {Box, Button, Grid, styled, TextField, Typography} from "@mui/material";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Box, Button, Grid, styled, TextField, Typography } from "@mui/material";
 import FieldForProfile from "../FieldForProfile";
 // import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
 import UploadImagesField from "./UploadImagesField";
 import SelectFieldForProfile from "../SelectFieldForProfile";
-import {updateMyVerificationFunction,} from "../../../../../features/slice/userSlice";
+import { updateMyVerificationFunction } from "../../../../../features/slice/userSlice";
 import useToaster from "../../../../../customHooks/useToaster";
-import {capitalizeFirstLetter} from "../../../../../helper/capitalizeFirstWord";
+import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
 import axios from "axios";
-import {realToken} from "../../../../../helper/lib";
+import { realToken } from "../../../../../helper/lib";
 
 const TextFieldQuestion = styled(TextField)(() => ({
   // borderRadius: "8px 0px 0px 8px",
@@ -251,7 +251,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                       </Typography>
 
                       <Box sx={{ width: "70%" }}>
-                        {data.standardPhoto.url && !editAble ? (
+                        {data?.standardPhoto?.url && !editAble ? (
                           <>
                             {/* <TextFieldQuestion
                               sx={
@@ -300,7 +300,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                       </Box>
 
                       <Box sx={{ width: data.standardPhoto && !editAble ? "100%" : "30%" }}>
-                        {data.standardPhoto && !editAble ? (
+                        {data?.standardPhoto && !editAble ? (
                           <>
                             <Button
                               sx={{
@@ -314,7 +314,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                 zIndex: 2,
                                 backgroundColor: "neutral.N00",
                               }}
-                              onClick={() => handleClick(data.standardPhoto.url)}
+                              onClick={() => handleClick(data?.standardPhoto?.url)}
                             >
                               <Typography
                                 variant="wpf_h7_medium"
@@ -400,7 +400,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                         Please Upload Your Updated Resume
                       </Typography>
                       <Box sx={{ width: "70%" }}>
-                        {data.resume && !editAble ? (
+                        {data?.resume?.url && !editAble ? (
                           <></>
                         ) : (
                           <>
@@ -419,8 +419,8 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                         )}
                       </Box>
 
-                      <Box sx={{ width: data.resume && !editAble ? "100%" : "30%" }}>
-                        {data.resume && !editAble ? (
+                      <Box sx={{ width: data?.resume?.url && !editAble ? "100%" : "30%" }}>
+                        {data?.resume?.url && !editAble ? (
                           <>
                             <Button
                               sx={{

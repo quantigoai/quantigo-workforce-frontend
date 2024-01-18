@@ -350,13 +350,7 @@ const Routers = () => {
 
         {/* ---------- Project Directory ----------- */}
         {/* TODO Should updated and release later  */}
-        <Route
-          element={
-            <PrivateRoute
-              roles={[roles.admin, roles.eng_lead, roles.pro_lead, roles.pro_co, roles.pro_manager, roles.del_manager]}
-            />
-          }
-        >
+        <Route element={<PrivateRoute roles={[roles.admin, roles.eng_lead]} />}>
           <Route path={"/projectDirectory"} element={<ProjectDirectoryIndex />} />
         </Route>
         {/* ---------- ---------- ----------- */}

@@ -4,12 +4,12 @@ import { Backdrop, Box, Button, Fade, Modal } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import useToaster from "../../../customHooks/useToaster";
-import { ProjectDirectorySchema } from "../../primary/ProjectLIstNew2/ProjectDrawerHelper";
-import { FieldBox, LineStack } from "../../primary/ProjectLIstNew2/ProjectModal";
-import ProjectModalHeader from "../../primary/ProjectLIstNew2/ProjectModalHeader";
-import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
-import FormProvider from "../../shared/FormProvider/FormProvider";
+import useToaster from "../../customHooks/useToaster.jsx";
+import { ProjectDirectorySchema } from "../primary/ProjectLIstNew2/ProjectDrawerHelper";
+import { FieldBox, LineStack } from "../primary/ProjectLIstNew2/ProjectModal";
+import ProjectModalHeader from "../primary/ProjectLIstNew2/ProjectModalHeader";
+import PDTextFIeld from "../shared/CustomField/PDTextFIeld";
+import FormProvider from "../shared/FormProvider/FormProvider";
 
 const style = {
   position: "absolute",

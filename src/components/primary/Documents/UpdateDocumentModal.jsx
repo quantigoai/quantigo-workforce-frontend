@@ -1,5 +1,5 @@
 import { LoadingButton } from "@mui/lab";
-import { Box, Button, Grid, MenuItem, Modal, Select, TextField, Typography } from "@mui/material";
+import { Alert, Box, Button, Grid, MenuItem, Modal, Select, TextField, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +7,7 @@ import useToaster from "../../../customHooks/useToaster";
 import { updateMyDocuments } from "../../../features/slice/userSlice";
 import ProjectModalHeader from "../ProjectLIstNew2/ProjectModalHeader";
 import UploadImagesField from "../EditProfile/EditProfilePage/VerificationInfo/UploadImagesField";
-
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "2px solid #E6ECF5 !important",
@@ -54,11 +54,8 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
   const [documentsType, setDocumentsType] = useState(user?.documentsType);
   const [documentNo, setDocumentNo] = useState(user?.documentNo);
   const [imagesCopy, setImagesCopy] = useState(user?.documentsImage);
-
   const [isDocumentNoValid, setDocumentNoValid] = useState(false);
-  console.log("🚀 ~ isDocumentNoValid:", isDocumentNoValid);
   const [isDocumentTypeValid, setDocumentTypeValid] = useState(false);
-  console.log("🚀 ~ isDocumentTypeValid:", isDocumentTypeValid);
   const [images, setImages] = useState(user?.documentsImage);
   const [removeImagesUpdate, setRemoveImagesUpdate] = useState([
     {
@@ -103,15 +100,13 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
     const formData = new FormData();
     // formData.append("documentsImage", coverImageFile);
     formData.append("documentsType", documentsType);
-    console.log("🚀 ~ handleChange ~ documentsType:", documentsType);
     formData.append("documentNo", documentNo);
-    console.log("🚀 ~ handleChange ~ documentNo:", documentNo);
     images.forEach((item) => {
       if (item.name) {
         formData.append("documentsImage", item);
       }
     });
-    console.log("🚀 ~ images.forEach ~ images:", images);
+
     if (imagesCopy.length != 0) {
       imagesCopy.map((item, index) => {
         const tempData = {
@@ -130,17 +125,17 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
       formData: formData,
     };
 
-    // dispatch(updateMyDocuments(finalData)).then((action) => {
-    //   if (action.error) {
-    //     toast.trigger(action.error.message, "error");
-    //   } else {
-    //     toast.trigger("Your Documents has been update successfully.", "success");
-    //     handleClose();
-    //     setCoverImage(null);
-    //     setDocumentNoValid(false);
-    //     setDocumentTypeValid(false);
-    //   }
-    // });
+    dispatch(updateMyDocuments(finalData)).then((action) => {
+      if (action.error) {
+        toast.trigger(action.error.message, "error");
+      } else {
+        toast.trigger("Your Documents has been update successfully.", "success");
+        handleClose();
+        setCoverImage(null);
+        setDocumentNoValid(false);
+        setDocumentTypeValid(false);
+      }
+    });
   };
 
   return (
@@ -155,9 +150,9 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
           sx={{
             ...style,
             height: {
-              lg: "78%",
-              xl: "72%",
-              xxl: "68%",
+              lg: "80%",
+              xl: "74%",
+              xxl: "70%",
             },
             width: {
               lg: "50%",
@@ -235,6 +230,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                     // setDocumentNo(e.target.value);
                     handleDocumentNoChange(e); // Validate document number
                   }}
+                  icon={<InfoOutlinedIcon />}
                 />
               </Grid>
 
@@ -256,6 +252,22 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                 /> */}
                 {/* <UploadMultipleImage /> */}
               </Grid>
+              {user?.rejectionCause && (
+                <Box sx={{ padding: "10px" }}>
+                  <Alert
+                    severity="warning"
+                    sx={{
+                      border: "1px solid #F2A200",
+                      color: "warning.400",
+                      backgroundColor: "warning.100",
+                      borderRadius: "6px",
+                      height: "50px",
+                    }}
+                  >
+                    Rejection Cause: {user?.rejectionCause}
+                  </Alert>
+                </Box>
+              )}
             </Box>
           </Box>
 
@@ -307,6 +319,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                     //   // documentNo && documentsType &&
                     //   images.length === 0
                     // }
+                    disabled={!documentsType || !documentNo || images.length === 0}
                     sx={{
                       width: "128px",
                       textTransform: "none",

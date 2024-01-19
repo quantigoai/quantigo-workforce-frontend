@@ -95,7 +95,7 @@ const VerificationInfoDetails = ({
                   Item3={user.extraDocumentName || "N/A"}
                 />
 
-                <NdaDocumentSection user={user} />
+                <NdaDocumentSection user={user} data={data} />
                 <Grid container sx={{ padding: "2%" }}>
                   <Grid item xs={4} sx={{ paddingRight: "1%" }}>
                     <ImageShowInModal

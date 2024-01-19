@@ -1,4 +1,4 @@
-import {Box, Button, Menu, MenuItem} from "@mui/material";
+import { Box, Button, Menu, MenuItem } from "@mui/material";
 import React from "react";
 
 const selectTypeFilter = [
@@ -23,11 +23,7 @@ const selectTypeFilter = [
   "Annotation",
   "QA",
 ];
-const SelectFilterProjectDirectory = ({
-  handleMenuItemClick,
-  setAnchorEl,
-  anchorEl,
-}) => {
+const SelectFilterProjectDirectory = ({ handleMenuItemClick, setAnchorEl, anchorEl }) => {
   const handleButtonClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -42,22 +38,17 @@ const SelectFilterProjectDirectory = ({
           variant="outlined"
           sx={{
             "&:hover": {
-              backgroundColor: "#FF9A45",
-              color: "#1D1D1D",
+              backgroundColor: "#244EF5",
+              color: "#fff",
             },
           }}
-          onMouseOver={handleButtonClick}>
+          onClick={handleButtonClick}
+        >
           Add Filter Type
         </Button>
-        <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleMenuClose}>
+        <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
           {selectTypeFilter.map((filter, index) => (
-            <MenuItem
-              key={index}
-              value={filter}
-              onClick={() => handleMenuItemClick(filter)}>
+            <MenuItem key={index} value={filter} onClick={() => handleMenuItemClick(filter)}>
               {filter}
             </MenuItem>
           ))}

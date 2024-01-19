@@ -1,7 +1,7 @@
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import {Alert, Box, Button, Grid, Typography} from "@mui/material";
-import React, {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { Alert, Box, Button, Grid, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import UpdateDocumentModal from "../../Documents/UpdateDocumentModal";
 import NDAuploadModal from "../../Nda/NDAuploadModal";
 import ProgressBarForDashboard from "../ProgressBarForDashboard";

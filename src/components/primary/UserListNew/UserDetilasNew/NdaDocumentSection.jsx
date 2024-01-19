@@ -19,11 +19,12 @@ const styleBtn = {
     border: "1px solid #2E58FF",
   },
 };
-const NdaDocumentSection = ({ user }) => {
+const NdaDocumentSection = ({ user, data }) => {
+  console.log("🚀 ~ NdaDocumentSection ~ data:", data);
   const [openModal, setOpenModal] = React.useState(false);
-  const [documentsImage, setDocumentsImage] = useState([]);
-  const [documentsType, setDocumentsType] = useState("");
-  const [documentsNo, setDocumentsNo] = useState();
+  const [documentsImage, setDocumentsImage] = useState(data?.documentsImage);
+  const [documentsType, setDocumentsType] = useState(data?.documentsType);
+  const [documentsNo, setDocumentsNo] = useState(data?.documentNo);
   const [userName, setUserName] = useState([]);
   const BACKEND_URL = import.meta.env.VITE_APP_SERVER_URL;
   const handleClick = (signNda) => {
@@ -36,30 +37,31 @@ const NdaDocumentSection = ({ user }) => {
     setDocumentsType(documentType);
     setUserName(name);
     const id = user._id;
-    axios
-      .get(`${BACKEND_URL}/users/get-user-documents/${id}`, {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-      })
-      .then((res) => {
-        setDocumentsImage(res.data.documentsImage);
-      });
+    // axios
+    //   .get(`${BACKEND_URL}/users/get-user-documents/${id}`, {
+    //     headers: {
+    //       Authorization: `Bearer ${realToken()}`,
+    //     },
+    //   })
+    //   .then((res) => {
+    //     setDocumentsImage(res.data.documentsImage);
+    //     console.log(res.data.documentsImage);
+    //   });
   };
   const handleClose = () => setOpenModal(false);
-  const isDisabled = !user.documentNo;
+  const isDisabled = !data?.documentsImage.length;
   return (
     <>
       <Grid container sx={{ padding: "2%" }}>
         <Grid item xs={6} sx={{ paddingRight: "2%" }}>
           <Button
             sx={styleBtn}
-            disabled={isDisabled}
-            onClick={() => handleDetailNid(user.documentsImage, user.documentNo, user.documentsType, user.name)}
+            disabled={!data?.documentsImage.length}
+            onClick={() => handleDetailNid(data?.documentsImage, data?.documentNo, data?.documentsType, data?.name)}
           >
             <Typography
               variant="wpf_p3_medium"
-              color={user.documentNo ? "primary.B200" : ""}
+              color={data?.documentNo ? "primary.B200" : ""}
               sx={{ paddingRight: "4%", filter: isDisabled ? "grayscale(100%) opacity(50%)" : "" }}
             >
               Document
@@ -73,20 +75,20 @@ const NdaDocumentSection = ({ user }) => {
           </Button>
         </Grid>
         <Grid item xs={6}>
-          <Button sx={styleBtn} disabled={!user.signImage} onClick={() => handleClick(user.signImage)}>
+          <Button sx={styleBtn} disabled={!data?.signImage} onClick={() => handleClick(data?.signImage)}>
             <Typography
               variant="wpf_p3_medium"
-              color={!user.signImage ? "" : "primary.B200"}
+              color={!data?.signImage ? "primary.B200" : ""}
               sx={{
                 paddingRight: "4%",
-                filter: !user?.signImage ? "grayscale(100%) opacity(50%)" : "",
+                filter: !data?.signImage ? "grayscale(100%) opacity(50%)" : "",
               }}
             >
               NDA
             </Typography>
             <img
               style={{
-                filter: !user?.signImage ? "grayscale(100%) opacity(50%)" : "",
+                filter: !data?.signImage ? "grayscale(100%) opacity(50%)" : "",
               }}
               src={ArrowIcon}
             />

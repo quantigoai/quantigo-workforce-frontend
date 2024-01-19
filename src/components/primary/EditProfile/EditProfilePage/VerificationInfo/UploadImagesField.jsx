@@ -1,8 +1,8 @@
-import {Box, Typography} from "@mui/material";
-import React, {useEffect, useMemo, useState} from "react";
-import {useDropzone} from "react-dropzone";
+import { Box, Typography } from "@mui/material";
+import React, { useEffect, useMemo, useState } from "react";
+import { useDropzone } from "react-dropzone";
 import CloseIcon from "@mui/icons-material/Close";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import ctaImage from "../../../../../assets/images/CTA.png";
 
 const baseStyle = {
@@ -214,7 +214,6 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
           <Box
             sx={{
               width: "95%",
-              ml: 2,
               mt: 2,
             }}
             {...getRootProps({

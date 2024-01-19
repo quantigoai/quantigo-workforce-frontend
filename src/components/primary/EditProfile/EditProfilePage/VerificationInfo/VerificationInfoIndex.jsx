@@ -120,14 +120,14 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
     documentType && formData.append("extraDocumentType", documentType);
     nidNumber && formData.append("extraDocumentNo", nidNumber);
     nameAsNid && formData.append("extraDocumentName", nameAsNid);
-    console.log("🚀 ~ images.forEach ~ images:", images)
+    console.log("🚀 ~ images.forEach ~ images:", images);
 
     images.forEach((item) => {
       if (item.name) {
         formData.append("images", item);
       }
     });
-    
+
     photo.length != 0 && formData.append("photo", photo);
     resume.length != 0 && formData.append("resume", resume);
 
@@ -222,7 +222,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                         }}
                         variant="wpf_p4_medium"
                       >
-                        Please Upload Your Passport Size Photo
+                        Upload Your Passport Size Photo
                       </Typography>
 
                       <Box sx={{ width: "70%" }}>
@@ -299,7 +299,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                   color: "#2E58FF",
                                 }}
                               >
-                                View
+                                View Your Photo
                               </Typography>
                             </Button>
                           </>
@@ -372,7 +372,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                         }}
                         variant="wpf_p4_medium"
                       >
-                        Please Upload Your Updated Resume
+                        Upload Your Updated Resume
                       </Typography>
                       <Box sx={{ width: "70%" }}>
                         {data?.resume?.url && !editAble ? (
@@ -417,7 +417,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                   color: "#2E58FF",
                                 }}
                               >
-                                View
+                                View Your Resume
                               </Typography>
                             </Button>
                           </>

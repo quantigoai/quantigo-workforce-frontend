@@ -56,7 +56,9 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
   const [imagesCopy, setImagesCopy] = useState(user?.documentsImage);
 
   const [isDocumentNoValid, setDocumentNoValid] = useState(false);
+  console.log("🚀 ~ isDocumentNoValid:", isDocumentNoValid);
   const [isDocumentTypeValid, setDocumentTypeValid] = useState(false);
+  console.log("🚀 ~ isDocumentTypeValid:", isDocumentTypeValid);
   const [images, setImages] = useState(user?.documentsImage);
   const [removeImagesUpdate, setRemoveImagesUpdate] = useState([
     {
@@ -101,12 +103,15 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
     const formData = new FormData();
     // formData.append("documentsImage", coverImageFile);
     formData.append("documentsType", documentsType);
+    console.log("🚀 ~ handleChange ~ documentsType:", documentsType);
     formData.append("documentNo", documentNo);
+    console.log("🚀 ~ handleChange ~ documentNo:", documentNo);
     images.forEach((item) => {
       if (item.name) {
         formData.append("documentsImage", item);
       }
     });
+    console.log("🚀 ~ images.forEach ~ images:", images);
     if (imagesCopy.length != 0) {
       imagesCopy.map((item, index) => {
         const tempData = {
@@ -125,17 +130,17 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
       formData: formData,
     };
 
-    dispatch(updateMyDocuments(finalData)).then((action) => {
-      if (action.error) {
-        toast.trigger(action.error.message, "error");
-      } else {
-        toast.trigger("Your Documents has been update successfully.", "success");
-        handleClose();
-        setCoverImage(null);
-        setDocumentNoValid(false);
-        setDocumentTypeValid(false);
-      }
-    });
+    // dispatch(updateMyDocuments(finalData)).then((action) => {
+    //   if (action.error) {
+    //     toast.trigger(action.error.message, "error");
+    //   } else {
+    //     toast.trigger("Your Documents has been update successfully.", "success");
+    //     handleClose();
+    //     setCoverImage(null);
+    //     setDocumentNoValid(false);
+    //     setDocumentTypeValid(false);
+    //   }
+    // });
   };
 
   return (

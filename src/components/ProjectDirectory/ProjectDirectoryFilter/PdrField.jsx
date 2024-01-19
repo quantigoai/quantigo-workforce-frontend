@@ -1,9 +1,9 @@
-import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
-import {getType} from "../../../features/slice/ProjectDirectorySlice";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getType } from "../../../features/slice/ProjectDirectorySlice";
 
-const PdrField = ({ setPDRFilter, pDRFilter }) => {
+const PdrField = ({ setPDRFilter, pDRFilter, isLightTheme }) => {
   const [pDR, setPDR] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -23,7 +23,7 @@ const PdrField = ({ setPDRFilter, pDRFilter }) => {
           onChange={(e) => setPDRFilter(e.target.value)}
           value={pDRFilter || ""}
           sx={{
-            backgroundColor: "#F8F8F8",
+            backgroundColor: isLightTheme ? "#F8F8F8" : "",
             border: "1px solid #DADCDF",
             borderRadius: "4px",
           }}

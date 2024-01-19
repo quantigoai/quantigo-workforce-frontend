@@ -1,9 +1,9 @@
-import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
-import {getType} from "../../../features/slice/ProjectDirectorySlice";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getType } from "../../../features/slice/ProjectDirectorySlice";
 
-const AnnotationType = ({ annotationFilter, setAnnotationFilter }) => {
+const AnnotationType = ({ annotationFilter, setAnnotationFilter, isLightTheme }) => {
   const [annotationTypes, setAnnotationTypes] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -23,7 +23,7 @@ const AnnotationType = ({ annotationFilter, setAnnotationFilter }) => {
           onChange={(e) => setAnnotationFilter(e.target.value)}
           value={annotationFilter || ""}
           sx={{
-            backgroundColor: "#F8F8F8",
+            backgroundColor: isLightTheme ? "#F8F8F8" : "",
             border: "1px solid #DADCDF",
             borderRadius: "4px",
           }}

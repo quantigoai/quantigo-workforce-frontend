@@ -1,9 +1,9 @@
-import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
-import {getType} from "../../../features/slice/ProjectDirectorySlice";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getType } from "../../../features/slice/ProjectDirectorySlice";
 
-const PlatformField = ({ platformFieldFilter, setPlatformFieldFilter }) => {
+const PlatformField = ({ platformFieldFilter, setPlatformFieldFilter, isLightTheme }) => {
   const [industryAllType, setIndustryAllType] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -24,7 +24,7 @@ const PlatformField = ({ platformFieldFilter, setPlatformFieldFilter }) => {
           onChange={(e) => setPlatformFieldFilter(e.target.value)}
           value={platformFieldFilter || ""}
           sx={{
-            backgroundColor: "#F8F8F8",
+            backgroundColor: isLightTheme ? "#F8F8F8" : "",
             border: "1px solid #DADCDF",
             borderRadius: "4px",
           }}

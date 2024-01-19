@@ -265,7 +265,7 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
 
             <UploadImagesField
               editAble={editAble}
-              label={''}
+              label={"Certificate "}
               files={files}
               setFiles={setFiles}
               setImagesCopy={setImagesCopy}

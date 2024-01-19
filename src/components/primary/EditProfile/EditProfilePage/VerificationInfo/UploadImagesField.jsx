@@ -60,6 +60,7 @@ const img = {
 };
 
 const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, imagesCopy, setRemoveImages }) => {
+  console.log("🚀 ~ UploadImagesField ~ label:", label)
   // const [files, setFiles] = useState([]);
   const { isLightTheme } = useSelector((state) => state.theme);
 
@@ -254,7 +255,7 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
                   sx={{ color: files?.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff" }}
                   variant="wpf_p2_regular"
                 >
-                  Drag and Drop your Certificate Images here or Browse” (JPG/ JPEG / PNG)
+                  Drag and Drop {label} Images here or Browse” (JPG/ JPEG / PNG)
                 </Typography>
                 <Typography
                   sx={{ color: files?.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff" }}

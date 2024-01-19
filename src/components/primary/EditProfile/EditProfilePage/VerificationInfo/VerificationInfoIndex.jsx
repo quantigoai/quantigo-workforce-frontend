@@ -522,7 +522,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
               {/* <Grid container> */}
               <UploadImagesField
                 editAble={editAble}
-                label={`${documentType} Photo`}
+                label={`${documentType}`}
                 files={images}
                 setFiles={setImages}
                 setImagesCopy={setImagesCopy}

@@ -81,21 +81,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
     },
   ]);
   const [removeImages, setRemoveImages] = useState([]);
-  const uploadRequest = async (finalImageData) => {
-    try {
-      const { id, formData } = finalImageData;
-      return await axios.patch(`${url}/users/my-verification/${id}`, formData, {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-        content: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
-  };
+
   const dispatch = useDispatch();
   const toast = useToaster();
 
@@ -134,13 +120,14 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
     documentType && formData.append("extraDocumentType", documentType);
     nidNumber && formData.append("extraDocumentNo", nidNumber);
     nameAsNid && formData.append("extraDocumentName", nameAsNid);
+    console.log("🚀 ~ images.forEach ~ images:", images)
 
     images.forEach((item) => {
       if (item.name) {
         formData.append("images", item);
       }
     });
-
+    
     photo.length != 0 && formData.append("photo", photo);
     resume.length != 0 && formData.append("resume", resume);
 
@@ -162,15 +149,6 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
       id: user._id,
       formData,
     };
-
-    // await toast.responsePromise(uploadRequest(finalImageData), setDataLoading, {
-    //   initialMessage: "  is Uploading...",
-    //   inPending: () => {},
-    //   afterSuccess: (finalImageData) => {
-    //     // dispatch(updateProjectDrawerManually(data.data.projectDrawer));
-    //   },
-    //   afterError: () => {},
-    // });
 
     await toast.responsePromise(updateMyVerificationFunction(finalImageData), setIsSyncLoading, {
       initialMessage: "Verification info is updating...",
@@ -201,9 +179,6 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
     //     setEditAble(false);
     //   }
     // });
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
   };
   return (
     <>

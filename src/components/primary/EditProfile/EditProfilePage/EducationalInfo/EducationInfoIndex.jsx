@@ -210,7 +210,7 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
                   defaultValue={data?.highestLevelOfDegree}
                 />
               </Grid>
-              <Grid item xs={6} sx={{ paddingRight: '2%' }}>
+              <Grid item xs={6} sx={{ paddingRight: '0%' }}>
                 <EducationFieldSelect
                   name={'fieldOfStudy'}
                   label={'Field of Study'}
@@ -222,7 +222,7 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
                 />
               </Grid>
             </Grid>
-            <Grid container spacing={0} sx={{ paddingBottom: '15px' }}>
+            <Grid container spacing={0} sx={{ paddingBottom: '25px' }}>
               <Grid item xs={6} sx={{ paddingRight: '2%' }}>
                 <InstitutionSelectAdd
                   label={'Institution Name'}
@@ -236,7 +236,7 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
                 item
                 xs={6}
                 sx={{
-                  paddingRight: '2%',
+                  paddingRight: '0%',
                   display: 'flex',
                   flexDirection: 'column',
                 }}

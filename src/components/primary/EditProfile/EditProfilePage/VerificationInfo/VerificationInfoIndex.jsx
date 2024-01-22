@@ -344,14 +344,14 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                   // Check if a file is selected
                                   if (selectedFile) {
                                     const fileSize = selectedFile.size; // Size in bytes
-                                    const maxSizeInBytes = 512 * 1024; // 512KB
+                                    const maxSizeInBytes = 1024 * 1024; // 512KB
 
                                     if (fileSize <= maxSizeInBytes) {
                                       setErrorPhoto("");
                                       handlePhoto(e);
                                     } else {
                                       setPhoto([]);
-                                      setErrorPhoto("Error: File size exceeds 512KB");
+                                      setErrorPhoto("Error: File size exceeds 1MB");
                                     }
                                   }
                                 }}
@@ -462,7 +462,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                   // Check if a file is selected
                                   if (selectedFile) {
                                     const fileSize = selectedFile.size; // Size in bytes
-                                    const maxSizeInBytes = 512 * 1024; // 512KB
+                                    const maxSizeInBytes = 1024 * 1024; // 512KB
 
                                     if (fileSize <= maxSizeInBytes) {
                                       setErrorResume("");

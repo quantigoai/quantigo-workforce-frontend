@@ -85,7 +85,6 @@ const ExportUserList = () => {
           Authorization: `Bearer ${realToken()}`,
         },
       });
-      console.log(response);
       const data = response.data;
 
       if (data.length) {
@@ -99,6 +98,7 @@ const ExportUserList = () => {
           user.skills = user.skills.map((skill) => skill.name);
         });
         data.forEach((user) => {
+          // user.extraDocumentImages = user.extraDocumentImages.map((item) => `${item.url}\n`);
           user.extraDocumentImages = user.extraDocumentImages.map((item) => item.url);
         });
         data.forEach((user) => {

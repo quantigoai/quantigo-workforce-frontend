@@ -510,7 +510,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                 <Grid item xs={6}>
                   <FieldForProfile
                     name="Name [as per your  NID]"
-                    label={documentType ? "Name [as per your document] " : `Name [as per your  ${documentType}]  `}
+                    label={"Name [as per your document]"}
                     // label={"Name [as per your  NID]"}
                     defaultValue={nameAsNid}
                     disableItem={false}
@@ -522,7 +522,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
               {/* <Grid container> */}
               <UploadImagesField
                 editAble={editAble}
-                label={`${documentType}`}
+                label={"Document"}
                 files={images}
                 setFiles={setImages}
                 setImagesCopy={setImagesCopy}

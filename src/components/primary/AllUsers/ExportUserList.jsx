@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { CSVDownload } from "react-csv";
 import { useSelector } from "react-redux";
 import { realToken } from "../../../helper/lib";
+import { LoadingButtonStyle } from "../Auth/Login/Login";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
@@ -119,7 +120,7 @@ const ExportUserList = () => {
   };
   return (
     <>
-      <Button
+      <LoadingButtonStyle
         sx={{
           textTransform: "none",
           borderRadius: "8px",
@@ -143,10 +144,11 @@ const ExportUserList = () => {
           lineHeight: "20px",
           padding: "16px 10px",
         }}
+        loading={initiateDownload}
         onClick={fetchData}
       >
         Export
-      </Button>
+      </LoadingButtonStyle>
       {initiateDownload && <CSVDownload data={jsonData} headers={csvHeader} target="_blank" />}
     </>
   );

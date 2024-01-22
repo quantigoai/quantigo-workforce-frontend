@@ -344,14 +344,14 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                   // Check if a file is selected
                                   if (selectedFile) {
                                     const fileSize = selectedFile.size; // Size in bytes
-                                    const maxSizeInBytes = 512 * 1024; // 512KB
+                                    const maxSizeInBytes = 1024 * 1024; // 512KB
 
                                     if (fileSize <= maxSizeInBytes) {
                                       setErrorPhoto("");
                                       handlePhoto(e);
                                     } else {
                                       setPhoto([]);
-                                      setErrorPhoto("Error: File size exceeds 512KB");
+                                      setErrorPhoto("Error: File size exceeds 1MB");
                                     }
                                   }
                                 }}
@@ -462,7 +462,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                   // Check if a file is selected
                                   if (selectedFile) {
                                     const fileSize = selectedFile.size; // Size in bytes
-                                    const maxSizeInBytes = 512 * 1024; // 512KB
+                                    const maxSizeInBytes = 1024 * 1024; // 512KB
 
                                     if (fileSize <= maxSizeInBytes) {
                                       setErrorResume("");
@@ -500,7 +500,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                   <FieldForProfile
                     name="presentAddress"
                     // label={"Nid Number"}
-                    label={`${capitalizeFirstLetter(documentType)} Number`}
+                    label={documentType ? `${capitalizeFirstLetter(documentType)} Number` : " Document Number"}
                     defaultValue={nidNumber}
                     disableItem={false}
                     handleChange={handleNidNumber}
@@ -510,7 +510,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                 <Grid item xs={6}>
                   <FieldForProfile
                     name="Name [as per your  NID]"
-                    label={` Name [as per your  ${documentType}]  `}
+                    label={documentType ? "Name [as per your document] " : `Name [as per your  ${documentType}]  `}
                     // label={"Name [as per your  NID]"}
                     defaultValue={nameAsNid}
                     disableItem={false}

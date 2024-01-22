@@ -1,9 +1,9 @@
-import {Button} from "@mui/material";
+import { Button } from "@mui/material";
 import axios from "axios";
-import React, {useEffect, useState} from "react";
-import {CSVDownload} from "react-csv";
-import {useSelector} from "react-redux";
-import {realToken} from "../../../helper/lib";
+import React, { useEffect, useState } from "react";
+import { CSVDownload } from "react-csv";
+import { useSelector } from "react-redux";
+import { realToken } from "../../../helper/lib";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
@@ -16,16 +16,20 @@ const ExportUserList = () => {
     { label: "Email", key: "email" },
     { label: "Role", key: "role" },
     { label: "Gender", key: "gender" },
+    { label: "Father's Name", key: "fathersName" },
+    { label: "Mother's Name", key: "mothersName" },
+    { label: "Marital Status", key: "maritalStatus" },
+    { label: "Religion", key: "religion" },
     { label: "Contact No", key: "contactNo" },
     { label: "DOB", key: "dob" },
     { label: "Billing Account No", key: "billingAccountNo" },
     { label: "Blood Group", key: "bloodGroup" },
     { label: "Occupation", key: "occupation" },
-    { label: "Permanent Address", key: "permanentAddress" },
-    { label: "Present Address", key: "presentAddress" },
+    { label: "Permanent Address", key: "permanentAddressString" },
+    { label: "Present Address", key: "presentAddressString" },
     { label: "Is Verified", key: "isVerified" },
-    { label: "Document Type", key: "documentsType" },
     { label: "NDA Signed", key: "isNDASigned" },
+    { label: "NDA", key: "signImage" },
     { label: "Active Last 15 days", key: "active" },
     { label: "Is Blocked", key: "isBlocked" },
     { label: "Points", key: "points" },
@@ -41,7 +45,24 @@ const ExportUserList = () => {
     { label: "Last Update profile", key: "updatedAt" },
     { label: "Profile image", key: "image" },
     { label: "Total Due Amount", key: "totalDueAmount" },
-    { label: "Total Paid Amount", key: "totalPaidAmount" },
+    { label: "Document Type", key: "documentsType" },
+    { label: "Document No", key: "documentNo" },
+    { label: "Documents Image", key: "documentsImage" },
+    { label: "Extra Document Type", key: "extraDocumentType" },
+    { label: "Extra Document Name", key: "extraDocumentName" },
+    { label: "Extra Document No", key: "extraDocumentNo" },
+    { label: "Extra Document Images", key: "extraDocumentImages" },
+    { label: "Highest Level Of Degree", key: "highestLevelOfDegree" },
+    { label: "Field Of Study", key: "fieldOfStudy" },
+    { label: "Institute Name", key: "instituteName" },
+    { label: "Completed Year", key: "completedYear" },
+    { label: "Certificate Images", key: "certificateImages" },
+    { label: "Emergency Contact Person Name", key: "emergencyContactPersonName" },
+    { label: "Emergency Contact Person RelationShip", key: "emergencyContactPersonRelationShip" },
+    { label: "Emergency Contact Person Contact No", key: "emergencyContactPersonContactNo" },
+    { label: "Emergency Contact Person Contact No", key: "emergencyContactPersonContactNo" },
+    { label: "Resume", key: "resume" },
+    { label: "Standard Photo", key: "standardPhoto" },
   ];
 
   const [initiateDownload, setInitiateDownload] = useState(false);
@@ -60,20 +81,33 @@ const ExportUserList = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${url}/users`, {
+      // const response = await axios.get(`${url}/users`, {
+      const response = await axios.get(`${url}/users/export-all-users`, {
         headers: {
           Authorization: `Bearer ${realToken()}`,
         },
       });
-
-      const data = response.data.users;
+      console.log(response);
+      const data = response.data;
 
       if (data.length) {
         await data.map((f) => (f.dob = new Date(f.dob).toLocaleDateString("en-US")));
         await data.map((f) => (f.createdAt = new Date(f.createdAt).toLocaleDateString("en-US")));
         await data.map((f) => (f.updatedAt = new Date(f.updatedAt).toLocaleDateString("en-US")));
+        await data.map((f) => (f.resume = f.resume.url));
+        await data.map((f) => (f.standardPhoto = f.standardPhoto.url));
+
         data.forEach((user) => {
           user.skills = user.skills.map((skill) => skill.name);
+        });
+        data.forEach((user) => {
+          user.extraDocumentImages = user.extraDocumentImages.map((item) => item.url);
+        });
+        data.forEach((user) => {
+          user.certificateImages = user.certificateImages.map((item) => item.url);
+        });
+        data.forEach((user) => {
+          user.documentsImage = user.documentsImage.map((item) => item);
         });
         setJsonData(data);
         return true;
@@ -115,7 +149,7 @@ const ExportUserList = () => {
       >
         Export
       </Button>
-      {initiateDownload && <CSVDownload data={jsonData} headers={csvHeader} target="_blank" />}
+      {/* {initiateDownload && <CSVDownload data={jsonData} headers={csvHeader} target="_blank" />} */}
     </>
   );
 };

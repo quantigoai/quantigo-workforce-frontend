@@ -3,12 +3,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../../customHooks/useToaster";
-import { updateMyContact } from "../../../../../features/slice/userSlice";
+import { getUserContactInfo, updateMyContact } from "../../../../../features/slice/userSlice";
 import PasswordFieldForProfile from "../../PasswordFieldForProfile";
 import FieldForProfile from "../FieldForProfile";
 import SelectFieldForBdInfo from "./SelectFieldForBdInfo";
 
-const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
+const ContactInfoIndex = ({ user, editAble, setEditAble, setData, setIsDataLoading }) => {
   const toast = useToaster();
   const url = import.meta.env.VITE_APP_SERVER_URL;
   const { isLoading } = useSelector((state) => state.user);
@@ -123,7 +123,6 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
       });
       setDistrictsPermanent([...districts]);
       setSubDistrictsPermanent([...subdistricts]);
-      
     }
   }, [isChecked]);
   useEffect(() => {
@@ -210,6 +209,11 @@ const ContactInfoIndex = ({ user, editAble, setEditAble }) => {
 
   const handleCancel = () => {
     setEditAble(false);
+    setIsDataLoading(true);
+    dispatch(getUserContactInfo(user._id)).then((action) => {
+      setData(action.payload.data);
+      setIsDataLoading(false);
+    });
   };
   // Present Address
 

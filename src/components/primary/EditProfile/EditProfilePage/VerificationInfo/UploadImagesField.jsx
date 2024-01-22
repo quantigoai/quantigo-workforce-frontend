@@ -1,8 +1,8 @@
-import {Box, Typography} from "@mui/material";
-import React, {useEffect, useMemo, useState} from "react";
-import {useDropzone} from "react-dropzone";
+import { Box, Typography } from "@mui/material";
+import React, { useEffect, useMemo, useState } from "react";
+import { useDropzone } from "react-dropzone";
 import CloseIcon from "@mui/icons-material/Close";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import ctaImage from "../../../../../assets/images/CTA.png";
 
 const baseStyle = {
@@ -60,6 +60,7 @@ const img = {
 };
 
 const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, imagesCopy, setRemoveImages }) => {
+  console.log("🚀 ~ UploadImagesField ~ label:", label)
   // const [files, setFiles] = useState([]);
   const { isLightTheme } = useSelector((state) => state.theme);
 
@@ -214,7 +215,6 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
           <Box
             sx={{
               width: "95%",
-              ml: 2,
               mt: 2,
             }}
             {...getRootProps({
@@ -255,7 +255,7 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
                   sx={{ color: files?.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff" }}
                   variant="wpf_p2_regular"
                 >
-                  Drag and Drop your Certificate Images here or Browse” (JPG/ JPEG / PNG)
+                  Drag and Drop {label} Images here or Browse” (JPG/ JPEG / PNG)
                 </Typography>
                 <Typography
                   sx={{ color: files?.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff" }}

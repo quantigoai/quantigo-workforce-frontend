@@ -237,7 +237,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
               <Grid container sx={{}}>
                 <UploadImagesField
                   editAble={true}
-                  label={"sdfsfdsf"}
+                  label={"Document "}
                   files={images}
                   setFiles={setImages}
                   setImagesCopy={setImagesCopy}

@@ -1,7 +1,7 @@
-import {Box, Tab, Tabs, Typography} from "@mui/material";
+import { Box, Tab, Tabs, Typography } from "@mui/material";
 import React from "react";
 import PropTypes from "prop-types";
-import {useTheme} from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import ChangeInfoIndex from "./ChangeInfoIndex";
 import UserInfoIndex from "./UserInfoIndex";
 import ContactInfoDetailsIndex from "./ContactInfoDetailsIndex";
@@ -76,8 +76,8 @@ const UserInfoTabIndex = ({
         <Box
           sx={{
             padding: "%",
-            backgroundColor: "background.paper",
-            // backgroundColor: "red",
+            // height: "60px",
+            overflow: "auto",
           }}
         >
           <Tabs
@@ -172,7 +172,7 @@ const UserInfoTabIndex = ({
           sx={{
             overflowY: "scroll",
             // backgroundColor: "black",
-            height: "90%",
+            height: "520px",
             padding: "1% 0%",
             "&::-webkit-scrollbar": {
               width: "0",

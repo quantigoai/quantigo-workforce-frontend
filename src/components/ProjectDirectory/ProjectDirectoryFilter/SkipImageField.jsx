@@ -1,9 +1,9 @@
-import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
-import {getType} from "../../../features/slice/ProjectDirectorySlice";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getType } from "../../../features/slice/ProjectDirectorySlice";
 
-const SkipImageField = ({ setSkipImageFieldFilter, skipImageFieldFilter }) => {
+const SkipImageField = ({ setSkipImageFieldFilter, skipImageFieldFilter, isLightTheme }) => {
   const [industryAllType, setIndustryAllType] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -24,7 +24,7 @@ const SkipImageField = ({ setSkipImageFieldFilter, skipImageFieldFilter }) => {
           onChange={(e) => setSkipImageFieldFilter(e.target.value)}
           value={skipImageFieldFilter || ""}
           sx={{
-            backgroundColor: "#F8F8F8",
+            backgroundColor: isLightTheme ? "#F8F8F8" : "",
             border: "1px solid #DADCDF",
             borderRadius: "4px",
           }}

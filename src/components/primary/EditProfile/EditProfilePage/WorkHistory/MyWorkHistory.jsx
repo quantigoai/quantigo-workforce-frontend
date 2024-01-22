@@ -90,7 +90,6 @@ const MyWorkHistory = () => {
                         <StyledTableCell align="left">Penalty Rate</StyledTableCell>
                         <StyledTableCell align="left">Rating</StyledTableCell>
                         <StyledTableCell align="left">Payment Status</StyledTableCell>
-                        <StyledTableCell align="left">Details</StyledTableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>

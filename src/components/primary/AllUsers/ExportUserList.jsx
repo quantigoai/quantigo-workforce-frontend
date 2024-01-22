@@ -40,9 +40,7 @@ const ExportUserList = () => {
     { label: "Payment Rate", key: "paymentRate" },
     { label: "Skills", key: "skills" },
     { label: "HUB", key: "hub" },
-    { label: "Qai_id", key: "qaiId" },
     { label: "Created At", key: "createdAt" },
-    { label: "Last Update profile", key: "updatedAt" },
     { label: "Profile image", key: "image" },
     { label: "Total Due Amount", key: "totalDueAmount" },
     { label: "Document Type", key: "documentsType" },
@@ -60,7 +58,7 @@ const ExportUserList = () => {
     { label: "Emergency Contact Person Name", key: "emergencyContactPersonName" },
     { label: "Emergency Contact Person RelationShip", key: "emergencyContactPersonRelationShip" },
     { label: "Emergency Contact Person Contact No", key: "emergencyContactPersonContactNo" },
-    { label: "Emergency Contact Person Contact No", key: "emergencyContactPersonContactNo" },
+    { label: "Emergency Contact Address", key: "emergencyContactAddress" },
     { label: "Resume", key: "resume" },
     { label: "Standard Photo", key: "standardPhoto" },
   ];
@@ -149,7 +147,7 @@ const ExportUserList = () => {
       >
         Export
       </Button>
-      {/* {initiateDownload && <CSVDownload data={jsonData} headers={csvHeader} target="_blank" />} */}
+      {initiateDownload && <CSVDownload data={jsonData} headers={csvHeader} target="_blank" />}
     </>
   );
 };

@@ -70,13 +70,12 @@ const UserInfoTabIndex = ({
             width: "0",
           },
           overflowY: "hidden",
-          // backgroundColor: "blue",
         }}
       >
         <Box
           sx={{
             padding: "%",
-            // height: "60px",
+            height: "20%",
             overflow: "auto",
           }}
         >
@@ -170,10 +169,10 @@ const UserInfoTabIndex = ({
 
         <Box
           sx={{
-            overflowY: "scroll",
-            // backgroundColor: "black",
-            height: "520px",
-            padding: "1% 0%",
+            height: { xxl: "500px", lg: "400px", xl: "400px" },
+            overflow: "auto",
+            // height: "0%",
+            padding: "0% 0%",
             "&::-webkit-scrollbar": {
               width: "0",
             },

@@ -62,23 +62,7 @@ const theme = createTheme({
   },
 });
 
-// theme.typography.wf_h6 = {
-//     [theme.breakpoints.up("lg")]: {
-//         fontSize: "12px",
-//     },
-//     [theme.breakpoints.up("xl")]: {
-//         fontSize: "14px",
-//     },
-// };
 
-// theme.typography.wf_p2_semiBold = {
-//     [theme.breakpoints.up("lg")]: {
-//         fontSize: "12px",
-//     },
-//     [theme.breakpoints.up("xl")]: {
-//         fontSize: "14px",
-//     },
-// };
 theme.typography.wpf_p3_semiBold = {
   [theme.breakpoints.up("md")]: {
     fontSize: "12px",

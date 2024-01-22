@@ -1,55 +1,49 @@
-import {Box, Button, Grid, styled, Typography} from '@mui/material';
-import React, {useState} from 'react';
+import { Box, Button, Grid, styled, Typography } from "@mui/material";
+import React, { useState } from "react";
 
-import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
-import {DatePicker} from '@mui/x-date-pickers/DatePicker';
-import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
-import dayjs from 'dayjs';
-import {useDispatch, useSelector} from 'react-redux';
-import useToaster from '../../../../../customHooks/useToaster';
-import {updateMyEducationFunction} from '../../../../../features/slice/userSlice';
-import UploadImagesField from '../VerificationInfo/UploadImagesField';
-import EducationFieldSelect from './EducationFieldSelect';
-import EducationSelect from './EducationSelect';
-import InstitutionSelectAdd from './InstitutionSelectAdd';
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import dayjs from "dayjs";
+import { useDispatch, useSelector } from "react-redux";
+import useToaster from "../../../../../customHooks/useToaster";
+import { updateMyEducationFunction } from "../../../../../features/slice/userSlice";
+import UploadImagesField from "../VerificationInfo/UploadImagesField";
+import EducationFieldSelect from "./EducationFieldSelect";
+import EducationSelect from "./EducationSelect";
+import InstitutionSelectAdd from "./InstitutionSelectAdd";
 
 export const MyDatePicker = styled(DatePicker)(() => ({
-  '& .MuiOutlinedInput-notchedOutline': {
-    border: '1px solid #E6ECF5 !important',
-    borderRadius: '8px',
+  "& .MuiOutlinedInput-notchedOutline": {
+    border: "1px solid #E6ECF5 !important",
+    borderRadius: "8px",
   },
-  '& .MuiInputBase-root': { height: '40px', fontSize: '14px' },
-  '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+  "& .MuiInputBase-root": { height: "40px", fontSize: "14px" },
+  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
     border: `1px solid #2E58FF !important`,
   },
-  '& .MuiInputBase-input.Mui-focused': {
-    color: 'blue',
+  "& .MuiInputBase-input.Mui-focused": {
+    color: "blue",
   },
 }));
 
 const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
   const { user, isLoading } = useSelector((state) => state.user);
-  const [higherDegree, setHigherDegree] = useState(
-    data?.highestLevelOfDegree || '',
-  );
-  const [field, setField] = useState(data?.fieldOfStudy || '');
+  const [higherDegree, setHigherDegree] = useState(data?.highestLevelOfDegree || "");
+  const [field, setField] = useState(data?.fieldOfStudy || "");
   const [institution, setInstitution] = useState(data?.instituteName);
-  const [files, setFiles] = useState(
-    data?.certificateImages.map((i) => i.url) || '',
-  );
+  const [files, setFiles] = useState(data?.certificateImages.map((i) => i.url));
   const dispatch = useDispatch();
   const toast = useToaster();
   const [coverImageFile, setCoverImageFile] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
-  const [value, setValue] = React.useState(dayjs(data?.completedYear || ''));
+  const [value, setValue] = React.useState(dayjs(data?.completedYear || ""));
   const [isSyncLoading, setIsSyncLoading] = useState(false);
   const [openReject, setOpenReject] = React.useState(false);
-  const [imagesCopy, setImagesCopy] = useState(
-    data?.certificateImages.map((i) => i.url),
-  );
+  const [imagesCopy, setImagesCopy] = useState(data?.certificateImages.map((i) => i.url));
   const [removeImagesUpdate, setRemoveImagesUpdate] = useState([
     {
-      name: '',
+      name: "",
       isRemoved: false,
     },
   ]);
@@ -71,38 +65,34 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
   const handleSubmitChange = async () => {
     const formData = new FormData();
 
-    formData.append('highestLevelOfDegree', higherDegree);
-    formData.append('fieldOfStudy', field);
+    formData.append("highestLevelOfDegree", higherDegree);
+    formData.append("fieldOfStudy", field);
 
     if (institution === null) {
-      formData.append('instituteName', '');
+      formData.append("instituteName", "");
     } else {
-      institution.name !== undefined &&
-        formData.append('instituteName', institution.name);
+      institution.name !== undefined && formData.append("instituteName", institution.name);
     }
 
-    formData.append('completedYear', value?.$y);
+    formData.append("completedYear", value?.$y);
 
     files.forEach((item) => {
       if (item.name) {
-        formData.append('certificateImages', item);
+        formData.append("certificateImages", item);
       }
     });
 
     if (imagesCopy?.length != 0) {
       imagesCopy?.map((item, index) => {
         const tempData = {
-          name: '',
+          name: "",
           isRemoved: false,
         };
         const isRemoved = removeImages.includes(item);
         tempData.name = item;
         tempData.isRemoved = isRemoved;
         formData.append(`removedImages[${index}][name]`, tempData.name);
-        formData.append(
-          `removedImages[${index}][isRemoved]`,
-          tempData.isRemoved,
-        );
+        formData.append(`removedImages[${index}][isRemoved]`, tempData.isRemoved);
       });
     }
 
@@ -119,42 +109,39 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
     //     setEditAble(false);
     //   }
     // });
-    await toast.responsePromise(
-      updateMyEducationFunction(finalData),
-      setIsSyncLoading,
-      {
-        initialMessage: 'Education info is updating...',
-        inPending: () => {
-          setOpenReject(false);
-          setIsSyncLoading(true);
-        },
-        afterSuccess: (data) => {
-          setOpenReject(false);
-          setIsSyncLoading(false);
-          setData(data.data.user);
-          setFiles(data.data.user.certificateImages.map((i) => i.url));
-          setEditAble(false);
-        },
-        afterError: (data) => {
-          setOpenReject(false);
-          setIsSyncLoading(false);
-        },
+    await toast.responsePromise(updateMyEducationFunction(finalData), setIsSyncLoading, {
+      initialMessage: "Education info is updating...",
+      inPending: () => {
+        setOpenReject(false);
+        setIsSyncLoading(true);
       },
-    );
+      afterSuccess: (data) => {
+        setOpenReject(false);
+        setIsSyncLoading(false);
+        setData(data.data.user);
+        setFiles(data.data.user.certificateImages.map((i) => i.url));
+        setImagesCopy(data.data.user.certificateImages.map((i) => i.url));
+        setEditAble(false);
+      },
+      afterError: (data) => {
+        setOpenReject(false);
+        setIsSyncLoading(false);
+      },
+    });
   };
   const higherStudies = [
-    { value: 'SSC', label: 'SSC' },
-    { value: 'HSC', label: 'HSC' },
-    { value: 'B.Sc', label: 'B.Sc' },
-    { value: 'M.Sc', label: 'M.Sc' },
-    { value: 'BBA', label: 'BBA' },
-    { value: 'MBA', label: 'MBA' },
-    { value: 'others', label: 'others' },
+    { value: "SSC", label: "SSC" },
+    { value: "HSC", label: "HSC" },
+    { value: "B.Sc", label: "B.Sc" },
+    { value: "M.Sc", label: "M.Sc" },
+    { value: "BBA", label: "BBA" },
+    { value: "MBA", label: "MBA" },
+    { value: "others", label: "others" },
   ];
   const fieldStudies = [
-    { value: 'engineering', label: 'Engineering' },
-    { value: 'business_studies', label: 'Business Studies' },
-    { value: 'others', label: 'others' },
+    { value: "engineering", label: "Engineering" },
+    { value: "business_studies", label: "Business Studies" },
+    { value: "others", label: "others" },
   ];
   const handleChangeDegree = (event) => {
     setHigherDegree(event.target.value);
@@ -167,29 +154,29 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
     <>
       <Box
         sx={{
-          overflowY: 'auto',
-          '&::-webkit-scrollbar': {
-            width: '0',
+          overflowY: "auto",
+          "&::-webkit-scrollbar": {
+            width: "0",
           },
           height: {
-            lg: '78%',
-            xl: '71%',
-            xxl: '75%',
+            lg: "78%",
+            xl: "71%",
+            xxl: "75%",
           },
         }}
       >
         <Box
           sx={{
-            height: '100%',
+            height: "100%",
           }}
         >
           <Box
             sx={{
-              height: '100%',
-              '&::-webkit-scrollbar': {
-                width: '0',
+              height: "100%",
+              "&::-webkit-scrollbar": {
+                width: "0",
               },
-              overflowY: 'auto',
+              overflowY: "auto",
             }}
           >
             {/* <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
@@ -198,11 +185,11 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
               </Typography>
             </Grid> */}
 
-            <Grid container spacing={0} sx={{ paddingBottom: '15px' }}>
-              <Grid item xs={6} sx={{ paddingRight: '2%' }}>
+            <Grid container spacing={0} sx={{ paddingBottom: "15px" }}>
+              <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                 <EducationSelect
-                  name={'highestLevelOfDegree'}
-                  label={'Highest level of degree'}
+                  name={"highestLevelOfDegree"}
+                  label={"Highest level of degree"}
                   options={higherStudies}
                   editAble={editAble}
                   handleChangeDegree={handleChangeDegree}
@@ -210,10 +197,10 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
                   defaultValue={data?.highestLevelOfDegree}
                 />
               </Grid>
-              <Grid item xs={6} sx={{ paddingRight: '0%' }}>
+              <Grid item xs={6} sx={{ paddingRight: "0%" }}>
                 <EducationFieldSelect
-                  name={'fieldOfStudy'}
-                  label={'Field of Study'}
+                  name={"fieldOfStudy"}
+                  label={"Field of Study"}
                   options={fieldStudies}
                   editAble={editAble}
                   handleChangeField={handleChangeField}
@@ -222,10 +209,10 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
                 />
               </Grid>
             </Grid>
-            <Grid container spacing={0} sx={{ paddingBottom: '25px' }}>
-              <Grid item xs={6} sx={{ paddingRight: '2%' }}>
+            <Grid container spacing={0} sx={{ paddingBottom: "25px" }}>
+              <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                 <InstitutionSelectAdd
-                  label={'Institution Name'}
+                  label={"Institution Name"}
                   disableItem={false}
                   editAble={editAble}
                   institution={institution}
@@ -236,25 +223,21 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
                 item
                 xs={6}
                 sx={{
-                  paddingRight: '0%',
-                  display: 'flex',
-                  flexDirection: 'column',
+                  paddingRight: "0%",
+                  display: "flex",
+                  flexDirection: "column",
                 }}
               >
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <Typography
-                    sx={{ mb: '10px' }}
-                    variant="wpf_p4_medium"
-                    color="neutral.N300"
-                  >
+                  <Typography sx={{ mb: "10px" }} variant="wpf_p4_medium" color="neutral.N300">
                     Year of completion
                   </Typography>
                   <MyDatePicker
                     sx={{
-                      backgroundColor: editAble ? '' : 'neutral.N400',
+                      backgroundColor: editAble ? "" : "neutral.N400",
                     }}
                     disabled={!editAble}
-                    views={['year']}
+                    views={["year"]}
                     openTo="year"
                     value={value}
                     onChange={(newValue) => setValue(newValue)}
@@ -280,24 +263,24 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
       <Box
         sx={{
           height: {
-            lg: '10%',
-            xl: '14%',
-            xxl: '8%',
+            lg: "10%",
+            xl: "14%",
+            xxl: "8%",
           },
         }}
       >
         <Grid
           container
           sx={{
-            height: '100%',
+            height: "100%",
           }}
         >
           {editAble && (
             <>
               <Box
                 sx={{
-                  display: 'flex',
-                  alignItems: 'center',
+                  display: "flex",
+                  alignItems: "center",
                 }}
               >
                 <Button
@@ -305,24 +288,24 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
                   disabled={isSyncLoading}
                   sx={{
                     height: {
-                      lg: '30px',
-                      xl: '40px',
-                      xxl: '40px',
+                      lg: "30px",
+                      xl: "40px",
+                      xxl: "40px",
                     },
-                    backgroundColor: 'primary.B200',
-                    color: 'neutral.N000',
-                    borderRadius: '8px',
-                    textTransform: 'none',
-                    fontSize: '12px',
-                    width: '150px',
+                    backgroundColor: "primary.B200",
+                    color: "neutral.N000",
+                    borderRadius: "8px",
+                    textTransform: "none",
+                    fontSize: "12px",
+                    width: "150px",
                     mr: 3,
-                    '&:hover': {
-                      backgroundColor: 'primary.B200',
-                      color: 'neutral.N000',
+                    "&:hover": {
+                      backgroundColor: "primary.B200",
+                      color: "neutral.N000",
                     },
-                    '&.Mui-disabled': {
-                      background: '#B6C9F0',
-                      color: '#FFFFFF',
+                    "&.Mui-disabled": {
+                      background: "#B6C9F0",
+                      color: "#FFFFFF",
                     },
                   }}
                 >
@@ -332,18 +315,18 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
                   onClick={() => handleCancel()}
                   sx={{
                     height: {
-                      lg: '30px',
-                      xl: '40px',
-                      xxl: '40px',
+                      lg: "30px",
+                      xl: "40px",
+                      xxl: "40px",
                     },
-                    textTransform: 'none',
-                    backgroundColor: '#F2F6FC',
-                    borderRadius: '8px',
-                    fontSize: '12px',
-                    color: '#253E5C',
-                    width: '150px',
-                    '&:hover': {
-                      background: '#F2F6FC',
+                    textTransform: "none",
+                    backgroundColor: "#F2F6FC",
+                    borderRadius: "8px",
+                    fontSize: "12px",
+                    color: "#253E5C",
+                    width: "150px",
+                    "&:hover": {
+                      background: "#F2F6FC",
                     },
                   }}
                 >

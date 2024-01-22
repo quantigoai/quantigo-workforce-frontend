@@ -1,4 +1,4 @@
-import {Box, FormControl, MenuItem, Select, styled, Typography} from "@mui/material";
+import { Box, FormControl, MenuItem, Select, styled, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 
 EducationFieldSelect.propTypes = {
@@ -54,7 +54,7 @@ export default function EducationFieldSelect({ handleChangeField, field, options
           onChange={handleChangeField}
         >
           <MenuItem disabled value="">
-            <span>select your field of study</span>
+            <span>Select your field of study</span>
           </MenuItem>
           {options.map((option) => (
             <MenuItem

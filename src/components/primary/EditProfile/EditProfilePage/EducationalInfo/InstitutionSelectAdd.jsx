@@ -1,8 +1,8 @@
-import {styled, Typography} from "@mui/material";
-import Autocomplete, {createFilterOptions} from "@mui/material/Autocomplete";
+import { styled, Typography } from "@mui/material";
+import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
 const filter = createFilterOptions();
 const MyTextField = styled(TextField)(() => ({
@@ -153,7 +153,7 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
         renderInput={(params) => (
           <MyTextField
             {...params}
-            placeholder='select your institution or select "Others" if institution is not in the list'
+            placeholder='Select your institution or select "Others" if institution is not in the list'
             sx={{
               backgroundColor: editAble ? "" : "neutral.N400",
               fontSize: "14px",

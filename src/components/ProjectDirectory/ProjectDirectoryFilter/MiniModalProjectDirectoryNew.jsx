@@ -24,6 +24,7 @@ import QAField from "./QAField";
 import JudgementTimeField from "./JudgementTimeField";
 import QABenchmarkField from "./QABenchmarkField";
 import BoxItem from "../../primary/ProjectLIstNew2/Project2Details/BoxItem";
+import { useSelector } from "react-redux";
 
 const MiniModalProjectDirectoryNew = ({
   handleCloseFilter,
@@ -96,6 +97,7 @@ const MiniModalProjectDirectoryNew = ({
   setAnchorEl,
   anchorEl,
 }) => {
+  const { isLightTheme } = useSelector((state) => state.theme);
   return (
     <>
       <Box
@@ -131,7 +133,7 @@ const MiniModalProjectDirectoryNew = ({
         <br />
         {qAField ? (
           <Grid container sx={{ padding: "2%" }}>
-            <QAField setQAFieldFilter={setQAFieldFilter} qAFieldFilter={qAFieldFilter} />
+            <QAField isLightTheme={isLightTheme} setQAFieldFilter={setQAFieldFilter} qAFieldFilter={qAFieldFilter} />
           </Grid>
         ) : (
           <></>
@@ -139,6 +141,7 @@ const MiniModalProjectDirectoryNew = ({
         {judgementTimeFilter ? (
           <Grid container sx={{ padding: "2%" }}>
             <JudgementTimeField
+              isLightTheme={isLightTheme}
               setJudgementTimeFieldFilter={setJudgementTimeFieldFilter}
               judgementTimeFieldFilter={judgementTimeFieldFilter}
             />
@@ -149,6 +152,7 @@ const MiniModalProjectDirectoryNew = ({
         {qABenchmarkField ? (
           <Grid container sx={{ padding: "2%" }}>
             <QABenchmarkField
+              isLightTheme={isLightTheme}
               setQABenchmarkFieldFilter={setQABenchmarkFieldFilter}
               qABenchmarkFieldFilter={qABenchmarkFieldFilter}
             />
@@ -160,6 +164,7 @@ const MiniModalProjectDirectoryNew = ({
         {skipImageField ? (
           <Grid container sx={{ padding: "2%" }}>
             <SkipImageField
+              isLightTheme={isLightTheme}
               setSkipImageFieldFilter={setSkipImageFieldFilter}
               skipImageFieldFilter={skipImageFieldFilter}
             />
@@ -170,6 +175,7 @@ const MiniModalProjectDirectoryNew = ({
         {imageLoadingField ? (
           <Grid container sx={{ padding: "2%" }}>
             <ImageLoadingField
+              isLightTheme={isLightTheme}
               setImageLoadingFieldFilter={setImageLoadingFieldFilter}
               imageLoadingFieldFilter={imageLoadingFieldFilter}
             />
@@ -180,6 +186,7 @@ const MiniModalProjectDirectoryNew = ({
         {objectSavingTimeFilter ? (
           <Grid container sx={{ padding: "2%" }}>
             <ObjectSavingTimeField
+              isLightTheme={isLightTheme}
               setobjectSavingTimeFieldFilter={setobjectSavingTimeFieldFilter}
               objectSavingTimeFieldFilter={objectSavingTimeFieldFilter}
             />
@@ -190,6 +197,7 @@ const MiniModalProjectDirectoryNew = ({
         {videoWatchTimeFilter ? (
           <Grid container sx={{ padding: "2%" }}>
             <VideoWatchTimeField
+              isLightTheme={isLightTheme}
               setVideoWatchTimeFieldFilter={setVideoWatchTimeFieldFilter}
               videoWatchTimeFieldFilter={videoWatchTimeFieldFilter}
             />
@@ -200,14 +208,22 @@ const MiniModalProjectDirectoryNew = ({
 
         {toolTypeField ? (
           <Grid container sx={{ padding: "2%" }}>
-            <ToolTypeField setToolTypeFieldFilter={setToolTypeFieldFilter} toolTypeFieldFilter={toolTypeFieldFilter} />
+            <ToolTypeField
+              isLightTheme={isLightTheme}
+              setToolTypeFieldFilter={setToolTypeFieldFilter}
+              toolTypeFieldFilter={toolTypeFieldFilter}
+            />
           </Grid>
         ) : (
           <></>
         )}
         {DeletionField ? (
           <Grid container sx={{ padding: "2%" }}>
-            <Deletionfield setDeletionFieldFilter={setDeletionFieldFilter} deletionFieldFilter={deletionFieldFilter} />
+            <Deletionfield
+              isLightTheme={isLightTheme}
+              setDeletionFieldFilter={setDeletionFieldFilter}
+              deletionFieldFilter={deletionFieldFilter}
+            />
           </Grid>
         ) : (
           <></>
@@ -215,6 +231,7 @@ const MiniModalProjectDirectoryNew = ({
         {tagingBenchMarkField ? (
           <Grid container sx={{ padding: "2%" }}>
             <TaggingBenchmark
+              isLightTheme={isLightTheme}
               setTaggingBenchMarkFieldFilter={setTaggingBenchMarkFieldFilter}
               taggingBenchMarkFieldFilter={taggingBenchMarkFieldFilter}
             />
@@ -225,6 +242,7 @@ const MiniModalProjectDirectoryNew = ({
         {imageBenchMarkField ? (
           <Grid container sx={{ padding: "2%" }}>
             <ImgBenchmark
+              isLightTheme={isLightTheme}
               setImgBenchMarkFieldFilter={setImgBenchMarkFieldFilter}
               imgBenchMarkFieldFilter={imgBenchMarkFieldFilter}
             />
@@ -235,6 +253,7 @@ const MiniModalProjectDirectoryNew = ({
         {objBenchMarkField ? (
           <Grid container sx={{ padding: "2%" }}>
             <ObjBenchmarkField
+              isLightTheme={isLightTheme}
               setObjBenchMarkFieldFilter={setObjBenchMarkFieldFilter}
               objBenchMarkFieldFilter={objBenchMarkFieldFilter}
             />
@@ -245,6 +264,7 @@ const MiniModalProjectDirectoryNew = ({
         {qaCheckPointField ? (
           <Grid container sx={{ padding: "2%" }}>
             <QACheckPointsField
+              isLightTheme={isLightTheme}
               qaCheckPointFieldFilter={qaCheckPointFieldFilter}
               setQaCheckPointFieldFilter={setQaCheckPointFieldFilter}
             />
@@ -255,6 +275,7 @@ const MiniModalProjectDirectoryNew = ({
         {actionItemsField ? (
           <Grid container sx={{ padding: "2%" }}>
             <ActionTypeField
+              isLightTheme={isLightTheme}
               actionItemsFieldFilter={actionItemsFieldFilter}
               setActionItemsFieldFilter={setActionItemsFieldFilter}
             />
@@ -265,6 +286,7 @@ const MiniModalProjectDirectoryNew = ({
         {projectTypeField ? (
           <Grid container sx={{ padding: "2%" }}>
             <ProjectTypeField
+              isLightTheme={isLightTheme}
               projectTypeFieldFilter={projectTypeFieldFilter}
               setProjectTypeFieldFilter={setProjectTypeFieldFilter}
             />
@@ -274,35 +296,51 @@ const MiniModalProjectDirectoryNew = ({
         )}
         {platformField ? (
           <Grid container sx={{ padding: "2%" }}>
-            <PlatformField platformFieldFilter={platformFieldFilter} setPlatformFieldFilter={setPlatformFieldFilter} />
+            <PlatformField
+              isLightTheme={isLightTheme}
+              platformFieldFilter={platformFieldFilter}
+              setPlatformFieldFilter={setPlatformFieldFilter}
+            />
           </Grid>
         ) : (
           <></>
         )}
         {pdrSetFilter ? (
           <Grid container sx={{ padding: "2%" }}>
-            <PdrField setPDRFilter={setPDRFilter} pDRFilter={pDRFilter} />
+            <PdrField isLightTheme={isLightTheme} setPDRFilter={setPDRFilter} pDRFilter={pDRFilter} />
           </Grid>
         ) : (
           <></>
         )}
         {Client_AliasSetFilter ? (
           <Grid container sx={{ padding: "2%" }}>
-            <ClientAliasField setClientAliasesFilter={setClientAliasesFilter} clientAliasFilter={clientAliasFilter} />
+            <ClientAliasField
+              isLightTheme={isLightTheme}
+              setClientAliasesFilter={setClientAliasesFilter}
+              clientAliasFilter={clientAliasFilter}
+            />
           </Grid>
         ) : (
           <></>
         )}
         {industrySetFilter ? (
           <Grid container sx={{ padding: "2%" }}>
-            <IndustryTypeField setIndustryType={setIndustryType} industryType={industryType} />
+            <IndustryTypeField
+              isLightTheme={isLightTheme}
+              setIndustryType={setIndustryType}
+              industryType={industryType}
+            />
           </Grid>
         ) : (
           <></>
         )}
         {annotationSetFilter ? (
           <Grid container sx={{ padding: "2%" }}>
-            <AnnotationType setAnnotationFilter={setAnnotationFilter} annotationFilter={annotationFilter} />
+            <AnnotationType
+              isLightTheme={isLightTheme}
+              setAnnotationFilter={setAnnotationFilter}
+              annotationFilter={annotationFilter}
+            />
           </Grid>
         ) : (
           <></>

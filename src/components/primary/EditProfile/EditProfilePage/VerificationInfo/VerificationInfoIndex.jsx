@@ -500,7 +500,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                   <FieldForProfile
                     name="presentAddress"
                     // label={"Nid Number"}
-                    label={`${capitalizeFirstLetter(documentType)} Number`}
+                    label={documentType ? `${capitalizeFirstLetter(documentType)} Number` : " Document Number"}
                     defaultValue={nidNumber}
                     disableItem={false}
                     handleChange={handleNidNumber}
@@ -510,7 +510,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                 <Grid item xs={6}>
                   <FieldForProfile
                     name="Name [as per your  NID]"
-                    label={` Name [as per your  ${documentType}]  `}
+                    label={documentType ? "Name [as per your document] " : `Name [as per your  ${documentType}]  `}
                     // label={"Name [as per your  NID]"}
                     defaultValue={nameAsNid}
                     disableItem={false}

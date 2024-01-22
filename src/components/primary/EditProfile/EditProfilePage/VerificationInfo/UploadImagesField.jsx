@@ -59,8 +59,16 @@ const img = {
   borderRadius: "15px",
 };
 
-const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, imagesCopy, setRemoveImages }) => {
-  console.log("🚀 ~ UploadImagesField ~ label:", label)
+const UploadImagesField = ({
+  editAble,
+  label,
+  files,
+  setFiles,
+  setImagesCopy,
+  imagesCopy,
+  setRemoveImages,
+  documentType,
+}) => {
   // const [files, setFiles] = useState([]);
   const { isLightTheme } = useSelector((state) => state.theme);
 
@@ -85,7 +93,9 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
     transition: "border .24s ease-in-out",
   };
   const { getRootProps, getInputProps, isFocused, acceptedFiles, isDragAccept, isDragReject } = useDropzone({
-    disabled: files?.length === 5 || !editAble ? true : false,
+    // disabled: files?.length === 5 || !editAble ? true : false,
+    disabled: files?.length === 5 || !editAble || !documentType ? true : false,
+
     accept: {
       "image/jpeg": [],
       "image/png": [],
@@ -251,6 +261,14 @@ const UploadImagesField = ({ editAble, label, files, setFiles, setImagesCopy, im
                 }}
                 src={IconImage}
               /> */}
+                {documentType != "documentType" && (
+                  <Typography
+                    sx={{ color: files?.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff" }}
+                    variant="wpf_p2_regular"
+                  >
+                    {!documentType && "Please Select Document type then upload Image"}
+                  </Typography>
+                )}
                 <Typography
                   sx={{ color: files?.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff" }}
                   variant="wpf_p2_regular"

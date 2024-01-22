@@ -243,6 +243,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                   setImagesCopy={setImagesCopy}
                   imagesCopy={imagesCopy}
                   setRemoveImages={setRemoveImages}
+                  documentType={"documentType"}
                 />
                 {/* <DocumentImageUpload
                   coverImageFile={coverImageFile}

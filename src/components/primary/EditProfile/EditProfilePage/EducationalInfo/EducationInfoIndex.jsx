@@ -271,6 +271,7 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
               setImagesCopy={setImagesCopy}
               imagesCopy={imagesCopy}
               setRemoveImages={setRemoveImages}
+              documentType={"documentType"}
             />
           </Box>
         </Box>

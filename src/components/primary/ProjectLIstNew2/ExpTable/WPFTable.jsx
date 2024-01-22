@@ -5,8 +5,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import * as React from "react";
 
-import {Box} from "@mui/material";
-import {useParams} from "react-router-dom";
+import { Box } from "@mui/material";
+import { useParams } from "react-router-dom";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import FirstTableColumn from "./TableBody/FirstTableColumn";
 import LastTableColumn from "./TableBody/LastTableCoulmn";
@@ -36,6 +36,8 @@ export default function WPFTable({
   handleReject,
   handleOpenNDA,
 }) {
+  console.log("🚀 ~ myRows:", myRows);
+  console.log("🚀 ~ myColumn:", myColumn);
   const { id } = useParams();
   return (
     myColumn.length > 0 && (

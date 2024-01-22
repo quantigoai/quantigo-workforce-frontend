@@ -6,10 +6,10 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Alert} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useSelector} from "react-redux";
-import {useLocation, useParams} from "react-router-dom";
+import { Alert } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useLocation, useParams } from "react-router-dom";
 import dataBuilder from "../../../shared/CustomTable/dataBuilder";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import DetailsPage from "../ProjectDetailsFull/DetailsPage";
@@ -60,7 +60,7 @@ const TableWrapper = ({
   const stickyFirstColumn = [myColumn[0]];
   const stickyLastColumn = [myColumn[myColumn.length - 1]];
   const columns = myColumn.slice(1, myColumn.length - 1);
-  const approvedPaths = ["/allprojects", "/all-users", "/projectDetails/${id}", "/projectDirectory"];
+  const approvedPaths = ["/allprojects", "/all-users", `/projectDetails/${id}`, "/projectDirectory"];
   const {
     isLoading: usersLoading,
     users: { users },

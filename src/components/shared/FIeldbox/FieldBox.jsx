@@ -9,7 +9,7 @@ export const FieldBox = ({ children }) => {
       case "/projectDirectory":
         return 4;
       case "/allprojects":
-        return 6;
+        return 5.85;
 
       default:
         return 12;
@@ -20,7 +20,7 @@ export const FieldBox = ({ children }) => {
       <Box
         sx={{
           width: "100%",
-          px: 1.7,
+          px: 0,
 
           height: {
             lg: "72px",

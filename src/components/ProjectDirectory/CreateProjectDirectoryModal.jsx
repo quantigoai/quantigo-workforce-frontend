@@ -1,14 +1,15 @@
-import {Backdrop, Box, Button, Fade, Modal, styled} from "@mui/material";
+import { Backdrop, Box, Button, Fade, Grid, Modal, styled } from "@mui/material";
 import React from "react";
-import {useForm} from "react-hook-form";
-import {ProjectDirectorySchema} from "../primary/ProjectLIstNew2/ProjectDrawerHelper.js";
-import {yupResolver} from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { ProjectDirectorySchema } from "../primary/ProjectLIstNew2/ProjectDrawerHelper.js";
+import { yupResolver } from "@hookform/resolvers/yup";
 import FormProvider from "../shared/FormProvider/FormProvider.jsx";
-import {LoadingButton} from "@mui/lab";
+import { LoadingButton } from "@mui/lab";
 import ProjectModalHeader from "../primary/ProjectLIstNew2/ProjectModalHeader.jsx";
-import {FieldBox, LineStack} from "../primary/ProjectLIstNew2/ProjectModal.jsx";
+import { LineStack } from "../primary/ProjectLIstNew2/ProjectModal.jsx";
 import PDTextFIeld from "../shared/CustomField/PDTextFIeld.jsx";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
+import { FieldBox } from "../shared/FIeldbox/FieldBox.jsx";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -28,10 +29,16 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 1000,
+  width: "70%",
+  height: "80%",
+  overflowY: "auto",
   bgcolor: "background.paper",
   border: "none",
   borderRadius: "8px",
+  // overflowY: "auto",
+  "&::-webkit-scrollbar": {
+    width: "0", // Hide the scrollbar
+  },
   p: 0,
   input: {
     height: "20px",
@@ -40,6 +47,13 @@ const style = {
   select: {
     height: "20px",
   },
+};
+const style1 = {
+  // position: "relative",
+  width: "100%",
+  // height: "90%",
+  // backgroundColor: "red",
+  // height: "500px",
 };
 
 const paperstyle = { width: 1000, height: "100%" };
@@ -78,108 +92,148 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
       >
         <Fade in={openModal}>
           <Box sx={style}>
-            <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Add Project"} />
+            <Box sx={{ height: "8%" }}>
+              <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Add Project"} />
+            </Box>
 
-            <Box>
+            <Box sx={{ height: "90%" }}>
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <Box
                   sx={{
-                    paddingLeft: "16px",
-                    paddingTop: "1%",
-                    paddingRight: "16px",
-                    position: "relative",
+                    // ...style1,
+
+                    height: {
+                      lg: "60%",
+                      xl: "60%",
+                      xxl: "630px",
+                      // lg: "550px",
+                      // xl: "580px",
+                      // xxl: "700px",
+                    },
+                    overflowY: "auto",
+                    "&::-webkit-scrollbar": {
+                      width: "0", // Hide the scrollbar
+                    },
                   }}
                 >
-                  <LineStack>
-                    <FieldBox>
-                      <PDTextFIeld name="project_Name" label="Project Name" isRequired={true} />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="client_Alias" label="Client Alias" isRequired={true} />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="industry" label="Industry" />
-                    </FieldBox>
-                  </LineStack>
-                  <LineStack>
-                    <FieldBox>
-                      <PDTextFIeld name="platform" label="Platform" />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="tool_Type" label="Tool Type" />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="QA" label="QA" />
-                    </FieldBox>
-                  </LineStack>
-                  <LineStack>
-                    <FieldBox>
-                      <PDTextFIeld
-                        name="PDR"
-                        label="PDR"
-                        placeholder="PDR must be in range between 1 to 5"
-                        isNumberPdr="true"
-                      />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="project_Type" label="Project Type" />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="annotation" label="Annotation" />
-                    </FieldBox>
-                  </LineStack>
-                  <LineStack>
-                    <FieldBox>
-                      <PDTextFIeld name="action_Items" label="Action Items" />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="qA_Check_Points" label="QA Check Points" />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="qA_Benchmark" label="QA Benchmark" />
-                    </FieldBox>
-                  </LineStack>
-                  <LineStack>
-                    <FieldBox>
-                      <PDTextFIeld name="img_Benchmark" label="Image Benchmark" />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="tagging_Benchmark" label="Tagging Benchmark" />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="deletion" label="Deletion" />
-                    </FieldBox>
-                  </LineStack>
-                  <LineStack>
-                    <FieldBox>
-                      <PDTextFIeld name="skip_Image" label="Skip Image" />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="update" label="Update" />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="image_Loading" label="Image Loading" />
-                    </FieldBox>
-                  </LineStack>
-                  <LineStack>
-                    <FieldBox>
-                      <PDTextFIeld name="object_Saving_Time" label="Object Saving Time" />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="video_Watch_Time" label="Video Watch Time" />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="judgement_Time" label="Judgement Time" />
-                    </FieldBox>
-                  </LineStack>
-                  <LineStack>
-                    <FieldBox>
-                      <PDTextFIeld name="remarks" label="Remarks" />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="obj_Benchmark" label="Object Benchmark" />
-                    </FieldBox>
-                  </LineStack>
+                  <Box
+                    sx={{
+                      // height: "580px",
+                      height: {
+                        // lg: "90%",
+                        // xl: "90%",
+                        // xxl: "90%",
+                        // lg: "550px",
+                        // xl: "580px",
+                        // xxl: "700px",
+                      },
+                      // backgroundColor: "blue",
+                      // overflowY: "auto",
+                      "&::-webkit-scrollbar": {
+                        width: "0", // Hide the scrollbar
+                      },
+                    }}
+                  >
+                    <Grid container>
+                      {/* <LineStack> */}
+                      <FieldBox>
+                        <PDTextFIeld name="project_Name" label="Project Name" isRequired={true} />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="client_Alias" label="Client Alias" isRequired={true} />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="industry" label="Industry" />
+                      </FieldBox>
+                      {/* </LineStack> */}
+
+                      {/* <LineStack> */}
+                      <FieldBox>
+                        <PDTextFIeld name="platform" label="Platform" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="tool_Type" label="Tool Type" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="QA" label="QA" />
+                      </FieldBox>
+                      {/* </LineStack> */}
+
+                      {/* <LineStack> */}
+                      <FieldBox>
+                        <PDTextFIeld
+                          name="PDR"
+                          label="PDR"
+                          placeholder="PDR must be in range between 1 to 5"
+                          isNumberPdr="true"
+                        />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="project_Type" label="Project Type" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="annotation" label="Annotation" />
+                      </FieldBox>
+                      {/* </LineStack> */}
+
+                      {/* <LineStack> */}
+                      <FieldBox>
+                        <PDTextFIeld name="action_Items" label="Action Items" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="qA_Check_Points" label="QA Check Points" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="qA_Benchmark" label="QA Benchmark" />
+                      </FieldBox>
+                      {/* </LineStack> */}
+
+                      {/* <LineStack> */}
+                      <FieldBox>
+                        <PDTextFIeld name="img_Benchmark" label="Image Benchmark" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="tagging_Benchmark" label="Tagging Benchmark" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="deletion" label="Deletion" />
+                      </FieldBox>
+                      {/* </LineStack> */}
+
+                      {/* <LineStack> */}
+                      <FieldBox>
+                        <PDTextFIeld name="skip_Image" label="Skip Image" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="update" label="Update" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="image_Loading" label="Image Loading" />
+                      </FieldBox>
+                      {/* </LineStack> */}
+
+                      {/* <LineStack> */}
+                      <FieldBox>
+                        <PDTextFIeld name="object_Saving_Time" label="Object Saving Time" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="video_Watch_Time" label="Video Watch Time" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="judgement_Time" label="Judgement Time" />
+                      </FieldBox>
+                      {/* </LineStack> */}
+
+                      {/* <LineStack> */}
+                      <FieldBox>
+                        <PDTextFIeld name="remarks" label="Remarks" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="obj_Benchmark" label="Object Benchmark" />
+                      </FieldBox>
+                      {/* </LineStack> */}
+                    </Grid>
+                  </Box>
                 </Box>
 
                 <Box
@@ -191,6 +245,11 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                     paddingX: { lg: "14px", xl: "16px", xxl: "16px" },
                     mt: 1,
                     borderTop: "2px solid #F2F6FC",
+                    // height: {
+                    //   lg: "10%",
+                    //   xl: "10%",
+                    //   xxl: "10%",
+                    // },
                   }}
                 >
                   <Button

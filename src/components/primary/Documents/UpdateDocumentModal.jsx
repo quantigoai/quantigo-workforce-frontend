@@ -164,12 +164,32 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
           <Box sx={{ flex: "0 0 5%" }}>
             <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Upload Document"} />
           </Box>
-
+          {user?.rejectionCause && (
+            <Box sx={{}}>
+              <Alert
+                variant="filled"
+                severity="warning"
+                sx={{
+                  border: "1px solid #F2A200",
+                  color: "warning.400",
+                  backgroundColor: "warning.100",
+                  borderRadius: "6px",
+                  // height: "48px",
+                  // fontSize: "12px",
+                }}
+              >
+                Rejection Cause: {user?.rejectionCause}
+              </Alert>
+            </Box>
+          )}
           <Box
             sx={{
               flex: "1",
-              overflowY: "auto",
+              overflowY: "scroll",
               padding: "3%",
+              "&::-webkit-scrollbar": {
+                width: "0",
+              },
             }}
           >
             <Box>
@@ -253,22 +273,6 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                 /> */}
                 {/* <UploadMultipleImage /> */}
               </Grid>
-              {user?.rejectionCause && (
-                <Box sx={{ padding: "10px" }}>
-                  <Alert
-                    severity="warning"
-                    sx={{
-                      border: "1px solid #F2A200",
-                      color: "warning.400",
-                      backgroundColor: "warning.100",
-                      borderRadius: "6px",
-                      height: "50px",
-                    }}
-                  >
-                    Rejection Cause: {user?.rejectionCause}
-                  </Alert>
-                </Box>
-              )}
             </Box>
           </Box>
 

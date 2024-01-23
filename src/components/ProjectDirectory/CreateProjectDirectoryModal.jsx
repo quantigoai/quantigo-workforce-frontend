@@ -26,8 +26,6 @@ const ButtonStyle = styled(Button)({
 });
 const style = {
   position: "absolute",
-  top: "50%",
-  left: "50%",
   transform: "translate(-50%, -50%)",
   width: "70%",
   height: "80%",
@@ -91,24 +89,35 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
         }}
       >
         <Fade in={openModal}>
-          <Box sx={style}>
+          <Box
+            sx={{
+              ...style,
+              top: {
+                lg: "50%",
+                xl: "50%",
+                xxl: "50%",
+              },
+              left: {
+                lg: "55%",
+                xl: "50%",
+                xxl: "53%",
+              },
+            }}
+          >
             <Box sx={{ height: "8%" }}>
               <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Add Project"} />
             </Box>
 
-            <Box sx={{ height: "90%" }}>
+            <Box sx={{ height: "90%", paddingLeft: "16px" }}>
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <Box
                   sx={{
                     // ...style1,
 
                     height: {
-                      lg: "60%",
-                      xl: "60%",
-                      xxl: "630px",
-                      // lg: "550px",
-                      // xl: "580px",
-                      // xxl: "700px",
+                      lg: "450px",
+                      xl: "490px",
+                      xxl: "600px",
                     },
                     overflowY: "auto",
                     "&::-webkit-scrollbar": {
@@ -134,7 +143,17 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                       },
                     }}
                   >
-                    <Grid container>
+                    <Grid
+                      container
+                      sx={{
+                        display: "flex",
+                        columnGap: "16px",
+                        mt: {
+                          lg: "10px",
+                          xl: "10px",
+                        },
+                      }}
+                    >
                       {/* <LineStack> */}
                       <FieldBox>
                         <PDTextFIeld name="project_Name" label="Project Name" isRequired={true} />

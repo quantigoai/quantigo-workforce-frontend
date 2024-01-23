@@ -7,7 +7,7 @@ export const FieldBox = ({ children }) => {
   const defineGrid = (pathname) => {
     switch (pathname) {
       case "/projectDirectory":
-        return 4;
+        return 3.85;
       case "/allprojects":
         return 5.85;
 

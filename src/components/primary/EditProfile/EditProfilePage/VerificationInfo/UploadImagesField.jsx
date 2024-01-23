@@ -82,8 +82,8 @@ const UploadImagesField = ({
     textAlign: "center",
     // padding: "20px",
     borderWidth: 2,
-    borderRadius: 10,
-    height: "200px",
+    borderRadius: 20,
+    // height: "200px",
     borderColor: files?.length === 5 ? "rgba(70, 70, 70, 0.2)" : "rgba(70, 70, 70, 0.6)",
     borderStyle: "dashed",
     // backgroundColor: isLightTheme ? "primary.B200" : "neutral.N400",
@@ -213,7 +213,7 @@ const UploadImagesField = ({
             width: "100%",
             borderWidth: 2,
             borderRadius: 8,
-            height: "100%",
+            height: "92%",
             borderColor: files?.length === 5 ? "rgba(70, 70, 70, 0.1)" : "rgba(70, 70, 70, 0.2)",
             borderStyle: "dashed",
             backgroundColor: isLightTheme ? "#FAFBFC" : "#2C2C2C",
@@ -226,6 +226,7 @@ const UploadImagesField = ({
             sx={{
               width: "95%",
               mt: 2,
+              // mb:0,
             }}
             {...getRootProps({
               // className: `dropzone ${files.length === 5 ? "disabled" : ""}`
@@ -264,25 +265,25 @@ const UploadImagesField = ({
                 {documentType != "documentType" && (
                   <Typography
                     sx={{ color: files?.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff" }}
-                    variant="wpf_p2_regular"
+                    variant="wpf_p3_regular"
                   >
                     {!documentType && "Please Select Document type then upload Image"}
                   </Typography>
                 )}
                 <Typography
                   sx={{ color: files?.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff" }}
-                  variant="wpf_p2_regular"
+                  variant="wpf_p3_regular"
                 >
                   Drag and Drop {label} Images here or Browse” (JPG/ JPEG / PNG)
                 </Typography>
                 <Typography
                   sx={{ color: files?.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff" }}
-                  variant="wpf_p2_regular"
+                  variant="wpf_p3_regular"
                 >
                   Only 5 Images Can Be Added
                 </Typography>
                 <Typography
-                  variant="wpf_p2_regular"
+                  variant="wpf_p3_regular"
                   sx={{
                     paddingBottom: "2%",
                     color: files?.length === 5 || !editAble ? "gray" : isLightTheme ? "#1D1D1D" : "#fff",

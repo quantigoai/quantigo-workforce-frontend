@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 export const FieldBox = ({ children }) => {
   const path = useLocation();
-  const { pathname, search: searchParams } = path;
+  const { pathname } = path;
   const defineGrid = (pathname) => {
     switch (pathname) {
       case "/projectDirectory":

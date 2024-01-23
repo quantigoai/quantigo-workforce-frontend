@@ -27,7 +27,6 @@ const ButtonStyle = styled(Button)({
 const style = {
   position: "absolute",
   transform: "translate(-50%, -50%)",
-  width: "70%",
   height: "80%",
   overflowY: "auto",
   bgcolor: "background.paper",
@@ -45,13 +44,6 @@ const style = {
   select: {
     height: "20px",
   },
-};
-const style1 = {
-  // position: "relative",
-  width: "100%",
-  // height: "90%",
-  // backgroundColor: "red",
-  // height: "500px",
 };
 
 const paperstyle = { width: 1000, height: "100%" };
@@ -92,6 +84,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
           <Box
             sx={{
               ...style,
+              width: { xxl: "50%", xl: "60%", lg: "70%" },
               top: {
                 lg: "50%",
                 xl: "50%",
@@ -108,7 +101,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
               <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Add Project"} />
             </Box>
 
-            <Box sx={{ height: "90%", paddingLeft: "16px" }}>
+            <Box sx={{ height: "90%", paddingLeft: "16px", paddingRight: "16px" }}>
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <Box
                   sx={{
@@ -127,19 +120,8 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                 >
                   <Box
                     sx={{
-                      // height: "580px",
-                      height: {
-                        // lg: "90%",
-                        // xl: "90%",
-                        // xxl: "90%",
-                        // lg: "550px",
-                        // xl: "580px",
-                        // xxl: "700px",
-                      },
-                      // backgroundColor: "blue",
-                      // overflowY: "auto",
                       "&::-webkit-scrollbar": {
-                        width: "0", // Hide the scrollbar
+                        width: "0",
                       },
                     }}
                   >
@@ -147,11 +129,8 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                       container
                       sx={{
                         display: "flex",
-                        columnGap: "16px",
-                        mt: {
-                          lg: "10px",
-                          xl: "10px",
-                        },
+                        columnGap: { xxl: "16px", xl: "10px", lg: "8px" },
+                        mt: "20px",
                       }}
                     >
                       {/* <LineStack> */}

@@ -526,6 +526,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                 setImagesCopy={setImagesCopy}
                 imagesCopy={imagesCopy}
                 setRemoveImages={setRemoveImages}
+                documentType={documentType}
               />
               {/* </Grid> */}
             </Box>

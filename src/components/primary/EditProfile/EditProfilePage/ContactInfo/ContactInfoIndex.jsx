@@ -12,8 +12,8 @@ const ContactInfoIndex = ({ user, editAble, setEditAble, setData, setIsDataLoadi
   const toast = useToaster();
   const url = import.meta.env.VITE_APP_SERVER_URL;
   const { isLoading } = useSelector((state) => state.user);
-  const [contactNo, setContactNo] = useState(user.contactNo);
-  const [billingAccountNo, setBillingAccountNo] = useState(user.billingAccountNo);
+  const [contactNo, setContactNo] = useState(user.contactNo || "");
+  const [billingAccountNo, setBillingAccountNo] = useState(user.billingAccountNo || "");
   // const [editAble, setEditAble] = useState(false);
   const [divisions, setDivisions] = useState([]);
   const [districts, setDistricts] = useState([]);
@@ -47,41 +47,41 @@ const ContactInfoIndex = ({ user, editAble, setEditAble, setData, setIsDataLoadi
 
   const [permanentAddress, setPermanentAddress] = useState({
     division: {
-      id: user.permanentAddress?.division?.id,
-      name: user.permanentAddress?.division?.name,
+      id: user.permanentAddress?.division?.id || "",
+      name: user.permanentAddress?.division?.name || "",
     },
     district: {
-      id: user.permanentAddress?.district?.id,
-      name: user.permanentAddress?.district?.name,
+      id: user.permanentAddress?.district?.id || "",
+      name: user.permanentAddress?.district?.name || "",
     },
     subdistrict: {
-      id: user.permanentAddress?.subdistrict?.id,
-      name: user.permanentAddress?.subdistrict?.name,
+      id: user.permanentAddress?.subdistrict?.id || "",
+      name: user.permanentAddress?.subdistrict?.name || "",
     },
-    area: user.permanentAddress?.area,
-    roadNo: user.permanentAddress?.roadNo,
-    houseNo: user.permanentAddress?.houseNo,
+    area: user.permanentAddress?.area || "",
+    roadNo: user.permanentAddress?.roadNo || "",
+    houseNo: user.permanentAddress?.houseNo || "",
   });
   const [emergencyContact, setEmergencyContact] = useState({
-    contactPersonName: user.emergencyContact?.contactPersonName,
-    relationship: user.emergencyContact?.relationship,
-    contactNumber: user.emergencyContact?.contactNumber,
+    contactPersonName: user.emergencyContact?.contactPersonName || "",
+    relationship: user.emergencyContact?.relationship || "",
+    contactNumber: user.emergencyContact?.contactNumber || "",
     address: {
       division: {
-        id: user.emergencyContact?.address?.division?.id,
-        name: user.emergencyContact?.address?.division?.name,
+        id: user.emergencyContact?.address?.division?.id || "",
+        name: user.emergencyContact?.address?.division?.name || "",
       },
       district: {
-        id: user.emergencyContact?.address?.district?.id,
-        name: user.emergencyContact?.address?.district?.name,
+        id: user.emergencyContact?.address?.district?.id || "",
+        name: user.emergencyContact?.address?.district?.name || "",
       },
       subdistrict: {
-        id: user.emergencyContact?.address?.subdistrict?.id,
-        name: user.emergencyContact?.address?.subdistrict?.name,
+        id: user.emergencyContact?.address?.subdistrict?.id || "",
+        name: user.emergencyContact?.address?.subdistrict?.name || "",
       },
-      area: user.emergencyContact?.address?.area,
-      roadNo: user.emergencyContact?.address?.roadNo,
-      houseNo: user.emergencyContact?.address?.houseNo,
+      area: user.emergencyContact?.address?.area || "",
+      roadNo: user.emergencyContact?.address?.roadNo || "",
+      houseNo: user.emergencyContact?.address?.houseNo || "",
     },
   });
 

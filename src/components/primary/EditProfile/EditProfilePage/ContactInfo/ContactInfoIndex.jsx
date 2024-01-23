@@ -430,16 +430,27 @@ const ContactInfoIndex = ({ user, editAble, setEditAble, setData, setIsDataLoadi
       permanentAddress: permanentAddress,
       emergencyContact: emergencyContact,
     };
+    const filteredData = Object.fromEntries(
+      Object.entries(data).map(([key, value]) => {
+        if (key === "emergencyContact" && value.contactNumber === "") {
+          const { contactNumber, ...restEmergencyContact } = value;
+          return [key, restEmergencyContact];
+        }
+        return [key, value];
+      })
+    );
+    const filteredFinal = Object.fromEntries(Object.entries(filteredData).filter(([key, value]) => value !== ""));
+
     const finalData = {
       id: user._id,
-      data,
+      filteredFinal,
     };
     dispatch(updateMyContact(finalData)).then((action) => {
       if (action.error) {
         toast.trigger(action.error.message, "error");
       }
       if (action.payload.status === 200) {
-        toast.trigger("Profile Update Successfully", "success");
+        toast.trigger(action.payload.data.message, "success");
         setEditAble(false);
       }
     });

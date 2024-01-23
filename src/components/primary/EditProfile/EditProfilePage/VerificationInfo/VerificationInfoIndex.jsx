@@ -18,11 +18,11 @@ import UploadImagesField from './UploadImagesField';
 
 const TextFieldQuestion = styled(TextField)(() => ({
   // borderRadius: "8px 0px 0px 8px",
-  '& .MuiOutlinedInput-root': {
-    height: '40px',
-    fontSize: '14px',
-    border: '2px solid #E6ECF5 !important',
-    backgroundColor: '#F9FAFB',
+  "& .MuiOutlinedInput-root": {
+    height: "40px",
+    fontSize: "14px",
+    border: "2px solid #E6ECF5 !important",
+    backgroundColor: "neutral.N000",
 
     // borderRadius: "8px",
     borderRadius: '8px 0px 0px 8px',

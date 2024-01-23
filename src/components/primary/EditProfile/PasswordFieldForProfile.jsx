@@ -50,7 +50,7 @@ const PasswordFieldForProfile = ({ label, handleChange, disableItem, defaultValu
             <Typography
               variant="caption"
               sx={{
-                fontSize: { xl: "12px", xxl: "12px", lg: "9px" },
+                fontSize: { xl: "11px", xxl: "11px", lg: "9px" },
               }}
               color={yourPhoneNumberValidationFunction(phone) ? "text.primary" : "error"}
             >

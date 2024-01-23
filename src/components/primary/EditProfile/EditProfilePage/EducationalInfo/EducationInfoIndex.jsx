@@ -60,6 +60,11 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
 
   const handleCancel = () => {
     setEditAble(false);
+    setHigherDegree(data?.highestLevelOfDegree || "");
+    setField(data?.fieldOfStudy || "");
+    setInstitution(data?.instituteName);
+    setFiles(data?.certificateImages.map((i) => i.url));
+    setValue(dayjs(data?.completedYear || ""));
   };
 
   const handleSubmitChange = async () => {

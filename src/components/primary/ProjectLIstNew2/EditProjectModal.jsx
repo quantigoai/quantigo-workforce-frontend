@@ -1,29 +1,27 @@
-import {yupResolver} from "@hookform/resolvers/yup";
-import {LoadingButton} from "@mui/lab";
-import {Stack} from "@mui/material";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { LoadingButton } from "@mui/lab";
+import { Grid, Stack } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Fade from "@mui/material/Fade";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import {useForm} from "react-hook-form";
-import {useSelector} from "react-redux";
+import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 import PDDateField from "../../shared/CustomField/PDDateField";
 import PDReleventField2 from "../../shared/CustomField/PDReleventField2";
 import PDSelectField from "../../shared/CustomField/PDSelectField";
 import PDTextFIeld from "../../shared/CustomField/PDTextFIeld";
 import FormProvider from "../../shared/FormProvider/FormProvider";
 import useHandleEditChange from "./Hooks/useHandleEditChange";
-import {ProjectDrawerSchema} from "./ProjectDrawerHelper";
-import {FieldBox, LineStack} from "./ProjectModal";
+import { ProjectDrawerSchema } from "./ProjectDrawerHelper";
 import ProjectModalHeader from "./ProjectModalHeader";
 import PDskillFIeldEdit from "../../shared/CustomField/PDskillFIeldEdit";
+import { FieldBox } from "../../shared/FIeldbox/FieldBox";
 
 const style = {
   position: "absolute",
-  top: "50%",
-  left: "50%",
   transform: "translate(-50%, -50%)",
   width: 700,
   bgcolor: "background.paper",
@@ -81,7 +79,21 @@ const EditProjectModal = ({
         }}
       >
         <Fade in={editModalOpen}>
-          <Box sx={style}>
+          <Box
+            sx={{
+              ...style,
+              top: {
+                lg: "50%",
+                xl: "50%",
+                xxl: "50%",
+              },
+              left: {
+                lg: "55%",
+                xl: "50%",
+                xxl: "50%",
+              },
+            }}
+          >
             <ProjectModalHeader
               handleCreateProjectClose={handleEditProjectClose}
               modalTitle={`Edit ${projectDrawer.project_drawer_name}`}
@@ -96,7 +108,14 @@ const EditProjectModal = ({
                     position: "relative",
                   }}
                 >
-                  <LineStack>
+                  <Grid
+                    container
+                    sx={{
+                      display: "flex",
+                      columnGap: "16px",
+                    }}
+                  >
+                    {/* <LineStack> */}
                     {/* project platform */}
                     <FieldBox>
                       <PDSelectField
@@ -119,9 +138,9 @@ const EditProjectModal = ({
                         }
                       />
                     </FieldBox>
-                  </LineStack>
+                    {/* </LineStack> */}
 
-                  <LineStack>
+                    {/* <LineStack> */}
                     {/* project type */}
                     <FieldBox>
                       <PDSelectField
@@ -144,9 +163,9 @@ const EditProjectModal = ({
                         isNumber="true"
                       />
                     </FieldBox>
-                  </LineStack>
+                    {/* </LineStack> */}
 
-                  <LineStack>
+                    {/* <LineStack> */}
                     {/* project alias */}
                     <FieldBox>
                       <PDTextFIeld
@@ -174,9 +193,9 @@ const EditProjectModal = ({
                         isNumberPdr="true"
                       />
                     </FieldBox>
-                  </LineStack>
+                    {/* </LineStack> */}
 
-                  <LineStack>
+                    {/* <LineStack> */}
                     {/* project skills */}
                     <FieldBox>
                       <PDskillFIeldEdit
@@ -203,9 +222,9 @@ const EditProjectModal = ({
                         }
                       />
                     </FieldBox>
-                  </LineStack>
+                    {/* </LineStack> */}
 
-                  <LineStack>
+                    {/* <LineStack> */}
                     {/* project estimated date */}
                     <FieldBox>
                       <PDDateField
@@ -228,8 +247,8 @@ const EditProjectModal = ({
                         defaultValue={projectDrawer.project_status}
                       />
                     </FieldBox>
-                  </LineStack>
-
+                    {/* </LineStack> */}
+                  </Grid>
                   <Typography
                     sx={{
                       mt: "5px",

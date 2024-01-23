@@ -90,7 +90,7 @@ const NdaDocumentSection = ({ user, data }) => {
           >
             <Typography
               variant="wpf_p3_medium"
-              color={!data?.signImage ? 'primary.B200' : ''}
+              color={data?.signImage ? 'primary.B200' : ''}
               sx={{
                 paddingRight: '4%',
                 filter: !data?.signImage ? 'grayscale(100%) opacity(50%)' : '',

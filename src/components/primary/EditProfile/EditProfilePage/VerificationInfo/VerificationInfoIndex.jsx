@@ -18,7 +18,6 @@ const TextFieldQuestion = styled(TextField)(() => ({
     fontSize: "14px",
     border: "2px solid #E6ECF5 !important",
     backgroundColor: "#F9FAFB",
-    backgroundColor: "neutral.N000",
 
     // borderRadius: "8px",
     borderRadius: "8px 0px 0px 8px",

@@ -492,7 +492,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble, setData, setIsDataLoadi
                   </Typography>
                 </Grid> */}
 
-              <Grid container sx={{ paddingBottom: "20px" }}>
+              <Grid container sx={{ paddingBottom: "25px" }}>
                 <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                   <PasswordFieldForProfile
                     name="phone"
@@ -729,7 +729,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble, setData, setIsDataLoadi
                     />
                   </Grid>
                 </Grid>
-                <Grid container sx={{ paddingBottom: "20px" }}>
+                <Grid container sx={{ paddingBottom: "25px" }}>
                   <Grid item xs={12} sx={{ paddingRight: "0%" }}>
                     <PasswordFieldForProfile
                       name="mobileNumber"

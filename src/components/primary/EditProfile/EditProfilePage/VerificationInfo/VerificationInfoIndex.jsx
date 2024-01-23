@@ -1,81 +1,96 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Box, Button, Grid, styled, TextField, Typography } from "@mui/material";
-import FieldForProfile from "../FieldForProfile";
+import {
+  Box,
+  Button,
+  Grid,
+  TextField,
+  Typography,
+  styled,
+} from '@mui/material';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import FieldForProfile from '../FieldForProfile';
 // import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
-import UploadImagesField from "./UploadImagesField";
-import SelectFieldForProfile from "../SelectFieldForProfile";
-import { updateMyVerificationFunction } from "../../../../../features/slice/userSlice";
-import useToaster from "../../../../../customHooks/useToaster";
-import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
-import axios from "axios";
-import { realToken } from "../../../../../helper/lib";
+import useToaster from '../../../../../customHooks/useToaster';
+import { updateMyVerificationFunction } from '../../../../../features/slice/userSlice';
+import { capitalizeFirstLetter } from '../../../../../helper/capitalizeFirstWord';
+import SelectFieldForProfile from '../SelectFieldForProfile';
+import UploadImagesField from './UploadImagesField';
 
 const TextFieldQuestion = styled(TextField)(() => ({
   // borderRadius: "8px 0px 0px 8px",
-  "& .MuiOutlinedInput-root": {
-    height: "40px",
-    fontSize: "14px",
-    border: "2px solid #E6ECF5 !important",
-    backgroundColor: "#F9FAFB",
+  '& .MuiOutlinedInput-root': {
+    height: '40px',
+    fontSize: '14px',
+    border: '2px solid #E6ECF5 !important',
+    backgroundColor: '#F9FAFB',
 
     // borderRadius: "8px",
-    borderRadius: "8px 0px 0px 8px",
-    "@media (max-width: 1439px)": {
-      fontSize: "12px",
+    borderRadius: '8px 0px 0px 8px',
+    '@media (max-width: 1439px)': {
+      fontSize: '12px',
     },
-    "@media (mix-width: 1920px)": {
-      fontSize: "14px",
+    '@media (mix-width: 1920px)': {
+      fontSize: '14px',
     },
   },
-  "& .MuiOutlinedInput-input": {
-    padding: "0px 0px 0px 8px",
+  '& .MuiOutlinedInput-input': {
+    padding: '0px 0px 0px 8px',
   },
-  "& .MuiOutlinedInput-notchedOutline ": {},
-  "& .MuiInputBase-input.Mui-disabled": {
-    WebkitTextFillColor: "#56627a",
+  '& .MuiOutlinedInput-notchedOutline ': {},
+  '& .MuiInputBase-input.Mui-disabled': {
+    WebkitTextFillColor: '#56627a',
   },
-  "& .MuiFormHelperText-root": {
-    color: "#F04438",
-    "&.Mui-error": {
-      color: "#F04438",
+  '& .MuiFormHelperText-root': {
+    color: '#F04438',
+    '&.Mui-error': {
+      color: '#F04438',
     },
   },
 }));
 
-const VisuallyHiddenInput = styled("input")({
-  clip: "rect(0 0 0 0)",
-  clipPath: "inset(50%)",
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
   height: 10,
-  overflow: "hidden",
-  position: "absolute",
+  overflow: 'hidden',
+  position: 'absolute',
   bottom: 0,
   left: 0,
-  whiteSpace: "nowrap",
+  whiteSpace: 'nowrap',
   width: 10,
 });
 const TypeVerificationOption = [
-  { value: "NID", label: "NID" },
-  { value: "passport", label: "Passport" },
-  { value: "birthCertificate", label: "Birth Certificate" },
+  { value: 'NID', label: 'NID' },
+  { value: 'passport', label: 'Passport' },
+  { value: 'birthCertificate', label: 'Birth Certificate' },
 ];
-const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEditAble }) => {
+const VerificationInfoIndex = ({
+  data,
+  setData,
+  isDataLoading,
+  editAble,
+  setEditAble,
+}) => {
   const { user, isLoading } = useSelector((state) => state.user);
   const [nidNumber, setNidNumber] = useState(data?.extraDocumentNo);
   const [nameAsNid, setNameAsNid] = useState(data?.extraDocumentName);
   const [photo, setPhoto] = useState([]);
   const [resume, setResume] = useState([]);
-  const [errorPhoto, setErrorPhoto] = useState("");
-  const [errorResume, setErrorResume] = useState("");
+  const [errorPhoto, setErrorPhoto] = useState('');
+  const [errorResume, setErrorResume] = useState('');
   const [documentType, setDocumentType] = useState(data?.extraDocumentType);
-  const [images, setImages] = useState(data?.extraDocumentImages.map((i) => i.url));
-  const [imagesCopy, setImagesCopy] = useState(data?.extraDocumentImages.map((i) => i.url));
+  const [images, setImages] = useState(
+    data?.extraDocumentImages.map((i) => i.url),
+  );
+  const [imagesCopy, setImagesCopy] = useState(
+    data?.extraDocumentImages.map((i) => i.url),
+  );
   const [isSyncLoading, setIsSyncLoading] = useState(false);
   const [openReject, setOpenReject] = React.useState(false);
   const [dataLoading, setDataLoading] = useState(false);
   const [removeImagesUpdate, setRemoveImagesUpdate] = useState([
     {
-      name: "",
+      name: '',
       isRemoved: false,
     },
   ]);
@@ -114,32 +129,35 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
       resume,
       images,
     };
-
+   
     const formData = new FormData();
-    documentType && formData.append("extraDocumentType", documentType);
-    nidNumber && formData.append("extraDocumentNo", nidNumber);
-    nameAsNid && formData.append("extraDocumentName", nameAsNid);
+    documentType && formData.append('extraDocumentType', documentType);
+    nidNumber && formData.append('extraDocumentNo', nidNumber);
+    nameAsNid && formData.append('extraDocumentName', nameAsNid);
 
     images.forEach((item) => {
-      if (item.name) {
-        formData.append("images", item);
+      if (item?.name) {
+        formData.append('images', item);
       }
     });
 
-    photo.length != 0 && formData.append("photo", photo);
-    resume.length != 0 && formData.append("resume", resume);
+    photo.length != 0 && formData.append('photo', photo);
+    resume.length != 0 && formData.append('resume', resume);
 
     if (imagesCopy.length != 0) {
       imagesCopy.map((item, index) => {
         const tempData = {
-          name: "",
+          name: '',
           isRemoved: false,
         };
         const isRemoved = removeImages.includes(item);
         tempData.name = item;
         tempData.isRemoved = isRemoved;
         formData.append(`removedImages[${index}][name]`, tempData.name);
-        formData.append(`removedImages[${index}][isRemoved]`, tempData.isRemoved);
+        formData.append(
+          `removedImages[${index}][isRemoved]`,
+          tempData.isRemoved,
+        );
       });
     }
 
@@ -148,25 +166,29 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
       formData,
     };
 
-    await toast.responsePromise(updateMyVerificationFunction(finalImageData), setIsSyncLoading, {
-      initialMessage: "Verification info is updating...",
-      inPending: () => {
-        setOpenReject(false);
-        setIsSyncLoading(true);
+    await toast.responsePromise(
+      updateMyVerificationFunction(finalImageData),
+      setIsSyncLoading,
+      {
+        initialMessage: 'Verification info is updating...',
+        inPending: () => {
+          setOpenReject(false);
+          setIsSyncLoading(true);
+        },
+        afterSuccess: (data) => {
+          setOpenReject(false);
+          setIsSyncLoading(false);
+          setData(data.data.user);
+          setImages(data.data.user.extraDocumentImages.map((i) => i.url));
+          setEditAble(false);
+          setImagesCopy(data.data.user.extraDocumentImages.map((i) => i.url));
+          setPhoto([]);
+        },
+        afterError: (data) => {
+          setOpenReject(false);
+        },
       },
-      afterSuccess: (data) => {
-        setOpenReject(false);
-        setIsSyncLoading(false);
-        setData(data.data.user);
-        setImages(data.data.user.extraDocumentImages.map((i) => i.url));
-        setEditAble(false);
-        setImagesCopy(data.data.user.extraDocumentImages.map((i) => i.url));
-        setPhoto([]);
-      },
-      afterError: (data) => {
-        setOpenReject(false);
-      },
-    });
+    );
 
     // dispatch(updateMyVerification(finalImageData)).then((action) => {
     //   if (action.error) {
@@ -183,38 +205,41 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
       <>
         <Box
           sx={{
-            overflowY: "auto",
-            "&::-webkit-scrollbar": {
-              width: "0",
+            overflowY: 'auto',
+            '&::-webkit-scrollbar': {
+              width: '0',
             },
             height: {
-              lg: "78%",
-              xl: "71%",
-              xxl: "75%",
+              lg: '78%',
+              xl: '71%',
+              xxl: '75%',
             },
           }}
         >
           <Box
             sx={{
-              height: "100%",
+              height: '100%',
             }}
           >
             <Box
               sx={{
-                height: "100%",
-                "&::-webkit-scrollbar": {
-                  width: "0",
+                height: '100%',
+                '&::-webkit-scrollbar': {
+                  width: '0',
                 },
-                overflowY: "auto",
+                overflowY: 'auto',
               }}
             >
-              <Grid container sx={{ paddingBottom: "20px", paddingTop: "%" }}>
-                <Grid container sx={{ paddingBottom: "20px", paddingTop: "1%" }}>
-                  <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+              <Grid container sx={{ paddingBottom: '20px', paddingTop: '%' }}>
+                <Grid
+                  container
+                  sx={{ paddingBottom: '20px', paddingTop: '1%' }}
+                >
+                  <Grid item xs={6} sx={{ paddingRight: '2%' }}>
                     <Grid container>
                       <Typography
                         sx={{
-                          color: "neutral.N300",
+                          color: 'neutral.N300',
 
                           mb: 1,
                         }}
@@ -223,7 +248,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                         Upload Your Passport Size Photo
                       </Typography>
 
-                      <Box sx={{ width: "70%" }}>
+                      <Box sx={{ width: '70%' }}>
                         {data?.standardPhoto?.url && !editAble ? (
                           <>
                             {/* <TextFieldQuestion
@@ -248,7 +273,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                           </>
                         ) : (
                           <>
-                            {" "}
+                            {' '}
                             <TextFieldQuestion
                               sx={
                                 {
@@ -261,7 +286,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                               placeholder={photo.name}
                               disabled={true}
                               size="small"
-                              type={"text"}
+                              type={'text'}
                               id="outlined-basic"
                               // {...field}
                               fullWidth
@@ -272,29 +297,36 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                         )}
                       </Box>
 
-                      <Box sx={{ width: data.standardPhoto && !editAble ? "100%" : "30%" }}>
+                      <Box
+                        sx={{
+                          width:
+                            data.standardPhoto && !editAble ? '100%' : '30%',
+                        }}
+                      >
                         {data?.standardPhoto && !editAble ? (
                           <>
                             <Button
                               sx={{
-                                height: "40px",
-                                width: "100%",
-                                fontSize: "14px",
-                                border: "2px solid #E6ECF5 !important",
+                                height: '40px',
+                                width: '100%',
+                                fontSize: '14px',
+                                border: '2px solid #E6ECF5 !important',
                                 // borderRadius: "0px 8px 8px 0px",
-                                borderRadius: "8px",
+                                borderRadius: '8px',
 
                                 zIndex: 2,
-                                backgroundColor: "neutral.N00",
+                                backgroundColor: 'neutral.N00',
                               }}
-                              onClick={() => handleClick(data?.standardPhoto?.url)}
+                              onClick={() =>
+                                handleClick(data?.standardPhoto?.url)
+                              }
                             >
                               <Typography
                                 variant="wpf_h7_medium"
                                 sx={{
                                   pl: 1,
-                                  textTransform: "none",
-                                  color: "#2E58FF",
+                                  textTransform: 'none',
+                                  color: '#2E58FF',
                                 }}
                               >
                                 View Your Photo
@@ -303,7 +335,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                           </>
                         ) : (
                           <>
-                            {" "}
+                            {' '}
                             <Button
                               disabled={!editAble}
                               component="label"
@@ -311,22 +343,25 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                               // startIcon={<CloudUploadIcon />}
                               // onSubmit={(e) => e.preventDefault()}
                               sx={{
-                                height: "40px",
-                                width: "100%",
-                                fontSize: "14px",
-                                border: "2px solid #E6ECF5 !important",
-                                borderRadius: "0px 8px 8px 0px",
+                                height: '40px',
+                                width: '100%',
+                                fontSize: '14px',
+                                border: '2px solid #E6ECF5 !important',
+                                borderRadius: '0px 8px 8px 0px',
                                 zIndex: 2,
-                                backgroundColor: "neutral.N00",
+                                backgroundColor: 'neutral.N00',
                               }}
                             >
-                              <i color="#2E58FF" className="ri-upload-2-line"></i>
+                              <i
+                                color="#2E58FF"
+                                className="ri-upload-2-line"
+                              ></i>
                               <Typography
                                 variant="wpf_h7_medium"
                                 sx={{
                                   pl: 1,
-                                  textTransform: "none",
-                                  color: "#2E58FF",
+                                  textTransform: 'none',
+                                  color: '#2E58FF',
                                 }}
                               >
                                 Upload
@@ -345,11 +380,13 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                     const maxSizeInBytes = 1024 * 1024; // 512KB
 
                                     if (fileSize <= maxSizeInBytes) {
-                                      setErrorPhoto("");
+                                      setErrorPhoto('');
                                       handlePhoto(e);
                                     } else {
                                       setPhoto([]);
-                                      setErrorPhoto("Error: File size exceeds 1MB");
+                                      setErrorPhoto(
+                                        'Error: File size exceeds 1MB',
+                                      );
                                     }
                                   }
                                 }}
@@ -364,7 +401,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                     <Grid container>
                       <Typography
                         sx={{
-                          color: "neutral.N300",
+                          color: 'neutral.N300',
 
                           mb: 1,
                         }}
@@ -372,7 +409,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                       >
                         Upload Your Updated Resume
                       </Typography>
-                      <Box sx={{ width: "70%" }}>
+                      <Box sx={{ width: '70%' }}>
                         {data?.resume?.url && !editAble ? (
                           <></>
                         ) : (
@@ -381,7 +418,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                               placeholder={resume.name}
                               disabled={true}
                               size="small"
-                              type={"text"}
+                              type={'text'}
                               id="outlined-basic"
                               // {...field}
                               fullWidth
@@ -392,18 +429,23 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                         )}
                       </Box>
 
-                      <Box sx={{ width: data?.resume?.url && !editAble ? "100%" : "30%" }}>
+                      <Box
+                        sx={{
+                          width:
+                            data?.resume?.url && !editAble ? '100%' : '30%',
+                        }}
+                      >
                         {data?.resume?.url && !editAble ? (
                           <>
                             <Button
                               sx={{
-                                height: "40px",
-                                width: "100%",
-                                fontSize: "14px",
-                                border: "2px solid #E6ECF5 !important",
-                                borderRadius: "8px",
+                                height: '40px',
+                                width: '100%',
+                                fontSize: '14px',
+                                border: '2px solid #E6ECF5 !important',
+                                borderRadius: '8px',
                                 zIndex: 2,
-                                backgroundColor: "neutral.N00",
+                                backgroundColor: 'neutral.N00',
                               }}
                               onClick={() => handleClick(data.resume?.url)}
                             >
@@ -411,8 +453,8 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                 variant="wpf_h7_medium"
                                 sx={{
                                   pl: 1,
-                                  textTransform: "none",
-                                  color: "#2E58FF",
+                                  textTransform: 'none',
+                                  color: '#2E58FF',
                                 }}
                               >
                                 View Your Resume
@@ -421,7 +463,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                           </>
                         ) : (
                           <>
-                            {" "}
+                            {' '}
                             <Button
                               disabled={!editAble}
                               component="label"
@@ -429,22 +471,25 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                               // startIcon={<CloudUploadIcon />}
                               // onSubmit={(e) => e.preventDefault()}
                               sx={{
-                                height: "40px",
-                                width: "100%",
-                                fontSize: "14px",
-                                border: "2px solid #E6ECF5 !important",
-                                borderRadius: "0px 8px 8px 0px",
+                                height: '40px',
+                                width: '100%',
+                                fontSize: '14px',
+                                border: '2px solid #E6ECF5 !important',
+                                borderRadius: '0px 8px 8px 0px',
                                 zIndex: 2,
-                                backgroundColor: "neutral.N00",
+                                backgroundColor: 'neutral.N00',
                               }}
                             >
-                              <i color="#2E58FF" className="ri-upload-2-line"></i>
+                              <i
+                                color="#2E58FF"
+                                className="ri-upload-2-line"
+                              ></i>
                               <Typography
                                 variant="wpf_h7_medium"
                                 sx={{
                                   pl: 1,
-                                  textTransform: "none",
-                                  color: "#2E58FF",
+                                  textTransform: 'none',
+                                  color: '#2E58FF',
                                 }}
                               >
                                 Upload
@@ -463,11 +508,13 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                     const maxSizeInBytes = 1024 * 1024; // 512KB
 
                                     if (fileSize <= maxSizeInBytes) {
-                                      setErrorResume("");
+                                      setErrorResume('');
                                       handleResume(e);
                                     } else {
                                       setResume([]);
-                                      setErrorResume("Error: File size exceeds 1MB");
+                                      setErrorResume(
+                                        'Error: File size exceeds 1MB',
+                                      );
                                     }
                                   }
                                 }}
@@ -480,10 +527,10 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                   </Grid>
                 </Grid>
 
-                <Grid item xs={12} sx={{ paddingRight: "0%" }}>
+                <Grid item xs={12} sx={{ paddingRight: '0%' }}>
                   <SelectFieldForProfile
                     name="bloodGroup"
-                    label={"Document Type"}
+                    label={'Document Type'}
                     defaultValue={documentType}
                     disableItem={false}
                     editAble={editAble}
@@ -493,12 +540,16 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                 </Grid>
               </Grid>
 
-              <Grid container sx={{ paddingBottom: "20px", paddingTop: "%" }}>
-                <Grid item xs={6} sx={{ paddingRight: "2%" }}>
+              <Grid container sx={{ paddingBottom: '20px', paddingTop: '%' }}>
+                <Grid item xs={6} sx={{ paddingRight: '2%' }}>
                   <FieldForProfile
                     name="presentAddress"
                     // label={"Nid Number"}
-                    label={documentType ? `${capitalizeFirstLetter(documentType)} Number` : " Document Number"}
+                    label={
+                      documentType
+                        ? `${capitalizeFirstLetter(documentType)} Number`
+                        : ' Document Number'
+                    }
                     defaultValue={nidNumber}
                     disableItem={false}
                     handleChange={handleNidNumber}
@@ -508,7 +559,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                 <Grid item xs={6}>
                   <FieldForProfile
                     name="Name [as per your  NID]"
-                    label={"Name [as per your document]"}
+                    label={'Name [as per your document]'}
                     // label={"Name [as per your  NID]"}
                     defaultValue={nameAsNid}
                     disableItem={false}
@@ -520,7 +571,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
               {/* <Grid container> */}
               <UploadImagesField
                 editAble={editAble}
-                label={"Document"}
+                label={'Document'}
                 files={images}
                 setFiles={setImages}
                 setImagesCopy={setImagesCopy}
@@ -538,24 +589,24 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
         <Box
           sx={{
             height: {
-              lg: "10%",
-              xl: "14%",
-              xxl: "8%",
+              lg: '10%',
+              xl: '14%',
+              xxl: '8%',
             },
           }}
         >
           <Grid
             container
             sx={{
-              height: "100%",
+              height: '100%',
             }}
           >
             {editAble && (
               <>
                 <Box
                   sx={{
-                    display: "flex",
-                    alignItems: "center",
+                    display: 'flex',
+                    alignItems: 'center',
                   }}
                 >
                   <Button
@@ -563,24 +614,24 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                     disabled={isSyncLoading}
                     sx={{
                       height: {
-                        lg: "30px",
-                        xl: "40px",
-                        xxl: "40px",
+                        lg: '30px',
+                        xl: '40px',
+                        xxl: '40px',
                       },
-                      backgroundColor: "primary.B200",
-                      color: "neutral.N000",
-                      borderRadius: "8px",
-                      textTransform: "none",
-                      fontSize: "12px",
-                      width: "150px",
+                      backgroundColor: 'primary.B200',
+                      color: 'neutral.N000',
+                      borderRadius: '8px',
+                      textTransform: 'none',
+                      fontSize: '12px',
+                      width: '150px',
                       mr: 3,
-                      "&:hover": {
-                        backgroundColor: "primary.B200",
-                        color: "neutral.N000",
+                      '&:hover': {
+                        backgroundColor: 'primary.B200',
+                        color: 'neutral.N000',
                       },
-                      "&.Mui-disabled": {
-                        background: "#B6C9F0",
-                        color: "#FFFFFF",
+                      '&.Mui-disabled': {
+                        background: '#B6C9F0',
+                        color: '#FFFFFF',
                       },
                     }}
                   >
@@ -590,18 +641,18 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                     onClick={() => handleCancel()}
                     sx={{
                       height: {
-                        lg: "30px",
-                        xl: "40px",
-                        xxl: "40px",
+                        lg: '30px',
+                        xl: '40px',
+                        xxl: '40px',
                       },
-                      textTransform: "none",
-                      backgroundColor: "#F2F6FC",
-                      borderRadius: "8px",
-                      fontSize: "12px",
-                      color: "#253E5C",
-                      width: "150px",
-                      "&:hover": {
-                        background: "#F2F6FC",
+                      textTransform: 'none',
+                      backgroundColor: '#F2F6FC',
+                      borderRadius: '8px',
+                      fontSize: '12px',
+                      color: '#253E5C',
+                      width: '150px',
+                      '&:hover': {
+                        background: '#F2F6FC',
                       },
                     }}
                   >

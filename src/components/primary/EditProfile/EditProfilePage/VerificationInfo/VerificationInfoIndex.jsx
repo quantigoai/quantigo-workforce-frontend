@@ -59,13 +59,13 @@ const TypeVerificationOption = [
 ];
 const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEditAble }) => {
   const { user, isLoading } = useSelector((state) => state.user);
-  const [nidNumber, setNidNumber] = useState(data?.extraDocumentNo);
-  const [nameAsNid, setNameAsNid] = useState(data?.extraDocumentName);
+  const [nidNumber, setNidNumber] = useState(data?.extraDocumentNo || "");
+  const [nameAsNid, setNameAsNid] = useState(data?.extraDocumentName || "");
   const [photo, setPhoto] = useState([]);
   const [resume, setResume] = useState([]);
   const [errorPhoto, setErrorPhoto] = useState("");
   const [errorResume, setErrorResume] = useState("");
-  const [documentType, setDocumentType] = useState(data?.extraDocumentType);
+  const [documentType, setDocumentType] = useState(data?.extraDocumentType || "");
   const [images, setImages] = useState(data?.extraDocumentImages.map((i) => i.url));
   const [imagesCopy, setImagesCopy] = useState(data?.extraDocumentImages.map((i) => i.url));
   const [isSyncLoading, setIsSyncLoading] = useState(false);

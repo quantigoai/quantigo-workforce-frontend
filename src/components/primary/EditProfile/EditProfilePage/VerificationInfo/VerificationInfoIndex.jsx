@@ -92,10 +92,10 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
     setNameAsNid(e.target.value);
   };
   const handleCancel = () => {
-    setNameAsNid(data?.extraDocumentName);
-    setNidNumber(data?.extraDocumentNo);
-    setDocumentType(data?.extraDocumentType);
-    setImages(data?.extraDocumentImages.map((i) => i.url))
+    setNameAsNid(data?.extraDocumentName || "");
+    setNidNumber(data?.extraDocumentNo || "");
+    setDocumentType(data?.extraDocumentType || "");
+    setImages(data?.extraDocumentImages.map((i) => i.url));
     setEditAble(false);
   };
   const handlePhoto = (e) => {

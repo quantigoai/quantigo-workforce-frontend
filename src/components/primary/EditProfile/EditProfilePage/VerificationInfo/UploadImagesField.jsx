@@ -221,7 +221,7 @@ const UploadImagesField = ({
 
   return (
     <>
-      <Box className="container" sx={{ width: '100%' }}>
+      <Box sx={{ width: '100%' }}>
         <Box
           sx={{
             display: 'flex',

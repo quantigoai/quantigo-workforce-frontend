@@ -316,7 +316,7 @@ const UploadImagesField = ({
                     variant="wpf_p3_regular"
                   >
                     {!documentType &&
-                      'Please Select Document type then upload Image'}
+                      'Please Select a Document type for uploading Images.'}
                   </Typography>
                 )}
                 <Typography
@@ -330,7 +330,8 @@ const UploadImagesField = ({
                   }}
                   variant="wpf_p3_regular"
                 >
-                  Drag and Drop {label} Images here or Browse” (JPG/ JPEG / PNG)
+                  Select Here or Drag and Drop for Upload {label} Images
+                  (JPG/JPEG/PNG).
                 </Typography>
                 <Typography
                   sx={{
@@ -343,7 +344,8 @@ const UploadImagesField = ({
                   }}
                   variant="wpf_p3_regular"
                 >
-                  Only 5 Images Can Be Added
+                  Make sure each image is under 1MB and you can upload maximum 5
+                  images.
                 </Typography>
                 <Typography
                   variant="wpf_p3_regular"
@@ -357,7 +359,7 @@ const UploadImagesField = ({
                         : '#fff',
                   }}
                 >
-                  Maximum file size: 1Mb.
+                  {/* Image size should be less than 1MB */}
                 </Typography>
                 <img
                   style={{

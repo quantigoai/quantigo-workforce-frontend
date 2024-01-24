@@ -1,9 +1,9 @@
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import {Box, Button, MenuItem, Select, Typography} from "@mui/material";
-import {useCallback, useEffect, useLayoutEffect, useState} from "react";
-import {useSelector} from "react-redux";
-import {useLocation, useNavigate, useParams, useSearchParams} from "react-router-dom";
+import { Box, Button, MenuItem, Select, Typography } from "@mui/material";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 const paginationOptions = [
   { value: 10, label: 10 },
@@ -139,7 +139,6 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
       setTotalPages(Math.ceil(usersWorkHistoryCount / pagination.pageSize));
     }
   }, [total, totalUsers, usersWorkHistoryCount, meta]);
-  console.log(projectDirectory?.length);
   const visiblePageCount = 5;
   const firstVisiblePage = Math.max(0, pagination.currentPage - Math.floor(visiblePageCount / 2));
   const lastVisiblePage = Math.min(totalPages - 1, firstVisiblePage + visiblePageCount - 1);

@@ -26,9 +26,6 @@ const style = {
 };
 
 const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, documentsType, userName }) => {
-  console.log("🚀 ~ NidDetails ~ documentsType:", documentsType)
-  console.log("🚀 ~ NidDetails ~ documentsNo:", documentsNo)
-  console.log("🚀 ~ NidDetails ~ documentImage:", documentImage)
   let drawerStatus = (status) => {
     switch (status) {
       case "passport":

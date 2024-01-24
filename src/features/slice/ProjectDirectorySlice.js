@@ -412,10 +412,6 @@ const ProjectDirectory = createSlice({
         state.isLoading = true;
       })
       .addCase(getProjectSync.fulfilled, (state, action) => {
-        console.log(
-          '🚀 ~ file: ProjectDirectorySlice.js:404 ~ .addCase ~ action:',
-          action,
-        );
         state.isLoading = false;
         state.error = null;
       })
@@ -450,10 +446,6 @@ const ProjectDirectory = createSlice({
         state.isLoading = false;
       })
       .addCase(updateProjectDirectory.fulfilled, (state, action) => {
-        console.log(
-          '🚀 ~ file: ProjectDirectorySlice.js:412 ~ .addCase ~ action:',
-          action,
-        );
         state.projectDirectory = state.projectDirectory.map((item) => {
           if (item._id !== action.payload.data.projectDirectory._id) {
             return item;

@@ -414,7 +414,6 @@ const ProjectDirectoryIndex = () => {
 
   useLayoutEffect(() => {
     setIsDataLoading(true);
-    console.log('layout');
     dispatch(
       getProjectByDirectory({
         filteredData: filterData,

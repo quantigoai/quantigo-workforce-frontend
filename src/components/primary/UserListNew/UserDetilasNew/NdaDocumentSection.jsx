@@ -18,7 +18,6 @@ const styleBtn = {
   },
 };
 const NdaDocumentSection = ({ user, data }) => {
-  console.log('🚀 ~ NdaDocumentSection ~ data:', data);
   const [openModal, setOpenModal] = React.useState(false);
   const [documentsImage, setDocumentsImage] = useState(data?.documentsImage);
   const [documentsType, setDocumentsType] = useState(data?.documentsType);

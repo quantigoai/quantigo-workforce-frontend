@@ -517,8 +517,8 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                 </Grid>
                 <Grid item xs={6}>
                   <FieldForProfile
-                    name="Name [as per your  NID]"
-                    label={"Name [as per your document]"}
+                    name=""
+                    label={"Name as Your Document"}
                     // label={"Name [as per your  NID]"}
                     defaultValue={nameAsNid}
                     disableItem={false}

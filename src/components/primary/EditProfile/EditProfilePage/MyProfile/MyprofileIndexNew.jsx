@@ -18,7 +18,7 @@ import SelectFieldForProfile from "../SelectFieldForProfile";
 const maritalStatusOption = [
   { value: "married", label: "Married" },
   { value: "single", label: "Single" },
-  { value: "others", label: "Other" },
+  { value: "others", label: "Others" },
 ];
 const bloodGroupOption = [
   { value: "(A+)", label: "A+" },
@@ -35,7 +35,7 @@ const religionOption = [
   { value: "christian", label: "Christian" },
   { value: "hindu", label: "Hindu" },
   { value: "buddhism", label: "Buddhism" },
-  { value: "others", label: "Other" },
+  { value: "others", label: "Others" },
 ];
 const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
   const { user, isLoading } = useSelector((state) => state.user);
@@ -256,7 +256,7 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
               <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                 <CommonFieldTest
                   name="dob"
-                  label={"Date Of Birth"}
+                  label={"Date of Birth"}
                   defaultValue={DOB}
                   disableItem={true}
                   control={control}

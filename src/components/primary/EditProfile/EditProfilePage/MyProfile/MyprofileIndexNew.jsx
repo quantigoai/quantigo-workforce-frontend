@@ -1,16 +1,16 @@
-import {Box, Button, Grid, Typography} from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import moment from "moment/moment";
-import {useEffect, useState} from "react";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../../../customHooks/useToaster";
 import {
-    getUserPersonalInfo,
-    myProfileEdit,
-    readMyProfile,
-    uploadMyImage,
+  getUserPersonalInfo,
+  myProfileEdit,
+  readMyProfile,
+  uploadMyImage,
 } from "../../../../../features/slice/userSlice";
-import {capitalizeFirstLetter} from "../../../../../helper/capitalizeFirstWord";
+import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
 import CommonFieldTest from "../CommonFieldTest";
 import FieldForProfile from "../FieldForProfile";
 import SelectFieldForProfile from "../SelectFieldForProfile";
@@ -116,12 +116,12 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
   useEffect(() => {
     setFirstName(data.firstName);
     setLastName(data.lastName);
-    // setContactNo(data.contactNo);
+    setReligion(data.religion);
     setOccupation(data.occupation);
     setBloodGroup(data.bloodGroup);
-    // setPermanentAddress(user.permanentAddress);
-    // setPresentAddress(user.presentAddress);
-    // setBillingAccountNo(user.billingAccountNo);
+    setMaritalStatus(user.maritalStatus);
+    setFatherName(user.fathersName);
+    setMotherName(user.mothersName);
     setCoverImage(null);
   }, [editAble]);
 

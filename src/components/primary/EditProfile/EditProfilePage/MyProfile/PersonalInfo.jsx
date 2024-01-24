@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {getUserPersonalInfo} from "../../../../../features/slice/userSlice";
-import {Box} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserPersonalInfo } from "../../../../../features/slice/userSlice";
+import { Box } from "@mui/material";
 import ProfilePicture from "../MyProfile/ProfilePicture";
 import LoadingComponent from "../../../../shared/Loading/LoadingComponent";
 import MyprofileIndexNew from "./MyprofileIndexNew";
@@ -70,7 +70,12 @@ const PersonalInfo = () => {
           </>
         ) : (
           <>
-            <MyprofileIndexNew data={data} isDataLoading={isDataLoading} editAble={editAble} setEditAble={setEditAble}/>
+            <MyprofileIndexNew
+              data={data}
+              isDataLoading={isDataLoading}
+              editAble={editAble}
+              setEditAble={setEditAble}
+            />
           </>
         )}
       </Box>

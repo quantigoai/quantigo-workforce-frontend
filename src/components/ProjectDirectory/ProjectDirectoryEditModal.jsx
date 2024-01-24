@@ -114,7 +114,7 @@ const ProjectDirectoryEditModal = ({
                     paddingRight: "12px",
                     overflowY: "auto",
                     "&::-webkit-scrollbar": {
-                      width: "0", // Hide the scrollbar
+                      width: "0",
                     },
                   }}
                 >

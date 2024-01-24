@@ -13,6 +13,13 @@ const TextFieldQuestion = styled(TextField)(() => ({
   // borderRadius: "8px 0px 0px 8px",
   "& .MuiOutlinedInput-root": {
     height: "40px",
+    "@media(max-width:1439px)": {
+      height: "30px",
+      fontSize: "12px",
+    },
+    "@media(min-width: 1920px)": {
+      fontSize: "14px",
+    },
     fontSize: "14px",
     border: "2px solid #E6ECF5 !important",
     backgroundColor: "neutral.N000",
@@ -95,7 +102,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
     setNameAsNid(data?.extraDocumentName);
     setNidNumber(data?.extraDocumentNo);
     setDocumentType(data?.extraDocumentType);
-    setImages(data?.extraDocumentImages.map((i) => i.url))
+    setImages(data?.extraDocumentImages.map((i) => i.url));
     setEditAble(false);
   };
   const handlePhoto = (e) => {
@@ -284,6 +291,13 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                             <Button
                               sx={{
                                 height: "40px",
+                                "@media(max-width:1439px)": {
+                                  height: "30px",
+                                  fontSize: "12px",
+                                },
+                                "@media(min-width: 1920px)": {
+                                  fontSize: "14px",
+                                },
                                 width: "100%",
                                 fontSize: "14px",
                                 border: "2px solid #E6ECF5 !important",
@@ -318,6 +332,13 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                               // onSubmit={(e) => e.preventDefault()}
                               sx={{
                                 height: "40px",
+                                "@media(max-width:1439px)": {
+                                  height: "30px",
+                                  fontSize: "12px",
+                                },
+                                "@media(min-width: 1920px)": {
+                                  fontSize: "14px",
+                                },
                                 width: "100%",
                                 fontSize: "14px",
                                 border: "2px solid #E6ECF5 !important",
@@ -440,6 +461,13 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                               // onSubmit={(e) => e.preventDefault()}
                               sx={{
                                 height: "40px",
+                                "@media(max-width:1439px)": {
+                                  height: "30px",
+                                  fontSize: "12px",
+                                },
+                                "@media(min-width: 1920px)": {
+                                  fontSize: "14px",
+                                },
                                 width: "100%",
                                 fontSize: "14px",
                                 border: "2px solid #E6ECF5 !important",

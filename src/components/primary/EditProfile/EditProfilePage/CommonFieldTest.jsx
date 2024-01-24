@@ -1,13 +1,24 @@
-import {FormControl, Grid, styled, TextField, Typography} from "@mui/material";
+import { FormControl, Grid, styled, TextField, Typography } from "@mui/material";
 import React from "react";
-import {Controller} from "react-hook-form";
+import { Controller } from "react-hook-form";
 
 const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "1px solid #E6ECF5 !important",
     borderRadius: "8px",
   },
-  "& .MuiInputBase-root": { height: "40px", fontSize: "14px", color: "#3C4D6B" },
+  "& .MuiInputBase-root": {
+    height: "40px",
+    fontSize: "12px",
+    fontFamily: "Inter",
+    "@media(max-width:1439px)": {
+      height: "30px",
+      fontSize: "10px",
+    },
+    "@media(min-width: 1920px)": {
+      fontSize: "14px",
+    },
+  },
   "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
     border: `1px solid #2E58FF !important`,
   },
@@ -32,7 +43,8 @@ function CommonFieldTest({ name, label, defaultValue, disableItem, control, rule
 
                   mb: 1,
                 }}
-                variant="wpf_p4_medium">
+                variant="wpf_p4_medium"
+              >
                 {label}
               </Typography>
               <MyTextField
@@ -41,6 +53,13 @@ function CommonFieldTest({ name, label, defaultValue, disableItem, control, rule
                   fontSize: "14px",
                   borderRadius: "8px",
                   height: "40px",
+                  "@media(max-width:1439px)": {
+                    height: "30px",
+                    fontSize: "10px",
+                  },
+                  "@media(min-width: 1920px)": {
+                    fontSize: "14px",
+                  },
                 }}
                 variant="outlined"
                 disabled={disableItem ? true : !editAble}

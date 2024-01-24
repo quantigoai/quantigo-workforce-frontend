@@ -7,6 +7,7 @@ import ImageShowInModal from "./ImageShowInModal";
 import {useDispatch} from "react-redux";
 import {getUserEducationInfo} from "../../../../features/slice/userSlice";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
+import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 
 const EducationInfoDetails = ({
   user,
@@ -61,7 +62,7 @@ const EducationInfoDetails = ({
                 Item1Title={"Highest level of degree"}
                 Item1={data.highestLevelOfDegree}
                 Item2Title={"Field of Study"}
-                Item2={data.fieldOfStudy}
+                Item2={capitalizeFirstLetter(data.fieldOfStudy)}
                 isBlocked={user.isBlocked}
                 Item3Title={"Year of completion"}
                 Item3={data.completedYear}

@@ -1,27 +1,27 @@
 import {
-    Button,
-    FormControl,
-    Grid,
-    Paper,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    TextField,
-    Typography,
+  Button,
+  FormControl,
+  Grid,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
 } from "@mui/material";
-import {styled} from "@mui/material/styles";
-import {Box} from "@mui/system";
-import React, {useEffect, useState} from "react";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
+import { styled } from "@mui/material/styles";
+import { Box } from "@mui/system";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import useToaster from "../../../customHooks/useToaster";
-import {setActivePath} from "../../../features/slice/activePathSlice";
-import {createASkill, getAllSkills} from "../../../features/slice/skillSlice";
+import { setActivePath } from "../../../features/slice/activePathSlice";
+import { createASkill, getAllSkills } from "../../../features/slice/skillSlice";
 
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
+import { capitalizeFirstLetter } from "../../../helper/capitalizeFirstWord";
 import SkillDeleteModal from "./SkillDeleteModal";
 import SkillEdit from "./SkillEdit";
 
@@ -294,7 +294,7 @@ const Skills = () => {
                         <Table stickyHeader aria-label="sticky table">
                           <TableHead sx={{ background: "#F8F8F8", height: "0px" }}>
                             <TableRow>
-                              <TableCell sx={{ color: "neutral.550" }}>NAME</TableCell>
+                              <TableCell sx={{ color: "neutral.550", zIndex: 10 }}>NAME</TableCell>
                               <TableCell sx={{ color: "neutral.550" }}>DESCRIPTION</TableCell>
                               <TableCell align="center" sx={{ color: "neutral.550" }}>
                                 ACTION

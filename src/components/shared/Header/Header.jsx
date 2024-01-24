@@ -8,20 +8,26 @@
  */
 import LogoutIcon from '@mui/icons-material/Logout';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import {Avatar, FormControlLabel, Stack, styled, Typography,} from '@mui/material';
+import {
+  Avatar,
+  FormControlLabel,
+  Stack,
+  styled,
+  Typography,
+} from '@mui/material';
 import Box from '@mui/material/Box';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {useLocation, useNavigate} from 'react-router-dom';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useReset from '../../../customHooks/useReset';
-import {setTheme} from '../../../features/slice/themeSlice';
-import {logout} from '../../../features/slice/userSlice';
-import {persistor} from '../../../features/store/store';
-import {capitalizeFirstLetter} from '../../../helper/capitalizeFirstWord';
+import { setTheme } from '../../../features/slice/themeSlice';
+import { logout } from '../../../features/slice/userSlice';
+import { persistor } from '../../../features/store/store';
+import { capitalizeFirstLetter } from '../../../helper/capitalizeFirstWord';
 import NotificationModal from '../Notification/NotificationModal';
 import GoBackButton from './GoBackButton';
 import ThemeSwitch from './ThemeSwitch';
@@ -179,7 +185,8 @@ const Header = () => {
                       sx={{
                         color: 'neutral.800',
                       }}
-                      variant="wpf_p3_medium">
+                      variant="wpf_p3_medium"
+                    >
                       {firstName} {lastName}
                     </Typography>
 
@@ -230,7 +237,8 @@ const Header = () => {
                       anchorEl={anchorEl}
                       open={open}
                       autoFocus={false}
-                      onClose={handleClose}>
+                      onClose={handleClose}
+                    >
                       <MenuItem
                         sx={{
                           borderBottom: '1px solid #F0F5FA',
@@ -241,7 +249,8 @@ const Header = () => {
                           // height: "50px",
                           height: { xl: '50px', xxl: '50px', lg: '37px' },
                         }}
-                        onClick={handleEditProfile}>
+                        onClick={handleEditProfile}
+                      >
                         <ListItemIcon>
                           <PersonOutlineIcon
                             sx={{
@@ -268,7 +277,7 @@ const Header = () => {
                           height: { xl: '50px', xxl: '50px', lg: '37px' },
                           width: { xl: '182px', xxl: '182px', lg: '155px' },
                         }}
-                        disabled={isLoading}>
+                      >
                         <ListItemIcon>
                           <LogoutIcon
                             sx={{

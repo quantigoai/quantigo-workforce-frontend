@@ -1,15 +1,13 @@
+import { Box, Button, Grid, TextField, Typography, styled } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Button, Grid, styled, TextField, Typography } from "@mui/material";
 import FieldForProfile from "../FieldForProfile";
 // import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
-import UploadImagesField from "./UploadImagesField";
-import SelectFieldForProfile from "../SelectFieldForProfile";
-import { updateMyVerificationFunction } from "../../../../../features/slice/userSlice";
 import useToaster from "../../../../../customHooks/useToaster";
+import { updateMyVerificationFunction } from "../../../../../features/slice/userSlice";
 import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
-import axios from "axios";
-import { realToken } from "../../../../../helper/lib";
+import SelectFieldForProfile from "../SelectFieldForProfile";
+import UploadImagesField from "./UploadImagesField";
 
 const TextFieldQuestion = styled(TextField)(() => ({
   // borderRadius: "8px 0px 0px 8px",
@@ -17,7 +15,6 @@ const TextFieldQuestion = styled(TextField)(() => ({
     height: "40px",
     fontSize: "14px",
     border: "2px solid #E6ECF5 !important",
-    backgroundColor: "#F9FAFB",
     backgroundColor: "neutral.N000",
 
     // borderRadius: "8px",
@@ -81,21 +78,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
     },
   ]);
   const [removeImages, setRemoveImages] = useState([]);
-  const uploadRequest = async (finalImageData) => {
-    try {
-      const { id, formData } = finalImageData;
-      return await axios.patch(`${url}/users/my-verification/${id}`, formData, {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-        content: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
-  };
+
   const dispatch = useDispatch();
   const toast = useToaster();
 
@@ -109,6 +92,10 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
     setNameAsNid(e.target.value);
   };
   const handleCancel = () => {
+    setNameAsNid(data?.extraDocumentName);
+    setNidNumber(data?.extraDocumentNo);
+    setDocumentType(data?.extraDocumentType);
+    setImages(data?.extraDocumentImages.map((i) => i.url))
     setEditAble(false);
   };
   const handlePhoto = (e) => {
@@ -136,7 +123,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
     nameAsNid && formData.append("extraDocumentName", nameAsNid);
 
     images.forEach((item) => {
-      if (item.name) {
+      if (item?.name) {
         formData.append("images", item);
       }
     });
@@ -162,15 +149,6 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
       id: user._id,
       formData,
     };
-
-    // await toast.responsePromise(uploadRequest(finalImageData), setDataLoading, {
-    //   initialMessage: "  is Uploading...",
-    //   inPending: () => {},
-    //   afterSuccess: (finalImageData) => {
-    //     // dispatch(updateProjectDrawerManually(data.data.projectDrawer));
-    //   },
-    //   afterError: () => {},
-    // });
 
     await toast.responsePromise(updateMyVerificationFunction(finalImageData), setIsSyncLoading, {
       initialMessage: "Verification info is updating...",
@@ -201,9 +179,6 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
     //     setEditAble(false);
     //   }
     // });
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
   };
   return (
     <>
@@ -247,7 +222,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                         }}
                         variant="wpf_p4_medium"
                       >
-                        Please Upload Your Passport Size Photo
+                        Upload Your Passport Size Photo
                       </Typography>
 
                       <Box sx={{ width: "70%" }}>
@@ -299,7 +274,11 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                         )}
                       </Box>
 
-                      <Box sx={{ width: data.standardPhoto && !editAble ? "100%" : "30%" }}>
+                      <Box
+                        sx={{
+                          width: data.standardPhoto && !editAble ? "100%" : "30%",
+                        }}
+                      >
                         {data?.standardPhoto && !editAble ? (
                           <>
                             <Button
@@ -324,7 +303,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                   color: "#2E58FF",
                                 }}
                               >
-                                View
+                                View Your Photo
                               </Typography>
                             </Button>
                           </>
@@ -369,14 +348,14 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                   // Check if a file is selected
                                   if (selectedFile) {
                                     const fileSize = selectedFile.size; // Size in bytes
-                                    const maxSizeInBytes = 512 * 1024; // 512KB
+                                    const maxSizeInBytes = 1024 * 1024; // 512KB
 
                                     if (fileSize <= maxSizeInBytes) {
                                       setErrorPhoto("");
                                       handlePhoto(e);
                                     } else {
                                       setPhoto([]);
-                                      setErrorPhoto("Error: File size exceeds 512KB");
+                                      setErrorPhoto("Error: File size exceeds 1MB");
                                     }
                                   }
                                 }}
@@ -397,7 +376,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                         }}
                         variant="wpf_p4_medium"
                       >
-                        Please Upload Your Updated Resume
+                        Upload Your Updated Resume
                       </Typography>
                       <Box sx={{ width: "70%" }}>
                         {data?.resume?.url && !editAble ? (
@@ -419,7 +398,11 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                         )}
                       </Box>
 
-                      <Box sx={{ width: data?.resume?.url && !editAble ? "100%" : "30%" }}>
+                      <Box
+                        sx={{
+                          width: data?.resume?.url && !editAble ? "100%" : "30%",
+                        }}
+                      >
                         {data?.resume?.url && !editAble ? (
                           <>
                             <Button
@@ -442,7 +425,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                   color: "#2E58FF",
                                 }}
                               >
-                                View
+                                View Your Resume
                               </Typography>
                             </Button>
                           </>
@@ -487,7 +470,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                   // Check if a file is selected
                                   if (selectedFile) {
                                     const fileSize = selectedFile.size; // Size in bytes
-                                    const maxSizeInBytes = 512 * 1024; // 512KB
+                                    const maxSizeInBytes = 1024 * 1024; // 512KB
 
                                     if (fileSize <= maxSizeInBytes) {
                                       setErrorResume("");
@@ -525,7 +508,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                   <FieldForProfile
                     name="presentAddress"
                     // label={"Nid Number"}
-                    label={`${capitalizeFirstLetter(documentType)} Number`}
+                    label={documentType ? `${capitalizeFirstLetter(documentType)} Number` : " Document Number"}
                     defaultValue={nidNumber}
                     disableItem={false}
                     handleChange={handleNidNumber}
@@ -534,8 +517,8 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                 </Grid>
                 <Grid item xs={6}>
                   <FieldForProfile
-                    name="Name [as per your  NID]"
-                    label={` Name [as per your  ${documentType}]  `}
+                    name=""
+                    label={"Name as Your Document"}
                     // label={"Name [as per your  NID]"}
                     defaultValue={nameAsNid}
                     disableItem={false}
@@ -547,12 +530,13 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
               {/* <Grid container> */}
               <UploadImagesField
                 editAble={editAble}
-                label={`${documentType} Photo`}
+                label={"Document"}
                 files={images}
                 setFiles={setImages}
                 setImagesCopy={setImagesCopy}
                 imagesCopy={imagesCopy}
                 setRemoveImages={setRemoveImages}
+                documentType={documentType}
               />
               {/* </Grid> */}
             </Box>

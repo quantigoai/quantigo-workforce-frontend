@@ -95,7 +95,7 @@ const VerificationInfoDetails = ({
                   Item3={user.extraDocumentName || "N/A"}
                 />
 
-                <NdaDocumentSection user={user} />
+                <NdaDocumentSection user={user} data={data} />
                 <Grid container sx={{ padding: "2%" }}>
                   <Grid item xs={4} sx={{ paddingRight: "1%" }}>
                     <ImageShowInModal
@@ -106,16 +106,16 @@ const VerificationInfoDetails = ({
                   <Grid item xs={4} sx={{ paddingRight: "1%" }}>
                     <ImageShowInModal
                       images={data.extraDocumentImages.map((i) => i.url)}
-                      level={`${capitalizeFirstLetter(data.extraDocumentType || "Ext Document ")}Images`}
+                      level={`${capitalizeFirstLetter(data.extraDocumentType || "Ext Document")} Images`}
                     />
                   </Grid>
                   <Grid item xs={4}>
                     <Button sx={styleBtn} disabled={!data?.resume?.url} onClick={() => handleClick(data?.resume?.url)}>
                       <Typography
                         variant="wpf_p3_medium"
-                        color={!data?.resume?.url ? "primary.B200" : ""}
                         sx={{
                           paddingRight: "4%",
+                          color: !data?.resume?.url ? "" : "primary.B200",
                           filter: !data?.resume?.url ? "grayscale(100%) opacity(50%)" : "",
                         }}
                       >

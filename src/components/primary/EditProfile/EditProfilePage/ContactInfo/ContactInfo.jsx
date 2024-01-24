@@ -75,6 +75,8 @@ const ContactInfo = () => {
               isDataLoading={isDataLoading}
               editAble={editAble}
               setEditAble={setEditAble}
+              setData={setData}
+              setIsDataLoading={setIsDataLoading}
             />
           </>
         )}

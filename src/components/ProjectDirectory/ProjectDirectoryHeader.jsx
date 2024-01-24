@@ -200,11 +200,7 @@ const ProjectDirectoryHeader = ({
           }}
           aria-label="menu"
         >
-          {/* {isFilter ? ( */}
-          {/* <FilterListOffIcon sx={{ color: "primary.main" }} /> */}
-          {/* ) : ( */}
           <FilterListIcon sx={{ color: "primary.main" }} />
-          {/* )} */}
         </IconButton>
 
         <Popover

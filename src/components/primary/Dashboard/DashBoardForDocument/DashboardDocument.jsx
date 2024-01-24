@@ -1,7 +1,7 @@
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import {Alert, Box, Button, Grid, Typography} from "@mui/material";
-import React, {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { Alert, Box, Button, Grid, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import UpdateDocumentModal from "../../Documents/UpdateDocumentModal";
 import NDAuploadModal from "../../Nda/NDAuploadModal";
 import ProgressBarForDashboard from "../ProgressBarForDashboard";
@@ -66,7 +66,14 @@ const DashboardDocument = () => {
           <Box sx={{}}>
             <Grid container sx={{ padding: "1%" }}>
               <Grid item xs={6} sx={{ backgroundColor: "", paddingRight: "1%" }}>
-                <Box sx={{ backgroundColor: "primary.B008", borderRadius: "8px", padding: "2%" }}>
+                <Box
+                  sx={{
+                    backgroundColor: "primary.B008",
+                    borderRadius: "8px",
+                    padding: "2%",
+                    height: { xl: "100%", lg: "100%", xxl: "100%" },
+                  }}
+                >
                   <Grid item xs={12}>
                     <Typography variant="wpf_h6_semiBold" sx={{ color: "primary.B300" }}>
                       NDA Upload

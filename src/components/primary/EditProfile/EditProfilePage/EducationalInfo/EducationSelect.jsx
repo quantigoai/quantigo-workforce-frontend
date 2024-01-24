@@ -1,4 +1,4 @@
-import {Box, FormControl, MenuItem, Select, styled, Typography} from "@mui/material";
+import { Box, FormControl, MenuItem, Select, styled, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 
 EducationSelect.propTypes = {
@@ -54,7 +54,7 @@ export default function EducationSelect({ handleChangeDegree, higherDegree, opti
           onChange={handleChangeDegree}
         >
           <MenuItem disabled value="">
-            <span>select your highest degree</span>
+            <span>Select your highest degree</span>
           </MenuItem>
 
           {options.map((option) => (

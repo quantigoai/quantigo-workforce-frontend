@@ -1,5 +1,5 @@
 import { LoadingButton } from "@mui/lab";
-import { Box, Button, Grid, MenuItem, Modal, Select, TextField, Typography } from "@mui/material";
+import { Alert, Box, Button, Grid, MenuItem, Modal, Select, TextField, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +7,7 @@ import useToaster from "../../../customHooks/useToaster";
 import { updateMyDocuments } from "../../../features/slice/userSlice";
 import ProjectModalHeader from "../ProjectLIstNew2/ProjectModalHeader";
 import UploadImagesField from "../EditProfile/EditProfilePage/VerificationInfo/UploadImagesField";
-
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 export const MyTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "2px solid #E6ECF5 !important",
@@ -54,7 +54,6 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
   const [documentsType, setDocumentsType] = useState(user?.documentsType);
   const [documentNo, setDocumentNo] = useState(user?.documentNo);
   const [imagesCopy, setImagesCopy] = useState(user?.documentsImage);
-
   const [isDocumentNoValid, setDocumentNoValid] = useState(false);
   const [isDocumentTypeValid, setDocumentTypeValid] = useState(false);
   const [images, setImages] = useState(user?.documentsImage);
@@ -107,6 +106,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
         formData.append("documentsImage", item);
       }
     });
+
     if (imagesCopy.length != 0) {
       imagesCopy.map((item, index) => {
         const tempData = {
@@ -150,9 +150,9 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
           sx={{
             ...style,
             height: {
-              lg: "78%",
-              xl: "72%",
-              xxl: "68%",
+              lg: "80%",
+              xl: "74%",
+              xxl: "70%",
             },
             width: {
               lg: "50%",
@@ -164,12 +164,32 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
           <Box sx={{ flex: "0 0 5%" }}>
             <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Upload Document"} />
           </Box>
-
+          {user?.rejectionCause && (
+            <Box sx={{}}>
+              <Alert
+                variant="filled"
+                severity="warning"
+                sx={{
+                  border: "1px solid #F2A200",
+                  color: "warning.400",
+                  backgroundColor: "warning.100",
+                  borderRadius: "6px",
+                  // height: "48px",
+                  // fontSize: "12px",
+                }}
+              >
+                Rejection Cause: {user?.rejectionCause}
+              </Alert>
+            </Box>
+          )}
           <Box
             sx={{
               flex: "1",
-              overflowY: "auto",
+              overflowY: "scroll",
               padding: "3%",
+              "&::-webkit-scrollbar": {
+                width: "0",
+              },
             }}
           >
             <Box>
@@ -230,18 +250,20 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                     // setDocumentNo(e.target.value);
                     handleDocumentNoChange(e); // Validate document number
                   }}
+                  icon={<InfoOutlinedIcon />}
                 />
               </Grid>
 
               <Grid container sx={{}}>
                 <UploadImagesField
                   editAble={true}
-                  label={"sdfsfdsf"}
+                  label={"Document "}
                   files={images}
                   setFiles={setImages}
                   setImagesCopy={setImagesCopy}
                   imagesCopy={imagesCopy}
                   setRemoveImages={setRemoveImages}
+                  documentType={"documentType"}
                 />
                 {/* <DocumentImageUpload
                   coverImageFile={coverImageFile}
@@ -302,6 +324,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                     //   // documentNo && documentsType &&
                     //   images.length === 0
                     // }
+                    disabled={!documentsType || !documentNo || images.length === 0}
                     sx={{
                       width: "128px",
                       textTransform: "none",

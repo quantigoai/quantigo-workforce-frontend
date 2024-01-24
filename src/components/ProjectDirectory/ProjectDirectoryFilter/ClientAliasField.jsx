@@ -1,9 +1,9 @@
-import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
-import {getType} from "../../../features/slice/ProjectDirectorySlice";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getType } from "../../../features/slice/ProjectDirectorySlice";
 
-const ClientAliasField = ({ setClientAliasesFilter, clientAliasFilter }) => {
+const ClientAliasField = ({ setClientAliasesFilter, clientAliasFilter, isLightTheme }) => {
   const [clientAlias, setClientAliases] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -23,7 +23,7 @@ const ClientAliasField = ({ setClientAliasesFilter, clientAliasFilter }) => {
           onChange={(e) => setClientAliasesFilter(e.target.value)}
           value={clientAliasFilter || ""}
           sx={{
-            backgroundColor: "#F8F8F8",
+            backgroundColor: isLightTheme ? "#F8F8F8" : "",
             border: "1px solid #DADCDF",
             borderRadius: "4px",
           }}

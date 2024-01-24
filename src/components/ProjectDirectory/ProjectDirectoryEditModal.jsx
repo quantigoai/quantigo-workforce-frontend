@@ -99,7 +99,7 @@ const ProjectDirectoryEditModal = ({
             }}
           >
             <ProjectModalHeader handleCreateProjectClose={handleEditClose} modalTitle={`Edit ${item.project_Name}`} />
-            <Box sx={{ height: "90%", paddingLeft: "16px", paddingRight: "16px" }}>
+            <Box sx={{ height: "90%" }}>
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitEdit)}>
                 <Box
                   sx={{
@@ -110,6 +110,8 @@ const ProjectDirectoryEditModal = ({
                       xl: "490px",
                       xxl: "600px",
                     },
+                    paddingLeft: "16px",
+                    paddingRight: "12px",
                     overflowY: "auto",
                     "&::-webkit-scrollbar": {
                       width: "0", // Hide the scrollbar
@@ -249,7 +251,7 @@ const ProjectDirectoryEditModal = ({
                     justifyContent: "space-between",
                     alignItems: "center",
                     paddingY: { lg: "10px", xl: "12px", xxl: "12px" },
-                    paddingX: "0px",
+                    paddingX: "12px",
                     mt: 1,
                     borderTop: "2px solid #F2F6FC",
                   }}

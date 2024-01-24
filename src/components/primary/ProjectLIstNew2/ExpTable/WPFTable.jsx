@@ -36,8 +36,6 @@ export default function WPFTable({
   handleReject,
   handleOpenNDA,
 }) {
-  console.log("🚀 ~ myRows:", myRows);
-  console.log("🚀 ~ myColumn:", myColumn);
   const { id } = useParams();
   return (
     myColumn.length > 0 && (

@@ -7,7 +7,7 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Link, Typography} from "@mui/material";
+import { Link, Typography } from "@mui/material";
 import React from "react";
 
 const LinkCell = ({ data }) => {
@@ -22,6 +22,7 @@ const LinkCell = ({ data }) => {
               fontSize: "14px",
             }}
             href={data?.[0].documentUrl}
+            target="_blank"
           >
             click here
             <i className="ri-arrow-right-up-line"></i>

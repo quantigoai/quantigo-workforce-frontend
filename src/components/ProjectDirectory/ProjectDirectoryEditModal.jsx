@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoadingButton } from "@mui/lab";
-import { Backdrop, Box, Button, Fade, Modal } from "@mui/material";
+import { Backdrop, Box, Button, Fade, Grid, Modal } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,14 +14,16 @@ import { FieldBox } from "../shared/FIeldbox/FieldBox.jsx";
 
 const style = {
   position: "absolute",
-  top: "50%",
-  left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 900,
   bgcolor: "background.paper",
+  height: "80%",
+  overflowY: "auto",
   boxShadow: 24,
   borderRadius: "10px",
   p: 0,
+  "&::-webkit-scrollbar": {
+    width: "0", // Hide the scrollbar
+  },
 };
 const ProjectDirectoryEditModal = ({
   item,
@@ -80,19 +82,49 @@ const ProjectDirectoryEditModal = ({
         }}
       >
         <Fade in={openProjectModalEdit}>
-          <Box sx={style}>
+          <Box
+            sx={{
+              ...style,
+              width: { xxl: "50%", xl: "60%", lg: "70%" },
+              top: {
+                lg: "50%",
+                xl: "50%",
+                xxl: "50%",
+              },
+              left: {
+                lg: "55%",
+                xl: "50%",
+                xxl: "53%",
+              },
+            }}
+          >
             <ProjectModalHeader handleCreateProjectClose={handleEditClose} modalTitle={`Edit ${item.project_Name}`} />
-            <Box>
+            <Box sx={{ height: "90%", paddingLeft: "16px", paddingRight: "16px" }}>
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitEdit)}>
                 <Box
                   sx={{
-                    paddingLeft: "16px",
-                    paddingTop: "1%",
-                    paddingRight: "16px",
-                    position: "relative",
+                    // ...style1,
+
+                    height: {
+                      lg: "450px",
+                      xl: "490px",
+                      xxl: "600px",
+                    },
+                    overflowY: "auto",
+                    "&::-webkit-scrollbar": {
+                      width: "0", // Hide the scrollbar
+                    },
                   }}
                 >
-                  <LineStack>
+                  <Grid
+                    container
+                    sx={{
+                      display: "flex",
+                      columnGap: { xxl: "16px", xl: "10px", lg: "8px" },
+                      mt: "20px",
+                    }}
+                  >
+                    {/* <LineStack> */}
                     <FieldBox>
                       <PDTextFIeld name="project_Name" label="Project Name" defaultValue={item.project_Name} />
                     </FieldBox>
@@ -102,9 +134,9 @@ const ProjectDirectoryEditModal = ({
                     <FieldBox>
                       <PDTextFIeld name="industry" label="Industry" defaultValue={item.industry} />
                     </FieldBox>
-                  </LineStack>
+                    {/* </LineStack> */}
 
-                  <LineStack>
+                    {/* <LineStack> */}
                     <FieldBox>
                       <PDTextFIeld name="platform" label="Batch" defaultValue={item.platform} />
                     </FieldBox>
@@ -123,9 +155,9 @@ const ProjectDirectoryEditModal = ({
                         isNumberPdr="true"
                       />
                     </FieldBox>
-                  </LineStack>
+                    {/* </LineStack> */}
 
-                  <LineStack>
+                    {/* <LineStack> */}
                     <FieldBox>
                       <PDTextFIeld name="project_Type" label="Project Type" defaultValue={item.project_Type} />
                     </FieldBox>
@@ -135,9 +167,9 @@ const ProjectDirectoryEditModal = ({
                     <FieldBox>
                       <PDTextFIeld name="QA_Check_Points" label="QA Check Points" defaultValue={item.QA_Check_Points} />
                     </FieldBox>
-                  </LineStack>
+                    {/* </LineStack> */}
 
-                  <LineStack>
+                    {/* <LineStack> */}
                     <FieldBox>
                       <PDTextFIeld name="obj_Benchmark" label="Object Benchmark" defaultValue={item.Obj_Benchmark} />
                     </FieldBox>
@@ -151,9 +183,9 @@ const ProjectDirectoryEditModal = ({
                         defaultValue={item.tagging_Benchmark}
                       />
                     </FieldBox>
-                  </LineStack>
+                    {/* </LineStack> */}
 
-                  <LineStack>
+                    {/* <LineStack> */}
                     <FieldBox>
                       <PDTextFIeld name="deletion" label="Deletion" defaultValue={item.deletion} />
                     </FieldBox>
@@ -163,9 +195,9 @@ const ProjectDirectoryEditModal = ({
                     <FieldBox>
                       <PDTextFIeld name="update" label="Update" defaultValue={item.update} />
                     </FieldBox>
-                  </LineStack>
+                    {/* </LineStack> */}
 
-                  <LineStack>
+                    {/* <LineStack> */}
                     <FieldBox>
                       <PDTextFIeld name="image_Loading" label="Image Loading" defaultValue={item.image_Loading} />
                     </FieldBox>
@@ -183,9 +215,9 @@ const ProjectDirectoryEditModal = ({
                         defaultValue={item.video_Watch_Time}
                       />
                     </FieldBox>
-                  </LineStack>
+                    {/* </LineStack> */}
 
-                  <LineStack>
+                    {/* <LineStack> */}
                     <FieldBox>
                       <PDTextFIeld
                         name="judgement_Time"
@@ -199,15 +231,16 @@ const ProjectDirectoryEditModal = ({
                     <FieldBox>
                       <PDTextFIeld name="annotation" label="Annotation" defaultValue={item.annotation} />
                     </FieldBox>
-                  </LineStack>
-                  <LineStack>
+                    {/* </LineStack> */}
+                    {/* <LineStack> */}
                     <FieldBox>
                       <PDTextFIeld name="QA" label="QA" defaultValue={item.QA} />
                     </FieldBox>
                     <FieldBox>
                       <PDTextFIeld name="remarks" label="Remarks" defaultValue={item.remarks} />
                     </FieldBox>
-                  </LineStack>
+                    {/* </LineStack> */}
+                  </Grid>
                 </Box>
 
                 <Box
@@ -216,7 +249,7 @@ const ProjectDirectoryEditModal = ({
                     justifyContent: "space-between",
                     alignItems: "center",
                     paddingY: { lg: "10px", xl: "12px", xxl: "12px" },
-                    paddingX: { lg: "14px", xl: "16px", xxl: "16px" },
+                    paddingX: "0px",
                     mt: 1,
                     borderTop: "2px solid #F2F6FC",
                   }}

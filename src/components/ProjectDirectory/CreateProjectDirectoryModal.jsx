@@ -240,14 +240,9 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     paddingY: { lg: "10px", xl: "12px", xxl: "12px" },
-                    paddingX: { lg: "14px", xl: "16px", xxl: "16px" },
+                    paddingX: "0px",
                     mt: 1,
                     borderTop: "2px solid #F2F6FC",
-                    // height: {
-                    //   lg: "10%",
-                    //   xl: "10%",
-                    //   xxl: "10%",
-                    // },
                   }}
                 >
                   <Button

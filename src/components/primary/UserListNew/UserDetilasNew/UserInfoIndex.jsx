@@ -7,7 +7,7 @@ import SkillFieldForUserDetails from "./SkillFieldForUserDetails";
 import { useDispatch } from "react-redux";
 import { getUserPersonalInfo } from "../../../../features/slice/userSlice";
 
-const UserInfoIndex = ({
+const  UserInfoIndex = ({
   user,
   role,
   handleSetRole,

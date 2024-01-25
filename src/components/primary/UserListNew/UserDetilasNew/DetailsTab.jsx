@@ -91,16 +91,32 @@ export default function DetailsTab({
             borderRadius: "8px",
             backgroundColor: "neutral.N600",
             padding: "1%",
-            minHeight: "36px",
-            height: "50px",
+            minHeight: {
+              lg:"32px",
+              xl:"36px",
+              xxl:"36px",
+          },
+            height: {
+              lg:"44px",
+              xl:"50px",
+              xxl:"50px",
+          },
           }}
         >
           <Tab
             sx={{
               borderRadius: value === 0 ? "8px" : "none",
               backgroundColor: value === 0 ? "neutral.N000" : "",
-              minHeight: "36px",
-              height: "36px",
+              minHeight: {
+                lg:"32px",
+                xl:"36px",
+                xxl:"36px",
+              },
+              height: {
+                lg:"32px",
+                xl:"36px",
+                xxl:"36px",
+              },
             }}
             label={
               <Typography
@@ -108,7 +124,7 @@ export default function DetailsTab({
                 variant="wpf_p3_semiBold"
                 color={value === 0 ? "primary.B200" : "neutral.700"}
               >
-                User Info.
+                User Info
               </Typography>
             }
             {...a11yProps(0)}
@@ -117,8 +133,16 @@ export default function DetailsTab({
             sx={{
               borderRadius: value === 1 ? "8px" : "none",
               backgroundColor: value === 1 ? "neutral.N000" : "",
-              minHeight: "36px",
-              height: "36px",
+              minHeight: {
+                lg:"32px",
+                xl:"36px",
+                xxl:"36px",
+              },
+              height: {
+                lg:"32px",
+                xl:"36px",
+                xxl:"36px",
+              },
             }}
             label={
               <Typography

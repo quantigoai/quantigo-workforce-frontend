@@ -193,7 +193,7 @@ const LineChartExple = ({ loading }) => {
     <>
       {!isDataUpdate && (
         <>
-          <Line options={options} data={customData} height={153} />
+          <Line options={options} data={customData} height={158} />
         </>
       )}
     </>

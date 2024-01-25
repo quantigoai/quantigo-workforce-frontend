@@ -1,15 +1,16 @@
-import {ArcElement, Chart as ChartJS, Legend, Tooltip} from "chart.js";
+import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
 import "chartjs-plugin-datalabels";
-import React, {useEffect, useState} from "react";
-import {Doughnut} from "react-chartjs-2";
-import {useSelector} from "react-redux";
+import React, { useEffect, useState } from "react";
+import { Doughnut } from "react-chartjs-2";
+import { useSelector } from "react-redux";
+import useSizeMapper from "../../../../customHooks/useSizeMapper";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 const PirChartForProjectDrawer = () => {
   const { activeJobs, takenJobs, totalCountData } = useSelector((state) => state.dashboard);
   const { isLightTheme } = useSelector((state) => state.theme);
   const [labelFontSize, setLabelFontSize] = useState(10);
-
+  const { sizeMapper } = useSizeMapper();
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
@@ -32,7 +33,11 @@ const PirChartForProjectDrawer = () => {
       window.removeEventListener("resize", handleResize);
     };
   });
-
+  const fontSize = {
+    lg: 12,
+    xl: 14,
+    xxl: 16,
+  };
   const data = {
     labels: ["Total Project", "Ongoing Project"],
     datasets: [
@@ -72,7 +77,8 @@ const PirChartForProjectDrawer = () => {
         text: "Projects",
         align: "start",
         font: {
-          size: 14,
+          // size: 18,
+          size: sizeMapper(fontSize),
         },
         color: isLightTheme ? "#091E42" : "white",
         // padding: 20,

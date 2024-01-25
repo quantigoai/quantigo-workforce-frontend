@@ -28,7 +28,6 @@ import ProjectDirectoryDetailsModal from "./ProjectDirectoryDetailsModal";
 import ProjectDirectoryEditModal from "./ProjectDirectoryEditModal";
 import ProjectDirectoryHeader from "./ProjectDirectoryHeader.jsx";
 import useToaster from "../../customHooks/useToaster.jsx";
-// import ProjectDirectoryDetailsModal from "./ProjectDirectoryDetailsModal";
 
 const ProjectDirectoryIndex = () => {
   const user = useSelector((state) => state.user);
@@ -249,6 +248,7 @@ const ProjectDirectoryIndex = () => {
       }
     });
   };
+
   //   paggination
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -395,7 +395,11 @@ const ProjectDirectoryIndex = () => {
       setIsDataLoading(false);
     });
   }, [pagination, search, isDeleted, ascDesc]);
+
+
   //TODO CHECK THIS LATER
+
+  
   const handleGetSync = async () => {
     await toast.responsePromise(
       getProjectSyncFunction(),

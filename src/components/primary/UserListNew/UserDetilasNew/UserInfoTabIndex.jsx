@@ -169,7 +169,7 @@ const UserInfoTabIndex = ({
 
         <Box
           sx={{
-            height: { xxl: "520px", lg: "360px", xl: "400px" },
+            height: { xxl: "500px", lg: "360px", xl: "400px" },
             overflow: "auto",
             // height: "0%",
             padding: "0% 0%",

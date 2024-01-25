@@ -127,7 +127,7 @@ const ProjectDirectoryEditModal = ({
                     // ...style1,
 
                     height: {
-                      lg: "440px",
+                      lg: "480px",
                       xl: "480px",
                       xxl: "608px",
                     },

@@ -98,17 +98,38 @@ const ProjectDirectoryEditModal = ({
               },
             }}
           >
-            <ProjectModalHeader handleCreateProjectClose={handleEditClose} modalTitle={`Edit ${item.project_Name}`} />
-            <Box sx={{ height: "90%" }}>
+            <Box
+              sx={{
+                height: {
+                  lg: "10%",
+                  xl: "10%",
+                  xxl: "8%",
+                },
+              }}
+            >
+              <ProjectModalHeader
+                handleCreateProjectClose={handleEditClose}
+                modalTitle={`Edit ${item?.project_Name}`}
+              />
+            </Box>
+            <Box
+              sx={{
+                height: {
+                  lg: "90%",
+                  xl: "90%",
+                  xxl: "92%",
+                },
+              }}
+            >
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitEdit)}>
                 <Box
                   sx={{
                     // ...style1,
 
                     height: {
-                      lg: "450px",
-                      xl: "490px",
-                      xxl: "600px",
+                      lg: "440px",
+                      xl: "480px",
+                      xxl: "608px",
                     },
                     paddingLeft: "16px",
                     paddingRight: "12px",

@@ -6,15 +6,22 @@ import React, { useEffect, useState } from "react";
 
 const filter = createFilterOptions();
 const MyTextField = styled(TextField)(() => ({
+  border: "1px solid #E6ECF5 ",
   "& .MuiOutlinedInput-notchedOutline": {
-    border: "1px solid #E6ECF5 !important",
     borderRadius: "8px",
   },
   "& .MuiInputBase-root": {
+    padding: "0 5px",
     height: "40px",
-    fontSize: "14px",
-    color: "neutral.N300",
-    padding: "0px 5px",
+    fontSize: "12px",
+    fontFamily: "Inter",
+    "@media(max-width:1439px)": {
+      height: "30px",
+      fontSize: "10px",
+    },
+    "@media(min-width: 1920px)": {
+      fontSize: "14px",
+    },
   },
   "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
     border: `1px solid #2E58FF !important`,
@@ -72,7 +79,7 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
     <React.Fragment>
       <Typography
         sx={{
-          color: 'neutral.N300',
+          color: "neutral.N300",
 
           // mb: 1.5,
         }}
@@ -101,7 +108,7 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
         onKeyDown={(ev) => {
           const institutes = allInstitute.map((item) => item.name);
           if (!institutes.includes(ev.target.value)) {
-            if (ev.key === 'Enter') {
+            if (ev.key === "Enter") {
               ev.preventDefault();
               // handleSubmit(ev);
             }
@@ -111,10 +118,8 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
           const filtered = filter(options, params);
 
           const { inputValue } = params;
-          const isExisting = options.some(
-            (option) => inputValue === option.name,
-          );
-          if (inputValue !== '' && !isExisting) {
+          const isExisting = options.some((option) => inputValue === option.name);
+          if (inputValue !== "" && !isExisting) {
             // filtered.push({
             //   inputValue,
             //   // name: `Add "${inputValue}"`,
@@ -125,7 +130,7 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
         }}
         options={allInstitute}
         getOptionLabel={(option) => {
-          if (typeof option === 'string') {
+          if (typeof option === "string") {
             return option;
           }
           if (option && option.inputValue) {
@@ -135,22 +140,31 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
             return option.name;
           }
 
-          return tempName || '';
+          return tempName || "";
         }}
         getOptionSelected={(option, value) =>
-          option.inputValue
-            ? value.inputValue === option.inputValue
-            : value.name === option.name
+          option.inputValue ? value.inputValue === option.inputValue : value.name === option.name
         }
         disabled={disableItem ? true : isChecked ? true : !editAble}
         selectOnFocus
         clearOnBlur
         handleHomeEndKeys
-        renderOption={(props, option) => <li {...props}>{option.name} </li>}
+        renderOption={(props, option) => (
+          <li {...props}>
+            <Typography variant="wpf_p4_medium">{option.name}</Typography>
+          </li>
+        )}
         sx={{
-          border: '1px solid #E6ECF5 !important',
-          borderRadius: '8px',
-          height: '40px',
+          border: "1px solid #E6ECF5 !important",
+          borderRadius: "8px",
+          height: "40px",
+          "@media(max-width:1439px)": {
+            height: "30px",
+            fontSize: "10px",
+          },
+          "@media(min-width: 1920px)": {
+            fontSize: "14px",
+          },
           mt: 0.6,
         }}
         freeSolo
@@ -159,10 +173,16 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
             {...params}
             placeholder='Select your institution or select "Others" if it&apos;s not in the list.'
             sx={{
-              backgroundColor: editAble ? '' : 'neutral.N400',
-              fontSize: '14px',
-              borderRadius: '8px',
-              height: '40px',
+              backgroundColor: editAble ? "" : "neutral.N400",
+              borderRadius: "8px",
+              height: "40px",
+              "@media(max-width:1439px)": {
+                height: "30px",
+                fontSize: "10px",
+              },
+              "@media(min-width: 1920px)": {
+                fontSize: "14px",
+              },
             }}
             disabled={disableItem ? true : isChecked ? true : !editAble}
             variant="outlined"

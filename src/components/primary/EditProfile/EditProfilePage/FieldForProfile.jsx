@@ -1,4 +1,4 @@
-import {FormControl, styled, TextField, Typography} from "@mui/material";
+import { FormControl, styled, TextField, Typography } from "@mui/material";
 import React from "react";
 
 const MyTextField = styled(TextField)(() => ({
@@ -6,7 +6,18 @@ const MyTextField = styled(TextField)(() => ({
     border: "1px solid #E6ECF5 !important",
     borderRadius: "8px",
   },
-  "& .MuiInputBase-root": { height: "40px", fontSize: "14px", color: "neutral.N300" },
+  "& .MuiInputBase-root": {
+    height: "40px",
+    fontSize: "12px",
+    fontFamily: "Inter",
+    "@media(max-width:1439px)": {
+      height: "30px",
+      fontSize: "10px",
+    },
+    "@media(min-width: 1920px)": {
+      fontSize: "14px",
+    },
+  },
   "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
     border: `1px solid #2E58FF !important`,
   },
@@ -31,9 +42,15 @@ const FieldForProfile = ({ label, handleChange, disableItem, defaultValue, editA
         <MyTextField
           sx={{
             backgroundColor: editAble ? "" : "neutral.N400",
-            fontSize: "14px",
             borderRadius: "8px",
             height: "40px",
+            "@media(max-width:1439px)": {
+              height: "30px",
+              fontSize: "10px",
+            },
+            "@media(min-width: 1920px)": {
+              fontSize: "14px",
+            },
           }}
           disabled={disableItem ? true : isChecked ? true : !editAble}
           value={defaultValue && defaultValue}

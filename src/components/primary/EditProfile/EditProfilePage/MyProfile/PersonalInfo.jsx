@@ -20,7 +20,7 @@ const PersonalInfo = () => {
       setData(action.payload.data);
       setIsDataLoading(false);
     });
-  }, [user]);
+  }, [user, editAble]);
 
   return (
     <>

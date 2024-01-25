@@ -41,22 +41,15 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
   const { user, isLoading } = useSelector((state) => state.user);
 
   // const [editAble, setEditAble] = useState(false);
-  const [firstName, setFirstName] = useState(data.firstName);
-  const [lastName, setLastName] = useState(data.lastName);
-  const [occupation, setOccupation] = useState(data.occupation);
-  const [bloodGroup, setBloodGroup] = useState(data.bloodGroup);
-  const [religion, setReligion] = useState(data.religion);
-  const [maritalStatus, setMaritalStatus] = useState(data.maritalStatus);
-  const [contactNo, setContactNo] = useState(data.contactNo);
-  const [billingAccountNo, setBillingAccountNo] = useState(data.billingAccountNo);
-  const [fathersName, setFatherName] = useState(data.fathersName);
-  const [mothersName, setMotherName] = useState(data.mothersName);
+  const [firstName, setFirstName] = useState(data.firstName || "");
+  const [lastName, setLastName] = useState(data.lastName || "");
+  const [occupation, setOccupation] = useState(data.occupation || "");
+  const [bloodGroup, setBloodGroup] = useState(data.bloodGroup || "");
+  const [religion, setReligion] = useState(data.religion || "");
+  const [maritalStatus, setMaritalStatus] = useState(data.maritalStatus || "");
+  const [fathersName, setFatherName] = useState(data.fathersName || "");
+  const [mothersName, setMotherName] = useState(data.mothersName || "");
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(readMyProfile());
-    dispatch(getUserPersonalInfo(user._id));
-  }, [dispatch]);
 
   const toast = useToaster();
   const handleEditProfile = () => {
@@ -85,12 +78,7 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
   const handleOccupationChange = (e) => {
     setOccupation(e.target.value);
   };
-  const handlePhoneNumberChange = (e) => {
-    setContactNo(e.target.value);
-  };
-  const handlebillingAccountNoChange = (e) => {
-    setBillingAccountNo(e.target.value);
-  };
+
   const handleFatherNameChange = (e) => {
     setFatherName(e.target.value);
   };
@@ -111,19 +99,17 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
 
   const handleCancel = () => {
     setEditAble(false);
-  };
-
-  useEffect(() => {
-    setFirstName(data.firstName);
-    setLastName(data.lastName);
-    setReligion(data.religion);
-    setOccupation(data.occupation);
-    setBloodGroup(data.bloodGroup);
-    setMaritalStatus(user.maritalStatus);
-    setFatherName(user.fathersName);
-    setMotherName(user.mothersName);
+    setFirstName(data.firstName || "");
+    setLastName(data.lastName || "");
+    setReligion(data.religion || "");
+    setOccupation(data.occupation || "");
+    setBloodGroup(data.bloodGroup || "");
+    setMaritalStatus(data.maritalStatus || "");
+    setFatherName(data.fathersName || "");
+    setMotherName(data.mothersName || "");
     setCoverImage(null);
-  }, [editAble]);
+    console.log(data.maritalStatus);
+  };
 
   const handleSubmitChange = () => {
     const data = {

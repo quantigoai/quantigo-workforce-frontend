@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import VerificationInfoIndex from "./VerificationInfoIndex";
-import {useDispatch, useSelector} from "react-redux";
-import {getUserVerificationInfo} from "../../../../../features/slice/userSlice";
-import {Box} from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserVerificationInfo } from "../../../../../features/slice/userSlice";
+import { Box } from "@mui/material";
 import ProfilePicture from "../MyProfile/ProfilePicture";
 import LoadingComponent from "../../../../shared/Loading/LoadingComponent";
 
@@ -20,7 +20,7 @@ const VerificationInfo = () => {
       setData(action.payload.data);
       setIsDataLoading(false);
     });
-  }, [user]);
+  }, [user, editAble]);
 
   return (
     <>

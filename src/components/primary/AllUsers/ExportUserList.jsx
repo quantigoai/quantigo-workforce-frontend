@@ -57,7 +57,7 @@ const ExportUserList = () => {
     { label: "Completed Year", key: "completedYear" },
     { label: "Certificate Images", key: "certificateImages" },
     { label: "Emergency Contact Person Name", key: "emergencyContactPersonName" },
-    { label: "Emergency Contact Person RelationShip", key: "emergencyContactPersonRelationShip" },
+    { label: "Emergency Contact Person Relation", key: "emergencyContactPersonRelationShip" },
     { label: "Emergency Contact Person Contact No", key: "emergencyContactPersonContactNo" },
     { label: "Emergency Contact Address", key: "emergencyContactAddress" },
     { label: "Resume", key: "resume" },

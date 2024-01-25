@@ -93,30 +93,46 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
               left: {
                 lg: "55%",
                 xl: "50%",
-                xxl: "53%",
+                xxl: "50%",
               },
             }}
           >
-            <Box sx={{ height: "8%" }}>
+            <Box
+              sx={{
+                height: {
+                  lg: "10%",
+                  xl: "10%",
+                  xxl: "8%",
+                },
+              }}
+            >
               <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Add Project"} />
             </Box>
 
-            <Box sx={{ height: "90%" }}>
+            <Box
+              sx={{
+                height: {
+                  lg: "90%",
+                  xl: "90%",
+                  xxl: "92%",
+                },
+              }}
+            >
               <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <Box
                   sx={{
                     // ...style1,
 
                     height: {
-                      lg: "450px",
-                      xl: "490px",
-                      xxl: "600px",
+                      lg: "440px",
+                      xl: "480px",
+                      xxl: "608px",
                     },
                     paddingLeft: "16px",
                     paddingRight: "12px",
                     overflowY: "auto",
                     "&::-webkit-scrollbar": {
-                      width: "0", // Hide the scrollbar
+                      width: "0",
                     },
                   }}
                 >

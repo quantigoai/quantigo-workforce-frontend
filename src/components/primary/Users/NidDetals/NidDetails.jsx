@@ -88,8 +88,24 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
 
                 <Box
                   // container
+                  // sx={{
+                  //   width: "600px",
+                  //   justifyContent: "center",
+                  //   borderRadius: "10px",
+                  //   padding: "2%",
+                  // }}
                   sx={{
-                    width: "600px",
+                    // width: "920px",
+                    width: {
+                      lg: "600px",
+                      xl: "690px",
+                      xxl: "770px",
+                    },
+                    height: {
+                      lg: "500px",
+                      xl: "550px",
+                      xxl: "620px",
+                    },
                     justifyContent: "center",
                     borderRadius: "10px",
                     padding: "2%",
@@ -115,6 +131,8 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                     <Box
                       sx={{
                         padding: "1%",
+                        height: "100%",
+                        width: "100%",
                       }}
                     >
                       <Box
@@ -126,6 +144,8 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                           padding: "10px",
                           backgroundColor: "neutral.N600",
                           borderRadius: "10px",
+                          height: "10%",
+                          width: "100%",
                         }}
                       >
                         <Stack direction="row">
@@ -147,7 +167,7 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                           </Typography>
                         </Stack>
                       </Box>
-                      <Box sx={{ paddingTop: "2%" }}>
+                      <Box sx={{ height: "88%", width: "100%", pt: 2 }}>
                         <ImageSwiperIndex images={documentImage} />
                         {/* <img
                           // src={`data:image/jpeg;base64,${documentImage}`}

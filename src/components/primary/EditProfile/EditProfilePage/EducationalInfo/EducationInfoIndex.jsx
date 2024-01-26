@@ -154,12 +154,12 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
     { value: "M.Sc", label: "M.Sc" },
     { value: "BBA", label: "BBA" },
     { value: "MBA", label: "MBA" },
-    { value: "others", label: "others" },
+    { value: "others", label: "Others" },
   ];
   const fieldStudies = [
     { value: "engineering", label: "Engineering" },
     { value: "business_studies", label: "Business Studies" },
-    { value: "others", label: "others" },
+    { value: "others", label: "Others" },
   ];
   const handleChangeDegree = (event) => {
     setHigherDegree(event.target.value);
@@ -207,7 +207,7 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
               <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                 <EducationSelect
                   name={"highestLevelOfDegree"}
-                  label={"Highest level of degree"}
+                  label={"Highest Level of Degree"}
                   options={higherStudies}
                   editAble={editAble}
                   handleChangeDegree={handleChangeDegree}
@@ -248,7 +248,7 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
               >
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <Typography sx={{ mb: "10px" }} variant="wpf_p4_medium" color="neutral.N300">
-                    Year of completion
+                    Year of Completion
                   </Typography>
                   <MyDatePicker
                     sx={{

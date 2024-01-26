@@ -35,7 +35,10 @@ const ModalImage = ({ openModal, handleClose, images, level }) => {
         aria-describedby="modal-modal-description"
       >
         <Box
-          sx={{ ...style, left: level === 'Standard Photo' ? '56%' : '41%' }}
+          sx={{
+            ...style,
+            left: level === 'Standard Photo' ? '56%' : '45%',
+          }}
         >
           <Grid container sx={{}}>
             <Paper sx={{ borderRadius: '10px' }}>
@@ -73,7 +76,7 @@ const ModalImage = ({ openModal, handleClose, images, level }) => {
                       },
                     }}
                   >
-                    <img style={{}} alt="cross" src={u_multiply} />
+                    <img alt="cross" src={u_multiply} />
                   </IconButton>
                 </Grid>
 
@@ -81,7 +84,16 @@ const ModalImage = ({ openModal, handleClose, images, level }) => {
                   // container
                   sx={{
                     // width: "920px",
-                    width: level === 'Standard Photo' ? '300px' : '920px',
+                    width: {
+                      lg: level === 'Standard Photo' ? '250px' : '600px',
+                      xl: level === 'Standard Photo' ? '300px' : '690px',
+                      xxl: level === 'Standard Photo' ? '300px' : '770px',
+                    },
+                    height: {
+                      lg: level === 'Standard Photo' ? '250px' : '500px',
+                      xl: level === 'Standard Photo' ? '300px' : '550px',
+                      xxl: level === 'Standard Photo' ? '300px' : '620px',
+                    },
                     justifyContent: 'center',
                     borderRadius: '8px',
                     padding: '2%',

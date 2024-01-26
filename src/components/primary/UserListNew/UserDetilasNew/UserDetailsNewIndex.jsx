@@ -149,7 +149,7 @@ export default function UserDetailsNewIndex({ open, handleClose, role }) {
           sx={{
             ...BoxStyle,
             height: { xl: "80%", lg: "80%", xxl: "80%" },
-            width: { lg: "65%", xl: "50%", xxl: "40%" },
+            width: { lg: "60%", xl: "50%", xxl: "40%" },
           }}
         >
           <Box

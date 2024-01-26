@@ -104,6 +104,7 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
     setDocumentType(data?.extraDocumentType || "");
     setImages(data?.extraDocumentImages.map((i) => i.url));
     setResume(user.resume || []);
+    setPhoto(user.standardPhoto || [])
     setEditAble(false);
   };
   const handlePhoto = (e) => {

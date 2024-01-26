@@ -21,7 +21,7 @@ export const MySelect = styled(Select)(() => ({
   },
   "& .MuiInputBase-root": {
     height: "10px",
-    fontSize: "12px",
+    // fontSize: "12px",
     color: "neutral.N300",
     padding: "0px 5px",
     "&:disabled": {
@@ -34,11 +34,15 @@ export const MySelect = styled(Select)(() => ({
   "& .MuiInputBase-input.Mui-focused": {
     color: "blue",
   },
-  "@media(max-width:1439px)": {
-    height: "30px",
+  "@media(max-width:1024px)": {
+    // height: "30px",
+    fontSize: "10px",
+  },
+  "@media(min-width:1025px) and (max-width:1440px)": {
+    // height: "30px",
     fontSize: "12px",
   },
-  "@media(min-width: 1920px)": {
+  "@media(min-width:1441px) and (max-width: 1920px)": {
     fontSize: "14px",
   },
 }));

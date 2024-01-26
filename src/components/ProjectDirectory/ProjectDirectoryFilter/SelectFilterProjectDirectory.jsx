@@ -54,7 +54,26 @@ const SelectFilterProjectDirectory = ({ handleMenuItemClick, setAnchorEl, anchor
         </Button>
         <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
           {selectTypeFilter.map((filter, index) => (
-            <MenuItem key={index} value={filter.value} onClick={() => handleMenuItemClick(filter.value)}>
+            <MenuItem
+              sx={{
+                fontSize: "14px",
+                "& .MuiInputBase-root": {
+                  // height: "42px",
+                  fontSize: "12px",
+                  fontFamily: "Inter",
+                  "@media(max-width:1439px)": {
+                    // height: "30px",
+                    fontSize: "10px",
+                  },
+                  "@media(min-width: 1920px)": {
+                    fontSize: "14px",
+                  },
+                },
+              }}
+              key={index}
+              value={filter.value}
+              onClick={() => handleMenuItemClick(filter.value)}
+            >
               {filter.item}
             </MenuItem>
           ))}

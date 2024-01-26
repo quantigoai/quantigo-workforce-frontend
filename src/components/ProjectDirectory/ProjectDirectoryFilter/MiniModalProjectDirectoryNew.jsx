@@ -413,10 +413,12 @@ const MiniModalProjectDirectoryNew = ({
                 sx={{
                   backgroundColor: "#FF4757",
                   color: "#FFF",
-                  fontSize: "14px",
-                  borderRadius: "6px",
+                  textTransform: "none",
+                  borderRadius: "8px",
+                  lineHeight: "20px",
                   width: { xxl: "150px", xl: "100px", lg: "100px" },
-                  height: "40px",
+                  fontSize: { xxl: "14px", xl: "12px", lg: "10px" },
+                  height: { xxl: "40px", xl: "40px", lg: "35px" },
                   "&:hover": {
                     backgroundColor: "#FF4757",
                     color: "#FFF",
@@ -436,10 +438,10 @@ const MiniModalProjectDirectoryNew = ({
                   textTransform: "none",
                   borderRadius: "8px",
                   backgroundColor: "#2E58FF",
-                  fontSize: "14px",
                   lineHeight: "20px",
                   width: { xxl: "150px", xl: "100px", lg: "100px" },
-                  height: "40px",
+                  fontSize: { xxl: "14px", xl: "12px", lg: "10px" },
+                  height: { xxl: "40px", xl: "40px", lg: "35px" },
                   color: "white",
                   "&:hover": {
                     background: "#244EF5",

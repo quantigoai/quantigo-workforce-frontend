@@ -46,11 +46,13 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
   const [field, setField] = useState(data?.fieldOfStudy || "");
   const [institution, setInstitution] = useState(data?.instituteName);
   const [files, setFiles] = useState(data?.certificateImages.map((i) => i.url));
+  console.log("🚀 ~ EducationInfoIndex ~ files:", files);
   const dispatch = useDispatch();
   const toast = useToaster();
   const [coverImageFile, setCoverImageFile] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
   const [value, setValue] = React.useState(dayjs(data?.completedYear || ""));
+
   const [isSyncLoading, setIsSyncLoading] = useState(false);
   const [openReject, setOpenReject] = React.useState(false);
   const [imagesCopy, setImagesCopy] = useState(data?.certificateImages.map((i) => i.url));
@@ -82,23 +84,29 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
 
   const handleSubmitChange = async () => {
     const formData = new FormData();
-
-    formData.append("highestLevelOfDegree", higherDegree);
-    formData.append("fieldOfStudy", field);
-
-    if (institution === null) {
-      formData.append("instituteName", "");
-    } else {
-      institution.name !== undefined && formData.append("instituteName", institution.name);
+    if (higherDegree !== "") {
+      formData.append("highestLevelOfDegree", higherDegree);
+    }
+    if (field !== "") {
+      formData.append("fieldOfStudy", field);
     }
 
-    formData.append("completedYear", value?.$y);
+    if (institution !== undefined) {
+      institution.name !== undefined && formData.append("instituteName", institution?.name || "");
+    }
 
-    files.forEach((item) => {
-      if (item.name) {
-        formData.append("certificateImages", item);
-      }
-    });
+    if (!isNaN(value.$y)) {
+      formData.append("completedYear", value?.$y || "");
+    }
+
+    if (files.length !== 0) {
+      console.log("hit");
+      files.forEach((item) => {
+        if (item.name) {
+          formData.append("certificateImages", item);
+        }
+      });
+    }
 
     if (imagesCopy?.length != 0) {
       imagesCopy?.map((item, index) => {
@@ -119,14 +127,6 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
       formData,
     };
 
-    // dispatch(updateMyEducation(finalData)).then((action) => {
-    //   if (action.error) {
-    //     toast.trigger(action.error.message, "error");
-    //   } else {
-    //     toast.trigger(action.payload.data.message, "success");
-    //     setEditAble(false);
-    //   }
-    // });
     await toast.responsePromise(updateMyEducationFunction(finalData), setIsSyncLoading, {
       initialMessage: "Education info is updating...",
       inPending: () => {

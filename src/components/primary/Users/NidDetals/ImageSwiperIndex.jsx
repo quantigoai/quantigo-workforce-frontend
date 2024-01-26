@@ -17,7 +17,13 @@ const ImageSwiperIndex = ({ images, level }) => {
   return (
     <>
       {/* <Box sx={{ height: "518px" }}> */}
-      <Box sx={{ height: level === "Standard Photo" ? "400px" : "518px" }}>
+      <Box sx={{
+        height: "100%",
+        width: "100%",
+        // height: level === "Standard Photo" ? "400px" : "518px",
+        // width: level === "Standard Photo" ? "400px" : "518px",
+      }}>
+
         
         <Swiper
           style={{

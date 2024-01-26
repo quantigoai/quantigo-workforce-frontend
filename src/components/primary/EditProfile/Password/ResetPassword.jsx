@@ -72,7 +72,7 @@ const ResetPassword = ({ setResetPassword, resetPassword, handlePassword, helper
               ),
             }}
             helperText={
-              <Typography variant="caption" color="red">
+              <Typography variant="caption" color="#eb5c5c">
                 {helperText}
               </Typography>
             }

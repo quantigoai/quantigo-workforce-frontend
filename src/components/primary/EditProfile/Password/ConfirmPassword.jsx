@@ -36,11 +36,11 @@ const ConfirmPassword = ({ setConfirmPassword, confirmPassword, handlePassword, 
         <FormControl fullWidth>
           <Typography
             sx={{
-              fontSize: { lg: "10px", xl: "12px", xxl: "12px" },
-              color: "neutrarl.N300",
-              fontWeight: "500",
+              fontSize: { lg: '10px', xl: '12px', xxl: '12px' },
+              color: 'neutrarl.N300',
+              fontWeight: '500',
               mb: 1,
-              fontFamily: "Inter",
+              fontFamily: 'Inter',
             }}
           >
             Confirm New Password
@@ -48,7 +48,7 @@ const ConfirmPassword = ({ setConfirmPassword, confirmPassword, handlePassword, 
           <MyTextField
             variant="outlined"
             fullWidth
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             id="filled-adornment-password"
             value={confirmPassword}
             required={true}
@@ -59,7 +59,7 @@ const ConfirmPassword = ({ setConfirmPassword, confirmPassword, handlePassword, 
                 <InputAdornment
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
-                  sx={{ cursor: "pointer" }}
+                  sx={{ cursor: 'pointer' }}
                   position="end"
                 >
                   {!showPassword ? <img src={PasswordIcon} /> : <Visibility />}
@@ -67,14 +67,17 @@ const ConfirmPassword = ({ setConfirmPassword, confirmPassword, handlePassword, 
               ),
             }}
             helperText={
-              <Typography variant="caption" sx={{ fontSize: "12px" }} color="red">
+              <Typography
+                variant="caption"
+                sx={{ fontSize: '12px' }}
+                color="#eb5c5c"
+              >
                 {helperText}
               </Typography>
             }
           />
         </FormControl>
       </Grid>
-      
     </>
   );
 };

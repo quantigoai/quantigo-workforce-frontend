@@ -447,8 +447,7 @@ const ContactInfoIndex = ({ user, editAble, setEditAble, setData, setIsDataLoadi
     dispatch(updateMyContact(finalData)).then((action) => {
       if (action.error) {
         toast.trigger(action.error.message, "error");
-      }
-      if (action.payload.status === 200) {
+      } else {
         toast.trigger(action.payload.data.message, "success");
         setEditAble(false);
       }

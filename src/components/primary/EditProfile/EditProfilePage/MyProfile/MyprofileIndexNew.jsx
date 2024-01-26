@@ -147,8 +147,7 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
     dispatch(myProfileEdit(finalData)).then((action) => {
       if (action.error) {
         toast.trigger(action.error.message, "error");
-      }
-      if (action.payload.status === 200) {
+      } else {
         toast.trigger("Profile Update Successfully", "success");
         setEditAble(false);
       }

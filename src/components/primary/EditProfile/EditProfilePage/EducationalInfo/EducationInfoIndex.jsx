@@ -46,7 +46,6 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
   const [field, setField] = useState(data?.fieldOfStudy || "");
   const [institution, setInstitution] = useState(data?.instituteName);
   const [files, setFiles] = useState(data?.certificateImages.map((i) => i.url));
-  console.log("🚀 ~ EducationInfoIndex ~ files:", files);
   const dispatch = useDispatch();
   const toast = useToaster();
   const [coverImageFile, setCoverImageFile] = useState(null);
@@ -100,7 +99,6 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
     }
 
     if (files.length !== 0) {
-      console.log("hit");
       files.forEach((item) => {
         if (item.name) {
           formData.append("certificateImages", item);

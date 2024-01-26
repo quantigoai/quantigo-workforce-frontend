@@ -41,7 +41,7 @@ const PasswordFieldForProfile = ({ label, handleChange, disableItem, defaultValu
           }}
           variant="wpf_p4_medium"
         >
-          {label}
+          {label} {<span style={{ color: "#F04438" }}>{label === "Mobile Number" && "*"}</span>}
         </Typography>
         <MyTextField
           sx={{

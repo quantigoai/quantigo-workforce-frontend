@@ -37,7 +37,12 @@ const FieldForProfile = ({ label, handleChange, disableItem, defaultValue, editA
           }}
           variant="wpf_p4_medium"
         >
-          {label}
+          {label}{" "}
+          {
+            <span style={{ color: "#F04438" }}>
+              {label === "Name of Contact Person" || label === "Relationship" ? "*" : ""}
+            </span>
+          }
         </Typography>
         <MyTextField
           sx={{

@@ -46,7 +46,7 @@ const style = {
   },
 };
 
-const UpdateDocumentModal = ({ openModal, handleClose }) => {
+const UpdateDocumentModal = ({ openModal, setOpenModalNid }) => {
   const { user, isLoading } = useSelector((state) => state.user);
   const [coverImageFile, setCoverImageFile] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
@@ -95,6 +95,13 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
     setCoverImage(null);
   };
 
+  const handleClose = () => {
+    setOpenModalNid(false);
+    setDocumentsType(user?.documentsType);
+    setDocumentNo(user?.documentNo);
+    setImages(user?.documentsImage);
+    setImagesCopy(user?.documentNo);
+  };
   // const onSubmit = (data) => {
   const handleChange = (data) => {
     const formData = new FormData();
@@ -254,7 +261,7 @@ const UpdateDocumentModal = ({ openModal, handleClose }) => {
                 />
               </Grid>
 
-              <Grid container sx={{}}>
+              <Grid  sx={{}}>
                 <UploadImagesField
                   editAble={true}
                   label={"Document "}

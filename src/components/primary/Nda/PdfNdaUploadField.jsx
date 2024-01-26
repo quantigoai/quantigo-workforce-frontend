@@ -30,7 +30,7 @@ const rejectStyle = {
 const PdfNdaUploadField = ({ handleImage, selectedFile, removeImage }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { baseUploadBoxStyle } = ndaUploadStyle(isLightTheme);
-  const maxSize = 0.5 * 1024 * 1024;
+  const maxSize = 1 * 1024 * 1024;
   const {
     acceptedFiles,
     getRootProps,
@@ -45,7 +45,7 @@ const PdfNdaUploadField = ({ handleImage, selectedFile, removeImage }) => {
 
   const style = useMemo(() => {
     const fileSize = selectedFile ? selectedFile.size : null;
-    const maxSize = 0.5 * 1024 * 1024; // 1MB in bytes
+    const maxSize = 1 * 1024 * 1024; // 1MB in bytes
     if (fileSize && fileSize > maxSize) {
       return {
         ...baseUploadBoxStyle,
@@ -138,7 +138,7 @@ const PdfNdaUploadField = ({ handleImage, selectedFile, removeImage }) => {
                   variant="wpf_p2_regular"
                   sx={{ paddingBottom: '2%' }}
                 >
-                  Maximum file size: 512Kb.
+                  Maximum file size: 1MB.
                 </Typography>
                 {/* <p> Maximum file size: 1MB.</p> */}
                 <img src={ctaImage} />

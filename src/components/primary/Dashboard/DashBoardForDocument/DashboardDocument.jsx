@@ -27,7 +27,7 @@ const DashboardDocument = () => {
   const handleNDAModal = () => {
     setOpenModal(true);
   };
-  const handleClose = () => setOpenModal(false);
+  // const handleClose = () => setOpenModal(false);
 
   const handleNDAModalNid = () => {
     setOpenModalNid(true);
@@ -167,7 +167,7 @@ const DashboardDocument = () => {
         </Box>
       </Box>
 
-      <NDAuploadModal openModal={openModal} handleClose={handleClose} />
+      <NDAuploadModal openModal={openModal}  setOpenModal={setOpenModal}/>
       <UpdateDocumentModal openModal={openModalNid} handleClose={handleCloseNid} />
     </>
   );

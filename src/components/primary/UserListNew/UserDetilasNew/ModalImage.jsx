@@ -37,7 +37,7 @@ const ModalImage = ({ openModal, handleClose, images, level }) => {
         <Box
           sx={{
             ...style,
-            left: level === "Standard Photo" ? "56%" : { xxl: "45%", xl: "41%", lg: "40.5%" },
+            left: level === "Standard Photo" ? "56%" : { xxl: "45%", xl: "41%", lg: "41%" },
           }}
         >
           <Grid container sx={{}}>

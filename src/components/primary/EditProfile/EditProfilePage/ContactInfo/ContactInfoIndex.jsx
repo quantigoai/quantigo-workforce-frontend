@@ -90,7 +90,6 @@ const ContactInfoIndex = ({ user, editAble, setEditAble, setData, setIsDataLoadi
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
     // if (isChecked) {
-    //   console.log("sdasd")
     //   setPermanentAddress({
     //     division: presentAddress.division,
     //     district: presentAddress.district,

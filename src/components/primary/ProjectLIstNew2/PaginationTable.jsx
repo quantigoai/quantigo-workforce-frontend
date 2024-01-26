@@ -139,7 +139,7 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
       setTotalPages(Math.ceil(usersWorkHistoryCount / pagination.pageSize));
     }
   }, [total, totalUsers, usersWorkHistoryCount, meta]);
-  console.log(projectDirectory?.length);
+  
   const visiblePageCount = 5;
   const firstVisiblePage = Math.max(0, pagination.currentPage - Math.floor(visiblePageCount / 2));
   const lastVisiblePage = Math.min(totalPages - 1, firstVisiblePage + visiblePageCount - 1);

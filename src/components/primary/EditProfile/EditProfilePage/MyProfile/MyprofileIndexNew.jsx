@@ -108,7 +108,6 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
     setFatherName(data.fathersName || "");
     setMotherName(data.mothersName || "");
     setCoverImage(null);
-    console.log(data.maritalStatus);
   };
 
   const handleSubmitChange = () => {

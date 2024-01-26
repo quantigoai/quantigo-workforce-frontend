@@ -97,8 +97,8 @@ export const myProfileEdit = createAsyncThunk("user/myProfileEdit", async (final
 // update My contact
 export const updateMyContact = createAsyncThunk("user/updateMyContact", async (finalData) => {
   try {
-    const { id, data } = finalData;
-    return axios.patch(`${url}/users/my-contact/${id}`, data, {
+    const { id, filteredFinal } = finalData;
+    return axios.patch(`${url}/users/my-contact/${id}`, filteredFinal, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },

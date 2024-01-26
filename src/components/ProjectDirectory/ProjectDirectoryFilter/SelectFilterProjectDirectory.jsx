@@ -5,7 +5,7 @@ const selectTypeFilter = [
   { item: "Client Alias", value: "Client_Alias" },
   { item: "Industry", value: "Industry" },
   { item: "Platform", value: "Platform" },
-  { item: "Type Type", value: "Tool_Type" },
+  { item: "Tool Type", value: "Tool_Type" },
   { item: "PDR", value: "PDR" },
   { item: "Project Type", value: "Project_Type" },
   { item: "Action Item", value: "Action_Items" },

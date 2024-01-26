@@ -41,6 +41,13 @@ const ProjectDirectoryIndex = () => {
   const [filterData, setFilterData] = useState({});
   const [anchorE2, setAnchorE2] = React.useState(null);
   const [industryType, setIndustryType] = useState("");
+  
+  // --------------------------------------
+  const [filterDataNew, setFilterDataNew] = useState({});
+  // --------------------------------------
+
+  // ______________________________________values
+
   const [clientAliasFilter, setClientAliasesFilter] = useState("");
   const [dataTypeFilter, setDataTypeFilter] = useState("");
   const [pDRFilter, setPDRFilter] = useState("");
@@ -63,6 +70,9 @@ const ProjectDirectoryIndex = () => {
   const [videoWatchTimeFieldFilter, setVideoWatchTimeFieldFilter] = useState("");
   const [taggingBenchMarkFieldFilter, setTaggingBenchMarkFieldFilter] = useState("");
   const [date, setDate] = useState("");
+ 
+  // ______________________________________fields
+  
   const [pdrSetFilter, setPdrSetFilter] = useState(false);
   const [Client_AliasSetFilter, setClient_AliasSetFilter] = useState(false);
   const [annotationSetFilter, setAnnotationSetFilter] = useState(false);
@@ -82,6 +92,8 @@ const ProjectDirectoryIndex = () => {
   const [DeletionField, setDeletionFilter] = useState(false);
   const [judgementTimeFilter, setJudgementTimeFilter] = useState(false);
   const [qABenchmarkField, setQABenchmarkField] = useState(false);
+ 
+ 
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClickFilter = (event) => {

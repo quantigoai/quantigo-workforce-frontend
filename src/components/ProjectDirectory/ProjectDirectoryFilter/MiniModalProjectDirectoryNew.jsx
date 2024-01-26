@@ -1,30 +1,26 @@
-import CloseIcon from "@mui/icons-material/Close";
-import { Box, Button, Grid, Typography } from "@mui/material";
-import React from "react";
-import IndustryTypeField from "./IndustryTypeField";
-import ClientAliasField from "./ClientAliasField";
-import AnnotationType from "./AnnotationType";
-import PdrField from "./PdrField";
-import SelectFilterProjectDirectory from "./SelectFilterProjectDirectory";
+import CloseIcon from '@mui/icons-material/Close';
+import { Box, Button, Grid, Typography } from '@mui/material';
+import React from 'react';
+import AnnotationType from './AnnotationType';
+import IndustryTypeField from './IndustryTypeField';
+import SelectFilterProjectDirectory from './SelectFilterProjectDirectory';
 
-import PlatformField from "./PlatformField";
-import ToolTypeField from "./ToolTypeField";
-import ProjectTypeField from "./ProjectTypeField";
-import ActionTypeField from "./ActionItemsField";
-import QACheckPointsField from "./QACheckPointsField";
-import ObjBenchmarkField from "./ObjBenchmarkField";
-import ImgBenchmark from "./ImgBenchmark";
-import TaggingBenchmark from "./TaggingBenchmark";
-import Deletionfield from "./Deletionfield";
-import SkipImageField from "./SkipImageField";
-import ImageLoadingField from "./ImageLoadingField";
-import ObjectSavingTimeField from "./ObjectSavingTimeField";
-import VideoWatchTimeField from "./VideoWatchTimeField";
-import QAField from "./QAField";
-import JudgementTimeField from "./JudgementTimeField";
-import QABenchmarkField from "./QABenchmarkField";
-import BoxItem from "../../primary/ProjectLIstNew2/Project2Details/BoxItem";
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
+import ActionTypeField from './ActionItemsField';
+import Deletionfield from './Deletionfield';
+import ImageLoadingField from './ImageLoadingField';
+import ImgBenchmark from './ImgBenchmark';
+import ItemsField from './ItemsField';
+import JudgementTimeField from './JudgementTimeField';
+import ObjBenchmarkField from './ObjBenchmarkField';
+import ObjectSavingTimeField from './ObjectSavingTimeField';
+import QABenchmarkField from './QABenchmarkField';
+import QACheckPointsField from './QACheckPointsField';
+import QAField from './QAField';
+import SkipImageField from './SkipImageField';
+import TaggingBenchmark from './TaggingBenchmark';
+import ToolTypeField from './ToolTypeField';
+import VideoWatchTimeField from './VideoWatchTimeField';
 
 const MiniModalProjectDirectoryNew = ({
   handleCloseFilter,
@@ -104,25 +100,28 @@ const MiniModalProjectDirectoryNew = ({
         sx={{
           // border: 1,
           p: 1,
-          bgcolor: "background.paper",
-          width: { xxl: "400px", xl: "300px", lg: "300px" },
-          height: "100%",
+          bgcolor: 'background.paper',
+          width: { xxl: '400px', xl: '300px', lg: '300px' },
+          height: '100%',
         }}
       >
         <Box
           sx={{
-            display: "flex",
-            alignContent: "center",
-            justifyContent: "space-between",
-            paddingTop: "20px",
-            paddingX: "20px",
+            display: 'flex',
+            alignContent: 'center',
+            justifyContent: 'space-between',
+            paddingY: '10px',
+            paddingX: '15px',
           }}
         >
           <Typography variant="wpf_p1_semiBold">Filter By</Typography>
-          <CloseIcon sx={{ color: "#2D58FF", cursor: "pointer", fontweight: "600 " }} onClick={handleCloseFilter} />
+          <CloseIcon
+            sx={{ color: '#2D58FF', cursor: 'pointer', fontweight: '600 ' }}
+            onClick={handleCloseFilter}
+          />
         </Box>
-        <br />
-        <Box sx={{ px: 1 }}>
+        {/* <br /> */}
+        <Box sx={{ px: '15px' }}>
           <Grid item xs={12}>
             <SelectFilterProjectDirectory
               handleMenuItemClick={handleMenuItemClick}
@@ -133,14 +132,18 @@ const MiniModalProjectDirectoryNew = ({
         </Box>
         <br />
         {qAField ? (
-          <Grid container sx={{ padding: "1%" }}>
-            <QAField isLightTheme={isLightTheme} setQAFieldFilter={setQAFieldFilter} qAFieldFilter={qAFieldFilter} />
+          <Grid container sx={{ padding: '1%' }}>
+            <QAField
+              isLightTheme={isLightTheme}
+              setQAFieldFilter={setQAFieldFilter}
+              qAFieldFilter={qAFieldFilter}
+            />
           </Grid>
         ) : (
           <></>
         )}
         {judgementTimeFilter ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <JudgementTimeField
               isLightTheme={isLightTheme}
               setJudgementTimeFieldFilter={setJudgementTimeFieldFilter}
@@ -151,7 +154,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {qABenchmarkField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <QABenchmarkField
               isLightTheme={isLightTheme}
               setQABenchmarkFieldFilter={setQABenchmarkFieldFilter}
@@ -163,7 +166,7 @@ const MiniModalProjectDirectoryNew = ({
         )}
 
         {skipImageField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <SkipImageField
               isLightTheme={isLightTheme}
               setSkipImageFieldFilter={setSkipImageFieldFilter}
@@ -174,7 +177,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {imageLoadingField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ImageLoadingField
               isLightTheme={isLightTheme}
               setImageLoadingFieldFilter={setImageLoadingFieldFilter}
@@ -185,7 +188,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {objectSavingTimeFilter ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ObjectSavingTimeField
               isLightTheme={isLightTheme}
               setobjectSavingTimeFieldFilter={setobjectSavingTimeFieldFilter}
@@ -196,7 +199,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {videoWatchTimeFilter ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <VideoWatchTimeField
               isLightTheme={isLightTheme}
               setVideoWatchTimeFieldFilter={setVideoWatchTimeFieldFilter}
@@ -208,7 +211,7 @@ const MiniModalProjectDirectoryNew = ({
         )}
 
         {toolTypeField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ToolTypeField
               isLightTheme={isLightTheme}
               setToolTypeFieldFilter={setToolTypeFieldFilter}
@@ -219,7 +222,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {DeletionField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <Deletionfield
               isLightTheme={isLightTheme}
               setDeletionFieldFilter={setDeletionFieldFilter}
@@ -230,7 +233,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {tagingBenchMarkField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <TaggingBenchmark
               isLightTheme={isLightTheme}
               setTaggingBenchMarkFieldFilter={setTaggingBenchMarkFieldFilter}
@@ -241,7 +244,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {imageBenchMarkField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ImgBenchmark
               isLightTheme={isLightTheme}
               setImgBenchMarkFieldFilter={setImgBenchMarkFieldFilter}
@@ -252,7 +255,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {objBenchMarkField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ObjBenchmarkField
               isLightTheme={isLightTheme}
               setObjBenchMarkFieldFilter={setObjBenchMarkFieldFilter}
@@ -263,7 +266,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {qaCheckPointField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <QACheckPointsField
               isLightTheme={isLightTheme}
               qaCheckPointFieldFilter={qaCheckPointFieldFilter}
@@ -274,7 +277,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {actionItemsField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ActionTypeField
               isLightTheme={isLightTheme}
               actionItemsFieldFilter={actionItemsFieldFilter}
@@ -285,19 +288,23 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {projectTypeField ? (
-          <Grid container sx={{ padding: "1%" }}>
-            <ProjectTypeField
-              isLightTheme={isLightTheme}
+          <Grid container sx={{ padding: '1%' }}>
+            <ItemsField
               projectTypeFieldFilter={projectTypeFieldFilter}
               setProjectTypeFieldFilter={setProjectTypeFieldFilter}
+              title="Platform"
+              type="platform"
+              isLightTheme={isLightTheme}
             />
           </Grid>
         ) : (
           <></>
         )}
         {platformField ? (
-          <Grid container sx={{ padding: "1%" }}>
-            <PlatformField
+          <Grid container sx={{ padding: '1%' }}>
+            <ItemsField
+              title="Platform"
+              type="platform"
               isLightTheme={isLightTheme}
               platformFieldFilter={platformFieldFilter}
               setPlatformFieldFilter={setPlatformFieldFilter}
@@ -307,25 +314,33 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {pdrSetFilter ? (
-          <Grid container sx={{ padding: "1%" }}>
-            <PdrField isLightTheme={isLightTheme} setPDRFilter={setPDRFilter} pDRFilter={pDRFilter} />
+          <Grid container sx={{ padding: '1%' }}>
+            <ItemsField
+              title="PDR"
+              type="PDR"
+              isLightTheme={isLightTheme}
+              pDRFilter={pDRFilter}
+              setPDRFilter={setPDRFilter}
+            />
           </Grid>
         ) : (
           <></>
         )}
         {Client_AliasSetFilter ? (
-          <Grid container sx={{ padding: "1%" }}>
-            <ClientAliasField
+          <Grid container sx={{ padding: '1%' }}>
+            <ItemsField
               isLightTheme={isLightTheme}
               setClientAliasesFilter={setClientAliasesFilter}
               clientAliasFilter={clientAliasFilter}
+              title="Client Alias"
+              type="client_Alias"
             />
           </Grid>
         ) : (
           <></>
         )}
         {industrySetFilter ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <IndustryTypeField
               isLightTheme={isLightTheme}
               setIndustryType={setIndustryType}
@@ -336,7 +351,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {annotationSetFilter ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <AnnotationType
               isLightTheme={isLightTheme}
               setAnnotationFilter={setAnnotationFilter}
@@ -349,25 +364,32 @@ const MiniModalProjectDirectoryNew = ({
 
         <br />
         <Box>
-          <Box sx={{ display: "flex", justifyContent: "space-between", padding: "20px" }}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              paddingX: '15px',
+              paddingY: '10px',
+            }}
+          >
             <Box>
               <Button
                 onClick={handleResetProjectDirectory}
                 fullWidth
                 sx={{
-                  backgroundColor: "#FF4757",
-                  color: "#FFF",
-                  fontSize: "14px",
-                  borderRadius: "6px",
-                  width: { xxl: "150px", xl: "100px", lg: "100px" },
-                  height: "40px",
-                  "&:hover": {
-                    backgroundColor: "#FF4757",
-                    color: "#FFF",
+                  backgroundColor: '#FF4757',
+                  color: '#FFF',
+                  fontSize: '14px',
+                  borderRadius: '6px',
+                  width: { xxl: '150px', xl: '100px', lg: '100px' },
+                  height: '40px',
+                  '&:hover': {
+                    backgroundColor: '#FF4757',
+                    color: '#FFF',
                   },
-                  "&.Mui-disabled": {
-                    backgroundColor: "#F5C4C8",
-                    color: "#FFFFFF",
+                  '&.Mui-disabled': {
+                    backgroundColor: '#F5C4C8',
+                    color: '#FFFFFF',
                   },
                 }}
               >
@@ -377,18 +399,18 @@ const MiniModalProjectDirectoryNew = ({
             <Box>
               <Button
                 sx={{
-                  textTransform: "none",
-                  borderRadius: "8px",
-                  backgroundColor: "#2E58FF",
-                  fontSize: "14px",
-                  lineHeight: "20px",
-                  width: { xxl: "150px", xl: "100px", lg: "100px" },
-                  height: "40px",
-                  color: "white",
-                  "&:hover": {
-                    background: "#244EF5",
+                  textTransform: 'none',
+                  borderRadius: '8px',
+                  backgroundColor: '#2E58FF',
+                  fontSize: '14px',
+                  lineHeight: '20px',
+                  width: { xxl: '150px', xl: '100px', lg: '100px' },
+                  height: '40px',
+                  color: 'white',
+                  '&:hover': {
+                    background: '#244EF5',
                   },
-                  padding: "16px 10px",
+                  padding: '16px 10px',
                 }}
                 onClick={handleFilterProjectDirectory}
                 fullWidth

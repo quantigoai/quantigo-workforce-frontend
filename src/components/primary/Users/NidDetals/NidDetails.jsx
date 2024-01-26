@@ -7,7 +7,7 @@ const style = {
   flexDirection: "column",
   position: "absolute",
   top: "50%",
-  left: "50%",
+  // left: "50%",
   transform: "translate(-50%, -50%)",
   // bgcolor: "background.paper",
   // border: "none",
@@ -46,7 +46,7 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={{ ...style, left: { xxl: "45%", xl: "41%", lg: "40.5%" } }}>
           <Grid container sx={{}}>
             <Paper sx={{ borderRadius: "10px" }}>
               <Box sx={{ position: "relative", borderRadius: "10px" }}>
@@ -88,8 +88,24 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
 
                 <Box
                   // container
+                  // sx={{
+                  //   width: "600px",
+                  //   justifyContent: "center",
+                  //   borderRadius: "10px",
+                  //   padding: "2%",
+                  // }}
                   sx={{
-                    width: "600px",
+                    // width: "920px",
+                    width: {
+                      lg: "600px",
+                      xl: "690px",
+                      xxl: "770px",
+                    },
+                    height: {
+                      lg: "500px",
+                      xl: "550px",
+                      xxl: "620px",
+                    },
                     justifyContent: "center",
                     borderRadius: "10px",
                     padding: "2%",
@@ -115,6 +131,8 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                     <Box
                       sx={{
                         padding: "1%",
+                        height: "100%",
+                        width: "100%",
                       }}
                     >
                       <Box
@@ -122,10 +140,12 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                           display: "flex",
                           justifyContent: "space-between",
                           alignItems: "center",
-                          alignConyent: "center",
+                          alignContent: "center",
                           padding: "10px",
                           backgroundColor: "neutral.N600",
                           borderRadius: "10px",
+                          height: "10%",
+                          width: "100%",
                         }}
                       >
                         <Stack direction="row">
@@ -147,7 +167,7 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                           </Typography>
                         </Stack>
                       </Box>
-                      <Box sx={{ paddingTop: "2%" }}>
+                      <Box sx={{ height: "88%", width: "100%", pt: 2 }}>
                         <ImageSwiperIndex images={documentImage} />
                         {/* <img
                           // src={`data:image/jpeg;base64,${documentImage}`}

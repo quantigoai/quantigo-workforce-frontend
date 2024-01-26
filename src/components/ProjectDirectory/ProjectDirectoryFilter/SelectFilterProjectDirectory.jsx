@@ -35,8 +35,13 @@ const SelectFilterProjectDirectory = ({ handleMenuItemClick, setAnchorEl, anchor
     <>
       <Box>
         <Button
-          variant="outlined"
+          // variant="outlined"
           sx={{
+            textTransform: "none",
+            border: "1px solid #244EF5",
+            width: { xxl: "150px", xl: "150px", lg: "130px" },
+            fontSize: { xxl: "14px", xl: "12px", lg: "12px" },
+            height: "30px",
             "&:hover": {
               backgroundColor: "#244EF5",
               color: "#fff",

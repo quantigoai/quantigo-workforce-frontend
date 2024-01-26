@@ -7,7 +7,7 @@ const style = {
   flexDirection: "column",
   position: "absolute",
   top: "50%",
-  left: "50%",
+  // left: "50%",
   transform: "translate(-50%, -50%)",
   // bgcolor: "background.paper",
   // border: "none",
@@ -46,7 +46,7 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={{ ...style, left: { xxl: "45%", xl: "41%", lg: "40.5%" } }}>
           <Grid container sx={{}}>
             <Paper sx={{ borderRadius: "10px" }}>
               <Box sx={{ position: "relative", borderRadius: "10px" }}>
@@ -122,7 +122,7 @@ const NidDetails = ({ openModal, handleClose, documentImage, documentsNo, docume
                           display: "flex",
                           justifyContent: "space-between",
                           alignItems: "center",
-                          alignConyent: "center",
+                          alignContent: "center",
                           padding: "10px",
                           backgroundColor: "neutral.N600",
                           borderRadius: "10px",

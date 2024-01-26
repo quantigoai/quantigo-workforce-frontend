@@ -112,8 +112,7 @@ const UserInfoTabIndex = ({
                 height: {
                   lg: "26px",
                   xl: "30px",
-                  xxl: "90%",
-                  // xxl: '30px',
+                  xxl: "30px",
                 },
               }}
               label={

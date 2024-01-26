@@ -1,11 +1,11 @@
-import {Box, Stack} from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import moment from "moment/moment";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import SingleItem from "../../ProjectLIstNew2/Project2Details/SingleItem";
 import DetailsItemThree from "./DetailsItemThree";
 import ImageShowInModal from "./ImageShowInModal";
-import {useDispatch} from "react-redux";
-import {getUserEducationInfo} from "../../../../features/slice/userSlice";
+import { useDispatch } from "react-redux";
+import { getUserEducationInfo } from "../../../../features/slice/userSlice";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 
@@ -60,15 +60,15 @@ const EducationInfoDetails = ({
             <>
               <DetailsItemThree
                 Item1Title={"Highest level of degree"}
-                Item1={data.highestLevelOfDegree}
+                Item1={data.highestLevelOfDegree ? data.highestLevelOfDegree : "N/A"}
                 Item2Title={"Field of Study"}
-                Item2={capitalizeFirstLetter(data.fieldOfStudy)}
+                Item2={data.fieldOfStudy ? capitalizeFirstLetter(data.fieldOfStudy) : "N/A"}
                 isBlocked={user.isBlocked}
                 Item3Title={"Year of completion"}
-                Item3={data.completedYear}
+                Item3={data.completedYear ? data.completedYear : "N/A"}
               />
 
-              <SingleItem ItemTitle={"Institution Name"} Item={data.instituteName} />
+              <SingleItem ItemTitle={"Institution Name"} Item={data.instituteName ? data.instituteName : "N/A"} />
               {/* <SingleItem ItemTitle={"Skills"} Item={user.skills} /> */}
               <ImageShowInModal images={data.certificateImages.map((i) => i.url)} level={"Certificate Images"} />
             </>

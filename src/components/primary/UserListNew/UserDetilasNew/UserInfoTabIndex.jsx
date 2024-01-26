@@ -1,12 +1,12 @@
-import { Box, Tab, Tabs, Typography } from "@mui/material";
-import React from "react";
-import PropTypes from "prop-types";
-import { useTheme } from "@mui/material/styles";
-import ChangeInfoIndex from "./ChangeInfoIndex";
-import UserInfoIndex from "./UserInfoIndex";
-import ContactInfoDetailsIndex from "./ContactInfoDetailsIndex";
-import EducationInfoDetails from "./EducationInfoDetails";
-import VerificationInfoDetails from "./VerificationInfoDetails";
+import { Box, Tab, Tabs, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types';
+import React from 'react';
+import ChangeInfoIndex from './ChangeInfoIndex';
+import ContactInfoDetailsIndex from './ContactInfoDetailsIndex';
+import EducationInfoDetails from './EducationInfoDetails';
+import UserInfoIndex from './UserInfoIndex';
+import VerificationInfoDetails from './VerificationInfoDetails';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -36,7 +36,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
-    "aria-controls": `full-width-tabpanel-${index}`,
+    'aria-controls': `full-width-tabpanel-${index}`,
   };
 }
 
@@ -63,20 +63,20 @@ const UserInfoTabIndex = ({
     <>
       <Box
         sx={{
-          backgroundColor: "background.paper",
-          width: "100%",
-          height: "100%",
-          "&::-webkit-scrollbar": {
-            width: "0",
+          backgroundColor: 'background.paper',
+          width: '100%',
+          height: '100%',
+          '&::-webkit-scrollbar': {
+            width: '0',
           },
-          overflowY: "hidden",
+          overflowY: 'hidden',
         }}
       >
         <Box
           sx={{
-            padding: "%",
-            height: "20%",
-            overflow: "auto",
+            padding: '%',
+            height: '20%',
+            overflow: 'auto',
           }}
         >
           <Tabs
@@ -85,43 +85,68 @@ const UserInfoTabIndex = ({
             indicatorColor=""
             variant="fullWidth"
             sx={{
-              borderRadius: "8px",
-              backgroundColor: "neutral.N600",
-              padding: "1%",
-              minHeight: "36px",
-              height: "45px",
+              borderRadius: '8px',
+              backgroundColor: 'neutral.N600',
+              padding: '1%',
+              minHeight: {
+                lg: '32px',
+                xl: '36px',
+                xxl: '36px',
+              },
+              height: {
+                lg: '38px',
+                xl: '45px',
+                xxl: '45px',
+              },
             }}
           >
             <Tab
               sx={{
-                borderRadius: value === 0 ? "8px" : "none",
-                backgroundColor: value === 0 ? "neutral.N000" : "",
-                minHeight: "30px",
-                height: "30px",
+                borderRadius: value === 0 ? '8px' : 'none',
+                backgroundColor: value === 0 ? 'neutral.N000' : '',
+                minHeight: {
+                  lg: '26px',
+                  xl: '30px',
+                  xxl: '30px',
+                },
+                height: {
+                  lg: '26px',
+                  xl: '30px',
+                  xxl: '90%',
+                  xxl: '30px',
+                },
               }}
               label={
                 <Typography
-                  sx={{ textTransform: "none" }}
+                  sx={{ textTransform: 'none' }}
                   variant="wpf_p3_semiBold"
-                  color={value === 0 ? "primary.B200" : "neutral.700"}
+                  color={value === 0 ? 'primary.B200' : 'neutral.700'}
                 >
-                  Personal Info.
+                  Personal Info
                 </Typography>
               }
               {...a11yProps(0)}
             />
             <Tab
               sx={{
-                borderRadius: value === 1 ? "8px" : "none",
-                backgroundColor: value === 1 ? "neutral.N000" : "",
-                minHeight: "30px",
-                height: "30px",
+                borderRadius: value === 1 ? '8px' : 'none',
+                backgroundColor: value === 1 ? 'neutral.N000' : '',
+                minHeight: {
+                  lg: '26px',
+                  xl: '30px',
+                  xxl: '30px',
+                },
+                height: {
+                  lg: '26px',
+                  xl: '30px',
+                  xxl: '30px',
+                },
               }}
               label={
                 <Typography
-                  sx={{ textTransform: "none" }}
+                  sx={{ textTransform: 'none' }}
                   variant="wpf_p3_semiBold"
-                  color={value === 1 ? "primary.B200" : "neutral.700"}
+                  color={value === 1 ? 'primary.B200' : 'neutral.700'}
                 >
                   Contact Info
                 </Typography>
@@ -130,16 +155,24 @@ const UserInfoTabIndex = ({
             />
             <Tab
               sx={{
-                borderRadius: value === 2 ? "8px" : "none",
-                backgroundColor: value === 2 ? "neutral.N000" : "",
-                minHeight: "30px",
-                height: "30px",
+                borderRadius: value === 2 ? '8px' : 'none',
+                backgroundColor: value === 2 ? 'neutral.N000' : '',
+                minHeight: {
+                  lg: '26px',
+                  xl: '30px',
+                  xxl: '30px',
+                },
+                height: {
+                  lg: '26px',
+                  xl: '30px',
+                  xxl: '30px',
+                },
               }}
               label={
                 <Typography
-                  sx={{ textTransform: "none" }}
+                  sx={{ textTransform: 'none' }}
                   variant="wpf_p3_semiBold"
-                  color={value === 2 ? "primary.B200" : "neutral.700"}
+                  color={value === 2 ? 'primary.B200' : 'neutral.700'}
                 >
                   Education Info
                 </Typography>
@@ -148,16 +181,24 @@ const UserInfoTabIndex = ({
             />
             <Tab
               sx={{
-                borderRadius: value === 3 ? "8px" : "none",
-                backgroundColor: value === 3 ? "neutral.N000" : "",
-                minHeight: "30px",
-                height: "30px",
+                borderRadius: value === 3 ? '8px' : 'none',
+                backgroundColor: value === 3 ? 'neutral.N000' : '',
+                minHeight: {
+                  lg: '26px',
+                  xl: '30px',
+                  xxl: '30px',
+                },
+                height: {
+                  lg: '26px',
+                  xl: '30px',
+                  xxl: '30px',
+                },
               }}
               label={
                 <Typography
-                  sx={{ textTransform: "none" }}
+                  sx={{ textTransform: 'none' }}
                   variant="wpf_p3_semiBold"
-                  color={value === 3 ? "primary.B200" : "neutral.700"}
+                  color={value === 3 ? 'primary.B200' : 'neutral.700'}
                 >
                   Verification Info
                 </Typography>
@@ -169,12 +210,16 @@ const UserInfoTabIndex = ({
 
         <Box
           sx={{
-            height: { xxl: "500px", lg: "400px", xl: "400px" },
-            overflow: "auto",
+            height: {
+              lg: '415px',
+              xl: '405px',
+              xxl: '500px',
+            },
+            overflow: 'auto',
             // height: "0%",
-            padding: "0% 0%",
-            "&::-webkit-scrollbar": {
-              width: "0",
+            padding: '0% 0%',
+            '&::-webkit-scrollbar': {
+              width: '0',
             },
           }}
         >
@@ -222,7 +267,12 @@ const UserInfoTabIndex = ({
               isEditSkill={isEditSkill}
             />
           </TabPanel>
-          <ChangeInfoIndex role={role} user={user} handleSetRole={handleSetRole} handleSetStatus={handleSetStatus} />
+          <ChangeInfoIndex
+            role={role}
+            user={user}
+            handleSetRole={handleSetRole}
+            handleSetStatus={handleSetStatus}
+          />
         </Box>
       </Box>
     </>

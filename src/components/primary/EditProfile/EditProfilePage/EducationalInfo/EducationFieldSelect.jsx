@@ -8,16 +8,16 @@ EducationFieldSelect.propTypes = {
 
 export const MySelect = styled(Select)(() => ({
   height: "40px",
+  border: "1px solid #E6ECF5",
   borderRadius: "8px",
   marginTop: "7px",
   fontsize: "10px",
   "& .MuiOutlinedInput-notchedOutline": {
-    border: "1px solid #E6ECF5 !important",
     borderRadius: "8px",
   },
   "& .MuiInputBase-root": {
-    height: "40px",
-    fontSize: "14px",
+    height: "10px",
+    fontSize: "12px",
     color: "neutral.N300",
     padding: "0px 5px",
     "&:disabled": {
@@ -29,6 +29,13 @@ export const MySelect = styled(Select)(() => ({
   },
   "& .MuiInputBase-input.Mui-focused": {
     color: "blue",
+  },
+  "@media(max-width:1439px)": {
+    height: "30px",
+    fontSize: "12px",
+  },
+  "@media(min-width: 1920px)": {
+    fontSize: "14px",
   },
 }));
 
@@ -54,7 +61,9 @@ export default function EducationFieldSelect({ handleChangeField, field, options
           onChange={handleChangeField}
         >
           <MenuItem disabled value="">
-            <span>Select your field of study</span>
+            <Typography variant="wpf_p4_medium">
+              <span>Select your field of study</span>
+            </Typography>
           </MenuItem>
           {options.map((option) => (
             <MenuItem
@@ -65,7 +74,7 @@ export default function EducationFieldSelect({ handleChangeField, field, options
               fullWidth
               value={option.value}
             >
-              {option.label}
+              <Typography variant="wpf_p4_medium">{option.label}</Typography>
             </MenuItem>
           ))}
         </MySelect>

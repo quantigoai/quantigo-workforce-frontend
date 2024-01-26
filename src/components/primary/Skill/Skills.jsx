@@ -26,22 +26,22 @@ import SkillDeleteModal from "./SkillDeleteModal";
 import SkillEdit from "./SkillEdit";
 
 export const MyTextField = styled(TextField)(() => ({
-  "& .MuiOutlinedInput-notchedOutline": {
-    border: "2px solid #C4F5DF !important",
-    borderRadius: "8px",
+  '& .MuiOutlinedInput-notchedOutline': {
+    border: '2px solid #DADCDF !important',
+    borderRadius: '8px',
   },
-  "& .MuiInputBase-root": {
-    height: "78%",
-    fontSize: "14px",
-    backgroundColor: "neutral.N000",
+  '& .MuiInputBase-root': {
+    height: '78%',
+    fontSize: '14px',
+    backgroundColor: 'neutral.N000',
   },
 }));
 export const MyTextFieldDesc = styled(TextField)(() => ({
-  "& .MuiOutlinedInput-notchedOutline": {
-    border: "2px solid #C4F5DF !important",
-    borderRadius: "8px",
+  '& .MuiOutlinedInput-notchedOutline': {
+    border: '2px solid #DADCDF !important',
+    borderRadius: '8px',
   },
-  "& .MuiInputBase-root": { height: "78%", fontSize: "14px" },
+  '& .MuiInputBase-root': { height: '78%', fontSize: '14px' },
 }));
 const ButtonStyle = styled(Button)({
   backgroundColor: "#2D58FF",

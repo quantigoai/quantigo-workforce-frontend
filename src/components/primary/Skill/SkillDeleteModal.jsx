@@ -111,7 +111,8 @@ const SkillDeleteModal = ({ skill }) => {
           <Typography
             sx={{ mt: "30%", color: isLightTheme ? "#091E42" : "#fff", fontSize: "18px", fontWeight: "600" }}
             id="modal-modal-title"
-            variant="h6"
+            variant="wpf_h5_semiBold"
+            textAlign={"center"}
             component="h2">
             Delete Skill
           </Typography>
@@ -119,12 +120,16 @@ const SkillDeleteModal = ({ skill }) => {
           <Typography
             id="modal-modal-description"
             sx={{
-              fontSize: "14px",
+              fontSize: {
+                lg:"12px",
+                xl:"14px",
+                xxl:"14px"
+              },
               color: isLightTheme ? "#3C4D6B" : "#fff",
               fontWeight: "400",
               lineHeight: "20px",
             }}>
-            Are you sure you want to delete {skill.name} skill ?
+            Are you sure you want to delete skill "{skill.name}"  ?
           </Typography>
 
           <Box

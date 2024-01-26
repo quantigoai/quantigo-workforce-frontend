@@ -1,11 +1,21 @@
 .chart-labels {
-    font-size: 15px;
+  font-size: 15px;
+}
+
+/* canvas {
+  border: 1px dotted red;
+} */
+
+.chart-container {
+  position: relative;
+  margin: auto;
+  height: 100%;
+  width: 100%;
+}
+
+/* Adjust font size for smaller screens */
+@media (max-width: 768px) {
+  .chart-labels {
+    font-size: 1px;
   }
-  
-  /* Adjust font size for smaller screens */
-  @media (max-width: 768px) {
-    .chart-labels {
-      font-size: 1px;
-    }
-  }
-  
+}

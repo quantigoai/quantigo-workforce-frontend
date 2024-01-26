@@ -7,21 +7,29 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Box, Grid, Typography} from "@mui/material";
+import { Box, Grid, Typography } from '@mui/material';
 import {
-    CategoryScale,
-    Chart as ChartJS,
-    Legend,
-    LinearScale,
-    LineElement,
-    PointElement,
-    Title,
-    Tooltip,
-} from "chart.js";
-import React from "react";
-import LineChartExple from "./LineChartExple";
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LineElement,
+  LinearScale,
+  PointElement,
+  Title,
+  Tooltip,
+} from 'chart.js';
+import React from 'react';
+import LineChartExple from './LineChartExple';
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+);
 
 const options = {
   plugins: {
@@ -35,7 +43,7 @@ const options = {
   scales: {
     x: {
       ticks: {
-        color: "#7D89A3", // Change label text color here
+        color: '#7D89A3', // Change label text color here
       },
       grid: {
         display: true,
@@ -43,7 +51,7 @@ const options = {
     },
     yAxis: {
       ticks: {
-        color: "#7D89A3", // Change label text color here
+        color: '#7D89A3', // Change label text color here
       },
       display: false,
     },
@@ -58,21 +66,24 @@ const options = {
   },
 };
 const LineChartDaily = ({ loading }) => {
+
   return (
     <>
-      <Box sx={{ padding: "2%" }}>
+      <Box sx={{ padding: '2%' }}>
         <Grid container>
-          <Grid item xs={12} sx={{ paddingTop: "1%" }}>
-            <Typography variant="wpf_p3_semiBold" sx={{ color: "neutral.750" }}>
+          <Grid item xs={12} sx={{ paddingTop: '1%' }}>
+            <Typography variant="wpf_p3_semiBold" sx={{ color: 'neutral.750' }}>
               Hourly Check-ins
             </Typography>
           </Grid>
         </Grid>
 
-        <Grid container sx={{ padding: "2%" }}>
+        {/* <Grid container sx={{ padding: '2%' }}> */}
+        <div class="chart-container">
           <LineChartExple loading={loading} />
-          {/* <Line options={options} data={customData} /> */}
-        </Grid>
+        </div>
+        {/* <Line options={options} data={customData} /> */}
+        {/* </Grid> */}
       </Box>
     </>
     // <Grid container sx={{ padding: "3%" }}>

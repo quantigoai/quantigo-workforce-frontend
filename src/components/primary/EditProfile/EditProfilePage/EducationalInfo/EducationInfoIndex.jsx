@@ -14,13 +14,26 @@ import EducationSelect from "./EducationSelect";
 import InstitutionSelectAdd from "./InstitutionSelectAdd";
 
 export const MyDatePicker = styled(DatePicker)(() => ({
+  borderRadius: "8px",
   "& .MuiOutlinedInput-notchedOutline": {
     border: "1px solid #E6ECF5 !important",
     borderRadius: "8px",
   },
-  "& .MuiInputBase-root": { height: "40px", fontSize: "14px" },
+  "& .MuiInputBase-root": {
+    height: "42px",
+    fontSize: "12px",
+    fontFamily: "Inter",
+    "@media(max-width:1439px)": {
+      height: "30px",
+      fontSize: "10px",
+    },
+    "@media(min-width: 1920px)": {
+      fontSize: "14px",
+    },
+  },
   "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
     border: `1px solid #2E58FF !important`,
+    borderRadius: "8px",
   },
   "& .MuiInputBase-input.Mui-focused": {
     color: "blue",
@@ -202,7 +215,7 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
                   defaultValue={data?.highestLevelOfDegree}
                 />
               </Grid>
-              <Grid item xs={6} sx={{ paddingRight: "0%" }}>
+              <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                 <EducationFieldSelect
                   name={"fieldOfStudy"}
                   label={"Field of Study"}

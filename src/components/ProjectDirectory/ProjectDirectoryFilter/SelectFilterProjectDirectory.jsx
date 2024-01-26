@@ -2,27 +2,28 @@ import { Box, Button, Menu, MenuItem } from "@mui/material";
 import React from "react";
 
 const selectTypeFilter = [
-  "Client_Alias",
-  "Industry",
-  "Platform",
-  "Tool_Type",
-  "PDR",
-  "Project_Type",
-  "Action_Items",
-  "QA_Check_Points",
-  "Obj_Benchmark",
-  "Img_Benchmark",
-  "Tagging_Benchmark",
-  "Deletion",
-  "Skip_Image",
-  "Image_Loading",
-  "Object_Saving_Time",
-  "Video_Watch_Time",
-  "Judgement_Time",
-  "QA_Benchmark",
-  "Annotation",
-  "QA",
+  { item: "Client Alias", value: "Client_Alias" },
+  { item: "Industry", value: "Industry" },
+  { item: "Platform", value: "Platform" },
+  { item: "Tool Type", value: "Tool_Type" },
+  { item: "PDR", value: "PDR" },
+  { item: "Project Type", value: "Project_Type" },
+  { item: "Action Item", value: "Action_Items" },
+  { item: "QA Check Points", value: "QA_Check_Points" },
+  { item: "Object Benchmark", value: "Obj_Benchmark" },
+  { item: "Image Benchmark", value: "Img_Benchmark" },
+  { item: "Tagging Benchmark", value: "Tagging_Benchmark" },
+  { item: "Deletion", value: "Deletion" },
+  { item: "Skip Image", value: "Skip_Image" },
+  { item: "Image Loading", value: "Image_Loading" },
+  { item: "Object Saving Time", value: "Object_Saving_Time" },
+  { item: "Video Watch Time", value: "Video_Watch_Time" },
+  { item: "Judgement Time", value: "Judgement_Time" },
+  { item: "QA Benchmark", value: "QA_Benchmark" },
+  { item: "Annotation", value: "Annotation" },
+  { item: "QA", value: "QA" },
 ];
+
 const SelectFilterProjectDirectory = ({ handleMenuItemClick, setAnchorEl, anchorEl }) => {
   const handleButtonClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -35,8 +36,13 @@ const SelectFilterProjectDirectory = ({ handleMenuItemClick, setAnchorEl, anchor
     <>
       <Box>
         <Button
-          variant="outlined"
+          // variant="outlined"
           sx={{
+            textTransform: "none",
+            border: "1px solid #244EF5",
+            width: { xxl: "150px", xl: "150px", lg: "130px" },
+            fontSize: { xxl: "14px", xl: "12px", lg: "12px" },
+            height: "30px",
             "&:hover": {
               backgroundColor: "#244EF5",
               color: "#fff",
@@ -48,8 +54,27 @@ const SelectFilterProjectDirectory = ({ handleMenuItemClick, setAnchorEl, anchor
         </Button>
         <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
           {selectTypeFilter.map((filter, index) => (
-            <MenuItem key={index} value={filter} onClick={() => handleMenuItemClick(filter)}>
-              {filter}
+            <MenuItem
+              sx={{
+                fontSize: "14px",
+                "& .MuiInputBase-root": {
+                  // height: "42px",
+                  fontSize: "12px",
+                  fontFamily: "Inter",
+                  "@media(max-width:1439px)": {
+                    // height: "30px",
+                    fontSize: "10px",
+                  },
+                  "@media(min-width: 1920px)": {
+                    fontSize: "14px",
+                  },
+                },
+              }}
+              key={index}
+              value={filter.value}
+              onClick={() => handleMenuItemClick(filter.value)}
+            >
+              {filter.item}
             </MenuItem>
           ))}
         </Menu>

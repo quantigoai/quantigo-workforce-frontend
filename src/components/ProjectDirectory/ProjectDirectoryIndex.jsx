@@ -31,7 +31,6 @@ import CreateProjectDirectoryModal from './CreateProjectDirectoryModal.jsx';
 import ProjectDirectoryDetailsModal from './ProjectDirectoryDetailsModal';
 import ProjectDirectoryEditModal from './ProjectDirectoryEditModal';
 import ProjectDirectoryHeader from './ProjectDirectoryHeader.jsx';
-// import ProjectDirectoryDetailsModal from "./ProjectDirectoryDetailsModal";
 
 const ProjectDirectoryIndex = () => {
   const user = useSelector((state) => state.user);
@@ -47,6 +46,13 @@ const ProjectDirectoryIndex = () => {
   const [filterData, setFilterData] = useState({});
   const [anchorE2, setAnchorE2] = React.useState(null);
   const [industryType, setIndustryType] = useState('');
+
+  // --------------------------------------
+  const [filterDataNew, setFilterDataNew] = useState({});
+  // --------------------------------------
+
+  // ______________________________________values
+
   const [clientAliasFilter, setClientAliasesFilter] = useState('');
   const [dataTypeFilter, setDataTypeFilter] = useState('');
   const [pDRFilter, setPDRFilter] = useState('');
@@ -72,6 +78,9 @@ const ProjectDirectoryIndex = () => {
   const [taggingBenchMarkFieldFilter, setTaggingBenchMarkFieldFilter] =
     useState('');
   const [date, setDate] = useState('');
+
+  // ______________________________________fields
+
   const [pdrSetFilter, setPdrSetFilter] = useState(false);
   const [Client_AliasSetFilter, setClient_AliasSetFilter] = useState(false);
   const [annotationSetFilter, setAnnotationSetFilter] = useState(false);
@@ -91,6 +100,7 @@ const ProjectDirectoryIndex = () => {
   const [DeletionField, setDeletionFilter] = useState(false);
   const [judgementTimeFilter, setJudgementTimeFilter] = useState(false);
   const [qABenchmarkField, setQABenchmarkField] = useState(false);
+
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClickFilter = (event) => {
@@ -279,6 +289,7 @@ const ProjectDirectoryIndex = () => {
       }
     });
   };
+
   //   paggination
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -429,7 +440,9 @@ const ProjectDirectoryIndex = () => {
       setIsDataLoading(false);
     });
   }, [pagination, search, isDeleted, ascDesc]);
+
   //TODO CHECK THIS LATER
+
   const handleGetSync = async () => {
     await toast.responsePromise(
       getProjectSyncFunction(),

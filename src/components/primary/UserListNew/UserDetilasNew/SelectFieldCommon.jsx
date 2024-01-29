@@ -55,7 +55,11 @@ const SelectFieldCommon = ({ label, user, handleSetRole }) => {
             sx={{
               // fontFamily: "Inter",
               backgroundColor: 'neutral.N000',
-              fontSize: '14px',
+              fontSize: {
+               lg: '12px',
+               xl: '14px',
+               xxl: '14px'
+              },
             }}
             onChange={handleSetRole}
             defaultValue={user.role}

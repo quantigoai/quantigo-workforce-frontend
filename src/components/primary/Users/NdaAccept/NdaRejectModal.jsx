@@ -6,49 +6,70 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {Box, Button, Grid, Modal, styled, TextField, Typography} from "@mui/material";
-import React from "react";
-import {useForm} from "react-hook-form";
-import {useSelector} from "react-redux";
-import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
-import {LoadingButtonStyle} from "../../Auth/Login/Login";
+import {
+  Box,
+  Button,
+  Grid,
+  Modal,
+  styled,
+  TextField,
+  Typography,
+} from '@mui/material';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { LoadingButtonStyle } from '../../Auth/Login/Login';
+import ProjectModalHeader from '../../ProjectLIstNew2/ProjectModalHeader';
 
 export const MyTextField = styled(TextField)(() => ({
-  "& .MuiOutlinedInput-notchedOutline": {
-    border: "2px solid #E6ECF5 !important",
-    borderRadius: "8px",
+  '& .MuiOutlinedInput-notchedOutline': {
+    border: '2px solid #E6ECF5 !important',
+    borderRadius: '8px',
   },
-  "& .MuiInputBase-root": { height: "78%", fontSize: "14px" },
+  '& .MuiInputBase-root': { height: '78%', fontSize: '14px' },
 }));
 export const MySelect = styled(TextField)(() => ({
-  "& .MuiOutlinedInput-notchedOutline": {
-    border: "2px solid #E6ECF5 !important",
-    borderRadius: "8px",
+  '& .MuiOutlinedInput-notchedOutline': {
+    border: '2px solid #E6ECF5 !important',
+    borderRadius: '8px',
+    height: '100%',
   },
-  "& .MuiInputBase-root": { height: "100%", fontSize: "14px" },
+  '& .MuiInputBase-root': { height: '100%', fontSize: '14px' },
+  '@media (max-width: 1439px)': {
+    '& .MuiInputBase-root': { height: '100%', fontSize: '12px' },
+  },
+  '@media (mix-width: 1920px)': {
+    '& .MuiInputBase-root': { height: '100%', fontSize: '16px' },
+  },
 }));
 const style = {
-  display: "flex",
-  flexDirection: "column",
-  position: "relative",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  bgcolor: "background.paper",
-  border: "none",
-  borderRadius: "8px",
+  display: 'flex',
+  flexDirection: 'column',
+  position: 'relative',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  bgcolor: 'background.paper',
+  border: 'none',
+  borderRadius: '8px',
   p: 0,
   input: {
-    color: "black",
-    height: "20px",
-    borderRadius: "8px",
+    color: 'black',
+    height: '20px',
+    borderRadius: '8px',
   },
   select: {
-    height: "20px",
+    height: '20px',
   },
 };
 
-const NdaRejectModal = ({ openModal, handleClose, onSubmit, handleRejectCause, rejectionCause }) => {
+const NdaRejectModal = ({
+  openModal,
+  handleClose,
+  onSubmit,
+  handleRejectCause,
+  rejectionCause,
+}) => {
   const { register, handleSubmit } = useForm();
   const { isLoading } = useSelector((state) => state.user);
   return (
@@ -62,29 +83,25 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit, handleRejectCause, r
         <Box
           sx={{
             ...style,
-            height: { lg: "50%", xl: "50%", xxl: "38%" },
-            width: { lg: "40%", xl: "35%" },
+            height: { lg: '50%', xl: '50%', xxl: '38%' },
+            width: { lg: '40%', xl: '35%' },
           }}
         >
           <form onSubmit={handleSubmit(onSubmit)}>
             <Box>
-              <Box
-              // sx={{ flex: "0 0 0%" }}
-              >
-                <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={"Confirm Rejection"} />
+              <Box>
+                <ProjectModalHeader
+                  handleCreateProjectClose={handleClose}
+                  modalTitle={'Confirm Rejection'}
+                />
               </Box>
 
               <Box>
-                <Box style={{ padding: "3%" }}>
-                  {/* <Grid container sx={{ paddingBottom: "1%" }}> */}
+                <Box style={{ padding: '3%' }}>
                   <Typography
                     variant="wpf_p4_medium"
                     sx={{
-                      // fontSize: "12px",
-                      // fontWeight: "500",
                       mb: 0,
-                      // color: isLightTheme ? "#091E42" : "#FFFFFF",
-                      // paddingBottom:"1%"
                     }}
                   >
                     Status
@@ -96,21 +113,18 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit, handleRejectCause, r
                     variant="outlined"
                     fullWidth
                     disabled
-                    defaultValue={"Rejected"}
+                    defaultValue={'Rejected'}
                     // placeholder="Select"
-                    sx={{ height: "50%" }}
+                    // sx={{ height: '50%' }}
                   ></MySelect>
-                  {/* </Grid> */}
-                  {/* <Grid container style={{}}> */}
                   <Typography
                     variant="wpf_p4_medium"
                     sx={{
                       mb: 1,
-                      // color: isLightTheme ? "#091E42" : "#FFFFFF",
-                      paddingBottom: "0%",
+                      paddingBottom: '0%',
                     }}
                   >
-                    Rejection Cause <span style={{ color: "red" }}>*</span>
+                    Rejection Cause <span style={{ color: 'red' }}>*</span>
                   </Typography>
                   <MyTextField
                     variant="outlined"
@@ -118,41 +132,36 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit, handleRejectCause, r
                     multiline
                     rows={5}
                     InputProps={{ disableUnderline: true }}
-                    // {...register("rejectionCause", {
-                    //   required: true,
-                    // })}
                     onChange={(e) => handleRejectCause(e)}
                   />
-                  {/* </Grid> */}
                 </Box>
               </Box>
 
               <Box
                 sx={{
-                  // flex: "0 0 64px",
-                  borderTop: "1px solid #F2F6FC",
-                  backgroundColor: "neutral.N000",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  padding: "0 2%",
+                  borderTop: '1px solid #F2F6FC',
+                  backgroundColor: 'neutral.N000',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  padding: '0 2%',
 
-                  bottom: "0px",
-                  borderRadius: "0 0 8px 8px",
+                  bottom: '0px',
+                  borderRadius: '0 0 8px 8px',
                 }}
               >
-                <Grid container sx={{ padding: "2%" }}>
+                <Grid container sx={{ padding: '2%' }}>
                   <Grid item xs={6}>
                     <Button
                       sx={{
-                        width: "120px",
-                        textTransform: "none",
-                        backgroundColor: "#F4F7FE",
-                        color: "#62728F",
-                        borderRadius: "8px",
-                        "&:hover": {
-                          backgroundColor: "#ddd",
-                          color: "#62728F",
+                        width: '120px',
+                        textTransform: 'none',
+                        backgroundColor: '#F4F7FE',
+                        color: '#62728F',
+                        borderRadius: '8px',
+                        '&:hover': {
+                          backgroundColor: '#ddd',
+                          color: '#62728F',
                         },
                       }}
                       onClick={() => handleClose()}
@@ -161,24 +170,24 @@ const NdaRejectModal = ({ openModal, handleClose, onSubmit, handleRejectCause, r
                     </Button>
                   </Grid>
                   <Grid item xs={6}>
-                    <Grid container sx={{ justifyContent: "right" }}>
+                    <Grid container sx={{ justifyContent: 'right' }}>
                       <LoadingButtonStyle
                         loading={isLoading}
-                        disabled={rejectionCause === ""}
+                        disabled={rejectionCause === ''}
                         type="submit"
                         sx={{
-                          width: "128px",
-                          textTransform: "none",
-                          backgroundColor: "#2E58FF",
-                          color: "#FFFFFF",
-                          borderRadius: "8px",
-                          "&.Mui-disabled": {
-                            background: "#B6C9F0",
-                            color: "#FFFFFF",
+                          width: '128px',
+                          textTransform: 'none',
+                          backgroundColor: '#2E58FF',
+                          color: '#FFFFFF',
+                          borderRadius: '8px',
+                          '&.Mui-disabled': {
+                            background: '#B6C9F0',
+                            color: '#FFFFFF',
                           },
-                          "&:hover": {
-                            backgroundColor: "#476CFF",
-                            color: "#FFFFFF",
+                          '&:hover': {
+                            backgroundColor: '#476CFF',
+                            color: '#FFFFFF',
                           },
                         }}
                         // onClick={() => handleChange()}

@@ -29,7 +29,7 @@ const UserStatusChangeFiled = ({ label, user, handleSetStatus }) => {
           <Typography
             variant="wpf_p4_medium"
             sx={{
-              color: "neutral.750",
+              color: 'neutral.750',
               mb: 1,
             }}
           >
@@ -42,27 +42,26 @@ const UserStatusChangeFiled = ({ label, user, handleSetStatus }) => {
             variant="outlined"
             placeholder="Select"
             sx={{
-              height: "40px",
-              backgroundColor: "neutral.N000",
-              fontSize: "14px",
+              height: '40px',
+              backgroundColor: 'neutral.N000',
+              fontSize: {
+                lg: '12px',
+                xl: '14px',
+                xxl: '14px',
+              },
             }}
             onChange={handleSetStatus}
-            defaultValue={user?.isBlocked ? "block" : ""}
+            defaultValue={user?.isBlocked ? 'block' : ''}
           >
-            <MenuItem value={"delete"} style={menuItemStyle}>
+            <MenuItem value={'delete'} style={menuItemStyle}>
               Delete
             </MenuItem>
-            <MenuItem value={"block"} style={menuItemStyle}>
+            <MenuItem value={'block'} style={menuItemStyle}>
               Block
             </MenuItem>
-            <MenuItem value={"unblock"} style={menuItemStyle}>
+            <MenuItem value={'unblock'} style={menuItemStyle}>
               Unblock
             </MenuItem>
-            {/* {options.map((option) => (
-              <MenuItem key={option.value} fullWidth>
-                {option.label}
-              </MenuItem>
-            ))} */}
           </MySelect>
         </FormControl>
       </Grid>

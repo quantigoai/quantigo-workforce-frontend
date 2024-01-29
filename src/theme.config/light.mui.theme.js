@@ -85,8 +85,6 @@ const lightTheme = createTheme({
           borderBottom: '1px solid #f2f6fc',
           backgroundColor: '#fff',
           color: '#3C4D6B',
-          // height: '40px',
-          // height:"10%",
           "@media(max-width:1024px)": {
             height: '40px',
           },
@@ -96,7 +94,6 @@ const lightTheme = createTheme({
           "@media(min-width:1441px) and (max-width: 1920px)": {
             height: '42px',
           },
-        
           margin: '0',
         },
       },

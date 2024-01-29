@@ -121,7 +121,7 @@ const useAllUsersFunc = ({
     userSearchRef.current.value = "";
   };
   const handleClickAway = () => {
-    const skillsId = addSkills.map((skill) => skill._id);
+    const skillsId = addSkills.map((skill) => skill?._id);
 
     const isSkillsSame = arraysAreEqual(prevSkills, skillsId);
 

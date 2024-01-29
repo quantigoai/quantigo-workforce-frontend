@@ -27,7 +27,7 @@ const ButtonStyle = styled(Button)({
 const style = {
   position: "absolute",
   transform: "translate(-50%, -50%)",
-  height: "80%",
+  // height: "80%",
   overflowY: "auto",
   bgcolor: "background.paper",
   border: "none",
@@ -102,7 +102,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                 height: {
                   lg: "10%",
                   xl: "10%",
-                  xxl: "8%",
+                  xxl: "9%",
                 },
               }}
             >
@@ -114,7 +114,7 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                 height: {
                   lg: "90%",
                   xl: "90%",
-                  xxl: "92%",
+                  xxl: "91%",
                 },
               }}
             >

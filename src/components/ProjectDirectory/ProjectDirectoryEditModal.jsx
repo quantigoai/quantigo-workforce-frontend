@@ -16,7 +16,7 @@ const style = {
   position: "absolute",
   transform: "translate(-50%, -50%)",
   bgcolor: "background.paper",
-  height: "80%",
+  // height: "80%",
   overflowY: "auto",
   boxShadow: 24,
   borderRadius: "10px",

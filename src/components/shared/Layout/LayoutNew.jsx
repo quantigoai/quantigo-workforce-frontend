@@ -7,16 +7,16 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
-import {styled, useTheme} from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import * as React from "react";
-import {useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
 import menuFoldLine from "../../../assets/images/menu-fold-line.svg";
 import menuUnfoldLne from "../../../assets/images/menu-unfold-line.svg";
 import UserBlocked from "../UserBlocked/UserBlocked";
 
-import {keyframes, Stack} from "@mui/material";
+import { keyframes, Stack } from "@mui/material";
 import Header from "../Header/Header";
 import GetHelpNew from "./GetHelpNew";
 import layoutMenuOption from "./layoutMenuOption";
@@ -323,7 +323,8 @@ export default function LayoutNew({ children }) {
     <Stack
       direction={"row"}
       sx={{
-        width: "100vw",
+        width: "100%",
+        height: "100%",
       }}
     >
       <DrawerBox
@@ -360,7 +361,13 @@ export default function LayoutNew({ children }) {
         >
           <DrawerHeader
             sx={{
-              height: "56px",
+              // height: "56px",
+              height: {
+                xxl: "7%",
+                // xl: "56px",
+                xl: "7.77%",
+                lg: "7.22%",
+              },
               position: "sticky",
               top: 0,
               zIndex: 1213,
@@ -411,9 +418,9 @@ export default function LayoutNew({ children }) {
           <Box
             sx={{
               height: {
-                lg: "72%",
-                xl: "72%",
-                xxl: "73%",
+                lg: "70%",
+                xl: "70%",
+                xxl: "70%",
               },
               overflowX: "hidden",
               scrollbarWidth: "none", // Firefox scrollbar width
@@ -462,12 +469,17 @@ export default function LayoutNew({ children }) {
                 xl: "96%",
                 xxl: "96%",
               },
-          height: "100vh",
+          // height: "100%",
         }}
       >
         <Box
           sx={{
-            height: { xxl: "7%", xl: "56px", lg: "7.22%" },
+            height: {
+              xxl: "7%",
+              // xl: "56px",
+              xl: "7.77%",
+              lg: "7.22%",
+            },
             animation: `${slideIn} 0.3s`,
           }}
         >
@@ -480,7 +492,8 @@ export default function LayoutNew({ children }) {
               md: "92.78%",
               lg: "92.78",
               xxl: "93%",
-              xl: "720px",
+              // xl: "720px",
+              xl: "92.23%",
             },
             paddingBottom: "0",
             margin: 0,

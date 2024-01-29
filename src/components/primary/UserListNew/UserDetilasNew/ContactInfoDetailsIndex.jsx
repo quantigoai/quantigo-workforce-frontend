@@ -1,9 +1,9 @@
-import {Box, Stack} from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import moment from "moment/moment";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import DetailsItemThree from "./DetailsItemThree";
-import {useDispatch} from "react-redux";
-import {getUserContactInfo} from "../../../../features/slice/userSlice";
+import { useDispatch } from "react-redux";
+import { getUserContactInfo } from "../../../../features/slice/userSlice";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import AddressField from "./AddressField";
 
@@ -59,18 +59,18 @@ const ContactInfoDetailsIndex = ({
             <>
               <AddressField ItemTitle={"Present Address"} Item={data.presentAddress} />
               <AddressField ItemTitle={"Permanent Address"} Item={data.permanentAddress} />
-          
+
               <DetailsItemThree
-                Item1Title={"Emergency Contact Person"}
-                Item1={data.emergencyContact?.contactPersonName}
+                Item1Title={"Emergency Contact Person Name"}
+                Item1={data.emergencyContact?.contactPersonName ? data.emergencyContact?.contactPersonName : "N/A"}
                 Item2Title={"Relation"}
-                Item2={data.emergencyContact?.relationship}
+                Item2={data.emergencyContact?.relationship ? data.emergencyContact?.relationship : "N/A"}
                 isBlocked={user.isBlocked}
                 Item3Title={"Mobile Number"}
-                Item3={data.emergencyContact?.contactNumber}
+                Item3={data.emergencyContact?.contactNumber ? data.emergencyContact?.contactNumber : "N/A"}
               />
-               {/* <AddressField ItemTitle={"Permanent Address"} Item={data.permanentAddress} /> */}
-          
+              {/* <AddressField ItemTitle={"Permanent Address"} Item={data.permanentAddress} /> */}
+
               <AddressField ItemTitle={"Emergency Contact Person Address"} Item={data.emergencyContact?.address} />
 
               {/* <SingleItem ItemTitle={"Skills"} Item={user.skills} /> */}

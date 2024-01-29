@@ -1,5 +1,5 @@
-import {Grid, Stack, Typography} from "@mui/material";
-import {useSelector} from "react-redux";
+import { Grid, Stack, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const AddressField = ({ ItemTitle, Item }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
@@ -16,18 +16,41 @@ const AddressField = ({ ItemTitle, Item }) => {
                 {ItemTitle}
               </Typography>
             </Grid>
-
-            <Typography variant="wpf_p3_medium" sx={{ color: isLightTheme ? "#091E42" : "#fff", fontWeight: "500" }}>
-              {Item?.roadNo ? `Road No : ${Item?.roadNo}, ` : ""}
-              {Item?.houseNo ? `House No : ${Item.houseNo}, ` : ""}
-              {Item?.area ? `City: ${Item.area}, ` : ""}
-            </Typography>
-            <br/>
-            <Typography variant="wpf_p3_medium" sx={{ color: isLightTheme ? "#091E42" : "#fff", fontWeight: "500" }}>   
-              {Item?.subdistrict?.name ? ` Sub-district : ${Item.subdistrict.name}, ` : ""}
-              {Item?.district?.name ? `District : ${Item.district.name}, ` : ""}
-              {Item?.division?.name ? `Division : ${Item.division.name} ` : ""}
-            </Typography>
+            {Item?.roadNo ||
+            Item?.houseNo ||
+            Item?.area ||
+            Item?.subdistrict?.name ||
+            Item?.district?.name ||
+            Item?.division?.name ? (
+              <>
+                <Typography
+                  variant="wpf_p3_medium"
+                  sx={{ color: isLightTheme ? "#091E42" : "#fff", fontWeight: "500" }}
+                >
+                  {Item?.roadNo ? `Road No : ${Item?.roadNo}, ` : ""}
+                  {Item?.houseNo ? `House No : ${Item.houseNo}, ` : ""}
+                  {Item?.area ? `City: ${Item.area}, ` : ""}
+                </Typography>
+                <br />
+                <Typography
+                  variant="wpf_p3_medium"
+                  sx={{ color: isLightTheme ? "#091E42" : "#fff", fontWeight: "500" }}
+                >
+                  {Item?.subdistrict?.name ? ` Sub-district : ${Item.subdistrict.name}, ` : ""}
+                  {Item?.district?.name ? `District : ${Item.district.name}, ` : ""}
+                  {Item?.division?.name ? `Division : ${Item.division.name} ` : ""}
+                </Typography>
+              </>
+            ) : (
+              <>
+                <Typography
+                  variant="wpf_p3_medium"
+                  sx={{ color: isLightTheme ? "#091E42" : "#fff", fontWeight: "500" }}
+                >
+                  N/A
+                </Typography>
+              </>
+            )}
           </Grid>
         </Grid>
       </Stack>

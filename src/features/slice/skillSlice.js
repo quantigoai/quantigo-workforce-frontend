@@ -108,9 +108,9 @@ const skillSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(getAllSkills.fulfilled, (state, action) => {
-                state.isLoading = false;
                 state.error = null;
                 state.skills = action.payload.data.data;
+                state.isLoading = false;
             })
             .addCase(getAllSkills.rejected, (state) => {
                 state.isLoading = false;

@@ -464,16 +464,16 @@ const ProjectDirectoryIndex = () => {
       data,
       id: projectDirectorySingle._id,
     };
-    dispatch(updateProjectDirectory(finalData)).then((action) => {
-      if (action.error?.message) {
-        toast.trigger(action.error?.message, "error");
-      } else {
-        toast.trigger(action.payload.data.message, "success");
-        setOpenProjectModalEdit(false);
-        handleClose();
-        reset();
-      }
-    });
+    // dispatch(updateProjectDirectory(finalData)).then((action) => {
+    //   if (action.error?.message) {
+    //     toast.trigger(action.error?.message, "error");
+    //   } else {
+    //     toast.trigger(action.payload.data.message, "success");
+    //     setOpenProjectModalEdit(false);
+    //     handleClose();
+    //     reset();
+    //   }
+    // });
   };
 
   const handleAscDesc = (field) => {

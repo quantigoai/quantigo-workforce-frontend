@@ -10,6 +10,9 @@ import { LineStack } from "../primary/ProjectLIstNew2/ProjectModal.jsx";
 import PDTextFIeld from "../shared/CustomField/PDTextFIeld.jsx";
 import { useSelector } from "react-redux";
 import { FieldBox } from "../shared/FIeldbox/FieldBox.jsx";
+import PDSelectField from "../shared/CustomField/PDSelectField.jsx";
+import { dataTypeOptions, labelingToolOptions, projectTypeOptions } from "../primary/AllUsers/userFilterOptions.js";
+import PDDateField from "../shared/CustomField/PDDateField.jsx";
 
 const ButtonStyle = styled(Button)({
   // backgroundColor: "#2D58FF",
@@ -151,7 +154,6 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                         mt: "20px",
                       }}
                     >
-                      {/* <LineStack> */}
                       <FieldBox>
                         <PDTextFIeld name="project_Name" label="Project Name" isRequired={true} />
                       </FieldBox>
@@ -161,10 +163,8 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                       <FieldBox>
                         <PDTextFIeld name="industry" label="Industry" />
                       </FieldBox>
-                      {/* </LineStack> */}
 
-                      {/* <LineStack> */}
-                      <FieldBox>
+                      {/* <FieldBox>
                         <PDTextFIeld name="platform" label="Platform" />
                       </FieldBox>
                       <FieldBox>
@@ -172,10 +172,8 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                       </FieldBox>
                       <FieldBox>
                         <PDTextFIeld name="QA" label="QA" />
-                      </FieldBox>
-                      {/* </LineStack> */}
+                      </FieldBox> */}
 
-                      {/* <LineStack> */}
                       <FieldBox>
                         <PDTextFIeld
                           name="PDR"
@@ -185,15 +183,24 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                         />
                       </FieldBox>
                       <FieldBox>
-                        <PDTextFIeld name="project_Type" label="Project Type" />
+                        <PDSelectField
+                          name={"project_Type"}
+                          label="Project Type"
+                          options={projectTypeOptions}
+                          defaultValue={""}
+                        />
                       </FieldBox>
                       <FieldBox>
-                        <PDTextFIeld name="annotation" label="Annotation" />
+                        {/* <PDTextFIeld name="labeling_Tool" label="Labeling tool" /> */}
+                        <PDSelectField
+                          name={"labeling_Tool"}
+                          label="Labeling Tool"
+                          options={labelingToolOptions}
+                          defaultValue={""}
+                        />
                       </FieldBox>
-                      {/* </LineStack> */}
 
-                      {/* <LineStack> */}
-                      <FieldBox>
+                      {/* <FieldBox>
                         <PDTextFIeld name="action_Items" label="Action Items" />
                       </FieldBox>
                       <FieldBox>
@@ -201,11 +208,9 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                       </FieldBox>
                       <FieldBox>
                         <PDTextFIeld name="qA_Benchmark" label="QA Benchmark" />
-                      </FieldBox>
-                      {/* </LineStack> */}
+                      </FieldBox> */}
 
-                      {/* <LineStack> */}
-                      <FieldBox>
+                      {/* <FieldBox>
                         <PDTextFIeld name="img_Benchmark" label="Image Benchmark" />
                       </FieldBox>
                       <FieldBox>
@@ -213,41 +218,35 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                       </FieldBox>
                       <FieldBox>
                         <PDTextFIeld name="deletion" label="Deletion" />
-                      </FieldBox>
-                      {/* </LineStack> */}
+                      </FieldBox> */}
 
-                      {/* <LineStack> */}
                       <FieldBox>
-                        <PDTextFIeld name="skip_Image" label="Skip Image" />
+                        <PDSelectField name="data_Type" label="Data Type" options={dataTypeOptions} defaultValue={""} />
                       </FieldBox>
                       <FieldBox>
-                        <PDTextFIeld name="update" label="Update" />
+                        <PDTextFIeld name="guideline" label="Guideline" />
                       </FieldBox>
                       <FieldBox>
-                        <PDTextFIeld name="image_Loading" label="Image Loading" />
+                        <PDTextFIeld name="PDL" label="PDL" />
                       </FieldBox>
-                      {/* </LineStack> */}
 
-                      {/* <LineStack> */}
                       <FieldBox>
-                        <PDTextFIeld name="object_Saving_Time" label="Object Saving Time" />
+                        <PDTextFIeld name="DL" label="DL" />
                       </FieldBox>
                       <FieldBox>
-                        <PDTextFIeld name="video_Watch_Time" label="Video Watch Time" />
+                        <PDTextFIeld name="DCR" label="DCR" />
                       </FieldBox>
                       <FieldBox>
-                        <PDTextFIeld name="judgement_Time" label="Judgement Time" />
+                        <PDTextFIeld name="PCR" label=" PCR" />
                       </FieldBox>
-                      {/* </LineStack> */}
 
-                      {/* <LineStack> */}
                       <FieldBox>
-                        <PDTextFIeld name="remarks" label="Remarks" />
+                        {/* <PDTextFIeld name="remarks" label="Remarks" /> */}
+                        <PDDateField name="completion_Date" label="Completion Date" />
                       </FieldBox>
-                      <FieldBox>
+                      {/* <FieldBox>
                         <PDTextFIeld name="obj_Benchmark" label="Object Benchmark" />
-                      </FieldBox>
-                      {/* </LineStack> */}
+                      </FieldBox> */}
                     </Grid>
                   </Box>
                 </Box>

@@ -30,19 +30,19 @@ export const roleOptionsAdmin = [
 ];
 
 export const roleOptionsRecruitment_manager = [
-  { value: 'level_0_annotator', label: 'Level 0 annotator' },
-  { value: 'level_1_annotator', label: 'Level 1 annotator' },
-  { value: 'level_2_annotator', label: 'Level 2 annotator' },
-  { value: 'level_3_annotator', label: 'Level 3 annotator' },
-  { value: 'reviewer', label: 'Reviewer' },
-  { value: 'trainer', label: 'Trainer' },
-  { value: 'delivery_lead', label: 'Delivery lead' },
-  { value: 'project_coordinator', label: 'Project coordinator' },
-  { value: 'project_delivery_lead', label: 'Project Delivery Lead ' },
-  { value: 'project_manager', label: 'Project manager' },
-  { value: 'account_manager', label: 'Account manager' },
-  { value: 'recruitment_manager', label: 'Recruitment manager' },
-  { value: 'engineering_lead', label: 'Engineering lead' },
+  { value: "level_0_annotator", label: "Level 0 annotator" },
+  { value: "level_1_annotator", label: "Level 1 annotator" },
+  { value: "level_2_annotator", label: "Level 2 annotator" },
+  { value: "level_3_annotator", label: "Level 3 annotator" },
+  { value: "reviewer", label: "Reviewer" },
+  { value: "trainer", label: "Trainer" },
+  { value: "delivery_lead", label: "Delivery lead" },
+  { value: "project_coordinator", label: "Project coordinator" },
+  { value: "project_delivery_lead", label: "Project Delivery Lead " },
+  { value: "project_manager", label: "Project manager" },
+  { value: "account_manager", label: "Account manager" },
+  { value: "recruitment_manager", label: "Recruitment manager" },
+  { value: "engineering_lead", label: "Engineering lead" },
 ];
 
 export const hubOptions = [
@@ -119,4 +119,23 @@ export const courseCategoryFields = [
 export const courseLanguageFields = [
   { value: "english", label: "English" },
   { value: "bengali", label: "Bengali" },
+];
+
+export const labelingToolOptions = [
+  { value: "bounding_Box_Cubid", label: "Bounding Box Cubid" },
+  { value: "bitmask", label: "Bitmask" },
+  { value: "polyline", label: "Polyline" },
+  { value: "point", label: "Point" },
+  { value: "tagging", label: "Tagging" },
+];
+export const projectTypeOptions = [
+  { value: "prelabel", label: "Prelabel" },
+  { value: "autolabel", label: "Autolabel" },
+  { value: "manual", label: "Manual" },
+];
+export const dataTypeOptions = [
+  { value: "image", label: "Image" },
+  { value: "video", label: "Video" },
+  { value: "lidar", label: "Lidar" },
+  { value: "others", label: "Others" },
 ];

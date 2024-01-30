@@ -11,7 +11,12 @@ import ProjectModalHeader from "../primary/ProjectLIstNew2/ProjectModalHeader";
 import PDTextFIeld from "../shared/CustomField/PDTextFIeld";
 import FormProvider from "../shared/FormProvider/FormProvider";
 import { FieldBox } from "../shared/FIeldbox/FieldBox.jsx";
-import ProjectDirectoryBenchMarkFieldIndex from "./ProjectDirectoryBenchMarkFieldindex.jsx";
+import ProjectDirectoryBenchMarkFieldIndex from "./ProjectDirectoryBenchMarkFieldIndex.jsx";
+import PDSelectField from "../shared/CustomField/PDSelectField.jsx";
+import { projectTypeOptions } from "../primary/ProjectLIstNew2/FIlterOptions.js";
+import { dataTypeOptions, labelingToolOptions } from "../primary/AllUsers/userFilterOptions.js";
+import PDDateField from "../shared/CustomField/PDDateField.jsx";
+// import ProjectDirectoryBenchMarkFieldIndex from "./ProjectDirectoryBenchMarkFieldindex.jsx";
 
 const style = {
   position: "absolute",
@@ -140,134 +145,127 @@ const ProjectDirectoryEditModal = ({
                     },
                   }}
                 >
-                  <Grid
-                    container
+                  <Box
                     sx={{
-                      display: "flex",
-                      columnGap: { xxl: "16px", xl: "10px", lg: "8px" },
-                      mt: "20px",
+                      "&::-webkit-scrollbar": {
+                        width: "0",
+                      },
                     }}
                   >
-                    {/* <LineStack> */}
-                    <FieldBox>
-                      <PDTextFIeld name="project_Name" label="Project Name" defaultValue={item.project_Name} />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="client_Alias" label="Client Alias" defaultValue={item.client_Alias} />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="industry" label="Industry" defaultValue={item.industry} />
-                    </FieldBox>
-                    {/* </LineStack> */}
+                    <Grid
+                      container
+                      sx={{
+                        display: "flex",
+                        columnGap: { xxl: "16px", xl: "10px", lg: "8px" },
+                        mt: "20px",
+                      }}
+                    >
+                      <FieldBox>
+                        <PDTextFIeld
+                          name="project_Name"
+                          label="Project Name"
+                          defaultValue={item.project_Name}
+                          isRequired={true}
+                        />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld
+                          name="client_Alias"
+                          label="Client Alias"
+                          defaultValue={item.client_Alias}
+                          isRequired={true}
+                        />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="industry" label="Industry" defaultValue={item.industry} />
+                      </FieldBox>
 
-                    {/* <LineStack> */}
-                    <FieldBox>
-                      <PDTextFIeld name="platform" label="Batch" defaultValue={item.platform} />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="tool_Type" label="Tool Type" defaultValue={item.tool_Type} />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld
-                        name="PDR"
-                        label="PDR"
-                        defaultValue={item.PDR}
-                        InputProps={{
-                          min: 1,
-                          max: 5,
-                        }}
-                        isNumberPdr="true"
-                      />
-                    </FieldBox>
-                    {/* </LineStack> */}
+                      {/* <FieldBox>
+                        <PDTextFIeld name="platform" label="Platform" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="tool_Type" label="Tool Type" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="QA" label="QA" />
+                      </FieldBox> */}
 
-                    {/* <LineStack> */}
-                    <FieldBox>
-                      <PDTextFIeld name="project_Type" label="Project Type" defaultValue={item.project_Type} />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="action_Items" label="Action Items" defaultValue={item.action_Items} />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="QA_Check_Points" label="QA Check Points" defaultValue={item.QA_Check_Points} />
-                    </FieldBox>
-                    {/* </LineStack> */}
+                      <FieldBox>
+                        <PDTextFIeld
+                          name="PDR"
+                          label="PDR"
+                          placeholder="PDR must be in range between 1 to 5"
+                          isNumberPdr="true"
+                          defaultValue={item.PDR}
+                        />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDSelectField
+                          name={"project_Type"}
+                          label="Project Type"
+                          options={projectTypeOptions}
+                          defaultValue={""}
+                        />
+                      </FieldBox>
+                      <FieldBox>
+                        {/* <PDTextFIeld name="labeling_Tool" label="Labeling tool" /> */}
+                        <PDSelectField
+                          name={"labeling_Tool"}
+                          label="Labeling Tool"
+                          options={labelingToolOptions}
+                          defaultValue={""}
+                        />
+                      </FieldBox>
 
-                    {/* <LineStack> */}
-                    <FieldBox>
-                      <PDTextFIeld name="obj_Benchmark" label="Object Benchmark" defaultValue={item.Obj_Benchmark} />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="img_Benchmark" label="Image Benchmark" defaultValue={item.img_Benchmark} />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld
-                        name="tagging_Benchmark"
-                        label="Tagging Benchmark"
-                        defaultValue={item.tagging_Benchmark}
-                      />
-                    </FieldBox>
-                    {/* </LineStack> */}
+                      {/* <FieldBox>
+                        <PDTextFIeld name="action_Items" label="Action Items" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="qA_Check_Points" label="QA Check Points" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="qA_Benchmark" label="QA Benchmark" />
+                      </FieldBox> */}
 
-                    {/* <LineStack> */}
-                    <FieldBox>
-                      <PDTextFIeld name="deletion" label="Deletion" defaultValue={item.deletion} />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="skip_Image" label="Skip Image" defaultValue={item.skip_Image} />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="update" label="Update" defaultValue={item.update} />
-                    </FieldBox>
-                    {/* </LineStack> */}
+                      {/* <FieldBox>
+                        <PDTextFIeld name="img_Benchmark" label="Image Benchmark" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="tagging_Benchmark" label="Tagging Benchmark" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="deletion" label="Deletion" />
+                      </FieldBox> */}
 
-                    {/* <LineStack> */}
-                    <FieldBox>
-                      <PDTextFIeld name="image_Loading" label="Image Loading" defaultValue={item.image_Loading} />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld
-                        name="object_Saving_Time"
-                        label="Object_Saving_Time"
-                        defaultValue={item.object_Saving_Time}
-                      />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld
-                        name="video_Watch_Time"
-                        label="Video Watch Time"
-                        defaultValue={item.video_Watch_Time}
-                      />
-                    </FieldBox>
-                    {/* </LineStack> */}
+                      <FieldBox>
+                        <PDSelectField name="data_Type" label="Data Type" options={dataTypeOptions} defaultValue={""} />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="guideline" label="Guideline" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="PDL" label="PDL" />
+                      </FieldBox>
 
-                    {/* <LineStack> */}
-                    <FieldBox>
-                      <PDTextFIeld
-                        name="judgement_Time"
-                        label="Judgement Time Loading"
-                        defaultValue={item.judgement_Time}
-                      />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="QA_Benchmark" label="QA Benchmark" defaultValue={item.QA_Benchmark} />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="annotation" label="Annotation" defaultValue={item.annotation} />
-                    </FieldBox>
-                    {/* </LineStack> */}
-                    {/* <LineStack> */}
-                    <FieldBox>
-                      <PDTextFIeld name="QA" label="QA" defaultValue={item.QA} />
-                    </FieldBox>
-                    <FieldBox>
-                      <PDTextFIeld name="remarks" label="Remarks" defaultValue={item.remarks} />
-                    </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="DL" label="DL" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="DCR" label="DCR" />
+                      </FieldBox>
+                      <FieldBox>
+                        <PDTextFIeld name="PCR" label=" PCR" />
+                      </FieldBox>
 
-                    {/* </LineStack> */}
-                  </Grid>
-
-                  {/* benchmark add option */}
+                      <FieldBox>
+                        {/* <PDTextFIeld name="remarks" label="Remarks" /> */}
+                        <PDDateField name="completion_Date" label="Completion Date" />
+                      </FieldBox>
+                      {/* <FieldBox>
+                        <PDTextFIeld name="obj_Benchmark" label="Object Benchmark" />
+                      </FieldBox> */}
+                    </Grid>
+                  </Box>
                   <ProjectDirectoryBenchMarkFieldIndex />
                 </Box>
 

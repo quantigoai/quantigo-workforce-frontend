@@ -11,6 +11,7 @@ import ProjectModalHeader from "../primary/ProjectLIstNew2/ProjectModalHeader";
 import PDTextFIeld from "../shared/CustomField/PDTextFIeld";
 import FormProvider from "../shared/FormProvider/FormProvider";
 import { FieldBox } from "../shared/FIeldbox/FieldBox.jsx";
+import ProjectDirectoryBenchMarkFieldIndex from "./ProjectDirectoryBenchMarkFieldindex.jsx";
 
 const style = {
   position: "absolute",
@@ -262,8 +263,12 @@ const ProjectDirectoryEditModal = ({
                     <FieldBox>
                       <PDTextFIeld name="remarks" label="Remarks" defaultValue={item.remarks} />
                     </FieldBox>
+
                     {/* </LineStack> */}
                   </Grid>
+
+                  {/* benchmark add option */}
+                  <ProjectDirectoryBenchMarkFieldIndex />
                 </Box>
 
                 <Box

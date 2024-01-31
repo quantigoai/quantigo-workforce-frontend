@@ -58,8 +58,8 @@ const ProjectDirectoryEditModal = ({ item, handleEditClose, openProjectModalEdit
     },
     mode: "all",
   });
-  const { handleSubmit } = methods;
-
+  const { handleSubmit ,getValues  } = methods;
+  const values = getValues();
   return (
     <>
       <Modal

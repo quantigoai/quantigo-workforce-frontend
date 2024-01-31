@@ -1,16 +1,12 @@
-import { Box, Menu, MenuItem, Stack, Typography } from "@mui/material";
+import { Box, Grid, Menu, MenuItem, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { FieldBox } from "../shared/FIeldbox/FieldBox";
 import PDTextFIeld from "../shared/CustomField/PDTextFIeld";
 import TextFieldProjectDirectoryBenchmark from "../shared/CustomField/TextFieldProjectDirectoryBenchmark";
 const addBenchmarkType = [
-  { item: "Client Alias", value: "Client_Alias" },
-  { item: "Industry", value: "Industry" },
   { item: "Platform", value: "Platform" },
   { item: "Tool Type", value: "Tool_Type" },
-  { item: "PDR", value: "PDR" },
-  { item: "Project Type", value: "Project_Type" },
   { item: "Action Item", value: "Action_Items" },
   { item: "QA Check Points", value: "QA_Check_Points" },
   { item: "Object Benchmark", value: "Obj_Benchmark" },
@@ -91,6 +87,23 @@ const ProjectDirectoryBenchMarkFieldIndex = () => {
             addBenchmarkItems.map((item) => (
               <>
                 {/* <Typography>{item}</Typography> */}
+                {/* <Grid
+                  container
+                  sx={{
+                    display: "flex",
+                    columnGap: { xxl: "16px", xl: "10px", lg: "8px" },
+                    mt: "20px",
+                  }}
+                >
+                  {" "}
+                  <FieldBox>
+                    <TextFieldProjectDirectoryBenchmark
+                      name={item.value}
+                      label={item.item}
+                      handleRemove={handleRemove}
+                    />
+                  </FieldBox>
+                </Grid> */}
                 <FieldBox>
                   <TextFieldProjectDirectoryBenchmark name={item.value} label={item.item} handleRemove={handleRemove} />
                 </FieldBox>

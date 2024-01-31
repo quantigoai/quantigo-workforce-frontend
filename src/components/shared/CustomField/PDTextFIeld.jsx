@@ -1,6 +1,6 @@
-import {Box, styled, TextField, Typography} from "@mui/material";
+import { Box, styled, TextField, Typography } from "@mui/material";
 import PropTypes from "prop-types";
-import {Controller, useFormContext} from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 
 PDTextFIeld.propTypes = {
   name: PropTypes.string,
@@ -79,6 +79,7 @@ export default function PDTextFIeld({
               }}
               defaultValue={defaultValue}
               value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
+              // value={field.value}
               error={!!error}
               helperText={error ? error?.message : helperText}
               autoComplete="off"

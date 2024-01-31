@@ -138,10 +138,10 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                       }}
                     >
                       <FieldBox>
-                        <PDTextFIeld name="project_Name" label="Project Name" isRequired={true} />
+                        <PDTextFIeld name="project_Name" label="Project Name" defaultValue={""} isRequired={true} />
                       </FieldBox>
                       <FieldBox>
-                        <PDTextFIeld name="client_Alias" label="Client Alias" isRequired={true} />
+                        <PDTextFIeld name="client_Alias" label="Client Alias" defaultValue={""} isRequired={true} />
                       </FieldBox>
                       <FieldBox>
                         <PDTextFIeld name="industry" label="Industry" />
@@ -207,20 +207,20 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                         <PDSelectField name="data_Type" label="Data Type" options={dataTypeOptions} defaultValue={""} />
                       </FieldBox>
                       <FieldBox>
-                        <PDTextFIeld name="guideline" label="Guideline" />
+                        <PDTextFIeld defaultValue={""} name="guideline" label="Guideline" />
                       </FieldBox>
                       <FieldBox>
-                        <PDTextFIeld name="PDL" label="PDL" />
+                        <PDTextFIeld defaultValue={""} name="PDL" label="PDL" />
                       </FieldBox>
 
                       <FieldBox>
-                        <PDTextFIeld name="DL" label="DL" />
+                        <PDTextFIeld defaultValue={""} name="DL" label="DL" />
                       </FieldBox>
                       <FieldBox>
-                        <PDTextFIeld name="DCR" label="DCR" />
+                        <PDTextFIeld defaultValue={""} name="DCR" label="DCR" />
                       </FieldBox>
                       <FieldBox>
-                        <PDTextFIeld name="PCR" label=" PCR" />
+                        <PDTextFIeld defaultValue={""} name="PCR" label=" PCR" />
                       </FieldBox>
 
                       <FieldBox>

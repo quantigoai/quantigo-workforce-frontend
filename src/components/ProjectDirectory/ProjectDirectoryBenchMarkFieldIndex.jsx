@@ -114,15 +114,15 @@ const ProjectDirectoryBenchMarkFieldIndex = () => {
           </Grid>
           <Typography
             sx={{
-              fontWeight: '600',
-              mt: '15px',
-              fontSize: '14px',
+            //   fontWeight: '600',
+              // mt: '10px',
+            //   fontSize: '14px',
               mb: '0px',
-              //   color: hasChanged ? "#2E58FF" : "#7D89A3",
+                color: "#2E58FF" ,
               cursor: 'pointer',
               //   pointerEvents: hasChanged ? "auto" : "none",
             }}
-            variant="p"
+            variant="wpf_h7_Bold"
             type="button"
             onClick={handleButtonClick}
             // onClick={handleAddOtherDocument}
@@ -136,7 +136,7 @@ const ProjectDirectoryBenchMarkFieldIndex = () => {
                   fontSize: '14px',
                   '& .MuiInputBase-root': {
                     // height: "42px",
-                    fontSize: '12px',
+                    // fontSize: '12px',
                     fontFamily: 'Inter',
                     '@media(max-width:1439px)': {
                       // height: "30px",

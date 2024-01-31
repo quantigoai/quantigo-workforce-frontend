@@ -7,28 +7,41 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {yupResolver} from '@hookform/resolvers/yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckIcon from '@mui/icons-material/Check';
 import EmailIcon from '@mui/icons-material/Email';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import {Box, Grid, IconButton, InputAdornment, Link, Stack, Typography,} from '@mui/material';
+import {
+  Box,
+  Grid,
+  IconButton,
+  InputAdornment,
+  Link,
+  Stack,
+  Typography,
+} from '@mui/material';
 import axios from 'axios';
-import {useEffect, useState} from 'react';
-import {useForm} from 'react-hook-form';
-import {useDispatch, useSelector} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import useToaster from '../../../../customHooks/useToaster';
-import {signup} from '../../../../features/slice/userSlice';
+import { signup } from '../../../../features/slice/userSlice';
 import CustomDatePicker from '../../../shared/CustomField/CustomDatePicker';
 import CustomSelectField from '../../../shared/CustomField/CustomSelectField';
 import CustomTextField from '../../../shared/CustomField/CustomTextField';
 import FormProvider from '../../../shared/FormProvider/FormProvider';
 import FinalButton from './FinalButton';
 import PrimaryButton from './PrimaryButton';
-import {genderOptions, hubOptions, RegistrationSchema, userStatusOptions,} from './RegistrationFormHelper';
+import {
+  RegistrationSchema,
+  genderOptions,
+  hubOptions,
+  userStatusOptions,
+} from './RegistrationFormHelper';
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -102,8 +115,8 @@ const RegistrationForm = () => {
   const onSubmitRegData = async (data) => {
     data.isNewUser = isNewUser;
     const { hub, ...rest } = data;
-
-    dispatch(signup(rest)).then((action) => {
+    
+    dispatch(signup(data)).then((action) => {
       if (action.error) {
         if (action.error.message === 'This QAI User Name is already taken') {
           setValue('hub', null);

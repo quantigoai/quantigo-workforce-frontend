@@ -1,12 +1,10 @@
-import { Backdrop, Box, Button, Fade, Grid, Modal, styled } from "@mui/material";
-import React from "react";
+import { Backdrop, Box, Button, Fade, Grid, Modal } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { ProjectDirectorySchema } from "../primary/ProjectLIstNew2/ProjectDrawerHelper.js";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormProvider from "../shared/FormProvider/FormProvider.jsx";
 import { LoadingButton } from "@mui/lab";
 import ProjectModalHeader from "../primary/ProjectLIstNew2/ProjectModalHeader.jsx";
-import { LineStack } from "../primary/ProjectLIstNew2/ProjectModal.jsx";
 import PDTextFIeld from "../shared/CustomField/PDTextFIeld.jsx";
 import { useSelector } from "react-redux";
 import { FieldBox } from "../shared/FIeldbox/FieldBox.jsx";
@@ -14,19 +12,6 @@ import PDSelectField from "../shared/CustomField/PDSelectField.jsx";
 import { dataTypeOptions, labelingToolOptions, projectTypeOptions } from "../primary/AllUsers/userFilterOptions.js";
 import PDDateField from "../shared/CustomField/PDDateField.jsx";
 
-const ButtonStyle = styled(Button)({
-  // backgroundColor: "#2D58FF",
-  // borderRadius: "2px",
-  cursor: "pointer",
-  width: "416px",
-  // height: "40px",
-  backgroundColor: "#2D58FF",
-  color: "#FFFFFF",
-  "&:hover": {
-    backgroundColor: "#FF9A45",
-    color: "#1D1D1D",
-  },
-});
 const style = {
   position: "absolute",
   transform: "translate(-50%, -50%)",
@@ -48,8 +33,6 @@ const style = {
     height: "20px",
   },
 };
-
-const paperstyle = { width: 1000, height: "100%" };
 
 const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
   const { isLoading } = useSelector((state) => state.projectDirectory);

@@ -386,6 +386,14 @@ export const updateAUserById = createAsyncThunk("updateA/user/Id", async (data) 
     },
   });
 });
+export const updateAUserByIdFunction = async (data) => {
+  const { id, varifiedData } = data;
+  return axios.patch(`${url}/users/${id}`, varifiedData, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+};
 
 export const getAUserById = createAsyncThunk("getUser/user/Id", async (id) => {
   return axios.get(`${url}/users/${id}`, {
@@ -835,10 +843,10 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(updateAUserById.fulfilled, (state, action) => {
-        state.targetedUser = action.payload.data;
+        state.targetedUser = action.payload.data.user;
         state.users.users = state.users.users.map((user) => {
-          if (user._id === action.payload.data._id) {
-            return action.payload.data;
+          if (user._id === action.payload.data.user._id) {
+            return action.payload.data.user;
           }
           return user;
         });

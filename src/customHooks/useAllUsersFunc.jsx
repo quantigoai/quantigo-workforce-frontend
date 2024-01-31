@@ -19,7 +19,7 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import { roleOptionsAdmin } from '../components/primary/AllUsers/userFilterOptions';
 import { getAllSkills } from '../features/slice/skillSlice';
 import { setUserFilter } from '../features/slice/temporaryDataSlice';
-import { setTargetedUser, updateAUserById } from '../features/slice/userSlice';
+import { setTargetedUser, updateAUserById, updateAUserByIdFunction } from '../features/slice/userSlice';
 import { arraysAreEqual } from '../helper/helper';
 import useToaster from './useToaster';
 
@@ -62,7 +62,8 @@ const useAllUsersFunc = ({
   const { userFilter } = useSelector((state) => state.tempData);
   const [isComplete, setIsComplete] = useState(false);
   const { skills, isLoading } = useSelector((state) => state.skill);
-
+  const [isSyncLoading, setIsSyncLoading] = useState(false);
+  const [openReject, setOpenReject] = useState(false);
   useEffect(() => {
     if (pathname === '/all-users') {
       setFilteredCol(userFilter?.ascDescOption);
@@ -76,9 +77,7 @@ const useAllUsersFunc = ({
   useEffect(() => {
     if (pathname === '/all-users') {
       if (isComplete) {
-        const isValueExists =
-          filterValue &&
-          Object.keys(filterValue).some((key) => filterValue[key] !== '');
+        const isValueExists = filterValue && Object.keys(filterValue).some((key) => filterValue[key] !== '');
         if (filterValue) {
           if (filterValue.skills && filterValue.skills?.length > 0) {
             const value = filterValue.skills.map((skill) => {
@@ -89,12 +88,9 @@ const useAllUsersFunc = ({
             });
             setAddSkills(selectedSkills);
 
-            filterValue.skills.length &&
-              setSkillCount(filterValue.skills.length - 1);
+            filterValue.skills.length && setSkillCount(filterValue.skills.length - 1);
             setAddSkills((s) => {
-              return typeof selectedSkills === 'string'
-                ? value.split(',')
-                : selectedSkills;
+              return typeof selectedSkills === 'string' ? value.split(',') : selectedSkills;
             });
           }
           if (filterValue.role && filterValue.role?.length > 0) {
@@ -112,7 +108,7 @@ const useAllUsersFunc = ({
             filteredData: filterValue,
             ascDescOption: filteredCol,
             search,
-          }),
+          })
         );
       }
     }
@@ -191,25 +187,42 @@ const useAllUsersFunc = ({
     setSelectedUser(params);
     setOpenAccepet(true);
   };
-  const handleAccept = () => {
+  const handleAccept = async () => {
     const data = {
       id: selectedUser._id,
       varifiedData: {
         isVerified: true,
       },
     };
-    dispatch(updateAUserById(data)).then((action) => {
-      if (action.payload?.status === 200) {
-        toast.trigger('User has been verified successfully.', 'success');
+    await toast.responsePromise(updateAUserByIdFunction(data), setIsSyncLoading, {
+      initialMessage: 'User Verification Process is Updating...',
+      inPending: () => {
+        setOpenReject(false);
+        setIsSyncLoading(true);
         setOpenAccepet(false);
         setOpenModal(false);
-      } else {
-        toast.trigger(
-          'Failed to verify the user, please try again later.',
-          'error',
-        );
-      }
+      },
+      afterSuccess: (data) => {
+        setOpenReject(false);
+        setIsSyncLoading(false);
+      },
+      afterError: (data) => {
+        setOpenReject(false);
+        setIsSyncLoading(false);
+      },
     });
+    // dispatch(updateAUserById(data)).then((action) => {
+    //   if (action.payload?.status === 200) {
+    //     toast.trigger('User has been verified successfully.', 'success');
+    //     setOpenAccepet(false);
+    //     setOpenModal(false);
+    //   } else {
+    //     toast.trigger(
+    //       'Failed to verify the user, please try again later.',
+    //       'error',
+    //     );
+    //   }
+    // });
   };
 
   // -------------------------
@@ -225,13 +238,7 @@ const useAllUsersFunc = ({
     setDetailsUserOpen(false);
   };
 
-  const handleChange = (
-    event,
-    skillsId = [],
-    addRoles = [],
-    isSkillsSame = true,
-    isRolesSame = true,
-  ) => {
+  const handleChange = (event, skillsId = [], addRoles = [], isSkillsSame = true, isRolesSame = true) => {
     if (!isSkillsSame) {
       const field = 'skills';
       const value = skillsId;

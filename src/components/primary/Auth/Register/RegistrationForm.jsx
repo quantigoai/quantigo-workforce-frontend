@@ -7,28 +7,28 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {yupResolver} from '@hookform/resolvers/yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckIcon from '@mui/icons-material/Check';
 import EmailIcon from '@mui/icons-material/Email';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import {Box, Grid, IconButton, InputAdornment, Link, Stack, Typography,} from '@mui/material';
+import { Box, CircularProgress, Grid, IconButton, InputAdornment, Link, Stack, Typography } from '@mui/material';
 import axios from 'axios';
-import {useEffect, useState} from 'react';
-import {useForm} from 'react-hook-form';
-import {useDispatch, useSelector} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import useToaster from '../../../../customHooks/useToaster';
-import {signup} from '../../../../features/slice/userSlice';
+import { signup } from '../../../../features/slice/userSlice';
 import CustomDatePicker from '../../../shared/CustomField/CustomDatePicker';
 import CustomSelectField from '../../../shared/CustomField/CustomSelectField';
 import CustomTextField from '../../../shared/CustomField/CustomTextField';
 import FormProvider from '../../../shared/FormProvider/FormProvider';
 import FinalButton from './FinalButton';
 import PrimaryButton from './PrimaryButton';
-import {genderOptions, hubOptions, RegistrationSchema, userStatusOptions,} from './RegistrationFormHelper';
+import { genderOptions, hubOptions, RegistrationSchema, userStatusOptions } from './RegistrationFormHelper';
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -43,6 +43,7 @@ const RegistrationForm = () => {
   const [disableFirstButton, setDisableFirstButton] = useState(true);
 
   const [generatedHubId, setGeneratedHubId] = useState('');
+  const [isHubLoading, setIsHubLoading] = useState(false);
   const [helperMessage, setHelperMessage] = useState('');
   const { isLoading } = useSelector((state) => state.user);
 
@@ -60,36 +61,16 @@ const RegistrationForm = () => {
     formState: { errors },
   } = methods;
 
-  const {
-    firstName,
-    lastName,
-    email,
-    password,
-    qaiUserName,
-    contactNo,
-    billingAccountNo,
-    gender,
-    dob,
-  } = watch();
+  const { firstName, lastName, email, password, qaiUserName, contactNo, billingAccountNo, gender, dob } = watch();
 
-  const isFieldsNotEmptyFirstPage =
-    !!firstName && !!lastName && !!email && !!password;
+  const isFieldsNotEmptyFirstPage = !!firstName && !!lastName && !!email && !!password;
 
-  const isFieldsNotEmptyFinalPage =
-    !!qaiUserName && !!contactNo && !!billingAccountNo && !!gender && !!dob;
+  const isFieldsNotEmptyFinalPage = !!qaiUserName && !!contactNo && !!billingAccountNo && !!gender && !!dob;
 
-  const disableButtonCheck =
-    !!errors.firstName ||
-    !!errors.lastName ||
-    !!errors.email ||
-    !!errors.password;
+  const disableButtonCheck = !!errors.firstName || !!errors.lastName || !!errors.email || !!errors.password;
 
   const disableFinishButtonCheck =
-    !!errors.qaiUserName ||
-    !!errors.contactNo ||
-    !!errors.billingAccountNo ||
-    !!errors.dob ||
-    !!errors.gender;
+    !!errors.qaiUserName || !!errors.contactNo || !!errors.billingAccountNo || !!errors.dob || !!errors.gender;
 
   useEffect(() => {
     if (isFieldsNotEmptyFirstPage) {
@@ -118,10 +99,7 @@ const RegistrationForm = () => {
           }
         }
         toast.trigger(action.error.message, 'error');
-      } else if (
-        action.payload?.status === 200 ||
-        action.payload?.status === 201
-      ) {
+      } else if (action.payload?.status === 200 || action.payload?.status === 201) {
         toast.trigger('User Registered Successfully', 'success');
         navigate('/emailVerification');
       }
@@ -143,15 +121,19 @@ const RegistrationForm = () => {
   const url = import.meta.env.VITE_APP_SERVER_URL;
 
   const handleChangeHub = (e) => {
+    setGeneratedHubId('');
+    setIsHubLoading(true);
     const hub = e.target.value;
     setValue('hub', hub);
     axios
       .get(`${url}/qaiusers/hubs/${hub}`)
       .then((res) => {
+        setIsHubLoading(false);
         setGeneratedHubId(res.data);
         setValue('qaiUserName', res.data);
       })
       .catch(() => {
+        setIsHubLoading(false);
         setGeneratedHubId('');
         setValue('qaiUserName', null);
       });
@@ -181,11 +163,7 @@ const RegistrationForm = () => {
             {'Create Account'}
           </Typography>
           <br />
-          <Typography
-            sx={{ mt: 1 }}
-            variant="wpf_p3_regular"
-            color="neutral.920"
-          >
+          <Typography sx={{ mt: 1 }} variant="wpf_p3_regular" color="neutral.920">
             Please fill-up all the credentials
           </Typography>
         </Box>
@@ -206,11 +184,7 @@ const RegistrationForm = () => {
               }}
             >
               {/* First Name */}
-              <CustomTextField
-                isRequired={true}
-                name="firstName"
-                label="First Name"
-              />
+              <CustomTextField isRequired={true} name="firstName" label="First Name" />
             </Box>
 
             {/* Last Name */}
@@ -223,11 +197,7 @@ const RegistrationForm = () => {
                 },
               }}
             >
-              <CustomTextField
-                isRequired={true}
-                name="lastName"
-                label="Last Name"
-              />
+              <CustomTextField isRequired={true} name="lastName" label="Last Name" />
             </Box>
             {/* Email */}
 
@@ -248,7 +218,7 @@ const RegistrationForm = () => {
                   // disableUnderline: true,
                   endAdornment: (
                     <InputAdornment position="end" sx={{ color: '#7D89A3' }}>
-                      <EmailIcon />
+                      {/* <EmailIcon /> */}
                     </InputAdornment>
                   ),
                 }}
@@ -273,16 +243,8 @@ const RegistrationForm = () => {
                   // disableUnderline: true,
                   endAdornment: (
                     <InputAdornment position="end">
-                      <IconButton
-                        onClick={() => setShowPassword(!showPassword)}
-                        edge="end"
-                        sx={{ color: '#7D89A3' }}
-                      >
-                        {showPassword ? (
-                          <VisibilityIcon />
-                        ) : (
-                          <VisibilityOffIcon />
-                        )}
+                      <IconButton onClick={() => setShowPassword(!showPassword)} edge="end" sx={{ color: '#7D89A3' }}>
+                        {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                       </IconButton>
                     </InputAdornment>
                   ),
@@ -309,11 +271,7 @@ const RegistrationForm = () => {
                   name="currentUserStatus"
                   helperText="Select an option"
                   options={userStatusOptions}
-                  defaultValue={
-                    isNewUser
-                      ? userStatusOptions[0].value
-                      : userStatusOptions[1].value
-                  }
+                  defaultValue={isNewUser ? userStatusOptions[0].value : userStatusOptions[1].value}
                   label={'User Status'}
                   onChange={handleChangeUserType}
                 />
@@ -364,16 +322,8 @@ const RegistrationForm = () => {
                       // disableUnderline: true,
                       endAdornment: (
                         <InputAdornment position="end">
-                          {helperMessage && (
-                            <CheckIcon
-                              sx={{ color: '#12B76A', fontWeight: 700 }}
-                            />
-                          )}
-                          {errors.qaiUserName && (
-                            <CancelIcon
-                              sx={{ color: 'red', fontWeight: 700 }}
-                            />
-                          )}
+                          {helperMessage && <CheckIcon sx={{ color: '#12B76A', fontWeight: 700 }} />}
+                          {errors.qaiUserName && <CancelIcon sx={{ color: 'red', fontWeight: 700 }} />}
                         </InputAdornment>
                       ),
                     }}
@@ -397,6 +347,14 @@ const RegistrationForm = () => {
                   name="qaiUserName"
                   label="Quantigo Username"
                   value={generatedHubId}
+                  InputProps={{
+                    // disableUnderline: true,
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        {isHubLoading && <CircularProgress size="20px" value={100} thickness={5} />}
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </Box>
             )}
@@ -472,7 +430,7 @@ const RegistrationForm = () => {
                     // disableUnderline: true,
                     endAdornment: (
                       <InputAdornment position="end" sx={{ color: '#7D89A3' }}>
-                        <LocalPhoneIcon />
+                        {/* <LocalPhoneIcon /> */}
                         {/* <img src={phoneicon} /> */}
                       </InputAdornment>
                     ),
@@ -500,7 +458,7 @@ const RegistrationForm = () => {
                     // disableUnderline: true,
                     endAdornment: (
                       <InputAdornment position="end" sx={{ color: '#7D89A3' }}>
-                        <LocalPhoneIcon />
+                        {/* <LocalPhoneIcon /> */}
                       </InputAdornment>
                     ),
                   }}
@@ -549,11 +507,7 @@ const RegistrationForm = () => {
             color: '#FFFFFF',
           }}
         >
-          <Typography
-            variant="wpf_p3_medium"
-            color={'primary.B009'}
-            sx={{ textAlign: 'center', ml: 1 }}
-          >
+          <Typography variant="wpf_p3_medium" color={'primary.B009'} sx={{ textAlign: 'center', ml: 1 }}>
             Log In
           </Typography>
         </Link>

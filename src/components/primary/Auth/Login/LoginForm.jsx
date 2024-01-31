@@ -6,31 +6,31 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {yupResolver} from "@hookform/resolvers/yup";
-import EmailIcon from "@mui/icons-material/Email";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { yupResolver } from '@hookform/resolvers/yup';
+import EmailIcon from '@mui/icons-material/Email';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import {
-    Box,
-    Checkbox,
-    FormControlLabel,
-    FormGroup,
-    Grid,
-    IconButton,
-    InputAdornment,
-    Link,
-    Typography,
-} from "@mui/material";
-import {useState} from "react";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import * as Yup from "yup";
-import useToaster from "../../../../customHooks/useToaster";
-import {login} from "../../../../features/slice/userSlice";
-import CustomTextField from "../../../shared/CustomField/CustomTextField";
-import FormProvider from "../../../shared/FormProvider/FormProvider";
-import {LoadingButtonStyle} from "./Login";
+  Box,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  Grid,
+  IconButton,
+  InputAdornment,
+  Link,
+  Typography,
+} from '@mui/material';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import * as Yup from 'yup';
+import useToaster from '../../../../customHooks/useToaster';
+import { login } from '../../../../features/slice/userSlice';
+import CustomTextField from '../../../shared/CustomField/CustomTextField';
+import FormProvider from '../../../shared/FormProvider/FormProvider';
+import { LoadingButtonStyle } from './Login';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -42,13 +42,13 @@ const LoginForm = () => {
   const { error, isLoading } = useSelector((state) => state.user);
 
   const LoginSchema = Yup.object().shape({
-    email: Yup.string().required("Email is required").email("Email must be a valid email address"),
-    password: Yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
+    email: Yup.string().required('Email is required').email('Email must be a valid email address'),
+    password: Yup.string().required('Password is required').min(6, 'Password must be at least 6 characters'),
   });
 
   const methods = useForm({
     resolver: yupResolver(LoginSchema),
-    mode: "all",
+    mode: 'all',
   });
   const {
     reset,
@@ -60,10 +60,10 @@ const LoginForm = () => {
   const onSubmit = async (data) => {
     dispatch(login(data)).then((action) => {
       if (action.error) {
-        toast.trigger(action.error?.message, "error");
+        toast.trigger(action.error?.message, 'error');
       } else {
-        toast.trigger("Login Successful", "success");
-        navigate("/dashboard");
+        toast.trigger('Login Successful', 'success');
+        navigate('/dashboard');
       }
     });
   };
@@ -74,11 +74,11 @@ const LoginForm = () => {
     setChecked(event.target.checked);
   };
   return (
-    <Box sx={{ width: "100%", height: "100%" }}>
+    <Box sx={{ width: '100%', height: '100%' }}>
       <Grid container item xs={12}>
         <Box>
           <Typography variant="wpf_h2_semiBold" color="neutral.900">
-            {"Welcome Back"}
+            {'Welcome Back'}
           </Typography>
           <br />
           <Typography sx={{ mt: 1 }} variant="wpf_p3_regular" color="neutral.920">
@@ -90,16 +90,14 @@ const LoginForm = () => {
       <br />
 
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-        <Box sx={{ height: "90px" }}>
+        <Box sx={{ height: '90px' }}>
           <CustomTextField
             name="email"
             label="Email"
             isRequired={true}
             InputProps={{
               endAdornment: (
-                <InputAdornment position="end">
-                  <EmailIcon sx={{ color: "neutral.500" }} />
-                </InputAdornment>
+                <InputAdornment position="end">{/* <EmailIcon sx={{ color: "neutral.500" }} /> */}</InputAdornment>
               ),
             }}
           />
@@ -107,19 +105,19 @@ const LoginForm = () => {
 
         <Box
           sx={{
-            width: "100%",
-            height: "90px",
+            width: '100%',
+            height: '90px',
           }}
         >
           <CustomTextField
             name="password"
             label="Password"
             isRequired={true}
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton sx={{ color: "neutral.500" }} onClick={() => setShowPassword(!showPassword)} edge="end">
+                  <IconButton sx={{ color: 'neutral.500' }} onClick={() => setShowPassword(!showPassword)} edge="end">
                     {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                   </IconButton>
                 </InputAdornment>
@@ -128,19 +126,19 @@ const LoginForm = () => {
           />
         </Box>
 
-        <Grid container sx={{ display: "flex", paddingBottom: "2%", alignItems: "center" }}>
+        <Grid container sx={{ display: 'flex', paddingBottom: '2%', alignItems: 'center' }}>
           <Grid item xs={6}>
             <FormGroup>
               <FormControlLabel
                 sx={{
-                  color: "#47536B",
+                  color: '#47536B',
                 }}
                 control={
                   <Checkbox
-                    sx={{ color: "#47536B" }}
+                    sx={{ color: '#47536B' }}
                     checked={checked}
                     onChange={handleChange}
-                    inputProps={{ "aria-label": "controlled" }}
+                    inputProps={{ 'aria-label': 'controlled' }}
                   />
                 }
                 label="Remember me"
@@ -151,16 +149,16 @@ const LoginForm = () => {
             item
             xs={6}
             sx={{
-              display: "flex",
-              justifyContent: "flex-end",
+              display: 'flex',
+              justifyContent: 'flex-end',
             }}
           >
             <Link
-              onClick={() => navigate("/forgetpassword")}
+              onClick={() => navigate('/forgetpassword')}
               underline="hover"
               sx={{
-                cursor: "pointer",
-                color: "black",
+                cursor: 'pointer',
+                color: 'black',
               }}
             >
               <Typography variant="wpf_p3_regular" color="neutral.850">
@@ -178,27 +176,27 @@ const LoginForm = () => {
           type="submit"
           variant="contained"
           loading={isLoading}
-          sx={{ textTransform: "none" }}
+          sx={{ textTransform: 'none' }}
         >
           Sign In
         </LoadingButtonStyle>
       </FormProvider>
 
-      <Box sx={{ display: "flex", alignItems: "center", textAlign: "center", justifyContent: "center", mt: 2 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center', justifyContent: 'center', mt: 2 }}>
         <Typography variant="wpf_p3_regular" color="neutral.850">
           Don&apos;t have an account ?
         </Typography>
         <Link
           onClick={() => {
-            navigate("/register");
+            navigate('/register');
           }}
           underline="hover"
           sx={{
-            cursor: "pointer",
-            color: "#FFFFFF",
+            cursor: 'pointer',
+            color: '#FFFFFF',
           }}
         >
-          <Typography variant="wpf_p3_medium" color={"primary.B009"} sx={{ textAlign: "center", ml: 1 }}>
+          <Typography variant="wpf_p3_medium" color={'primary.B009'} sx={{ textAlign: 'center', ml: 1 }}>
             Sign Up
           </Typography>
         </Link>

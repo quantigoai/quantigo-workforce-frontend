@@ -58,13 +58,13 @@ const ProjectDirectoryEditModal = ({ item, handleEditClose, openProjectModalEdit
     },
     mode: "all",
   });
-  const { handleSubmit ,getValues  } = methods;
+  const { handleSubmit, getValues } = methods;
   const values = getValues();
   return (
     <>
       <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
+        aria-labelledby='transition-modal-title'
+        aria-describedby='transition-modal-description'
         open={openProjectModalEdit}
         onClose={handleEditClose}
         closeAfterTransition
@@ -150,22 +150,22 @@ const ProjectDirectoryEditModal = ({ item, handleEditClose, openProjectModalEdit
                     >
                       <FieldBox>
                         <PDTextFIeld
-                          name="project_Name"
-                          label="Project Name"
+                          name='project_Name'
+                          label='Project Name'
                           defaultValue={item.project_Name}
                           isRequired={true}
                         />
                       </FieldBox>
                       <FieldBox>
                         <PDTextFIeld
-                          name="client_Alias"
-                          label="Client Alias"
+                          name='client_Alias'
+                          label='Client Alias'
                           defaultValue={item.client_Alias}
                           isRequired={true}
                         />
                       </FieldBox>
                       <FieldBox>
-                        <PDTextFIeld name="industry" label="Industry" defaultValue={item.industry} />
+                        <PDTextFIeld name='industry' label='Industry' defaultValue={item.industry} />
                       </FieldBox>
 
                       {/* <FieldBox>
@@ -180,17 +180,17 @@ const ProjectDirectoryEditModal = ({ item, handleEditClose, openProjectModalEdit
 
                       <FieldBox>
                         <PDTextFIeld
-                          name="PDR"
-                          label="PDR"
-                          placeholder="PDR must be in range between 1 to 5"
-                          isNumberPdr="true"
+                          name='PDR'
+                          label='PDR'
+                          placeholder='PDR must be in range between 1 to 5'
+                          isNumberPdr='true'
                           defaultValue={item.PDR}
                         />
                       </FieldBox>
                       <FieldBox>
                         <PDSelectField
                           name={"project_Type"}
-                          label="Project Type"
+                          label='Project Type'
                           options={projectTypeOptions}
                           defaultValue={""}
                         />
@@ -199,7 +199,7 @@ const ProjectDirectoryEditModal = ({ item, handleEditClose, openProjectModalEdit
                         {/* <PDTextFIeld name="labeling_Tool" label="Labeling tool" /> */}
                         <PDSelectField
                           name={"labeling_Tool"}
-                          label="Labeling Tool"
+                          label='Labeling Tool'
                           options={labelingToolOptions}
                           defaultValue={""}
                         />
@@ -226,28 +226,28 @@ const ProjectDirectoryEditModal = ({ item, handleEditClose, openProjectModalEdit
                       </FieldBox> */}
 
                       <FieldBox>
-                        <PDSelectField name="data_Type" label="Data Type" options={dataTypeOptions} defaultValue={""} />
+                        <PDSelectField name='data_Type' label='Data Type' options={dataTypeOptions} defaultValue={""} />
                       </FieldBox>
                       <FieldBox>
-                        <PDTextFIeld name="guideline" label="Guideline" />
+                        <PDTextFIeld name='guideline' label='Guideline' />
                       </FieldBox>
                       <FieldBox>
-                        <PDTextFIeld name="PDL" label="PDL" />
+                        <PDTextFIeld name='PDL' label='PDL' />
                       </FieldBox>
 
                       <FieldBox>
-                        <PDTextFIeld name="DL" label="DL" />
+                        <PDTextFIeld name='DL' label='DL' />
                       </FieldBox>
                       <FieldBox>
-                        <PDTextFIeld name="DCR" label="DCR" />
+                        <PDTextFIeld name='DCR' label='DCR' />
                       </FieldBox>
                       <FieldBox>
-                        <PDTextFIeld name="PCR" label=" PCR" />
+                        <PDTextFIeld name='PCR' label=' PCR' />
                       </FieldBox>
 
                       <FieldBox>
                         {/* <PDTextFIeld name="remarks" label="Remarks" /> */}
-                        <PDDateField name="completion_Date" label="Completion Date" />
+                        <PDDateField name='completion_Date' label='Completion Date' />
                       </FieldBox>
                       {/* <FieldBox>
                         <PDTextFIeld name="obj_Benchmark" label="Object Benchmark" />
@@ -289,12 +289,12 @@ const ProjectDirectoryEditModal = ({ item, handleEditClose, openProjectModalEdit
                         backgroundColor: "#F4F7FE",
                       },
                     }}
-                    variant="filled"
+                    variant='filled'
                   >
                     Cancel
                   </Button>
                   <LoadingButton
-                    type="submit"
+                    type='submit'
                     loading={isLoading}
                     sx={{
                       textTransform: "none",
@@ -317,7 +317,7 @@ const ProjectDirectoryEditModal = ({ item, handleEditClose, openProjectModalEdit
                         color: "#FFFFFF",
                       },
                     }}
-                    variant="contained"
+                    variant='contained'
                   >
                     Save
                   </LoadingButton>

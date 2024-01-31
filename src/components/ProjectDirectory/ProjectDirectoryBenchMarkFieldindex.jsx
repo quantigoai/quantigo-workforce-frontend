@@ -1,4 +1,4 @@
-import { Box, Grid, Menu, MenuItem, Stack, Typography } from "@mui/material";
+import { Box, Menu, MenuItem, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { FieldBox } from "../shared/FIeldbox/FieldBox";
@@ -29,6 +29,7 @@ const addBenchmarkType = [
 const ProjectDirectoryBenchMarkFieldIndex = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [addBenchmarkItems, setAddBenchmarkItems] = useState([]);
+  console.log("🚀 ~ ProjectDirectoryBenchMarkFieldIndex ~ addBenchmarkItems:", addBenchmarkItems);
   const [benchmarkItems, setBenchmarkItems] = useState(addBenchmarkType);
   const { isLightTheme } = useSelector((state) => state.theme);
   const handleButtonClick = (event) => {
@@ -39,6 +40,7 @@ const ProjectDirectoryBenchMarkFieldIndex = () => {
     setAnchorEl(null);
   };
   const handleMenuItemClick = (val, item) => {
+    // setAddBenchmarkItems((prevArray) => [...prevArray, val]);
     const addValue = {
       item: item,
       value: val,
@@ -54,7 +56,9 @@ const ProjectDirectoryBenchMarkFieldIndex = () => {
       value: name,
     };
     setBenchmarkItems((prevArray) => [...prevArray, deleteValue]);
+    console.log(addBenchmarkItems);
     const filteredArr = addBenchmarkItems.filter((item) => item.value != name);
+    console.log("🚀 ~ handleRemove ~ filteredArr:", filteredArr);
     setAddBenchmarkItems(filteredArr);
   };
   return (
@@ -83,40 +87,16 @@ const ProjectDirectoryBenchMarkFieldIndex = () => {
             // overflowY: "auto",
           }}
         >
-          <Grid
-            container
-            sx={{
-              display: "flex",
-              columnGap: { xxl: "16px", xl: "10px", lg: "8px" },
-              // mt: "20px",
-            }}
-          >
-            {addBenchmarkItems &&
-              addBenchmarkItems.map((item) => (
-                <>
-                  <Grid item xs={5.89}>
-                    <Box
-                      sx={{
-                        width: "100%",
-                        px: 0,
+          {addBenchmarkItems &&
+            addBenchmarkItems.map((item) => (
+              <>
+                {/* <Typography>{item}</Typography> */}
+                <FieldBox>
+                  <TextFieldProjectDirectoryBenchmark name={item.value} label={item.item} handleRemove={handleRemove} />
+                </FieldBox>
+              </>
+            ))}
 
-                        height: {
-                          lg: "72px",
-                          xl: "82px",
-                          xxl: "85px",
-                        },
-                      }}
-                    >
-                      <TextFieldProjectDirectoryBenchmark
-                        name={item.value}
-                        label={item.item}
-                        handleRemove={handleRemove}
-                      />
-                    </Box>
-                  </Grid>
-                  </>
-              ))}
-          </Grid>
           <Typography
             sx={{
               fontWeight: "600",

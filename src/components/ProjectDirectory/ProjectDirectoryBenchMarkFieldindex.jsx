@@ -5,7 +5,7 @@ import { FieldBox } from "../shared/FIeldbox/FieldBox";
 import PDTextFIeld from "../shared/CustomField/PDTextFIeld";
 import TextFieldProjectDirectoryBenchmark from "../shared/CustomField/TextFieldProjectDirectoryBenchmark";
 const addBenchmarkType = [
-  { item: "Client Alias", value: "Client_Alias" },
+  // { item: "Client Alias", value: "Client_Alias" },
   { item: "Industry", value: "Industry" },
   { item: "Platform", value: "Platform" },
   { item: "Tool Type", value: "Tool_Type" },

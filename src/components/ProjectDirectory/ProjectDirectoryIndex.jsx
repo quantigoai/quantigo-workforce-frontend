@@ -42,10 +42,6 @@ const ProjectDirectoryIndex = () => {
   const [anchorE2, setAnchorE2] = React.useState(null);
   const [industryType, setIndustryType] = useState("");
 
-  // --------------------------------------
-  const [filterDataNew, setFilterDataNew] = useState({});
-  // --------------------------------------
-
   // ______________________________________values
 
   const [clientAliasFilter, setClientAliasesFilter] = useState("");

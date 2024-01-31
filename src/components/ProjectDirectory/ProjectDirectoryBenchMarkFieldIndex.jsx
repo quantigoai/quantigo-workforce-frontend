@@ -1,4 +1,4 @@
-import { Box, Menu, MenuItem, Stack, Typography } from "@mui/material";
+import { Box, Grid, Menu, MenuItem, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { FieldBox } from "../shared/FIeldbox/FieldBox";
@@ -86,16 +86,34 @@ const ProjectDirectoryBenchMarkFieldIndex = () => {
             // overflowY: "auto",
           }}
         >
-          {addBenchmarkItems &&
-            addBenchmarkItems.map((item) => (
-              <>
-                <Typography>{item}</Typography>
-                <FieldBox>
-                  <TextFieldProjectDirectoryBenchmark name={item.value} label={item.item} handleRemove={handleRemove} />
-                </FieldBox>
-              </>
-            ))}
+          <Grid container spacing={1}>
+            {addBenchmarkItems &&
+              addBenchmarkItems.map((item) => (
+                <>
+                  <Grid item xs={5.89}>
+                    <Box
+                      sx={{
+                        width: "100%",
+                        px: 0,
 
+                        height: {
+                          lg: "72px",
+                          xl: "82px",
+                          xxl: "85px",
+                        },
+                      }}
+                    >
+                      <TextFieldProjectDirectoryBenchmark
+                        name={item.value}
+                        label={item.item}
+                        handleRemove={handleRemove}
+                      />
+                    </Box>
+                  </Grid>
+                
+                </>
+              ))}
+          </Grid>
           <Typography
             sx={{
               fontWeight: "600",

@@ -1,29 +1,29 @@
-import { Box, Fade, Modal, Stack } from "@mui/material";
-import React from "react";
-import Backdrop from "@mui/material/Backdrop";
+import { Box, Fade, Modal, Stack } from '@mui/material';
+import React from 'react';
+import Backdrop from '@mui/material/Backdrop';
 
-import { useSelector } from "react-redux";
-import ProjectModalHeader from "../primary/ProjectLIstNew2/ProjectModalHeader";
-import DetailsItem from "../primary/ProjectLIstNew2/Project2Details/DetailsItem";
+import { useSelector } from 'react-redux';
+import ProjectModalHeader from '../primary/ProjectLIstNew2/ProjectModalHeader';
+import DetailsItem from '../primary/ProjectLIstNew2/Project2Details/DetailsItem';
 
 const style = {
-  display: "flex",
-  flexDirection: "column",
-  position: "relative",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  bgcolor: "background.paper",
-  border: "none",
-  borderRadius: "8px",
+  display: 'flex',
+  flexDirection: 'column',
+  position: 'relative',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  bgcolor: 'background.paper',
+  border: 'none',
+  borderRadius: '8px',
   p: 0,
   input: {
-    color: "black",
-    height: "20px",
-    borderRadius: "8px",
+    color: 'black',
+    height: '20px',
+    borderRadius: '8px',
   },
   select: {
-    height: "20px",
+    height: '20px',
   },
 };
 
@@ -48,118 +48,118 @@ const ProjectDirectoryDetailsModal = ({ openProjectModalDetails, item, handleDet
           <Box
             sx={{
               ...style,
-              height: { xl: "80%", lg: "90%" },
-              width: { xl: "40%", lg: "50%" },
+              height: { xl: '80%', lg: '90%' },
+              width: { xl: '40%', lg: '50%' },
             }}
           >
-            <Box sx={{ flex: "0 0 5%" }}>
+            <Box sx={{ flex: '0 0 5%' }}>
               <ProjectModalHeader
                 handleCreateProjectClose={handleDetailsProjectDirectoryClose}
-                modalTitle={"Project Directory details"}
+                modalTitle={'Project Directory details'}
               />
             </Box>
             <Box
               sx={{
-                padding: "3%",
-                flex: "1",
-                overflowY: "auto",
-                "&::-webkit-scrollbar": {
-                  width: "0", // Hide the scrollbar
+                padding: '3%',
+                flex: '1',
+                overflowY: 'auto',
+                '&::-webkit-scrollbar': {
+                  width: '0', // Hide the scrollbar
                 },
               }}
             >
               <Stack
                 sx={{
-                  border: "1px solid #E6ECF5",
+                  border: '1px solid #E6ECF5',
                   //   padding: "16px",
-                  borderRadius: "8px",
+                  borderRadius: '8px',
                   //   background: "#FAFCFF",
                 }}
               >
                 <DetailsItem
-                  Item1Title={"Project Name"}
+                  Item1Title={'Project Name'}
                   isLightTheme={isLightTheme}
-                  Item1={item?.project_Name ? item?.project_Name : "N/A"}
-                  Item2Title={"Platform"}
-                  Item2={item?.platform ? item?.platform : "N/A"}
+                  Item1={item?.project_Name ? item?.project_Name : 'N/A'}
+                  Item2Title={'Platform'}
+                  Item2={item?.platform ? item?.platform : 'N/A'}
                 />
 
                 <DetailsItem
-                  Item1Title={"Client alias"}
+                  Item1Title={'Client alias'}
                   isLightTheme={isLightTheme}
-                  Item1={item?.client_Alias ? item?.client_Alias : "N/A"}
-                  Item2Title={"Industry"}
-                  Item2={item?.industry ? item?.industry : "N/A"}
+                  Item1={item?.client_Alias ? item?.client_Alias : 'N/A'}
+                  Item2Title={'Industry'}
+                  Item2={item?.industry ? item?.industry : 'N/A'}
                 />
 
                 <DetailsItem
-                  Item1Title={"Tool type"}
+                  Item1Title={'Tool type'}
                   isLightTheme={isLightTheme}
-                  Item1={item?.tool_Type ? item?.tool_Type : "N/A"}
-                  Item2Title={"Project Type"}
-                  Item2={item?.project_Type ? item?.project_Type : "N/A"}
+                  Item1={item?.tool_Type ? item?.tool_Type : 'N/A'}
+                  Item2Title={'Project Type'}
+                  Item2={item?.project_Type ? item?.project_Type : 'N/A'}
                 />
                 <DetailsItem
                   isLightTheme={isLightTheme}
-                  Item1Title={"Action Items"}
-                  Item1={item?.action_Items ? item?.action_Items : "N/A"}
-                  Item2Title={"QA"}
-                  Item2={item?.QA ? item?.QA : "N/A"}
+                  Item1Title={'Action Items'}
+                  Item1={item?.action_Items ? item?.action_Items : 'N/A'}
+                  Item2Title={'QA'}
+                  Item2={item?.QA ? item?.QA : 'N/A'}
                 />
 
                 <DetailsItem
                   isLightTheme={isLightTheme}
-                  Item1Title={"QA Check Points"}
-                  Item1={item?.QA_Check_Points ? item?.QA_Check_Points : "N/A"}
-                  Item2Title={"Objective Benchmark"}
-                  Item2={item?.obj_Benchmark ? item?.obj_Benchmark : "N/A"}
+                  Item1Title={'QA Check Points'}
+                  Item1={item?.QA_Check_Points ? item?.QA_Check_Points : 'N/A'}
+                  Item2Title={'Objective Benchmark'}
+                  Item2={item?.obj_Benchmark ? item?.obj_Benchmark : 'N/A'}
                 />
                 <DetailsItem
                   isLightTheme={isLightTheme}
-                  Item1Title={"Image Benchmark"}
-                  Item1={item?.img_Benchmark ? item?.img_Benchmark : "N/A"}
-                  Item2Title={"Tagging Benchmark"}
-                  Item2={item?.tagging_Benchmark ? item?.tagging_Benchmark : "N/A"}
+                  Item1Title={'Image Benchmark'}
+                  Item1={item?.img_Benchmark ? item?.img_Benchmark : 'N/A'}
+                  Item2Title={'Tagging Benchmark'}
+                  Item2={item?.tagging_Benchmark ? item?.tagging_Benchmark : 'N/A'}
                 />
                 <DetailsItem
                   isLightTheme={isLightTheme}
-                  Item1Title={"Skip Image"}
-                  Item1={item?.skip_Image ? item?.skip_Image : "N/A"}
-                  Item2Title={"Update"}
-                  Item2={item?.update ? item?.update : "N/A"}
+                  Item1Title={'Skip Image'}
+                  Item1={item?.skip_Image ? item?.skip_Image : 'N/A'}
+                  Item2Title={'Update'}
+                  Item2={item?.update ? item?.update : 'N/A'}
                 />
                 <DetailsItem
                   isLightTheme={isLightTheme}
-                  Item1Title={"Image Loading"}
-                  Item1={item?.image_Loading ? item?.image_Loading : "N/A"}
-                  Item2Title={"PDR"}
-                  Item2={item?.PDR ? item?.PDR : "N/A"}
+                  Item1Title={'Image Loading'}
+                  Item1={item?.image_Loading ? item?.image_Loading : 'N/A'}
+                  Item2Title={'PDR'}
+                  Item2={item?.PDR ? item?.PDR : 'N/A'}
                 />
                 <DetailsItem
                   isLightTheme={isLightTheme}
-                  Item1Title={"Object Saving Time"}
-                  Item1={item?.object_Saving_Time ? item?.object_Saving_Time : "N/A"}
-                  Item2Title={"Tagging Benchmark"}
-                  Item2={item?.tagging_Benchmark ? item?.tagging_Benchmark : "N/A"}
+                  Item1Title={'Object Saving Time'}
+                  Item1={item?.object_Saving_Time ? item?.object_Saving_Time : 'N/A'}
+                  Item2Title={'Tagging Benchmark'}
+                  Item2={item?.tagging_Benchmark ? item?.tagging_Benchmark : 'N/A'}
                 />
                 <DetailsItem
                   isLightTheme={isLightTheme}
-                  Item1Title={"Video Watch Time"}
-                  Item1={item?.video_Watch_Time ? item?.video_Watch_Time : "N/A"}
-                  Item2Title={"Judgement Time"}
-                  Item2={item?.judgement_Time ? item?.judgement_Time : "N/A"}
+                  Item1Title={'Video Watch Time'}
+                  Item1={item?.video_Watch_Time ? item?.video_Watch_Time : 'N/A'}
+                  Item2Title={'Judgement Time'}
+                  Item2={item?.judgement_Time ? item?.judgement_Time : 'N/A'}
                 />
                 <DetailsItem
                   isLightTheme={isLightTheme}
-                  Item1Title={"QA Benchmark"}
-                  Item1={item?.QA_Benchmark ? item?.QA_Benchmark : "N/A"}
-                  Item2Title={"Annotation "}
-                  Item2={item?.annotation ? item?.annotation : "N/A"}
+                  Item1Title={'QA Benchmark'}
+                  Item1={item?.QA_Benchmark ? item?.QA_Benchmark : 'N/A'}
+                  Item2Title={'Annotation '}
+                  Item2={item?.annotation ? item?.annotation : 'N/A'}
                 />
                 <DetailsItem
                   isLightTheme={isLightTheme}
-                  Item1Title={"Remarks"}
-                  Item1={item?.remarks ? item?.remarks : "N/A"}
+                  Item1Title={'Remarks'}
+                  Item1={item?.remarks ? item?.remarks : 'N/A'}
                 />
               </Stack>
             </Box>

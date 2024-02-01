@@ -21,10 +21,7 @@ import useToaster from '../../customHooks/useToaster.jsx';
 import TableWrapper from '../primary/ProjectLIstNew2/ExpTable/TableWrapper.jsx';
 import { projectDirectoryField } from '../primary/ProjectLIstNew2/FIlterOptions';
 import PaginationTable from '../primary/ProjectLIstNew2/PaginationTable';
-import {
-  HeaderBox,
-  TablePaper,
-} from '../primary/ProjectLIstNew2/ProjectLIstIndex2';
+import { HeaderBox, TablePaper } from '../primary/ProjectLIstNew2/ProjectLIstIndex2';
 import fieldBuilder from '../shared/CustomTable/fieldBuilder';
 import LoadingComponent from '../shared/Loading/LoadingComponent';
 import CreateProjectDirectoryModal from './CreateProjectDirectoryModal.jsx';
@@ -37,19 +34,13 @@ const ProjectDirectoryIndex = () => {
   const { role } = user.user;
   const [projectDirectorys, setProjectDirectory] = useState([]);
   const dispatch = useDispatch();
-  const { projectDirectory, isLoading } = useSelector(
-    (state) => state.projectDirectory,
-  );
+  const { projectDirectory, isLoading } = useSelector((state) => state.projectDirectory);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const toast = useToaster();
   const [filterData, setFilterData] = useState({});
   const [anchorE2, setAnchorE2] = React.useState(null);
   const [industryType, setIndustryType] = useState('');
-
-  // --------------------------------------
-  const [filterDataNew, setFilterDataNew] = useState({});
-  // --------------------------------------
 
   // ______________________________________values
 
@@ -71,12 +62,9 @@ const ProjectDirectoryIndex = () => {
   const [judgementTimeFieldFilter, setJudgementTimeFieldFilter] = useState('');
   const [skipImageFieldFilter, setSkipImageFieldFilter] = useState('');
   const [imageLoadingFieldFilter, setImageLoadingFieldFilter] = useState('');
-  const [objectSavingTimeFieldFilter, setobjectSavingTimeFieldFilter] =
-    useState('');
-  const [videoWatchTimeFieldFilter, setVideoWatchTimeFieldFilter] =
-    useState('');
-  const [taggingBenchMarkFieldFilter, setTaggingBenchMarkFieldFilter] =
-    useState('');
+  const [objectSavingTimeFieldFilter, setobjectSavingTimeFieldFilter] = useState('');
+  const [videoWatchTimeFieldFilter, setVideoWatchTimeFieldFilter] = useState('');
+  const [taggingBenchMarkFieldFilter, setTaggingBenchMarkFieldFilter] = useState('');
   const [date, setDate] = useState('');
 
   // ______________________________________fields
@@ -180,46 +168,24 @@ const ProjectDirectoryIndex = () => {
     const filteredData = {
       ...(industryType ? { industry: industryType } : {}),
       ...(clientAliasFilter ? { client_Alias: clientAliasFilter } : {}),
-      ...(actionItemsFieldFilter
-        ? { action_Items: actionItemsFieldFilter }
-        : {}),
+      ...(actionItemsFieldFilter ? { action_Items: actionItemsFieldFilter } : {}),
       ...(qAFieldFilter ? { QA: qAFieldFilter } : {}),
-      ...(qABenchmarkFieldFilter
-        ? { QA_Benchmark: qABenchmarkFieldFilter }
-        : {}),
-      ...(judgementTimeFieldFilter
-        ? { judgement_Time: judgementTimeFieldFilter }
-        : {}),
+      ...(qABenchmarkFieldFilter ? { QA_Benchmark: qABenchmarkFieldFilter } : {}),
+      ...(judgementTimeFieldFilter ? { judgement_Time: judgementTimeFieldFilter } : {}),
       ...(skipImageFieldFilter ? { skip_Image: skipImageFieldFilter } : {}),
-      ...(imageLoadingFieldFilter
-        ? { image_Loading: imageLoadingFieldFilter }
-        : {}),
-      ...(objectSavingTimeFieldFilter
-        ? { object_Saving_Time: objectSavingTimeFieldFilter }
-        : {}),
-      ...(videoWatchTimeFieldFilter
-        ? { video_Watch_Time: videoWatchTimeFieldFilter }
-        : {}),
+      ...(imageLoadingFieldFilter ? { image_Loading: imageLoadingFieldFilter } : {}),
+      ...(objectSavingTimeFieldFilter ? { object_Saving_Time: objectSavingTimeFieldFilter } : {}),
+      ...(videoWatchTimeFieldFilter ? { video_Watch_Time: videoWatchTimeFieldFilter } : {}),
       ...(toolTypeFieldFilter ? { tool_Type: toolTypeFieldFilter } : {}),
       ...(deletionFieldFilter ? { deletion: deletionFieldFilter } : {}),
       ...(platformFieldFilter ? { platform: platformFieldFilter } : {}),
-      ...(projectTypeFieldFilter
-        ? { project_Type: projectTypeFieldFilter }
-        : {}),
+      ...(projectTypeFieldFilter ? { project_Type: projectTypeFieldFilter } : {}),
       ...(annotationFilter ? { annotation: annotationFilter } : {}),
       ...(pDRFilter ? { PDR: pDRFilter } : {}),
-      ...(qaCheckPointFieldFilter
-        ? { QA_Check_Points: qaCheckPointFieldFilter }
-        : {}),
-      ...(imgBenchMarkFieldFilter
-        ? { img_Benchmark: imgBenchMarkFieldFilter }
-        : {}),
-      ...(taggingBenchMarkFieldFilter
-        ? { tagging_Benchmark: taggingBenchMarkFieldFilter }
-        : {}),
-      ...(objBenchMarkFieldFilter
-        ? { obj_Benchmark: objBenchMarkFieldFilter }
-        : {}),
+      ...(qaCheckPointFieldFilter ? { QA_Check_Points: qaCheckPointFieldFilter } : {}),
+      ...(imgBenchMarkFieldFilter ? { img_Benchmark: imgBenchMarkFieldFilter } : {}),
+      ...(taggingBenchMarkFieldFilter ? { tagging_Benchmark: taggingBenchMarkFieldFilter } : {}),
+      ...(objBenchMarkFieldFilter ? { obj_Benchmark: objBenchMarkFieldFilter } : {}),
       ...(date ? { date } : {}),
     };
     const data = {
@@ -326,9 +292,7 @@ const ProjectDirectoryIndex = () => {
   const [isDataLoading, setIsDataLoading] = useState(true);
   const [isChildDataLoading, setIsChildDataLoading] = useState(false);
   const [myRows, setMyRows] = useState([]);
-  const { projectDirectorySingle } = useSelector(
-    (state) => state.projectDirectory,
-  );
+  const { projectDirectorySingle } = useSelector((state) => state.projectDirectory);
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
@@ -399,7 +363,7 @@ const ProjectDirectoryIndex = () => {
       getProjectByDirectory({
         pagination,
         ascDescOption: ascDesc,
-      }),
+      })
     ); //TODO CHECK THIS LATER
   };
   useEffect(() => {
@@ -414,7 +378,7 @@ const ProjectDirectoryIndex = () => {
       setProjectDirectoryFilter({
         search,
         ascDescOption: ascDesc,
-      }),
+      })
     );
   }, [search, ascDesc]);
 
@@ -431,11 +395,9 @@ const ProjectDirectoryIndex = () => {
         search,
         pagination,
         ascDescOption: ascDesc,
-      }),
+      })
     ).then((action) => {
-      setMyColumn(
-        fieldBuilder(projectDirectoryField, handleClick, handleDelete),
-      );
+      setMyColumn(fieldBuilder(projectDirectoryField, handleClick, handleDelete));
       setIsChildDataLoading(false);
       setIsDataLoading(false);
     });
@@ -460,14 +422,14 @@ const ProjectDirectoryIndex = () => {
               search,
               pagination,
               ascDescOption: ascDesc,
-            }),
+            })
           );
         },
         afterError: () => {
           setOpenReject(false);
         },
       },
-      'forProjectDirectory',
+      'forProjectDirectory'
     );
     // dispatch(getProjectSync()).then((action) => {
     //   setIsSyncLoading(true);
@@ -482,31 +444,32 @@ const ProjectDirectoryIndex = () => {
   };
 
   const onSubmit = (data) => {
-    dispatch(createProjectDirectory(data)).then((action) => {
-      if (action.error?.message) {
-        toast.trigger(action.error?.message, 'error');
-      } else {
-        toast.trigger(action.payload.data.message, 'success');
-        handleClose();
-        reset();
-      }
-    });
+    console.log('🚀 ~ onSubmit ~ data:', data);
+    // dispatch(createProjectDirectory(data)).then((action) => {
+    //   if (action.error?.message) {
+    //     toast.trigger(action.error?.message, 'error');
+    //   } else {
+    //     toast.trigger(action.payload.data.message, 'success');
+    //     handleClose();
+    //     reset();
+    //   }
+    // });
   };
   const onSubmitEdit = (data) => {
     const finalData = {
       data,
       id: projectDirectorySingle._id,
     };
-    dispatch(updateProjectDirectory(finalData)).then((action) => {
-      if (action.error?.message) {
-        toast.trigger(action.error?.message, 'error');
-      } else {
-        toast.trigger(action.payload.data.message, 'success');
-        setOpenProjectModalEdit(false);
-        handleClose();
-        reset();
-      }
-    });
+    // dispatch(updateProjectDirectory(finalData)).then((action) => {
+    //   if (action.error?.message) {
+    //     toast.trigger(action.error?.message, "error");
+    //   } else {
+    //     toast.trigger(action.payload.data.message, "success");
+    //     setOpenProjectModalEdit(false);
+    //     handleClose();
+    //     reset();
+    //   }
+    // });
   };
 
   const handleAscDesc = (field) => {
@@ -671,9 +634,7 @@ const ProjectDirectoryIndex = () => {
         <ProjectDirectoryDetailsModal
           openProjectModalDetails={openProjectModalDetails}
           item={projectDirectorySingle}
-          handleDetailsProjectDirectoryClose={
-            handleDetailsProjectDirectoryClose
-          }
+          handleDetailsProjectDirectoryClose={handleDetailsProjectDirectoryClose}
         />
       )}
     </Box>

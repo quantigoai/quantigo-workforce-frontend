@@ -1,24 +1,24 @@
-import {Box, Typography} from "@mui/material";
-import React from "react";
-import useCourseDetails from "./hooks/courseDetailshooks/useCourseDetails";
+import { Box, Typography } from '@mui/material';
+import React from 'react';
+import useCourseDetails from './hooks/courseDetailshooks/useCourseDetails';
 
 const Style80 = {
-  background: "#82BD40",
-  color: "#FFFFFF",
-  FontSize: "12px",
-  width: "100%",
+  background: '#82BD40',
+  color: '#FFFFFF',
+  FontSize: '12px',
+  width: '100%',
 };
 const Style75 = {
-  background: "#4A2D8B ",
-  color: "#FFFFFF",
-  FontSize: "12px",
-  width: "100%",
+  background: '#4A2D8B ',
+  color: '#FFFFFF',
+  FontSize: '12px',
+  width: '100%',
 };
 const Style70 = {
-  background: "#EB6651 ",
-  color: "#FFFFFF",
-  FontSize: "12px",
-  width: "100%",
+  background: '#EB6651 ',
+  color: '#FFFFFF',
+  FontSize: '12px',
+  width: '100%',
 };
 
 const SingleChapterNew = ({ courseChapter, index, role }) => {
@@ -52,22 +52,22 @@ const SingleChapterNew = ({ courseChapter, index, role }) => {
     <>
       <Box
         sx={{
-          fontFamily: "Inter",
-          display: "flex",
-          justifyContent: "space-between",
-          alignContent: "center",
-          height: "25px",
-          width: "100%",
+          fontFamily: 'Inter',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignContent: 'center',
+          height: '25px',
+          width: '100%',
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "start", justifyContent: "center" }}>
+        <Box sx={{ display: 'flex', alignItems: 'start', justifyContent: 'center' }}>
           <Box>
-            {role === "admin" ? (
+            {role === 'admin' ? (
               <Typography
                 sx={{
-                  color: activeChapterIndex === index ? "#2E58FF" : isLightTheme ? "#1D2939" : "#fff",
-                  fontWeight: activeChapterIndex === index ? "500" : "400",
-                  marginRight: "10px",
+                  color: activeChapterIndex === index ? '#2E58FF' : isLightTheme ? '#1D2939' : '#fff',
+                  fontWeight: activeChapterIndex === index ? '500' : '400',
+                  marginRight: '10px',
                 }}
                 variant="wpf_p3_regular"
               >
@@ -77,14 +77,14 @@ const SingleChapterNew = ({ courseChapter, index, role }) => {
               <>
                 <Box
                   sx={{
-                    background: "#2EBD56",
-                    fontWeight: "500",
-                    color: "#fff",
-                    textAlign: "center",
-                    borderRadius: "20px",
-                    width: "25px",
-                    height: "25px",
-                    marginRight: "10px",
+                    background: '#2EBD56',
+                    fontWeight: '500',
+                    color: '#fff',
+                    textAlign: 'center',
+                    borderRadius: '20px',
+                    width: '25px',
+                    height: '25px',
+                    marginRight: '10px',
                   }}
                 >
                   {index + 1}
@@ -97,10 +97,10 @@ const SingleChapterNew = ({ courseChapter, index, role }) => {
             <Typography
               variant="wpf_p3_regular"
               sx={{
-                color: activeChapterIndex === index ? "#2E58FF" : isLightTheme ? "#1D2939" : "#fff",
-                fontWeight: activeChapterIndex === index ? "500" : "400",
-                fontFamily: "Inter",
-                textTransform: "none",
+                color: activeChapterIndex === index ? '#2E58FF' : isLightTheme ? '#1D2939' : '#fff',
+                fontWeight: activeChapterIndex === index ? '500' : '400',
+                fontFamily: 'Inter',
+                textTransform: 'none',
               }}
             >
               {courseChapter.title}
@@ -113,7 +113,7 @@ const SingleChapterNew = ({ courseChapter, index, role }) => {
         </Box> */}
         {/* )} */}
 
-        <Box sx={{ color: "#1D2939" }}>
+        <Box sx={{ color: '#1D2939' }}>
           {/* <img src={activeChapterIndex === index ? iconBlue : iconButton} /> */}
           <i className="ri-arrow-right-s-line"></i>
         </Box>

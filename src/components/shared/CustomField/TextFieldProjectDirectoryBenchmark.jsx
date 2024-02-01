@@ -1,8 +1,9 @@
-import { Box, styled, TextField, Typography } from "@mui/material";
+import { Box, IconButton, styled, TextField, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import { Controller, useFormContext } from "react-hook-form";
+import DeleteIcon from "@mui/icons-material/Delete"; // Import the DeleteIcon
 
-PDTextFIeld.propTypes = {
+TextFieldProjectDirectoryBenchmark.propTypes = {
   name: PropTypes.string,
   helperText: PropTypes.node,
 };
@@ -37,7 +38,7 @@ export const PdTextField = styled(TextField)(() => ({
     },
   },
 }));
-export default function PDTextFIeld({
+export default function TextFieldProjectDirectoryBenchmark({
   name,
   helperText,
   isNumber,
@@ -46,6 +47,7 @@ export default function PDTextFIeld({
   label,
   defaultValue,
   isRequired,
+  handleRemove,
   ...other
 }) {
   const { control } = useFormContext();
@@ -79,12 +81,28 @@ export default function PDTextFIeld({
               }}
               defaultValue={defaultValue}
               value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
-              // value={field.value}
               error={!!error}
               helperText={error ? error?.message : helperText}
               autoComplete="off"
               {...other}
               InputProps={{
+                ...InputProps,
+                endAdornment: (
+                  <IconButton onClick={() => handleRemove(name, label)} edge="end">
+                    <DeleteIcon
+                      style={{
+                        color: "red",
+                        cursor: "pointer",
+                        // position: "absolute",
+                        left: 275,
+                        top: 35,
+                        height: "20px",
+                        width: "20px",
+                      }}
+                    />
+                   
+                  </IconButton>
+                ),
                 inputProps: isNumberPdr
                   ? {
                       min: 1,
@@ -94,8 +112,32 @@ export default function PDTextFIeld({
                       min: 1,
                     },
               }}
+              //   InputProps={{
+              //     inputProps: isNumberPdr
+              //       ? {
+              //           min: 1,
+              //           max: 5,
+              //         }
+              //       : {
+              //           min: 1,
+              //         },
+              //   }}
             />
           </Box>
+
+          {/* <i
+            //   onClick={() => handleRemove(index)}
+            style={{
+              color: "red",
+              cursor: "pointer",
+              position: "absolute",
+              left: 275,
+              top: 35,
+              height: "20px",
+              width: "20px",
+            }}
+            className="ri-delete-bin-line"
+          ></i> */}
         </Box>
       )}
     />

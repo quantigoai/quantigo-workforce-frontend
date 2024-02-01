@@ -56,7 +56,6 @@ const ProjectDirectoryBenchMarkFieldIndex = () => {
     setBenchmarkItems((prevArray) => [...prevArray, deleteValue]);
     console.log(addBenchmarkItems);
     const filteredArr = addBenchmarkItems.filter((item) => item.value != name);
-    console.log('🚀 ~ handleRemove ~ filteredArr:', filteredArr);
     setAddBenchmarkItems(filteredArr);
   };
   return (

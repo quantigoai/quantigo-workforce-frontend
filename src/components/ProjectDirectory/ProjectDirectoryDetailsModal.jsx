@@ -1,4 +1,4 @@
-import { Box, Fade, Modal, Stack } from '@mui/material';
+import { Box, Button, Fade, Modal, Stack } from '@mui/material';
 import React from 'react';
 import Backdrop from '@mui/material/Backdrop';
 
@@ -17,6 +17,7 @@ const style = {
   transform: 'translate(-50%, -50%)',
   bgcolor: 'background.paper',
   border: 'none',
+  height: '50%',
   borderRadius: '8px',
   p: 0,
   input: {
@@ -50,11 +51,30 @@ const ProjectDirectoryDetailsModal = ({ openProjectModalDetails, item, handleDet
           <Box
             sx={{
               ...style,
-              height: { xl: '80%', lg: '90%' },
-              width: { xl: '40%', lg: '50%' },
+              width: { xxl: '50%', xl: '60%', lg: '70%' },
+              height: { lg: '80%', xl: '90%', xxl: '90%' },
+              top: {
+                lg: '50%',
+                xl: '50%',
+                xxl: '50%',
+              },
+              left: {
+                lg: '55%',
+                xl: '50%',
+                xxl: '53%',
+              },
             }}
           >
-            <Box sx={{ flex: '0 0 5%' }}>
+            <Box
+              sx={{
+                flex: '0 0 5%',
+                height: {
+                  lg: '10%',
+                  xl: '10%',
+                  xxl: '8%',
+                },
+              }}
+            >
               <ProjectModalHeader
                 handleCreateProjectClose={handleDetailsProjectDirectoryClose}
                 modalTitle={'Project Directory details'}
@@ -73,6 +93,7 @@ const ProjectDirectoryDetailsModal = ({ openProjectModalDetails, item, handleDet
               <Stack
                 sx={{
                   border: '1px solid #E6ECF5',
+
                   //   padding: "16px",
                   borderRadius: '8px',
                   //   background: "#FAFCFF",
@@ -122,73 +143,20 @@ const ProjectDirectoryDetailsModal = ({ openProjectModalDetails, item, handleDet
                   Item2Title={'Completion Date'}
                   Item2={item?.completion_Date ? formatDate(item?.completion_Date) : 'N/A'}
                 />
-                <BoxDetailsItem Item={[]} />
 
                 {/* //benchmarks  */}
-                {/* <DetailsItem
-                  isLightTheme={isLightTheme}
-                  Item1Title={'Action Items'}
-                  Item1={item?.action_Items ? item?.action_Items : 'N/A'}
-                  Item2Title={'QA'}
-                  Item2={item?.QA ? item?.QA : 'N/A'}
-                />
-
-                <DetailsItem
-                  isLightTheme={isLightTheme}
-                  Item1Title={'QA Check Points'}
-                  Item1={item?.QA_Check_Points ? item?.QA_Check_Points : 'N/A'}
-                  Item2Title={'Objective Benchmark'}
-                  Item2={item?.obj_Benchmark ? item?.obj_Benchmark : 'N/A'}
-                />
-                <DetailsItem
-                  isLightTheme={isLightTheme}
-                  Item1Title={'Image Benchmark'}
-                  Item1={item?.img_Benchmark ? item?.img_Benchmark : 'N/A'}
-                  Item2Title={'Tagging Benchmark'}
-                  Item2={item?.tagging_Benchmark ? item?.tagging_Benchmark : 'N/A'}
-                />
-                <DetailsItem
-                  isLightTheme={isLightTheme}
-                  Item1Title={'Skip Image'}
-                  Item1={item?.skip_Image ? item?.skip_Image : 'N/A'}
-                  Item2Title={'Update'}
-                  Item2={item?.update ? item?.update : 'N/A'}
-                />
-                <DetailsItem
-                  isLightTheme={isLightTheme}
-                  Item1Title={'Image Loading'}
-                  Item1={item?.image_Loading ? item?.image_Loading : 'N/A'}
-                  Item2Title={'PDR'}
-                  Item2={item?.PDR ? item?.PDR : 'N/A'}
-                />
-                <DetailsItem
-                  isLightTheme={isLightTheme}
-                  Item1Title={'Object Saving Time'}
-                  Item1={item?.object_Saving_Time ? item?.object_Saving_Time : 'N/A'}
-                  Item2Title={'Tagging Benchmark'}
-                  Item2={item?.tagging_Benchmark ? item?.tagging_Benchmark : 'N/A'}
-                />
-                <DetailsItem
-                  isLightTheme={isLightTheme}
-                  Item1Title={'Video Watch Time'}
-                  Item1={item?.video_Watch_Time ? item?.video_Watch_Time : 'N/A'}
-                  Item2Title={'Judgement Time'}
-                  Item2={item?.judgement_Time ? item?.judgement_Time : 'N/A'}
-                />
-                <DetailsItem
-                  isLightTheme={isLightTheme}
-                  Item1Title={'QA Benchmark'}
-                  Item1={item?.QA_Benchmark ? item?.QA_Benchmark : 'N/A'}
-                  Item2Title={'Annotation '}
-                  Item2={item?.annotation ? item?.annotation : 'N/A'}
-                />
-                <DetailsItem
-                  isLightTheme={isLightTheme}
-                  Item1Title={'Remarks'}
-                  Item1={item?.remarks ? item?.remarks : 'N/A'}
-                /> */}
               </Stack>
+              <Box sx={{ mb: 2 }}>
+                <BoxDetailsItem item={item} />
+              </Box>
             </Box>
+            <Box
+              sx={{
+                paddingY: { lg: '10px', xl: '12px', xxl: '12px' },
+                paddingX: '12px',
+                mt: 1,
+              }}
+            ></Box>
           </Box>
         </Fade>
       </Modal>

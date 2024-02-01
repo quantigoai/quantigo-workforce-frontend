@@ -1,33 +1,33 @@
-import { styled, Typography } from "@mui/material";
-import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { styled, Typography } from '@mui/material';
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
 const filter = createFilterOptions();
 const MyTextField = styled(TextField)(() => ({
-  border: "1px solid #E6ECF5 ",
-  "& .MuiOutlinedInput-notchedOutline": {
-    borderRadius: "8px",
+  border: '1px solid #E6ECF5 ',
+  '& .MuiOutlinedInput-notchedOutline': {
+    borderRadius: '8px',
   },
-  "& .MuiInputBase-root": {
-    padding: "0 5px",
-    height: "40px",
-    fontSize: "12px",
-    fontFamily: "Inter",
-    "@media(max-width:1439px)": {
-      height: "30px",
-      fontSize: "10px",
+  '& .MuiInputBase-root': {
+    padding: '0 5px',
+    height: '40px',
+    fontSize: '12px',
+    fontFamily: 'Inter',
+    '@media(max-width:1439px)': {
+      height: '30px',
+      fontSize: '10px',
     },
-    "@media(min-width: 1920px)": {
-      fontSize: "14px",
+    '@media(min-width: 1920px)': {
+      fontSize: '14px',
     },
   },
-  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+  '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
     border: `1px solid #2E58FF !important`,
   },
-  "& .MuiInputBase-input.Mui-focused": {
-    color: "blue",
+  '& .MuiInputBase-input.Mui-focused': {
+    color: 'blue',
   },
 }));
 const url = import.meta.env.VITE_APP_SERVER_URL;
@@ -35,8 +35,8 @@ const url = import.meta.env.VITE_APP_SERVER_URL;
 const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChecked, setInstitution }) => {
   const [open, toggleOpen] = React.useState(false);
   const [allInstitute, setAllInstitute] = useState([]);
-  const [newInput, setNewInput] = useState("");
-  const [tempName, setTempName] = useState("");
+  const [newInput, setNewInput] = useState('');
+  const [tempName, setTempName] = useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -79,13 +79,18 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
     <React.Fragment>
       <Typography
         sx={{
-          color: "neutral.N300",
+          color: 'neutral.N300',
 
-          // mb: 1.5,
+          mb: 1,
         }}
         variant="wpf_p4_medium"
       >
-        {label}
+        {label}{' '}
+        {
+          <span style={{ color: '#F04438' }}>
+            {/* {label === "Name of Contact Person" || label === "Relationship" ? "*" : ""} */}*
+          </span>
+        }
       </Typography>
       <Autocomplete
         style={{ padding: 0 }}
@@ -108,7 +113,7 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
         onKeyDown={(ev) => {
           const institutes = allInstitute.map((item) => item.name);
           if (!institutes.includes(ev.target.value)) {
-            if (ev.key === "Enter") {
+            if (ev.key === 'Enter') {
               ev.preventDefault();
               // handleSubmit(ev);
             }
@@ -119,7 +124,7 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
 
           const { inputValue } = params;
           const isExisting = options.some((option) => inputValue === option.name);
-          if (inputValue !== "" && !isExisting) {
+          if (inputValue !== '' && !isExisting) {
             // filtered.push({
             //   inputValue,
             //   // name: `Add "${inputValue}"`,
@@ -130,7 +135,7 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
         }}
         options={allInstitute}
         getOptionLabel={(option) => {
-          if (typeof option === "string") {
+          if (typeof option === 'string') {
             return option;
           }
           if (option && option.inputValue) {
@@ -140,7 +145,7 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
             return option.name;
           }
 
-          return tempName || "";
+          return tempName || '';
         }}
         getOptionSelected={(option, value) =>
           option.inputValue ? value.inputValue === option.inputValue : value.name === option.name
@@ -155,15 +160,15 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
           </li>
         )}
         sx={{
-          border: "1px solid #E6ECF5 !important",
-          borderRadius: "8px",
-          height: "40px",
-          "@media(max-width:1439px)": {
-            height: "30px",
-            fontSize: "10px",
+          border: '1px solid #E6ECF5 !important',
+          borderRadius: '8px',
+          height: '40px',
+          '@media(max-width:1439px)': {
+            height: '30px',
+            fontSize: '10px',
           },
-          "@media(min-width: 1920px)": {
-            fontSize: "14px",
+          '@media(min-width: 1920px)': {
+            fontSize: '14px',
           },
           mt: 0.6,
         }}
@@ -173,15 +178,15 @@ const InstitutionSelectAdd = ({ label, disableItem, editAble, institution, isChe
             {...params}
             placeholder='Select your institution or select "Others" if it&apos;s not in the list.'
             sx={{
-              backgroundColor: editAble ? "" : "neutral.N400",
-              borderRadius: "8px",
-              height: "40px",
-              "@media(max-width:1439px)": {
-                height: "30px",
-                fontSize: "10px",
+              backgroundColor: editAble ? '' : 'neutral.N400',
+              borderRadius: '8px',
+              height: '40px',
+              '@media(max-width:1439px)': {
+                height: '30px',
+                fontSize: '10px',
               },
-              "@media(min-width: 1920px)": {
-                fontSize: "14px",
+              '@media(min-width: 1920px)': {
+                fontSize: '14px',
               },
             }}
             disabled={disableItem ? true : isChecked ? true : !editAble}

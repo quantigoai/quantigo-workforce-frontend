@@ -6,48 +6,48 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Box, Grid, Typography} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import imageSample from "../../../assets/images/img.png";
-import CategoryChip from "./CategoryChip";
-import LevelChip from "./CourseCardActionLebel/LevelChip";
-import LanguageChip from "./LanguageChip";
-import CourseProgress from "./CourseProgress/CourseProgress";
+import { Box, Grid, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import imageSample from '../../../assets/images/img.png';
+import CategoryChip from './CategoryChip';
+import LevelChip from './CourseCardActionLebel/LevelChip';
+import LanguageChip from './LanguageChip';
+import CourseProgress from './CourseProgress/CourseProgress';
 
 const MyCustomCard = {
-  padding: "0 0 0 0 ",
-  width: "100%",
-  height: "100%",
-  objectFit: "cover",
-  borderRadius: "10px 10px 0px 0px",
+  padding: '0 0 0 0 ',
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+  borderRadius: '10px 10px 0px 0px',
 };
 
 const MyCustomCardHover = {
-  padding: "0 0 0 0 ",
-  width: "100%",
-  height: "100%",
-  objectFit: "cover",
-  borderRadius: "10px 10px 0px 0px",
-  transform: "scale(1.05)",
-  transition: "all 1s ease",
+  padding: '0 0 0 0 ',
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+  borderRadius: '10px 10px 0px 0px',
+  transform: 'scale(1.05)',
+  transition: 'all 1s ease',
 };
 
 const ButtonInitial = {
-  borderRadius: "2px",
-  border: "1px solid #ffffff",
-  color: "#ffffff",
-  transition: "all 1s ease",
+  borderRadius: '2px',
+  border: '1px solid #ffffff',
+  color: '#ffffff',
+  transition: 'all 1s ease',
 };
 const ButtonDivMouseOn = {
-  borderRadius: "2px",
-  border: "1px solid #2D58FF",
-  color: "#2D58FF",
+  borderRadius: '2px',
+  border: '1px solid #2D58FF',
+  color: '#2D58FF',
 };
 const ButtonHover = {
-  color: "#090080",
-  backgroundColor: "rgba(255, 154, 69, 0.1)",
+  color: '#090080',
+  backgroundColor: 'rgba(255, 154, 69, 0.1)',
 };
 
 const CustomCard = ({ course, handleViewDetailsButton }) => {
@@ -95,31 +95,31 @@ const CustomCard = ({ course, handleViewDetailsButton }) => {
       <Box
         sx={{
           // height: "350px",
-          height: "100%",
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
+          height: '100%',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
           //!! Need to remove shadow later
-          boxShadow: "0px 1px 2px 0px rgba(37, 62, 92, 0.08)",
+          boxShadow: '0px 1px 2px 0px rgba(37, 62, 92, 0.08)',
           // mx: "4%",
           // px: "4%",
           // py: "0%",
           // backgroundColor: "neutral.N000",
-          borderRadius: "10px",
-          border: "1px solid white",
+          borderRadius: '10px',
+          border: '1px solid white',
         }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         <Box
           sx={{
-            width: "100%",
-            height: "40%",
-            backgroundColor: "#fff",
+            width: '100%',
+            height: '40%',
+            backgroundColor: '#fff',
             pt: 0,
             mb: 0,
-            overflow: "hidden",
-            cursor: "pointer",
+            overflow: 'hidden',
+            cursor: 'pointer',
           }}
           onClick={() => handleViewDetailsButton(course._id)}
         >
@@ -135,36 +135,36 @@ const CustomCard = ({ course, handleViewDetailsButton }) => {
         {/* Content */}
         <Box
           sx={{
-            height: "60%",
-            backgroundColor: "neutral.N000",
-            borderRadius: "10px",
+            height: '60%',
+            backgroundColor: 'neutral.N000',
+            borderRadius: '10px',
           }}
         >
-          <Box sx={{ px: "4%", height: "40%", pb: "0", py: 2 }}>
+          <Box sx={{ px: '4%', height: '40%', pb: '0', py: 2 }}>
             <Grid container onClick={() => handleViewDetailsButton(course._id)}>
-              <Typography variant="wpf_h6_semiBold" color={"grey.500"} sx={{ cursor: "pointer" }}>
+              <Typography variant="wpf_h6_semiBold" color={'grey.500'} sx={{ cursor: 'pointer' }}>
                 {course.name}
               </Typography>
             </Grid>
 
             <Grid mt={1} container>
-              <Typography variant="wpf_h8_regular" color={"grey.550"}>
+              <Typography variant="wpf_h8_regular" color={'grey.550'}>
                 {course.description?.length > 100
-                  ? course.description?.substring(0, 100) + "....."
+                  ? course.description?.substring(0, 100) + '.....'
                   : course.description}
               </Typography>
             </Grid>
           </Box>
           {/* //chip  */}
-          <Box sx={{ px: "4%", height: "30%" }}>
-            <Grid container sx={{ py: "3%" }}>
-              <Grid item xs={3} sx={{ paddingRight: "2%" }}>
+          <Box sx={{ px: '4%', height: '30%' }}>
+            <Grid container sx={{ py: '3%' }}>
+              <Grid item xs={3} sx={{ paddingRight: '2%' }}>
                 <LanguageChip language={course.language} />
               </Grid>
-              <Grid item xs={3} sx={{ paddingRight: "2%" }}>
+              <Grid item xs={3} sx={{ paddingRight: '2%' }}>
                 <CategoryChip category={course.category} />
               </Grid>
-              <Grid item xs={3} sx={{ padding: "0%" }}>
+              <Grid item xs={3} sx={{ padding: '0%' }}>
                 <LevelChip level={course.level} />
               </Grid>
             </Grid>
@@ -204,7 +204,7 @@ const CustomCard = ({ course, handleViewDetailsButton }) => {
         </Box> */}
 
           {/* //progress bar  */}
-          <Box sx={{ borderTop: "1px solid #E6ECF5", height: "20%", padding: "10px 10px" }}>
+          <Box sx={{ borderTop: '1px solid #E6ECF5', height: '20%', padding: '10px 10px' }}>
             <CourseProgress />
           </Box>
         </Box>

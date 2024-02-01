@@ -59,7 +59,7 @@ export default function TextFieldProjectDirectoryBenchmark({
       render={({ field, fieldState: { error } }) => (
         <Box>
           <Typography
-            variant="wpf_h7_medium"
+            variant='wpf_h7_medium'
             sx={{
               mb: 0,
               color: "neutral.N300",
@@ -69,26 +69,26 @@ export default function TextFieldProjectDirectoryBenchmark({
           </Typography>
           <Box sx={{ width: "100%" }}>
             <PdTextField
-              size="small"
+              size='small'
               type={isNumber || isNumberPdr ? "number" : "text"}
-              id="outlined-basic"
+              id='outlined-basic'
               {...field}
               fullWidth
-              variant="outlined"
+              variant='outlined'
               // required={label === "Benchmark" ? false : true}
               sx={{
                 backgroundColor: "neutral.N000",
               }}
-              defaultValue={defaultValue}
-              value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
+              value={defaultValue}
+              // value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
               error={!!error}
               helperText={error ? error?.message : helperText}
-              autoComplete="off"
+              autoComplete='off'
               {...other}
               InputProps={{
                 ...InputProps,
                 endAdornment: (
-                  <IconButton onClick={() => handleRemove(name, label)} edge="end">
+                  <IconButton onClick={() => handleRemove(name, label)} edge='end'>
                     <DeleteIcon
                       style={{
                         color: "red",
@@ -100,7 +100,6 @@ export default function TextFieldProjectDirectoryBenchmark({
                         width: "20px",
                       }}
                     />
-                   
                   </IconButton>
                 ),
                 inputProps: isNumberPdr

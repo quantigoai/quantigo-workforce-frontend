@@ -41,7 +41,7 @@ const ProjectDirectoryIndex = () => {
   const [filterData, setFilterData] = useState({});
   const [anchorE2, setAnchorE2] = React.useState(null);
   const [industryType, setIndustryType] = useState("");
-
+  const [projectDirectoryRemove, setProjectDirectoryRemove] = useState([]);
   // ______________________________________values
 
   const [clientAliasFilter, setClientAliasesFilter] = useState("");
@@ -444,27 +444,32 @@ const ProjectDirectoryIndex = () => {
   };
 
   const onSubmit = (data) => {
-    console.log('🚀 ~ onSubmit ~ data:', data);
-    dispatch(createProjectDirectory(data)).then((action) => {
+     dispatch(createProjectDirectory(data)).then((action) => {
       if (action.error?.message) {
-        toast.trigger(action.error?.message, 'error');
+        toast.trigger(action.error?.message, "error");
       } else {
-        toast.trigger(action.payload.data.message, 'success');
+        toast.trigger(action.payload.data.message, "success");
         handleClose();
         reset();
       }
     });
   };
   const onSubmitEdit = (data) => {
+   
+    projectDirectoryRemove.map((p) => {
+      data[p.value] = "";
+    });
+   
     const finalData = {
       data,
       id: projectDirectorySingle._id,
     };
+
     dispatch(updateProjectDirectory(finalData)).then((action) => {
       if (action.error?.message) {
-        toast.trigger(action.error?.message, 'error');
+        toast.trigger(action.error?.message, "error");
       } else {
-        toast.trigger(action.payload.data.message, 'success');
+        toast.trigger(action.payload.data.message, "success");
         setOpenProjectModalEdit(false);
         handleClose();
         reset();
@@ -628,6 +633,7 @@ const ProjectDirectoryIndex = () => {
           openProjectModalEdit={openProjectModalEdit}
           setOpenProjectModalEdit={setOpenProjectModalEdit}
           onSubmitEdit={onSubmitEdit}
+          setProjectDirectoryRemove={setProjectDirectoryRemove}
         />
       )}
       {openProjectModalDetails && (

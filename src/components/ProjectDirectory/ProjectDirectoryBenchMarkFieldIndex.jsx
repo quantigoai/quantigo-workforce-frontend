@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux';
 
 import TextFieldProjectDirectoryBenchmark from '../shared/CustomField/TextFieldProjectDirectoryBenchmark';
 const addBenchmarkType = [
-  { item: 'Client Alias', value: 'Client_Alias' },
-  { item: 'Industry', value: 'Industry' },
-  { item: 'Platform', value: 'Platform' },
+  // { item: 'Client Alias', value: 'Client_Alias' },
+  // { item: 'Industry', value: 'Industry' },
+  // { item: 'Platform', value: 'Platform' },
   { item: 'Tool Type', value: 'Tool_Type' },
-  { item: 'PDR', value: 'PDR' },
-  { item: 'Project Type', value: 'Project_Type' },
+  // { item: 'PDR', value: 'PDR' },
+  // { item: 'Project Type', value: 'Project_Type' },
   { item: 'Action Item', value: 'Action_Items' },
   { item: 'QA Check Points', value: 'QA_Check_Points' },
   { item: 'Object Benchmark', value: 'Obj_Benchmark' },
@@ -56,7 +56,6 @@ const ProjectDirectoryBenchMarkFieldIndex = () => {
     setBenchmarkItems((prevArray) => [...prevArray, deleteValue]);
     console.log(addBenchmarkItems);
     const filteredArr = addBenchmarkItems.filter((item) => item.value != name);
-    console.log('🚀 ~ handleRemove ~ filteredArr:', filteredArr);
     setAddBenchmarkItems(filteredArr);
   };
   return (
@@ -114,15 +113,15 @@ const ProjectDirectoryBenchMarkFieldIndex = () => {
           </Grid>
           <Typography
             sx={{
-              fontWeight: '600',
-              mt: '15px',
-              fontSize: '14px',
+            //   fontWeight: '600',
+              // mt: '10px',
+            //   fontSize: '14px',
               mb: '0px',
-              //   color: hasChanged ? "#2E58FF" : "#7D89A3",
+                color: "#2E58FF" ,
               cursor: 'pointer',
               //   pointerEvents: hasChanged ? "auto" : "none",
             }}
-            variant="p"
+            variant="wpf_h7_Bold"
             type="button"
             onClick={handleButtonClick}
             // onClick={handleAddOtherDocument}
@@ -136,7 +135,7 @@ const ProjectDirectoryBenchMarkFieldIndex = () => {
                   fontSize: '14px',
                   '& .MuiInputBase-root': {
                     // height: "42px",
-                    fontSize: '12px',
+                    // fontSize: '12px',
                     fontFamily: 'Inter',
                     '@media(max-width:1439px)': {
                       // height: "30px",

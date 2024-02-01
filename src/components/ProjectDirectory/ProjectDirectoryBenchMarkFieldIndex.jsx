@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux';
 
 import TextFieldProjectDirectoryBenchmark from '../shared/CustomField/TextFieldProjectDirectoryBenchmark';
 const addBenchmarkType = [
-  { item: 'Client Alias', value: 'Client_Alias' },
-  { item: 'Industry', value: 'Industry' },
-  { item: 'Platform', value: 'Platform' },
+  // { item: 'Client Alias', value: 'Client_Alias' },
+  // { item: 'Industry', value: 'Industry' },
+  // { item: 'Platform', value: 'Platform' },
   { item: 'Tool Type', value: 'Tool_Type' },
-  { item: 'PDR', value: 'PDR' },
-  { item: 'Project Type', value: 'Project_Type' },
+  // { item: 'PDR', value: 'PDR' },
+  // { item: 'Project Type', value: 'Project_Type' },
   { item: 'Action Item', value: 'Action_Items' },
   { item: 'QA Check Points', value: 'QA_Check_Points' },
   { item: 'Object Benchmark', value: 'Obj_Benchmark' },

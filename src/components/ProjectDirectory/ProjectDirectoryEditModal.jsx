@@ -254,7 +254,7 @@ const ProjectDirectoryEditModal = ({ item, handleEditClose, openProjectModalEdit
                       </FieldBox> */}
                     </Grid>
                   </Box>
-                  <ProjectDirectoryBenchMarkFieldIndex />
+                  <ProjectDirectoryBenchMarkFieldIndex item={item} />
                 </Box>
 
                 <Box

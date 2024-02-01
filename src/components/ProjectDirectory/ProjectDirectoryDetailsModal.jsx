@@ -5,6 +5,8 @@ import Backdrop from '@mui/material/Backdrop';
 import { useSelector } from 'react-redux';
 import ProjectModalHeader from '../primary/ProjectLIstNew2/ProjectModalHeader';
 import DetailsItem from '../primary/ProjectLIstNew2/Project2Details/DetailsItem';
+import BoxDetailsItem from './BoxDetailsItem';
+import { formatDate } from '../../helper/dateConverter';
 
 const style = {
   display: 'flex',
@@ -80,8 +82,8 @@ const ProjectDirectoryDetailsModal = ({ openProjectModalDetails, item, handleDet
                   Item1Title={'Project Name'}
                   isLightTheme={isLightTheme}
                   Item1={item?.project_Name ? item?.project_Name : 'N/A'}
-                  Item2Title={'Platform'}
-                  Item2={item?.platform ? item?.platform : 'N/A'}
+                  Item2Title={'Data Type'}
+                  Item2={item?.data_Type ? item?.data_Type : 'N/A'}
                 />
 
                 <DetailsItem
@@ -93,13 +95,37 @@ const ProjectDirectoryDetailsModal = ({ openProjectModalDetails, item, handleDet
                 />
 
                 <DetailsItem
-                  Item1Title={'Tool type'}
+                  Item1Title={'Labeling Tool'}
                   isLightTheme={isLightTheme}
-                  Item1={item?.tool_Type ? item?.tool_Type : 'N/A'}
+                  Item1={item?.labeling_Tool ? item?.labeling_Tool : 'N/A'}
                   Item2Title={'Project Type'}
                   Item2={item?.project_Type ? item?.project_Type : 'N/A'}
                 />
                 <DetailsItem
+                  isLightTheme={isLightTheme}
+                  Item1Title={'Guideline'}
+                  Item1={item?.guideline ? item?.guideline : 'N/A'}
+                  Item2Title={'PDL'}
+                  Item2={item?.PDL ? item?.PDL : 'N/A'}
+                />
+                <DetailsItem
+                  isLightTheme={isLightTheme}
+                  Item1Title={'DL'}
+                  Item1={item?.DL ? item?.DL : 'N/A'}
+                  Item2Title={'DCR'}
+                  Item2={item?.DCR ? item?.DCR : 'N/A'}
+                />
+                <DetailsItem
+                  isLightTheme={isLightTheme}
+                  Item1Title={'PCR'}
+                  Item1={item?.PCR ? item?.PCR : 'N/A'}
+                  Item2Title={'Completion Date'}
+                  Item2={item?.completion_Date ? formatDate(item?.completion_Date) : 'N/A'}
+                />
+                <BoxDetailsItem Item={[]} />
+
+                {/* //benchmarks  */}
+                {/* <DetailsItem
                   isLightTheme={isLightTheme}
                   Item1Title={'Action Items'}
                   Item1={item?.action_Items ? item?.action_Items : 'N/A'}
@@ -160,7 +186,7 @@ const ProjectDirectoryDetailsModal = ({ openProjectModalDetails, item, handleDet
                   isLightTheme={isLightTheme}
                   Item1Title={'Remarks'}
                   Item1={item?.remarks ? item?.remarks : 'N/A'}
-                />
+                /> */}
               </Stack>
             </Box>
           </Box>

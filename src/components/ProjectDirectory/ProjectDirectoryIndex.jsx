@@ -445,31 +445,31 @@ const ProjectDirectoryIndex = () => {
 
   const onSubmit = (data) => {
     console.log('🚀 ~ onSubmit ~ data:', data);
-    // dispatch(createProjectDirectory(data)).then((action) => {
-    //   if (action.error?.message) {
-    //     toast.trigger(action.error?.message, 'error');
-    //   } else {
-    //     toast.trigger(action.payload.data.message, 'success');
-    //     handleClose();
-    //     reset();
-    //   }
-    // });
+    dispatch(createProjectDirectory(data)).then((action) => {
+      if (action.error?.message) {
+        toast.trigger(action.error?.message, 'error');
+      } else {
+        toast.trigger(action.payload.data.message, 'success');
+        handleClose();
+        reset();
+      }
+    });
   };
   const onSubmitEdit = (data) => {
     const finalData = {
       data,
       id: projectDirectorySingle._id,
     };
-    // dispatch(updateProjectDirectory(finalData)).then((action) => {
-    //   if (action.error?.message) {
-    //     toast.trigger(action.error?.message, "error");
-    //   } else {
-    //     toast.trigger(action.payload.data.message, "success");
-    //     setOpenProjectModalEdit(false);
-    //     handleClose();
-    //     reset();
-    //   }
-    // });
+    dispatch(updateProjectDirectory(finalData)).then((action) => {
+      if (action.error?.message) {
+        toast.trigger(action.error?.message, 'error');
+      } else {
+        toast.trigger(action.payload.data.message, 'success');
+        setOpenProjectModalEdit(false);
+        handleClose();
+        reset();
+      }
+    });
   };
 
   const handleAscDesc = (field) => {

@@ -1,10 +1,17 @@
-import { Box, Button, Grid, TextField, Typography, styled } from '@mui/material';
+import {
+  Box,
+  Button,
+  Grid,
+  TextField,
+  Typography,
+  styled,
+} from '@mui/material';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import FieldForProfile from '../FieldForProfile';
 // import { TextFieldQuestion } from "../../../Course/QuizPage/QuistionField/ImageFieldForQuestion";
 import useToaster from '../../../../../customHooks/useToaster';
-import { updateMyVerificationFunction } from '../../../../../features/slice/userSlice';
+import { updateMyVerificationFunction, updateUserProfileCompletePercentage } from '../../../../../features/slice/userSlice';
 import { capitalizeFirstLetter } from '../../../../../helper/capitalizeFirstWord';
 import SelectFieldForProfile from '../SelectFieldForProfile';
 import UploadImagesField from './UploadImagesField';
@@ -64,7 +71,13 @@ const TypeVerificationOption = [
   { value: 'passport', label: 'Passport' },
   { value: 'birthCertificate', label: 'Birth Certificate' },
 ];
-const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEditAble }) => {
+const VerificationInfoIndex = ({
+  data,
+  setData,
+  isDataLoading,
+  editAble,
+  setEditAble,
+}) => {
   const { user, isLoading } = useSelector((state) => state.user);
   const [nidNumber, setNidNumber] = useState(data?.extraDocumentNo || '');
   const [nameAsNid, setNameAsNid] = useState(data?.extraDocumentName || '');
@@ -72,9 +85,15 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
   const [resume, setResume] = useState([]);
   const [errorPhoto, setErrorPhoto] = useState('');
   const [errorResume, setErrorResume] = useState('');
-  const [documentType, setDocumentType] = useState(data?.extraDocumentType || '');
-  const [images, setImages] = useState(data?.extraDocumentImages.map((i) => i.url));
-  const [imagesCopy, setImagesCopy] = useState(data?.extraDocumentImages.map((i) => i.url));
+  const [documentType, setDocumentType] = useState(
+    data?.extraDocumentType || '',
+  );
+  const [images, setImages] = useState(
+    data?.extraDocumentImages.map((i) => i.url),
+  );
+  const [imagesCopy, setImagesCopy] = useState(
+    data?.extraDocumentImages.map((i) => i.url),
+  );
   const [isSyncLoading, setIsSyncLoading] = useState(false);
   const [openReject, setOpenReject] = React.useState(false);
   const [dataLoading, setDataLoading] = useState(false);
@@ -150,7 +169,10 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
         tempData.name = item;
         tempData.isRemoved = isRemoved;
         formData.append(`removedImages[${index}][name]`, tempData.name);
-        formData.append(`removedImages[${index}][isRemoved]`, tempData.isRemoved);
+        formData.append(
+          `removedImages[${index}][isRemoved]`,
+          tempData.isRemoved,
+        );
       });
     }
 
@@ -159,26 +181,35 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
       formData,
     };
 
-    await toast.responsePromise(updateMyVerificationFunction(finalImageData), setIsSyncLoading, {
-      initialMessage: 'Verification info is updating...',
-      inPending: () => {
-        setOpenReject(false);
-        setIsSyncLoading(true);
+    await toast.responsePromise(
+      updateMyVerificationFunction(finalImageData),
+      setIsSyncLoading,
+      {
+        initialMessage: 'Verification info is updating...',
+        inPending: () => {
+          setOpenReject(false);
+          setIsSyncLoading(true);
+        },
+        afterSuccess: (data) => {
+          setOpenReject(false);
+          setIsSyncLoading(false);
+          setData(data.data.user);
+          setImages(data.data.user.extraDocumentImages.map((i) => i.url));
+          setEditAble(false);
+          setImagesCopy(data.data.user.extraDocumentImages.map((i) => i.url));
+          setPhoto([]);
+          setResume([]);
+          dispatch(
+            updateUserProfileCompletePercentage(
+              data.data.user.profileCompletePercentage,
+            ),
+          );
+        },
+        afterError: (data) => {
+          setOpenReject(false);
+        },
       },
-      afterSuccess: (data) => {
-        setOpenReject(false);
-        setIsSyncLoading(false);
-        setData(data.data.user);
-        setImages(data.data.user.extraDocumentImages.map((i) => i.url));
-        setEditAble(false);
-        setImagesCopy(data.data.user.extraDocumentImages.map((i) => i.url));
-        setPhoto([]);
-        setResume([]);
-      },
-      afterError: (data) => {
-        setOpenReject(false);
-      },
-    });
+    );
 
     // dispatch(updateMyVerification(finalImageData)).then((action) => {
     //   if (action.error) {
@@ -221,7 +252,10 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
               }}
             >
               <Grid container sx={{ paddingBottom: '20px', paddingTop: '%' }}>
-                <Grid container sx={{ paddingBottom: '20px', paddingTop: '1%' }}>
+                <Grid
+                  container
+                  sx={{ paddingBottom: '20px', paddingTop: '1%' }}
+                >
                   <Grid item xs={6} sx={{ paddingRight: '2%' }}>
                     <Grid container>
                       <Typography
@@ -233,7 +267,8 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                         variant="wpf_p4_medium"
                       >
                         <span>
-                          Upload Your Passport Size Photo <span style={{ color: '#F04438' }}>*</span>
+                          Upload Your Passport Size Photo{' '}
+                          <span style={{ color: '#F04438' }}>*</span>
                         </span>
                       </Typography>
 
@@ -288,7 +323,8 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
 
                       <Box
                         sx={{
-                          width: data.standardPhoto && !editAble ? '100%' : '30%',
+                          width:
+                            data.standardPhoto && !editAble ? '100%' : '30%',
                         }}
                       >
                         {data?.standardPhoto && !editAble ? (
@@ -312,7 +348,9 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                 zIndex: 2,
                                 backgroundColor: 'neutral.N00',
                               }}
-                              onClick={() => handleClick(data?.standardPhoto?.url)}
+                              onClick={() =>
+                                handleClick(data?.standardPhoto?.url)
+                              }
                             >
                               <Typography
                                 variant="wpf_h7_medium"
@@ -352,7 +390,10 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                 backgroundColor: 'neutral.N00',
                               }}
                             >
-                              <i color="#2E58FF" className="ri-upload-2-line"></i>
+                              <i
+                                color="#2E58FF"
+                                className="ri-upload-2-line"
+                              ></i>
                               <Typography
                                 variant="wpf_h7_medium"
                                 sx={{
@@ -381,7 +422,9 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                       handlePhoto(e);
                                     } else {
                                       setPhoto([]);
-                                      setErrorPhoto('Error: File size exceeds 1MB');
+                                      setErrorPhoto(
+                                        'Error: File size exceeds 1MB',
+                                      );
                                     }
                                   }
                                 }}
@@ -403,7 +446,8 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                         variant="wpf_p4_medium"
                       >
                         <span>
-                          Upload Your Updated Resume<span style={{ color: '#F04438' }}>*</span>
+                          Upload Your Updated Resume
+                          <span style={{ color: '#F04438' }}>*</span>
                         </span>
                       </Typography>
 
@@ -429,7 +473,8 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
 
                       <Box
                         sx={{
-                          width: data?.resume?.url && !editAble ? '100%' : '30%',
+                          width:
+                            data?.resume?.url && !editAble ? '100%' : '30%',
                         }}
                       >
                         {data?.resume?.url && !editAble ? (
@@ -491,7 +536,10 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                 backgroundColor: 'neutral.N00',
                               }}
                             >
-                              <i color="#2E58FF" className="ri-upload-2-line"></i>
+                              <i
+                                color="#2E58FF"
+                                className="ri-upload-2-line"
+                              ></i>
                               <Typography
                                 variant="wpf_h7_medium"
                                 sx={{
@@ -520,7 +568,9 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                                       handleResume(e);
                                     } else {
                                       setResume([]);
-                                      setErrorResume('Error: File size exceeds 1MB');
+                                      setErrorResume(
+                                        'Error: File size exceeds 1MB',
+                                      );
                                     }
                                   }
                                 }}
@@ -551,7 +601,11 @@ const VerificationInfoIndex = ({ data, setData, isDataLoading, editAble, setEdit
                   <FieldForProfile
                     name="presentAddress"
                     // label={"Nid Number"}
-                    label={documentType ? `${capitalizeFirstLetter(documentType)} Number` : ' Document Number'}
+                    label={
+                      documentType
+                        ? `${capitalizeFirstLetter(documentType)} Number`
+                        : ' Document Number'
+                    }
                     defaultValue={nidNumber}
                     disableItem={false}
                     handleChange={handleNidNumber}

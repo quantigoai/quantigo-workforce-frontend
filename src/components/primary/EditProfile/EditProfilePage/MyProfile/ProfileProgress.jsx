@@ -1,8 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 function LinearProgressWithLabel(props) {
   return (
@@ -30,20 +31,15 @@ LinearProgressWithLabel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-const ProfileProgress = ({ percentage }) => {
-  const [progress, setProgress] = React.useState(90);
-  React.useEffect(() => {
-    // const timer = setInterval(() => {
-    //   setProgress((prevProgress) => (prevProgress >= 100 ? 10 : prevProgress + 10));
-    // }, 800);
-    // return () => {
-    //   clearInterval(timer);
-    // };
-  }, []);
+const ProfileProgress = () => {
+  const { user, isLoading } = useSelector((state) => state.user);
+  const { profileCompletePercentage } = user;
 
   return (
     <Box sx={{ width: '100%' }}>
-      <LinearProgressWithLabel value={percentage} />
+      {!isLoading && (
+        <LinearProgressWithLabel value={profileCompletePercentage} />
+      )}
     </Box>
   );
 };

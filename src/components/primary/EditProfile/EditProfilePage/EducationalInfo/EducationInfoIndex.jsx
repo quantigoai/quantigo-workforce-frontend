@@ -7,7 +7,10 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
 import { useDispatch, useSelector } from 'react-redux';
 import useToaster from '../../../../../customHooks/useToaster';
-import { updateMyEducationFunction } from '../../../../../features/slice/userSlice';
+import {
+  updateMyEducationFunction,
+  updateUserProfileCompletePercentage,
+} from '../../../../../features/slice/userSlice';
 import UploadImagesField from '../VerificationInfo/UploadImagesField';
 import EducationFieldSelect from './EducationFieldSelect';
 import EducationSelect from './EducationSelect';
@@ -42,7 +45,9 @@ export const MyDatePicker = styled(DatePicker)(() => ({
 
 const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
   const { user, isLoading } = useSelector((state) => state.user);
-  const [higherDegree, setHigherDegree] = useState(data?.highestLevelOfDegree || '');
+  const [higherDegree, setHigherDegree] = useState(
+    data?.highestLevelOfDegree || '',
+  );
   const [field, setField] = useState(data?.fieldOfStudy || '');
   const [institution, setInstitution] = useState(data?.instituteName);
   const [files, setFiles] = useState(data?.certificateImages.map((i) => i.url));
@@ -54,7 +59,9 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
 
   const [isSyncLoading, setIsSyncLoading] = useState(false);
   const [openReject, setOpenReject] = React.useState(false);
-  const [imagesCopy, setImagesCopy] = useState(data?.certificateImages.map((i) => i.url));
+  const [imagesCopy, setImagesCopy] = useState(
+    data?.certificateImages.map((i) => i.url),
+  );
   const [removeImagesUpdate, setRemoveImagesUpdate] = useState([
     {
       name: '',
@@ -91,7 +98,8 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
     }
 
     if (institution !== undefined) {
-      institution.name !== undefined && formData.append('instituteName', institution?.name || '');
+      institution.name !== undefined &&
+        formData.append('instituteName', institution?.name || '');
     }
 
     if (!isNaN(value.$y)) {
@@ -116,7 +124,10 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
         tempData.name = item;
         tempData.isRemoved = isRemoved;
         formData.append(`removedImages[${index}][name]`, tempData.name);
-        formData.append(`removedImages[${index}][isRemoved]`, tempData.isRemoved);
+        formData.append(
+          `removedImages[${index}][isRemoved]`,
+          tempData.isRemoved,
+        );
       });
     }
 
@@ -125,25 +136,34 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
       formData,
     };
 
-    await toast.responsePromise(updateMyEducationFunction(finalData), setIsSyncLoading, {
-      initialMessage: 'Education info is updating...',
-      inPending: () => {
-        setOpenReject(false);
-        setIsSyncLoading(true);
+    await toast.responsePromise(
+      updateMyEducationFunction(finalData),
+      setIsSyncLoading,
+      {
+        initialMessage: 'Education info is updating...',
+        inPending: () => {
+          setOpenReject(false);
+          setIsSyncLoading(true);
+        },
+        afterSuccess: (data) => {
+          setOpenReject(false);
+          setIsSyncLoading(false);
+          setData(data.data.user);
+          setFiles(data.data.user.certificateImages.map((i) => i.url));
+          setImagesCopy(data.data.user.certificateImages.map((i) => i.url));
+          setEditAble(false);
+          dispatch(
+            updateUserProfileCompletePercentage(
+              data.data.user.profileCompletePercentage,
+            ),
+          );
+        },
+        afterError: (data) => {
+          setOpenReject(false);
+          setIsSyncLoading(false);
+        },
       },
-      afterSuccess: (data) => {
-        setOpenReject(false);
-        setIsSyncLoading(false);
-        setData(data.data.user);
-        setFiles(data.data.user.certificateImages.map((i) => i.url));
-        setImagesCopy(data.data.user.certificateImages.map((i) => i.url));
-        setEditAble(false);
-      },
-      afterError: (data) => {
-        setOpenReject(false);
-        setIsSyncLoading(false);
-      },
-    });
+    );
   };
   const higherStudies = [
     { value: 'SSC', label: 'SSC' },
@@ -256,7 +276,8 @@ const EducationInfoIndex = ({ data, setData, editAble, setEditAble }) => {
                     Year of Completion
                     {
                       <span style={{ color: '#F04438' }}>
-                        {/* {label === "Name of Contact Person" || label === "Relationship" ? "*" : ""} */}*
+                        {/* {label === "Name of Contact Person" || label === "Relationship" ? "*" : ""} */}
+                        *
                       </span>
                     }
                   </Typography>

@@ -1,5 +1,5 @@
-import { Box, FormControl, MenuItem, Select, styled, Typography } from "@mui/material";
-import PropTypes from "prop-types";
+import { Box, FormControl, MenuItem, Select, styled, Typography } from '@mui/material';
+import PropTypes from 'prop-types';
 
 EducationSelect.propTypes = {
   name: PropTypes.string,
@@ -7,35 +7,35 @@ EducationSelect.propTypes = {
 };
 
 export const MySelect = styled(Select)(() => ({
-  height: "40px",
-  borderRadius: "8px",
-  marginTop: "7px",
-  border: "1px solid #E6ECF5 ",
-  fontsize: "10px",
-  "& .MuiOutlinedInput-notchedOutline": {
-    borderRadius: "8px",
+  height: '40px',
+  borderRadius: '8px',
+  marginTop: '7px',
+  border: '1px solid #E6ECF5 ',
+  fontsize: '10px',
+  '& .MuiOutlinedInput-notchedOutline': {
+    borderRadius: '8px',
   },
-  "& .MuiInputBase-root": {
-    height: "10px",
-    fontSize: "12px",
-    color: "neutral.N300",
-    padding: "0px 5px",
-    "&:disabled": {
-      padding: "0px 5px",
+  '& .MuiInputBase-root': {
+    height: '10px',
+    fontSize: '12px',
+    color: 'neutral.N300',
+    padding: '0px 5px',
+    '&:disabled': {
+      padding: '0px 5px',
     },
   },
-  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+  '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
     border: `1px solid #2E58FF !important`,
   },
-  "& .MuiInputBase-input.Mui-focused": {
-    color: "blue",
+  '& .MuiInputBase-input.Mui-focused': {
+    color: 'blue',
   },
-  "@media(max-width:1439px)": {
-    height: "30px",
-    fontSize: "12px",
+  '@media(max-width:1439px)': {
+    height: '30px',
+    fontSize: '12px',
   },
-  "@media(min-width: 1920px)": {
-    fontSize: "14px",
+  '@media(min-width: 1920px)': {
+    fontSize: '14px',
   },
 }));
 export default function EducationSelect({ handleChangeDegree, higherDegree, options, label, editAble, defaultValue }) {
@@ -43,18 +43,24 @@ export default function EducationSelect({ handleChangeDegree, higherDegree, opti
     <Box>
       <Typography
         sx={{
-          color: "neutral.N300",
-          marginBottom: "10px",
+          color: 'neutral.N300',
+
+          mb: 1,
         }}
         variant="wpf_p4_medium"
       >
-        {label}
+        {label}{' '}
+        {
+          <span style={{ color: '#F04438' }}>
+            {/* {label === "Name of Contact Person" || label === "Relationship" ? "*" : ""} */}*
+          </span>
+        }
       </Typography>
       <FormControl fullWidth>
         <MySelect
           displayEmpty
           defaultValue={defaultValue}
-          sx={{ backgroundColor: editAble ? "" : "neutral.N400" }}
+          sx={{ backgroundColor: editAble ? '' : 'neutral.N400' }}
           disabled={!editAble}
           value={higherDegree}
           onChange={handleChangeDegree}
@@ -68,7 +74,7 @@ export default function EducationSelect({ handleChangeDegree, higherDegree, opti
           {options.map((option) => (
             <MenuItem
               sx={{
-                fontSize: "14px",
+                fontSize: '14px',
               }}
               key={option.value}
               fullWidth

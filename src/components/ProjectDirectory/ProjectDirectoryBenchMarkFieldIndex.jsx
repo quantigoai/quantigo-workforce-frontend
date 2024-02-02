@@ -1,38 +1,48 @@
-import { Box, Grid, Menu, MenuItem, Stack, Typography } from '@mui/material';
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { Box, Grid, Menu, MenuItem, Stack, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
-import TextFieldProjectDirectoryBenchmark from '../shared/CustomField/TextFieldProjectDirectoryBenchmark';
-const addBenchmarkType = [
-  // { item: 'Client Alias', value: 'Client_Alias' },
-  // { item: 'Industry', value: 'Industry' },
-  // { item: 'Platform', value: 'Platform' },
-  { item: 'Tool Type', value: 'Tool_Type' },
-  // { item: 'PDR', value: 'PDR' },
-  // { item: 'Project Type', value: 'Project_Type' },
-  { item: 'Action Item', value: 'Action_Items' },
-  { item: 'QA Check Points', value: 'QA_Check_Points' },
-  { item: 'Object Benchmark', value: 'Obj_Benchmark' },
-  { item: 'Image Benchmark', value: 'Img_Benchmark' },
-  { item: 'Tagging Benchmark', value: 'Tagging_Benchmark' },
-  { item: 'Deletion', value: 'Deletion' },
-  { item: 'Skip Image', value: 'Skip_Image' },
-  { item: 'Image Loading', value: 'Image_Loading' },
-  { item: 'Object Saving Time', value: 'Object_Saving_Time' },
-  { item: 'Video Watch Time', value: 'Video_Watch_Time' },
-  { item: 'Judgement Time', value: 'Judgement_Time' },
-  { item: 'QA Benchmark', value: 'QA_Benchmark' },
-  { item: 'Annotation', value: 'Annotation' },
-  { item: 'QA', value: 'QA' },
-];
-const ProjectDirectoryBenchMarkFieldIndex = () => {
+import TextFieldProjectDirectoryBenchmark from "../shared/CustomField/TextFieldProjectDirectoryBenchmark";
+
+const ProjectDirectoryBenchMarkFieldIndex = ({ item }) => {
+  console.log("🚀 ~ ProjectDirectoryBenchMarkFieldIndex ~ item:", item);
+  const addBenchmarkType = [
+    { item: "Manual Creation", value: "manual_Creation", defaultValue: item?.manual_Creation },
+    { item: "Correction", value: "correction", defaultValue: item?.correction },
+    { item: "Deletion", value: "deletion", defaultValue: item?.deletion },
+    { item: "Object Assessment", value: "object_Assessment", defaultValue: item?.object_Assessment },
+    { item: "Manual Tagging", value: "manual_Tagging", defaultValue: item?.manual_Tagging },
+    { item: "Tag Correction", value: "tag_Correction", defaultValue: item?.tag_Correction },
+    { item: "Tag Deletion", value: "tag_Deletion", defaultValue: item?.tag_Deletion },
+    { item: "Tag Check Review", value: "tag_Check_Review", defaultValue: item?.tag_Check_Review },
+    { item: "Cloning Manual Object", value: "cloning_Manual_Object", defaultValue: item?.cloning_Manual_Object },
+    { item: "Clone Correction", value: "clone_Correction", defaultValue: item?.clone_Correction },
+    { item: "Review", value: "review", defaultValue: item?.review },
+    { item: "Tag Check QA", value: "tag_Check_QA", defaultValue: item?.tag_Check_QA },
+    { item: "Image Assessment", value: "image_Assessment", defaultValue: item?.image_Assessment },
+    { item: "Video Assessment", value: "video_Assessment", defaultValue: item?.video_Assessment },
+    { item: "Categorization", value: "categorization", defaultValue: item?.categorization },
+  ];
   const [anchorEl, setAnchorEl] = useState(null);
   const [addBenchmarkItems, setAddBenchmarkItems] = useState([]);
-  const [benchmarkItems, setBenchmarkItems] = useState(addBenchmarkType);
+  const [benchmarkItems, setBenchmarkItems] = useState([]);
   const { isLightTheme } = useSelector((state) => state.theme);
   const handleButtonClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  useEffect(() => {
+    addBenchmarkType.forEach((benchmark) => {
+      const key = benchmark.value;
+      const defaultValue = benchmark.value;
+
+      if (key in item && key === defaultValue) {
+        setAddBenchmarkItems((prevState) => [...prevState, benchmark]);
+      } else {
+        setBenchmarkItems((prevState) => [...prevState, benchmark]);
+      }
+    });
+  }, []);
+  console.log("🚀 ~ addBenchmarkType.forEach ~ addBenchmarkType:", addBenchmarkItems);
 
   const handleMenuClose = () => {
     setAnchorEl(null);
@@ -63,23 +73,23 @@ const ProjectDirectoryBenchMarkFieldIndex = () => {
       <Box>
         <Typography
           sx={{
-            mt: '5px',
-            mb: '5px',
-            color: 'neutral.N300',
+            mt: "5px",
+            mb: "5px",
+            color: "neutral.N300",
           }}
-          variant="wpf_h7_medium"
+          variant='wpf_h7_medium'
         >
           Benchmark
         </Typography>
         <Stack
           sx={{
-            border: '1px solid #E6ECF5',
-            padding: '16px',
-            borderRadius: '8px',
+            border: "1px solid #E6ECF5",
+            padding: "16px",
+            borderRadius: "8px",
 
-            background: isLightTheme ? '#FAFCFF' : '#2C2C2C',
+            background: isLightTheme ? "#FAFCFF" : "#2C2C2C",
             // maxHeight: 155,
-            color: isLightTheme ? '#091E42' : '#FFFFFF',
+            color: isLightTheme ? "#091E42" : "#FFFFFF",
             // color: "#FFFFFF",
             // overflowY: "auto",
           }}
@@ -91,13 +101,13 @@ const ProjectDirectoryBenchMarkFieldIndex = () => {
                   <Grid item xs={5.89}>
                     <Box
                       sx={{
-                        width: '100%',
+                        width: "100%",
                         px: 0,
 
                         height: {
-                          lg: '72px',
-                          xl: '82px',
-                          xxl: '85px',
+                          lg: "72px",
+                          xl: "82px",
+                          xxl: "85px",
                         },
                       }}
                     >
@@ -105,6 +115,7 @@ const ProjectDirectoryBenchMarkFieldIndex = () => {
                         name={item.value}
                         label={item.item}
                         handleRemove={handleRemove}
+                        defaultValue={item.defaultValue}
                       />
                     </Box>
                   </Grid>
@@ -113,36 +124,36 @@ const ProjectDirectoryBenchMarkFieldIndex = () => {
           </Grid>
           <Typography
             sx={{
-            //   fontWeight: '600',
+              //   fontWeight: '600',
               // mt: '10px',
-            //   fontSize: '14px',
-              mb: '0px',
-                color: "#2E58FF" ,
-              cursor: 'pointer',
+              //   fontSize: '14px',
+              mb: "0px",
+              color: "#2E58FF",
+              cursor: "pointer",
               //   pointerEvents: hasChanged ? "auto" : "none",
             }}
-            variant="wpf_h7_Bold"
-            type="button"
+            variant='wpf_h7_Bold'
+            type='button'
             onClick={handleButtonClick}
             // onClick={handleAddOtherDocument}
           >
-            <i className="ri-add-line"></i> Add Another Benchmark
+            <i className='ri-add-line'></i> Add Another Benchmark
           </Typography>
           <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
             {benchmarkItems.map((filter, index) => (
               <MenuItem
                 sx={{
-                  fontSize: '14px',
-                  '& .MuiInputBase-root': {
+                  fontSize: "14px",
+                  "& .MuiInputBase-root": {
                     // height: "42px",
                     // fontSize: '12px',
-                    fontFamily: 'Inter',
-                    '@media(max-width:1439px)': {
+                    fontFamily: "Inter",
+                    "@media(max-width:1439px)": {
                       // height: "30px",
-                      fontSize: '10px',
+                      fontSize: "10px",
                     },
-                    '@media(min-width: 1920px)': {
-                      fontSize: '14px',
+                    "@media(min-width: 1920px)": {
+                      fontSize: "14px",
                     },
                   },
                 }}

@@ -171,7 +171,7 @@ const customHeader = (params) => {
       return 'QA';
     case 'remarks':
       return 'REMARKS';
-    case 'lebeling_Tool':
+    case 'labeling_Tool':
       return 'LABELING TOOL';
     case 'data_Type':
       return 'DATA TYPE';

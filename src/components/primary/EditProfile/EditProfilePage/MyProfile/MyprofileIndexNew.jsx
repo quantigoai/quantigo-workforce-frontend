@@ -37,7 +37,7 @@ const religionOption = [
   { value: "buddhism", label: "Buddhism" },
   { value: "others", label: "Others" },
 ];
-const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
+const MyprofileIndexNew = ({ data, editAble, setEditAble, coverImageFile, setCoverImageFile }) => {
   const { user, isLoading } = useSelector((state) => state.user);
 
   // const [editAble, setEditAble] = useState(false);
@@ -54,17 +54,6 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
   const toast = useToaster();
   const handleEditProfile = () => {
     setEditAble(true);
-  };
-  const [coverImageFile, setCoverImageFile] = useState(null);
-  const [coverImage, setCoverImage] = useState(null);
-
-  const handleImage = (e) => {
-    setCoverImageFile(e.target.files[0]);
-    const file = e.target.files[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
-      setCoverImage(url);
-    }
   };
 
   const { handleSubmit, control, errors } = useForm();
@@ -185,7 +174,7 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
             }}
           >
             <Grid container sx={{ paddingTop: "2%", paddingBottom: "1%" }}>
-              <Typography sx={{ color: "primary.B200" }} variant="wpf_p4_medium">
+              <Typography sx={{ color: "primary.B200" }} variant='wpf_p4_medium'>
                 Personal Information
               </Typography>
             </Grid>
@@ -193,7 +182,7 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
             <Grid container spacing={0} sx={{ paddingBottom: "20px" }}>
               <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                 <FieldForProfile
-                  name="firstName"
+                  name='firstName'
                   label={"First Name"}
                   handleChange={handleFirstNameChange}
                   defaultValue={firstName}
@@ -203,7 +192,7 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
               </Grid>
               <Grid item xs={6}>
                 <FieldForProfile
-                  name="lastName"
+                  name='lastName'
                   label={"Last Name"}
                   handleChange={handleLasttNameChange}
                   defaultValue={lastName}
@@ -215,7 +204,7 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
             <Grid container sx={{ paddingBottom: "20px" }}>
               <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                 <CommonFieldTest
-                  name="gender"
+                  name='gender'
                   label={"Gender"}
                   defaultValue={capitalizeFirstLetter(data.gender)}
                   disableItem={true}
@@ -227,7 +216,7 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
               </Grid>
               <Grid item xs={6}>
                 <FieldForProfile
-                  name="occupation"
+                  name='occupation'
                   label={"Occupation"}
                   defaultValue={occupation}
                   disableItem={false}
@@ -239,7 +228,7 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
             <Grid container sx={{ paddingBottom: "20px" }}>
               <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                 <CommonFieldTest
-                  name="dob"
+                  name='dob'
                   label={"Date of Birth"}
                   defaultValue={DOB}
                   disableItem={true}
@@ -251,7 +240,7 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
               </Grid>
               <Grid item xs={6}>
                 <SelectFieldForProfile
-                  name="bloodGroup"
+                  name='bloodGroup'
                   label={"Blood Group"}
                   defaultValue={bloodGroup}
                   disableItem={false}
@@ -270,7 +259,7 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
             <Grid container sx={{ paddingBottom: "20px" }}>
               <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                 <SelectFieldForProfile
-                  name="bloodGroup"
+                  name='bloodGroup'
                   label={"Marital Status"}
                   defaultValue={maritalStatus}
                   disableItem={false}
@@ -281,7 +270,7 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
               </Grid>
               <Grid item xs={6}>
                 <SelectFieldForProfile
-                  name="bloodGroup"
+                  name='bloodGroup'
                   label={"Religion"}
                   defaultValue={religion}
                   disableItem={false}
@@ -295,7 +284,7 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
             <Grid container sx={{ paddingBottom: "20px" }}>
               <Grid item xs={6} sx={{ paddingRight: "2%" }}>
                 <FieldForProfile
-                  name="presentAddress"
+                  name='presentAddress'
                   label={"Father's Name"}
                   defaultValue={fathersName}
                   disableItem={false}
@@ -305,7 +294,7 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
               </Grid>
               <Grid item xs={6}>
                 <FieldForProfile
-                  name="presentAddress"
+                  name='presentAddress'
                   label={"Mother's Name"}
                   defaultValue={mothersName}
                   disableItem={false}
@@ -317,7 +306,7 @@ const MyprofileIndexNew = ({ data, editAble, setEditAble }) => {
             <Grid container sx={{ paddingBottom: "20px", paddingTop: "%" }}>
               <Grid item xs={12}>
                 <CommonFieldTest
-                  name="email"
+                  name='email'
                   label={"Email"}
                   defaultValue={data.email}
                   disableItem={true}

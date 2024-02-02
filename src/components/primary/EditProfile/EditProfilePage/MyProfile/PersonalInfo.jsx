@@ -15,6 +15,17 @@ const PersonalInfo = () => {
   const handleEditProfile = () => {
     setEditAble(true);
   };
+  const [coverImageFile, setCoverImageFile] = useState(null);
+  const [coverImage, setCoverImage] = useState(null);
+
+  const handleImage = (e) => {
+    setCoverImageFile(e.target.files[0]);
+    const file = e.target.files[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setCoverImage(url);
+    }
+  };
   useEffect(() => {
     dispatch(getUserPersonalInfo(user._id)).then((action) => {
       setData(action.payload.data);
@@ -49,10 +60,10 @@ const PersonalInfo = () => {
             user={user}
             editAble={editAble}
             handleEditProfile={handleEditProfile}
-            // profileImageChange={false}
-            //   coverImage={coverImage}
-            //   handleImage={handleImage}
-            //   coverImageFile={coverImageFile}
+            profileImageChange={true}
+            coverImage={coverImage}
+            handleImage={handleImage}
+            coverImageFile={coverImageFile}
           />
         </Box>
         {isDataLoading ? (
@@ -75,6 +86,8 @@ const PersonalInfo = () => {
               isDataLoading={isDataLoading}
               editAble={editAble}
               setEditAble={setEditAble}
+              coverImageFile={coverImageFile}
+              setCoverImageFile={setCoverImageFile}
             />
           </>
         )}

@@ -1,5 +1,5 @@
 import { Box, CircularProgress, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 const ProgressBarForDashboard = () => {
@@ -22,7 +22,8 @@ const ProgressBarForDashboard = () => {
         <CircularProgress
           variant="determinate"
           sx={{
-            color: (theme) => theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+            color: (theme) =>
+              theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
             // backgroundColor: "red",
           }}
           size="55px"
@@ -37,7 +38,8 @@ const ProgressBarForDashboard = () => {
           sx={{
             strokeLinecap: 'round',
             strokeLinejoin: 'round',
-            color: (theme) => (theme.palette.mode === 'light' ? '#2D58FF' : '#2D58FF'),
+            color: (theme) =>
+              theme.palette.mode === 'light' ? '#2D58FF' : '#2D58FF',
             animationDuration: '550ms',
             position: 'absolute',
             left: 0,
@@ -60,7 +62,9 @@ const ProgressBarForDashboard = () => {
             // backgroundColor: "blue",
           }}
         >
-          <Typography variant="wpf_h7_semiBold">{profileCompletePercentage}%</Typography>
+          <Typography variant="wpf_h7_semiBold">
+            {Math.round(profileCompletePercentage)}%
+          </Typography>
         </Box>
       </Box>
     </>

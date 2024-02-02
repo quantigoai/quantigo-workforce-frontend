@@ -103,7 +103,10 @@ const ProfilePicture = ({
                 <Grid container>
                   <Grid container>
                     <Box sx={{ paddingRight: '2%' }}>
-                      <Typography variant="wpf_p1_semiBold" sx={{ color: 'neutral.750' }}>
+                      <Typography
+                        variant="wpf_p1_semiBold"
+                        sx={{ color: 'neutral.750' }}
+                      >
                         {user.firstName} {user.lastName}{' '}
                       </Typography>
                     </Box>
@@ -142,7 +145,10 @@ const ProfilePicture = ({
                   </Grid>
 
                   <Grid container>
-                    <Typography variant="wpf_p4_regular" sx={{ color: 'neutral.700' }}>
+                    <Typography
+                      variant="wpf_p4_regular"
+                      sx={{ color: 'neutral.700' }}
+                    >
                       {user.role === 'level_1_annotator'
                         ? 'Level 1 Annotator'
                         : user.role === 'level_2_annotator'
@@ -167,7 +173,9 @@ const ProfilePicture = ({
                     </Typography>
                   </Grid>
                   <Grid>
-                    <ProfileProgress />
+                    <ProfileProgress
+                      percentage={user.profileCompletePercentage}
+                    />
                     {/* <CourseProgress /> */}
                   </Grid>
                 </Grid>
@@ -198,7 +206,12 @@ const ProfilePicture = ({
                   disableRipple
                 >
                   <Box sx={{ paddingRight: '10%' }}>
-                    <Typography sx={{ fontSize: { xl: '14px', xxl: '14px', lg: '10px' } }}> Edit Profile</Typography>
+                    <Typography
+                      sx={{ fontSize: { xl: '14px', xxl: '14px', lg: '10px' } }}
+                    >
+                      {' '}
+                      Edit Profile
+                    </Typography>
                   </Box>{' '}
                   <img src={editIcon} />{' '}
                 </Button>

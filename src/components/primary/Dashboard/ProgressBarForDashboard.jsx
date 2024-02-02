@@ -6,7 +6,6 @@ const ProgressBarForDashboard = () => {
   const [progress, setProgress] = React.useState(80);
   const { user, isLoading } = useSelector((state) => state.user);
   const { profileCompletePercentage } = user;
-  console.log('🚀 ~ ProgressBarForDashboard ~ profileCompletePercentage:', profileCompletePercentage);
 
   // useEffect(() => {
   //   if (user.user.isNDASigned && user.user.isDocumentsSubmitted === 'submitted') {
@@ -44,7 +43,7 @@ const ProgressBarForDashboard = () => {
             left: 0,
           }}
           size="55px"
-          value={progress}
+          value={profileCompletePercentage}
           thickness={5}
           // {...props}
         />

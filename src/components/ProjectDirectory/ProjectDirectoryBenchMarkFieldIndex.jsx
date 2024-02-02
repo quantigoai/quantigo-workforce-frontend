@@ -4,8 +4,7 @@ import { useSelector } from "react-redux";
 
 import TextFieldProjectDirectoryBenchmark from "../shared/CustomField/TextFieldProjectDirectoryBenchmark";
 
-const ProjectDirectoryBenchMarkFieldIndex = ({ item }) => {
-  console.log("🚀 ~ ProjectDirectoryBenchMarkFieldIndex ~ item:", item);
+const ProjectDirectoryBenchMarkFieldIndex = ({ item, setProjectDirectoryRemove }) => {
   const addBenchmarkType = [
     { item: "Manual Creation", value: "manual_Creation", defaultValue: item?.manual_Creation },
     { item: "Correction", value: "correction", defaultValue: item?.correction },
@@ -32,17 +31,15 @@ const ProjectDirectoryBenchMarkFieldIndex = ({ item }) => {
   };
   useEffect(() => {
     addBenchmarkType.forEach((benchmark) => {
-      const key = benchmark.value;
-      const defaultValue = benchmark.value;
-
-      if (key in item && key === defaultValue) {
+      if (benchmark.defaultValue) {
         setAddBenchmarkItems((prevState) => [...prevState, benchmark]);
       } else {
         setBenchmarkItems((prevState) => [...prevState, benchmark]);
+        setProjectDirectoryRemove((prevState) => [...prevState, benchmark]);
       }
+     
     });
   }, []);
-  console.log("🚀 ~ addBenchmarkType.forEach ~ addBenchmarkType:", addBenchmarkItems);
 
   const handleMenuClose = () => {
     setAnchorEl(null);
@@ -57,6 +54,7 @@ const ProjectDirectoryBenchMarkFieldIndex = ({ item }) => {
 
     const filteredArr = benchmarkItems.filter((item) => item.value !== val);
     setBenchmarkItems(filteredArr);
+    setProjectDirectoryRemove(filteredArr);
   };
   const handleRemove = (name, label) => {
     const deleteValue = {
@@ -64,10 +62,12 @@ const ProjectDirectoryBenchMarkFieldIndex = ({ item }) => {
       value: name,
     };
     setBenchmarkItems((prevArray) => [...prevArray, deleteValue]);
-    console.log(addBenchmarkItems);
+    setProjectDirectoryRemove((prevArray) => [...prevArray, deleteValue]);
+
     const filteredArr = addBenchmarkItems.filter((item) => item.value != name);
     setAddBenchmarkItems(filteredArr);
   };
+
   return (
     <>
       <Box>
@@ -98,27 +98,29 @@ const ProjectDirectoryBenchMarkFieldIndex = ({ item }) => {
             {addBenchmarkItems &&
               addBenchmarkItems.map((item) => (
                 <>
-                  <Grid item xs={5.89}>
-                    <Box
-                      sx={{
-                        width: "100%",
-                        px: 0,
+                  {item.defaultValue != "" && (
+                    <Grid item xs={5.89}>
+                      <Box
+                        sx={{
+                          width: "100%",
+                          px: 0,
 
-                        height: {
-                          lg: "72px",
-                          xl: "82px",
-                          xxl: "85px",
-                        },
-                      }}
-                    >
-                      <TextFieldProjectDirectoryBenchmark
-                        name={item.value}
-                        label={item.item}
-                        handleRemove={handleRemove}
-                        defaultValue={item.defaultValue}
-                      />
-                    </Box>
-                  </Grid>
+                          height: {
+                            lg: "72px",
+                            xl: "82px",
+                            xxl: "85px",
+                          },
+                        }}
+                      >
+                        <TextFieldProjectDirectoryBenchmark
+                          name={item.value}
+                          label={item.item}
+                          handleRemove={handleRemove}
+                          defaultValue={item.defaultValue}
+                        />
+                      </Box>
+                    </Grid>
+                  )}
                 </>
               ))}
           </Grid>
@@ -128,10 +130,12 @@ const ProjectDirectoryBenchMarkFieldIndex = ({ item }) => {
               // mt: '10px',
               //   fontSize: '14px',
               mb: "0px",
-              color: "#2E58FF",
-              cursor: "pointer",
+              color: benchmarkItems.length === 0 ? "#7D89A3" : "#2E58FF",
+              cursor: benchmarkItems.length === 0 ? "" : "pointer",
+
               //   pointerEvents: hasChanged ? "auto" : "none",
             }}
+            disabled={benchmarkItems.length === 0 ? true : false}
             variant='wpf_h7_Bold'
             type='button'
             onClick={handleButtonClick}
@@ -139,32 +143,34 @@ const ProjectDirectoryBenchMarkFieldIndex = ({ item }) => {
           >
             <i className='ri-add-line'></i> Add Another Benchmark
           </Typography>
-          <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
-            {benchmarkItems.map((filter, index) => (
-              <MenuItem
-                sx={{
-                  fontSize: "14px",
-                  "& .MuiInputBase-root": {
-                    // height: "42px",
-                    // fontSize: '12px',
-                    fontFamily: "Inter",
-                    "@media(max-width:1439px)": {
-                      // height: "30px",
-                      fontSize: "10px",
+          {benchmarkItems.length != 0 && (
+            <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
+              {benchmarkItems.map((filter, index) => (
+                <MenuItem
+                  sx={{
+                    fontSize: "14px",
+                    "& .MuiInputBase-root": {
+                      // height: "42px",
+                      // fontSize: '12px',
+                      fontFamily: "Inter",
+                      "@media(max-width:1439px)": {
+                        // height: "30px",
+                        fontSize: "10px",
+                      },
+                      "@media(min-width: 1920px)": {
+                        fontSize: "14px",
+                      },
                     },
-                    "@media(min-width: 1920px)": {
-                      fontSize: "14px",
-                    },
-                  },
-                }}
-                key={index}
-                value={filter.value}
-                onClick={() => handleMenuItemClick(filter.value, filter.item)}
-              >
-                {filter.item}
-              </MenuItem>
-            ))}
-          </Menu>
+                  }}
+                  key={index}
+                  value={filter.value}
+                  onClick={() => handleMenuItemClick(filter.value, filter.item)}
+                >
+                  {filter.item}
+                </MenuItem>
+              ))}
+            </Menu>
+          )}
         </Stack>
       </Box>
     </>

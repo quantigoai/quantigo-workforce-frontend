@@ -1,27 +1,10 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { Box, Button, Grid, Menu, MenuItem, Typography } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import AnnotationType from './AnnotationType';
-import IndustryTypeField from './IndustryTypeField';
 import SelectFilterProjectDirectory from './SelectFilterProjectDirectory';
 
 import { useSelector } from 'react-redux';
-import ActionTypeField from './ActionItemsField';
-import Deletionfield from './Deletionfield';
-import ImageLoadingField from './ImageLoadingField';
-import ImgBenchmark from './ImgBenchmark';
 import ItemsField from './ItemsField';
-import JudgementTimeField from './JudgementTimeField';
-import ObjBenchmarkField from './ObjBenchmarkField';
-import ObjectSavingTimeField from './ObjectSavingTimeField';
-import QABenchmarkField from './QABenchmarkField';
-import QACheckPointsField from './QACheckPointsField';
-import QAField from './QAField';
-import SkipImageField from './SkipImageField';
-import TaggingBenchmark from './TaggingBenchmark';
-import ToolTypeField from './ToolTypeField';
-import VideoWatchTimeField from './VideoWatchTimeField';
-import ProjectDirectoryBenchMarkFieldIndex from '../ProjectDirectoryBenchMarkFieldIndex';
 const data = [
   { value: 'industryType', title: '', type: '' },
   { value: 'setClientAliasesFilter', title: '', type: '' },
@@ -159,6 +142,19 @@ const MiniModalProjectDirectoryNew = ({
   anchorEl,
   menuFilter,
 }) => {
+  // console.table(menuFilter);
+  const [showingField, setShowingField] = useState([]);
+  console.table(showingField);
+
+  useEffect(() => {
+    const x = menuFilter.filter((item) => {
+      if (item.isFieldShow) {
+        return item;
+      }
+    });
+    setShowingField(x);
+  }, [menuFilter]);
+
   // const [anchorEl, setAnchorEl] = useState(null);
   const { isLightTheme } = useSelector((state) => state.theme);
   const addBenchmarkType = [
@@ -240,7 +236,10 @@ const MiniModalProjectDirectoryNew = ({
           }}
         >
           <Typography variant="wpf_p1_semiBold">Filter By</Typography>
-          <CloseIcon sx={{ color: '#2D58FF', cursor: 'pointer', fontweight: '600 ' }} onClick={handleCloseFilter} />
+          <CloseIcon
+            sx={{ color: '#2D58FF', cursor: 'pointer', fontweight: '600 ' }}
+            onClick={handleCloseFilter}
+          />
         </Box>
         {/* <br /> */}
         <Box sx={{ px: '15px' }}>
@@ -256,76 +255,19 @@ const MiniModalProjectDirectoryNew = ({
         </Box>
         <br />
 
-        <Grid container spacing={1}>
-          {addBenchmarkItems &&
-            addBenchmarkItems.map((item) => (
-              <>
-                {item.defaultValue != '' && (
-                  <Grid item xs={5.89}>
-                    <Box
-                      sx={{
-                        width: '100%',
-                        px: 0,
-
-                        height: {
-                          lg: '72px',
-                          xl: '82px',
-                          xxl: '85px',
-                        },
-                      }}
-                    >
-                      {/* <TextFieldProjectDirectoryBenchmark
-                          name={item.value}
-                          label={item.item}
-                          handleRemove={handleRemove}
-                          defaultValue={item.defaultValue}
-                        /> */}
-                      <ItemsField
-                        title={item.item}
-                        type={item.value}
-                        isLightTheme={isLightTheme}
-                        platformFieldFilter={judgementTimeFieldFilter}
-                        setPlatformFieldFilter={setJudgementTimeFieldFilter}
-                      />
-                    </Box>
-                  </Grid>
-                )}
-              </>
-            ))}
-          <Typography
-            sx={{
-              //   fontWeight: '600',
-              // mt: '10px',
-              //   fontSize: '14px',
-              mb: '0px',
-              color: benchmarkItems.length === 0 ? '#7D89A3' : '#2E58FF',
-              cursor: benchmarkItems.length === 0 ? '' : 'pointer',
-
-              //   pointerEvents: hasChanged ? "auto" : "none",
-            }}
-            disabled={benchmarkItems.length === 0 ? true : false}
-            variant="wpf_h7_Bold"
-            type="button"
-            onClick={handleButtonClick}
-            // onClick={handleAddOtherDocument}
-          >
-            <i className="ri-add-line"></i> Add Another Benchmark
-          </Typography>
-        </Grid>
-        {qAField ? (
+        {showingField.map((item) => (
           <Grid container sx={{ padding: '1%' }}>
             <ItemsField
-              title="QA"
-              type="QA"
+              title={item.title}
+              type={item.value}
               isLightTheme={isLightTheme}
               platformFieldFilter={qAFieldFilter}
               setPlatformFieldFilter={setQAFieldFilter}
             />
           </Grid>
-        ) : (
-          <></>
-        )}
-        {judgementTimeFilter ? (
+        ))}
+
+        {/* {judgementTimeFilter ? (
           <Grid container sx={{ padding: '1%' }}>
             <ItemsField
               title="Judgement Time"
@@ -547,38 +489,7 @@ const MiniModalProjectDirectoryNew = ({
           </Grid>
         ) : (
           <></>
-        )}
-        {industrySetFilter ? (
-          <Grid container sx={{ padding: '1%' }}>
-            {/* <IndustryTypeField
-              isLightTheme={isLightTheme}
-              setIndustryType={setIndustryType}
-              industryType={industryType}
-            /> */}
-            <ItemsField
-              title="Industry"
-              type="industry"
-              isLightTheme={isLightTheme}
-              platformFieldFilter={industryType}
-              setPlatformFieldFilter={setIndustryType}
-            />
-          </Grid>
-        ) : (
-          <></>
-        )}
-        {annotationSetFilter ? (
-          <Grid container sx={{ padding: '1%' }}>
-            <ItemsField
-              title="Annotation"
-              type="annotation"
-              isLightTheme={isLightTheme}
-              platformFieldFilter={annotationFilter}
-              setPlatformFieldFilter={setAnnotationFilter}
-            />
-          </Grid>
-        ) : (
-          <></>
-        )}
+        )} */}
 
         <br />
         <Box>

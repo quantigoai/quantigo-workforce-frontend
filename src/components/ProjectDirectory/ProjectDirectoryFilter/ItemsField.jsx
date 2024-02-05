@@ -6,12 +6,18 @@
  *
  * Copyright (c) 2024 Tanzim Ahmed
  */
-import { Box, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, Typography, styled } from '@mui/material';
+import {
+  Box,
+  FormControl,
+  Grid,
+  MenuItem,
+  Select,
+  Typography,
+  styled,
+} from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getType } from '../../../features/slice/ProjectDirectorySlice';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { PdTextField } from '../../shared/CustomField/PDTextFIeld';
 
 export const MySelect = styled(Select)(() => ({
   height: '40px',
@@ -48,18 +54,25 @@ export const MySelect = styled(Select)(() => ({
     fontSize: '14px',
   },
 }));
-const ItemsField = ({ setPlatformFieldFilter, platformFieldFilter, isLightTheme, title, type }) => {
+const ItemsField = ({
+  setPlatformFieldFilter,
+  platformFieldFilter,
+  isLightTheme,
+  title,
+  type,
+}) => {
   const [menu, setMenu] = useState([]);
 
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getType(type)).then((action) => {
-  //     if (action.payload.status === 200) {
-  //       setMenu(action.payload.data.types);
-  //     }
-  //   });
-  // }, []);
+  useEffect(() => {
+    dispatch(getType(type)).then((action) => {
+      if (action.payload.status === 200) {
+        setMenu(action.payload.data.types);
+      }
+    });
+  }, []);
+  
   return (
     <>
       <Grid container sx={{ paddingX: '15px' }}>

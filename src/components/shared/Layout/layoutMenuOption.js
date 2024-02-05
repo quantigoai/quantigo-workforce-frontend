@@ -174,7 +174,7 @@ const layoutMenuOption = () => {
     // { name: "Verification", icon: CourseSvg },
 
     { name: 'All Projects', icon: ProjectSvg },
-    // { name: "Course", icon: CourseSvg },
+    { name: "Course", icon: CourseSvg },
     // { name: "Jobs", icon: JobSvg },
     // { name: "Payment", icon: PaymentSvg },
   ];

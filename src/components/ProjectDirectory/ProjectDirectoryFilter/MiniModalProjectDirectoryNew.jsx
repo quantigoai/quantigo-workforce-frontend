@@ -1,28 +1,76 @@
-import CloseIcon from "@mui/icons-material/Close";
-import { Box, Button, Grid, Typography } from "@mui/material";
-import React from "react";
-import AnnotationType from "./AnnotationType";
-import IndustryTypeField from "./IndustryTypeField";
-import SelectFilterProjectDirectory from "./SelectFilterProjectDirectory";
+import CloseIcon from '@mui/icons-material/Close';
+import { Box, Button, Grid, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import SelectFilterProjectDirectory from './SelectFilterProjectDirectory';
 
-import { useSelector } from "react-redux";
-import ActionTypeField from "./ActionItemsField";
-import Deletionfield from "./Deletionfield";
-import ImageLoadingField from "./ImageLoadingField";
-import ImgBenchmark from "./ImgBenchmark";
-import ItemsField from "./ItemsField";
-import JudgementTimeField from "./JudgementTimeField";
-import ObjBenchmarkField from "./ObjBenchmarkField";
-import ObjectSavingTimeField from "./ObjectSavingTimeField";
-import QABenchmarkField from "./QABenchmarkField";
-import QACheckPointsField from "./QACheckPointsField";
-import QAField from "./QAField";
-import SkipImageField from "./SkipImageField";
-import TaggingBenchmark from "./TaggingBenchmark";
-import ToolTypeField from "./ToolTypeField";
-import VideoWatchTimeField from "./VideoWatchTimeField";
-
+import { useSelector } from 'react-redux';
+import ItemsField from './ItemsField';
+const data = [
+  { value: 'industryType', title: '', type: '' },
+  { value: 'setClientAliasesFilter', title: '', type: '' },
+  { value: 'clientAliasFilter', title: '', type: '' },
+  { value: 'setPDRFilter', title: '', type: '' },
+  { value: 'pDRFilter', title: '', type: '' },
+  { value: 'setDataTypeFilter', title: '', type: '' },
+  { value: 'dataTypeFilter', title: '', type: '' },
+  { value: 'setAnnotationFilter', title: '', type: '' },
+  { value: 'annotationFilter', title: '', type: '' },
+  { value: 'platformFieldFilter', title: '', type: '' },
+  { value: 'setPlatformFieldFilter', title: '', type: '' },
+  { value: 'projectTypeFieldFilter', title: '', type: '' },
+  { value: 'setProjectTypeFieldFilter', title: '', type: '' },
+  { value: 'actionItemsFieldFilter', title: '', type: '' },
+  { value: 'setActionItemsFieldFilter', title: '', type: '' },
+  { value: 'qaCheckPointFieldFilter', title: '', type: '' },
+  { value: 'setQaCheckPointFieldFilter', title: '', type: '' },
+  { value: 'objBenchMarkFieldFilter', title: '', type: '' },
+  { value: 'setObjBenchMarkFieldFilter', title: '', type: '' },
+  { value: 'imgBenchMarkFieldFilter', title: '', type: '' },
+  { value: 'setImgBenchMarkFieldFilter', title: '', type: '' },
+  { value: 'taggingBenchMarkFieldFilter', title: '', type: '' },
+  { value: 'setTaggingBenchMarkFieldFilter', title: '', type: '' },
+  { value: 'deletionFieldFilter', title: '', type: '' },
+  { value: 'setDeletionFieldFilter', title: '', type: '' },
+  { value: 'toolTypeFieldFilter', title: '', type: '' },
+  { value: 'setToolTypeFieldFilter', title: '', type: '' },
+  { value: 'skipImageFieldFilter', title: '', type: '' },
+  { value: 'setSkipImageFieldFilter', title: '', type: '' },
+  { value: 'imageLoadingFieldFilter', title: '', type: '' },
+  { value: 'setImageLoadingFieldFilter', title: '', type: '' },
+  { value: 'objectSavingTimeFieldFilter', title: '', type: '' },
+  { value: 'setobjectSavingTimeFieldFilter', title: '', type: '' },
+  { value: 'videoWatchTimeFieldFilter', title: '', type: '' },
+  { value: 'setVideoWatchTimeFieldFilter', title: '', type: '' },
+  { value: 'qAFieldFilter', title: '', type: '' },
+  { value: 'setQAFieldFilter', title: '', type: '' },
+  { value: 'judgementTimeFieldFilter', title: '', type: '' },
+  { value: 'setJudgementTimeFieldFilter', title: '', type: '' },
+  { value: 'qABenchmarkFieldFilter', title: '', type: '' },
+  { value: 'setQABenchmarkFieldFilter', title: '', type: '' },
+  { value: 'setQAFilter', title: '', type: '' },
+  { value: 'qAField', title: 'QA', type: 'QA' },
+  { value: 'pdrSetFilter', title: '', type: '' },
+  { value: 'Client_AliasSetFilter', title: '', type: '' },
+  { value: 'annotationSetFilter', title: '', type: '' },
+  { value: 'platformField', title: '', type: '' },
+  { value: 'industrySetFilter', title: '', type: '' },
+  { value: 'toolTypeField', title: '', type: '' },
+  { value: 'actionItemsField', title: '', type: '' },
+  { value: 'projectTypeField', title: '', type: '' },
+  { value: 'qaCheckPointField', title: '', type: '' },
+  { value: 'objBenchMarkField', title: '', type: '' },
+  { value: 'imageBenchMarkField', title: '', type: '' },
+  { value: 'tagingBenchMarkField', title: '', type: '' },
+  { value: 'skipImageField', title: '', type: '' },
+  { value: 'imageLoadingField', title: '', type: '' },
+  { value: 'objectSavingTimeFilter', title: '', type: '' },
+  { value: 'videoWatchTimeFilter', title: '', type: '' },
+  { value: 'DeletionField', title: '', type: '' },
+  { value: 'judgementTimeFilter', title: '', type: '' },
+  { value: 'qABenchmarkField', title: '', type: '' },
+];
 const MiniModalProjectDirectoryNew = ({
+  setProjectDirectoryRemove,
   handleCloseFilter,
   setIndustryType,
   handleFilterProjectDirectory,
@@ -92,57 +140,135 @@ const MiniModalProjectDirectoryNew = ({
   handleMenuItemClick,
   setAnchorEl,
   anchorEl,
+  menuFilter,
 }) => {
+  // console.table(menuFilter);
+  const [showingField, setShowingField] = useState([]);
+  console.table(showingField);
+
+  useEffect(() => {
+    const x = menuFilter.filter((item) => {
+      if (item.isFieldShow) {
+        return item;
+      }
+    });
+    setShowingField(x);
+  }, [menuFilter]);
+
+  // const [anchorEl, setAnchorEl] = useState(null);
   const { isLightTheme } = useSelector((state) => state.theme);
+  const addBenchmarkType = [
+    { item: 'Manual Creation', value: 'manual_Creation' },
+    { item: 'Correction', value: 'correction' },
+    { item: 'Deletion', value: 'deletion' },
+    { item: 'Object Assessment', value: 'object_Assessment' },
+    { item: 'Manual Tagging', value: 'manual_Tagging' },
+    { item: 'Tag Correction', value: 'tag_Correction' },
+    { item: 'Tag Deletion', value: 'tag_Deletion' },
+    { item: 'Tag Check Review', value: 'tag_Check_Review' },
+    { item: 'Cloning Manual Object', value: 'cloning_Manual_Object' },
+    { item: 'Clone Correction', value: 'clone_Correction' },
+    { item: 'Review', value: 'review' },
+    { item: 'Tag Check QA', value: 'tag_Check_QA' },
+    { item: 'Image Assessment', value: 'image_Assessment' },
+    { item: 'Video Assessment', value: 'video_Assessment' },
+    { item: 'Categorization', value: 'categorization' },
+  ];
+  const [addBenchmarkItems, setAddBenchmarkItems] = useState([]);
+  const [benchmarkItems, setBenchmarkItems] = useState([]);
+  useEffect(() => {
+    addBenchmarkType.forEach((benchmark) => {
+      if (benchmark.defaultValue) {
+        setAddBenchmarkItems((prevState) => [...prevState, benchmark]);
+      } else {
+        setBenchmarkItems((prevState) => [...prevState, benchmark]);
+        setProjectDirectoryRemove((prevState) => [...prevState, benchmark]);
+      }
+    });
+  }, []);
+  const handleMenuItemClickFilter = (val, item) => {
+    // setAddBenchmarkItems((prevArray) => [...prevArray, val]);
+    const addValue = {
+      item: item,
+      value: val,
+    };
+    setAddBenchmarkItems((prevArray) => [...prevArray, addValue]);
+
+    const filteredArr = benchmarkItems.filter((item) => item.value !== val);
+    setBenchmarkItems(filteredArr);
+    setProjectDirectoryRemove(filteredArr);
+  };
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+  const handleRemove = (name, label) => {
+    const deleteValue = {
+      item: label,
+      value: name,
+    };
+    setBenchmarkItems((prevArray) => [...prevArray, deleteValue]);
+    setProjectDirectoryRemove((prevArray) => [...prevArray, deleteValue]);
+
+    const filteredArr = addBenchmarkItems.filter((item) => item.value != name);
+    setAddBenchmarkItems(filteredArr);
+  };
+  const handleButtonClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
   return (
     <>
       <Box
         sx={{
           // border: 1,
           p: 1,
-          bgcolor: "background.paper",
-          width: { xxl: "400px", xl: "300px", lg: "300px" },
-          height: "100%",
+          bgcolor: 'background.paper',
+          width: { xxl: '400px', xl: '300px', lg: '300px' },
+          height: '100%',
         }}
       >
         <Box
           sx={{
-            display: "flex",
-            alignContent: "center",
-            justifyContent: "space-between",
-            paddingY: "10px",
-            paddingX: "15px",
+            display: 'flex',
+            alignContent: 'center',
+            justifyContent: 'space-between',
+            paddingY: '10px',
+            paddingX: '15px',
           }}
         >
           <Typography variant="wpf_p1_semiBold">Filter By</Typography>
-          <CloseIcon sx={{ color: "#2D58FF", cursor: "pointer", fontweight: "600 " }} onClick={handleCloseFilter} />
+          <CloseIcon
+            sx={{ color: '#2D58FF', cursor: 'pointer', fontweight: '600 ' }}
+            onClick={handleCloseFilter}
+          />
         </Box>
         {/* <br /> */}
-        <Box sx={{ px: "15px" }}>
+        <Box sx={{ px: '15px' }}>
           <Grid item xs={12}>
             <SelectFilterProjectDirectory
               handleMenuItemClick={handleMenuItemClick}
               setAnchorEl={setAnchorEl}
               anchorEl={anchorEl}
+              menuFilter={menuFilter}
             />
+            {/* <ProjectDirectoryBenchMarkFieldIndex setProjectDirectoryRemove={setProjectDirectoryRemove} /> */}
           </Grid>
         </Box>
         <br />
-        {qAField ? (
-          <Grid container sx={{ padding: "1%" }}>
+
+        {showingField.map((item) => (
+          <Grid container sx={{ padding: '1%' }}>
             <ItemsField
-              title="QA"
-              type="QA"
+              title={item.title}
+              type={item.value}
               isLightTheme={isLightTheme}
               platformFieldFilter={qAFieldFilter}
               setPlatformFieldFilter={setQAFieldFilter}
             />
           </Grid>
-        ) : (
-          <></>
-        )}
-        {judgementTimeFilter ? (
-          <Grid container sx={{ padding: "1%" }}>
+        ))}
+
+        {/* {judgementTimeFilter ? (
+          <Grid container sx={{ padding: '1%' }}>
             <ItemsField
               title="Judgement Time"
               type="judgement_Time"
@@ -155,7 +281,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {qABenchmarkField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ItemsField
               title="QA Benchmark"
               type="QA_Benchmark"
@@ -169,7 +295,7 @@ const MiniModalProjectDirectoryNew = ({
         )}
 
         {skipImageField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ItemsField
               title="Skip Image"
               type="skip_Image"
@@ -182,7 +308,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {imageLoadingField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ItemsField
               title="Image Loading"
               type="image_Loading"
@@ -195,7 +321,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {objectSavingTimeFilter ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ItemsField
               title="Object Saving Time"
               type="object_Saving_Time"
@@ -208,7 +334,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {videoWatchTimeFilter ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ItemsField
               title="Video Watch Time"
               type="video_Watch_Time"
@@ -222,7 +348,7 @@ const MiniModalProjectDirectoryNew = ({
         )}
 
         {toolTypeField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ItemsField
               title="Tool Type"
               type="tool_Type"
@@ -235,7 +361,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {DeletionField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ItemsField
               title="Deletion"
               type="deletion"
@@ -248,7 +374,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {tagingBenchMarkField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ItemsField
               title="Tagging Benchmark"
               type="tagging_Benchmark"
@@ -261,7 +387,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {imageBenchMarkField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ItemsField
               title="Img Benchmark"
               type="img_Benchmark"
@@ -274,7 +400,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {objBenchMarkField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ItemsField
               title="Object Benchmark"
               type="obj_Benchmark"
@@ -287,7 +413,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {qaCheckPointField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ItemsField
               title="QA Check Points"
               type="QA_Check_Points"
@@ -300,7 +426,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {actionItemsField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ItemsField
               title="Action Items"
               type="action_Items"
@@ -313,7 +439,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {projectTypeField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ItemsField
               platformFieldFilter={projectTypeFieldFilter}
               setPlatformFieldFilter={setProjectTypeFieldFilter}
@@ -326,7 +452,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {platformField ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ItemsField
               title="Platform"
               type="platform"
@@ -339,7 +465,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {pdrSetFilter ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ItemsField
               title="PDR"
               type="PDR"
@@ -352,7 +478,7 @@ const MiniModalProjectDirectoryNew = ({
           <></>
         )}
         {Client_AliasSetFilter ? (
-          <Grid container sx={{ padding: "1%" }}>
+          <Grid container sx={{ padding: '1%' }}>
             <ItemsField
               isLightTheme={isLightTheme}
               setPlatformFieldFilter={setClientAliasesFilter}
@@ -363,47 +489,16 @@ const MiniModalProjectDirectoryNew = ({
           </Grid>
         ) : (
           <></>
-        )}
-        {industrySetFilter ? (
-          <Grid container sx={{ padding: "1%" }}>
-            {/* <IndustryTypeField
-              isLightTheme={isLightTheme}
-              setIndustryType={setIndustryType}
-              industryType={industryType}
-            /> */}
-            <ItemsField
-              title="Industry"
-              type="industry"
-              isLightTheme={isLightTheme}
-              platformFieldFilter={industryType}
-              setPlatformFieldFilter={setIndustryType}
-            />
-          </Grid>
-        ) : (
-          <></>
-        )}
-        {annotationSetFilter ? (
-          <Grid container sx={{ padding: "1%" }}>
-            <ItemsField
-              title="Annotation"
-              type="annotation"
-              isLightTheme={isLightTheme}
-              platformFieldFilter={annotationFilter}
-              setPlatformFieldFilter={setAnnotationFilter}
-            />
-          </Grid>
-        ) : (
-          <></>
-        )}
+        )} */}
 
         <br />
         <Box>
           <Box
             sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              paddingX: "15px",
-              paddingY: "10px",
+              display: 'flex',
+              justifyContent: 'space-between',
+              paddingX: '15px',
+              paddingY: '10px',
             }}
           >
             <Box>
@@ -411,21 +506,21 @@ const MiniModalProjectDirectoryNew = ({
                 onClick={handleResetProjectDirectory}
                 fullWidth
                 sx={{
-                  backgroundColor: "#FF4757",
-                  color: "#FFF",
-                  textTransform: "none",
-                  borderRadius: "8px",
-                  lineHeight: "20px",
-                  width: { xxl: "150px", xl: "100px", lg: "100px" },
-                  fontSize: { xxl: "14px", xl: "12px", lg: "10px" },
-                  height: { xxl: "40px", xl: "40px", lg: "35px" },
-                  "&:hover": {
-                    backgroundColor: "#FF4757",
-                    color: "#FFF",
+                  backgroundColor: '#FF4757',
+                  color: '#FFF',
+                  textTransform: 'none',
+                  borderRadius: '8px',
+                  lineHeight: '20px',
+                  width: { xxl: '150px', xl: '100px', lg: '100px' },
+                  fontSize: { xxl: '14px', xl: '12px', lg: '10px' },
+                  height: { xxl: '40px', xl: '40px', lg: '35px' },
+                  '&:hover': {
+                    backgroundColor: '#FF4757',
+                    color: '#FFF',
                   },
-                  "&.Mui-disabled": {
-                    backgroundColor: "#F5C4C8",
-                    color: "#FFFFFF",
+                  '&.Mui-disabled': {
+                    backgroundColor: '#F5C4C8',
+                    color: '#FFFFFF',
                   },
                 }}
               >
@@ -435,18 +530,18 @@ const MiniModalProjectDirectoryNew = ({
             <Box>
               <Button
                 sx={{
-                  textTransform: "none",
-                  borderRadius: "8px",
-                  backgroundColor: "#2E58FF",
-                  lineHeight: "20px",
-                  width: { xxl: "150px", xl: "100px", lg: "100px" },
-                  fontSize: { xxl: "14px", xl: "12px", lg: "10px" },
-                  height: { xxl: "40px", xl: "40px", lg: "35px" },
-                  color: "white",
-                  "&:hover": {
-                    background: "#244EF5",
+                  textTransform: 'none',
+                  borderRadius: '8px',
+                  backgroundColor: '#2E58FF',
+                  lineHeight: '20px',
+                  width: { xxl: '150px', xl: '100px', lg: '100px' },
+                  fontSize: { xxl: '14px', xl: '12px', lg: '10px' },
+                  height: { xxl: '40px', xl: '40px', lg: '35px' },
+                  color: 'white',
+                  '&:hover': {
+                    background: '#244EF5',
                   },
-                  padding: "16px 10px",
+                  padding: '16px 10px',
                 }}
                 onClick={handleFilterProjectDirectory}
                 fullWidth

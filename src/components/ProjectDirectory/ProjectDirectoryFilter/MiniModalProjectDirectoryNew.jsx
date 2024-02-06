@@ -72,120 +72,32 @@ const data = [
 const MiniModalProjectDirectoryNew = ({
   setProjectDirectoryRemove,
   handleCloseFilter,
-  setIndustryType,
   handleFilterProjectDirectory,
   handleResetProjectDirectory,
-  industryType,
-  setClientAliasesFilter,
-  clientAliasFilter,
-  setPDRFilter,
-  pDRFilter,
-  setDataTypeFilter,
-  dataTypeFilter,
-  setAnnotationFilter,
-  annotationFilter,
-  platformFieldFilter,
-  setPlatformFieldFilter,
-  projectTypeFieldFilter,
-  setProjectTypeFieldFilter,
-  actionItemsFieldFilter,
-  setActionItemsFieldFilter,
-  qaCheckPointFieldFilter,
-  setQaCheckPointFieldFilter,
-  objBenchMarkFieldFilter,
-  setObjBenchMarkFieldFilter,
-  imgBenchMarkFieldFilter,
-  setImgBenchMarkFieldFilter,
-  taggingBenchMarkFieldFilter,
-  setTaggingBenchMarkFieldFilter,
-  deletionFieldFilter,
-  setDeletionFieldFilter,
-  toolTypeFieldFilter,
-  setToolTypeFieldFilter,
-  skipImageFieldFilter,
-  setSkipImageFieldFilter,
-  imageLoadingFieldFilter,
-  setImageLoadingFieldFilter,
-  objectSavingTimeFieldFilter,
-  setobjectSavingTimeFieldFilter,
-  videoWatchTimeFieldFilter,
-  setVideoWatchTimeFieldFilter,
-  qAFieldFilter,
-  setQAFieldFilter,
-  judgementTimeFieldFilter,
-  setJudgementTimeFieldFilter,
-  qABenchmarkFieldFilter,
-  setQABenchmarkFieldFilter,
-  setQAFilter,
-  qAField,
-  pdrSetFilter,
-  Client_AliasSetFilter,
-  annotationSetFilter,
-  platformField,
-  industrySetFilter,
-  toolTypeField,
-  actionItemsField,
-  projectTypeField,
-  qaCheckPointField,
-  objBenchMarkField,
-  imageBenchMarkField,
-  tagingBenchMarkField,
-  skipImageField,
-  imageLoadingField,
-  objectSavingTimeFilter,
-  videoWatchTimeFilter,
-  DeletionField,
-  judgementTimeFilter,
-  qABenchmarkField,
   handleMenuItemClick,
   setAnchorEl,
   anchorEl,
   menuFilter,
+  handleValue,
 }) => {
   // console.table(menuFilter);
   const [showingField, setShowingField] = useState([]);
-  console.table(showingField);
 
   useEffect(() => {
-    const x = menuFilter.filter((item) => {
+    const filteredShow = menuFilter.filter((item) => {
       if (item.isFieldShow) {
         return item;
       }
     });
-    setShowingField(x);
+    setShowingField(filteredShow);
   }, [menuFilter]);
 
   // const [anchorEl, setAnchorEl] = useState(null);
   const { isLightTheme } = useSelector((state) => state.theme);
-  const addBenchmarkType = [
-    { item: 'Manual Creation', value: 'manual_Creation' },
-    { item: 'Correction', value: 'correction' },
-    { item: 'Deletion', value: 'deletion' },
-    { item: 'Object Assessment', value: 'object_Assessment' },
-    { item: 'Manual Tagging', value: 'manual_Tagging' },
-    { item: 'Tag Correction', value: 'tag_Correction' },
-    { item: 'Tag Deletion', value: 'tag_Deletion' },
-    { item: 'Tag Check Review', value: 'tag_Check_Review' },
-    { item: 'Cloning Manual Object', value: 'cloning_Manual_Object' },
-    { item: 'Clone Correction', value: 'clone_Correction' },
-    { item: 'Review', value: 'review' },
-    { item: 'Tag Check QA', value: 'tag_Check_QA' },
-    { item: 'Image Assessment', value: 'image_Assessment' },
-    { item: 'Video Assessment', value: 'video_Assessment' },
-    { item: 'Categorization', value: 'categorization' },
-  ];
+
   const [addBenchmarkItems, setAddBenchmarkItems] = useState([]);
   const [benchmarkItems, setBenchmarkItems] = useState([]);
-  useEffect(() => {
-    addBenchmarkType.forEach((benchmark) => {
-      if (benchmark.defaultValue) {
-        setAddBenchmarkItems((prevState) => [...prevState, benchmark]);
-      } else {
-        setBenchmarkItems((prevState) => [...prevState, benchmark]);
-        setProjectDirectoryRemove((prevState) => [...prevState, benchmark]);
-      }
-    });
-  }, []);
+
   const handleMenuItemClickFilter = (val, item) => {
     // setAddBenchmarkItems((prevArray) => [...prevArray, val]);
     const addValue = {
@@ -236,10 +148,7 @@ const MiniModalProjectDirectoryNew = ({
           }}
         >
           <Typography variant="wpf_p1_semiBold">Filter By</Typography>
-          <CloseIcon
-            sx={{ color: '#2D58FF', cursor: 'pointer', fontweight: '600 ' }}
-            onClick={handleCloseFilter}
-          />
+          <CloseIcon sx={{ color: '#2D58FF', cursor: 'pointer', fontweight: '600 ' }} onClick={handleCloseFilter} />
         </Box>
         {/* <br /> */}
         <Box sx={{ px: '15px' }}>
@@ -256,13 +165,15 @@ const MiniModalProjectDirectoryNew = ({
         <br />
 
         {showingField.map((item) => (
-          <Grid container sx={{ padding: '1%' }}>
+          <Grid key={item.value} container sx={{ padding: '1%' }}>
             <ItemsField
+              item={item}
+              handleValue={handleValue}
               title={item.title}
               type={item.value}
               isLightTheme={isLightTheme}
-              platformFieldFilter={qAFieldFilter}
-              setPlatformFieldFilter={setQAFieldFilter}
+              // platformFieldFilter={qAFieldFilter}
+              // setPlatformFieldFilter={setQAFieldFilter}
             />
           </Grid>
         ))}

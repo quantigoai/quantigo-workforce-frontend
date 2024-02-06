@@ -31,6 +31,7 @@ const initialState = {
 };
 
 export const getProjectByDirectory = createAsyncThunk('/project/directory', async (data) => {
+  console.log("🚀 ~ getProjectByDirectory ~ data:", data)
   const { search, pagination, ascDescOption, filteredData } = data;
 
   let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;

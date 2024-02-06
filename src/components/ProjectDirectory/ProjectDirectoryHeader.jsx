@@ -13,116 +13,21 @@ const ProjectDirectoryHeader = ({
   handleGetSync,
   isSyncLoading,
   search,
-  setSearch,
   searchRef,
   clearSearch,
   handleSearch,
-  placeholder,
   handleClickFilter,
   anchorE2,
   handleCloseFilter,
-  setIndustryType,
   handleFilterProjectDirectory,
   handleResetProjectDirectory,
-  industryType,
-  setClientAliasesFilter,
-  clientAliasFilter,
-  setPDRFilter,
-  pDRFilter,
-  setDataType,
-  dataType,
-  setAnnotationFilter,
-  annotationFilter,
-  platformFieldFilter,
-  setPlatformFieldFilter,
-  projectTypeFieldFilter,
-  setProjectTypeFieldFilter,
-  actionItemsFieldFilter,
-  setActionItemsFieldFilter,
-  qaCheckPointFieldFilter,
-  setQaCheckPointFieldFilter,
-  objBenchMarkFieldFilter,
-  setObjBenchMarkFieldFilter,
-  imgBenchMarkFieldFilter,
-  setImgBenchMarkFieldFilter,
-  taggingBenchMarkFieldFilter,
-  setTaggingBenchMarkFieldFilter,
-  deletionFieldFilter,
-  setDeletionFieldFilter,
-  toolTypeFieldFilter,
-  setToolTypeFieldFilter,
-  skipImageFieldFilter,
-  setSkipImageFieldFilter,
-  imageLoadingFieldFilter,
-  setImageLoadingFieldFilter,
-  objectSavingTimeFieldFilter,
-  setobjectSavingTimeFieldFilter,
-  videoWatchTimeFieldFilter,
-  setVideoWatchTimeFieldFilter,
-  qAFieldFilter,
-  setQAFieldFilter,
-  judgementTimeFieldFilter,
-  setJudgementTimeFieldFilter,
-  qABenchmarkFieldFilter,
-  setQABenchmarkFieldFilter,
-  setQAFilter,
-  qAField,
-  pdrSetFilter,
-  Client_AliasSetFilter,
-  annotationSetFilter,
-  platformField,
-  industrySetFilter,
-  toolTypeField,
-  actionItemsField,
-  projectTypeField,
-  qaCheckPointField,
-  objBenchMarkField,
-  imageBenchMarkField,
-  tagingBenchMarkField,
-  skipImageField,
-  imageLoadingField,
-  objectSavingTimeFilter,
-  videoWatchTimeFilter,
-  DeletionField,
-  judgementTimeFilter,
-  qABenchmarkField,
   handleMenuItemClick,
-  setAnchorEl,
-  anchorEl,
   role,
   handleCreateModal,
-  labelingTool,
-  setLablelingTool,
-  guideline,
-  setGuideline,
-  pdl,
-  setPdl,
-  dl,
-  setDl,
-  dcr,
-  setDcr,
-  pcr,
-  setPcr,
-  completionDate,
-  setCompletionDat,
-  setCompletionDate,
-  labelingToolFilter,
-  setLablelingToolFilter,
-  dataTypeFilter,
-  setDataTypeFilter,
-  guidelineFilter,
-  setGuidelineFilter,
-  pdlFilter,
-  setPdlFilter,
-  dlFilter,
-  setDlFilter,
-  dcrFilter,
-  setDcrFilter,
-  pcrFilter,
-  setPcrFilter,
-  completionDateFilter,
-  setCompletionDataFilter,
+  setAnchorEl,
+  anchorEl,
   menuFilter,
+  handleValue,
 }) => {
   const open = Boolean(anchorE2);
   const id = open ? 'simple-popover' : undefined;
@@ -250,106 +155,13 @@ const ProjectDirectoryHeader = ({
           <MiniModalProjectDirectoryNew
             setProjectDirectoryRemove={setProjectDirectoryRemove}
             handleCloseFilter={handleCloseFilter}
-            setIndustryType={setIndustryType}
             handleFilterProjectDirectory={handleFilterProjectDirectory}
             handleResetProjectDirectory={handleResetProjectDirectory}
-            industryType={industryType}
-            setClientAliasesFilter={setClientAliasesFilter}
-            clientAliasFilter={clientAliasFilter}
-            setPDRFilter={setPDRFilter}
-            pDRFilter={pDRFilter}
-            setDataType={setDataType}
-            dataType={dataType}
-            setAnnotationFilter={setAnnotationFilter}
-            annotationFilter={annotationFilter}
-            platformFieldFilter={platformFieldFilter}
-            setPlatformFieldFilter={setPlatformFieldFilter}
-            projectTypeFieldFilter={projectTypeFieldFilter}
-            setProjectTypeFieldFilter={setProjectTypeFieldFilter}
-            actionItemsFieldFilter={actionItemsFieldFilter}
-            setActionItemsFieldFilter={setActionItemsFieldFilter}
-            qaCheckPointFieldFilter={qaCheckPointFieldFilter}
-            setQaCheckPointFieldFilter={setQaCheckPointFieldFilter}
-            objBenchMarkFieldFilter={objBenchMarkFieldFilter}
-            setObjBenchMarkFieldFilter={setObjBenchMarkFieldFilter}
-            imgBenchMarkFieldFilter={imgBenchMarkFieldFilter}
-            setImgBenchMarkFieldFilter={setImgBenchMarkFieldFilter}
-            taggingBenchMarkFieldFilter={taggingBenchMarkFieldFilter}
-            setTaggingBenchMarkFieldFilter={setTaggingBenchMarkFieldFilter}
-            deletionFieldFilter={deletionFieldFilter}
-            setDeletionFieldFilter={setDeletionFieldFilter}
-            toolTypeFieldFilter={toolTypeFieldFilter}
-            setToolTypeFieldFilter={setToolTypeFieldFilter}
-            skipImageFieldFilter={skipImageFieldFilter}
-            setSkipImageFieldFilter={setSkipImageFieldFilter}
-            imageLoadingFieldFilter={imageLoadingFieldFilter}
-            setImageLoadingFieldFilter={setImageLoadingFieldFilter}
-            objectSavingTimeFieldFilter={objectSavingTimeFieldFilter}
-            setobjectSavingTimeFieldFilter={setobjectSavingTimeFieldFilter}
-            videoWatchTimeFieldFilter={videoWatchTimeFieldFilter}
-            setVideoWatchTimeFieldFilter={setVideoWatchTimeFieldFilter}
-            qAFieldFilter={qAFieldFilter}
-            setQAFieldFilter={setQAFieldFilter}
-            judgementTimeFieldFilter={judgementTimeFieldFilter}
-            setJudgementTimeFieldFilter={setJudgementTimeFieldFilter}
-            qABenchmarkFieldFilter={qABenchmarkFieldFilter}
-            setQABenchmarkFieldFilter={setQABenchmarkFieldFilter}
-            setQAFilter={setQAFilter}
-            qAField={qAField}
-            pdrSetFilter={pdrSetFilter}
-            Client_AliasSetFilter={Client_AliasSetFilter}
-            annotationSetFilter={annotationSetFilter}
-            platformField={platformField}
-            industrySetFilter={industrySetFilter}
-            toolTypeField={toolTypeField}
-            actionItemsField={actionItemsField}
-            projectTypeField={projectTypeField}
-            qaCheckPointField={qaCheckPointField}
-            objBenchMarkField={objBenchMarkField}
-            imageBenchMarkField={imageBenchMarkField}
-            tagingBenchMarkField={tagingBenchMarkField}
-            skipImageField={skipImageField}
-            imageLoadingField={imageLoadingField}
-            objectSavingTimeFilter={objectSavingTimeFilter}
-            videoWatchTimeFilter={videoWatchTimeFilter}
-            DeletionField={DeletionField}
-            judgementTimeFilter={judgementTimeFilter}
-            qABenchmarkField={qABenchmarkField}
             handleMenuItemClick={handleMenuItemClick}
             setAnchorEl={setAnchorEl}
             anchorEl={anchorEl}
-            labelingTool={labelingTool}
-            setLablelingTool={setLablelingTool}
-            guideline={guideline}
-            setGuideline={setGuideline}
-            pdl={pdl}
-            setPdl={setPdl}
-            dl={dl}
-            setDl={setDl}
-            dcr={dcr}
-            setDcr={setDcr}
-            pcr={pcr}
-            setPcr={setPcr}
-            completionDate={completionDate}
-            setCompletionDat={setCompletionDat}
-            setCompletionDate={setCompletionDate}
-            labelingToolFilter={labelingToolFilter}
-            setLablelingToolFilter={setLablelingToolFilter}
-            dataTypeFilter={dataTypeFilter}
-            setDataTypeFilter={setDataTypeFilter}
-            guidelineFilter={guidelineFilter}
-            setGuidelineFilter={setGuidelineFilter}
-            pdlFilter={pdlFilter}
-            setPdlFilter={setPdlFilter}
-            dlFilter={dlFilter}
-            setDlFilter={setDlFilter}
-            dcrFilter={dcrFilter}
-            setDcrFilter={setDcrFilter}
-            pcrFilter={pcrFilter}
-            setPcrFilter={setPcrFilter}
-            completionDateFilter={completionDateFilter}
-            setCompletionDataFilter={setCompletionDataFilter}
             menuFilter={menuFilter}
+            handleValue={handleValue}
           />
         </Popover>
         <LoadingButton

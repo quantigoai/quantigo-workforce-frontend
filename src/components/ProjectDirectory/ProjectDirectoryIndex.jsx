@@ -14,7 +14,7 @@ import CreateProjectDirectoryModal from './CreateProjectDirectoryModal.jsx';
 import ProjectDirectoryDetailsModal from './ProjectDirectoryDetailsModal';
 import ProjectDirectoryEditModal from './ProjectDirectoryEditModal';
 import ProjectDirectoryHeader from './ProjectDirectoryHeader.jsx';
-import useProjectDirectoryMange from './useProjectDirectoryMange.jsx';
+import useProjectDirectoryManage from './useProjectDirectoryManage.jsx';
 
 const ProjectDirectoryIndex = () => {
   const {
@@ -72,7 +72,7 @@ const ProjectDirectoryIndex = () => {
     onSubmitEdit,
     handleAscDesc,
     setProjectDirectoryBenchmarkAddItems,
-  } = useProjectDirectoryMange();
+  } = useProjectDirectoryManage();
 
   useEffect(() => {
     if (pathname === '/projectDirectory') {

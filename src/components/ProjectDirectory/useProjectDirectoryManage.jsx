@@ -14,7 +14,7 @@ import {
 import { useLocation } from 'react-router-dom';
 import { filters } from './MenuFIlter';
 
-const useProjectDirectoryMange = () => {
+const useProjectDirectoryManage = () => {
   const user = useSelector((state) => state.user);
   const { role } = user.user;
   const [projectDirectorys, setProjectDirectory] = useState([]);
@@ -342,4 +342,4 @@ const useProjectDirectoryMange = () => {
   };
 };
 
-export default useProjectDirectoryMange;
+export default useProjectDirectoryManage;

@@ -79,8 +79,8 @@ export default function TextFieldProjectDirectoryBenchmark({
               sx={{
                 backgroundColor: "neutral.N000",
               }}
-              // defaultValue={defaultValue}
-              value={defaultValue ? defaultValue : ""}
+              defaultValue={defaultValue}
+              // value={defaultValue}
               // value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
               error={!!error}
               helperText={error ? error?.message : helperText}

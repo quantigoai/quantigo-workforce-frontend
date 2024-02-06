@@ -32,6 +32,7 @@ const ProjectDirectoryEditModal = ({
   openProjectModalEdit,
   onSubmitEdit,
   setProjectDirectoryRemove,
+  setProjectDirectoryBenchmarkAddItems,
 }) => {
   const { isLoading } = useSelector((state) => state.projectDirectory);
   const methods = useForm({
@@ -51,21 +52,21 @@ const ProjectDirectoryEditModal = ({
       DCR: item.DCR,
       PCR: item.PCR,
       completion_Date: item.completion_Date,
-      manual_Creation: item.manual_Creation,
-      correction: item.correction,
-      object_Assessment: item.object_Assessment,
-      manual_Tagging: item.manual_Tagging,
-      tag_Correction: item.tag_Correction,
-      tag_Deletion: item.tag_Deletion,
-      deletion: item.deletion,
-      tag_Check_Review: item.tag_Check_Review,
-      cloning_Manual_Object: item.cloning_Manual_Object,
-      clone_Correction: item.clone_Correction,
-      review: item.review,
-      tag_Check_QA: item.tag_Check_QA,
-      image_Assessment: item.image_Assessment,
-      video_Assessment: item.video_Assessment,
-      categorization: item.categorization,
+      // manual_Creation: item.manual_Creation,
+      // correction: item.correction,
+      // object_Assessment: item.object_Assessment,
+      // manual_Tagging: item.manual_Tagging,
+      // tag_Correction: item.tag_Correction,
+      // tag_Deletion: item.tag_Deletion,
+      // deletion: item.deletion,
+      // tag_Check_Review: item.tag_Check_Review,
+      // cloning_Manual_Object: item.cloning_Manual_Object,
+      // clone_Correction: item.clone_Correction,
+      // review: item.review,
+      // tag_Check_QA: item.tag_Check_QA,
+      // image_Assessment: item.image_Assessment,
+      // video_Assessment: item.video_Assessment,
+      // categorization: item.categorization,
     },
     mode: "all",
   });
@@ -179,7 +180,6 @@ const ProjectDirectoryEditModal = ({
                         <PDTextFIeld name='industry' label='Industry' defaultValue={item.industry} />
                       </FieldBox>
 
-
                       <FieldBox>
                         <PDTextFIeld
                           name='PDR'
@@ -206,7 +206,6 @@ const ProjectDirectoryEditModal = ({
                           defaultValue={""}
                         />
                       </FieldBox>
-
 
                       <FieldBox>
                         <PDSelectField name='data_Type' label='Data Type' options={dataTypeOptions} defaultValue={""} />
@@ -244,6 +243,7 @@ const ProjectDirectoryEditModal = ({
                   <ProjectDirectoryBenchMarkFieldIndex
                     item={item}
                     setProjectDirectoryRemove={setProjectDirectoryRemove}
+                    setProjectDirectoryBenchmarkAddItems={setProjectDirectoryBenchmarkAddItems}
                   />
                 </Box>
 

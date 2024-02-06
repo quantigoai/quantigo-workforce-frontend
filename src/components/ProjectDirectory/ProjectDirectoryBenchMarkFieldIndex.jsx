@@ -3,8 +3,13 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import TextFieldProjectDirectoryBenchmark from "../shared/CustomField/TextFieldProjectDirectoryBenchmark";
+import TextFieldForTest from "../shared/CustomField/TextFieldForTest";
 
-const ProjectDirectoryBenchMarkFieldIndex = ({ item, setProjectDirectoryRemove }) => {
+const ProjectDirectoryBenchMarkFieldIndex = ({
+  item,
+  setProjectDirectoryRemove,
+  setProjectDirectoryBenchmarkAddItems,
+}) => {
   const addBenchmarkType = [
     { item: "Manual Creation", value: "manual_Creation", defaultValue: item?.manual_Creation },
     { item: "Correction", value: "correction", defaultValue: item?.correction },
@@ -29,28 +34,62 @@ const ProjectDirectoryBenchMarkFieldIndex = ({ item, setProjectDirectoryRemove }
   const handleButtonClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const [benchmarkValues, setBenchmarkValues] = useState([]);
+
   useEffect(() => {
     addBenchmarkType.forEach((benchmark) => {
       if (benchmark.defaultValue) {
         setAddBenchmarkItems((prevState) => [...prevState, benchmark]);
+        setBenchmarkValues((prevState) => [...prevState, benchmark]);
+        setProjectDirectoryBenchmarkAddItems((prevState) => [...prevState, benchmark]);
       } else {
         setBenchmarkItems((prevState) => [...prevState, benchmark]);
         setProjectDirectoryRemove((prevState) => [...prevState, benchmark]);
+
+        // setProjectDirectoryRemove((prevState) => [...prevState, benchmark]);
       }
-     
     });
   }, []);
 
+  const handleChange = (name, value) => {
+    setBenchmarkValues((prevItems) => {
+      return prevItems.map((item) => {
+        if (item.value === name) {
+          const x = {
+            item: item.item,
+            value: item.value,
+            defaultValue: value,
+          };
+          return x;
+        }
+        return item;
+      });
+    });
+    setProjectDirectoryBenchmarkAddItems((prevItems) => {
+      return prevItems.map((item) => {
+        if (item.value === name) {
+          const x = {
+            item: item.item,
+            value: item.value,
+            defaultValue: value,
+          };
+          return x;
+        }
+        return item;
+      });
+    });
+  };
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
   const handleMenuItemClick = (val, item) => {
-    // setAddBenchmarkItems((prevArray) => [...prevArray, val]);
     const addValue = {
       item: item,
       value: val,
     };
     setAddBenchmarkItems((prevArray) => [...prevArray, addValue]);
+    setBenchmarkValues((prevArray) => [...prevArray, addValue]);
+    setProjectDirectoryBenchmarkAddItems((prevArray) => [...prevArray, addValue]);
 
     const filteredArr = benchmarkItems.filter((item) => item.value !== val);
     setBenchmarkItems(filteredArr);
@@ -62,10 +101,13 @@ const ProjectDirectoryBenchMarkFieldIndex = ({ item, setProjectDirectoryRemove }
       value: name,
     };
     setBenchmarkItems((prevArray) => [...prevArray, deleteValue]);
+
     setProjectDirectoryRemove((prevArray) => [...prevArray, deleteValue]);
 
-    const filteredArr = addBenchmarkItems.filter((item) => item.value != name);
+    const filteredArr = benchmarkValues.filter((item) => item.value != name);
     setAddBenchmarkItems(filteredArr);
+    setBenchmarkValues(filteredArr);
+    setProjectDirectoryBenchmarkAddItems(filteredArr);
   };
 
   return (
@@ -95,8 +137,8 @@ const ProjectDirectoryBenchMarkFieldIndex = ({ item, setProjectDirectoryRemove }
           }}
         >
           <Grid container spacing={1}>
-            {addBenchmarkItems &&
-              addBenchmarkItems.map((item) => (
+            {benchmarkValues &&
+              benchmarkValues?.map((item) => (
                 <>
                   {item.defaultValue != "" && (
                     <Grid item xs={5.89}>
@@ -112,11 +154,12 @@ const ProjectDirectoryBenchMarkFieldIndex = ({ item, setProjectDirectoryRemove }
                           },
                         }}
                       >
-                        <TextFieldProjectDirectoryBenchmark
+                        <TextFieldForTest
                           name={item.value}
                           label={item.item}
                           handleRemove={handleRemove}
                           defaultValue={item.defaultValue}
+                          handleChange={handleChange}
                         />
                       </Box>
                     </Grid>

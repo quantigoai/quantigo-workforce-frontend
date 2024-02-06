@@ -34,17 +34,11 @@ export const PdTextField = styled(TextField)(() => ({
 }));
 const TextFieldForTest = ({
   name,
-  helperText,
-  isNumber,
-  isNumberPdr,
-  InputProps,
+
   label,
   defaultValue,
-  isRequired,
   handleRemove,
   handleChange,
-  value,
-  ...other
 }) => {
   return (
     <>
@@ -56,12 +50,12 @@ const TextFieldForTest = ({
             color: "neutral.N300",
           }}
         >
-          {label} {<span style={{ color: "#F04438" }}>{isRequired && "*"}</span>}
+          {label}
         </Typography>
         <Box sx={{ width: "100%" }}>
           <PdTextField
             size='small'
-            type={isNumber || isNumberPdr ? "number" : "text"}
+            type={"text"}
             id='outlined-basic'
             // {...field}
             fullWidth
@@ -71,15 +65,17 @@ const TextFieldForTest = ({
               backgroundColor: "neutral.N000",
             }}
             // defaultValue={defaultValue}
-            value={value}
-            onChange={handleChange}
+            value={defaultValue}
+            // onChange={handleChange}
+            onChange={(event) => handleChange(name, event.target.value)}
             // value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
             // error={!!error}
             // helperText={error ? error?.message : helperText}
             // autoComplete='off'
             // {...other}
             InputProps={{
-              ...InputProps,
+              // ...InputProps,
+
               endAdornment: (
                 <IconButton onClick={() => handleRemove(name, label)} edge='end'>
                   <DeleteIcon

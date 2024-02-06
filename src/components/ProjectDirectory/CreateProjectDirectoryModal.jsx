@@ -138,16 +138,6 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                         <PDTextFIeld name="industry" label="Industry" />
                       </FieldBox>
 
-                      {/* <FieldBox>
-                        <PDTextFIeld name="platform" label="Platform" />
-                      </FieldBox>
-                      <FieldBox>
-                        <PDTextFIeld name="tool_Type" label="Tool Type" />
-                      </FieldBox>
-                      <FieldBox>
-                        <PDTextFIeld name="QA" label="QA" />
-                      </FieldBox> */}
-
                       <FieldBox>
                         <PDTextFIeld
                           name="PDR"
@@ -173,26 +163,6 @@ const CreateProjectDirectoryModal = ({ openModal, handleClose, onSubmit }) => {
                           defaultValue={''}
                         />
                       </FieldBox>
-
-                      {/* <FieldBox>
-                        <PDTextFIeld name="action_Items" label="Action Items" />
-                      </FieldBox>
-                      <FieldBox>
-                        <PDTextFIeld name="qA_Check_Points" label="QA Check Points" />
-                      </FieldBox>
-                      <FieldBox>
-                        <PDTextFIeld name="qA_Benchmark" label="QA Benchmark" />
-                      </FieldBox> */}
-
-                      {/* <FieldBox>
-                        <PDTextFIeld name="img_Benchmark" label="Image Benchmark" />
-                      </FieldBox>
-                      <FieldBox>
-                        <PDTextFIeld name="tagging_Benchmark" label="Tagging Benchmark" />
-                      </FieldBox>
-                      <FieldBox>
-                        <PDTextFIeld name="deletion" label="Deletion" />
-                      </FieldBox> */}
 
                       <FieldBox>
                         <PDSelectField name="data_Type" label="Data Type" options={dataTypeOptions} defaultValue={''} />

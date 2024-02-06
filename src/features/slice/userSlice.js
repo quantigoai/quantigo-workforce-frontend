@@ -615,7 +615,6 @@ const userSlice = createSlice({
       // state.user.completedCourses.push(action.payload);
     },
     updateUserProfileCompletePercentage: (state, action) => {
-      console.log("🚀 ~ action:", action)
       state.user.profileCompletePercentage = action.payload;
       // state.user.completedCourses.push(action.payload);
     },
@@ -744,7 +743,6 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(updateMyVerification.fulfilled, (state, action) => {
-        console.log("🚀 ~ .addCase ~ action:", action)
         state.isLoading = false;
         state.error = null;
         state.user = {

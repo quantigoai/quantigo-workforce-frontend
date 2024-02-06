@@ -41,7 +41,6 @@ export const MyTextField = styled(TextField)(() => ({
 }));
 
 export default function CustomTextField({ name, label, helperText, isRequired, isNumber, InputProps, ...other }) {
-  console.log('🚀 ~ CustomTextField ~ other:', other);
   const { control } = useFormContext();
   return (
     <Controller

@@ -56,8 +56,6 @@ const ItemsField = ({
   item,
   setShowingField,
 }) => {
-  console.log('🚀 ~ ItemsField ~ item:', item);
-
   const [menu, setMenu] = useState([]);
 
   const dispatch = useDispatch();

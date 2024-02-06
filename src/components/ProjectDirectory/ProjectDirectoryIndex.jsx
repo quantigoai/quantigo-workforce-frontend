@@ -20,7 +20,10 @@ import useToaster from '../../customHooks/useToaster.jsx';
 import TableWrapper from '../primary/ProjectLIstNew2/ExpTable/TableWrapper.jsx';
 import { projectDirectoryField } from '../primary/ProjectLIstNew2/FIlterOptions';
 import PaginationTable from '../primary/ProjectLIstNew2/PaginationTable';
-import { HeaderBox, TablePaper } from '../primary/ProjectLIstNew2/ProjectLIstIndex2';
+import {
+  HeaderBox,
+  TablePaper,
+} from '../primary/ProjectLIstNew2/ProjectLIstIndex2';
 import fieldBuilder from '../shared/CustomTable/fieldBuilder';
 import LoadingComponent from '../shared/Loading/LoadingComponent.jsx';
 import CreateProjectDirectoryModal from './CreateProjectDirectoryModal.jsx';
@@ -51,8 +54,18 @@ const ProjectDirectoryIndex = () => {
   const [projectDirectorys, setProjectDirectory] = useState([]);
   const [menuFilter, setMenuFilter] = useState([
     { title: 'PDR', value: 'PDR', isFieldShow: false, isValue: '' },
-    { title: 'Manual Creation', value: 'manual_Creation', isFieldShow: false, isValue: '' },
-    { title: 'Correction', value: 'correction', isFieldShow: false, isValue: '' },
+    {
+      title: 'Manual Creation',
+      value: 'manual_Creation',
+      isFieldShow: false,
+      isValue: '',
+    },
+    {
+      title: 'Correction',
+      value: 'correction',
+      isFieldShow: false,
+      isValue: '',
+    },
     { title: 'Deletion', value: 'deletion', isFieldShow: false, isValue: '' },
     {
       title: 'Object Assessment',
@@ -60,9 +73,24 @@ const ProjectDirectoryIndex = () => {
       isFieldShow: false,
       isValue: '',
     },
-    { title: 'Manual Tagging', value: 'manual_Tagging', isFieldShow: false, isValue: '' },
-    { title: 'Tag Correction', value: 'tag_Correction', isFieldShow: false, isValue: '' },
-    { title: 'Tag Deletion', value: 'tag_Deletion', isFieldShow: false, isValue: '' },
+    {
+      title: 'Manual Tagging',
+      value: 'manual_Tagging',
+      isFieldShow: false,
+      isValue: '',
+    },
+    {
+      title: 'Tag Correction',
+      value: 'tag_Correction',
+      isFieldShow: false,
+      isValue: '',
+    },
+    {
+      title: 'Tag Deletion',
+      value: 'tag_Deletion',
+      isFieldShow: false,
+      isValue: '',
+    },
     {
       title: 'Tag Check Review',
       value: 'tag_Check_Review',
@@ -82,7 +110,12 @@ const ProjectDirectoryIndex = () => {
       isValue: '',
     },
     { title: 'Review', value: 'review', isFieldShow: false, isValue: '' },
-    { title: 'Tag Check QA', value: 'tag_Check_QA', isFieldShow: false, isValue: '' },
+    {
+      title: 'Tag Check QA',
+      value: 'tag_Check_QA',
+      isFieldShow: false,
+      isValue: '',
+    },
     {
       title: 'Image Assessment',
       value: 'image_Assessment',
@@ -95,10 +128,17 @@ const ProjectDirectoryIndex = () => {
       isFieldShow: false,
       isValue: '',
     },
-    { title: 'Categorization', value: 'categorization', isFieldShow: false, isValue: '' },
+    {
+      title: 'Categorization',
+      value: 'categorization',
+      isFieldShow: false,
+      isValue: '',
+    },
   ]);
   const dispatch = useDispatch();
-  const { projectDirectory, isLoading } = useSelector((state) => state.projectDirectory);
+  const { projectDirectory, isLoading } = useSelector(
+    (state) => state.projectDirectory,
+  );
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const toast = useToaster();
@@ -127,9 +167,12 @@ const ProjectDirectoryIndex = () => {
   const [judgementTimeFieldFilter, setJudgementTimeFieldFilter] = useState('');
   const [skipImageFieldFilter, setSkipImageFieldFilter] = useState('');
   const [imageLoadingFieldFilter, setImageLoadingFieldFilter] = useState('');
-  const [objectSavingTimeFieldFilter, setobjectSavingTimeFieldFilter] = useState('');
-  const [videoWatchTimeFieldFilter, setVideoWatchTimeFieldFilter] = useState('');
-  const [taggingBenchMarkFieldFilter, setTaggingBenchMarkFieldFilter] = useState('');
+  const [objectSavingTimeFieldFilter, setobjectSavingTimeFieldFilter] =
+    useState('');
+  const [videoWatchTimeFieldFilter, setVideoWatchTimeFieldFilter] =
+    useState('');
+  const [taggingBenchMarkFieldFilter, setTaggingBenchMarkFieldFilter] =
+    useState('');
   const [date, setDate] = useState('');
   const [labelingTool, setLablelingTool] = useState('');
   // const [dataType, setDataType] = useState('');
@@ -207,6 +250,7 @@ const ProjectDirectoryIndex = () => {
     });
   };
   const handleFilterProjectDirectory = () => {
+    console.log('2');
     // const filteredData = {
     //   ...(industryType ? { industry: industryType } : {}),
     //   ...(clientAliasFilter ? { client_Alias: clientAliasFilter } : {}),
@@ -244,22 +288,21 @@ const ProjectDirectoryIndex = () => {
     for (const item of filterDataArr) {
       filterDataObj[item.value] = item.isValue;
     }
+    setFilterData(filterDataObj);
 
     const data = {
-      // filteredData,
-      filterDataObj,
+      filteredData: filterDataObj,
       search,
       pagination,
       ascDescOption: ascDesc,
     };
-    console.log('🚀 ~ handleFilterProjectDirectory ~ data:', data);
-    setFilterData(filterDataObj);
     dispatch(getProjectByDirectory(data)).then((action) => {
       if (action.payload.status === 200) {
         setProjectDirectory(action.payload.data);
       }
     });
   };
+
   const handleResetProjectDirectory = () => {
     setVideoWatchTimeFieldFilter('');
     setPlatformFieldFilter('');
@@ -367,7 +410,9 @@ const ProjectDirectoryIndex = () => {
   const [isDataLoading, setIsDataLoading] = useState(true);
   const [isChildDataLoading, setIsChildDataLoading] = useState(false);
   const [myRows, setMyRows] = useState([]);
-  const { projectDirectorySingle } = useSelector((state) => state.projectDirectory);
+  const { projectDirectorySingle } = useSelector(
+    (state) => state.projectDirectory,
+  );
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
@@ -438,7 +483,7 @@ const ProjectDirectoryIndex = () => {
       getProjectByDirectory({
         pagination,
         ascDescOption: ascDesc,
-      })
+      }),
     ); //TODO CHECK THIS LATER
   };
   useEffect(() => {
@@ -453,7 +498,7 @@ const ProjectDirectoryIndex = () => {
       setProjectDirectoryFilter({
         search,
         ascDescOption: ascDesc,
-      })
+      }),
     );
   }, [search, ascDesc]);
 
@@ -470,9 +515,11 @@ const ProjectDirectoryIndex = () => {
         search,
         pagination,
         ascDescOption: ascDesc,
-      })
+      }),
     ).then((action) => {
-      setMyColumn(fieldBuilder(projectDirectoryField, handleClick, handleDelete));
+      setMyColumn(
+        fieldBuilder(projectDirectoryField, handleClick, handleDelete),
+      );
       setIsChildDataLoading(false);
       setIsDataLoading(false);
     });
@@ -497,14 +544,14 @@ const ProjectDirectoryIndex = () => {
               search,
               pagination,
               ascDescOption: ascDesc,
-            })
+            }),
           );
         },
         afterError: () => {
           setOpenReject(false);
         },
       },
-      'forProjectDirectory'
+      'forProjectDirectory',
     );
     // dispatch(getProjectSync()).then((action) => {
     //   setIsSyncLoading(true);
@@ -747,7 +794,9 @@ const ProjectDirectoryIndex = () => {
         <ProjectDirectoryDetailsModal
           openProjectModalDetails={openProjectModalDetails}
           item={projectDirectorySingle}
-          handleDetailsProjectDirectoryClose={handleDetailsProjectDirectoryClose}
+          handleDetailsProjectDirectoryClose={
+            handleDetailsProjectDirectoryClose
+          }
         />
       )}
     </Box>

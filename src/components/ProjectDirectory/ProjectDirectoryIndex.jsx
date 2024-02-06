@@ -14,7 +14,7 @@ import CreateProjectDirectoryModal from './CreateProjectDirectoryModal.jsx';
 import ProjectDirectoryDetailsModal from './ProjectDirectoryDetailsModal';
 import ProjectDirectoryEditModal from './ProjectDirectoryEditModal';
 import ProjectDirectoryHeader from './ProjectDirectoryHeader.jsx';
-import useProjectDirectoryManage from './useProjectDirectoryManage.jsx';
+import useProjectDirectoryManage from '../../customHooks/useProjectDirectoryManage.jsx';
 
 const ProjectDirectoryIndex = () => {
   const {

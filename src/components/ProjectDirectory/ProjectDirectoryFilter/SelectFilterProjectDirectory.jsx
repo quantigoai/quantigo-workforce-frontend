@@ -36,7 +36,6 @@ const SelectFilterProjectDirectory = ({ handleMenuItemClick, setAnchorEl, anchor
     <>
       <Box>
         <Button
-          // variant="outlined"
           sx={{
             textTransform: 'none',
             border: '1px solid #244EF5',
@@ -58,11 +57,9 @@ const SelectFilterProjectDirectory = ({ handleMenuItemClick, setAnchorEl, anchor
               sx={{
                 fontSize: '14px',
                 '& .MuiInputBase-root': {
-                  // height: "42px",
                   fontSize: '12px',
                   fontFamily: 'Inter',
                   '@media(max-width:1439px)': {
-                    // height: "30px",
                     fontSize: '10px',
                   },
                   '@media(min-width: 1920px)': {
@@ -77,30 +74,6 @@ const SelectFilterProjectDirectory = ({ handleMenuItemClick, setAnchorEl, anchor
               {filter.title}
             </MenuItem>
           ))}
-          {/* {selectTypeFilter.map((filter, index) => (
-            <MenuItem
-              sx={{
-                fontSize: '14px',
-                '& .MuiInputBase-root': {
-                  // height: "42px",
-                  fontSize: '12px',
-                  fontFamily: 'Inter',
-                  '@media(max-width:1439px)': {
-                    // height: "30px",
-                    fontSize: '10px',
-                  },
-                  '@media(min-width: 1920px)': {
-                    fontSize: '14px',
-                  },
-                },
-              }}
-              key={index}
-              value={filter.value}
-              onClick={() => handleMenuItemClick(filter.value)}
-            >
-              {filter.item}
-            </MenuItem>
-          ))} */}
         </Menu>
       </Box>
     </>

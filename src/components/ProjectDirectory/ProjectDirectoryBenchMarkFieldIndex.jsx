@@ -2,7 +2,6 @@ import { Box, Grid, Menu, MenuItem, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import TextFieldProjectDirectoryBenchmark from "../shared/CustomField/TextFieldProjectDirectoryBenchmark";
 import TextFieldForTest from "../shared/CustomField/TextFieldForTest";
 
 const ProjectDirectoryBenchMarkFieldIndex = ({
@@ -128,12 +127,9 @@ const ProjectDirectoryBenchMarkFieldIndex = ({
             border: "1px solid #E6ECF5",
             padding: "16px",
             borderRadius: "8px",
-
             background: isLightTheme ? "#FAFCFF" : "#2C2C2C",
-            // maxHeight: 155,
             color: isLightTheme ? "#091E42" : "#FFFFFF",
-            // color: "#FFFFFF",
-            // overflowY: "auto",
+
           }}
         >
           <Grid container spacing={1}>
@@ -169,20 +165,15 @@ const ProjectDirectoryBenchMarkFieldIndex = ({
           </Grid>
           <Typography
             sx={{
-              //   fontWeight: '600',
-              // mt: '10px',
-              //   fontSize: '14px',
+
               mb: "0px",
               color: benchmarkItems.length === 0 ? "#7D89A3" : "#2E58FF",
               cursor: benchmarkItems.length === 0 ? "" : "pointer",
-
-              //   pointerEvents: hasChanged ? "auto" : "none",
             }}
             disabled={benchmarkItems.length === 0 ? true : false}
             variant='wpf_h7_Bold'
             type='button'
             onClick={handleButtonClick}
-            // onClick={handleAddOtherDocument}
           >
             <i className='ri-add-line'></i> Add Another Benchmark
           </Typography>

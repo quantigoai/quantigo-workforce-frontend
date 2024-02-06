@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import useToaster from '../../customHooks/useToaster';
+import useToaster from './useToaster.jsx';
 import { useForm } from 'react-hook-form';
 import {
   clearProjectDirectory,
@@ -10,9 +10,9 @@ import {
   getProjectSyncFunction,
   setCurrentProjectDirectory,
   updateProjectDirectory,
-} from '../../features/slice/ProjectDirectorySlice';
+} from '../features/slice/ProjectDirectorySlice.js';
 import { useLocation } from 'react-router-dom';
-import { filters } from './MenuFIlter';
+import { filters } from '../components/ProjectDirectory/MenuFIlter.js';
 
 const useProjectDirectoryManage = () => {
   const user = useSelector((state) => state.user);

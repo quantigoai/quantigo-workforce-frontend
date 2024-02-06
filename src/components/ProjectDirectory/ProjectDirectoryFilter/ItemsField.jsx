@@ -86,29 +86,7 @@ const ItemsField = ({
             {title}
           </Typography>
           <Box>
-            {/* <Typography
-              variant="wpf_h7_medium"
-              sx={{
-                mb: 0,
-                color: 'neutral.N300',
-              }}
-            >
-              {label} 
-            </Typography> */}
 
-            {/* <i
-            //   onClick={() => handleRemove(index)}
-            style={{
-              color: "red",
-              cursor: "pointer",
-              position: "absolute",
-              left: 275,
-              top: 35,
-              height: "20px",
-              width: "20px",
-            }}
-            className="ri-delete-bin-line"
-          ></i> */}
           </Box>
           <MySelect
             labelId="demo-simple-select-autowidth-label"
@@ -120,11 +98,8 @@ const ItemsField = ({
             sx={{
               height: '40px',
               backgroundColor: 'neutral.N400',
-              // fontSize: "14px",
             }}
-            // disabled={disableItem ? true : !editAble}
-            // value={defaultValue}
-            // onChange={(e) => handleChange(e)}
+
           >
             {menu.map((m) => (
               <MenuItem

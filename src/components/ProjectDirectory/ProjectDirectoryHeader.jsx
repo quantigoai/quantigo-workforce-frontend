@@ -123,6 +123,7 @@ const ProjectDirectoryHeader = ({
   completionDateFilter,
   setCompletionDataFilter,
   menuFilter,
+  handleValue,
 }) => {
   const open = Boolean(anchorE2);
   const id = open ? 'simple-popover' : undefined;
@@ -350,6 +351,7 @@ const ProjectDirectoryHeader = ({
             completionDateFilter={completionDateFilter}
             setCompletionDataFilter={setCompletionDataFilter}
             menuFilter={menuFilter}
+            handleValue={handleValue}
           />
         </Popover>
         <LoadingButton

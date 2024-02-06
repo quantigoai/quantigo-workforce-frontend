@@ -20,10 +20,7 @@ import useToaster from '../../customHooks/useToaster.jsx';
 import TableWrapper from '../primary/ProjectLIstNew2/ExpTable/TableWrapper.jsx';
 import { projectDirectoryField } from '../primary/ProjectLIstNew2/FIlterOptions';
 import PaginationTable from '../primary/ProjectLIstNew2/PaginationTable';
-import {
-  HeaderBox,
-  TablePaper,
-} from '../primary/ProjectLIstNew2/ProjectLIstIndex2';
+import { HeaderBox, TablePaper } from '../primary/ProjectLIstNew2/ProjectLIstIndex2';
 import fieldBuilder from '../shared/CustomTable/fieldBuilder';
 import LoadingComponent from '../shared/Loading/LoadingComponent.jsx';
 import CreateProjectDirectoryModal from './CreateProjectDirectoryModal.jsx';
@@ -53,55 +50,60 @@ const ProjectDirectoryIndex = () => {
   const { role } = user.user;
   const [projectDirectorys, setProjectDirectory] = useState([]);
   const [menuFilter, setMenuFilter] = useState([
-    { title: 'PDR', value: 'PDR', isFieldShow: false },
-    { title: 'Manual Creation', value: 'manual_Creation', isFieldShow: false },
-    { title: 'Correction', value: 'correction', isFieldShow: false },
-    { title: 'Deletion', value: 'deletion', isFieldShow: false },
+    { title: 'PDR', value: 'PDR', isFieldShow: false, isValue: '' },
+    { title: 'Manual Creation', value: 'manual_Creation', isFieldShow: false, isValue: '' },
+    { title: 'Correction', value: 'correction', isFieldShow: false, isValue: '' },
+    { title: 'Deletion', value: 'deletion', isFieldShow: false, isValue: '' },
     {
       title: 'Object Assessment',
       value: 'object_Assessment',
       isFieldShow: false,
+      isValue: '',
     },
-    { title: 'Manual Tagging', value: 'manual_Tagging', isFieldShow: false },
-    { title: 'Tag Correction', value: 'tag_Correction', isFieldShow: false },
-    { title: 'Tag Deletion', value: 'tag_Deletion', isFieldShow: false },
+    { title: 'Manual Tagging', value: 'manual_Tagging', isFieldShow: false, isValue: '' },
+    { title: 'Tag Correction', value: 'tag_Correction', isFieldShow: false, isValue: '' },
+    { title: 'Tag Deletion', value: 'tag_Deletion', isFieldShow: false, isValue: '' },
     {
       title: 'Tag Check Review',
       value: 'tag_Check_Review',
       isFieldShow: false,
+      isValue: '',
     },
     {
       title: 'Cloning Manual Object',
       value: 'cloning_Manual_Object',
       isFieldShow: false,
+      isValue: '',
     },
     {
       title: 'Clone Correction',
       value: 'clone_Correction',
       isFieldShow: false,
+      isValue: '',
     },
-    { title: 'Review', value: 'review', isFieldShow: false },
-    { title: 'Tag Check QA', value: 'tag_Check_QA', isFieldShow: false },
+    { title: 'Review', value: 'review', isFieldShow: false, isValue: '' },
+    { title: 'Tag Check QA', value: 'tag_Check_QA', isFieldShow: false, isValue: '' },
     {
       title: 'Image Assessment',
       value: 'image_Assessment',
       isFieldShow: false,
+      isValue: '',
     },
     {
       title: 'Video Assessment',
       value: 'video_Assessment',
       isFieldShow: false,
+      isValue: '',
     },
-    { title: 'Categorization', value: 'categorization', isFieldShow: false },
+    { title: 'Categorization', value: 'categorization', isFieldShow: false, isValue: '' },
   ]);
   const dispatch = useDispatch();
-  const { projectDirectory, isLoading } = useSelector(
-    (state) => state.projectDirectory,
-  );
+  const { projectDirectory, isLoading } = useSelector((state) => state.projectDirectory);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const toast = useToaster();
   const [filterData, setFilterData] = useState({});
+  console.log('🚀 ~ ProjectDirectoryIndex ~ filterData:', filterData);
   const [anchorE2, setAnchorE2] = React.useState(null);
   const [industryType, setIndustryType] = useState('');
   const [projectDirectoryRemove, setProjectDirectoryRemove] = useState([]);
@@ -125,12 +127,9 @@ const ProjectDirectoryIndex = () => {
   const [judgementTimeFieldFilter, setJudgementTimeFieldFilter] = useState('');
   const [skipImageFieldFilter, setSkipImageFieldFilter] = useState('');
   const [imageLoadingFieldFilter, setImageLoadingFieldFilter] = useState('');
-  const [objectSavingTimeFieldFilter, setobjectSavingTimeFieldFilter] =
-    useState('');
-  const [videoWatchTimeFieldFilter, setVideoWatchTimeFieldFilter] =
-    useState('');
-  const [taggingBenchMarkFieldFilter, setTaggingBenchMarkFieldFilter] =
-    useState('');
+  const [objectSavingTimeFieldFilter, setobjectSavingTimeFieldFilter] = useState('');
+  const [videoWatchTimeFieldFilter, setVideoWatchTimeFieldFilter] = useState('');
+  const [taggingBenchMarkFieldFilter, setTaggingBenchMarkFieldFilter] = useState('');
   const [date, setDate] = useState('');
   const [labelingTool, setLablelingTool] = useState('');
   // const [dataType, setDataType] = useState('');
@@ -183,8 +182,7 @@ const ProjectDirectoryIndex = () => {
   };
   // console.table(menuFilter);
 
-  const handleMenuItemClick = (value, isFieldShow) => {
-
+  const handleMenuItemClick = (value) => {
     setMenuFilter((menuFilter) => {
       const updatedMenu = menuFilter.map((filter) => {
         if (filter.value === value) {
@@ -195,150 +193,67 @@ const ProjectDirectoryIndex = () => {
       return updatedMenu;
     });
 
-    // if (e === 'PDR') {
-    //   setPdrSetFilter(true);
-    // }
-    // if (e === 'QA') {
-    //   setQAFilter(true);
-    // }
-    // if (e === 'QA_Benchmark') {
-    //   setQABenchmarkField(true);
-    // }
-    // if (e === 'Judgement_Time') {
-    //   setJudgementTimeFilter(true);
-    // }
-    // if (e === 'Skip_Image') {
-    //   setSkipImageFilter(true);
-    // }
-    // if (e === 'Image_Loading') {
-    //   setImageLoadingFilter(true);
-    // }
-    // if (e === 'Object_Saving_Time') {
-    //   setObjectSavingTimeFilter(true);
-    // }
-    // if (e === 'Video_Watch_Time') {
-    //   setVideoWatchTimeFilter(true);
-    // }
-    // if (e === 'Deletion') {
-    //   setDeletionFilter(true);
-    // }
-    // if (e === 'Tagging_Benchmark') {
-    //   setTagingBenchMarkFilter(true);
-    // }
-    // if (e === 'Img_Benchmark') {
-    //   setImageBenchMarkFilter(true);
-    // }
-    // if (e === 'Obj_Benchmark') {
-    //   setObjBenchMarkFilter(true);
-    // }
-    // if (e === 'QA_Check_Points') {
-    //   setQaCheckPointFilter(true);
-    // }
-    // if (e === 'Action_Items') {
-    //   setActionItemsFilter(true);
-    // }
-    // if (e === 'Project_Type') {
-    //   setProjectTypeFilter(true);
-    // }
-    // if (e === 'Tool_Type') {
-    //   setToolTypeFilter(true);
-    // }
-    // if (e === 'Platform') {
-    //   setPlatformField(true);
-    // }
-    // if (e === 'Client_Alias') {
-    //   setClient_AliasSetFilter(true);
-    // }
-    // if (e === 'Industry') {
-    //   setIndustrySetFilter(true);
-    // }
-    // if (e === 'labeling_Tool') {
-    //   setLablelingToolFilter(true);
-    // }
-    // if (e === 'data_Type') {
-    //   setAnnotationSetFilter(true);
-    // }
-    // if (e === 'guideline') {
-    //   setGuidelineFilter(true);
-    // }
-    // if (e === 'PDL') {
-    //   setPdlFilter(true);
-    // }
-    // if (e === 'DL') {
-    //   setDlFilter(true);
-    // }
-    // if (e === 'DCR') {
-    //   setDcrFilter(true);
-    // }
-    // if (e === 'PCR') {
-    //   setPcrFilter(true);
-    // }
-    // if (e === 'completion_Date') {
-    //   setCompletionDataFilter(true);
-    // }
     setAnchorEl(null);
   };
+  const handleValue = (value, itemVal) => {
+    setMenuFilter((menuFilter) => {
+      const updatedMenu = menuFilter.map((filter) => {
+        if (filter.value === itemVal) {
+          return { ...filter, isValue: value };
+        }
+        return filter;
+      });
+      return updatedMenu;
+    });
+  };
   const handleFilterProjectDirectory = () => {
-    const filteredData = {
-      ...(industryType ? { industry: industryType } : {}),
-      ...(clientAliasFilter ? { client_Alias: clientAliasFilter } : {}),
-      ...(actionItemsFieldFilter
-        ? { action_Items: actionItemsFieldFilter }
-        : {}),
-      ...(qAFieldFilter ? { QA: qAFieldFilter } : {}),
-      ...(qABenchmarkFieldFilter
-        ? { QA_Benchmark: qABenchmarkFieldFilter }
-        : {}),
-      ...(judgementTimeFieldFilter
-        ? { judgement_Time: judgementTimeFieldFilter }
-        : {}),
-      ...(skipImageFieldFilter ? { skip_Image: skipImageFieldFilter } : {}),
-      ...(imageLoadingFieldFilter
-        ? { image_Loading: imageLoadingFieldFilter }
-        : {}),
-      ...(objectSavingTimeFieldFilter
-        ? { object_Saving_Time: objectSavingTimeFieldFilter }
-        : {}),
-      ...(videoWatchTimeFieldFilter
-        ? { video_Watch_Time: videoWatchTimeFieldFilter }
-        : {}),
-      ...(toolTypeFieldFilter ? { tool_Type: toolTypeFieldFilter } : {}),
-      ...(deletionFieldFilter ? { deletion: deletionFieldFilter } : {}),
-      ...(platformFieldFilter ? { platform: platformFieldFilter } : {}),
-      ...(projectTypeFieldFilter
-        ? { project_Type: projectTypeFieldFilter }
-        : {}),
-      ...(annotationFilter ? { annotation: annotationFilter } : {}),
-      ...(pDRFilter ? { PDR: pDRFilter } : {}),
-      ...(qaCheckPointFieldFilter
-        ? { QA_Check_Points: qaCheckPointFieldFilter }
-        : {}),
-      ...(imgBenchMarkFieldFilter
-        ? { img_Benchmark: imgBenchMarkFieldFilter }
-        : {}),
-      ...(taggingBenchMarkFieldFilter
-        ? { tagging_Benchmark: taggingBenchMarkFieldFilter }
-        : {}),
-      ...(objBenchMarkFieldFilter
-        ? { obj_Benchmark: objBenchMarkFieldFilter }
-        : {}),
-      ...(labelingTool ? { labeling_Tool: labelingTool } : {}),
-      ...(dataType ? { data_Type: dataType } : {}),
-      ...(guideline ? { guideline: guideline } : {}),
-      ...(pdl ? { PDL: pdl } : {}),
-      ...(dl ? { DL: dl } : {}),
-      ...(dcr ? { DCR: dcr } : {}),
-      ...(pcr ? { PCR: pcr } : {}),
-      ...(completionDate ? { completion_Date: completionDate } : {}),
-      // ...(date ? { date } : {}),
-    };
+    // const filteredData = {
+    //   ...(industryType ? { industry: industryType } : {}),
+    //   ...(clientAliasFilter ? { client_Alias: clientAliasFilter } : {}),
+    //   ...(actionItemsFieldFilter ? { action_Items: actionItemsFieldFilter } : {}),
+    //   ...(qAFieldFilter ? { QA: qAFieldFilter } : {}),
+    //   ...(qABenchmarkFieldFilter ? { QA_Benchmark: qABenchmarkFieldFilter } : {}),
+    //   ...(judgementTimeFieldFilter ? { judgement_Time: judgementTimeFieldFilter } : {}),
+    //   ...(skipImageFieldFilter ? { skip_Image: skipImageFieldFilter } : {}),
+    //   ...(imageLoadingFieldFilter ? { image_Loading: imageLoadingFieldFilter } : {}),
+    //   ...(objectSavingTimeFieldFilter ? { object_Saving_Time: objectSavingTimeFieldFilter } : {}),
+    //   ...(videoWatchTimeFieldFilter ? { video_Watch_Time: videoWatchTimeFieldFilter } : {}),
+    //   ...(toolTypeFieldFilter ? { tool_Type: toolTypeFieldFilter } : {}),
+    //   ...(deletionFieldFilter ? { deletion: deletionFieldFilter } : {}),
+    //   ...(platformFieldFilter ? { platform: platformFieldFilter } : {}),
+    //   ...(projectTypeFieldFilter ? { project_Type: projectTypeFieldFilter } : {}),
+    //   ...(annotationFilter ? { annotation: annotationFilter } : {}),
+    //   ...(pDRFilter ? { PDR: pDRFilter } : {}),
+    //   ...(qaCheckPointFieldFilter ? { QA_Check_Points: qaCheckPointFieldFilter } : {}),
+    //   ...(imgBenchMarkFieldFilter ? { img_Benchmark: imgBenchMarkFieldFilter } : {}),
+    //   ...(taggingBenchMarkFieldFilter ? { tagging_Benchmark: taggingBenchMarkFieldFilter } : {}),
+    //   ...(objBenchMarkFieldFilter ? { obj_Benchmark: objBenchMarkFieldFilter } : {}),
+    //   ...(labelingTool ? { labeling_Tool: labelingTool } : {}),
+    //   ...(dataType ? { data_Type: dataType } : {}),
+    //   ...(guideline ? { guideline: guideline } : {}),
+    //   ...(pdl ? { PDL: pdl } : {}),
+    //   ...(dl ? { DL: dl } : {}),
+    //   ...(dcr ? { DCR: dcr } : {}),
+    //   ...(pcr ? { PCR: pcr } : {}),
+    //   ...(completionDate ? { completion_Date: completionDate } : {}),
+    //   // ...(date ? { date } : {}),
+    // };
+    const filterDataArr = menuFilter.filter((item) => item.isValue);
+    const filterDataObj = {};
+
+    for (const item of filterDataArr) {
+      filterDataObj[item.value] = item.isValue;
+    }
+
     const data = {
-      filteredData,
+      // filteredData,
+      filterDataObj,
       search,
       pagination,
       ascDescOption: ascDesc,
     };
-    setFilterData(filteredData);
+    console.log('🚀 ~ handleFilterProjectDirectory ~ data:', data);
+    setFilterData(filterDataObj);
     dispatch(getProjectByDirectory(data)).then((action) => {
       if (action.payload.status === 200) {
         setProjectDirectory(action.payload.data);
@@ -452,9 +367,7 @@ const ProjectDirectoryIndex = () => {
   const [isDataLoading, setIsDataLoading] = useState(true);
   const [isChildDataLoading, setIsChildDataLoading] = useState(false);
   const [myRows, setMyRows] = useState([]);
-  const { projectDirectorySingle } = useSelector(
-    (state) => state.projectDirectory,
-  );
+  const { projectDirectorySingle } = useSelector((state) => state.projectDirectory);
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
@@ -525,7 +438,7 @@ const ProjectDirectoryIndex = () => {
       getProjectByDirectory({
         pagination,
         ascDescOption: ascDesc,
-      }),
+      })
     ); //TODO CHECK THIS LATER
   };
   useEffect(() => {
@@ -540,7 +453,7 @@ const ProjectDirectoryIndex = () => {
       setProjectDirectoryFilter({
         search,
         ascDescOption: ascDesc,
-      }),
+      })
     );
   }, [search, ascDesc]);
 
@@ -557,11 +470,9 @@ const ProjectDirectoryIndex = () => {
         search,
         pagination,
         ascDescOption: ascDesc,
-      }),
+      })
     ).then((action) => {
-      setMyColumn(
-        fieldBuilder(projectDirectoryField, handleClick, handleDelete),
-      );
+      setMyColumn(fieldBuilder(projectDirectoryField, handleClick, handleDelete));
       setIsChildDataLoading(false);
       setIsDataLoading(false);
     });
@@ -586,14 +497,14 @@ const ProjectDirectoryIndex = () => {
               search,
               pagination,
               ascDescOption: ascDesc,
-            }),
+            })
           );
         },
         afterError: () => {
           setOpenReject(false);
         },
       },
-      'forProjectDirectory',
+      'forProjectDirectory'
     );
     // dispatch(getProjectSync()).then((action) => {
     //   setIsSyncLoading(true);
@@ -777,6 +688,7 @@ const ProjectDirectoryIndex = () => {
           role={role}
           handleCreateModal={handleCreateModal}
           menuFilter={menuFilter}
+          handleValue={handleValue}
         />
       </HeaderBox>
 
@@ -835,9 +747,7 @@ const ProjectDirectoryIndex = () => {
         <ProjectDirectoryDetailsModal
           openProjectModalDetails={openProjectModalDetails}
           item={projectDirectorySingle}
-          handleDetailsProjectDirectoryClose={
-            handleDetailsProjectDirectoryClose
-          }
+          handleDetailsProjectDirectoryClose={handleDetailsProjectDirectoryClose}
         />
       )}
     </Box>

@@ -24,13 +24,7 @@ const selectTypeFilter = [
   { item: 'QA', value: 'QA' },
 ];
 
-const SelectFilterProjectDirectory = ({
-  handleMenuItemClick,
-  setAnchorEl,
-  anchorEl,
-  menuFilter,
-}) => {
-  console.log('🚀 ~ SelectFilterProjectDirectory ~ menuFilter:', menuFilter);
+const SelectFilterProjectDirectory = ({ handleMenuItemClick, setAnchorEl, anchorEl, menuFilter }) => {
   const handleButtonClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -58,11 +52,7 @@ const SelectFilterProjectDirectory = ({
         >
           Add Filter Type
         </Button>
-        <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleMenuClose}
-        >
+        <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
           {menuFilter.map((filter, index) => (
             <MenuItem
               sx={{
@@ -82,9 +72,7 @@ const SelectFilterProjectDirectory = ({
               }}
               key={index}
               value={filter.value}
-              onClick={() =>
-                handleMenuItemClick(filter.value, filter.isFieldShow)
-              }
+              onClick={() => handleMenuItemClick(filter.value, filter.isFieldShow)}
             >
               {filter.title}
             </MenuItem>

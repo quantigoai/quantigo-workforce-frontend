@@ -6,15 +6,7 @@
  *
  * Copyright (c) 2024 Tanzim Ahmed
  */
-import {
-  Box,
-  FormControl,
-  Grid,
-  MenuItem,
-  Select,
-  Typography,
-  styled,
-} from '@mui/material';
+import { Box, FormControl, Grid, MenuItem, Select, Typography, styled } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getType } from '../../../features/slice/ProjectDirectorySlice';
@@ -58,9 +50,14 @@ const ItemsField = ({
   setPlatformFieldFilter,
   platformFieldFilter,
   isLightTheme,
+  handleValue,
   title,
   type,
+  item,
+  setShowingField,
 }) => {
+  console.log('🚀 ~ ItemsField ~ item:', item);
+
   const [menu, setMenu] = useState([]);
 
   const dispatch = useDispatch();
@@ -72,7 +69,10 @@ const ItemsField = ({
       }
     });
   }, []);
-  
+  const handleChange = (value) => {
+    // if(item.value===)
+    handleValue(value, item.value);
+  };
   return (
     <>
       <Grid container sx={{ paddingX: '15px' }}>
@@ -117,8 +117,8 @@ const ItemsField = ({
             id="demo-simple-select-autowidth"
             variant="outlined"
             placeholder="Select"
-            onChange={(e) => setPlatformFieldFilter(e.target.value)}
-            value={platformFieldFilter || ''}
+            onChange={(e) => handleChange(e.target.value)}
+            value={item.isValue}
             sx={{
               height: '40px',
               backgroundColor: 'neutral.N400',

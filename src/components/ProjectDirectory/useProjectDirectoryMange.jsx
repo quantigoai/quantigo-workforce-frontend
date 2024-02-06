@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import useToaster from "../../customHooks/useToaster";
-import { useForm } from "react-hook-form";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import useToaster from '../../customHooks/useToaster';
+import { useForm } from 'react-hook-form';
 import {
   clearProjectDirectory,
   createProjectDirectory,
@@ -10,140 +10,15 @@ import {
   getProjectSyncFunction,
   setCurrentProjectDirectory,
   updateProjectDirectory,
-} from "../../features/slice/ProjectDirectorySlice";
-import { useLocation } from "react-router-dom";
+} from '../../features/slice/ProjectDirectorySlice';
+import { useLocation } from 'react-router-dom';
+import { filters } from './MenuFIlter';
 
 const useProjectDirectoryMange = () => {
   const user = useSelector((state) => state.user);
   const { role } = user.user;
   const [projectDirectorys, setProjectDirectory] = useState([]);
-  const [menuFilter, setMenuFilter] = useState([
-    {
-      title: "Industry",
-      value: "industry",
-      isFieldShow: false,
-      isValue: "",
-    },
-    {
-      title: "Project Type",
-      value: "project_Type",
-      isFieldShow: false,
-      isValue: "",
-    },
-    {
-      title: "Labeling Tool",
-      value: "labeling_Tool",
-      isFieldShow: false,
-      isValue: "",
-    },
-    {
-      title: "Data Type",
-      value: "data_Type",
-      isFieldShow: false,
-      isValue: "",
-    },
-
-    {
-      title: "PDL",
-      value: "PDL",
-      isFieldShow: false,
-      isValue: "",
-    },
-    {
-      title: "DCR",
-      value: "DCR",
-      isFieldShow: false,
-      isValue: "",
-    },
-    {
-      title: "PCR",
-      value: "PCR",
-      isFieldShow: false,
-      isValue: "",
-    },
-
-    { title: "PDR", value: "PDR", isFieldShow: false, isValue: "" },
-    {
-      title: "Manual Creation",
-      value: "manual_Creation",
-      isFieldShow: false,
-      isValue: "",
-    },
-    {
-      title: "Correction",
-      value: "correction",
-      isFieldShow: false,
-      isValue: "",
-    },
-    { title: "Deletion", value: "deletion", isFieldShow: false, isValue: "" },
-    {
-      title: "Object Assessment",
-      value: "object_Assessment",
-      isFieldShow: false,
-      isValue: "",
-    },
-    {
-      title: "Manual Tagging",
-      value: "manual_Tagging",
-      isFieldShow: false,
-      isValue: "",
-    },
-    {
-      title: "Tag Correction",
-      value: "tag_Correction",
-      isFieldShow: false,
-      isValue: "",
-    },
-    {
-      title: "Tag Deletion",
-      value: "tag_Deletion",
-      isFieldShow: false,
-      isValue: "",
-    },
-    {
-      title: "Tag Check Review",
-      value: "tag_Check_Review",
-      isFieldShow: false,
-      isValue: "",
-    },
-    {
-      title: "Cloning Manual Object",
-      value: "cloning_Manual_Object",
-      isFieldShow: false,
-      isValue: "",
-    },
-    {
-      title: "Clone Correction",
-      value: "clone_Correction",
-      isFieldShow: false,
-      isValue: "",
-    },
-    { title: "Review", value: "review", isFieldShow: false, isValue: "" },
-    {
-      title: "Tag Check QA",
-      value: "tag_Check_QA",
-      isFieldShow: false,
-      isValue: "",
-    },
-    {
-      title: "Image Assessment",
-      value: "image_Assessment",
-      isFieldShow: false,
-      isValue: "",
-    },
-    {
-      title: "Video Assessment",
-      value: "video_Assessment",
-      isFieldShow: false,
-      isValue: "",
-    },
-    {
-      title: "Categorization",
-      value: "categorization",
-      isFieldShow: false,
-      isValue: "",
-    },
-  ]);
+  const [menuFilter, setMenuFilter] = useState(filters);
   const dispatch = useDispatch();
   const toast = useToaster();
   const [filterData, setFilterData] = useState({});
@@ -169,7 +44,7 @@ const useProjectDirectoryMange = () => {
   const { pathname } = useLocation();
   const [isDeleted, setIsDeleted] = useState(false);
   const [ascDesc, setAscDesc] = useState({});
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [openReject, setOpenReject] = React.useState(false);
   const [isSyncLoading, setIsSyncLoading] = useState(false);
   const searchRef = React.useRef(null);
@@ -230,7 +105,7 @@ const useProjectDirectoryMange = () => {
   const handleResetProjectDirectory = () => {
     setMenuFilter((menuFilter) => {
       const updatedMenu = menuFilter.map((filter) => {
-        return { ...filter, isValue: "", isFieldShow: false };
+        return { ...filter, isValue: '', isFieldShow: false };
       });
       return updatedMenu;
     });
@@ -270,9 +145,9 @@ const useProjectDirectoryMange = () => {
     setIsDeleted(false);
     dispatch(deleteProjectDirectory(e._id)).then((action) => {
       if (action.error?.message) {
-        toast.trigger(action.error?.message, "error");
+        toast.trigger(action.error?.message, 'error');
       } else {
-        toast.trigger(action.payload.data.message, "success");
+        toast.trigger(action.payload.data.message, 'success');
         setIsDeleted(true);
       }
     });
@@ -298,8 +173,8 @@ const useProjectDirectoryMange = () => {
   };
 
   const clearSearch = () => {
-    setSearch("");
-    searchRef.current.value = "";
+    setSearch('');
+    searchRef.current.value = '';
     setPagination((prevPagination) => ({
       ...prevPagination,
       currentPage: 0,
@@ -317,7 +192,7 @@ const useProjectDirectoryMange = () => {
       getProjectSyncFunction(),
       setIsSyncLoading,
       {
-        initialMessage: "project directory is syncing ...",
+        initialMessage: 'project directory is syncing ...',
         inPending: () => {
           setOpenReject(false);
         },
@@ -336,16 +211,16 @@ const useProjectDirectoryMange = () => {
           setOpenReject(false);
         },
       },
-      "forProjectDirectory"
+      'forProjectDirectory'
     );
   };
 
   const onSubmit = (data) => {
     dispatch(createProjectDirectory(data)).then((action) => {
       if (action.error?.message) {
-        toast.trigger(action.error?.message, "error");
+        toast.trigger(action.error?.message, 'error');
       } else {
-        toast.trigger(action.payload.data.message, "success");
+        toast.trigger(action.payload.data.message, 'success');
         handleClose();
         reset();
       }
@@ -353,7 +228,7 @@ const useProjectDirectoryMange = () => {
   };
   const onSubmitEdit = (data) => {
     projectDirectoryRemove.map((p) => {
-      data[p.value] = "";
+      data[p.value] = '';
     });
     projectDirectoryBenchmarkAddItems.map((p) => {
       data[p.value] = p.defaultValue;
@@ -364,9 +239,9 @@ const useProjectDirectoryMange = () => {
     };
     dispatch(updateProjectDirectory(finalData)).then((action) => {
       if (action.error?.message) {
-        toast.trigger(action.error?.message, "error");
+        toast.trigger(action.error?.message, 'error');
       } else {
-        toast.trigger(action.payload.data.message, "success");
+        toast.trigger(action.payload.data.message, 'success');
         setOpenProjectModalEdit(false);
         handleClose();
         reset();
@@ -378,10 +253,10 @@ const useProjectDirectoryMange = () => {
     setAscDesc((prev) => {
       const updatedData = { ...prev };
       if (prev?.hasOwnProperty(field)) {
-        if (prev[field] === "asc") {
+        if (prev[field] === 'asc') {
           return {
             ...prev,
-            [field]: "desc",
+            [field]: 'desc',
           };
         } else {
           delete updatedData[field];
@@ -390,7 +265,7 @@ const useProjectDirectoryMange = () => {
       }
       return {
         ...prev,
-        [field]: "asc",
+        [field]: 'asc',
       };
     });
   };

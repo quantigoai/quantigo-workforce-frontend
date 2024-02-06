@@ -1,21 +1,20 @@
 /* eslint-disable no-prototype-builtins */
-import { Box } from "@mui/material";
-import React, { useEffect, useLayoutEffect } from "react";
-import { clearProjectDirectory, getProjectByDirectory } from "../../features/slice/ProjectDirectorySlice.js";
-import { setActivePath } from "../../features/slice/activePathSlice";
-import { setProjectDirectoryFilter } from "../../features/slice/temporaryDataSlice";
-// /ProjectLIstNew2/ExpTable/TableWrapper
-import TableWrapper from "../primary/ProjectLIstNew2/ExpTable/TableWrapper.jsx";
-import { projectDirectoryField } from "../primary/ProjectLIstNew2/FIlterOptions";
-import PaginationTable from "../primary/ProjectLIstNew2/PaginationTable";
-import { HeaderBox, TablePaper } from "../primary/ProjectLIstNew2/ProjectLIstIndex2";
-import fieldBuilder from "../shared/CustomTable/fieldBuilder";
-import LoadingComponent from "../shared/Loading/LoadingComponent.jsx";
-import CreateProjectDirectoryModal from "./CreateProjectDirectoryModal.jsx";
-import ProjectDirectoryDetailsModal from "./ProjectDirectoryDetailsModal";
-import ProjectDirectoryEditModal from "./ProjectDirectoryEditModal";
-import ProjectDirectoryHeader from "./ProjectDirectoryHeader.jsx";
-import useProjectDirectoryMange from "./useProjectDirectoryMange.jsx";
+import { Box } from '@mui/material';
+import React, { useEffect, useLayoutEffect } from 'react';
+import { clearProjectDirectory, getProjectByDirectory } from '../../features/slice/ProjectDirectorySlice.js';
+import { setActivePath } from '../../features/slice/activePathSlice';
+import { setProjectDirectoryFilter } from '../../features/slice/temporaryDataSlice';
+import TableWrapper from '../primary/ProjectLIstNew2/ExpTable/TableWrapper.jsx';
+import { projectDirectoryField } from '../primary/ProjectLIstNew2/FIlterOptions';
+import PaginationTable from '../primary/ProjectLIstNew2/PaginationTable';
+import { HeaderBox, TablePaper } from '../primary/ProjectLIstNew2/ProjectLIstIndex2';
+import fieldBuilder from '../shared/CustomTable/fieldBuilder';
+import LoadingComponent from '../shared/Loading/LoadingComponent.jsx';
+import CreateProjectDirectoryModal from './CreateProjectDirectoryModal.jsx';
+import ProjectDirectoryDetailsModal from './ProjectDirectoryDetailsModal';
+import ProjectDirectoryEditModal from './ProjectDirectoryEditModal';
+import ProjectDirectoryHeader from './ProjectDirectoryHeader.jsx';
+import useProjectDirectoryMange from './useProjectDirectoryMange.jsx';
 
 const ProjectDirectoryIndex = () => {
   const {
@@ -76,10 +75,10 @@ const ProjectDirectoryIndex = () => {
   } = useProjectDirectoryMange();
 
   useEffect(() => {
-    if (pathname === "/projectDirectory") {
+    if (pathname === '/projectDirectory') {
       setAscDesc(projectDirectoryFilter?.ascDescOption);
       setSearch(projectDirectoryFilter?.search);
-      searchRef.current.value = projectDirectoryFilter?.search || "";
+      searchRef.current.value = projectDirectoryFilter?.search || '';
     }
   }, []);
 
@@ -93,7 +92,7 @@ const ProjectDirectoryIndex = () => {
   }, [search, ascDesc]);
 
   useEffect(() => {
-    dispatch(setActivePath("Project Directory"));
+    dispatch(setActivePath('Project Directory'));
     dispatch(clearProjectDirectory());
   }, []);
 
@@ -116,8 +115,8 @@ const ProjectDirectoryIndex = () => {
   //TODO CHECK THIS LATER
 
   return (
-    <Box className='content'>
-      <HeaderBox sx={{ backgroundColor: "" }}>
+    <Box className="content">
+      <HeaderBox sx={{ backgroundColor: '' }}>
         <ProjectDirectoryHeader
           handleGetSync={handleGetSync}
           setProjectDirectoryRemove={setProjectDirectoryRemove}
@@ -141,10 +140,10 @@ const ProjectDirectoryIndex = () => {
         />
       </HeaderBox>
 
-      <Box className='contentBody'>
-        <TablePaper sx={{ backgroundColor: "" }}>
+      <Box className="contentBody">
+        <TablePaper sx={{ backgroundColor: '' }}>
           {isDataLoading ? (
-            <LoadingComponent height={"80vh"} />
+            <LoadingComponent height={'80vh'} />
           ) : (
             <TableWrapper
               role={role}

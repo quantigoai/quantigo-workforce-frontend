@@ -1,0 +1,127 @@
+export const filters = [
+  {
+    title: 'Industry',
+    value: 'industry',
+    isFieldShow: false,
+    isValue: '',
+  },
+  {
+    title: 'Project Type',
+    value: 'project_Type',
+    isFieldShow: false,
+    isValue: '',
+  },
+  {
+    title: 'Labeling Tool',
+    value: 'labeling_Tool',
+    isFieldShow: false,
+    isValue: '',
+  },
+  {
+    title: 'Data Type',
+    value: 'data_Type',
+    isFieldShow: false,
+    isValue: '',
+  },
+
+  {
+    title: 'PDL',
+    value: 'PDL',
+    isFieldShow: false,
+    isValue: '',
+  },
+  {
+    title: 'DCR',
+    value: 'DCR',
+    isFieldShow: false,
+    isValue: '',
+  },
+  {
+    title: 'PCR',
+    value: 'PCR',
+    isFieldShow: false,
+    isValue: '',
+  },
+
+  { title: 'PDR', value: 'PDR', isFieldShow: false, isValue: '' },
+  {
+    title: 'Manual Creation',
+    value: 'manual_Creation',
+    isFieldShow: false,
+    isValue: '',
+  },
+  {
+    title: 'Correction',
+    value: 'correction',
+    isFieldShow: false,
+    isValue: '',
+  },
+  { title: 'Deletion', value: 'deletion', isFieldShow: false, isValue: '' },
+  {
+    title: 'Object Assessment',
+    value: 'object_Assessment',
+    isFieldShow: false,
+    isValue: '',
+  },
+  {
+    title: 'Manual Tagging',
+    value: 'manual_Tagging',
+    isFieldShow: false,
+    isValue: '',
+  },
+  {
+    title: 'Tag Correction',
+    value: 'tag_Correction',
+    isFieldShow: false,
+    isValue: '',
+  },
+  {
+    title: 'Tag Deletion',
+    value: 'tag_Deletion',
+    isFieldShow: false,
+    isValue: '',
+  },
+  {
+    title: 'Tag Check Review',
+    value: 'tag_Check_Review',
+    isFieldShow: false,
+    isValue: '',
+  },
+  {
+    title: 'Cloning Manual Object',
+    value: 'cloning_Manual_Object',
+    isFieldShow: false,
+    isValue: '',
+  },
+  {
+    title: 'Clone Correction',
+    value: 'clone_Correction',
+    isFieldShow: false,
+    isValue: '',
+  },
+  { title: 'Review', value: 'review', isFieldShow: false, isValue: '' },
+  {
+    title: 'Tag Check QA',
+    value: 'tag_Check_QA',
+    isFieldShow: false,
+    isValue: '',
+  },
+  {
+    title: 'Image Assessment',
+    value: 'image_Assessment',
+    isFieldShow: false,
+    isValue: '',
+  },
+  {
+    title: 'Video Assessment',
+    value: 'video_Assessment',
+    isFieldShow: false,
+    isValue: '',
+  },
+  {
+    title: 'Categorization',
+    value: 'categorization',
+    isFieldShow: false,
+    isValue: '',
+  },
+];

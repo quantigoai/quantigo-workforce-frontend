@@ -1,6 +1,6 @@
 /* eslint-disable no-prototype-builtins */
 import { Box } from '@mui/material';
-import React, { useEffect, useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { clearProjectDirectory, getProjectByDirectory } from '../../features/slice/ProjectDirectorySlice.js';
 import { setActivePath } from '../../features/slice/activePathSlice';
 import { setProjectDirectoryFilter } from '../../features/slice/temporaryDataSlice';

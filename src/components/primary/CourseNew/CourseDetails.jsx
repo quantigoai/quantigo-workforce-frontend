@@ -99,10 +99,7 @@ const CourseDetails = () => {
                   }}
                 >
                   {/* <CourseDrawer handleChapterClick={handleChapterClick} /> */}
-                  <CourseDrawerNew
-                    durationTime={durationTime}
-                    handleChapterClick={handleChapterClick}
-                  />
+                  <CourseDrawerNew durationTime={durationTime} handleChapterClick={handleChapterClick} />
                 </Box>
               )}
               <Box

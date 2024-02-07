@@ -6,10 +6,17 @@ import certificate from '../../../../assets/images/courses/image 36.png';
 import medal from '../../../../assets/images/courses/medal.png';
 import { useSelector } from 'react-redux';
 import CourseContentSkills from './CourseContentSkills';
+import CourseChapterContent from './CourseChapterContent';
 const tabStyle = {
   textTransform: 'none',
   color: '#667085',
   fontWeight: '600',
+};
+const boxStyle = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '100%',
+  padding: '20px',
 };
 const CourseLandingContent = ({ course }) => {
   const [value, setValue] = React.useState('1');
@@ -20,7 +27,6 @@ const CourseLandingContent = ({ course }) => {
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: isLightTheme ? '#F8FAFC' : '#101828',
-
     paddingX: '24px',
     borderRadius: '8px',
   };
@@ -28,7 +34,7 @@ const CourseLandingContent = ({ course }) => {
     setValue(newValue);
   };
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', padding: '20px' }}>
+    <Box sx={boxStyle}>
       <Box sx={{ width: { xxl: '70%', xl: '65%', lg: '70%' }, typography: 'body1' }}>
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -49,11 +55,15 @@ const CourseLandingContent = ({ course }) => {
         <Box sx={{ mt: '48px' }}>
           <CourseContentSkills course={course} />
         </Box>
+        <Box sx={{ mt: '48px' }}>
+          <CourseChapterContent course={course} />
+        </Box>
       </Box>
       <Box
         sx={{
           ...imgBoxStyle,
           width: { xxl: '25%', xl: '30%', lg: '25%' },
+          height: '40%',
         }}
       >
         {' '}

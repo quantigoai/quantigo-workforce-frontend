@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 const CourseContentSkills = ({ course }) => {
   console.log('🚀 ~ CourseContentSkills ~ course:', course);
-  const { isLightTheme } = useSelector((state) => state.theme);
+  const { isLightTheme } = useSelector((state) => state.theme); 
   return (
     <Box>
       <Box>

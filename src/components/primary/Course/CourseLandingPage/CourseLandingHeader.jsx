@@ -4,8 +4,13 @@ import LanguageChip from '../LanguageChip';
 import CategoryChip from '../CategoryChip';
 import LevelChip from '../CourseCardActionLebel/LevelChip';
 import CourseContent from './CourseContent';
+import { useNavigate } from 'react-router-dom';
 
 const CourseLandingHeader = ({ course }) => {
+  const navigate = useNavigate();
+  const handleRouteChange = () => {
+    navigate(`/course-landing/content/${course._id}`);
+  };
   return (
     <Box sx={{ display: 'flex', justifyContent: 'space-between', padding: '20px', width: '100%' }}>
       <Box sx={{ width: { xxl: '70%', xl: '70%', lg: '80%' } }}>
@@ -37,7 +42,7 @@ const CourseLandingHeader = ({ course }) => {
         <Box sx={{ borderTop: '1px solid #EAECF0', borderBottom: '1px solid #EAECF0', marginTop: '20px' }}>
           <CourseContent course={course} />
         </Box>
-        <Box sx={{ display: 'flex', alignItems: 'center', marginTop: '20px' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', marginTop: '20px', mb: '16px' }}>
           <Button
             sx={{
               textTransform: 'none',
@@ -47,6 +52,7 @@ const CourseLandingHeader = ({ course }) => {
               color: '#fff',
               '&:hover': { backgroundColor: '#244EF5' },
             }}
+            onClick={handleRouteChange}
           >
             Enroll Now
           </Button>

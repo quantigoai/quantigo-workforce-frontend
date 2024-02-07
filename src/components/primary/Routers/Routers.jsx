@@ -91,6 +91,7 @@ const Routers = () => {
           {/* <Route path={'quiz-result'} element={<ShowResult />} /> */}
         </Route>
         <Route path={'/course-landing/:id'} element={<CourseLandingPageIndex />}></Route>
+        <Route path={'/course-landing/content/:id}'} element={<CourseLandingPageIndex />}></Route>
         <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]} />}>
           <Route path={'/create-chapter/:id'} element={<ChapterCreateIndex />} />
           <Route path={'/update-chapter/:id'} element={<ChapterUpdateIndex />} />

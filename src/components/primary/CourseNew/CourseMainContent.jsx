@@ -7,10 +7,10 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import useToaster from "../../../customHooks/useToaster";
-import {getAQuizById} from "../../../features/slice/quizSlice";
+import { getAQuizById } from "../../../features/slice/quizSlice";
 import ChapterContent from "./ChapterContent";
 
 const CourseMainContent = () => {

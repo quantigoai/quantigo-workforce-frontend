@@ -7,14 +7,14 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box } from '@mui/material';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { getACourseByID } from '../../../features/slice/courseSlice';
-import CommonHeaderForCourse from '../../shared/CustomComponenet/CommonHeader/CommonHeaderForCourse';
-import useCourseDetails from '../Course/hooks/courseDetailshooks/useCourseDetails';
-import CourseDrawerNew from './CourseDrawerNew';
+import { Box } from "@mui/material";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { getACourseByID } from "../../../features/slice/courseSlice";
+import CommonHeaderForCourse from "../../shared/CustomComponenet/CommonHeader/CommonHeaderForCourse";
+import useCourseDetails from "../Course/hooks/courseDetailshooks/useCourseDetails";
+import CourseDrawerNew from "./CourseDrawerNew";
 
 const CourseDetails = () => {
   const params = useParams();
@@ -45,12 +45,12 @@ const CourseDetails = () => {
     const minutes = duration % 60 || 0;
     if (hours === 0) {
       if (minutes === 0) {
-        setDurationTime(minutes + ' minute');
+        setDurationTime(minutes + " minute");
       } else {
-        setDurationTime(minutes + ' minutes');
+        setDurationTime(minutes + " minutes");
       }
     } else {
-      setDurationTime(hours + ' hours ' + minutes + ' minutes');
+      setDurationTime(hours + " hours " + minutes + " minutes");
     }
   }, [course._id, params.id, courseChapters?.length]);
 
@@ -66,8 +66,8 @@ const CourseDetails = () => {
 
   return (
     <>
-      <Box className="projectBox">
-        <Box className="courseHeader">
+      <Box className='projectBox'>
+        <Box className='courseHeader'>
           <CommonHeaderForCourse
             course={course}
             durationTime={durationTime}
@@ -75,44 +75,41 @@ const CourseDetails = () => {
             description={course.description}
             isLoading={isLoading}
             isLightTheme={isLightTheme}
-            customButton="Edit Course"
+            customButton='Edit Course'
           />
         </Box>
-        <Box className="courseContent">
-          <Box sx={{ height: '100%', mt: { lg: 4, xl: 5, xxl: 0 } }}>
+        <Box className='courseContent'>
+          <Box sx={{ height: "100%", mt: { lg: 4, xl: 5, xxl: 0 } }}>
             <Box
               sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                width: '100%',
+                display: "flex",
+                justifyContent: "space-between",
+                width: "100%",
               }}
             >
               {!isInContent && (
                 <Box
                   sx={{
-                    backgroundColor: isLightTheme ? '#fff' : '#212121',
+                    backgroundColor: isLightTheme ? "#fff" : "#212121",
                     width: {
-                      lg: '32%',
-                      xl: '30%',
-                      xxl: '24% ',
+                      lg: "32%",
+                      xl: "30%",
+                      xxl: "24% ",
                     },
                   }}
                 >
                   {/* <CourseDrawer handleChapterClick={handleChapterClick} /> */}
-                  <CourseDrawerNew
-                    durationTime={durationTime}
-                    handleChapterClick={handleChapterClick}
-                  />
+                  <CourseDrawerNew durationTime={durationTime} handleChapterClick={handleChapterClick} />
                 </Box>
               )}
               <Box
                 sx={{
                   width: {
-                    lg: '67%',
-                    xl: '69%',
-                    xxl: '75% ',
+                    lg: "67%",
+                    xl: "69%",
+                    xxl: "75% ",
                   },
-                  height: '100%',
+                  height: "100%",
                 }}
               >
                 <Outlet context={[handleChapterClick]} />

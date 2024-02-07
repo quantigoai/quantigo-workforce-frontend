@@ -1,10 +1,10 @@
-import {Box, Button, Grid, Paper, styled, Typography} from "@mui/material";
+import { Box, Button, Grid, Paper, styled, Typography } from "@mui/material";
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {enrollACourse} from "../../../features/slice/courseSlice";
-import {updateUserEnrollCourse} from "../../../features/slice/userSlice";
-import {getAQuizById} from "../../../features/slice/quizSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { enrollACourse } from "../../../features/slice/courseSlice";
+import { updateUserEnrollCourse } from "../../../features/slice/userSlice";
+import { getAQuizById } from "../../../features/slice/quizSlice";
 import editCourseIcon from "../../../assets/images/edit.svg";
 import useToaster from "../../../customHooks/useToaster";
 import ChapterDeleteModal from "./ChapterDeleteModal";
@@ -37,7 +37,8 @@ const CourseNewDetailsIndex = () => {
     });
   };
   const handleStart = (id) => {
-    navigate(`/course-details/${id}/content`);
+    navigate("/content");
+    // navigate(`/course-details/${id}/content`);
     if (
       user.role === "level_0_annotator" ||
       user.role === "level_1_annotator" ||
@@ -65,7 +66,7 @@ const CourseNewDetailsIndex = () => {
               <Box sx={{ paddingLeft: "2%", borderBottom: "1px solid #EBEDF5" }}>
                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "Center" }}>
                   <Box i>
-                    <Typography variant="h5" sx={{ fontWeight: "bold", color: "#1D1D1D" }}>
+                    <Typography variant='h5' sx={{ fontWeight: "bold", color: "#1D1D1D" }}>
                       {courseChapter?.title}
                     </Typography>
                   </Box>
@@ -98,7 +99,7 @@ const CourseNewDetailsIndex = () => {
                 </Box>
                 <Grid item xs={12}>
                   {" "}
-                  <Typography variant="caption" sx={{ fontWeight: "bold", color: "#969CAF" }}>
+                  <Typography variant='caption' sx={{ fontWeight: "bold", color: "#969CAF" }}>
                     7 min read
                   </Typography>
                 </Grid>
@@ -132,11 +133,11 @@ const CourseNewDetailsIndex = () => {
                 }}
               >
                 <Grid container>
-                  <Typography variant="h6" sx={{ fontWeight: "bold", color: "#1D1D1D" }}>
+                  <Typography variant='h6' sx={{ fontWeight: "bold", color: "#1D1D1D" }}>
                     OverView
                   </Typography>
                 </Grid>
-                <Typography sx={{}} variant="body1">
+                <Typography sx={{}} variant='body1'>
                   {courseChapter?.description}
                 </Typography>
                 <Box sx={{ py: "2%", textAlign: "left" }}>
@@ -144,13 +145,13 @@ const CourseNewDetailsIndex = () => {
                     (user.role === "trainer" || user.role === "admin" ? (
                       <>
                         {" "}
-                        <ButtonStyle variant="contained" onClick={() => handleStart(courseChapter._id)}>
+                        <ButtonStyle variant='contained' onClick={() => handleStart(courseChapter._id)}>
                           View Chapter
                         </ButtonStyle>
                       </>
                     ) : (
                       <>
-                        <ButtonStyle variant="contained" onClick={() => handleStart(courseChapter._id)}>
+                        <ButtonStyle variant='contained' onClick={() => handleStart(courseChapter._id)}>
                           GET STARTED
                         </ButtonStyle>
                       </>

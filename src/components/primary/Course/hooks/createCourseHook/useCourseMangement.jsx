@@ -1,17 +1,17 @@
-import React, {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import useToaster from "../../../../../customHooks/useToaster";
 import * as Yup from "yup";
-import {useForm} from "react-hook-form";
-import {yupResolver} from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
-    createCourse,
-    getACourseByID,
-    getAllChapterFromACourse,
-    getCourseQuizzesResults,
+  createCourse,
+  getACourseByID,
+  getAllChapterFromACourse,
+  getCourseQuizzesResults,
 } from "../../../../../features/slice/courseSlice";
-import {setActiveChapterIndex, setActiveCourseId} from "../../../../../features/slice/activePathSlice";
+import { setActiveChapterIndex, setActiveCourseId } from "../../../../../features/slice/activePathSlice";
 
 const useCourseManagement = () => {
   const { role } = useSelector((state) => state.user.user);

@@ -32,6 +32,7 @@ import Skills from "../Skill/Skills";
 import PrivateRoute from "./PrivateRoute";
 import Course from "../Course/Course";
 import CourseDetailsIndex from "../CourseNew/CourseDetailsIndex";
+import ChapterViewIndex from "../Course/Chapter/ChapterViewIndex";
 
 export const roles = {
   admin: "admin",
@@ -70,6 +71,8 @@ const Routers = () => {
         {/* ---------- Course routes ------------ */}
         {/* TODO Should updated and release later  */}
         <Route path={"/course"} element={<Course />} />
+        <Route path={"/content"} element={<ChapterViewIndex />} />
+
         {/* <Route path={"/quiz-page"} element={<QuizPage />} /> */}
         {/* <Route path={"/chapter-page"} element={<ChapterCreateIndex />} /> */}
         <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}>
@@ -78,14 +81,26 @@ const Routers = () => {
         <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}>
           {/* <Route path={'/edit-course/:id'} element={<UpdateCourse />} /> */}
         </Route>
+        {/* <Route path={"/course-details/:id"} element={<CourseDetails />}> */}
+        {/* TODO Check it and remove this */}
+        {/* <Route path='index' element={<CourseDetailsIndex />} /> */}
+        {/* <Route path='index' element={<CourseNewDetailsIndex />} /> */}
+        {/* <Route path='content' element={<CourseMainContent />} /> */}
+        {/* <Route path="show-quiz" element={<QuizShow />} /> */}
+        {/* <Route path={'quiz-result'} element={<ShowResult />} /> */}
+        {/* </Route> */}
+
         <Route path={"/course-details/:id"} element={<CourseDetails />}>
           {/* TODO Check it and remove this */}
           {/* <Route path='index' element={<CourseDetailsIndex />} /> */}
           <Route path='index' element={<CourseNewDetailsIndex />} />
           <Route path='content' element={<CourseMainContent />} />
+          {/* <Route path='content' element={<ChapterViewIndex />} /> */}
           {/* <Route path="show-quiz" element={<QuizShow />} /> */}
           {/* <Route path={'quiz-result'} element={<ShowResult />} /> */}
         </Route>
+
+       
         <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]} />}>
           <Route path={"/create-chapter/:id"} element={<ChapterCreateIndex />} />
           <Route path={"/update-chapter/:id"} element={<ChapterUpdateIndex />} />

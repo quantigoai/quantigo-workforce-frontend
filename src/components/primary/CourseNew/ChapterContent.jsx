@@ -6,9 +6,9 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Box, Button, Grid, Paper} from "@mui/material";
+import { Box, Button, Grid, Paper } from "@mui/material";
 import parse from "html-react-parser";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import ChapterDeleteModal from "../Course/CourseDetailsPage/ChapterDeleteModal";
 import ChapterHeader from "./ChapterHeader";
 
@@ -20,7 +20,7 @@ const ChapterContent = ({ handleQuizStart, handleCreateQuiz, handleEditChapter }
     <>
       <Box>
         <Grid container>
-          <Grid item xs={3} sx={{paddingRight:"1%"}}>
+          <Grid item xs={3} sx={{ paddingRight: "1%" }}>
             {" "}
             <ChapterHeader />
           </Grid>
@@ -45,14 +45,16 @@ const ChapterContent = ({ handleQuizStart, handleCreateQuiz, handleEditChapter }
                     "&::-webkit-scrollbar-thumb:hover": {
                       background: "#555",
                     },
-                  }}>
+                  }}
+                >
                   {/* <Typography> {courseChapter._id}</Typography> */}
                   <Grid
                     xs={12}
                     sx={{
                       paddingLeft: "3%",
                       paddingRight: "3%",
-                    }}>
+                    }}
+                  >
                     {courseChapter.content && parse(courseChapter.content)}
                   </Grid>
                 </Grid>
@@ -67,29 +69,32 @@ const ChapterContent = ({ handleQuizStart, handleCreateQuiz, handleEditChapter }
                   paddingRight: "3%",
                   paddingTop: "2%",
                   paddingBottom: "2%",
-                }}>
+                }}
+              >
                 {user.role === "trainer" || user.role === "admin" ? (
                   <>
                     <ChapterDeleteModal />
 
                     <Button
                       onClick={() => handleEditChapter(courseChapter._id)}
-                      variant="outlined"
+                      variant='outlined'
                       sx={{
                         border: "1px solid #2D58FF",
                         borderRadius: "2px",
                         width: "128px",
-                      }}>
+                      }}
+                    >
                       Edit Chapter
                     </Button>
                     <Button
                       onClick={() => handleCreateQuiz()}
-                      variant="outlined"
+                      variant='outlined'
                       sx={{
                         border: "1px solid #2D58FF",
                         borderRadius: "2px",
                         width: "128px",
-                      }}>
+                      }}
+                    >
                       Create Quiz
                     </Button>
                   </>
@@ -109,7 +114,8 @@ const ChapterContent = ({ handleQuizStart, handleCreateQuiz, handleEditChapter }
                     },
                   }}
                   onClick={() => handleQuizStart(courseChapter?.quiz?.id || null)}
-                  variant="contained">
+                  variant='contained'
+                >
                   {user.role === "trainer" || user.role === "admin" ? "Show Quiz" : "Start Quiz"}
                 </Button>
               </Grid>

@@ -10,12 +10,12 @@ import useToaster from "../../../customHooks/useToaster";
 import ChapterDeleteModal from "./ChapterDeleteModal";
 
 const ButtonStyle = styled(Button)({
-  border: "8px",
-  backgroundColor: "#2D58FF",
-  color: "#FFFFFF",
-  "&:hover": {
-    backgroundColor: "#FF9A45",
-    color: "#1D1D1D",
+  border: '8px',
+  backgroundColor: '#2D58FF',
+  color: '#FFFFFF',
+  '&:hover': {
+    backgroundColor: '#FF9A45',
+    color: '#1D1D1D',
   },
 });
 
@@ -40,11 +40,11 @@ const CourseNewDetailsIndex = () => {
     navigate("/content");
     // navigate(`/course-details/${id}/content`);
     if (
-      user.role === "level_0_annotator" ||
-      user.role === "level_1_annotator" ||
-      user.role === "level_2_annotator" ||
-      user.role === "level_3_annotator" ||
-      user.role === "reviewer"
+      user.role === 'level_0_annotator' ||
+      user.role === 'level_1_annotator' ||
+      user.role === 'level_2_annotator' ||
+      user.role === 'level_3_annotator' ||
+      user.role === 'reviewer'
     ) {
       !user.enrolledCourses.includes(courseChapter.rootCourse._id) &&
         dispatch(enrollACourse(courseChapter.rootCourse._id)).then((action) => {
@@ -55,16 +55,16 @@ const CourseNewDetailsIndex = () => {
 
   const paperStyle = {
     // padding: "1%",
-    height: "100%",
+    height: '100%',
   };
   return (
     <>
       <Paper elevation={0} sx={{ paperStyle }}>
-        <Box sx={{ position: "" }}>
-          <Box sx={{ height: "100%", position: "" }}>
-            <Box sx={{ height: "8%", backgroundColor: "" }}>
-              <Box sx={{ paddingLeft: "2%", borderBottom: "1px solid #EBEDF5" }}>
-                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "Center" }}>
+        <Box sx={{ position: '' }}>
+          <Box sx={{ height: '100%', position: '' }}>
+            <Box sx={{ height: '8%', backgroundColor: '' }}>
+              <Box sx={{ paddingLeft: '2%', borderBottom: '1px solid #EBEDF5' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'Center' }}>
                   <Box i>
                     <Typography variant='h5' sx={{ fontWeight: "bold", color: "#1D1D1D" }}>
                       {courseChapter?.title}
@@ -75,7 +75,7 @@ const CourseNewDetailsIndex = () => {
                       <>
                         <Button
                           sx={{
-                            borderRadius: "2px",
+                            borderRadius: '2px',
                           }}
                           onClick={() => handleEditChapter()}
                           // onClick={() => handleNavigation(customButton)}
@@ -107,16 +107,16 @@ const CourseNewDetailsIndex = () => {
             </Box>
             <Box
               sx={{
-                height: "92%",
+                height: '92%',
                 // backgroundColor: "rgba(69, 88, 123, 0.567);",
               }}
             >
               <Box
                 sx={{
                   // backgroundColor: "rgba(69, 88, 123, 0.567);",
-                  py: "0%",
-                  height: "60vh",
-                  overflow: "auto",
+                  py: '0%',
+                  height: '60vh',
+                  overflow: 'auto',
                   // scrollbarWidth: "thin",
                   // "&::-webkit-scrollbar": {
                   //   width: "0.4em",
@@ -140,9 +140,9 @@ const CourseNewDetailsIndex = () => {
                 <Typography sx={{}} variant='body1'>
                   {courseChapter?.description}
                 </Typography>
-                <Box sx={{ py: "2%", textAlign: "left" }}>
+                <Box sx={{ py: '2%', textAlign: 'left' }}>
                   {courseChapters?.length &&
-                    (user.role === "trainer" || user.role === "admin" ? (
+                    (user.role === 'trainer' || user.role === 'admin' ? (
                       <>
                         {" "}
                         <ButtonStyle variant='contained' onClick={() => handleStart(courseChapter._id)}>

@@ -10,7 +10,8 @@ const CourseLandingPageIndex = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const { course } = useSelector((state) => state.course);
-  console.log('🚀 ~ CourseLandingPageIndex ~ course:', course);
+  const { isLightTheme } = useSelector((state) => state.theme);
+
   useEffect(() => {
     if (!course._id) {
       dispatch(getACourseByID(params.id));
@@ -21,8 +22,8 @@ const CourseLandingPageIndex = () => {
       <Box>
         <CourseLandingHeader course={course} />
       </Box>
-      <Box>
-        <CourseLandingContent />
+      <Box sx={{ backgroundColor: isLightTheme ? '#fff' : '#000' }}>
+        <CourseLandingContent course={course} />
       </Box>
     </div>
   );

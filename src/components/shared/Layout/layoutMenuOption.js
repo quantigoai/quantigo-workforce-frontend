@@ -26,7 +26,7 @@ const layoutMenuOption = () => {
     { name: 'All Users', icon: UserSvg },
     { name: 'All Projects', icon: ProjectSvg },
     { name: 'Skill', icon: BenchmarkSvg },
-    // { name: "Course", icon: CourseSvg },
+    { name: 'Course', icon: CourseSvg },
 
     // { name: "Projects", icon: ProjectSvg },
     // { name: "Jobs", icon: JobSvg },
@@ -174,7 +174,7 @@ const layoutMenuOption = () => {
     // { name: "Verification", icon: CourseSvg },
 
     { name: 'All Projects', icon: ProjectSvg },
-    // { name: 'Course', icon: CourseSvg },
+    { name: 'Course', icon: CourseSvg },
     // { name: "Jobs", icon: JobSvg },
     // { name: "Payment", icon: PaymentSvg },
   ];
@@ -227,7 +227,7 @@ const layoutMenuOption = () => {
     { name: 'Annotator List', icon: UserSvg },
     { name: 'Archive Job', icon: JobSvg },
     // { name: "Calculate Annotation", icon: HourSvg },
-    // { name: 'Course', icon: CourseSvg },
+    { name: 'Course', icon: CourseSvg },
     { name: 'Benchmark', icon: BenchmarkSvg },
     { name: 'Create Course', icon: CourseSvg },
     { name: 'Create Job', icon: JobSvg },

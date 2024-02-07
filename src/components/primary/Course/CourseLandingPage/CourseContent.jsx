@@ -26,11 +26,17 @@ const CourseContent = ({ course }) => {
           <Typography sx={{ fontSize: '10px', opacity: '0.6' }} color={'grey.600'}>
             SKILLS
           </Typography>
-          <Typography variant="wpf_p3_medium_2" color={'grey.600'}>
-            {course.skills && course.skills?.length === 1
-              ? `${course.skills?.[0]?.name}`
-              : `${course.skills?.[0]?.name},+${course?.skills?.length - 1} more`}
-          </Typography>
+          {course.skills.length ? (
+            <Typography variant="wpf_p3_medium_2" color={'grey.600'}>
+              {course.skills && course.skills?.length === 1
+                ? `${course.skills?.[0]?.name}`
+                : `${course.skills?.[0]?.name},+${course?.skills?.length - 1} more`}
+            </Typography>
+          ) : (
+            <Typography variant="wpf_p3_medium_2" color={'grey.600'}>
+              no skill found
+            </Typography>
+          )}
         </Box>
         <hr style={{ border: '1px solid #EAECF0', height: '28px', width: '1px', marginLeft: '20px' }} />
       </Box>

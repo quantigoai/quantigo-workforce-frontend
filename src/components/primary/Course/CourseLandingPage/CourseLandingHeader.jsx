@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const CourseLandingHeader = ({ course }) => {
   const navigate = useNavigate();
   const handleRouteChange = () => {
-    navigate(`/course-landing/content/${course._id}`);
+    navigate(`/course-homepage/${course._id}`);
   };
   return (
     <Box sx={{ display: 'flex', justifyContent: 'space-between', padding: '20px', width: '100%' }}>

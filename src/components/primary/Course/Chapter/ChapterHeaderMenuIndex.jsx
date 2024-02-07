@@ -33,6 +33,33 @@ export const MySelect = styled(Select)(() => ({
     },
   },
 }));
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+      //   backgroundColor: "red", // Add your desired background color here
+      borderRadius: "8px",
+      overflow: "auto",
+      scrollbarWidth: "thin",
+      "&::-webkit-scrollbar": {
+        width: "0.4em",
+      },
+      "&::-webkit-scrollbar-track": {
+        background: "#f1f1f1",
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "#888",
+      },
+      "&::-webkit-scrollbar-thumb:hover": {
+        background: "#555",
+      },
+    },
+  },
+};
 const ChapterHeaderMenuIndex = () => {
   const { courseChapters, courseChapter, course } = useSelector((state) => state.course);
   console.log("🚀 ~ ChapterHeaderMenuIndex ~ courseChapters:", courseChapters);
@@ -56,6 +83,7 @@ const ChapterHeaderMenuIndex = () => {
         sx={{
           width: "15%",
         }}
+        MenuProps={MenuProps}
         onOpen={handleMenuOpen}
         onClose={handleMenuClose}
         renderValue={(selected) => (
@@ -71,7 +99,7 @@ const ChapterHeaderMenuIndex = () => {
         )}
       >
         {courseChapters.map((chapter, index) => (
-          <MenuItem key={chapter._id} value={chapter._id}>
+          <MenuItem sx={{ backgroundColor: "" }} key={chapter._id} value={chapter._id}>
             {/* <ListItemText primary={`CHAPTER ${index + 1}`} secondary={isMenuOpen ? chapter.title : null} /> */}
             <ListItemText
               primary={isMenuOpen ? chapter.title : null}

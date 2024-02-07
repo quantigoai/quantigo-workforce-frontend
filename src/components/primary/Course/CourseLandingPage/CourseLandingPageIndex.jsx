@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { getACourseByID } from '../../../../features/slice/courseSlice';
 import CourseLandingHeader from './CourseLandingHeader';
 import CourseLandingContent from './CourseLandingContent';
+import CourseChapterContent from './CourseChapterContent';
 
 const CourseLandingPageIndex = () => {
   const params = useParams();

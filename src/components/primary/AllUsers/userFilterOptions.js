@@ -13,129 +13,136 @@
  * ------------------------
  */
 export const roleOptionsAdmin = [
-  { value: "level_0_annotator", label: "Level 0 Annotator" },
-  { value: "level_1_annotator", label: "Level 1 Annotator" },
-  { value: "level_2_annotator", label: "Level 2 Annotator" },
-  { value: "level_3_annotator", label: "Level 3 Annotator" },
-  { value: "reviewer", label: "Reviewer" },
-  { value: "trainer", label: "Trainer" },
-  { value: "delivery_lead", label: "Delivery Lead" },
-  { value: "project_coordinator", label: "Project Coordinator" },
-  { value: "project_delivery_lead", label: "Project Delivery Lead " },
-  { value: "project_manager", label: "Project Manager" },
-  { value: "account_manager", label: "Account Manager" },
-  { value: "recruitment_manager", label: "Recruitment Manager" },
-  { value: "engineering_lead", label: "Engineering Lead" },
-  { value: "admin", label: "Admin" },
+  { value: 'level_0_annotator', label: 'Level 0 Annotator' },
+  { value: 'level_1_annotator', label: 'Level 1 Annotator' },
+  { value: 'level_2_annotator', label: 'Level 2 Annotator' },
+  { value: 'level_3_annotator', label: 'Level 3 Annotator' },
+  { value: 'reviewer', label: 'Reviewer' },
+  { value: 'trainer', label: 'Trainer' },
+  { value: 'delivery_lead', label: 'Delivery Lead' },
+  { value: 'project_coordinator', label: 'Project Coordinator' },
+  { value: 'project_delivery_lead', label: 'Project Delivery Lead ' },
+  { value: 'project_manager', label: 'Project Manager' },
+  { value: 'account_manager', label: 'Account Manager' },
+  { value: 'recruitment_manager', label: 'Recruitment Manager' },
+  { value: 'engineering_lead', label: 'Engineering Lead' },
+  { value: 'admin', label: 'Admin' },
 ];
 
 export const roleOptionsRecruitment_manager = [
-  { value: "level_0_annotator", label: "Level 0 annotator" },
-  { value: "level_1_annotator", label: "Level 1 annotator" },
-  { value: "level_2_annotator", label: "Level 2 annotator" },
-  { value: "level_3_annotator", label: "Level 3 annotator" },
-  { value: "reviewer", label: "Reviewer" },
-  { value: "trainer", label: "Trainer" },
-  { value: "delivery_lead", label: "Delivery lead" },
-  { value: "project_coordinator", label: "Project coordinator" },
-  { value: "project_delivery_lead", label: "Project Delivery Lead " },
-  { value: "project_manager", label: "Project manager" },
-  { value: "account_manager", label: "Account manager" },
-  { value: "recruitment_manager", label: "Recruitment manager" },
-  { value: "engineering_lead", label: "Engineering lead" },
+  { value: 'level_0_annotator', label: 'Level 0 annotator' },
+  { value: 'level_1_annotator', label: 'Level 1 annotator' },
+  { value: 'level_2_annotator', label: 'Level 2 annotator' },
+  { value: 'level_3_annotator', label: 'Level 3 annotator' },
+  { value: 'reviewer', label: 'Reviewer' },
+  { value: 'trainer', label: 'Trainer' },
+  { value: 'delivery_lead', label: 'Delivery lead' },
+  { value: 'project_coordinator', label: 'Project coordinator' },
+  { value: 'project_delivery_lead', label: 'Project Delivery Lead ' },
+  { value: 'project_manager', label: 'Project manager' },
+  { value: 'account_manager', label: 'Account manager' },
+  { value: 'recruitment_manager', label: 'Recruitment manager' },
+  { value: 'engineering_lead', label: 'Engineering lead' },
 ];
 
 export const hubOptions = [
-  { value: "Dhaka", label: "Dhaka" },
-  { value: "Khulna", label: "Khulna" },
-  { value: "Sirajganj", label: "Sirajganj" },
-  { value: "Mymensingh", label: "Mymensingh" },
-  { value: "Chuadanga", label: "Chuadanga" },
+  { value: 'Dhaka', label: 'Dhaka' },
+  { value: 'Khulna', label: 'Khulna' },
+  { value: 'Sirajganj', label: 'Sirajganj' },
+  { value: 'Mymensingh', label: 'Mymensingh' },
+  { value: 'Chuadanga', label: 'Chuadanga' },
 ];
 export const userStatusOptions = [
-  { value: new Date().toISOString(), label: "Active" },
-  { value: "empty", label: "Not Active" },
+  { value: new Date().toISOString(), label: 'Active' },
+  { value: 'empty', label: 'Not Active' },
 ];
 
 export const employeeType = [
-  { value: "image", label: "Image" },
-  { value: "video", label: "Video" },
+  { value: 'image', label: 'Image' },
+  { value: 'video', label: 'Video' },
 ];
 export const platformCreateOptions = [
-  { value: "supervisely", label: "Supervisely" },
-  { value: "encord", label: "Encord" },
-  { value: "superb_ai", label: "Superb AI" },
+  { value: 'supervisely', label: 'Supervisely' },
+  { value: 'encord', label: 'Encord' },
+  { value: 'superb_ai', label: 'Superb AI' },
 ];
 export const projectTypeCreateOptions = [
-  { value: "image", label: "Image" },
-  { value: "video", label: "Video" },
+  { value: 'image', label: 'Image' },
+  { value: 'video', label: 'Video' },
 ];
 export const statusCreateOptions = [
-  { value: "not-Started", label: "Not Started" },
-  { value: "in-Progress", label: "In Progress" },
-  { value: "completed", label: "Completed" },
-  { value: "hours-added", label: "Hours added" },
+  { value: 'not-Started', label: 'Not Started' },
+  { value: 'in-Progress', label: 'In Progress' },
+  { value: 'completed', label: 'Completed' },
+  { value: 'hours-added', label: 'Hours added' },
 ];
 export const fields = [
-  { field: "project_drawer_name", width: 200 },
-  { field: "project_alias", width: 200 },
-  { field: "project_platform" },
-  { field: "project_batch", width: 150 },
-  { field: "project_status", renderCell: "chip" },
-  { field: "project_skills", width: 300, renderCell: "skills-chip" },
-  { field: "pdr", width: 100 },
-  { field: "createdBy", width: 150 },
-  { field: "benchmark", width: 150 },
-  { field: "estimated_end_date", width: 220 },
-  { field: "relevantDocuments", width: 150 },
+  { field: 'project_drawer_name', width: 200 },
+  { field: 'project_alias', width: 200 },
+  { field: 'project_platform' },
+  { field: 'project_batch', width: 150 },
+  { field: 'project_status', renderCell: 'chip' },
+  { field: 'project_skills', width: 300, renderCell: 'skills-chip' },
+  { field: 'pdr', width: 100 },
+  { field: 'createdBy', width: 150 },
+  { field: 'benchmark', width: 150 },
+  { field: 'estimated_end_date', width: 220 },
+  { field: 'relevantDocuments', width: 150 },
   {
-    field: "ACTIONS",
-    renderCell: "button",
+    field: 'ACTIONS',
+    renderCell: 'button',
     width: 80,
   },
 ];
 export const singleDetailsFields = [
-  { field: "userQaiID", width: 300 },
-  { field: "checkedInDate", width: 200 },
-  { field: "checkedInTime", width: 200 },
-  { field: "checkedOutDate", width: 200 },
-  { field: "checkedOutTime", width: 200 },
-  { field: "workingTimeInMs", width: 400 },
+  { field: 'userQaiID', width: 300 },
+  { field: 'checkedInDate', width: 200 },
+  { field: 'checkedInTime', width: 200 },
+  { field: 'checkedOutDate', width: 200 },
+  { field: 'checkedOutTime', width: 200 },
+  { field: 'workingTimeInMs', width: 400 },
 ];
 
 export const courseLevelFields = [
-  { value: "basic", label: "Basic" },
-  { value: "beginner", label: "Beginner" },
-  { value: "intermediate", label: "Intermediate" },
-  { value: "advanced", label: "Advanced" },
+  { value: 'basic', label: 'Basic' },
+  { value: 'beginner', label: 'Beginner' },
+  { value: 'intermediate', label: 'Intermediate' },
+  { value: 'advanced', label: 'Advanced' },
+];
+export const courseHubField = [
+  { value: 'dhaka', label: 'Dhaka' },
+  { value: 'mymensingh', label: 'Mymensingh' },
+  { value: 'sirajganj', label: 'Sirajganj' },
+  { value: 'khulna', label: 'Khulna' },
+  { value: 'chuadanga', label: 'Chuadanga' },
 ];
 export const courseCategoryFields = [
-  { value: "intro", label: "Intro" },
-  { value: "image", label: "Image" },
-  { value: "video", label: "Video" },
-  { value: "LiDAR", label: "LiDAR" },
+  { value: 'intro', label: 'Intro' },
+  { value: 'image', label: 'Image' },
+  { value: 'video', label: 'Video' },
+  { value: 'LiDAR', label: 'LiDAR' },
 ];
 
 export const courseLanguageFields = [
-  { value: "english", label: "English" },
-  { value: "bengali", label: "Bengali" },
+  { value: 'english', label: 'English' },
+  { value: 'bengali', label: 'Bengali' },
 ];
 
 export const labelingToolOptions = [
-  { value: "bounding_Box_Cubid", label: "Bounding Box Cubid" },
-  { value: "bitmask", label: "Bitmask" },
-  { value: "polyline", label: "Polyline" },
-  { value: "point", label: "Point" },
-  { value: "tagging", label: "Tagging" },
+  { value: 'bounding_Box_Cubid', label: 'Bounding Box Cubid' },
+  { value: 'bitmask', label: 'Bitmask' },
+  { value: 'polyline', label: 'Polyline' },
+  { value: 'point', label: 'Point' },
+  { value: 'tagging', label: 'Tagging' },
 ];
 export const projectTypeOptions = [
-  { value: "prelabel", label: "Prelabel" },
-  { value: "autolabel", label: "Autolabel" },
-  { value: "manual", label: "Manual" },
+  { value: 'prelabel', label: 'Prelabel' },
+  { value: 'autolabel', label: 'Autolabel' },
+  { value: 'manual', label: 'Manual' },
 ];
 export const dataTypeOptions = [
-  { value: "image", label: "Image" },
-  { value: "video", label: "Video" },
-  { value: "lidar", label: "Lidar" },
-  { value: "others", label: "Others" },
+  { value: 'image', label: 'Image' },
+  { value: 'video', label: 'Video' },
+  { value: 'lidar', label: 'Lidar' },
+  { value: 'others', label: 'Others' },
 ];

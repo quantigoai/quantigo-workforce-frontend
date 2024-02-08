@@ -12,6 +12,7 @@ import {
   getCourseQuizzesResults,
 } from '../../../../../features/slice/courseSlice';
 import { setActiveChapterIndex, setActiveCourseId } from '../../../../../features/slice/activePathSlice';
+import { formatTime } from '../../../../../helper/dateConverter';
 
 const useCourseManagement = () => {
   const { role } = useSelector((state) => state.user.user);
@@ -23,6 +24,9 @@ const useCourseManagement = () => {
   const navigate = useNavigate();
   const [preRequisiteCourses, setPreRequisiteCourses] = React.useState([]);
   const { skills } = useSelector((state) => state.skill);
+  const [checkedFeatured, setCheckedFeatured] = useState(false);
+  const [dateTime, setDateTime] = useState('');
+
   const [skill, setSkill] = React.useState([]);
   const dispatch = useDispatch();
   const toast = useToaster();
@@ -60,6 +64,13 @@ const useCourseManagement = () => {
 
     setSkill(typeof selectedSkills === 'string' ? value.split(',') : selectedSkills);
   };
+
+  const handleChangeFeatured = (event) => {
+    setCheckedFeatured(event.target.checked);
+  };
+  const handleDateTime = (value) => {
+    setDateTime(value);
+  };
   const [coverImageFile, setCoverImageFile] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
   const handleImage = (e) => {
@@ -92,6 +103,7 @@ const useCourseManagement = () => {
   const [isCourseLoading, setIsCourseLoading] = useState(false);
 
   const onSubmit = (data) => {
+    console.log('🚀 ~ onSubmit ~ data:', data);
     const preRequisiteCoursesColl = preRequisiteCourses.map((preRequisite) => {
       return preRequisite._id;
     });
@@ -106,9 +118,16 @@ const useCourseManagement = () => {
     formData.append('language', data.language);
     formData.append('description', data.description);
     formData.append('images', coverImageFile);
-
     formData.append('prerequisiteCourses', preRequisiteCoursesColl);
-    formData.append('skills', skillColl);
+    formData.append('hubs', data.hubField);
+    formData.append('liveSessionLink', data.liveSessionLink);
+    formData.append('liveSessionStartedAt', dateTime.$d);
+    formData.append('isFeaturedCourse', checkedFeatured);
+    formData.append(
+      'outComes',
+      data.outComes.filter((doc) => doc.outComes !== '')
+    );
+
     dispatch(createCourse(formData)).then((action) => {
       if (action.error) {
         toast.trigger(action.error.message, 'error');
@@ -162,6 +181,10 @@ const useCourseManagement = () => {
     handleImage,
     role,
     isLightTheme,
+    checkedFeatured,
+    handleChangeFeatured,
+    dateTime,
+    handleDateTime,
   };
 };
 

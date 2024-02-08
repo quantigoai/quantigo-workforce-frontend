@@ -27,9 +27,9 @@ const CourseLandingPageIndex = () => {
       <Box sx={{ backgroundColor: isLightTheme ? '#fff' : '#000' }}>
         <CourseLandingContent course={course} />
       </Box>
-      <Box sx={{ backgroundColor: isLightTheme ? '#fff' : '#000' }}>
+      {/* <Box sx={{ backgroundColor: isLightTheme ? '#fff' : '#000' }}>
         <CourseRelated />
-      </Box>
+      </Box> */}
     </div>
   );
 };

@@ -1,17 +1,22 @@
 import { Box, Chip, Typography } from '@mui/material';
-import React from 'react';
 import { useSelector } from 'react-redux';
 
 const CourseContentSkills = ({ course }) => {
-  console.log('🚀 ~ CourseContentSkills ~ course:', course);
-  const { isLightTheme } = useSelector((state) => state.theme); 
+  const { isLightTheme } = useSelector((state) => state.theme);
   return (
     <Box>
       <Box>
         <Typography variant="wpf_h5_Bold" color={'neutral.995'}>
           Skills you&apos;ll gain
         </Typography>
-        <Box sx={{ mt: '16px', display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gridGap: '8px' }}>
+        <Box
+          sx={{
+            mt: '16px',
+            display: 'grid',
+            gridTemplateColumns: { xxl: 'repeat(5,1fr)', xl: 'repeat(5,1fr)', lg: 'repeat(3,1fr)' },
+            gridGap: '8px',
+          }}
+        >
           {course?.skills?.map((skill) => (
             <Chip
               sx={{

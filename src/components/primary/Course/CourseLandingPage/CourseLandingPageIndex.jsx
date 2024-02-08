@@ -6,6 +6,7 @@ import { getACourseByID } from '../../../../features/slice/courseSlice';
 import CourseLandingHeader from './CourseLandingHeader';
 import CourseLandingContent from './CourseLandingContent';
 import CourseChapterContent from './CourseChapterContent';
+import CourseRelated from './CourseRelated';
 
 const CourseLandingPageIndex = () => {
   const params = useParams();
@@ -25,6 +26,9 @@ const CourseLandingPageIndex = () => {
       </Box>
       <Box sx={{ backgroundColor: isLightTheme ? '#fff' : '#000' }}>
         <CourseLandingContent course={course} />
+      </Box>
+      <Box sx={{ backgroundColor: isLightTheme ? '#fff' : '#000' }}>
+        <CourseRelated />
       </Box>
     </div>
   );

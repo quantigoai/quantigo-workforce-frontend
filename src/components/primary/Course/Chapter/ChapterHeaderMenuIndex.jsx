@@ -34,13 +34,22 @@ export const MySelect = styled(Select)(() => ({
   },
 }));
 const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
+const ITEM_PADDING_TOP = 10;
 
 const MenuProps = {
+  anchorOrigin: {
+    vertical: "bottom",
+    horizontal: "left", // Set the horizontal origin to left
+  },
+  transformOrigin: {
+    vertical: "top",
+    horizontal: "left", // Set the horizontal origin to left
+  },
+  getContentAnchorEl: null,
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
+      width: 350,
       //   backgroundColor: "red", // Add your desired background color here
       borderRadius: "8px",
       overflow: "auto",
@@ -62,7 +71,6 @@ const MenuProps = {
 };
 const ChapterHeaderMenuIndex = () => {
   const { courseChapters, courseChapter, course } = useSelector((state) => state.course);
-  console.log("🚀 ~ ChapterHeaderMenuIndex ~ courseChapters:", courseChapters);
   const { user } = useSelector((state) => state.user);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -81,7 +89,7 @@ const ChapterHeaderMenuIndex = () => {
       <MySelect
         value={courseChapter._id}
         sx={{
-          width: "15%",
+          width: "13%",
         }}
         MenuProps={MenuProps}
         onOpen={handleMenuOpen}
@@ -99,11 +107,27 @@ const ChapterHeaderMenuIndex = () => {
         )}
       >
         {courseChapters.map((chapter, index) => (
-          <MenuItem sx={{ backgroundColor: "" }} key={chapter._id} value={chapter._id}>
+          <MenuItem
+            sx={{
+              borderBottom: "2px solid #F8FAFC",
+              "& .MuiListItemText-primary": {
+                fontWeight: 550,
+              },
+              "&:hover": {
+                "& .MuiListItemText-primary": {
+                  // Change the color when hovering
+                  color: "blue",
+                },
+              },
+            }}
+            key={chapter._id}
+            value={chapter._id}
+          >
             {/* <ListItemText primary={`CHAPTER ${index + 1}`} secondary={isMenuOpen ? chapter.title : null} /> */}
             <ListItemText
               primary={isMenuOpen ? chapter.title : null}
               secondary={isMenuOpen ? `Chapter ${index + 1}` : null}
+              // sx={{borderBottom:"1px solid red"}}
             />
           </MenuItem>
         ))}

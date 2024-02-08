@@ -26,6 +26,7 @@ const ChapterViewIndex = () => {
     <>
       <Box
         sx={{
+          backgroundColor: "#fff",
           height: "90%",
           overflow: "auto",
           scrollbarWidth: "thin",
@@ -62,7 +63,7 @@ const ChapterViewIndex = () => {
           </Grid>
           <Typography variant='wpf_p3_regular'>{courseChapter.description}</Typography>
         </Box>
-        <Box sx={{ backgroundColor: "#fff", paddingLeft: "10%", paddingRight: "10%" }}>
+        <Box sx={{  paddingLeft: "10%", paddingRight: "10%" }}>
           <Grid container sx={{}}>
             {/* <Typography> {courseChapter._id}</Typography> */}
             <Grid

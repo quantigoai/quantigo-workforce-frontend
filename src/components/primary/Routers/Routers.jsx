@@ -73,7 +73,7 @@ const Routers = () => {
         {/* ---------- Course routes ------------ */}
         {/* TODO Should updated and release later  */}
         <Route path={"/course"} element={<Course />} />
-        <Route path={"/content"} element={<ChapterViewIndex />} />
+        <Route path={"/content/:id"} element={<ChapterViewIndex />} />
 
         {/* <Route path={"/quiz-page"} element={<QuizPage />} /> */}
         {/* <Route path={"/chapter-page"} element={<ChapterCreateIndex />} /> */}

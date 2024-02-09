@@ -1,4 +1,3 @@
-import { TabContext, TabList } from '@mui/lab';
 import { Box, Tab } from '@mui/material';
 import React, { useRef } from 'react';
 import CourseLandingAbout from './CourseLandingAbout';

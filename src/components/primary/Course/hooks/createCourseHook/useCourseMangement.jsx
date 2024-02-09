@@ -48,6 +48,7 @@ const useCourseManagement = () => {
     setSkill([]);
     setCoverImageFile(null);
     setCoverImage(null);
+    setDateTime('');
   };
   const methods = useForm({
     resolver: yupResolver(CourseCreateSchema),

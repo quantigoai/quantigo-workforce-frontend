@@ -1,4 +1,4 @@
-import { Box, Chip, Grid, Typography } from "@mui/material";
+import { Box, Button, Chip, Grid, Typography } from "@mui/material";
 import React from "react";
 import CourseChapterAccordion from "../CourseLandingPage/CourseChapterAccordion";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,6 +31,7 @@ const accordionBoxNumberStyle = {
 };
 const ChapterListShowIndex = () => {
   const { courseChapters, course } = useSelector((state) => state.course);
+  console.log("🚀 ~ ChapterListShowIndex ~ courseChapters:", courseChapters);
   const dispatch = useDispatch();
   const { isLightTheme } = useSelector((state) => state.theme);
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const ChapterListShowIndex = () => {
     // console.log("🚀 ~ handleChapter ~ id:", id)
     // navigate("/content");
     // navigate(`/content/${courseChapter._id}`);
-    // dispatch(setActiveChapterIndex(index));
+    dispatch(setActiveChapterIndex(index));
     dispatch(getAChapterById(courseChapter._id)).then(() => {
       // navigate(`/course-details/${course._id}/index`);
       navigate(`/content/${courseChapter._id}`);
@@ -58,6 +59,16 @@ const ChapterListShowIndex = () => {
     //     });
     // }
   };
+  const handleCreateChapter = () => {
+    navigate(`/create-chapter/${course._id}`);
+  };
+  const handleEditChapter = (id, index) => {
+    dispatch(setActiveChapterIndex(index));
+    dispatch(getAChapterById(id)).then(() => {
+      // navigate(`/course-details/${course._id}/index`);
+      navigate(`/update-chapter/${id}`);
+    });
+  };
   return (
     <>
       <Box sx={{ paddingBottom: "2%" }}>
@@ -68,6 +79,7 @@ const ChapterListShowIndex = () => {
           Prepare for a new career in the high-growth field of project management, no experience or degree required. Get
           professional training designed by Google and get on the fastrack to a competitively paid job.
         </Typography>
+        <Button onClick={() => handleCreateChapter()}>Create Chapter</Button>
       </Box>
       <Box sx={{ backgroundColor: "#F8FAFC", border: "2px solid #E2E8F0", borderRadius: "8px" }}>
         {courseChapters.map((item, index) => (
@@ -99,6 +111,7 @@ const ChapterListShowIndex = () => {
                 >
                   {item.title}
                 </Typography>
+                <Button onClick={() => handleEditChapter(item._id, index)}>Edit Chapter</Button>
                 <br />
                 <Typography variant='wpf_p4_regular' color={"grey.600"}>
                   Duration: 40 minutes{"  "}

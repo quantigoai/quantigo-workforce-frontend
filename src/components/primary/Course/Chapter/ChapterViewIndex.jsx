@@ -6,6 +6,10 @@ import ChapterHeaderMenuIndex from "./ChapterHeaderMenuIndex";
 import parse from "html-react-parser";
 import prevIcon from "../../../../assets/images/PrevIcon.svg";
 import nextIcon from "../../../../assets/images/NextIcon.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { setActiveChapterIndex } from "../../../../features/slice/activePathSlice";
+import { getAChapterById } from "../../../../features/slice/courseSlice";
+import { useNavigate } from "react-router-dom";
 
 const ChapterViewIndex = () => {
   const {
@@ -20,8 +24,31 @@ const ChapterViewIndex = () => {
     setDurationTime,
     setIsInContent,
   } = useCourseDetails();
-  console.log("🚀 ~ ChapterViewIndex ~ courseChapter:", courseChapter);
-  console.log("🚀 ~ ChapterViewIndex ~ course:", course);
+  const { activeChapterIndex } = useSelector((state) => state.activePath);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleChapterChangePre = () => {
+    const activeChapterId = courseChapters.find((chapter, index) => {
+      return index === activeChapterIndex - 1;
+    });
+    dispatch(setActiveChapterIndex(activeChapterIndex - 1));
+    dispatch(getAChapterById(activeChapterId._id)).then(() => {});
+  };
+  const handleChapterChangeNext = () => {
+    const activeChapterId = courseChapters.find((chapter, index) => {
+      return index === activeChapterIndex + 1;
+    });
+    dispatch(setActiveChapterIndex(activeChapterIndex + 1));
+    dispatch(getAChapterById(activeChapterId._id)).then(() => {});
+  };
+
+  const handleEditChapter = () => {
+    // dispatch(setActiveChapterIndex(activeChapterIndex));
+    dispatch(getAChapterById(courseChapter._id)).then(() => {
+      navigate(`/update-chapter/${courseChapter._id}`);
+    });
+  };
+  const handleDeleteChapter = () => {};
   return (
     <>
       <Box
@@ -55,7 +82,13 @@ const ChapterViewIndex = () => {
           }}
         >
           <Grid container>
-            <ChapterHeaderMenuIndex />
+            <Grid item xs={6}>
+              <ChapterHeaderMenuIndex />
+            </Grid>
+            <Grid item xs={6}>
+              <Button onClick={() => handleEditChapter()}>Edit Chapter</Button>
+              <Button>Delete Chapter</Button>
+            </Grid>
           </Grid>
 
           <Grid container>
@@ -63,7 +96,7 @@ const ChapterViewIndex = () => {
           </Grid>
           <Typography variant='wpf_p3_regular'>{courseChapter.description}</Typography>
         </Box>
-        <Box sx={{  paddingLeft: "10%", paddingRight: "10%" }}>
+        <Box sx={{ paddingLeft: "10%", paddingRight: "10%" }}>
           <Grid container sx={{}}>
             {/* <Typography> {courseChapter._id}</Typography> */}
             <Grid
@@ -96,6 +129,7 @@ const ChapterViewIndex = () => {
         <Grid container>
           <Grid item xs={6}>
             <Button
+              disabled={activeChapterIndex === 0 ? true : false}
               sx={{
                 textTransform: "none",
                 borderRadius: "8px",
@@ -119,10 +153,10 @@ const ChapterViewIndex = () => {
                 // },
                 padding: "16px 10px",
               }}
+              onClick={() => handleChapterChangePre()}
             >
               <img src={prevIcon} />
               <span style={{ marginLeft: "8px" }}>Prev. Chapter</span>
-          
             </Button>
             <Button
               sx={{
@@ -148,6 +182,8 @@ const ChapterViewIndex = () => {
                 },
                 padding: "16px 10px",
               }}
+              disabled={activeChapterIndex === courseChapters.length - 1 ? true : false}
+              onClick={() => handleChapterChangeNext()}
             >
               <span style={{ marginRight: "8px" }}>Next Chapter</span>
               <img src={nextIcon} />

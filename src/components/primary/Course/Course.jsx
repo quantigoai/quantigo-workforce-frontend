@@ -52,6 +52,8 @@ const Course = () => {
     handleChangeFeatured,
     dateTime,
     handleDateTime,
+    outcomes,
+    setOutcomes,
   } = useCourseManagement();
 
   const dispatch = useDispatch();
@@ -147,6 +149,8 @@ const Course = () => {
         handleChangeFeatured={handleChangeFeatured}
         dateTime={dateTime}
         handleDateTime={handleDateTime}
+        outcomes={outcomes}
+        setOutcomes={setOutcomes}
       />
     </>
   );

@@ -25,12 +25,13 @@ import CheckBoxFeatured from './CheckBoxFeatured';
 import PDDateField from '../../../shared/CustomField/PDDateField';
 import DateTimeField from './DateTimeField';
 import CourseOutcomes from './CourseOutcomes';
+import CourseOutComesMain from './CourseOutComesMain';
 
 const style = {
   position: 'relative',
   top: '50%',
   // height: "95%",
-  left: '50%',
+  // left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 700,
   bgcolor: 'background.paper',
@@ -118,6 +119,8 @@ const CourseCreateModal = ({
   handleChangeFeatured,
   dateTime,
   handleDateTime,
+  outcomes,
+  setOutcomes,
 }) => {
   return (
     <>
@@ -138,7 +141,13 @@ const CourseCreateModal = ({
         }}
       >
         <Fade in={open}>
-          <Box sx={style}>
+          <Box
+            sx={{
+              ...style,
+              width: { xxl: '900px', xl: '800px', lg: '700px' },
+              left: { xxl: '50%', lg: '55%', xl: '55%' },
+            }}
+          >
             <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={'Create Course'} />
 
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -303,7 +312,8 @@ const CourseCreateModal = ({
                         overflowY: 'auto',
                       }}
                     >
-                      <CourseOutcomes name={'outComes'} />
+                      {/* <CourseOutcomes name={'outComes'} /> */}
+                      <CourseOutComesMain outcomes={outcomes} setOutcomes={setOutcomes} />
                     </Stack>
                     <Stack
                       // direction="row"

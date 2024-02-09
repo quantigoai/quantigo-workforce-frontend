@@ -26,7 +26,7 @@ const useCourseManagement = () => {
   const { skills } = useSelector((state) => state.skill);
   const [checkedFeatured, setCheckedFeatured] = useState(false);
   const [dateTime, setDateTime] = useState('');
-
+  const [outcomes, setOutcomes] = useState([{ outComes: '' }]);
   const [skill, setSkill] = React.useState([]);
   const dispatch = useDispatch();
   const toast = useToaster();
@@ -49,6 +49,8 @@ const useCourseManagement = () => {
     setCoverImageFile(null);
     setCoverImage(null);
     setDateTime('');
+    setCheckedFeatured(false);
+    setOutcomes([{ outComes: '' }]);
   };
   const methods = useForm({
     resolver: yupResolver(CourseCreateSchema),
@@ -104,15 +106,16 @@ const useCourseManagement = () => {
   const [isCourseLoading, setIsCourseLoading] = useState(false);
 
   const onSubmit = (data) => {
-    console.log('🚀 ~ onSubmit ~ data:', data);
     const preRequisiteCoursesColl = preRequisiteCourses.map((preRequisite) => {
       return preRequisite._id;
     });
     const skillColl = skill.map((skill) => {
       return skill._id;
     });
-
+    const outComesArr = outcomes.map((item) => item.outComes);
+    const finalData = { data };
     const formData = new FormData();
+
     formData.append('name', data.name);
     formData.append('category', data.category);
     formData.append('level', data.level);
@@ -124,10 +127,7 @@ const useCourseManagement = () => {
     formData.append('liveSessionLink', data.liveSessionLink);
     formData.append('liveSessionStartedAt', dateTime.$d);
     formData.append('isFeaturedCourse', checkedFeatured);
-    formData.append(
-      'outComes',
-      data.outComes.filter((doc) => doc.outComes !== '')
-    );
+    formData.append('outComes', outComesArr);
 
     dispatch(createCourse(formData)).then((action) => {
       if (action.error) {
@@ -186,6 +186,8 @@ const useCourseManagement = () => {
     handleChangeFeatured,
     dateTime,
     handleDateTime,
+    outcomes,
+    setOutcomes,
   };
 };
 

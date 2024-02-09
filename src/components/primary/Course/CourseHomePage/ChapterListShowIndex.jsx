@@ -111,7 +111,10 @@ const ChapterListShowIndex = () => {
                 >
                   {item.title}
                 </Typography>
-                <Button onClick={() => handleEditChapter(item._id, index)}>Edit Chapter</Button>
+                <Button onClick={() => handleEditChapter(item._id, index)}>
+                  {" "}
+                  <i className='ri-edit-line'></i>
+                </Button>
                 <br />
                 <Typography variant='wpf_p4_regular' color={"grey.600"}>
                   Duration: 40 minutes{"  "}

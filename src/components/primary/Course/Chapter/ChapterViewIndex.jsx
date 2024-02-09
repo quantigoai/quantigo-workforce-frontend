@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setActiveChapterIndex } from "../../../../features/slice/activePathSlice";
 import { getAChapterById } from "../../../../features/slice/courseSlice";
 import { useNavigate } from "react-router-dom";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const ChapterViewIndex = () => {
   const {
@@ -86,8 +87,24 @@ const ChapterViewIndex = () => {
               <ChapterHeaderMenuIndex />
             </Grid>
             <Grid item xs={6}>
-              <Button onClick={() => handleEditChapter()}>Edit Chapter</Button>
-              <Button>Delete Chapter</Button>
+              <Button onClick={() => handleEditChapter()}>
+                {" "}
+                <i className='ri-edit-line'></i>
+              </Button>
+              <Button>
+                {" "}
+                <DeleteIcon
+                  style={{
+                    color: "red",
+                    cursor: "pointer",
+                    // position: "absolute",
+                    left: 275,
+                    top: 35,
+                    height: "20px",
+                    width: "20px",
+                  }}
+                />
+              </Button>
             </Grid>
           </Grid>
 

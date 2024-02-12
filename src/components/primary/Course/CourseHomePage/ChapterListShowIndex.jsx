@@ -81,7 +81,20 @@ const ChapterListShowIndex = () => {
         </Typography>
         <Button onClick={() => handleCreateChapter()}>Create Chapter</Button>
       </Box>
-      <Box sx={{ backgroundColor: "#F8FAFC", border: "2px solid #E2E8F0", borderRadius: "8px" }}>
+      <Box
+        sx={{
+          // backgroundColor: "red",
+          backgroundColor: isLightTheme ? "#F8FAFC" : "",
+          border: "2px solid #E2E8F0",
+          borderRadius: "8px",
+          maxHeight: 430,
+          // overflowY: "auto",
+          overflowY: "auto",
+          "&::-webkit-scrollbar": {
+            width: "0", // Hide the scrollbar
+          },
+        }}
+      >
         {courseChapters.map((item, index) => (
           <Box
             sx={{

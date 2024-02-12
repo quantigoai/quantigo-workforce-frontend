@@ -27,10 +27,10 @@ const CourseHomePageIndex = () => {
         <Box>
           <CourseLandingHeader course={course} />
         </Box>
-        <Box sx={{ backgroundColor: "#fff", borderTop: "1px solid #E2E8F0", borderBottom: "1px solid #E2E8F0" }}>
+        <Box sx={{ backgroundColor: "neutral.N000", borderTop: "1px solid #E2E8F0", borderBottom: "1px solid #E2E8F0" }}>
           <Box
             sx={{
-              backgroundColor: "#fff",
+              backgroundColor: "neutral.N000",
               alignItems: "center",
               justifyContent: "center",
               display: "flex",
@@ -81,7 +81,7 @@ const CourseHomePageIndex = () => {
             </Grid>
           </Box>
         </Box>
-        <Box sx={{ backgroundColor: "#fff", paddingTop: "5px" }}>
+        <Box sx={{backgroundColor: "neutral.N000", paddingTop: "5px" }}>
           <Grid container>
             <Grid item xs={9} sx={{ padding: "1%" }}>
               <ChapterListShowIndex />

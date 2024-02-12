@@ -1,9 +1,10 @@
-import React, {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {setActiveChapterIndex} from "../../../../../features/slice/activePathSlice";
-import {getAChapterById, updateACourseById} from "../../../../../features/slice/courseSlice";
-import useToaster from "../../../../../customHooks/useToaster";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { setActiveChapterIndex } from '../../../../../features/slice/activePathSlice';
+import { getAChapterById, updateACourseById } from '../../../../../features/slice/courseSlice';
+import useToaster from '../../../../../customHooks/useToaster';
+import useCourseManagement from '../createCourseHook/useCourseMangement';
 
 const useCourseDetails = () => {
   const { course, courseChapter, isLoading, courseChapters } = useSelector((state) => state.course);
@@ -17,7 +18,7 @@ const useCourseDetails = () => {
   const navigate = useNavigate();
   const [isInContent, setIsInContent] = React.useState(false);
   const [open, setOpen] = React.useState(false);
-  const [durationTime, setDurationTime] = useState("");
+  const [durationTime, setDurationTime] = useState('');
   const [skillSet1, setSkillSet1] = useState([]);
   const [skillSet2, setSkillSet2] = useState([]);
   const [skill, setSkill] = useState([]);
@@ -29,6 +30,9 @@ const useCourseDetails = () => {
   const [coverImageFile, setCoverImageFile] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
   const [progress, setProgress] = React.useState(0);
+  const [dateTime, setDateTime] = useState(course.liveSessionStartedAt);
+  const [outcomes, setOutcomes] = useState(course?.outComes.length ? course?.outComes : ['']);
+  const [isFeatured, setIsFeatured] = useState(course.isFeaturedCourse);
   const handleChapterClick = (courseChapter, index) => {
     dispatch(setActiveChapterIndex(index));
     dispatch(getAChapterById(courseChapter._id)).then(() => {
@@ -42,6 +46,13 @@ const useCourseDetails = () => {
 
   const handleClose = () => {
     setOpen(false);
+    setOutcomes(['']);
+  };
+  const handleChangeFeatured = (event) => {
+    setIsFeatured(event.target.checked);
+  };
+  const handleDateTime = (value) => {
+    setDateTime(value);
   };
   const handleChangeSkills = (event) => {
     const {
@@ -59,7 +70,7 @@ const useCourseDetails = () => {
     });
     setSkillSet2([{ ...skillSet1 }]);
     !selectedSkills.length && setIsSkillEmpty(true);
-    setSkill(typeof selectedSkills === "string" ? value.split(",") : selectedSkills);
+    setSkill(typeof selectedSkills === 'string' ? value.split(',') : selectedSkills);
   };
 
   const handleImage = (e) => {
@@ -93,7 +104,7 @@ const useCourseDetails = () => {
     setPreRequisite1([{ ...preRequisite }]);
     !selectedPreRequisiteCourses.length && setIsPreRequisiteCourseEmpty(true);
     setPreRequisiteCourses(
-      typeof selectedPreRequisiteCourses === "string" ? value.split(",") : selectedPreRequisiteCourses
+      typeof selectedPreRequisiteCourses === 'string' ? value.split(',') : selectedPreRequisiteCourses
     );
   };
 
@@ -105,27 +116,33 @@ const useCourseDetails = () => {
       return skill._id;
     });
     const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("category", data.category);
-    formData.append("level", data.level);
-    formData.append("language", data.language);
-    formData.append("description", data.description);
-    formData.append("images", coverImageFile);
-    formData.append("prerequisiteCourses", preRequisiteCoursesColl);
-    formData.append("skills", skillColl);
-    // preRequisiteCourses.length && formData.append("prerequisiteCourses", preRequisiteCoursesColl);
-    // isPreRequisiteCourseEmpty && formData.append("prerequisiteCourses", []);
-    // skill.length && formData.append("skills", skillColl);
-    // isSkillEmpty && formData.append("skills", []);
+    formData.append('name', data.name);
+    formData.append('category', data.category);
+    formData.append('level', data.level);
+    formData.append('language', data.language);
+    formData.append('description', data.description);
+    formData.append('images', coverImageFile);
+    formData.append('prerequisiteCourses', preRequisiteCoursesColl);
+    formData.append('skills', skillColl);
+    formData.append('hubs', data.hubField);
+    formData.append('liveSessionLink', data.liveSessionLink);
+    formData.append('liveSessionStartedAt', dateTime.$d);
+    formData.append('isFeaturedCourse', isFeatured);
+    formData.append('outComes', outcomes);
+    preRequisiteCourses.length && formData.append('prerequisiteCourses', preRequisiteCoursesColl);
+    isPreRequisiteCourseEmpty && formData.append('prerequisiteCourses', []);
+    skill.length && formData.append('skills', skillColl);
+    isSkillEmpty && formData.append('skills', []);
     const newData = {
       id: course._id,
       formData,
     };
+
     dispatch(updateACourseById(newData)).then((action) => {
       if (action.error) {
-        toast.trigger(action.error.message, "error");
+        toast.trigger(action.error.message, 'error');
       } else {
-        toast.trigger(action.payload.data.message, "success");
+        toast.trigger(action.payload.data.message, 'success');
         handleClose();
         setOpen(false);
       }
@@ -177,6 +194,13 @@ const useCourseDetails = () => {
     user,
     progress,
     setProgress,
+    outcomes,
+    setOutcomes,
+    dateTime,
+    isFeatured,
+    setIsFeatured,
+    handleChangeFeatured,
+    handleDateTime,
   };
 };
 

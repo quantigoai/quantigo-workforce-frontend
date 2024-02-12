@@ -312,8 +312,12 @@ const CourseCreateModal = ({
                         overflowY: 'auto',
                       }}
                     >
-                      {/* <CourseOutcomes name={'outComes'} /> */}
-                      <CourseOutComesMain outcomes={outcomes} setOutcomes={setOutcomes} />
+                      <CourseOutComesMain
+                        // defaultValue={course.outComes}
+                        outcomes={outcomes}
+                        setOutcomes={setOutcomes}
+                      />
+                      {/*  */}
                     </Stack>
                     <Stack
                       // direction="row"

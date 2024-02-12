@@ -30,13 +30,17 @@ const MyTextField = styled(TextField)(() => ({
     },
   },
 }));
-const CourseOutComesMain = ({ outcomes, setOutcomes }) => {
+const CourseOutComesMain = ({ outcomes, setOutcomes, defaultValue }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const [hasChanged, setHasChanged] = useState(false);
-
+  useEffect(() => {
+    if (defaultValue && defaultValue.length > 0) {
+      setHasChanged(true);
+    }
+  }, [defaultValue]);
   const handleFieldChange = (index, value) => {
     const newOutcomes = [...outcomes];
-    newOutcomes[index] = { outComes: value };
+    newOutcomes[index] = value;
     setOutcomes(newOutcomes);
     if (value) {
       setHasChanged(true);
@@ -44,7 +48,7 @@ const CourseOutComesMain = ({ outcomes, setOutcomes }) => {
   };
 
   const handleAddOtherDocument = () => {
-    setOutcomes([...outcomes, { outComes: '' }]);
+    setOutcomes([...outcomes, '']);
   };
 
   const handleRemove = (index) => {
@@ -67,7 +71,8 @@ const CourseOutComesMain = ({ outcomes, setOutcomes }) => {
                 rows={2}
                 fullWidth
                 type="text"
-                value={outcome.outComes}
+                // defaultValue={outcome}
+                value={outcome}
                 onChange={(e) => handleFieldChange(index, e.target.value)}
               />
               {outcomes.length !== 1 && (
@@ -77,7 +82,7 @@ const CourseOutComesMain = ({ outcomes, setOutcomes }) => {
                     color: 'red',
                     cursor: 'pointer',
                     position: 'absolute',
-                    left: 585,
+                    left: 580,
                     top: 55,
                     height: '30px',
                     width: '30px',

@@ -27,7 +27,7 @@ const CourseContent = ({ course }) => {
           </Typography>
           {course.skills.length ? (
             <Typography variant="wpf_p3_medium_2" color={'grey.600'}>
-              {course.skills && course.skills?.length === 1
+              {course?.skills && course.skills?.length === 1
                 ? `${course.skills?.[0]?.name}`
                 : `${course.skills?.[0]?.name},+${course?.skills?.length - 1} more`}
             </Typography>

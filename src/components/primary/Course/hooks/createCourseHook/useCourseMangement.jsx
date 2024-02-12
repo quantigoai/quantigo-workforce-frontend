@@ -10,8 +10,9 @@ import {
   getACourseByID,
   getAllChapterFromACourse,
   getCourseQuizzesResults,
-} from "../../../../../features/slice/courseSlice";
-import { setActiveChapterIndex, setActiveCourseId } from "../../../../../features/slice/activePathSlice";
+} from '../../../../../features/slice/courseSlice';
+import { setActiveChapterIndex, setActiveCourseId } from '../../../../../features/slice/activePathSlice';
+import { formatTime } from '../../../../../helper/dateConverter';
 
 const useCourseManagement = () => {
   const { role } = useSelector((state) => state.user.user);
@@ -23,6 +24,9 @@ const useCourseManagement = () => {
   const navigate = useNavigate();
   const [preRequisiteCourses, setPreRequisiteCourses] = React.useState([]);
   const { skills } = useSelector((state) => state.skill);
+  const [checkedFeatured, setCheckedFeatured] = useState(false);
+  const [dateTime, setDateTime] = useState('');
+  const [outcomes, setOutcomes] = useState([{ outComes: '' }]);
   const [skill, setSkill] = React.useState([]);
   const dispatch = useDispatch();
   const toast = useToaster();
@@ -44,6 +48,9 @@ const useCourseManagement = () => {
     setSkill([]);
     setCoverImageFile(null);
     setCoverImage(null);
+    setDateTime('');
+    setCheckedFeatured(false);
+    setOutcomes([{ outComes: '' }]);
   };
   const methods = useForm({
     resolver: yupResolver(CourseCreateSchema),
@@ -59,6 +66,13 @@ const useCourseManagement = () => {
     });
 
     setSkill(typeof selectedSkills === 'string' ? value.split(',') : selectedSkills);
+  };
+
+  const handleChangeFeatured = (event) => {
+    setCheckedFeatured(event.target.checked);
+  };
+  const handleDateTime = (value) => {
+    setDateTime(value);
   };
   const [coverImageFile, setCoverImageFile] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
@@ -98,17 +112,23 @@ const useCourseManagement = () => {
     const skillColl = skill.map((skill) => {
       return skill._id;
     });
-
+    const outComesArr = outcomes.map((item) => item.outComes);
+    const finalData = { data };
     const formData = new FormData();
+
     formData.append('name', data.name);
     formData.append('category', data.category);
     formData.append('level', data.level);
     formData.append('language', data.language);
     formData.append('description', data.description);
     formData.append('images', coverImageFile);
-
     formData.append('prerequisiteCourses', preRequisiteCoursesColl);
-    formData.append('skills', skillColl);
+    formData.append('hubs', data.hubField);
+    formData.append('liveSessionLink', data.liveSessionLink);
+    formData.append('liveSessionStartedAt', dateTime.$d);
+    formData.append('isFeaturedCourse', checkedFeatured);
+    formData.append('outComes', outComesArr);
+
     dispatch(createCourse(formData)).then((action) => {
       if (action.error) {
         toast.trigger(action.error.message, 'error');
@@ -162,6 +182,12 @@ const useCourseManagement = () => {
     handleImage,
     role,
     isLightTheme,
+    checkedFeatured,
+    handleChangeFeatured,
+    dateTime,
+    handleDateTime,
+    outcomes,
+    setOutcomes,
   };
 };
 

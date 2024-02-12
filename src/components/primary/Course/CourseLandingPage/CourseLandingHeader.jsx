@@ -6,6 +6,8 @@ import LevelChip from '../CourseCardActionLebel/LevelChip';
 import CourseContent from './CourseContent';
 import { useNavigate } from 'react-router-dom';
 import CourseHeaderTitle from './CourseHeaderTitle';
+import editCourseIcon from '../../../../assets/images/edit.svg';
+import EditCourseModal from '../CreateCourseModal/EditCourseModal';
 const boxStyle = {
   display: 'flex',
   justifyContent: 'space-between',
@@ -42,6 +44,48 @@ const CourseLandingHeader = ({ course }) => {
           </Box>
           <Box sx={{ paddingY: '12px' }}>
             <CourseHeaderTitle course={course} />
+          </Box>
+          <Box>
+            <Button
+              // disabled={isLoading}
+              type="submit"
+              sx={{
+                //   width: "100%",
+                //   height: "45px",
+                //   backgroundColor: "#2D58FF",
+                //   color: "#FFFFFF",
+                //   "&:hover": {
+                //     backgroundColor: "#FF9A45",
+                //     color: "#1D1D1D",
+                //   },
+                borderRadius: '2px',
+              }}
+              // onClick={handleOpen}
+              // onClick={() => handleNavigation(customButton)}
+            >
+              <img src={editCourseIcon} />
+            </Button>
+            {/* <Button onClick={handleOpen}>Create Course</Button> */}
+            {/* <EditCourseModal
+              open={open}
+              handleClose={handleClose}
+              onSubmit={onSubmit}
+              course={course}
+              preRequisiteCourses={preRequisiteCourses}
+              handleChange_Pre_Requisite_Course={handleChange_Pre_Requisite_Course}
+              skills={skills}
+              handleChangeSkills={handleChangeSkills}
+              coverImage={coverImage}
+              removeImage={removeImage}
+              handleImage={handleImage}
+              isLoading={isLoading}
+              skill={skill}
+            /> */}
+
+            {/* <CourseDeleteModal
+              course={course}
+              // handleDeleteCourse={handleDeleteCourse}
+            /> */}
           </Box>
         </Box>
         <Box sx={{ borderTop: '1px solid #EAECF0', borderBottom: '1px solid #EAECF0', marginTop: '20px' }}>

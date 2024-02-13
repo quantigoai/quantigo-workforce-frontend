@@ -10,6 +10,7 @@ import editCourseIcon from '../../../../assets/images/edit.svg';
 import EditCourseModal from '../CreateCourseModal/EditCourseModal';
 import useCourseManagement from '../hooks/createCourseHook/useCourseMangement';
 import useCourseDetails from '../hooks/courseDetailshooks/useCourseDetails';
+import CourseDeleteModal from '../../../primary/Course/CourseDetailsPage/CourseDeleteModal';
 const boxStyle = {
   display: 'flex',
   justifyContent: 'space-between',
@@ -24,13 +25,12 @@ const btnStyle = {
   color: '#fff',
   '&:hover': { backgroundColor: '#244EF5' },
 };
-const CourseLandingHeader = ({ course }) => {
+const CourseLandingHeader = () => {
   const navigate = useNavigate();
-  const handleRouteChange = () => {
-    navigate(`/course-landing/content/${course._id}`);
-  };
+
   const {
     skill,
+    course,
     open,
     handleOpen,
     handleClose,
@@ -50,7 +50,12 @@ const CourseLandingHeader = ({ course }) => {
     setIsFeatured,
     handleChangeFeatured,
     handleDateTime,
+    hub,
+    handleChangeHubs,
   } = useCourseDetails();
+  const handleRouteChange = () => {
+    navigate(`/course-landing/content/${course._id}`);
+  };
 
   return (
     <Box sx={boxStyle}>
@@ -114,12 +119,14 @@ const CourseLandingHeader = ({ course }) => {
                 handleDateTime={handleDateTime}
                 isFeatured={isFeatured}
                 setIsFeatured={setIsFeatured}
+                hub={hub}
+                handleChangeHubs={handleChangeHubs}
               />
 
-              {/* <CourseDeleteModal
-              course={course}
-              // handleDeleteCourse={handleDeleteCourse}
-            /> */}
+              <CourseDeleteModal
+                course={course}
+                // handleDeleteCourse={handleDeleteCourse}
+              />
             </Box>
           </Box>
         </Box>

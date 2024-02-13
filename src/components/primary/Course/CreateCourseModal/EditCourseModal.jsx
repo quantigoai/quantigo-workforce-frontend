@@ -35,6 +35,7 @@ import TextFieldCourse from './TextFieldCourse';
 import CheckBoxFeatured from './CheckBoxFeatured';
 import CourseOutComesMain from './CourseOutComesMain';
 import DateTimeField from './DateTimeField';
+import HubMultipleSelect from './HubMultipleSelect';
 
 const style = {
   position: 'relative',
@@ -130,6 +131,8 @@ const EditCourseModal = ({
   handleDateTime,
   isFeatured,
   setIsFeatured,
+  hub,
+  handleChangeHubs,
 }) => {
   const CourseCreateSchema = Yup.object().shape({
     name: Yup.string().required('Course name is required'),
@@ -171,7 +174,14 @@ const EditCourseModal = ({
         }}
       >
         <Fade in={open}>
-          <Box sx={style}>
+          <Box
+            sx={{
+              ...style,
+              width: { xxl: '900px', xl: '800px', lg: '700px' },
+              height: { xxl: '800px', xl: '700px', lg: '700px' },
+              left: { xxl: '50%', lg: '55%', xl: '55%' },
+            }}
+          >
             <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={`Edit ${course.name}`} />
 
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -181,8 +191,8 @@ const EditCourseModal = ({
                     // height: "580px",
                     height: {
                       lg: '550px',
-                      xl: '580px',
-                      xxl: '780px',
+                      xl: '550px',
+                      xxl: '640px',
                     },
                     overflowY: 'auto',
                     '&::-webkit-scrollbar': {
@@ -290,19 +300,18 @@ const EditCourseModal = ({
                         />
                       </FieldBox>
                       <FieldBox>
-                        <CSelectField
-                          name={'hubField'}
-                          label="Hub"
+                        <HubMultipleSelect
                           options={courseHubField}
-                          defaultValue={course.hubs?.[0]}
-                          isRequired={true}
+                          hubSet={hub}
+                          handleChange={handleChangeHubs}
+                          isUpdate={true}
                         />
                       </FieldBox>
                     </LineStack>
                     <LineStack>
                       <FieldBox>
                         <DateTimeField
-                          label={'Live Session Date'}
+                          label={'Live Session Date and Time'}
                           dateTime={dateTime}
                           defaultValue={course.liveSessionStartedAt}
                           handleDateTime={handleDateTime}
@@ -313,7 +322,7 @@ const EditCourseModal = ({
                           defaultValue={course.liveSessionLink}
                           name="liveSessionLink"
                           label="Live Session Link"
-                          isRequired={true}
+                          isRequired={false}
                         />
                       </FieldBox>
                     </LineStack>

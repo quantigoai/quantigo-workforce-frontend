@@ -71,25 +71,25 @@ const CourseOutComesMain = ({ outcomes, setOutcomes, defaultValue }) => {
                 rows={2}
                 fullWidth
                 type="text"
-                // defaultValue={outcome}
-                value={outcome}
+                defaultValue={outcome}
+                // value={outcome}
                 onChange={(e) => handleFieldChange(index, e.target.value)}
               />
               {outcomes.length !== 1 && (
-                <i
-                  onClick={() => handleRemove(index)}
-                  style={{
+                <Box
+                  sx={{
                     color: 'red',
                     cursor: 'pointer',
                     position: 'absolute',
-                    left: 580,
-                    top: 55,
+                    left: { xxl: 780, xl: 690, lg: 580 },
+                    top: 58,
                     height: '30px',
                     width: '30px',
                     fontSize: '20px',
                   }}
-                  className="ri-delete-bin-line"
-                ></i>
+                >
+                  <i onClick={() => handleRemove(index)} className="ri-delete-bin-line"></i>
+                </Box>
               )}
             </FormControl>
           </Stack>

@@ -44,7 +44,6 @@ export default function CSelectField({
   isRequired,
   ...other
 }) {
-  console.log('🚀 ~ defaultValue:', defaultValue);
   const { control } = useFormContext();
 
   return (

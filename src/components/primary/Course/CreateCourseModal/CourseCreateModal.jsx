@@ -26,6 +26,7 @@ import PDDateField from '../../../shared/CustomField/PDDateField';
 import DateTimeField from './DateTimeField';
 import CourseOutcomes from './CourseOutcomes';
 import CourseOutComesMain from './CourseOutComesMain';
+import HubMultipleSelect from './HubMultipleSelect';
 
 const style = {
   position: 'relative',
@@ -121,6 +122,8 @@ const CourseCreateModal = ({
   handleDateTime,
   outcomes,
   setOutcomes,
+  hub,
+  handleChangeHub,
 }) => {
   return (
     <>
@@ -145,6 +148,7 @@ const CourseCreateModal = ({
             sx={{
               ...style,
               width: { xxl: '900px', xl: '800px', lg: '700px' },
+              height: { xxl: '800px', xl: '700px', lg: '700px' },
               left: { xxl: '50%', lg: '55%', xl: '55%' },
             }}
           >
@@ -157,8 +161,8 @@ const CourseCreateModal = ({
                     // height: "580px",
                     height: {
                       lg: '550px',
-                      xl: '580px',
-                      xxl: '780px',
+                      xl: '550px',
+                      xxl: '640px',
                     },
                     overflowY: 'auto',
                     '&::-webkit-scrollbar': {
@@ -261,25 +265,31 @@ const CourseCreateModal = ({
                         />
                       </FieldBox>
                       <FieldBox>
-                        <CSelectField
+                        {/* <CSelectField
                           name={'hubField'}
                           label="Hub"
                           options={courseHubField}
                           defaultValue={''}
                           isRequired={true}
+                        /> */}
+                        <HubMultipleSelect
+                          options={courseHubField}
+                          hubSet={hub}
+                          handleChange={handleChangeHub}
+                          isUpdate={false}
                         />
                       </FieldBox>
                     </LineStack>
                     <LineStack>
                       <FieldBox>
                         <DateTimeField
-                          label={'Live Session Date'}
+                          label={'Live Session Date and Time'}
                           dateTime={dateTime}
                           handleDateTime={handleDateTime}
                         />
                       </FieldBox>
                       <FieldBox>
-                        <TextFieldCourse name="liveSessionLink" label="Live Session Link" isRequired={true} />
+                        <TextFieldCourse name="liveSessionLink" label="Live Session Link" isRequired={false} />
                       </FieldBox>
                     </LineStack>
 

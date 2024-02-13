@@ -5,9 +5,11 @@ import { setActiveChapterIndex } from '../../../../../features/slice/activePathS
 import { getAChapterById, updateACourseById } from '../../../../../features/slice/courseSlice';
 import useToaster from '../../../../../customHooks/useToaster';
 import useCourseManagement from '../createCourseHook/useCourseMangement';
+import { courseHubField } from '../../../AllUsers/userFilterOptions';
 
 const useCourseDetails = () => {
   const { course, courseChapter, isLoading, courseChapters } = useSelector((state) => state.course);
+
   const { isLightTheme } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
   const { skills } = useSelector((state) => state.skill);
@@ -31,7 +33,11 @@ const useCourseDetails = () => {
   const [coverImage, setCoverImage] = useState(null);
   const [progress, setProgress] = React.useState(0);
   const [dateTime, setDateTime] = useState(course.liveSessionStartedAt);
-  const [outcomes, setOutcomes] = useState(course?.outComes.length ? course?.outComes : ['']);
+  const [outcomes, setOutcomes] = useState(course.outComes?.length >= 1 ? course?.outComes : ['']);
+  const [hub, setHub] = useState(course?.hubs?.length ? course.hubs : []);
+  const [hubSet1, sethubSet1] = useState([]);
+  const [hubSet2, sethubSet2] = useState([]);
+  const [isHubEmpty, setIsSHubEmpty] = useState(false);
   const [isFeatured, setIsFeatured] = useState(course.isFeaturedCourse);
   const handleChapterClick = (courseChapter, index) => {
     dispatch(setActiveChapterIndex(index));
@@ -46,7 +52,6 @@ const useCourseDetails = () => {
 
   const handleClose = () => {
     setOpen(false);
-    setOutcomes(['']);
   };
   const handleChangeFeatured = (event) => {
     setIsFeatured(event.target.checked);
@@ -71,6 +76,21 @@ const useCourseDetails = () => {
     setSkillSet2([{ ...skillSet1 }]);
     !selectedSkills.length && setIsSkillEmpty(true);
     setSkill(typeof selectedSkills === 'string' ? value.split(',') : selectedSkills);
+  };
+  const handleChangeHubs = (event) => {
+    const {
+      target: { value },
+    } = event;
+
+    value?.map((skill) => {
+      const preData = {
+        name: skill.name,
+      };
+      sethubSet1([{ ...preData }]);
+    });
+    sethubSet2([{ ...sethubSet1 }]);
+    !value.length && setIsSkillEmpty(true);
+    setHub(typeof selectedHubs === 'string' ? value.split(',') : value);
   };
 
   const handleImage = (e) => {
@@ -124,15 +144,21 @@ const useCourseDetails = () => {
     formData.append('images', coverImageFile);
     formData.append('prerequisiteCourses', preRequisiteCoursesColl);
     formData.append('skills', skillColl);
-    formData.append('hubs', data.hubField);
+    formData.append('hubs', hub);
     formData.append('liveSessionLink', data.liveSessionLink);
-    formData.append('liveSessionStartedAt', dateTime.$d);
+    dateTime === ''
+      ? formData.append('liveSessionStartedAt', dateTime.$d)
+      : formData.append('liveSessionStartedAt', dateTime);
+    // formData.append('liveSessionStartedAt', dateTime.$d);
     formData.append('isFeaturedCourse', isFeatured);
     formData.append('outComes', outcomes);
-    preRequisiteCourses.length && formData.append('prerequisiteCourses', preRequisiteCoursesColl);
-    isPreRequisiteCourseEmpty && formData.append('prerequisiteCourses', []);
-    skill.length && formData.append('skills', skillColl);
-    isSkillEmpty && formData.append('skills', []);
+    // formData.append('liveSessionStartedAt', dateTime.$d);
+    // preRequisiteCourses.length && formData.append('prerequisiteCourses', preRequisiteCoursesColl);
+    // isPreRequisiteCourseEmpty && formData.append('prerequisiteCourses', []);
+    // skill.length && formData.append('skills', skillColl);
+    // isSkillEmpty && formData.append('skills', []);
+    // isHubEmpty && formData.append('hubs', []);
+
     const newData = {
       id: course._id,
       formData,
@@ -201,6 +227,8 @@ const useCourseDetails = () => {
     setIsFeatured,
     handleChangeFeatured,
     handleDateTime,
+    hub,
+    handleChangeHubs,
   };
 };
 

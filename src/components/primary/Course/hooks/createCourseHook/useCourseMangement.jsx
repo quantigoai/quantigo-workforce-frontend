@@ -13,6 +13,7 @@ import {
 } from '../../../../../features/slice/courseSlice';
 import { setActiveChapterIndex, setActiveCourseId } from '../../../../../features/slice/activePathSlice';
 import { formatTime } from '../../../../../helper/dateConverter';
+import { courseHubField } from '../../../AllUsers/userFilterOptions';
 
 const useCourseManagement = () => {
   const { role } = useSelector((state) => state.user.user);
@@ -28,8 +29,8 @@ const useCourseManagement = () => {
   const [checkedFeatured, setCheckedFeatured] = useState(false);
   const [dateTime, setDateTime] = useState('');
   const [outcomes, setOutcomes] = useState(['']);
-
   const [skill, setSkill] = React.useState([]);
+  const [hub, setHub] = useState(['Dhaka', 'Mymensingh', 'Sirajganj', 'Khulna', 'Chuadanga']);
   const dispatch = useDispatch();
   const toast = useToaster();
   const CourseCreateSchema = Yup.object().shape({
@@ -48,6 +49,7 @@ const useCourseManagement = () => {
     reset();
     setPreRequisiteCourses([]);
     setSkill([]);
+    setHub([]);
     setCoverImageFile(null);
     setCoverImage(null);
     setDateTime('');
@@ -68,6 +70,15 @@ const useCourseManagement = () => {
     });
 
     setSkill(typeof selectedSkills === 'string' ? value.split(',') : selectedSkills);
+  };
+  const handleChangeHub = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setHub(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value
+    );
   };
 
   const handleChangeFeatured = (event) => {
@@ -123,7 +134,7 @@ const useCourseManagement = () => {
     formData.append('description', data.description);
     formData.append('images', coverImageFile);
     formData.append('prerequisiteCourses', preRequisiteCoursesColl);
-    formData.append('hubs', data.hubField);
+    formData.append('hubs', hub);
     data.liveSessionLink === undefined
       ? formData.append('liveSessionLink', '')
       : formData.append('liveSessionLink', data.liveSessionLink);
@@ -133,7 +144,6 @@ const useCourseManagement = () => {
     formData.append('isFeaturedCourse', checkedFeatured);
     formData.append('outComes', outcomes);
     formData.append('skills', skillColl);
-
     dispatch(createCourse(formData)).then((action) => {
       if (action.error) {
         toast.trigger(action.error.message, 'error');
@@ -194,6 +204,8 @@ const useCourseManagement = () => {
     handleDateTime,
     outcomes,
     setOutcomes,
+    hub,
+    handleChangeHub,
   };
 };
 

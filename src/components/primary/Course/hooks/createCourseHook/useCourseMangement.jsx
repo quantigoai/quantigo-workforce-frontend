@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import useToaster from "../../../../../customHooks/useToaster";
-import * as Yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import useToaster from '../../../../../customHooks/useToaster';
+import * as Yup from 'yup';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import {
   createCourse,
   getACourseByID,
@@ -133,17 +133,13 @@ const useCourseManagement = () => {
     formData.append('language', data.language);
     formData.append('description', data.description);
     formData.append('images', coverImageFile);
-    formData.append('prerequisiteCourses', preRequisiteCoursesColl);
-    formData.append('hubs', hub);
-    data.liveSessionLink === undefined
-      ? formData.append('liveSessionLink', '')
-      : formData.append('liveSessionLink', data.liveSessionLink);
-    dateTime.$d === undefined
-      ? formData.append('liveSessionStartedAt', '')
-      : formData.append('liveSessionStartedAt', dateTime.$d);
+    preRequisiteCoursesColl.length && formData.append('prerequisiteCourses', preRequisiteCoursesColl);
+    hub.length && formData.append('hubs', hub);
+    data.liveSessionLink !== undefined && formData.append('liveSessionLink', data.liveSessionLink);
+    dateTime.$d !== undefined && formData.append('liveSessionStartedAt', dateTime.$d);
     formData.append('isFeaturedCourse', checkedFeatured);
-    formData.append('outComes', outcomes);
-    formData.append('skills', skillColl);
+    outcomes.length > 1 && formData.append('outComes', outcomes);
+    skillColl.length && formData.append('skills', skillColl);
     dispatch(createCourse(formData)).then((action) => {
       if (action.error) {
         toast.trigger(action.error.message, 'error');

@@ -31,14 +31,11 @@ const accordionBoxNumberStyle = {
 };
 const ChapterListShowIndex = () => {
   const { courseChapters, course } = useSelector((state) => state.course);
-  console.log("🚀 ~ ChapterListShowIndex ~ courseChapters:", courseChapters);
-  const dispatch = useDispatch();
+ const dispatch = useDispatch();
   const { isLightTheme } = useSelector((state) => state.theme);
   const navigate = useNavigate();
 
   const handleChapter = (courseChapter, index) => {
-    console.log("🚀 ~ handleChapter ~ courseChapter:", courseChapter);
-    // console.log("🚀 ~ handleChapter ~ id:", id)
     // navigate("/content");
     // navigate(`/content/${courseChapter._id}`);
     dispatch(setActiveChapterIndex(index));
@@ -71,16 +68,7 @@ const ChapterListShowIndex = () => {
   };
   return (
     <>
-      <Box sx={{ paddingBottom: "2%" }}>
-        <Typography variant='wpf_h5_Bold'>All Chapters</Typography>
-        <br />
-        <Typography variant='wpf_p3_regular'>
-          {" "}
-          Prepare for a new career in the high-growth field of project management, no experience or degree required. Get
-          professional training designed by Google and get on the fastrack to a competitively paid job.
-        </Typography>
-        <Button onClick={() => handleCreateChapter()}>Create Chapter</Button>
-      </Box>
+     
       <Box
         sx={{
           // backgroundColor: "red",
@@ -152,7 +140,7 @@ const ChapterListShowIndex = () => {
                     borderRadius: "32px",
                     border: "2px solid  #E2E8F0",
                     color: "neutral.700",
-                    backgroundColor: "#F8FAFC",
+                    backgroundColor: isLightTheme ? "#F8FAFC" : "",
                     fontSize: { xl: "12px", xxl: "14px", lg: "10px" },
                     fontFamily: "Inter",
                   }}

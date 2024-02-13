@@ -2,8 +2,9 @@ import {Box, Button, Modal, Typography} from "@mui/material";
 import React from "react";
 import useToaster from "../../../customHooks/useToaster";
 import {useDispatch, useSelector} from "react-redux";
-import {deleteAChapterById} from "../../../features/slice/courseSlice";
+import {deleteAChapterById, manuallySetCourseChapter} from "../../../features/slice/courseSlice";
 import deleteIcon from "../../../assets/images/delete.svg";
+import { setActiveChapterIndex } from "../../../features/slice/activePathSlice";
 
 const style = {
   position: "absolute",
@@ -19,6 +20,7 @@ const style = {
 };
 const ChapterDeleteModal = ({ courseChapter }) => {
   const [open, setOpen] = React.useState(false);
+  const { activeChapterIndex, activeCourseId } = useSelector((state) => state.activePath);
 
   const toast = useToaster();
   const dispatch = useDispatch();
@@ -32,11 +34,15 @@ const ChapterDeleteModal = ({ courseChapter }) => {
   };
 
   const handleDeleteCourse = (id) => {
-    setOpen(false);
+  
     dispatch(deleteAChapterById(id)).then((action) => {
       if (action.error) {
         toast.trigger(action.error.message, "error");
       } else {
+        const previousIndex = activeChapterIndex === 0 ? 0 : activeChapterIndex - 1;
+        dispatch(setActiveChapterIndex(previousIndex));
+        dispatch(manuallySetCourseChapter(previousIndex));
+        setOpen(false);
         toast.trigger(action.payload.data.message, "success");
         // navigate(`/course-details/${course._id}`);
       }

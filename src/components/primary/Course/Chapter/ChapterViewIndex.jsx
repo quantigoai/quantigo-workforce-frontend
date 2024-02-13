@@ -11,6 +11,7 @@ import { setActiveChapterIndex } from "../../../../features/slice/activePathSlic
 import { getAChapterById } from "../../../../features/slice/courseSlice";
 import { useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
+import ChapterDeleteModal from "../../CourseNew/ChapterDeleteModal";
 
 const ChapterViewIndex = () => {
   const {
@@ -27,7 +28,9 @@ const ChapterViewIndex = () => {
   } = useCourseDetails();
   const { activeChapterIndex } = useSelector((state) => state.activePath);
   const dispatch = useDispatch();
+  const { role } = useSelector((state) => state.user.user);
   const navigate = useNavigate();
+
   const handleChapterChangePre = () => {
     const activeChapterId = courseChapters.find((chapter, index) => {
       return index === activeChapterIndex - 1;
@@ -54,44 +57,38 @@ const ChapterViewIndex = () => {
     <>
       <Box
         sx={{
-          backgroundColor: "#fff",
+          backgroundColor: "neutral.N000",
           height: "90%",
-          overflow: "auto",
-          scrollbarWidth: "thin",
-          "&::-webkit-scrollbar": {
-            width: "0.4em",
-          },
-          "&::-webkit-scrollbar-track": {
-            background: "#f1f1f1",
-          },
-          "&::-webkit-scrollbar-thumb": {
-            backgroundColor: "#888",
-          },
-          "&::-webkit-scrollbar-thumb:hover": {
-            background: "#555",
-          },
         }}
       >
         <Box
           sx={{
-            backgroundColor: "#F1F5F9",
+            backgroundColor: isLightTheme ? "#F1F5F9" : "",
+            height: "18%",
             paddingLeft: "10%",
             paddingRight: "10%",
-            paddingTop: "2%",
+            paddingTop: "1%",
             paddingBottom: "3%",
             borderBottom: "2px solid ##F8FAFC",
           }}
         >
           <Grid container>
-            <Grid item xs={6}>
+            <Grid item xs={10}>
               <ChapterHeaderMenuIndex />
             </Grid>
-            <Grid item xs={6}>
-              <Button onClick={() => handleEditChapter()}>
+            <Grid item xs={2}>
+              <Button
+                sx={{
+                  borderRadius: "2px",
+                }}
+                onClick={() => handleEditChapter()}
+              >
                 {" "}
                 <i className='ri-edit-line'></i>
               </Button>
-              <Button>
+              {/* <ChapterDeleteModal /> */}
+              <ChapterDeleteModal courseChapter={courseChapter} />
+              {/* <Button>
                 {" "}
                 <DeleteIcon
                   style={{
@@ -104,7 +101,7 @@ const ChapterViewIndex = () => {
                     width: "20px",
                   }}
                 />
-              </Button>
+              </Button> */}
             </Grid>
           </Grid>
 
@@ -113,7 +110,27 @@ const ChapterViewIndex = () => {
           </Grid>
           <Typography variant='wpf_p3_regular'>{courseChapter.description}</Typography>
         </Box>
-        <Box sx={{ paddingLeft: "10%", paddingRight: "10%" }}>
+        <Box
+          sx={{
+            height: "82%",
+            paddingLeft: "10%",
+            paddingRight: "10%",
+            overflow: "auto",
+            scrollbarWidth: "thin",
+            "&::-webkit-scrollbar": {
+              width: "0.4em",
+            },
+            "&::-webkit-scrollbar-track": {
+              background: "#f1f1f1",
+            },
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: "#888",
+            },
+            "&::-webkit-scrollbar-thumb:hover": {
+              background: "#555",
+            },
+          }}
+        >
           <Grid container sx={{}}>
             {/* <Typography> {courseChapter._id}</Typography> */}
             <Grid
@@ -136,7 +153,7 @@ const ChapterViewIndex = () => {
           justifyContent: "space-between",
           alignItems: "center",
           height: "10%",
-          backgroundColor: "#fff",
+          backgroundColor: "neutral.N000",
           borderTop: "1px solid #F1F5F9",
           justifyContent: "center",
           paddingLeft: "10%",

@@ -6,8 +6,11 @@ import courseDuration from "../../../../assets/images/courses/CourseDurationIcon
 
 import courseSkillIcon from "../../../../assets/images/courses/SkillIcon.svg";
 import CoursePreIcon from "../../../../assets/images/courses/CoursePre.svg";
+import { useSelector } from "react-redux";
 
 const CourseInfoIndex = () => {
+  const { isLightTheme } = useSelector((state) => state.theme);
+  
   const courseInfoItems = [
     {
       image: levelIcon,
@@ -37,12 +40,8 @@ const CourseInfoIndex = () => {
   ];
   return (
     <>
-      <Box sx={{paddingBottom:"5%"}}>
-        <Typography variant='wpf_h5_Bold'>Course Info</Typography>
-        <br />
-        <Typography variant='wpf_p3_regular'>Gain insight into a topic and learn the fundamentals</Typography>
-      </Box>
-      <Box sx={{ backgroundColor: "#F8FAFC", border: "2px solid #E2E8F0", borderRadius: "8px" }}>
+      
+      <Box sx={{  backgroundColor: isLightTheme ? "#F8FAFC" : "", border: "2px solid #E2E8F0", borderRadius: "8px" }}>
         {courseInfoItems.map((item, index) => (
           <Box
             sx={{

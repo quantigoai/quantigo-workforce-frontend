@@ -85,8 +85,8 @@ const CourseHomePageHeader = ({ course }) => {
                     color: (theme) => (theme.palette.mode === "light" ? "#D2DFFA" : "#D2DFFA"),
                     // backgroundColor: "red",
                   }}
-                  size='25px'
-                  thickness={5}
+                  size='20px'
+                  thickness={7}
                   // {...props}
                   value={100}
                 />
@@ -102,9 +102,9 @@ const CourseHomePageHeader = ({ course }) => {
                     left: 0,
                     top: 0,
                   }}
-                  size='25px'
+                  size='20px'
                   value={25}
-                  thickness={5}
+                  thickness={7}
                 />
               </Box>
               <span style={{ paddingLeft: "8px" }}>

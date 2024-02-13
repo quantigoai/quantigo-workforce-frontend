@@ -31,6 +31,7 @@ const accordionBoxNumberStyle = {
 };
 const ChapterListShowIndex = () => {
   const { courseChapters, course } = useSelector((state) => state.course);
+  const { role } = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const { isLightTheme } = useSelector((state) => state.theme);
   const navigate = useNavigate();
@@ -99,23 +100,38 @@ const ChapterListShowIndex = () => {
               <Grid container>
                 <Grid
                   item
-                  xs={0.5}
+                  // xs={0.5}
+                  xs={12}
+                  sm={1}
+                  md={1}
+                  xl={0.78}
                   sx={{ backgroundColor: "", alignItems: "center", justifyContent: "center", display: "flex" }}
                 >
                   <img src={course_Complete} alt='' />
                 </Grid>
-                <Grid item xs={9.5} sx={{ backgroundColor: "" }}>
+                <Grid
+                  item
+                  // xs={9.5}
+                  xs={12}
+                  sm={7}
+                  md={8.5}
+                  xl={9}
+                  sx={{ backgroundColor: "" }}
+                >
                   <Typography
                     // color={"grey.600"}
                     variant='wpf_p3_semiBold'
-                    // sx={{ opacity: "0.6", }}
+                    onClick={() => handleChapter(item, index)}
+                    sx={{ cursor: "pointer" }}
                   >
                     {item.title}
                   </Typography>
-                  <Button onClick={() => handleEditChapter(item._id, index)}>
-                    {" "}
-                    <i className='ri-edit-line'></i>
-                  </Button>
+                  {(role === "admin" || role === "trainer") && (
+                    <Button sx={{ height: "20px" }} onClick={() => handleEditChapter(item._id, index)}>
+                      {" "}
+                      <i className='ri-edit-line'></i>
+                    </Button>
+                  )}
                   <br />
                   <Typography variant='wpf_p4_regular' color={"grey.600"}>
                     Duration: 40 minutes{"  "}
@@ -127,7 +143,10 @@ const ChapterListShowIndex = () => {
                 </Grid>
                 <Grid
                   item
-                  xs={2}
+                  xs={12}
+                  sm={4}
+                  md={2.5}
+                  xl={2}
                   sx={{ px: "2%", alignItems: "center", justifyContent: "space-between", display: "flex" }}
                 >
                   <Chip
@@ -149,7 +168,12 @@ const ChapterListShowIndex = () => {
                     label={`Chapter ${index + 1}`}
                     // label='Chapter 01'
                   />
-                  <img src={arrowIcon} alt='' />
+                  <img
+                    src={arrowIcon}
+                    alt=''
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleChapter(item, index)}
+                  />
                 </Grid>
               </Grid>
             </Box>

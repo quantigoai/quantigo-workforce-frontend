@@ -31,7 +31,7 @@ const accordionBoxNumberStyle = {
 };
 const ChapterListShowIndex = () => {
   const { courseChapters, course } = useSelector((state) => state.course);
- const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { isLightTheme } = useSelector((state) => state.theme);
   const navigate = useNavigate();
 
@@ -68,7 +68,6 @@ const ChapterListShowIndex = () => {
   };
   return (
     <>
-     
       <Box
         sx={{
           // backgroundColor: "red",
@@ -83,77 +82,78 @@ const ChapterListShowIndex = () => {
           },
         }}
       >
-        {courseChapters.map((item, index) => (
-          <Box
-            sx={{
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              justifyContent: "center",
-              // paddingRight: "20px",
-              borderTop: index === 0 ? "" : "1px solid #E2E8F0",
-              paddingTop: "1%",
-              paddingBottom: "1%",
-            }}
-          >
-            <Grid container>
-              <Grid
-                item
-                xs={0.5}
-                sx={{ backgroundColor: "", alignItems: "center", justifyContent: "center", display: "flex" }}
-              >
-                <img src={course_Complete} alt='' />
-              </Grid>
-              <Grid item xs={9.5} sx={{ backgroundColor: "" }}>
-                <Typography
-                  // color={"grey.600"}
-                  variant='wpf_p3_semiBold'
-                  // sx={{ opacity: "0.6", }}
+        {courseChapters &&
+          courseChapters.map((item, index) => (
+            <Box
+              sx={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                justifyContent: "center",
+                // paddingRight: "20px",
+                borderTop: index === 0 ? "" : "1px solid #E2E8F0",
+                paddingTop: "1%",
+                paddingBottom: "1%",
+              }}
+            >
+              <Grid container>
+                <Grid
+                  item
+                  xs={0.5}
+                  sx={{ backgroundColor: "", alignItems: "center", justifyContent: "center", display: "flex" }}
                 >
-                  {item.title}
-                </Typography>
-                <Button onClick={() => handleEditChapter(item._id, index)}>
-                  {" "}
-                  <i className='ri-edit-line'></i>
-                </Button>
-                <br />
-                <Typography variant='wpf_p4_regular' color={"grey.600"}>
-                  Duration: 40 minutes{"  "}
-                </Typography>
-                <img src={Rectangle} />
-                <Typography variant='wpf_p4_regular' color={"grey.600"}>
-                  {"  "} Quiz Score: 15
-                </Typography>
+                  <img src={course_Complete} alt='' />
+                </Grid>
+                <Grid item xs={9.5} sx={{ backgroundColor: "" }}>
+                  <Typography
+                    // color={"grey.600"}
+                    variant='wpf_p3_semiBold'
+                    // sx={{ opacity: "0.6", }}
+                  >
+                    {item.title}
+                  </Typography>
+                  <Button onClick={() => handleEditChapter(item._id, index)}>
+                    {" "}
+                    <i className='ri-edit-line'></i>
+                  </Button>
+                  <br />
+                  <Typography variant='wpf_p4_regular' color={"grey.600"}>
+                    Duration: 40 minutes{"  "}
+                  </Typography>
+                  <img src={Rectangle} />
+                  <Typography variant='wpf_p4_regular' color={"grey.600"}>
+                    {"  "} Quiz Score: 15
+                  </Typography>
+                </Grid>
+                <Grid
+                  item
+                  xs={2}
+                  sx={{ px: "2%", alignItems: "center", justifyContent: "space-between", display: "flex" }}
+                >
+                  <Chip
+                    sx={{
+                      height: {
+                        lg: "20px",
+                        xl: "24px",
+                        xxl: "28px",
+                      },
+                      borderRadius: "32px",
+                      border: "2px solid  #E2E8F0",
+                      color: "neutral.700",
+                      backgroundColor: isLightTheme ? "#F8FAFC" : "",
+                      fontSize: { xl: "12px", xxl: "14px", lg: "10px" },
+                      fontFamily: "Inter",
+                    }}
+                    onClick={() => handleChapter(item, index)}
+                    // key={item.value}
+                    label={`Chapter ${index + 1}`}
+                    // label='Chapter 01'
+                  />
+                  <img src={arrowIcon} alt='' />
+                </Grid>
               </Grid>
-              <Grid
-                item
-                xs={2}
-                sx={{ px: "2%", alignItems: "center", justifyContent: "space-between", display: "flex" }}
-              >
-                <Chip
-                  sx={{
-                    height: {
-                      lg: "20px",
-                      xl: "24px",
-                      xxl: "28px",
-                    },
-                    borderRadius: "32px",
-                    border: "2px solid  #E2E8F0",
-                    color: "neutral.700",
-                    backgroundColor: isLightTheme ? "#F8FAFC" : "",
-                    fontSize: { xl: "12px", xxl: "14px", lg: "10px" },
-                    fontFamily: "Inter",
-                  }}
-                  onClick={() => handleChapter(item, index)}
-                  // key={item.value}
-                  label={`Chapter ${index + 1}`}
-                  // label='Chapter 01'
-                />
-                <img src={arrowIcon} alt='' />
-              </Grid>
-            </Grid>
-          </Box>
-        ))}
+            </Box>
+          ))}
       </Box>
 
       {/* <CourseChapterAccordion arr={arr} isLightTheme={isLightTheme} course={course} /> */}

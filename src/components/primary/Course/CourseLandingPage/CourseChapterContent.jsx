@@ -44,7 +44,7 @@ const CourseChapterContent = ({ course }) => {
           // height: "200px",
           border: "2px solid #E2E8F0",
           borderRadius: "8px",
-          maxHeight: 430 ,
+          maxHeight: 430,
           // overflowY: "auto",
           overflowY: "auto",
           // "&::-webkit-scrollbar": {
@@ -52,49 +52,50 @@ const CourseChapterContent = ({ course }) => {
           // },
         }}
       >
-        {courseChapters.map((item, index) => (
-          <Box
-            sx={{
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              justifyContent: "center",
-              // paddingRight: "20px",
-              borderTop: index === 0 ? "" : "1px solid #E2E8F0",
-              paddingTop: "1%",
-              paddingBottom: "1%",
-            }}
-          >
-            <Grid container>
-              <Grid
-                item
-                xs={1}
-                sx={{ backgroundColor: "", alignItems: "center", justifyContent: "center", display: "flex" }}
-              >
-                <Box sx={accordionBoxNumberStyle}>
-                  <Typography sx={{ fontSize: "14px", fontWeight: "600" }}>{index + 1}</Typography>
-                </Box>
-                {/* <img src={course_Complete} alt='' /> */}
-              </Grid>
-              <Grid item xs={9} sx={{ backgroundColor: "" }}>
-                <Typography
-                  // color={"grey.600"}
-                  variant='wpf_p3_semiBold'
-                  // sx={{ opacity: "0.6", }}
+        {courseChapters &&
+          courseChapters.map((item, index) => (
+            <Box
+              sx={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                justifyContent: "center",
+                // paddingRight: "20px",
+                borderTop: index === 0 ? "" : "1px solid #E2E8F0",
+                paddingTop: "1%",
+                paddingBottom: "1%",
+              }}
+            >
+              <Grid container>
+                <Grid
+                  item
+                  xs={1}
+                  sx={{ backgroundColor: "", alignItems: "center", justifyContent: "center", display: "flex" }}
                 >
-                  {item.title}
-                </Typography>
-                <br />
-                <Typography variant='wpf_p4_regular' color={"grey.700"}>
-                  40 minutes
-                </Typography>
+                  <Box sx={accordionBoxNumberStyle}>
+                    <Typography sx={{ fontSize: "14px", fontWeight: "600" }}>{index + 1}</Typography>
+                  </Box>
+                  {/* <img src={course_Complete} alt='' /> */}
+                </Grid>
+                <Grid item xs={9} sx={{ backgroundColor: "" }}>
+                  <Typography
+                    // color={"grey.600"}
+                    variant='wpf_p3_semiBold'
+                    // sx={{ opacity: "0.6", }}
+                  >
+                    {item.title}
+                  </Typography>
+                  <br />
+                  <Typography variant='wpf_p4_regular' color={"grey.700"}>
+                    40 minutes
+                  </Typography>
+                </Grid>
+                <Grid item xs={2} sx={{ px: "2%", alignItems: "center", justifyContent: "end", display: "flex" }}>
+                  <img src={arrowIcon} alt='' />
+                </Grid>
               </Grid>
-              <Grid item xs={2} sx={{ px: "2%", alignItems: "center", justifyContent: "end", display: "flex" }}>
-                <img src={arrowIcon} alt='' />
-              </Grid>
-            </Grid>
-          </Box>
-        ))}
+            </Box>
+          ))}
       </Box>
     </Box>
   );

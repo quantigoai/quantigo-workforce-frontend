@@ -13,9 +13,11 @@ import {
 } from '../../../../../features/slice/courseSlice';
 import { setActiveChapterIndex, setActiveCourseId } from '../../../../../features/slice/activePathSlice';
 import { formatTime } from '../../../../../helper/dateConverter';
+import { courseHubField } from '../../../AllUsers/userFilterOptions';
 
 const useCourseManagement = () => {
   const { role } = useSelector((state) => state.user.user);
+  const { course } = useSelector((state) => state.course);
   const [filterCourses, setFilterCourses] = useState([]);
   const [isDataLoading, setIsDataLoading] = useState(true);
   const [open, setOpen] = useState(false);
@@ -26,8 +28,9 @@ const useCourseManagement = () => {
   const { skills } = useSelector((state) => state.skill);
   const [checkedFeatured, setCheckedFeatured] = useState(false);
   const [dateTime, setDateTime] = useState('');
-  const [outcomes, setOutcomes] = useState([{ outComes: '' }]);
+  const [outcomes, setOutcomes] = useState(['']);
   const [skill, setSkill] = React.useState([]);
+  const [hub, setHub] = useState(['Dhaka', 'Mymensingh', 'Sirajganj', 'Khulna', 'Chuadanga']);
   const dispatch = useDispatch();
   const toast = useToaster();
   const CourseCreateSchema = Yup.object().shape({
@@ -46,11 +49,12 @@ const useCourseManagement = () => {
     reset();
     setPreRequisiteCourses([]);
     setSkill([]);
+    setHub([]);
     setCoverImageFile(null);
     setCoverImage(null);
     setDateTime('');
     setCheckedFeatured(false);
-    setOutcomes([{ outComes: '' }]);
+    setOutcomes(['']);
   };
   const methods = useForm({
     resolver: yupResolver(CourseCreateSchema),
@@ -66,6 +70,15 @@ const useCourseManagement = () => {
     });
 
     setSkill(typeof selectedSkills === 'string' ? value.split(',') : selectedSkills);
+  };
+  const handleChangeHub = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setHub(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value
+    );
   };
 
   const handleChangeFeatured = (event) => {
@@ -112,8 +125,6 @@ const useCourseManagement = () => {
     const skillColl = skill.map((skill) => {
       return skill._id;
     });
-    const outComesArr = outcomes.map((item) => item.outComes);
-    const finalData = { data };
     const formData = new FormData();
 
     formData.append('name', data.name);
@@ -123,12 +134,16 @@ const useCourseManagement = () => {
     formData.append('description', data.description);
     formData.append('images', coverImageFile);
     formData.append('prerequisiteCourses', preRequisiteCoursesColl);
-    formData.append('hubs', data.hubField);
-    formData.append('liveSessionLink', data.liveSessionLink);
-    formData.append('liveSessionStartedAt', dateTime.$d);
+    formData.append('hubs', hub);
+    data.liveSessionLink === undefined
+      ? formData.append('liveSessionLink', '')
+      : formData.append('liveSessionLink', data.liveSessionLink);
+    dateTime.$d === undefined
+      ? formData.append('liveSessionStartedAt', '')
+      : formData.append('liveSessionStartedAt', dateTime.$d);
     formData.append('isFeaturedCourse', checkedFeatured);
-    formData.append('outComes', outComesArr);
-
+    formData.append('outComes', outcomes);
+    formData.append('skills', skillColl);
     dispatch(createCourse(formData)).then((action) => {
       if (action.error) {
         toast.trigger(action.error.message, 'error');
@@ -183,11 +198,14 @@ const useCourseManagement = () => {
     role,
     isLightTheme,
     checkedFeatured,
+    setCheckedFeatured,
     handleChangeFeatured,
     dateTime,
     handleDateTime,
     outcomes,
     setOutcomes,
+    hub,
+    handleChangeHub,
   };
 };
 

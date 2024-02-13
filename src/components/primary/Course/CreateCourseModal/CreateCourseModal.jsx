@@ -1,16 +1,16 @@
-import {Box, Button, Grid, Modal, Typography} from '@mui/material';
-import {default as React, useEffect, useState} from 'react';
-import {useForm} from 'react-hook-form';
-import {useDispatch, useSelector} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
+import { Box, Button, Grid, Modal, Typography } from '@mui/material';
+import { default as React, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import useToaster from '../../../../customHooks/useToaster';
-import {createCourse, getAllCourses,} from '../../../../features/slice/courseSlice';
-import {getAllSkills} from '../../../../features/slice/skillSlice';
-import {capitalizeFirstLetter} from '../../../../helper/capitalizeFirstWord';
+import { createCourse, getAllCourses } from '../../../../features/slice/courseSlice';
+import { getAllSkills } from '../../../../features/slice/skillSlice';
+import { capitalizeFirstLetter } from '../../../../helper/capitalizeFirstWord';
 import {
-    courseCategoryFields,
-    courseLanguageFields,
-    courseLevelFields,
+  courseCategoryFields,
+  courseLanguageFields,
+  courseLevelFields,
 } from '../../../primary/AllUsers/userFilterOptions';
 import DocumentImageUpload from '../../Documents/DocumentImageUpload';
 import ProjectModalHeader from '../../ProjectLIstNew2/ProjectModalHeader';
@@ -95,9 +95,7 @@ const CreateCourseModal = ({ handleClose, open }) => {
 
     setPreRequisiteCourses(
       // On autofill we get a stringified value.
-      typeof selectedPreRequisiteCourses === 'string'
-        ? value.split(',')
-        : selectedPreRequisiteCourses,
+      typeof selectedPreRequisiteCourses === 'string' ? value.split(',') : selectedPreRequisiteCourses
     );
   };
 
@@ -112,7 +110,7 @@ const CreateCourseModal = ({ handleClose, open }) => {
 
     setSkill(
       // On autofill we get a stringified value.
-      typeof selectedSkills === 'string' ? value.split(',') : selectedSkills,
+      typeof selectedSkills === 'string' ? value.split(',') : selectedSkills
     );
   };
 
@@ -163,7 +161,7 @@ const CreateCourseModal = ({ handleClose, open }) => {
         <Box
           sx={{
             ...style,
-            height: { xl: '95%', lg: '85%' },
+            height: { xxl: '55%', xl: '65%', lg: '85%' },
             width: { xl: '35%', lg: '40%' },
           }}
         >
@@ -176,10 +174,7 @@ const CreateCourseModal = ({ handleClose, open }) => {
           >
             <form onSubmit={handleSubmit(onSubmit)}>
               <Box sx={{ height: '8%', backgroundColor: '' }}>
-                <ProjectModalHeader
-                  handleCreateProjectClose={handleClose}
-                  modalTitle={'Create Project'}
-                />
+                <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={'Create Project'} />
               </Box>
               <Box
                 sx={{
@@ -203,27 +198,17 @@ const CreateCourseModal = ({ handleClose, open }) => {
                   <>
                     <Grid container>
                       {' '}
-                      <CTextField
-                        nameValidation={nameValidation}
-                        register={register}
-                      />
+                      <CTextField nameValidation={nameValidation} register={register} />
                     </Grid>
                     <Grid container>
                       <CTextFieldDescription register={register} />
                     </Grid>
                     <Grid container>
-                      <PreRequisiteCourseFiled
-                        perRequisiteCourses={preRequisiteCourses}
-                      />
+                      <PreRequisiteCourseFiled perRequisiteCourses={preRequisiteCourses} />
                     </Grid>
                     <Grid container>
                       <Grid item xs={6} sx={{ paddingRight: '1%' }}>
-                        <CSelectField
-                          name={'level'}
-                          options={courseLevelFields}
-                          level={'Level'}
-                          register={register}
-                        />
+                        <CSelectField name={'level'} options={courseLevelFields} level={'Level'} register={register} />
                       </Grid>
                       <Grid item xs={6}>
                         {' '}
@@ -254,11 +239,7 @@ const CreateCourseModal = ({ handleClose, open }) => {
                         register={register}
                       />
                     </Grid>
-                    <Grid
-                      item
-                      xs={12}
-                      sx={{ paddingLeft: '0%', paddingBottom: '1%' }}
-                    >
+                    <Grid item xs={12} sx={{ paddingLeft: '0%', paddingBottom: '1%' }}>
                       <Typography
                         sx={{
                           fontSize: '12px',
@@ -271,11 +252,7 @@ const CreateCourseModal = ({ handleClose, open }) => {
                         Course Cover Image
                       </Typography>
                     </Grid>
-                    <DocumentImageUpload
-                      coverImage={coverImage}
-                      removeImage={removeImage}
-                      handleImage={handleImage}
-                    />
+                    <DocumentImageUpload coverImage={coverImage} removeImage={removeImage} handleImage={handleImage} />
                     {/* <CoverImageField coverImage={coverImage} removeImage={removeImage} handleImage={handleImage} /> */}
                   </>
                 </Box>

@@ -18,7 +18,7 @@ const CourseLandingPageIndex = () => {
     if (!course._id) {
       dispatch(getACourseByID(params.id));
     }
-  });
+  }, []);
   return (
     <div>
       <Box>

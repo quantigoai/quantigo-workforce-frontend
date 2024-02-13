@@ -110,11 +110,11 @@ export const courseLevelFields = [
   { value: 'advanced', label: 'Advanced' },
 ];
 export const courseHubField = [
-  { value: 'Dhaka', label: 'Dhaka' },
-  { value: 'Mymensingh', label: 'Mymensingh' },
-  { value: 'Sirajganj', label: 'Sirajganj' },
-  { value: 'Khulna', label: 'Khulna' },
-  { value: 'Chuadanga', label: 'Chuadanga' },
+  { name: 'Dhaka' },
+  { name: 'Mymensingh' },
+  { name: 'Sirajganj' },
+  { name: 'Khulna' },
+  { name: 'Chuadanga' },
 ];
 export const courseCategoryFields = [
   { value: 'intro', label: 'Intro' },

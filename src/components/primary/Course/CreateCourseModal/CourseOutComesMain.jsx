@@ -30,13 +30,17 @@ const MyTextField = styled(TextField)(() => ({
     },
   },
 }));
-const CourseOutComesMain = ({ outcomes, setOutcomes }) => {
+const CourseOutComesMain = ({ outcomes, setOutcomes, defaultValue }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const [hasChanged, setHasChanged] = useState(false);
-
+  useEffect(() => {
+    if (defaultValue && defaultValue.length > 0) {
+      setHasChanged(true);
+    }
+  }, [defaultValue]);
   const handleFieldChange = (index, value) => {
     const newOutcomes = [...outcomes];
-    newOutcomes[index] = { outComes: value };
+    newOutcomes[index] = value;
     setOutcomes(newOutcomes);
     if (value) {
       setHasChanged(true);
@@ -44,7 +48,7 @@ const CourseOutComesMain = ({ outcomes, setOutcomes }) => {
   };
 
   const handleAddOtherDocument = () => {
-    setOutcomes([...outcomes, { outComes: '' }]);
+    setOutcomes([...outcomes, '']);
   };
 
   const handleRemove = (index) => {
@@ -67,24 +71,25 @@ const CourseOutComesMain = ({ outcomes, setOutcomes }) => {
                 rows={2}
                 fullWidth
                 type="text"
-                value={outcome.outComes}
+                defaultValue={outcome}
+                // value={outcome}
                 onChange={(e) => handleFieldChange(index, e.target.value)}
               />
               {outcomes.length !== 1 && (
-                <i
-                  onClick={() => handleRemove(index)}
-                  style={{
+                <Box
+                  sx={{
                     color: 'red',
                     cursor: 'pointer',
                     position: 'absolute',
-                    left: 585,
-                    top: 55,
+                    left: { xxl: 780, xl: 690, lg: 580 },
+                    top: 58,
                     height: '30px',
                     width: '30px',
                     fontSize: '20px',
                   }}
-                  className="ri-delete-bin-line"
-                ></i>
+                >
+                  <i onClick={() => handleRemove(index)} className="ri-delete-bin-line"></i>
+                </Box>
               )}
             </FormControl>
           </Stack>

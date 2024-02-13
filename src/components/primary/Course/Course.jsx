@@ -54,6 +54,8 @@ const Course = () => {
     handleDateTime,
     outcomes,
     setOutcomes,
+    hub,
+    handleChangeHub,
   } = useCourseManagement();
 
   const dispatch = useDispatch();
@@ -151,6 +153,8 @@ const Course = () => {
         handleDateTime={handleDateTime}
         outcomes={outcomes}
         setOutcomes={setOutcomes}
+        hub={hub}
+        handleChangeHub={handleChangeHub}
       />
     </>
   );

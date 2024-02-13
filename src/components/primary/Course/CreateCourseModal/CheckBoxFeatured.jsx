@@ -1,11 +1,11 @@
-import { Box, Checkbox, FormControl, FormControlLabel, FormLabel, Typography } from '@mui/material';
-import React from 'react';
+import { Box, Checkbox, FormControlLabel, FormLabel, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 
-const CheckBoxFeatured = ({ checkedFeatured, handleChangeFeatured, label }) => {
+const CheckBoxFeatured = ({ isFeatured, handleChangeFeatured, label }) => {
   return (
     <Box>
       <FormControlLabel
-        control={<Checkbox checked={checkedFeatured} onChange={handleChangeFeatured} />}
+        control={<Checkbox checked={isFeatured} onChange={handleChangeFeatured} />}
         label={
           <Typography
             variant="wpf_h7_medium"

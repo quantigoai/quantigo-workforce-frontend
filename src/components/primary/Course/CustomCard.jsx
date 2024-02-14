@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +15,9 @@ import CategoryChip from './CategoryChip';
 import LevelChip from './CourseCardActionLebel/LevelChip';
 import LanguageChip from './LanguageChip';
 import CourseProgress from './CourseProgress/CourseProgress';
-
+import { capitalizeFirstLetter } from '../../../helper/capitalizeFirstWord';
+import RectangleIcon from '../../../assets/images/courses/Rectangle 12.svg';
+import ArrowIcon from '../../../assets/images/courses/Vector.svg';
 const MyCustomCard = {
   padding: '0 0 0 0 ',
   width: '100%',
@@ -50,7 +52,7 @@ const ButtonHover = {
   backgroundColor: 'rgba(255, 154, 69, 0.1)',
 };
 
-const CustomCard = ({ course, handleViewDetailsButton }) => {
+const CustomCard = ({courseDirection, course, handleViewDetailsButton }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoading } = useSelector((state) => state.course);
@@ -92,7 +94,7 @@ const CustomCard = ({ course, handleViewDetailsButton }) => {
   return (
     // TODO Fix grid layout
     <>
-      <Box
+      {/* <Box
         sx={{
           // height: "350px",
           height: '100%',
@@ -101,10 +103,6 @@ const CustomCard = ({ course, handleViewDetailsButton }) => {
           flexDirection: 'column',
           //!! Need to remove shadow later
           boxShadow: '0px 1px 2px 0px rgba(37, 62, 92, 0.08)',
-          // mx: "4%",
-          // px: "4%",
-          // py: "0%",
-          // backgroundColor: "neutral.N000",
           borderRadius: '10px',
           border: '1px solid white',
         }}
@@ -129,10 +127,6 @@ const CustomCard = ({ course, handleViewDetailsButton }) => {
             alt={course.name}
           />
         </Box>
-
-        {/* Chips */}
-
-        {/* Content */}
         <Box
           sx={{
             height: '60%',
@@ -155,7 +149,6 @@ const CustomCard = ({ course, handleViewDetailsButton }) => {
               </Typography>
             </Grid>
           </Box>
-          {/* //chip  */}
           <Box sx={{ px: '4%', height: '30%' }}>
             <Grid container sx={{ py: '3%' }}>
               <Grid item xs={3} sx={{ paddingRight: '2%' }}>
@@ -170,8 +163,7 @@ const CustomCard = ({ course, handleViewDetailsButton }) => {
             </Grid>
           </Box>
 
-          {/* Button */}
-          {/* <Box sx={{ px: "2%", pb: "3%" }}>
+         <Box sx={{ px: "2%", pb: "3%" }}>
           <Grid
             container
             sx={{ display: "flex" }}
@@ -201,11 +193,79 @@ const CustomCard = ({ course, handleViewDetailsButton }) => {
               )}
             </Button>
           </Grid>
-        </Box> */}
-
-          {/* //progress bar  */}
+        </Box>
           <Box sx={{ borderTop: '1px solid #E6ECF5', height: '20%', padding: '10px 10px' }}>
             <CourseProgress />
+          </Box>
+        </Box>
+      </Box> */}
+      <Box
+        sx={{
+          height: { xxl: '95%', xl: '100%', lg: '90%' },
+          width: { xxl: '95%', xl: '95%', lg: '100%' },
+          display: 'flex',
+          flexDirection: 'column',
+          //!! Need to remove shadow later
+          boxShadow: '0px 3px 2px 0px rgba(37, 62, 92, 0.08)',
+
+          borderRadius: '10px',
+          border: '1px solid white',
+        }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <Box
+          sx={{
+            width: '100%',
+            height: '100%',
+            backgroundColor: '#fff',
+            pt: 0,
+            mb: 0,
+            overflow: 'hidden',
+            cursor: 'pointer',
+          }}
+          onClick={() => handleViewDetailsButton(course._id ,courseDirection)}
+        >
+          <img
+            style={hovering ? { ...MyCustomCard, ...MyCustomCardHover } : MyCustomCard}
+            src={imageUrl}
+            alt={'no image found'}
+          />
+        </Box>
+        <Box
+          sx={{
+            height: '100%',
+            backgroundColor: 'neutral.N000',
+            borderRadius: '10px',
+          }}
+        >
+          <Box sx={{ px: '4%', height: { xxl: '80%', xl: '80%', lg: '75%' }, pb: '0', py: 2 }}>
+            <Grid
+              container
+              // onClick={() => handleViewDetailsButton(course._id)}
+            >
+              <Typography variant="wpf_p4_semiBold" color={'primary.P600'} sx={{ cursor: 'pointer', mb: 1 }}>
+                {capitalizeFirstLetter(course.category)} <img src={RectangleIcon} />{' '}
+                {capitalizeFirstLetter(course.level)}
+              </Typography>
+            </Grid>
+            <Grid container onClick={() => handleViewDetailsButton(course._id ,courseDirection)}>
+              <Typography variant="wpf_h6_semiBold" color={'grey.500'} sx={{ cursor: 'pointer', lineHeight: '20px' }}>
+                {course.name?.length > 100 ? course.description?.substring(0, 50) + '.....' : course.name}
+              </Typography>
+            </Grid>
+            <Grid mt={1} container>
+              <Typography sx={{ lineHeight: '18px' }} variant="wpf_h8_regular" color={'grey.550'}>
+                {course.description?.length > 100 ? course.description?.substring(0, 70) + '.....' : course.description}
+              </Typography>
+            </Grid>
+          </Box>
+          <Box onClick={() => handleViewDetailsButton(course._id ,courseDirection)} sx={{ px: '4%', height: '40%', cursor: 'pointer' }}>
+            <Grid container sx={{ pb: 2 }}>
+              <Typography variant="wpf_p4_medium">View Details</Typography>
+
+              <img style={{ marginLeft: '15px' }} src={ArrowIcon} />
+            </Grid>
           </Box>
         </Box>
       </Box>

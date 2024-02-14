@@ -164,7 +164,7 @@ const useCourseManagement = () => {
     });
   };
 
-  const handleViewDetailsButton = (id) => {
+  const handleViewDetailsButton = (id, courseDirection) => {
     setIsCourseLoading(true);
     dispatch(getACourseByID(id))
       .then((res) => {
@@ -174,7 +174,11 @@ const useCourseManagement = () => {
           dispatch(getCourseQuizzesResults(id)).then((results) => {
             setIsCourseLoading(false);
             // navigate(`/course-details/${id}/index`);
-            navigate(`/course-landing/${id}`);
+            if (courseDirection === 'MyCourse') {
+              navigate(`/course-homepage/${id}`);
+            } else {
+              navigate(`/course-landing/${id}`);
+            }
           });
         });
       })

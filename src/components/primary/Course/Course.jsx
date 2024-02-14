@@ -21,6 +21,7 @@ import CourseCreateModal from './CreateCourseModal/CourseCreateModal';
 
 import LoadingComponent from '../../shared/Loading/LoadingComponent';
 import useCourseManagement from './hooks/createCourseHook/useCourseMangement';
+import CommonHeader from '../../shared/CustomComponenet/CommonHeader/CommonHeader';
 
 const Course = () => {
   const {
@@ -71,6 +72,8 @@ const Course = () => {
     backgroundColor: isLightTheme ? '#F2F6FC' : '#212121',
     boxShadow: '0px 1px 3px 0px #09008014',
   });
+  const basicCourse = courses.filter((course) => course.level === 'basic');
+  console.log('🚀 ~ Course ~ basicCourse:', basicCourse);
   useEffect(() => {
     dispatch(setActivePath('Course'));
     dispatch(getAllSkills());
@@ -103,22 +106,24 @@ const Course = () => {
                   role === 'reviewer' ? (
                     <>
                       {' '}
-                      <CourseTab filterCourses={filterCourses} isLoading={isLoading} />
+                      <CourseTab handleViewDetailsButton={handleViewDetailsButton} filterCourses={filterCourses} isLoading={isLoading} />
                     </>
                   ) : (
                     <>
                       {/* <CourseTab filterCourses={filterCourses} isLoading={isLoading} /> */}
                       <Grid
                         container
-                        spacing={2}
+                        spacing={1}
                         sx={{
                           height: '100%',
                           width: '100%',
+                          // marginX: '20px',
+                          // gap: { xxl: '0px', xl: '10px', lg: '0px' },
                         }}
                       >
                         {courses?.map((course) => (
-                          <Grid key={course._id} item xs={12} px={1} sm={6} md={3} sx={{ height: '50%' }}>
-                            <CustomCard handleViewDetailsButton={handleViewDetailsButton} course={course} />
+                          <Grid key={course._id} item xs={12} xxl={3} xl={2.8} lg={4} sx={{ height: '50%' }}>
+                            <CustomCard courseDirection="all" handleViewDetailsButton={handleViewDetailsButton} course={course} />
                           </Grid>
                         ))}
                       </Grid>

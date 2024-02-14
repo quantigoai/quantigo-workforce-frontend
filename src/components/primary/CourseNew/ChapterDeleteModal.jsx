@@ -53,6 +53,7 @@ const ChapterDeleteModal = ({ courseChapter }) => {
       <Button
         sx={{
           borderRadius: "2px",
+          // height:"10px"
         }}
         onClick={handleClickOpen}
       >

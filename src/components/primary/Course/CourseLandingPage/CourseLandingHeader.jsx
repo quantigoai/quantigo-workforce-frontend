@@ -79,10 +79,10 @@ const CourseLandingHeader = () => {
 
   return (
     <Box sx={boxStyle}>
-      <Box sx={{ width: { xxl: "70%", xl: "70%", lg: "80%" } }}>
-        <Box sx={{ width: { xxl: "100%", xl: "90%", lg: "80%" } }}>
-          <Box sx={{ display: "flex" }}>
-            <Box sx={{ paddingRight: "6px" }}>
+      <Box sx={{ width: { xxl: '72%', xl: '70%', lg: '80%' } }}>
+        <Box sx={{ width: { xxl: '100%', xl: '90%', lg: '80%' } }}>
+          <Box sx={{ display: 'flex' }}>
+            <Box sx={{ paddingRight: '6px' }}>
               <LanguageChip language={course.language} />
             </Box>
             <Box sx={{ paddingRight: "6px" }}>

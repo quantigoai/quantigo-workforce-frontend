@@ -16,6 +16,7 @@ import ChapterViewIndex from '../Course/Chapter/ChapterViewIndex';
 import ChapterCreateIndex from '../Course/ChapterCreate/ChapterCreateIndex';
 import ChapterUpdateIndex from '../Course/ChapterCreate/ChapterUpdate/ChapterUpdateIndex';
 import Course from '../Course/Course';
+import CourseHomePageIndex from '../Course/CourseHomePage/CourseHomePageIndex';
 import CourseLandingPageIndex from '../Course/CourseLandingPage/CourseLandingPageIndex';
 import QuizCreateIndex from '../Course/QuizCreate/QuizCreateIndex';
 import QuizUpdateIndex from '../Course/QuizUpdate/QuizUpdateIndex';
@@ -77,32 +78,42 @@ const Routers = () => {
         {/* ---------- Course routes ------------ */}
         {/* TODO Should updated and release later  */}
         <Route path={'/course'} element={<Course />} />
-        <Route path={'/content'} element={<ChapterViewIndex />} />
+        <Route path={'/content/:id'} element={<ChapterViewIndex />} />
 
+        {/* <Route path={"/quiz-page"} element={<QuizPage />} /> */}
+        {/* <Route path={"/chapter-page"} element={<ChapterCreateIndex />} /> */}
         <Route
           element={
             <PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>
           }
-        ></Route>
+        >
+          {/* <Route path={'/create-course'} element={<CreateCourse />} /> */}
+        </Route>
         <Route
           element={
             <PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>
           }
-        ></Route>
+        >
+          {/* <Route path={'/edit-course/:id'} element={<UpdateCourse />} /> */}
+        </Route>
         <Route path={'/course-details/:id'} element={<CourseDetails />}>
           {/* TODO Check it and remove this */}
-
+          {/* <Route path='index' element={<CourseDetailsIndex />} /> */}
           <Route path="index" element={<CourseNewDetailsIndex />} />
           <Route path="content" element={<CourseMainContent />} />
+          {/* <Route path="show-quiz" element={<QuizShow />} /> */}
+          {/* <Route path={'quiz-result'} element={<ShowResult />} /> */}
         </Route>
         <Route
           path={'/course-landing/:id'}
           element={<CourseLandingPageIndex />}
         ></Route>
         <Route
-          path={'/course-landing/content/:id'}
-          element={<CourseLandingPageIndex />}
+          path={'/course-homepage/:id'}
+          element={<CourseHomePageIndex />}
         ></Route>
+
+        {/* <Route path={"/course-landing/content/:id"} element={<ChapterViewIndex />}></Route> */}
         <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]} />}>
           <Route
             path={'/create-chapter/:id'}
@@ -118,6 +129,7 @@ const Routers = () => {
         </Route>
 
         {/* ---------- ------------ ---------------- */}
+        {/* <Route path={"/forgetpassword"} element={<ForgetPassword />} /> */}
         <Route
           path={'/reset-password/:id/:token'}
           element={<ResetPassword />}
@@ -157,6 +169,7 @@ const Routers = () => {
             ></PrivateRoute>
           }
         >
+          {/* <Route path={"/all-users"} element={<AllUserListIndex action={"admin"} />} /> */}
           <Route
             path={'/all-users'}
             element={<AllUserListIndex2 action={'admin'} />}

@@ -5,7 +5,6 @@ import logo2 from '../../../../assets/images/courses/u_lightbulb-alt.png';
 import logo3 from '../../../../assets/images/courses/u_book-alt.png';
 
 const CourseContent = ({ course }) => {
-  console.log('🚀 ~ CourseContent ~ course:', course);
   return (
     <Box sx={{ display: 'flex', paddingY: '16px' }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', paddingRight: '20px' }}>
@@ -26,9 +25,9 @@ const CourseContent = ({ course }) => {
           <Typography sx={{ fontSize: '10px', opacity: '0.6' }} color={'grey.600'}>
             SKILLS
           </Typography>
-          {course.skills.length ? (
+          {course.skills?.length ? (
             <Typography variant="wpf_p3_medium_2" color={'grey.600'}>
-              {course.skills && course.skills?.length === 1
+              {course?.skills && course.skills?.length === 1
                 ? `${course.skills?.[0]?.name}`
                 : `${course.skills?.[0]?.name},+${course?.skills?.length - 1} more`}
             </Typography>

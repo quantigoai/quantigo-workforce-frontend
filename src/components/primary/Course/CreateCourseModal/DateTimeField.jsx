@@ -1,6 +1,7 @@
 import { Box, Typography, styled } from '@mui/material';
 import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
 
 const MyDateTimePicker = styled(DateTimePicker)(() => ({
   height: '35px',
@@ -25,7 +26,7 @@ const MyDateTimePicker = styled(DateTimePicker)(() => ({
   },
 }));
 
-const DateTimeField = ({ label, dateTime, handleDateTime }) => {
+const DateTimeField = ({ label, dateTime, handleDateTime, defaultValue }) => {
   return (
     <Box>
       <Typography
@@ -45,7 +46,7 @@ const DateTimeField = ({ label, dateTime, handleDateTime }) => {
               backgroundColor: 'neutral.N000',
               borderRadius: '5px',
             }}
-            value={dateTime}
+            defaultValue={defaultValue ? dayjs(defaultValue) : dateTime}
             onChange={(newValue) => handleDateTime(newValue)}
           />
         </LocalizationProvider>

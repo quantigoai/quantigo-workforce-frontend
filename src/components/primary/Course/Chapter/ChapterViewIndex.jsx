@@ -6,6 +6,12 @@ import ChapterHeaderMenuIndex from "./ChapterHeaderMenuIndex";
 import parse from "html-react-parser";
 import prevIcon from "../../../../assets/images/PrevIcon.svg";
 import nextIcon from "../../../../assets/images/NextIcon.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { setActiveChapterIndex } from "../../../../features/slice/activePathSlice";
+import { getAChapterById } from "../../../../features/slice/courseSlice";
+import { useNavigate } from "react-router-dom";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ChapterDeleteModal from "../../CourseNew/ChapterDeleteModal";
 
 const ChapterViewIndex = () => {
   const {
@@ -20,41 +26,83 @@ const ChapterViewIndex = () => {
     setDurationTime,
     setIsInContent,
   } = useCourseDetails();
-  console.log("🚀 ~ ChapterViewIndex ~ courseChapter:", courseChapter);
-  console.log("🚀 ~ ChapterViewIndex ~ course:", course);
+  const { activeChapterIndex } = useSelector((state) => state.activePath);
+  const dispatch = useDispatch();
+  const { role } = useSelector((state) => state.user.user);
+  const navigate = useNavigate();
+
+  const handleChapterChangePre = () => {
+    const activeChapterId = courseChapters.find((chapter, index) => {
+      return index === activeChapterIndex - 1;
+    });
+    dispatch(setActiveChapterIndex(activeChapterIndex - 1));
+    dispatch(getAChapterById(activeChapterId._id)).then(() => {});
+  };
+  const handleChapterChangeNext = () => {
+    const activeChapterId = courseChapters.find((chapter, index) => {
+      return index === activeChapterIndex + 1;
+    });
+    dispatch(setActiveChapterIndex(activeChapterIndex + 1));
+    dispatch(getAChapterById(activeChapterId._id)).then(() => {});
+  };
+
+  const handleEditChapter = () => {
+    // dispatch(setActiveChapterIndex(activeChapterIndex));
+    dispatch(getAChapterById(courseChapter._id)).then(() => {
+      navigate(`/update-chapter/${courseChapter._id}`);
+    });
+  };
+  const handleDeleteChapter = () => {};
   return (
     <>
       <Box
         sx={{
+          backgroundColor: "neutral.N000",
           height: "90%",
-          overflow: "auto",
-          scrollbarWidth: "thin",
-          "&::-webkit-scrollbar": {
-            width: "0.4em",
-          },
-          "&::-webkit-scrollbar-track": {
-            background: "#f1f1f1",
-          },
-          "&::-webkit-scrollbar-thumb": {
-            backgroundColor: "#888",
-          },
-          "&::-webkit-scrollbar-thumb:hover": {
-            background: "#555",
-          },
         }}
       >
         <Box
           sx={{
-            backgroundColor: "#F1F5F9",
+            backgroundColor: isLightTheme ? "#F1F5F9" : "",
+            height: "18%",
             paddingLeft: "10%",
             paddingRight: "10%",
-            paddingTop: "2%",
+            paddingTop: "1%",
             paddingBottom: "3%",
             borderBottom: "2px solid ##F8FAFC",
           }}
         >
           <Grid container>
-            <ChapterHeaderMenuIndex />
+            <Grid item xs={10}>
+              <ChapterHeaderMenuIndex />
+            </Grid>
+            <Grid item xs={2}>
+              <Button
+                sx={{
+                  borderRadius: "2px",
+                }}
+                onClick={() => handleEditChapter()}
+              >
+                {" "}
+                <i className='ri-edit-line'></i>
+              </Button>
+              {/* <ChapterDeleteModal /> */}
+              <ChapterDeleteModal courseChapter={courseChapter} />
+              {/* <Button>
+                {" "}
+                <DeleteIcon
+                  style={{
+                    color: "red",
+                    cursor: "pointer",
+                    // position: "absolute",
+                    left: 275,
+                    top: 35,
+                    height: "20px",
+                    width: "20px",
+                  }}
+                />
+              </Button> */}
+            </Grid>
           </Grid>
 
           <Grid container>
@@ -62,7 +110,27 @@ const ChapterViewIndex = () => {
           </Grid>
           <Typography variant='wpf_p3_regular'>{courseChapter.description}</Typography>
         </Box>
-        <Box sx={{ backgroundColor: "#fff", paddingLeft: "10%", paddingRight: "10%" }}>
+        <Box
+          sx={{
+            height: "82%",
+            paddingLeft: "10%",
+            paddingRight: "10%",
+            overflow: "auto",
+            scrollbarWidth: "thin",
+            "&::-webkit-scrollbar": {
+              width: "0.4em",
+            },
+            "&::-webkit-scrollbar-track": {
+              background: "#f1f1f1",
+            },
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: "#888",
+            },
+            "&::-webkit-scrollbar-thumb:hover": {
+              background: "#555",
+            },
+          }}
+        >
           <Grid container sx={{}}>
             {/* <Typography> {courseChapter._id}</Typography> */}
             <Grid
@@ -85,7 +153,7 @@ const ChapterViewIndex = () => {
           justifyContent: "space-between",
           alignItems: "center",
           height: "10%",
-          backgroundColor: "#fff",
+          backgroundColor: "neutral.N000",
           borderTop: "1px solid #F1F5F9",
           justifyContent: "center",
           paddingLeft: "10%",
@@ -95,6 +163,7 @@ const ChapterViewIndex = () => {
         <Grid container>
           <Grid item xs={6}>
             <Button
+              disabled={activeChapterIndex === 0 ? true : false}
               sx={{
                 textTransform: "none",
                 borderRadius: "8px",
@@ -118,10 +187,10 @@ const ChapterViewIndex = () => {
                 // },
                 padding: "16px 10px",
               }}
+              onClick={() => handleChapterChangePre()}
             >
               <img src={prevIcon} />
               <span style={{ marginLeft: "8px" }}>Prev. Chapter</span>
-          
             </Button>
             <Button
               sx={{
@@ -147,6 +216,8 @@ const ChapterViewIndex = () => {
                 },
                 padding: "16px 10px",
               }}
+              disabled={activeChapterIndex === courseChapters.length - 1 ? true : false}
+              onClick={() => handleChapterChangeNext()}
             >
               <span style={{ marginRight: "8px" }}>Next Chapter</span>
               <img src={nextIcon} />

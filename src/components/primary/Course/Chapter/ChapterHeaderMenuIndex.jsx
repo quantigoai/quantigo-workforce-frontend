@@ -1,6 +1,8 @@
 import { FormControl, InputLabel, ListItemText, MenuItem, Select, styled } from "@mui/material";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAChapterById } from "../../../../features/slice/courseSlice";
+import { setActiveChapterIndex } from "../../../../features/slice/activePathSlice";
 export const MySelect = styled(Select)(() => ({
   height: "40px",
   //   borderRadius: "px",
@@ -33,31 +35,78 @@ export const MySelect = styled(Select)(() => ({
     },
   },
 }));
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 10;
+
+const MenuProps = {
+  anchorOrigin: {
+    vertical: "bottom",
+    horizontal: "left", // Set the horizontal origin to left
+  },
+  transformOrigin: {
+    vertical: "top",
+    horizontal: "left", // Set the horizontal origin to left
+  },
+  getContentAnchorEl: null,
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 350,
+      //   backgroundColor: "red", // Add your desired background color here
+      borderRadius: "8px",
+      overflow: "auto",
+      scrollbarWidth: "thin",
+      "&::-webkit-scrollbar": {
+        width: "0.4em",
+      },
+      "&::-webkit-scrollbar-track": {
+        background: "#f1f1f1",
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "#888",
+      },
+      "&::-webkit-scrollbar-thumb:hover": {
+        background: "#555",
+      },
+    },
+  },
+};
 const ChapterHeaderMenuIndex = () => {
   const { courseChapters, courseChapter, course } = useSelector((state) => state.course);
-  console.log("🚀 ~ ChapterHeaderMenuIndex ~ courseChapters:", courseChapters);
+  console.log("🚀 ~ ChapterHeaderMenuIndex ~ courseChapter:", courseChapter);
   const { user } = useSelector((state) => state.user);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const [chapterID, setChapterID] = useState(courseChapter._id);
+  const dispatch = useDispatch();
   const handleMenuOpen = () => {
     setIsMenuOpen(true);
   };
-
+  useEffect(() => {
+    setChapterID(courseChapter._id);
+  }, [courseChapter]);
   const handleMenuClose = () => {
     setIsMenuOpen(false);
   };
 
+  const handleChange = (e) => {
+    setChapterID(e.target.value.id);
+    dispatch(setActiveChapterIndex(e.target.value.index));
+    console.log("🚀 ~ handleChange ~ e:", e.target.value.id);
+    dispatch(getAChapterById(e.target.value.id));
+  };
   return (
     <>
       {/* <FormControl variant='filled' sx={{ m: 1 }}> */}
       {/* <InputLabel id='demo-simple-select-filled-label'>Chapters</InputLabel> */}
       <MySelect
-        value={courseChapter._id}
         sx={{
-          width: "15%",
+          width: "25%",
         }}
+        MenuProps={MenuProps}
         onOpen={handleMenuOpen}
         onClose={handleMenuClose}
+        value={chapterID}
+        onChange={(e) => handleChange(e)}
         renderValue={(selected) => (
           <div>
             {isMenuOpen ? (
@@ -71,11 +120,28 @@ const ChapterHeaderMenuIndex = () => {
         )}
       >
         {courseChapters.map((chapter, index) => (
-          <MenuItem key={chapter._id} value={chapter._id}>
+          <MenuItem
+            sx={{
+              borderBottom: "2px solid #F8FAFC",
+              "& .MuiListItemText-primary": {
+                fontWeight: 550,
+              },
+              "&:hover": {
+                "& .MuiListItemText-primary": {
+                  // Change the color when hovering
+                  color: "blue",
+                },
+              },
+            }}
+            key={chapter._id}
+            // value={chapter._id}
+            value={{ id: chapter._id, index }}
+          >
             {/* <ListItemText primary={`CHAPTER ${index + 1}`} secondary={isMenuOpen ? chapter.title : null} /> */}
             <ListItemText
               primary={isMenuOpen ? chapter.title : null}
               secondary={isMenuOpen ? `Chapter ${index + 1}` : null}
+              // sx={{borderBottom:"1px solid red"}}
             />
           </MenuItem>
         ))}

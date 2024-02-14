@@ -113,7 +113,7 @@ const CourseCoverImageField = ({ coverImageFile, coverImage, removeImage, handle
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <img height={226} src={coverImage} alt="" style={{ width, borderRadius: '8px' }} />
+                    <img height={225} src={coverImage} alt="" style={{ width, borderRadius: '8px' }} />
                     {/* <p>File : {files}</p> */}
                     {isHovered && (
                       <Box sx={{ color: 'red', cursor: 'pointer', position: 'absolute', top: '45%', right: '43%' }}>
@@ -152,7 +152,7 @@ const CourseCoverImageField = ({ coverImageFile, coverImage, removeImage, handle
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                <img height={175} src={course.images} alt="Course Image" style={{ width, borderRadius: '8px' }} />
+                <img height={225} src={course.images} alt="Course Image" style={{ width, borderRadius: '8px' }} />
                 {isHovered && (
                   <Box sx={{ color: 'red', cursor: 'pointer', position: 'absolute', top: '45%', right: '43%' }}>
                     <Button

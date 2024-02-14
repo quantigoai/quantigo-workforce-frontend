@@ -18,7 +18,6 @@ import CourseHeader from './CourseHeader/CourseHeader';
 import CourseTab from './CourseTab';
 import CustomCard from './CustomCard';
 import CourseCreateModal from './CreateCourseModal/CourseCreateModal';
-
 import LoadingComponent from '../../shared/Loading/LoadingComponent';
 import useCourseManagement from './hooks/createCourseHook/useCourseMangement';
 import CommonHeader from '../../shared/CustomComponenet/CommonHeader/CommonHeader';
@@ -73,7 +72,7 @@ const Course = () => {
     boxShadow: '0px 1px 3px 0px #09008014',
   });
   const basicCourse = courses.filter((course) => course.level === 'basic');
-  console.log('🚀 ~ Course ~ basicCourse:', basicCourse);
+
   useEffect(() => {
     dispatch(setActivePath('Course'));
     dispatch(getAllSkills());
@@ -106,7 +105,11 @@ const Course = () => {
                   role === 'reviewer' ? (
                     <>
                       {' '}
-                      <CourseTab handleViewDetailsButton={handleViewDetailsButton} filterCourses={filterCourses} isLoading={isLoading} />
+                      <CourseTab
+                        handleViewDetailsButton={handleViewDetailsButton}
+                        filterCourses={filterCourses}
+                        isLoading={isLoading}
+                      />
                     </>
                   ) : (
                     <>
@@ -123,7 +126,11 @@ const Course = () => {
                       >
                         {courses?.map((course) => (
                           <Grid key={course._id} item xs={12} xxl={3} xl={2.8} lg={4} sx={{ height: '50%' }}>
-                            <CustomCard courseDirection="all" handleViewDetailsButton={handleViewDetailsButton} course={course} />
+                            <CustomCard
+                              courseDirection="all"
+                              handleViewDetailsButton={handleViewDetailsButton}
+                              course={course}
+                            />
                           </Grid>
                         ))}
                       </Grid>

@@ -7,13 +7,20 @@ import { CustomFormControl } from '../../../shared/CustomField/CustomSelectField
 
 export const MySelect = styled(Select)(() => ({
   height: '35px',
-  borderRadius: '5px',
+  borderRadius: '8px',
   '& .MuiOutlinedInput-root': {
     color: '#000',
     border: '1px solid #E6ECF5 !important',
   },
   '& .MuiOutlinedInput-input': {
     padding: '0px 0px 0px 8px',
+    fontSize: '14px',
+    '@media (max-width: 1439px)': {
+      fontSize: '12px',
+    },
+    '@media (mix-width: 1920px)': {
+      fontSize: '14px',
+    },
   },
   '& .MuiOutlinedInput-notchedOutline ': {
     border: '1px solid #E6ECF5 !important',
@@ -72,6 +79,7 @@ const HubMultipleSelect = ({ options, hubSet, handleChange, isUpdate }) => {
           variant={'wpf_h7_medium'}
           sx={{
             mb: 0,
+            mt: '4px',
             color: 'neutral.N300',
           }}
         >

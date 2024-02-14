@@ -134,7 +134,6 @@ const EditCourseModal = ({
   hub,
   handleChangeHubs,
 }) => {
-  console.log('🚀 ~ course:', course);
   const CourseCreateSchema = Yup.object().shape({
     name: Yup.string().required('Course name is required'),
     description: Yup.string().required('Course description is required'),

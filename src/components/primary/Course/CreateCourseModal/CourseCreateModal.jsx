@@ -265,13 +265,6 @@ const CourseCreateModal = ({
                         />
                       </FieldBox>
                       <FieldBox>
-                        {/* <CSelectField
-                          name={'hubField'}
-                          label="Hub"
-                          options={courseHubField}
-                          defaultValue={''}
-                          isRequired={true}
-                        /> */}
                         <HubMultipleSelect
                           options={courseHubField}
                           hubSet={hub}

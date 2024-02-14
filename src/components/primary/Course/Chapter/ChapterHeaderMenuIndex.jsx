@@ -34,6 +34,9 @@ export const MySelect = styled(Select)(() => ({
       color: "#F04438",
     },
   },
+  " & .MuiSelect-icon": {
+    color: "#2E58FF" /* Change the color to your desired color */,
+  },
 }));
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 10;
@@ -109,9 +112,14 @@ const ChapterHeaderMenuIndex = () => {
         value={chapterID}
         onChange={(e) => handleChange(e)}
         renderValue={(selected) => (
-          <div style={{ textAlign: 'left' }}>
+          <div style={{ textAlign: "left" }}>
             <Typography variant='wpf_p4_semiBold' sx={{ color: "#2E58FF" }}>
-              {`CHAPTER ${courseChapters.findIndex((chapter) => chapter._id === selected) + 1}`}
+              {/* {`CHAPTER 0${courseChapters.findIndex((chapter) => chapter._id === selected) + 1}`} */}
+              {`CHAPTER ${
+                courseChapters.findIndex((chapter) => chapter._id === selected) + 1 < 10
+                  ? `0${courseChapters.findIndex((chapter) => chapter._id === selected) + 1}`
+                  : courseChapters.findIndex((chapter) => chapter._id === selected) + 1
+              }`}
             </Typography>{" "}
             {/* {isMenuOpen ? (
               <ListItemText

@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, ListItemText, MenuItem, Select, styled } from "@mui/material";
+import { FormControl, InputLabel, ListItemText, MenuItem, Select, Typography, styled } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAChapterById } from "../../../../features/slice/courseSlice";
@@ -100,7 +100,8 @@ const ChapterHeaderMenuIndex = () => {
       {/* <InputLabel id='demo-simple-select-filled-label'>Chapters</InputLabel> */}
       <MySelect
         sx={{
-          width: "25%",
+          // backgroundColor: "red",
+          width: { xl: "17%", xxl: "13%", lg: "21%" },
         }}
         MenuProps={MenuProps}
         onOpen={handleMenuOpen}
@@ -108,14 +109,17 @@ const ChapterHeaderMenuIndex = () => {
         value={chapterID}
         onChange={(e) => handleChange(e)}
         renderValue={(selected) => (
-          <div>
-            {isMenuOpen ? (
+          <div style={{}}>
+            <Typography variant='wpf_p4_semiBold' sx={{ color: "#2E58FF" }}>
+              {`CHAPTER 0${courseChapters.findIndex((chapter) => chapter._id === selected) + 1}`}
+            </Typography>{" "}
+            {/* {isMenuOpen ? (
               <ListItemText
                 primary={`CHAPTER ${courseChapters.findIndex((chapter) => chapter._id === selected) + 1}`}
               />
             ) : (
               `CHAPTER ${courseChapters.findIndex((chapter) => chapter._id === selected) + 1}`
-            )}
+            )} */}
           </div>
         )}
       >

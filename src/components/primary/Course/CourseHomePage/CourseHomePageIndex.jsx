@@ -15,6 +15,7 @@ import CourseHomePageHeader from "./CourseHomePageHeader";
 const CourseHomePageIndex = () => {
   const { course } = useSelector((state) => state.course);
   const { user } = useSelector((state) => state.user);
+  console.log("🚀 ~ CourseHomePageIndex ~ user:", user)
   const navigate = useNavigate();
 
   const handleCreateChapter = () => {

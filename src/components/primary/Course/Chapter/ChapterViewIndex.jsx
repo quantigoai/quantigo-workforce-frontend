@@ -64,7 +64,7 @@ const ChapterViewIndex = () => {
         <Box
           sx={{
             backgroundColor: isLightTheme ? "#F1F5F9" : "",
-            height: "18%",
+            height: { xl: "23%", xxl: "18%", lg: "25%" },
             paddingLeft: "10%",
             paddingRight: "10%",
             paddingTop: "1%",
@@ -76,43 +76,36 @@ const ChapterViewIndex = () => {
             <Grid item xs={10}>
               <ChapterHeaderMenuIndex />
             </Grid>
-            <Grid item xs={2}>
-              <Button
-                sx={{
-                  borderRadius: "2px",
-                }}
-                onClick={() => handleEditChapter()}
-              >
-                {" "}
-                <i className='ri-edit-line'></i>
-              </Button>
-              {/* <ChapterDeleteModal /> */}
-              <ChapterDeleteModal courseChapter={courseChapter} />
-              {/* <Button>
-                {" "}
-                <DeleteIcon
-                  style={{
-                    color: "red",
-                    cursor: "pointer",
-                    // position: "absolute",
-                    left: 275,
-                    top: 35,
-                    height: "20px",
-                    width: "20px",
+            {(role === "admin" || role === "trainer") && (
+              <Grid item xs={2} sx={{ display: "flex", justifyContent: "end" }}>
+                <Button
+                  sx={{
+                    borderRadius: "2px",
                   }}
-                />
-              </Button> */}
-            </Grid>
+                  onClick={() => handleEditChapter()}
+                >
+                  {" "}
+                  <i className='ri-edit-line'></i>
+                </Button>
+                {/* <ChapterDeleteModal /> */}
+                <ChapterDeleteModal courseChapter={courseChapter} />
+              </Grid>
+            )}
           </Grid>
 
           <Grid container>
             <Typography variant='wpf_h4_Bold'>{courseChapter.title}</Typography>
           </Grid>
-          <Typography variant='wpf_p3_regular'>{courseChapter.description}</Typography>
+          <Typography variant='wpf_p3_regular'>
+            {courseChapter.description?.length > 100
+              ? courseChapter.description?.substring(0, 200) + "....."
+              : courseChapter.description}
+          </Typography>
         </Box>
         <Box
           sx={{
-            height: "82%",
+            // height: "82%",
+            height: { xl: "77%", xxl: "82%", lg: "75%" },
             paddingLeft: "10%",
             paddingRight: "10%",
             overflow: "auto",
@@ -157,7 +150,7 @@ const ChapterViewIndex = () => {
           borderTop: "1px solid #F1F5F9",
           justifyContent: "center",
           paddingLeft: "10%",
-          paddingRight: "10%",
+          paddingRight: "11%",
         }}
       >
         <Grid container>

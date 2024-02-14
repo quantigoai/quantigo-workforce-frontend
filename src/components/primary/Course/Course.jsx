@@ -117,12 +117,12 @@ const Course = () => {
                         sx={{
                           height: '100%',
                           width: '100%',
-                          marginX: '30px',
-                          gap: { xxl: '0px', xl: '10px', lg: '0px' },
+                          // marginX: '20px',
+                          // gap: { xxl: '0px', xl: '10px', lg: '0px' },
                         }}
                       >
                         {courses?.map((course) => (
-                          <Grid key={course._id} item xs={12} xxl={2.9} xl={2.8} lg={4} sx={{ height: '50%' }}>
+                          <Grid key={course._id} item xs={12} xxl={3} xl={2.8} lg={4} sx={{ height: '50%' }}>
                             <CustomCard handleViewDetailsButton={handleViewDetailsButton} course={course} />
                           </Grid>
                         ))}

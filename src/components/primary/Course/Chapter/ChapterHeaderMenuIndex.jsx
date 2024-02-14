@@ -101,7 +101,7 @@ const ChapterHeaderMenuIndex = () => {
       <MySelect
         sx={{
           // backgroundColor: "red",
-          width: { xl: "17%", xxl: "13%", lg: "21%" },
+          width: { xl: "15%", xxl: "13%", lg: "20%" },
         }}
         MenuProps={MenuProps}
         onOpen={handleMenuOpen}
@@ -109,9 +109,9 @@ const ChapterHeaderMenuIndex = () => {
         value={chapterID}
         onChange={(e) => handleChange(e)}
         renderValue={(selected) => (
-          <div style={{}}>
+          <div style={{ textAlign: 'left' }}>
             <Typography variant='wpf_p4_semiBold' sx={{ color: "#2E58FF" }}>
-              {`CHAPTER 0${courseChapters.findIndex((chapter) => chapter._id === selected) + 1}`}
+              {`CHAPTER ${courseChapters.findIndex((chapter) => chapter._id === selected) + 1}`}
             </Typography>{" "}
             {/* {isMenuOpen ? (
               <ListItemText

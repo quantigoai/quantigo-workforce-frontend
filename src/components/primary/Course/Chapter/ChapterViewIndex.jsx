@@ -65,14 +65,14 @@ const ChapterViewIndex = () => {
           sx={{
             backgroundColor: isLightTheme ? "#F1F5F9" : "",
             height: { xl: "23%", xxl: "18%", lg: "25%" },
-            paddingLeft: "10%",
-            paddingRight: "10%",
+            // paddingLeft: "10%",
+            // paddingRight: "10%",
             paddingTop: "1%",
             paddingBottom: "3%",
             borderBottom: "2px solid ##F8FAFC",
           }}
         >
-          <Grid container>
+          <Grid container sx={{ paddingLeft: "9.5%", paddingRight: "10%" }}>
             <Grid item xs={10}>
               <ChapterHeaderMenuIndex />
             </Grid>
@@ -81,6 +81,7 @@ const ChapterViewIndex = () => {
                 <Button
                   sx={{
                     borderRadius: "2px",
+                    // height:"10px"
                   }}
                   onClick={() => handleEditChapter()}
                 >
@@ -93,14 +94,16 @@ const ChapterViewIndex = () => {
             )}
           </Grid>
 
-          <Grid container>
+          <Grid container sx={{ paddingLeft: "10%", paddingRight: "10%" }}>
             <Typography variant='wpf_h4_Bold'>{courseChapter.title}</Typography>
           </Grid>
-          <Typography variant='wpf_p3_regular'>
-            {courseChapter.description?.length > 100
-              ? courseChapter.description?.substring(0, 200) + "....."
-              : courseChapter.description}
-          </Typography>
+          <Grid container sx={{ paddingLeft: "10%", paddingRight: "10%" }}>
+            <Typography variant='wpf_p3_regular'>
+              {courseChapter.description?.length > 100
+                ? courseChapter.description?.substring(0, 200) + "....."
+                : courseChapter.description}
+            </Typography>
+          </Grid>
         </Box>
         <Box
           sx={{
@@ -174,10 +177,16 @@ const ChapterViewIndex = () => {
                 //   xl: "128px",
                 //   xxl: "140px",
                 // },
+                width:"155px",
                 color: "#2E58FF",
-                // "&:hover": {
-                //   background: "#244EF5",
-                // },
+                "&:hover": {
+                  // background: "#244EF5",
+                  border:"1px solid #2E58FF"
+                },
+                "&:disabled": {
+                  background: "#F4F7FE",
+                  color: "#B6C9F0",
+                },
                 padding: "16px 10px",
               }}
               onClick={() => handleChapterChangePre()}
@@ -206,6 +215,10 @@ const ChapterViewIndex = () => {
                 color: "white",
                 "&:hover": {
                   background: "#244EF5",
+                },
+                "&:disabled": {
+                  background: "#B6C9F0",
+                  color: "#FFFFFF",
                 },
                 padding: "16px 10px",
               }}
@@ -240,6 +253,7 @@ const ChapterViewIndex = () => {
                 "&:hover": {
                   background: "#244EF5",
                 },
+
                 padding: "16px 10px",
               }}
               // onClick={handleCreateModal}

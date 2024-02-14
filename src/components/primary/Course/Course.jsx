@@ -103,7 +103,7 @@ const Course = () => {
                   role === 'reviewer' ? (
                     <>
                       {' '}
-                      <CourseTab filterCourses={filterCourses} isLoading={isLoading} />
+                      <CourseTab handleViewDetailsButton={handleViewDetailsButton} filterCourses={filterCourses} isLoading={isLoading} />
                     </>
                   ) : (
                     <>

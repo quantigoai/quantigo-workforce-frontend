@@ -11,11 +11,12 @@ import fi_clock from "../../../../assets/images/courses/fi_clock.svg";
 import fi_arrow from "../../../../assets/images/courses/fi_arrow-up-right.svg";
 import CourseLiveSessionSection from "./CourseLiveSessionSection";
 import CourseHomePageHeader from "./CourseHomePageHeader";
+import CourseHomePageCertificate from "./CourseHomePageCertificate";
 
 const CourseHomePageIndex = () => {
   const { course } = useSelector((state) => state.course);
   const { user } = useSelector((state) => state.user);
-  console.log("🚀 ~ CourseHomePageIndex ~ user:", user)
+  console.log("🚀 ~ CourseHomePageIndex ~ user:", user);
   const navigate = useNavigate();
 
   const handleCreateChapter = () => {
@@ -69,23 +70,25 @@ const CourseHomePageIndex = () => {
                     display: "flex",
                   }}
                 >
-                  <Button
-                    sx={{
-                      textTransform: "none",
-                      borderRadius: "8px",
+                  {(user.role === "admin" || user.role === "trainer") && (
+                    <Button
+                      sx={{
+                        textTransform: "none",
+                        borderRadius: "8px",
 
-                      backgroundColor: "#2E58FF",
-                      color: "white",
+                        backgroundColor: "#2E58FF",
+                        color: "white",
 
-                      "&:hover": {
-                        background: "#244EF5",
-                      },
-                    }}
-                    variant='contained'
-                    onClick={() => handleCreateChapter()}
-                  >
-                    <i style={{ fontSize: "17px", marginRight: "6px" }} className='ri-add-fill'></i> Create Chapter
-                  </Button>
+                        "&:hover": {
+                          background: "#244EF5",
+                        },
+                      }}
+                      variant='contained'
+                      onClick={() => handleCreateChapter()}
+                    >
+                      <i style={{ fontSize: "17px", marginRight: "6px" }} className='ri-add-fill'></i> Create Chapter
+                    </Button>
+                  )}
                 </Box>
               </Grid>
             </Grid>
@@ -105,6 +108,9 @@ const CourseHomePageIndex = () => {
               <CourseInfoIndex />
             </Grid>
           </Grid>
+        </Box>
+        <Box sx={{ paddingTop: "5px" }}>
+          <CourseHomePageCertificate />
         </Box>
       </Box>
     </>

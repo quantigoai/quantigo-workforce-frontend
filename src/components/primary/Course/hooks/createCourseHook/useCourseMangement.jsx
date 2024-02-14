@@ -49,7 +49,7 @@ const useCourseManagement = () => {
     reset();
     setPreRequisiteCourses([]);
     setSkill([]);
-    setHub([]);
+    setHub(['Dhaka', 'Mymensingh', 'Sirajganj', 'Khulna', 'Chuadanga']);
     setCoverImageFile(null);
     setCoverImage(null);
     setDateTime('');

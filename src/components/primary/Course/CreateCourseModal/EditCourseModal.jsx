@@ -134,6 +134,7 @@ const EditCourseModal = ({
   hub,
   handleChangeHubs,
 }) => {
+  console.log('🚀 ~ course:', course);
   const CourseCreateSchema = Yup.object().shape({
     name: Yup.string().required('Course name is required'),
     description: Yup.string().required('Course description is required'),
@@ -319,7 +320,7 @@ const EditCourseModal = ({
                       </FieldBox>
                       <FieldBox>
                         <TextFieldCourse
-                          defaultValue={course.liveSessionLink}
+                          defaultValue={course?.liveSessionLink ? course.liveSessionLink : ''}
                           name="liveSessionLink"
                           label="Live Session Link"
                           isRequired={false}

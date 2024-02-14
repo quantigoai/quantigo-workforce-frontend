@@ -33,7 +33,6 @@ const useCourseDetails = () => {
   const [coverImage, setCoverImage] = useState(null);
   const [progress, setProgress] = React.useState(0);
   const [dateTime, setDateTime] = useState(course.liveSessionStartedAt);
-  console.log('🚀 ~ useCourseDetails ~ dateTime:', dateTime);
   const [outcomes, setOutcomes] = useState(course.outComes?.length >= 1 ? course?.outComes : ['']);
   const [hub, setHub] = useState(course?.hubs?.length ? course.hubs : []);
   const [hubSet1, sethubSet1] = useState([]);
@@ -147,7 +146,14 @@ const useCourseDetails = () => {
     formData.append('skills', skillColl);
     formData.append('hubs', hub);
     formData.append('liveSessionLink', data.liveSessionLink);
-    dateTime !== undefined && formData.append('liveSessionStartedAt', dateTime?.$d);
+
+    if (dateTime !== undefined) {
+      if (dateTime.$d) {
+        formData.append('liveSessionStartedAt', dateTime?.$d);
+      } else {
+        formData.append('liveSessionStartedAt', dateTime);
+      }
+    }
     // : formData.append('liveSessionStartedAt', dateTime);
     // formData.append('liveSessionStartedAt', dateTime.$d);
     formData.append('isFeaturedCourse', isFeatured);
@@ -163,7 +169,6 @@ const useCourseDetails = () => {
       id: course._id,
       formData,
     };
-
     dispatch(updateACourseById(newData)).then((action) => {
       if (action.error) {
         toast.trigger(action.error.message, 'error');

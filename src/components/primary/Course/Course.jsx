@@ -123,7 +123,7 @@ const Course = () => {
                       >
                         {courses?.map((course) => (
                           <Grid key={course._id} item xs={12} xxl={3} xl={2.8} lg={4} sx={{ height: '50%' }}>
-                            <CustomCard handleViewDetailsButton={handleViewDetailsButton} course={course} />
+                            <CustomCard courseDirection="all" handleViewDetailsButton={handleViewDetailsButton} course={course} />
                           </Grid>
                         ))}
                       </Grid>

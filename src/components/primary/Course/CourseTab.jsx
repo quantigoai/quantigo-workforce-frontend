@@ -43,7 +43,7 @@ function a11yProps(index) {
   };
 }
 
-export default function CourseTab({handleViewDetailsButton, filterCourses, isLoading }) {
+export default function CourseTab({ handleViewDetailsButton, filterCourses, isLoading }) {
   const [value, setValue] = React.useState(0);
   const { courses } = useSelector((state) => state.course);
   const { user } = useSelector((state) => state.user);
@@ -144,7 +144,7 @@ export default function CourseTab({handleViewDetailsButton, filterCourses, isLoa
         <Grid container spacing={4}>
           {filterAllCourses.map((course) => (
             <Grid key={course._id} item xs={12} sm={6} md={3} gap={1}>
-              <CustomCard handleViewDetailsButton={handleViewDetailsButton} course={course} />
+              <CustomCard courseDirection="all" handleViewDetailsButton={handleViewDetailsButton} course={course} />
             </Grid>
           ))}
         </Grid>
@@ -153,7 +153,7 @@ export default function CourseTab({handleViewDetailsButton, filterCourses, isLoa
         <Grid container spacing={4}>
           {filterMyCourses.map((course) => (
             <Grid key={course._id} item xs={12} sm={6} md={3} gap={1}>
-              <CustomCard course={course} />
+              <CustomCard courseDirection="MyCourse" handleViewDetailsButton={handleViewDetailsButton} course={course} />
             </Grid>
           ))}
         </Grid>
@@ -162,7 +162,7 @@ export default function CourseTab({handleViewDetailsButton, filterCourses, isLoa
         <Grid container spacing={4}>
           {filterMyCompleteCourses.map((course) => (
             <Grid key={course._id} item xs={12} sm={6} md={3} gap={1}>
-              <CustomCard course={course} />
+              <CustomCard courseDirection="Archive" handleViewDetailsButton={handleViewDetailsButton} course={course} />
             </Grid>
           ))}
         </Grid>

@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import useToaster from '../../../../../customHooks/useToaster';
-import * as Yup from 'yup';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import useToaster from "../../../../../customHooks/useToaster";
+import * as Yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
   createCourse,
   getACourseByID,
   getAllChapterFromACourse,
   getCourseQuizzesResults,
-} from '../../../../../features/slice/courseSlice';
-import { setActiveChapterIndex, setActiveCourseId } from '../../../../../features/slice/activePathSlice';
-import { formatTime } from '../../../../../helper/dateConverter';
-import { courseHubField } from '../../../AllUsers/userFilterOptions';
+} from "../../../../../features/slice/courseSlice";
+import { setActiveChapterIndex, setActiveCourseId } from "../../../../../features/slice/activePathSlice";
+import { formatTime } from "../../../../../helper/dateConverter";
+import { courseHubField } from "../../../AllUsers/userFilterOptions";
 
 const useCourseManagement = () => {
   const { role } = useSelector((state) => state.user.user);
@@ -27,19 +27,19 @@ const useCourseManagement = () => {
   const [preRequisiteCourses, setPreRequisiteCourses] = React.useState([]);
   const { skills } = useSelector((state) => state.skill);
   const [checkedFeatured, setCheckedFeatured] = useState(false);
-  const [dateTime, setDateTime] = useState('');
-  const [outcomes, setOutcomes] = useState(['']);
+  const [dateTime, setDateTime] = useState("");
+  const [outcomes, setOutcomes] = useState([""]);
   const [skill, setSkill] = React.useState([]);
-  const [hub, setHub] = useState(['Dhaka', 'Mymensingh', 'Sirajganj', 'Khulna', 'Chuadanga']);
+  const [hub, setHub] = useState(["Dhaka", "Mymensingh", "Sirajganj", "Khulna", "Chuadanga"]);
   const dispatch = useDispatch();
   const toast = useToaster();
   const CourseCreateSchema = Yup.object().shape({
-    name: Yup.string().required('Course name is required'),
-    description: Yup.string().required('Course description is required'),
+    name: Yup.string().required("Course name is required"),
+    description: Yup.string().required("Course description is required"),
 
-    level: Yup.string().required('Course level is required'),
-    category: Yup.string().required('Course category is required'),
-    language: Yup.string().required('Course language is required'),
+    level: Yup.string().required("Course level is required"),
+    category: Yup.string().required("Course category is required"),
+    language: Yup.string().required("Course language is required"),
   });
 
   const handleOpen = () => setOpen(true);
@@ -49,16 +49,16 @@ const useCourseManagement = () => {
     reset();
     setPreRequisiteCourses([]);
     setSkill([]);
-    setHub(['Dhaka', 'Mymensingh', 'Sirajganj', 'Khulna', 'Chuadanga']);
+    setHub(["Dhaka", "Mymensingh", "Sirajganj", "Khulna", "Chuadanga"]);
     setCoverImageFile(null);
     setCoverImage(null);
-    setDateTime('');
+    setDateTime("");
     setCheckedFeatured(false);
-    setOutcomes(['']);
+    setOutcomes([""]);
   };
   const methods = useForm({
     resolver: yupResolver(CourseCreateSchema),
-    mode: 'all',
+    mode: "all",
   });
   const handleChangeSkills = (event) => {
     const {
@@ -69,7 +69,7 @@ const useCourseManagement = () => {
       return skills.find((s) => s.name === skill);
     });
 
-    setSkill(typeof selectedSkills === 'string' ? value.split(',') : selectedSkills);
+    setSkill(typeof selectedSkills === "string" ? value.split(",") : selectedSkills);
   };
   const handleChangeHub = (event) => {
     const {
@@ -77,7 +77,7 @@ const useCourseManagement = () => {
     } = event;
     setHub(
       // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value
+      typeof value === "string" ? value.split(",") : value
     );
   };
 
@@ -112,7 +112,7 @@ const useCourseManagement = () => {
     });
 
     setPreRequisiteCourses(
-      typeof selectedPreRequisiteCourses === 'string' ? value.split(',') : selectedPreRequisiteCourses
+      typeof selectedPreRequisiteCourses === "string" ? value.split(",") : selectedPreRequisiteCourses
     );
   };
   const { handleSubmit, reset } = methods;
@@ -127,30 +127,30 @@ const useCourseManagement = () => {
     });
     const formData = new FormData();
 
-    formData.append('name', data.name);
-    formData.append('category', data.category);
-    formData.append('level', data.level);
-    formData.append('language', data.language);
-    formData.append('description', data.description);
-    formData.append('images', coverImageFile);
-    preRequisiteCoursesColl.length && formData.append('prerequisiteCourses', preRequisiteCoursesColl);
-    hub.length && formData.append('hubs', hub);
-    data.liveSessionLink !== undefined && formData.append('liveSessionLink', data.liveSessionLink);
-    dateTime.$d !== undefined && formData.append('liveSessionStartedAt', dateTime.$d);
-    formData.append('isFeaturedCourse', checkedFeatured);
-    outcomes.length > 1 && formData.append('outComes', outcomes);
-    skillColl.length && formData.append('skills', skillColl);
+    formData.append("name", data.name);
+    formData.append("category", data.category);
+    formData.append("level", data.level);
+    formData.append("language", data.language);
+    formData.append("description", data.description);
+    formData.append("images", coverImageFile);
+    preRequisiteCoursesColl.length && formData.append("prerequisiteCourses", preRequisiteCoursesColl);
+    hub.length && formData.append("hubs", hub);
+    data.liveSessionLink !== undefined && formData.append("liveSessionLink", data.liveSessionLink);
+    dateTime.$d !== undefined && formData.append("liveSessionStartedAt", dateTime.$d);
+    formData.append("isFeaturedCourse", checkedFeatured);
+    outcomes.length > 1 && formData.append("outComes", outcomes);
+    skillColl.length && formData.append("skills", skillColl);
     dispatch(createCourse(formData)).then((action) => {
       if (action.error) {
-        toast.trigger(action.error.message, 'error');
+        toast.trigger(action.error.message, "error");
       } else {
-        toast.trigger(action.payload.data.message, 'success');
+        toast.trigger(action.payload.data.message, "success");
         handleClose();
       }
     });
   };
 
-  const handleViewDetailsButton = (id) => {
+  const handleViewDetailsButton = (id, courseDirection) => {
     setIsCourseLoading(true);
     dispatch(getACourseByID(id))
       .then((res) => {
@@ -160,7 +160,11 @@ const useCourseManagement = () => {
           dispatch(getCourseQuizzesResults(id)).then((results) => {
             setIsCourseLoading(false);
             // navigate(`/course-details/${id}/index`);
-            navigate(`/course-landing/${id}`);
+            if (courseDirection === "MyCourse") {
+              navigate(`/course-homepage/${id}`);
+            } else {
+              navigate(`/course-landing/${id}`);
+            }
           });
         });
       })

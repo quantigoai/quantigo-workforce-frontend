@@ -129,17 +129,19 @@ const ChapterViewIndex = () => {
         >
           <Grid container sx={{}}>
             {/* <Typography> {courseChapter._id}</Typography> */}
-            <Grid
-              xs={12}
-              sx={
-                {
-                  // paddingLeft: "3%",
-                  // paddingRight: "3%",
-                }
-              }
+            <Box
+              // xs={12}
+              sx={{
+                // paddingLeft: "3%",
+                // paddingRight: "3%",
+                backgroundColor: "red",
+                // display: "flex",
+                // alignItems: "center",
+                width: "100%",
+              }}
             >
               {courseChapter.content && parse(courseChapter.content)}
-            </Grid>
+            </Box>
           </Grid>
         </Box>
       </Box>
@@ -177,11 +179,11 @@ const ChapterViewIndex = () => {
                 //   xl: "128px",
                 //   xxl: "140px",
                 // },
-                width:"155px",
+                width: "155px",
                 color: "#2E58FF",
                 "&:hover": {
                   // background: "#244EF5",
-                  border:"1px solid #2E58FF"
+                  border: "1px solid #2E58FF",
                 },
                 "&:disabled": {
                   background: "#F4F7FE",

@@ -49,13 +49,16 @@ const ChapterContent = ({ handleQuizStart, handleCreateQuiz, handleEditChapter }
                 >
                   {/* <Typography> {courseChapter._id}</Typography> */}
                   <Grid
+                    item
                     xs={12}
                     sx={{
                       paddingLeft: "3%",
                       paddingRight: "3%",
+                      display: "flex",
+                      alignItems: "center",
                     }}
                   >
-                    {courseChapter.content && parse(courseChapter.content)}
+                    {/* {courseChapter.content && parse(courseChapter.content)} */}
                   </Grid>
                 </Grid>
               ) : (

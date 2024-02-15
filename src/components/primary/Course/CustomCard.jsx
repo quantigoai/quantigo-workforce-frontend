@@ -251,7 +251,7 @@ const CustomCard = ({ courseDirection, course, handleViewDetailsButton }) => {
             </Grid>
             <Grid container onClick={() => handleViewDetailsButton(course._id, courseDirection)}>
               <Typography variant="wpf_h6_semiBold" color={'grey.500'} sx={{ cursor: 'pointer', lineHeight: '20px' }}>
-                {course.name?.length > 100 ? course.name?.substring(0, 50) + '.....' : course.name}
+                {course.name?.length > 50 ? course.name?.substring(0, 50) + '.....' : course.name}
               </Typography>
             </Grid>
             <Grid mt={1} container>

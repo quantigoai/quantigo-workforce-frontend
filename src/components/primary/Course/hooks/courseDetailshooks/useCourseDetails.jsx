@@ -145,9 +145,11 @@ const useCourseDetails = () => {
     formData.append('prerequisiteCourses', preRequisiteCoursesColl);
     formData.append('skills', skillColl);
     formData.append('hubs', hub);
-    formData.append('liveSessionLink', data.liveSessionLink);
+    data.liveSessionLink && formData.append('liveSessionLink', data.liveSessionLink);
 
-    if (dateTime !== undefined) {
+    // if (dateTime !== undefined || dateTime !== null) {
+    if (dateTime) {
+      console.log('🚀 ~ onSubmit ~ dateTime:', dateTime);
       if (dateTime.$d) {
         formData.append('liveSessionStartedAt', dateTime?.$d);
       } else {

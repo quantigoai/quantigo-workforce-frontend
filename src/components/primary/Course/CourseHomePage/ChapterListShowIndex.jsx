@@ -134,7 +134,8 @@ const ChapterListShowIndex = () => {
                   )}
                   <br />
                   <Typography variant='wpf_p4_regular' color={"grey.600"}>
-                    Duration: 40 minutes{"  "}
+                    {`Duration: ${item.estimatedTimeToRead} minutes`}
+                    {"  "}
                   </Typography>
                   <img src={Rectangle} />
                   <Typography variant='wpf_p4_regular' color={"grey.600"}>

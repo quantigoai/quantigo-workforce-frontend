@@ -7,6 +7,20 @@ import { useSelector } from "react-redux";
 
 const CourseLiveSessionSection = () => {
   const { course } = useSelector((state) => state.course);
+  console.log("🚀 ~ CourseLiveSessionSection ~ course:", course);
+  const date = new Date(course.liveSessionStartedAt);
+
+  // Format the output in the desired format
+  const options = {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    timeZone: "Asia/Dhaka", // BDT timezone
+  };
+  const formattedDate = date.toLocaleString("en-US", options);
 
   return (
     <>
@@ -21,7 +35,7 @@ const CourseLiveSessionSection = () => {
 
           paddingTop: ".5%",
           paddingBottom: ".5%",
-          width: {xl:"60%" ,xxl:"60%",lg:"80%"},
+          width: { xl: "60%", xxl: "60%", lg: "80%" },
         }}
       >
         <Grid container sx={{ paddingRight: "2%" }}>
@@ -34,7 +48,8 @@ const CourseLiveSessionSection = () => {
             </Typography>
             <br />
             <Typography variant='wpf_p3_medium_2' color={"grey.600"}>
-              Fri Jul 7, 2023 8am – 8:30am (BDT)
+              {course.liveSessionStartedAt ? `${formattedDate} (BDT)` : "N/A"}
+              {/* Fri Jul 7, 2023 8am – 8:30am (BDT) */}
             </Typography>
           </Grid>
         </Grid>
@@ -48,9 +63,9 @@ const CourseLiveSessionSection = () => {
             </Typography>
             <br />
             <Typography variant='wpf_p3_medium_2' color={"grey.600"}>
-              https://meet.google.com/sdf97-3h4
+              {course.liveSessionLink ? course.liveSessionLink : "N/A"}
             </Typography>
-            <img src={fi_arrow} />
+            {course.liveSessionLink && <img src={fi_arrow} />}
           </Grid>
         </Grid>
       </Box>

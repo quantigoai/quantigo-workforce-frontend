@@ -26,7 +26,7 @@ const MoreComponents = ({ moreArray }) => {
         <>
           <Typography variant='wpf_p3_medium_2' color={"grey.600"}>
             {" "}
-            <b>{moreArray[0]?.name}, </b>
+            {moreArray[0]?.name},
           </Typography>
           <Tooltip
             title={moreArray?.map((prerequisiteCourse, index) => (

@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import levelIcon from "../../../../assets/images/courses/CourseLevelIcon.svg";
 import categoryIcon from "../../../../assets/images/courses/CourseCategoryIcon.svg";
 import courseDuration from "../../../../assets/images/courses/CourseDurationIcon.svg";
@@ -11,25 +11,43 @@ import MoreComponents from "./MoreComponents";
 import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 
 const CourseInfoIndex = () => {
+  const [durationTime, setDurationTime] = useState(0);
   const { isLightTheme } = useSelector((state) => state.theme);
-  const { course } = useSelector((state) => state.course);
+  const { course, courseChapters } = useSelector((state) => state.course);
+  console.log("🚀 ~ CourseInfoIndex ~ courseChapters:", courseChapters);
   console.log("🚀 ~ CourseInfoIndex ~ course:", course);
+  useEffect(() => {
+    const duration = courseChapters?.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue.estimatedTimeToRead || 0;
+    }, 0);
+    const hours = Math.floor(duration / 60) || 0;
+    const minutes = duration % 60 || 0;
+    if (hours === 0) {
+      if (minutes === 0) {
+        setDurationTime(minutes + " minute");
+      } else {
+        setDurationTime(minutes + " minutes");
+      }
+    } else {
+      setDurationTime(hours + " hours " + minutes + " minutes");
+    }
+  }, [course._id, courseChapters?.length]);
 
   const courseInfoItems = [
     {
       image: levelIcon,
       labelName: "Level",
-      value: "Basic",
+      value: course.level,
     },
     {
       image: categoryIcon,
       labelName: "Category",
-      value: "categoryIcon",
+      value: course.category,
     },
     {
       image: courseDuration,
       labelName: "Course Duration",
-      value: "courseDuration",
+      value: durationTime,
     },
     {
       image: courseSkillIcon,
@@ -99,7 +117,8 @@ const CourseInfoIndex = () => {
                   </>
                 ) : (
                   <Typography variant='wpf_p3_medium_2' color={"grey.600"}>
-                    {capitalizeFirstLetter(item.value)}
+                    {/* {capitalizeFirstLetter(item?.value)} */}
+                    {item.labelName === "Course Duration" ? item?.value : capitalizeFirstLetter(item?.value)}
                   </Typography>
                 )}
               </Grid>

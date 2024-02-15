@@ -7,7 +7,7 @@ const CourseHeaderTitle = ({ course }) => {
     <Box>
       <Typography variant="wpf_h3_Bold" color={'neutral.995'}>
         {' '}
-        {course.name?.length > 50 ? course.name?.substring(0, 50) + '...' : capitalizeFirstLetter(course.name)}
+        {course.name?.length > 60 ? course.name?.substring(0, 50) + '...' : capitalizeFirstLetter(course.name)}
       </Typography>
       <br />
       <Box sx={{ mt: '12px' }}>

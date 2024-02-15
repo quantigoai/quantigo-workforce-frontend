@@ -29,6 +29,7 @@ const btnStyle = {
   '&:hover': { backgroundColor: '#244EF5' },
 };
 const CourseLandingHeader = () => {
+  const screenSize = window.innerWidth;
   const navigate = useNavigate();
   // const { course, courseChapter, courseChapters } = useSelector((state) => state.course);
   const dispatch = useDispatch();
@@ -77,10 +78,26 @@ const CourseLandingHeader = () => {
     }
   };
 
+  let width = '90%';
+  let height = '90%';
+  if (screenSize >= 1500) {
+    // Extra-large screens
+    width = 400;
+    height = 280;
+  } else if (screenSize === 1440) {
+    // Large screens
+    width = 340;
+    height = 248;
+  } else if (screenSize >= 992) {
+    // Large screens
+    width = 300;
+    height = 200;
+  }
+
   return (
     <Box sx={boxStyle}>
-      <Box sx={{ width: { xxl: '72%', xl: '80%', lg: '80%' } }}>
-        <Box sx={{ width: { xxl: '100%', xl: '90%', lg: '80%' } }}>
+      <Box sx={{ width: { xxl: '72%', xl: '68%', lg: '80%' }, paddingY: '16px' }}>
+        <Box sx={{ width: { xxl: '100%', xl: '80%', lg: '95%' } }}>
           <Box sx={{ display: 'flex' }}>
             <Box sx={{ paddingRight: '6px' }}>
               <LanguageChip language={course.language} />
@@ -92,11 +109,11 @@ const CourseLandingHeader = () => {
               <LevelChip level={course.level} />
             </Box>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
             <Box sx={{ paddingY: '12px' }}>
               <CourseHeaderTitle course={course} />
             </Box>
-            <Box>
+            <Box sx={{ display: 'flex' }}>
               <Button
                 // disabled={isLoading}
                 type="submit"
@@ -150,7 +167,7 @@ const CourseLandingHeader = () => {
             </Box>
           </Box>
         </Box>
-        <Box sx={{ borderTop: '1px solid #EAECF0', borderBottom: '1px solid #EAECF0', marginTop: '20px' }}>
+        <Box sx={{ borderTop: '1px solid #EAECF0', borderBottom: '1px solid #EAECF0', marginTop: '10px' }}>
           <CourseContent course={course} />
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', marginTop: '20px', mb: '16px' }}>
@@ -162,8 +179,23 @@ const CourseLandingHeader = () => {
           </Typography>
         </Box>
       </Box>
-      <Box sx={{ width: '24%' }}>
-        <img style={{ borderRadius: '8px', width: '100%' }} src={course.images} alt="" />
+      <Box
+        sx={{
+          width: { xxl: '390px', xl: '340px', lg: '300px' },
+          height: { xxl: '270px', xl: '40px', lg: '200px' },
+        }}
+      >
+        <img
+          style={{
+            width,
+            height,
+            borderRadius: '8px',
+            // width: { xxl: '390px', xl: '340px', lg: '300px' },
+            // height: { xxl: '270px', xl: '40px', lg: '200px' },
+          }}
+          src={course.images}
+          alt=""
+        />
       </Box>
     </Box>
   );

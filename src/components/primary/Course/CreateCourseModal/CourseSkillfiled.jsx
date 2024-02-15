@@ -7,40 +7,40 @@
  * Copyright (c) 2022 Tanzim Ahmed
  */
 
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import {Box, Chip, MenuItem, Select, styled, Typography,} from "@mui/material";
-import React, {useState} from "react";
-import {useSelector} from "react-redux";
-import {useLocation} from "react-router-dom";
-import {CustomFormControl} from "../../../shared/CustomField/CustomSelectField";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { Box, Chip, MenuItem, Select, styled, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { CustomFormControl } from '../../../shared/CustomField/CustomSelectField';
 
 export const MySelect = styled(Select)(() => ({
-  height: "35px",
-  borderRadius: "5px",
-  "& .MuiOutlinedInput-root": {
-    color: "#000",
-    border: "1px solid #E6ECF5 !important",
+  height: '35px',
+  borderRadius: '5px',
+  '& .MuiOutlinedInput-root': {
+    color: '#000',
+    border: '1px solid #E6ECF5 !important',
   },
-  "& .MuiOutlinedInput-input": {
-    padding: "0px 0px 0px 8px",
+  '& .MuiOutlinedInput-input': {
+    padding: '0px 0px 0px 8px',
   },
-  "& .MuiOutlinedInput-notchedOutline ": {
-    border: "1px solid #E6ECF5 !important",
+  '& .MuiOutlinedInput-notchedOutline ': {
+    border: '1px solid #E6ECF5 !important',
   },
-  "& .MuiInputBase-input.Mui-disabled": {
-    WebkitTextFillColor: "#56627a",
+  '& .MuiInputBase-input.Mui-disabled': {
+    WebkitTextFillColor: '#56627a',
   },
-  "& .MuiFormHelperText-root": {
-    color: "#12B76A",
-    "&.Mui-error": {
-      color: "#F04438",
+  '& .MuiFormHelperText-root': {
+    color: '#12B76A',
+    '&.Mui-error': {
+      color: '#F04438',
     },
   },
 }));
 const iconStyle = {
-  color: "rgba(45, 88, 255, 1)",
-  marginRight: "5px",
-  cursor: "pointer",
+  color: 'rgba(45, 88, 255, 1)',
+  marginRight: '5px',
+  cursor: 'pointer',
 };
 const ITEM_HEIGHT = 40;
 const ITEM_PADDING_TOP = 2;
@@ -78,10 +78,10 @@ const CourseSkillfiled = ({ skills, skillSet, handleChangeSkills, MenuProps, isU
     <>
       <CustomFormControl fullWidth>
         <Typography
-          variant={"wpf_h7_medium"}
+          variant={'wpf_h7_medium'}
           sx={{
             mb: 0,
-            color: "neutral.N300",
+            color: 'neutral.N300',
           }}
         >
           Skill
@@ -90,7 +90,7 @@ const CourseSkillfiled = ({ skills, skillSet, handleChangeSkills, MenuProps, isU
           labelId="demo-simple-select-autowidth-label"
           id="demo-simple-select-autowidth"
           sx={{
-            background: isLightTheme && "#FFFFFF",
+            background: isLightTheme && '#FFFFFF',
           }}
           multiple
           fullWidth
@@ -103,20 +103,20 @@ const CourseSkillfiled = ({ skills, skillSet, handleChangeSkills, MenuProps, isU
           renderValue={(selected) => (
             <Box
               sx={{
-                display: "grid",
-                gridTemplateColumns: "repeat(2,1fr)",
+                display: 'grid',
+                gridTemplateColumns: 'repeat(2,1fr)',
                 gap: 0.5,
-                fontSize: "12px",
-                height: "20px",
+                fontSize: '12px',
+                height: '25px',
               }}
             >
               {selected?.map(
                 (value, i) =>
-                  [0].includes(i) && <Chip sx={{ fontSize: "12px", height: "95%" }} key={value} label={value} />
+                  [0].includes(i) && <Chip sx={{ fontSize: '12px', height: '95%' }} key={value} label={value} />
               )}
               {selected.length > 1 && (
                 <Typography variant="p" sx={{ ml: 2, mt: 0 }}>
-                  {" "}
+                  {' '}
                   + {selected.length - 1} more
                 </Typography>
               )}
@@ -125,7 +125,7 @@ const CourseSkillfiled = ({ skills, skillSet, handleChangeSkills, MenuProps, isU
           MenuProps={MenuProps}
         >
           {skills.map((skill) => (
-            <MenuItem sx={{ fontSize: "12px" }} key={skill._id} value={skill.name}>
+            <MenuItem sx={{ fontSize: '12px' }} key={skill._id} value={skill.name}>
               {skill.name}
             </MenuItem>
           ))}

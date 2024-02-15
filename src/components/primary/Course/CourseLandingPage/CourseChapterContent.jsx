@@ -1,12 +1,16 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import arrowIcon from "../../../../assets/images/courses/arrowIcon.svg";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CourseChapterAccordion from "./CourseChapterAccordion";
+import { getAllCourseSeries } from "../../../../features/slice/courseSlice";
 
 const CourseChapterContent = ({ course }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { courseChapters } = useSelector((state) => state.course);
+  const [coursesSeries, setCoursesSeries] = useState([]);
+  console.log("🚀 ~ CourseChapterContent ~ coursesSeries:", coursesSeries);
+  const dispatch = useDispatch();
   const accordionBoxNumberStyle = {
     // backgroundColor: "#E2E8F0",
     backgroundColor: isLightTheme ? "#E2E8F0" : "",
@@ -18,6 +22,13 @@ const CourseChapterContent = ({ course }) => {
     justifyContent: "center",
     alignItems: "center",
   };
+
+  useEffect(() => {
+    dispatch(getAllCourseSeries(course._id)).then((action) => {
+      console.log(action.payload.data);
+      setCoursesSeries(action.payload.data.coursesSeries);
+    });
+  }, []);
   const arr = [0, 1, 2, 3, 4, 5];
   return (
     <Box>
@@ -52,8 +63,8 @@ const CourseChapterContent = ({ course }) => {
           // },
         }}
       >
-        {courseChapters &&
-          courseChapters.map((item, index) => (
+        {coursesSeries &&
+          coursesSeries.map((item, index) => (
             <Box
               sx={{
                 alignItems: "center",
@@ -83,7 +94,7 @@ const CourseChapterContent = ({ course }) => {
                     variant='wpf_p3_semiBold'
                     // sx={{ opacity: "0.6", }}
                   >
-                    {item.title}
+                    {item.name}
                   </Typography>
                   <br />
                   <Typography variant='wpf_p4_regular' color={"grey.700"}>

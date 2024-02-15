@@ -22,6 +22,7 @@ import LoadingComponent from '../../shared/Loading/LoadingComponent';
 import useCourseManagement from './hooks/createCourseHook/useCourseMangement';
 import CommonHeader from '../../shared/CustomComponenet/CommonHeader/CommonHeader';
 import CourseLevel from './CourseLevel';
+import FeaturedCourse from './FeaturedCourse';
 
 const Course = () => {
   const {
@@ -151,6 +152,7 @@ const Course = () => {
                         ))}
                       </Grid> */}
                       <Box sx={{ padding: '30px' }}>
+                        <FeaturedCourse courses={featureCourses} handleViewDetailsButton={handleViewDetailsButton} />
                         <CourseLevel
                           title={'Basic Course'}
                           courses={basicCourses}

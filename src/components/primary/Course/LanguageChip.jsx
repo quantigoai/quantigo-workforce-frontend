@@ -6,35 +6,34 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Chip} from "@mui/material";
-import React from "react";
-import {capitalizeFirstLetter} from "../../../helper/capitalizeFirstWord";
+import { Chip } from '@mui/material';
+import React from 'react';
+import { capitalizeFirstLetter } from '../../../helper/capitalizeFirstWord';
 
 const bnStyle = {
-  width: "100%",
-  height: "33px",
-  backgroundColor: "#FFF8EB",
-  borderRadius: "10px",
-  border: "1px solid rgba(255, 171, 0, 0.24)",
-  color: "#FFAB00",
+  width: '100%',
+  height: '33px',
+  backgroundColor: '#FFF8EB',
+  borderRadius: '10px',
+  border: '1px solid rgba(255, 171, 0, 0.24)',
+  color: '#FFAB00',
 };
 const enStyle = {
-  width: "100%",
-  height: "33px",
-
-  backgroundColor: "#FFF8EB",
-  borderRadius: "10px",
-  border: "1px solid rgba(255, 171, 0, 0.24)",
-  color: "#FFAB00",
+  width: '100%',
+  height: '33px',
+  backgroundColor: '#FFF8EB',
+  borderRadius: '10px',
+  border: '1px solid rgba(255, 171, 0, 0.24)',
+  color: '#FFAB00',
 };
 const LanguageChip = ({ language }) => {
   let style = {};
 
   switch (language) {
-    case "bengali":
+    case 'bengali':
       style = bnStyle;
       break;
-    case "english":
+    case 'english':
       style = enStyle;
       break;
     default:

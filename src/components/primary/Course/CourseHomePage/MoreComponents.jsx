@@ -29,16 +29,16 @@ const MoreComponents = ({ moreArray }) => {
             <b>{moreArray[0]?.name}, </b>
           </Typography>
           <Tooltip
-            title={moreArray?.map((prerequisiteCourse) => (
+            title={moreArray?.map((prerequisiteCourse, index) => (
               <Grid key={prerequisiteCourse._id} item gap={1}>
-                <Typography> {prerequisiteCourse.name}</Typography>
+                {index != 0 && <Typography> {prerequisiteCourse.name}</Typography>}
               </Grid>
             ))}
             arrow
           >
             <Typography variant='wpf_p3_medium_2' color={"grey.600"}>
               {" "}
-              + {moreArray?.length} more
+              + {moreArray?.length - 1} more
             </Typography>
           </Tooltip>
         </>

@@ -26,6 +26,8 @@ const initialState = {
   courseChapters: [],
   courseChapter: {},
   quizzesResult: [],
+  isEnrollAble:true,
+  enrolmentMessage:"",
   courses: [],
   error: 'null',
   isCreated: false,
@@ -327,6 +329,9 @@ const courseSlice = createSlice({
       })
       .addCase(getACourseByID.fulfilled, (state, action) => {
         state.course = action.payload.data.course;
+        state.enrolmentMessage= action.payload.data.enrolmentMessage;
+        state.isEnrollAble= action.payload.data.isEnrollAble;
+
         state.isLoading = false;
       })
       .addCase(getACourseByID.rejected, (state) => {

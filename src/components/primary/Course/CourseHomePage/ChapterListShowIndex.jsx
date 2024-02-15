@@ -9,6 +9,7 @@ import Rectangle from "../../../../assets/images/courses/Rectangle 257.svg";
 import { useNavigate } from "react-router-dom";
 import { setActiveChapterIndex } from "../../../../features/slice/activePathSlice";
 import { getAChapterById } from "../../../../features/slice/courseSlice";
+import ChapterProgressbar from "./ChapterProgressbar";
 
 const boxStyle = {
   display: "flex",
@@ -107,7 +108,8 @@ const ChapterListShowIndex = () => {
                   xl={0.78}
                   sx={{ backgroundColor: "", alignItems: "center", justifyContent: "center", display: "flex" }}
                 >
-                  <img src={course_Complete} alt='' />
+                  <ChapterProgressbar item={item}/>
+                  {/* <img src={course_Complete} alt='' /> */}
                 </Grid>
                 <Grid
                   item

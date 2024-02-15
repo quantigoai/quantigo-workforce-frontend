@@ -6,21 +6,21 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Grid, Paper, styled } from '@mui/material';
-import Box from '@mui/material/Box';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setActivePath } from '../../../features/slice/activePathSlice';
-import { getAllCourses } from '../../../features/slice/courseSlice';
-import { getAllSkills } from '../../../features/slice/skillSlice';
-import LoadingSkeleton from '../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton';
-import CourseHeader from './CourseHeader/CourseHeader';
-import CourseTab from './CourseTab';
-import CustomCard from './CustomCard';
-import CourseCreateModal from './CreateCourseModal/CourseCreateModal';
-import LoadingComponent from '../../shared/Loading/LoadingComponent';
-import useCourseManagement from './hooks/createCourseHook/useCourseMangement';
-import CommonHeader from '../../shared/CustomComponenet/CommonHeader/CommonHeader';
+import { Grid, Paper, Typography, styled } from "@mui/material";
+import Box from "@mui/material/Box";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setActivePath } from "../../../features/slice/activePathSlice";
+import { getAllCourses, getAllCoursesNew } from "../../../features/slice/courseSlice";
+import { getAllSkills } from "../../../features/slice/skillSlice";
+import LoadingSkeleton from "../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton";
+import CourseHeader from "./CourseHeader/CourseHeader";
+import CourseTab from "./CourseTab";
+import CustomCard from "./CustomCard";
+import CourseCreateModal from "./CreateCourseModal/CourseCreateModal";
+import LoadingComponent from "../../shared/Loading/LoadingComponent";
+import useCourseManagement from "./hooks/createCourseHook/useCourseMangement";
+import CommonHeader from "../../shared/CustomComponenet/CommonHeader/CommonHeader";
 
 const Course = () => {
   const {
@@ -57,26 +57,41 @@ const Course = () => {
     hub,
     handleChangeHub,
   } = useCourseManagement();
+  const [featureCourses, setFeatureCourses] = useState([]);
+  const [basicCourses, setBasicCourses] = useState([]);
+  const [beginnerCourses, setBeginnerCourses] = useState([]);
+  const [advancedCourses, setAdvancedCourses] = useState([]);
+  const [intermediateCourses, setIntermediateCourses] = useState([]);
 
+  // const [basicCourses,setBasicCourses]=useState([])
   const dispatch = useDispatch();
   const CoursePaper = styled(Paper)({
-    width: '100%',
-    height: '90%',
-    overflow: 'auto',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    borderRadius: '8px',
-    border: '0px 0px 1px 0px',
-    backgroundColor: isLightTheme ? '#F2F6FC' : '#212121',
-    boxShadow: '0px 1px 3px 0px #09008014',
+    width: "100%",
+    height: "90%",
+    overflow: "auto",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    borderRadius: "8px",
+    border: "0px 0px 1px 0px",
+    backgroundColor: isLightTheme ? "#F2F6FC" : "#212121",
+    boxShadow: "0px 1px 3px 0px #09008014",
   });
-  const basicCourse = courses.filter((course) => course.level === 'basic');
+  const basicCourse = courses.filter((course) => course.level === "basic");
 
   useEffect(() => {
-    dispatch(setActivePath('Course'));
+    dispatch(setActivePath("Course"));
     dispatch(getAllSkills());
     dispatch(getAllCourses()).then(() => {
+      setIsDataLoading(false);
+    });
+    dispatch(getAllCoursesNew()).then((action) => {
+      console.log(action.payload.data);
+      setBasicCourses(action.payload.data.courses.coursesByLevelList.basic);
+      setBeginnerCourses(action.payload.data.courses.coursesByLevelList.beginner);
+      setIntermediateCourses(action.payload.data.courses.coursesByLevelList.intermediate);
+      setAdvancedCourses(action.payload.data.courses.coursesByLevelList.advanced);
+      setFeatureCourses(action.payload.data.courses.featureCourseList);
       setIsDataLoading(false);
     });
   }, []);
@@ -86,8 +101,8 @@ const Course = () => {
       {isCourseLoading ? (
         <LoadingComponent />
       ) : (
-        <Box className="content">
-          <Box className="contentHeader">
+        <Box className='content'>
+          <Box className='contentHeader'>
             <CourseHeader open={open} setOpen={setOpen} handleOpen={handleOpen} />
           </Box>
           <CoursePaper>
@@ -98,13 +113,13 @@ const Course = () => {
                 </>
               ) : (
                 <>
-                  {role === 'level_0_annotator' ||
-                  role === 'level_1_annotator' ||
-                  role === 'level_2_annotator' ||
-                  role === 'level_3_annotator' ||
-                  role === 'reviewer' ? (
+                  {role === "level_0_annotator" ||
+                  role === "level_1_annotator" ||
+                  role === "level_2_annotator" ||
+                  role === "level_3_annotator" ||
+                  role === "reviewer" ? (
                     <>
-                      {' '}
+                      {" "}
                       <CourseTab
                         handleViewDetailsButton={handleViewDetailsButton}
                         filterCourses={filterCourses}
@@ -118,16 +133,16 @@ const Course = () => {
                         container
                         spacing={1}
                         sx={{
-                          height: '100%',
-                          width: '100%',
+                          height: "100%",
+                          width: "100%",
                           // marginX: '20px',
                           // gap: { xxl: '0px', xl: '10px', lg: '0px' },
                         }}
                       >
                         {courses?.map((course) => (
-                          <Grid key={course._id} item xs={12} xxl={3} xl={2.8} lg={4} sx={{ height: '50%' }}>
+                          <Grid key={course._id} item xs={12} xxl={3} xl={2.8} lg={4} sx={{ height: "50%" }}>
                             <CustomCard
-                              courseDirection="all"
+                              courseDirection='all'
                               handleViewDetailsButton={handleViewDetailsButton}
                               course={course}
                             />

@@ -65,6 +65,7 @@ const CourseLiveSessionSection = () => {
             <Typography variant='wpf_p3_medium_2' color={"grey.600"}>
               {course.liveSessionLink ? course.liveSessionLink : "N/A"}
             </Typography>
+
             {course.liveSessionLink && <img src={fi_arrow} />}
           </Grid>
         </Grid>

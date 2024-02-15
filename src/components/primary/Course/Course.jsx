@@ -68,21 +68,21 @@ const Course = () => {
   // const [basicCourses,setBasicCourses]=useState([])
   const dispatch = useDispatch();
   const CoursePaper = styled(Paper)({
-    width: '100%',
-    height: '90%',
-    overflow: 'auto',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    borderRadius: '8px',
-    border: '0px 0px 1px 0px',
-    backgroundColor: isLightTheme ? '#F2F6FC' : '#212121',
-    boxShadow: '0px 1px 3px 0px #09008014',
+    width: "100%",
+    height: "90%",
+    overflow: "auto",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    borderRadius: "8px",
+    border: "0px 0px 1px 0px",
+    backgroundColor: isLightTheme ? "#F2F6FC" : "#212121",
+    boxShadow: "0px 1px 3px 0px #09008014",
   });
-  const basicCourse = courses.filter((course) => course.level === 'basic');
+  const basicCourse = courses.filter((course) => course.level === "basic");
 
   useEffect(() => {
-    dispatch(setActivePath('Course'));
+    dispatch(setActivePath("Course"));
     dispatch(getAllSkills());
     dispatch(getAllCourses()).then(() => {
       setIsDataLoading(false);
@@ -103,8 +103,8 @@ const Course = () => {
       {isCourseLoading ? (
         <LoadingComponent />
       ) : (
-        <Box className="content">
-          <Box className="contentHeader">
+        <Box className='content'>
+          <Box className='contentHeader'>
             <CourseHeader open={open} setOpen={setOpen} handleOpen={handleOpen} />
           </Box>
           <CoursePaper>
@@ -115,13 +115,13 @@ const Course = () => {
                 </>
               ) : (
                 <>
-                  {role === 'level_0_annotator' ||
-                  role === 'level_1_annotator' ||
-                  role === 'level_2_annotator' ||
-                  role === 'level_3_annotator' ||
-                  role === 'reviewer' ? (
+                  {role === "level_0_annotator" ||
+                  // role === 'level_1_annotator' ||
+                  role === "level_2_annotator" ||
+                  role === "level_3_annotator" ||
+                  role === "reviewer" ? (
                     <>
-                      {' '}
+                      {" "}
                       <CourseTab
                         handleViewDetailsButton={handleViewDetailsButton}
                         filterCourses={filterCourses}
@@ -154,22 +154,22 @@ const Course = () => {
                       <Box sx={{ padding: '30px' }}>
                         <FeaturedCourse courses={featureCourses} handleViewDetailsButton={handleViewDetailsButton} />
                         <CourseLevel
-                          title={'Basic Course'}
+                          title={"Basic Course"}
                           courses={basicCourses}
                           handleViewDetailsButton={handleViewDetailsButton}
                         />
                         <CourseLevel
-                          title={'Beginner Course'}
+                          title={"Beginner Course"}
                           courses={beginnerCourses}
                           handleViewDetailsButton={handleViewDetailsButton}
                         />
                         <CourseLevel
-                          title={'Intermediate Course'}
+                          title={"Intermediate Course"}
                           courses={intermediateCourses}
                           handleViewDetailsButton={handleViewDetailsButton}
                         />
                         <CourseLevel
-                          title={'Advance Course'}
+                          title={"Advance Course"}
                           courses={advancedCourses}
                           handleViewDetailsButton={handleViewDetailsButton}
                         />

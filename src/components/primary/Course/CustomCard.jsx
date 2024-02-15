@@ -52,7 +52,7 @@ const ButtonHover = {
   backgroundColor: 'rgba(255, 154, 69, 0.1)',
 };
 
-const CustomCard = ({courseDirection, course, handleViewDetailsButton }) => {
+const CustomCard = ({ courseDirection, course, handleViewDetailsButton }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoading } = useSelector((state) => state.course);
@@ -224,7 +224,7 @@ const CustomCard = ({courseDirection, course, handleViewDetailsButton }) => {
             overflow: 'hidden',
             cursor: 'pointer',
           }}
-          onClick={() => handleViewDetailsButton(course._id ,courseDirection)}
+          onClick={() => handleViewDetailsButton(course._id, courseDirection)}
         >
           <img
             style={hovering ? { ...MyCustomCard, ...MyCustomCardHover } : MyCustomCard}
@@ -249,9 +249,9 @@ const CustomCard = ({courseDirection, course, handleViewDetailsButton }) => {
                 {capitalizeFirstLetter(course.level)}
               </Typography>
             </Grid>
-            <Grid container onClick={() => handleViewDetailsButton(course._id ,courseDirection)}>
+            <Grid container onClick={() => handleViewDetailsButton(course._id, courseDirection)}>
               <Typography variant="wpf_h6_semiBold" color={'grey.500'} sx={{ cursor: 'pointer', lineHeight: '20px' }}>
-                {course.name?.length > 100 ? course.description?.substring(0, 50) + '.....' : course.name}
+                {course.name?.length > 100 ? course.name?.substring(0, 50) + '.....' : course.name}
               </Typography>
             </Grid>
             <Grid mt={1} container>
@@ -260,7 +260,10 @@ const CustomCard = ({courseDirection, course, handleViewDetailsButton }) => {
               </Typography>
             </Grid>
           </Box>
-          <Box onClick={() => handleViewDetailsButton(course._id ,courseDirection)} sx={{ px: '4%', height: '40%', cursor: 'pointer' }}>
+          <Box
+            onClick={() => handleViewDetailsButton(course._id, courseDirection)}
+            sx={{ px: '4%', height: '40%', cursor: 'pointer' }}
+          >
             <Grid container sx={{ pb: 2 }}>
               <Typography variant="wpf_p4_medium">View Details</Typography>
 

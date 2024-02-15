@@ -185,7 +185,7 @@ const layoutMenuOption = () => {
   ];
   const Verifiedlevel0AnnotatorOptions = [
     { name: 'Dashboard', icon: DashboardSvg },
-    // { name: "Course", icon: CourseSvg },
+    { name: "Course", icon: CourseSvg },
   ];
   const trainerOptions = [
     { name: 'Dashboard', icon: DashboardSvg },

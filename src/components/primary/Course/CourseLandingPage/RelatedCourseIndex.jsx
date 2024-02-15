@@ -19,8 +19,8 @@ const RelatedCourseIndex = () => {
           sx={{
             mt: '20px',
             width: '100%',
-            height: '90%',
-            overflow: 'auto',
+            height: '10%',
+            // overflow: 'auto',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',

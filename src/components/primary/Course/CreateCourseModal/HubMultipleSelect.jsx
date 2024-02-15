@@ -106,11 +106,12 @@ const HubMultipleSelect = ({ options, hubSet, handleChange, isUpdate }) => {
                 gridTemplateColumns: 'repeat(2,1fr)',
                 gap: 0.5,
                 fontSize: '12px',
-                height: '20px',
+                height: '25px',
               }}
             >
               {selected?.map(
-                (value, i) => [0].includes(i) && <Chip key={i} sx={{ fontSize: '12px', height: '95%' }} label={value} />
+                (value, i) =>
+                  [0].includes(i) && <Chip key={i} sx={{ fontSize: '12px', height: '100%' }} label={value} />
               )}
               {selected.length > 1 && (
                 <Typography variant="p" sx={{ ml: 2, mt: 0 }}>

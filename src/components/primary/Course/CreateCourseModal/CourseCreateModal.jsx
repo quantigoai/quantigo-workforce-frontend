@@ -292,9 +292,9 @@ const CourseCreateModal = ({
                       sx={{
                         // backgroundColor:"red",
                         height: {
-                          lg: '70px',
-                          xl: '70px',
-                          xxl: '80px',
+                          lg: '50px',
+                          xl: '50px',
+                          xxl: '50px',
                         },
                       }}
                     >
@@ -334,7 +334,8 @@ const CourseCreateModal = ({
                       <Typography
                         variant="wpf_h7_medium"
                         sx={{
-                          mb: 0,
+                          mb: 1,
+                          mt: 3,
                           color: 'neutral.N300',
                         }}
                       >

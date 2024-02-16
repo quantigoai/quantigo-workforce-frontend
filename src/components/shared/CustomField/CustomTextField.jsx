@@ -22,7 +22,7 @@ export const MyTextField = styled(TextField)(() => ({
 
   '& .MuiOutlinedInput-root': {
     color: '#000',
-    height: '45px',
+    // height: '45px',
     borderRadius: '8px',
   },
   '& .MuiOutlinedInput-notchedOutline ': {
@@ -40,7 +40,15 @@ export const MyTextField = styled(TextField)(() => ({
   },
 }));
 
-export default function CustomTextField({ name, label, helperText, isRequired, isNumber, InputProps, ...other }) {
+export default function CustomTextField({
+  name,
+  label,
+  helperText,
+  isRequired,
+  isNumber,
+  InputProps,
+  ...other
+}) {
   const { control } = useFormContext();
   return (
     <Controller
@@ -64,8 +72,19 @@ export default function CustomTextField({ name, label, helperText, isRequired, i
               sx={{
                 mt: 0.3,
                 fontSize: '16px',
+                '& .MuiOutlinedInput-root': {
+                  height: {
+                    lg: '45px',
+                    xl: '45px',
+                    xxl: '45px',
+                  },
+                },
               }}
-              value={typeof field.value === 'number' && field.value === 0 ? '' : field.value}
+              value={
+                typeof field.value === 'number' && field.value === 0
+                  ? ''
+                  : field.value
+              }
               error={!!error}
               helperText={error ? error?.message : helperText}
               autoComplete="off"

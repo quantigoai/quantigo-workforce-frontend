@@ -59,12 +59,14 @@ const BeginnerCourseAll = () => {
     boxShadow: '0px 1px 3px 0px #09008014',
   });
   const [allCourse, setAllCourse] = useState([]);
+  const [count, setCount] = useState(0);
   const dispatch = useDispatch();
   useEffect(() => {
     // dispatch(setActivePath('Course'));
     dispatch(getAllSkills());
-    dispatch(getAllCourses()).then((action) => {
+    dispatch(getAllCourses('beginner')).then((action) => {
       setAllCourse(action.payload.data.courses);
+      setCount(action.payload.data.courses.count || action.payload.data.courses.length);
       setIsDataLoading(false);
     });
   }, []);

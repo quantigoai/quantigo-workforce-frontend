@@ -95,7 +95,7 @@ const Course = () => {
       setFeatureCourses(action.payload.data.courses.featureCourseList);
       setIsDataLoading(false);
     });
-  }, []);
+  }, [courseCount]);
 
   return (
     <>

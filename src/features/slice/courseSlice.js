@@ -26,8 +26,8 @@ const initialState = {
   courseChapters: [],
   courseChapter: {},
   quizzesResult: [],
-  isEnrollAble:true,
-  enrolmentMessage:"",
+  isEnrollAble: true,
+  enrolmentMessage: '',
   courses: [],
   error: 'null',
   isCreated: false,
@@ -35,7 +35,11 @@ const initialState = {
 // All Courses get request
 export const getAllCourses = createAsyncThunk('courses', async (data) => {
   try {
-    return await axios.get(`${url}/courses`, {
+    let query = '?';
+    if (data) {
+      query += `level=${data}`;
+    }
+    return await axios.get(`${url}/courses${query}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -49,7 +53,11 @@ export const getAllCourses = createAsyncThunk('courses', async (data) => {
 
 export const getAllCoursesNew = createAsyncThunk('coursesNew', async (data) => {
   try {
-    return await axios.get(`${url}/courses/get-all-courses`, {
+    let query = '?';
+    if (data) {
+      query += `level=${data}`;
+    }
+    return await axios.get(`${url}/courses/get-all-courses${query}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -71,9 +79,6 @@ export const getAllCourseSeries = createAsyncThunk('course/get-all-courses-serie
     throw new Error(error.response.data.message);
   }
 });
-
-
-
 
 export const getACourseByID = createAsyncThunk('course/:id', async (id) => {
   try {
@@ -344,8 +349,8 @@ const courseSlice = createSlice({
       })
       .addCase(getACourseByID.fulfilled, (state, action) => {
         state.course = action.payload.data.course;
-        state.enrolmentMessage= action.payload.data.enrolmentMessage;
-        state.isEnrollAble= action.payload.data.isEnrollAble;
+        state.enrolmentMessage = action.payload.data.enrolmentMessage;
+        state.isEnrollAble = action.payload.data.isEnrollAble;
 
         state.isLoading = false;
       })
@@ -354,11 +359,9 @@ const courseSlice = createSlice({
         state.error = '';
       })
       .addCase(getAllCourseSeries.pending, (state) => {
-        
         state.isLoading = true;
       })
       .addCase(getAllCourseSeries.fulfilled, (state, action) => {
-      
         state.isLoading = false;
       })
       .addCase(getAllCourseSeries.rejected, (state) => {

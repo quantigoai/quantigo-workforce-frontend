@@ -14,7 +14,7 @@ const CourseLevel = ({ title, courses, handleViewDetailsButton }) => {
     } else if (title === 'Beginner Courses') {
       navigate('/beginner-course');
     } else if (title === 'Intermediate Courses') {
-      navigate('/beginner-course');
+      navigate('/intermediate-course');
     } else {
       navigate('/advance-course');
     }

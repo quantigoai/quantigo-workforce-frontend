@@ -12,10 +12,10 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import axios from "axios";
-import {rangeDateFormatter} from "../../helper/dateConverter";
-import {realToken} from "../../helper/lib";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { rangeDateFormatter } from '../../helper/dateConverter';
+import { realToken } from '../../helper/lib';
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
@@ -73,7 +73,7 @@ export const approveProjectPaymentAPLRequest = async (id) => {
   }
 };
 
-export const getAllProjectDrawers = createAsyncThunk("/project-drawer/", async (data) => {
+export const getAllProjectDrawers = createAsyncThunk('/project-drawer/', async (data) => {
   try {
     const { search, pagination, filteredData, ascDescOption } = data;
 
@@ -100,7 +100,7 @@ export const getAllProjectDrawers = createAsyncThunk("/project-drawer/", async (
   }
 });
 
-export const createProjectDrawer = createAsyncThunk("/project-drawer/create", async (data) => {
+export const createProjectDrawer = createAsyncThunk('/project-drawer/create', async (data) => {
   try {
     return await axios.post(`${url}/project-drawer`, data, {
       headers: {
@@ -112,7 +112,7 @@ export const createProjectDrawer = createAsyncThunk("/project-drawer/create", as
   }
 });
 
-export const updateProjectDrawerById = createAsyncThunk("/project-drawer/update", async (data) => {
+export const updateProjectDrawerById = createAsyncThunk('/project-drawer/update', async (data) => {
   try {
     return await axios.patch(`${url}/project-drawer/${data.id}`, data.data, {
       headers: {
@@ -123,7 +123,7 @@ export const updateProjectDrawerById = createAsyncThunk("/project-drawer/update"
     throw new Error(error.response.data.message);
   }
 });
-export const getProjectDrawerById = createAsyncThunk("/project-drawer/projectDrawer/id", async (data) => {
+export const getProjectDrawerById = createAsyncThunk('/project-drawer/projectDrawer/id', async (data) => {
   try {
     return await axios.get(`${url}/project-drawer/${data}`, {
       headers: {
@@ -135,7 +135,7 @@ export const getProjectDrawerById = createAsyncThunk("/project-drawer/projectDra
   }
 });
 export const getMyProjectWorkHistoryById = createAsyncThunk(
-  "/project-drawer/projectDrawerWorkHistory/id",
+  '/project-drawer/projectDrawerWorkHistory/id',
   async (data) => {
     try {
       return await axios.get(`${url}/work-history/${data}`, {
@@ -149,7 +149,7 @@ export const getMyProjectWorkHistoryById = createAsyncThunk(
   }
 );
 
-export const deleteProjectDrawerById = createAsyncThunk("/project-drawer/delete", async (id) => {
+export const deleteProjectDrawerById = createAsyncThunk('/project-drawer/delete', async (id) => {
   try {
     return await axios.delete(`${url}/project-drawer/${id}`, {
       headers: {
@@ -161,7 +161,7 @@ export const deleteProjectDrawerById = createAsyncThunk("/project-drawer/delete"
   }
 });
 
-export const checkInProjectDrawerById = createAsyncThunk("/project-drawer/check-in", async (data) => {
+export const checkInProjectDrawerById = createAsyncThunk('/project-drawer/check-in', async (data) => {
   try {
     return await axios.patch(
       `${url}/project-drawer/check-in/${data.id}`,
@@ -177,7 +177,7 @@ export const checkInProjectDrawerById = createAsyncThunk("/project-drawer/check-
   }
 });
 
-export const checkOutProjectDrawerById = createAsyncThunk("/project-drawer/check-out", async (data) => {
+export const checkOutProjectDrawerById = createAsyncThunk('/project-drawer/check-out', async (data) => {
   try {
     return await axios.patch(
       `${url}/project-drawer/check-out/${data.id}`,
@@ -193,7 +193,7 @@ export const checkOutProjectDrawerById = createAsyncThunk("/project-drawer/check
   }
 });
 
-export const addSkillsToCheckInUser = createAsyncThunk("/project-drawer/add-skills", async (data) => {
+export const addSkillsToCheckInUser = createAsyncThunk('/project-drawer/add-skills', async (data) => {
   try {
     return await axios.patch(`${url}/project-drawer/assign-skills/${data.id}`, data.data, {
       headers: {
@@ -205,7 +205,7 @@ export const addSkillsToCheckInUser = createAsyncThunk("/project-drawer/add-skil
   }
 });
 
-export const removeSkillsToCheckInUser = createAsyncThunk("/project-drawer/remove-skills", async (data) => {
+export const removeSkillsToCheckInUser = createAsyncThunk('/project-drawer/remove-skills', async (data) => {
   try {
     return await axios.patch(`${url}/project-drawer/remove-skills/${data.id}`, {
       headers: {
@@ -217,7 +217,7 @@ export const removeSkillsToCheckInUser = createAsyncThunk("/project-drawer/remov
   }
 });
 
-export const getUsersWorkHistoryById = createAsyncThunk("/project-drawer/details/getDetails", async (data) => {
+export const getUsersWorkHistoryById = createAsyncThunk('/project-drawer/details/getDetails', async (data) => {
   try {
     const { pagination, range, filteredData, ascDescOption, id } = data;
     let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
@@ -252,7 +252,7 @@ export const getUsersWorkHistoryById = createAsyncThunk("/project-drawer/details
   }
 });
 
-export const getMyWorkHistoryById = createAsyncThunk("/project-drawer/details/get-my-work-history", async (data) => {
+export const getMyWorkHistoryById = createAsyncThunk('/project-drawer/details/get-my-work-history', async (data) => {
   try {
     const { pagination, filteredData, ascDescOption, id } = data;
     let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
@@ -281,7 +281,7 @@ export const getMyWorkHistoryById = createAsyncThunk("/project-drawer/details/ge
   }
 });
 
-export const uploadEffectiveHours = createAsyncThunk("project-drawer/upload-hours", async (data) => {
+export const uploadEffectiveHours = createAsyncThunk('project-drawer/upload-hours', async (data) => {
   const { id, hoursData } = data;
 
   return await axios.patch(`${url}/project-drawer/upload-hours/${id}`, hoursData, {
@@ -289,12 +289,12 @@ export const uploadEffectiveHours = createAsyncThunk("project-drawer/upload-hour
       Authorization: `Bearer ${realToken()}`,
     },
     content: {
-      "Content-Type": "multipart/form-data",
+      'Content-Type': 'multipart/form-data',
     },
   });
 });
 
-export const approveProjectHistory = createAsyncThunk("/project-history/approved-history", async (id) => {
+export const approveProjectHistory = createAsyncThunk('/project-history/approved-history', async (id) => {
   return await approveProjectHistoryAPIRequest(id);
   // try {
   //   return await axios.patch(`${url}/project-history/approved-history/${id}`, id, {
@@ -306,10 +306,10 @@ export const approveProjectHistory = createAsyncThunk("/project-history/approved
   //   throw new Error(error.response.data.message);
   // }
 });
-export const rejectProjectHistory = createAsyncThunk("/project-history/reject-history", async (data) => {
+export const rejectProjectHistory = createAsyncThunk('/project-history/reject-history', async (data) => {
   return await rejectHistoryAPIRequest(data);
 });
-export const approveProjectPayment = createAsyncThunk("project-history/approved-payment", async (id) => {
+export const approveProjectPayment = createAsyncThunk('project-history/approved-payment', async (id) => {
   return await approveProjectPaymentAPLRequest(id);
 
   // try {
@@ -322,7 +322,7 @@ export const approveProjectPayment = createAsyncThunk("project-history/approved-
   //   throw new Error(error.response.data.message);
   // }
 });
-export const getMyAvailableProjects = createAsyncThunk("/project-drawer/myAvailAbleProjects", async (data) => {
+export const getMyAvailableProjects = createAsyncThunk('/project-drawer/myAvailAbleProjects', async (data) => {
   const { search, pagination, annotatorPlatform, filteredData, ascDescOption } = data;
   let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
   if (annotatorPlatform) {
@@ -356,7 +356,7 @@ export const getMyAvailableProjects = createAsyncThunk("/project-drawer/myAvailA
   }
 });
 const projectDrawerSlice = createSlice({
-  name: "projectDrawer",
+  name: 'projectDrawer',
   initialState: initialState,
   reducers: {
     resetProjectDrawer: (state) => {

@@ -33,6 +33,7 @@ const FeaturedCourse = ({ courses, handleViewDetailsButton }) => {
     <Box>
       <Swiper
         modules={[Navigation, A11y, Autoplay]}
+        speed={2000}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,

@@ -59,17 +59,18 @@ const BasicCourseAll = () => {
     boxShadow: '0px 1px 3px 0px #09008014',
   });
   const [allCourse, setAllCourse] = useState([]);
+  const [count, setCount] = useState(0);
 
   const dispatch = useDispatch();
   useEffect(() => {
     // dispatch(setActivePath('Course'));
     dispatch(getAllSkills());
-    dispatch(getAllCourses()).then((action) => {
+    dispatch(getAllCourses('basic')).then((action) => {
       setAllCourse(action.payload.data.courses);
+      setCount(action.payload.data.courses.count || action.payload.data.courses.length);
       setIsDataLoading(false);
     });
   }, []);
-  const BasicCoursesArr = allCourse.filter((course) => course.level === 'basic');
 
   return (
     <>
@@ -78,7 +79,7 @@ const BasicCourseAll = () => {
       ) : (
         <Box className="content">
           <Box className="contentHeader">
-            <CourseHeader courseCount={BasicCoursesArr.length} open={open} setOpen={setOpen} handleOpen={handleOpen} />
+            <CourseHeader courseCount={count} open={open} setOpen={setOpen} handleOpen={handleOpen} />
           </Box>
           <CoursePaper>
             <>
@@ -114,7 +115,7 @@ const BasicCourseAll = () => {
                           gap: { xxl: '20px', xl: '15px', lg: '12px' },
                         }}
                       >
-                        {BasicCoursesArr?.map((course) => (
+                        {allCourse?.map((course) => (
                           <Box
                             sx={{
                               backgroundColor: isLightTheme ? '#fff' : '#000',

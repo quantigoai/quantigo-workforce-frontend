@@ -167,6 +167,8 @@ const QuizCreateIndex = () => {
         `questionAndAnswer[${index}][questionType]`,
         qa.questionType,
       );
+      // TODO handle this dynamically
+      formData.append(`questionAndAnswer[${index}][isTextFieldEnabled]`, true);
       if (
         qa.questionType === 'default' ||
         qa.questionType === 'imageInOptions'

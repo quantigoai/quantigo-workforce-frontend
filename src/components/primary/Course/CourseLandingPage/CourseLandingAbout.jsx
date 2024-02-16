@@ -21,21 +21,19 @@ const CourseLandingAbout = () => {
         </Box>
         <Box sx={{ mt: '12px' }}>
           <Typography variant={'wpf_p3_regular'} color={'grey.#344054'}>
-            {course.outComes[0]}
+            {course.description}
           </Typography>
         </Box>
       </Box>
       <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gridGap: '12px', mt: '24px' }}>
-        {course.outComes.map((item, index) => (
+        {course.outComes.map((item) => (
           <>
-            {index != 0 && (
-              <Box sx={boxStyle}>
-                <i style={{ color: '#667085' }} className="ri-check-line"></i>
-                <Typography sx={{ marginLeft: '8px' }} variant="wpf_p3_regular" color={'grey.500'}>
-                  {item}
-                </Typography>
-              </Box>
-            )}
+            <Box sx={boxStyle}>
+              <i style={{ color: '#667085' }} className="ri-check-line"></i>
+              <Typography sx={{ marginLeft: '8px' }} variant="wpf_p3_regular" color={'grey.500'}>
+                {item}
+              </Typography>
+            </Box>
           </>
         ))}
       </Box>

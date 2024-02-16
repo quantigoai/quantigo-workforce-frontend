@@ -6,21 +6,22 @@ import RectangleIcon from '../../../assets/images/courses/Rectangle 12.svg';
 import LanguageChip from './LanguageChip';
 import CategoryChip from './CategoryChip';
 import LevelChip from './CourseCardActionLebel/LevelChip';
+import { useSelector } from 'react-redux';
 const MyCustomCard = {
   padding: '0 0 0 0 ',
-  width: '224px',
-  height: '224px',
+  // width: '224px',
+  // height: '224px',
   borderRadius: '10px',
   objectFit: 'cover',
 };
 
 const MyCustomCardHover = {
   padding: '0 0 0 0 ',
-  width: '224px',
-  height: '224px',
+  // width: '224px',
+  // height: '224px',
   objectFit: 'cover',
   borderRadius: '10px 10px 0px 0px',
-  transform: 'scale(1.05)',
+  transform: 'scale(1.03)',
   transition: 'all 1s ease',
 };
 
@@ -41,6 +42,7 @@ const ButtonHover = {
 };
 const FeaturedCard = ({ handleViewDetailsButton, course, courseDirection }) => {
   const imageUrl = course.images?.length ? `${course.images[0]}` : imageSample;
+  const { isLightTheme } = useSelector((state) => state.theme);
   const [hovering, setHovering] = useState(false);
   const [buttonHovering, setButtonHovering] = useState(false);
 
@@ -62,7 +64,22 @@ const FeaturedCard = ({ handleViewDetailsButton, course, courseDirection }) => {
   };
 
   const [buttonStyle, setButtonStyle] = useState(ButtonInitial);
-
+  const screenSize = window.innerWidth;
+  let width = '90%';
+  let height = '90%';
+  // let height = '10%'; // Default width for large screens
+  if (screenSize >= 1500) {
+    // Extra-large screens
+    width = 250;
+    height = 250;
+  } else if (screenSize === 1440) {
+    // Large screens
+    width = 224;
+    height = 224;
+  } else if (screenSize >= 992) {
+    width = 200;
+    height = 200;
+  }
   useEffect(() => {
     if (hovering && !buttonHovering) {
       setButtonStyle(ButtonDivMouseOn);
@@ -76,25 +93,40 @@ const FeaturedCard = ({ handleViewDetailsButton, course, courseDirection }) => {
     <Box
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      sx={{ display: 'flex', width: '100%', padding: '8px', cursor: 'pointer' }}
-      onClick={() => handleViewDetailsButton(course._id, courseDirection)}
+      sx={{
+        display: 'flex',
+        width: '100%',
+        padding: '8px',
+      }}
     >
-      <Box>
-        <img style={hovering ? { ...MyCustomCard, ...MyCustomCardHover } : MyCustomCard} src={imageUrl} alt="" />
+      <Box sx={{ cursor: 'pointer' }} onClick={() => handleViewDetailsButton(course._id, courseDirection)}>
+        <img
+          style={
+            hovering
+              ? {
+                  ...MyCustomCard,
+                  ...MyCustomCardHover,
+                  width,
+                  height,
+                }
+              : { ...MyCustomCard, width, height }
+          }
+          src={imageUrl}
+          alt=""
+        />
       </Box>
-      <Box sx={{ width: { xxl: '428px', xl: '388px', lg: '350px' }, paddingX: '24px', paddingY: '12px' }}>
+      <Box sx={{ width: { xxl: '428px', xl: '398px', lg: '350px' }, paddingX: '24px', paddingY: '12px' }}>
         <Typography
           variant="wpf_p4_semiBold"
           sx={{
-            cursor: 'pointer',
             mb: 1,
             textAlign: 'left',
             display: 'flex',
             justifyContent: 'start',
             backgroundColor: '#476CFF',
             borderRadius: '32px',
-            width: { xxl: '55px', xl: '51px', lg: '48px' },
-            padding: { xl: '3px 12px', xxl: '5px 15px' },
+            width: { xxl: '55px', xl: '51px', lg: '45px' },
+            padding: { xl: '3px 12px', xxl: '5px 15px', lg: '3px 10px' },
             color: '#fff',
           }}
         >

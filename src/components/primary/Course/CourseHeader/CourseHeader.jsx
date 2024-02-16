@@ -1,9 +1,9 @@
-import { Box, Button, Grid, IconButton, InputBase, Paper } from '@mui/material';
+import { Box, Button, Grid, IconButton, InputBase, Paper, Typography } from '@mui/material';
 import CommonHeader from '../../../shared/CustomComponenet/CommonHeader/CommonHeader';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import SearchIcon from '@mui/icons-material/Search';
 
-const CourseHeader = ({ handleOpen, open, setOpen }) => {
+const CourseHeader = ({ handleOpen, open, setOpen, courseCount }) => {
   return (
     <>
       <Box
@@ -24,6 +24,9 @@ const CourseHeader = ({ handleOpen, open, setOpen }) => {
             }}
           >
             <CommonHeader title="List of Courses" customButton="Create User" />
+            <Typography sx={{ opacity: '0.7' }} variant="wpf_p3_regular" color={'neutral.750'}>
+              {courseCount === 1 ? courseCount + ' Result' : courseCount + ' Results'} found
+            </Typography>
           </Grid>
         </Box>
 

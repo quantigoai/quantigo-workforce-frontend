@@ -1,8 +1,10 @@
-import { Box, Button, Grid, IconButton, InputBase, Paper, Typography } from '@mui/material';
+import { Box, Button, Grid, IconButton, InputBase, Paper, Popover, Typography } from '@mui/material';
 import CommonHeader from '../../../shared/CustomComponenet/CommonHeader/CommonHeader';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
+import { useState } from 'react';
+import MIniModalCourseFilter from './MIniModalCourseFilter';
 const CourseHeader = ({
   handleOpen,
   open,
@@ -13,6 +15,15 @@ const CourseHeader = ({
   clearSearch,
   setSearch,
   handleSearch,
+  openModal,
+  id,
+  handleCloseFilter,
+  filter,
+  handleChange,
+  handleClickFilter,
+  handleResetFilter,
+  handleFilterCourse,
+  anchorE2,
 }) => {
   return (
     <>
@@ -109,7 +120,7 @@ const CourseHeader = ({
           </Paper>
 
           <IconButton
-            // onClick={handleIsFilter}
+            onClick={handleClickFilter}
             sx={{
               px: '5px 0px',
               //   backgroundColor: "primary.B008",
@@ -120,6 +131,24 @@ const CourseHeader = ({
           >
             <FilterListIcon sx={{ color: 'primary.main' }} />
           </IconButton>
+          <Popover
+            id={id}
+            open={openModal}
+            anchorEl={anchorE2}
+            onClose={handleCloseFilter}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+          >
+            <MIniModalCourseFilter
+              handleResetFilter={handleResetFilter}
+              handleFilterCourse={handleFilterCourse}
+              handleCloseFilter={handleCloseFilter}
+              handleChange={handleChange}
+              filter={filter}
+            />
+          </Popover>
 
           {/* <ExportUserList /> */}
           <Button

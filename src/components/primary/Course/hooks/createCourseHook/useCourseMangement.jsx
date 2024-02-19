@@ -22,6 +22,8 @@ const useCourseManagement = () => {
   const [beginnerCourses, setBeginnerCourses] = useState([]);
   const [intermediateCourses, setIntermediateCourses] = useState([]);
   const [advancedCourses, setAdvancedCourses] = useState([]);
+  const [allCourses, setAllCourses] = useState([]);
+
   const [courseCount, setCourseCount] = useState(0);
   const { role } = useSelector((state) => state.user.user);
   const { course } = useSelector((state) => state.course);
@@ -53,6 +55,42 @@ const useCourseManagement = () => {
 
   const handleOpen = () => setOpen(true);
 
+  //filter function
+
+  const [anchorE2, setAnchorE2] = useState(null);
+  const openModal = Boolean(anchorE2);
+  const id = openModal ? 'simple-popover' : undefined;
+  const handleCloseFilter = () => {
+    setAnchorE2(null);
+  };
+  const [filter, setFilter] = useState({});
+
+  const handleChange = (event, label) => {
+    setFilter((prevFilter) => ({
+      ...prevFilter,
+      [label]: event.target.value,
+    }));
+  };
+
+  const handleClickFilter = (event) => {
+    setAnchorE2(event.currentTarget);
+  };
+  const handleResetFilter = () => {
+    dispatch(getAllCoursesNew({})).then((action) => {
+      setCourseCount(action.payload.data.courses.count);
+      setAllCourses(action.payload.data.courses);
+      setFeatureCourses(action.payload.data.courses.featureCourseList);
+    });
+    setFilter({});
+  };
+  const handleFilterCourse = () => {
+    dispatch(getAllCoursesNew({ filter, search })).then((action) => {
+      setCourseCount(action.payload.data.courses.count);
+      setAllCourses(action.payload.data.courses);
+    });
+  };
+
+  //filter function------
   const handleClose = () => {
     setOpen(false);
     reset();
@@ -166,12 +204,9 @@ const useCourseManagement = () => {
         toast.trigger(action.error.message, 'error');
       } else {
         toast.trigger(action.payload.data.message, 'success');
-        dispatch(getAllCoursesNew({ level: '', search })).then((action) => {
+        dispatch(getAllCoursesNew({})).then((action) => {
           setCourseCount(action.payload.data.courses.count);
-          setBasicCourses(action.payload.data.courses.coursesByLevelList.basic);
-          setBeginnerCourses(action.payload.data.courses.coursesByLevelList.beginner);
-          setIntermediateCourses(action.payload.data.courses.coursesByLevelList.intermediate);
-          setAdvancedCourses(action.payload.data.courses.coursesByLevelList.advanced);
+          setAllCourses(action.payload.data.courses);
           setFeatureCourses(action.payload.data.courses.featureCourseList);
           setIsDataLoading(false);
           handleClose();
@@ -255,6 +290,17 @@ const useCourseManagement = () => {
     setAdvancedCourses,
     courseCount,
     setCourseCount,
+    openModal,
+    anchorE2,
+    id,
+    handleCloseFilter,
+    filter,
+    handleChange,
+    handleClickFilter,
+    handleResetFilter,
+    handleFilterCourse,
+    allCourses,
+    setAllCourses,
   };
 };
 

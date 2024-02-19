@@ -85,9 +85,7 @@ const ItemsField = ({
           >
             {title}
           </Typography>
-          <Box>
-
-          </Box>
+          <Box></Box>
           <MySelect
             labelId="demo-simple-select-autowidth-label"
             id="demo-simple-select-autowidth"
@@ -99,7 +97,6 @@ const ItemsField = ({
               height: '40px',
               backgroundColor: 'neutral.N400',
             }}
-
           >
             {menu.map((m) => (
               <MenuItem

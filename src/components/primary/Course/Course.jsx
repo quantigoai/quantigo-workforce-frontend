@@ -65,16 +65,19 @@ const Course = () => {
     searchRef,
     featureCourses,
     setFeatureCourses,
-    basicCourses,
-    setBasicCourses,
-    beginnerCourses,
-    setBeginnerCourses,
-    intermediateCourses,
-    setIntermediateCourses,
-    advancedCourses,
-    setAdvancedCourses,
     courseCount,
     setCourseCount,
+    openModal,
+    id,
+    handleCloseFilter,
+    filter,
+    handleChange,
+    handleClickFilter,
+    handleResetFilter,
+    handleFilterCourse,
+    anchorE2,
+    allCourses,
+    setAllCourses,
   } = useCourseManagement();
 
   // const [basicCourses,setBasicCourses]=useState([])
@@ -98,16 +101,13 @@ const Course = () => {
     dispatch(getAllCourses()).then(() => {
       setIsDataLoading(false);
     });
-    dispatch(getAllCoursesNew({ level: '', search })).then((action) => {
+    dispatch(getAllCoursesNew({ filter: {}, search })).then((action) => {
       setCourseCount(action.payload.data.courses.count);
-      setBasicCourses(action.payload.data.courses.coursesByLevelList.basic);
-      setBeginnerCourses(action.payload.data.courses.coursesByLevelList.beginner);
-      setIntermediateCourses(action.payload.data.courses.coursesByLevelList.intermediate);
-      setAdvancedCourses(action.payload.data.courses.coursesByLevelList.advanced);
+      setAllCourses(action.payload.data.courses);
       setFeatureCourses(action.payload.data.courses.featureCourseList);
       setIsDataLoading(false);
     });
-  }, [courseCount, search]);
+  }, [search]);
 
   return (
     <>
@@ -126,6 +126,15 @@ const Course = () => {
               handleOpen={handleOpen}
               setSearch={setSearch}
               handleSearch={handleSearch}
+              openModal={openModal}
+              anchorE2={anchorE2}
+              id={id}
+              handleCloseFilter={handleCloseFilter}
+              filter={filter}
+              handleChange={handleChange}
+              handleClickFilter={handleClickFilter}
+              handleResetFilter={handleResetFilter}
+              handleFilterCourse={handleFilterCourse}
             />
           </Box>
           <CoursePaper>
@@ -183,32 +192,32 @@ const Course = () => {
                               courses={featureCourses}
                               handleViewDetailsButton={handleViewDetailsButton}
                             />
-                            {basicCourses?.length > 0 && (
+                            {allCourses.coursesByLevelList?.basic?.length > 0 && (
                               <CourseLevel
                                 isDataLoading={isDataLoading}
                                 title={'Basic Courses'}
-                                courses={basicCourses}
+                                courses={allCourses.coursesByLevelList?.basic}
                                 handleViewDetailsButton={handleViewDetailsButton}
                               />
                             )}
-                            {beginnerCourses?.length > 0 && (
+                            {allCourses.coursesByLevelList?.beginner?.length > 0 && (
                               <CourseLevel
                                 title={'Beginner Courses'}
-                                courses={beginnerCourses}
+                                courses={allCourses.coursesByLevelList?.beginner}
                                 handleViewDetailsButton={handleViewDetailsButton}
                               />
                             )}
-                            {intermediateCourses?.length > 0 && (
+                            {allCourses.coursesByLevelList?.intermediate?.length > 0 && (
                               <CourseLevel
                                 title={'Intermediate Courses'}
-                                courses={intermediateCourses}
+                                courses={allCourses.coursesByLevelList?.intermediate}
                                 handleViewDetailsButton={handleViewDetailsButton}
                               />
                             )}
-                            {advancedCourses?.length > 0 && (
+                            {allCourses.coursesByLevelList?.advanced?.length > 0 && (
                               <CourseLevel
                                 title={'Advance Courses'}
-                                courses={advancedCourses}
+                                courses={allCourses.coursesByLevelList?.advanced}
                                 handleViewDetailsButton={handleViewDetailsButton}
                               />
                             )}

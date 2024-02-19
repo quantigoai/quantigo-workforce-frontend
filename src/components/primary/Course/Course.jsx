@@ -70,6 +70,7 @@ const Course = () => {
   const [intermediateCourses, setIntermediateCourses] = useState([]);
   const [advancedCourses, setAdvancedCourses] = useState([]);
   const [courseCount, setCourseCount] = useState(0);
+  console.log('🚀 ~ Course ~ courseCount:', courseCount);
   // const [basicCourses,setBasicCourses]=useState([])
   const dispatch = useDispatch();
   const CoursePaper = styled(Paper)({
@@ -167,27 +168,35 @@ const Course = () => {
                       </Grid> */}
                       <Box sx={{ padding: '30px' }}>
                         <FeaturedCourse courses={featureCourses} handleViewDetailsButton={handleViewDetailsButton} />
-                        <CourseLevel
-                          isDataLoading={isDataLoading}
-                          title={'Basic Courses'}
-                          courses={basicCourses}
-                          handleViewDetailsButton={handleViewDetailsButton}
-                        />
-                        <CourseLevel
-                          title={'Beginner Courses'}
-                          courses={beginnerCourses}
-                          handleViewDetailsButton={handleViewDetailsButton}
-                        />
-                        <CourseLevel
-                          title={'Intermediate Courses'}
-                          courses={intermediateCourses}
-                          handleViewDetailsButton={handleViewDetailsButton}
-                        />
-                        <CourseLevel
-                          title={'Advance Courses'}
-                          courses={advancedCourses}
-                          handleViewDetailsButton={handleViewDetailsButton}
-                        />
+                        {basicCourses?.length && (
+                          <CourseLevel
+                            isDataLoading={isDataLoading}
+                            title={'Basic Courses'}
+                            courses={basicCourses}
+                            handleViewDetailsButton={handleViewDetailsButton}
+                          />
+                        )}
+                        {beginnerCourses?.length && (
+                          <CourseLevel
+                            title={'Beginner Courses'}
+                            courses={beginnerCourses}
+                            handleViewDetailsButton={handleViewDetailsButton}
+                          />
+                        )}
+                        {intermediateCourses?.length && (
+                          <CourseLevel
+                            title={'Intermediate Courses'}
+                            courses={intermediateCourses}
+                            handleViewDetailsButton={handleViewDetailsButton}
+                          />
+                        )}
+                        {advancedCourses?.length && (
+                          <CourseLevel
+                            title={'Advance Courses'}
+                            courses={advancedCourses}
+                            handleViewDetailsButton={handleViewDetailsButton}
+                          />
+                        )}
                       </Box>
                     </>
                   )}

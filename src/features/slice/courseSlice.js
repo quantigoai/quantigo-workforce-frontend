@@ -101,7 +101,6 @@ export const getAllRelatedCourses = createAsyncThunk('course/getAll-Related-Cour
   }
 });
 
-
 export const getACourseByID = createAsyncThunk('course/:id', async (id) => {
   try {
     return await axios.get(`${url}/courses/${id}`, {

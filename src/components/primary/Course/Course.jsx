@@ -9,7 +9,7 @@
 import { Grid, Paper, Typography, styled } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setActivePath } from '../../../features/slice/activePathSlice';
 import { getAllCourses, getAllCoursesNew } from '../../../features/slice/courseSlice';
 import { getAllSkills } from '../../../features/slice/skillSlice';
@@ -63,14 +63,20 @@ const Course = () => {
     handleSearch,
     clearSearch,
     searchRef,
+    featureCourses,
+    setFeatureCourses,
+    basicCourses,
+    setBasicCourses,
+    beginnerCourses,
+    setBeginnerCourses,
+    intermediateCourses,
+    setIntermediateCourses,
+    advancedCourses,
+    setAdvancedCourses,
+    courseCount,
+    setCourseCount,
   } = useCourseManagement();
-  const [featureCourses, setFeatureCourses] = useState([]);
-  const [basicCourses, setBasicCourses] = useState([]);
-  const [beginnerCourses, setBeginnerCourses] = useState([]);
-  const [intermediateCourses, setIntermediateCourses] = useState([]);
-  const [advancedCourses, setAdvancedCourses] = useState([]);
-  const [courseCount, setCourseCount] = useState(0);
-  console.log('🚀 ~ Course ~ courseCount:', courseCount);
+
   // const [basicCourses,setBasicCourses]=useState([])
   const dispatch = useDispatch();
   const CoursePaper = styled(Paper)({
@@ -145,8 +151,14 @@ const Course = () => {
                     </>
                   ) : (
                     <>
-                      {/* <CourseTab filterCourses={filterCourses} isLoading={isLoading} /> */}
-                      {/* <Grid
+                      {isDataLoading ? (
+                        <>
+                          <LoadingSkeleton />
+                        </>
+                      ) : (
+                        <>
+                          {/* <CourseTab filterCourses={filterCourses} isLoading={isLoading} /> */}
+                          {/* <Grid
                         container
                         spacing={1}
                         sx={{
@@ -166,38 +178,43 @@ const Course = () => {
                           </Grid>
                         ))}
                       </Grid> */}
-                      <Box sx={{ padding: '30px' }}>
-                        <FeaturedCourse courses={featureCourses} handleViewDetailsButton={handleViewDetailsButton} />
-                        {basicCourses?.length && (
-                          <CourseLevel
-                            isDataLoading={isDataLoading}
-                            title={'Basic Courses'}
-                            courses={basicCourses}
-                            handleViewDetailsButton={handleViewDetailsButton}
-                          />
-                        )}
-                        {beginnerCourses?.length && (
-                          <CourseLevel
-                            title={'Beginner Courses'}
-                            courses={beginnerCourses}
-                            handleViewDetailsButton={handleViewDetailsButton}
-                          />
-                        )}
-                        {intermediateCourses?.length && (
-                          <CourseLevel
-                            title={'Intermediate Courses'}
-                            courses={intermediateCourses}
-                            handleViewDetailsButton={handleViewDetailsButton}
-                          />
-                        )}
-                        {advancedCourses?.length && (
-                          <CourseLevel
-                            title={'Advance Courses'}
-                            courses={advancedCourses}
-                            handleViewDetailsButton={handleViewDetailsButton}
-                          />
-                        )}
-                      </Box>
+                          <Box sx={{ padding: '30px' }}>
+                            <FeaturedCourse
+                              courses={featureCourses}
+                              handleViewDetailsButton={handleViewDetailsButton}
+                            />
+                            {basicCourses?.length > 0 && (
+                              <CourseLevel
+                                isDataLoading={isDataLoading}
+                                title={'Basic Courses'}
+                                courses={basicCourses}
+                                handleViewDetailsButton={handleViewDetailsButton}
+                              />
+                            )}
+                            {beginnerCourses?.length > 0 && (
+                              <CourseLevel
+                                title={'Beginner Courses'}
+                                courses={beginnerCourses}
+                                handleViewDetailsButton={handleViewDetailsButton}
+                              />
+                            )}
+                            {intermediateCourses?.length > 0 && (
+                              <CourseLevel
+                                title={'Intermediate Courses'}
+                                courses={intermediateCourses}
+                                handleViewDetailsButton={handleViewDetailsButton}
+                              />
+                            )}
+                            {advancedCourses?.length > 0 && (
+                              <CourseLevel
+                                title={'Advance Courses'}
+                                courses={advancedCourses}
+                                handleViewDetailsButton={handleViewDetailsButton}
+                              />
+                            )}
+                          </Box>
+                        </>
+                      )}
                     </>
                   )}
                 </>

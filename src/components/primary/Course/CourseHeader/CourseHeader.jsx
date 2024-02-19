@@ -34,9 +34,11 @@ const CourseHeader = ({
             }}
           >
             <CommonHeader title="List of Courses" customButton="Create User" />
-            <Typography sx={{ opacity: '0.7' }} variant="wpf_p3_regular" color={'neutral.750'}>
-              {courseCount === 1 ? courseCount + ' Result' : courseCount + ' Results'} found
-            </Typography>
+            {courseCount > 0 && (
+              <Typography sx={{ opacity: '0.7', height: '13px' }} variant="wpf_p3_regular" color={'neutral.750'}>
+                {courseCount === 1 ? courseCount + ' Result' : courseCount + ' Results'} found
+              </Typography>
+            )}
           </Grid>
         </Box>
 

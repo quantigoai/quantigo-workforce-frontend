@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -6,19 +7,33 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import useToaster from "../../../../../customHooks/useToaster";
 import { setActiveChapterIndex, setActiveCourseId } from "../../../../../features/slice/activePathSlice";
+=======
+import { yupResolver } from '@hookform/resolvers/yup';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import * as Yup from 'yup';
+import useToaster from '../../../../../customHooks/useToaster';
+import { setActiveChapterIndex, setActiveCourseId } from '../../../../../features/slice/activePathSlice';
+>>>>>>> 4f07cb4f5576cf366daebb659f5e34703c2e68db
 import {
   createCourse,
   getACourseByID,
   getAllChapterFromACourse,
+  getAllCourses,
   getCourseQuizzesResults,
 } from "../../../../../features/slice/courseSlice";
 
 const useCourseManagement = () => {
+  const { level } = useParams();
   const { role } = useSelector((state) => state.user.user);
   const { course } = useSelector((state) => state.course);
   const [filterCourses, setFilterCourses] = useState([]);
   const [isDataLoading, setIsDataLoading] = useState(true);
   const [open, setOpen] = useState(false);
+  const searchRef = React.useRef(null);
+  const [search, setSearch] = useState('');
   const { courses, isLoading } = useSelector((state) => state.course);
   const { isLightTheme } = useSelector((state) => state.theme);
   const navigate = useNavigate();
@@ -28,7 +43,11 @@ const useCourseManagement = () => {
   const [dateTime, setDateTime] = useState("");
   const [outcomes, setOutcomes] = useState([""]);
   const [skill, setSkill] = React.useState([]);
+<<<<<<< HEAD
   const [hub, setHub] = useState(["Dhaka", "Mymensingh", "Sirajganj", "Khulna", "Chuadanga"]);
+=======
+  const [hub, setHub] = useState(['Dhaka', 'Mymensingh', 'Sirajganj', 'Khulna', 'Chuadanga']);
+>>>>>>> 4f07cb4f5576cf366daebb659f5e34703c2e68db
   const dispatch = useDispatch();
   const toast = useToaster();
   const CourseCreateSchema = Yup.object().shape({
@@ -116,6 +135,18 @@ const useCourseManagement = () => {
   const { handleSubmit, reset } = methods;
   const [isCourseLoading, setIsCourseLoading] = useState(false);
 
+  const handleSearch = (e) => {
+    // setPagination((prevPagination) => ({
+    //   ...prevPagination,
+    //   currentPage: 0,
+    // }));
+    setSearch(e.target.value);
+  };
+
+  const clearSearch = () => {
+    setSearch('');
+    searchRef.current.value = '';
+  };
   const onSubmit = (data) => {
     const preRequisiteCoursesColl = preRequisiteCourses.map((preRequisite) => {
       return preRequisite._id;
@@ -207,6 +238,11 @@ const useCourseManagement = () => {
     setOutcomes,
     hub,
     handleChangeHub,
+    search,
+    setSearch,
+    handleSearch,
+    clearSearch,
+    searchRef,
   };
 };
 

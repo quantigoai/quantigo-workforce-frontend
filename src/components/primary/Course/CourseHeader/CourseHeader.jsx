@@ -2,8 +2,18 @@ import { Box, Button, Grid, IconButton, InputBase, Paper, Typography } from '@mu
 import CommonHeader from '../../../shared/CustomComponenet/CommonHeader/CommonHeader';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import SearchIcon from '@mui/icons-material/Search';
-
-const CourseHeader = ({ handleOpen, open, setOpen, courseCount }) => {
+import ClearIcon from '@mui/icons-material/Clear';
+const CourseHeader = ({
+  handleOpen,
+  open,
+  setOpen,
+  courseCount,
+  search,
+  searchRef,
+  clearSearch,
+  setSearch,
+  handleSearch,
+}) => {
   return (
     <>
       <Box
@@ -13,7 +23,7 @@ const CourseHeader = ({ handleOpen, open, setOpen, courseCount }) => {
           backgroundColor: 'neutral.N000',
         }}
       >
-        <Box sx={{ width: '30%', padding: '12px 16px' }}>
+        <Box sx={{ width: '30%', padding: '8px 16px' }}>
           <Grid
             container
             sx={{
@@ -56,32 +66,44 @@ const CourseHeader = ({ handleOpen, open, setOpen, courseCount }) => {
               <SearchIcon />
             </IconButton>
             <InputBase
-              //   inputRef={searchRef}
-              // onBlur={(e) => handleSearch(e)}
-              sx={{ ml: 0, flex: 1 }}
-              placeholder="Search"
-              //   onKeyDown={(ev) => {
-              //     if (ev.key === "Enter") {
-              //       handleSearch(ev);
-              //       ev.preventDefault();
-              //     }
-              //   }}
-            />
-            {/* <Button
+              inputRef={searchRef}
               sx={{
-                minWidth: "40px",
+                ml: 0,
+                flex: 1,
+                fontFamily: 'Inter',
+                fontSize: { xl: '14px', xxl: '16px', lg: '12px' },
               }}
-            >
-              {/* <ClearIcon
+              placeholder="Search"
+              onKeyDown={(ev) => {
+                if (ev.key === 'Enter') {
+                  handleSearch(ev);
+                  ev.preventDefault();
+                }
+              }}
+            />
+            {search && (
+              <Button
                 sx={{
-                  color: "neutral.N300",
-                  "&:hover": {
-                    color: "#F04438",
-                  },
+                  height: '30px',
+                  minWidth: '40px',
                 }}
-                onClick={clearSearch}
-              /> */}
-            {/* </Button> */}
+              >
+                <ClearIcon
+                  sx={{
+                    height: {
+                      lg: '20px',
+                      xl: '40px',
+                      xxl: '40px',
+                    },
+                    color: 'neutral.N300',
+                    '&:hover': {
+                      color: '#F04438',
+                    },
+                  }}
+                  onClick={clearSearch}
+                />
+              </Button>
+            )}
           </Paper>
 
           <IconButton

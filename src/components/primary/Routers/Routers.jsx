@@ -34,10 +34,7 @@ import ProjectLIstIndex2 from '../ProjectLIstNew2/ProjectLIstIndex2';
 import CreateQuiz from '../Quiz/CreateQuiz';
 import Skills from '../Skill/Skills';
 import PrivateRoute from './PrivateRoute';
-import BasicCourseAll from '../Course/BasicCourseAll';
-import BeginnerCourseAll from '../Course/BeginnerCourseAll';
-import IntermediateCourseAll from '../Course/IntermediateCourseAll';
-import AdvanceCourseAll from '../Course/AdvanceCourseAll';
+import CourseAllPage from '../Course/CourseAllPage';
 
 export const roles = {
   admin: 'admin',
@@ -95,10 +92,9 @@ const Routers = () => {
           {/* <Route path={'quiz-result'} element={<ShowResult />} /> */}
         </Route>
         <Route path={'/course-landing/:id'} element={<CourseLandingPageIndex />}></Route>
-        <Route path={'/basic-course'} element={<BasicCourseAll />}></Route>
-        <Route path={'/beginner-course'} element={<BeginnerCourseAll />}></Route>
-        <Route path={'/intermediate-course'} element={<IntermediateCourseAll />}></Route>
-        <Route path={'/advance-course'} element={<AdvanceCourseAll />}></Route>
+        {/* <Route path={'/basic-course'} element={<BasicCourseAll />}></Route> */}
+        <Route path={'/all-course/:level'} element={<CourseAllPage />}></Route>
+
         <Route path={'/course-homepage/:id'} element={<CourseHomePageIndex />}></Route>
 
         {/* <Route path={"/course-landing/content/:id"} element={<ChapterViewIndex />}></Route> */}

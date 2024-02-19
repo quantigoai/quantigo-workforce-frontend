@@ -23,13 +23,12 @@ const certificateStyle = {
   zIndex: "50",
   top: 0,
 };
-const CourseLandingContent = ({ course }) => {
+const CourseLandingContent = ({ course, handleViewDetailsButton }) => {
   const [value, setValue] = React.useState();
   const aboutRef = useRef(null);
   const coursesRef = useRef(null);
   const testimonialRef = useRef(null);
   const { isLightTheme } = useSelector((state) => state.theme);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
 
@@ -53,10 +52,10 @@ const CourseLandingContent = ({ course }) => {
             <CourseLandingAbout />
           </Box>
           <Box sx={{ mt: "48px" }}>
-            <CourseContentSkills course={course} />
+            <CourseContentSkills course={course} handleViewDetailsButton={handleViewDetailsButton} />
           </Box>
           <Box ref={coursesRef} sx={{ mt: "48px" }}>
-            <CourseChapterContent course={course} />
+            <CourseChapterContent course={course} handleViewDetailsButton={handleViewDetailsButton} />
           </Box>
         </Box>
         <Box sx={{ ...certificateStyle, width: { xxl: "25%", xl: "30%", lg: "25%" } }}>
@@ -67,7 +66,7 @@ const CourseLandingContent = ({ course }) => {
         <CourseTestimonial course={course} />
       </Box>
       <Box ref={testimonialRef} sx={{ mt: "48px", padding: "24px", backgroundColor: isLightTheme ? "#F8FAFC" : "" }}>
-        <RelatedCourseIndex course={course} />
+        <RelatedCourseIndex course={course} handleViewDetailsButton={handleViewDetailsButton} />
       </Box>
     </Box>
   );

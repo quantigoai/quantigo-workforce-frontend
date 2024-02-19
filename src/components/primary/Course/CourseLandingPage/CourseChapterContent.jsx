@@ -5,11 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import CourseChapterAccordion from "./CourseChapterAccordion";
 import { getAllCourseSeries } from "../../../../features/slice/courseSlice";
 
-const CourseChapterContent = ({ course }) => {
+const CourseChapterContent = ({ course,handleViewDetailsButton }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { courseChapters } = useSelector((state) => state.course);
   const [coursesSeries, setCoursesSeries] = useState([]);
-  console.log("🚀 ~ CourseChapterContent ~ coursesSeries:", coursesSeries);
   const dispatch = useDispatch();
   const accordionBoxNumberStyle = {
     // backgroundColor: "#E2E8F0",
@@ -28,7 +27,7 @@ const CourseChapterContent = ({ course }) => {
       console.log(action.payload.data);
       setCoursesSeries(action.payload.data.coursesSeries);
     });
-  }, []);
+  }, [course]);
   const arr = [0, 1, 2, 3, 4, 5];
   return (
     <Box>
@@ -92,7 +91,9 @@ const CourseChapterContent = ({ course }) => {
                   <Typography
                     // color={"grey.600"}
                     variant='wpf_p3_semiBold'
+                    sx={{ cursor: "pointer" }}
                     // sx={{ opacity: "0.6", }}
+                    onClick={() => handleViewDetailsButton(item._id, "All")}
                   >
                     {item.name}
                   </Typography>
@@ -102,7 +103,12 @@ const CourseChapterContent = ({ course }) => {
                   </Typography>
                 </Grid>
                 <Grid item xs={2} sx={{ px: "2%", alignItems: "center", justifyContent: "end", display: "flex" }}>
-                  <img src={arrowIcon} alt='' />
+                  <img
+                    src={arrowIcon}
+                    alt=''
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleViewDetailsButton(item._id, "All")}
+                  />
                 </Grid>
               </Grid>
             </Box>

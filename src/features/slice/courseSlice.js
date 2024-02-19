@@ -88,6 +88,20 @@ export const getAllCourseSeries = createAsyncThunk('course/get-all-courses-serie
   }
 });
 
+// all course series
+export const getAllRelatedCourses = createAsyncThunk('course/getAll-Related-Courses/:id', async (id) => {
+  try {
+    return await axios.get(`${url}/courses/get-all-related-courses/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
+
 export const getACourseByID = createAsyncThunk('course/:id', async (id) => {
   try {
     return await axios.get(`${url}/courses/${id}`, {
@@ -373,6 +387,16 @@ const courseSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(getAllCourseSeries.rejected, (state) => {
+        state.isLoading = false;
+        state.error = '';
+      })
+      .addCase(getAllRelatedCourses.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllRelatedCourses.fulfilled, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(getAllRelatedCourses.rejected, (state) => {
         state.isLoading = false;
         state.error = '';
       })

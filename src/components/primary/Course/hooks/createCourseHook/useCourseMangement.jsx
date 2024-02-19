@@ -2,7 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import useToaster from '../../../../../customHooks/useToaster';
 import { setActiveChapterIndex, setActiveCourseId } from '../../../../../features/slice/activePathSlice';
@@ -172,6 +172,8 @@ const useCourseManagement = () => {
   };
 
   const handleViewDetailsButton = (id, courseDirection) => {
+    console.log('🚀 ~ handleViewDetailsButton ~ id:', id);
+    console.log('SADFS');
     setIsCourseLoading(true);
     dispatch(getACourseByID(id))
       .then((res) => {
@@ -179,12 +181,13 @@ const useCourseManagement = () => {
         dispatch(setActiveChapterIndex(0));
         dispatch(getAllChapterFromACourse(id)).then((res) => {
           dispatch(getCourseQuizzesResults(id)).then((results) => {
-            setIsCourseLoading(false);
             // navigate(`/course-details/${id}/index`);
             if (courseDirection === 'MyCourse') {
               navigate(`/course-homepage/${id}`);
+              setIsCourseLoading(false);
             } else {
               navigate(`/course-landing/${id}`);
+              setIsCourseLoading(false);
             }
           });
         });

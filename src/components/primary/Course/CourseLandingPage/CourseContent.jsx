@@ -6,7 +6,6 @@ import logo3 from "../../../../assets/images/courses/u_book-alt.png";
 import MoreComponents from "../CourseHomePage/MoreComponents";
 
 const CourseContent = ({ course }) => {
-  console.log("🚀 ~ CourseContent ~ course:", course)
   return (
     <Box sx={{ display: "flex", paddingY: "16px" }}>
       <Box sx={{ display: "flex", justifyContent: "space-around", alignItems: "center", paddingRight: "20px" }}>

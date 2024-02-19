@@ -8,6 +8,7 @@ import RectangleIcon from "../../../../assets/images/courses/Rectangle 12.svg";
 import ArrowIcon from "../../../../assets/images/courses/Vector.svg";
 
 import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
+import useCourseManagement from "../hooks/createCourseHook/useCourseMangement";
 const MyCustomCard = {
   padding: "0 0 0 0 ",
   width: "100%",
@@ -42,7 +43,7 @@ const ButtonHover = {
   backgroundColor: "rgba(255, 154, 69, 0.1)",
 };
 
-const RelatedCourseCard = ({ course }) => {
+const RelatedCourseCard = ({ course, handleViewDetailsButton }) => {
   const imageUrl = course.images?.length ? `${course.images[0]}` : imageSample;
 
   const [hovering, setHovering] = useState(false);
@@ -67,6 +68,23 @@ const RelatedCourseCard = ({ course }) => {
   const handleCourseChange = () => {};
   const [buttonStyle, setButtonStyle] = useState(ButtonInitial);
 
+  const screenSize = window.innerWidth;
+  let width = "90%";
+  let height = "90%";
+  // let height = '10%'; // Default width for large screens
+  if (screenSize >= 1500) {
+    // Extra-large screens
+    width = 328;
+    height = 180;
+  } else if (screenSize === 1440) {
+    // Large screens
+    width = 278;
+    height = 160;
+  } else if (screenSize >= 992) {
+    width = 250;
+    height = 160;
+  }
+
   useEffect(() => {
     if (hovering && !buttonHovering) {
       setButtonStyle(ButtonDivMouseOn);
@@ -79,93 +97,64 @@ const RelatedCourseCard = ({ course }) => {
 
   return (
     <>
+      {/* */}
+
       <Box
-        sx={{
-          height: "350px",
-          //   height: "100%",
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          //!! Need to remove shadow later
-          boxShadow: "0px 3px 2px 0px rgba(37, 62, 92, 0.08)",
-          // mx: "4%",
-          //   px: 2,
-          // py: "0%",
-          // backgroundColor: "neutral.N000",
-          borderRadius: "10px",
-          border: "1px solid white",
-        }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+        }}
       >
-        <Box
-          sx={{
-            width: "100%",
-            height: "49%",
-            backgroundColor: "#fff",
-            pt: 0,
-            mb: 0,
-            overflow: "hidden",
-            cursor: "pointer",
-          }}
-          //   onClick={() => handleViewDetailsButton(course._id)}
-        >
+        <Box sx={{ cursor: "pointer" }} onClick={() => handleViewDetailsButton(course._id, "All")}>
           <img
-            style={hovering ? { ...MyCustomCard, ...MyCustomCardHover } : MyCustomCard}
+            style={
+              hovering
+                ? {
+                    ...MyCustomCard,
+                    ...MyCustomCardHover,
+                    width,
+                    height,
+                  }
+                : { ...MyCustomCard, width, height }
+            }
             src={imageUrl}
-            alt={course.name}
+            alt=''
           />
         </Box>
-
-        {/* Chips */}
-
-        {/* Content */}
         <Box
           sx={{
-            height: "51%",
-            backgroundColor: "neutral.N000",
-            borderRadius: "10px",
+            paddingX: "16px",
+            paddingY: "12px",
           }}
         >
-          <Box sx={{ px: "4%", height: "65%", pb: "0", py: 2 }}>
-            <Grid
-              container
-              // onClick={() => handleViewDetailsButton(course._id)}
-            >
-              <Typography variant='wpf_p4_semiBold' color={"primary.P600"} sx={{ cursor: "pointer", mb: 1 }}>
-                {capitalizeFirstLetter(course.category)} <img src={RectangleIcon} />{" "}
-                {capitalizeFirstLetter(course.level)}
-              </Typography>
-            </Grid>
-            <Grid
-              container
-              // onClick={() => handleViewDetailsButton(course._id)}
-            >
-              <Typography variant='wpf_h6_semiBold' color={"grey.500"} sx={{ cursor: "pointer" }}>
-                {/* {course.name} */}
+          <Box>
+            <Typography variant='wpf_p4_semiBold' color={"primary.P600"} sx={{ mb: 1 }}>
+              {capitalizeFirstLetter(course.category)} <img src={RectangleIcon} /> {capitalizeFirstLetter(course.level)}
+            </Typography>
+          </Box>
+          <Box sx={{ height: "110px" }}>
+            <Box>
+              <Typography
+                onClick={() => handleViewDetailsButton(course._id, "All")}
+                variant='wpf_h6_semiBold'
+                color={"grey.500"}
+                sx={{ cursor: "pointer", lineHeight: "20px" }}
+              >
                 {course.name?.length > 50 ? course.name?.substring(0, 50) + "....." : course.name}
               </Typography>
-            </Grid>
-            <Grid mt={1} container>
-              <Typography variant='wpf_h8_regular' color={"grey.550"}>
-                {course.description?.length > 100
-                  ? course.description?.substring(0, 100) + "....."
-                  : course.description}
-              </Typography>
-            </Grid>
+            </Box>
+            <Box></Box>{" "}
+            <Typography sx={{ lineHeight: "18px" }} variant='wpf_h8_regular' color={"grey.550"}>
+              {course.description?.length > 100 ? course.description?.substring(0, 70) + "....." : course.description}
+            </Typography>
           </Box>
-          {/* //chip  */}
-          <Box sx={{ px: "4%", height: "35%" }}>
-            <Grid container sx={{ py: "8%" }}>
-              {/* <Button sx={{ textTransform: "none", color: "#1E293B"  }}> */}
-              <Typography variant='wpf_p4_medium'>View Details</Typography>
+          <Box onClick={() => handleViewDetailsButton(course._id, "All")} sx={{ cursor: "pointer" }}>
+            <Typography variant='wpf_p4_medium'>View Details</Typography>
 
-              <img style={{ marginLeft: "15px" }} src={ArrowIcon} />
-              {/* </Button> */}
-            </Grid>
+            <img style={{ marginLeft: "15px" }} src={ArrowIcon} />
           </Box>
-
-          {/* //progress bar  */}
         </Box>
       </Box>
     </>

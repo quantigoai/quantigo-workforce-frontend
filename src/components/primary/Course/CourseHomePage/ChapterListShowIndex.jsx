@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import CoursePreIcon from "../../../../assets/images/courses/CoursePre.svg";
 import arrowIcon from "../../../../assets/images/courses/arrowIcon.svg";
 import course_Complete from "../../../../assets/images/courses/course_Complete.svg";
+import editIcon from "../../../../assets/images/courses/EditIcon.svg";
+
 import Rectangle from "../../../../assets/images/courses/Rectangle 257.svg";
 import { useNavigate } from "react-router-dom";
 import { setActiveChapterIndex } from "../../../../features/slice/activePathSlice";
@@ -108,7 +110,7 @@ const ChapterListShowIndex = () => {
                   xl={0.78}
                   sx={{ backgroundColor: "", alignItems: "center", justifyContent: "center", display: "flex" }}
                 >
-                  <ChapterProgressbar item={item}/>
+                  <ChapterProgressbar item={item} />
                   {/* <img src={course_Complete} alt='' /> */}
                 </Grid>
                 <Grid
@@ -128,12 +130,12 @@ const ChapterListShowIndex = () => {
                   >
                     {item.title}
                   </Typography>
-                  {(role === "admin" || role === "trainer") && (
+                  {/* {(role === "admin" || role === "trainer") && (
                     <Button sx={{ height: "20px" }} onClick={() => handleEditChapter(item._id, index)}>
                       {" "}
                       <i className='ri-edit-line'></i>
                     </Button>
-                  )}
+                  )} */}
                   <br />
                   <Typography variant='wpf_p4_regular' color={"grey.600"}>
                     {`Duration: ${item.estimatedTimeToRead} minutes`}
@@ -171,12 +173,25 @@ const ChapterListShowIndex = () => {
                     label={`Chapter ${index + 1}`}
                     // label='Chapter 01'
                   />
-                  <img
-                    src={arrowIcon}
-                    alt=''
-                    style={{ cursor: "pointer" }}
-                    onClick={() => handleChapter(item, index)}
-                  />
+                  {role === "admin" || role === "trainer" ? (
+                    <>
+                      <img
+                        src={editIcon}
+                        alt=''
+                        style={{ cursor: "pointer" }}
+                        onClick={() => handleEditChapter(item._id, index)}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <img
+                        src={arrowIcon}
+                        alt=''
+                        style={{ cursor: "pointer" }}
+                        onClick={() => handleChapter(item, index)}
+                      />
+                    </>
+                  )}
                 </Grid>
               </Grid>
             </Box>

@@ -180,7 +180,8 @@ const CourseLandingHeader = () => {
             Enroll Now
           </Button>
           <Typography variant='wpf_p3_regular' color={"grey.550"} sx={{ marginLeft: "20px" }}>
-            <span style={{ color: "#344054", fontWeight: "600" }}>102</span> already enrolled
+            <span style={{ color: "#344054", fontWeight: "600" }}>{course.totalCurrentEnrolledStudents}</span> already
+            enrolled
           </Typography>
         </Box>
         {!isEnrollAble && (

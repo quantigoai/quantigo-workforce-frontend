@@ -1,6 +1,5 @@
-import {Box, styled, TextField, Typography} from "@mui/material";
-import {Controller, useFormContext} from "react-hook-form";
-
+import { Box, styled, TextField, Typography } from "@mui/material";
+import { Controller, useFormContext } from "react-hook-form";
 
 export const CCTextField = styled(TextField)(() => ({
   borderRadius: "5px",
@@ -43,6 +42,7 @@ export default function TextFieldCourse({
   isRequired,
   ...other
 }) {
+  console.log("🚀 ~ defaultValue:", defaultValue);
   const { control } = useFormContext();
 
   return (
@@ -52,7 +52,7 @@ export default function TextFieldCourse({
       render={({ field, fieldState: { error } }) => (
         <Box>
           <Typography
-            variant="wpf_h7_medium"
+            variant='wpf_h7_medium'
             sx={{
               mb: 0,
               color: "neutral.N300",
@@ -62,14 +62,14 @@ export default function TextFieldCourse({
           </Typography>
           <Box sx={{ width: "100%" }}>
             <CCTextField
-              size="small"
+              size='small'
               type={isNumber || isNumberPdr ? "number" : "text"}
-              id="outlined-basic"
+              id='outlined-basic'
               {...field}
               // multiline
               // rows={3}
               fullWidth
-              variant="outlined"
+              variant='outlined'
               // required={label === "Benchmark" ? false : true}
               sx={{
                 backgroundColor: "neutral.N000",
@@ -78,7 +78,7 @@ export default function TextFieldCourse({
               value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
               error={!!error}
               helperText={error ? error?.message : helperText}
-              autoComplete="off"
+              autoComplete='off'
               {...other}
               InputProps={{
                 inputProps: isNumberPdr

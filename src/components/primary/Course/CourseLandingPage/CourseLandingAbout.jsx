@@ -38,11 +38,7 @@ const CourseLandingAbout = () => {
           <>
             <Box sx={boxStyle}>
               <i style={{ color: '#667085' }} className="ri-check-line"></i>
-              <Typography
-                sx={{ marginLeft: '8px' }}
-                variant="wpf_p3_regular"
-                color={'grey.500'}
-              >
+              <Typography sx={{ marginLeft: '8px' }} variant="wpf_p3_regular" color={'grey.500'}>
                 {item}
               </Typography>
             </Box>

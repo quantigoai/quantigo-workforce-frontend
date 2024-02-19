@@ -35,9 +35,9 @@ const initialState = {
 // All Courses get request
 export const getAllCourses = createAsyncThunk('courses', async (data) => {
   try {
-    let query = '?';
+    let query = '';
     if (data) {
-      query += `level=${data}`;
+      query += `?level=${data}`;
     }
     return await axios.get(`${url}/courses${query}`, {
       headers: {

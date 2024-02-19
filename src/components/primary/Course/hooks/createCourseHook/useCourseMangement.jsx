@@ -2,7 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 import useToaster from '../../../../../customHooks/useToaster';
 import { setActiveChapterIndex, setActiveCourseId } from '../../../../../features/slice/activePathSlice';
@@ -10,10 +10,12 @@ import {
   createCourse,
   getACourseByID,
   getAllChapterFromACourse,
+  getAllCourses,
   getCourseQuizzesResults,
 } from '../../../../../features/slice/courseSlice';
 
 const useCourseManagement = () => {
+  const { level } = useParams();
   const { role } = useSelector((state) => state.user.user);
   const { course } = useSelector((state) => state.course);
   const [filterCourses, setFilterCourses] = useState([]);
@@ -157,6 +159,13 @@ const useCourseManagement = () => {
         toast.trigger(action.error.message, 'error');
       } else {
         toast.trigger(action.payload.data.message, 'success');
+        if (level) {
+          dispatch(getAllCourses({ level: level, search })).then((action) => {
+            // setAllCourse(action.payload.data.courses);
+            // setCourseCount(action.payload.data.count);
+            setIsDataLoading(false);
+          });
+        }
         handleClose();
       }
     });
@@ -222,7 +231,7 @@ const useCourseManagement = () => {
     setSearch,
     handleSearch,
     clearSearch,
-    searchRef
+    searchRef,
   };
 };
 

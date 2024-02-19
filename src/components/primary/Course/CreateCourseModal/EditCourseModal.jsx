@@ -137,7 +137,7 @@ const EditCourseModal = ({
 }) => {
   const { course } = useSelector((state) => state.course);
 
-  console.log("🚀 ~ course:", course)
+  console.log("🚀 ~ course:", course);
   const CourseCreateSchema = Yup.object().shape({
     name: Yup.string().required("Course name is required"),
     description: Yup.string().required("Course description is required"),
@@ -314,12 +314,12 @@ const EditCourseModal = ({
                     </LineStack>
                     <LineStack>
                       <FieldBox>
-                        {/* <DateTimeField
-                            label={'Live Session Date and Time'}
-                            dateTime={dateTime}
-                            defaultValue={course.liveSessionStartedAt}
-                            handleDateTime={handleDateTime}
-                          /> */}
+                        <DateTimeField
+                          label={"Live Session Date and Time"}
+                          dateTime={dateTime}
+                          defaultValue={course.liveSessionStartedAt}
+                          handleDateTime={handleDateTime}
+                        />
                       </FieldBox>
                       <FieldBox>
                         <TextFieldCourse

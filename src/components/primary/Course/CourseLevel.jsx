@@ -10,13 +10,13 @@ const CourseLevel = ({ title, courses, handleViewDetailsButton }) => {
   const navigate = useNavigate();
   const handleSeeMore = () => {
     if (title === 'Basic Courses') {
-      navigate('/basic-course');
+      navigate(`/all-course/basic`);
     } else if (title === 'Beginner Courses') {
-      navigate('/beginner-course');
+      navigate('/all-course/beginner');
     } else if (title === 'Intermediate Courses') {
-      navigate('/intermediate-course');
+      navigate('/all-course/intermediate');
     } else {
-      navigate('/advance-course');
+      navigate('/all-course/advanced');
     }
   };
   return (
@@ -33,7 +33,7 @@ const CourseLevel = ({ title, courses, handleViewDetailsButton }) => {
             justifyContent: 'center',
             alignItems: 'center',
             color: '#266AED',
-            mr: { xxl: '50px', xl: '-10px', lg: '' },
+            mr: { xxl: '50px', xl: '0px', lg: '' },
           }}
           variant="wpf_p3_medium_3"
         >

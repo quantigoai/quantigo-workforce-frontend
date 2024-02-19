@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CourseTab from './CourseTab';
 import LoadingSkeleton from '../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton';
 import CourseHeader from './CourseHeader/CourseHeader';
-import { Box, Paper, styled } from '@mui/material';
+import { Box, Paper, Typography, styled } from '@mui/material';
 import LoadingComponent from '../../shared/Loading/LoadingComponent';
 import useCourseManagement from './hooks/createCourseHook/useCourseMangement';
 import { useDispatch } from 'react-redux';
@@ -10,8 +10,9 @@ import { getAllSkills } from '../../../features/slice/skillSlice';
 import { getAllCourses, getAllCoursesNew } from '../../../features/slice/courseSlice';
 import CustomCard from './CustomCard';
 import CourseCreateModal from './CreateCourseModal/CourseCreateModal';
+import { useParams } from 'react-router-dom';
 
-const BasicCourseAll = () => {
+const CourseAllPage = () => {
   const {
     open,
     setOpen,
@@ -45,6 +46,11 @@ const BasicCourseAll = () => {
     setOutcomes,
     hub,
     handleChangeHub,
+    search,
+    setSearch,
+    handleSearch,
+    clearSearch,
+    searchRef,
   } = useCourseManagement();
   const CoursePaper = styled(Paper)({
     width: '100%',
@@ -58,19 +64,20 @@ const BasicCourseAll = () => {
     backgroundColor: isLightTheme ? '#F2F6FC' : '#212121',
     boxShadow: '0px 1px 3px 0px #09008014',
   });
+  const { level } = useParams();
   const [allCourse, setAllCourse] = useState([]);
-  const [count, setCount] = useState(0);
 
   const dispatch = useDispatch();
+  const [courseCount, setCourseCount] = useState(0);
   useEffect(() => {
     // dispatch(setActivePath('Course'));
     dispatch(getAllSkills());
-    dispatch(getAllCourses('basic')).then((action) => {
+    dispatch(getAllCourses({ level: level, search })).then((action) => {
       setAllCourse(action.payload.data.courses);
-      setCount(action.payload.data.courses.count || action.payload.data.courses.length);
+      setCourseCount(action.payload.data.count);
       setIsDataLoading(false);
     });
-  }, []);
+  }, [courseCount, search]);
 
   return (
     <>
@@ -79,7 +86,17 @@ const BasicCourseAll = () => {
       ) : (
         <Box className="content">
           <Box className="contentHeader">
-            <CourseHeader courseCount={count} open={open} setOpen={setOpen} handleOpen={handleOpen} />
+            <CourseHeader
+              search={search}
+              searchRef={searchRef}
+              clearSearch={clearSearch}
+              courseCount={courseCount}
+              open={open}
+              setOpen={setOpen}
+              handleOpen={handleOpen}
+              setSearch={setSearch}
+              handleSearch={handleSearch}
+            />
           </Box>
           <CoursePaper>
             <>
@@ -115,22 +132,28 @@ const BasicCourseAll = () => {
                           gap: { xxl: '20px', xl: '15px', lg: '12px' },
                         }}
                       >
-                        {allCourse?.map((course) => (
-                          <Box
-                            sx={{
-                              backgroundColor: isLightTheme ? '#fff' : '#000',
-                              width: { xxl: '328px', xl: '278px', lg: '250px' },
-                              borderRadius: '10px',
-                            }}
-                            key={course._id}
-                          >
-                            <CustomCard
-                              courseDirection="all"
-                              handleViewDetailsButton={handleViewDetailsButton}
-                              course={course}
-                            />
-                          </Box>
-                        ))}
+                        {allCourse.length === 0 ? (
+                          <>
+                            <Typography variant="wpf_h6_semiBold">No course Found</Typography>
+                          </>
+                        ) : (
+                          allCourse?.map((course) => (
+                            <Box
+                              sx={{
+                                backgroundColor: isLightTheme ? '#fff' : '#000',
+                                width: { xxl: '328px', xl: '278px', lg: '250px' },
+                                borderRadius: '10px',
+                              }}
+                              key={course._id}
+                            >
+                              <CustomCard
+                                courseDirection="all"
+                                handleViewDetailsButton={handleViewDetailsButton}
+                                course={course}
+                              />
+                            </Box>
+                          ))
+                        )}
                       </Box>
                     </>
                   )}
@@ -169,4 +192,4 @@ const BasicCourseAll = () => {
   );
 };
 
-export default BasicCourseAll;
+export default CourseAllPage;

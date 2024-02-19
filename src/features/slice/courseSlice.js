@@ -34,10 +34,14 @@ const initialState = {
 };
 // All Courses get request
 export const getAllCourses = createAsyncThunk('courses', async (data) => {
+  const { level, search } = data;
   try {
     let query = '';
-    if (data) {
-      query += `?level=${data}`;
+    if (level) {
+      query += `?level=${level}`;
+    }
+    if (search) {
+      query += `&search=${search}`;
     }
     return await axios.get(`${url}/courses${query}`, {
       headers: {
@@ -52,10 +56,14 @@ export const getAllCourses = createAsyncThunk('courses', async (data) => {
 // All Courses New
 
 export const getAllCoursesNew = createAsyncThunk('coursesNew', async (data) => {
+  const { level, search } = data;
   try {
-    let query = '?';
-    if (data) {
-      query += `level=${data}`;
+    let query = '';
+    if (level) {
+      query += `?level=${level}`;
+    }
+    if (search) {
+      query += `?search=${search}`;
     }
     return await axios.get(`${url}/courses/get-all-courses${query}`, {
       headers: {

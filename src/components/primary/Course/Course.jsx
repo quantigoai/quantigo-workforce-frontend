@@ -8,7 +8,7 @@
  */
 import { Grid, Paper, Typography, styled } from '@mui/material';
 import Box from '@mui/material/Box';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setActivePath } from '../../../features/slice/activePathSlice';
 import { getAllCourses, getAllCoursesNew } from '../../../features/slice/courseSlice';
@@ -58,6 +58,11 @@ const Course = () => {
     setOutcomes,
     hub,
     handleChangeHub,
+    search,
+    setSearch,
+    handleSearch,
+    clearSearch,
+    searchRef,
   } = useCourseManagement();
   const [featureCourses, setFeatureCourses] = useState([]);
   const [basicCourses, setBasicCourses] = useState([]);
@@ -86,7 +91,7 @@ const Course = () => {
     dispatch(getAllCourses()).then(() => {
       setIsDataLoading(false);
     });
-    dispatch(getAllCoursesNew()).then((action) => {
+    dispatch(getAllCoursesNew({ level: '', search })).then((action) => {
       setCourseCount(action.payload.data.courses.count);
       setBasicCourses(action.payload.data.courses.coursesByLevelList.basic);
       setBeginnerCourses(action.payload.data.courses.coursesByLevelList.beginner);
@@ -95,7 +100,7 @@ const Course = () => {
       setFeatureCourses(action.payload.data.courses.featureCourseList);
       setIsDataLoading(false);
     });
-  }, [courseCount]);
+  }, [courseCount, search]);
 
   return (
     <>
@@ -104,7 +109,17 @@ const Course = () => {
       ) : (
         <Box className="content">
           <Box className="contentHeader">
-            <CourseHeader courseCount={courseCount} open={open} setOpen={setOpen} handleOpen={handleOpen} />
+            <CourseHeader
+              search={search}
+              searchRef={searchRef}
+              clearSearch={clearSearch}
+              courseCount={courseCount}
+              open={open}
+              setOpen={setOpen}
+              handleOpen={handleOpen}
+              setSearch={setSearch}
+              handleSearch={handleSearch}
+            />
           </Box>
           <CoursePaper>
             <>
@@ -153,6 +168,7 @@ const Course = () => {
                       <Box sx={{ padding: '30px' }}>
                         <FeaturedCourse courses={featureCourses} handleViewDetailsButton={handleViewDetailsButton} />
                         <CourseLevel
+                          isDataLoading={isDataLoading}
                           title={'Basic Courses'}
                           courses={basicCourses}
                           handleViewDetailsButton={handleViewDetailsButton}

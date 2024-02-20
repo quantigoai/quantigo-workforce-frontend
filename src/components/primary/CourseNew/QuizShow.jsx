@@ -31,7 +31,7 @@ const PdTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-root": {
     height: "35px",
     fontSize: "14px",
-    border: "2px solid #E6ECF5 !important",
+    // border: "2px solid #E6ECF5 !important",
     borderRadius: "8px",
 
     "@media (max-width: 1439px)": {
@@ -42,7 +42,7 @@ const PdTextField = styled(TextField)(() => ({
     },
   },
   "& .MuiOutlinedInput-input": {
-    padding: "0px 0px 0px 8px",
+    padding: "0px 0px 0px 0px",
   },
   "& .MuiOutlinedInput-notchedOutline ": {},
   "& .MuiInputBase-input.Mui-disabled": {
@@ -62,11 +62,14 @@ const QuizShow = () => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
   const [data, setData] = React.useState({});
-
+  const { isLightTheme } = useSelector((state) => state.theme);
   const toast = useToaster();
   const { course } = useSelector((state) => state.course);
 
-  const handleQuizResult = (possibleIndex, id) => {
+  const handleQuizResult = (possibleIndex, id, possibleText) => {
+    console.log("🚀 ~ handleQuizResult ~ possibleIndex:", possibleIndex);
+    console.log("🚀 ~ handleQuizResult ~ id:", id);
+    console.log("🚀 ~ handleQuizResult ~ possibleText:", possibleText);
     const x = {
       [id]: {
         submittedIndex: possibleIndex,
@@ -137,7 +140,225 @@ const QuizShow = () => {
 
   return (
     <>
-      <Paper elevation={0} sx={{ width: "100%" }}>
+      <Box
+        sx={{
+          backgroundColor: "neutral.N000",
+          height: "90%",
+        }}
+      >
+        <Box
+          sx={{
+            backgroundColor: isLightTheme ? "#F1F5F9" : "",
+            height: { xl: "23%", xxl: "18%", lg: "25%" },
+            // paddingLeft: "10%",
+            // paddingRight: "10%",
+            paddingTop: "1%",
+            paddingBottom: "3%",
+            borderBottom: "2px solid ##F8FAFC",
+          }}
+        >
+          <Grid container sx={{ paddingLeft: "10%", paddingRight: "10%" }}>
+            <Typography variant='wpf_h4_Bold'>{quiz.name}</Typography>
+          </Grid>
+          <Grid container sx={{ paddingLeft: "10%", paddingRight: "10%" }}>
+            <Typography variant='wpf_p3_regular'>Duration : {quiz.duration}</Typography>
+          </Grid>
+        </Box>
+        <Box
+          sx={{
+            // height: "82%",
+            height: { xl: "77%", xxl: "82%", lg: "75%" },
+            paddingLeft: "10%",
+            paddingRight: "10%",
+            overflow: "auto",
+            scrollbarWidth: "thin",
+            "&::-webkit-scrollbar": {
+              width: "0.4em",
+            },
+            "&::-webkit-scrollbar-track": {
+              background: "#f1f1f1",
+            },
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: "#888",
+            },
+            "&::-webkit-scrollbar-thumb:hover": {
+              background: "#555",
+            },
+          }}
+        >
+          <Box sx={{ paddingTop: "20px" }}>
+            {Object.keys(quiz).length &&
+              quiz?.questionAndAnswer.map((item, i) => (
+                <>
+                  <Box>
+                    <Box
+                      key={i}
+                      sx={{
+                        border: "2px solid #E2E8F0",
+                        borderRadius: "8px",
+                        mb: "50px",
+                        backgroundColor: isLightTheme ? "#F1F5F9" : "",
+                      }}
+                    >
+                      <Grid
+                        xs={12}
+                        sx={{
+                          paddingLeft: "2%",
+                          paddingRight: "2%",
+                          // paddingBottom: "1%",
+                          paddingTop: "1%",
+                        }}
+                      >
+                        <Typography variant='wpf_p2_semiBold' sx={{ color: "#090080" }}>
+                          Q{i + 1}. {item.question.questionText} ?
+                        </Typography>
+                      </Grid>
+                      {item.questionType === "imageAndOptions" && (
+                        <Grid
+                          xs={12}
+                          sx={{
+                            paddingLeft: "2%",
+                            paddingRight: "2%",
+                            // paddingBottom: "1%",
+                            paddingTop: "1%",
+                          }}
+                        >
+                          <img src={item.question.questionImage} height={224} width={750} />
+                        </Grid>
+                      )}
+                      <Grid item xs={12} sx={{ paddingLeft: "2%" }}>
+                        <RadioGroup
+                        //  value={value}
+                        >
+                          {item.possibleAnswers.map((posibleAnswer, i) => (
+                            <>
+                              <FormControlLabel
+                                key={i}
+                                onChange={() => handleQuizResult(i, item._id)}
+                                value={posibleAnswer}
+                                control={<Radio />}
+                                label={posibleAnswer}
+                                // label= { item.questionType === "imageAndOptions" ?  :posibleAnswer}
+                              />
+                            </>
+                          ))}
+                        </RadioGroup>
+                      </Grid>
+                      <Grid item xs={12}>
+                        {item.isTextFieldEnabled && (
+                          <>
+                            <Box
+                              sx={{
+                                borderTop: "2px solid #E2E8F0",
+                                borderRadius: "8px",
+                                backgroundColor: "#fff",
+                                padding: "20px",
+                              }}
+                            >
+                              <Typography
+                                variant='wpf_h7_medium'
+                                sx={{
+                                  mb: 0,
+                                  color: "neutral.N300",
+                                }}
+                              >
+                                Label
+                              </Typography>
+                              <PdTextField
+                                fullWidth
+                                // variant='outlined'
+                                placeholder='Write your thougts...'
+                                // onChange={(e) => handleQuizResultTextField(e.target.value, item._id)}
+                                onChange={(e) => handleQuizResult(null, item._id, e.target.value)}
+                              />
+                            </Box>
+                          </>
+                        )}
+                      </Grid>
+                    </Box>
+                  </Box>
+                </>
+              ))}
+          </Box>
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          height: "9%",
+          backgroundColor: "neutral.N000",
+          borderTop: "1px solid #F1F5F9",
+          justifyContent: "center",
+          paddingLeft: "10%",
+          paddingRight: "11%",
+        }}
+      >
+        <Grid
+          container
+          gap={2}
+          sx={{
+            justifyContent: "right",
+            paddingRight: "3%",
+            paddingTop: "2%",
+            paddingBottom: "2%",
+          }}
+        >
+          {user.role === "trainer" || user.role === "admin" ? (
+            <>
+              {" "}
+              <Button
+                disabled={isLoading}
+                sx={{
+                  borderRadius: "2px",
+                  width: "128px",
+                  backgroundColor: "#2D58FF",
+                  color: "#FFFFFF",
+                  "&:hover": {
+                    backgroundColor: "#FF9A45",
+                    color: "#1D1D1D",
+                  },
+                }}
+                onClick={handleQuizSubmit}
+                // onClick={handleQuizEdit}
+
+                variant='contained'
+              >
+                Edit Quiz
+              </Button>
+            </>
+          ) : (
+            <></>
+          )}
+
+          {user.role === "trainer" || user.role === "admin" ? (
+            <></>
+          ) : (
+            <>
+              <Button
+                disabled={isLoading}
+                sx={{
+                  borderRadius: "2px",
+                  width: "128px",
+                  backgroundColor: "#2D58FF",
+                  color: "#FFFFFF",
+                  "&:hover": {
+                    backgroundColor: "#FF9A45",
+                    color: "#1D1D1D",
+                  },
+                }}
+                onClick={handleQuizSubmit}
+                variant='contained'
+              >
+                Submit
+              </Button>
+            </>
+          )}
+        </Grid>
+      </Box>
+
+      {/* <Paper elevation={0} sx={{ width: "100%" }}>
         <Grid
           container
           sx={{
@@ -298,7 +519,7 @@ const QuizShow = () => {
             </>
           )}
         </Grid>
-      </Paper>
+      </Paper> */}
     </>
   );
 };

@@ -51,7 +51,21 @@ const CourseAllPage = () => {
     handleSearch,
     clearSearch,
     searchRef,
+    openModal,
+    id,
+    handleCloseFilter,
+    filter,
+    handleChange,
+    handleClickFilter,
+    handleResetFilter,
+    handleFilterCourse,
+    anchorE2,
+    allCoursesFull,
+    setAllCoursesFull,
+    courseCountFull,
+    setCourseCountFull,
   } = useCourseManagement();
+
   const CoursePaper = styled(Paper)({
     width: '100%',
     height: '90%',
@@ -65,19 +79,18 @@ const CourseAllPage = () => {
     boxShadow: '0px 1px 3px 0px #09008014',
   });
   const { level } = useParams();
-  const [allCourse, setAllCourse] = useState([]);
 
   const dispatch = useDispatch();
-  const [courseCount, setCourseCount] = useState(0);
+
   useEffect(() => {
     // dispatch(setActivePath('Course'));
     dispatch(getAllSkills());
-    dispatch(getAllCourses({ level: level, search })).then((action) => {
-      setAllCourse(action.payload.data.courses);
-      setCourseCount(action.payload.data.count);
+    dispatch(getAllCourses({ level: level, search, filter })).then((action) => {
+      setAllCoursesFull(action.payload.data.courses);
+      setCourseCountFull(action.payload.data.count);
       setIsDataLoading(false);
     });
-  }, [courseCount, search]);
+  }, [courseCountFull, search]);
 
   return (
     <>
@@ -90,12 +103,22 @@ const CourseAllPage = () => {
               search={search}
               searchRef={searchRef}
               clearSearch={clearSearch}
-              courseCount={courseCount}
+              courseCount={courseCountFull}
               open={open}
               setOpen={setOpen}
               handleOpen={handleOpen}
               setSearch={setSearch}
               handleSearch={handleSearch}
+              openModal={openModal}
+              anchorE2={anchorE2}
+              id={id}
+              handleCloseFilter={handleCloseFilter}
+              filter={filter}
+              handleChange={handleChange}
+              handleClickFilter={handleClickFilter}
+              handleResetFilter={handleResetFilter}
+              handleFilterCourse={handleFilterCourse}
+              level={level}
             />
           </Box>
           <CoursePaper>
@@ -120,10 +143,18 @@ const CourseAllPage = () => {
                       />
                     </>
                   ) : (
-                    <>
+                    <Box sx={{ padding: '30px' }}>
+                      <Typography variant="wpf_h4_Bold" color={'neutral.995'}>
+                        {level === 'basic'
+                          ? 'Basic Courses'
+                          : level === 'beginner'
+                          ? 'Beginner Courses'
+                          : level === 'intermediate'
+                          ? 'Intermediate Courses'
+                          : 'Advanced Courses'}
+                      </Typography>
                       <Box
                         sx={{
-                          padding: '30px',
                           display: 'grid',
                           gridTemplateColumns: { xxl: 'repeat(4,1fr)', xl: 'repeat(4,1fr)', lg: 'repeat(3,1fr)' },
                           gridGap: '8px',
@@ -132,21 +163,22 @@ const CourseAllPage = () => {
                           gap: { xxl: '20px', xl: '15px', lg: '12px' },
                         }}
                       >
-                        {allCourse.length === 0 ? (
+                        {allCoursesFull.length === 0 ? (
                           <>
                             <Typography variant="wpf_h6_semiBold">No course Found</Typography>
                           </>
                         ) : (
-                          allCourse?.map((course) => (
+                          allCoursesFull?.map((course) => (
                             <Box
                               sx={{
                                 backgroundColor: isLightTheme ? '#fff' : '#000',
-                                width: { xxl: '328px', xl: '278px', lg: '250px' },
+                                width: { xxl: '368px', xl: '278px', lg: '250px' },
                                 borderRadius: '10px',
                               }}
                               key={course._id}
                             >
                               <CustomCard
+                                level={level}
                                 courseDirection="all"
                                 handleViewDetailsButton={handleViewDetailsButton}
                                 course={course}
@@ -155,7 +187,7 @@ const CourseAllPage = () => {
                           ))
                         )}
                       </Box>
-                    </>
+                    </Box>
                   )}
                 </>
               )}

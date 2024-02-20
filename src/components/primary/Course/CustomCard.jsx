@@ -30,7 +30,7 @@ const MyCustomCardHover = {
   height: '160px',
   objectFit: 'cover',
   borderRadius: '10px 10px 0px 0px',
-  transform: 'scale(1.01)',
+  transform: 'scale(1.02)',
   transition: 'all 1s ease',
 };
 
@@ -50,7 +50,7 @@ const ButtonHover = {
   backgroundColor: 'rgba(255, 154, 69, 0.1)',
 };
 
-const CustomCard = ({ courseDirection, course, handleViewDetailsButton }) => {
+const CustomCard = ({ courseDirection, course, handleViewDetailsButton, level }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoading } = useSelector((state) => state.course);
@@ -84,7 +84,7 @@ const CustomCard = ({ courseDirection, course, handleViewDetailsButton }) => {
   // let height = '10%'; // Default width for large screens
   if (screenSize >= 1500) {
     // Extra-large screens
-    width = 328;
+    width = 368;
     height = 180;
   } else if (screenSize === 1440) {
     // Large screens
@@ -115,7 +115,31 @@ const CustomCard = ({ courseDirection, course, handleViewDetailsButton }) => {
           flexDirection: 'column',
         }}
       >
-        <Box sx={{ cursor: 'pointer' }} onClick={() => handleViewDetailsButton(course._id, courseDirection)}>
+        <Box
+          sx={{ cursor: 'pointer', position: 'relative' }}
+          onClick={() => handleViewDetailsButton(course._id, courseDirection)}
+        >
+          <Box sx={{ position: 'absolute', left: { xxl: 280, xl: 200, lg: 175 }, top: 10, zIndex: 20 }}>
+            {level && course.isFeaturedCourse && (
+              <Typography
+                sx={{
+                  mb: 1,
+                  textAlign: 'left',
+                  display: 'flex',
+                  justifyContent: 'start',
+                  backgroundColor: '#476CFF',
+                  borderRadius: '32px',
+                  fontFamily: 'Inter',
+                  fontSize: { xxl: '12px', xl: '10px', lg: '10px' },
+                  width: { xxl: '75px', xl: '65px', lg: '65px' },
+                  padding: { xl: '3px 12px', xxl: '5px 15px', lg: '3px 10px' },
+                  color: '#fff',
+                }}
+              >
+                Featured
+              </Typography>
+            )}
+          </Box>
           <img
             style={
               hovering

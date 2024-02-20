@@ -3,8 +3,17 @@ import React from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import FIlterField from './FIlterField';
 import { courseCategoryFields, courseLevelFields } from '../../AllUsers/userFilterOptions';
+import FIlterFIeld2 from './FIlterFIeld2';
 
-const MIniModalCourseFilter = ({ handleResetFilter, handleFilterCourse, handleCloseFilter, handleChange, filter }) => {
+const MIniModalCourseFilter = ({
+  handleResetFilter,
+  handleFilterCourse,
+  handleCloseFilter,
+  handleChange,
+  filter,
+  level,
+}) => {
+  console.log('🚀 ~ level:', level);
   return (
     <>
       <Box
@@ -21,26 +30,31 @@ const MIniModalCourseFilter = ({ handleResetFilter, handleFilterCourse, handleCl
             display: 'flex',
             alignContent: 'center',
             justifyContent: 'space-between',
-            paddingY: '10px',
-            paddingX: '15px',
+            paddingY: '20px',
+            paddingX: '20px',
           }}
         >
           <Typography variant="wpf_p1_semiBold">Filter By</Typography>
-          <CloseIcon sx={{ color: '#2D58FF', cursor: 'pointer', fontweight: '600 ' }} onClick={handleCloseFilter} />
+          <CloseIcon
+            sx={{ color: '#2D58FF', cursor: 'pointer', fontweight: '600 ', filter: 'grayscale(80%)' }}
+            onClick={handleCloseFilter}
+          />
         </Box>
         {/* <br /> */}
-        <Box sx={{ px: '15px' }}>
-          <Grid item xs={12}>
-            <FIlterField
-              label={'Level'}
-              filterValue="level"
-              levelOptions={courseLevelFields}
-              handleChange={handleChange}
-              filter={filter}
-            />
-          </Grid>
+        <Box sx={{ px: '20px' }}>
+          {!level && (
+            <Grid item xs={12}>
+              <FIlterField
+                label={'Level'}
+                filterValue="level"
+                levelOptions={courseLevelFields}
+                handleChange={handleChange}
+                filter={filter}
+              />
+            </Grid>
+          )}
           <Grid sx={{ mt: '8px' }} item xs={12}>
-            <FIlterField
+            <FIlterFIeld2
               label={'Category'}
               filterValue="category"
               levelOptions={courseCategoryFields}
@@ -57,8 +71,9 @@ const MIniModalCourseFilter = ({ handleResetFilter, handleFilterCourse, handleCl
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
-              paddingX: '15px',
-              paddingY: '10px',
+              paddingX: '20px',
+              // paddingY: '20px',
+              paddingBottom: '10px',
             }}
           >
             <Box>
@@ -66,17 +81,21 @@ const MIniModalCourseFilter = ({ handleResetFilter, handleFilterCourse, handleCl
                 onClick={handleResetFilter}
                 fullWidth
                 sx={{
-                  backgroundColor: '#FF4757',
-                  color: '#FFF',
+                  backgroundColor: '#F4F7FE',
+                  color: '#62728F',
                   textTransform: 'none',
                   borderRadius: '8px',
                   lineHeight: '20px',
-                  width: { xxl: '150px', xl: '100px', lg: '100px' },
+                  paddingX: '16px',
+                  paddingY: '10px',
+                  border: ' 1px solid  #F4F7FE',
+                  width: { xxl: '130px', xl: '128px', lg: '110px' },
                   fontSize: { xxl: '14px', xl: '12px', lg: '10px' },
                   height: { xxl: '40px', xl: '40px', lg: '35px' },
                   '&:hover': {
-                    backgroundColor: '#FF4757',
-                    color: '#FFF',
+                    backgroundColor: '#F4F7FE',
+                    color: '#62728F',
+                    border: ' 1px solid  #2E58FF',
                   },
                   '&.Mui-disabled': {
                     backgroundColor: '#F5C4C8',
@@ -94,7 +113,9 @@ const MIniModalCourseFilter = ({ handleResetFilter, handleFilterCourse, handleCl
                   borderRadius: '8px',
                   backgroundColor: '#2E58FF',
                   lineHeight: '20px',
-                  width: { xxl: '150px', xl: '100px', lg: '100px' },
+                  paddingX: '16px',
+                  paddingY: '10px',
+                  width: { xxl: '130px', xl: '128px', lg: '110px' },
                   fontSize: { xxl: '14px', xl: '12px', lg: '10px' },
                   height: { xxl: '40px', xl: '40px', lg: '35px' },
                   color: 'white',

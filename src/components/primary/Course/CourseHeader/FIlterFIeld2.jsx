@@ -1,6 +1,5 @@
-import { FormControl, InputLabel, MenuItem, Select, Typography, styled } from '@mui/material';
+import { FormControl, MenuItem, Select, Typography, styled } from '@mui/material';
 import React from 'react';
-
 const MySelect = styled(Select)(() => ({
   height: '40px',
   borderRadius: '8px',
@@ -36,7 +35,8 @@ const MySelect = styled(Select)(() => ({
     fontSize: '14px',
   },
 }));
-const FIlterField = ({ handleChange, filter, levelOptions, label, filterValue }) => {
+
+const FIlterFIeld2 = ({ handleChange, filter, levelOptions, label, filterValue }) => {
   return (
     <FormControl fullWidth>
       <MySelect
@@ -44,10 +44,10 @@ const FIlterField = ({ handleChange, filter, levelOptions, label, filterValue })
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         placeholder="Select"
-        value={Object.keys(filter).length !== 0 ? (filter?.level ? filter?.level : '') : ''}
+        value={Object.keys(filter).length !== 0 ? (filter?.category ? filter?.category : '') : ''}
         onChange={(e) => handleChange(e, filterValue)}
       >
-        <MenuItem disabled value="" sx={{ fontSize: { xl: '14px', xxl: '16px', lg: '12px' }, color: '#667085' }}>
+        <MenuItem disabled value="" sx={{ fontSize: { xl: '14px', xxl: '16px', lg: '12px' } }}>
           <Typography
             color="neutral.N300"
             sx={{ fontFamily: 'Inter', fontSize: { xl: '14px', xxl: '14px', lg: '12px' } }}
@@ -83,4 +83,4 @@ const FIlterField = ({ handleChange, filter, levelOptions, label, filterValue })
   );
 };
 
-export default FIlterField;
+export default FIlterFIeld2;

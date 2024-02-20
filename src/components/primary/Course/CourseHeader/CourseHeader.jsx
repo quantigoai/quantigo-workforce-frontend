@@ -3,6 +3,7 @@ import CommonHeader from '../../../shared/CustomComponenet/CommonHeader/CommonHe
 import FilterListIcon from '@mui/icons-material/FilterList';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
+import FilterListOffIcon from '@mui/icons-material/FilterListOff';
 import { useState } from 'react';
 import MIniModalCourseFilter from './MIniModalCourseFilter';
 const CourseHeader = ({
@@ -24,6 +25,7 @@ const CourseHeader = ({
   handleResetFilter,
   handleFilterCourse,
   anchorE2,
+  level,
 }) => {
   return (
     <>
@@ -122,6 +124,7 @@ const CourseHeader = ({
           <IconButton
             onClick={handleClickFilter}
             sx={{
+              // backgroundColor: openModal ? '#344054' : '#fff',
               px: '5px 0px',
               //   backgroundColor: "primary.B008",
               mx: 2,
@@ -129,7 +132,11 @@ const CourseHeader = ({
             }}
             aria-label="menu"
           >
-            <FilterListIcon sx={{ color: 'primary.main' }} />
+            {openModal ? (
+              <FilterListOffIcon sx={{ color: 'primary.main' }} />
+            ) : (
+              <FilterListIcon sx={{ color: 'primary.main' }} />
+            )}
           </IconButton>
           <Popover
             id={id}
@@ -147,6 +154,7 @@ const CourseHeader = ({
               handleCloseFilter={handleCloseFilter}
               handleChange={handleChange}
               filter={filter}
+              level={level}
             />
           </Popover>
 

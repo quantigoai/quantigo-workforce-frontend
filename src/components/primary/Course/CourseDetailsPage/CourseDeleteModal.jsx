@@ -1,10 +1,10 @@
-import {Box, Button, Modal, Typography} from "@mui/material";
+import { Box, Button, Modal, Typography } from "@mui/material";
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import deleteIcon from "../../../../assets/images/delete.svg";
 import useToaster from "../../../../customHooks/useToaster";
-import {deleteACourseById} from "../../../../features/slice/courseSlice";
+import { deleteACourseById } from "../../../../features/slice/courseSlice";
 
 const style = {
   position: "absolute",
@@ -64,28 +64,24 @@ const CourseDeleteModal = ({ course }) => {
           </Box>
         </Button>
       </Tooltip> */}
-
-      <Button
-        sx={{
-          borderRadius: "2px",
-        }}
-        onClick={handleClickOpen}
-      >
-        <Box
+      <Box sx={{}}>
+        <Button
           sx={{
-            display: "flex",
-            gap: 1,
-            justifyContent: "center",
+            height: { lg: "40px", xl: "40px", xxl: "40px" },
+            // width: "120px",
+
+            // borderRadius: "2px",
           }}
+          onClick={handleClickOpen}
         >
           <img src={deleteIcon} />
-        </Box>
-      </Button>
+        </Button>
+      </Box>
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        aria-labelledby='modal-modal-title'
+        aria-describedby='modal-modal-description'
       >
         <Box sx={style}>
           <Box
@@ -103,19 +99,19 @@ const CourseDeleteModal = ({ course }) => {
               color: "white",
             }}
           >
-            <i style={{ width: "60px", height: "60px" }} className="ri-delete-bin-6-line"></i>
+            <i style={{ width: "60px", height: "60px" }} className='ri-delete-bin-6-line'></i>
           </Box>
 
           <Typography
             sx={{ mt: "30%", pb: 1, color: isLightTheme ? "#091E42" : "#fff", fontSize: "18px", fontWeight: "600" }}
-            id="modal-modal-title"
-            variant="h6"
+            id='modal-modal-title'
+            variant='h6'
           >
             Delete Course
           </Typography>
 
           <Typography
-            id="modal-modal-description"
+            id='modal-modal-description'
             sx={{
               fontSize: "14px",
               color: isLightTheme ? "#3C4D6B" : "#fff",

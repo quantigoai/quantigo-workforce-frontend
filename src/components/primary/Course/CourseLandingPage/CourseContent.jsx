@@ -37,7 +37,7 @@ const CourseContent = ({ course }) => {
             //     : `${course.skills?.[0]?.name},+${course?.skills?.length - 1} more`} */}
             // </Typography>
             <Typography variant='wpf_p3_medium_2' color={"grey.600"}>
-              no skill found
+              None
             </Typography>
           )}
         </Box>
@@ -50,7 +50,6 @@ const CourseContent = ({ course }) => {
             PREREQUISITES
           </Typography>
           <MoreComponents moreArray={course?.prerequisiteCourses} />
-      
         </Box>
       </Box>
     </Box>

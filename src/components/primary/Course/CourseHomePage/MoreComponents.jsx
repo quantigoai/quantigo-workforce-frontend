@@ -10,7 +10,7 @@ const MoreComponents = ({ moreArray }) => {
             <Grid key={prerequisiteCourse?._id} item gap={1}>
               <Typography variant='wpf_p3_medium_2' color={"grey.600"}>
                 {" "}
-                <b>{prerequisiteCourse?.name} </b>
+                {prerequisiteCourse?.name}
               </Typography>
             </Grid>
           ))}
@@ -19,7 +19,7 @@ const MoreComponents = ({ moreArray }) => {
         <>
           <Typography variant='wpf_p3_medium_2' color={"grey.600"}>
             {" "}
-            <b>None</b>
+            None
           </Typography>
         </>
       ) : (

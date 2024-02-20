@@ -6,7 +6,7 @@ import LevelChip from "../CourseCardActionLebel/LevelChip";
 import CourseContent from "./CourseContent";
 import { useNavigate } from "react-router-dom";
 import CourseHeaderTitle from "./CourseHeaderTitle";
-import editCourseIcon from "../../../../assets/images/edit.svg";
+import editCourseIcon from "../../../../assets/images/courses/editCourse.svg";
 import EditCourseModal from "../CreateCourseModal/EditCourseModal";
 import useCourseManagement from "../hooks/createCourseHook/useCourseMangement";
 import useCourseDetails from "../hooks/courseDetailshooks/useCourseDetails";
@@ -103,72 +103,87 @@ const CourseLandingHeader = () => {
     <Box sx={boxStyle}>
       <Box sx={{ width: { xxl: "72%", xl: "68%", lg: "80%" }, paddingY: "16px" }}>
         <Box sx={{ width: { xxl: "100%", xl: "80%", lg: "95%" } }}>
-          <Box sx={{ display: "flex" }}>
-            <Box sx={{ paddingRight: "6px" }}>
-              <LanguageChip language={course.language} />
-            </Box>
-            <Box sx={{ paddingRight: "6px" }}>
-              <CategoryChip category={course.category} />
-            </Box>
-            <Box sx={{ padding: "0%" }}>
-              <LevelChip level={course.level} />
-            </Box>
-          </Box>
+          <Grid container>
+            <Grid item xs={8}>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Box sx={{ paddingRight: "6px" }}>
+                  <LanguageChip language={course.language} />
+                </Box>
+                <Box sx={{ paddingRight: "6px" }}>
+                  <CategoryChip category={course.category} />
+                </Box>
+                <Box sx={{ padding: "0%" }}>
+                  <LevelChip level={course.level} />
+                </Box>
+              </Box>
+            </Grid>
+
+            <Grid item xs={4}>
+              <Box sx={{ display: "flex", justifyContent: "end" }}>
+                <Button
+                  // disabled={isLoading}
+
+                  sx={{
+                    textTransform: "none",
+                    width: "150px",
+                    height: "40px",
+                    borderRadius: "6px",
+                    backgroundColor: "#fff",
+                    border: "1px solid #F4F7FE",
+                    // color: "red",
+                    //   "&:hover": {
+                    //     backgroundColor: "#FF9A45",
+                    //     color: "#1D1D1D",
+                    //   },
+                  }}
+                  onClick={handleOpen}
+                  // onClick={() => handleNavigation(customButton)}
+                >
+                  <img src={editCourseIcon} />
+                  <span style={{ paddingLeft: "8px" }}>
+                    <Typography variant='wpf_p4_medium' sx={{ color: "#2D58FF" }}>
+                      Edit Course
+                    </Typography>
+                  </span>
+                </Button>
+                {/* <Button onClick={handleOpen}>Create Course</Button> */}
+                <EditCourseModal
+                  open={open}
+                  handleClose={handleClose}
+                  onSubmit={onSubmit}
+                  course={course}
+                  preRequisiteCourses={preRequisiteCourses}
+                  handleChange_Pre_Requisite_Course={handleChange_Pre_Requisite_Course}
+                  skills={skills}
+                  handleChangeSkills={handleChangeSkills}
+                  coverImage={coverImage}
+                  removeImage={removeImage}
+                  handleImage={handleImage}
+                  // isLoading={isLoading}
+                  skill={skill}
+                  dateTime={dateTime}
+                  checkedFeatured={checkedFeatured}
+                  handleChangeFeatured={handleChangeFeatured}
+                  outcomes={outcomes}
+                  setOutcomes={setOutcomes}
+                  handleDateTime={handleDateTime}
+                  isFeatured={isFeatured}
+                  setIsFeatured={setIsFeatured}
+                  hub={hub}
+                  handleChangeHubs={handleChangeHubs}
+                />
+
+                <CourseDeleteModal
+                  course={course}
+                  // handleDeleteCourse={handleDeleteCourse}
+                />
+              </Box>
+            </Grid>
+          </Grid>
+
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "start" }}>
             <Box sx={{ paddingY: "12px" }}>
               <CourseHeaderTitle course={course} />
-            </Box>
-            <Box sx={{ display: "flex" }}>
-              <Button
-                // disabled={isLoading}
-                type='submit'
-                sx={{
-                  //   width: "100%",
-                  //   height: "45px",
-                  //   backgroundColor: "#2D58FF",
-                  //   color: "#FFFFFF",
-                  //   "&:hover": {
-                  //     backgroundColor: "#FF9A45",
-                  //     color: "#1D1D1D",
-                  //   },
-                  borderRadius: "2px",
-                }}
-                onClick={handleOpen}
-                // onClick={() => handleNavigation(customButton)}
-              >
-                <img src={editCourseIcon} />
-              </Button>
-              {/* <Button onClick={handleOpen}>Create Course</Button> */}
-              <EditCourseModal
-                open={open}
-                handleClose={handleClose}
-                onSubmit={onSubmit}
-                course={course}
-                preRequisiteCourses={preRequisiteCourses}
-                handleChange_Pre_Requisite_Course={handleChange_Pre_Requisite_Course}
-                skills={skills}
-                handleChangeSkills={handleChangeSkills}
-                coverImage={coverImage}
-                removeImage={removeImage}
-                handleImage={handleImage}
-                // isLoading={isLoading}
-                skill={skill}
-                dateTime={dateTime}
-                checkedFeatured={checkedFeatured}
-                handleChangeFeatured={handleChangeFeatured}
-                outcomes={outcomes}
-                setOutcomes={setOutcomes}
-                handleDateTime={handleDateTime}
-                isFeatured={isFeatured}
-                setIsFeatured={setIsFeatured}
-                hub={hub}
-                handleChangeHubs={handleChangeHubs}
-              />
-
-              <CourseDeleteModal
-                course={course}
-                // handleDeleteCourse={handleDeleteCourse}
-              />
             </Box>
           </Box>
         </Box>
@@ -177,7 +192,13 @@ const CourseLandingHeader = () => {
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", marginTop: "20px", mb: "16px" }}>
           <Button disabled={!isEnrollAble} sx={btnStyle} onClick={handleRouteChange}>
-            Enroll Now
+            {user.role === "level_0_annotator" ||
+            user.role === "level_1_annotator" ||
+            user.role === "level_2_annotator" ||
+            user.role === "level_3_annotator" ||
+            user.role === "reviewer"
+              ? "Enroll Now"
+              : "View Course"}
           </Button>
           <Typography variant='wpf_p3_regular' color={"grey.550"} sx={{ marginLeft: "20px" }}>
             <span style={{ color: "#344054", fontWeight: "600" }}>{course.totalCurrentEnrolledStudents}</span> already

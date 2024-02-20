@@ -1,17 +1,16 @@
 import { Box, Button, Grid, Typography } from '@mui/material';
-import React from 'react';
-import useCourseDetails from '../hooks/courseDetailshooks/useCourseDetails';
-import ChapterHeader from '../../CourseNew/ChapterHeader';
-import ChapterHeaderMenuIndex from './ChapterHeaderMenuIndex';
 import parse from 'html-react-parser';
-import prevIcon from '../../../../assets/images/PrevIcon.svg';
-import nextIcon from '../../../../assets/images/NextIcon.svg';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import nextIcon from '../../../../assets/images/NextIcon.svg';
+import prevIcon from '../../../../assets/images/PrevIcon.svg';
 import { setActiveChapterIndex } from '../../../../features/slice/activePathSlice';
 import { getAChapterById } from '../../../../features/slice/courseSlice';
-import { useNavigate } from 'react-router-dom';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { getAQuizById } from '../../../../features/slice/quizSlice';
 import ChapterDeleteModal from '../../CourseNew/ChapterDeleteModal';
+import useCourseDetails from '../hooks/courseDetailshooks/useCourseDetails';
+import ChapterHeaderMenuIndex from './ChapterHeaderMenuIndex';
 
 const ChapterViewIndex = () => {
   const {
@@ -53,6 +52,12 @@ const ChapterViewIndex = () => {
     });
   };
   const handleDeleteChapter = () => {};
+  const handleStartQuiz = () => {
+    console.log(courseChapter);
+    dispatch(getAQuizById(courseChapter.quiz.id)).then(() => {
+      navigate(`/test-quiz-show`);
+    });
+  };
   return (
     <>
       <Box
@@ -260,7 +265,7 @@ const ChapterViewIndex = () => {
 
                 padding: '16px 10px',
               }}
-              // onClick={handleCreateModal}
+              onClick={handleStartQuiz}
             >
               Start Quiz
             </Button>

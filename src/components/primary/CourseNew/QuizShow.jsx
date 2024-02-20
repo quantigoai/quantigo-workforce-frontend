@@ -6,14 +6,23 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Button, FormControlLabel, Grid, Paper, Radio, RadioGroup, Typography} from "@mui/material";
-import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import useToaster from "../../../customHooks/useToaster";
-import {manuallySetCourseChapterResult} from "../../../features/slice/courseSlice";
-import {submitQuizById} from "../../../features/slice/quizSlice";
-import {updateUserCompletedCourse} from "../../../features/slice/userSlice";
+import {
+  Box,
+  Button,
+  FormControlLabel,
+  Grid,
+  Paper,
+  Radio,
+  RadioGroup,
+  Typography,
+} from '@mui/material';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import useToaster from '../../../customHooks/useToaster';
+import { manuallySetCourseChapterResult } from '../../../features/slice/courseSlice';
+import { submitQuizById } from '../../../features/slice/quizSlice';
+import { updateUserCompletedCourse } from '../../../features/slice/userSlice';
 
 const QuizShow = () => {
   const { quiz, isLoading } = useSelector((state) => state.quiz);
@@ -32,7 +41,7 @@ const QuizShow = () => {
   };
 
   const handleQuizEdit = () => {
-    navigate("/edit-quiz");
+    navigate('/edit-quiz');
   };
 
   const handleQuizSubmit = () => {
@@ -42,59 +51,66 @@ const QuizShow = () => {
     };
     dispatch(submitQuizById(bulkData)).then((action) => {
       if (action.payload?.status === 200) {
-        toast.trigger("Quiz Submitted", "success");
+        toast.trigger('Quiz Submitted', 'success');
         navigate(`/course-details/${course._id}/quiz-result`);
-        dispatch(manuallySetCourseChapterResult(action.payload.data.isPreviouslyAttempted));
+        dispatch(
+          manuallySetCourseChapterResult(
+            action.payload.data.isPreviouslyAttempted,
+          ),
+        );
         dispatch(updateUserCompletedCourse(action.payload.data.user));
       } else {
-        toast.trigger("Quiz can not submit", "error");
+        toast.trigger('Quiz can not submit', 'error');
       }
     });
   };
 
   return (
     <>
-      <Paper elevation={0} sx={{ width: "100%" }}>
+      <Paper elevation={0} sx={{ width: '100%' }}>
         <Grid
           container
           sx={{
-            overflowX: "hidden",
-            overflowY: "scroll",
-            scrollbarWidth: "none",
+            overflowX: 'hidden',
+            overflowY: 'scroll',
+            scrollbarWidth: 'none',
             // height: "900px",
           }}
         >
-          <Grid container xs={12} sx={{ padding: "2%", justifyContent: "center" }}>
-            <Typography variant="h5" sx={{ color: "#090080" }}>
-              {" "}
+          <Grid
+            container
+            xs={12}
+            sx={{ padding: '2%', justifyContent: 'center' }}
+          >
+            <Typography variant="h5" sx={{ color: '#090080' }}>
+              {' '}
               {quiz.name}
             </Typography>
           </Grid>
-          <Grid container sx={{ padding: "2%" }}>
-            <Typography variant="h5" sx={{ color: "#090080" }}>
-              {" "}
+          <Grid container sx={{ padding: '2%' }}>
+            <Typography variant="h5" sx={{ color: '#090080' }}>
+              {' '}
               Quiz Instructions
             </Typography>
           </Grid>
 
           {Object.keys(quiz).length &&
             quiz?.questionAndAnswer.map((item, i) => (
-              <>
+              <Box key={i}>
                 <Grid
-                  key={i}
                   xs={12}
                   sx={{
-                    paddingLeft: "2%",
-                    paddingRight: "2%",
-                    paddingBottom: "1%",
-                    paddingTop: "1%",
+                    paddingLeft: '2%',
+                    paddingRight: '2%',
+                    paddingBottom: '1%',
+                    paddingTop: '1%',
                   }}
                 >
-                  <Typography variant="h5" sx={{ color: "#090080" }}>
+                  <Typography variant="h5" sx={{ color: '#090080' }}>
                     Q{i + 1}. {item.question} ?
                   </Typography>
                 </Grid>
-                <Grid item xs={12} sx={{ paddingLeft: "2%" }}>
+                <Grid item xs={12} sx={{ paddingLeft: '2%' }}>
                   <RadioGroup
                   //  value={value}
                   >
@@ -102,7 +118,9 @@ const QuizShow = () => {
                       <>
                         <FormControlLabel
                           key={i}
-                          onChange={() => handleQuizResult(posibleAnswer, item._id)}
+                          onChange={() =>
+                            handleQuizResult(posibleAnswer, item._id)
+                          }
                           value={posibleAnswer}
                           control={<Radio />}
                           label={posibleAnswer}
@@ -111,7 +129,7 @@ const QuizShow = () => {
                     ))}
                   </RadioGroup>
                 </Grid>
-              </>
+              </Box>
             ))}
         </Grid>
 
@@ -119,28 +137,28 @@ const QuizShow = () => {
           container
           gap={2}
           sx={{
-            justifyContent: "right",
-            paddingRight: "3%",
-            paddingTop: "2%",
-            paddingBottom: "2%",
+            justifyContent: 'right',
+            paddingRight: '3%',
+            paddingTop: '2%',
+            paddingBottom: '2%',
           }}
         >
-          {user.role === "trainer" || user.role === "admin" ? (
+          {user.role === 'trainer' || user.role === 'admin' ? (
             <>
-              {" "}
+              {' '}
               <Button
                 disabled={isLoading}
                 sx={{
-                  borderRadius: "2px",
-                  width: "128px",
-                  backgroundColor: "#2D58FF",
-                  color: "#FFFFFF",
-                  "&:hover": {
-                    backgroundColor: "#FF9A45",
-                    color: "#1D1D1D",
+                  borderRadius: '2px',
+                  width: '128px',
+                  backgroundColor: '#2D58FF',
+                  color: '#FFFFFF',
+                  '&:hover': {
+                    backgroundColor: '#FF9A45',
+                    color: '#1D1D1D',
                   },
                 }}
-                onClick={() => handleQuizEdit()}
+                onClick={handleQuizEdit}
                 variant="contained"
               >
                 Edit Quiz
@@ -149,23 +167,24 @@ const QuizShow = () => {
           ) : (
             <></>
           )}
-          {user.role === "trainer" || user.role === "admin" ? (
+        
+          {user.role === 'trainer' || user.role === 'admin' ? (
             <></>
           ) : (
             <>
               <Button
                 disabled={isLoading}
                 sx={{
-                  borderRadius: "2px",
-                  width: "128px",
-                  backgroundColor: "#2D58FF",
-                  color: "#FFFFFF",
-                  "&:hover": {
-                    backgroundColor: "#FF9A45",
-                    color: "#1D1D1D",
+                  borderRadius: '2px',
+                  width: '128px',
+                  backgroundColor: '#2D58FF',
+                  color: '#FFFFFF',
+                  '&:hover': {
+                    backgroundColor: '#FF9A45',
+                    color: '#1D1D1D',
                   },
                 }}
-                onClick={() => handleQuizSubmit()}
+                onClick={handleQuizSubmit}
                 variant="contained"
               >
                 Submit

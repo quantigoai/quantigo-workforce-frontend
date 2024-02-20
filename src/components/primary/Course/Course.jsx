@@ -82,6 +82,8 @@ const Course = () => {
 
   // const [basicCourses,setBasicCourses]=useState([])
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
+
   const CoursePaper = styled(Paper)({
     width: '100%',
     height: '90%',
@@ -134,6 +136,7 @@ const Course = () => {
               handleChange={handleChange}
               handleClickFilter={handleClickFilter}
               handleResetFilter={handleResetFilter}
+              role={user.role}
               handleFilterCourse={handleFilterCourse}
             />
           </Box>
@@ -145,19 +148,8 @@ const Course = () => {
                 </>
               ) : (
                 <>
-                  {role === 'level_0_annotator' ||
-                  // role === 'level_1_annotator' ||
-                  role === 'level_2_annotator' ||
-                  role === 'level_3_annotator' ||
-                  role === 'reviewer' ? (
-                    <>
-                      {' '}
-                      <CourseTab
-                        handleViewDetailsButton={handleViewDetailsButton}
-                        filterCourses={filterCourses}
-                        isLoading={isLoading}
-                      />
-                    </>
+                  {role === '' ? (
+                    <> </>
                   ) : (
                     <>
                       {isDataLoading ? (
@@ -166,27 +158,6 @@ const Course = () => {
                         </>
                       ) : (
                         <>
-                          {/* <CourseTab filterCourses={filterCourses} isLoading={isLoading} /> */}
-                          {/* <Grid
-                        container
-                        spacing={1}
-                        sx={{
-                          height: '100%',
-                          width: '100%',
-                          // marginX: '20px',
-                          // gap: { xxl: '0px', xl: '10px', lg: '0px' },
-                        }}
-                      >
-                        {courses?.map((course) => (
-                          <Grid key={course._id} item xs={12} xxl={3} xl={2.8} lg={4} sx={{ height: '50%' }}>
-                            <CustomCard
-                              courseDirection="all"
-                              handleViewDetailsButton={handleViewDetailsButton}
-                              course={course}
-                            />
-                          </Grid>
-                        ))}
-                      </Grid> */}
                           <Box sx={{ paddingLeft: '20px' }}>
                             <FeaturedCourse
                               courses={featureCourses}

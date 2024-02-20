@@ -39,7 +39,7 @@ const CourseHeader = ({
           paddingX: '15px',
         }}
       >
-        <Box sx={{ padding: '8px 16px' }}>
+        <Box sx={{ padding: '8px 16px', height: '70px' }}>
           <Grid container>
             <CommonHeader title="List of Courses" customButton="Create User" />
             {courseCount > 0 && (

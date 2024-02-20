@@ -2,10 +2,19 @@ import ClearIcon from '@mui/icons-material/Clear';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import FilterListOffIcon from '@mui/icons-material/FilterListOff';
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, Button, Grid, IconButton, InputBase, Paper, Popover, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  InputBase,
+  Paper,
+  Popover,
+  Typography,
+} from '@mui/material';
 import CommonHeader from '../../../shared/CustomComponenet/CommonHeader/CommonHeader';
-import MIniModalCourseFilter from './MIniModalCourseFilter';
 import CoursePageFilter from './CoursePageFilter';
+import MIniModalCourseFilter from './MIniModalCourseFilter';
 const CourseHeader = ({
   handleOpen,
   open,
@@ -39,12 +48,19 @@ const CourseHeader = ({
           paddingX: '15px',
         }}
       >
-        <Box sx={{ padding: '8px 16px', height: '70px' }}>
+        <Box sx={{ padding: '8px 16px', height: '70px', width: '20%' }}>
           <Grid container>
             <CommonHeader title="List of Courses" customButton="Create User" />
             {courseCount > 0 && (
-              <Typography sx={{ opacity: '0.7', height: '13px' }} variant="wpf_p3_regular" color={'neutral.750'}>
-                {courseCount === 1 ? courseCount + ' Result' : courseCount + ' Results'} found
+              <Typography
+                sx={{ opacity: '0.7', height: '13px' }}
+                variant="wpf_p3_regular"
+                color={'neutral.750'}
+              >
+                {courseCount === 1
+                  ? courseCount + ' Result'
+                  : courseCount + ' Results'}{' '}
+                found
               </Typography>
             )}
           </Grid>
@@ -78,7 +94,12 @@ const CourseHeader = ({
               boxShadow: 'none',
             }}
           >
-            <IconButton disabled type="button" sx={{ p: '5px' }} aria-label="search">
+            <IconButton
+              disabled
+              type="button"
+              sx={{ p: '5px' }}
+              aria-label="search"
+            >
               <SearchIcon />
             </IconButton>
             <InputBase
@@ -157,11 +178,16 @@ const CourseHeader = ({
               variant="contained"
               onClick={handleOpen}
             >
-              <i style={{ fontSize: '17px', marginRight: '6px' }} className="ri-add-fill"></i> Create Course
+              <i
+                style={{ fontSize: '17px', marginRight: '6px' }}
+                className="ri-add-fill"
+              ></i>{' '}
+              Create Course
             </Button>
           )}
         </Box>
       </Box>
+
       <Popover
         id={id}
         open={openModal}

@@ -5,7 +5,7 @@ import CourseHeader from './CourseHeader/CourseHeader';
 import { Box, Paper, Typography, styled } from '@mui/material';
 import LoadingComponent from '../../shared/Loading/LoadingComponent';
 import useCourseManagement from './hooks/createCourseHook/useCourseMangement';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAllSkills } from '../../../features/slice/skillSlice';
 import { getAllCourses, getAllCoursesNew } from '../../../features/slice/courseSlice';
 import CustomCard from './CustomCard';
@@ -79,7 +79,7 @@ const CourseAllPage = () => {
     boxShadow: '0px 1px 3px 0px #09008014',
   });
   const { level } = useParams();
-
+  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -119,6 +119,7 @@ const CourseAllPage = () => {
               handleResetFilter={handleResetFilter}
               handleFilterCourse={handleFilterCourse}
               level={level}
+              role={user.role}
             />
           </Box>
           <CoursePaper>
@@ -129,19 +130,8 @@ const CourseAllPage = () => {
                 </>
               ) : (
                 <>
-                  {role === 'level_0_annotator' ||
-                  // role === 'level_1_annotator' ||
-                  role === 'level_2_annotator' ||
-                  role === 'level_3_annotator' ||
-                  role === 'reviewer' ? (
-                    <>
-                      {' '}
-                      <CourseTab
-                        handleViewDetailsButton={handleViewDetailsButton}
-                        filterCourses={filterCourses}
-                        isLoading={isLoading}
-                      />
-                    </>
+                  {role === '' ? (
+                    <></>
                   ) : (
                     <Box sx={{ padding: '30px' }}>
                       <Typography variant="wpf_h4_Bold" color={'neutral.995'}>

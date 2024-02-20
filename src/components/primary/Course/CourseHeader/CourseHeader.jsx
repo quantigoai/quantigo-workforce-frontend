@@ -2,21 +2,12 @@ import ClearIcon from '@mui/icons-material/Clear';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import FilterListOffIcon from '@mui/icons-material/FilterListOff';
 import SearchIcon from '@mui/icons-material/Search';
-import {
-  Box,
-  Button,
-  Grid,
-  IconButton,
-  InputBase,
-  Paper,
-  Popover,
-  Typography,
-} from '@mui/material';
+import { Box, Button, Grid, IconButton, InputBase, Paper, Popover, Typography } from '@mui/material';
 import CommonHeader from '../../../shared/CustomComponenet/CommonHeader/CommonHeader';
 import MIniModalCourseFilter from './MIniModalCourseFilter';
 const CourseHeader = ({
   handleOpen,
-  open,                       
+  open,
   setOpen,
   courseCount,
   search,
@@ -34,6 +25,7 @@ const CourseHeader = ({
   handleFilterCourse,
   anchorE2,
   level,
+  role,
 }) => {
   return (
     <>
@@ -44,7 +36,7 @@ const CourseHeader = ({
           backgroundColor: 'neutral.N000',
         }}
       >
-        <Box sx={{ width: '30%', padding: '8px 16px' }}>
+        <Box sx={{ width: { xxl: '30%', xl: '30%', lg: '20%' }, padding: '8px 16px' }}>
           <Grid
             container
             sx={{
@@ -56,15 +48,8 @@ const CourseHeader = ({
           >
             <CommonHeader title="List of Courses" customButton="Create User" />
             {courseCount > 0 && (
-              <Typography
-                sx={{ opacity: '0.7', height: '13px' }}
-                variant="wpf_p3_regular"
-                color={'neutral.750'}
-              >
-                {courseCount === 1
-                  ? courseCount + ' Result'
-                  : courseCount + ' Results'}{' '}
-                found
+              <Typography sx={{ opacity: '0.7', height: '13px' }} variant="wpf_p3_regular" color={'neutral.750'}>
+                {courseCount === 1 ? courseCount + ' Result' : courseCount + ' Results'} found
               </Typography>
             )}
           </Grid>
@@ -72,61 +57,73 @@ const CourseHeader = ({
 
         <Box
           sx={{
+            width: { xxl: '80%', xl: '80%', lg: '90%' },
             display: 'flex',
-            justifyContent: 'space-between',
+            justifyContent: 'flex-end',
             alignItems: 'center',
             padding: '12px 20px',
+            gap: '7px',
           }}
         >
-          <Button
-            sx={{
-              textTransform: 'none',
-              borderRadius: '8px',
+          {role === 'level_0_annotator' ||
+          role === 'level_1_annotator' ||
+          role === 'level_2_annotator' ||
+          role === 'level_3_annotator' ? (
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
+              <Button
+                sx={{
+                  textTransform: 'none',
+                  borderRadius: '8px',
 
-              backgroundColor: 'neutral.N000',
-              color: 'grey.550',
+                  backgroundColor: 'neutral.N000',
+                  color: 'grey.550',
 
-              '&:hover': {
-                backgroundColor: 'neutral.N000',
-                color: 'grey.550',
-              },
-            }}
-            variant="contained"
-          >
-            All Courses (32)
-          </Button>
-          <Button
-            sx={{
-              textTransform: 'none',
-              borderRadius: '8px',
+                  '&:hover': {
+                    backgroundColor: 'neutral.N000',
+                    color: 'grey.550',
+                  },
+                }}
+                variant="contained"
+              >
+                All Courses (32)
+              </Button>
+              <Button
+                sx={{
+                  textTransform: 'none',
+                  borderRadius: '8px',
 
-              backgroundColor: '#2E58FF',
-              color: 'white',
+                  backgroundColor: '#2E58FF',
+                  color: 'white',
 
-              '&:hover': {
-                background: '#244EF5',
-              },
-            }}
-            variant="contained"
-          >
-            My Courses (32)
-          </Button>
-          <Button
-            sx={{
-              textTransform: 'none',
-              borderRadius: '8px',
+                  '&:hover': {
+                    background: '#244EF5',
+                  },
+                }}
+                variant="contained"
+              >
+                My Courses (32)
+              </Button>
+              <Button
+                sx={{
+                  textTransform: 'none',
+                  borderRadius: '8px',
 
-              backgroundColor: 'neutral.N000',
-              color: 'grey.550',
+                  backgroundColor: 'neutral.N000',
+                  color: 'grey.550',
+                  paddingLeft: '8px',
 
-              '&:hover': {
-                background: '#244EF5',
-              },
-            }}
-            variant="contained"
-          >
-            Archived Courses (03)
-          </Button>
+                  '&:hover': {
+                    background: '#244EF5',
+                  },
+                }}
+                variant="contained"
+              >
+                Archived Courses (03)
+              </Button>
+            </Box>
+          ) : (
+            <></>
+          )}
           <Paper
             // component="form"
             sx={{
@@ -141,12 +138,7 @@ const CourseHeader = ({
               boxShadow: 'none',
             }}
           >
-            <IconButton
-              disabled
-              type="button"
-              sx={{ p: '5px' }}
-              aria-label="search"
-            >
+            <IconButton disabled type="button" sx={{ p: '5px' }} aria-label="search">
               <SearchIcon />
             </IconButton>
             <InputBase
@@ -228,27 +220,25 @@ const CourseHeader = ({
           </Popover>
 
           {/* <ExportUserList /> */}
-          <Button
-            sx={{
-              textTransform: 'none',
-              borderRadius: '8px',
+          {role === 'admin' && (
+            <Button
+              sx={{
+                textTransform: 'none',
+                borderRadius: '8px',
 
-              backgroundColor: '#2E58FF',
-              color: 'white',
+                backgroundColor: '#2E58FF',
+                color: 'white',
 
-              '&:hover': {
-                background: '#244EF5',
-              },
-            }}
-            variant="contained"
-            onClick={handleOpen}
-          >
-            <i
-              style={{ fontSize: '17px', marginRight: '6px' }}
-              className="ri-add-fill"
-            ></i>{' '}
-            Create Course
-          </Button>
+                '&:hover': {
+                  background: '#244EF5',
+                },
+              }}
+              variant="contained"
+              onClick={handleOpen}
+            >
+              <i style={{ fontSize: '17px', marginRight: '6px' }} className="ri-add-fill"></i> Create Course
+            </Button>
+          )}
         </Box>
       </Box>
     </>

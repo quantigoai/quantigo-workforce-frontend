@@ -26,9 +26,10 @@ const CourseHomePageIndex = () => {
       <Box
         sx={{
           height: '100%',
+
           overflowY: 'auto',
           '&::-webkit-scrollbar': {
-            width: '0', // Hide the scrollbar
+            width: '0',
           },
         }}
       >
@@ -37,11 +38,11 @@ const CourseHomePageIndex = () => {
           <CourseHomePageHeader course={course} />
         </Box>
         <Box
-          sx={{ backgroundColor: 'neutral.N000', borderTop: '1px solid #E2E8F0', borderBottom: '1px solid #E2E8F0' }}
+          sx={{ backgroundColor: 'neutral.N000', borderTop: '1px solid #F1F5F9', borderBottom: '1px solid #E2E8F0' }}
         >
-          <CourseLiveSessionSection />
+          {/* <CourseLiveSessionSection /> */}
         </Box>
-        <Box sx={{ backgroundColor: 'neutral.N000', paddingTop: '5px' }}>
+        <Box sx={{ backgroundColor: 'neutral.N000', paddingTop: '5px', padding: '10px' }}>
           <Grid container>
             <Grid item xs={9} sx={{ padding: '1%' }}>
               <Grid container>
@@ -108,7 +109,7 @@ const CourseHomePageIndex = () => {
             </Grid>
           </Grid>
         </Box>
-        <Box sx={{ paddingTop: '5px' }}>
+        <Box sx={{ paddingTop: '5px', padding: '10px' }}>
           <CourseHomePageCertificate />
         </Box>
       </Box>

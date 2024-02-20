@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Box, Button, Grid, IconButton, InputBase, Paper, Popover, Typography } from '@mui/material';
 import CommonHeader from '../../../shared/CustomComponenet/CommonHeader/CommonHeader';
 import MIniModalCourseFilter from './MIniModalCourseFilter';
+import CoursePageFilter from './CoursePageFilter';
 const CourseHeader = ({
   handleOpen,
   open,
@@ -33,19 +34,13 @@ const CourseHeader = ({
         className="headerBox"
         sx={{
           height: '100%',
+          width: '100%',
           backgroundColor: 'neutral.N000',
+          paddingX: '15px',
         }}
       >
-        <Box sx={{ width: { xxl: '30%', xl: '30%', lg: '20%' }, padding: '8px 16px' }}>
-          <Grid
-            container
-            sx={{
-              display: 'flex',
-              alignContent: 'center',
-              alignItems: 'center',
-              paddingX: '10px',
-            }}
-          >
+        <Box sx={{ padding: '8px 16px' }}>
+          <Grid container>
             <CommonHeader title="List of Courses" customButton="Create User" />
             {courseCount > 0 && (
               <Typography sx={{ opacity: '0.7', height: '13px' }} variant="wpf_p3_regular" color={'neutral.750'}>
@@ -57,70 +52,15 @@ const CourseHeader = ({
 
         <Box
           sx={{
-            width: { xxl: '80%', xl: '80%', lg: '90%' },
             display: 'flex',
-            justifyContent: 'flex-end',
-            alignItems: 'center',
-            padding: '12px 20px',
-            gap: '7px',
+            gap: '10px',
           }}
         >
           {role === 'level_0_annotator' ||
           role === 'level_1_annotator' ||
           role === 'level_2_annotator' ||
           role === 'level_3_annotator' ? (
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
-              <Button
-                sx={{
-                  textTransform: 'none',
-                  borderRadius: '8px',
-
-                  backgroundColor: 'neutral.N000',
-                  color: 'grey.550',
-
-                  '&:hover': {
-                    backgroundColor: 'neutral.N000',
-                    color: 'grey.550',
-                  },
-                }}
-                variant="contained"
-              >
-                All Courses (32)
-              </Button>
-              <Button
-                sx={{
-                  textTransform: 'none',
-                  borderRadius: '8px',
-
-                  backgroundColor: '#2E58FF',
-                  color: 'white',
-
-                  '&:hover': {
-                    background: '#244EF5',
-                  },
-                }}
-                variant="contained"
-              >
-                My Courses (32)
-              </Button>
-              <Button
-                sx={{
-                  textTransform: 'none',
-                  borderRadius: '8px',
-
-                  backgroundColor: 'neutral.N000',
-                  color: 'grey.550',
-                  paddingLeft: '8px',
-
-                  '&:hover': {
-                    background: '#244EF5',
-                  },
-                }}
-                variant="contained"
-              >
-                Archived Courses (03)
-              </Button>
-            </Box>
+            <CoursePageFilter />
           ) : (
             <></>
           )}
@@ -199,25 +139,6 @@ const CourseHeader = ({
               <FilterListIcon sx={{ color: 'primary.main' }} />
             )}
           </IconButton>
-          <Popover
-            id={id}
-            open={openModal}
-            anchorEl={anchorE2}
-            onClose={handleCloseFilter}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
-            }}
-          >
-            <MIniModalCourseFilter
-              handleResetFilter={handleResetFilter}
-              handleFilterCourse={handleFilterCourse}
-              handleCloseFilter={handleCloseFilter}
-              handleChange={handleChange}
-              filter={filter}
-              level={level}
-            />
-          </Popover>
 
           {/* <ExportUserList /> */}
           {role === 'admin' && (
@@ -241,6 +162,25 @@ const CourseHeader = ({
           )}
         </Box>
       </Box>
+      <Popover
+        id={id}
+        open={openModal}
+        anchorEl={anchorE2}
+        onClose={handleCloseFilter}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+      >
+        <MIniModalCourseFilter
+          handleResetFilter={handleResetFilter}
+          handleFilterCourse={handleFilterCourse}
+          handleCloseFilter={handleCloseFilter}
+          handleChange={handleChange}
+          filter={filter}
+          level={level}
+        />
+      </Popover>
     </>
   );
 };

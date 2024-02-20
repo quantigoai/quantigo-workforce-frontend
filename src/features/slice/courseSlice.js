@@ -34,16 +34,20 @@ const initialState = {
 };
 // All Courses get request
 export const getAllCourses = createAsyncThunk('courses', async (data) => {
-  const { level, search } = data;
+  const { level, search, filter } = data;
   try {
     let query = '';
     if (level) {
-      query += `?level=${level}`;
+      query += `level=${level}`;
     }
     if (search) {
       query += `&search=${search}`;
     }
-    return await axios.get(`${url}/courses${query}`, {
+    const filterOptions = filter && Object.keys(filter);
+    if (filterOptions) {
+      filterOptions.map((f) => (query += `&${f}=${filter[f]}`));
+    }
+    return await axios.get(`${url}/courses?${query}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -57,7 +61,6 @@ export const getAllCourses = createAsyncThunk('courses', async (data) => {
 
 export const getAllCoursesNew = createAsyncThunk('coursesNew', async (data) => {
   const { filter, search } = data;
-  console.log('🚀 ~ getAllCoursesNew ~ search:', search);
 
   try {
     let query = '';

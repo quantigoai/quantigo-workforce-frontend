@@ -101,7 +101,7 @@ const Course = () => {
     dispatch(getAllCourses()).then(() => {
       setIsDataLoading(false);
     });
-    dispatch(getAllCoursesNew({ filter: {}, search })).then((action) => {
+    dispatch(getAllCoursesNew({ filter, search })).then((action) => {
       setCourseCount(action.payload.data.courses.count);
       setAllCourses(action.payload.data.courses);
       setFeatureCourses(action.payload.data.courses.featureCourseList);
@@ -187,39 +187,48 @@ const Course = () => {
                           </Grid>
                         ))}
                       </Grid> */}
-                          <Box sx={{ padding: '30px' }}>
+                          <Box sx={{ paddingLeft: '20px' }}>
                             <FeaturedCourse
                               courses={featureCourses}
                               handleViewDetailsButton={handleViewDetailsButton}
                             />
-                            {allCourses.coursesByLevelList?.basic?.length > 0 && (
-                              <CourseLevel
-                                isDataLoading={isDataLoading}
-                                title={'Basic Courses'}
-                                courses={allCourses.coursesByLevelList?.basic}
-                                handleViewDetailsButton={handleViewDetailsButton}
-                              />
-                            )}
-                            {allCourses.coursesByLevelList?.beginner?.length > 0 && (
-                              <CourseLevel
-                                title={'Beginner Courses'}
-                                courses={allCourses.coursesByLevelList?.beginner}
-                                handleViewDetailsButton={handleViewDetailsButton}
-                              />
-                            )}
-                            {allCourses.coursesByLevelList?.intermediate?.length > 0 && (
-                              <CourseLevel
-                                title={'Intermediate Courses'}
-                                courses={allCourses.coursesByLevelList?.intermediate}
-                                handleViewDetailsButton={handleViewDetailsButton}
-                              />
-                            )}
-                            {allCourses.coursesByLevelList?.advanced?.length > 0 && (
-                              <CourseLevel
-                                title={'Advance Courses'}
-                                courses={allCourses.coursesByLevelList?.advanced}
-                                handleViewDetailsButton={handleViewDetailsButton}
-                              />
+                            {allCourses.count === 0 ? (
+                              <Box sx={{ mt: '20px' }}>
+                                {' '}
+                                <Typography variant="wpf_h6_semiBold">No course Found</Typography>
+                              </Box>
+                            ) : (
+                              <Box sx={{ padding: '20px' }}>
+                                {allCourses.coursesByLevelList?.basic?.length > 0 && (
+                                  <CourseLevel
+                                    isDataLoading={isDataLoading}
+                                    title={'Basic Courses'}
+                                    courses={allCourses.coursesByLevelList?.basic}
+                                    handleViewDetailsButton={handleViewDetailsButton}
+                                  />
+                                )}
+                                {allCourses.coursesByLevelList?.beginner?.length > 0 && (
+                                  <CourseLevel
+                                    title={'Beginner Courses'}
+                                    courses={allCourses.coursesByLevelList?.beginner}
+                                    handleViewDetailsButton={handleViewDetailsButton}
+                                  />
+                                )}
+                                {allCourses.coursesByLevelList?.intermediate?.length > 0 && (
+                                  <CourseLevel
+                                    title={'Intermediate Courses'}
+                                    courses={allCourses.coursesByLevelList?.intermediate}
+                                    handleViewDetailsButton={handleViewDetailsButton}
+                                  />
+                                )}
+                                {allCourses.coursesByLevelList?.advanced?.length > 0 && (
+                                  <CourseLevel
+                                    title={'Advance Courses'}
+                                    courses={allCourses.coursesByLevelList?.advanced}
+                                    handleViewDetailsButton={handleViewDetailsButton}
+                                  />
+                                )}
+                              </Box>
                             )}
                           </Box>
                         </>

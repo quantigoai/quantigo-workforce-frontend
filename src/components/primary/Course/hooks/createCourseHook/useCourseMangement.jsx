@@ -23,7 +23,8 @@ const useCourseManagement = () => {
   const [intermediateCourses, setIntermediateCourses] = useState([]);
   const [advancedCourses, setAdvancedCourses] = useState([]);
   const [allCourses, setAllCourses] = useState([]);
-
+  const [allCoursesFull, setAllCoursesFull] = useState([]);
+  const [courseCountFull, setCourseCountFull] = useState(0);
   const [courseCount, setCourseCount] = useState(0);
   const { role } = useSelector((state) => state.user.user);
   const { course } = useSelector((state) => state.course);
@@ -76,18 +77,33 @@ const useCourseManagement = () => {
     setAnchorE2(event.currentTarget);
   };
   const handleResetFilter = () => {
-    dispatch(getAllCoursesNew({})).then((action) => {
-      setCourseCount(action.payload.data.courses.count);
-      setAllCourses(action.payload.data.courses);
-      setFeatureCourses(action.payload.data.courses.featureCourseList);
-    });
-    setFilter({});
+    if (level) {
+      dispatch(getAllCourses({ level, filter: {}, search })).then((action) => {
+        setAllCoursesFull(action.payload.data.courses);
+        setCourseCountFull(action.payload.data.count);
+        setFilter({});
+      });
+    } else {
+      dispatch(getAllCoursesNew({ filter: {}, search })).then((action) => {
+        setCourseCount(action.payload.data.courses.count);
+        setAllCourses(action.payload.data.courses);
+        setFeatureCourses(action.payload.data.courses.featureCourseList);
+        setFilter({});
+      });
+    }
   };
   const handleFilterCourse = () => {
-    dispatch(getAllCoursesNew({ filter, search })).then((action) => {
-      setCourseCount(action.payload.data.courses.count);
-      setAllCourses(action.payload.data.courses);
-    });
+    if (level) {
+      dispatch(getAllCourses({ level, filter, search })).then((action) => {
+        setAllCoursesFull(action.payload.data.courses);
+        setCourseCountFull(action.payload.data.count);
+      });
+    } else {
+      dispatch(getAllCoursesNew({ filter, search })).then((action) => {
+        setCourseCount(action.payload.data.courses.count);
+        setAllCourses(action.payload.data.courses);
+      });
+    }
   };
 
   //filter function------
@@ -166,10 +182,6 @@ const useCourseManagement = () => {
   const [isCourseLoading, setIsCourseLoading] = useState(false);
 
   const handleSearch = (e) => {
-    // setPagination((prevPagination) => ({
-    //   ...prevPagination,
-    //   currentPage: 0,
-    // }));
     setSearch(e.target.value);
   };
 
@@ -204,14 +216,23 @@ const useCourseManagement = () => {
         toast.trigger(action.error.message, 'error');
       } else {
         toast.trigger(action.payload.data.message, 'success');
-        dispatch(getAllCoursesNew({})).then((action) => {
-          setCourseCount(action.payload.data.courses.count);
-          setAllCourses(action.payload.data.courses);
-          setFeatureCourses(action.payload.data.courses.featureCourseList);
-          setIsDataLoading(false);
+        if (level) {
+          dispatch(getAllCourses({ level, filter, search })).then((action) => {
+            setAllCoursesFull(action.payload.data.courses);
+            setCourseCountFull(action.payload.data.count);
+            setIsDataLoading(false);
+            handleClose();
+          });
+        } else {
+          dispatch(getAllCoursesNew({})).then((action) => {
+            setCourseCount(action.payload.data.courses.count);
+            setAllCourses(action.payload.data.courses);
+            setFeatureCourses(action.payload.data.courses.featureCourseList);
+            setIsDataLoading(false);
+            handleClose();
+          });
           handleClose();
-        });
-        handleClose();
+        }
       }
     });
   };
@@ -301,6 +322,10 @@ const useCourseManagement = () => {
     handleFilterCourse,
     allCourses,
     setAllCourses,
+    allCoursesFull,
+    setAllCoursesFull,
+    courseCountFull,
+    setCourseCountFull,
   };
 };
 

@@ -33,7 +33,7 @@ const CourseLevel = ({ title, courses, handleViewDetailsButton }) => {
             justifyContent: 'center',
             alignItems: 'center',
             color: '#266AED',
-            mr: { xxl: '50px', xl: '0px', lg: '' },
+            mr: { xxl: '20px', xl: '0px', lg: '' },
           }}
           variant="wpf_p3_medium_3"
         >
@@ -48,14 +48,14 @@ const CourseLevel = ({ title, courses, handleViewDetailsButton }) => {
           gridGap: '8px',
           mt: '16px',
           // width: '100%',
-          gap: { xxl: '20px', xl: '15px', lg: '12px' },
+          gap: { xxl: '0px', xl: '10px', lg: '10px' },
         }}
       >
         {courses?.map((course) => (
           <Box
             sx={{
               backgroundColor: isLightTheme ? '#fff' : '#000',
-              width: { xxl: '328px', xl: '278px', lg: '250px' },
+              width: { xxl: '368px', xl: '278px', lg: '250px' },
               borderRadius: '10px',
             }}
             key={course._id}

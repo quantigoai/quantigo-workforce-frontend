@@ -12,9 +12,9 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import axios from "axios";
-import {realToken} from "../../helper/lib";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { realToken } from '../../helper/lib';
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
@@ -23,18 +23,18 @@ const initialState = {
   quiz: {},
   quizs: [],
   result: {},
-  error: "null",
+  error: 'null',
   isCreated: false,
 };
 
-export const createAQuiz = createAsyncThunk("/quizzes", async (data) => {
+export const createAQuiz = createAsyncThunk('/quizzes', async (data) => {
   try {
     return await axios.post(`${url}/quizzes`, data, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
       content: {
-        "Content-Type": "multipart/form-data",
+        'Content-Type': 'multipart/form-data',
       },
     });
   } catch (error) {
@@ -49,7 +49,7 @@ export const createQuizFunction = async (data) => {
         Authorization: `Bearer ${realToken()}`,
       },
       content: {
-        "Content-Type": "multipart/form-data",
+        'Content-Type': 'multipart/form-data',
       },
     });
   } catch (error) {
@@ -67,7 +67,7 @@ export const createQuizFunction = async (data) => {
 // });
 
 // get a quiz By Course Id
-export const getAQuizById = createAsyncThunk("/quizzes/:id", async (id) => {
+export const getAQuizById = createAsyncThunk('/quizzes/:id', async (id) => {
   return axios.get(`${url}/quizzes/${id}`, {
     headers: {
       Authorization: `Bearer ${realToken()}`,
@@ -76,17 +76,20 @@ export const getAQuizById = createAsyncThunk("/quizzes/:id", async (id) => {
 });
 
 // update a Question Answer
-export const updateQuizQA = createAsyncThunk("/quiz/update/quizId/questionId", async (data1) => {
-  const { quizId, questionId, formDataQ } = data1;
-  return axios.patch(`${url}/quizzes/${quizId}/${questionId}`, formDataQ, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-    content: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
-});
+export const updateQuizQA = createAsyncThunk(
+  '/quiz/update/quizId/questionId',
+  async (data1) => {
+    const { quizId, questionId, formDataQ } = data1;
+    return axios.patch(`${url}/quizzes/${quizId}/${questionId}`, formDataQ, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+      content: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  },
+);
 export const updateQuizQAFunction = async (data1) => {
   const { quizId, questionId, formDataQ } = data1;
   try {
@@ -95,7 +98,7 @@ export const updateQuizQAFunction = async (data1) => {
         Authorization: `Bearer ${realToken()}`,
       },
       content: {
-        "Content-Type": "multipart/form-data",
+        'Content-Type': 'multipart/form-data',
       },
     });
   } catch (error) {
@@ -104,53 +107,65 @@ export const updateQuizQAFunction = async (data1) => {
 };
 
 // Update Quiz by ID
-export const updateQuizById = createAsyncThunk("/quizzes/update/:id", async (bulkData) => {
-  const { id, data } = bulkData;
+export const updateQuizById = createAsyncThunk(
+  '/quizzes/update/:id',
+  async (bulkData) => {
+    const { id, data } = bulkData;
 
-  return axios.patch(`${url}/quizzes/update/${id}`, data, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
-});
-
-// Submit Question and Answer of a Quiz
-export const submitQuizById = createAsyncThunk("/quizzes/submit/:id", async (bulkData) => {
-  const { id, data } = bulkData;
-
-  return axios.post(`${url}/quizzes/submit/${id}`, data, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
-});
-
-// Delete questions from Quizzes
-export const deleteQuestionFromQuiz = createAsyncThunk("/quizzes/delete/:quizId", async (deleteQuizData) => {
-  const { quizId, data } = deleteQuizData;
-  return axios.patch(`${url}/quizzes/delete/${quizId}`, data, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
-});
-export const insertAQuestionInQuiz = createAsyncThunk("/quizzes/question/:quizId", async (data) => {
-  const { quizId, formDataQ } = data;
-  try {
-    return await axios.patch(`${url}/quizzes/question/${quizId}`, formDataQ, {
+    return axios.patch(`${url}/quizzes/update/${id}`, data, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
-      content: {
-        "Content-Type": "multipart/form-data",
+    });
+  },
+);
+
+// Submit Question and Answer of a Quiz
+export const submitQuizById = createAsyncThunk(
+  '/quizzes/submit/:id',
+  async (bulkData) => {
+    const { id, data } = bulkData;
+
+    return axios.post(`${url}/quizzes/submit/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
       },
     });
-  } catch (error) {
-    throw new Error(error.response.data.message);
-  }
-});
+  },
+);
+
+// Delete questions from Quizzes
+export const deleteQuestionFromQuiz = createAsyncThunk(
+  '/quizzes/delete/:quizId',
+  async (deleteQuizData) => {
+    const { quizId, data } = deleteQuizData;
+    return axios.patch(`${url}/quizzes/delete/${quizId}`, data, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  },
+);
+export const insertAQuestionInQuiz = createAsyncThunk(
+  '/quizzes/question/:quizId',
+  async (data) => {
+    const { quizId, formDataQ } = data;
+    try {
+      return await axios.patch(`${url}/quizzes/question/${quizId}`, formDataQ, {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+        content: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  },
+);
 const quizSlice = createSlice({
-  name: "quiz",
+  name: 'quiz',
   initialState: initialState,
   reducers: {
     updateQuizData: () => initialState,

@@ -316,24 +316,24 @@ const QuizUpdateIndex = () => {
   const [accept, setAccept] = useState(false);
 
   const onSubmit = async (data) => {
-    await toast.responsePromise(
-      // updateQuizQAFunction(data1),
-      setQuizUpdateLoading,
-      {
-        initialMessage: "quiz is updating ...",
-        inPending: () => {
-          setAccept(false);
-        },
-        afterSuccess: (data) => {
-          setAccept(false);
-        },
-        afterError: (data) => {
-          setAccept(false);
-        },
-      },
-      "forQuizCreate"
-    );
-    let tempQA;
+    // await toast.responsePromise(
+    //   // updateQuizQAFunction(data1),
+    //   setQuizUpdateLoading,
+    //   {
+    //     initialMessage: "quiz is updating ...",
+    //     inPending: () => {
+    //       setAccept(false);
+    //     },
+    //     afterSuccess: (data) => {
+    //       setAccept(false);
+    //     },
+    //     afterError: (data) => {
+    //       setAccept(false);
+    //     },
+    //   },
+    //   "forQuizCreate"
+    // );
+    // let tempQA;
 
     // update  Quiz Question Answer
 

@@ -24,7 +24,8 @@ const CourseLandingPageIndex = () => {
   // const { handleViewDetailsButton, isCourseLoading } = useCourseManagement();
 
   const handleViewDetailsButton1 = (id, courseDirection) => {
-    console.log("123");
+    console.log("123");   
+    
     setIsCourseLoading(true);
     dispatch(getACourseByID(id))
       .then((res) => {

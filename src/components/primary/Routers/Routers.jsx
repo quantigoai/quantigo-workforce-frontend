@@ -35,6 +35,7 @@ import CreateQuiz from '../Quiz/CreateQuiz';
 import Skills from '../Skill/Skills';
 import PrivateRoute from './PrivateRoute';
 import CourseAllPage from '../Course/CourseAllPage';
+import QuizShow from '../CourseNew/QuizShow';
 
 export const roles = {
   admin: 'admin',
@@ -88,7 +89,7 @@ const Routers = () => {
           {/* <Route path='index' element={<CourseDetailsIndex />} /> */}
           <Route path="index" element={<CourseNewDetailsIndex />} />
           <Route path="content" element={<CourseMainContent />} />
-          {/* <Route path="show-quiz" element={<QuizShow />} /> */}
+          <Route path="show-quiz" element={<QuizShow />} />
           {/* <Route path={'quiz-result'} element={<ShowResult />} /> */}
         </Route>
         <Route path={'/course-landing/:id'} element={<CourseLandingPageIndex />}></Route>

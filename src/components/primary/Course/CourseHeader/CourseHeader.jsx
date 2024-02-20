@@ -1,9 +1,17 @@
-import { Box, Button, Grid, IconButton, InputBase, Paper, Popover, Typography } from '@mui/material';
-import CommonHeader from '../../../shared/CustomComponenet/CommonHeader/CommonHeader';
+import ClearIcon from '@mui/icons-material/Clear';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import SearchIcon from '@mui/icons-material/Search';
-import ClearIcon from '@mui/icons-material/Clear';
-import { useState } from 'react';
+import {
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  InputBase,
+  Paper,
+  Popover,
+  Typography,
+} from '@mui/material';
+import CommonHeader from '../../../shared/CustomComponenet/CommonHeader/CommonHeader';
 import MIniModalCourseFilter from './MIniModalCourseFilter';
 const CourseHeader = ({
   handleOpen,
@@ -46,8 +54,15 @@ const CourseHeader = ({
           >
             <CommonHeader title="List of Courses" customButton="Create User" />
             {courseCount > 0 && (
-              <Typography sx={{ opacity: '0.7', height: '13px' }} variant="wpf_p3_regular" color={'neutral.750'}>
-                {courseCount === 1 ? courseCount + ' Result' : courseCount + ' Results'} found
+              <Typography
+                sx={{ opacity: '0.7', height: '13px' }}
+                variant="wpf_p3_regular"
+                color={'neutral.750'}
+              >
+                {courseCount === 1
+                  ? courseCount + ' Result'
+                  : courseCount + ' Results'}{' '}
+                found
               </Typography>
             )}
           </Grid>
@@ -61,6 +76,55 @@ const CourseHeader = ({
             padding: '12px 20px',
           }}
         >
+          <Button
+            sx={{
+              textTransform: 'none',
+              borderRadius: '8px',
+
+              backgroundColor: 'neutral.N000',
+              color: 'grey.550',
+
+              '&:hover': {
+                backgroundColor: 'neutral.N000',
+                color: 'grey.550',
+              },
+            }}
+            variant="contained"
+          >
+            All Courses (32)
+          </Button>
+          <Button
+            sx={{
+              textTransform: 'none',
+              borderRadius: '8px',
+
+              backgroundColor: '#2E58FF',
+              color: 'white',
+
+              '&:hover': {
+                background: '#244EF5',
+              },
+            }}
+            variant="contained"
+          >
+            My Courses (32)
+          </Button>
+          <Button
+            sx={{
+              textTransform: 'none',
+              borderRadius: '8px',
+
+              backgroundColor: 'neutral.N000',
+              color: 'grey.550',
+
+              '&:hover': {
+                background: '#244EF5',
+              },
+            }}
+            variant="contained"
+          >
+            Archived Courses (03)
+          </Button>
           <Paper
             // component="form"
             sx={{
@@ -75,7 +139,12 @@ const CourseHeader = ({
               boxShadow: 'none',
             }}
           >
-            <IconButton disabled type="button" sx={{ p: '5px' }} aria-label="search">
+            <IconButton
+              disabled
+              type="button"
+              sx={{ p: '5px' }}
+              aria-label="search"
+            >
               <SearchIcon />
             </IconButton>
             <InputBase
@@ -166,7 +235,11 @@ const CourseHeader = ({
             variant="contained"
             onClick={handleOpen}
           >
-            <i style={{ fontSize: '17px', marginRight: '6px' }} className="ri-add-fill"></i> Create Course
+            <i
+              style={{ fontSize: '17px', marginRight: '6px' }}
+              className="ri-add-fill"
+            ></i>{' '}
+            Create Course
           </Button>
         </Box>
       </Box>

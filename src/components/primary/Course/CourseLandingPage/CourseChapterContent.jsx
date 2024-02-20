@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CourseChapterAccordion from "./CourseChapterAccordion";
 import { getAllCourseSeries } from "../../../../features/slice/courseSlice";
+import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 
 const CourseChapterContent = ({ course,handleViewDetailsButton }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
@@ -95,7 +96,7 @@ const CourseChapterContent = ({ course,handleViewDetailsButton }) => {
                     // sx={{ opacity: "0.6", }}
                     onClick={() => handleViewDetailsButton(item._id, "All")}
                   >
-                    {item.name}
+                    {capitalizeFirstLetter(item.name)}
                   </Typography>
                   <br />
                   <Typography variant='wpf_p4_regular' color={"grey.700"}>

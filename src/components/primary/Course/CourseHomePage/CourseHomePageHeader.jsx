@@ -16,6 +16,7 @@ const boxStyle = {
   justifyContent: "space-between",
   padding: "20px",
   width: "100%",
+  backgroundColor: "neutral.N000",
 };
 const btnStyle = {
   textTransform: "none",

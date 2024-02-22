@@ -53,7 +53,7 @@ const CourseHeader = ({
           sx={{
             padding: '10px 30px',
             height: '70px',
-            width: { xxl: '20%', xl: '20%', lg: '30%' },
+            width: { xxl: '20%', xl: '30%', lg: '30%' },
           }}
         >
           <Grid container>

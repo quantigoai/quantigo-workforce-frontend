@@ -30,7 +30,7 @@ const MyCustomCardHover = {
   height: '160px',
   objectFit: 'cover',
   borderRadius: '10px 10px 0px 0px',
-  transform: 'scale(1.02)',
+  transform: 'scale(0.98)',
   transition: 'all 1s ease',
 };
 

@@ -97,7 +97,12 @@ const CourseAllPage = () => {
       {isCourseLoading ? (
         <LoadingComponent />
       ) : (
-        <Box className="content">
+        <Box
+          className="content"
+          sx={{
+            pl: '30px',
+          }}
+        >
           <Box className="contentHeader">
             <CourseHeader
               search={search}
@@ -133,7 +138,9 @@ const CourseAllPage = () => {
                   {role === '' ? (
                     <></>
                   ) : (
-                    <Box sx={{ padding: '30px' }}>
+                    <Box
+                    // sx={{ padding: '30px' }}
+                    >
                       <Typography variant="wpf_h4_Bold" color={'neutral.995'}>
                         {level === 'basic'
                           ? 'Basic Courses'

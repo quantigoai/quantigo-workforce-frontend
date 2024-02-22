@@ -88,7 +88,7 @@ const CourseLandingHeader = () => {
   if (screenSize >= 1500) {
     // Extra-large screens
     width = 400;
-    height = 280;
+    height = 300;
   } else if (screenSize === 1440) {
     // Large screens
     width = 340;

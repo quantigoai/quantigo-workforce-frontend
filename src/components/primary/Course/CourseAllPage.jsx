@@ -156,6 +156,7 @@ const CourseAllPage = () => {
                           gridTemplateColumns: { xxl: 'repeat(4,1fr)', xl: 'repeat(4,1fr)', lg: 'repeat(3,1fr)' },
                           gridGap: '8px',
                           mt: '16px',
+                          pr: '15px',
                           // width: '100%',
                           gap: { xxl: '20px', xl: '15px', lg: '12px' },
                         }}

@@ -51,7 +51,7 @@ const CourseHeader = ({
       >
         <Box
           sx={{
-            padding: '10px 0px',
+            padding: '10px 30px',
             height: '70px',
             width: { xxl: '20%', xl: '20%', lg: '30%' },
           }}

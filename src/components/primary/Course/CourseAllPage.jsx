@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import CourseTab from './CourseTab';
-import LoadingSkeleton from '../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton';
-import CourseHeader from './CourseHeader/CourseHeader';
 import { Box, Paper, Typography, styled } from '@mui/material';
-import LoadingComponent from '../../shared/Loading/LoadingComponent';
-import useCourseManagement from './hooks/createCourseHook/useCourseMangement';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllSkills } from '../../../features/slice/skillSlice';
-import { getAllCourses, getAllCoursesNew } from '../../../features/slice/courseSlice';
-import CustomCard from './CustomCard';
-import CourseCreateModal from './CreateCourseModal/CourseCreateModal';
 import { useParams } from 'react-router-dom';
+import { getAllCourses } from '../../../features/slice/courseSlice';
+import { getAllSkills } from '../../../features/slice/skillSlice';
+import LoadingSkeleton from '../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton';
+import LoadingComponent from '../../shared/Loading/LoadingComponent';
+import CourseHeader from './CourseHeader/CourseHeader';
+import CourseCreateModal from './CreateCourseModal/CourseCreateModal';
+import CustomCard from './CustomCard';
+import useCourseManagement from './hooks/createCourseHook/useCourseMangement';
 
 const CourseAllPage = () => {
   const {
@@ -100,7 +99,7 @@ const CourseAllPage = () => {
         <Box
           className="content"
           sx={{
-            pl: '30px',
+            // pl: '30px',
           }}
         >
           <Box className="contentHeader">
@@ -139,7 +138,7 @@ const CourseAllPage = () => {
                     <></>
                   ) : (
                     <Box
-                    // sx={{ padding: '30px' }}
+                    sx={{ padding: '30px' }}
                     >
                       <Typography variant="wpf_h4_Bold" color={'neutral.995'}>
                         {level === 'basic'
@@ -153,7 +152,11 @@ const CourseAllPage = () => {
                       <Box
                         sx={{
                           display: 'grid',
-                          gridTemplateColumns: { xxl: 'repeat(4,1fr)', xl: 'repeat(4,1fr)', lg: 'repeat(3,1fr)' },
+                          gridTemplateColumns: {
+                            xxl: 'repeat(4,1fr)',
+                            xl: 'repeat(4,1fr)',
+                            lg: 'repeat(3,1fr)',
+                          },
                           gridGap: '8px',
                           mt: '16px',
                           pr: '15px',
@@ -163,22 +166,34 @@ const CourseAllPage = () => {
                       >
                         {allCoursesFull.length === 0 ? (
                           <>
-                            <Typography variant="wpf_h6_semiBold">No course Found</Typography>
+                            <Typography variant="wpf_h6_semiBold">
+                              No course Found
+                            </Typography>
                           </>
                         ) : (
                           allCoursesFull?.map((course) => (
                             <Box
                               sx={{
                                 backgroundColor: isLightTheme ? '#fff' : '#000',
-                                width: { xxl: '368px', xl: '278px', lg: '250px' },
+                                width: {
+                                  xxl: '368px',
+                                  xl: '278px',
+                                  lg: '250px',
+                                },
                                 borderRadius: '10px',
                               }}
                               key={course._id}
                             >
                               <CustomCard
                                 level={level}
-                                courseDirection="all"
-                                handleViewDetailsButton={handleViewDetailsButton}
+                                courseDirection={
+                                  user.enrolledCourses.includes(course._id)
+                                    ? 'MyCourse'
+                                    : 'all'
+                                }
+                                handleViewDetailsButton={
+                                  handleViewDetailsButton
+                                }
                                 course={course}
                               />
                             </Box>

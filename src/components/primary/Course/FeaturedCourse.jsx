@@ -8,6 +8,7 @@ import FeaturedCard from './FeaturedCard';
 const FeaturedCourse = ({ courses, handleViewDetailsButton }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const [slidesPerView, setSlidesPerView] = useState(2.1);
+  const { user } = useSelector((state) => state.user);
 
   const handleResize = () => {
     const windowWidth = window.innerWidth;
@@ -52,7 +53,11 @@ const FeaturedCourse = ({ courses, handleViewDetailsButton }) => {
                   key={item._id}
                 >
                   <FeaturedCard
-                    courseDirection="all"
+                    courseDirection={
+                      user.enrolledCourses.includes(item._id)
+                        ? 'MyCourse'
+                        : 'all'
+                    }
                     handleViewDetailsButton={handleViewDetailsButton}
                     course={item}
                   />

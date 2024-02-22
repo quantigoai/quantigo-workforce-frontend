@@ -1,12 +1,13 @@
-import { Box, Grid, Typography } from '@mui/material';
-import React from 'react';
-import CustomCard from './CustomCard';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Box, Typography } from '@mui/material';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import CustomCard from './CustomCard';
 
 const CourseLevel = ({ title, courses, handleViewDetailsButton }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
+  const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const handleSeeMore = () => {
     if (title === 'Basic Courses') {
@@ -74,7 +75,9 @@ const CourseLevel = ({ title, courses, handleViewDetailsButton }) => {
             key={course._id}
           >
             <CustomCard
-              courseDirection="all"
+              courseDirection={
+                user.enrolledCourses.includes(course._id) ? 'MyCourse' : 'all'
+              }
               handleViewDetailsButton={handleViewDetailsButton}
               course={course}
             />

@@ -6,22 +6,19 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import imageSample from '../../../assets/images/img.png';
-import CategoryChip from './CategoryChip';
-import LevelChip from './CourseCardActionLebel/LevelChip';
-import LanguageChip from './LanguageChip';
-import CourseProgress from './CourseProgress/CourseProgress';
-import { capitalizeFirstLetter } from '../../../helper/capitalizeFirstWord';
 import RectangleIcon from '../../../assets/images/courses/Rectangle 12.svg';
 import ArrowIcon from '../../../assets/images/courses/Vector.svg';
+import imageSample from '../../../assets/images/img.png';
+import { capitalizeFirstLetter } from '../../../helper/capitalizeFirstWord';
 const MyCustomCard = {
   padding: '0 0 0 0 ',
   objectFit: 'cover',
   borderRadius: '10px 10px 0px 0px',
+  // border: '1px solid green',
 };
 
 const MyCustomCardHover = {
@@ -29,9 +26,10 @@ const MyCustomCardHover = {
   width: '278px',
   height: '160px',
   objectFit: 'cover',
-  borderRadius: '10px 10px 0px 0px',
-  transform: 'scale(1.04)',
+  borderRadius: '10px 10px 0px 0px !important',
+  transform: 'scale(1.04) ',
   transition: 'all 1.2s ease',
+  // border: '1px solid red',
 };
 
 const ButtonInitial = {
@@ -50,7 +48,12 @@ const ButtonHover = {
   backgroundColor: 'rgba(255, 154, 69, 0.1)',
 };
 
-const CustomCard = ({ courseDirection, course, handleViewDetailsButton, level }) => {
+const CustomCard = ({
+  courseDirection,
+  course,
+  handleViewDetailsButton,
+  level,
+}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoading } = useSelector((state) => state.course);
@@ -111,15 +114,24 @@ const CustomCard = ({ courseDirection, course, handleViewDetailsButton, level })
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         sx={{
+          borderRadius: '10px 10px 0px 0px',
           display: 'flex',
           flexDirection: 'column',
+          overflow: 'hidden',
         }}
       >
         <Box
           sx={{ cursor: 'pointer', position: 'relative' }}
           onClick={() => handleViewDetailsButton(course._id, courseDirection)}
         >
-          <Box sx={{ position: 'absolute', left: { xxl: 280, xl: 200, lg: 175 }, top: 10, zIndex: 20 }}>
+          <Box
+            sx={{
+              position: 'absolute',
+              left: { xxl: 280, xl: 200, lg: 175 },
+              top: 10,
+              zIndex: 20,
+            }}
+          >
             {level && course.isFeaturedCourse && (
               <Typography
                 sx={{
@@ -140,7 +152,7 @@ const CustomCard = ({ courseDirection, course, handleViewDetailsButton, level })
               </Typography>
             )}
           </Box>
-          <Box style={{ overflow: 'hidden' }}>
+          <Box sx={{ overflow: 'hidden' }}>
             <img
               style={
                 hovering
@@ -149,8 +161,13 @@ const CustomCard = ({ courseDirection, course, handleViewDetailsButton, level })
                       ...MyCustomCardHover,
                       width,
                       height,
+                      // overflow: 'hidden',
                     }
-                  : { ...MyCustomCard, width, height }
+                  : {
+                      ...MyCustomCard,
+                      width,
+                      height,
+                    }
               }
               src={imageUrl}
               alt=""
@@ -164,27 +181,45 @@ const CustomCard = ({ courseDirection, course, handleViewDetailsButton, level })
           }}
         >
           <Box>
-            <Typography variant="wpf_p4_semiBold" color={'primary.P600'} sx={{ mb: 1 }}>
-              {capitalizeFirstLetter(course.category)} <img src={RectangleIcon} /> {capitalizeFirstLetter(course.level)}
+            <Typography
+              variant="wpf_p4_semiBold"
+              color={'primary.P600'}
+              sx={{ mb: 1 }}
+            >
+              {capitalizeFirstLetter(course.category)}{' '}
+              <img src={RectangleIcon} /> {capitalizeFirstLetter(course.level)}
             </Typography>
           </Box>
           <Box sx={{ height: '110px' }}>
             <Box>
               <Typography
-                onClick={() => handleViewDetailsButton(course._id, courseDirection)}
+                onClick={() =>
+                  handleViewDetailsButton(course._id, courseDirection)
+                }
                 variant="wpf_h6_semiBold"
                 color={'grey.500'}
                 sx={{ cursor: 'pointer', lineHeight: '20px' }}
               >
-                {course.name?.length > 50 ? course.name?.substring(0, 50) + '.....' : course.name}
+                {course.name?.length > 50
+                  ? course.name?.substring(0, 50) + '.....'
+                  : course.name}
               </Typography>
             </Box>
             <Box></Box>{' '}
-            <Typography sx={{ lineHeight: '18px' }} variant="wpf_h8_regular" color={'grey.550'}>
-              {course.description?.length > 100 ? course.description?.substring(0, 70) + '.....' : course.description}
+            <Typography
+              sx={{ lineHeight: '18px' }}
+              variant="wpf_h8_regular"
+              color={'grey.550'}
+            >
+              {course.description?.length > 100
+                ? course.description?.substring(0, 70) + '.....'
+                : course.description}
             </Typography>
           </Box>
-          <Box onClick={() => handleViewDetailsButton(course._id, courseDirection)} sx={{ cursor: 'pointer' }}>
+          <Box
+            onClick={() => handleViewDetailsButton(course._id, courseDirection)}
+            sx={{ cursor: 'pointer' }}
+          >
             <Typography variant="wpf_p4_medium">View Details</Typography>
 
             <img style={{ marginLeft: '15px' }} src={ArrowIcon} />

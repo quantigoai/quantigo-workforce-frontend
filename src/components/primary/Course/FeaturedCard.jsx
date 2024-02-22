@@ -20,7 +20,7 @@ const MyCustomCardHover = {
   // width: '224px',
   // height: '224px',
   objectFit: 'cover',
-  borderRadius: '10px 10px 0px 0px',
+  borderRadius: '10px',
   transform: 'scale(1.03)',
   transition: 'all 1s ease',
 };
@@ -99,7 +99,10 @@ const FeaturedCard = ({ handleViewDetailsButton, course, courseDirection }) => {
         padding: '8px',
       }}
     >
-      <Box sx={{ cursor: 'pointer' }} onClick={() => handleViewDetailsButton(course._id, courseDirection)}>
+      <Box
+        sx={{ cursor: 'pointer', overflow: 'hidden' }}
+        onClick={() => handleViewDetailsButton(course._id, courseDirection)}
+      >
         <img
           style={
             hovering

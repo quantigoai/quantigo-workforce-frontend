@@ -30,8 +30,8 @@ const MyCustomCardHover = {
   height: '160px',
   objectFit: 'cover',
   borderRadius: '10px 10px 0px 0px',
-  transform: 'scale(0.98)',
-  transition: 'all 1s ease',
+  transform: 'scale(1.04)',
+  transition: 'all 1.2s ease',
 };
 
 const ButtonInitial = {
@@ -140,20 +140,22 @@ const CustomCard = ({ courseDirection, course, handleViewDetailsButton, level })
               </Typography>
             )}
           </Box>
-          <img
-            style={
-              hovering
-                ? {
-                    ...MyCustomCard,
-                    ...MyCustomCardHover,
-                    width,
-                    height,
-                  }
-                : { ...MyCustomCard, width, height }
-            }
-            src={imageUrl}
-            alt=""
-          />
+          <Box style={{ overflow: 'hidden' }}>
+            <img
+              style={
+                hovering
+                  ? {
+                      ...MyCustomCard,
+                      ...MyCustomCardHover,
+                      width,
+                      height,
+                    }
+                  : { ...MyCustomCard, width, height }
+              }
+              src={imageUrl}
+              alt=""
+            />
+          </Box>
         </Box>
         <Box
           sx={{

@@ -26,7 +26,7 @@ const CoursePageFilter = () => {
           backgroundColor: isActive('/course') ? '#244EF5' : '#FFF',
           color: isActive('/course') ? '#fff' : '#667085',
 
-          fontSize: '14px',
+          fontSize: { xl: '14px', xxl: '14px', lg: '10px' },
           fontWeight: '500',
           '&:hover': {
             background: '#244EF5',
@@ -35,14 +35,14 @@ const CoursePageFilter = () => {
         }}
         variant="contained"
       >
-        All Courses (32)
+        All Courses(32)
       </Button>
       <Button
         onClick={handleChangeAMyCourse}
         sx={{
           textTransform: 'none',
           borderRadius: '8px',
-          fontSize: '14px',
+          fontSize: { xl: '14px', xxl: '14px', lg: '10px' },
           fontWeight: '500',
           backgroundColor: isActive('/all-course/basic') ? '#244EF5' : '#FFF',
           color: isActive('/all-course/basic') ? '#fff' : '#667085',
@@ -54,14 +54,14 @@ const CoursePageFilter = () => {
         }}
         variant="contained"
       >
-        My Courses (32)
+        My Courses(32)
       </Button>
       <Button
         onClick={handleChangeArchieveCourse}
         sx={{
           textTransform: 'none',
           borderRadius: '8px',
-          fontSize: '14px',
+          fontSize: { xl: '14px', xxl: '14px', lg: '10px' },
           fontWeight: '500',
           backgroundColor: isActive('/all-course/intermediate') ? '#244EF5' : '#FFF',
           color: isActive('/all-course/intermediate') ? '#fff' : '#667085',

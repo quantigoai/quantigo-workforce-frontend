@@ -20,8 +20,15 @@ const CourseLevel = ({ title, courses, handleViewDetailsButton }) => {
     }
   };
   return (
-    <>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', py: 2, mt: '40px' }}>
+    <Box sx={{ pr: '10px' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          py: 2,
+          mt: '40px',
+        }}
+      >
         <Typography variant="wpf_h4_Bold" color={'neutral.995'}>
           {title}
         </Typography>
@@ -33,18 +40,24 @@ const CourseLevel = ({ title, courses, handleViewDetailsButton }) => {
             justifyContent: 'center',
             alignItems: 'center',
             color: '#266AED',
-            mr: { xxl: '20px', xl: '0px', lg: '' },
+            // mr: { xxl: '20px', xl: '0px', lg: '' },
           }}
           variant="wpf_p3_medium_3"
         >
           See more
-          <ArrowForwardIosIcon sx={{ fontSize: '12px', ml: '5px', mt: '2px' }} />
+          <ArrowForwardIosIcon
+            sx={{ fontSize: '12px', ml: '5px', mt: '2px' }}
+          />
         </Typography>
       </Box>
       <Box
         sx={{
           display: 'grid',
-          gridTemplateColumns: { xxl: 'repeat(4,1fr)', xl: 'repeat(4,1fr)', lg: 'repeat(3,1fr)' },
+          gridTemplateColumns: {
+            xxl: 'repeat(4,1fr)',
+            xl: 'repeat(4,1fr)',
+            lg: 'repeat(3,1fr)',
+          },
           gridGap: '8px',
           mt: '16px',
           // width: '100%',
@@ -60,11 +73,15 @@ const CourseLevel = ({ title, courses, handleViewDetailsButton }) => {
             }}
             key={course._id}
           >
-            <CustomCard courseDirection="all" handleViewDetailsButton={handleViewDetailsButton} course={course} />
+            <CustomCard
+              courseDirection="all"
+              handleViewDetailsButton={handleViewDetailsButton}
+              course={course}
+            />
           </Box>
         ))}
       </Box>
-    </>
+    </Box>
   );
 };
 

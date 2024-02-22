@@ -16,33 +16,42 @@ const CoursePageFilter = () => {
   };
   const isActive = (path) => location.pathname === path;
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '5px',
+        // height: '36px',
+      }}
+    >
       <Button
         onClick={handleChangeAllCourse}
         sx={{
+          height: '36px',
+
           textTransform: 'none',
           borderRadius: '8px',
-
           backgroundColor: isActive('/course') ? '#244EF5' : '#FFF',
           color: isActive('/course') ? '#fff' : '#667085',
 
-          fontSize: { xl: '14px', xxl: '14px', lg: '10px' },
+          fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
           fontWeight: '500',
           '&:hover': {
             background: '#244EF5',
             color: '#fff',
           },
         }}
-        variant="contained"
       >
         All Courses(32)
       </Button>
       <Button
         onClick={handleChangeAMyCourse}
         sx={{
+          height: '36px',
           textTransform: 'none',
           borderRadius: '8px',
-          fontSize: { xl: '14px', xxl: '14px', lg: '10px' },
+          fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
           fontWeight: '500',
           backgroundColor: isActive('/all-course/basic') ? '#244EF5' : '#FFF',
           color: isActive('/all-course/basic') ? '#fff' : '#667085',
@@ -52,18 +61,22 @@ const CoursePageFilter = () => {
             color: '#fff',
           },
         }}
-        variant="contained"
       >
         My Courses(32)
       </Button>
+
       <Button
         onClick={handleChangeArchieveCourse}
         sx={{
+          height: '36px',
+
           textTransform: 'none',
           borderRadius: '8px',
-          fontSize: { xl: '14px', xxl: '14px', lg: '10px' },
+          fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
           fontWeight: '500',
-          backgroundColor: isActive('/all-course/intermediate') ? '#244EF5' : '#FFF',
+          backgroundColor: isActive('/all-course/intermediate')
+            ? '#244EF5'
+            : '#FFF',
           color: isActive('/all-course/intermediate') ? '#fff' : '#667085',
 
           '&:hover': {
@@ -71,7 +84,6 @@ const CoursePageFilter = () => {
             color: '#fff',
           },
         }}
-        variant="contained"
       >
         Archived Courses (03)
       </Button>

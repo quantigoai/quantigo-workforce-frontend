@@ -71,8 +71,6 @@ const QuizCreateIndex = () => {
     setInputFields(values);
   };
   const handleChangeInput = (uniqueId, event) => {
-    console.log('🚀 ~ handleChangeInput ~ uniqueId:', uniqueId);
-    console.log('🚀 ~ handleChangeInput ~ event:', event.target.name);
     const newInputFields = inputFields.map((i) => {
       if (event === 'imageAndOptions' || event === 'default' || event === 'imageInOptions') {
         if (uniqueId === i.uniqueId) {

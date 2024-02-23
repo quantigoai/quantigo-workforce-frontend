@@ -8,6 +8,9 @@
  */
 import { Box, Button, FormControlLabel, Grid, Radio, RadioGroup, TextField, Typography, styled } from "@mui/material";
 import React from "react";
+import CloseIcon from "@mui/icons-material/Close";
+import PendingIcon from "@mui/icons-material/Pending";
+import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useToaster from "../../../customHooks/useToaster";
@@ -54,6 +57,8 @@ const QuizShow = () => {
   const { course } = useSelector((state) => state.course);
 
   const [tempData, setTempData] = React.useState({});
+  const [submitAnswer, setSubmitAnswer] = React.useState([]);
+  const [quizQuestions, setQuizQuestions] = React.useState(quiz?.questionAndAnswer);
 
   const handleQuizResult = (possibleIndex, id, possibleText, isFromRadio = true) => {
     // console.log('🚀 ~ handleQuizResult ~ possibleIndex:', possibleIndex);
@@ -130,6 +135,9 @@ const QuizShow = () => {
     console.log("🚀 ~ handleQuizSubmit ~ bulkData:", bulkData);
     dispatch(submitQuizById(bulkData)).then((action) => {
       if (action.payload?.status === 200) {
+        // setSubmitAnswer(action.payload.data.submissionResult.questionAndAnswer);
+        setQuizQuestions(action.payload.data.submissionResult.questionAndAnswer);
+
         toast.trigger("Quiz Submitted", "success");
         // TODO : Redirect to quiz result page
         // navigate(`/course-details/${course._id}/quiz-result`);
@@ -144,7 +152,7 @@ const QuizShow = () => {
       }
     });
   };
-
+  console.log(submitAnswer);
   return (
     <>
       <Box
@@ -195,7 +203,8 @@ const QuizShow = () => {
         >
           <Box sx={{ paddingTop: "20px" }}>
             {Object.keys(quiz).length &&
-              quiz?.questionAndAnswer.map((item, i) => (
+              // quiz?.questionAndAnswer.map((item, i) => (
+              quizQuestions.map((item, i) => (
                 <>
                   <Box>
                     <Box
@@ -207,18 +216,39 @@ const QuizShow = () => {
                         backgroundColor: isLightTheme ? "#F1F5F9" : "",
                       }}
                     >
-                      <Grid
-                        xs={12}
-                        sx={{
-                          paddingLeft: "2%",
-                          paddingRight: "2%",
-                          // paddingBottom: "1%",
-                          paddingTop: "1%",
-                        }}
-                      >
-                        <Typography variant='wpf_p2_semiBold' sx={{ color: "#090080" }}>
-                          Q{i + 1}. {item.question.questionText} ?
-                        </Typography>
+                      <Grid container>
+                        <Grid
+                          xs={8}
+                          sx={{
+                            paddingLeft: "2%",
+                            paddingRight: "2%",
+                            // paddingBottom: "1%",
+                            paddingTop: "1%",
+                          }}
+                        >
+                          <Typography variant='wpf_p2_semiBold' sx={{ color: "#090080" }}>
+                            Q{i + 1}. {item.question.questionText} ?
+                          </Typography>
+                        </Grid>
+                        <Grid
+                          xs={4}
+                          sx={{
+                            paddingLeft: "2%",
+                            paddingRight: "2%",
+                            // paddingBottom: "1%",
+                            paddingTop: "1%",
+                          }}
+                        >
+                          {item.questionStatus === "rejected" ? (
+                            <>
+                              <CloseIcon />
+                            </>
+                          ) : item.questionStatus === "accepted" ? (
+                            <AssignmentTurnedInIcon />
+                          ) : (
+                            <PendingIcon />
+                          )}
+                        </Grid>
                       </Grid>
                       {item.questionType === "imageAndOptions" ? (
                         <>

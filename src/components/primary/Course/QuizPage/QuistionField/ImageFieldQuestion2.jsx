@@ -28,6 +28,7 @@ const ImageFieldQuestion2 = ({
   update,
   defaultImage,
 }) => {
+  console.log('🚀 ~ inputField:', inputField);
   const { isLightTheme } = useSelector((state) => state.theme);
   const baseUploadBoxStyle = {
     flex: 1,
@@ -54,8 +55,10 @@ const ImageFieldQuestion2 = ({
   // const maxSize = 1024000;
   const maxSize = 512000;
   const [isHovered, setIsHovered] = useState(false);
+
+  
   const handleImage = (e) => {
-    // setCoverImageFile(e[0]);
+    setCoverImage(e[0]);
 
     // {
     //   inputField?.possibleAnswers?.map((possibleAnswer, index) => (
@@ -88,10 +91,9 @@ const ImageFieldQuestion2 = ({
     setIsHovered(false);
   };
 
-  console.log('🚀 ~ acceptedFiles:', acceptedFiles);
   const style = useMemo(() => {
     const fileSize = acceptedFiles ? acceptedFiles[0]?.size : null;
-    console.log('🚀 ~ style ~ fileSize:', fileSize);
+
     // const maxSize = 1024000; // 1MB in bytes
     // const maxSize = 512000;
     const maxSize = 157003000;

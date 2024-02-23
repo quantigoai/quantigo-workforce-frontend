@@ -1,75 +1,75 @@
-import { Box, Checkbox, Grid, InputAdornment, Radio, TextField, Typography, styled } from "@mui/material";
-import React, { useState } from "react";
+import { Box, Checkbox, Grid, InputAdornment, Radio, TextField, Typography, styled } from '@mui/material';
+import React, { useState } from 'react';
 
-const BpIcon = styled("span")(({ theme }) => ({
-  borderRadius: "50%",
+const BpIcon = styled('span')(({ theme }) => ({
+  borderRadius: '50%',
   width: 20,
   height: 20,
   boxShadow:
-    theme.palette.mode === "dark"
-      ? "0 0 0 1px rgb(16 22 26 / 40%)"
-      : "inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)",
-  backgroundColor: theme.palette.mode === "dark" ? "#394b59" : "#f5f8fa",
+    theme.palette.mode === 'dark'
+      ? '0 0 0 1px rgb(16 22 26 / 40%)'
+      : 'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
+  backgroundColor: theme.palette.mode === 'dark' ? '#394b59' : '#f5f8fa',
   backgroundImage:
-    theme.palette.mode === "dark"
-      ? "linear-gradient(180deg,hsla(0,0%,100%,.05),hsla(0,0%,100%,0))"
-      : "linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))",
-  ".Mui-focusVisible &": {
-    outline: "2px auto rgba(19,124,189,.6)",
+    theme.palette.mode === 'dark'
+      ? 'linear-gradient(180deg,hsla(0,0%,100%,.05),hsla(0,0%,100%,0))'
+      : 'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
+  '.Mui-focusVisible &': {
+    outline: '2px auto rgba(19,124,189,.6)',
     outlineOffset: 2,
   },
-  "input:hover ~ &": {
-    backgroundColor: theme.palette.mode === "dark" ? "#30404d" : "#ebf1f5",
+  'input:hover ~ &': {
+    backgroundColor: theme.palette.mode === 'dark' ? '#30404d' : '#ebf1f5',
   },
-  "input:disabled ~ &": {
-    boxShadow: "none",
-    background: theme.palette.mode === "dark" ? "rgba(57,75,89,.5)" : "rgba(206,217,224,.5)",
+  'input:disabled ~ &': {
+    boxShadow: 'none',
+    background: theme.palette.mode === 'dark' ? 'rgba(57,75,89,.5)' : 'rgba(206,217,224,.5)',
   },
 }));
 
 const BpCheckedIcon = styled(BpIcon)({
-  backgroundColor: "#2E58FF",
-  backgroundImage: "linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))",
-  "&::before": {
-    display: "block",
+  backgroundColor: '#2E58FF',
+  backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
+  '&::before': {
+    display: 'block',
     width: 20,
     height: 20,
-    backgroundImage: "radial-gradient(#fff,#fff 28%,transparent 32%)",
+    backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
     content: '""',
   },
-  "input:hover ~ &": {
-    backgroundColor: "#2E58FF",
+  'input:hover ~ &': {
+    backgroundColor: '#2E58FF',
   },
 });
 
 export const TextFieldOption = styled(TextField)(() => ({
-  borderRadius: "8px",
-  backgroundColor: "#F9FAFB",
-  "& .MuiOutlinedInput-root": {
-    height: "40px",
-    fontSize: "14px",
+  borderRadius: '8px',
+  backgroundColor: '#F9FAFB',
+  '& .MuiOutlinedInput-root': {
+    height: '40px',
+    fontSize: '14px',
     // maxHeight:"64px",
     // border: "px solid #E6ECF5 !important",
-    borderRadius: "8px",
+    borderRadius: '8px',
 
-    "@media (max-width: 1439px)": {
-      fontSize: "12px",
+    '@media (max-width: 1439px)': {
+      fontSize: '12px',
     },
-    "@media (mix-width: 1920px)": {
-      fontSize: "14px",
+    '@media (mix-width: 1920px)': {
+      fontSize: '14px',
     },
   },
-  "& .MuiOutlinedInput-input": {
-    padding: "0px 0px 0px 8px",
+  '& .MuiOutlinedInput-input': {
+    padding: '0px 0px 0px 8px',
   },
-  "& .MuiOutlinedInput-notchedOutline ": {},
-  "& .MuiInputBase-input.Mui-disabled": {
-    WebkitTextFillColor: "#56627a",
+  '& .MuiOutlinedInput-notchedOutline ': {},
+  '& .MuiInputBase-input.Mui-disabled': {
+    WebkitTextFillColor: '#56627a',
   },
-  "& .MuiFormHelperText-root": {
-    color: "#12B76A",
-    "&.Mui-error": {
-      color: "#F04438",
+  '& .MuiFormHelperText-root': {
+    color: '#12B76A',
+    '&.Mui-error': {
+      color: '#F04438',
     },
   },
 }));
@@ -93,7 +93,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
   const handleCorrectAnswerChange = (event, index, value) => {
     if (update) {
       setCheckValue(index);
-      handleUpdate(index, "correctAnswerIndex", inputField);
+      handleUpdate(index, 'correctAnswerIndex', inputField);
       // handleUpdate(value, "correctAnswer", inputField);
     } else {
       handleChangeInput((inputField.correctAnswerIndex = index), event);
@@ -101,10 +101,10 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
     }
   };
   const handleEnableInput = (e) => {
-    console.log("🚀 ~ handleEnableInput ~ e:", e.target.checked);
+    console.log('🚀 ~ handleEnableInput ~ e:', e.target.checked);
     if (update) {
       setCheckValue(index);
-      handleUpdate(index, "isTextFieldEnabled", inputField);
+      handleUpdate(index, 'isTextFieldEnabled', inputField);
       // handleUpdate(value, "correctAnswer", inputField);
     } else {
       handleChangeInput((inputField.isTextFieldEnabled = e.target.checked), e);
@@ -115,23 +115,23 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
     <>
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
+          display: 'flex',
+          justifyContent: 'space-between',
         }}
       >
         <Box>
           <Checkbox defaultChecked />
           <Typography
-            variant='wpf_h7_medium'
+            variant="wpf_h7_medium"
             sx={{
               mb: 0,
-              color: "neutral.N300",
+              color: 'neutral.N300',
             }}
           >
             List of Options
           </Typography>
         </Box>
-        <Box>
+        {/* <Box>
           <Checkbox onChange={(e) => handleEnableInput(e)} />
           <Typography
             variant='wpf_h7_medium'
@@ -142,7 +142,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
           >
             Enable user input
           </Typography>
-        </Box>
+        </Box> */}
       </Box>
       {/* <Grid container gap={1}>
         {inputField?.possibleAnswers?.map((possibleAnswer, index) => (
@@ -172,25 +172,25 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
         <Grid item xs={12}>
           <TextFieldOption
             sx={{
-              border: checkValue === 0 ? "1px solid #2E58FF" : "1px solid #E6ECF5 ",
-              backgroundColor: checkValue === 0 ? "#F4F7FE" : "#F9FAFB",
+              border: checkValue === 0 ? '1px solid #2E58FF' : '1px solid #E6ECF5 ',
+              backgroundColor: checkValue === 0 ? '#F4F7FE' : '#F9FAFB',
             }}
-            name='possibleAnswer1'
+            name="possibleAnswer1"
             // multiline
             // maxRows={2}
             fullWidth
-            placeholder='Write a option'
+            placeholder="Write a option"
             // value={inputField.questionType === "imageInOptions" ? "" : inputField.possibleAnswers[0]}
             value={
               inputField.newQuiz
                 ? inputField.possibleAnswers[0]
-                : inputField.questionType === "imageInOptions"
-                ? "sss"
+                : inputField.questionType === 'imageInOptions'
+                ? 'sss'
                 : optionField0
             }
             InputProps={{
               startAdornment: (
-                <InputAdornment position='start'>
+                <InputAdornment position="start">
                   <RadioOption
                     checked={update ? checkValue === 0 : inputField?.correctAnswerIndex === 0}
                     // checked={inputField?.correctAnswerIndex === 0}
@@ -206,7 +206,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
             onChange={(event) => {
               setOptionField0(event.target.value);
               if (update) {
-                handleUpdate(event.target.value, "possibleAnswers_0", inputField);
+                handleUpdate(event.target.value, 'possibleAnswers_0', inputField);
               } else {
                 handleChangeInput((inputField.possibleAnswers[0] = event.target.value), event);
               }
@@ -216,12 +216,12 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
         <Grid item xs={12}>
           <TextFieldOption
             sx={{
-              border: checkValue === 1 ? "1px solid #2E58FF" : "1px solid #E6ECF5 ",
-              backgroundColor: checkValue === 1 ? "#F4F7FE" : "#F9FAFB",
+              border: checkValue === 1 ? '1px solid #2E58FF' : '1px solid #E6ECF5 ',
+              backgroundColor: checkValue === 1 ? '#F4F7FE' : '#F9FAFB',
             }}
-            name='possibleAnswer1'
+            name="possibleAnswer1"
             fullWidth
-            placeholder='Write a option'
+            placeholder="Write a option"
             // value={
             //   inputField.questionType === 'imageInOptions'
             //     ? ''
@@ -231,13 +231,13 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
             value={
               inputField.newQuiz
                 ? inputField.possibleAnswers[1]
-                : inputField.questionType === "imageInOptions"
-                ? ""
+                : inputField.questionType === 'imageInOptions'
+                ? ''
                 : optionField1
             }
             InputProps={{
               startAdornment: (
-                <InputAdornment position='start'>
+                <InputAdornment position="start">
                   <RadioOption
                     checked={update ? checkValue === 1 : inputField?.correctAnswerIndex === 1}
                     // checked={inputField?.correctAnswerIndex === 1}
@@ -257,7 +257,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
             onChange={(event) => {
               setOptionField1(event.target.value);
               if (update) {
-                handleUpdate(event.target.value, "possibleAnswers_1", inputField);
+                handleUpdate(event.target.value, 'possibleAnswers_1', inputField);
               } else {
                 handleChangeInput((inputField.possibleAnswers[1] = event.target.value), event);
               }
@@ -273,25 +273,25 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
         <Grid item xs={12}>
           <TextFieldOption
             sx={{
-              border: checkValue === 2 ? "1px solid #2E58FF" : "1px solid #E6ECF5",
-              backgroundColor: checkValue === 2 ? "#F4F7FE" : "#F9FAFB",
+              border: checkValue === 2 ? '1px solid #2E58FF' : '1px solid #E6ECF5',
+              backgroundColor: checkValue === 2 ? '#F4F7FE' : '#F9FAFB',
             }}
-            name='possibleAnswer1'
+            name="possibleAnswer1"
             value={
               inputField.newQuiz
                 ? inputField.possibleAnswers[2]
-                : inputField.questionType === "imageInOptions"
-                ? ""
+                : inputField.questionType === 'imageInOptions'
+                ? ''
                 : optionField2
             }
             // value={inputField.possibleAnswers[2]}
             // defaultValue={inputField.questionType === "imageInOptions" ? "" : inputField.possibleAnswers[2]}
             // value={optionField2}
             fullWidth
-            placeholder='Write a option'
+            placeholder="Write a option"
             InputProps={{
               startAdornment: (
-                <InputAdornment position='start'>
+                <InputAdornment position="start">
                   <RadioOption
                     checked={update ? checkValue === 2 : inputField?.correctAnswerIndex === 2}
                     // checked={inputField?.correctAnswerIndex === 2}
@@ -311,7 +311,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
             onChange={(event) => {
               setOptionField2(event.target.value);
               if (update) {
-                handleUpdate(event.target.value, "possibleAnswers_2", inputField);
+                handleUpdate(event.target.value, 'possibleAnswers_2', inputField);
               } else {
                 handleChangeInput((inputField.possibleAnswers[2] = event.target.value), event);
               }
@@ -321,17 +321,17 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
         <Grid item xs={12}>
           <TextFieldOption
             sx={{
-              border: checkValue === 3 ? "1px solid #2E58FF" : "1px solid #E6ECF5",
-              backgroundColor: checkValue === 3 ? "#F4F7FE" : "#F9FAFB",
+              border: checkValue === 3 ? '1px solid #2E58FF' : '1px solid #E6ECF5',
+              backgroundColor: checkValue === 3 ? '#F4F7FE' : '#F9FAFB',
             }}
-            name='possibleAnswer1'
+            name="possibleAnswer1"
             fullWidth
-            placeholder='Write a option'
+            placeholder="Write a option"
             value={
               inputField.newQuiz
                 ? inputField.possibleAnswers[3]
-                : inputField.questionType === "imageInOptions"
-                ? ""
+                : inputField.questionType === 'imageInOptions'
+                ? ''
                 : optionField3
             }
             // value={inputField.possibleAnswers[2]}
@@ -339,7 +339,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
             // value={optionField3}
             InputProps={{
               startAdornment: (
-                <InputAdornment position='start'>
+                <InputAdornment position="start">
                   <RadioOption
                     checked={update ? checkValue === 3 : inputField?.correctAnswerIndex === 3}
                     // checked={inputField?.correctAnswerIndex === 3}
@@ -359,7 +359,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
             onChange={(event) => {
               setOptionField3(event.target.value);
               if (update) {
-                handleUpdate(event.target.value, "possibleAnswers_3", inputField);
+                handleUpdate(event.target.value, 'possibleAnswers_3', inputField);
               } else {
                 handleChangeInput((inputField.possibleAnswers[3] = event.target.value), event);
               }

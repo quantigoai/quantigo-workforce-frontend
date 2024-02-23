@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import CourseTab from './CourseTab';
-import LoadingSkeleton from '../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton';
-import CourseHeader from './CourseHeader/CourseHeader';
 import { Box, Paper, Typography, styled } from '@mui/material';
-import LoadingComponent from '../../shared/Loading/LoadingComponent';
-import useCourseManagement from './hooks/createCourseHook/useCourseMangement';
-import { useDispatch } from 'react-redux';
-import { getAllSkills } from '../../../features/slice/skillSlice';
-import { getAllCourses, getAllCoursesNew } from '../../../features/slice/courseSlice';
-import CustomCard from './CustomCard';
-import CourseCreateModal from './CreateCourseModal/CourseCreateModal';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { getAllCourses } from '../../../features/slice/courseSlice';
+import { getAllSkills } from '../../../features/slice/skillSlice';
+import LoadingSkeleton from '../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton';
+import LoadingComponent from '../../shared/Loading/LoadingComponent';
+import CourseHeader from './CourseHeader/CourseHeader';
+import CourseCreateModal from './CreateCourseModal/CourseCreateModal';
+import CustomCard from './CustomCard';
+import useCourseManagement from './hooks/createCourseHook/useCourseMangement';
 
 const CourseAllPage = () => {
   const {
@@ -79,7 +78,7 @@ const CourseAllPage = () => {
     boxShadow: '0px 1px 3px 0px #09008014',
   });
   const { level } = useParams();
-
+  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -97,7 +96,12 @@ const CourseAllPage = () => {
       {isCourseLoading ? (
         <LoadingComponent />
       ) : (
-        <Box className="content">
+        <Box
+          className="content"
+          sx={{
+            // pl: '30px',
+          }}
+        >
           <Box className="contentHeader">
             <CourseHeader
               search={search}
@@ -119,6 +123,7 @@ const CourseAllPage = () => {
               handleResetFilter={handleResetFilter}
               handleFilterCourse={handleFilterCourse}
               level={level}
+              role={user.role}
             />
           </Box>
           <CoursePaper>
@@ -129,21 +134,12 @@ const CourseAllPage = () => {
                 </>
               ) : (
                 <>
-                  {role === 'level_0_annotator' ||
-                  // role === 'level_1_annotator' ||
-                  role === 'level_2_annotator' ||
-                  role === 'level_3_annotator' ||
-                  role === 'reviewer' ? (
-                    <>
-                      {' '}
-                      <CourseTab
-                        handleViewDetailsButton={handleViewDetailsButton}
-                        filterCourses={filterCourses}
-                        isLoading={isLoading}
-                      />
-                    </>
+                  {role === '' ? (
+                    <></>
                   ) : (
-                    <Box sx={{ padding: '30px' }}>
+                    <Box
+                    sx={{ padding: '30px' }}
+                    >
                       <Typography variant="wpf_h4_Bold" color={'neutral.995'}>
                         {level === 'basic'
                           ? 'Basic Courses'
@@ -156,31 +152,48 @@ const CourseAllPage = () => {
                       <Box
                         sx={{
                           display: 'grid',
-                          gridTemplateColumns: { xxl: 'repeat(4,1fr)', xl: 'repeat(4,1fr)', lg: 'repeat(3,1fr)' },
+                          gridTemplateColumns: {
+                            xxl: 'repeat(4,1fr)',
+                            xl: 'repeat(4,1fr)',
+                            lg: 'repeat(3,1fr)',
+                          },
                           gridGap: '8px',
                           mt: '16px',
+                          pr: '15px',
                           // width: '100%',
                           gap: { xxl: '20px', xl: '15px', lg: '12px' },
                         }}
                       >
                         {allCoursesFull.length === 0 ? (
                           <>
-                            <Typography variant="wpf_h6_semiBold">No course Found</Typography>
+                            <Typography variant="wpf_h6_semiBold">
+                              No course Found
+                            </Typography>
                           </>
                         ) : (
                           allCoursesFull?.map((course) => (
                             <Box
                               sx={{
                                 backgroundColor: isLightTheme ? '#fff' : '#000',
-                                width: { xxl: '368px', xl: '278px', lg: '250px' },
+                                width: {
+                                  xxl: '368px',
+                                  xl: '278px',
+                                  lg: '250px',
+                                },
                                 borderRadius: '10px',
                               }}
                               key={course._id}
                             >
                               <CustomCard
                                 level={level}
-                                courseDirection="all"
-                                handleViewDetailsButton={handleViewDetailsButton}
+                                courseDirection={
+                                  user.enrolledCourses.includes(course._id)
+                                    ? 'MyCourse'
+                                    : 'all'
+                                }
+                                handleViewDetailsButton={
+                                  handleViewDetailsButton
+                                }
                                 course={course}
                               />
                             </Box>

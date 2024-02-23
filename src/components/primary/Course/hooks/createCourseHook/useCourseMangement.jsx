@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 import useToaster from '../../../../../customHooks/useToaster';
-import { setActiveChapterIndex, setActiveCourseId } from '../../../../../features/slice/activePathSlice';
+import {
+  setActiveChapterIndex,
+  setActiveCourseId,
+} from '../../../../../features/slice/activePathSlice';
 import {
   createCourse,
   getACourseByID,
@@ -42,7 +45,13 @@ const useCourseManagement = () => {
   const [dateTime, setDateTime] = useState('');
   const [outcomes, setOutcomes] = useState(['']);
   const [skill, setSkill] = React.useState([]);
-  const [hub, setHub] = useState(['Dhaka', 'Mymensingh', 'Sirajganj', 'Khulna', 'Chuadanga']);
+  const [hub, setHub] = useState([
+    'Dhaka',
+    'Mymensingh',
+    'Sirajganj',
+    'Khulna',
+    'Chuadanga',
+  ]);
   const dispatch = useDispatch();
   const toast = useToaster();
   const CourseCreateSchema = Yup.object().shape({
@@ -132,7 +141,9 @@ const useCourseManagement = () => {
       return skills.find((s) => s.name === skill);
     });
 
-    setSkill(typeof selectedSkills === 'string' ? value.split(',') : selectedSkills);
+    setSkill(
+      typeof selectedSkills === 'string' ? value.split(',') : selectedSkills,
+    );
   };
   const handleChangeHub = (event) => {
     const {
@@ -140,7 +151,7 @@ const useCourseManagement = () => {
     } = event;
     setHub(
       // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value
+      typeof value === 'string' ? value.split(',') : value,
     );
   };
 
@@ -175,7 +186,9 @@ const useCourseManagement = () => {
     });
 
     setPreRequisiteCourses(
-      typeof selectedPreRequisiteCourses === 'string' ? value.split(',') : selectedPreRequisiteCourses
+      typeof selectedPreRequisiteCourses === 'string'
+        ? value.split(',')
+        : selectedPreRequisiteCourses,
     );
   };
   const { handleSubmit, reset } = methods;
@@ -204,10 +217,13 @@ const useCourseManagement = () => {
     formData.append('language', data.language);
     formData.append('description', data.description);
     formData.append('images', coverImageFile);
-    preRequisiteCoursesColl.length && formData.append('prerequisiteCourses', preRequisiteCoursesColl);
+    preRequisiteCoursesColl.length &&
+      formData.append('prerequisiteCourses', preRequisiteCoursesColl);
     hub.length && formData.append('hubs', hub);
-    data.liveSessionLink !== undefined && formData.append('liveSessionLink', data.liveSessionLink);
-    dateTime.$d !== undefined && formData.append('liveSessionStartedAt', dateTime.$d);
+    data.liveSessionLink !== undefined &&
+      formData.append('liveSessionLink', data.liveSessionLink);
+    dateTime.$d !== undefined &&
+      formData.append('liveSessionStartedAt', dateTime.$d);
     formData.append('isFeaturedCourse', checkedFeatured);
     outcomes.length > 1 && formData.append('outComes', outcomes);
     skillColl.length && formData.append('skills', skillColl);

@@ -6,23 +6,23 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import { Grid, Paper, Typography, styled } from '@mui/material';
+import { Paper, Typography, styled } from '@mui/material';
 import Box from '@mui/material/Box';
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setActivePath } from '../../../features/slice/activePathSlice';
-import { getAllCourses, getAllCoursesNew } from '../../../features/slice/courseSlice';
+import {
+  getAllCourses,
+  getAllCoursesNew,
+} from '../../../features/slice/courseSlice';
 import { getAllSkills } from '../../../features/slice/skillSlice';
 import LoadingSkeleton from '../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton';
-import CourseHeader from './CourseHeader/CourseHeader';
-import CourseTab from './CourseTab';
-import CustomCard from './CustomCard';
-import CourseCreateModal from './CreateCourseModal/CourseCreateModal';
 import LoadingComponent from '../../shared/Loading/LoadingComponent';
-import useCourseManagement from './hooks/createCourseHook/useCourseMangement';
-import CommonHeader from '../../shared/CustomComponenet/CommonHeader/CommonHeader';
+import CourseHeader from './CourseHeader/CourseHeader';
 import CourseLevel from './CourseLevel';
+import CourseCreateModal from './CreateCourseModal/CourseCreateModal';
 import FeaturedCourse from './FeaturedCourse';
+import useCourseManagement from './hooks/createCourseHook/useCourseMangement';
 
 const Course = () => {
   const {
@@ -116,7 +116,14 @@ const Course = () => {
       {isCourseLoading ? (
         <LoadingComponent />
       ) : (
-        <Box className="content">
+        <Box
+          className="content"
+          sx={
+            {
+              // pl: '30px',
+            }
+          }
+        >
           <Box className="contentHeader">
             <CourseHeader
               search={search}
@@ -158,7 +165,9 @@ const Course = () => {
                         </>
                       ) : (
                         <>
-                          <Box sx={{ paddingLeft: '20px' }}>
+                          <Box
+                          sx={{ paddingLeft: '30px' }}
+                          >
                             <FeaturedCourse
                               courses={featureCourses}
                               handleViewDetailsButton={handleViewDetailsButton}
@@ -166,37 +175,62 @@ const Course = () => {
                             {allCourses.count === 0 ? (
                               <Box sx={{ mt: '20px' }}>
                                 {' '}
-                                <Typography variant="wpf_h6_semiBold">No course Found</Typography>
+                                <Typography variant="wpf_h7_semiBold">
+                                  No course Found
+                                </Typography>
                               </Box>
                             ) : (
-                              <Box sx={{ padding: '20px' }}>
-                                {allCourses.coursesByLevelList?.basic?.length > 0 && (
+                              <Box
+                              // sx={{ paddingX: '15px' }}
+                              >
+                                {allCourses.coursesByLevelList?.basic?.length >
+                                  0 && (
                                   <CourseLevel
                                     isDataLoading={isDataLoading}
                                     title={'Basic Courses'}
-                                    courses={allCourses.coursesByLevelList?.basic}
-                                    handleViewDetailsButton={handleViewDetailsButton}
+                                    courses={
+                                      allCourses.coursesByLevelList?.basic
+                                    }
+                                    handleViewDetailsButton={
+                                      handleViewDetailsButton
+                                    }
                                   />
                                 )}
-                                {allCourses.coursesByLevelList?.beginner?.length > 0 && (
+                                {allCourses.coursesByLevelList?.beginner
+                                  ?.length > 0 && (
                                   <CourseLevel
                                     title={'Beginner Courses'}
-                                    courses={allCourses.coursesByLevelList?.beginner}
-                                    handleViewDetailsButton={handleViewDetailsButton}
+                                    courses={
+                                      allCourses.coursesByLevelList?.beginner
+                                    }
+                                    handleViewDetailsButton={
+                                      handleViewDetailsButton
+                                    }
                                   />
                                 )}
-                                {allCourses.coursesByLevelList?.intermediate?.length > 0 && (
+                                {allCourses.coursesByLevelList?.intermediate
+                                  ?.length > 0 && (
                                   <CourseLevel
                                     title={'Intermediate Courses'}
-                                    courses={allCourses.coursesByLevelList?.intermediate}
-                                    handleViewDetailsButton={handleViewDetailsButton}
+                                    courses={
+                                      allCourses.coursesByLevelList
+                                        ?.intermediate
+                                    }
+                                    handleViewDetailsButton={
+                                      handleViewDetailsButton
+                                    }
                                   />
                                 )}
-                                {allCourses.coursesByLevelList?.advanced?.length > 0 && (
+                                {allCourses.coursesByLevelList?.advanced
+                                  ?.length > 0 && (
                                   <CourseLevel
                                     title={'Advance Courses'}
-                                    courses={allCourses.coursesByLevelList?.advanced}
-                                    handleViewDetailsButton={handleViewDetailsButton}
+                                    courses={
+                                      allCourses.coursesByLevelList?.advanced
+                                    }
+                                    handleViewDetailsButton={
+                                      handleViewDetailsButton
+                                    }
                                   />
                                 )}
                               </Box>

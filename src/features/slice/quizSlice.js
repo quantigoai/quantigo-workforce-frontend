@@ -75,6 +75,17 @@ export const getAQuizById = createAsyncThunk('/quizzes/:id', async (id) => {
   });
 });
 
+// submitted  quiz show for user
+export const getSubmittedQuiz = createAsyncThunk('/quizanswersubmission/get-last-submission/:quizId', async (id) => {
+  return axios.get(`${url}/quizanswersubmission/get-last-submission/${id}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
+
+
+
 // update a Question Answer
 export const updateQuizQA = createAsyncThunk(
   '/quiz/update/quizId/questionId',
@@ -207,6 +218,18 @@ const quizSlice = createSlice({
       .addCase(getAQuizById.rejected, (state, action) => {
         state.isLoading = false;
         state.quiz = {};
+        state.error = action.error.message;
+      })
+      .addCase(getSubmittedQuiz.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getSubmittedQuiz.fulfilled, (state, action) => {
+        state.isLoading = false;
+        // state.quiz = action.payload.data.quiz;
+      })
+      .addCase(getSubmittedQuiz.rejected, (state, action) => {
+        state.isLoading = false;
+        // state.quiz = {};
         state.error = action.error.message;
       })
       .addCase(updateQuizQA.pending, (state) => {

@@ -7,14 +7,14 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 import { Box, Button, FormControlLabel, Grid, Radio, RadioGroup, TextField, Typography, styled } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import PendingIcon from "@mui/icons-material/Pending";
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useToaster from "../../../customHooks/useToaster";
-import { submitQuizById } from "../../../features/slice/quizSlice";
+import { getSubmittedQuiz, submitQuizById } from "../../../features/slice/quizSlice";
 const PdTextField = styled(TextField)(() => ({
   borderRadius: "5px",
 
@@ -92,6 +92,10 @@ const QuizShow = () => {
     //   ...x,
     // }));
   };
+
+  useEffect(() => {
+    dispatch(getSubmittedQuiz(quiz._id));
+  }, []);
 
   const handleQuizResultTextField = (textValue, id) => {
     const x = {

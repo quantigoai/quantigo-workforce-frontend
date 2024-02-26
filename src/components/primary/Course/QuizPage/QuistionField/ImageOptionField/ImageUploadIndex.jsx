@@ -232,7 +232,16 @@ const ImageUploadIndex = ({
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                <img height={160} src={defaultImage} alt="Course Image" style={{ width, borderRadius: '8px' }} />
+                {defaultImage.endsWith('.jpeg') ? (
+                  <img height={250} src={defaultImage} alt="" style={{ width, borderRadius: '8px' }} />
+                ) : (
+                  // <iframe height={250} src={defaultImage} alt="" style={{ width, borderRadius: '8px' }}></iframe>
+                  <audio controls>
+                    <source src={defaultImage} type="audio/mpeg" />
+                    {/* <source src="horse.mp3" type="audio/mpeg"> */}
+                  </audio>
+                )}
+                {/* <img height={160} src={defaultImage} alt="Course Image" style={{ width, borderRadius: '8px' }} /> */}
                 {isHovered && (
                   <Box sx={{ color: 'red', cursor: 'pointer', position: 'absolute', top: '40%', left: '30%' }}>
                     <Button

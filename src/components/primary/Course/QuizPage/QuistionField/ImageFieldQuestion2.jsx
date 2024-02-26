@@ -28,7 +28,6 @@ const ImageFieldQuestion2 = ({
   update,
   defaultImage,
 }) => {
-  console.log('🚀 ~ inputField:', inputField);
   const { isLightTheme } = useSelector((state) => state.theme);
   const baseUploadBoxStyle = {
     flex: 1,

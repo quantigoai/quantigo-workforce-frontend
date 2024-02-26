@@ -235,7 +235,11 @@ const ImageUploadIndex = ({
                 {defaultImage.endsWith('.jpeg') ? (
                   <img height={250} src={defaultImage} alt="" style={{ width, borderRadius: '8px' }} />
                 ) : (
-                  <iframe height={250} src={defaultImage} alt="" style={{ width, borderRadius: '8px' }}></iframe>
+                  // <iframe height={250} src={defaultImage} alt="" style={{ width, borderRadius: '8px' }}></iframe>
+                  <audio controls>
+                    <source src={defaultImage} type="audio/mpeg" />
+                    {/* <source src="horse.mp3" type="audio/mpeg"> */}
+                  </audio>
                 )}
                 {/* <img height={160} src={defaultImage} alt="Course Image" style={{ width, borderRadius: '8px' }} /> */}
                 {isHovered && (

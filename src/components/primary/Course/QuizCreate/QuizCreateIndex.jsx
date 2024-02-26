@@ -70,7 +70,8 @@ const QuizCreateIndex = () => {
     );
     setInputFields(values);
   };
-  const handleChangeInput = (uniqueId, event) => {
+  const handleChangeInput = (uniqueId, event, questionImage) => {
+    console.log("🚀 ~ handleChangeInput ~ event:", event);
     const newInputFields = inputFields.map((i) => {
       if (event === "imageAndOptions" || event === "default" || event === "imageInOptions") {
         if (uniqueId === i.uniqueId) {
@@ -89,9 +90,9 @@ const QuizCreateIndex = () => {
           i.question[event.target.name] = event.target.value;
         }
       }
-      if (event?.target?.name === "questionImage") {
+      if (questionImage === "questionImage") {
         if (uniqueId === i.uniqueId) {
-          i.question[event.target.name] = event.target.files[0];
+          i.question[questionImage] = event;
         }
       }
       if (event?.target?.name === "questionText" && event?.target?.name === "questionImage") {
@@ -159,7 +160,8 @@ const QuizCreateIndex = () => {
     inputFields.forEach((qa, index) => {
       formData.append(`questionAndAnswer[${index}][questionType]`, qa.questionType);
       // TODO handle this dynamically
-      qa.isTextFieldEnabled && formData.append(`questionAndAnswer[${index}][isTextFieldEnabled]`, qa.isTextFieldEnabled);
+      qa.isTextFieldEnabled &&
+        formData.append(`questionAndAnswer[${index}][isTextFieldEnabled]`, qa.isTextFieldEnabled);
       if (qa.questionType === "default" || qa.questionType === "imageInOptions") {
         if (qa.question.questionText) {
           formData.append(`questionAndAnswer[${index}][question][questionText]`, qa.question.questionText);

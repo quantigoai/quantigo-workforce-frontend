@@ -36,6 +36,7 @@ import Skills from '../Skill/Skills';
 import PrivateRoute from './PrivateRoute';
 import CourseAllPage from '../Course/CourseAllPage';
 import QuizShow from '../CourseNew/QuizShow';
+import QuizreviewIndex from '../Course/QuizPage/QuizReview/QuizreviewIndex';
 
 export const roles = {
   admin: 'admin',
@@ -84,6 +85,8 @@ const Routers = () => {
 
         {/* ----------------------------- */}
         <Route path={'/test-quiz-show'} element={<QuizShow />} />
+        <Route path={'/test-quiz-review'} element={<QuizreviewIndex />} />
+
         {/* ----------------------------- */}
 
         {/* <Route path={"/quiz-page"} element={<QuizPage />} /> */}

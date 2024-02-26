@@ -13,8 +13,9 @@ import PendingIcon from "@mui/icons-material/Pending";
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import useToaster from "../../../customHooks/useToaster";
-import { getSubmittedQuiz, submitQuizById } from "../../../features/slice/quizSlice";
+import useToaster from "../../../../../customHooks/useToaster";
+import { getSubmittedQuiz } from "../../../../../features/slice/quizSlice";
+
 const PdTextField = styled(TextField)(() => ({
   borderRadius: "5px",
 
@@ -45,7 +46,7 @@ const PdTextField = styled(TextField)(() => ({
     },
   },
 }));
-const QuizShow = () => {
+const QuizreviewIndex = () => {
   const { quiz, isLoading } = useSelector((state) => state.quiz);
   // console.log('🚀 ~ QuizShow ~ quiz:', quiz);
   const dispatch = useDispatch();
@@ -58,7 +59,7 @@ const QuizShow = () => {
 
   const [tempData, setTempData] = React.useState({});
   const [submitAnswer, setSubmitAnswer] = React.useState([]);
-  const [quizQuestions, setQuizQuestions] = React.useState(quiz?.questionAndAnswer);
+  const [quizQuestions, setQuizQuestions] = React.useState([]);
 
   const handleQuizResult = (possibleIndex, id, possibleText, isFromRadio = true) => {
     // console.log('🚀 ~ handleQuizResult ~ possibleIndex:', possibleIndex);
@@ -94,7 +95,10 @@ const QuizShow = () => {
   };
 
   useEffect(() => {
-    dispatch(getSubmittedQuiz(quiz._id));
+    dispatch(getSubmittedQuiz(quiz._id)).then((action) => {
+      console.log(action.payload.data);
+      setQuizQuestions(action.payload.data.myPendingSubmission.questionAndAnswer);
+    });
   }, []);
 
   const handleQuizResultTextField = (textValue, id) => {
@@ -137,24 +141,24 @@ const QuizShow = () => {
       id: quiz._id,
     };
     console.log("🚀 ~ handleQuizSubmit ~ bulkData:", bulkData);
-    dispatch(submitQuizById(bulkData)).then((action) => {
-      if (action.payload?.status === 200) {
-        // setSubmitAnswer(action.payload.data.submissionResult.questionAndAnswer);
-        setQuizQuestions(action.payload.data.submissionResult.questionAndAnswer);
+    // dispatch(submitQuizById(bulkData)).then((action) => {
+    //   if (action.payload?.status === 200) {
+    //     // setSubmitAnswer(action.payload.data.submissionResult.questionAndAnswer);
+    //     setQuizQuestions(action.payload.data.submissionResult.questionAndAnswer);
 
-        toast.trigger("Quiz Submitted", "success");
-        // TODO : Redirect to quiz result page
-        // navigate(`/course-details/${course._id}/quiz-result`);
-        // dispatch(
-        //   manuallySetCourseChapterResult(
-        //     action.payload.data.isPreviouslyAttempted,
-        //   ),
-        // );
-        // dispatch(updateUserCompletedCourse(action.payload.data.user));
-      } else {
-        toast.trigger("Quiz can not submit", "error");
-      }
-    });
+    //     toast.trigger("Quiz Submitted", "success");
+    //     // TODO : Redirect to quiz result page
+    //     // navigate(`/course-details/${course._id}/quiz-result`);
+    //     // dispatch(
+    //     //   manuallySetCourseChapterResult(
+    //     //     action.payload.data.isPreviouslyAttempted,
+    //     //   ),
+    //     // );
+    //     // dispatch(updateUserCompletedCourse(action.payload.data.user));
+    //   } else {
+    //     toast.trigger("Quiz can not submit", "error");
+    //   }
+    // });
   };
   console.log(submitAnswer);
   return (
@@ -205,6 +209,31 @@ const QuizShow = () => {
             },
           }}
         >
+          <Box
+            sx={{
+              borderTop: "2px solid #E2E8F0",
+              borderRadius: "8px",
+              backgroundColor: "#fff",
+              padding: "20px",
+            }}
+          >
+            <Typography
+              variant='wpf_h7_medium'
+              sx={{
+                mb: 0,
+                color: "neutral.N300",
+              }}
+            >
+              reviewerSubmissionFeedback
+            </Typography>
+            <PdTextField
+              fullWidth
+              // variant='outlined'
+              placeholder='Write your thougts...'
+              // onChange={(e) => handleQuizResultTextField(e.target.value, item._id)}
+              // onChange={(e) => handleQuizResult(null, item._id, e.target.value, false)}
+            />
+          </Box>
           <Box sx={{ paddingTop: "20px" }}>
             {Object.keys(quiz).length &&
               // quiz?.questionAndAnswer.map((item, i) => (
@@ -243,14 +272,17 @@ const QuizShow = () => {
                             paddingTop: "1%",
                           }}
                         >
-                          {item.questionStatus === "rejected" ? (
+                          {item.isTextFieldEnabled ? (
                             <>
-                              <CloseIcon />
+                              <Button>
+                                <CloseIcon />
+                              </Button>
+                              <Button>
+                                <AssignmentTurnedInIcon />
+                              </Button>
                             </>
-                          ) : item.questionStatus === "accepted" ? (
-                            <AssignmentTurnedInIcon />
                           ) : (
-                            <PendingIcon />
+                            <AssignmentTurnedInIcon />
                           )}
                         </Grid>
                       </Grid>
@@ -263,8 +295,9 @@ const QuizShow = () => {
                                   <FormControlLabel
                                     key={i}
                                     onChange={() => handleQuizResult(i, item._id)}
-                                    value={posibleAnswer}
-                                    control={<Radio />}
+                                    value={i}
+                                    // control={<Radio />}
+                                    control={<Radio checked={item.userGivenCorrectAnswerIndex === i} />}
                                     label={posibleAnswer}
                                     // label={item.questionType === "imageInOptions" ? <img /> : posibleAnswer}
                                   />
@@ -363,8 +396,8 @@ const QuizShow = () => {
                                             <FormControlLabel
                                               key={i}
                                               onChange={() => handleQuizResult(i, item._id)}
-                                              value={posibleAnswer}
-                                              control={<Radio />}
+                                              value={i}
+                                              control={<Radio checked={item.userGivenCorrectAnswerIndex === i} />}
                                               label={
                                                 i === 0
                                                   ? "Option A"
@@ -386,9 +419,9 @@ const QuizShow = () => {
                                       <Grid xs={12}>
                                         <FormControlLabel
                                           key={i}
-                                          onChange={() => handleQuizResult(i, item._id)}
-                                          value={posibleAnswer}
-                                          control={<Radio />}
+                                          // onChange={() => handleQuizResult(i, item._id)}
+                                          value={i}
+                                          control={<Radio checked={item.userGivenCorrectAnswerIndex === i} />}
                                           label={posibleAnswer}
                                           // label={item.questionType === "imageInOptions" ? <img /> : posibleAnswer}
                                         />
@@ -422,7 +455,40 @@ const QuizShow = () => {
                                   color: "neutral.N300",
                                 }}
                               >
-                                Label
+                                Label / userGivenText
+                              </Typography>
+                              <PdTextField
+                                fullWidth
+                                disabled
+                                // variant='outlined'
+                                placeholder='Write your thougts...'
+                                defaultValue={item.userGivenText}
+                                // onChange={(e) => handleQuizResultTextField(e.target.value, item._id)}
+                                // onChange={(e) => handleQuizResult(null, item._id, e.target.value, false)}
+                              />
+                            </Box>
+                          </>
+                        )}
+                      </Grid>
+                      <Grid item xs={12}>
+                        {item.isTextFieldEnabled && (
+                          <>
+                            <Box
+                              sx={{
+                                borderTop: "2px solid #E2E8F0",
+                                borderRadius: "8px",
+                                backgroundColor: "#fff",
+                                padding: "20px",
+                              }}
+                            >
+                              <Typography
+                                variant='wpf_h7_medium'
+                                sx={{
+                                  mb: 0,
+                                  color: "neutral.N300",
+                                }}
+                              >
+                                reviewerFeedback
                               </Typography>
                               <PdTextField
                                 fullWidth
@@ -691,4 +757,4 @@ const QuizShow = () => {
   );
 };
 
-export default QuizShow;
+export default QuizreviewIndex;

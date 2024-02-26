@@ -1,3 +1,12 @@
+/*
+ * Filename: /home/tanzim/workstation/Office/quantigo-workforce-frontend/src/components/primary/Course/Chapter/ChapterViewIndex.jsx
+ * Path: /home/tanzim/workstation/Office/quantigo-workforce-frontend
+ * Created Date: Monday, February 26th 2024, 2:57:16 pm
+ * Author: Tanzim Ahmed
+ *
+ * Copyright (c) 2024 Tanzim Ahmed
+ */
+
 import { Box, Button, Grid, Typography } from '@mui/material';
 import parse from 'html-react-parser';
 import React from 'react';
@@ -64,7 +73,11 @@ const ChapterViewIndex = () => {
       toast.trigger('No Quiz found for this course.', 'error');
     }
   };
-
+  const handleReviewQuiz = () => {
+    dispatch(getAQuizById(courseChapter.quiz.id)).then(() => {
+      navigate(`/test-quiz-review`);
+    });
+  };
   return (
     <>
       <Box
@@ -273,6 +286,36 @@ const ChapterViewIndex = () => {
                 '&:disabled': {
                   background: '#6cd6ac',
                   color: '#FFFFFF',
+                },
+
+                padding: '16px 10px',
+              }}
+              onClick={handleReviewQuiz}
+            >
+              Review Quiz
+            </Button>
+
+            <Button
+              sx={{
+                textTransform: 'none',
+                borderRadius: '8px',
+                backgroundColor: '#36B37E',
+                height: {
+                  lg: '30px',
+                  xl: '40px',
+                  xxl: '40px',
+                },
+                marginLeft: '13px',
+                fontSize: { xl: '14px', xxl: '16px', lg: '12px' },
+                lineHeight: '20px',
+                width: {
+                  lg: '128px',
+                  xl: '128px',
+                  xxl: '140px',
+                },
+                color: 'white',
+                '&:hover': {
+                  background: '#244EF5',
                 },
 
                 padding: '16px 10px',

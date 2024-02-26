@@ -57,6 +57,12 @@ const ChapterViewIndex = () => {
       navigate(`/test-quiz-show`);
     });
   };
+  const handleReviewQuiz = () => {
+    dispatch(getAQuizById(courseChapter.quiz.id)).then(() => {
+      navigate(`/test-quiz-review`);
+    });
+
+  };
   return (
     <>
       <Box
@@ -237,6 +243,36 @@ const ChapterViewIndex = () => {
           </Grid>
 
           <Grid item xs={6} container sx={{ justifyContent: "flex-end" }}>
+            <Button
+              sx={{
+                textTransform: "none",
+                borderRadius: "8px",
+                backgroundColor: "#36B37E",
+                height: {
+                  lg: "30px",
+                  xl: "40px",
+                  xxl: "40px",
+                },
+                marginLeft: "13px",
+                fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
+                lineHeight: "20px",
+                width: {
+                  lg: "128px",
+                  xl: "128px",
+                  xxl: "140px",
+                },
+                color: "white",
+                "&:hover": {
+                  background: "#244EF5",
+                },
+
+                padding: "16px 10px",
+              }}
+              onClick={handleReviewQuiz}
+            >
+              Review Quiz
+            </Button>
+
             <Button
               sx={{
                 textTransform: "none",

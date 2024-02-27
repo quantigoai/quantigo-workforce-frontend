@@ -2,11 +2,14 @@ import { Box, Checkbox, Typography } from '@mui/material';
 import React from 'react';
 
 const EnableUserInputField = ({ handleChangeInput, inputField, update, handleUpdate }) => {
+  console.log('🚀 ~ EnableUserInputField ~ inputField:', inputField);
   const handleEnableInput = (e) => {
-    console.log('🚀 ~ handleEnableInput ~ e:', e.target.checked);
     if (update) {
       //   setCheckValue(index);
-      handleUpdate(index, 'isTextFieldEnabled', inputField);
+
+      // handleUpdate(index, 'isTextFieldEnabled', inputField);
+      handleUpdate(e, 'isTextFieldEnabled', inputField);
+
       // handleUpdate(value, "correctAnswer", inputField);
     } else {
       handleChangeInput((inputField.isTextFieldEnabled = e.target.checked), e);

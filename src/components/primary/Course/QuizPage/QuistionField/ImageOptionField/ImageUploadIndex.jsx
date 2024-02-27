@@ -66,7 +66,7 @@ const ImageUploadIndex = ({
   };
   // const maxSize = 1024000;
 
-  const maxSize = 512000;
+  const maxSize = 1024000 * 10;
   const [isHovered, setIsHovered] = useState(false);
   const { acceptedFiles, getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({
     accept: { 'image/jpeg': [], 'image/png': [], 'image/jpg': [], 'audio/*': [], 'video/*': [] },
@@ -81,10 +81,10 @@ const ImageUploadIndex = ({
   };
   const style = useMemo(() => {
     const fileSize = acceptedFiles ? acceptedFiles[0]?.size : null;
-    console.log('🚀 ~ style ~ acceptedFiles:', acceptedFiles);
+
     // const maxSize = 1024000; // 1MB in bytes
     // 1570024
-    const maxSize = 1024000 * 10;
+    // const maxSize = 1024000 * 10;
     if (fileSize && fileSize > maxSize) {
       return {
         ...baseUploadBoxStyle,
@@ -147,7 +147,7 @@ const ImageUploadIndex = ({
           </video>
         );
       default:
-        return <p>Unsupported file type</p>;
+        return <p>Unsupported file </p>;
     }
   };
   return (
@@ -156,56 +156,17 @@ const ImageUploadIndex = ({
         <Box {...getRootProps({ width, style })}>
           {acceptedFiles.length ? (
             <>
-              {/* <Box
-                sx={{
-                  position: 'relative',
-                  borderRadius: '8px',
-                }}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                {acceptedFiles[0].type === 'image/png' ||
-                acceptedFiles[0].type === 'image/jpg' ||
-                acceptedFiles[0].type === 'image/jpeg' ? (
-                  <img height={160} src={coverImage} alt="" style={{ width, borderRadius: '8px' }} />
-                ) : (
-                  <iframe height={155} src={coverImage} alt="" style={{ width, borderRadius: '8px' }}></iframe>
-                )}
-
-                {isHovered && (
-                  <Box sx={{ color: 'red', cursor: 'pointer', position: 'absolute', top: '40%', left: '30%' }}>
-                    <Button
-                      onClick={removeImage}
-                      sx={{
-                        width: '100px',
-                        textTransform: 'none',
-                        backgroundColor: '#FFFFFF',
-                        color: '#2E58FF',
-                        borderRadius: '20px',
-
-                        '&:hover': {
-                          backgroundColor: '#FFFFFF',
-                          color: '#2E58FF',
-                        },
-                      }}
-                    >
-                      Replace
-                    </Button>
-                  </Box>
-                )}
-              </Box> */}
               {acceptedFiles[0].size > maxSize ? (
-                <>
-                  <br />
+                <Box sx={{ width: '70%' }}>
                   <br />
                   <Typography variant="wpf_p4_medium" sx={{ color: '#ff1744' }}>
-                    File : {files}
+                    File : {files.length > 20 ? files.slice(0, 4) : files}
                   </Typography>
                   <Typography variant="wpf_p4_medium" sx={{ color: '#ff1744', textDecoration: 'justify' }}>
                     The selected file is too large. Please choose a file less than 1Mb.
                   </Typography>
                   <Typography variant="wpf_p4_medium" sx={{ color: '#ff1744', textDecoration: 'justify' }}></Typography>
-                </>
+                </Box>
               ) : (
                 <>
                   {' '}
@@ -217,8 +178,13 @@ const ImageUploadIndex = ({
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <img height={160} src={coverImage} alt="" style={{ width, borderRadius: '8px' }} />
-                    <iframe height={250} src={coverImage} alt="" style={{ width, borderRadius: '8px' }}></iframe>
+                    {acceptedFiles[0].type === 'image/png' ||
+                    acceptedFiles[0].type === 'image/jpg' ||
+                    acceptedFiles[0].type === 'image/jpeg' ? (
+                      <img height={160} src={coverImage} alt="" style={{ width, borderRadius: '8px' }} />
+                    ) : (
+                      <iframe height={155} src={coverImage} alt="" style={{ width, borderRadius: '8px' }}></iframe>
+                    )}
 
                     {isHovered && (
                       <Box sx={{ color: 'red', cursor: 'pointer', position: 'absolute', top: '40%', left: '30%' }}>
@@ -234,7 +200,6 @@ const ImageUploadIndex = ({
                             '&:hover': {
                               backgroundColor: '#FFFFFF',
                               color: '#2E58FF',
-                              // border: "1px solid #2E58FF",
                             },
                           }}
                         >

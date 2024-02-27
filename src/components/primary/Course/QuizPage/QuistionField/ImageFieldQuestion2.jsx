@@ -28,6 +28,7 @@ const ImageFieldQuestion2 = ({
   update,
   defaultImage,
 }) => {
+  // console.log('🚀 ~ inputField:', inputField);
   const { isLightTheme } = useSelector((state) => state.theme);
   const baseUploadBoxStyle = {
     flex: 1,
@@ -68,7 +69,7 @@ const ImageFieldQuestion2 = ({
         const url = URL.createObjectURL(file);
         setCoverImage(url);
       }
-      handleUpdate(e.target.value, 'questionText', inputField);
+      handleUpdate(e[0], 'questionImage', inputField);
     } else {
       handleChangeInput(inputField.uniqueId, e[0], 'questionImage');
       const file = e[0];
@@ -83,7 +84,6 @@ const ImageFieldQuestion2 = ({
     onDrop: handleImage,
   });
   const handleMouseEnter = () => {
-    console.log('hit');
     setIsHovered(true);
   };
 

@@ -65,6 +65,7 @@ const ImageUploadIndex = ({
     transition: 'border .24s ease-in-out',
   };
   // const maxSize = 1024000;
+
   const maxSize = 512000;
   const [isHovered, setIsHovered] = useState(false);
   const { acceptedFiles, getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({
@@ -80,8 +81,10 @@ const ImageUploadIndex = ({
   };
   const style = useMemo(() => {
     const fileSize = acceptedFiles ? acceptedFiles[0]?.size : null;
+    console.log('🚀 ~ style ~ acceptedFiles:', acceptedFiles);
     // const maxSize = 1024000; // 1MB in bytes
-    const maxSize = 512000;
+    // 1570024
+    const maxSize = 1024000 * 10;
     if (fileSize && fileSize > maxSize) {
       return {
         ...baseUploadBoxStyle,
@@ -124,13 +127,36 @@ const ImageUploadIndex = ({
     // Large screens
     width = (12 * screenSize) / 100;
   }
+  const handleSwitchContent = (value) => {
+    switch (true) {
+      case value.endsWith('.png'):
+      case value.endsWith('.jpeg'):
+      case value.endsWith('.jpg'):
+        return <img height={'150'} src={value} alt="" style={{ width, borderRadius: '8px' }} />;
+      case value.endsWith('.mp3'):
+      case value.endsWith('.mpeg'):
+        return (
+          <audio style={{ height: '150px', width: '220px' }} controls>
+            <source src={value} type="audio/mpeg" />
+          </audio>
+        );
+      case value.endsWith('.mp4'):
+        return (
+          <video height={'150'} width={'100%'} controls>
+            <source src={value} />
+          </video>
+        );
+      default:
+        return <p>Unsupported file type</p>;
+    }
+  };
   return (
     <>
       <Grid container>
         <Box {...getRootProps({ width, style })}>
           {acceptedFiles.length ? (
             <>
-              <Box
+              {/* <Box
                 sx={{
                   position: 'relative',
                   borderRadius: '8px',
@@ -145,7 +171,7 @@ const ImageUploadIndex = ({
                 ) : (
                   <iframe height={155} src={coverImage} alt="" style={{ width, borderRadius: '8px' }}></iframe>
                 )}
-                {/* <p>File : {files}</p> */}
+
                 {isHovered && (
                   <Box sx={{ color: 'red', cursor: 'pointer', position: 'absolute', top: '40%', left: '30%' }}>
                     <Button
@@ -160,17 +186,15 @@ const ImageUploadIndex = ({
                         '&:hover': {
                           backgroundColor: '#FFFFFF',
                           color: '#2E58FF',
-                          // border: "1px solid #2E58FF",
                         },
                       }}
                     >
                       Replace
                     </Button>
-                    {/* <DeleteIcon onClick={removeImage} sx={{ color: "red" }} /> */}
                   </Box>
                 )}
-              </Box>
-              {/* {acceptedFiles[0].size > maxSize ? (
+              </Box> */}
+              {acceptedFiles[0].size > maxSize ? (
                 <>
                   <br />
                   <br />
@@ -220,7 +244,7 @@ const ImageUploadIndex = ({
                     )}
                   </Box>
                 </>
-              )} */}
+              )}
             </>
           ) : update && inputField.questionType === 'imageInOptions' && !inputField.newQuiz ? (
             <>
@@ -232,15 +256,14 @@ const ImageUploadIndex = ({
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                {defaultImage.endsWith('.jpeg') ? (
+                {/* {defaultImage.endsWith('.png') ? (
                   <img height={250} src={defaultImage} alt="" style={{ width, borderRadius: '8px' }} />
                 ) : (
-                  // <iframe height={250} src={defaultImage} alt="" style={{ width, borderRadius: '8px' }}></iframe>
                   <audio controls>
                     <source src={defaultImage} type="audio/mpeg" />
-                    {/* <source src="horse.mp3" type="audio/mpeg"> */}
                   </audio>
-                )}
+                )} */}
+                {handleSwitchContent(defaultImage)}
                 {/* <img height={160} src={defaultImage} alt="Course Image" style={{ width, borderRadius: '8px' }} /> */}
                 {isHovered && (
                   <Box sx={{ color: 'red', cursor: 'pointer', position: 'absolute', top: '40%', left: '30%' }}>

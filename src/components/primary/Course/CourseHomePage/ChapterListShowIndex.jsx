@@ -124,7 +124,7 @@ const ChapterListShowIndex = () => {
                   // xs={9.5}
                   xs={12}
                   sm={7}
-                  md={8.5}
+                  md={5.5}
                   xl={8}
                   sx={{ backgroundColor: '' }}
                 >

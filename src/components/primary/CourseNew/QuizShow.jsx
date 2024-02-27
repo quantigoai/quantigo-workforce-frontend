@@ -111,8 +111,6 @@ const QuizShow = () => {
     }));
   };
 
-  
-
   const handleQuizEdit = () => {
     navigate("/edit-quiz");
   };
@@ -235,7 +233,7 @@ const QuizShow = () => {
                             paddingTop: "1%",
                           }}
                         >
-                          {item.questionStatus === "rejected" ? (
+                          {/* {item.questionStatus === "rejected" ? (
                             <>
                               <CloseIcon />
                             </>
@@ -243,7 +241,7 @@ const QuizShow = () => {
                             <AssignmentTurnedInIcon />
                           ) : (
                             <PendingIcon />
-                          )}
+                          )} */}
                         </Grid>
                       </Grid>
                       {item.questionType === "imageAndOptions" ? (

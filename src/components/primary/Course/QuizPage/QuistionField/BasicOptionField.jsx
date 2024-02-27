@@ -180,7 +180,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
             // maxRows={2}
             fullWidth
             placeholder="Write a option"
-            // value={inputField.questionType === "imageInOptions" ? "" : inputField.possibleAnswers[0]}
+            // value={inputField.questionType === 'imageInOptions' ? '' : inputField.possibleAnswers[0]}
             value={
               inputField.newQuiz
                 ? inputField.possibleAnswers[0]

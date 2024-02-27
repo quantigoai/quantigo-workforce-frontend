@@ -30,6 +30,7 @@ const QuizUpdateIndex = () => {
     quizId: '',
     questionAndAnswer: {},
   });
+  console.log('🚀 ~ QuizUpdateIndex ~ tempData:', tempData);
   const [addQuiz, setAddQuiz] = useState({
     quizId: '',
     questionAndAnswer: {},
@@ -91,7 +92,10 @@ const QuizUpdateIndex = () => {
     // setInputFields(newInputFields);
   };
   const handleUpdate = (value, index, field) => {
+    console.log('🚀 ~ handleUpdate ~ index:', index);
+    console.log('🚀 ~ handleUpdate ~ value:', value);
     console.log('🚀 ~ handleUpdate ~ field:', field);
+
     if (field.newQuiz) {
       const newInputFields = inputFields.map((item) => {
         if (item._id === field._id) {
@@ -397,6 +401,7 @@ const QuizUpdateIndex = () => {
       id: quiz._id,
       data,
     };
+    console.log('🚀 ~ onSubmit ~ finalData:', finalData);
     dispatch(updateQuizById(finalData)).then((action) => {
       if (action.error) {
         toast.trigger(action.error.message, 'error');

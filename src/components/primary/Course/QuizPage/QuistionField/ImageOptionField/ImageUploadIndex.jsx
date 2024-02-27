@@ -65,6 +65,7 @@ const ImageUploadIndex = ({
     transition: 'border .24s ease-in-out',
   };
   // const maxSize = 1024000;
+
   const maxSize = 512000;
   const [isHovered, setIsHovered] = useState(false);
   const { acceptedFiles, getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({
@@ -124,6 +125,57 @@ const ImageUploadIndex = ({
     // Large screens
     width = (12 * screenSize) / 100;
   }
+  // const handleSwitchImage = (value) => {
+  //   console.log('🚀 ~ handleSwitchImage ~ value:', value);
+  //   switch (value) {
+  //     case value.endsWith('.png'):
+  //       return <img height={250} src={defaultImage} alt="" style={{ width, borderRadius: '8px' }} />;
+  //     case value.endsWith('.jpeg'):
+  //       return <img height={250} src={defaultImage} alt="" style={{ width, borderRadius: '8px' }} />;
+  //     case value.endsWith('.jpg'):
+  //       return <img height={250} src={defaultImage} alt="" style={{ width, borderRadius: '8px' }} />;
+  //     case value.endsWith('.mp3'):
+  //       return (
+  //         <audio controls>
+  //           <source src={defaultImage} type="audio/mpeg" />
+  //         </audio>
+  //       );
+  //     case value.endsWith('.mpeg'):
+  //       return (
+  //         <audio controls>
+  //           <source src={defaultImage} type="audio/mpeg" />
+  //         </audio>
+  //       );
+  //     case value.endsWith('.mp4'):
+  //       return (
+  //         <video controls>
+  //           <source src={defaultImage} />
+  //         </video>
+  //       );
+  //     default:
+  //       return <p>Unsupported file type</p>;
+  //   }
+  // };
+
+  const handleSwitchImage = (value) => {
+    if (value.endsWith('.png') || value.endsWith('.jpeg') || value.endsWith('.jpg')) {
+      return <img height={250} src={value} alt="" style={{ width, borderRadius: '8px' }} />;
+    } else if (value.endsWith('.mp3') || value.endsWith('.mpeg')) {
+      return (
+        <audio style={{ width, borderRadius: '8px' }} height={250} controls>
+          <source src={value} type="audio/mpeg" />
+        </audio>
+      );
+    } else if (value.endsWith('.mp4')) {
+      return (
+        <video height="250px" width="250px" controls>
+          <source src={value} />
+        </video>
+      );
+    } else {
+      return <p>Unsupported file type</p>;
+    }
+  };
   return (
     <>
       <Grid container>
@@ -232,15 +284,14 @@ const ImageUploadIndex = ({
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                {defaultImage.endsWith('.jpeg') ? (
+                {/* {defaultImage.endsWith('.png') ? (
                   <img height={250} src={defaultImage} alt="" style={{ width, borderRadius: '8px' }} />
                 ) : (
-                  // <iframe height={250} src={defaultImage} alt="" style={{ width, borderRadius: '8px' }}></iframe>
                   <audio controls>
                     <source src={defaultImage} type="audio/mpeg" />
-                    {/* <source src="horse.mp3" type="audio/mpeg"> */}
                   </audio>
-                )}
+                )} */}
+                {handleSwitchImage(defaultImage)}
                 {/* <img height={160} src={defaultImage} alt="Course Image" style={{ width, borderRadius: '8px' }} /> */}
                 {isHovered && (
                   <Box sx={{ color: 'red', cursor: 'pointer', position: 'absolute', top: '40%', left: '30%' }}>

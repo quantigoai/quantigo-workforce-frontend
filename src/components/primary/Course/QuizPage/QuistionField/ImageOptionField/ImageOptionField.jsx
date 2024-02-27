@@ -44,7 +44,7 @@ const BpCheckedIcon = styled(BpIcon)({
   },
 });
 const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUpdate, update }) => {
-  console.log('🚀 ~ ImageOptionField ~ inputField:', inputField);
+  // console.log('🚀 ~ ImageOptionField ~ inputField:', inputField);
   const [coverImageFile, setCoverImageFile] = useState([]);
   const [coverImage1, setCoverImage1] = useState(null);
   const [coverImage2, setCoverImage2] = useState(null);

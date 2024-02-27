@@ -175,6 +175,27 @@ export const insertAQuestionInQuiz = createAsyncThunk(
     }
   },
 );
+
+// submit a review of quiz by id
+export const submitReviewQuiz = createAsyncThunk(
+  '/quizanswersubmission/review-submission/:id',
+  async (finalData) => {
+    const { id, BodyData } = finalData;
+    try {
+      return await axios.post(`${url}/quizanswersubmission/review-submission/${id}`, BodyData, {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        }
+      });
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  }, 
+);
+
+
+
+
 const quizSlice = createSlice({
   name: 'quiz',
   initialState: initialState,
@@ -276,6 +297,17 @@ const quizSlice = createSlice({
         // });
       })
       .addCase(insertAQuestionInQuiz.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(submitReviewQuiz.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(submitReviewQuiz.fulfilled, (state, action) => {
+        state.isLoading = false;
+       
+      })
+      .addCase(submitReviewQuiz.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
       })

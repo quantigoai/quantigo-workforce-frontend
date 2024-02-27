@@ -14,7 +14,7 @@ import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useToaster from "../../../../../customHooks/useToaster";
-import { getSubmittedQuiz } from "../../../../../features/slice/quizSlice";
+import { getSubmittedQuiz, submitReviewQuiz } from "../../../../../features/slice/quizSlice";
 
 const PdTextField = styled(TextField)(() => ({
   borderRadius: "5px",
@@ -58,22 +58,12 @@ const QuizreviewIndex = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const toast = useToaster();
   const { course } = useSelector((state) => state.course);
-
+  const [submittedId, setSubmittedId] = React.useState();
   const [tempData, setTempData] = React.useState({});
   const [submitAnswer, setSubmitAnswer] = React.useState([]);
   const [quizQuestions, setQuizQuestions] = React.useState([]);
 
   const handleQuizResult = (possibleIndex, id, possibleText, isFromRadio = true) => {
-    // console.log('🚀 ~ handleQuizResult ~ possibleIndex:', possibleIndex);
-    // console.log('🚀 ~ handleQuizResult ~ id:', id);
-    // console.log('🚀 ~ handleQuizResult ~ possibleText:', possibleText);
-    // const x = {
-    //   [id]: {
-
-    //     submittedIndex: possibleIndex,
-    //     submittedText: possibleText,
-    //   },
-    // };
     isFromRadio
       ? setData((prev) => ({
           ...prev,
@@ -100,6 +90,7 @@ const QuizreviewIndex = () => {
     dispatch(getSubmittedQuiz(quiz._id)).then((action) => {
       console.log(action.payload.data);
       setQuizQuestions(action.payload.data.myPendingSubmission.questionAndAnswer);
+      setSubmittedId(action.payload.data.myPendingSubmission._id);
     });
   }, []);
 
@@ -134,31 +125,24 @@ const QuizreviewIndex = () => {
   };
 
   const handleQuizSubmit = () => {
-    const finalData = {
+    const BodyData = {
       reviewerSubmissionFeedback: reviewerSubmissionFeedback,
       questionAndAnswer: data,
     };
-
-    // console.log(reviewerSubmissionFeedback);
+    const finalData = {
+      BodyData,
+      id: submittedId,
+    };
     console.log("🚀 ~ handleQuizSubmit ~ finalData:", finalData);
-    // dispatch(submitQuizById(bulkData)).then((action) => {
-    //   if (action.payload?.status === 200) {
-    //     // setSubmitAnswer(action.payload.data.submissionResult.questionAndAnswer);
-    //     setQuizQuestions(action.payload.data.submissionResult.questionAndAnswer);
+    // console.log(reviewerSubmissionFeedback);
 
-    //     toast.trigger("Quiz Submitted", "success");
-    //     // TODO : Redirect to quiz result page
-    //     // navigate(`/course-details/${course._id}/quiz-result`);
-    //     // dispatch(
-    //     //   manuallySetCourseChapterResult(
-    //     //     action.payload.data.isPreviouslyAttempted,
-    //     //   ),
-    //     // );
-    //     // dispatch(updateUserCompletedCourse(action.payload.data.user));
-    //   } else {
-    //     toast.trigger("Quiz can not submit", "error");
-    //   }
-    // });
+    dispatch(submitReviewQuiz(finalData)).then((action) => {
+      if (action.payload?.status === 200) {
+        toast.trigger("Quiz Review Submitted", "success");
+      } else {
+        toast.trigger("Quiz can not submit", "error");
+      }
+    });
   };
 
   return (

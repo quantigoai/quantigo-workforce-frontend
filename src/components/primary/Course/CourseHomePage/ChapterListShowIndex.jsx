@@ -1,36 +1,36 @@
-import { Box, Button, Chip, Grid, Typography } from "@mui/material";
-import React from "react";
-import CourseChapterAccordion from "../CourseLandingPage/CourseChapterAccordion";
-import { useDispatch, useSelector } from "react-redux";
-import CoursePreIcon from "../../../../assets/images/courses/CoursePre.svg";
-import arrowIcon from "../../../../assets/images/courses/arrowIcon.svg";
-import course_Complete from "../../../../assets/images/courses/course_Complete.svg";
-import editIcon from "../../../../assets/images/courses/EditIcon.svg";
+import { Box, Button, Chip, Grid, Typography } from '@mui/material';
+import React from 'react';
+import CourseChapterAccordion from '../CourseLandingPage/CourseChapterAccordion';
+import { useDispatch, useSelector } from 'react-redux';
+import CoursePreIcon from '../../../../assets/images/courses/CoursePre.svg';
+import arrowIcon from '../../../../assets/images/courses/arrowIcon.svg';
+import course_Complete from '../../../../assets/images/courses/course_Complete.svg';
+import editIcon from '../../../../assets/images/courses/EditIcon.svg';
 
-import Rectangle from "../../../../assets/images/courses/Rectangle 257.svg";
-import { useNavigate } from "react-router-dom";
-import { setActiveChapterIndex } from "../../../../features/slice/activePathSlice";
-import { getAChapterById } from "../../../../features/slice/courseSlice";
-import ChapterProgressbar from "./ChapterProgressbar";
+import Rectangle from '../../../../assets/images/courses/Rectangle 257.svg';
+import { useNavigate } from 'react-router-dom';
+import { setActiveChapterIndex } from '../../../../features/slice/activePathSlice';
+import { getAChapterById } from '../../../../features/slice/courseSlice';
+import ChapterProgressbar from './ChapterProgressbar';
 
 const boxStyle = {
-  display: "flex",
-  justifyContent: "center",
-  justifyContent: "space-between",
-  width: "100%",
-  alignItems: "center",
-  gap: "14px",
-  backgroundColor: "red",
+  display: 'flex',
+  justifyContent: 'center',
+  justifyContent: 'space-between',
+  width: '100%',
+  alignItems: 'center',
+  gap: '14px',
+  backgroundColor: 'red',
 };
 const accordionBoxNumberStyle = {
-  backgroundColor: "#E2E8F0",
-  padding: "2px",
-  borderRadius: "99px",
-  display: "flex",
-  width: "24px",
-  height: "24px",
-  justifyContent: "center",
-  alignItems: "center",
+  backgroundColor: '#E2E8F0',
+  padding: '2px',
+  borderRadius: '99px',
+  display: 'flex',
+  width: '24px',
+  height: '24px',
+  justifyContent: 'center',
+  alignItems: 'center',
 };
 const ChapterListShowIndex = () => {
   const { courseChapters, course } = useSelector((state) => state.course);
@@ -40,7 +40,7 @@ const ChapterListShowIndex = () => {
   const navigate = useNavigate();
 
   const handleSubmittedQuiz = (courseChapter, index) => {
-    console.log("🚀 ~ handleSubmittedQuiz ~ courseChapter:", courseChapter);
+    console.log('🚀 ~ handleSubmittedQuiz ~ courseChapter:', courseChapter);
     navigate(`/submitted/${courseChapter.quiz.id}`);
   };
 
@@ -80,29 +80,30 @@ const ChapterListShowIndex = () => {
       <Box
         sx={{
           // backgroundColor: "red",
-          backgroundColor: isLightTheme ? "#F8FAFC" : "",
-          border: "2px solid #E2E8F0",
-          borderRadius: "8px",
+          backgroundColor: isLightTheme ? '#F8FAFC' : '',
+          border: '2px solid #E2E8F0',
+          borderRadius: '8px',
           maxHeight: 430,
           // overflowY: "auto",
-          overflowY: "auto",
-          "&::-webkit-scrollbar": {
-            width: "0", // Hide the scrollbar
+          overflowY: 'auto',
+          '&::-webkit-scrollbar': {
+            width: '0', // Hide the scrollbar
           },
         }}
       >
         {courseChapters &&
           courseChapters.map((item, index) => (
             <Box
+              key={index}
               sx={{
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-                justifyContent: "center",
+                alignItems: 'center',
+                justifyContent: 'center',
+                display: 'flex',
+                // justifyContent: 'center',
                 // paddingRight: "20px",
-                borderTop: index === 0 ? "" : "1px solid #E2E8F0",
-                paddingTop: "1%",
-                paddingBottom: "1%",
+                borderTop: index === 0 ? '' : '1px solid #E2E8F0',
+                paddingTop: '1%',
+                paddingBottom: '1%',
               }}
             >
               <Grid container>
@@ -113,7 +114,7 @@ const ChapterListShowIndex = () => {
                   sm={1}
                   md={1}
                   xl={0.78}
-                  sx={{ backgroundColor: "", alignItems: "center", justifyContent: "center", display: "flex" }}
+                  sx={{ backgroundColor: '', alignItems: 'center', justifyContent: 'center', display: 'flex' }}
                 >
                   <ChapterProgressbar item={item} />
                   {/* <img src={course_Complete} alt='' /> */}
@@ -123,15 +124,15 @@ const ChapterListShowIndex = () => {
                   // xs={9.5}
                   xs={12}
                   sm={7}
-                  md={8.5}
-                  xl={9}
-                  sx={{ backgroundColor: "" }}
+                  md={5.5}
+                  xl={8}
+                  sx={{ backgroundColor: '' }}
                 >
                   <Typography
                     // color={"grey.600"}
-                    variant='wpf_p3_semiBold'
+                    variant="wpf_p3_semiBold"
                     onClick={() => handleChapter(item, index)}
-                    sx={{ cursor: "pointer" }}
+                    sx={{ cursor: 'pointer' }}
                   >
                     {item.title}
                   </Typography>
@@ -142,13 +143,13 @@ const ChapterListShowIndex = () => {
                     </Button>
                   )} */}
                   <br />
-                  <Typography variant='wpf_p4_regular' color={"grey.600"}>
+                  <Typography variant="wpf_p4_regular" color={'grey.600'}>
                     {`Duration: ${item.estimatedTimeToRead} minutes`}
-                    {"  "}
+                    {'  '}
                   </Typography>
                   <img src={Rectangle} />
-                  <Typography variant='wpf_p4_regular' color={"grey.600"}>
-                    {"  "} Quiz Score: 15
+                  <Typography variant="wpf_p4_regular" color={'grey.600'}>
+                    {'  '} Quiz Score: 15
                   </Typography>
                 </Grid>
                 <Grid
@@ -156,35 +157,53 @@ const ChapterListShowIndex = () => {
                   xs={12}
                   sm={4}
                   md={2.5}
-                  xl={2}
-                  sx={{ px: "2%", alignItems: "center", justifyContent: "space-between", display: "flex" }}
+                  xl={3.2}
+                  sx={{ px: '2%', alignItems: 'center', justifyContent: 'space-between', display: 'flex' }}
                 >
-                  <Button onClick={() => handleSubmittedQuiz(item, index)}>Submitted</Button>
+                  <Button onClick={() => handleSubmittedQuiz(item, index)}>
+                    <Chip
+                      sx={{
+                        height: {
+                          lg: '20px',
+                          xl: '24px',
+                          xxl: '28px',
+                          textTransform: 'none',
+                        },
+                        borderRadius: '32px',
+                        border: '2px solid  #E2E8F0',
+                        color: 'neutral.700',
+                        backgroundColor: isLightTheme ? '#F8FAFC' : '',
+                        fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
+                        fontFamily: 'Inter',
+                      }}
+                      label={'Submitted'}
+                    />
+                  </Button>
                   <Chip
                     sx={{
                       height: {
-                        lg: "20px",
-                        xl: "24px",
-                        xxl: "28px",
+                        lg: '20px',
+                        xl: '24px',
+                        xxl: '28px',
                       },
-                      borderRadius: "32px",
-                      border: "2px solid  #E2E8F0",
-                      color: "neutral.700",
-                      backgroundColor: isLightTheme ? "#F8FAFC" : "",
-                      fontSize: { xl: "12px", xxl: "14px", lg: "10px" },
-                      fontFamily: "Inter",
+                      borderRadius: '32px',
+                      border: '2px solid  #E2E8F0',
+                      color: 'neutral.700',
+                      backgroundColor: isLightTheme ? '#F8FAFC' : '',
+                      fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
+                      fontFamily: 'Inter',
                     }}
                     onClick={() => handleChapter(item, index)}
                     // key={item.value}
                     label={`Chapter ${index + 1}`}
                     // label='Chapter 01'
                   />
-                  {role === "admin" || role === "trainer" ? (
+                  {role === 'admin' || role === 'trainer' ? (
                     <>
                       <img
                         src={editIcon}
-                        alt=''
-                        style={{ cursor: "pointer" }}
+                        alt=""
+                        style={{ cursor: 'pointer' }}
                         onClick={() => handleEditChapter(item._id, index)}
                       />
                     </>
@@ -192,8 +211,8 @@ const ChapterListShowIndex = () => {
                     <>
                       <img
                         src={arrowIcon}
-                        alt=''
-                        style={{ cursor: "pointer" }}
+                        alt=""
+                        style={{ cursor: 'pointer' }}
                         onClick={() => handleChapter(item, index)}
                       />
                     </>

@@ -28,7 +28,6 @@ const ImageFieldQuestion2 = ({
   update,
   defaultImage,
 }) => {
-  console.log('🚀 ~ inputField:', inputField);
   const { isLightTheme } = useSelector((state) => state.theme);
   const baseUploadBoxStyle = {
     flex: 1,
@@ -78,8 +77,21 @@ const ImageFieldQuestion2 = ({
       }
     }
   };
-  const { acceptedFiles, getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({
-    accept: { 'image/jpeg': [], 'image/png': [], 'image/jpg': [], 'audio/*': [], 'video/mp4': [] },
+  const {
+    acceptedFiles,
+    getRootProps,
+    getInputProps,
+    isFocused,
+    isDragAccept,
+    isDragReject,
+  } = useDropzone({
+    accept: {
+      'image/jpeg': [],
+      'image/png': [],
+      'image/jpg': [],
+      'audio/*': [],
+      'video/mp4': [],
+    },
     onDrop: handleImage,
   });
   const handleMouseEnter = () => {
@@ -144,7 +156,14 @@ const ImageFieldQuestion2 = ({
       case value?.endsWith('.png'):
       case value?.endsWith('.jpeg'):
       case value?.endsWith('.jpg'):
-        return <img height={'250'} src={value} alt="" style={{ width, borderRadius: '8px' }} />;
+        return (
+          <img
+            height={'250'}
+            src={value}
+            alt=""
+            style={{ width, borderRadius: '8px' }}
+          />
+        );
       case value?.endsWith('.mp3'):
       case value?.endsWith('.mpeg'):
         return (
@@ -217,10 +236,17 @@ const ImageFieldQuestion2 = ({
                   <Typography variant="wpf_p4_medium" sx={{ color: '#ff1744' }}>
                     File : {files.length > 20 ? files.slice(0, 4) : files}
                   </Typography>
-                  <Typography variant="wpf_p4_medium" sx={{ color: '#ff1744', textDecoration: 'justify' }}>
-                    The selected file is too large. Please choose a file less than 1Mb.
+                  <Typography
+                    variant="wpf_p4_medium"
+                    sx={{ color: '#ff1744', textDecoration: 'justify' }}
+                  >
+                    The selected file is too large. Please choose a file less
+                    than 1Mb.
                   </Typography>
-                  <Typography variant="wpf_p4_medium" sx={{ color: '#ff1744', textDecoration: 'justify' }}></Typography>
+                  <Typography
+                    variant="wpf_p4_medium"
+                    sx={{ color: '#ff1744', textDecoration: 'justify' }}
+                  ></Typography>
                 </Box>
               ) : (
                 <>
@@ -268,13 +294,31 @@ const ImageFieldQuestion2 = ({
                     {acceptedFiles[0].type === 'image/png' ||
                     acceptedFiles[0].type === 'image/jpg' ||
                     acceptedFiles[0].type === 'image/jpeg' ? (
-                      <img height={250} src={coverImage} alt="" style={{ width, borderRadius: '8px' }} />
+                      <img
+                        height={250}
+                        src={coverImage}
+                        alt=""
+                        style={{ width, borderRadius: '8px' }}
+                      />
                     ) : (
-                      <iframe height={250} src={coverImage} alt="" style={{ width, borderRadius: '8px' }}></iframe>
+                      <iframe
+                        height={250}
+                        src={coverImage}
+                        alt=""
+                        style={{ width, borderRadius: '8px' }}
+                      ></iframe>
                     )}
 
                     {isHovered && (
-                      <Box sx={{ color: 'red', cursor: 'pointer', position: 'absolute', top: '40%', left: '30%' }}>
+                      <Box
+                        sx={{
+                          color: 'red',
+                          cursor: 'pointer',
+                          position: 'absolute',
+                          top: '40%',
+                          left: '30%',
+                        }}
+                      >
                         <Button
                           onClick={removeImage}
                           sx={{
@@ -311,7 +355,15 @@ const ImageFieldQuestion2 = ({
                 {handleSwitchContent(inputField.question?.questionImage)}
 
                 {isHovered && (
-                  <Box sx={{ color: 'red', cursor: 'pointer', position: 'absolute', top: '40%', left: '30%' }}>
+                  <Box
+                    sx={{
+                      color: 'red',
+                      cursor: 'pointer',
+                      position: 'absolute',
+                      top: '40%',
+                      left: '30%',
+                    }}
+                  >
                     <Button
                       onClick={removeImage}
                       sx={{
@@ -337,16 +389,33 @@ const ImageFieldQuestion2 = ({
               </Box>
             </>
           ) : (
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100%',
+              }}
+            >
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                }}
+              >
                 <input name="questionImage" {...getInputProps()} />
 
                 <br />
                 <img src={IconImage} />
                 <Typography variant="wpf_p4_medium" sx={{ paddingTop: '5%' }}>
-                  Upload image
+                  Upload media
                 </Typography>
-                <Typography variant="wpf_p4_medium" sx={{ paddingBottom: '2%' }}>
+                <Typography
+                  variant="wpf_p4_medium"
+                  sx={{ paddingBottom: '2%' }}
+                >
                   Maximum file size: 512KB.
                 </Typography>
                 {/* <img src={ctaImage} /> */}

@@ -84,7 +84,15 @@ export const getSubmittedQuiz = createAsyncThunk('/quizanswersubmission/get-last
   });
 });
 
+// get all submission of quiz By Id
 
+export const getAllSubmissionOfQuizById = createAsyncThunk('quizanswersubmission/get-all-submission/:quizId', async (id) => {
+  return axios.get(`${url}/quizanswersubmission/get-all-submission/${id}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // update a Question Answer
 export const updateQuizQA = createAsyncThunk(
@@ -175,6 +183,27 @@ export const insertAQuestionInQuiz = createAsyncThunk(
     }
   },
 );
+
+// submit a review of quiz by id
+export const submitReviewQuiz = createAsyncThunk(
+  '/quizanswersubmission/review-submission/:id',
+  async (finalData) => {
+    const { id, BodyData } = finalData;
+    try {
+      return await axios.post(`${url}/quizanswersubmission/review-submission/${id}`, BodyData, {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        }
+      });
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  }, 
+);
+
+
+
+
 const quizSlice = createSlice({
   name: 'quiz',
   initialState: initialState,
@@ -232,6 +261,18 @@ const quizSlice = createSlice({
         // state.quiz = {};
         state.error = action.error.message;
       })
+      .addCase(getAllSubmissionOfQuizById.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllSubmissionOfQuizById.fulfilled, (state, action) => {
+        state.isLoading = false;
+        // state.quiz = action.payload.data.quiz;
+      })
+      .addCase(getAllSubmissionOfQuizById.rejected, (state, action) => {
+        state.isLoading = false;
+        // state.quiz = {};
+        state.error = action.error.message;
+      })
       .addCase(updateQuizQA.pending, (state) => {
         state.isLoading = true;
       })
@@ -276,6 +317,17 @@ const quizSlice = createSlice({
         // });
       })
       .addCase(insertAQuestionInQuiz.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(submitReviewQuiz.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(submitReviewQuiz.fulfilled, (state, action) => {
+        state.isLoading = false;
+       
+      })
+      .addCase(submitReviewQuiz.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
       })

@@ -159,7 +159,7 @@ const ChapterViewIndex = () => {
               sx={{
                 // paddingLeft: "3%",
                 // paddingRight: "3%",
-                backgroundColor: 'red',
+                // backgroundColor: "red",
                 // display: "flex",
                 // alignItems: "center",
                 width: '100%',

@@ -39,6 +39,11 @@ const ChapterListShowIndex = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const navigate = useNavigate();
 
+  const handleSubmittedQuiz = (courseChapter, index) => {
+    console.log("🚀 ~ handleSubmittedQuiz ~ courseChapter:", courseChapter);
+    navigate(`/submitted/${courseChapter.quiz.id}`);
+  };
+
   const handleChapter = (courseChapter, index) => {
     // navigate("/content");
     // navigate(`/content/${courseChapter._id}`);
@@ -154,6 +159,7 @@ const ChapterListShowIndex = () => {
                   xl={2}
                   sx={{ px: "2%", alignItems: "center", justifyContent: "space-between", display: "flex" }}
                 >
+                  <Button onClick={() => handleSubmittedQuiz(item, index)}>Submitted</Button>
                   <Chip
                     sx={{
                       height: {

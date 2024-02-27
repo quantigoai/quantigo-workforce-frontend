@@ -261,7 +261,7 @@ const ImageUploadIndex = ({
               <br />
               <img src={IconImage} />
               <Typography variant="wpf_p4_medium" sx={{ paddingTop: '5%' }}>
-                Upload image
+                Upload media
               </Typography>
               <Typography variant="wpf_p4_medium" sx={{ paddingBottom: '2%' }}>
                 Maximum file size: 512KB.

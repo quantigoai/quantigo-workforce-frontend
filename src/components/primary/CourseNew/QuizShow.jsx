@@ -157,6 +157,12 @@ const QuizShow = () => {
     });
   };
   console.log(submitAnswer);
+  const audioStyle = {
+    height: "160px",
+    width: "100%",
+    // backgroundColor: "red",
+  };
+
   return (
     <>
       <Box
@@ -343,7 +349,7 @@ const QuizShow = () => {
                                               </>
                                             ) : posibleAnswer.endsWith(".mpeg") ? (
                                               <>
-                                                <audio height={160} width='60%' src={posibleAnswer} controls></audio>
+                                                <audio style={audioStyle} src={posibleAnswer} controls></audio>
                                               </>
                                             ) : (
                                               <>

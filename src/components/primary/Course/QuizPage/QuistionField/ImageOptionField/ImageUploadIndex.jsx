@@ -81,8 +81,10 @@ const ImageUploadIndex = ({
   };
   const style = useMemo(() => {
     const fileSize = acceptedFiles ? acceptedFiles[0]?.size : null;
+    console.log('🚀 ~ style ~ acceptedFiles:', acceptedFiles);
     // const maxSize = 1024000; // 1MB in bytes
-    const maxSize = 512000;
+    // 1570024
+    const maxSize = 1024000 * 10;
     if (fileSize && fileSize > maxSize) {
       return {
         ...baseUploadBoxStyle,
@@ -125,55 +127,27 @@ const ImageUploadIndex = ({
     // Large screens
     width = (12 * screenSize) / 100;
   }
-  // const handleSwitchImage = (value) => {
-  //   console.log('🚀 ~ handleSwitchImage ~ value:', value);
-  //   switch (value) {
-  //     case value.endsWith('.png'):
-  //       return <img height={250} src={defaultImage} alt="" style={{ width, borderRadius: '8px' }} />;
-  //     case value.endsWith('.jpeg'):
-  //       return <img height={250} src={defaultImage} alt="" style={{ width, borderRadius: '8px' }} />;
-  //     case value.endsWith('.jpg'):
-  //       return <img height={250} src={defaultImage} alt="" style={{ width, borderRadius: '8px' }} />;
-  //     case value.endsWith('.mp3'):
-  //       return (
-  //         <audio controls>
-  //           <source src={defaultImage} type="audio/mpeg" />
-  //         </audio>
-  //       );
-  //     case value.endsWith('.mpeg'):
-  //       return (
-  //         <audio controls>
-  //           <source src={defaultImage} type="audio/mpeg" />
-  //         </audio>
-  //       );
-  //     case value.endsWith('.mp4'):
-  //       return (
-  //         <video controls>
-  //           <source src={defaultImage} />
-  //         </video>
-  //       );
-  //     default:
-  //       return <p>Unsupported file type</p>;
-  //   }
-  // };
-
-  const handleSwitchImage = (value) => {
-    if (value.endsWith('.png') || value.endsWith('.jpeg') || value.endsWith('.jpg')) {
-      return <img height={250} src={value} alt="" style={{ width, borderRadius: '8px' }} />;
-    } else if (value.endsWith('.mp3') || value.endsWith('.mpeg')) {
-      return (
-        <audio style={{ width, borderRadius: '8px' }} height={250} controls>
-          <source src={value} type="audio/mpeg" />
-        </audio>
-      );
-    } else if (value.endsWith('.mp4')) {
-      return (
-        <video height="250px" width="250px" controls>
-          <source src={value} />
-        </video>
-      );
-    } else {
-      return <p>Unsupported file type</p>;
+  const handleSwitchContent = (value) => {
+    switch (true) {
+      case value.endsWith('.png'):
+      case value.endsWith('.jpeg'):
+      case value.endsWith('.jpg'):
+        return <img height={'150'} src={value} alt="" style={{ width, borderRadius: '8px' }} />;
+      case value.endsWith('.mp3'):
+      case value.endsWith('.mpeg'):
+        return (
+          <audio style={{ height: '150px', width: '220px' }} controls>
+            <source src={value} type="audio/mpeg" />
+          </audio>
+        );
+      case value.endsWith('.mp4'):
+        return (
+          <video height={'150'} width={'100%'} controls>
+            <source src={value} />
+          </video>
+        );
+      default:
+        return <p>Unsupported file type</p>;
     }
   };
   return (
@@ -182,7 +156,7 @@ const ImageUploadIndex = ({
         <Box {...getRootProps({ width, style })}>
           {acceptedFiles.length ? (
             <>
-              <Box
+              {/* <Box
                 sx={{
                   position: 'relative',
                   borderRadius: '8px',
@@ -197,7 +171,7 @@ const ImageUploadIndex = ({
                 ) : (
                   <iframe height={155} src={coverImage} alt="" style={{ width, borderRadius: '8px' }}></iframe>
                 )}
-                {/* <p>File : {files}</p> */}
+
                 {isHovered && (
                   <Box sx={{ color: 'red', cursor: 'pointer', position: 'absolute', top: '40%', left: '30%' }}>
                     <Button
@@ -212,17 +186,15 @@ const ImageUploadIndex = ({
                         '&:hover': {
                           backgroundColor: '#FFFFFF',
                           color: '#2E58FF',
-                          // border: "1px solid #2E58FF",
                         },
                       }}
                     >
                       Replace
                     </Button>
-                    {/* <DeleteIcon onClick={removeImage} sx={{ color: "red" }} /> */}
                   </Box>
                 )}
-              </Box>
-              {/* {acceptedFiles[0].size > maxSize ? (
+              </Box> */}
+              {acceptedFiles[0].size > maxSize ? (
                 <>
                   <br />
                   <br />
@@ -272,7 +244,7 @@ const ImageUploadIndex = ({
                     )}
                   </Box>
                 </>
-              )} */}
+              )}
             </>
           ) : update && inputField.questionType === 'imageInOptions' && !inputField.newQuiz ? (
             <>
@@ -291,7 +263,7 @@ const ImageUploadIndex = ({
                     <source src={defaultImage} type="audio/mpeg" />
                   </audio>
                 )} */}
-                {handleSwitchImage(defaultImage)}
+                {handleSwitchContent(defaultImage)}
                 {/* <img height={160} src={defaultImage} alt="Course Image" style={{ width, borderRadius: '8px' }} /> */}
                 {isHovered && (
                   <Box sx={{ color: 'red', cursor: 'pointer', position: 'absolute', top: '40%', left: '30%' }}>

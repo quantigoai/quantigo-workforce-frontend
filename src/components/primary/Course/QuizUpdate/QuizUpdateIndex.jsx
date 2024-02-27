@@ -30,7 +30,7 @@ const QuizUpdateIndex = () => {
     quizId: '',
     questionAndAnswer: {},
   });
-  console.log('🚀 ~ QuizUpdateIndex ~ tempData:', tempData);
+
   const [addQuiz, setAddQuiz] = useState({
     quizId: '',
     questionAndAnswer: {},

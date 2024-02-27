@@ -181,11 +181,11 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
             fullWidth
             placeholder="Write a option"
             // value={inputField.questionType === 'imageInOptions' ? '' : inputField.possibleAnswers[0]}
-            value={
+            defaultValue={
               inputField.newQuiz
                 ? inputField.possibleAnswers[0]
                 : inputField.questionType === 'imageInOptions'
-                ? 'sss'
+                ? ''
                 : optionField0
             }
             InputProps={{
@@ -228,7 +228,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
             //     : inputField.possibleAnswers[1]
             // }
             // value={inputField.possibleAnswers[1]}
-            value={
+            defaultValue={
               inputField.newQuiz
                 ? inputField.possibleAnswers[1]
                 : inputField.questionType === 'imageInOptions'
@@ -277,7 +277,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
               backgroundColor: checkValue === 2 ? '#F4F7FE' : '#F9FAFB',
             }}
             name="possibleAnswer1"
-            value={
+            defaultValue={
               inputField.newQuiz
                 ? inputField.possibleAnswers[2]
                 : inputField.questionType === 'imageInOptions'
@@ -327,7 +327,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
             name="possibleAnswer1"
             fullWidth
             placeholder="Write a option"
-            value={
+            defaultValue={
               inputField.newQuiz
                 ? inputField.possibleAnswers[3]
                 : inputField.questionType === 'imageInOptions'

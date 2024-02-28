@@ -1,10 +1,18 @@
-import { Box, Button, FormControl, FormControlLabel, Radio, RadioGroup, Tab, Tabs, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import {
+  Box,
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  Tab,
+  Tabs,
+  Typography,
+} from '@mui/material';
 import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import DefaultTypeIndex from './QuizQuestionType/DefaultTypeIndex';
 import ImageInOptionIndex from './QuizQuestionType/ImageInOptionIndex';
 import ImageWithTitleIndex from './QuizQuestionType/ImageWithTitleIndex';
-import DefaultTypeIndex from './QuizQuestionType/DefaultTypeIndex';
-import RestoreIcon from '@mui/icons-material/Restore';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -74,9 +82,15 @@ const QuestionType = ({
   const handleChange = (event, newValue) => {
     if (update) {
       handleUpdate(
-        newValue === 0 ? 'default' : newValue === 1 ? 'imageAndOptions' : newValue === 2 ? 'imageInOptions' : newValue,
+        newValue === 0
+          ? 'default'
+          : newValue === 1
+          ? 'imageAndOptions'
+          : newValue === 2
+          ? 'imageInOptions'
+          : newValue,
         'questionType',
-        inputField
+        inputField,
       );
       setValue(newValue);
       // setSelectedValue(newValue);
@@ -90,7 +104,7 @@ const QuestionType = ({
             ? 'imageAndOptions'
             : newValue === 2
             ? 'imageInOptions'
-            : newValue)
+            : newValue),
       );
       // handleChangeInput((inputField.questionType = "default"), event);
       setValue(newValue);
@@ -328,19 +342,31 @@ const QuestionType = ({
         </Box>
 
         {/* // Restore Question */}
-        <Box>
-          {update && !inputField.newQuiz && deleteQuestionIds.includes(inputField._id) && (
-            <Button onClick={() => handleRestoreQuestion(inputField._id)}>
-              <RestoreIcon />
-            </Button>
-          )}
-        </Box>
-        {/* Delete Question for update Quiz */}
         <Box sx={{}}>
+          <Box>
+            {update &&
+              !inputField.newQuiz &&
+              deleteQuestionIds.includes(inputField._id) && (
+                <i
+                  style={{
+                    fontSize: '20px',
+                    color: '#2A8BD3',
+                    cursor: 'pointer',
+                  }}
+                  onClick={() => handleRestoreQuestion(inputField._id)}
+                  className="ri-arrow-go-back-line"
+                ></i>
+              )}
+          </Box>
+          {/* Delete Question for update Quiz */}
           {update && !deleteQuestionIds.includes(inputField._id) && (
             <i
               style={{ fontSize: '20px', color: '#FF4757', cursor: 'pointer' }}
-              onClick={update ? () => handleRemoveQA(inputField) : () => handleRemoveQA(inputField.uniqueId)}
+              onClick={
+                update
+                  ? () => handleRemoveQA(inputField)
+                  : () => handleRemoveQA(inputField.uniqueId)
+              }
               className="ri-delete-bin-6-line"
             ></i>
           )}
@@ -349,7 +375,11 @@ const QuestionType = ({
           {!update && (
             <i
               style={{ fontSize: '20px', color: '#FF4757', cursor: 'pointer' }}
-              onClick={update ? () => handleRemoveQA(inputField) : () => handleRemoveQA(inputField.uniqueId)}
+              onClick={
+                update
+                  ? () => handleRemoveQA(inputField)
+                  : () => handleRemoveQA(inputField.uniqueId)
+              }
               className="ri-delete-bin-6-line"
             ></i>
           )}

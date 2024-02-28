@@ -77,14 +77,7 @@ const ImageFieldQuestion2 = ({
       }
     }
   };
-  const {
-    acceptedFiles,
-    getRootProps,
-    getInputProps,
-    isFocused,
-    isDragAccept,
-    isDragReject,
-  } = useDropzone({
+  const { acceptedFiles, getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({
     accept: {
       'image/jpeg': [],
       'image/png': [],
@@ -156,24 +149,17 @@ const ImageFieldQuestion2 = ({
       case value?.endsWith('.png'):
       case value?.endsWith('.jpeg'):
       case value?.endsWith('.jpg'):
-        return (
-          <img
-            height={'250'}
-            src={value}
-            alt=""
-            style={{ width, borderRadius: '8px' }}
-          />
-        );
+        return <img height={'250'} src={value} alt="" style={{ width, borderRadius: '8px' }} />;
       case value?.endsWith('.mp3'):
       case value?.endsWith('.mpeg'):
         return (
-          <audio style={{ height: '250px', width: '220px' }} controls>
+          <audio style={{ height: '250px', width: '240px' }} controls>
             <source src={value} type="audio/mpeg" />
           </audio>
         );
       case value?.endsWith('.mp4'):
         return (
-          <video height={'250'} width={'100%'} controls>
+          <video height={'250px'} width={width} controls>
             <source src={value} />
           </video>
         );
@@ -236,17 +222,10 @@ const ImageFieldQuestion2 = ({
                   <Typography variant="wpf_p4_medium" sx={{ color: '#ff1744' }}>
                     File : {files.length > 20 ? files.slice(0, 4) : files}
                   </Typography>
-                  <Typography
-                    variant="wpf_p4_medium"
-                    sx={{ color: '#ff1744', textDecoration: 'justify' }}
-                  >
-                    The selected file is too large. Please choose a file less
-                    than 1Mb.
+                  <Typography variant="wpf_p4_medium" sx={{ color: '#ff1744', textDecoration: 'justify' }}>
+                    The selected file is too large. Please choose a file less than 1Mb.
                   </Typography>
-                  <Typography
-                    variant="wpf_p4_medium"
-                    sx={{ color: '#ff1744', textDecoration: 'justify' }}
-                  ></Typography>
+                  <Typography variant="wpf_p4_medium" sx={{ color: '#ff1744', textDecoration: 'justify' }}></Typography>
                 </Box>
               ) : (
                 <>
@@ -294,19 +273,9 @@ const ImageFieldQuestion2 = ({
                     {acceptedFiles[0].type === 'image/png' ||
                     acceptedFiles[0].type === 'image/jpg' ||
                     acceptedFiles[0].type === 'image/jpeg' ? (
-                      <img
-                        height={250}
-                        src={coverImage}
-                        alt=""
-                        style={{ width, borderRadius: '8px' }}
-                      />
+                      <img height={250} src={coverImage} alt="" style={{ width, borderRadius: '8px' }} />
                     ) : (
-                      <iframe
-                        height={250}
-                        src={coverImage}
-                        alt=""
-                        style={{ width, borderRadius: '8px' }}
-                      ></iframe>
+                      <iframe height={250} src={coverImage} alt="" style={{ width, borderRadius: '8px' }}></iframe>
                     )}
 
                     {isHovered && (
@@ -412,10 +381,7 @@ const ImageFieldQuestion2 = ({
                 <Typography variant="wpf_p4_medium" sx={{ paddingTop: '5%' }}>
                   Upload media
                 </Typography>
-                <Typography
-                  variant="wpf_p4_medium"
-                  sx={{ paddingBottom: '2%' }}
-                >
+                <Typography variant="wpf_p4_medium" sx={{ paddingBottom: '2%' }}>
                   Maximum file size: 512KB.
                 </Typography>
                 {/* <img src={ctaImage} /> */}

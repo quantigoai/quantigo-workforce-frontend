@@ -147,6 +147,21 @@ const QuizShow = () => {
     // backgroundColor: "red",
   };
 
+  const handleSwitchContent = (value) => {
+    switch (true) {
+      case value?.endsWith('.png'):
+      case value?.endsWith('.jpeg'):
+      case value?.endsWith('.jpg'):
+        return <img src={value} style={{ borderRadius: '8px' }} height={160} width="100%" />;
+      case value?.endsWith('.mp3'):
+      case value?.endsWith('.mpeg'):
+        return <audio style={audioStyle} src={value} controls></audio>;
+      case value?.endsWith('.mp4'):
+        return <iframe height={160} src={value} alt="" width="100%" style={{ borderRadius: '8px' }}></iframe>;
+      default:
+        return <p>Unsupported file </p>;
+    }
+  };
   return (
     <>
       <Box
@@ -198,7 +213,7 @@ const QuizShow = () => {
           <Box sx={{ paddingTop: '20px' }}>
             {Object.keys(quiz).length &&
               // quiz?.questionAndAnswer.map((item, i) => (
-              quizQuestions.map((item, i) => (
+              quizQuestions?.map((item, i) => (
                 <>
                   <Box>
                     <Box
@@ -221,7 +236,7 @@ const QuizShow = () => {
                           }}
                         >
                           <Typography variant="wpf_p2_semiBold" sx={{ color: '#090080' }}>
-                            Q{i + 1}. {item.question.questionText} ?
+                            Q{i + 1}. {item?.question?.questionText} ?
                           </Typography>
                         </Grid>
                         <Grid
@@ -244,12 +259,12 @@ const QuizShow = () => {
                           )} */}
                         </Grid>
                       </Grid>
-                      {item.questionType === 'imageAndOptions' ? (
+                      {item?.questionType === 'imageAndOptions' ? (
                         <>
                           <Grid container>
                             <Grid xs={6} sx={{ paddingLeft: '2%', paddingTop: '2%' }}>
                               {item.possibleAnswers.map((posibleAnswer, i) => (
-                                <Grid xs={12}>
+                                <Grid key={i} xs={12}>
                                   <FormControlLabel
                                     key={i}
                                     onChange={() => handleQuizResult(i, item._id)}
@@ -271,7 +286,7 @@ const QuizShow = () => {
                                 paddingTop: '1%',
                               }}
                             >
-                              {item.question.questionImage.endsWith('.jpeg') && (
+                              {item.question?.questionImage?.endsWith('.jpeg') && (
                                 <img
                                   src={item.question.questionImage}
                                   style={{ borderRadius: '8px' }}
@@ -289,7 +304,7 @@ const QuizShow = () => {
                                   />
                                   Your browser does not support the audio element.
                                 </audio> */}
-                                {item.question.questionImage.endsWith('.mp4') && (
+                                {item.question?.questionImage?.endsWith('.mp4') && (
                                   <video
                                     width="100%"
                                     height="240"
@@ -309,7 +324,7 @@ const QuizShow = () => {
                           //  value={value}
                           >
                             <Grid container sx={{ paddingLeft: '2%', paddingBottom: '2%' }}>
-                              {item.possibleAnswers.map((posibleAnswer, i) => (
+                              {item?.possibleAnswers?.map((posibleAnswer, i) => (
                                 <>
                                   {item.questionType === 'imageInOptions' ? (
                                     <>
@@ -321,7 +336,7 @@ const QuizShow = () => {
                                           }}
                                         >
                                           {/* <Grid item> */}
-                                          <Box sx={{}}>
+                                          {/* <Box sx={{}}>
                                             {posibleAnswer.endsWith('.jpeg') ? (
                                               <>
                                                 <img
@@ -346,7 +361,8 @@ const QuizShow = () => {
                                                 ></iframe>
                                               </>
                                             )}
-                                          </Box>
+                                          </Box> */}
+                                          {handleSwitchContent(posibleAnswer)}
                                           {/* </Grid> */}
                                           {/* <Grid item> */}
                                           <Box sx={{ backgroundColor: '#fff', paddingLeft: '5%', borderRadius: '8px' }}>
@@ -395,7 +411,7 @@ const QuizShow = () => {
                       )}
 
                       <Grid item xs={12}>
-                        {item.isTextFieldEnabled && (
+                        {item?.isTextFieldEnabled && (
                           <>
                             <Box
                               sx={{

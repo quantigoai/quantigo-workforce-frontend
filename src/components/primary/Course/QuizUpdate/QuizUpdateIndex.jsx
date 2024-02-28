@@ -3,6 +3,7 @@ import { Box, Button, Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import useToaster from '../../../../customHooks/useToaster';
 import {
@@ -336,7 +337,8 @@ const QuizUpdateIndex = () => {
   } = methods;
   const [quizaUpdateLoading, setQuizUpdateLoading] = useState(false);
   const [accept, setAccept] = useState(false);
-
+  const navigate = useNavigate();
+  const { course } = useSelector((state) => state.course);
   const onSubmit = async (data) => {
     // await toast.responsePromise(
     //   // updateQuizQAFunction(data1),
@@ -426,6 +428,7 @@ const QuizUpdateIndex = () => {
         toast.trigger(action.error.message, 'error');
       } else {
         toast.trigger(action.payload.data.message, 'success');
+        navigate(`/course-homepage/${course._id}`);
       }
     });
   };
@@ -435,7 +438,7 @@ const QuizUpdateIndex = () => {
       <Box className="content" sx={{ backgroundColor: 'neutral.N000' }}>
         <Grid
           container
-          sx={{ borderTop: '1px solid #E6ECF5', paddingTop: '1%' }}
+          sx={{ borderTop: '1px solid #E6ECF5', paddingTop: '5px' }}
         >
           <Grid xs={2}>
             {/* <Button

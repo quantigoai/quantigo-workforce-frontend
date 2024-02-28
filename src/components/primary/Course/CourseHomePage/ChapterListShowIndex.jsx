@@ -1,14 +1,11 @@
-import { Box, Button, Chip, Grid, Typography } from '@mui/material';
+import { Box, Chip, Grid, Typography } from '@mui/material';
 import React from 'react';
-import CourseChapterAccordion from '../CourseLandingPage/CourseChapterAccordion';
 import { useDispatch, useSelector } from 'react-redux';
-import CoursePreIcon from '../../../../assets/images/courses/CoursePre.svg';
-import arrowIcon from '../../../../assets/images/courses/arrowIcon.svg';
-import course_Complete from '../../../../assets/images/courses/course_Complete.svg';
 import editIcon from '../../../../assets/images/courses/EditIcon.svg';
+import arrowIcon from '../../../../assets/images/courses/arrowIcon.svg';
 
-import Rectangle from '../../../../assets/images/courses/Rectangle 257.svg';
 import { useNavigate } from 'react-router-dom';
+import Rectangle from '../../../../assets/images/courses/Rectangle 257.svg';
 import { setActiveChapterIndex } from '../../../../features/slice/activePathSlice';
 import { getAChapterById } from '../../../../features/slice/courseSlice';
 import ChapterProgressbar from './ChapterProgressbar';
@@ -41,7 +38,7 @@ const ChapterListShowIndex = () => {
 
   const handleSubmittedQuiz = (courseChapter, index) => {
     console.log('🚀 ~ handleSubmittedQuiz ~ courseChapter:', courseChapter);
-    navigate(`/submitted/${courseChapter.quiz.id}`);
+    navigate(`/submitted/${courseChapter?.quiz?.id}`);
   };
 
   const handleChapter = (courseChapter, index) => {
@@ -114,7 +111,12 @@ const ChapterListShowIndex = () => {
                   sm={1}
                   md={1}
                   xl={0.78}
-                  sx={{ backgroundColor: '', alignItems: 'center', justifyContent: 'center', display: 'flex' }}
+                  sx={{
+                    backgroundColor: '',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    display: 'flex',
+                  }}
                 >
                   <ChapterProgressbar item={item} />
                   {/* <img src={course_Complete} alt='' /> */}
@@ -158,7 +160,12 @@ const ChapterListShowIndex = () => {
                   sm={4}
                   md={2.5}
                   xl={3.2}
-                  sx={{ px: '2%', alignItems: 'center', justifyContent: 'space-between', display: 'flex' }}
+                  sx={{
+                    px: '2%',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    display: 'flex',
+                  }}
                 >
                   <Chip
                     sx={{

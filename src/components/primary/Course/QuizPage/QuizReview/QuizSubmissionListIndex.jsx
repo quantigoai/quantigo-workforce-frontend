@@ -56,17 +56,13 @@ const QuizSubmissionListIndex = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [allAnswerSubmission, setAllAnswerSubmission] = useState([]);
-  console.log("🚀 ~ QuizSubmissionListIndex ~ allAnswerSubmission:", allAnswerSubmission);
-  console.log("🚀 ~ QuizSubmissionListIndex ~ id:", id);
   useEffect(() => {
     dispatch(getAllSubmissionOfQuizById(id)).then((action) => {
-      console.log(action.payload.data);
       setAllAnswerSubmission(action.payload.data.allAnswerSubmission);
     });
   }, []);
 
   const handleReviewQuiz = (id) => {
-    console.log("🚀 ~ handleReviewQuiz ~ id:", id);
     navigate(`/test-quiz-review/${id}`);
   };
   return (

@@ -160,25 +160,25 @@ const ChapterListShowIndex = () => {
                   xl={3.2}
                   sx={{ px: '2%', alignItems: 'center', justifyContent: 'space-between', display: 'flex' }}
                 >
-                  <Button onClick={() => handleSubmittedQuiz(item, index)}>
-                    <Chip
-                      sx={{
-                        height: {
-                          lg: '20px',
-                          xl: '24px',
-                          xxl: '28px',
-                          textTransform: 'none',
-                        },
-                        borderRadius: '32px',
-                        border: '2px solid  #E2E8F0',
-                        color: 'neutral.700',
-                        backgroundColor: isLightTheme ? '#F8FAFC' : '',
-                        fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
-                        fontFamily: 'Inter',
-                      }}
-                      label={'Submitted'}
-                    />
-                  </Button>
+                  <Chip
+                    sx={{
+                      height: {
+                        lg: '20px',
+                        xl: '24px',
+                        xxl: '28px',
+                        textTransform: 'none',
+                      },
+                      borderRadius: '32px',
+                      border: '2px solid  #E2E8F0',
+                      color: 'neutral.700',
+                      backgroundColor: isLightTheme ? '#F8FAFC' : '',
+                      fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
+                      fontFamily: 'Inter',
+                    }}
+                    label={'Submission'}
+                    onClick={() => handleSubmittedQuiz(item, index)}
+                  />
+
                   <Chip
                     sx={{
                       height: {

@@ -68,14 +68,7 @@ const ImageUploadIndex = ({
 
   const maxSize = 1024000 * 10;
   const [isHovered, setIsHovered] = useState(false);
-  const {
-    acceptedFiles,
-    getRootProps,
-    getInputProps,
-    isFocused,
-    isDragAccept,
-    isDragReject,
-  } = useDropzone({
+  const { acceptedFiles, getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({
     accept: {
       'image/jpeg': [],
       'image/png': [],
@@ -129,7 +122,7 @@ const ImageUploadIndex = ({
     width = (12.56 * screenSize) / 100;
   } else if (screenSize >= 1440) {
     // Large screens
-    width = (11 * screenSize) / 100;
+    width = (12.5 * screenSize) / 100;
   } else if (screenSize >= 1366) {
     // Large screens
     width = (10 * screenSize) / 100;
@@ -145,24 +138,17 @@ const ImageUploadIndex = ({
       case value.endsWith('.png'):
       case value.endsWith('.jpeg'):
       case value.endsWith('.jpg'):
-        return (
-          <img
-            height={'150'}
-            src={value}
-            alt=""
-            style={{ width, borderRadius: '8px' }}
-          />
-        );
+        return <img height={'155'} src={value} alt="" style={{ width, borderRadius: '8px' }} />;
       case value.endsWith('.mp3'):
       case value.endsWith('.mpeg'):
         return (
-          <audio style={{ height: '150px', width: '220px' }} controls>
+          <audio style={{ height: '140px', width: '160px' }} controls>
             <source src={value} type="audio/mpeg" />
           </audio>
         );
       case value.endsWith('.mp4'):
         return (
-          <video height={'150'} width={'100%'} controls>
+          <video height={'150px'} width={'100%'} controls>
             <source src={value} />
           </video>
         );
@@ -182,17 +168,10 @@ const ImageUploadIndex = ({
                   <Typography variant="wpf_p4_medium" sx={{ color: '#ff1744' }}>
                     File : {files.length > 20 ? files.slice(0, 4) : files}
                   </Typography>
-                  <Typography
-                    variant="wpf_p4_medium"
-                    sx={{ color: '#ff1744', textDecoration: 'justify' }}
-                  >
-                    The selected file is too large. Please choose a file less
-                    than 1Mb.
+                  <Typography variant="wpf_p4_medium" sx={{ color: '#ff1744', textDecoration: 'justify' }}>
+                    The selected file is too large. Please choose a file less than 1Mb.
                   </Typography>
-                  <Typography
-                    variant="wpf_p4_medium"
-                    sx={{ color: '#ff1744', textDecoration: 'justify' }}
-                  ></Typography>
+                  <Typography variant="wpf_p4_medium" sx={{ color: '#ff1744', textDecoration: 'justify' }}></Typography>
                 </Box>
               ) : (
                 <>
@@ -208,19 +187,9 @@ const ImageUploadIndex = ({
                     {acceptedFiles[0].type === 'image/png' ||
                     acceptedFiles[0].type === 'image/jpg' ||
                     acceptedFiles[0].type === 'image/jpeg' ? (
-                      <img
-                        height={160}
-                        src={coverImage}
-                        alt=""
-                        style={{ width, borderRadius: '8px' }}
-                      />
+                      <img height={160} src={coverImage} alt="" style={{ width, borderRadius: '8px' }} />
                     ) : (
-                      <iframe
-                        height={155}
-                        src={coverImage}
-                        alt=""
-                        style={{ width, borderRadius: '8px' }}
-                      ></iframe>
+                      <iframe height={155} src={coverImage} alt="" style={{ width, borderRadius: '8px' }}></iframe>
                     )}
 
                     {isHovered && (
@@ -230,7 +199,7 @@ const ImageUploadIndex = ({
                           cursor: 'pointer',
                           position: 'absolute',
                           top: '40%',
-                          left: '30%',
+                          left: { xxl: '30%', xl: '25%', lg: '25%' },
                         }}
                       >
                         <Button
@@ -256,9 +225,7 @@ const ImageUploadIndex = ({
                 </>
               )}
             </>
-          ) : update &&
-            inputField.questionType === 'imageInOptions' &&
-            !inputField.newQuiz ? (
+          ) : update && inputField.questionType === 'imageInOptions' && !inputField.newQuiz ? (
             <>
               <Box
                 sx={{
@@ -283,8 +250,8 @@ const ImageUploadIndex = ({
                       color: 'red',
                       cursor: 'pointer',
                       position: 'absolute',
-                      top: '40%',
-                      left: '30%',
+                      top: { xxl: '40%', xl: '35%', lg: '30%' },
+                      left: { xxl: '30%', xl: '25%', lg: '25%' },
                     }}
                   >
                     <Button

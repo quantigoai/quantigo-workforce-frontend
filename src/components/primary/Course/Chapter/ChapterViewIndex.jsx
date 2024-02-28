@@ -258,7 +258,7 @@ const ChapterViewIndex = () => {
           </Grid>
 
           <Grid item xs={6} container sx={{ justifyContent: "flex-end" }}>
-            {(role === "admin" || role === "trainer") && (
+            {/* {(role === "admin" || role === "trainer") && (
               <Button
                 disabled={courseChapter?.quiz?.id ? false : true}
                 sx={{
@@ -293,7 +293,7 @@ const ChapterViewIndex = () => {
               >
                 Review Quiz
               </Button>
-            )}
+            )} */}
             <Button
               sx={{
                 textTransform: "none",

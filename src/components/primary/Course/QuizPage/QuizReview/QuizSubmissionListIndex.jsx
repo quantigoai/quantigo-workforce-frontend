@@ -14,9 +14,10 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getAllSubmissionOfQuizById, getSubmittedQuiz } from "../../../../../features/slice/quizSlice";
+import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -50,6 +51,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const QuizSubmissionListIndex = () => {
   const params = useParams();
   const { id } = params;
+  const { user } = useSelector((state) => state.user);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [allAnswerSubmission, setAllAnswerSubmission] = useState([]);
@@ -68,21 +71,23 @@ const QuizSubmissionListIndex = () => {
   };
   return (
     <>
-      <Box>
-        <Box sx={{ paddingTop: "2%", paddingBottom: "2%" }}>
+      <Box sx={{ padding: "2%" }}>
+        <Box sx={{ paddingTop: "%", paddingBottom: "2%" }}>
           <Typography variant='wpf_p3_medium_2'>List of Quiz Review</Typography>
         </Box>
-        <Box>
+        <Box sx={{ width: "100%" }}>
           <TableContainer id='table-2'>
             <Table>
               <TableHead>
                 <TableRow>
                   <StyledTableCell>Annotator Name</StyledTableCell>
-                  <StyledTableCell align='left'>submissionStatus</StyledTableCell>
-                  <StyledTableCell align='left'>correctAnswer</StyledTableCell>
-                  <StyledTableCell align='left'>pendingAnswer</StyledTableCell>
-                  <StyledTableCell align='left'>wrongAnswer</StyledTableCell>
-                  <StyledTableCell align='left'>action</StyledTableCell>
+                  <StyledTableCell align='left'>Submission Status</StyledTableCell>
+                  <StyledTableCell align='left'>Correct Answer</StyledTableCell>
+                  <StyledTableCell align='left'>Pending Answer</StyledTableCell>
+                  <StyledTableCell align='left'>Wrong Answer</StyledTableCell>
+                  {(user.role === "admin" || user.role === "trainer") && (
+                    <StyledTableCell align='left'>Action</StyledTableCell>
+                  )}
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -98,8 +103,7 @@ const QuizSubmissionListIndex = () => {
                         component='th'
                         scope='row'
                         sx={{
-                          //   backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
-                          minWidth: "300px",
+                          minWidth: "200px",
                         }}
                       >
                         <Typography variant='wpf_p4_medium'>{item.user.name}</Typography>
@@ -109,17 +113,17 @@ const QuizSubmissionListIndex = () => {
                         scope='row'
                         sx={{
                           //   backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
-                          minWidth: "300px",
+                          minWidth: "200px",
                         }}
                       >
-                        <Typography variant='wpf_p4_medium'>{item.submissionStatus}</Typography>
+                        <Typography variant='wpf_p4_medium'>{capitalizeFirstLetter(item.submissionStatus)}</Typography>
                       </StyledTableCell>{" "}
                       <StyledTableCell
                         component='th'
                         scope='row'
                         sx={{
                           //   backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
-                          minWidth: "300px",
+                          minWidth: "200px",
                         }}
                       >
                         <Typography variant='wpf_p4_medium'>{item.correctAnswer}</Typography>
@@ -129,7 +133,7 @@ const QuizSubmissionListIndex = () => {
                         scope='row'
                         sx={{
                           //   backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
-                          minWidth: "300px",
+                          minWidth: "200px",
                         }}
                       >
                         <Typography variant='wpf_p4_medium'>{item.pendingAnswer}</Typography>
@@ -139,21 +143,29 @@ const QuizSubmissionListIndex = () => {
                         scope='row'
                         sx={{
                           //   backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
-                          minWidth: "300px",
+                          minWidth: "200px",
                         }}
                       >
                         <Typography variant='wpf_p4_medium'>{item.wrongAnswer}</Typography>
                       </StyledTableCell>
-                      <StyledTableCell
-                        component='th'
-                        scope='row'
-                        sx={{
-                          //   backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
-                          minWidth: "300px",
-                        }}
-                      >
-                        <Button onClick={() => handleReviewQuiz(item._id)}>Review </Button>
-                      </StyledTableCell>
+                      {(user.role === "admin" || user.role === "trainer") && (
+                        <StyledTableCell
+                          component='th'
+                          scope='row'
+                          sx={{
+                            //   backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
+                            minWidth: "200px",
+                          }}
+                        >
+                          <Button
+                            variant='contained'
+                            sx={{ backgroundColor: "#2D58FF", color: "#FFFFFF" }}
+                            onClick={() => handleReviewQuiz(item._id)}
+                          >
+                            Review{" "}
+                          </Button>
+                        </StyledTableCell>
+                      )}
                     </StyledTableRow>
                   ))}
               </TableBody>

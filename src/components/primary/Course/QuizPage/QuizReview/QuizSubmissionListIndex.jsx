@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getAllSubmissionOfQuizById, getSubmittedQuiz } from "../../../../../features/slice/quizSlice";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -50,6 +50,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const QuizSubmissionListIndex = () => {
   const params = useParams();
   const { id } = params;
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [allAnswerSubmission, setAllAnswerSubmission] = useState([]);
   console.log("🚀 ~ QuizSubmissionListIndex ~ allAnswerSubmission:", allAnswerSubmission);
@@ -61,6 +62,10 @@ const QuizSubmissionListIndex = () => {
     });
   }, []);
 
+  const handleReviewQuiz = (id) => {
+    console.log("🚀 ~ handleReviewQuiz ~ id:", id);
+    navigate(`/test-quiz-review/${id}`);
+  };
   return (
     <>
       <Box>
@@ -147,7 +152,7 @@ const QuizSubmissionListIndex = () => {
                           minWidth: "300px",
                         }}
                       >
-                        <Button>Review </Button>
+                        <Button onClick={() => handleReviewQuiz(item._id)}>Review </Button>
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}

@@ -12,9 +12,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import PendingIcon from "@mui/icons-material/Pending";
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useToaster from "../../../../../customHooks/useToaster";
-import { getSubmittedQuiz, submitReviewQuiz } from "../../../../../features/slice/quizSlice";
+import { getSingleSubmittedQuiz, getSubmittedQuiz, submitReviewQuiz } from "../../../../../features/slice/quizSlice";
 
 const PdTextField = styled(TextField)(() => ({
   borderRadius: "5px",
@@ -49,6 +49,8 @@ const PdTextField = styled(TextField)(() => ({
 const QuizreviewIndex = () => {
   const { quiz, isLoading } = useSelector((state) => state.quiz);
   // console.log('🚀 ~ QuizShow ~ quiz:', quiz);
+  const params = useParams();
+  const { id } = params;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
@@ -62,6 +64,7 @@ const QuizreviewIndex = () => {
   const [tempData, setTempData] = React.useState({});
   const [submitAnswer, setSubmitAnswer] = React.useState([]);
   const [quizQuestions, setQuizQuestions] = React.useState([]);
+  console.log("🚀 ~ QuizreviewIndex ~ quizQuestions:", quizQuestions);
 
   const handleQuizResult = (possibleIndex, id, possibleText, isFromRadio = true) => {
     isFromRadio
@@ -87,10 +90,10 @@ const QuizreviewIndex = () => {
   };
 
   useEffect(() => {
-    dispatch(getSubmittedQuiz(quiz._id)).then((action) => {
+    dispatch(getSingleSubmittedQuiz(id)).then((action) => {
       console.log(action.payload.data);
-      setQuizQuestions(action.payload.data.myPendingSubmission.questionAndAnswer);
-      setSubmittedId(action.payload.data.myPendingSubmission._id);
+      setQuizQuestions(action.payload.data.submission.questionAndAnswer);
+      setSubmittedId(action.payload.data.submission._id);
     });
   }, []);
 
@@ -219,7 +222,7 @@ const QuizreviewIndex = () => {
             />
           </Box>
           <Box sx={{ paddingTop: "20px" }}>
-            {Object.keys(quiz).length &&
+            {quizQuestions.length &&
               // quiz?.questionAndAnswer.map((item, i) => (
               quizQuestions.map((item, i) => (
                 <>
@@ -275,7 +278,10 @@ const QuizreviewIndex = () => {
                               </Button> */}
                             </>
                           ) : (
-                            <AssignmentTurnedInIcon />
+                            <>
+                              {item.questionStatus}
+                              {/* <AssignmentTurnedInIcon /> */}
+                            </>
                           )}
                         </Grid>
                       </Grid>

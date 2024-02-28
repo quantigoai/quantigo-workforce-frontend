@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import useToaster from "../../../../../customHooks/useToaster";
 import { getSingleSubmittedQuiz, getSubmittedQuiz, submitReviewQuiz } from "../../../../../features/slice/quizSlice";
+import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
 
 const PdTextField = styled(TextField)(() => ({
   borderRadius: "5px",
@@ -211,7 +212,7 @@ const QuizreviewIndex = () => {
                 color: "neutral.N300",
               }}
             >
-              reviewerSubmissionFeedback
+              Reviewer Submission Feedback
             </Typography>
             <PdTextField
               fullWidth
@@ -279,7 +280,14 @@ const QuizreviewIndex = () => {
                             </>
                           ) : (
                             <>
-                              {item.questionStatus}
+                              <Typography
+                                variant='wpf_h6_semiBold'
+                                sx={{ color: item.questionStatus === "accepted" ? "#36B37E" : "red" }}
+                              >
+                                {" "}
+                                {capitalizeFirstLetter(item.questionStatus)}
+                              </Typography>
+
                               {/* <AssignmentTurnedInIcon /> */}
                             </>
                           )}
@@ -454,7 +462,7 @@ const QuizreviewIndex = () => {
                                   color: "neutral.N300",
                                 }}
                               >
-                                Label / userGivenText
+                                User Given Text
                               </Typography>
                               <PdTextField
                                 fullWidth
@@ -486,7 +494,7 @@ const QuizreviewIndex = () => {
                                 color: "neutral.N300",
                               }}
                             >
-                              reviewerFeedback
+                              Reviewer Feedback
                             </Typography>
                             <PdTextField
                               fullWidth
@@ -533,12 +541,12 @@ const QuizreviewIndex = () => {
               <Button
                 disabled={isLoading}
                 sx={{
-                  borderRadius: "2px",
-                  width: "128px",
+                  borderRadius: "8px",
+                  width: "150px",
                   backgroundColor: "#2D58FF",
                   color: "#FFFFFF",
                   "&:hover": {
-                    backgroundColor: "#FF9A45",
+                    // backgroundColor: "#FF9A45",
                     color: "#1D1D1D",
                   },
                 }}
@@ -547,7 +555,7 @@ const QuizreviewIndex = () => {
 
                 variant='contained'
               >
-                Edit Quiz
+                Submit Review
               </Button>
             </>
           ) : (

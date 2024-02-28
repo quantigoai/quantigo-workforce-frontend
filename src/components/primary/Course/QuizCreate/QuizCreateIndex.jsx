@@ -106,7 +106,7 @@ const QuizCreateIndex = () => {
     setInputFields(newInputFields);
   };
   useEffect(() => {}, [inputFields]);
-
+  const { course } = useSelector((state) => state.course);
   const quizSchema = Yup.object().shape({
     quiz_name: Yup.string().required('Quiz name is required'),
     // duration: Yup.string().required(" Quiz duration is required"),
@@ -201,6 +201,7 @@ const QuizCreateIndex = () => {
         },
         afterSuccess: (data) => {
           setReject(false);
+          navigate(`/course-homepage/${course._id}`);
         },
         afterError: (data) => {
           setReject(false);
@@ -222,8 +223,8 @@ const QuizCreateIndex = () => {
   return (
     <>
       <Box className="content" sx={{ backgroundColor: 'neutral.N000' }}>
-        <Grid container sx={{ borderTop: '1px solid #E6ECF5', paddingTop: '1%' }}>
-          <Grid xs={2}></Grid>
+        <Grid container sx={{ borderTop: '1px solid #E6ECF5', paddingTop: '5px' }}>
+          <Grid xs={1}></Grid>
           <Grid xs={8}>
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
               <Box className="">

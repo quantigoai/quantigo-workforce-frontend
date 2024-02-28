@@ -45,7 +45,7 @@ const QuestionName = ({ handleChangeInput, inputField, inputFields, handleUpdate
             color: 'neutral.N300',
           }}
         >
-          Question Name+{inputField._id}
+          Question Name
         </Typography>
         <Box sx={{ width: '100%' }}>
           <PdTextField

@@ -99,10 +99,6 @@ const QuizreviewIndex = () => {
   }, []);
 
   const handleQuizResultTextField = (textValue, id, isFromRadio = true) => {
-    console.log("🚀 ~ handleQuizResultTextField ~ isFromRadio:", isFromRadio);
-    console.log("🚀 ~ handleQuizResultTextField ~ id:", id);
-    console.log("🚀 ~ handleQuizResultTextField ~ textValue:", textValue);
-
     isFromRadio
       ? setData((prev) => ({
           ...prev,
@@ -137,7 +133,7 @@ const QuizreviewIndex = () => {
       BodyData,
       id: submittedId,
     };
-    console.log("🚀 ~ handleQuizSubmit ~ finalData:", finalData);
+
     // console.log(reviewerSubmissionFeedback);
 
     dispatch(submitReviewQuiz(finalData)).then((action) => {
@@ -500,6 +496,7 @@ const QuizreviewIndex = () => {
                               fullWidth
                               // variant='outlined'
                               placeholder='Write your thougts...'
+                              defaultValue={item.reviewerFeedback}
                               onChange={(e) => handleQuizResultTextField(e.target.value, item._id, false)}
                             />
                           </Box>

@@ -93,9 +93,9 @@ const QuizShow = () => {
     // }));
   };
 
-  useEffect(() => {
-    dispatch(getSubmittedQuiz(quiz._id));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getSubmittedQuiz(quiz._id));
+  // }, []);
 
   const handleQuizResultTextField = (textValue, id) => {
     const x = {

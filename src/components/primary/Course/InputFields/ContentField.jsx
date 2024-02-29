@@ -6,15 +6,15 @@
  *
  * Copyright (c) 2022 Tanzim Ahmed
  */
-import {CKEditor} from "@ckeditor/ckeditor5-react";
-import {Grid} from "@mui/material";
-import Editor from "ckeditor5-custom-build/build/ckeditor";
-import React from "react";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import { Grid } from '@mui/material';
+import Editor from 'ckeditor5-custom-build/build/ckeditor';
+import React from 'react';
 
 const ContentField = ({ courseChapter = {}, uploadPlugin, setContent }) => {
   return (
     <>
-      <Grid item xs={12} sx={{backgroundColor:"",height:"100%"}}>
+      <Grid item xs={12} sx={{ backgroundColor: '', height: '100%' }}>
         <CKEditor
           config={{
             extraPlugins: [uploadPlugin],
@@ -23,24 +23,20 @@ const ContentField = ({ courseChapter = {}, uploadPlugin, setContent }) => {
             },
             image: {
               toolbar: [
-                "imageStyle:full",
-                "imageStyle:side",
-                "|",
-                "imageTextAlternative",
-                "imageStyle:alignLeft",
-                "imageStyle:alignCenter",
-                "imageStyle:alignRight",
+                'imageStyle:full',
+                'imageStyle:side',
+                '|',
+                'imageTextAlternative',
+                'imageStyle:alignLeft',
+                'imageStyle:alignCenter',
+                'imageStyle:alignRight',
               ],
-              upload: { types: ["jpeg", "jpg", "png", "pdf", "docx"] },
+              upload: { types: ['jpeg', 'jpg', 'png', 'pdf', 'docx'] },
             },
           }}
           editor={Editor}
-          data={
-            courseChapter?.content
-              ? courseChapter.content
-              : "<h2>Write your content here</h2>"
-          }
-          onReady={(editor) => {}}
+          data={courseChapter?.content ? courseChapter.content : ''}
+          // onReady={(editor) => {}}
           onChange={(event, editor) => {
             setContent(editor.getData());
           }}

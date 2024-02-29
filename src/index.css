@@ -1,7 +1,7 @@
 body {
-  font-family: "Inter", sans-serif;
-  margin:0;
-  padding:0;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 .rootChild {
@@ -14,13 +14,12 @@ body {
   overflow-y: auto;
   height: 100%;
 }
-.css-b8pm7-MuiStack-root>:not(style)~:not(style) {
+.css-b8pm7-MuiStack-root > :not(style) ~ :not(style) {
   margin-top: 0px;
 }
 
-
-.MuiBackdrop-root-MuiModal-backdrop{
-  background-color: "transparent"
+.MuiBackdrop-root-MuiModal-backdrop {
+  background-color: 'transparent';
 }
 /* TODO CHANGE THE CLASS NAME FUTURE*/
 /* ROOT Box in a page  */
@@ -32,59 +31,55 @@ body {
   margin: 0;
 }
 
-.contentHeader{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
-    border-top: 1px solid #E6ECF5;
+.contentHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  border-top: 1px solid #e6ecf5;
 }
-.notificationContentHeader{
-    display: flex;
-    /* flex-direction: column; */
-    height: 15%;
-    padding:0px 16px ;
-    justify-content: space-between;
-    align-items: center;
+.notificationContentHeader {
+  display: flex;
+  /* flex-direction: column; */
+  height: 15%;
+  padding: 0px 16px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* below the header */
 .contentBody {
-    width: 100%;
-   margin: auto;
-   padding: 16px;
+  width: 100%;
+  margin: auto;
+  padding: 16px;
 
-   height: calc(100% - 116px);
+  height: calc(100% - 116px);
 }
-
 
 /* Toaster Start */
 
-
-.error-toast-background{
-  background-color: #F04438;
-  
+.error-toast-background {
+  background-color: #f04438;
 }
 .success-progress-bar {
-  background: #12B76A !important;
-
+  background: #12b76a !important;
 }
 
- .error-progress-bar {
+.error-progress-bar {
   background: rgb(220, 6, 27) !important;
 }
 
- .Toastify__progress-bar {
+.Toastify__progress-bar {
   color: yellow !important;
-} 
+}
 
 /* .Toastify__toast-body { */
-  .Toastify__toast-body  {
-  background-color: #fff  ;
-   padding: 20px !important;
-   margin: 0 !important;
+.Toastify__toast-body {
+  background-color: #fff;
+  padding: 20px !important;
+  margin: 0 !important;
 }
-.Toastify__toast{
+.Toastify__toast {
   /* background: url('./assets/images/checked.png'), rgba(221, 233, 221, 0.66); */
 
   padding: 0 !important;
@@ -94,34 +89,33 @@ body {
 
 .Toastify__close-button {
   position: absolute !important;
-  top:5px !important;
+  top: 5px !important;
   right: 5px !important;
 }
 .Toastify__toast-icon {
-  color: #12B76A !important;
-  background-color: #12B76A !important;
+  color: #12b76a !important;
+  background-color: #12b76a !important;
 }
-
 
 /* Toaster End  */
 
 /* Component  Header  */
 
-.headerBox{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
-    border-top: 1px solid #E6ECF5;
+.headerBox {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  border-top: 1px solid #e6ecf5;
 }
 
 /* forget password */
 .container2 {
-    background-image: url("../src/assets/images/LoginBG.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
-    height: 100vh;
+  background-image: url('../src/assets/images/LoginBG.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
 }
 
 

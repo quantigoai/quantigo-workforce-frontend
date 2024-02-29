@@ -6,9 +6,9 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {Box, Button, Typography} from "@mui/material";
-import React from "react";
-import MainModal from "./MainModal";
+import { Box, Button, Typography } from '@mui/material';
+import React from 'react';
+import MainModal from './MainModal';
 
 const CustomButton = ({
   params,
@@ -20,6 +20,8 @@ const CustomButton = ({
   handleReject,
   handleOpenNDA,
 }) => {
+  console.log('🚀 ~ params:', params.quizId);
+  console.log('🚀 ~ pathname:', pathname);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -29,7 +31,7 @@ const CustomButton = ({
   const checkButtonDisable = () => {
     if (isNDASigned === false) {
       return true;
-    } else if (isNDAApproved === "submitted" && isDocumentsSubmitted === "submitted") {
+    } else if (isNDAApproved === 'submitted' && isDocumentsSubmitted === 'submitted') {
       return false;
     }
     return true;
@@ -38,15 +40,15 @@ const CustomButton = ({
   return (
     <Box
       sx={{
-        display: "flex",
-        justifyContent: "center",
+        display: 'flex',
+        justifyContent: 'center',
       }}
     >
-      {(pathname === "/projectDirectory" || pathname === "/allprojects") &&
-        (role === "admin" || role === "project_delivery_lead" || role === "project_manager") && (
+      {(pathname === '/projectDirectory' || pathname === '/allprojects') &&
+        (role === 'admin' || role === 'project_delivery_lead' || role === 'project_manager') && (
           <>
             <Button
-              sx={{ color: "#2E58FF", paddingX: "5px", minWidth: "16px" }}
+              sx={{ color: '#2E58FF', paddingX: '5px', minWidth: '16px' }}
               onClick={() => {
                 setIsEdit(true);
                 handleClick(params);
@@ -55,7 +57,7 @@ const CustomButton = ({
               <i className="ri-edit-line"></i>
             </Button>
             <Button
-              sx={{ color: "#F04438", paddingX: "5px", minWidth: "16px" }}
+              sx={{ color: '#F04438', paddingX: '5px', minWidth: '16px' }}
               onClick={() => {
                 setIsEdit(false);
               }}
@@ -64,16 +66,29 @@ const CustomButton = ({
             </Button>
           </>
         )}
+      {pathname === `/submitted/${params.quizId}` && (
+        <>
+          <Button
+            sx={{ color: '#2E58FF', paddingX: '5px', minWidth: '16px' }}
+            onClick={() => {
+              setIsEdit(true);
+              handleClick(params);
+            }}
+          >
+            <i className="ri-file-list-3-fill"></i>
+          </Button>
+        </>
+      )}
 
-      {(role === "recruitment_manager" || role === "admin") && pathname === "/all-users" ? (
+      {(role === 'recruitment_manager' || role === 'admin') && pathname === '/all-users' ? (
         <>
           {params.isVerified ? (
             <Box
               sx={{
-                display: "flex",
-                width: "100%",
-                alignItems: "center",
-                justifyContent: "center",
+                display: 'flex',
+                width: '100%',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
               <Typography variant="wpf_p4_regular" color="neutral.700">
@@ -83,31 +98,31 @@ const CustomButton = ({
           ) : (
             <Box
               sx={{
-                display: "flex",
-                width: "100%",
-                justifyContent: "center",
-                alignItems: "center",
+                display: 'flex',
+                width: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
             >
               <Button
                 disabled={checkButtonDisable()}
                 onClick={() => handleOpenNDA(params)}
-                sx={{ padding: "0px", minWidth: "30px", fontSize: "16px" }}
+                sx={{ padding: '0px', minWidth: '30px', fontSize: '16px' }}
               >
-                <i style={{ color: params.isVerified ? "#12B76A" : "" }} className="ri-checkbox-circle-fill"></i>
+                <i style={{ color: params.isVerified ? '#12B76A' : '' }} className="ri-checkbox-circle-fill"></i>
               </Button>
 
               <Button
                 disabled={checkButtonDisable()}
                 onClick={() => handleReject(params)}
                 sx={{
-                  padding: "0px",
-                  minWidth: "25px",
-                  fontSize: "16px",
-                  filter: checkButtonDisable() ? "grayscale(100%) opacity(50%)" : "",
+                  padding: '0px',
+                  minWidth: '25px',
+                  fontSize: '16px',
+                  filter: checkButtonDisable() ? 'grayscale(100%) opacity(50%)' : '',
                 }}
               >
-                <i style={{ color: "#F04438" }} className="ri-close-circle-fill"></i>
+                <i style={{ color: '#F04438' }} className="ri-close-circle-fill"></i>
               </Button>
             </Box>
           )}
@@ -115,11 +130,11 @@ const CustomButton = ({
           <Button
             onClick={() => handleProjectDetailsOpen(params)}
             sx={{
-              textAlign: "right",
-              color: "#2E58FF",
-              paddingX: "5px",
-              minWidth: "16px",
-              textTransform: "none",
+              textAlign: 'right',
+              color: '#2E58FF',
+              paddingX: '5px',
+              minWidth: '16px',
+              textTransform: 'none',
             }}
           >
             <i className="ri-eye-line"></i>
@@ -129,10 +144,10 @@ const CustomButton = ({
         <Button
           onClick={() => handleProjectDetailsOpen(params)}
           sx={{
-            color: "#2E58FF",
-            paddingX: "5px",
-            minWidth: "16px",
-            textTransform: "none",
+            color: '#2E58FF',
+            paddingX: '5px',
+            minWidth: '16px',
+            textTransform: 'none',
           }}
         >
           <i className="ri-eye-line"></i>

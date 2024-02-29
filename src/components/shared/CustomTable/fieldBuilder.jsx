@@ -20,7 +20,6 @@ import CustomButton from './CustomButton.jsx';
 import customHeader from './formatHeader.js';
 
 const fieldBuilder = (fields, handleClick, handleDelete) => {
-  console.log('🚀 ~ fieldBuilder ~ fields:', fields);
   const newFields = fields.map((field, index) => {
     let customItems;
     if (field.renderCell === 'button') {
@@ -29,12 +28,7 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
         ...field,
         headerName: customHeader(field.field),
         renderCell: (params) => (
-          <CustomButton
-            pathname={pathname}
-            params={params}
-            handleClick={handleClick}
-            handleDelete={handleDelete}
-          />
+          <CustomButton pathname={pathname} params={params} handleClick={handleClick} handleDelete={handleDelete} />
         ),
         editable: field.editable || false,
         cellClassName: field.cellClassName || '',

@@ -52,32 +52,19 @@ export default function WPFTable({
             <TableHead className="tableHeader">
               <TableRow>
                 {stickyFirstColumn.map((column) => (
-                  <StickyFirstTableHead
-                    key={column.id}
-                    column={column}
-                    handleId={handleId}
-                    filteredCol={filteredCol}
-                  />
+                  <StickyFirstTableHead key={column.id} column={column} handleId={handleId} filteredCol={filteredCol} />
                 ))}
 
                 {columns.map((column) => (
-                  <StickyMiddleHead
-                    key={column.id}
-                    column={column}
-                    handleId={handleId}
-                    filteredCol={filteredCol}
-                  />
+                  <StickyMiddleHead key={column.id} column={column} handleId={handleId} filteredCol={filteredCol} />
                 ))}
 
-                {(role === 'recruitment_manager' || role === 'admin') &&
-                  location.pathname === `/all-users` && (
-                    <StickyDocViewTableHead column={{ width: '100px' }} />
-                  )}
+                {(role === 'recruitment_manager' || role === 'admin') && location.pathname === `/all-users` && (
+                  <StickyDocViewTableHead column={{ width: '100px' }} />
+                )}
 
                 {location.pathname !== `/projectDetails/${id}` &&
-                  stickyLastColumn.map((column) => (
-                    <StickyLastTableHead key={column.id} column={column} />
-                  ))}
+                  stickyLastColumn.map((column) => <StickyLastTableHead key={column.id} column={column} />)}
               </TableRow>
             </TableHead>
 
@@ -107,17 +94,12 @@ export default function WPFTable({
                     ))}
 
                     {columns.map((column) => (
-                      <MiddleTableColumn
-                        key={column.id}
-                        row={row}
-                        column={column}
-                      />
+                      <MiddleTableColumn isObjectField={isObjectField} key={column.id} row={row} column={column} />
                     ))}
 
-                    {(role === 'recruitment_manager' || role === 'admin') &&
-                      location.pathname === `/all-users` && (
-                        <StickyDocViewTableColumn column={row} />
-                      )}
+                    {(role === 'recruitment_manager' || role === 'admin') && location.pathname === `/all-users` && (
+                      <StickyDocViewTableColumn column={row} />
+                    )}
 
                     {location.pathname !== `/projectDetails/${id}` &&
                       stickyLastColumn.map((column) => (

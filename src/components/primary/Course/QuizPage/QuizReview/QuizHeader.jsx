@@ -1,30 +1,10 @@
-/*
- * Filename: /home/tanzim/workstation/Office/quantigo-workforce-frontend/src/components/primary/ProjectLIstNew2/ProjectHeader.jsx
- * Path: /home/tanzim/workstation/Office/quantigo-workforce-frontend
- * Created Date: Thursday, October 12th 2023, 11:38:29 am
- * Author: Tanzim Ahmed
- *
- * Copyright (c) 2023 Tanzim Ahmed
- */
-
-import ClearIcon from '@mui/icons-material/Clear';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import FilterListOffIcon from '@mui/icons-material/FilterListOff';
-import SearchIcon from '@mui/icons-material/Search';
 import { Box, Button, Grid, IconButton, InputBase, Paper } from '@mui/material';
 import React from 'react';
-import CommonHeader from '../../shared/CustomComponenet/CommonHeader/CommonHeader';
+import SearchIcon from '@mui/icons-material/Search';
+import FilterListIcon from '@mui/icons-material/FilterListOff';
+import CommonHeader from '../../../../shared/CustomComponenet/CommonHeader/CommonHeader';
 
-const ProjectHeader = ({
-  isFilter,
-  handleIsFilter,
-  handleProjectCreateOpen,
-  handleSearch,
-  search,
-  searchRef,
-  clearSearch,
-  role,
-}) => {
+const QuizHeader = () => {
   return (
     <>
       <Box
@@ -43,7 +23,7 @@ const ProjectHeader = ({
             }}
           >
             {/* TODO Need to remove the unnecessary custom button */}
-            <CommonHeader title="Projects" customButton="Create User" />
+            <CommonHeader title="Quiz Submissions" customButton="Create User" />
           </Grid>
         </Box>
 
@@ -77,7 +57,7 @@ const ProjectHeader = ({
               <SearchIcon />
             </IconButton>
             <InputBase
-              inputRef={searchRef}
+              //   inputRef={searchRef}
               sx={{
                 ml: 0,
                 flex: 1,
@@ -87,12 +67,12 @@ const ProjectHeader = ({
               placeholder="Search"
               onKeyDown={(ev) => {
                 if (ev.key === 'Enter') {
-                  handleSearch(ev);
+                  //   handleSearch(ev);
                   ev.preventDefault();
                 }
               }}
             />
-            {search && (
+            {/* {search && (
               <Button
                 sx={{
                   height: '30px',
@@ -111,19 +91,19 @@ const ProjectHeader = ({
                       color: '#F04438',
                     },
                   }}
-                  onClick={clearSearch}
+                    onClick={clearSearch}
                 />
               </Button>
-            )}
+            )} */}
           </Paper>
           <IconButton
-            onClick={handleIsFilter}
+            // onClick={handleIsFilter}
             sx={{
               px: '0px 0px',
               backgroundColor: 'primary.B008',
               // mx: 2,
               ml: 2,
-              mr: role === 'admin' || role === 'project_manager' || role === 'project_delivery_lead' ? 2 : 0,
+              mr: 0,
               borderRadius: '8px',
               height: {
                 lg: '30px',
@@ -133,13 +113,13 @@ const ProjectHeader = ({
             }}
             aria-label="menu"
           >
-            {isFilter ? (
+            {/* {isFilter ? (
               <FilterListOffIcon sx={{ color: 'primary.main' }} />
             ) : (
-              <FilterListIcon sx={{ color: 'primary.main' }} />
-            )}
+                )} */}
+            <FilterListIcon sx={{ color: 'primary.main' }} />
           </IconButton>
-          {role === 'admin' || role === 'project_manager' || role === 'project_delivery_lead' ? (
+          {/* {role === 'admin' || role === 'project_manager' || role === 'project_delivery_lead' ? (
             <Button
               sx={{
                 textTransform: 'none',
@@ -163,17 +143,17 @@ const ProjectHeader = ({
                 },
                 padding: '16px 10px',
               }}
-              onClick={handleProjectCreateOpen}
+              //   onClick={handleProjectCreateOpen}
             >
               Create Project
             </Button>
           ) : (
             <></>
-          )}
+          )} */}
         </Box>
       </Box>
     </>
   );
 };
 
-export default ProjectHeader;
+export default QuizHeader;

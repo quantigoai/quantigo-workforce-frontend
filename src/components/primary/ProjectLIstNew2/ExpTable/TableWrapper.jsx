@@ -49,22 +49,19 @@ const TableWrapper = ({
   setMyRows,
   allAnswerSubmission,
 }) => {
-  console.log('🚀 ~ myRows:', myRows);
-  console.log('🚀 ~ myColumn:', myColumn);
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
   const location = useLocation();
   const { pathname } = location;
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [isObjectField, setIsObjectField] = useState(false);
-  console.log('🚀 ~ data:', data);
 
   const [isDataLoading, setIsDataLoading] = useState(true);
-  const [isWorkHistoryDataLoading, setIsWorkHistoryDataLoading] =
-    useState(true);
-  const { projectDirectory, isLoading } = useSelector(
-    (state) => state.projectDirectory,
-  );
+  console.log('🚀 ~ isDataLoading:', isDataLoading);
+  const [isWorkHistoryDataLoading, setIsWorkHistoryDataLoading] = useState(true);
+  console.log('🚀 ~ isWorkHistoryDataLoading:', isWorkHistoryDataLoading);
+
+  const { projectDirectory, isLoading } = useSelector((state) => state.projectDirectory);
 
   const stickyFirstColumn = [myColumn[0]];
   const stickyLastColumn = [myColumn[myColumn.length - 1]];
@@ -80,18 +77,12 @@ const TableWrapper = ({
     isLoading: usersLoading,
     users: { users },
   } = useSelector((state) => state.user);
-  const {
-    isLoading: projectLoading,
-    projectDrawers,
-    usersWorkHistory,
-  } = useSelector((state) => state.projectDrawer);
+  const { isLoading: projectLoading, projectDrawers, usersWorkHistory } = useSelector((state) => state.projectDrawer);
 
   useEffect(() => {
     if (pathname === '/allprojects') {
       setIsDataLoading(true);
-      projectDrawers &&
-        projectDrawers.length > 0 &&
-        setMyRows(dataBuilder(projectDrawers));
+      projectDrawers && projectDrawers.length > 0 && setMyRows(dataBuilder(projectDrawers));
       setData(projectDrawers);
       setIsDataLoading(false);
       setIsWorkHistoryDataLoading(false);
@@ -106,18 +97,14 @@ const TableWrapper = ({
     if (pathname === `/projectDetails/${id}`) {
       setIsDataLoading(true);
       setIsWorkHistoryDataLoading(true);
-      usersWorkHistory &&
-        usersWorkHistory.length > 0 &&
-        setMyRows(dataBuilder(usersWorkHistory));
+      usersWorkHistory && usersWorkHistory.length > 0 && setMyRows(dataBuilder(usersWorkHistory));
       setData(usersWorkHistory);
       setIsWorkHistoryDataLoading(false);
       setIsDataLoading(false);
     }
     if (pathname === `/projectDirectory`) {
       setIsDataLoading(true);
-      projectDirectory &&
-        projectDirectory.length > 0 &&
-        setMyRows(dataBuilder(projectDirectory));
+      projectDirectory && projectDirectory.length > 0 && setMyRows(dataBuilder(projectDirectory));
       setData(projectDirectory);
       setIsDataLoading(false);
       setIsWorkHistoryDataLoading(false);
@@ -125,31 +112,16 @@ const TableWrapper = ({
     if (pathname === `/submitted/${id}`) {
       setIsDataLoading(true);
       // projectDirectory && projectDirectory.length > 0 &&
-      allAnswerSubmission &&
-        allAnswerSubmission.length > 0 &&
-        setMyRows(dataBuilder(allAnswerSubmission));
+      allAnswerSubmission && allAnswerSubmission.length > 0 && setMyRows(dataBuilder(allAnswerSubmission));
       setIsObjectField(true);
       setData(allAnswerSubmission);
-
       setIsDataLoading(false);
-      // setIsWorkHistoryDataLoading(false);
+      setIsWorkHistoryDataLoading(false);
     }
-  }, [
-    pathname,
-    users,
-    projectDrawers,
-    usersWorkHistory,
-    projectDirectory,
-    allAnswerSubmission,
-  ]);
+  }, [pathname, users, projectDrawers, usersWorkHistory, projectDirectory]);
 
   const renderMainContent = () => {
-    if (
-      !usersLoading ||
-      !projectLoading ||
-      !isWorkHistoryDataLoading ||
-      !isLoading
-    ) {
+    if (!usersLoading || !projectLoading || !isWorkHistoryDataLoading || !isLoading) {
       if (approvedPaths.includes(pathname)) {
         if (data && data.length > 0) {
           return (
@@ -181,27 +153,18 @@ const TableWrapper = ({
         } else if (data && data.length === 0) {
           let message;
           if (pathname === '/allprojects' && !projectLoading)
-            return (
-              <Alert severity="error">No available projects data found!</Alert>
-            );
+            return <Alert severity="error">No available projects data found!</Alert>;
           if (pathname === '/all-users' && !usersLoading)
-            return (
-              <Alert severity="error">No available users data found!</Alert>
-            );
+            return <Alert severity="error">No available users data found!</Alert>;
           if (pathname === '/projectDirectory' && !isLoading)
             return <Alert severity="error">No available projects found!</Alert>;
-          if (
-            pathname === `/projectDetails/${id}` &&
-            !isWorkHistoryDataLoading
-          ) {
+          if (pathname === `/submitted/${id}`)
+            return <Alert severity="error">No available quiz submission found!</Alert>;
+          if (pathname === `/projectDetails/${id}` && !isWorkHistoryDataLoading) {
             if (antRoles.includes(role)) {
               return <DetailsPage skillAlert={skillAlert} />;
             } else {
-              return (
-                <Alert severity="error">
-                  No available users history data found!
-                </Alert>
-              );
+              return <Alert severity="error">No available users history data found!</Alert>;
             }
           }
         } else if (role === 'recruitment_manager') {

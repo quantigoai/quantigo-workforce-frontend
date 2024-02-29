@@ -187,6 +187,22 @@ const customHeader = (params) => {
       return 'PCR';
     case 'completion_Date':
       return 'COMPLETION DATE';
+    case 'user':
+      return 'NAME';
+    case 'course':
+      return ' COURSE NAME';
+    case 'courseChapter':
+      return 'CHAPTER NAME';
+    case 'submissionStatus':
+      return 'SUBMISSION STATUS';
+    case 'correctAnswer':
+      return 'CORRECT ANSWERS';
+    case 'wrongAnswer':
+      return 'WRONG ANSWERS';
+    case 'pendingAnswer':
+      return 'PENDING ANSWERS';
+    case 'score':
+      return 'SCORE';
 
     default:
       return params;

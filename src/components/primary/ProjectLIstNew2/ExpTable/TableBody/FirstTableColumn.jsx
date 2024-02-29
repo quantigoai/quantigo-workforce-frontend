@@ -18,13 +18,7 @@ const StyledBadge = styled(Badge)(() => ({
     padding: '0 2px',
   },
 }));
-const FirstTableColumn = ({
-  row,
-  column,
-  handleDetailsPage,
-  currentlyCheckedInProject,
-  isObjectField,
-}) => {
+const FirstTableColumn = ({ row, column, handleDetailsPage, currentlyCheckedInProject, isObjectField }) => {
   return (
     <>
       <TableCell
@@ -38,9 +32,7 @@ const FirstTableColumn = ({
         {currentlyCheckedInProject === row._id ? (
           <StyledBadge variant="dot" color="success">
             <Typography variant="wpf_p4_medium" color="neutral.700">
-              {column.format && typeof value === 'number'
-                ? column.format(row[column?.field])
-                : row[column?.field]}
+              {column.format && typeof value === 'number' ? column.format(row[column?.field]) : row[column?.field]}
             </Typography>
           </StyledBadge>
         ) : (

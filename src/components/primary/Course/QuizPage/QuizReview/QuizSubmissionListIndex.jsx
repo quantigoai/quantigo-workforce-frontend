@@ -1,10 +1,4 @@
-import {
-  Box,
-  styled,
-  TableCell,
-  tableCellClasses,
-  TableRow,
-} from '@mui/material';
+import { Box, styled, TableCell, tableCellClasses, TableRow } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -13,10 +7,8 @@ import fieldBuilder from '../../../../shared/CustomTable/fieldBuilder';
 import LoadingComponent from '../../../../shared/Loading/LoadingComponent';
 import TableWrapper from '../../../ProjectLIstNew2/ExpTable/TableWrapper';
 import { fieldsListQuiz } from '../../../ProjectLIstNew2/FIlterOptions';
-import {
-  HeaderBox,
-  TablePaper,
-} from '../../../ProjectLIstNew2/ProjectLIstIndex2';
+import { HeaderBox, TablePaper } from '../../../ProjectLIstNew2/ProjectLIstIndex2';
+import QuizHeader from './QuizHeader';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -58,7 +50,10 @@ const QuizSubmissionListIndex = () => {
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
   const [isDataLoading, setIsDataLoading] = useState(true);
-  const handleClick = () => {};
+  const handleClick = () => {
+    console.log('🚀 ~ handleReviewQuiz ~ id:', id);
+    navigate(`/test-quiz-review/${id}`);
+  };
   const handleDelete = () => {};
   useEffect(() => {
     dispatch(getAllSubmissionOfQuizById(id)).then((action) => {
@@ -68,154 +63,14 @@ const QuizSubmissionListIndex = () => {
       setAllAnswerSubmission(action.payload.data.allAnswerSubmission);
     });
   }, []);
-  console.log(
-    '🚀 ~ QuizSubmissionListIndex ~ allAnswerSubmission:',
-    allAnswerSubmission,
-  );
-
-  const handleReviewQuiz = (id) => {
-    console.log('🚀 ~ handleReviewQuiz ~ id:', id);
-    navigate(`/test-quiz-review/${id}`);
-  };
+  console.log('🚀 ~ QuizSubmissionListIndex ~ allAnswerSubmission:', allAnswerSubmission);
 
   return (
     <>
-      <>
-        {/* <Box sx={{ padding: '2%' }}>
-        <Box sx={{ paddingTop: '%', paddingBottom: '2%' }}>
-          <Typography variant="wpf_p3_medium_2">List of Quiz Review</Typography>
-        </Box>
-        <Box sx={{ width: '100%' }}>
-          <TableContainer id="table-2">
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell>Annotator Name</StyledTableCell>
-                  <StyledTableCell align="left">Submission Status</StyledTableCell>
-                  <StyledTableCell align="left">Correct Answer</StyledTableCell>
-                  <StyledTableCell align="left">Pending Answer</StyledTableCell>
-                  <StyledTableCell align="left">Wrong Answer</StyledTableCell>
-                  {(user.role === 'admin' || user.role === 'trainer') && (
-                    <StyledTableCell align="left">Action</StyledTableCell>
-                  )}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {allAnswerSubmission &&
-                  allAnswerSubmission.map((item, i) => (
-                    <StyledTableRow
-                      key={i}
-                      sx={{
-                        height: '34px',
-                      }}
-                    >
-                      <StyledTableCell
-                        component="th"
-                        scope="row"
-                        sx={{
-                          minWidth: '200px',
-                        }}
-                      >
-                        <Typography variant="wpf_p4_medium">{item.user.name}</Typography>
-                      </StyledTableCell>
-                      <StyledTableCell
-                        component="th"
-                        scope="row"
-                        sx={{
-                          //   backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
-                          minWidth: '200px',
-                        }}
-                      >
-                        <Typography variant="wpf_p4_medium">{capitalizeFirstLetter(item.submissionStatus)}</Typography>
-                      </StyledTableCell>{' '}
-                      <StyledTableCell
-                        component="th"
-                        scope="row"
-                        sx={{
-                          //   backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
-                          minWidth: '200px',
-                        }}
-                      >
-                        <Typography variant="wpf_p4_medium">{item.correctAnswer}</Typography>
-                      </StyledTableCell>
-                      <StyledTableCell
-                        component="th"
-                        scope="row"
-                        sx={{
-                          //   backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
-                          minWidth: '200px',
-                        }}
-                      >
-                        <Typography variant="wpf_p4_medium">{item.pendingAnswer}</Typography>
-                      </StyledTableCell>
-                      <StyledTableCell
-                        component="th"
-                        scope="row"
-                        sx={{
-                          //   backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
-                          minWidth: '200px',
-                        }}
-                      >
-                        <Typography variant="wpf_p4_medium">{item.wrongAnswer}</Typography>
-                      </StyledTableCell>
-                      {(user.role === 'admin' || user.role === 'trainer') && (
-                        <StyledTableCell
-                          component="th"
-                          scope="row"
-                          sx={{
-                            //   backgroundColor: row.paymentStatus === "Paid" ? "#EFF9F5" : "",
-                            minWidth: '200px',
-                          }}
-                        >
-                          <Button
-                            variant="contained"
-                            sx={{ backgroundColor: '#2D58FF', color: '#FFFFFF' }}
-                            onClick={() => handleReviewQuiz(item._id)}
-                          >
-                            Review{' '}
-                          </Button>
-                        </StyledTableCell>
-                      )}
-                    </StyledTableRow>
-                  ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Box>
-      </Box> */}
-      </>
       <Box className="content">
         {/* TODO Filter functionality need to be checked for last page  */}
         <HeaderBox sx={{ backgroundColor: '' }}>
-          {/* <ProjectHeader
-            isFilter={isFilter}
-            role={user.role}
-            handleIsFilter={handleIsFilter}
-            handleProjectCreateOpen={() => setCreateProjectOpen(true)}
-            handleSearch={handleSearch}
-            setSearch={setSearch}
-            search={search}
-            searchRef={searchRef}
-            clearSearch={clearSearch}
-          /> */}
-
-          {/* <ProjectSelectFIlter
-            isFilter={isFilter}
-            handleChangeAnnotatorFilter={handleChangeAnnotatorFilter}
-            role={user.role}
-            handleChangeCheck={handleChangeCheck}
-            checked={checked}
-            filterPDR={filterPDR}
-            platformOptions={platformOptions}
-            statusOptions={statusOptions}
-            projectTypeOptions={projectTypeOptions}
-            handleChange={handleChange}
-            handleClearFilter={handleClearFilter}
-            filterValue={filterValue}
-            skills={skills}
-            onSubmit={onSubmit}
-            annotatorPlatform={annotatorPlatform}
-          /> */}
+          <QuizHeader />
         </HeaderBox>
 
         <Box className="contentBody">

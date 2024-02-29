@@ -104,6 +104,31 @@ export const getAllSubmissionOfQuizById = createAsyncThunk('quizanswersubmission
   });
 });
 
+// get Quiz Participation status By Id
+
+export const getQuizParticipationStatusById = createAsyncThunk('/quizzes/quiz-participation-status/:quizId', async (id) => {
+  return axios.get(`${url}/quizzes/quiz-participation-status/${id}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
+
+
+
+// get all Course Chapter With Marks
+
+export const getAllCourseChapterWithMark = createAsyncThunk('courses/get-all-chapter-with-marks/:id', async (id) => {
+  return axios.get(`${url}/courses/get-all-chapter-with-marks/${id}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
+
+
+
+
 // update a Question Answer
 export const updateQuizQA = createAsyncThunk(
   '/quiz/update/quizId/questionId',
@@ -291,6 +316,30 @@ const quizSlice = createSlice({
         // state.quiz = action.payload.data.quiz;
       })
       .addCase(getAllSubmissionOfQuizById.rejected, (state, action) => {
+        state.isLoading = false;
+        // state.quiz = {};
+        state.error = action.error.message;
+      })
+      .addCase(getQuizParticipationStatusById.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getQuizParticipationStatusById.fulfilled, (state, action) => {
+        state.isLoading = false;
+        // state.quiz = action.payload.data.quiz;
+      })
+      .addCase(getQuizParticipationStatusById.rejected, (state, action) => {
+        state.isLoading = false;
+        // state.quiz = {};
+        state.error = action.error.message;
+      })
+      .addCase(getAllCourseChapterWithMark.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllCourseChapterWithMark.fulfilled, (state, action) => {
+        state.isLoading = false;
+        // state.quiz = action.payload.data.quiz;
+      })
+      .addCase(getAllCourseChapterWithMark.rejected, (state, action) => {
         state.isLoading = false;
         // state.quiz = {};
         state.error = action.error.message;

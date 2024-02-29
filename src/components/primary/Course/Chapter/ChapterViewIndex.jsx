@@ -9,7 +9,7 @@
 
 import { Box, Button, Grid, Typography } from "@mui/material";
 import parse from "html-react-parser";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import nextIcon from "../../../../assets/images/NextIcon.svg";
@@ -17,7 +17,7 @@ import prevIcon from "../../../../assets/images/PrevIcon.svg";
 import useToaster from "../../../../customHooks/useToaster";
 import { setActiveChapterIndex } from "../../../../features/slice/activePathSlice";
 import { getAChapterById } from "../../../../features/slice/courseSlice";
-import { getAQuizById } from "../../../../features/slice/quizSlice";
+import { getAQuizById, getQuizParticipationStatusById } from "../../../../features/slice/quizSlice";
 import ChapterDeleteModal from "../../CourseNew/ChapterDeleteModal";
 import useCourseDetails from "../hooks/courseDetailshooks/useCourseDetails";
 import ChapterHeaderMenuIndex from "./ChapterHeaderMenuIndex";
@@ -40,7 +40,13 @@ const ChapterViewIndex = () => {
   const { role } = useSelector((state) => state.user.user);
   const navigate = useNavigate();
   const toast = useToaster();
-
+  const [participationStatus, setParticipationStatus] = useState("");
+  console.log("🚀 ~ ChapterViewIndex ~ participationStatus:", participationStatus);
+  useEffect(() => {
+    dispatch(getQuizParticipationStatusById(courseChapter?.quiz?.id)).then((action) => {
+      setParticipationStatus(action.payload.data.quiz.participationStatus);
+    });
+  }, [activeChapterIndex]);
   const handleChapterChangePre = () => {
     const activeChapterId = courseChapters.find((chapter, index) => {
       return index === activeChapterIndex - 1;
@@ -295,6 +301,7 @@ const ChapterViewIndex = () => {
               </Button>
             )} */}
             <Button
+              disabled={participationStatus === "pending" || participationStatus === "accepted" ? true : false}
               sx={{
                 textTransform: "none",
                 borderRadius: "8px",

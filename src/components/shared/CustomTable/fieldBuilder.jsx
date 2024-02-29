@@ -13,27 +13,33 @@
  * ------------------------
  */
 
-import "remixicon/fonts/remixicon.css";
-import ProjectDrawerStatusChip from "../FilterField/ProjectDrawerStatusChip.jsx";
-import ChipGroup from "./ChipGroup.jsx";
-import CustomButton from "./CustomButton.jsx";
-import customHeader from "./formatHeader.js";
+import 'remixicon/fonts/remixicon.css';
+import ProjectDrawerStatusChip from '../FilterField/ProjectDrawerStatusChip.jsx';
+import ChipGroup from './ChipGroup.jsx';
+import CustomButton from './CustomButton.jsx';
+import customHeader from './formatHeader.js';
 
 const fieldBuilder = (fields, handleClick, handleDelete) => {
+  console.log('🚀 ~ fieldBuilder ~ fields:', fields);
   const newFields = fields.map((field, index) => {
     let customItems;
-    if (field.renderCell === "button") {
+    if (field.renderCell === 'button') {
       customItems = {
         id: index,
         ...field,
         headerName: customHeader(field.field),
         renderCell: (params) => (
-          <CustomButton pathname={pathname} params={params} handleClick={handleClick} handleDelete={handleDelete} />
+          <CustomButton
+            pathname={pathname}
+            params={params}
+            handleClick={handleClick}
+            handleDelete={handleDelete}
+          />
         ),
         editable: field.editable || false,
-        cellClassName: field.cellClassName || "",
+        cellClassName: field.cellClassName || '',
       };
-    } else if (field.renderCell === "chip") {
+    } else if (field.renderCell === 'chip') {
       customItems = {
         id: index,
         ...field,
@@ -42,9 +48,9 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
           return <ProjectDrawerStatusChip value={params.value} />;
         },
         editable: field.editable || false,
-        cellClassName: field.cellClassName || "",
+        cellClassName: field.cellClassName || '',
       };
-    } else if (field.renderCell === "skills-chip") {
+    } else if (field.renderCell === 'skills-chip') {
       customItems = {
         ...field,
         id: index,
@@ -53,7 +59,7 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
           return <ChipGroup params={params} />;
         },
         editable: field.editable || false,
-        cellClassName: field.cellClassName || "",
+        cellClassName: field.cellClassName || '',
       };
     } else {
       customItems = {
@@ -61,7 +67,7 @@ const fieldBuilder = (fields, handleClick, handleDelete) => {
         id: index,
         headerName: customHeader(field.field),
         editable: field.editable || false,
-        cellClassName: field.cellClassName || "",
+        cellClassName: field.cellClassName || '',
       };
     }
     return customItems;

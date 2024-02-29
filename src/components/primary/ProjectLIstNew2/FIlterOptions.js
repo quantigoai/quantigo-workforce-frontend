@@ -58,6 +58,20 @@ export const fields = [
     width: 80,
   },
 ];
+export const fieldsListQuiz = [
+  { field: 'user', width: 250, textAlign: 'left', columnDataAlign: 'left' },
+  // { field: 'course', width: 250, textAlign: 'left', columnDataAlign: 'left' },
+  // { field: 'courseChapter', textAlign: 'center', columnDataAlign: 'center' },
+  { field: 'submissionStatus', width: 150, textAlign: 'center', columnDataAlign: 'center' },
+  { field: 'userGivenCorrectAnswerIndex', renderCell: 'chip', textAlign: 'center', columnDataAlign: 'left' },
+  { field: 'questionStatus', width: 300, renderCell: 'skills-chip', textAlign: 'center', columnDataAlign: 'center' },
+
+  {
+    field: 'ACTIONS',
+    renderCell: 'button',
+    width: 80,
+  },
+];
 export const singleDetailsFields = [
   { field: 'userQaiID', width: 140, textAlign: 'left', columnDataAlign: 'left' },
   { field: 'checkedInDate', width: 180, textAlign: 'left', columnDataAlign: 'left' },

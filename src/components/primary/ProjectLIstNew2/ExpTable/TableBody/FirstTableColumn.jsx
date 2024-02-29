@@ -8,7 +8,7 @@
  */
 
 import LockPersonIcon from '@mui/icons-material/LockPerson';
-import {Badge, Box, styled, TableCell, Typography} from '@mui/material';
+import { Badge, Box, styled, TableCell, Typography } from '@mui/material';
 import React from 'react';
 
 const StyledBadge = styled(Badge)(() => ({
@@ -23,6 +23,7 @@ const FirstTableColumn = ({
   column,
   handleDetailsPage,
   currentlyCheckedInProject,
+  isObjectField,
 }) => {
   return (
     <>
@@ -43,39 +44,43 @@ const FirstTableColumn = ({
             </Typography>
           </StyledBadge>
         ) : (
-          <Box
-            sx={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              alignContent: 'center',
-              justifyContent: 'center',
-              gap: '5px',
-            }}
-          >
-            <Typography variant="wpf_p4_medium" color="neutral.700">
-              {column.format && typeof value === 'number'
-                ? column.format(row[column?.field])
-                : row[column?.field]}
-            </Typography>
-            {row.isBlocked && (
-              <LockPersonIcon
-                sx={{
-                  color: 'red',
-                  px: '0px',
-                  height: {
-                    lg: '10px',
-                    xl: '12px',
-                    xxl: '14px',
-                  },
-                  width: {
-                    lg: '10px',
-                    xl: '12px',
-                    xxl: '14px',
-                  },
-                }}
-              />
-            )}
-          </Box>
+          <>
+            <Box
+              sx={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                alignContent: 'center',
+                justifyContent: 'center',
+                gap: '5px',
+              }}
+            >
+              <Typography variant="wpf_p4_medium" color="neutral.700">
+                {column.format && typeof value === 'number'
+                  ? column.format(row[column?.field])
+                  : isObjectField
+                  ? row[column?.field].name
+                  : row[column?.field]}
+              </Typography>
+              {row.isBlocked && (
+                <LockPersonIcon
+                  sx={{
+                    color: 'red',
+                    px: '0px',
+                    height: {
+                      lg: '10px',
+                      xl: '12px',
+                      xxl: '14px',
+                    },
+                    width: {
+                      lg: '10px',
+                      xl: '12px',
+                      xxl: '14px',
+                    },
+                  }}
+                />
+              )}
+            </Box>
+          </>
         )}
       </TableCell>
     </>

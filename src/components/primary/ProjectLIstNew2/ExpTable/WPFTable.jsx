@@ -1,22 +1,22 @@
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import * as React from "react";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import * as React from 'react';
 
-import { Box } from "@mui/material";
-import { useParams } from "react-router-dom";
-import LoadingComponent from "../../../shared/Loading/LoadingComponent";
-import FirstTableColumn from "./TableBody/FirstTableColumn";
-import LastTableColumn from "./TableBody/LastTableCoulmn";
-import MiddleTableColumn from "./TableBody/MiddleTableColumn";
-import StickyDocViewTableColumn from "./TableBody/StickyDocViewTableColumn";
-import StickyDocViewTableHead from "./TableHeader/StickyDocViewTableHead";
-import StickyFirstTableHead from "./TableHeader/StickyFirstTableHead";
-import StickyLastTableHead from "./TableHeader/StickyLastTableHead";
-import StickyMiddleHead from "./TableHeader/StickyMiddleHead";
-import "./index.css";
+import { Box } from '@mui/material';
+import { useParams } from 'react-router-dom';
+import LoadingComponent from '../../../shared/Loading/LoadingComponent';
+import FirstTableColumn from './TableBody/FirstTableColumn';
+import LastTableColumn from './TableBody/LastTableCoulmn';
+import MiddleTableColumn from './TableBody/MiddleTableColumn';
+import StickyDocViewTableColumn from './TableBody/StickyDocViewTableColumn';
+import StickyDocViewTableHead from './TableHeader/StickyDocViewTableHead';
+import StickyFirstTableHead from './TableHeader/StickyFirstTableHead';
+import StickyLastTableHead from './TableHeader/StickyLastTableHead';
+import StickyMiddleHead from './TableHeader/StickyMiddleHead';
+import './index.css';
 
 export default function WPFTable({
   handleDetailsPage,
@@ -43,8 +43,8 @@ export default function WPFTable({
         <TableContainer
           className="tableContainer"
           sx={{
-            height: "100%",
-            width: "100%",
+            height: '100%',
+            width: '100%',
           }}
         >
           <Table stickyHeader aria-label="sticky table">
@@ -53,12 +53,13 @@ export default function WPFTable({
                 {stickyFirstColumn.map((column) => (
                   <StickyFirstTableHead key={column.id} column={column} handleId={handleId} filteredCol={filteredCol} />
                 ))}
+
                 {columns.map((column) => (
                   <StickyMiddleHead key={column.id} column={column} handleId={handleId} filteredCol={filteredCol} />
                 ))}
 
-                {(role === "recruitment_manager" || role === "admin") && location.pathname === `/all-users` && (
-                  <StickyDocViewTableHead column={{ width: "100px" }} />
+                {(role === 'recruitment_manager' || role === 'admin') && location.pathname === `/all-users` && (
+                  <StickyDocViewTableHead column={{ width: '100px' }} />
                 )}
 
                 {location.pathname !== `/projectDetails/${id}` &&
@@ -69,9 +70,9 @@ export default function WPFTable({
             {isChildDataLoading ? (
               <Box
                 sx={{
-                  position: "absolute",
-                  top: "52%",
-                  left: "56%",
+                  position: 'absolute',
+                  top: '52%',
+                  left: '56%',
                 }}
               >
                 <LoadingComponent height="100%" />
@@ -94,7 +95,7 @@ export default function WPFTable({
                       <MiddleTableColumn key={column.id} row={row} column={column} />
                     ))}
 
-                    {(role === "recruitment_manager" || role === "admin") && location.pathname === `/all-users` && (
+                    {(role === 'recruitment_manager' || role === 'admin') && location.pathname === `/all-users` && (
                       <StickyDocViewTableColumn column={row} />
                     )}
 

@@ -1,15 +1,24 @@
-import { Box, styled, TableCell, tableCellClasses, TableRow } from '@mui/material';
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import {
+  Box,
+  styled,
+  TableCell,
+  tableCellClasses,
+  TableRow,
+} from '@mui/material';
+import React, { useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getAllCourseChapterWithMark, getAllSubmissionOfQuizById } from '../../../../../features/slice/quizSlice';
+import { getAllSubmissionOfQuizById } from '../../../../../features/slice/quizSlice';
 import fieldBuilder from '../../../../shared/CustomTable/fieldBuilder';
 import LoadingComponent from '../../../../shared/Loading/LoadingComponent';
 import TableWrapper from '../../../ProjectLIstNew2/ExpTable/TableWrapper';
 import { fieldsListQuiz } from '../../../ProjectLIstNew2/FIlterOptions';
-import { HeaderBox, TablePaper } from '../../../ProjectLIstNew2/ProjectLIstIndex2';
-import QuizHeader from './QuizHeader';
 import PaginationTable from '../../../ProjectLIstNew2/PaginationTable';
+import {
+  HeaderBox,
+  TablePaper,
+} from '../../../ProjectLIstNew2/ProjectLIstIndex2';
+import QuizHeader from './QuizHeader';
 import QuizHeading from './QuizHeading';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -46,7 +55,9 @@ const QuizSubmissionListIndex = () => {
   const { id } = params;
   const { course, courseChapters } = useSelector((state) => state.course);
 
-  const filterChapter = courseChapters.filter((chapter) => chapter.quiz.id === id);
+  const filterChapter = courseChapters.filter(
+    (chapter) => chapter?.quiz?.id === id,
+  );
 
   const { user } = useSelector((state) => state.user);
 
@@ -102,7 +113,14 @@ const QuizSubmissionListIndex = () => {
   };
   const handleDelete = () => {};
   useLayoutEffect(() => {
-    dispatch(getAllSubmissionOfQuizById({ pagination, id, search, ascDescOption: ascDesc })).then((action) => {
+    dispatch(
+      getAllSubmissionOfQuizById({
+        pagination,
+        id,
+        search,
+        ascDescOption: ascDesc,
+      }),
+    ).then((action) => {
       setMyColumn(fieldBuilder(fieldsListQuiz, handleClick, handleDelete));
       setIsDataLoading(false);
       setAllAnswerSubmission(action.payload.data.allAnswerSubmission);

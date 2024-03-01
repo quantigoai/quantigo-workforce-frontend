@@ -38,6 +38,7 @@ import CourseAllPage from "../Course/CourseAllPage";
 import QuizShow from "../CourseNew/QuizShow";
 import QuizreviewIndex from "../Course/QuizPage/QuizReview/QuizreviewIndex";
 import QuizSubmissionListIndex from "../Course/QuizPage/QuizReview/QuizSubmissionListIndex";
+import QuizResultShowIndex from "../Quiz/QuizPage/ShowResult/QuizResultShowIndex";
 
 export const roles = {
   admin: "admin",
@@ -82,6 +83,7 @@ const Routers = () => {
         {/* ----------------------------- */}
         <Route path={"/test-quiz-show"} element={<QuizShow />} />
         <Route path={"/test-quiz-review/:id"} element={<QuizreviewIndex />} />
+        <Route path={"/result-test"} element={<QuizResultShowIndex />} />
 
         {/* ----------------------------- */}
 

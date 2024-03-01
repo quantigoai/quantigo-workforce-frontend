@@ -53,7 +53,6 @@ const QuizSubmissionListIndex = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [allAnswerSubmission, setAllAnswerSubmission] = useState([]);
-  console.log('🚀 ~ QuizSubmissionListIndex ~ allAnswerSubmission:', allAnswerSubmission);
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
   const [isDataLoading, setIsDataLoading] = useState(true);
@@ -63,6 +62,7 @@ const QuizSubmissionListIndex = () => {
     currentPage: 0,
     pageSize: 10,
   });
+  const [ascDesc, setAscDesc] = useState({});
   const searchRef = React.useRef(null);
   const [search, setSearch] = useState('');
 
@@ -73,7 +73,26 @@ const QuizSubmissionListIndex = () => {
     }));
     setSearch(e.target.value);
   };
-
+  const handleAscDesc = (field) => {
+    setAscDesc((prev) => {
+      const updatedData = { ...prev };
+      if (prev?.hasOwnProperty(field)) {
+        if (prev[field] === 'asc') {
+          return {
+            ...prev,
+            [field]: 'desc',
+          };
+        } else {
+          delete updatedData[field];
+          return updatedData;
+        }
+      }
+      return {
+        ...prev,
+        [field]: 'asc',
+      };
+    });
+  };
   const clearSearch = () => {
     setSearch('');
     searchRef.current.value = '';
@@ -83,14 +102,14 @@ const QuizSubmissionListIndex = () => {
   };
   const handleDelete = () => {};
   useLayoutEffect(() => {
-    dispatch(getAllSubmissionOfQuizById({ pagination, id, search })).then((action) => {
+    dispatch(getAllSubmissionOfQuizById({ pagination, id, search, ascDescOption: ascDesc })).then((action) => {
       setMyColumn(fieldBuilder(fieldsListQuiz, handleClick, handleDelete));
       setIsDataLoading(false);
       setAllAnswerSubmission(action.payload.data.allAnswerSubmission);
       setSubmission(action.payload.data);
       setQuizMeta(action.payload.data.meta);
     });
-  }, [pagination, search]);
+  }, [pagination, search, ascDesc]);
 
   return (
     <>
@@ -122,8 +141,8 @@ const QuizSubmissionListIndex = () => {
                 allAnswerSubmission={allAnswerSubmission}
                 pagination={pagination}
                 setPagination={setPagination}
-                // handleId={handleId}
-                // filteredCol={filteredCol}
+                handleId={handleAscDesc}
+                filteredCol={ascDesc}
                 // handleProjectDetailsOpen={handleProjectDetailsOpen}
                 // isChildDataLoading={isChildDataLoading}
                 // setIsChildDataLoading={setIsChildDataLoading}
@@ -137,7 +156,7 @@ const QuizSubmissionListIndex = () => {
               quizMeta={quizMeta}
               submission={submission}
               // setFilterValue={setFilterValue}
-              // setFilteredCol={setFilteredCol}
+              setFilteredCol={setAscDesc}
             />
           </TablePaper>
         </Box>

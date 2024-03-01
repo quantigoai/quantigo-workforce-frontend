@@ -125,10 +125,14 @@ export const getAllCourseChapterWithMark = createAsyncThunk('courses/get-all-cha
 export const getAllSubmissionOfQuizById = createAsyncThunk(
   'quizanswersubmission/get-all-submission/:quizId',
   async (data) => {
-    const { pagination, id, search } = data;
+    const { pagination, id, search, ascDescOption } = data;
     let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
     if (search) {
       query += `&search=${search}`;
+    }
+    if (ascDescOption) {
+      const ascDescOptions = ascDescOption && Object.keys(ascDescOption);
+      ascDescOptions.map((ad) => (query += `&sortBy=${ad}:${ascDescOption[ad]}`));
     }
     return axios.get(`${url}/quizanswersubmission/get-all-submission/${id}?${query}`, {
       headers: {

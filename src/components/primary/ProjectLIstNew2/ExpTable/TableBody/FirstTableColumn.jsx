@@ -50,7 +50,7 @@ const FirstTableColumn = ({ row, column, handleDetailsPage, currentlyCheckedInPr
                 {column.format && typeof value === 'number'
                   ? column.format(row[column?.field])
                   : isObjectField
-                  ? row[column?.field].name
+                  ? row[column?.field].id.qaiUserName
                   : row[column?.field]}
               </Typography>
               {row.isBlocked && (

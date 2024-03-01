@@ -57,9 +57,8 @@ const TableWrapper = ({
   const [isObjectField, setIsObjectField] = useState(false);
 
   const [isDataLoading, setIsDataLoading] = useState(true);
-  console.log('🚀 ~ isDataLoading:', isDataLoading);
+
   const [isWorkHistoryDataLoading, setIsWorkHistoryDataLoading] = useState(true);
-  console.log('🚀 ~ isWorkHistoryDataLoading:', isWorkHistoryDataLoading);
 
   const { projectDirectory, isLoading } = useSelector((state) => state.projectDirectory);
 

@@ -20,8 +20,6 @@ const CustomButton = ({
   handleReject,
   handleOpenNDA,
 }) => {
-  console.log('🚀 ~ params:', params.quizId);
-  console.log('🚀 ~ pathname:', pathname);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

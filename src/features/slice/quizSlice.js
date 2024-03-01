@@ -84,41 +84,43 @@ export const getSubmittedQuiz = createAsyncThunk('/quizanswersubmission/get-last
   });
 });
 
-// 
-export const getSingleSubmittedQuiz = createAsyncThunk('/quizanswersubmission/get-single-submission/:submissionId', async (id) => {
-  return axios.get(`${url}/quizanswersubmission/get-single-submission/${id}`, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
-});
-
-
-// get all submission of quiz By Id
-
-export const getAllSubmissionOfQuizById = createAsyncThunk('quizanswersubmission/get-all-submission/:quizId', async (id) => {
-  return axios.get(`${url}/quizanswersubmission/get-all-submission/${id}`, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
-});
-
-// update a Question Answer
-export const updateQuizQA = createAsyncThunk(
-  '/quiz/update/quizId/questionId',
-  async (data1) => {
-    const { quizId, questionId, formDataQ } = data1;
-    return axios.patch(`${url}/quizzes/${quizId}/${questionId}`, formDataQ, {
+//
+export const getSingleSubmittedQuiz = createAsyncThunk(
+  '/quizanswersubmission/get-single-submission/:submissionId',
+  async (id) => {
+    return axios.get(`${url}/quizanswersubmission/get-single-submission/${id}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
-      content: {
-        'Content-Type': 'multipart/form-data',
+    });
+  }
+);
+
+// get all submission of quiz By Id
+
+export const getAllSubmissionOfQuizById = createAsyncThunk(
+  'quizanswersubmission/get-all-submission/:quizId',
+  async (id) => {
+    return axios.get(`${url}/quizanswersubmission/get-all-submission/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
       },
     });
-  },
+  }
 );
+
+// update a Question Answer
+export const updateQuizQA = createAsyncThunk('/quiz/update/quizId/questionId', async (data1) => {
+  const { quizId, questionId, formDataQ } = data1;
+  return axios.patch(`${url}/quizzes/${quizId}/${questionId}`, formDataQ, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+    content: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+});
 export const updateQuizQAFunction = async (data1) => {
   const { quizId, questionId, formDataQ } = data1;
   try {
@@ -136,83 +138,65 @@ export const updateQuizQAFunction = async (data1) => {
 };
 
 // Update Quiz by ID
-export const updateQuizById = createAsyncThunk(
-  '/quizzes/update/:id',
-  async (bulkData) => {
-    const { id, data } = bulkData;
+export const updateQuizById = createAsyncThunk('/quizzes/update/:id', async (bulkData) => {
+  const { id, data } = bulkData;
 
-    return axios.patch(`${url}/quizzes/update/${id}`, data, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  },
-);
+  return axios.patch(`${url}/quizzes/update/${id}`, data, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // Submit Question and Answer of a Quiz
-export const submitQuizById = createAsyncThunk(
-  '/quizzes/submit/:id',
-  async (bulkData) => {
-    const { id, data } = bulkData;
+export const submitQuizById = createAsyncThunk('/quizzes/submit/:id', async (bulkData) => {
+  const { id, data } = bulkData;
 
-    return axios.post(`${url}/quizzes/submit/${id}`, data, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  },
-);
+  return axios.post(`${url}/quizzes/submit/${id}`, data, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // Delete questions from Quizzes
-export const deleteQuestionFromQuiz = createAsyncThunk(
-  '/quizzes/delete/:quizId',
-  async (deleteQuizData) => {
-    const { quizId, data } = deleteQuizData;
-    return axios.patch(`${url}/quizzes/delete/${quizId}`, data, {
+export const deleteQuestionFromQuiz = createAsyncThunk('/quizzes/delete/:quizId', async (deleteQuizData) => {
+  const { quizId, data } = deleteQuizData;
+  return axios.patch(`${url}/quizzes/delete/${quizId}`, data, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
+export const insertAQuestionInQuiz = createAsyncThunk('/quizzes/question/:quizId', async (data) => {
+  const { quizId, formDataQ } = data;
+  try {
+    return await axios.patch(`${url}/quizzes/question/${quizId}`, formDataQ, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+      content: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
+// submit a review of quiz by id
+export const submitReviewQuiz = createAsyncThunk('/quizanswersubmission/review-submission/:id', async (finalData) => {
+  const { id, BodyData } = finalData;
+  try {
+    return await axios.post(`${url}/quizanswersubmission/review-submission/${id}`, BodyData, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
     });
-  },
-);
-export const insertAQuestionInQuiz = createAsyncThunk(
-  '/quizzes/question/:quizId',
-  async (data) => {
-    const { quizId, formDataQ } = data;
-    try {
-      return await axios.patch(`${url}/quizzes/question/${quizId}`, formDataQ, {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-        content: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
-  },
-);
-
-// submit a review of quiz by id
-export const submitReviewQuiz = createAsyncThunk(
-  '/quizanswersubmission/review-submission/:id',
-  async (finalData) => {
-    const { id, BodyData } = finalData;
-    try {
-      return await axios.post(`${url}/quizanswersubmission/review-submission/${id}`, BodyData, {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        }
-      });
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
-  }, 
-);
-
-
-
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
 
 const quizSlice = createSlice({
   name: 'quiz',
@@ -347,7 +331,6 @@ const quizSlice = createSlice({
       })
       .addCase(submitReviewQuiz.fulfilled, (state, action) => {
         state.isLoading = false;
-       
       })
       .addCase(submitReviewQuiz.rejected, (state, action) => {
         state.isLoading = false;

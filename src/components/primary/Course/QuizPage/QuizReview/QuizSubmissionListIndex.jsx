@@ -1,8 +1,8 @@
 import { Box, styled, TableCell, tableCellClasses, TableRow } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getAllSubmissionOfQuizById } from '../../../../../features/slice/quizSlice';
+import { getAllCourseChapterWithMark, getAllSubmissionOfQuizById } from '../../../../../features/slice/quizSlice';
 import fieldBuilder from '../../../../shared/CustomTable/fieldBuilder';
 import LoadingComponent from '../../../../shared/Loading/LoadingComponent';
 import TableWrapper from '../../../ProjectLIstNew2/ExpTable/TableWrapper';
@@ -10,6 +10,7 @@ import { fieldsListQuiz } from '../../../ProjectLIstNew2/FIlterOptions';
 import { HeaderBox, TablePaper } from '../../../ProjectLIstNew2/ProjectLIstIndex2';
 import QuizHeader from './QuizHeader';
 import PaginationTable from '../../../ProjectLIstNew2/PaginationTable';
+import QuizHeading from './QuizHeading';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -43,6 +44,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const QuizSubmissionListIndex = () => {
   const params = useParams();
   const { id } = params;
+  const { course, courseChapters } = useSelector((state) => state.course);
+
+  const filterChapter = courseChapters.filter((chapter) => chapter.quiz.id === id);
+
   const { user } = useSelector((state) => state.user);
 
   const navigate = useNavigate();
@@ -51,29 +56,74 @@ const QuizSubmissionListIndex = () => {
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
   const [isDataLoading, setIsDataLoading] = useState(true);
+  const [quizMeta, setQuizMeta] = useState({});
+  const [submission, setSubmission] = useState();
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
   });
+  const [ascDesc, setAscDesc] = useState({});
+  const searchRef = React.useRef(null);
+  const [search, setSearch] = useState('');
+
+  const handleSearch = (e) => {
+    setPagination((prevPagination) => ({
+      ...prevPagination,
+      currentPage: 0,
+    }));
+    setSearch(e.target.value);
+  };
+  const handleAscDesc = (field) => {
+    setAscDesc((prev) => {
+      const updatedData = { ...prev };
+      if (prev?.hasOwnProperty(field)) {
+        if (prev[field] === 'asc') {
+          return {
+            ...prev,
+            [field]: 'desc',
+          };
+        } else {
+          delete updatedData[field];
+          return updatedData;
+        }
+      }
+      return {
+        ...prev,
+        [field]: 'asc',
+      };
+    });
+  };
+  const clearSearch = () => {
+    setSearch('');
+    searchRef.current.value = '';
+  };
   const handleClick = (params) => {
-    // console.log('🚀 ~ handleClick ~ params:', params);
     navigate(`/test-quiz-review/${params.id}`);
   };
   const handleDelete = () => {};
-  useEffect(() => {
-    dispatch(getAllSubmissionOfQuizById(id)).then((action) => {
+  useLayoutEffect(() => {
+    dispatch(getAllSubmissionOfQuizById({ pagination, id, search, ascDescOption: ascDesc })).then((action) => {
       setMyColumn(fieldBuilder(fieldsListQuiz, handleClick, handleDelete));
       setIsDataLoading(false);
       setAllAnswerSubmission(action.payload.data.allAnswerSubmission);
+      setSubmission(action.payload.data);
+      setQuizMeta(action.payload.data.meta);
     });
-  }, []);
+  }, [pagination, search, ascDesc]);
 
   return (
     <>
       <Box className="content">
         {/* TODO Filter functionality need to be checked for last page  */}
         <HeaderBox sx={{ backgroundColor: '' }}>
-          <QuizHeader />
+          <QuizHeader
+            handleSearch={handleSearch}
+            setSearch={setSearch}
+            search={search}
+            searchRef={searchRef}
+            clearSearch={clearSearch}
+          />
+          <QuizHeading course={course} filterChapter={filterChapter} />
         </HeaderBox>
 
         <Box className="contentBody">
@@ -89,10 +139,10 @@ const QuizSubmissionListIndex = () => {
                 myColumn={myColumn}
                 myRows={myRows}
                 allAnswerSubmission={allAnswerSubmission}
-                // pagination={pagination}
-                // setPagination={setPagination}
-                // handleId={handleId}
-                // filteredCol={filteredCol}
+                pagination={pagination}
+                setPagination={setPagination}
+                handleId={handleAscDesc}
+                filteredCol={ascDesc}
                 // handleProjectDetailsOpen={handleProjectDetailsOpen}
                 // isChildDataLoading={isChildDataLoading}
                 // setIsChildDataLoading={setIsChildDataLoading}
@@ -103,8 +153,10 @@ const QuizSubmissionListIndex = () => {
             <PaginationTable
               pagination={pagination}
               setPagination={setPagination}
+              quizMeta={quizMeta}
+              submission={submission}
               // setFilterValue={setFilterValue}
-              // setFilteredCol={setFilteredCol}
+              setFilteredCol={setAscDesc}
             />
           </TablePaper>
         </Box>

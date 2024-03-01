@@ -35,11 +35,13 @@ const ChapterViewIndex = () => {
     isLightTheme,
     handleChapterClick,
     courseChapters,
-    courseChapter,
+    // courseChapter,
     setDurationTime,
     setIsInContent,
   } = useCourseDetails();
   const { activeChapterIndex } = useSelector((state) => state.activePath);
+  const { courseChapter } = useSelector((state) => state.course);
+  console.log("🚀 ~ ChapterViewIndex ~ courseChapter:", courseChapter);
   const dispatch = useDispatch();
   const { role } = useSelector((state) => state.user.user);
   const navigate = useNavigate();
@@ -47,12 +49,11 @@ const ChapterViewIndex = () => {
   const [participationStatus, setParticipationStatus] = useState('');
 
   useEffect(() => {
-    dispatch(getQuizParticipationStatusById(courseChapter?.quiz?.id)).then(
-      (action) => {
-        setParticipationStatus(action.payload.data.quiz.participationStatus);
-      },
-    );
-  }, [activeChapterIndex]);
+    dispatch(getQuizParticipationStatusById(courseChapter?.quiz?.id)).then((action) => {
+      setParticipationStatus(action.payload.data.quiz?.participationStatus);
+      console.log("🚀 ~ dispatch ~ action.payload.data.quiz:", action.payload.data.quiz);
+    });
+  }, [activeChapterIndex, courseChapter]);
   const handleChapterChangePre = () => {
     const activeChapterId = courseChapters.find((chapter, index) => {
       return index === activeChapterIndex - 1;

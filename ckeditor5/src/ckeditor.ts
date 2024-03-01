@@ -7,8 +7,10 @@ import { ClassicEditor } from '@ckeditor/ckeditor5-editor-classic';
 
 import { Alignment } from '@ckeditor/ckeditor5-alignment';
 import { Autoformat } from '@ckeditor/ckeditor5-autoformat';
+import { Autosave } from '@ckeditor/ckeditor5-autosave';
 import {
 	Bold,
+	Code,
 	Italic,
 	Strikethrough,
 	Subscript,
@@ -23,24 +25,33 @@ import { FindAndReplace } from '@ckeditor/ckeditor5-find-and-replace';
 import { FontBackgroundColor, FontColor, FontFamily, FontSize } from '@ckeditor/ckeditor5-font';
 import { Heading, Title } from '@ckeditor/ckeditor5-heading';
 import { Highlight } from '@ckeditor/ckeditor5-highlight';
-import { GeneralHtmlSupport } from '@ckeditor/ckeditor5-html-support';
+import { HorizontalLine } from '@ckeditor/ckeditor5-horizontal-line';
+import { HtmlEmbed } from '@ckeditor/ckeditor5-html-embed';
+import { GeneralHtmlSupport, HtmlComment } from '@ckeditor/ckeditor5-html-support';
 import {
 	AutoImage,
 	Image,
 	ImageCaption,
+	ImageInsert,
 	ImageResize,
 	ImageStyle,
 	ImageToolbar,
 	ImageUpload
 } from '@ckeditor/ckeditor5-image';
 import { Indent, IndentBlock } from '@ckeditor/ckeditor5-indent';
+import { TextPartLanguage } from '@ckeditor/ckeditor5-language';
 import { AutoLink, Link, LinkImage } from '@ckeditor/ckeditor5-link';
-import { List, TodoList } from '@ckeditor/ckeditor5-list';
+import { List, ListProperties, TodoList } from '@ckeditor/ckeditor5-list';
 import { MediaEmbed, MediaEmbedToolbar } from '@ckeditor/ckeditor5-media-embed';
 import { Mention } from '@ckeditor/ckeditor5-mention';
 import { PageBreak } from '@ckeditor/ckeditor5-page-break';
 import { Paragraph } from '@ckeditor/ckeditor5-paragraph';
+import { PasteFromOffice } from '@ckeditor/ckeditor5-paste-from-office';
+import { RemoveFormat } from '@ckeditor/ckeditor5-remove-format';
 import { StandardEditingMode } from '@ckeditor/ckeditor5-restricted-editing';
+import { SelectAll } from '@ckeditor/ckeditor5-select-all';
+import { ShowBlocks } from '@ckeditor/ckeditor5-show-blocks';
+import { SourceEditing } from '@ckeditor/ckeditor5-source-editing';
 import {
 	SpecialCharacters,
 	SpecialCharactersArrows,
@@ -50,6 +61,7 @@ import {
 	SpecialCharactersMathematical,
 	SpecialCharactersText
 } from '@ckeditor/ckeditor5-special-characters';
+import { Style } from '@ckeditor/ckeditor5-style';
 import {
 	Table,
 	TableCaption,
@@ -70,8 +82,10 @@ class Editor extends ClassicEditor {
 		AutoImage,
 		AutoLink,
 		Autoformat,
+		Autosave,
 		BlockQuote,
 		Bold,
+		Code,
 		CodeBlock,
 		Essentials,
 		FindAndReplace,
@@ -82,8 +96,12 @@ class Editor extends ClassicEditor {
 		GeneralHtmlSupport,
 		Heading,
 		Highlight,
+		HorizontalLine,
+		HtmlComment,
+		HtmlEmbed,
 		Image,
 		ImageCaption,
+		ImageInsert,
 		ImageResize,
 		ImageStyle,
 		ImageToolbar,
@@ -94,11 +112,17 @@ class Editor extends ClassicEditor {
 		Link,
 		LinkImage,
 		List,
+		ListProperties,
 		MediaEmbed,
 		MediaEmbedToolbar,
 		Mention,
 		PageBreak,
 		Paragraph,
+		PasteFromOffice,
+		RemoveFormat,
+		SelectAll,
+		ShowBlocks,
+		SourceEditing,
 		SpecialCharacters,
 		SpecialCharactersArrows,
 		SpecialCharactersCurrency,
@@ -108,6 +132,7 @@ class Editor extends ClassicEditor {
 		SpecialCharactersText,
 		StandardEditingMode,
 		Strikethrough,
+		Style,
 		Subscript,
 		Superscript,
 		Table,
@@ -116,6 +141,7 @@ class Editor extends ClassicEditor {
 		TableColumnResize,
 		TableProperties,
 		TableToolbar,
+		TextPartLanguage,
 		TextTransformation,
 		Title,
 		TodoList,
@@ -132,33 +158,51 @@ class Editor extends ClassicEditor {
 				'underline',
 				'italic',
 				'link',
-				'imageUpload',
-				'mediaEmbed',
 				'bulletedList',
 				'numberedList',
 				'|',
+				'todoList',
 				'alignment',
 				'outdent',
 				'indent',
 				'|',
-				'fontBackgroundColor',
-				'fontColor',
-				'fontSize',
-				'fontFamily',
-				'highlight',
-				'todoList',
 				'blockQuote',
+				'imageUpload',
+				'imageInsert',
+				'mediaEmbed',
+				'insertTable',
+				'|',
 				'undo',
 				'redo',
-				'superscript',
+				'|',
+				'fontBackgroundColor',
+				'fontColor',
+				'fontFamily',
+				'fontSize',
+				'highlight',
+				'|',
 				'subscript',
-				'insertTable',
-				'strikethrough',
-				'codeBlock',
-				'pageBreak',
-				'specialCharacters',
+				'superscript',
+				'|',
 				'findAndReplace',
-				'restrictedEditingException'
+				'specialCharacters',
+				'strikethrough',
+				'code',
+				'codeBlock',
+				'textPartLanguage',
+				'style',
+				'|',
+				'horizontalLine',
+				'pageBreak',
+				'selectAll',
+				'|',
+				'htmlEmbed',
+				'showBlocks',
+				'sourceEditing',
+				'|',
+				'restrictedEditingException',
+				'removeFormat',
+				'|'
 			]
 		},
 		language: 'en',

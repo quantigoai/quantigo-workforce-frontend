@@ -45,10 +45,7 @@ const ChapterViewIndex = () => {
   const navigate = useNavigate();
   const toast = useToaster();
   const [participationStatus, setParticipationStatus] = useState('');
-  console.log(
-    '🚀 ~ ChapterViewIndex ~ participationStatus:',
-    participationStatus,
-  );
+
   useEffect(() => {
     dispatch(getQuizParticipationStatusById(courseChapter?.quiz?.id)).then(
       (action) => {
@@ -93,7 +90,6 @@ const ChapterViewIndex = () => {
       navigate(`/test-quiz-review`);
     });
   };
-  console.log(courseChapter.content);
   return (
     <>
       <Box

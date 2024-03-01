@@ -21,6 +21,9 @@ const ContentField = ({ courseChapter = {}, uploadPlugin, setContent }) => {
             mediaEmbed: {
               previewsInData: true,
             },
+            toolbar: {
+              shouldNotGroupWhenFull: true,
+            },
             image: {
               toolbar: [
                 'imageStyle:full',
@@ -39,6 +42,10 @@ const ContentField = ({ courseChapter = {}, uploadPlugin, setContent }) => {
           // onReady={(editor) => {}}
           onChange={(event, editor) => {
             setContent(editor.getData());
+            console.log(
+              '🚀 ~ ContentField ~ editor.getData():',
+              editor.getData(),
+            );
           }}
         />
       </Grid>

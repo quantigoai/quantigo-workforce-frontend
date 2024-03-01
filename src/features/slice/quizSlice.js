@@ -76,58 +76,70 @@ export const getAQuizById = createAsyncThunk('/quizzes/:id', async (id) => {
 });
 
 // submitted  quiz show for user
-export const getSubmittedQuiz = createAsyncThunk('/quizanswersubmission/get-last-submission/:quizId', async (id) => {
-  return axios.get(`${url}/quizanswersubmission/get-last-submission/${id}`, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
-});
+export const getSubmittedQuiz = createAsyncThunk(
+  '/quizanswersubmission/get-last-submission/:quizId',
+  async (id) => {
+    return axios.get(`${url}/quizanswersubmission/get-last-submission/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  },
+);
 
-// 
-export const getSingleSubmittedQuiz = createAsyncThunk('/quizanswersubmission/get-single-submission/:submissionId', async (id) => {
-  return axios.get(`${url}/quizanswersubmission/get-single-submission/${id}`, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
-});
-
-
-// get all submission of quiz By Id
-
-export const getAllSubmissionOfQuizById = createAsyncThunk('quizanswersubmission/get-all-submission/:quizId', async (id) => {
-  return axios.get(`${url}/quizanswersubmission/get-all-submission/${id}`, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
-});
+//
+export const getSingleSubmittedQuiz = createAsyncThunk(
+  '/quizanswersubmission/get-single-submission/:submissionId',
+  async (id) => {
+    return axios.get(
+      `${url}/quizanswersubmission/get-single-submission/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
+        },
+      },
+    );
+  },
+);
 
 // get Quiz Participation status By Id
 
-export const getQuizParticipationStatusById = createAsyncThunk('/quizzes/quiz-participation-status/:quizId', async (id) => {
-  return axios.get(`${url}/quizzes/quiz-participation-status/${id}`, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
-});
-
-
+export const getQuizParticipationStatusById = createAsyncThunk(
+  '/quizzes/quiz-participation-status/:quizId',
+  async (id) => {
+    return axios.get(`${url}/quizzes/quiz-participation-status/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  },
+);
 
 // get all Course Chapter With Marks
 
-export const getAllCourseChapterWithMark = createAsyncThunk('courses/get-all-chapter-with-marks/:id', async (id) => {
-  return axios.get(`${url}/courses/get-all-chapter-with-marks/${id}`, {
-    headers: {
-      Authorization: `Bearer ${realToken()}`,
-    },
-  });
-});
+export const getAllCourseChapterWithMark = createAsyncThunk(
+  'courses/get-all-chapter-with-marks/:id',
+  async (id) => {
+    return axios.get(`${url}/courses/get-all-chapter-with-marks/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  },
+);
 
+// get all submission of quiz By Id
 
-
+export const getAllSubmissionOfQuizById = createAsyncThunk(
+  'quizanswersubmission/get-all-submission/:quizId',
+  async (id) => {
+    return axios.get(`${url}/quizanswersubmission/get-all-submission/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  },
+);
 
 // update a Question Answer
 export const updateQuizQA = createAsyncThunk(
@@ -225,19 +237,20 @@ export const submitReviewQuiz = createAsyncThunk(
   async (finalData) => {
     const { id, BodyData } = finalData;
     try {
-      return await axios.post(`${url}/quizanswersubmission/review-submission/${id}`, BodyData, {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        }
-      });
+      return await axios.post(
+        `${url}/quizanswersubmission/review-submission/${id}`,
+        BodyData,
+        {
+          headers: {
+            Authorization: `Bearer ${realToken()}`,
+          },
+        },
+      );
     } catch (error) {
       throw new Error(error.response.data.message);
     }
-  }, 
+  },
 );
-
-
-
 
 const quizSlice = createSlice({
   name: 'quiz',
@@ -396,7 +409,6 @@ const quizSlice = createSlice({
       })
       .addCase(submitReviewQuiz.fulfilled, (state, action) => {
         state.isLoading = false;
-       
       })
       .addCase(submitReviewQuiz.rejected, (state, action) => {
         state.isLoading = false;

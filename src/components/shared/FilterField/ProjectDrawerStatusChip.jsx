@@ -7,22 +7,28 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import {Chip} from "@mui/material";
+import { Chip } from '@mui/material';
 
 let drawerStatus = (status) => {
   switch (status) {
-    case "not-Started":
-      return "Not Started";
-    case "in-Progress":
-      return "In Progress";
-    case "hours-added":
-      return "Hours Added";
-    case "completed":
-      return "Completed";
-    case "hours-approved":
-      return "Hours Approved";
-    case "payment-done":
-      return "Payment Done";
+    case 'not-Started':
+      return 'Not Started';
+    case 'in-Progress':
+      return 'In Progress';
+    case 'hours-added':
+      return 'Hours Added';
+    case 'completed':
+      return 'Completed';
+    case 'hours-approved':
+      return 'Hours Approved';
+    case 'payment-done':
+      return 'Payment Done';
+    case 'rejected':
+      return 'Rejected';
+    case 'pending':
+      return 'Pending';
+    case 'accepted':
+      return 'Accepted';
     default:
       return status;
   }
@@ -31,96 +37,123 @@ let drawerStatus = (status) => {
 const ProjectDrawerStatusChip = ({ value, isPopper = false }) => {
   const style = (status) => {
     switch (status) {
-      case "not-Started":
+      case 'not-Started':
         return {
-          backgroundColor: "rgba(242, 246, 252, 1)",
-          color: "rgba(60, 77, 107, 1)",
+          backgroundColor: 'rgba(242, 246, 252, 1)',
+          color: 'rgba(60, 77, 107, 1)',
           // width: "90px",
-          fontFamily: "Inter",
-          height: "24px",
-          border: "1px solid rgba(230, 236, 245, 1)",
+          fontFamily: 'Inter',
+          height: '24px',
+          border: '1px solid rgba(230, 236, 245, 1)',
         };
-      case "in-Progress":
+      case 'in-Progress':
         return {
-          backgroundColor: "rgba(244, 247, 254, 1)",
-          color: "rgba(46, 88, 255, 1)",
+          backgroundColor: 'rgba(244, 247, 254, 1)',
+          color: 'rgba(46, 88, 255, 1)',
           // width: "90px",
-          fontFamily: "Inter",
-          height: "24px",
-          border: "1px solid rgba(46, 88, 255, 0.12)",
+          fontFamily: 'Inter',
+          height: '24px',
+          border: '1px solid rgba(46, 88, 255, 0.12)',
         };
-      case "hours-added":
+      case 'hours-added':
         return {
-          backgroundColor: "rgba(250, 228, 195, 1)",
-          color: "rgba(247, 144, 9, 1)",
+          backgroundColor: 'rgba(250, 228, 195, 1)',
+          color: 'rgba(247, 144, 9, 1)',
           // width: "90px",
-          fontFamily: "Inter",
-          height: "24px",
-          border: "1px solid rgba(250, 228, 195, 1)",
+          fontFamily: 'Inter',
+          height: '24px',
+          border: '1px solid rgba(250, 228, 195, 1)',
         };
-      case "completed":
+      case 'completed':
         return {
-          backgroundColor: "#C4F5DF",
-          color: "#12B76A",
+          backgroundColor: '#C4F5DF',
+          color: '#12B76A',
           // width: "90px",
-          fontFamily: "Inter",
-          height: "24px",
-          border: "1px solid #C4F5DF",
+          fontFamily: 'Inter',
+          height: '24px',
+          border: '1px solid #C4F5DF',
         };
-      case "hours-approved":
+      case 'hours-approved':
         return {
-          backgroundColor: "#e8dfff",
-          color: "#8563c7",
+          backgroundColor: '#e8dfff',
+          color: '#8563c7',
           // width: "90px",
-          fontFamily: "Inter",
-          height: "24px",
-          border: "1px solid #d5dae8",
+          fontFamily: 'Inter',
+          height: '24px',
+          border: '1px solid #d5dae8',
         };
-      case "payment-done":
+      case 'payment-done':
         return {
-          backgroundColor: "#e5ebaf",
-          color: "#8d8938",
+          backgroundColor: '#e5ebaf',
+          color: '#8d8938',
           // width: "90px",
-          fontFamily: "Inter",
-          height: "24px",
-          border: "1px solid #cdd896",
+          fontFamily: 'Inter',
+          height: '24px',
+          border: '1px solid #cdd896',
         };
-      case "Active":
+      case 'Active':
         return {
-          backgroundColor: "#C4F5DF",
-          color: "#12B76A",
+          backgroundColor: '#C4F5DF',
+          color: '#12B76A',
           // width: "90px",
-          fontFamily: "Inter",
-          height: "24px",
-          border: "1px solid #C4F5DF",
+          fontFamily: 'Inter',
+          height: '24px',
+          border: '1px solid #C4F5DF',
         };
-      case "Inactive":
+      case 'Inactive':
         return {
-          backgroundColor: "#FFF1F0",
-          color: "#F04438",
+          backgroundColor: '#FFF1F0',
+          color: '#F04438',
           // width: "90px",
-          fontFamily: "Inter",
-          height: "24px",
-          border: "1px solid #FFD9D6",
+          fontFamily: 'Inter',
+          height: '24px',
+          border: '1px solid #FFD9D6',
+        };
+      case 'rejected':
+        return {
+          backgroundColor: '#FFF1F0',
+          color: '#F04438',
+          // width: "90px",
+          fontFamily: 'Inter',
+          height: '24px',
+          border: '1px solid #FFD9D6',
+        };
+      case 'pending':
+        return {
+          backgroundColor: 'rgba(250, 228, 195, 1)',
+          color: 'rgba(247, 144, 9, 1)',
+          // width: "90px",
+          fontFamily: 'Inter',
+          height: '24px',
+          border: '1px solid rgba(250, 228, 195, 1)',
+        };
+      case 'accepted':
+        return {
+          backgroundColor: '#C4F5DF',
+          color: '#12B76A',
+          // width: "90px",
+          fontFamily: 'Inter',
+          height: '24px',
+          border: '1px solid #C4F5DF',
         };
       default:
         return {
-          textAlign: "center",
-          backgroundColor: "rgba(242, 246, 252, 1)",
-          color: "rgba(60, 77, 107, 1)",
-          fontFamily: "Inter",
+          textAlign: 'center',
+          backgroundColor: 'rgba(242, 246, 252, 1)',
+          color: 'rgba(60, 77, 107, 1)',
+          fontFamily: 'Inter',
           // fontSize: isPopper ? "10px" : "60px",
-          height: "24px",
-          padding: "0px",
-          border: "1px solid rgba(230, 236, 245, 1)",
-          marginLeft: isPopper ? "0px" : "10px",
+          height: '24px',
+          padding: '0px',
+          border: '1px solid rgba(230, 236, 245, 1)',
+          marginLeft: isPopper ? '0px' : '10px',
         };
     }
   };
 
   return (
     <>
-      <Chip variant="outlined" sx={{ ...style(value), fontSize: "11px" }} label={drawerStatus(value)} value={value} />
+      <Chip variant="outlined" sx={{ ...style(value), fontSize: '11px' }} label={drawerStatus(value)} value={value} />
     </>
   );
 };

@@ -9,6 +9,7 @@ import TableWrapper from '../../../ProjectLIstNew2/ExpTable/TableWrapper';
 import { fieldsListQuiz } from '../../../ProjectLIstNew2/FIlterOptions';
 import { HeaderBox, TablePaper } from '../../../ProjectLIstNew2/ProjectLIstIndex2';
 import QuizHeader from './QuizHeader';
+import PaginationTable from '../../../ProjectLIstNew2/PaginationTable';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -50,20 +51,22 @@ const QuizSubmissionListIndex = () => {
   const [myColumn, setMyColumn] = useState([]);
   const [myRows, setMyRows] = useState([]);
   const [isDataLoading, setIsDataLoading] = useState(true);
-  const handleClick = () => {
-    console.log('🚀 ~ handleReviewQuiz ~ id:', id);
-    navigate(`/test-quiz-review/${id}`);
+  const [pagination, setPagination] = useState({
+    currentPage: 0,
+    pageSize: 10,
+  });
+  const handleClick = (params) => {
+    // console.log('🚀 ~ handleClick ~ params:', params);
+    navigate(`/test-quiz-review/${params.id}`);
   };
   const handleDelete = () => {};
   useEffect(() => {
     dispatch(getAllSubmissionOfQuizById(id)).then((action) => {
-      console.log(action.payload.data);
       setMyColumn(fieldBuilder(fieldsListQuiz, handleClick, handleDelete));
       setIsDataLoading(false);
       setAllAnswerSubmission(action.payload.data.allAnswerSubmission);
     });
   }, []);
-  console.log('🚀 ~ QuizSubmissionListIndex ~ allAnswerSubmission:', allAnswerSubmission);
 
   return (
     <>
@@ -97,12 +100,12 @@ const QuizSubmissionListIndex = () => {
               />
             )}
 
-            {/* <PaginationTable
+            <PaginationTable
               pagination={pagination}
               setPagination={setPagination}
-              setFilterValue={setFilterValue}
-              setFilteredCol={setFilteredCol}
-            /> */}
+              // setFilterValue={setFilterValue}
+              // setFilteredCol={setFilteredCol}
+            />
           </TablePaper>
         </Box>
       </Box>

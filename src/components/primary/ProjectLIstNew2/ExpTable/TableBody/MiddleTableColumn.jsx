@@ -100,15 +100,6 @@ const MiddleTableColumn = ({ row, column, isObjectField }) => {
           <LinkCell data={row[column?.field]} />
         </TableCell>
       );
-    } else if (column.field === 'user') {
-      return (
-        <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
-          <Typography variant="wpf_p4_regular" color="neutral.700">
-            {/* {row[column?.field].name} */}
-            sdfsd
-          </Typography>
-        </TableCell>
-      );
     } else if (column.field === 'course') {
       return (
         <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
@@ -123,6 +114,12 @@ const MiddleTableColumn = ({ row, column, isObjectField }) => {
           <Typography variant="wpf_p4_regular" color="neutral.700">
             {row[column?.field].name}
           </Typography>
+        </TableCell>
+      );
+    } else if (column.field === 'submissionStatus') {
+      return (
+        <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
+          <ProjectDrawerStatusChip value={row[column.field]} />
         </TableCell>
       );
     } else if (column.field === 'project_status') {

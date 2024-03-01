@@ -1,9 +1,9 @@
-import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import { Box, Button, MenuItem, Select, Typography } from "@mui/material";
-import { useCallback, useEffect, useLayoutEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { Box, Button, MenuItem, Select, Typography } from '@mui/material';
+import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 const paginationOptions = [
   { value: 10, label: 10 },
@@ -36,24 +36,24 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if (pathname === "/allprojects") {
+    if (pathname === '/allprojects') {
       setMeta(projectMeta);
     }
-    if (pathname === "/all-users") {
+    if (pathname === '/all-users') {
       setMeta(userMeta);
     }
     if (pathname === `/projectDetails/${id}`) {
       setMeta(workHistoryMeta);
     }
-    if (pathname === "/projectDirectory") {
+    if (pathname === '/projectDirectory') {
       setMeta(directoryMeta);
     }
   }, [pathname, projectMeta, userMeta, workHistoryMeta, directoryMeta]);
   const navigate = useNavigate();
   const [params] = useSearchParams();
 
-  const limit = params.get("limit");
-  const skip = params.get("skip");
+  const limit = params.get('limit');
+  const skip = params.get('skip');
 
   useLayoutEffect(() => {
     if (skip && limit) {
@@ -62,17 +62,18 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
           ...prevPagination,
           currentPage: skip / limit,
         }));
-        if (pathname === "/allprojects") {
+        if (pathname === '/allprojects') {
           setFilteredCol(projectDrawerFilter.ascDescOption);
           setFilterValue(projectDrawerFilter.filteredData);
         }
       }
     } else {
       if (
-        pathname === "/all-users" ||
-        pathname === "/allprojects" ||
+        pathname === '/all-users' ||
+        pathname === '/allprojects' ||
         pathname === `/projectDetails/${id}` ||
-        pathname === "/projectDirectory"
+        pathname === '/projectDirectory' ||
+        pathname === `/submitted/${id}`
       ) {
         setPagination((prevPagination) => ({
           ...prevPagination,
@@ -126,13 +127,13 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
   let [totalPages, setTotalPages] = useState(0);
 
   useLayoutEffect(() => {
-    if (pathname === "/allprojects") {
+    if (pathname === '/allprojects') {
       setTotalPages(Math.ceil(total / pagination.pageSize));
     }
-    if (pathname === "/all-users") {
+    if (pathname === '/all-users') {
       setTotalPages(Math.ceil(totalUsers / pagination.pageSize));
     }
-    if (pathname === "/projectDirectory") {
+    if (pathname === '/projectDirectory') {
       setTotalPages(Math.ceil(totalDirectory / pagination.pageSize));
     }
     if (pathname === `/projectDetails/${id}`) {
@@ -150,35 +151,35 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
   const disablePrev = pagination.currentPage === 0;
   const disableNext = pagination.currentPage >= totalPages - 1;
 
-  const approvedPaths = ["/allprojects", "/all-users", "/projectDirectory"];
+  const approvedPaths = ['/allprojects', '/all-users', '/projectDirectory'];
 
   const approvedData = [myWorkHistoryCount, usersWorkHistoryCount, users?.length, projectDirectory?.length];
   return approvedPaths.includes(pathname) || approvedData.some((s) => s > 0) ? (
     <Box
       sx={{
-        display: "flex",
-        width: "100%",
-        height: { xl: "48px", xxl: "60px" },
-        paddingX: "16px",
-        paddingY: "12px",
-        justifyContent: "space-between",
-        alignItems: "center",
-        alignContent: "center",
+        display: 'flex',
+        width: '100%',
+        height: { xl: '48px', xxl: '60px' },
+        paddingX: '16px',
+        paddingY: '12px',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        alignContent: 'center',
       }}
     >
       <Box
         gap={0}
         sx={{
-          display: "flex",
-          alignItems: "center",
+          display: 'flex',
+          alignItems: 'center',
         }}
       >
         <Box>
           <Typography
             variant="wpf_p3_regular"
             sx={{
-              width: "120px",
-              color: "neutral.N300",
+              width: '120px',
+              color: 'neutral.N300',
             }}
           >
             Items per page :
@@ -187,17 +188,17 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
 
         <Select
           sx={{
-            width: "70px",
-            height: "24px",
-            border: "none",
-            "& .MuiSelect-select": {
-              padding: "5px 0px 0px 10px",
-              fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
-              color: "neutral.N300",
+            width: '70px',
+            height: '24px',
+            border: 'none',
+            '& .MuiSelect-select': {
+              padding: '5px 0px 0px 10px',
+              fontSize: { xl: '14px', xxl: '16px', lg: '12px' },
+              color: 'neutral.N300',
             },
-            "& .MuiSvgIcon-root": {
-              color: "neutral.N300",
-              pt: "2px",
+            '& .MuiSvgIcon-root': {
+              color: 'neutral.N300',
+              pt: '2px',
             },
           }}
           id="demo-simple-select"
@@ -207,7 +208,7 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
           name="limit"
         >
           {paginationOptions.map((p) => (
-            <MenuItem key={p.value} value={p.value} sx={{ fontSize: { xl: "14px", xxl: "16px", lg: "12px" } }}>
+            <MenuItem key={p.value} value={p.value} sx={{ fontSize: { xl: '14px', xxl: '16px', lg: '12px' } }}>
               {p.label}
             </MenuItem>
           ))}
@@ -215,26 +216,26 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
       </Box>
 
       {/* Buttons */}
-      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Box>
           <Button
             disabled={disablePrev}
             sx={{
-              minWidth: "20px",
-              height: { lg: "20px", xl: "24px", xxl: "24px" },
-              width: { lg: "20px", xl: "24px", xxl: "24px" },
-              fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
-              fontWeight: "500",
-              padding: "7px 2px",
-              color: disableNext ? "neutral.N650" : "neutral.N300",
+              minWidth: '20px',
+              height: { lg: '20px', xl: '24px', xxl: '24px' },
+              width: { lg: '20px', xl: '24px', xxl: '24px' },
+              fontSize: { xl: '14px', xxl: '16px', lg: '12px' },
+              fontWeight: '500',
+              padding: '7px 2px',
+              color: disableNext ? 'neutral.N650' : 'neutral.N300',
             }}
             onClick={handlePrevPage}
             variant="none"
           >
             <KeyboardArrowLeftIcon
               sx={{
-                height: { lg: "16px", xl: "18px", xxl: "20px" },
-                width: { lg: "16px", xl: "18px", xxl: "20px" },
+                height: { lg: '16px', xl: '18px', xxl: '20px' },
+                width: { lg: '16px', xl: '18px', xxl: '20px' },
               }}
             />
           </Button>
@@ -248,17 +249,17 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
               name="page"
               variant="small"
               sx={{
-                minWidth: "20px",
-                height: { lg: "20px", xl: "24px", xxl: "24px" },
-                width: { lg: "20px", xl: "24px", xxl: "24px" },
-                fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
-                fontWeight: "500",
-                padding: "6px 2px",
-                color: pagination.currentPage === pageNumberToShow ? "white" : "#62728F",
-                backgroundColor: pagination.currentPage === pageNumberToShow ? "#2E58FF" : "transparent",
-                "&:focus": {
-                  color: "white",
-                  backgroundColor: "#2E58FF",
+                minWidth: '20px',
+                height: { lg: '20px', xl: '24px', xxl: '24px' },
+                width: { lg: '20px', xl: '24px', xxl: '24px' },
+                fontSize: { xl: '14px', xxl: '16px', lg: '12px' },
+                fontWeight: '500',
+                padding: '6px 2px',
+                color: pagination.currentPage === pageNumberToShow ? 'white' : '#62728F',
+                backgroundColor: pagination.currentPage === pageNumberToShow ? '#2E58FF' : 'transparent',
+                '&:focus': {
+                  color: 'white',
+                  backgroundColor: '#2E58FF',
                 },
               }}
             >
@@ -268,13 +269,13 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
         </Box>
         <Button
           sx={{
-            minWidth: "20px",
-            height: { lg: "20px", xl: "24px", xxl: "24px" },
-            width: { lg: "20px", xl: "24px", xxl: "24px" },
-            fontSize: { xl: "14px", xxl: "16px", lg: "12px" },
-            fontWeight: "500",
-            padding: "7px 2px",
-            color: disableNext ? "neutral.N650" : "neutral.N300",
+            minWidth: '20px',
+            height: { lg: '20px', xl: '24px', xxl: '24px' },
+            width: { lg: '20px', xl: '24px', xxl: '24px' },
+            fontSize: { xl: '14px', xxl: '16px', lg: '12px' },
+            fontWeight: '500',
+            padding: '7px 2px',
+            color: disableNext ? 'neutral.N650' : 'neutral.N300',
           }}
           disabled={disableNext}
           variant="none"
@@ -282,8 +283,8 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
         >
           <KeyboardArrowRightIcon
             sx={{
-              height: { lg: "16px", xl: "18px", xxl: "20px" },
-              width: { lg: "16px", xl: "18px", xxl: "20px" },
+              height: { lg: '16px', xl: '18px', xxl: '20px' },
+              width: { lg: '16px', xl: '18px', xxl: '20px' },
             }}
           />
         </Button>

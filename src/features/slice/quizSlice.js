@@ -22,6 +22,7 @@ const initialState = {
   isLoading: false,
   quiz: {},
   quizs: [],
+
   result: {},
   error: 'null',
   isCreated: false,
@@ -76,30 +77,24 @@ export const getAQuizById = createAsyncThunk('/quizzes/:id', async (id) => {
 });
 
 // submitted  quiz show for user
-export const getSubmittedQuiz = createAsyncThunk(
-  '/quizanswersubmission/get-last-submission/:quizId',
-  async (id) => {
-    return axios.get(`${url}/quizanswersubmission/get-last-submission/${id}`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  },
-);
+export const getSubmittedQuiz = createAsyncThunk('/quizanswersubmission/get-last-submission/:quizId', async (id) => {
+  return axios.get(`${url}/quizanswersubmission/get-last-submission/${id}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 //
 export const getSingleSubmittedQuiz = createAsyncThunk(
   '/quizanswersubmission/get-single-submission/:submissionId',
   async (id) => {
-    return axios.get(
-      `${url}/quizanswersubmission/get-single-submission/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
+    return axios.get(`${url}/quizanswersubmission/get-single-submission/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
       },
-    );
-  },
+    });
+  }
 );
 
 // get Quiz Participation status By Id
@@ -112,50 +107,49 @@ export const getQuizParticipationStatusById = createAsyncThunk(
         Authorization: `Bearer ${realToken()}`,
       },
     });
-  },
+  }
 );
 
 // get all Course Chapter With Marks
 
-export const getAllCourseChapterWithMark = createAsyncThunk(
-  'courses/get-all-chapter-with-marks/:id',
-  async (id) => {
-    return axios.get(`${url}/courses/get-all-chapter-with-marks/${id}`, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  },
-);
+export const getAllCourseChapterWithMark = createAsyncThunk('courses/get-all-chapter-with-marks/:id', async (id) => {
+  return axios.get(`${url}/courses/get-all-chapter-with-marks/${id}`, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // get all submission of quiz By Id
 
 export const getAllSubmissionOfQuizById = createAsyncThunk(
   'quizanswersubmission/get-all-submission/:quizId',
-  async (id) => {
-    return axios.get(`${url}/quizanswersubmission/get-all-submission/${id}`, {
+  async (data) => {
+    const { pagination, id, search } = data;
+    let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
+    if (search) {
+      query += `&search=${search}`;
+    }
+    return axios.get(`${url}/quizanswersubmission/get-all-submission/${id}?${query}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
     });
-  },
+  }
 );
 
 // update a Question Answer
-export const updateQuizQA = createAsyncThunk(
-  '/quiz/update/quizId/questionId',
-  async (data1) => {
-    const { quizId, questionId, formDataQ } = data1;
-    return axios.patch(`${url}/quizzes/${quizId}/${questionId}`, formDataQ, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-      content: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-  },
-);
+export const updateQuizQA = createAsyncThunk('/quiz/update/quizId/questionId', async (data1) => {
+  const { quizId, questionId, formDataQ } = data1;
+  return axios.patch(`${url}/quizzes/${quizId}/${questionId}`, formDataQ, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+    content: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+});
 export const updateQuizQAFunction = async (data1) => {
   const { quizId, questionId, formDataQ } = data1;
   try {
@@ -173,84 +167,65 @@ export const updateQuizQAFunction = async (data1) => {
 };
 
 // Update Quiz by ID
-export const updateQuizById = createAsyncThunk(
-  '/quizzes/update/:id',
-  async (bulkData) => {
-    const { id, data } = bulkData;
+export const updateQuizById = createAsyncThunk('/quizzes/update/:id', async (bulkData) => {
+  const { id, data } = bulkData;
 
-    return axios.patch(`${url}/quizzes/update/${id}`, data, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  },
-);
+  return axios.patch(`${url}/quizzes/update/${id}`, data, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // Submit Question and Answer of a Quiz
-export const submitQuizById = createAsyncThunk(
-  '/quizzes/submit/:id',
-  async (bulkData) => {
-    const { id, data } = bulkData;
+export const submitQuizById = createAsyncThunk('/quizzes/submit/:id', async (bulkData) => {
+  const { id, data } = bulkData;
 
-    return axios.post(`${url}/quizzes/submit/${id}`, data, {
-      headers: {
-        Authorization: `Bearer ${realToken()}`,
-      },
-    });
-  },
-);
+  return axios.post(`${url}/quizzes/submit/${id}`, data, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
 
 // Delete questions from Quizzes
-export const deleteQuestionFromQuiz = createAsyncThunk(
-  '/quizzes/delete/:quizId',
-  async (deleteQuizData) => {
-    const { quizId, data } = deleteQuizData;
-    return axios.patch(`${url}/quizzes/delete/${quizId}`, data, {
+export const deleteQuestionFromQuiz = createAsyncThunk('/quizzes/delete/:quizId', async (deleteQuizData) => {
+  const { quizId, data } = deleteQuizData;
+  return axios.patch(`${url}/quizzes/delete/${quizId}`, data, {
+    headers: {
+      Authorization: `Bearer ${realToken()}`,
+    },
+  });
+});
+export const insertAQuestionInQuiz = createAsyncThunk('/quizzes/question/:quizId', async (data) => {
+  const { quizId, formDataQ } = data;
+  try {
+    return await axios.patch(`${url}/quizzes/question/${quizId}`, formDataQ, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+      content: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
+// submit a review of quiz by id
+export const submitReviewQuiz = createAsyncThunk('/quizanswersubmission/review-submission/:id', async (finalData) => {
+  const { id, BodyData } = finalData;
+  try {
+    return await axios.post(`${url}/quizanswersubmission/review-submission/${id}`, BodyData, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
     });
-  },
-);
-export const insertAQuestionInQuiz = createAsyncThunk(
-  '/quizzes/question/:quizId',
-  async (data) => {
-    const { quizId, formDataQ } = data;
-    try {
-      return await axios.patch(`${url}/quizzes/question/${quizId}`, formDataQ, {
-        headers: {
-          Authorization: `Bearer ${realToken()}`,
-        },
-        content: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
-  },
-);
-
-// submit a review of quiz by id
-export const submitReviewQuiz = createAsyncThunk(
-  '/quizanswersubmission/review-submission/:id',
-  async (finalData) => {
-    const { id, BodyData } = finalData;
-    try {
-      return await axios.post(
-        `${url}/quizanswersubmission/review-submission/${id}`,
-        BodyData,
-        {
-          headers: {
-            Authorization: `Bearer ${realToken()}`,
-          },
-        },
-      );
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
-  },
-);
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
 
 const quizSlice = createSlice({
   name: 'quiz',
@@ -301,6 +276,7 @@ const quizSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getSubmittedQuiz.fulfilled, (state, action) => {
+        console.log('🚀 ~ .addCase ~ action:', action);
         state.isLoading = false;
         // state.quiz = action.payload.data.quiz;
       })
@@ -330,6 +306,7 @@ const quizSlice = createSlice({
       })
       .addCase(getAllSubmissionOfQuizById.rejected, (state, action) => {
         state.isLoading = false;
+
         // state.quiz = {};
         state.error = action.error.message;
       })

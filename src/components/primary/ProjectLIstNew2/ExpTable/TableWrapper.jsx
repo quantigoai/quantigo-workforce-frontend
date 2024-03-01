@@ -117,7 +117,7 @@ const TableWrapper = ({
       setIsDataLoading(false);
       setIsWorkHistoryDataLoading(false);
     }
-  }, [pathname, users, projectDrawers, usersWorkHistory, projectDirectory]);
+  }, [pathname, users, projectDrawers, usersWorkHistory, projectDirectory, allAnswerSubmission]);
 
   const renderMainContent = () => {
     if (!usersLoading || !projectLoading || !isWorkHistoryDataLoading || !isLoading) {

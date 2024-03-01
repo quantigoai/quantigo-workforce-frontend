@@ -3,8 +3,8 @@ import React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import FilterListIcon from '@mui/icons-material/FilterListOff';
 import CommonHeader from '../../../../shared/CustomComponenet/CommonHeader/CommonHeader';
-
-const QuizHeader = () => {
+import ClearIcon from '@mui/icons-material/Clear';
+const QuizHeader = ({ setSearch, search, searchRef, handleSearch, clearSearch }) => {
   return (
     <>
       <Box
@@ -57,7 +57,7 @@ const QuizHeader = () => {
               <SearchIcon />
             </IconButton>
             <InputBase
-              //   inputRef={searchRef}
+              inputRef={searchRef}
               sx={{
                 ml: 0,
                 flex: 1,
@@ -67,12 +67,12 @@ const QuizHeader = () => {
               placeholder="Search"
               onKeyDown={(ev) => {
                 if (ev.key === 'Enter') {
-                  //   handleSearch(ev);
+                  handleSearch(ev);
                   ev.preventDefault();
                 }
               }}
             />
-            {/* {search && (
+            {search && (
               <Button
                 sx={{
                   height: '30px',
@@ -91,65 +91,11 @@ const QuizHeader = () => {
                       color: '#F04438',
                     },
                   }}
-                    onClick={clearSearch}
+                  onClick={clearSearch}
                 />
               </Button>
-            )} */}
+            )}
           </Paper>
-          <IconButton
-            // onClick={handleIsFilter}
-            sx={{
-              px: '0px 0px',
-              backgroundColor: 'primary.B008',
-              // mx: 2,
-              ml: 2,
-              mr: 0,
-              borderRadius: '8px',
-              height: {
-                lg: '30px',
-                xl: '40px',
-                xxl: '40px',
-              },
-            }}
-            aria-label="menu"
-          >
-            {/* {isFilter ? (
-              <FilterListOffIcon sx={{ color: 'primary.main' }} />
-            ) : (
-                )} */}
-            <FilterListIcon sx={{ color: 'primary.main' }} />
-          </IconButton>
-          {/* {role === 'admin' || role === 'project_manager' || role === 'project_delivery_lead' ? (
-            <Button
-              sx={{
-                textTransform: 'none',
-                borderRadius: '8px',
-                backgroundColor: '#2E58FF',
-                height: {
-                  lg: '30px',
-                  xl: '40px',
-                  xxl: '40px',
-                },
-                fontSize: { xl: '14px', xxl: '16px', lg: '12px' },
-                lineHeight: '20px',
-                width: {
-                  lg: '128px',
-                  xl: '128px',
-                  xxl: '140px',
-                },
-                color: 'white',
-                '&:hover': {
-                  background: '#244EF5',
-                },
-                padding: '16px 10px',
-              }}
-              //   onClick={handleProjectCreateOpen}
-            >
-              Create Project
-            </Button>
-          ) : (
-            <></>
-          )} */}
         </Box>
       </Box>
     </>

@@ -59,14 +59,12 @@ export const fields = [
   },
 ];
 export const fieldsListQuiz = [
-  { field: 'user', width: 250, textAlign: 'left', columnDataAlign: 'left' },
-  { field: 'course', width: 200, textAlign: 'left', columnDataAlign: 'left' },
-  { field: 'courseChapter', textAlign: 'center', columnDataAlign: 'center', width: 250 },
-  { field: 'submissionStatus', width: 250, textAlign: 'center', columnDataAlign: 'center' },
-  { field: 'correctAnswer', width: 300, renderCell: 'skills-chip', textAlign: 'center', columnDataAlign: 'center' },
-  { field: 'wrongAnswer', width: 300, renderCell: 'skills-chip', textAlign: 'center', columnDataAlign: 'center' },
-  { field: 'pendingAnswer', width: 300, renderCell: 'skills-chip', textAlign: 'center', columnDataAlign: 'center' },
-  { field: 'score', width: 300, renderCell: 'skills-chip', textAlign: 'center', columnDataAlign: 'center' },
+  { field: 'user', width: 180, textAlign: 'left', columnDataAlign: 'left' },
+  { field: 'score', width: 180, renderCell: 'skills-chip', textAlign: 'center', columnDataAlign: 'center' },
+  { field: 'submissionStatus', width: 180, textAlign: 'center', columnDataAlign: 'center' },
+  { field: 'correctAnswer', width: 180, renderCell: 'skills-chip', textAlign: 'center', columnDataAlign: 'center' },
+  { field: 'wrongAnswer', width: 180, renderCell: 'skills-chip', textAlign: 'center', columnDataAlign: 'center' },
+  { field: 'pendingAnswer', width: 180, renderCell: 'skills-chip', textAlign: 'center', columnDataAlign: 'center' },
 
   {
     field: 'ACTIONS',

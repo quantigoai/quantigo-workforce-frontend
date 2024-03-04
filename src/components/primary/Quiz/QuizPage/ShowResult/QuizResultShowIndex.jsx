@@ -4,22 +4,25 @@ import { useSelector } from "react-redux";
 
 const QuizResultShowIndex = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
+  const { result } = useSelector((state) => state.quiz);
+  console.log("🚀 ~ QuizResultShowIndex ~ result:", result);
+
   const ShowResultField = [
     {
-      label: "Total Questions",
-      value: 30,
+      label: "Correct Answer",
+      value: result.submissionResult.correctAnswer,
     },
     {
-      label: "Total Questions",
-      value: 30,
+      label: "Wrong Answer",
+      value: result.submissionResult.wrongAnswer,
     },
     {
-      label: "Total Questions",
-      value: 30,
+      label: "Pending Answer",
+      value: result.submissionResult.pendingAnswer,
     },
     {
-      label: "Total Questions",
-      value: 30,
+      label: "Score",
+      value: Math.floor(result.submissionResult.score),
     },
   ];
   return (

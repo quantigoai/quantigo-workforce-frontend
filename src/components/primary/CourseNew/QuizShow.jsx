@@ -128,7 +128,7 @@ const QuizShow = () => {
 
         toast.trigger("Quiz Submitted", "success");
         // TODO : Redirect to quiz result page
-        // navigate(`/course-details/${course._id}/quiz-result`);
+        navigate("/result-test");
         // dispatch(
         //   manuallySetCourseChapterResult(
         //     action.payload.data.isPreviouslyAttempted,

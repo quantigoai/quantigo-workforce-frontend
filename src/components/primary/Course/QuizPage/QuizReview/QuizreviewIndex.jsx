@@ -152,7 +152,59 @@ const QuizreviewIndex = () => {
       }
     });
   };
-  console.log(reviewerSubmissionFeedback);
+  const audioStyle = {
+    height: "160px",
+    width: "100%",
+    // backgroundColor: "red",
+  };
+  const handleSwitchContent = (value) => {
+    switch (true) {
+      case value?.endsWith(".png"):
+      case value?.endsWith(".jpeg"):
+      case value?.endsWith(".jpg"):
+        return <img src={value} style={{ borderRadius: "8px" }} height={160} width='100%' />;
+      case value?.endsWith(".mp3"):
+      case value?.endsWith(".mpeg"):
+        return <audio style={audioStyle} src={value} controls></audio>;
+      case value?.endsWith(".mp4"):
+        return (
+          <video
+            width='100%'
+            height='160'
+            controls
+            style={{ borderRadius: "8px" }}
+            src={value}
+          ></video>
+        );
+        // return <iframe height={160} src={value} alt='' width='100%' style={{ borderRadius: "8px" }}></iframe>;
+      default:
+        return <p>Unsupported file </p>;
+    }
+  };
+  const handleSwitchContent2 = (value) => {
+    switch (true) {
+      case value?.endsWith(".png"):
+      case value?.endsWith(".jpeg"):
+      case value?.endsWith(".jpg"):
+        return <img src={value} style={{ borderRadius: "8px" }} height={224} width='100%' />;
+      case value?.endsWith(".mp3"):
+      case value?.endsWith(".mpeg"):
+        return <audio style={audioStyle} src={value} controls></audio>;
+      case value?.endsWith(".mp4"):
+        return (
+          <video
+            width='100%'
+            height='240'
+            controls
+            style={{ borderRadius: "8px" }}
+            src={value}
+          ></video>
+        );
+      // return <iframe height={224} src={value} alt='' width='100%' style={{ borderRadius: "8px" }}></iframe>;
+      default:
+        return <p>Unsupported file </p>;
+    }
+  };
   return (
     <>
       <Box
@@ -199,7 +251,7 @@ const QuizreviewIndex = () => {
                 // && responses?.reviewer && true}
                 fullWidth
                 // variant='outlined'
-                placeholder='Write your thoughts...'
+                placeholder={user.role === "admin" || user.role === "trainer" ? "Write your thoughts..." : ""}
                 // defaultValue={responses?.reviewerSubmissionFeedback}
                 // defaultValue={responses?.reviewerSubmissionFeedback}
                 value={reviewerSubmissionFeedback}
@@ -347,7 +399,12 @@ const QuizreviewIndex = () => {
                                     onChange={() => handleQuizResult(i, item._id)}
                                     value={i}
                                     // control={<Radio />}
-                                    control={<Radio checked={item.userGivenCorrectAnswerIndex === i} />}
+                                    control={
+                                      <Radio
+                                        sx={{ cursor: "default" }}
+                                        checked={item.userGivenCorrectAnswerIndex === i}
+                                      />
+                                    }
                                     label={posibleAnswer}
                                     // label={item.questionType === "imageInOptions" ? <img /> : posibleAnswer}
                                   />
@@ -364,14 +421,15 @@ const QuizreviewIndex = () => {
                                 paddingTop: "1%",
                               }}
                             >
-                              {item.question.questionImage.endsWith(".jpeg") && (
+                              {handleSwitchContent2(item.question.questionImage)}
+                              {/* {item.question.questionImage.endsWith(".jpeg") && (
                                 <img
                                   src={item.question.questionImage}
                                   style={{ borderRadius: "8px" }}
                                   height={224}
                                   width='100%'
                                 />
-                              )}
+                              )} */}
                               <>
                                 {/* for Audio */}
                                 {/* <audio controls>
@@ -382,15 +440,15 @@ const QuizreviewIndex = () => {
                                   />
                                   Your browser does not support the audio element.
                                 </audio> */}
-                                {item.question.questionImage.endsWith(".mp4") && (
+                                {/* {item.question.questionImage.endsWith(".mp4") && (
                                   <video
                                     width='100%'
                                     height='240'
                                     controls
                                     style={{ borderRadius: "8px" }}
-                                    src='https://storage.googleapis.com/quantigo-workforce-image-storage/test%20video/production_id_4124024%20(2160p).mp4'
+                                    src={item.question.questionImage}
                                   ></video>
-                                )}
+                                )} */}
                               </>
                             </Grid>
                           </Grid>
@@ -414,7 +472,9 @@ const QuizreviewIndex = () => {
                                           }}
                                         >
                                           {/* <Grid item> */}
-                                          <Box sx={{}}>
+                                          {handleSwitchContent(posibleAnswer)}
+
+                                          {/* <Box sx={{}}>
                                             {posibleAnswer.endsWith(".jpeg") ? (
                                               <>
                                                 <img
@@ -439,7 +499,7 @@ const QuizreviewIndex = () => {
                                                 ></iframe>
                                               </>
                                             )}
-                                          </Box>
+                                          </Box> */}
                                           {/* </Grid> */}
                                           {/* <Grid item> */}
                                           <Box sx={{ backgroundColor: "#fff", paddingLeft: "5%", borderRadius: "8px" }}>
@@ -447,7 +507,12 @@ const QuizreviewIndex = () => {
                                               key={i}
                                               onChange={() => handleQuizResult(i, item._id)}
                                               value={i}
-                                              control={<Radio checked={item.userGivenCorrectAnswerIndex === i} />}
+                                              control={
+                                                <Radio
+                                                  sx={{ cursor: "default" }}
+                                                  checked={item.userGivenCorrectAnswerIndex === i}
+                                                />
+                                              }
                                               label={
                                                 i === 0
                                                   ? "Option A"
@@ -471,8 +536,14 @@ const QuizreviewIndex = () => {
                                           key={i}
                                           // onChange={() => handleQuizResult(i, item._id)}
                                           value={i}
-                                          control={<Radio checked={item.userGivenCorrectAnswerIndex === i} />}
+                                          control={
+                                            <Radio
+                                              sx={{ cursor: "default" }}
+                                              checked={item.userGivenCorrectAnswerIndex === i}
+                                            />
+                                          }
                                           label={posibleAnswer}
+                                          // sx={{ cursor: "default" }}
                                           // label={item.questionType === "imageInOptions" ? <img /> : posibleAnswer}
                                         />
                                       </Grid>
@@ -511,7 +582,7 @@ const QuizreviewIndex = () => {
                                 fullWidth
                                 disabled
                                 // variant='outlined'
-                                placeholder='Write your thougts...'
+                                // placeholder='Write your thougts...'
                                 defaultValue={item.userGivenText}
                                 // onChange={(e) => handleQuizResultTextField(e.target.value, item._id)}
                                 // onChange={(e) => handleQuizResult(null, item._id, e.target.value, false)}
@@ -545,7 +616,9 @@ const QuizreviewIndex = () => {
                               disabled={user.role === "admin" || user.role === "trainer" ? responses?.reviewer : true}
                               fullWidth
                               // variant='outlined'
-                              placeholder='Write your thoughts...'
+                              placeholder={
+                                user.role === "admin" || user.role === "trainer" ? "Write your thoughts..." : ""
+                              }
                               defaultValue={item.reviewerFeedback}
                               onChange={(e) => handleQuizResultTextField(e.target.value, item._id, false)}
                             />

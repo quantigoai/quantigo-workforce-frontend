@@ -185,7 +185,7 @@ const QuizShow = () => {
             <Typography variant='wpf_h4_Bold'>{quiz.name}</Typography>
           </Grid>
           <Grid container sx={{ paddingLeft: "10%", paddingRight: "10%" }}>
-            <Typography variant='wpf_p3_regular'>Duration : {quiz.duration}</Typography>
+            <Typography variant='wpf_p3_regular'>Pass Mark Threshold : {quiz?.passMarkThreshold}% </Typography>
           </Grid>
         </Box>
         <Box

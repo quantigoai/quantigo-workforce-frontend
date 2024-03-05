@@ -7,48 +7,40 @@
  * Copyright (c) 2023 Tanzim Ahmed
  */
 
-import { Box, styled, TextField, Typography } from '@mui/material';
-import PropTypes from 'prop-types';
-import { Controller, useFormContext } from 'react-hook-form';
+import { Box, styled, TextField, Typography } from "@mui/material";
+import PropTypes from "prop-types";
+import { Controller, useFormContext } from "react-hook-form";
 
 CustomTextField.propTypes = {
   name: PropTypes.string,
   helperText: PropTypes.node,
 };
 export const MyTextField = styled(TextField)(() => ({
-  borderRadius: '5px',
-  padding: '0px 0px 0px 0px',
-  backgroundColor: '#fff',
+  borderRadius: "5px",
+  padding: "0px 0px 0px 0px",
+  backgroundColor: "#fff",
 
-  '& .MuiOutlinedInput-root': {
-    color: '#000',
+  "& .MuiOutlinedInput-root": {
+    color: "#000",
     // height: '45px',
-    borderRadius: '8px',
+    borderRadius: "8px",
   },
-  '& .MuiOutlinedInput-notchedOutline ': {
-    border: '2px solid #E6ECF5 !important',
-    borderRadius: '8px',
+  "& .MuiOutlinedInput-notchedOutline ": {
+    border: "2px solid #E6ECF5 !important",
+    borderRadius: "8px",
   },
-  '& .MuiInputBase-input.Mui-disabled': {
-    WebkitTextFillColor: '#56627a',
+  "& .MuiInputBase-input.Mui-disabled": {
+    WebkitTextFillColor: "#56627a",
   },
-  '& .MuiFormHelperText-root': {
-    color: '#12B76A',
-    '&.Mui-error': {
-      color: '#F04438',
+  "& .MuiFormHelperText-root": {
+    color: "#12B76A",
+    "&.Mui-error": {
+      color: "#F04438",
     },
   },
 }));
 
-export default function CustomTextField({
-  name,
-  label,
-  helperText,
-  isRequired,
-  isNumber,
-  InputProps,
-  ...other
-}) {
+export default function CustomTextField({ name, label, helperText, isRequired, isNumber, InputProps, ...other }) {
   const { control } = useFormContext();
   return (
     <Controller
@@ -58,43 +50,39 @@ export default function CustomTextField({
         return (
           <Box>
             {/* //!! For this special case use color like hex code, this is not standard */}
-            <Typography variant="wpf_p4_medium" color="#3c4d6b">
+            <Typography variant='wpf_p4_medium' color='#3c4d6b'>
               {label}
-              <span style={{ color: '#F04438' }}>{isRequired && '*'}</span>
+              <span style={{ color: "#F04438" }}>{isRequired && "*"}</span>
             </Typography>
 
             <MyTextField
-              size="small"
+              size='small'
               {...field}
-              type={isNumber ? 'number' : 'text'}
+              type={isNumber ? "number" : "text"}
               fullWidth
-              variant="outlined"
+              variant='outlined'
               sx={{
                 mt: 0.3,
-                fontSize: '16px',
-                '& .MuiOutlinedInput-root': {
+                fontSize: "16px",
+                "& .MuiOutlinedInput-root": {
                   height: {
-                    lg: '45px',
-                    xl: '45px',
-                    xxl: '45px',
+                    lg: "45px",
+                    xl: "45px",
+                    xxl: "45px",
                   },
                 },
               }}
-              value={
-                typeof field.value === 'number' && field.value === 0
-                  ? ''
-                  : field.value
-              }
+              value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
               error={!!error}
               helperText={error ? error?.message : helperText}
-              autoComplete="off"
+              autoComplete='off'
               {...other}
               InputProps={{
                 ...InputProps,
                 inputProps: isNumber
                   ? {
                       min: 1,
-                      max: 20,
+                      max: 100,
                     }
                   : {
                       min: 1,

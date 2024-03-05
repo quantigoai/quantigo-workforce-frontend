@@ -1,30 +1,34 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const QuizResultShowIndex = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { result } = useSelector((state) => state.quiz);
   console.log("🚀 ~ QuizResultShowIndex ~ result:", result);
-
+  const navigate = useNavigate();
   const ShowResultField = [
     {
       label: "Correct Answer",
-      value: result.submissionResult.correctAnswer,
+      value: result?.submissionResult?.correctAnswer,
     },
     {
       label: "Wrong Answer",
-      value: result.submissionResult.wrongAnswer,
+      value: result?.submissionResult?.wrongAnswer,
     },
     {
       label: "Pending Answer",
-      value: result.submissionResult.pendingAnswer,
+      value: result?.submissionResult?.pendingAnswer,
     },
     {
       label: "Score",
-      value: Math.floor(result.submissionResult.score),
+      value: result?.submissionResult?.score ? Math.floor(result.submissionResult.score) : "N/A",
     },
   ];
+  const handleChangePage = (id) => {
+    navigate(`/course-homepage/${id}`);
+  };
   return (
     <>
       <Box
@@ -43,16 +47,40 @@ const QuizResultShowIndex = () => {
             // paddingBottom: "3%",
             borderBottom: "2px solid ##F8FAFC",
             display: "flex",
+            paddingLeft: "10%",
+            paddingRight: "10%",
             // justifyContent: "space-between",
             alignItems: "center",
           }}
         >
-          <Grid container>
-            <Grid xs={12} sx={{ paddingLeft: "10%", paddingRight: "10%" }}>
-              <Typography variant='wpf_h4_Bold'>Chapter 1: Quiz Result</Typography>
+          <Grid container sx={{}}>
+            <Grid item xs={9}>
+              <Grid container>
+                <Grid xs={12} sx={{}}>
+                  <Typography variant='wpf_h4_Bold'>Chapter 1: Quiz Result</Typography>
+                </Grid>
+                <Grid xs={12} sx={{}}>
+                  <Typography variant='wpf_p3_regular'>Explore your proficiency with your quiz results </Typography>
+                </Grid>
+              </Grid>
             </Grid>
-            <Grid xs={12} sx={{ paddingLeft: "10%", paddingRight: "10%" }}>
-              <Typography variant='wpf_p3_regular'>Explore your proficiency with your quiz results </Typography>
+            <Grid item xs={3} sx={{ display: "flex", justifyContent: "end" }}>
+              <Button
+                onClick={() => handleChangePage(result.submissionResult.course._id)}
+                sx={{
+                  backgroundColor: "#2E58FF",
+                  color: "#fff",
+                  "&:hover": {
+                    backgroundColor: "#2E58FF",
+                    color: "#fff",
+                  },
+                  borderRadius: "32px",
+                  height: "40px",
+                  padding: "5%",
+                }}
+              >
+                Go Back Course
+              </Button>
             </Grid>
           </Grid>
         </Box>
@@ -61,7 +89,7 @@ const QuizResultShowIndex = () => {
             // height: "82%",
             height: { xl: "77%", xxl: "82%", lg: "75%" },
             paddingLeft: "10%",
-            paddingRight: "10%",
+            paddingRight: "8%",
             // overflow: "auto",
             // scrollbarWidth: "thin",
             // "&::-webkit-scrollbar": {

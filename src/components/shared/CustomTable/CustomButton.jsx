@@ -73,7 +73,11 @@ const CustomButton = ({
               handleClick(params);
             }}
           >
-            <i className="ri-file-list-3-fill"></i>
+            {role === 'reviewer' || role === 'admin' ? (
+              <i className="ri-file-list-3-fill"></i>
+            ) : (
+              <i className="ri-eye-line"></i>
+            )}
           </Button>
         </>
       )}
@@ -138,6 +142,8 @@ const CustomButton = ({
             <i className="ri-eye-line"></i>
           </Button>
         </>
+      ) : pathname === `/submitted/${params.quizId}` ? (
+        <></>
       ) : (
         <Button
           onClick={() => handleProjectDetailsOpen(params)}

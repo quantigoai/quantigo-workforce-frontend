@@ -1,15 +1,25 @@
 import { Box, Button } from '@mui/material';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { getMyCourses } from '../../../../features/slice/courseSlice';
 
-const CoursePageFilter = () => {
+const CoursePageFilter = ({ setAllCourses, setCourseCount }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const handleChangeAllCourse = () => {
     navigate('/course');
   };
   const handleChangeAMyCourse = () => {
-    navigate('/all-course/basic');
+    // navigate('/all-course/basic');
+    dispatch(getMyCourses()).then((action) => {
+      console.log('🚀 ~ dispatch ~ action:', action.payload.data);
+      setCourseCount(action.payload.data.total);
+      setAllCourses(action.payload.data);
+      // setFeatureCourses(action.payload.data.courses.featureCourseList);
+      // setIsDataLoading(false);
+    });
   };
   const handleChangeArchieveCourse = () => {
     navigate('/all-course/basic');
@@ -74,9 +84,7 @@ const CoursePageFilter = () => {
           borderRadius: '8px',
           fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
           fontWeight: '500',
-          backgroundColor: isActive('/all-course/intermediate')
-            ? '#244EF5'
-            : '#FFF',
+          backgroundColor: isActive('/all-course/intermediate') ? '#244EF5' : '#FFF',
           color: isActive('/all-course/intermediate') ? '#fff' : '#667085',
 
           '&:hover': {

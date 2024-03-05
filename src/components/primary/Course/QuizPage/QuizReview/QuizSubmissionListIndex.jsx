@@ -1,10 +1,4 @@
-import {
-  Box,
-  styled,
-  TableCell,
-  tableCellClasses,
-  TableRow,
-} from '@mui/material';
+import { Box, styled, TableCell, tableCellClasses, TableRow } from '@mui/material';
 import React, { useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -14,10 +8,7 @@ import LoadingComponent from '../../../../shared/Loading/LoadingComponent';
 import TableWrapper from '../../../ProjectLIstNew2/ExpTable/TableWrapper';
 import { fieldsListQuiz } from '../../../ProjectLIstNew2/FIlterOptions';
 import PaginationTable from '../../../ProjectLIstNew2/PaginationTable';
-import {
-  HeaderBox,
-  TablePaper,
-} from '../../../ProjectLIstNew2/ProjectLIstIndex2';
+import { HeaderBox, TablePaper } from '../../../ProjectLIstNew2/ProjectLIstIndex2';
 import QuizHeader from './QuizHeader';
 import QuizHeading from './QuizHeading';
 
@@ -55,9 +46,7 @@ const QuizSubmissionListIndex = () => {
   const { id } = params;
   const { course, courseChapters } = useSelector((state) => state.course);
 
-  const filterChapter = courseChapters.filter(
-    (chapter) => chapter?.quiz?.id === id,
-  );
+  const filterChapter = courseChapters.filter((chapter) => chapter?.quiz?.id === id);
 
   const { user } = useSelector((state) => state.user);
 
@@ -119,7 +108,7 @@ const QuizSubmissionListIndex = () => {
         id,
         search,
         ascDescOption: ascDesc,
-      }),
+      })
     ).then((action) => {
       setMyColumn(fieldBuilder(fieldsListQuiz, handleClick, handleDelete));
       setIsDataLoading(false);

@@ -100,19 +100,11 @@ const MiddleTableColumn = ({ row, column, isObjectField }) => {
           <LinkCell data={row[column?.field]} />
         </TableCell>
       );
-    } else if (column.field === 'course') {
+    } else if (column.field === 'score') {
       return (
         <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
           <Typography variant="wpf_p4_regular" color="neutral.700">
-            {row[column?.field].name}
-          </Typography>
-        </TableCell>
-      );
-    } else if (column.field === 'courseChapter') {
-      return (
-        <TableCell align={column.columnDataAlign} key={column.id} component="th" scope="row">
-          <Typography variant="wpf_p4_regular" color="neutral.700">
-            {row[column?.field].name}
+            {Math.round(row[column?.field] || 0)}
           </Typography>
         </TableCell>
       );

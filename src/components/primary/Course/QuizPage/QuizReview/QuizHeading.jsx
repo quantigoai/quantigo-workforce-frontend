@@ -16,9 +16,9 @@ const QuizHeading = ({ course, filterChapter }) => {
     >
       <Box
         sx={{
-          padding: '10px 30px',
+          padding: '10px 10px',
           height: '70px',
-          width: { xxl: '40%', xl: '50%', lg: '50%' },
+          width: { xxl: '100%', xl: '100%', lg: '100%' },
         }}
       >
         <CommonHeader title={filterChapter[0]?.quiz.name} customButton="Create User" />

@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 const QuizResultShowIndex = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { result } = useSelector((state) => state.quiz);
+  const { activeChapterIndex } = useSelector((state) => state.activePath);
+  console.log("🚀 ~ QuizResultShowIndex ~ activeChapterIndex:", activeChapterIndex);
+
   console.log("🚀 ~ QuizResultShowIndex ~ result:", result);
   const navigate = useNavigate();
   const ShowResultField = [
@@ -23,7 +26,12 @@ const QuizResultShowIndex = () => {
     },
     {
       label: "Score",
-      value: result?.submissionResult?.score ? Math.floor(result.submissionResult.score) : "N/A",
+      value:
+        result?.submissionResult?.score === 0
+          ? "0"
+          : result?.submissionResult?.score > 0
+          ? Math.floor(result.submissionResult.score)
+          : "N/A",
     },
   ];
   const handleChangePage = (id) => {
@@ -57,10 +65,10 @@ const QuizResultShowIndex = () => {
             <Grid item xs={9}>
               <Grid container>
                 <Grid xs={12} sx={{}}>
-                  <Typography variant='wpf_h4_Bold'>Chapter 1: Quiz Result</Typography>
+                  <Typography variant='wpf_h4_Bold'>Chapter {activeChapterIndex}: Quiz Result</Typography>
                 </Grid>
                 <Grid xs={12} sx={{}}>
-                  <Typography variant='wpf_p3_regular'>Explore your proficiency with your quiz results </Typography>
+                  <Typography variant='wpf_p3_regular'>{result?.submissionResult?.courseChapter?.name} </Typography>
                 </Grid>
               </Grid>
             </Grid>

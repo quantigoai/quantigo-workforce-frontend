@@ -176,16 +176,22 @@ const QuizShow = () => {
             height: { xl: "23%", xxl: "18%", lg: "25%" },
             // paddingLeft: "10%",
             // paddingRight: "10%",
-            paddingTop: "1%",
-            paddingBottom: "3%",
+            // paddingTop: "1%",
+            // paddingBottom: "3%",
+            display: "flex",
+            // justifyContent: "center",
+            // alignContent: "center",
+            alignItems: "center",
             borderBottom: "2px solid ##F8FAFC",
           }}
         >
-          <Grid container sx={{ paddingLeft: "10%", paddingRight: "10%" }}>
-            <Typography variant='wpf_h4_Bold'>{quiz.name}</Typography>
-          </Grid>
-          <Grid container sx={{ paddingLeft: "10%", paddingRight: "10%" }}>
-            <Typography variant='wpf_p3_regular'>Pass Mark Threshold : {quiz?.passMarkThreshold}% </Typography>
+          <Grid container>
+            <Grid item xs={12} sx={{ paddingLeft: "10%", paddingRight: "10%" }}>
+              <Typography variant='wpf_h4_Bold'>{quiz.name}</Typography>
+            </Grid>
+            <Grid item xs={12} sx={{ paddingLeft: "10%", paddingRight: "10%" }}>
+              <Typography variant='wpf_p3_regular'>Pass Mark Threshold : {quiz?.passMarkThreshold}% </Typography>
+            </Grid>
           </Grid>
         </Box>
         <Box
@@ -510,8 +516,8 @@ const QuizShow = () => {
                   backgroundColor: "#2D58FF",
                   color: "#FFFFFF",
                   "&:hover": {
-                    backgroundColor: "#FF9A45",
-                    color: "#1D1D1D",
+                    backgroundColor: "#244EF5",
+                    color: "#FFFFFF",
                   },
                 }}
                 onClick={handleQuizSubmit}

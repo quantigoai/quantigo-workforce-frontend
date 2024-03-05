@@ -342,7 +342,9 @@ const ChapterViewIndex = () => {
                 },
                 color: 'white',
                 '&:hover': {
-                  background: '#244EF5',
+                  background: '#31A373',
+                  color:"#fff"
+
                 },
 
                 padding: '16px 10px',

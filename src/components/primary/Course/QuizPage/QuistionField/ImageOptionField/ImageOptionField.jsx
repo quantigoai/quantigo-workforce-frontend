@@ -1,7 +1,8 @@
 import { Box, Checkbox, Grid, styled, Typography } from '@mui/material';
 import React, { useState } from 'react';
+// import { RadioOption } from '../BasicOptionField';
 import ImageUploadIndex from './ImageUploadIndex';
-import { RadioOption } from '../BasicOptionField';
+import { RadioOption } from '../basicOptionDesign';
 
 const BpIcon = styled('span')(({ theme }) => ({
   borderRadius: '50%',
@@ -25,13 +26,17 @@ const BpIcon = styled('span')(({ theme }) => ({
   },
   'input:disabled ~ &': {
     boxShadow: 'none',
-    background: theme.palette.mode === 'dark' ? 'rgba(57,75,89,.5)' : 'rgba(206,217,224,.5)',
+    background:
+      theme.palette.mode === 'dark'
+        ? 'rgba(57,75,89,.5)'
+        : 'rgba(206,217,224,.5)',
   },
 }));
 
 const BpCheckedIcon = styled(BpIcon)({
   backgroundColor: '#2E58FF',
-  backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
+  backgroundImage:
+    'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
   '&::before': {
     display: 'block',
     width: 20,
@@ -43,7 +48,13 @@ const BpCheckedIcon = styled(BpIcon)({
     backgroundColor: '#106ba3',
   },
 });
-const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUpdate, update }) => {
+const ImageOptionField = ({
+  handleChangeInput,
+  inputField,
+  inputFields,
+  handleUpdate,
+  update,
+}) => {
   // console.log('🚀 ~ ImageOptionField ~ inputField:', inputField);
   const [coverImageFile, setCoverImageFile] = useState([]);
   const [coverImage1, setCoverImage1] = useState(null);
@@ -183,12 +194,17 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
         </Box>
         {update ? (
           <>
-            {' '}
             <Grid container spacing={1}>
               <Grid item xs={3}>
                 <RadioOption
                   checked={checkValue === 0}
-                  onChange={(event) => handleCorrectAnswerChange(event, 0, inputField.possibleAnswers[0])}
+                  onChange={(event) =>
+                    handleCorrectAnswerChange(
+                      event,
+                      0,
+                      inputField.possibleAnswers[0],
+                    )
+                  }
                   checkedIcon={<BpCheckedIcon />}
                   icon={<BpIcon />}
                 />
@@ -214,7 +230,13 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
               <Grid item xs={3}>
                 <RadioOption
                   checked={checkValue === 1}
-                  onChange={(event) => handleCorrectAnswerChange(event, 1, inputField.possibleAnswers[1])}
+                  onChange={(event) =>
+                    handleCorrectAnswerChange(
+                      event,
+                      1,
+                      inputField.possibleAnswers[1],
+                    )
+                  }
                   checkedIcon={<BpCheckedIcon />}
                   icon={<BpIcon />}
                 />
@@ -239,7 +261,13 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
               <Grid item xs={3}>
                 <RadioOption
                   checked={checkValue === 2}
-                  onChange={(event) => handleCorrectAnswerChange(event, 2, inputField.possibleAnswers[2])}
+                  onChange={(event) =>
+                    handleCorrectAnswerChange(
+                      event,
+                      2,
+                      inputField.possibleAnswers[2],
+                    )
+                  }
                   checkedIcon={<BpCheckedIcon />}
                   icon={<BpIcon />}
                 />
@@ -264,7 +292,13 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
               <Grid item xs={3}>
                 <RadioOption
                   checked={checkValue === 3}
-                  onChange={(event) => handleCorrectAnswerChange(event, 3, inputField.possibleAnswers[3])}
+                  onChange={(event) =>
+                    handleCorrectAnswerChange(
+                      event,
+                      3,
+                      inputField.possibleAnswers[3],
+                    )
+                  }
                   checkedIcon={<BpCheckedIcon />}
                   icon={<BpIcon />}
                 />
@@ -290,12 +324,17 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
           </>
         ) : (
           <>
-            {' '}
             <Grid container spacing={1}>
               <Grid item xs={3}>
                 <RadioOption
                   checked={inputField?.correctAnswerIndex === 0}
-                  onChange={(event) => handleCorrectAnswerChange(event, 0, inputField.possibleAnswers[0])}
+                  onChange={(event) =>
+                    handleCorrectAnswerChange(
+                      event,
+                      0,
+                      inputField.possibleAnswers[0],
+                    )
+                  }
                   checkedIcon={<BpCheckedIcon />}
                   icon={<BpIcon />}
                 />
@@ -319,7 +358,13 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
               <Grid item xs={3}>
                 <RadioOption
                   checked={inputField?.correctAnswerIndex === 1}
-                  onChange={(event) => handleCorrectAnswerChange(event, 1, inputField.possibleAnswers[1])}
+                  onChange={(event) =>
+                    handleCorrectAnswerChange(
+                      event,
+                      1,
+                      inputField.possibleAnswers[1],
+                    )
+                  }
                   checkedIcon={<BpCheckedIcon />}
                   icon={<BpIcon />}
                 />
@@ -342,7 +387,13 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
               <Grid item xs={3}>
                 <RadioOption
                   checked={inputField?.correctAnswerIndex === 2}
-                  onChange={(event) => handleCorrectAnswerChange(event, 2, inputField.possibleAnswers[2])}
+                  onChange={(event) =>
+                    handleCorrectAnswerChange(
+                      event,
+                      2,
+                      inputField.possibleAnswers[2],
+                    )
+                  }
                   checkedIcon={<BpCheckedIcon />}
                   icon={<BpIcon />}
                 />
@@ -365,7 +416,13 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
               <Grid item xs={3}>
                 <RadioOption
                   checked={inputField?.correctAnswerIndex === 3}
-                  onChange={(event) => handleCorrectAnswerChange(event, 3, inputField.possibleAnswers[3])}
+                  onChange={(event) =>
+                    handleCorrectAnswerChange(
+                      event,
+                      3,
+                      inputField.possibleAnswers[3],
+                    )
+                  }
                   checkedIcon={<BpCheckedIcon />}
                   icon={<BpIcon />}
                 />

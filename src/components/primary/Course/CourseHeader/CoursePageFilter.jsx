@@ -39,7 +39,6 @@ const CoursePageFilter = ({
     // navigate('/all-course/basic');
     setIsActiveEnrolled(false);
     dispatch(getMyCourses({ filter, search })).then((action) => {
-      console.log('🚀 ~ dispatch ~ action:', action);
       setCourseCount(action.payload.data.searchedTotal);
       setAllCourses(action.payload.data);
       setIsDataLoading(false);
@@ -51,13 +50,12 @@ const CoursePageFilter = ({
   const handleChangeArchieveCourse = () => {
     // setIsActiveEnrolled(false);
     dispatch(getArchivedCourses({ filter, search })).then((action) => {
-      console.log('hit3');
       if (action.payload?.data) {
         setCourseCount(action.payload?.data?.total);
         setAllCourses(action.payload.data);
         setIsDataLoading(false);
       } else {
-        console.log('error');
+        setAllCourses([]);
       }
     });
 

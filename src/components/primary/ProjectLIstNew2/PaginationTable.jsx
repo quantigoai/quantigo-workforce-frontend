@@ -21,7 +21,16 @@ const paginationOptions = [
  * @param {function} handleChangePagination - A callback function invoked when pagination changes.
  * @returns {JSX.Element} - Pagination component for the table.
  */
-const PaginationTable = ({ pagination, setPagination, setFilterValue, setFilteredCol, quizMeta, submission }) => {
+const PaginationTable = ({
+  pagination,
+  setPagination,
+  setFilterValue,
+  setFilteredCol,
+  quizMeta,
+  submission,
+  courseMeta,
+  totalCourse,
+}) => {
   const { myWorkHistoryCount, usersWorkHistoryCount, projectMeta, workHistoryMeta } = useSelector(
     (state) => state.projectDrawer
   );
@@ -34,8 +43,10 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
   const { projectDirectory, totalDirectory, directoryMeta } = useSelector((state) => state.projectDirectory);
 
   const [meta, setMeta] = useState(projectMeta);
+  console.log('🚀 ~ meta:', meta);
 
   const { pathname } = useLocation();
+  console.log('🚀 ~ pathname:', pathname);
 
   useEffect(() => {
     if (pathname === '/allprojects') {
@@ -53,7 +64,10 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
     if (pathname === `/submitted/${id}`) {
       setMeta(quizMeta);
     }
-  }, [pathname, projectMeta, userMeta, workHistoryMeta, directoryMeta, quizMeta]);
+    if (pathname === `/course`) {
+      setMeta(courseMeta);
+    }
+  }, [pathname, projectMeta, userMeta, workHistoryMeta, directoryMeta, quizMeta, courseMeta]);
   const navigate = useNavigate();
   const [params] = useSearchParams();
 
@@ -78,7 +92,8 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
         pathname === '/allprojects' ||
         pathname === `/projectDetails/${id}` ||
         pathname === '/projectDirectory' ||
-        pathname === `/submitted/${id}`
+        pathname === `/submitted/${id}` ||
+        pathname === `/course`
       ) {
         setPagination((prevPagination) => ({
           ...prevPagination,
@@ -147,7 +162,10 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
     if (pathname === `/submitted/${id}`) {
       setTotalPages(Math.ceil(submission?.total / pagination.pageSize));
     }
-  }, [total, totalUsers, usersWorkHistoryCount, meta, submission]);
+    if (pathname === `/course`) {
+      setTotalPages(Math.ceil(submission?.total / pagination.pageSize));
+    }
+  }, [total, totalUsers, usersWorkHistoryCount, meta, submission, totalCourse]);
   const visiblePageCount = 5;
   const firstVisiblePage = Math.max(0, pagination.currentPage - Math.floor(visiblePageCount / 2));
   const lastVisiblePage = Math.min(totalPages - 1, firstVisiblePage + visiblePageCount - 1);
@@ -159,7 +177,7 @@ const PaginationTable = ({ pagination, setPagination, setFilterValue, setFiltere
   const disablePrev = pagination.currentPage === 0;
   const disableNext = pagination.currentPage >= totalPages - 1;
 
-  const approvedPaths = ['/allprojects', '/all-users', '/projectDirectory', '/submitted'];
+  const approvedPaths = ['/allprojects', '/all-users', '/projectDirectory', '/submitted', '/course'];
 
   const approvedData = [
     myWorkHistoryCount,

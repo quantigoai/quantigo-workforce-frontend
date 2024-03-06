@@ -1,8 +1,8 @@
 import { Box, Paper, Typography, styled } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getAllCourses } from '../../../features/slice/courseSlice';
+import { getAllCourses, getArchivedCourses, getMyCourses } from '../../../features/slice/courseSlice';
 import { getAllSkills } from '../../../features/slice/skillSlice';
 import LoadingSkeleton from '../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton';
 import LoadingComponent from '../../shared/Loading/LoadingComponent';
@@ -80,10 +80,44 @@ const CourseAllPage = () => {
   const { level } = useParams();
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const [isActiveAll, setIsActiveAll] = useState(true);
+  const [isActiveEnrolled, setIsActiveEnrolled] = useState(false);
+  const [isActiveArchived, setIsActiveArchived] = useState(false);
+  const [allCount, setAllCount] = useState(0);
+  const [MyCourseCount, setMyCourseCount] = useState(0);
+  const [ArchiveCount, setArchiveCount] = useState(0);
+
+  useEffect(() => {
+    dispatch(getMyCourses({})).then((action) => {
+      setMyCourseCount(action.payload.data.searchedTotal);
+    });
+    dispatch(getArchivedCourses({})).then((action) => {
+      setArchiveCount(action.payload.data.searchedTotal);
+    });
+    dispatch(getAllCourses({})).then((action) => {
+      setAllCount(action.payload.data.count);
+      // setAllCourses(action.payload.data.courses);
+      // setFeatureCourses(action.payload.data.courses.featureCourseList);
+      // setIsDataLoading(false);
+    });
+  }, [MyCourseCount, ArchiveCount, allCount]);
 
   useEffect(() => {
     // dispatch(setActivePath('Course'));
     dispatch(getAllSkills());
+    if (isActiveEnrolled) {
+      dispatch(getMyCourses({ filter, search })).then((action) => {
+        setCourseCountFull(action.payload.data.searchedTotal);
+        setAllCoursesFull(action.payload.data.enrolledCourses);
+        setIsDataLoading(false);
+      });
+    } else if (isActiveArchived) {
+      dispatch(getArchivedCourses({ filter, search })).then((action) => {
+        setCourseCountFull(action.payload.data.total);
+        setAllCoursesFull(action.payload.data.archivedCourses);
+        setIsDataLoading(false);
+      });
+    }
     dispatch(getAllCourses({ level: level, search, filter })).then((action) => {
       setAllCoursesFull(action.payload.data.courses);
       setCourseCountFull(action.payload.data.count);
@@ -98,9 +132,11 @@ const CourseAllPage = () => {
       ) : (
         <Box
           className="content"
-          sx={{
-            // pl: '30px',
-          }}
+          sx={
+            {
+              // pl: '30px',
+            }
+          }
         >
           <Box className="contentHeader">
             <CourseHeader
@@ -124,6 +160,18 @@ const CourseAllPage = () => {
               handleFilterCourse={handleFilterCourse}
               level={level}
               role={user.role}
+              setAllCourses={setAllCoursesFull}
+              setCourseCount={setCourseCountFull}
+              setIsDataLoading={setIsDataLoading}
+              isActiveAll={isActiveAll}
+              setIsActiveAll={setIsActiveAll}
+              isActiveEnrolled={isActiveEnrolled}
+              setIsActiveEnrolled={setIsActiveEnrolled}
+              isActiveArchived={isActiveArchived}
+              setIsActiveArchived={setIsActiveArchived}
+              MyCourseCount={MyCourseCount}
+              ArchiveCount={ArchiveCount}
+              allCount={allCount}
             />
           </Box>
           <CoursePaper>
@@ -137,9 +185,7 @@ const CourseAllPage = () => {
                   {role === '' ? (
                     <></>
                   ) : (
-                    <Box
-                    sx={{ padding: '30px' }}
-                    >
+                    <Box sx={{ padding: '30px' }}>
                       <Typography variant="wpf_h4_Bold" color={'neutral.995'}>
                         {level === 'basic'
                           ? 'Basic Courses'
@@ -166,9 +212,7 @@ const CourseAllPage = () => {
                       >
                         {allCoursesFull.length === 0 ? (
                           <>
-                            <Typography variant="wpf_h6_semiBold">
-                              No course Found
-                            </Typography>
+                            <Typography variant="wpf_h6_semiBold">No course Found</Typography>
                           </>
                         ) : (
                           allCoursesFull?.map((course) => (
@@ -186,14 +230,8 @@ const CourseAllPage = () => {
                             >
                               <CustomCard
                                 level={level}
-                                courseDirection={
-                                  user.enrolledCourses.includes(course._id)
-                                    ? 'MyCourse'
-                                    : 'all'
-                                }
-                                handleViewDetailsButton={
-                                  handleViewDetailsButton
-                                }
+                                courseDirection={user.enrolledCourses.includes(course._id) ? 'MyCourse' : 'all'}
+                                handleViewDetailsButton={handleViewDetailsButton}
                                 course={course}
                               />
                             </Box>

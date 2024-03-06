@@ -20,6 +20,7 @@ const CustomButton = ({
   handleReject,
   handleOpenNDA,
 }) => {
+  console.log('🚀 ~ params:', params.submissionStatus);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -74,7 +75,11 @@ const CustomButton = ({
             }}
           >
             {role === 'reviewer' || role === 'admin' ? (
-              <i className="ri-file-list-3-fill"></i>
+              params.submissionStatus === 'pending' ? (
+                <i className="ri-file-list-3-fill"></i>
+              ) : (
+                <i className="ri-eye-line"></i>
+              )
             ) : (
               <i className="ri-eye-line"></i>
             )}

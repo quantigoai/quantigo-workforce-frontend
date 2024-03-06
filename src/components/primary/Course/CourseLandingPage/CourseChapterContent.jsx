@@ -6,7 +6,7 @@ import CourseChapterAccordion from "./CourseChapterAccordion";
 import { getAllCourseSeries } from "../../../../features/slice/courseSlice";
 import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 
-const CourseChapterContent = ({ course,handleViewDetailsButton }) => {
+const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { courseChapters } = useSelector((state) => state.course);
   const [coursesSeries, setCoursesSeries] = useState([]);
@@ -100,7 +100,7 @@ const CourseChapterContent = ({ course,handleViewDetailsButton }) => {
                   </Typography>
                   <br />
                   <Typography variant='wpf_p4_regular' color={"grey.700"}>
-                    40 minutes
+                    {item?.totalTimeToRead} minutes
                   </Typography>
                 </Grid>
                 <Grid item xs={2} sx={{ px: "2%", alignItems: "center", justifyContent: "end", display: "flex" }}>

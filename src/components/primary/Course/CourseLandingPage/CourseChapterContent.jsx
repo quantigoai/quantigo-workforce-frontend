@@ -34,7 +34,7 @@ const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
     <Box>
       <Box>
         <Typography variant={"wpf_h5_Bold"} color='neutral.995'>
-          Professional Certificate - 6 course series
+          Professional Certificate - {coursesSeries?.length} course series
         </Typography>
         <br />
         <Box sx={{ mt: "8px" }}>

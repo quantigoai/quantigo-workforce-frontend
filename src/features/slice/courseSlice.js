@@ -82,9 +82,42 @@ export const getAllCoursesNew = createAsyncThunk('coursesNew', async (data) => {
     throw new Error(error.response.data.message);
   }
 });
-export const getMyCourses = createAsyncThunk('myCourses', async () => {
+export const getMyCourses = createAsyncThunk('myCourses', async (data) => {
+  const { filter, search, pagination } = data;
   try {
-    return await axios.get(`${url}/courses/get-my-enrolled-course`, {
+    let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
+
+    if (search) {
+      query += `search=${search}`;
+    }
+    const filterOptions = filter && Object.keys(filter);
+    if (filterOptions) {
+      // query += `&${filter}=${search}`;
+      filterOptions.map((f) => (query += `&${f}=${filter[f]}`));
+    }
+    return await axios.get(`${url}/courses/get-my-enrolled-course?${query}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+export const getArchivedCourses = createAsyncThunk('archivedCourses', async (data) => {
+  const { filter, search, pagination } = data;
+  try {
+    let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
+
+    if (search) {
+      query += `search=${search}`;
+    }
+    const filterOptions = filter && Object.keys(filter);
+    if (filterOptions) {
+      // query += `&${filter}=${search}`;
+      filterOptions.map((f) => (query += `&${f}=${filter[f]}`));
+    }
+    return await axios.get(`${url}/courses/get-my-archived-course?${query}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -381,6 +414,17 @@ const courseSlice = createSlice({
         // state.courses = action.payload.data.courses;
       })
       .addCase(getMyCourses.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = 'Login failed';
+      })
+      .addCase(getArchivedCourses.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getArchivedCourses.fulfilled, (state, action) => {
+        state.isLoading = false;
+        // state.courses = action.payload.data.courses;
+      })
+      .addCase(getArchivedCourses.rejected, (state, action) => {
         state.isLoading = false;
         state.error = 'Login failed';
       })

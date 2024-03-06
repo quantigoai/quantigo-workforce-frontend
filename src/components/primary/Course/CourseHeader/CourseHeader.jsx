@@ -29,6 +29,17 @@ const CourseHeader = ({
   role,
   setAllCourses,
   setCourseCount,
+  setIsDataLoading,
+  setFeatureCourses,
+  isActiveAll,
+  setIsActiveAll,
+  isActiveEnrolled,
+  setIsActiveEnrolled,
+  isActiveArchived,
+  setIsActiveArchived,
+  MyCourseCount,
+  ArchiveCount,
+  allCount,
 }) => {
   return (
     <>
@@ -71,7 +82,24 @@ const CourseHeader = ({
           role === 'level_1_annotator' ||
           role === 'level_2_annotator' ||
           role === 'level_3_annotator' ? (
-            <CoursePageFilter setCourseCount={setCourseCount} setAllCourses={setAllCourses} />
+            <CoursePageFilter
+              search={search}
+              filter={filter}
+              setIsDataLoading={setIsDataLoading}
+              setFeatureCourses={setFeatureCourses}
+              courseCount={courseCount}
+              setCourseCount={setCourseCount}
+              setAllCourses={setAllCourses}
+              isActiveAll={isActiveAll}
+              setIsActiveAll={setIsActiveAll}
+              isActiveEnrolled={isActiveEnrolled}
+              setIsActiveEnrolled={setIsActiveEnrolled}
+              isActiveArchived={isActiveArchived}
+              setIsActiveArchived={setIsActiveArchived}
+              MyCourseCount={MyCourseCount}
+              ArchiveCount={ArchiveCount}
+              allCount={allCount}
+            />
           ) : (
             <></>
           )}

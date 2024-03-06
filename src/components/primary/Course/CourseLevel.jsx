@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import CustomCard from './CustomCard';
 
-const CourseLevel = ({ title, courses, handleViewDetailsButton }) => {
+const CourseLevel = ({ title, courses, handleViewDetailsButton, seeMore }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -33,24 +33,25 @@ const CourseLevel = ({ title, courses, handleViewDetailsButton }) => {
         <Typography variant="wpf_h4_Bold" color={'neutral.995'}>
           {title}
         </Typography>
-        <Typography
-          onClick={handleSeeMore}
-          sx={{
-            display: 'flex',
-            cursor: 'pointer',
-            justifyContent: 'center',
-            alignItems: 'center',
-            color: '#266AED',
-            // mr: { xxl: '20px', xl: '0px', lg: '' },
-          }}
-          variant="wpf_p3_medium_3"
-        >
-          See more
-          <ArrowForwardIosIcon
-            sx={{ fontSize: '12px', ml: '5px', mt: '2px' }}
-          />
-        </Typography>
+        {seeMore && (
+          <Typography
+            onClick={handleSeeMore}
+            sx={{
+              display: 'flex',
+              cursor: 'pointer',
+              justifyContent: 'center',
+              alignItems: 'center',
+              color: '#266AED',
+              // mr: { xxl: '20px', xl: '0px', lg: '' },
+            }}
+            variant="wpf_p3_medium_3"
+          >
+            See more
+            <ArrowForwardIosIcon sx={{ fontSize: '12px', ml: '5px', mt: '2px' }} />
+          </Typography>
+        )}
       </Box>
+
       <Box
         sx={{
           display: 'grid',
@@ -75,9 +76,7 @@ const CourseLevel = ({ title, courses, handleViewDetailsButton }) => {
             key={course._id}
           >
             <CustomCard
-              courseDirection={
-                user.enrolledCourses.includes(course._id) ? 'MyCourse' : 'all'
-              }
+              courseDirection={user.enrolledCourses.includes(course._id) ? 'MyCourse' : 'all'}
               handleViewDetailsButton={handleViewDetailsButton}
               course={course}
             />

@@ -1,30 +1,69 @@
 import { Box, Button } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getMyCourses } from '../../../../features/slice/courseSlice';
+import { getAllCoursesNew, getArchivedCourses, getMyCourses } from '../../../../features/slice/courseSlice';
 
-const CoursePageFilter = ({ setAllCourses, setCourseCount }) => {
-  const navigate = useNavigate();
-  const location = useLocation();
+const CoursePageFilter = ({
+  setAllCourses,
+  setCourseCount,
+  search,
+  filter,
+  setIsDataLoading,
+  setFeatureCourses,
+  isActiveAll,
+  setIsActiveAll,
+  isActiveEnrolled,
+  setIsActiveEnrolled,
+  isActiveArchived,
+  setIsActiveArchived,
+  courseCount,
+  MyCourseCount,
+  ArchiveCount,
+  allCount,
+}) => {
   const dispatch = useDispatch();
+
   const handleChangeAllCourse = () => {
-    navigate('/course');
+    dispatch(getAllCoursesNew({ filter, search })).then((action) => {
+      setCourseCount(action.payload.data.courses.count);
+      setAllCourses(action.payload.data.courses);
+      setFeatureCourses(action.payload.data.courses.featureCourseList);
+      setIsDataLoading(false);
+    });
+    setIsActiveAll(true);
+    setIsActiveEnrolled(false);
+    setIsActiveArchived(false);
   };
   const handleChangeAMyCourse = () => {
     // navigate('/all-course/basic');
-    dispatch(getMyCourses()).then((action) => {
-      console.log('🚀 ~ dispatch ~ action:', action.payload.data);
-      setCourseCount(action.payload.data.total);
+    setIsActiveEnrolled(false);
+    dispatch(getMyCourses({ filter, search })).then((action) => {
+      setCourseCount(action.payload.data.searchedTotal);
       setAllCourses(action.payload.data);
-      // setFeatureCourses(action.payload.data.courses.featureCourseList);
-      // setIsDataLoading(false);
+      setIsDataLoading(false);
     });
+    setIsActiveEnrolled(true);
+    setIsActiveAll(false);
+    setIsActiveArchived(false);
   };
   const handleChangeArchieveCourse = () => {
-    navigate('/all-course/basic');
+    // setIsActiveEnrolled(false);
+    dispatch(getArchivedCourses({ filter, search })).then((action) => {
+      if (action.payload?.data) {
+        setCourseCount(action.payload?.data?.total);
+        setAllCourses(action.payload.data);
+        setIsDataLoading(false);
+      } else {
+        setAllCourses([]);
+      }
+    });
+
+    setIsActiveAll(false);
+    setIsActiveEnrolled(false);
+    setIsActiveArchived(true);
   };
-  const isActive = (path) => location.pathname === path;
+
   return (
     <Box
       sx={{
@@ -42,8 +81,8 @@ const CoursePageFilter = ({ setAllCourses, setCourseCount }) => {
 
           textTransform: 'none',
           borderRadius: '8px',
-          backgroundColor: isActive('/course') ? '#244EF5' : '#FFF',
-          color: isActive('/course') ? '#fff' : '#667085',
+          backgroundColor: isActiveAll ? '#244EF5' : '#FFF',
+          color: isActiveAll ? '#fff' : '#667085',
 
           fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
           fontWeight: '500',
@@ -53,7 +92,7 @@ const CoursePageFilter = ({ setAllCourses, setCourseCount }) => {
           },
         }}
       >
-        All Courses(32)
+        All Courses({allCount})
       </Button>
       <Button
         onClick={handleChangeAMyCourse}
@@ -63,8 +102,8 @@ const CoursePageFilter = ({ setAllCourses, setCourseCount }) => {
           borderRadius: '8px',
           fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
           fontWeight: '500',
-          backgroundColor: isActive('/all-course/basic') ? '#244EF5' : '#FFF',
-          color: isActive('/all-course/basic') ? '#fff' : '#667085',
+          backgroundColor: isActiveEnrolled ? '#244EF5' : '#FFF',
+          color: isActiveEnrolled ? '#fff' : '#667085',
 
           '&:hover': {
             background: '#244EF5',
@@ -72,7 +111,7 @@ const CoursePageFilter = ({ setAllCourses, setCourseCount }) => {
           },
         }}
       >
-        My Courses(32)
+        My Courses({MyCourseCount})
       </Button>
 
       <Button
@@ -84,8 +123,8 @@ const CoursePageFilter = ({ setAllCourses, setCourseCount }) => {
           borderRadius: '8px',
           fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
           fontWeight: '500',
-          backgroundColor: isActive('/all-course/intermediate') ? '#244EF5' : '#FFF',
-          color: isActive('/all-course/intermediate') ? '#fff' : '#667085',
+          backgroundColor: isActiveArchived ? '#244EF5' : '#FFF',
+          color: isActiveArchived ? '#fff' : '#667085',
 
           '&:hover': {
             background: '#244EF5',
@@ -93,7 +132,7 @@ const CoursePageFilter = ({ setAllCourses, setCourseCount }) => {
           },
         }}
       >
-        Archived Courses (03)
+        Archived Courses ({ArchiveCount})
       </Button>
     </Box>
   );

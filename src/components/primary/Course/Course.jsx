@@ -8,10 +8,10 @@
  */
 import { Paper, Typography, styled } from '@mui/material';
 import Box from '@mui/material/Box';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setActivePath } from '../../../features/slice/activePathSlice';
-import { getAllCourses, getAllCoursesNew } from '../../../features/slice/courseSlice';
+import { getAllCourses, getAllCoursesNew, getArchivedCourses, getMyCourses } from '../../../features/slice/courseSlice';
 import { getAllSkills } from '../../../features/slice/skillSlice';
 import LoadingSkeleton from '../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton';
 import LoadingComponent from '../../shared/Loading/LoadingComponent';
@@ -20,6 +20,7 @@ import CourseLevel from './CourseLevel';
 import CourseCreateModal from './CreateCourseModal/CourseCreateModal';
 import FeaturedCourse from './FeaturedCourse';
 import useCourseManagement from './hooks/createCourseHook/useCourseMangement';
+import PaginationTable from '../ProjectLIstNew2/PaginationTable';
 
 const Course = () => {
   const {
@@ -75,13 +76,23 @@ const Course = () => {
     anchorE2,
     allCourses,
     setAllCourses,
+    isActiveAll,
+    setIsActiveAll,
+    isActiveEnrolled,
+    setIsActiveEnrolled,
+    isActiveArchived,
+    setIsActiveArchived,
   } = useCourseManagement();
-  console.log('🚀 ~ Course ~ allCourses:', allCourses);
+
+  const [myCourseMeta, setMyCourseMeta] = useState({});
 
   // const [basicCourses,setBasicCourses]=useState([])
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-
+  const [pagination, setPagination] = useState({
+    currentPage: 0,
+    pageSize: 10,
+  });
   const CoursePaper = styled(Paper)({
     width: '100%',
     height: '90%',
@@ -94,6 +105,25 @@ const Course = () => {
     backgroundColor: isLightTheme ? '#F2F6FC' : '#212121',
     boxShadow: '0px 1px 3px 0px #09008014',
   });
+  const [allCount, setAllCount] = useState(0);
+  const [MyCourseCount, setMyCourseCount] = useState(0);
+  const [ArchiveCount, setArchiveCount] = useState(0);
+
+  useEffect(() => {
+    dispatch(getMyCourses({ pagination })).then((action) => {
+      setMyCourseCount(action.payload.data.searchedTotal);
+    });
+    // dispatch(getArchivedCourses({ pagination })).then((action) => {
+    //   console.log('hit1');
+    //   setArchiveCount(action.payload.data.searchedTotal);
+    // });
+    dispatch(getAllCoursesNew({})).then((action) => {
+      setAllCount(action.payload.data.courses.count);
+      // setAllCourses(action.payload.data.courses);
+      // setFeatureCourses(action.payload.data.courses.featureCourseList);
+      // setIsDataLoading(false);
+    });
+  }, [MyCourseCount, ArchiveCount, allCount]);
 
   useEffect(() => {
     dispatch(setActivePath('Course'));
@@ -101,13 +131,31 @@ const Course = () => {
     dispatch(getAllCourses()).then(() => {
       setIsDataLoading(false);
     });
-    dispatch(getAllCoursesNew({ filter, search })).then((action) => {
-      setCourseCount(action.payload.data.courses.count);
-      setAllCourses(action.payload.data.courses);
-      setFeatureCourses(action.payload.data.courses.featureCourseList);
-      setIsDataLoading(false);
-    });
-  }, [search]);
+
+    if (isActiveEnrolled) {
+      dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
+        setCourseCount(action.payload.data.searchedTotal);
+        setAllCourses(action.payload.data);
+        setMyCourseMeta(action.payload.data.meta);
+        setIsDataLoading(false);
+      });
+    } else if (isActiveArchived) {
+      dispatch(getArchivedCourses({ filter, search, pagination })).then((action) => {
+        console.log('hit2');
+        setCourseCount(action.payload.data.total);
+        setAllCourses(action.payload.data);
+        setMyCourseMeta(action.payload.data.meta);
+        setIsDataLoading(false);
+      });
+    } else {
+      dispatch(getAllCoursesNew({ filter, search })).then((action) => {
+        setCourseCount(action.payload.data.courses.count);
+        setAllCourses(action.payload.data.courses);
+        setFeatureCourses(action.payload.data.courses.featureCourseList);
+        setIsDataLoading(false);
+      });
+    }
+  }, [search, isActiveEnrolled, pagination]);
 
   return (
     <>
@@ -145,6 +193,17 @@ const Course = () => {
               handleFilterCourse={handleFilterCourse}
               setAllCourses={setAllCourses}
               setCourseCount={setCourseCount}
+              setIsDataLoading={setIsDataLoading}
+              setFeatureCourses={setFeatureCourses}
+              isActiveAll={isActiveAll}
+              setIsActiveAll={setIsActiveAll}
+              isActiveEnrolled={isActiveEnrolled}
+              setIsActiveEnrolled={setIsActiveEnrolled}
+              isActiveArchived={isActiveArchived}
+              setIsActiveArchived={setIsActiveArchived}
+              MyCourseCount={MyCourseCount}
+              ArchiveCount={ArchiveCount}
+              allCount={allCount}
             />
           </Box>
           <CoursePaper>
@@ -166,15 +225,27 @@ const Course = () => {
                       ) : (
                         <>
                           <Box sx={{ paddingLeft: '30px' }}>
-                            <FeaturedCourse
-                              courses={featureCourses}
-                              handleViewDetailsButton={handleViewDetailsButton}
-                            />
+                            {isActiveEnrolled ||
+                              (isActiveArchived ? (
+                                <></>
+                              ) : (
+                                <FeaturedCourse
+                                  courses={featureCourses}
+                                  handleViewDetailsButton={handleViewDetailsButton}
+                                />
+                              ))}
                             {allCourses.count === 0 ? (
                               <Box sx={{ mt: '20px' }}>
-                                {' '}
                                 <Typography variant="wpf_h7_semiBold">No course Found</Typography>
                               </Box>
+                            ) : allCourses?.enrolledCourses && allCourses.enrolledCourses.length > 0 ? (
+                              <CourseLevel
+                                isDataLoading={isDataLoading}
+                                title={'My Courses'}
+                                seeMore={false}
+                                courses={allCourses?.enrolledCourses}
+                                handleViewDetailsButton={handleViewDetailsButton}
+                              />
                             ) : (
                               <Box
                               // sx={{ paddingX: '15px' }}
@@ -183,6 +254,7 @@ const Course = () => {
                                   <CourseLevel
                                     isDataLoading={isDataLoading}
                                     title={'Basic Courses'}
+                                    seeMore={true}
                                     courses={allCourses.coursesByLevelList?.basic}
                                     handleViewDetailsButton={handleViewDetailsButton}
                                   />
@@ -190,6 +262,7 @@ const Course = () => {
                                 {allCourses.coursesByLevelList?.beginner?.length > 0 && (
                                   <CourseLevel
                                     title={'Beginner Courses'}
+                                    seeMore={true}
                                     courses={allCourses.coursesByLevelList?.beginner}
                                     handleViewDetailsButton={handleViewDetailsButton}
                                   />
@@ -197,6 +270,7 @@ const Course = () => {
                                 {allCourses.coursesByLevelList?.intermediate?.length > 0 && (
                                   <CourseLevel
                                     title={'Intermediate Courses'}
+                                    seeMore={true}
                                     courses={allCourses.coursesByLevelList?.intermediate}
                                     handleViewDetailsButton={handleViewDetailsButton}
                                   />
@@ -204,10 +278,21 @@ const Course = () => {
                                 {allCourses.coursesByLevelList?.advanced?.length > 0 && (
                                   <CourseLevel
                                     title={'Advance Courses'}
+                                    seeMore={true}
                                     courses={allCourses.coursesByLevelList?.advanced}
                                     handleViewDetailsButton={handleViewDetailsButton}
                                   />
                                 )}
+                                {/* {isActiveEnrolled && (
+                                  <PaginationTable
+                                    pagination={pagination}
+                                    setPagination={setPagination}
+                                    courseMeta={myCourseMeta}
+                                    totalCourse={MyCourseCount}
+                                    // setFilterValue={setFilterValue}
+                                    // setFilteredCol={setFilteredCol}
+                                  />
+                                )} */}
                               </Box>
                             )}
                           </Box>

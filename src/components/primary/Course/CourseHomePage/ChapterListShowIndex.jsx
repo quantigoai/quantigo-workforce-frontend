@@ -33,12 +33,10 @@ const accordionBoxNumberStyle = {
 };
 const ChapterListShowIndex = () => {
   const { courseChapters, course } = useSelector((state) => state.course);
-  console.log("🚀 ~ ChapterListShowIndex ~ course:", course);
   const { role } = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const [allCourseChapterWithMark, setAllCourseChapterWithMark] = useState([]);
   const [loadingForMarks, setLoadingForMarks] = useState(false);
-  console.log("🚀 ~ ChapterListShowIndex ~ allCourseChapterWithMark:", allCourseChapterWithMark);
   const { isLightTheme } = useSelector((state) => state.theme);
   const navigate = useNavigate();
 
@@ -128,13 +126,8 @@ const ChapterListShowIndex = () => {
               courseChapters.map((item, index) => {
                 const submissionStatus = allCourseChapterWithMark[index]?.submissionStatus || "";
                 const score = allCourseChapterWithMark[index]?.score || 0;
-                console.log(
-                  "🚀 ~ ChapterListShowIndex ~ allCourseChapterWithMark[index]?.score:",
-                  allCourseChapterWithMark[index]?.score
-                );
-
-                console.log("🚀 ~ ChapterListShowIndex ~ submissionStatus:", submissionStatus);
-                return (
+          
+                 return (
                   <Box
                     key={index}
                     sx={{

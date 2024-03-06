@@ -37,8 +37,7 @@ const CourseLandingHeader = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const { isEnrollAble, enrolmentMessage } = useSelector((state) => state.course);
-  console.log('🚀 ~ CourseLandingHeader ~ enrolmentMessage:', enrolmentMessage);
-  console.log('🚀 ~ CourseLandingHeader ~ isEnrollAble:', isEnrollAble);
+  
 
   const {
     skill,
@@ -65,6 +64,7 @@ const CourseLandingHeader = () => {
     hub,
     handleChangeHubs,
   } = useCourseDetails();
+    console.log("🚀 ~ CourseLandingHeader ~ course:", course)
   const handleRouteChange = () => {
     if (
       user.role === 'level_0_annotator' ||

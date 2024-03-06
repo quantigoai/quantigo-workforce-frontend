@@ -6,6 +6,7 @@ import logo3 from "../../../../assets/images/courses/u_book-alt.png";
 import MoreComponents from "../CourseHomePage/MoreComponents";
 
 const CourseContent = ({ course }) => {
+  console.log("🚀 ~ CourseContent ~ course:", course);
   return (
     <Box sx={{ display: "flex", paddingY: "16px" }}>
       <Box sx={{ display: "flex", justifyContent: "space-around", alignItems: "center", paddingRight: "20px" }}>
@@ -15,7 +16,7 @@ const CourseContent = ({ course }) => {
             COURSE DURATION
           </Typography>
           <Typography variant='wpf_p3_medium_2' color={"grey.600"}>
-            4 hr 32 minutes
+            {course?.totalTimeToRead} minutes
           </Typography>
         </Box>
         <hr style={{ border: "1px solid #EAECF0", height: "28px", width: "1px", marginLeft: "20px" }} />

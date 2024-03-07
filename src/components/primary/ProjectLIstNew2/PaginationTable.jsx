@@ -90,8 +90,9 @@ const PaginationTable = ({
         pathname === '/allprojects' ||
         pathname === `/projectDetails/${id}` ||
         pathname === '/projectDirectory' ||
-        pathname === `/submitted/${id}` ||
-        pathname === `/course`
+        pathname === `/submitted/${id}`
+        // ||
+        // pathname === `/course`
       ) {
         setPagination((prevPagination) => ({
           ...prevPagination,

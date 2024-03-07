@@ -1,5 +1,5 @@
 import { Box, Paper, Typography, styled } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getAllCourses, getArchivedCourses, getMyCourses } from '../../../features/slice/courseSlice';
@@ -10,6 +10,7 @@ import CourseHeader from './CourseHeader/CourseHeader';
 import CourseCreateModal from './CreateCourseModal/CourseCreateModal';
 import CustomCard from './CustomCard';
 import useCourseManagement from './hooks/createCourseHook/useCourseMangement';
+import PaginationTable from '../ProjectLIstNew2/PaginationTable';
 
 const CourseAllPage = () => {
   const {
@@ -71,6 +72,7 @@ const CourseAllPage = () => {
     setIsActiveArchived,
     setFilter,
     pagination,
+    setPagination,
   } = useCourseManagement();
 
   const CoursePaper = styled(Paper)({
@@ -107,7 +109,7 @@ const CourseAllPage = () => {
     });
   }, [MyCourseCount, ArchiveCount, allCount, isActiveEnrolled, isActiveArchived]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     // dispatch(setActivePath('Course'));
     dispatch(getAllSkills());
     if (isActiveEnrolled) {
@@ -246,6 +248,16 @@ const CourseAllPage = () => {
                         )}
                       </Box>
                     </Box>
+                  )}
+                  {isActiveEnrolled && (
+                    <PaginationTable
+                      pagination={pagination}
+                      setPagination={setPagination}
+                      // totalCourse={allCourses.total}
+                      // courseMeta={allCourses.meta}
+                      // setFilterValue={setFilterValue}
+                      // setFilteredCol={setFilteredCol}
+                    />
                   )}
                 </>
               )}

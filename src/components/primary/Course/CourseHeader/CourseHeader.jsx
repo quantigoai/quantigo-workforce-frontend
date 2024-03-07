@@ -6,6 +6,7 @@ import { Box, Button, Grid, IconButton, InputBase, Paper, Popover, Typography } 
 import CommonHeader from '../../../shared/CustomComponenet/CommonHeader/CommonHeader';
 import CoursePageFilter from './CoursePageFilter';
 import MIniModalCourseFilter from './MIniModalCourseFilter';
+import { capitalizeFirstLetter } from '../../../../helper/capitalizeFirstWord';
 const CourseHeader = ({
   handleOpen,
   open,
@@ -41,6 +42,8 @@ const CourseHeader = ({
   ArchiveCount,
   allCount,
   setFilter,
+  pagination,
+  setIsPagination,
 }) => {
   return (
     <>
@@ -58,12 +61,14 @@ const CourseHeader = ({
           sx={{
             padding: '10px 30px',
             height: '70px',
-            width: { xxl: '30%', xl: '30%', lg: '40%' },
+            width: { xxl: '30%', xl: '40%', lg: '40%' },
           }}
         >
           <Grid container>
             <CommonHeader
-              title={`List of ${isActiveEnrolled ? 'My' : isActiveArchived ? 'Archived' : level ? level : ''} Courses`}
+              title={`List of ${
+                isActiveEnrolled ? 'My' : isActiveArchived ? 'Archived' : level ? capitalizeFirstLetter(level) : ''
+              } Courses`}
               customButton="Create User"
             />
             {courseCount > 0 && (
@@ -106,6 +111,8 @@ const CourseHeader = ({
               setFilter={setFilter}
               setSearch={setSearch}
               searchRef={searchRef}
+              pagination={pagination}
+              setIsPagination={setIsPagination}
             />
           ) : (
             <></>

@@ -24,6 +24,8 @@ const CoursePageFilter = ({
   setFilter,
   setSearch,
   searchRef,
+  pagination,
+  setIsPagination,
 }) => {
   const dispatch = useDispatch();
 
@@ -44,7 +46,8 @@ const CoursePageFilter = ({
   const handleChangeAMyCourse = () => {
     // navigate('/all-course/basic');
     setIsActiveEnrolled(false);
-    dispatch(getMyCourses({ filter, search })).then((action) => {
+    // setIsPagination(true);
+    dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
       setCourseCount(action.payload.data.searchedTotal);
       setAllCourses(action.payload.data);
       setIsDataLoading(false);
@@ -58,7 +61,7 @@ const CoursePageFilter = ({
   };
   const handleChangeArchieveCourse = () => {
     // setIsActiveEnrolled(false);
-    dispatch(getArchivedCourses({ filter, search })).then((action) => {
+    dispatch(getArchivedCourses({ filter, search, pagination })).then((action) => {
       if (action.payload.data) {
         setCourseCount(action.payload.data.total);
         setAllCourses(action.payload.data);

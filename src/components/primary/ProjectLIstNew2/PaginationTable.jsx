@@ -43,10 +43,8 @@ const PaginationTable = ({
   const { projectDirectory, totalDirectory, directoryMeta } = useSelector((state) => state.projectDirectory);
 
   const [meta, setMeta] = useState(projectMeta);
-  console.log('🚀 ~ meta:', meta);
 
   const { pathname } = useLocation();
-  console.log('🚀 ~ pathname:', pathname);
 
   useEffect(() => {
     if (pathname === '/allprojects') {
@@ -163,7 +161,7 @@ const PaginationTable = ({
       setTotalPages(Math.ceil(submission?.total / pagination.pageSize));
     }
     if (pathname === `/course`) {
-      setTotalPages(Math.ceil(submission?.total / pagination.pageSize));
+      setTotalPages(Math.ceil(totalCourse / pagination.pageSize));
     }
   }, [total, totalUsers, usersWorkHistoryCount, meta, submission, totalCourse]);
   const visiblePageCount = 5;
@@ -185,6 +183,7 @@ const PaginationTable = ({
     users?.length,
     projectDirectory?.length,
     submission?.total,
+    totalCourse,
   ];
   return approvedPaths.includes(pathname) || approvedData.some((s) => s > 0) ? (
     <Box

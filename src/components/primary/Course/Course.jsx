@@ -108,7 +108,7 @@ const Course = () => {
   const [allCount, setAllCount] = useState(0);
   const [MyCourseCount, setMyCourseCount] = useState(0);
   const [ArchiveCount, setArchiveCount] = useState(0);
-
+  const [isPagination, setIsPagination] = useState(false);
   useEffect(() => {
     dispatch(getMyCourses({ pagination })).then((action) => {
       setMyCourseCount(action.payload.data.searchedTotal);
@@ -124,7 +124,7 @@ const Course = () => {
     });
   }, [MyCourseCount, ArchiveCount, allCount, isActiveEnrolled, isActiveArchived]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     dispatch(setActivePath('Course'));
     dispatch(getAllSkills());
     dispatch(getAllCourses()).then(() => {
@@ -132,6 +132,7 @@ const Course = () => {
     });
 
     if (isActiveEnrolled) {
+      setIsPagination(false);
       dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
         setCourseCount(action.payload.data.searchedTotal);
         setAllCourses(action.payload.data);
@@ -146,14 +147,14 @@ const Course = () => {
         setIsDataLoading(false);
       });
     } else {
-      dispatch(getAllCoursesNew({ filter, search, pagination })).then((action) => {
+      dispatch(getAllCoursesNew({ filter, search })).then((action) => {
         setCourseCount(action.payload.data.courses.count);
         setAllCourses(action.payload.data.courses);
         setFeatureCourses(action.payload.data.courses.featureCourseList);
         setIsDataLoading(false);
       });
     }
-  }, [search, isActiveEnrolled, pagination, isActiveArchived]);
+  }, [pagination, search, isActiveEnrolled, isActiveArchived]);
 
   return (
     <>
@@ -203,6 +204,8 @@ const Course = () => {
               ArchiveCount={ArchiveCount}
               allCount={allCount}
               setFilter={setFilter}
+              pagination={pagination}
+              setIsPagination={setIsPagination}
             />
           </Box>
           <CoursePaper>
@@ -247,6 +250,16 @@ const Course = () => {
                                 courses={allCourses?.enrolledCourses}
                                 handleViewDetailsButton={handleViewDetailsButton}
                               />
+                            ) : allCourses?.archivedCourses && allCourses.archivedCourses.length > 0 ? (
+                              <CourseLevel
+                                isActiveEnrolled={isActiveEnrolled}
+                                isActiveArchived={isActiveArchived}
+                                isDataLoading={isDataLoading}
+                                // title={'My Courses'}
+                                seeMore={false}
+                                courses={allCourses?.archivedCourses}
+                                handleViewDetailsButton={handleViewDetailsButton}
+                              />
                             ) : (
                               <Box
                               // sx={{ paddingX: '15px' }}
@@ -286,17 +299,17 @@ const Course = () => {
                                 )}
                               </Box>
                             )}
-                            {/* {isActiveEnrolled && (
-                              <PaginationTable
-                                pagination={pagination}
-                                setPagination={setPagination}
-                                courseMeta={myCourseMeta}
-                                // totalCourse={MyCourseCount}
-                                // setFilterValue={setFilterValue}
-                                // setFilteredCol={setFilteredCol}
-                              />
-                            )} */}
                           </Box>
+                          {isPagination && (
+                            <PaginationTable
+                              pagination={pagination}
+                              setPagination={setPagination}
+                              // totalCourse={allCourses.total}
+                              // courseMeta={allCourses.meta}
+                              // setFilterValue={setFilterValue}
+                              // setFilteredCol={setFilteredCol}
+                            />
+                          )}
                         </>
                       )}
                     </>

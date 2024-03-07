@@ -33,9 +33,11 @@ const accordionBoxNumberStyle = {
 };
 const ChapterListShowIndex = () => {
   const { courseChapters, course } = useSelector((state) => state.course);
+  console.log("🚀 ~ ChapterListShowIndex ~ courseChapters:", courseChapters);
   const { role } = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const [allCourseChapterWithMark, setAllCourseChapterWithMark] = useState([]);
+  console.log("🚀 ~ ChapterListShowIndex ~ allCourseChapterWithMark:", allCourseChapterWithMark);
   const [loadingForMarks, setLoadingForMarks] = useState(false);
   const { isLightTheme } = useSelector((state) => state.theme);
   const navigate = useNavigate();
@@ -126,6 +128,7 @@ const ChapterListShowIndex = () => {
               courseChapters.map((item, index) => {
                 const submissionStatus = allCourseChapterWithMark[index]?.submissionStatus || "";
                 const score = allCourseChapterWithMark[index]?.score || 0;
+                const passMarkThreshold = allCourseChapterWithMark[index]?.passMarkThreshold;
 
                 return (
                   <Box
@@ -165,7 +168,7 @@ const ChapterListShowIndex = () => {
                         ) : (
                           <>
                             {" "}
-                            <ChapterProgressbar item={item} score={score} />
+                            <ChapterProgressbar item={item} score={score} passMarkThreshold={passMarkThreshold} />
                           </>
                         )}
                         {/* <img src={course_Complete} alt='' /> */}

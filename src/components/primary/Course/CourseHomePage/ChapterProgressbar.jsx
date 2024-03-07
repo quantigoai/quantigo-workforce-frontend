@@ -1,15 +1,15 @@
 import React from "react";
 import course_Complete from "../../../../assets/images/courses/course_Complete.svg";
 import { Box, CircularProgress } from "@mui/material";
-const ChapterProgressbar = ({ item, score }) => {
-  console.log("🚀 ~ ChapterProgressbar ~ item:", item)
-  
+const ChapterProgressbar = ({ item, score, passMarkThreshold }) => {
+  console.log("🚀 ~ ChapterProgressbar ~ item:", item);
+
   return (
     <>
       {/* <img src={course_Complete} alt='' /> */}
 
       <Box sx={{ position: "relative", alignItems: "center", display: "flex" }}>
-        {score < 70 ? (
+        {score < passMarkThreshold ? (
           <>
             <CircularProgress
               variant='determinate'

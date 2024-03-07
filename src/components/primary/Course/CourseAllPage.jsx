@@ -63,6 +63,14 @@ const CourseAllPage = () => {
     setAllCoursesFull,
     courseCountFull,
     setCourseCountFull,
+    isActiveAll,
+    setIsActiveAll,
+    isActiveEnrolled,
+    setIsActiveEnrolled,
+    isActiveArchived,
+    setIsActiveArchived,
+    setFilter,
+    pagination,
   } = useCourseManagement();
 
   const CoursePaper = styled(Paper)({
@@ -80,50 +88,48 @@ const CourseAllPage = () => {
   const { level } = useParams();
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [isActiveAll, setIsActiveAll] = useState(true);
-  const [isActiveEnrolled, setIsActiveEnrolled] = useState(false);
-  const [isActiveArchived, setIsActiveArchived] = useState(false);
   const [allCount, setAllCount] = useState(0);
   const [MyCourseCount, setMyCourseCount] = useState(0);
   const [ArchiveCount, setArchiveCount] = useState(0);
 
   useEffect(() => {
-    dispatch(getMyCourses({})).then((action) => {
+    dispatch(getMyCourses({ pagination })).then((action) => {
       setMyCourseCount(action.payload.data.searchedTotal);
     });
-    dispatch(getArchivedCourses({})).then((action) => {
+    dispatch(getArchivedCourses({ pagination })).then((action) => {
       setArchiveCount(action.payload.data.searchedTotal);
     });
-    dispatch(getAllCourses({})).then((action) => {
+    dispatch(getAllCourses({ level })).then((action) => {
       setAllCount(action.payload.data.count);
       // setAllCourses(action.payload.data.courses);
       // setFeatureCourses(action.payload.data.courses.featureCourseList);
       // setIsDataLoading(false);
     });
-  }, [MyCourseCount, ArchiveCount, allCount]);
+  }, [MyCourseCount, ArchiveCount, allCount, isActiveEnrolled, isActiveArchived]);
 
   useEffect(() => {
     // dispatch(setActivePath('Course'));
     dispatch(getAllSkills());
     if (isActiveEnrolled) {
-      dispatch(getMyCourses({ filter, search })).then((action) => {
+      dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
         setCourseCountFull(action.payload.data.searchedTotal);
         setAllCoursesFull(action.payload.data.enrolledCourses);
         setIsDataLoading(false);
       });
     } else if (isActiveArchived) {
-      dispatch(getArchivedCourses({ filter, search })).then((action) => {
+      dispatch(getArchivedCourses({ filter, search, pagination })).then((action) => {
         setCourseCountFull(action.payload.data.total);
         setAllCoursesFull(action.payload.data.archivedCourses);
         setIsDataLoading(false);
       });
+    } else {
+      dispatch(getAllCourses({ level: level, search, filter })).then((action) => {
+        setAllCoursesFull(action.payload.data.courses);
+        setCourseCountFull(action.payload.data.count);
+        setIsDataLoading(false);
+      });
     }
-    dispatch(getAllCourses({ level: level, search, filter })).then((action) => {
-      setAllCoursesFull(action.payload.data.courses);
-      setCourseCountFull(action.payload.data.count);
-      setIsDataLoading(false);
-    });
-  }, [courseCountFull, search]);
+  }, [search, isActiveEnrolled, pagination, isActiveArchived]);
 
   return (
     <>
@@ -172,6 +178,7 @@ const CourseAllPage = () => {
               MyCourseCount={MyCourseCount}
               ArchiveCount={ArchiveCount}
               allCount={allCount}
+              setFilter={setFilter}
             />
           </Box>
           <CoursePaper>
@@ -186,7 +193,7 @@ const CourseAllPage = () => {
                     <></>
                   ) : (
                     <Box sx={{ padding: '30px' }}>
-                      <Typography variant="wpf_h4_Bold" color={'neutral.995'}>
+                      {/* <Typography variant="wpf_h4_Bold" color={'neutral.995'}>
                         {level === 'basic'
                           ? 'Basic Courses'
                           : level === 'beginner'
@@ -194,7 +201,7 @@ const CourseAllPage = () => {
                           : level === 'intermediate'
                           ? 'Intermediate Courses'
                           : 'Advanced Courses'}
-                      </Typography>
+                      </Typography> */}
                       <Box
                         sx={{
                           display: 'grid',

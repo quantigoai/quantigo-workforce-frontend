@@ -53,6 +53,8 @@ const CustomCard = ({
   course,
   handleViewDetailsButton,
   level,
+  isActiveEnrolled,
+  isActiveArchived,
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -132,7 +134,9 @@ const CustomCard = ({
               zIndex: 20,
             }}
           >
-            {level && course.isFeaturedCourse && (
+            {(level && course.isFeaturedCourse) ||
+            (isActiveEnrolled && course.isFeaturedCourse) ||
+            (isActiveArchived && course.isFeaturedCourse) ? (
               <Typography
                 sx={{
                   mb: 1,
@@ -150,6 +154,8 @@ const CustomCard = ({
               >
                 Featured
               </Typography>
+            ) : (
+              <></>
             )}
           </Box>
           <Box sx={{ overflow: 'hidden' }}>
@@ -181,45 +187,27 @@ const CustomCard = ({
           }}
         >
           <Box>
-            <Typography
-              variant="wpf_p4_semiBold"
-              color={'primary.P600'}
-              sx={{ mb: 1 }}
-            >
-              {capitalizeFirstLetter(course.category)}{' '}
-              <img src={RectangleIcon} /> {capitalizeFirstLetter(course.level)}
+            <Typography variant="wpf_p4_semiBold" color={'primary.P600'} sx={{ mb: 1 }}>
+              {capitalizeFirstLetter(course.category)} <img src={RectangleIcon} /> {capitalizeFirstLetter(course.level)}
             </Typography>
           </Box>
           <Box sx={{ height: '110px' }}>
             <Box>
               <Typography
-                onClick={() =>
-                  handleViewDetailsButton(course._id, courseDirection)
-                }
+                onClick={() => handleViewDetailsButton(course._id, courseDirection)}
                 variant="wpf_h6_semiBold"
                 color={'grey.500'}
                 sx={{ cursor: 'pointer', lineHeight: '20px' }}
               >
-                {course.name?.length > 50
-                  ? course.name?.substring(0, 50) + '.....'
-                  : course.name}
+                {course.name?.length > 50 ? course.name?.substring(0, 50) + '.....' : course.name}
               </Typography>
             </Box>
             <Box></Box>{' '}
-            <Typography
-              sx={{ lineHeight: '18px' }}
-              variant="wpf_h8_regular"
-              color={'grey.550'}
-            >
-              {course.description?.length > 100
-                ? course.description?.substring(0, 70) + '.....'
-                : course.description}
+            <Typography sx={{ lineHeight: '18px' }} variant="wpf_h8_regular" color={'grey.550'}>
+              {course.description?.length > 100 ? course.description?.substring(0, 70) + '.....' : course.description}
             </Typography>
           </Box>
-          <Box
-            onClick={() => handleViewDetailsButton(course._id, courseDirection)}
-            sx={{ cursor: 'pointer' }}
-          >
+          <Box onClick={() => handleViewDetailsButton(course._id, courseDirection)} sx={{ cursor: 'pointer' }}>
             <Typography variant="wpf_p4_medium">View Details</Typography>
 
             <img style={{ marginLeft: '15px' }} src={ArrowIcon} />

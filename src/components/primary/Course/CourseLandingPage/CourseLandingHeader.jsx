@@ -36,8 +36,8 @@ const CourseLandingHeader = () => {
   // const { course, courseChapter, courseChapters } = useSelector((state) => state.course);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
+  console.log('🚀 ~ CourseLandingHeader ~ user:', user.completedCourses);
   const { isEnrollAble, enrolmentMessage } = useSelector((state) => state.course);
-  
 
   const {
     skill,
@@ -64,7 +64,8 @@ const CourseLandingHeader = () => {
     hub,
     handleChangeHubs,
   } = useCourseDetails();
-    console.log("🚀 ~ CourseLandingHeader ~ course:", course)
+  console.log('🚀 ~ CourseLandingHeader ~ course:', user.completedCourses.includes(course._id));
+
   const handleRouteChange = () => {
     if (
       user.role === 'level_0_annotator' ||
@@ -196,14 +197,27 @@ const CourseLandingHeader = () => {
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', marginTop: '20px', mb: '16px' }}>
           <Button disabled={!isEnrollAble} sx={btnStyle} onClick={handleRouteChange}>
-            {user.role === 'level_0_annotator' ||
-            user.role === 'level_1_annotator' ||
-            user.role === 'level_2_annotator' ||
-            user.role === 'level_3_annotator' ||
-            user.role === 'reviewer'
+            {(user.role === 'level_0_annotator' &&
+              !user.completedCourses.includes(course._id) &&
+              user.completedCourses.includes(course._id)) ||
+            (user.role === 'level_1_annotator' && !user.completedCourses.includes(course._id)) ||
+            (user.role === 'level_2_annotator' && !user.completedCourses.includes(course._id)) ||
+            (user.role === 'level_3_annotator' && !user.completedCourses.includes(course._id)) ||
+            (user.role === 'reviewer' && user.completedCourses.includes(course._id))
               ? 'Enroll Now'
               : 'View Course'}
           </Button>
+
+          {user.completedCourses.includes(course._id) && (
+            <Button disabled={!isEnrollAble} sx={{ ...btnStyle, ml: 1 }} onClick={handleRouteChange}>
+              Download Certificate
+            </Button>
+          )}
+          {user.completedCourses.includes(course._id) && (
+            <Button disabled={!isEnrollAble} sx={{ ...btnStyle, ml: 1 }} onClick={handleRouteChange}>
+              Submit Review
+            </Button>
+          )}
           <Typography variant="wpf_p3_regular" color={'grey.550'} sx={{ marginLeft: '20px' }}>
             <span style={{ color: '#344054', fontWeight: '600' }}>{course.totalCurrentEnrolledStudents}</span> already
             enrolled

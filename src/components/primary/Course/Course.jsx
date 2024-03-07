@@ -300,16 +300,15 @@ const Course = () => {
                               </Box>
                             )}
                           </Box>
-                          {isPagination && (
-                            <PaginationTable
-                              pagination={pagination}
-                              setPagination={setPagination}
-                              // totalCourse={allCourses.total}
-                              // courseMeta={allCourses.meta}
-                              // setFilterValue={setFilterValue}
-                              // setFilteredCol={setFilteredCol}
-                            />
-                          )}
+
+                          {/* <PaginationTable
+                            pagination={pagination}
+                            setPagination={setPagination}
+                            // totalCourse={allCourses.total}
+                            // courseMeta={allCourses.meta}
+                            // setFilterValue={setFilterValue}
+                            // setFilteredCol={setFilteredCol}
+                          /> */}
                         </>
                       )}
                     </>

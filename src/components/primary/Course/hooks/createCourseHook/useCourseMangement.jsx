@@ -12,7 +12,9 @@ import {
   getAllChapterFromACourse,
   getAllCourses,
   getAllCoursesNew,
+  getArchivedCourses,
   getCourseQuizzesResults,
+  getMyCourses,
 } from '../../../../../features/slice/courseSlice';
 
 const useCourseManagement = () => {
@@ -45,6 +47,11 @@ const useCourseManagement = () => {
   const [dateTime, setDateTime] = useState('');
   const [outcomes, setOutcomes] = useState(['']);
   const [skill, setSkill] = React.useState([]);
+  const [pagination, setPagination] = useState({
+    currentPage: 0,
+    pageSize: 10,
+  });
+  const [buttonClicked, setButtonClicked] = useState(false);
   const [hub, setHub] = useState(['Dhaka', 'Mymensingh', 'Sirajganj', 'Khulna', 'Chuadanga']);
   const dispatch = useDispatch();
   const toast = useToaster();
@@ -81,31 +88,93 @@ const useCourseManagement = () => {
   };
   const handleResetFilter = () => {
     if (level) {
-      dispatch(getAllCourses({ level, filter: {}, search })).then((action) => {
-        setAllCoursesFull(action.payload.data.courses);
-        setCourseCountFull(action.payload.data.count);
-        setFilter({});
-      });
+      if (isActiveEnrolled) {
+        dispatch(getMyCourses({ filter: {}, search, pagination })).then((action) => {
+          setCourseCountFull(action.payload.data.searchedTotal);
+          setAllCoursesFull(action.payload.data.enrolledCourses);
+          setFilter({});
+          // setIsDataLoading(false);
+        });
+      } else if (isActiveArchived) {
+        dispatch(getArchivedCourses({ filter: {}, search, pagination })).then((action) => {
+          setCourseCountFull(action.payload.data.searchedTotal);
+          setAllCoursesFull(action.payload.data.archivedCourses);
+          setFilter({});
+          // setIsDataLoading(false);
+        });
+      } else {
+        dispatch(getAllCourses({ level, filter: {}, search })).then((action) => {
+          setAllCoursesFull(action.payload.data.courses);
+          setCourseCountFull(action.payload.data.count);
+          setFilter({});
+        });
+      }
     } else {
-      dispatch(getAllCoursesNew({ filter: {}, search })).then((action) => {
-        setCourseCount(action.payload.data.courses.count);
-        setAllCourses(action.payload.data.courses);
-        setFeatureCourses(action.payload.data.courses.featureCourseList);
-        setFilter({});
-      });
+      if (isActiveEnrolled) {
+        dispatch(getMyCourses({ filter: {}, search, pagination })).then((action) => {
+          setCourseCount(action.payload.data.searchedTotal);
+          setAllCourses(action.payload.data);
+          setIsDataLoading(false);
+          setFilter({});
+        });
+      } else if (isActiveArchived) {
+        dispatch(getArchivedCourses({ filter: {}, search, pagination })).then((action) => {
+          setCourseCount(action.payload.data.searchedTotal);
+          setAllCourses(action.payload.data);
+          setIsDataLoading(false);
+          setFilter({});
+        });
+      } else {
+        dispatch(getAllCoursesNew({ filter: {}, search })).then((action) => {
+          setCourseCount(action.payload.data.courses.count);
+          setAllCourses(action.payload.data.courses);
+          setFeatureCourses(action.payload.data.courses.featureCourseList);
+          setFilter({});
+        });
+      }
     }
   };
   const handleFilterCourse = () => {
+    setButtonClicked(true);
     if (level) {
-      dispatch(getAllCourses({ level, filter, search })).then((action) => {
-        setAllCoursesFull(action.payload.data.courses);
-        setCourseCountFull(action.payload.data.count);
-      });
+      if (isActiveEnrolled) {
+        dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
+          setCourseCountFull(action.payload.data.searchedTotal);
+          setAllCoursesFull(action.payload.data.enrolledCourses);
+          // setIsDataLoading(false);
+        });
+      } else if (isActiveArchived) {
+        dispatch(getArchivedCourses({ filter, search, pagination })).then((action) => {
+          setCourseCountFull(action.payload.data.searchedTotal);
+          setAllCoursesFull(action.payload.data.archivedCourses);
+          // setIsDataLoading(false);
+        });
+      } else {
+        dispatch(getAllCourses({ level, filter, search })).then((action) => {
+          setAllCoursesFull(action.payload.data.courses);
+          setCourseCountFull(action.payload.data.count);
+        });
+      }
     } else {
-      dispatch(getAllCoursesNew({ filter, search })).then((action) => {
-        setCourseCount(action.payload.data.courses.count);
-        setAllCourses(action.payload.data.courses);
-      });
+      if (isActiveEnrolled) {
+        dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
+          setCourseCount(action.payload.data.searchedTotal);
+          setAllCourses(action.payload.data);
+          setIsDataLoading(false);
+        });
+      } else if (isActiveArchived) {
+        dispatch(getArchivedCourses({ filter, search, pagination })).then((action) => {
+          setCourseCount(action.payload.data.searchedTotal);
+          setAllCourses(action.payload.data);
+          setIsDataLoading(false);
+        });
+      } else {
+        dispatch(getAllCoursesNew({ filter, search })).then((action) => {
+          setCourseCount(action.payload.data.courses.count);
+          setAllCourses(action.payload.data.courses);
+          setButtonClicked(false);
+        });
+      }
     }
   };
 
@@ -335,6 +404,10 @@ const useCourseManagement = () => {
     setIsActiveEnrolled,
     isActiveArchived,
     setIsActiveArchived,
+    buttonClicked,
+    setFilter,
+    pagination,
+    setPagination,
   };
 };
 

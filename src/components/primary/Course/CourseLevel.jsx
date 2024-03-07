@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import CustomCard from './CustomCard';
 
-const CourseLevel = ({ title, courses, handleViewDetailsButton, seeMore }) => {
+const CourseLevel = ({ title, courses, handleViewDetailsButton, seeMore, isActiveEnrolled, isActiveArchived }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const CourseLevel = ({ title, courses, handleViewDetailsButton, seeMore }) => {
           display: 'flex',
           justifyContent: 'space-between',
           py: 2,
-          mt: '40px',
+          mt: seeMore ? '40px' : '',
         }}
       >
         <Typography variant="wpf_h4_Bold" color={'neutral.995'}>
@@ -62,8 +62,9 @@ const CourseLevel = ({ title, courses, handleViewDetailsButton, seeMore }) => {
           },
           gridGap: '8px',
           mt: '16px',
+          pr: '15px',
           // width: '100%',
-          gap: { xxl: '0px', xl: '10px', lg: '10px' },
+          gap: { xxl: '20px', xl: '15px', lg: '12px' },
         }}
       >
         {courses?.map((course) => (
@@ -76,6 +77,8 @@ const CourseLevel = ({ title, courses, handleViewDetailsButton, seeMore }) => {
             key={course._id}
           >
             <CustomCard
+              isActiveEnrolled={isActiveEnrolled}
+              isActiveArchived={isActiveArchived}
               courseDirection={user.enrolledCourses.includes(course._id) ? 'MyCourse' : 'all'}
               handleViewDetailsButton={handleViewDetailsButton}
               course={course}

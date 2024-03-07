@@ -62,9 +62,12 @@ export const BpCheckedIcon = styled(BpIcon)({
 
 export const TextFieldOption = styled(TextField)(() => ({
   borderRadius: '8px',
+ 
   backgroundColor: '#F9FAFB',
   '& .MuiOutlinedInput-root': {
     height: '40px',
+    // width:"100%",
+    width:"350px",
     fontSize: '14px',
     // maxHeight:"64px",
     // border: "px solid #E6ECF5 !important",

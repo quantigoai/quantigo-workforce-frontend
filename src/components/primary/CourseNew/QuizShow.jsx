@@ -6,28 +6,15 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {
-  Box,
-  Button,
-  FormControlLabel,
-  Grid,
-  Radio,
-  RadioGroup,
-  TextField,
-  Typography,
-  styled,
-} from '@mui/material';
-import React, { useEffect } from 'react';
-import CloseIcon from '@mui/icons-material/Close';
-import PendingIcon from '@mui/icons-material/Pending';
-import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import useToaster from '../../../customHooks/useToaster';
-import {
-  getSubmittedQuiz,
-  submitQuizById,
-} from '../../../features/slice/quizSlice';
+import { Box, Button, FormControlLabel, Grid, Radio, RadioGroup, TextField, Typography, styled, useRadioGroup } from "@mui/material";
+import React, { useEffect } from "react";
+import CloseIcon from "@mui/icons-material/Close";
+import PendingIcon from "@mui/icons-material/Pending";
+import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import useToaster from "../../../customHooks/useToaster";
+import { getSubmittedQuiz, submitQuizById } from "../../../features/slice/quizSlice";
 const PdTextField = styled(TextField)(() => ({
   borderRadius: '5px',
 
@@ -58,6 +45,31 @@ const PdTextField = styled(TextField)(() => ({
     },
   },
 }));
+
+
+const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />)(
+  ({ theme, checked }) => ({
+    '.MuiFormControlLabel-label': checked && {
+      color: theme.palette.primary.main,
+    },
+  }),
+);
+
+function MyFormControlLabel(props) {
+  const radioGroup = useRadioGroup();
+
+  let checked = false;
+
+  if (radioGroup) {
+    checked = radioGroup.value === props.value;
+  }
+
+  return <StyledFormControlLabel checked={checked} {...props} />;
+}
+
+
+
+
 const QuizShow = () => {
   const { quiz, isLoading } = useSelector((state) => state.quiz);
   // console.log('🚀 ~ QuizShow ~ quiz:', quiz);
@@ -75,12 +87,8 @@ const QuizShow = () => {
     quiz?.questionAndAnswer,
   );
 
-  const handleQuizResult = (
-    possibleIndex,
-    id,
-    possibleText,
-    isFromRadio = true,
-  ) => {
+
+  const handleQuizResult = (possibleIndex, id, possibleText, isFromRadio = true) => {
     // console.log('🚀 ~ handleQuizResult ~ possibleIndex:', possibleIndex);
     // console.log('🚀 ~ handleQuizResult ~ id:', id);
     // console.log('🚀 ~ handleQuizResult ~ possibleText:', possibleText);
@@ -309,49 +317,43 @@ const QuizShow = () => {
                       </Grid>
                       {item?.questionType === 'imageAndOptions' ? (
                         <>
-                          <Grid container>
-                            <Grid
-                              xs={6}
-                              sx={{ paddingLeft: '2%', paddingTop: '2%' }}
-                            >
-                              {item.possibleAnswers.map((posibleAnswer, i) => (
-                                <Grid key={i} xs={12}>
-                                  <FormControlLabel
-                                    key={i}
-                                    onChange={() =>
-                                      handleQuizResult(i, item._id)
-                                    }
-                                    value={posibleAnswer}
-                                    control={<Radio />}
-                                    label={posibleAnswer}
-                                    // label={item.questionType === "imageInOptions" ? <img /> : posibleAnswer}
-                                  />
-                                </Grid>
-                              ))}
-                            </Grid>
+                          <RadioGroup>
+                            <Grid container>
+                              <Grid xs={6} sx={{ paddingLeft: "2%", paddingTop: "2%" }}>
+                                {item.possibleAnswers.map((posibleAnswer, i) => (
+                                  <Grid key={i} xs={12}>
+                                    <MyFormControlLabel
+                                      key={i}
+                                      onChange={() => handleQuizResult(i, item._id)}
+                                      value={posibleAnswer}
+                                      control={<Radio />}
+                                      label={posibleAnswer}
+                                      // label={item.questionType === "imageInOptions" ? <img /> : posibleAnswer}
+                                    />
+                                  </Grid>
+                                ))}
+                              </Grid>
 
-                            <Grid
-                              xs={6}
-                              sx={{
-                                paddingLeft: '2%',
-                                paddingRight: '2%',
-                                // paddingBottom: "1%",
-                                paddingTop: '1%',
-                              }}
-                            >
-                              {item.question?.questionImage?.endsWith(
-                                '.jpeg',
-                              ) && (
-                                <img
-                                  src={item.question.questionImage}
-                                  style={{ borderRadius: '8px' }}
-                                  height={224}
-                                  width="100%"
-                                />
-                              )}
-                              <>
-                                {/* for Audio */}
-                                {/* <audio controls>
+                              <Grid
+                                xs={6}
+                                sx={{
+                                  paddingLeft: "2%",
+                                  paddingRight: "2%",
+                                  // paddingBottom: "1%",
+                                  paddingTop: "1%",
+                                }}
+                              >
+                                {item.question?.questionImage?.endsWith(".jpeg") && (
+                                  <img
+                                    src={item.question.questionImage}
+                                    style={{ borderRadius: "8px" }}
+                                    height={224}
+                                    width='100%'
+                                  />
+                                )}
+                                <>
+                                  {/* for Audio */}
+                                  {/* <audio controls>
                                   <source src='horse.ogg' type='audio/ogg' />
                                   <source
                                     src='https://soundcloud.com/51beats/sets/51bts073-joao-ceser-brz?utm_source=clipboard&utm_campaign=wtshare&utm_medium=widget&utm_content=https%253A%252F%252Fsoundcloud.com%252F51beats%252Fsets%252F51bts073-joao-ceser-brz'
@@ -359,20 +361,19 @@ const QuizShow = () => {
                                   />
                                   Your browser does not support the audio element.
                                 </audio> */}
-                                {item.question?.questionImage?.endsWith(
-                                  '.mp4',
-                                ) && (
-                                  <video
-                                    width="100%"
-                                    height="240"
-                                    controls
-                                    style={{ borderRadius: '8px' }}
-                                    src="https://storage.googleapis.com/quantigo-workforce-image-storage/test%20video/production_id_4124024%20(2160p).mp4"
-                                  ></video>
-                                )}
-                              </>
+                                  {item.question?.questionImage?.endsWith(".mp4") && (
+                                    <video
+                                      width='100%'
+                                      height='240'
+                                      controls
+                                      style={{ borderRadius: "8px" }}
+                                      src='https://storage.googleapis.com/quantigo-workforce-image-storage/test%20video/production_id_4124024%20(2160p).mp4'
+                                    ></video>
+                                  )}
+                                </>
+                              </Grid>
                             </Grid>
-                          </Grid>
+                          </RadioGroup>
                         </>
                       ) : (
                         <>
@@ -430,53 +431,43 @@ const QuizShow = () => {
                                               </>
                                             )}
                                           </Box> */}
-                                            {handleSwitchContent(posibleAnswer)}
-                                            {/* </Grid> */}
-                                            {/* <Grid item> */}
-                                            <Box
-                                              sx={{
-                                                backgroundColor: '#fff',
-                                                paddingLeft: '5%',
-                                                borderRadius: '8px',
-                                              }}
-                                            >
-                                              <FormControlLabel
-                                                key={i}
-                                                onChange={() =>
-                                                  handleQuizResult(i, item._id)
-                                                }
-                                                value={posibleAnswer}
-                                                control={<Radio />}
-                                                label={
-                                                  i === 0
-                                                    ? 'Option A'
-                                                    : i === 1
-                                                    ? 'Option B'
-                                                    : i === 2
-                                                    ? 'Option C'
-                                                    : 'Option D'
-                                                }
-                                              />
-                                            </Box>
-                                          </Box>
+                                          {handleSwitchContent(posibleAnswer)}
                                           {/* </Grid> */}
-                                        </Grid>
-                                      </>
-                                    ) : (
-                                      <>
-                                        {/* <Box style={{ display: "flex", flexDirection: "column" }}> */}
-                                        <Grid xs={12}>
-                                          <FormControlLabel
-                                            key={i}
-                                            onChange={() =>
-                                              handleQuizResult(i, item._id)
-                                            }
-                                            value={posibleAnswer}
-                                            control={<Radio />}
-                                            label={posibleAnswer}
-                                            // label={item.questionType === "imageInOptions" ? <img /> : posibleAnswer}
-                                          />
-                                        </Grid>
+                                          {/* <Grid item> */}
+                                          <Box sx={{ backgroundColor: "#fff", paddingLeft: "5%", borderRadius: "8px" }}>
+                                            <MyFormControlLabel
+                                              key={i}
+                                              onChange={() => handleQuizResult(i, item._id)}
+                                              value={posibleAnswer}
+                                              control={<Radio />}
+                                              label={
+                                                i === 0
+                                                  ? "Option A"
+                                                  : i === 1
+                                                  ? "Option B"
+                                                  : i === 2
+                                                  ? "Option C"
+                                                  : "Option D"
+                                              }
+                                            />
+                                          </Box>
+                                        </Box>
+                                        {/* </Grid> */}
+                                      </Grid>
+                                    </>
+                                  ) : (
+                                    <>
+                                      {/* <Box style={{ display: "flex", flexDirection: "column" }}> */}
+                                      <Grid xs={12}>
+                                        <MyFormControlLabel
+                                          key={i}
+                                          onChange={() => handleQuizResult(i, item._id)}
+                                          value={posibleAnswer}
+                                          control={<Radio />}
+                                          label={posibleAnswer}
+                                          // label={item.questionType === "imageInOptions" ? <img /> : posibleAnswer}
+                                        />
+                                      </Grid>
 
                                         {/* </Box> */}
                                       </>

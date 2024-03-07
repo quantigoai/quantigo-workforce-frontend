@@ -2,7 +2,8 @@ import React from "react";
 import course_Complete from "../../../../assets/images/courses/course_Complete.svg";
 import { Box, CircularProgress } from "@mui/material";
 const ChapterProgressbar = ({ item, score }) => {
-  console.log("🚀 ~ ChapterProgressbar ~ score:", score)
+  console.log("🚀 ~ ChapterProgressbar ~ item:", item)
+  
   return (
     <>
       {/* <img src={course_Complete} alt='' /> */}

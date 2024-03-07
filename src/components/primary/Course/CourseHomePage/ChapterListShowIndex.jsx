@@ -126,8 +126,8 @@ const ChapterListShowIndex = () => {
               courseChapters.map((item, index) => {
                 const submissionStatus = allCourseChapterWithMark[index]?.submissionStatus || "";
                 const score = allCourseChapterWithMark[index]?.score || 0;
-          
-                 return (
+
+                return (
                   <Box
                     key={index}
                     sx={{
@@ -156,7 +156,18 @@ const ChapterListShowIndex = () => {
                           display: "flex",
                         }}
                       >
-                        <ChapterProgressbar item={item} score={score} />
+                        {role === "admin" || role === "trainer" ? (
+                          <>
+                            <Box sx={accordionBoxNumberStyle}>
+                              <Typography sx={{ fontSize: "14px", fontWeight: "600" }}>{index + 1}</Typography>
+                            </Box>
+                          </>
+                        ) : (
+                          <>
+                            {" "}
+                            <ChapterProgressbar item={item} score={score} />
+                          </>
+                        )}
                         {/* <img src={course_Complete} alt='' /> */}
                       </Grid>
                       <Grid
@@ -187,10 +198,15 @@ const ChapterListShowIndex = () => {
                           {`Duration: ${item.estimatedTimeToRead} minutes`}
                           {"  "}
                         </Typography>
-                        <img src={Rectangle} />
-                        <Typography variant='wpf_p4_regular' color={"grey.600"}>
-                          {"  "} Quiz Score: {Math.floor(score)} %
-                        </Typography>
+
+                        {!(role === "admin" || role === "trainer") && (
+                          <>
+                            <img src={Rectangle} />
+                            <Typography variant='wpf_p4_regular' color={"grey.600"}>
+                              {"  "} Quiz Score: {Math.floor(score)} %
+                            </Typography>
+                          </>
+                        )}
                       </Grid>
                       <Grid
                         item

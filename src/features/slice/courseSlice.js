@@ -84,11 +84,12 @@ export const getAllCoursesNew = createAsyncThunk('coursesNew', async (data) => {
 });
 export const getMyCourses = createAsyncThunk('myCourses', async (data) => {
   const { filter, search, pagination } = data;
+
   try {
     let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
 
     if (search) {
-      query += `search=${search}`;
+      query += `&search=${search}`;
     }
     const filterOptions = filter && Object.keys(filter);
     if (filterOptions) {

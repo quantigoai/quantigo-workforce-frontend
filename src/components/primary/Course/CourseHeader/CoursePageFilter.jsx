@@ -21,6 +21,9 @@ const CoursePageFilter = ({
   MyCourseCount,
   ArchiveCount,
   allCount,
+  setFilter,
+  setSearch,
+  searchRef,
 }) => {
   const dispatch = useDispatch();
 
@@ -34,6 +37,9 @@ const CoursePageFilter = ({
     setIsActiveAll(true);
     setIsActiveEnrolled(false);
     setIsActiveArchived(false);
+    setFilter({});
+    setSearch('');
+    searchRef.current.value = '';
   };
   const handleChangeAMyCourse = () => {
     // navigate('/all-course/basic');
@@ -46,17 +52,23 @@ const CoursePageFilter = ({
     setIsActiveEnrolled(true);
     setIsActiveAll(false);
     setIsActiveArchived(false);
+    setFilter({});
+    setSearch('');
+    searchRef.current.value = '';
   };
   const handleChangeArchieveCourse = () => {
     // setIsActiveEnrolled(false);
     dispatch(getArchivedCourses({ filter, search })).then((action) => {
-      if (action.payload?.data) {
-        setCourseCount(action.payload?.data?.total);
+      if (action.payload.data) {
+        setCourseCount(action.payload.data.total);
         setAllCourses(action.payload.data);
         setIsDataLoading(false);
       } else {
         setAllCourses([]);
       }
+      setFilter({});
+      setSearch('');
+      searchRef.current.value = '';
     });
 
     setIsActiveAll(false);

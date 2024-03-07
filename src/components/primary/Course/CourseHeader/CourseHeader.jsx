@@ -40,6 +40,7 @@ const CourseHeader = ({
   MyCourseCount,
   ArchiveCount,
   allCount,
+  setFilter,
 }) => {
   return (
     <>
@@ -57,11 +58,14 @@ const CourseHeader = ({
           sx={{
             padding: '10px 30px',
             height: '70px',
-            width: { xxl: '20%', xl: '30%', lg: '30%' },
+            width: { xxl: '30%', xl: '30%', lg: '40%' },
           }}
         >
           <Grid container>
-            <CommonHeader title="List of Courses" customButton="Create User" />
+            <CommonHeader
+              title={`List of ${isActiveEnrolled ? 'My' : isActiveArchived ? 'Archived' : level ? level : ''} Courses`}
+              customButton="Create User"
+            />
             {courseCount > 0 && (
               <Typography sx={{ opacity: '0.7', height: '13px' }} variant="wpf_p3_regular" color={'neutral.750'}>
                 {courseCount === 1 ? courseCount + ' Result' : courseCount + ' Results'} found
@@ -99,6 +103,9 @@ const CourseHeader = ({
               MyCourseCount={MyCourseCount}
               ArchiveCount={ArchiveCount}
               allCount={allCount}
+              setFilter={setFilter}
+              setSearch={setSearch}
+              searchRef={searchRef}
             />
           ) : (
             <></>

@@ -125,13 +125,13 @@ const CourseAllPage = () => {
         setIsDataLoading(false);
       });
     } else {
-      dispatch(getAllCourses({ level: level, search, filter })).then((action) => {
-        setAllCoursesFull(action.payload.data.courses);
+      dispatch(getAllCourses({ level, search, filter })).then((action) => {
+        setAllCoursesFull(action.payload?.data?.courses);
         setCourseCountFull(action.payload.data.count);
         setIsDataLoading(false);
       });
     }
-  }, [search, isActiveEnrolled, pagination, isActiveArchived]);
+  }, [search, isActiveEnrolled, pagination, isActiveArchived, level]);
 
   return (
     <>

@@ -47,11 +47,11 @@ const CoursePageFilter = ({
     // navigate('/all-course/basic');
     setIsActiveEnrolled(false);
     setIsPagination(true);
-    dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
-      setCourseCount(action.payload.data.searchedTotal);
-      setAllCourses(action.payload.data);
-      setIsDataLoading(false);
-    });
+    // dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
+    //   setCourseCount(action.payload.data.searchedTotal);
+    //   setAllCourses(action.payload.data);
+    //   setIsDataLoading(false);
+    // });
     setIsActiveEnrolled(true);
     setIsActiveAll(false);
     setIsActiveArchived(false);
@@ -62,18 +62,18 @@ const CoursePageFilter = ({
   const handleChangeArchieveCourse = () => {
     // setIsActiveEnrolled(false);
     // setIsPagination(true);
-    dispatch(getArchivedCourses({ filter, search, pagination })).then((action) => {
-      if (action.payload.data) {
-        setCourseCount(action.payload.data.total);
-        setAllCourses(action.payload.data);
-        setIsDataLoading(false);
-      } else {
-        setAllCourses([]);
-      }
-      setFilter({});
-      setSearch('');
-      searchRef.current.value = '';
-    });
+    // dispatch(getArchivedCourses({ filter, search, pagination })).then((action) => {
+    //   if (action.payload.data) {
+    //     setCourseCount(action.payload.data.total);
+    //     setAllCourses(action.payload.data);
+    //     setIsDataLoading(false);
+    //   } else {
+    //     setAllCourses([]);
+    //   }
+    // });
+    setFilter({});
+    setSearch('');
+    searchRef.current.value = '';
 
     setIsActiveAll(false);
     setIsActiveEnrolled(false);

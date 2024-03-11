@@ -13,7 +13,7 @@ import CourseHeaderTitle from "../CourseLandingPage/CourseHeaderTitle";
 import CourseContent from "../CourseLandingPage/CourseContent";
 import CourseLiveSessionSection from "./CourseLiveSessionSection";
 import { getAllCourseChapterWithMark } from "../../../../features/slice/quizSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 const boxStyle = {
   display: "flex",
   justifyContent: "space-between",
@@ -31,11 +31,11 @@ const btnStyle = {
   "&:hover": { backgroundColor: "#244EF5" },
 };
 const CourseHomePageHeader = ({ course }) => {
-  console.log("🚀 ~ CourseHomePageHeader ~ course:", course);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
+  console.log("🚀 ~ CourseHomePageHeader ~ user:", user.role);
   const [courseCompletedPercentage, setCourseCompletedPercentage] = useState();
-  console.log("🚀 ~ CourseHomePageHeader ~ courseCompletedPercentage:", courseCompletedPercentage);
   const handleRouteChange = () => {
     navigate(`/course-homepage/${course._id}`);
   };
@@ -101,56 +101,61 @@ const CourseHomePageHeader = ({ course }) => {
                 <Typography variant='wpf_p3_regular'>Start Date : 12 Dec,2023</Typography>
               </span>
             </Box> */}
-            <Box
-              sx={{
-                backgroundColor: "neutral.N000",
-                display: "flex",
-                alignItems: "center",
-                borderRadius: "8px",
-                border: "1px solid #E6ECF5",
-                padding: "12px",
-                position: "absolute",
-                top: { xxl: 230, xl: 200, lg: 150 },
-                left: { xxl: 1200, xl: 860, lg: 550 },
-              }}
-            >
-              <Box sx={{ position: "relative", alignItems: "center", display: "flex" }}>
-                <CircularProgress
-                  variant='determinate'
-                  sx={{
-                    color: (theme) => (theme.palette.mode === "light" ? "#D2DFFA" : "#D2DFFA"),
-                    // backgroundColor: "red",
-                  }}
-                  size='20px'
-                  thickness={7}
-                  // {...props}
-                  value={100}
-                />
-                <CircularProgress
-                  variant='determinate'
-                  disableShrink
-                  sx={{
-                    strokeLinecap: "round",
-                    strokeLinejoin: "round",
-                    color: (theme) => (theme.palette.mode === "light" ? "#2D58FF" : "#2D58FF"),
-                    animationDuration: "550ms",
-                    position: "absolute",
-                    left: 0,
-                    top: 0,
-                  }}
-                  size='20px'
-                  value={courseCompletedPercentage}
-                  thickness={7}
-                />
+
+            {!(user.role === "admin" || user.role === "trainer") && (
+              <Box
+                sx={{
+                  backgroundColor: "neutral.N000",
+                  display: "flex",
+                  alignItems: "center",
+                  borderRadius: "8px",
+                  border: "1px solid #E6ECF5",
+                  padding: "12px",
+                  position: "absolute",
+                  top: { xxl: 230, xl: 200, lg: 150 },
+                  left: { xxl: 1200, xl: 860, lg: 550 },
+                }}
+              >
+                <Box sx={{ position: "relative", alignItems: "center", display: "flex" }}>
+                  <CircularProgress
+                    variant='determinate'
+                    sx={{
+                      color: (theme) => (theme.palette.mode === "light" ? "#D2DFFA" : "#D2DFFA"),
+                      // backgroundColor: "red",
+                    }}
+                    size='20px'
+                    thickness={7}
+                    // {...props}
+                    value={100}
+                  />
+                  <CircularProgress
+                    variant='determinate'
+                    disableShrink
+                    sx={{
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      color: (theme) => (theme.palette.mode === "light" ? "#2D58FF" : "#2D58FF"),
+                      animationDuration: "550ms",
+                      position: "absolute",
+                      left: 0,
+                      top: 0,
+                    }}
+                    size='20px'
+                    value={courseCompletedPercentage}
+                    thickness={7}
+                  />
+                </Box>
+
+                <span style={{ paddingLeft: "8px" }}>
+                  <Typography variant='wpf_p2_semiBold'>
+                    {courseCompletedPercentage ? Math.floor(courseCompletedPercentage) : 0}%
+                  </Typography>
+                </span>
+                <span style={{ paddingLeft: "5px" }}>
+                  <Typography variant='wpf_p3_regular'>Course Completed</Typography>
+                </span>
               </Box>
-              <span style={{ paddingLeft: "8px" }}>
-                <Typography variant='wpf_p2_semiBold'>{Math.floor(courseCompletedPercentage)}%</Typography>
-              </span>
-              <span style={{ paddingLeft: "5px" }}>
-                {" "}
-                <Typography variant='wpf_p3_regular'>Course Completed</Typography>
-              </span>
-            </Box>
+            )}
             <CourseLiveSessionSection />
           </Grid>
         </Box>

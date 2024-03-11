@@ -2,7 +2,8 @@ import { Box, Typography } from '@mui/material';
 import React from 'react';
 import quote from '../../../../assets/images/courses/bxs_quote-right.png';
 
-const ReviewCard = ({ item, review }) => {
+const ReviewCard = ({ item, review,allReviews }) => {
+  console.log("🚀 ~ ReviewCard ~ allReviews:", allReviews)
   const swiperBoxStyle = {
     borderRadius: '8px',
     paddingY: '32px',
@@ -19,6 +20,7 @@ const ReviewCard = ({ item, review }) => {
         <Box sx={{ textAlign: 'justify' }}>
           <Typography variant="wpf_p3_medium" color={'neutral.997'}>
             {review.description}
+            {/* {allReviews[0].review} */}
           </Typography>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: '32px' }}>
             <Box>

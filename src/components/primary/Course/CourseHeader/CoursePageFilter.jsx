@@ -46,7 +46,7 @@ const CoursePageFilter = ({
   const handleChangeAMyCourse = () => {
     // navigate('/all-course/basic');
     setIsActiveEnrolled(false);
-    setIsPagination(true);
+    // setIsPagination(true);
     // dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
     //   setCourseCount(action.payload.data.searchedTotal);
     //   setAllCourses(action.payload.data);

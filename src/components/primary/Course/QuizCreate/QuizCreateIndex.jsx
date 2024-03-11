@@ -188,11 +188,18 @@ const QuizCreateIndex = () => {
         // formData.append(`questionAndAnswer[${index}][possibleAnswers][${answerIndex}]`, answer);
       });
 
-      if (qa.correctAnswerIndex) {
-        if (qa.correctAnswerIndex >= 0 && qa.correctAnswerIndex < 4) {
-          formData.append(`questionAndAnswer[${index}][correctAnswerIndex]`, qa.correctAnswerIndex);
-        }
-      } else {
+      // if (qa.correctAnswerIndex) {
+      // if (qa.correctAnswerIndex >= 0 && qa.correctAnswerIndex < 4) {
+      if (
+        qa.correctAnswerIndex === 0 ||
+        qa.correctAnswerIndex === 1 ||
+        qa.correctAnswerIndex === 2 ||
+        qa.correctAnswerIndex === 3
+      ) {
+        formData.append(`questionAndAnswer[${index}][correctAnswerIndex]`, qa.correctAnswerIndex);
+      }
+      // }
+      else {
         formData.append(`questionAndAnswer[${index}][correctAnswerIndex]`, -1);
       }
       // formData.append(`questionAndAnswer[${index}][correctAnswer]`, qa.correctAnswer);

@@ -294,7 +294,17 @@ export const getAChapterById = createAsyncThunk('course/a/chapter/:id', async (i
     throw new Error(error.response.data.message);
   }
 });
-
+export const getAllReviewForCourseId = createAsyncThunk('/review/course/:courseId/:id', async (id) => {
+  try {
+    return await axios.get(`${url}/review/course/${id}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
 // create Course Chapter
 
 export const createCourseChapter = createAsyncThunk('/createCourse/chapter', async (data) => {
@@ -326,6 +336,21 @@ export const getCourseQuizzesResults = createAsyncThunk('/courses/quizzes/result
     throw new Error(error.response.data.message);
   }
 });
+
+
+export const createCourseReview = createAsyncThunk('courses/CourseReview', async (FinalData) => {
+  const { id, data } = FinalData;
+  try {
+    return await axios.post(`${url}/review/create/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
 
 const courseSlice = createSlice({
   name: 'course',
@@ -577,7 +602,27 @@ const courseSlice = createSlice({
       .addCase(getCourseQuizzesResults.rejected, (state) => {
         state.isLoading = false;
         state.error = 'Login failed';
-      });
+      })
+      .addCase(createCourseReview.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createCourseReview.fulfilled, (state, action) => {
+        state.isLoading = false;
+       
+      })
+      .addCase(createCourseReview.rejected, (state) => {
+        state.isLoading = false;
+       })
+       .addCase(getAllReviewForCourseId.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllReviewForCourseId.fulfilled, (state, action) => {
+        state.isLoading = false;
+       
+      })
+      .addCase(getAllReviewForCourseId.rejected, (state) => {
+        state.isLoading = false;
+       });
   },
 });
 

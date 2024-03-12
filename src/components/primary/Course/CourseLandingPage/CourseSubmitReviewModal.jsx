@@ -1,5 +1,5 @@
 import { Box, Button, Fade, Modal, Stack, TextField, Typography, styled } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 import Backdrop from "@mui/material/Backdrop";
@@ -68,17 +68,19 @@ export const CRTextField = styled(TextField)(() => ({
     },
   },
 }));
-const CourseSubmitReviewModal = ({ user, course, isEnrollAble }) => {
+const CourseSubmitReviewModal = ({ user, isEnrollAble }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
-  // const { course } = useSelector((state) => state.course);
+  const { course } = useSelector((state) => state.course);
   const toast = useToaster();
   const [open, setOpen] = React.useState(false);
   const [courseRating, setCourseRating] = React.useState(0);
   const [courseReview, setCourseReview] = React.useState("");
+
   const dispatch = useDispatch();
   const handleCourseReview = (e) => {
     setCourseReview(e.target.value);
   };
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -111,7 +113,7 @@ const CourseSubmitReviewModal = ({ user, course, isEnrollAble }) => {
   };
   return (
     <>
-      {user.completedCourses.includes(course._id) && (
+      {user.completedCourses.includes(course._id) && !course?.isUserReviewed && (
         <Button disabled={!isEnrollAble} sx={{ ...btnStyle, ml: 1 }} onClick={handleOpen}>
           Submit Review
         </Button>

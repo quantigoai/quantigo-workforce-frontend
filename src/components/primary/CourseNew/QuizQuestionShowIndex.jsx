@@ -171,7 +171,7 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                 onChange={(event, value) => handleAlignment(event, value, item._id)}
                 // aria-label='text alignment'
               >
-                <Grid container sx={{ paddingLeft: "2%", paddingBottom: "2%" }}>
+                <Grid container sx={{ paddingLeft: "2%", paddingBottom: "2%",paddingTop:"15px" }}>
                   {item?.possibleAnswers?.map((posibleAnswer, i) => (
                     <>
                       {item.questionType === "imageInOptions" ? (
@@ -182,6 +182,7 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                             sx={{
                               paddingRight: "2%",
                               borderRadius: "8px",
+                              width:"500px"
                             }}
                           >
                             <Box
@@ -190,33 +191,7 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                                 borderRadius: "8px",
                               }}
                             >
-                              {/* <Grid item> */}
-                              {/* <Box sx={{}}>
-                                            {posibleAnswer.endsWith('.jpeg') ? (
-                                              <>
-                                                <img
-                                                  src={posibleAnswer}
-                                                  style={{ borderRadius: '8px' }}
-                                                  height={160}
-                                                  width="100%"
-                                                />
-                                              </>
-                                            ) : posibleAnswer.endsWith('.mpeg') ? (
-                                              <>
-                                                <audio style={audioStyle} src={posibleAnswer} controls></audio>
-                                              </>
-                                            ) : (
-                                              <>
-                                                <iframe
-                                                  height={160}
-                                                  src={posibleAnswer}
-                                                  alt=""
-                                                  width="100%"
-                                                  style={{ borderRadius: '8px' }}
-                                                ></iframe>
-                                              </>
-                                            )}
-                                          </Box> */}
+                            
                               {handleSwitchContent(posibleAnswer)}
                               {/* </Grid> */}
                               {/* <Grid item> */}
@@ -225,6 +200,9 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                                 sx={{
                                   backgroundColor: "neutral.N000",
                                   paddingLeft: "5%",
+                                  paddingTop:"3%",
+                                  paddingBottom:"3%",
+
                                   borderRadius: "8px",
                                   display: "flex",
                                 }}
@@ -245,15 +223,7 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                                 <Typography sx={{ color: alignment === i ? "#2E58FF" : "grey.600" }}>
                                   {i === 0 ? "Option A" : i === 1 ? "Option B" : i === 2 ? "Option C" : "Option D"}{" "}
                                 </Typography>
-                                {/* <MyFormControlLabel
-                                  key={i}
-                                  onChange={() => handleQuizResult(i, item._id)}
-                                  value={posibleAnswer}
-                                  control={<Radio />}
-                                  label={
-                                    i === 0 ? "Option A" : i === 1 ? "Option B" : i === 2 ? "Option C" : "Option D"
-                                  }
-                                /> */}
+                               
                               </Box>
                             </Box>
                             {/* </Grid> */}

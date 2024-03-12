@@ -302,7 +302,7 @@ const QuizreviewIndex = () => {
                             paddingTop: "1%",
                           }}
                         >
-                          <Typography variant='wpf_p2_semiBold' sx={{ color: "#090080" }}>
+                          <Typography variant='wpf_p2_semiBold' sx={{ color: "primary.B300"}}>
                             Q{i + 1}. {item.question.questionText} ?
                           </Typography>
                         </Grid>
@@ -487,7 +487,7 @@ const QuizreviewIndex = () => {
                           <RadioGroup
                           //  value={value}
                           >
-                            <Grid container sx={{ paddingLeft: "2%", paddingBottom: "2%" }}>
+                            <Grid container sx={{ paddingLeft: "2%", paddingBottom: "2%",paddingTop:"15px" }}>
                               {item.possibleAnswers.map((posibleAnswer, i) => (
                                 <>
                                   {item.questionType === "imageInOptions" ? (
@@ -496,7 +496,7 @@ const QuizreviewIndex = () => {
                                         <Box
                                           sx={{
                                             border: "1px solid #E2E8F0",
-                                            // borderRadius: "8px",
+                                            borderRadius: "8px",
                                           }}
                                         >
                                           {/* <Grid item> */}
@@ -530,7 +530,7 @@ const QuizreviewIndex = () => {
                                           </Box> */}
                                           {/* </Grid> */}
                                           {/* <Grid item> */}
-                                          <Box sx={{ backgroundColor: "#fff", paddingLeft: "5%", borderRadius: "8px" }}>
+                                          <Box sx={{ backgroundColor: "neutral.N000", paddingLeft: "5%", borderRadius: "8px" }}>
                                             <FormControlLabel
                                               key={i}
                                               onChange={() => handleQuizResult(i, item._id)}
@@ -544,7 +544,7 @@ const QuizreviewIndex = () => {
                                               label={
                                                 <Typography
                                                   variant='wpf_h7_semiBold'
-                                                  sx={{ color: item.correctAnswerIndex === i ? "#36B37E" : "#1E293B" }}
+                                                  sx={{ color: item.correctAnswerIndex === i ? "#36B37E" :  "grey.600" }}
                                                 >
                                                   {i === 0
                                                     ? "Option A"
@@ -615,7 +615,8 @@ const QuizreviewIndex = () => {
                                 sx={{
                                   mb: 0,
                                   textTransform: "uppercase",
-                                  color: "#64748B",
+                                  // color: "#64748B",
+                                  color:"neutral.N300"
                                 }}
                               >
                                 {user.role === "admin" || user.role === "trainer"

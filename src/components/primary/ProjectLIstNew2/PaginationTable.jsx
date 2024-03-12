@@ -163,7 +163,7 @@ const PaginationTable = ({
     if (pathname === `/submitted/${id}`) {
       setTotalPages(Math.ceil(submission?.total / pagination.pageSize));
     }
-    if (pathname === `/course`) {
+    if (pathname === `/courses2/myCourse`) {
       setTotalPages(Math.ceil(totalCourse / pagination.pageSize));
     }
   }, [total, totalUsers, usersWorkHistoryCount, meta, submission, totalCourse]);
@@ -178,7 +178,7 @@ const PaginationTable = ({
   const disablePrev = pagination.currentPage === 0;
   const disableNext = pagination.currentPage >= totalPages - 1;
 
-  const approvedPaths = ['/allprojects', '/all-users', '/projectDirectory', '/submitted', '/course'];
+  const approvedPaths = ['/allprojects', '/all-users', '/projectDirectory', '/submitted', '/courses2/myCourse'];
 
   const approvedData = [
     myWorkHistoryCount,

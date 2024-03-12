@@ -7,6 +7,7 @@ import CommonHeader from '../../../shared/CustomComponenet/CommonHeader/CommonHe
 import CoursePageFilter from './CoursePageFilter';
 import MIniModalCourseFilter from './MIniModalCourseFilter';
 import { capitalizeFirstLetter } from '../../../../helper/capitalizeFirstWord';
+import { useLocation } from 'react-router-dom';
 const CourseHeader = ({
   handleOpen,
   open,
@@ -45,7 +46,8 @@ const CourseHeader = ({
   pagination,
   setIsPagination,
 }) => {
-  console.log('🚀 ~ courseCount:', courseCount);
+  const { pathname } = useLocation();
+
   return (
     <>
       <Box

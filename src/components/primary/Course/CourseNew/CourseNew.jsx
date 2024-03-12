@@ -4,7 +4,12 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import useCourseManagement from '../hooks/createCourseHook/useCourseMangement';
 import CourseHeader from '../CourseHeader/CourseHeader';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllCoursesNew, getArchivedCourses, getMyCourses } from '../../../../features/slice/courseSlice';
+import {
+  getAllCoursesNew,
+  getArchivedCourses,
+  getCoursesCount,
+  getMyCourses,
+} from '../../../../features/slice/courseSlice';
 
 const CourseNew = () => {
   const navigate = useNavigate();
@@ -89,13 +94,11 @@ const CourseNew = () => {
   const [MyCourseCount, setMyCourseCount] = useState(0);
   const [ArchiveCount, setArchiveCount] = useState(0);
   useEffect(() => {
-    dispatch(getMyCourses({ pagination })).then((action) => {
-      setMyCourseCount(action.payload.data.searchedTotal);
+    dispatch(getCoursesCount()).then((action) => {
+      setMyCourseCount(action.payload.data.coursesCount.myCourseCount);
+      setArchiveCount(action.payload.data.coursesCount.myArchivedCourseCount);
+      setCourseCount(action.payload.data.coursesCount.allCourseCount);
     });
-    dispatch(getArchivedCourses({ pagination })).then((action) => {
-      setArchiveCount(action.payload.data.searchedTotal);
-    });
-    dispatch(getAllCoursesNew({})).then((action) => setCourseCount(action.payload.data.courses.count));
   }, []);
   return (
     <Box className="content">
@@ -139,7 +142,19 @@ const CourseNew = () => {
         />
       </Box>
       <Box>
-        <Outlet />
+        <Outlet
+          context={[
+            allCourses,
+            setAllCourses,
+            search,
+            filter,
+            isDataLoading,
+            setIsDataLoading,
+            role,
+            pagination,
+            setPagination,
+          ]}
+        />
       </Box>
     </Box>
   );

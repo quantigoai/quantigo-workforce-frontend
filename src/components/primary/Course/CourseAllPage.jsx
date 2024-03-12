@@ -224,6 +224,7 @@ const CourseAllPage = () => {
                             <Typography variant="wpf_h6_semiBold">No course Found</Typography>
                           </>
                         ) : (
+                          allCoursesFull.length !== 0 &&
                           allCoursesFull?.map((course) => (
                             <Box
                               sx={{

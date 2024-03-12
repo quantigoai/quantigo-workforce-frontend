@@ -12,7 +12,7 @@ const ReviewSwipper = () => {
   const dispatch = useDispatch();
   const [selectedSlide, setSelectedSlide] = useState(0);
   const [allReviews, setAllReviews] = useState([]);
-  console.log("🚀 ~ ReviewSwipper ~ allReviews:", allReviews)
+  console.log("🚀 ~ ReviewSwipper ~ allReviews:", allReviews);
 
   const { isLightTheme } = useSelector((state) => state.theme);
   const { course } = useSelector((state) => state.course);
@@ -54,7 +54,7 @@ const ReviewSwipper = () => {
       >
         <Box sx={{ padding: "1%", backgroundColor: "red" }}>
           <Grid sx={{ backgroundColor: "red" }} container spacing={3}>
-            {arr.map((item, index) => (
+            {allReviews.map((item, index) => (
               <Grid sx={{ backgroundColor: "red" }} key={item} item xs={12} sm={6} md={3} gap={1}>
                 <SwiperSlide style={{ backgroundColor: isLightTheme ? "#fff" : "#000" }} key={item._id}>
                   <Box
@@ -72,7 +72,7 @@ const ReviewSwipper = () => {
                       borderRadius: "8px",
                     }}
                   >
-                    <ReviewCard item={item} review={review} allReviews={allReviews}/>
+                    <ReviewCard item={item} review={review} />
                   </Box>
                 </SwiperSlide>
               </Grid>

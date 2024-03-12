@@ -45,6 +45,7 @@ const CourseHeader = ({
   pagination,
   setIsPagination,
 }) => {
+  console.log('🚀 ~ courseCount:', courseCount);
   return (
     <>
       <Box

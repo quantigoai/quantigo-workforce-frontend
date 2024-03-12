@@ -65,6 +65,9 @@ const PaginationTable = ({
     if (pathname === `/course`) {
       setMeta(courseMeta);
     }
+    if (pathname === `/courses2/myCourse`) {
+      setMeta(courseMeta);
+    }
   }, [pathname, projectMeta, userMeta, workHistoryMeta, directoryMeta, quizMeta, courseMeta]);
   const navigate = useNavigate();
   const [params] = useSearchParams();
@@ -90,9 +93,8 @@ const PaginationTable = ({
         pathname === '/allprojects' ||
         pathname === `/projectDetails/${id}` ||
         pathname === '/projectDirectory' ||
-        pathname === `/submitted/${id}`
-        // ||
-        // pathname === `/course`
+        pathname === `/submitted/${id}` ||
+        pathname === `/courses2/myCourse`
       ) {
         setPagination((prevPagination) => ({
           ...prevPagination,

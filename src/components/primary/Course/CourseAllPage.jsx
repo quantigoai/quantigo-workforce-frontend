@@ -20,7 +20,7 @@ const CourseAllPage = () => {
     isCourseLoading,
     isLoading,
     filterCourses,
-    courses,
+    // courses,
     handleViewDetailsButton,
     handleSubmit,
     methods,
@@ -74,6 +74,7 @@ const CourseAllPage = () => {
     pagination,
     setPagination,
   } = useCourseManagement();
+  console.log('🚀 ~ CourseAllPage ~ allCoursesFull:', allCoursesFull);
 
   const CoursePaper = styled(Paper)({
     width: '100%',
@@ -89,6 +90,7 @@ const CourseAllPage = () => {
   });
   const { level } = useParams();
   const { user } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   const [allCount, setAllCount] = useState(0);
   const [MyCourseCount, setMyCourseCount] = useState(0);
@@ -96,10 +98,10 @@ const CourseAllPage = () => {
 
   useEffect(() => {
     dispatch(getMyCourses({ pagination })).then((action) => {
-      setMyCourseCount(action.payload.data.searchedTotal);
+      setMyCourseCount(action.payload.data.total);
     });
     dispatch(getArchivedCourses({ pagination })).then((action) => {
-      setArchiveCount(action.payload.data.searchedTotal);
+      setArchiveCount(action.payload.data.total);
     });
     dispatch(getAllCourses({ level })).then((action) => {
       setAllCount(action.payload.data.count);
@@ -107,7 +109,7 @@ const CourseAllPage = () => {
       // setFeatureCourses(action.payload.data.courses.featureCourseList);
       // setIsDataLoading(false);
     });
-  }, [MyCourseCount, ArchiveCount, allCount, isActiveEnrolled, isActiveArchived]);
+  }, [MyCourseCount, ArchiveCount, allCount, isActiveEnrolled, isActiveArchived, level]);
 
   useLayoutEffect(() => {
     // dispatch(setActivePath('Course'));
@@ -126,9 +128,11 @@ const CourseAllPage = () => {
       });
     } else {
       dispatch(getAllCourses({ level, search, filter })).then((action) => {
-        setAllCoursesFull(action.payload?.data?.courses);
-        setCourseCountFull(action.payload.data.count);
-        setIsDataLoading(false);
+        if (action.payload.data) {
+          setAllCoursesFull(action.payload.data.courses);
+          setCourseCountFull(action.payload.data.count);
+          setIsDataLoading(false);
+        }
       });
     }
   }, [search, isActiveEnrolled, pagination, isActiveArchived, level]);
@@ -224,6 +228,7 @@ const CourseAllPage = () => {
                             <Typography variant="wpf_h6_semiBold">No course Found</Typography>
                           </>
                         ) : (
+                          isDataLoading &&
                           allCoursesFull?.map((course) => (
                             <Box
                               sx={{

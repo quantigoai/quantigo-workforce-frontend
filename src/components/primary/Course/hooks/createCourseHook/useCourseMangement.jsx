@@ -39,6 +39,7 @@ const useCourseManagement = () => {
   const [isActiveEnrolled, setIsActiveEnrolled] = useState(false);
   const [isActiveArchived, setIsActiveArchived] = useState(false);
   const { courses, isLoading } = useSelector((state) => state.course);
+  console.log('🚀 ~ useCourseManagement ~ isLoading:', isLoading);
   const { isLightTheme } = useSelector((state) => state.theme);
   const navigate = useNavigate();
   const [preRequisiteCourses, setPreRequisiteCourses] = React.useState([]);

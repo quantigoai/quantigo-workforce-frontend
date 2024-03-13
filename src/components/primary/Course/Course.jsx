@@ -109,13 +109,13 @@ const Course = () => {
   const [MyCourseCount, setMyCourseCount] = useState(0);
   const [ArchiveCount, setArchiveCount] = useState(0);
   const [isPagination, setIsPagination] = useState(false);
-  console.log('🚀 ~ Course ~ isPagination:', isPagination);
+
   useEffect(() => {
     dispatch(getMyCourses({ pagination })).then((action) => {
-      setMyCourseCount(action.payload.data.searchedTotal);
+      setMyCourseCount(action.payload.data.total);
     });
     dispatch(getArchivedCourses({ pagination })).then((action) => {
-      setArchiveCount(action.payload.data.searchedTotal);
+      setArchiveCount(action.payload.data.total);
     });
     dispatch(getAllCoursesNew({})).then((action) => {
       setAllCount(action.payload.data.courses.count);
@@ -305,7 +305,7 @@ const Course = () => {
                             )}
                           </Box>
 
-                          {isPagination && (
+                          {/* {isPagination && (
                             <PaginationTable
                               pagination={pagination}
                               setPagination={setPagination}
@@ -314,7 +314,7 @@ const Course = () => {
                               // setFilterValue={setFilterValue}
                               // setFilteredCol={setFilteredCol}
                             />
-                          )}
+                          )} */}
                         </>
                       )}
                     </>

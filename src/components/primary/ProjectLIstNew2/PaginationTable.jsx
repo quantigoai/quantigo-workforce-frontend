@@ -42,6 +42,7 @@ const PaginationTable = ({
     projectMeta,
     workHistoryMeta,
   } = useSelector((state) => state.projectDrawer);
+
   const { id } = useParams();
 
   const { userFilter, projectDrawerFilter } = useSelector(
@@ -49,17 +50,18 @@ const PaginationTable = ({
   );
 
   const { total } = useSelector((state) => state.projectDrawer);
+
   const {
     users,
     totalUsers,
     meta: userMeta,
   } = useSelector((state) => state.user.users);
+
   const { projectDirectory, totalDirectory, directoryMeta } = useSelector(
     (state) => state.projectDirectory,
   );
 
   const [meta, setMeta] = useState(projectMeta);
-
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -78,10 +80,13 @@ const PaginationTable = ({
     if (pathname === `/submitted/${id}`) {
       setMeta(quizMeta);
     }
-    if (pathname === `/course`) {
+    // if (pathname === `/course`) {
+    //   setMeta(courseMeta);
+    // }
+    if (pathname === `/courses2/myCourse`) {
       setMeta(courseMeta);
     }
-    if (pathname === `/courses2/myCourse`) {
+    if (pathname === `/courses2/archiveCourse`) {
       setMeta(courseMeta);
     }
   }, [
@@ -91,7 +96,7 @@ const PaginationTable = ({
     workHistoryMeta,
     directoryMeta,
     quizMeta,
-    courseMeta,
+    // courseMeta,
   ]);
   const navigate = useNavigate();
   const [params] = useSearchParams();
@@ -118,7 +123,8 @@ const PaginationTable = ({
         pathname === `/projectDetails/${id}` ||
         pathname === '/projectDirectory' ||
         pathname === `/submitted/${id}` ||
-        pathname === `/courses2/myCourse`
+        pathname === `/courses2/myCourse` ||
+        pathname === `/courses2/archiveCourse`
       ) {
         setPagination((prevPagination) => ({
           ...prevPagination,
@@ -189,7 +195,10 @@ const PaginationTable = ({
     if (pathname === `/submitted/${id}`) {
       setTotalPages(Math.ceil(submission?.total / pagination.pageSize));
     }
-    if (pathname === `/courses2/myCourse`) {
+    if (
+      pathname === `/courses2/myCourse` ||
+      pathname === `/courses2/archiveCourse`
+    ) {
       setTotalPages(Math.ceil(totalCourse / pagination.pageSize));
     }
   }, [total, totalUsers, usersWorkHistoryCount, meta, submission, totalCourse]);
@@ -216,6 +225,7 @@ const PaginationTable = ({
     '/projectDirectory',
     '/submitted',
     '/courses2/myCourse',
+    '/courses2/archiveCourse',
   ];
 
   const approvedData = [

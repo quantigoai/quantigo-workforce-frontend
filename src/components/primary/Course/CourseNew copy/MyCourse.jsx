@@ -1,43 +1,35 @@
 import { Box } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useOutletContext } from 'react-router-dom';
 import { getMyCourses } from '../../../../features/slice/courseSlice';
 import LoadingSkeleton from '../../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton';
 import CourseLevel from '../CourseLevel';
-import NewPagination from './NewPagination';
-import useCourse from './useCourse';
 
 const MyCourse = () => {
-  const {
+  const [
+    allCourses,
+    setAllCourses,
+    search,
+    filter,
     isDataLoading,
     setIsDataLoading,
-    search,
-    setSearch,
-    // pagination,
-    // setPagination,
-    searchRef,
-    filter,
-    setFilter,
-    isCourseLoading,
-    setIsCourseLoading,
-  } = useCourse();
-  const [pagination, setPagination] = useState({
-    currentPage: 0,
-    pageSize: 10,
-  });
-  console.log('🚀 ~ MyCourse ~ pagination:', pagination);
+    role,
+    pagination,
+    setPagination,
+  ] = useOutletContext();
+
   const {
     isLoading: cLoading,
-    myCourses: courses,
+    courses,
     courseMeta,
     total,
   } = useSelector((state) => state.course);
   const dispatch = useDispatch();
-
-  useEffect(() => {
+  useLayoutEffect(() => {
     dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
-      // setAllCourses(action.payload.data);
-      // setIsDataLoading(false);
+      setAllCourses(action.payload.data);
+      setIsDataLoading(false);
     });
   }, [pagination]);
   return (
@@ -50,15 +42,10 @@ const MyCourse = () => {
         <Box sx={{ paddingLeft: '25px' }}>
           <CourseLevel
             isDataLoading={isDataLoading}
-            courses={courses}
+            courses={allCourses.enrolledCourses}
             // courses={courses}
           />
-          <NewPagination
-            pagination={pagination}
-            setPagination={setPagination}
-            totalCourse={total}
-            courseMeta={courseMeta}
-          />
+
           {/* <PaginationTable
             pagination={pagination}
             setPagination={setPagination}

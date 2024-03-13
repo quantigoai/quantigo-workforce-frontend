@@ -1,34 +1,101 @@
-import { Box } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { Box, Paper, styled } from '@mui/material';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { setActivePath } from '../../../../features/slice/activePathSlice';
-import { getCoursesCount } from '../../../../features/slice/courseSlice';
-import CHeader from './CHeader';
-import useCourse from './useCourse';
+import {
+  getAllCoursesNew,
+  getArchivedCourses,
+  getCoursesCount,
+  getMyCourses,
+} from '../../../../features/slice/courseSlice';
+import PaginationTable from '../../ProjectLIstNew2/PaginationTable';
+import CourseHeader from '../CourseHeader/CourseHeader';
+import useCourseManagement from '../hooks/createCourseHook/useCourseMangement';
 
 const CourseNew = () => {
   const navigate = useNavigate();
   const {
+    open,
+    setOpen,
+    handleOpen,
+    isCourseLoading,
+    isLoading,
+    filterCourses,
+    courses,
+    handleViewDetailsButton,
+    handleSubmit,
+    methods,
+    preRequisiteCourses,
+    handleChange_Pre_Requisite_Course,
+    onSubmit,
+    handleClose,
+    skills,
+    skill,
+    handleChangeSkills,
+    coverImage,
+    removeImage,
+    handleImage,
     isDataLoading,
     setIsDataLoading,
+    role,
+    isLightTheme,
+    checkedFeatured,
+    handleChangeFeatured,
+    dateTime,
+    handleDateTime,
+    outcomes,
+    setOutcomes,
+    hub,
+    handleChangeHub,
     search,
     setSearch,
+    handleSearch,
+    clearSearch,
+    searchRef,
+    featureCourses,
+    setFeatureCourses,
+    // courseCount,
+    // setCourseCount,
+    openModal,
+    id,
+    handleCloseFilter,
+    filter,
+    handleChange,
+    handleClickFilter,
+    handleResetFilter,
+    handleFilterCourse,
+    anchorE2,
+    allCourses,
+    setAllCourses,
+    isActiveAll,
+    setIsActiveAll,
+    isActiveEnrolled,
+    setIsActiveEnrolled,
+    isActiveArchived,
+    setIsActiveArchived,
+    setFilter,
     pagination,
     setPagination,
-    searchRef,
-    filter,
-    setFilter,
-    isCourseLoading,
-    setIsCourseLoading,
-  } = useCourse();
+  } = useCourseManagement();
   const { user } = useSelector((state) => state.user);
   const {
     isLoading: cLoading,
     total,
     courseMeta,
   } = useSelector((state) => state.course);
-
+  const CoursePaper = styled(Paper)({
+    width: '100%',
+    height: '90%',
+    overflow: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    borderRadius: '8px',
+    border: '0px 0px 1px 0px',
+    backgroundColor: isLightTheme ? '#F2F6FC' : '#212121',
+    boxShadow: '0px 1px 3px 0px #09008014',
+  });
   const dispatch = useDispatch();
   const [courseCount, setCourseCount] = useState(0);
   const [MyCourseCount, setMyCourseCount] = useState(0);
@@ -40,10 +107,9 @@ const CourseNew = () => {
       setArchiveCount(action.payload.data.coursesCount.myArchivedCourseCount);
       setCourseCount(action.payload.data.coursesCount.allCourseCount);
     });
-    navigate('/courses2/allCourse');
   }, []);
-
   const pathname = window.location.pathname;
+  console.log('🚀 ~ CourseNew ~ pathname:', pathname);
 
   // useLayoutEffect(() => {
   //   console.log('sss');
@@ -74,7 +140,7 @@ const CourseNew = () => {
   return (
     <Box className="content">
       <Box className="contentHeader">
-        {/* <CourseHeader
+        <CourseHeader
           search={search}
           searchRef={searchRef}
           clearSearch={clearSearch}
@@ -108,24 +174,25 @@ const CourseNew = () => {
           ArchiveCount={ArchiveCount}
           // allCount={allCount}
           setFilter={setFilter}
-        /> */}
-        <CHeader />
+          // pagination={pagination}
+          // setIsPagination={setIsPagination}
+        />
       </Box>
       <Box>
         <Outlet
-          // context={[
-          //   allCourses,
-          //   setAllCourses,
-          //   search,
-          //   filter,
-          //   isDataLoading,
-          //   setIsDataLoading,
-          //   role,
-          //   pagination,
-          //   setPagination,
-          // ]}
+          context={[
+            allCourses,
+            setAllCourses,
+            search,
+            filter,
+            isDataLoading,
+            setIsDataLoading,
+            role,
+            pagination,
+            setPagination,
+          ]}
         />
-        {/* {!cLoading && (
+        {!cLoading && (
           <PaginationTable
             pagination={pagination}
             setPagination={setPagination}
@@ -134,7 +201,7 @@ const CourseNew = () => {
             // setFilterValue={setFilterValue}
             // setFilteredCol={setFilteredCol}
           />
-        )} */}
+        )}
       </Box>
     </Box>
   );

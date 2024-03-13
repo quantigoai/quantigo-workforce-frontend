@@ -44,7 +44,9 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
             <Grid
               xs={8}
               sx={{
-                paddingLeft: "2%",
+                paddingLeft: "20px",
+                // paddingLeft: "2%",
+
                 paddingRight: "2%",
                 // paddingBottom: "1%",
                 paddingTop: "1%",
@@ -167,7 +169,16 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                 onChange={(event, value) => handleAlignment(event, value, item._id)}
                 // aria-label='text alignment'
               >
-                <Grid container sx={{ paddingLeft: "2%", paddingBottom: "2%", paddingTop: "15px" }}>
+                <Grid
+                  container
+                  sx={{
+                    paddingLeft: "20px",
+                    paddingBottom: "2%",
+                    paddingTop: "1px",
+
+                    // backgroundColor: "red",
+                  }}
+                >
                   {item?.possibleAnswers?.map((posibleAnswer, i) => (
                     <>
                       {item.questionType === "imageInOptions" ? (
@@ -227,7 +238,17 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                         <>
                           {/* <Box style={{ display: "flex", flexDirection: "column" }}> */}
                           {/* <Grid container gap={2} sx={{ paddingBottom: "10px", paddingLeft: "10%", paddingTop: "3%" }}> */}
-                          <Grid item xs={0.4} sx={{ backgroundColor: "", paddingY: "10px" }}>
+                          {/* <Grid item xs={12} sm={0.5} lg={1} sx={{ backgroundColor: "", paddingY: "10px" }}> */}
+
+                          <Box
+                            sx={{
+                              // width: { xl: "4%", lg: "5%", xxl: "3.5%" },
+                              width: "7%",
+                              paddingY: "10px",
+                              // paddingX: "10px",
+                              // backgroundColor: "red",
+                            }}
+                          >
                             <ToggleButton
                               // style={{ color: alignment === "0" ? "blue" : "black" }}
                               value={i}
@@ -241,8 +262,18 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                             >
                               <img src={alignment === i ? SwitchCheck : radioIcon} />
                             </ToggleButton>
-                          </Grid>
-                          <Grid item xs={11.4} sx={{ paddingY: "10px" }}>
+                          </Box>
+                          {/* </Grid> */}
+                          {/* <Grid item xs={12} sm={11} lg={11} sx={{ paddingY: "10px" }}> */}
+                          <Box
+                            sx={{
+                              // width: { xl: "96%", lg: "95%", xxl: "96.5%" },
+                              width: "93%",
+                              paddingY: "10px",
+                              paddingX: "0px",
+                              backgroundColor: "",
+                            }}
+                          >
                             <Typography
                               variant='wpf_p3_regular'
                               // sx={{ color: alignment === i ? "#2E58FF" : "#1E293B" }}
@@ -250,7 +281,8 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                             >
                               {posibleAnswer}
                             </Typography>
-                          </Grid>
+                          </Box>
+                          {/* </Grid> */}
                           {/* </Grid> */}
 
                           {/* </Box> */}
@@ -287,7 +319,7 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                   <PdTextField
                     fullWidth
                     // variant='outlined'
-                    placeholder='Write your thougts...'
+                    placeholder='Write your thoughts...'
                     // onChange={(e) => handleQuizResultTextField(e.target.value, item._id)}
                     // onChange={(e) => handleQuizResult(null, item._id, e.target.value, false)}
                     onChange={(event, value) => handleAlignment(event, value, item._id, event.target.value, false)}

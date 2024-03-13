@@ -1,7 +1,7 @@
 import { Box, Paper, Typography, styled } from '@mui/material';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { getAllCourses, getArchivedCourses, getMyCourses } from '../../../features/slice/courseSlice';
 import { getAllSkills } from '../../../features/slice/skillSlice';
 import LoadingSkeleton from '../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton';
@@ -74,7 +74,6 @@ const CourseAllPage = () => {
     pagination,
     setPagination,
   } = useCourseManagement();
-  console.log('🚀 ~ CourseAllPage ~ allCoursesFull:', allCoursesFull);
 
   const CoursePaper = styled(Paper)({
     width: '100%',
@@ -90,12 +89,13 @@ const CourseAllPage = () => {
   });
   const { level } = useParams();
   const { user } = useSelector((state) => state.user);
+  const { pathname } = useLocation();
 
   const dispatch = useDispatch();
   const [allCount, setAllCount] = useState(0);
   const [MyCourseCount, setMyCourseCount] = useState(0);
   const [ArchiveCount, setArchiveCount] = useState(0);
-
+  const [courseMeta, setCourseMeta] = useState({});
   useEffect(() => {
     dispatch(getMyCourses({ pagination })).then((action) => {
       setMyCourseCount(action.payload.data.total);
@@ -113,11 +113,12 @@ const CourseAllPage = () => {
 
   useLayoutEffect(() => {
     // dispatch(setActivePath('Course'));
-    dispatch(getAllSkills());
+    // dispatch(getAllSkills());
     if (isActiveEnrolled) {
       dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
-        setCourseCountFull(action.payload.data.searchedTotal);
+        setCourseCountFull(action.payload.data.total);
         setAllCoursesFull(action.payload.data.enrolledCourses);
+        setCourseMeta(action.payload.data.meta);
         setIsDataLoading(false);
       });
     } else if (isActiveArchived) {
@@ -125,14 +126,13 @@ const CourseAllPage = () => {
         setCourseCountFull(action.payload.data.total);
         setAllCoursesFull(action.payload.data.archivedCourses);
         setIsDataLoading(false);
+        setCourseMeta(action.payload.data.meta);
       });
     } else {
       dispatch(getAllCourses({ level, search, filter })).then((action) => {
-        if (action.payload.data) {
-          setAllCoursesFull(action.payload.data.courses);
-          setCourseCountFull(action.payload.data.count);
-          setIsDataLoading(false);
-        }
+        setAllCoursesFull(action.payload.data.courses);
+        setCourseCountFull(action.payload.data.count);
+        setIsDataLoading(false);
       });
     }
   }, [search, isActiveEnrolled, pagination, isActiveArchived, level]);
@@ -185,6 +185,8 @@ const CourseAllPage = () => {
               ArchiveCount={ArchiveCount}
               allCount={allCount}
               setFilter={setFilter}
+              setAllCoursesFull={setAllCoursesFull}
+              setCourseCountFull={setCourseCountFull}
             />
           </Box>
           <CoursePaper>
@@ -198,7 +200,7 @@ const CourseAllPage = () => {
                   {role === '' ? (
                     <></>
                   ) : (
-                    <Box sx={{ padding: '30px' }}>
+                    <Box sx={{ padding: '25px' }}>
                       {/* <Typography variant="wpf_h4_Bold" color={'neutral.995'}>
                         {level === 'basic'
                           ? 'Basic Courses'
@@ -257,8 +259,8 @@ const CourseAllPage = () => {
                     <PaginationTable
                       pagination={pagination}
                       setPagination={setPagination}
-                      // totalCourse={allCourses.total}
-                      // courseMeta={allCourses.meta}
+                      totalCourse={MyCourseCount}
+                      courseMeta={courseMeta}
                       // setFilterValue={setFilterValue}
                       // setFilteredCol={setFilteredCol}
                     />

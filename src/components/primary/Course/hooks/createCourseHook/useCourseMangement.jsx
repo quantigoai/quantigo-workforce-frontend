@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 import useToaster from '../../../../../customHooks/useToaster';
-import { setActiveChapterIndex, setActiveCourseId } from '../../../../../features/slice/activePathSlice';
+import {
+  setActiveChapterIndex,
+  setActiveCourseId,
+} from '../../../../../features/slice/activePathSlice';
 import {
   createCourse,
   getACourseByID,
@@ -31,7 +34,7 @@ const useCourseManagement = () => {
   const { role } = useSelector((state) => state.user.user);
   const { course } = useSelector((state) => state.course);
   const [filterCourses, setFilterCourses] = useState([]);
-  const [isDataLoading, setIsDataLoading] = useState(true);
+  const [isDataLoading, setIsDataLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const searchRef = React.useRef(null);
   const [search, setSearch] = useState('');
@@ -52,7 +55,13 @@ const useCourseManagement = () => {
     pageSize: 10,
   });
   const [buttonClicked, setButtonClicked] = useState(false);
-  const [hub, setHub] = useState(['Dhaka', 'Mymensingh', 'Sirajganj', 'Khulna', 'Chuadanga']);
+  const [hub, setHub] = useState([
+    'Dhaka',
+    'Mymensingh',
+    'Sirajganj',
+    'Khulna',
+    'Chuadanga',
+  ]);
   const dispatch = useDispatch();
   const toast = useToaster();
   const CourseCreateSchema = Yup.object().shape({
@@ -89,41 +98,51 @@ const useCourseManagement = () => {
   const handleResetFilter = () => {
     if (level) {
       if (isActiveEnrolled) {
-        dispatch(getMyCourses({ filter: {}, search, pagination })).then((action) => {
-          setCourseCountFull(action.payload.data.searchedTotal);
-          setAllCoursesFull(action.payload.data.enrolledCourses);
-          setFilter({});
-          // setIsDataLoading(false);
-        });
+        dispatch(getMyCourses({ filter: {}, search, pagination })).then(
+          (action) => {
+            setCourseCountFull(action.payload.data.searchedTotal);
+            setAllCoursesFull(action.payload.data.enrolledCourses);
+            setFilter({});
+            // setIsDataLoading(false);
+          },
+        );
       } else if (isActiveArchived) {
-        dispatch(getArchivedCourses({ filter: {}, search, pagination })).then((action) => {
-          setCourseCountFull(action.payload.data.searchedTotal);
-          setAllCoursesFull(action.payload.data.archivedCourses);
-          setFilter({});
-          // setIsDataLoading(false);
-        });
+        dispatch(getArchivedCourses({ filter: {}, search, pagination })).then(
+          (action) => {
+            setCourseCountFull(action.payload.data.searchedTotal);
+            setAllCoursesFull(action.payload.data.archivedCourses);
+            setFilter({});
+            // setIsDataLoading(false);
+          },
+        );
       } else {
-        dispatch(getAllCourses({ level, filter: {}, search })).then((action) => {
-          setAllCoursesFull(action.payload.data.courses);
-          setCourseCountFull(action.payload.data.count);
-          setFilter({});
-        });
+        dispatch(getAllCourses({ level, filter: {}, search })).then(
+          (action) => {
+            setAllCoursesFull(action.payload.data.courses);
+            setCourseCountFull(action.payload.data.count);
+            setFilter({});
+          },
+        );
       }
     } else {
       if (isActiveEnrolled) {
-        dispatch(getMyCourses({ filter: {}, search, pagination })).then((action) => {
-          setCourseCount(action.payload.data.searchedTotal);
-          setAllCourses(action.payload.data);
-          setIsDataLoading(false);
-          setFilter({});
-        });
+        dispatch(getMyCourses({ filter: {}, search, pagination })).then(
+          (action) => {
+            setCourseCount(action.payload.data.searchedTotal);
+            setAllCourses(action.payload.data);
+            setIsDataLoading(false);
+            setFilter({});
+          },
+        );
       } else if (isActiveArchived) {
-        dispatch(getArchivedCourses({ filter: {}, search, pagination })).then((action) => {
-          setCourseCount(action.payload.data.searchedTotal);
-          setAllCourses(action.payload.data);
-          setIsDataLoading(false);
-          setFilter({});
-        });
+        dispatch(getArchivedCourses({ filter: {}, search, pagination })).then(
+          (action) => {
+            setCourseCount(action.payload.data.searchedTotal);
+            setAllCourses(action.payload.data);
+            setIsDataLoading(false);
+            setFilter({});
+          },
+        );
       } else {
         dispatch(getAllCoursesNew({ filter: {}, search })).then((action) => {
           setCourseCount(action.payload.data.courses.count);
@@ -138,17 +157,21 @@ const useCourseManagement = () => {
     setButtonClicked(true);
     if (level) {
       if (isActiveEnrolled) {
-        dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
-          setCourseCountFull(action.payload.data.searchedTotal);
-          setAllCoursesFull(action.payload.data.enrolledCourses);
-          // setIsDataLoading(false);
-        });
+        dispatch(getMyCourses({ filter, search, pagination })).then(
+          (action) => {
+            setCourseCountFull(action.payload.data.searchedTotal);
+            setAllCoursesFull(action.payload.data.enrolledCourses);
+            // setIsDataLoading(false);
+          },
+        );
       } else if (isActiveArchived) {
-        dispatch(getArchivedCourses({ filter, search, pagination })).then((action) => {
-          setCourseCountFull(action.payload.data.searchedTotal);
-          setAllCoursesFull(action.payload.data.archivedCourses);
-          // setIsDataLoading(false);
-        });
+        dispatch(getArchivedCourses({ filter, search, pagination })).then(
+          (action) => {
+            setCourseCountFull(action.payload.data.searchedTotal);
+            setAllCoursesFull(action.payload.data.archivedCourses);
+            // setIsDataLoading(false);
+          },
+        );
       } else {
         dispatch(getAllCourses({ level, filter, search })).then((action) => {
           setAllCoursesFull(action.payload.data.courses);
@@ -157,17 +180,21 @@ const useCourseManagement = () => {
       }
     } else {
       if (isActiveEnrolled) {
-        dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
-          setCourseCount(action.payload.data.searchedTotal);
-          setAllCourses(action.payload.data);
-          setIsDataLoading(false);
-        });
+        dispatch(getMyCourses({ filter, search, pagination })).then(
+          (action) => {
+            setCourseCount(action.payload.data.searchedTotal);
+            setAllCourses(action.payload.data);
+            setIsDataLoading(false);
+          },
+        );
       } else if (isActiveArchived) {
-        dispatch(getArchivedCourses({ filter, search, pagination })).then((action) => {
-          setCourseCount(action.payload.data.searchedTotal);
-          setAllCourses(action.payload.data);
-          setIsDataLoading(false);
-        });
+        dispatch(getArchivedCourses({ filter, search, pagination })).then(
+          (action) => {
+            setCourseCount(action.payload.data.searchedTotal);
+            setAllCourses(action.payload.data);
+            setIsDataLoading(false);
+          },
+        );
       } else {
         dispatch(getAllCoursesNew({ filter, search })).then((action) => {
           setCourseCount(action.payload.data.courses.count);
@@ -204,7 +231,9 @@ const useCourseManagement = () => {
       return skills.find((s) => s.name === skill);
     });
 
-    setSkill(typeof selectedSkills === 'string' ? value.split(',') : selectedSkills);
+    setSkill(
+      typeof selectedSkills === 'string' ? value.split(',') : selectedSkills,
+    );
   };
   const handleChangeHub = (event) => {
     const {
@@ -212,7 +241,7 @@ const useCourseManagement = () => {
     } = event;
     setHub(
       // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value
+      typeof value === 'string' ? value.split(',') : value,
     );
   };
 
@@ -247,11 +276,13 @@ const useCourseManagement = () => {
     });
 
     setPreRequisiteCourses(
-      typeof selectedPreRequisiteCourses === 'string' ? value.split(',') : selectedPreRequisiteCourses
+      typeof selectedPreRequisiteCourses === 'string'
+        ? value.split(',')
+        : selectedPreRequisiteCourses,
     );
   };
   const { handleSubmit, reset } = methods;
-  const [isCourseLoading, setIsCourseLoading] = useState(false);
+  const [isCourseLoading, setIsCourseLoading] = useState(true);
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -276,10 +307,13 @@ const useCourseManagement = () => {
     formData.append('language', data.language);
     formData.append('description', data.description);
     formData.append('images', coverImageFile);
-    preRequisiteCoursesColl.length && formData.append('prerequisiteCourses', preRequisiteCoursesColl);
+    preRequisiteCoursesColl.length &&
+      formData.append('prerequisiteCourses', preRequisiteCoursesColl);
     hub.length && formData.append('hubs', hub);
-    data.liveSessionLink !== undefined && formData.append('liveSessionLink', data.liveSessionLink);
-    dateTime.$d !== undefined && formData.append('liveSessionStartedAt', dateTime.$d);
+    data.liveSessionLink !== undefined &&
+      formData.append('liveSessionLink', data.liveSessionLink);
+    dateTime.$d !== undefined &&
+      formData.append('liveSessionStartedAt', dateTime.$d);
     formData.append('isFeaturedCourse', checkedFeatured);
     outcomes.length > 1 && formData.append('outComes', outcomes);
     skillColl.length && formData.append('skills', skillColl);

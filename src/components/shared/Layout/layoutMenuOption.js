@@ -175,6 +175,7 @@ const layoutMenuOption = () => {
 
     { name: 'All Projects', icon: ProjectSvg },
     { name: 'Course', icon: CourseSvg },
+    { name: 'Course2', icon: CourseSvg },
     // { name: "Jobs", icon: JobSvg },
     // { name: "Payment", icon: PaymentSvg },
   ];
@@ -185,7 +186,7 @@ const layoutMenuOption = () => {
   ];
   const Verifiedlevel0AnnotatorOptions = [
     { name: 'Dashboard', icon: DashboardSvg },
-    { name: "Course", icon: CourseSvg },
+    { name: 'Course', icon: CourseSvg },
   ];
   const trainerOptions = [
     { name: 'Dashboard', icon: DashboardSvg },

@@ -1,15 +1,17 @@
-import { Box, Button, Paper, styled } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
-import useCourseManagement from '../hooks/createCourseHook/useCourseMangement';
-import CourseHeader from '../CourseHeader/CourseHeader';
+import { Box, Paper, styled } from '@mui/material';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { setActivePath } from '../../../../features/slice/activePathSlice';
 import {
   getAllCoursesNew,
   getArchivedCourses,
   getCoursesCount,
   getMyCourses,
 } from '../../../../features/slice/courseSlice';
+import PaginationTable from '../../ProjectLIstNew2/PaginationTable';
+import CourseHeader from '../CourseHeader/CourseHeader';
+import useCourseManagement from '../hooks/createCourseHook/useCourseMangement';
 
 const CourseNew = () => {
   const navigate = useNavigate();
@@ -77,6 +79,11 @@ const CourseNew = () => {
     setPagination,
   } = useCourseManagement();
   const { user } = useSelector((state) => state.user);
+  const {
+    isLoading: cLoading,
+    total,
+    courseMeta,
+  } = useSelector((state) => state.course);
   const CoursePaper = styled(Paper)({
     width: '100%',
     height: '90%',
@@ -94,12 +101,42 @@ const CourseNew = () => {
   const [MyCourseCount, setMyCourseCount] = useState(0);
   const [ArchiveCount, setArchiveCount] = useState(0);
   useEffect(() => {
+    dispatch(setActivePath('Course2'));
     dispatch(getCoursesCount()).then((action) => {
       setMyCourseCount(action.payload.data.coursesCount.myCourseCount);
       setArchiveCount(action.payload.data.coursesCount.myArchivedCourseCount);
       setCourseCount(action.payload.data.coursesCount.allCourseCount);
     });
   }, []);
+  const pathname = window.location.pathname;
+  console.log('🚀 ~ CourseNew ~ pathname:', pathname);
+
+  // useLayoutEffect(() => {
+  //   console.log('sss');
+  //   if (pathname === '/courses2/allCourse') {
+  //     dispatch(getAllCoursesNew({ filter, search })).then((action) => {
+  //       setCourseCount(action.payload.data.courses.count);
+  //       setAllCourses(action.payload.data.courses);
+  //       setFeatureCourses(action.payload.data.courses.featureCourseList);
+  //       setIsDataLoading(false);
+  //       // setIsPagination(false);
+  //     });
+  //   }
+  //   if (pathname === '/courses2/myCourse') {
+  //     dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
+  //       setAllCourses(action.payload.data);
+  //       setIsDataLoading(false);
+  //     });
+  //   }
+  //   if (pathname === '/courses2/archiveCourse') {
+  //     dispatch(getArchivedCourses({ filter, search, pagination })).then(
+  //       (action) => {
+  //         setAllCourses(action.payload.data);
+  //         setIsDataLoading(false);
+  //       },
+  //     );
+  //   }
+  // }, [pagination, search, pathname]);
   return (
     <Box className="content">
       <Box className="contentHeader">
@@ -155,6 +192,16 @@ const CourseNew = () => {
             setPagination,
           ]}
         />
+        {!cLoading && (
+          <PaginationTable
+            pagination={pagination}
+            setPagination={setPagination}
+            totalCourse={total}
+            courseMeta={courseMeta}
+            // setFilterValue={setFilterValue}
+            // setFilteredCol={setFilteredCol}
+          />
+        )}
       </Box>
     </Box>
   );

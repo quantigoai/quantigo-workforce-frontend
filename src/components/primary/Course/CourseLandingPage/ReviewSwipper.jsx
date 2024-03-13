@@ -39,7 +39,7 @@ const ReviewSwipper = () => {
     <Box
       sx={{
         cursor: "pointer",
-        height: { xxl: "320px", xl: "340", lg: "380px" },
+        // height: { xxl: "370px", xl: "340px", lg: "380px" },
         backgroundColor: isLightTheme ? "#fff" : "#000",
       }}
     >
@@ -52,10 +52,10 @@ const ReviewSwipper = () => {
         slidesPerView={2.2}
         spaceBetween={15}
       >
-        <Box sx={{ padding: "1%", backgroundColor: "red" }}>
-          <Grid sx={{ backgroundColor: "red" }} container spacing={3}>
+        <Box sx={{ padding: "1%",}}>
+          <Grid sx={{ }} container spacing={3}>
             {allReviews.map((item, index) => (
-              <Grid sx={{ backgroundColor: "red" }} key={item} item xs={12} sm={6} md={3} gap={1}>
+              <Grid sx={{ }} key={item} item xs={12} sm={6} md={3} gap={1}>
                 <SwiperSlide style={{ backgroundColor: isLightTheme ? "#fff" : "#000" }} key={item._id}>
                   <Box
                     onClick={() => handleSlideClick(index)}

@@ -2,7 +2,12 @@ import { Box, Button } from '@mui/material';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getAllCoursesNew, getArchivedCourses, getMyCourses } from '../../../../features/slice/courseSlice';
+import {
+  getAllCourses,
+  getAllCoursesNew,
+  getArchivedCourses,
+  getMyCourses,
+} from '../../../../features/slice/courseSlice';
 
 const CoursePageFilter = ({
   setAllCourses,
@@ -26,16 +31,32 @@ const CoursePageFilter = ({
   searchRef,
   pagination,
   setIsPagination,
+  setAllCoursesFull,
+  setCourseCountFull,
+  level,
 }) => {
   const dispatch = useDispatch();
-
+  const { pathname } = useLocation();
   const handleChangeAllCourse = () => {
-    dispatch(getAllCoursesNew({ filter, search })).then((action) => {
-      setCourseCount(action.payload.data.courses.count);
-      setAllCourses(action.payload.data.courses);
-      setFeatureCourses(action.payload.data.courses.featureCourseList);
-      setIsDataLoading(false);
-    });
+    if (
+      pathname === '/all-course/basic' ||
+      pathname === '/all-course/beginner' ||
+      pathname === '/all-course/intermediate' ||
+      pathname === '/all-course/advanced'
+    ) {
+      dispatch(getAllCourses({ level, search, filter })).then((action) => {
+        setAllCoursesFull(action.payload.data.courses);
+        setCourseCountFull(action.payload.data.count);
+        setIsDataLoading(false);
+      });
+    } else {
+      dispatch(getAllCoursesNew({ filter, search })).then((action) => {
+        setCourseCount(action.payload.data.courses.count);
+        setAllCourses(action.payload.data.courses);
+        setFeatureCourses(action.payload.data.courses.featureCourseList);
+        setIsDataLoading(false);
+      });
+    }
     setIsActiveAll(true);
     setIsActiveEnrolled(false);
     setIsActiveArchived(false);
@@ -99,7 +120,7 @@ const CoursePageFilter = ({
           borderRadius: '8px',
           backgroundColor: isActiveAll ? '#244EF5' : '#FFF',
           color: isActiveAll ? '#fff' : '#667085',
-
+          width: { xxl: '140px', xl: '120px', lg: '105px' },
           fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
           fontWeight: '500',
           '&:hover': {
@@ -118,6 +139,7 @@ const CoursePageFilter = ({
           borderRadius: '8px',
           fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
           fontWeight: '500',
+          width: { xxl: '140px', xl: '120px', lg: '100px' },
           backgroundColor: isActiveEnrolled ? '#244EF5' : '#FFF',
           color: isActiveEnrolled ? '#fff' : '#667085',
 
@@ -139,6 +161,7 @@ const CoursePageFilter = ({
           borderRadius: '8px',
           fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
           fontWeight: '500',
+          width: { xxl: '170px', xl: '150px', lg: '125px' },
           backgroundColor: isActiveArchived ? '#244EF5' : '#FFF',
           color: isActiveArchived ? '#fff' : '#667085',
 

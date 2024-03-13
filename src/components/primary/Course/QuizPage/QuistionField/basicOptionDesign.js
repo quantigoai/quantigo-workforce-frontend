@@ -62,24 +62,39 @@ export const BpCheckedIcon = styled(BpIcon)({
 
 export const TextFieldOption = styled(TextField)(() => ({
   borderRadius: '8px',
- 
+  height: '40px',
   backgroundColor: '#F9FAFB',
-  '& .MuiOutlinedInput-root': {
-    height: '40px',
-    // width:"100%",
-    width:"350px",
-    fontSize: '14px',
-    // maxHeight:"64px",
-    // border: "px solid #E6ECF5 !important",
-    borderRadius: '8px',
+  padding: '9px 8px 8px 0px',
+  fontSize: '12px',
 
-    '@media (max-width: 1439px)': {
-      fontSize: '12px',
+    '& .MuiInputBase-root': {
+    // height: '40px',
+    fontSize: '12px',
+    fontFamily: 'Inter',
+    '@media(max-width:1439px)': {
+      // height: '30px',
+      fontSize: '10px',
     },
-    '@media (mix-width: 1920px)': {
+    '@media(min-width: 1920px)': {
       fontSize: '14px',
     },
   },
+  // '& .MuiOutlinedInput-root': {
+  //   height: '40px',
+  //   // width:"100%",
+  //   width:"350px",
+  //   fontSize: '14px',
+  //   // maxHeight:"64px",
+  //   // border: "px solid #E6ECF5 !important",
+  //   borderRadius: '8px',
+
+  //   '@media (max-width: 1439px)': {
+  //     fontSize: '12px',
+  //   },
+  //   '@media (mix-width: 1920px)': {
+  //     fontSize: '14px',
+  //   },
+  // },
   '& .MuiOutlinedInput-input': {
     padding: '0px 0px 0px 8px',
   },

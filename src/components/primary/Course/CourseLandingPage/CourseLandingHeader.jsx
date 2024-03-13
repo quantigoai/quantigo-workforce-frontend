@@ -210,7 +210,7 @@ const CourseLandingHeader = () => {
           </Button>
 
           {user.completedCourses.includes(course._id) && (
-            <Button disabled={!isEnrollAble} sx={{ ...btnStyle, ml: 1 }} onClick={handleRouteChange}>
+            <Button disabled={!isEnrollAble} sx={{ ...btnStyle, ml: 1 }} >
               Download Certificate
             </Button>
           )}

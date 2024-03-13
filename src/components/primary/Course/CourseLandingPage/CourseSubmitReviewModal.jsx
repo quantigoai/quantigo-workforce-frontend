@@ -1,5 +1,5 @@
 import { Box, Button, Fade, Modal, Stack, TextField, Typography, styled } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProjectModalHeader from "../../ProjectLIstNew2/ProjectModalHeader";
 import Backdrop from "@mui/material/Backdrop";
@@ -68,17 +68,20 @@ export const CRTextField = styled(TextField)(() => ({
     },
   },
 }));
-const CourseSubmitReviewModal = ({ user, course, isEnrollAble }) => {
+const CourseSubmitReviewModal = ({ user, isEnrollAble }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
-  // const { course } = useSelector((state) => state.course);
+  const { course } = useSelector((state) => state.course);
   const toast = useToaster();
   const [open, setOpen] = React.useState(false);
   const [courseRating, setCourseRating] = React.useState(0);
   const [courseReview, setCourseReview] = React.useState("");
+  const [courseReviewButtonShow, setCourseReviewButtonShow] = React.useState(true);
+
   const dispatch = useDispatch();
   const handleCourseReview = (e) => {
     setCourseReview(e.target.value);
   };
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -87,7 +90,9 @@ const CourseSubmitReviewModal = ({ user, course, isEnrollAble }) => {
     setOpen(false);
     setCourseReview("");
   };
-
+  // useEffect(() => {
+  //   console.log("hirittt");
+  // }, [course]);
   const handleCourseReviewSubmit = () => {
     console.log(course);
     const data = {
@@ -103,15 +108,17 @@ const CourseSubmitReviewModal = ({ user, course, isEnrollAble }) => {
         toast.trigger(action.error.message, "error");
       } else {
         toast.trigger(action.payload.data.message, "success");
+        setCourseReviewButtonShow(false);
         setOpen(false);
         setCourseRating(0);
         setCourseReview("");
+        // dispatch(getACourseByID(course._id));
       }
     });
   };
   return (
     <>
-      {user.completedCourses.includes(course._id) && (
+      {user.completedCourses.includes(course._id) && !course?.isUserReviewed && courseReviewButtonShow && (
         <Button disabled={!isEnrollAble} sx={{ ...btnStyle, ml: 1 }} onClick={handleOpen}>
           Submit Review
         </Button>

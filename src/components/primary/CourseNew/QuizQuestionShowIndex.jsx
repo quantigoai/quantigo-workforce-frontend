@@ -88,35 +88,31 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                     // aria-label='text alignment'
                   >
                     {item.possibleAnswers.map((posibleAnswer, i) => (
-                      <Grid key={i} container gap={2} sx={{ paddingBottom: "10px" }}>
-                        <ToggleButton
-                          // style={{ color: alignment === "0" ? "blue" : "black" }}
-                          value={i}
-                          aria-label='left aligned'
-                          style={{
-                            border: "none",
-                            padding: 0,
-                            backgroundColor: "transparent",
-                          }}
-                          // onChange={() => handleQuizResult(i, item._id)}
-                        >
-                          <img src={alignment === i ? SwitchCheck : radioIcon} />
-                        </ToggleButton>
-                        <Typography
-                          variant='wpf_p3_regular'
-                          //  sx={{ color: alignment === i ? "#2E58FF" : "#1E293B" }}
-                          sx={{ color: alignment === i ? "#2E58FF" : "grey.600" }}
-                        >
-                          {posibleAnswer}{" "}
-                        </Typography>
-                        {/* <MyFormControlLabel
-                          key={i}
-                          onChange={() => handleQuizResult(i, item._id)}
-                          value={posibleAnswer}
-                          control={<Radio />}
-                          label={posibleAnswer}
-                        
-                        /> */}
+                      <Grid container key={i} sx={{ paddingBottom: "10px" }}>
+                        <Grid item xs={0.7}>
+                          <ToggleButton
+                            // style={{ color: alignment === "0" ? "blue" : "black" }}
+                            value={i}
+                            aria-label='left aligned'
+                            style={{
+                              border: "none",
+                              padding: 0,
+                              backgroundColor: "transparent",
+                            }}
+                            // onChange={() => handleQuizResult(i, item._id)}
+                          >
+                            <img src={alignment === i ? SwitchCheck : radioIcon} />
+                          </ToggleButton>
+                        </Grid>
+                        <Grid item xs={11}>
+                          <Typography
+                            variant='wpf_p3_regular'
+                            //  sx={{ color: alignment === i ? "#2E58FF" : "#1E293B" }}
+                            sx={{ color: alignment === i ? "#2E58FF" : "grey.600" }}
+                          >
+                            {posibleAnswer}
+                          </Typography>
+                        </Grid>
                       </Grid>
                     ))}
                   </ToggleButtonGroup>
@@ -171,7 +167,7 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                 onChange={(event, value) => handleAlignment(event, value, item._id)}
                 // aria-label='text alignment'
               >
-                <Grid container sx={{ paddingLeft: "2%", paddingBottom: "2%",paddingTop:"15px" }}>
+                <Grid container sx={{ paddingLeft: "2%", paddingBottom: "2%", paddingTop: "15px" }}>
                   {item?.possibleAnswers?.map((posibleAnswer, i) => (
                     <>
                       {item.questionType === "imageInOptions" ? (
@@ -182,7 +178,7 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                             sx={{
                               paddingRight: "2%",
                               borderRadius: "8px",
-                              width:"500px"
+                              width: "500px",
                             }}
                           >
                             <Box
@@ -191,7 +187,6 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                                 borderRadius: "8px",
                               }}
                             >
-                            
                               {handleSwitchContent(posibleAnswer)}
                               {/* </Grid> */}
                               {/* <Grid item> */}
@@ -200,8 +195,8 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                                 sx={{
                                   backgroundColor: "neutral.N000",
                                   paddingLeft: "5%",
-                                  paddingTop:"3%",
-                                  paddingBottom:"3%",
+                                  paddingTop: "3%",
+                                  paddingBottom: "3%",
 
                                   borderRadius: "8px",
                                   display: "flex",
@@ -223,7 +218,6 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                                 <Typography sx={{ color: alignment === i ? "#2E58FF" : "grey.600" }}>
                                   {i === 0 ? "Option A" : i === 1 ? "Option B" : i === 2 ? "Option C" : "Option D"}{" "}
                                 </Typography>
-                               
                               </Box>
                             </Box>
                             {/* </Grid> */}
@@ -232,7 +226,8 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                       ) : (
                         <>
                           {/* <Box style={{ display: "flex", flexDirection: "column" }}> */}
-                          <Grid container gap={2} sx={{ paddingBottom: "10px", paddingLeft: "10%", paddingTop: "3%" }}>
+                          {/* <Grid container gap={2} sx={{ paddingBottom: "10px", paddingLeft: "10%", paddingTop: "3%" }}> */}
+                          <Grid item xs={0.4} sx={{ backgroundColor: "", paddingY: "10px" }}>
                             <ToggleButton
                               // style={{ color: alignment === "0" ? "blue" : "black" }}
                               value={i}
@@ -246,6 +241,8 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                             >
                               <img src={alignment === i ? SwitchCheck : radioIcon} />
                             </ToggleButton>
+                          </Grid>
+                          <Grid item xs={11.4} sx={{ paddingY: "10px" }}>
                             <Typography
                               variant='wpf_p3_regular'
                               // sx={{ color: alignment === i ? "#2E58FF" : "#1E293B" }}
@@ -253,16 +250,8 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                             >
                               {posibleAnswer}
                             </Typography>
-
-                            {/* <MyFormControlLabel
-                                          key={i}
-                                          onChange={() => handleQuizResult(i, item._id)}
-                                          value={posibleAnswer}
-                                          control={<Radio />}
-                                          label={posibleAnswer}
-                                         
-                                        /> */}
                           </Grid>
+                          {/* </Grid> */}
 
                           {/* </Box> */}
                         </>

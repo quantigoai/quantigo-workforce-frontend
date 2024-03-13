@@ -75,6 +75,7 @@ const CourseSubmitReviewModal = ({ user, isEnrollAble }) => {
   const [open, setOpen] = React.useState(false);
   const [courseRating, setCourseRating] = React.useState(0);
   const [courseReview, setCourseReview] = React.useState("");
+  const [courseReviewButtonShow, setCourseReviewButtonShow] = React.useState(true);
 
   const dispatch = useDispatch();
   const handleCourseReview = (e) => {
@@ -89,7 +90,9 @@ const CourseSubmitReviewModal = ({ user, isEnrollAble }) => {
     setOpen(false);
     setCourseReview("");
   };
-
+  // useEffect(() => {
+  //   console.log("hirittt");
+  // }, [course]);
   const handleCourseReviewSubmit = () => {
     console.log(course);
     const data = {
@@ -105,15 +108,17 @@ const CourseSubmitReviewModal = ({ user, isEnrollAble }) => {
         toast.trigger(action.error.message, "error");
       } else {
         toast.trigger(action.payload.data.message, "success");
+        setCourseReviewButtonShow(false);
         setOpen(false);
         setCourseRating(0);
         setCourseReview("");
+        // dispatch(getACourseByID(course._id));
       }
     });
   };
   return (
     <>
-      {user.completedCourses.includes(course._id) && !course?.isUserReviewed && (
+      {user.completedCourses.includes(course._id) && !course?.isUserReviewed && courseReviewButtonShow && (
         <Button disabled={!isEnrollAble} sx={{ ...btnStyle, ml: 1 }} onClick={handleOpen}>
           Submit Review
         </Button>

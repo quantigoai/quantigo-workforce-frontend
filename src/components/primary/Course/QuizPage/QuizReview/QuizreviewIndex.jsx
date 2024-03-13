@@ -429,6 +429,7 @@ const QuizreviewIndex = () => {
                                     }
                                     label={
                                       <Typography
+                                      variant='wpf_h7_semiBold'
                                         sx={{ color: item.correctAnswerIndex === i ? "#36B37E" : "grey.600" }}
                                       >
                                         {posibleAnswer}

@@ -31,6 +31,8 @@ const PaginationTable = ({
   courseMeta,
   totalCourse,
 }) => {
+  console.log('🚀 ~ courseMeta:', courseMeta);
+  console.log('🚀 ~ totalCourse:', totalCourse);
   const { myWorkHistoryCount, usersWorkHistoryCount, projectMeta, workHistoryMeta } = useSelector(
     (state) => state.projectDrawer
   );
@@ -63,6 +65,14 @@ const PaginationTable = ({
       setMeta(quizMeta);
     }
     if (pathname === `/course`) {
+      setMeta(courseMeta);
+    }
+    if (
+      pathname === `/all-course/basic` ||
+      pathname === `/all-course/beginner` ||
+      pathname === `/all-course/intermediate` ||
+      pathname === `/all-course/advanced`
+    ) {
       setMeta(courseMeta);
     }
   }, [pathname, projectMeta, userMeta, workHistoryMeta, directoryMeta, quizMeta, courseMeta]);
@@ -164,6 +174,14 @@ const PaginationTable = ({
     if (pathname === `/course`) {
       setTotalPages(Math.ceil(totalCourse / pagination.pageSize));
     }
+    if (
+      pathname === `/all-course/basic` ||
+      pathname === `/all-course/beginner` ||
+      pathname === `/all-course/intermediate` ||
+      pathname === `/all-course/advanced`
+    ) {
+      setTotalPages(Math.ceil(totalCourse / pagination.pageSize));
+    }
   }, [total, totalUsers, usersWorkHistoryCount, meta, submission, totalCourse]);
   const visiblePageCount = 5;
   const firstVisiblePage = Math.max(0, pagination.currentPage - Math.floor(visiblePageCount / 2));
@@ -176,7 +194,17 @@ const PaginationTable = ({
   const disablePrev = pagination.currentPage === 0;
   const disableNext = pagination.currentPage >= totalPages - 1;
 
-  const approvedPaths = ['/allprojects', '/all-users', '/projectDirectory', '/submitted', '/course'];
+  const approvedPaths = [
+    '/allprojects',
+    '/all-users',
+    '/projectDirectory',
+    '/submitted',
+    '/course',
+    '/all-course/basic',
+    '/all-course/beginner',
+    '/all-course/intermediate',
+    '/all-course/advanced',
+  ];
 
   const approvedData = [
     myWorkHistoryCount,

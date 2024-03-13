@@ -74,7 +74,6 @@ const CourseAllPage = () => {
     pagination,
     setPagination,
   } = useCourseManagement();
-  console.log('🚀 ~ CourseAllPage ~ allCoursesFull:', allCoursesFull);
 
   const CoursePaper = styled(Paper)({
     width: '100%',
@@ -95,7 +94,7 @@ const CourseAllPage = () => {
   const [allCount, setAllCount] = useState(0);
   const [MyCourseCount, setMyCourseCount] = useState(0);
   const [ArchiveCount, setArchiveCount] = useState(0);
-
+  const [courseMeta, setCourseMeta] = useState({});
   useEffect(() => {
     dispatch(getMyCourses({ pagination })).then((action) => {
       setMyCourseCount(action.payload.data.total);
@@ -116,8 +115,9 @@ const CourseAllPage = () => {
     dispatch(getAllSkills());
     if (isActiveEnrolled) {
       dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
-        setCourseCountFull(action.payload.data.searchedTotal);
+        setCourseCountFull(action.payload.data.total);
         setAllCoursesFull(action.payload.data.enrolledCourses);
+        setCourseMeta(action.payload.data.meta);
         setIsDataLoading(false);
       });
     } else if (isActiveArchived) {
@@ -125,6 +125,7 @@ const CourseAllPage = () => {
         setCourseCountFull(action.payload.data.total);
         setAllCoursesFull(action.payload.data.archivedCourses);
         setIsDataLoading(false);
+        setCourseMeta(action.payload.data.meta);
       });
     } else {
       dispatch(getAllCourses({ level, search, filter })).then((action) => {
@@ -257,8 +258,8 @@ const CourseAllPage = () => {
                     <PaginationTable
                       pagination={pagination}
                       setPagination={setPagination}
-                      // totalCourse={allCourses.total}
-                      // courseMeta={allCourses.meta}
+                      totalCourse={MyCourseCount}
+                      courseMeta={courseMeta}
                       // setFilterValue={setFilterValue}
                       // setFilteredCol={setFilteredCol}
                     />

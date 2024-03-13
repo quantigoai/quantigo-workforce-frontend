@@ -305,7 +305,7 @@ const Course = () => {
                             )}
                           </Box>
 
-                          {/* {isPagination && (
+                          {isPagination && (
                             <PaginationTable
                               pagination={pagination}
                               setPagination={setPagination}
@@ -314,7 +314,7 @@ const Course = () => {
                               // setFilterValue={setFilterValue}
                               // setFilteredCol={setFilteredCol}
                             />
-                          )} */}
+                          )}
                         </>
                       )}
                     </>

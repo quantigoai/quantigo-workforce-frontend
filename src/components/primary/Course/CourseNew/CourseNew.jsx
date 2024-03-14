@@ -13,6 +13,7 @@ import CHeader from './CHeader';
 import useCourse from './useCourse';
 import CourseHeader from '../CourseHeader/CourseHeader';
 import useCourseManagement from '../hooks/createCourseHook/useCourseMangement';
+import CourseCreateModal from '../CreateCourseModal/CourseCreateModal';
 
 const CourseNew = () => {
   const navigate = useNavigate();
@@ -20,12 +21,41 @@ const CourseNew = () => {
     open,
     setOpen,
     handleOpen,
+    isCourseLoading,
+    isLoading,
+    filterCourses,
+    courses,
+    handleViewDetailsButton,
+    handleSubmit,
+    methods,
+    preRequisiteCourses,
+    handleChange_Pre_Requisite_Course,
+    onSubmit,
+    handleClose,
+    skills,
+    skill,
+    handleChangeSkills,
+    coverImage,
+    removeImage,
+    handleImage,
+    isDataLoading,
     setIsDataLoading,
+    role,
+    isLightTheme,
+    checkedFeatured,
+    handleChangeFeatured,
+    dateTime,
+    handleDateTime,
+    outcomes,
+    setOutcomes,
+    hub,
+    handleChangeHub,
     search,
     setSearch,
     handleSearch,
     clearSearch,
     searchRef,
+    featureCourses,
     setFeatureCourses,
     courseCount,
     setCourseCount,
@@ -38,6 +68,7 @@ const CourseNew = () => {
     handleResetFilter,
     handleFilterCourse,
     anchorE2,
+    allCourses,
     setAllCourses,
     isActiveAll,
     setIsActiveAll,
@@ -56,7 +87,7 @@ const CourseNew = () => {
   const [allCourseCount, setAllCourseCount] = useState(0);
   const [MyCourseCount, setMyCourseCount] = useState(0);
   const [ArchiveCount, setArchiveCount] = useState(0);
-  const { isLightTheme } = useSelector((state) => state.theme);
+
   const { pathname } = useLocation();
   const CoursePaper = styled(Paper)({
     width: '100%',
@@ -158,6 +189,31 @@ const CourseNew = () => {
           </Box>
         )}
       </Box>
+      <CourseCreateModal
+        handleSubmit={handleSubmit}
+        methods={methods}
+        preRequisiteCourses={preRequisiteCourses}
+        handleChange_Pre_Requisite_Course={handleChange_Pre_Requisite_Course}
+        onSubmit={onSubmit}
+        open={open}
+        setOpen={setOpen}
+        handleClose={handleClose}
+        skills={skills}
+        skill={skill}
+        handleChangeSkills={handleChangeSkills}
+        coverImage={coverImage}
+        removeImage={removeImage}
+        handleImage={handleImage}
+        isLoading={isLoading}
+        checkedFeatured={checkedFeatured}
+        handleChangeFeatured={handleChangeFeatured}
+        dateTime={dateTime}
+        handleDateTime={handleDateTime}
+        outcomes={outcomes}
+        setOutcomes={setOutcomes}
+        hub={hub}
+        handleChangeHub={handleChangeHub}
+      />
     </>
   );
 };

@@ -9,7 +9,7 @@
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoadingButton } from "@mui/lab";
-import { Stack } from "@mui/material";
+import { Skeleton, Stack } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -36,7 +36,9 @@ import CheckBoxFeatured from "./CheckBoxFeatured";
 import CourseOutComesMain from "./CourseOutComesMain";
 import DateTimeField from "./DateTimeField";
 import HubMultipleSelect from "./HubMultipleSelect";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getAllCourses } from "../../../../features/slice/courseSlice";
 
 const style = {
   position: "relative",
@@ -136,7 +138,16 @@ const EditCourseModal = ({
   handleChangeHubs,
 }) => {
   const { course } = useSelector((state) => state.course);
+  const [allCourses, setAllCourses] = useState([]);
+  const [isCourseFetched, setIsCourseFetched] = useState(false);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getAllCourses({})).then((action) => {
+      setAllCourses(action.payload.data.courses);
+      setIsCourseFetched(true);
+    });
+  }, []);
   console.log("🚀 ~ course:", course);
   const CourseCreateSchema = Yup.object().shape({
     name: Yup.string().required("Course name is required"),
@@ -247,11 +258,22 @@ const EditCourseModal = ({
                         },
                       }}
                     >
-                      <PreRequisiteCourseFiled
-                        perRequisiteCourses={preRequisiteCourses}
-                        handleChange_Pre_Requisite_Course={handleChange_Pre_Requisite_Course}
-                        isUpdate={true}
-                      />
+                      {isCourseFetched ? (
+                        <>
+                          {" "}
+                          <PreRequisiteCourseFiled
+                            perRequisiteCourses={preRequisiteCourses}
+                            handleChange_Pre_Requisite_Course={handleChange_Pre_Requisite_Course}
+                            isUpdate={true}
+                            allCourses={allCourses}
+                          />
+                        </>
+                      ) : (
+                        <>
+                          {" "}
+                          <Skeleton variant='rounded' width='100%' height={50} />
+                        </>
+                      )}
                     </Stack>
                     <LineStack>
                       <FieldBox>

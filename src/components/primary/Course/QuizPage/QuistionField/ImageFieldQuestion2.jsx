@@ -1,20 +1,20 @@
-import { Box, Button, Grid, Typography } from '@mui/material';
-import React, { useCallback, useMemo, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
-import ndaUploadStyle from '../../../Nda/ndaUploadStyle';
-import IconImage from '../../../../../assets/images/Icon.png';
-import ctaImage from '../../../../../assets/images/CTA.png';
-import { useSelector } from 'react-redux';
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import React, { useCallback, useMemo, useState } from "react";
+import { useDropzone } from "react-dropzone";
+import ndaUploadStyle from "../../../Nda/ndaUploadStyle";
+import IconImage from "../../../../../assets/images/Icon.png";
+import ctaImage from "../../../../../assets/images/CTA.png";
+import { useSelector } from "react-redux";
 const focusedStyle = {
-  borderColor: '#2196f3',
+  borderColor: "#2196f3",
 };
 
 const acceptStyle = {
-  borderColor: '#00e676',
+  borderColor: "#00e676",
 };
 
 const rejectStyle = {
-  borderColor: '#ff1744',
+  borderColor: "#ff1744",
 };
 
 const ImageFieldQuestion2 = ({
@@ -31,22 +31,22 @@ const ImageFieldQuestion2 = ({
   const { isLightTheme } = useSelector((state) => state.theme);
   const baseUploadBoxStyle = {
     flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
     // padding: "20px",
-    marginTop: '6px',
+    marginTop: "6px",
     borderWidth: 2,
     borderRadius: 8,
-    height: '255px',
+    height: "255px",
     // width: "12px",
-    borderColor: 'rgba(70, 70, 70, 0.2)',
-    borderStyle: 'dashed',
+    borderColor: "rgba(70, 70, 70, 0.2)",
+    borderStyle: "dashed",
     // backgroundColor: isLightTheme ? "primary.B200" : "neutral.N400",
-    backgroundColor: isLightTheme ? '#FAFBFC' : '#000',
-    color: '#fff',
-    outline: 'none',
-    transition: 'border .24s ease-in-out',
+    backgroundColor: isLightTheme ? "#FAFBFC" : "#000",
+    color: "#fff",
+    outline: "none",
+    transition: "border .24s ease-in-out",
   };
   const screenSize = window.innerWidth;
   const [coverImage, setCoverImage] = useState(null);
@@ -67,9 +67,9 @@ const ImageFieldQuestion2 = ({
         const url = URL.createObjectURL(file);
         setCoverImage(url);
       }
-      handleUpdate(e[0], 'questionImage', inputField);
+      handleUpdate(e[0], "questionImage", inputField);
     } else {
-      handleChangeInput(inputField.uniqueId, e[0], 'questionImage');
+      handleChangeInput(inputField.uniqueId, e[0], "questionImage");
       const file = e[0];
       if (file) {
         const url = URL.createObjectURL(file);
@@ -79,11 +79,11 @@ const ImageFieldQuestion2 = ({
   };
   const { acceptedFiles, getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({
     accept: {
-      'image/jpeg': [],
-      'image/png': [],
-      'image/jpg': [],
-      'audio/*': [],
-      'video/mp4': [],
+      "image/jpeg": [],
+      "image/png": [],
+      "image/jpg": [],
+      "audio/*": [],
+      "video/mp4": [],
     },
     onDrop: handleImage,
   });
@@ -126,7 +126,7 @@ const ImageFieldQuestion2 = ({
   //   // Do something with the files
   // }, []);
 
-  let width = '90%'; // Default width for large screens
+  let width = "90%"; // Default width for large screens
 
   if (screenSize >= 1500) {
     // Extra-large screens
@@ -146,20 +146,20 @@ const ImageFieldQuestion2 = ({
   }
   const handleSwitchContent = (value) => {
     switch (true) {
-      case value?.endsWith('.png'):
-      case value?.endsWith('.jpeg'):
-      case value?.endsWith('.jpg'):
-        return <img height={'250'} src={value} alt="" style={{ width, borderRadius: '8px' }} />;
-      case value?.endsWith('.mp3'):
-      case value?.endsWith('.mpeg'):
+      case value?.endsWith(".png"):
+      case value?.endsWith(".jpeg"):
+      case value?.endsWith(".jpg"):
+        return <img height={"250"} src={value} alt='' style={{ width, borderRadius: "8px" }} />;
+      case value?.endsWith(".mp3"):
+      case value?.endsWith(".mpeg"):
         return (
-          <audio style={{ height: '250px', width: '240px' }} controls>
-            <source src={value} type="audio/mpeg" />
+          <audio style={{ height: "250px", width: "240px" }} controls>
+            <source src={value} type='audio/mpeg' />
           </audio>
         );
-      case value?.endsWith('.mp4'):
+      case value?.endsWith(".mp4"):
         return (
-          <video height={'250px'} width={width} controls>
+          <video height={"250px"} width={width} controls>
             <source src={value} />
           </video>
         );
@@ -167,12 +167,27 @@ const ImageFieldQuestion2 = ({
         return <p>Unsupported file </p>;
     }
   };
+  const [videoLink, setVideoLink] = useState("");
+  console.log("🚀 ~ videoLink:", videoLink);
 
   return (
     <>
+      {/* <Box>
+        <TextField sx={{ border: "1px solid red" }} onChange={(e) => setVideoLink(e.target.value)} />
+        <iframe
+          width='560'
+          height='315'
+          src={videoLink}
+          title='YouTube video player'
+          frameborder='0'
+          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+          allowfullscreen
+        ></iframe>
+      </Box> */}
+
       <Grid container>
         <Grid xs={12}>
-          <Typography variant="wpf_p3_medium_2">Upload image</Typography>
+          <Typography variant='wpf_p3_medium_2'>Upload image</Typography>
         </Grid>
         <Box {...getRootProps({ width, style })}>
           {acceptedFiles.length ? (
@@ -215,21 +230,21 @@ const ImageFieldQuestion2 = ({
                 )}
               </Box> */}
               {acceptedFiles[0].size > maxSize ? (
-                <Box sx={{ width: '70%' }}>
+                <Box sx={{ width: "70%" }}>
                   <br />
                   <br />
                   <br />
-                  <Typography variant="wpf_p4_medium" sx={{ color: '#ff1744' }}>
+                  <Typography variant='wpf_p4_medium' sx={{ color: "#ff1744" }}>
                     File : {files.length > 20 ? files.slice(0, 4) : files}
                   </Typography>
-                  <Typography variant="wpf_p4_medium" sx={{ color: '#ff1744', textDecoration: 'justify' }}>
+                  <Typography variant='wpf_p4_medium' sx={{ color: "#ff1744", textDecoration: "justify" }}>
                     The selected file is too large. Please choose a file less than 1Mb.
                   </Typography>
-                  <Typography variant="wpf_p4_medium" sx={{ color: '#ff1744', textDecoration: 'justify' }}></Typography>
+                  <Typography variant='wpf_p4_medium' sx={{ color: "#ff1744", textDecoration: "justify" }}></Typography>
                 </Box>
               ) : (
                 <>
-                  {' '}
+                  {" "}
                   {/* <Box
                     sx={{
                       position: 'relative',
@@ -264,42 +279,42 @@ const ImageFieldQuestion2 = ({
                   </Box> */}
                   <Box
                     sx={{
-                      position: 'relative',
-                      borderRadius: '8px',
+                      position: "relative",
+                      borderRadius: "8px",
                     }}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
-                    {acceptedFiles[0].type === 'image/png' ||
-                    acceptedFiles[0].type === 'image/jpg' ||
-                    acceptedFiles[0].type === 'image/jpeg' ? (
-                      <img height={250} src={coverImage} alt="" style={{ width, borderRadius: '8px' }} />
+                    {acceptedFiles[0].type === "image/png" ||
+                    acceptedFiles[0].type === "image/jpg" ||
+                    acceptedFiles[0].type === "image/jpeg" ? (
+                      <img height={250} src={coverImage} alt='' style={{ width, borderRadius: "8px" }} />
                     ) : (
-                      <iframe height={250} src={coverImage} alt="" style={{ width, borderRadius: '8px' }}></iframe>
+                      <iframe height={250} src={coverImage} alt='' style={{ width, borderRadius: "8px" }}></iframe>
                     )}
 
                     {isHovered && (
                       <Box
                         sx={{
-                          color: 'red',
-                          cursor: 'pointer',
-                          position: 'absolute',
-                          top: '40%',
-                          left: '30%',
+                          color: "red",
+                          cursor: "pointer",
+                          position: "absolute",
+                          top: "40%",
+                          left: "30%",
                         }}
                       >
                         <Button
                           onClick={removeImage}
                           sx={{
-                            width: '100px',
-                            textTransform: 'none',
-                            backgroundColor: '#FFFFFF',
-                            color: '#2E58FF',
-                            borderRadius: '20px',
+                            width: "100px",
+                            textTransform: "none",
+                            backgroundColor: "#FFFFFF",
+                            color: "#2E58FF",
+                            borderRadius: "20px",
 
-                            '&:hover': {
-                              backgroundColor: '#FFFFFF',
-                              color: '#2E58FF',
+                            "&:hover": {
+                              backgroundColor: "#FFFFFF",
+                              color: "#2E58FF",
                             },
                           }}
                         >
@@ -315,8 +330,8 @@ const ImageFieldQuestion2 = ({
             <>
               <Box
                 sx={{
-                  position: 'relative',
-                  borderRadius: '8px',
+                  position: "relative",
+                  borderRadius: "8px",
                 }}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
@@ -326,26 +341,26 @@ const ImageFieldQuestion2 = ({
                 {isHovered && (
                   <Box
                     sx={{
-                      color: 'red',
-                      cursor: 'pointer',
-                      position: 'absolute',
-                      top: '40%',
-                      left: '30%',
+                      color: "red",
+                      cursor: "pointer",
+                      position: "absolute",
+                      top: "40%",
+                      left: "30%",
                     }}
                   >
                     <Button
                       onClick={removeImage}
                       sx={{
                         zIndex: 10,
-                        width: '100px',
-                        textTransform: 'none',
-                        backgroundColor: '#FFFFFF',
-                        color: '#2E58FF',
-                        borderRadius: '20px',
+                        width: "100px",
+                        textTransform: "none",
+                        backgroundColor: "#FFFFFF",
+                        color: "#2E58FF",
+                        borderRadius: "20px",
 
-                        '&:hover': {
-                          backgroundColor: '#FFFFFF',
-                          color: '#2E58FF',
+                        "&:hover": {
+                          backgroundColor: "#FFFFFF",
+                          color: "#2E58FF",
                           // border: "1px solid #2E58FF",
                         },
                       }}
@@ -360,28 +375,28 @@ const ImageFieldQuestion2 = ({
           ) : (
             <Box
               sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '100%',
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100%",
               }}
             >
               <Box
                 sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  flexDirection: 'column',
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column",
                 }}
               >
-                <input name="questionImage" {...getInputProps()} />
+                <input name='questionImage' {...getInputProps()} />
 
                 <br />
                 <img src={IconImage} />
-                <Typography variant="wpf_p4_medium" sx={{ paddingTop: '5%' }}>
+                <Typography variant='wpf_p4_medium' sx={{ paddingTop: "5%" }}>
                   Upload media
                 </Typography>
-                <Typography variant="wpf_p4_medium" sx={{ paddingBottom: '2%' }}>
+                <Typography variant='wpf_p4_medium' sx={{ paddingBottom: "2%" }}>
                   Maximum file size: 512KB.
                 </Typography>
                 {/* <img src={ctaImage} /> */}

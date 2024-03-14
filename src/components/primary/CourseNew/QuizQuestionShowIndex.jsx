@@ -46,6 +46,28 @@ const QuizQuestionShowIndex = ({
           },
         }));
   };
+  const audioStyle = {
+    height: "200px",
+    width: "100%",
+    // backgroundColor: "#fff",
+    border: "2px solid #E2E8F0",
+    borderRadius: "8px",
+  };
+  const handleSwitchContentForQuestionImage = (value) => {
+    switch (true) {
+      case value?.endsWith(".png"):
+      case value?.endsWith(".jpeg"):
+      case value?.endsWith(".jpg"):
+        return <img src={value} style={{ borderRadius: "8px" }} height={250} width='100%' />;
+      case value?.endsWith(".mp3"):
+      case value?.endsWith(".mpeg"):
+        return <audio style={audioStyle} src={value} controls></audio>;
+      case value?.endsWith(".mp4"):
+        return <iframe height={240} src={value} alt='' width='100%' style={{ borderRadius: "8px" }}></iframe>;
+      default:
+        return <p>Unsupported file </p>;
+    }
+  };
   return (
     <>
       <Box>
@@ -60,7 +82,7 @@ const QuizQuestionShowIndex = ({
         >
           <Grid container>
             <Grid
-              xs={8}
+              xs={12}
               sx={{
                 paddingLeft: '20px',
                 // paddingLeft: "2%",
@@ -77,46 +99,22 @@ const QuizQuestionShowIndex = ({
                 Q{i + 1}. {item?.question?.questionText} ?
               </Typography>
             </Grid>
-            <Grid
-              xs={4}
-              sx={{
-                paddingLeft: '2%',
-                paddingRight: '2%',
-                // paddingBottom: "1%",
-                paddingTop: '1%',
-              }}
-            >
-              {/* {item.questionStatus === "rejected" ? (
-                            <>
-                              <CloseIcon />
-                            </>
-                          ) : item.questionStatus === "accepted" ? (
-                            <AssignmentTurnedInIcon />
-                          ) : (
-                            <PendingIcon />
-                          )} */}
-            </Grid>
           </Grid>
           {item?.questionType === 'imageAndOptions' ? (
             <>
-              {/* <RadioGroup> */}
-              <Grid container sx={{ backgroundColor: '', width: '100%' }}>
-                <Grid xs={6} sx={{ paddingLeft: '2%', paddingTop: '3%' }}>
+              <Grid container sx={{ backgroundColor: "", width: "100%" }}>
+                <Grid xs={6} sx={{ paddingLeft: "2%", paddingTop: "3%" }}>
                   <ToggleButtonGroup
                     orientation="vertical"
                     value={alignment}
                     exclusive
-                    // onChange={(value)=>handleAlignment(item ,value)}
-                    onChange={(event, value) =>
-                      handleAlignment(event, value, item._id)
-                    }
-                    // aria-label='text alignment'
+                    onChange={(event, value) => handleAlignment(event, value, item._id)}
+                    sx={{ width: "100%" }}
                   >
                     {item.possibleAnswers.map((posibleAnswer, i) => (
-                      <Grid container key={i} sx={{ paddingBottom: '10px' }}>
-                        <Grid item xs={0.7}>
+                      <Grid container key={i} sx={{ paddingBottom: "10px" }}>
+                        <Grid item xs={0.8}>
                           <ToggleButton
-                            // style={{ color: alignment === "0" ? "blue" : "black" }}
                             value={i}
                             aria-label="left aligned"
                             style={{
@@ -124,7 +122,6 @@ const QuizQuestionShowIndex = ({
                               padding: 0,
                               backgroundColor: 'transparent',
                             }}
-                            // onChange={() => handleQuizResult(i, item._id)}
                           >
                             <img
                               src={alignment === i ? SwitchCheck : radioIcon}
@@ -149,71 +146,31 @@ const QuizQuestionShowIndex = ({
                 <Grid
                   xs={6}
                   sx={{
-                    paddingLeft: '2%',
-                    paddingRight: '2%',
-                    // paddingBottom: "1%",
-                    paddingTop: '1%',
-                    // backgroundColor: "red",
+                    paddingLeft: "2%",
+                    paddingRight: "2%",
+
+                    paddingTop: "3%",
                   }}
                 >
-                  {item.question?.questionImage?.endsWith('.jpeg') && (
-                    <img
-                      src={item.question.questionImage}
-                      style={{ borderRadius: '8px' }}
-                      height={224}
-                      width="100%"
-                    />
-                  )}
-                  <>
-                    {/* for Audio */}
-                    {/* <audio controls>
-                                  <source src='horse.ogg' type='audio/ogg' />
-                                  <source
-                                    src='https://soundcloud.com/51beats/sets/51bts073-joao-ceser-brz?utm_source=clipboard&utm_campaign=wtshare&utm_medium=widget&utm_content=https%253A%252F%252Fsoundcloud.com%252F51beats%252Fsets%252F51bts073-joao-ceser-brz'
-                                    type='audio/mpeg'
-                                  />
-                                  Your browser does not support the audio element.
-                                </audio> */}
-                    {item.question?.questionImage?.endsWith('.mp4') && (
-                      <video
-                        width="100%"
-                        height="240"
-                        controls
-                        style={{ borderRadius: '8px' }}
-                        src="https://storage.googleapis.com/quantigo-workforce-image-storage/test%20video/production_id_4124024%20(2160p).mp4"
-                      ></video>
-                    )}
-                  </>
+                  {handleSwitchContentForQuestionImage(item.question.questionImage)}
                 </Grid>
               </Grid>
             </>
           ) : (
             <>
-              {' '}
-              {/* <RadioGroup
-                          //  value={value}
-                          > */}
               <ToggleButtonGroup
                 orientation="vertical"
                 value={alignment}
                 exclusive
-                // onChange={(value)=>handleAlignment(item ,value)}
-                onChange={(event, value) =>
-                  handleAlignment(event, value, item._id)
-                }
-                // aria-label='text alignment'
-                sx={{
-                  width: '100%',
-                }}
+                onChange={(event, value) => handleAlignment(event, value, item._id)}
+                sx={{ width: "100%" }}
               >
                 <Grid
                   container
                   sx={{
-                    paddingLeft: '20px',
-                    paddingBottom: '2%',
-                    paddingTop: '1px',
-
-                    // backgroundColor: "red",
+                    paddingLeft: "20px",
+                    paddingBottom: "2%",
+                    paddingTop: "1px",
                   }}
                 >
                   {item?.possibleAnswers?.map((posibleAnswer, i) => (
@@ -224,9 +181,10 @@ const QuizQuestionShowIndex = ({
                             item
                             xs={3}
                             sx={{
-                              paddingRight: '2%',
-                              borderRadius: '8px',
-                              width: '500px',
+                              paddingRight: "2%",
+                              borderRadius: "8px",
+                              width: "500px",
+                              paddingTop: "12px",
                             }}
                           >
                             <Box
@@ -236,8 +194,7 @@ const QuizQuestionShowIndex = ({
                               }}
                             >
                               {handleSwitchContent(posibleAnswer)}
-                              {/* </Grid> */}
-                              {/* <Grid item> */}
+
                               <Box
                                 gap={1}
                                 sx={{
@@ -251,7 +208,6 @@ const QuizQuestionShowIndex = ({
                                 }}
                               >
                                 <ToggleButton
-                                  // style={{ color: alignment === "0" ? "blue" : "black" }}
                                   value={i}
                                   aria-label="left aligned"
                                   style={{
@@ -259,7 +215,6 @@ const QuizQuestionShowIndex = ({
                                     padding: 0,
                                     backgroundColor: 'transparent',
                                   }}
-                                  // onChange={() => handleQuizResult(i, item._id)}
                                 >
                                   <img
                                     src={
@@ -288,17 +243,11 @@ const QuizQuestionShowIndex = ({
                         </>
                       ) : (
                         <>
-                          {/* <Box style={{ display: "flex", flexDirection: "column" }}> */}
-                          {/* <Grid container gap={2} sx={{ paddingBottom: "10px", paddingLeft: "10%", paddingTop: "3%" }}> */}
-                          {/* <Grid item xs={12} sm={0.5} lg={1} sx={{ backgroundColor: "", paddingY: "10px" }}> */}
-
                           <Box
                             sx={{
-                              // width: { xl: "4%", lg: "5%", xxl: "3.5%" },
-                              width: '7%',
-                              paddingY: '10px',
-                              // paddingX: "10px",
-                              // backgroundColor: "red",
+                              width: { xl: "4%", lg: "5%", xxl: "3.5%" },
+
+                              paddingY: "10px",
                             }}
                           >
                             <ToggleButton
@@ -317,15 +266,12 @@ const QuizQuestionShowIndex = ({
                               />
                             </ToggleButton>
                           </Box>
-                          {/* </Grid> */}
-                          {/* <Grid item xs={12} sm={11} lg={11} sx={{ paddingY: "10px" }}> */}
                           <Box
                             sx={{
-                              // width: { xl: "96%", lg: "95%", xxl: "96.5%" },
-                              width: '93%',
-                              paddingY: '10px',
-                              paddingX: '0px',
-                              backgroundColor: '',
+                              width: { xl: "96%", lg: "95%", xxl: "96.5%" },
+                              paddingY: "10px",
+                              paddingX: "0px",
+                              backgroundColor: "",
                             }}
                           >
                             <Typography
@@ -338,17 +284,12 @@ const QuizQuestionShowIndex = ({
                               {posibleAnswer}
                             </Typography>
                           </Box>
-                          {/* </Grid> */}
-                          {/* </Grid> */}
-
-                          {/* </Box> */}
                         </>
                       )}
                     </>
                   ))}
                 </Grid>
               </ToggleButtonGroup>
-              {/* </RadioGroup> */}
             </>
           )}
 
@@ -374,19 +315,8 @@ const QuizQuestionShowIndex = ({
                   </Typography>
                   <PdTextField
                     fullWidth
-                    // variant='outlined'
-                    placeholder="Write your thoughts..."
-                    // onChange={(e) => handleQuizResultTextField(e.target.value, item._id)}
-                    // onChange={(e) => handleQuizResult(null, item._id, e.target.value, false)}
-                    onChange={(event, value) =>
-                      handleAlignment(
-                        event,
-                        value,
-                        item._id,
-                        event.target.value,
-                        false,
-                      )
-                    }
+                    placeholder='Write your thoughts...'
+                    onChange={(event, value) => handleAlignment(event, value, item._id, event.target.value, false)}
                   />
                 </Box>
               </>

@@ -45,6 +45,7 @@ const CourseHeader = ({
   setFilter,
   pagination,
   setIsPagination,
+  allCourseCount,
 }) => {
   const { pathname } = useLocation();
 
@@ -70,13 +71,30 @@ const CourseHeader = ({
           <Grid container>
             <CommonHeader
               title={`List of ${
-                isActiveEnrolled ? 'My' : isActiveArchived ? 'Archived' : level ? capitalizeFirstLetter(level) : ''
+                pathname === '/courses2/myCourse'
+                  ? 'My'
+                  : pathname === '/courses2/archiveCourse'
+                  ? 'Archived'
+                  : level
+                  ? capitalizeFirstLetter(level)
+                  : ''
               } Courses`}
               customButton="Create User"
             />
             {courseCount > 0 && (
               <Typography sx={{ opacity: '0.7', height: '13px' }} variant="wpf_p3_regular" color={'neutral.750'}>
-                {courseCount === 1 ? courseCount + ' Result' : courseCount + ' Results'} found
+                {courseCount === 1 || courseCount === 0
+                  ? courseCount + ' Result '
+                  : pathname === '/courses2/myCourse'
+                  ? MyCourseCount === 1 || MyCourseCount === 0
+                    ? MyCourseCount + ' Result '
+                    : MyCourseCount + ' Results '
+                  : pathname === '/courses2/archiveCourse'
+                  ? ArchiveCount === 0 || ArchiveCount === 1
+                    ? ArchiveCount + ' Result '
+                    : ArchiveCount + ' Results '
+                  : courseCount + ' Results '}{' '}
+                found
               </Typography>
             )}
           </Grid>
@@ -116,6 +134,7 @@ const CourseHeader = ({
               searchRef={searchRef}
               pagination={pagination}
               setIsPagination={setIsPagination}
+              allCourseCount={allCourseCount}
             />
           ) : (
             <></>

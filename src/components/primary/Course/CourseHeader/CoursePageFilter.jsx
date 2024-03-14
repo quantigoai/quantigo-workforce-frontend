@@ -20,6 +20,7 @@ const CoursePageFilter = ({
   courseCount,
   MyCourseCount,
   ArchiveCount,
+  allCourseCount,
   // allCount,
   // setFilter,
   // setSearch,
@@ -28,7 +29,7 @@ const CoursePageFilter = ({
   // setIsPagination,
 }) => {
   const navigate = useNavigate();
-
+  const { pathname } = useLocation();
   return (
     <Box>
       <Box
@@ -46,8 +47,8 @@ const CoursePageFilter = ({
 
             textTransform: 'none',
             borderRadius: '8px',
-            backgroundColor: isActiveAll ? '#244EF5' : '#FFF',
-            color: isActiveAll ? '#fff' : '#667085',
+            backgroundColor: pathname === '/courses2/allCourse' ? '#244EF5' : '#FFF',
+            color: pathname === '/courses2/allCourse' ? '#fff' : '#667085',
 
             fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
             fontWeight: '500',
@@ -58,7 +59,7 @@ const CoursePageFilter = ({
           }}
           onClick={() => navigate('allCourse')}
         >
-          All Courses({courseCount})
+          All Courses({allCourseCount})
         </Button>
         <Button
           sx={{
@@ -66,8 +67,8 @@ const CoursePageFilter = ({
 
             textTransform: 'none',
             borderRadius: '8px',
-            backgroundColor: isActiveAll ? '#244EF5' : '#FFF',
-            color: isActiveAll ? '#fff' : '#667085',
+            backgroundColor: pathname === '/courses2/myCourse' ? '#244EF5' : '#FFF',
+            color: pathname === '/courses2/myCourse' ? '#fff' : '#667085',
 
             fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
             fontWeight: '500',
@@ -87,8 +88,8 @@ const CoursePageFilter = ({
 
             textTransform: 'none',
             borderRadius: '8px',
-            backgroundColor: isActiveAll ? '#244EF5' : '#FFF',
-            color: isActiveAll ? '#fff' : '#667085',
+            backgroundColor: pathname === '/courses2/archiveCourse' ? '#244EF5' : '#FFF',
+            color: pathname === '/courses2/archiveCourse' ? '#fff' : '#667085',
 
             fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
             fontWeight: '500',

@@ -17,9 +17,7 @@ const CHeader = () => {
     <div>
       <button onClick={() => navigate('/courses2/allCourse')}>All</button>
       <button onClick={() => navigate('/courses2/myCourse')}>My </button>
-      <button onClick={() => navigate('/courses2/archiveCourse')}>
-        Archived
-      </button>
+      <button onClick={() => navigate('/courses2/archiveCourse')}>Archived</button>
       <input type="text" name="search" />
     </div>
   );

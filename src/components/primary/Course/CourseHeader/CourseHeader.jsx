@@ -44,6 +44,8 @@ const CourseHeader = ({
   setFilter,
   pagination,
   setIsPagination,
+  setAllCoursesFull,
+  setCourseCountFull,
 }) => {
   return (
     <>
@@ -64,13 +66,17 @@ const CourseHeader = ({
             width: { xxl: '30%', xl: '40%', lg: '40%' },
           }}
         >
-          <Grid container>
-            <CommonHeader
+          <Grid container sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Typography variant="wpf_p1_semiBold">{`List of ${
+              isActiveEnrolled ? 'My' : isActiveArchived ? 'Archived' : level ? capitalizeFirstLetter(level) : ''
+            } Courses`}</Typography>
+            {/* <CommonHeader
               title={`List of ${
                 isActiveEnrolled ? 'My' : isActiveArchived ? 'Archived' : level ? capitalizeFirstLetter(level) : ''
               } Courses`}
               customButton="Create User"
-            />
+            /> */}
+
             {courseCount > 0 && (
               <Typography sx={{ opacity: '0.7', height: '13px' }} variant="wpf_p3_regular" color={'neutral.750'}>
                 {courseCount === 1 ? courseCount + ' Result' : courseCount + ' Results'} found
@@ -113,6 +119,9 @@ const CourseHeader = ({
               searchRef={searchRef}
               pagination={pagination}
               setIsPagination={setIsPagination}
+              setAllCoursesFull={setAllCoursesFull}
+              setCourseCountFull={setCourseCountFull}
+              level={level}
             />
           ) : (
             <></>

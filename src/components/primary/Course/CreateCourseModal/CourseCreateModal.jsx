@@ -7,6 +7,9 @@ import Fade from '@mui/material/Fade';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getAllCourses } from '../../../../features/slice/courseSlice';
 import FormProvider from '../../../shared/FormProvider/FormProvider';
 import {
   courseCategoryFields,
@@ -17,16 +20,14 @@ import {
 import ProjectModalHeader from '../../ProjectLIstNew2/ProjectModalHeader';
 import CSelectField from './CSelectField';
 import CTextFieldDescription from './CTextFieldDescription';
+import CheckBoxFeatured from './CheckBoxFeatured';
 import CourseCoverImageField from './CourseCoverImageField';
+import CourseOutComesMain from './CourseOutComesMain';
 import CourseSkillfiled from './CourseSkillfiled';
+import DateTimeField from './DateTimeField';
+import HubMultipleSelect from './HubMultipleSelect';
 import PreRequisiteCourseFiled from './PreRequisiteCourseFiled';
 import TextFieldCourse from './TextFieldCourse';
-import CheckBoxFeatured from './CheckBoxFeatured';
-import PDDateField from '../../../shared/CustomField/PDDateField';
-import DateTimeField from './DateTimeField';
-import CourseOutcomes from './CourseOutcomes';
-import CourseOutComesMain from './CourseOutComesMain';
-import HubMultipleSelect from './HubMultipleSelect';
 
 const style = {
   position: 'relative',
@@ -125,6 +126,17 @@ const CourseCreateModal = ({
   hub,
   handleChangeHub,
 }) => {
+  const [allCourses, setAllCourses] = useState([]);
+  const [isCourseFetched, setIsCourseFetched] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllCourses({})).then((action) => {
+      setAllCourses(action.payload.data.courses);
+      setIsCourseFetched(true);
+    });
+  }, []);
+
   return (
     <>
       <Modal
@@ -152,7 +164,10 @@ const CourseCreateModal = ({
               left: { xxl: '50%', lg: '55%', xl: '55%' },
             }}
           >
-            <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={'Create Course'} />
+            <ProjectModalHeader
+              handleCreateProjectClose={handleClose}
+              modalTitle={'Create Course'}
+            />
 
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
               <Box sx={style1}>
@@ -178,7 +193,11 @@ const CourseCreateModal = ({
                     }}
                   >
                     <LineStackSingle>
-                      <TextFieldCourse name="name" label="Course Name" isRequired={true} />
+                      <TextFieldCourse
+                        name="name"
+                        label="Course Name"
+                        isRequired={true}
+                      />
                     </LineStackSingle>
                     {/* <LineStackSingle> */}
                     <Stack
@@ -193,7 +212,11 @@ const CourseCreateModal = ({
                         },
                       }}
                     >
-                      <CTextFieldDescription name="description" label="Course Description" isRequired={true} />
+                      <CTextFieldDescription
+                        name="description"
+                        label="Course Description"
+                        isRequired={true}
+                      />
                     </Stack>
                     {/* </LineStackSingle> */}
                     <Stack
@@ -208,11 +231,16 @@ const CourseCreateModal = ({
                         },
                       }}
                     >
-                      <PreRequisiteCourseFiled
-                        perRequisiteCourses={preRequisiteCourses}
-                        handleChange_Pre_Requisite_Course={handleChange_Pre_Requisite_Course}
-                        isUpdate={false}
-                      />
+                      {isCourseFetched && (
+                        <PreRequisiteCourseFiled
+                          perRequisiteCourses={preRequisiteCourses}
+                          handleChange_Pre_Requisite_Course={
+                            handleChange_Pre_Requisite_Course
+                          }
+                          isUpdate={false}
+                          allCourses={allCourses}
+                        />
+                      )}
                     </Stack>
                     <LineStack>
                       <FieldBox>
@@ -282,7 +310,11 @@ const CourseCreateModal = ({
                         />
                       </FieldBox>
                       <FieldBox>
-                        <TextFieldCourse name="liveSessionLink" label="Live Session Link" isRequired={false} />
+                        <TextFieldCourse
+                          name="liveSessionLink"
+                          label="Live Session Link"
+                          isRequired={false}
+                        />
                       </FieldBox>
                     </LineStack>
 

@@ -1,47 +1,54 @@
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import SearchIcon from '@mui/icons-material/Search';
 import {
-    Box,
-    Chip,
-    InputAdornment,
-    ListSubheader,
-    MenuItem,
-    Select,
-    styled,
-    TextField,
-    Typography,
-} from "@mui/material";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import React, {useEffect, useMemo, useState} from "react";
-import {useSelector} from "react-redux";
-import {useLocation} from "react-router-dom";
-import SearchIcon from "@mui/icons-material/Search";
-import {CustomFormControl} from "../../../shared/CustomField/CustomSelectField";
+  Box,
+  Chip,
+  InputAdornment,
+  ListSubheader,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+  styled,
+} from '@mui/material';
+
+import React, { useEffect, useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { CustomFormControl } from '../../../shared/CustomField/CustomSelectField';
 
 export const MySelect = styled(Select)(() => ({
-  height: "35px",
-  borderRadius: "8px",
-  "& .MuiOutlinedInput-root": {
-    color: "#000",
-    border: "1px solid #E6ECF5 !important",
+  height: '35px',
+  borderRadius: '8px',
+  '& .MuiOutlinedInput-root': {
+    color: '#000',
+    border: '1px solid #E6ECF5 !important',
   },
-  "& .MuiOutlinedInput-input": {
-    padding: "0px 0px 0px 8px",
+  '& .MuiOutlinedInput-input': {
+    padding: '0px 0px 0px 8px',
   },
-  "& .MuiOutlinedInput-notchedOutline ": {
-    border: "1px solid #E6ECF5 !important",
+  '& .MuiOutlinedInput-notchedOutline ': {
+    border: '1px solid #E6ECF5 !important',
   },
-  "& .MuiInputBase-input.Mui-disabled": {
-    WebkitTextFillColor: "#56627a",
+  '& .MuiInputBase-input.Mui-disabled': {
+    WebkitTextFillColor: '#56627a',
   },
-  "& .MuiFormHelperText-root": {
-    color: "#12B76A",
-    "&.Mui-error": {
-      color: "#F04438",
+  '& .MuiFormHelperText-root': {
+    color: '#12B76A',
+    '&.Mui-error': {
+      color: '#F04438',
     },
   },
 }));
-const containsText = (text, searchText) => text?.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
+const containsText = (text, searchText) =>
+  text?.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
 
-const PreRequisiteCourseFiled = ({ perRequisiteCourses, handleChange_Pre_Requisite_Course, isUpdate }) => {
+const PreRequisiteCourseFiled = ({
+  perRequisiteCourses,
+  handleChange_Pre_Requisite_Course,
+  isUpdate,
+  allCourses,
+}) => {
   const [isOpen, SetIsOpen] = useState(false);
   const location = useLocation();
   const { courses, course } = useSelector((state) => state.course);
@@ -52,9 +59,12 @@ const PreRequisiteCourseFiled = ({ perRequisiteCourses, handleChange_Pre_Requisi
     const prerequisiteCourseNames = [];
 
     for (const course of courseArray) {
-      if (course?.prerequisiteCourses && course.prerequisiteCourses?.length > 0) {
+      if (
+        course?.prerequisiteCourses &&
+        course.prerequisiteCourses?.length > 0
+      ) {
         const matchingPrerequisites = course.prerequisiteCourses.filter(
-          (prerequisite) => prerequisite._id === targetId
+          (prerequisite) => prerequisite._id === targetId,
         );
 
         matchingPrerequisites.forEach((prerequisite) => {
@@ -65,51 +75,51 @@ const PreRequisiteCourseFiled = ({ perRequisiteCourses, handleChange_Pre_Requisi
 
     return prerequisiteCourseNames;
   };
-  const prerequisiteCourseNames = getPrerequisiteCourseNames(courses, course._id);
+  const prerequisiteCourseNames = getPrerequisiteCourseNames(
+    allCourses,
+    course._id,
+  );
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!isUpdate) {
-      setMyOptions(courses.map((option) => option.name));
+      setMyOptions(allCourses.map((option) => option.name));
     } else {
       setMyOptions(
-        courses?.map((option) => {
+        allCourses?.map((option) => {
           if (option?._id != course?._id) {
-            const newOption = option.prerequisiteCourses.find((c) => c._id === course?._id);
+            const newOption = option.prerequisiteCourses.find(
+              (c) => c._id === course?._id,
+            );
             if (!newOption) {
               return option.name;
             }
           }
-        })
+        }),
       );
     }
     // setMyOptions(courses.map((option) => option.name));
-  }, [course._id]);
+  }, []);
 
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState('');
   const displayedOptions = useMemo(
     () => myOptions.filter((option) => containsText(option, searchText)),
-    [myOptions, searchText]
+    [myOptions, searchText],
   );
 
   const handleOpenClose = () => {
     SetIsOpen(!isOpen);
-    setSearchText("");
+    setSearchText('');
   };
-  // useEffect(() => {
-  //   if (!isUpdate) {
-  //     setSetCourse(courses);
-  //   } else {
-  //     setSetCourse(courses.filter((item) => item._id != course._id));
-  //   }
-  // }, [isUpdate]);
+
   return (
     <>
       <CustomFormControl fullWidth>
         <Typography
-          variant={"wpf_h7_medium"}
+          variant={'wpf_h7_medium'}
           sx={{
             mb: 0,
-            color: "neutral.N300",
+            color: 'neutral.N300',
           }}
         >
           Pre Requisite Courses
@@ -119,7 +129,11 @@ const PreRequisiteCourseFiled = ({ perRequisiteCourses, handleChange_Pre_Requisi
           id="demo-multiple-chip"
           multiple
           // value={perRequisiteCourses}
-          defaultValue={isUpdate ? course.prerequisiteCourses?.map((c) => c.name) : perRequisiteCourses}
+          defaultValue={
+            isUpdate
+              ? course.prerequisiteCourses?.map((c) => c.name)
+              : perRequisiteCourses
+          }
           onChange={handleChange_Pre_Requisite_Course}
           onOpen={handleOpenClose}
           // value={courses.map((c) => c.name)}
@@ -128,26 +142,31 @@ const PreRequisiteCourseFiled = ({ perRequisiteCourses, handleChange_Pre_Requisi
           renderValue={(selected) => (
             <Box
               sx={{
-                display: "grid",
-                gridTemplateColumns: "repeat(2,1fr)",
+                display: 'grid',
+                gridTemplateColumns: 'repeat(2,1fr)',
                 gap: 0.5,
-                fontSize: "12px",
-                height: "20px",
+                fontSize: '12px',
+                height: '20px',
               }}
             >
               {selected?.map(
                 (value, i) =>
-                  [0].includes(i) && <Chip sx={{ fontSize: "12px", height: "95%" }} key={value} label={value} />
+                  [0].includes(i) && (
+                    <Chip
+                      sx={{ fontSize: '12px', height: '95%' }}
+                      key={value}
+                      label={value}
+                    />
+                  ),
               )}
               {selected.length > 1 && (
                 <Typography variant="p" sx={{ ml: 2, mt: 0 }}>
-                  {" "}
+                  {' '}
                   + {selected.length - 1} more
                 </Typography>
               )}
             </Box>
           )}
-          //   MenuProps={MenuProps}
         >
           <ListSubheader>
             <TextField
@@ -166,7 +185,7 @@ const PreRequisiteCourseFiled = ({ perRequisiteCourses, handleChange_Pre_Requisi
                 setSearchText(e.target.value);
               }}
               onKeyDown={(e) => {
-                if (e.key !== "Escape") {
+                if (e.key !== 'Escape') {
                   // Prevents autoselecting item while typing (default Select behaviour)
                   e.stopPropagation();
                 }
@@ -174,13 +193,19 @@ const PreRequisiteCourseFiled = ({ perRequisiteCourses, handleChange_Pre_Requisi
             />
           </ListSubheader>
 
-          {prerequisiteCourseNames.map((pre, idx) => (
-            <MenuItem Item sx={{ fontSize: "12px", py: 0.5 }} disabled key={idx}>
+          {prerequisiteCourseNames?.map((pre, idx) => (
+            <MenuItem
+              Item
+              sx={{ fontSize: '12px', py: 0.5 }}
+              disabled
+              key={idx}
+            >
               {pre}
             </MenuItem>
           ))}
+
           {displayedOptions.map((item, i) => (
-            <MenuItem sx={{ fontSize: "12px" }} key={i} value={item}>
+            <MenuItem sx={{ fontSize: '12px' }} key={i} value={item}>
               {item}
             </MenuItem>
           ))}

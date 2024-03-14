@@ -1,15 +1,33 @@
-import { Box, Grid, Radio, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
-import React from "react";
-import { PdTextField } from "./QuizShow";
-import { useSelector } from "react-redux";
-import radioIcon from "../../../assets/images/courses/Switch.svg";
-import SwitchCheck from "../../../assets/images/courses/SwitchCheck.svg";
+import {
+  Box,
+  Grid,
+  ToggleButton,
+  ToggleButtonGroup,
+  Typography,
+} from '@mui/material';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import radioIcon from '../../../assets/images/courses/Switch.svg';
+import SwitchCheck from '../../../assets/images/courses/SwitchCheck.svg';
+import { PdTextField } from './QuizShow';
 
-const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitchContent }) => {
+const QuizQuestionShowIndex = ({
+  item,
+  i,
+  handleQuizResult,
+  setData,
+  handleSwitchContent,
+}) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const [alignment, setAlignment] = React.useState();
 
-  const handleAlignment = (event, possibleIndex, id, possibleText, isFromRadio = true) => {
+  const handleAlignment = (
+    event,
+    possibleIndex,
+    id,
+    possibleText,
+    isFromRadio = true,
+  ) => {
     isFromRadio && setAlignment(possibleIndex);
 
     isFromRadio
@@ -34,35 +52,38 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
         <Box
           key={i}
           sx={{
-            border: "2px solid #E2E8F0",
-            borderRadius: "8px",
-            mb: "50px",
-            backgroundColor: isLightTheme ? "#F1F5F9" : "",
+            border: '2px solid #E2E8F0',
+            borderRadius: '8px',
+            mb: '50px',
+            backgroundColor: isLightTheme ? '#F1F5F9' : '',
           }}
         >
           <Grid container>
             <Grid
               xs={8}
               sx={{
-                paddingLeft: "20px",
+                paddingLeft: '20px',
                 // paddingLeft: "2%",
 
-                paddingRight: "2%",
+                paddingRight: '2%',
                 // paddingBottom: "1%",
-                paddingTop: "1%",
+                paddingTop: '1%',
               }}
             >
-              <Typography variant='wpf_p2_semiBold' sx={{ color: "primary.B300" }}>
+              <Typography
+                variant="wpf_p2_semiBold"
+                sx={{ color: 'primary.B300' }}
+              >
                 Q{i + 1}. {item?.question?.questionText} ?
               </Typography>
             </Grid>
             <Grid
               xs={4}
               sx={{
-                paddingLeft: "2%",
-                paddingRight: "2%",
+                paddingLeft: '2%',
+                paddingRight: '2%',
                 // paddingBottom: "1%",
-                paddingTop: "1%",
+                paddingTop: '1%',
               }}
             >
               {/* {item.questionStatus === "rejected" ? (
@@ -76,41 +97,47 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                           )} */}
             </Grid>
           </Grid>
-          {item?.questionType === "imageAndOptions" ? (
+          {item?.questionType === 'imageAndOptions' ? (
             <>
               {/* <RadioGroup> */}
-              <Grid container sx={{ backgroundColor: "", width: "100%" }}>
-                <Grid xs={6} sx={{ paddingLeft: "2%", paddingTop: "3%" }}>
+              <Grid container sx={{ backgroundColor: '', width: '100%' }}>
+                <Grid xs={6} sx={{ paddingLeft: '2%', paddingTop: '3%' }}>
                   <ToggleButtonGroup
-                    orientation='vertical'
+                    orientation="vertical"
                     value={alignment}
                     exclusive
                     // onChange={(value)=>handleAlignment(item ,value)}
-                    onChange={(event, value) => handleAlignment(event, value, item._id)}
+                    onChange={(event, value) =>
+                      handleAlignment(event, value, item._id)
+                    }
                     // aria-label='text alignment'
                   >
                     {item.possibleAnswers.map((posibleAnswer, i) => (
-                      <Grid container key={i} sx={{ paddingBottom: "10px" }}>
+                      <Grid container key={i} sx={{ paddingBottom: '10px' }}>
                         <Grid item xs={0.7}>
                           <ToggleButton
                             // style={{ color: alignment === "0" ? "blue" : "black" }}
                             value={i}
-                            aria-label='left aligned'
+                            aria-label="left aligned"
                             style={{
-                              border: "none",
+                              border: 'none',
                               padding: 0,
-                              backgroundColor: "transparent",
+                              backgroundColor: 'transparent',
                             }}
                             // onChange={() => handleQuizResult(i, item._id)}
                           >
-                            <img src={alignment === i ? SwitchCheck : radioIcon} />
+                            <img
+                              src={alignment === i ? SwitchCheck : radioIcon}
+                            />
                           </ToggleButton>
                         </Grid>
                         <Grid item xs={11}>
                           <Typography
-                            variant='wpf_p3_regular'
+                            variant="wpf_p3_regular"
                             //  sx={{ color: alignment === i ? "#2E58FF" : "#1E293B" }}
-                            sx={{ color: alignment === i ? "#2E58FF" : "grey.600" }}
+                            sx={{
+                              color: alignment === i ? '#2E58FF' : 'grey.600',
+                            }}
                           >
                             {posibleAnswer}
                           </Typography>
@@ -122,15 +149,20 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                 <Grid
                   xs={6}
                   sx={{
-                    paddingLeft: "2%",
-                    paddingRight: "2%",
+                    paddingLeft: '2%',
+                    paddingRight: '2%',
                     // paddingBottom: "1%",
-                    paddingTop: "1%",
+                    paddingTop: '1%',
                     // backgroundColor: "red",
                   }}
                 >
-                  {item.question?.questionImage?.endsWith(".jpeg") && (
-                    <img src={item.question.questionImage} style={{ borderRadius: "8px" }} height={224} width='100%' />
+                  {item.question?.questionImage?.endsWith('.jpeg') && (
+                    <img
+                      src={item.question.questionImage}
+                      style={{ borderRadius: '8px' }}
+                      height={224}
+                      width="100%"
+                    />
                   )}
                   <>
                     {/* for Audio */}
@@ -142,13 +174,13 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                                   />
                                   Your browser does not support the audio element.
                                 </audio> */}
-                    {item.question?.questionImage?.endsWith(".mp4") && (
+                    {item.question?.questionImage?.endsWith('.mp4') && (
                       <video
-                        width='100%'
-                        height='240'
+                        width="100%"
+                        height="240"
                         controls
-                        style={{ borderRadius: "8px" }}
-                        src='https://storage.googleapis.com/quantigo-workforce-image-storage/test%20video/production_id_4124024%20(2160p).mp4'
+                        style={{ borderRadius: '8px' }}
+                        src="https://storage.googleapis.com/quantigo-workforce-image-storage/test%20video/production_id_4124024%20(2160p).mp4"
                       ></video>
                     )}
                   </>
@@ -157,45 +189,50 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
             </>
           ) : (
             <>
-              {" "}
+              {' '}
               {/* <RadioGroup
                           //  value={value}
                           > */}
               <ToggleButtonGroup
-                orientation='vertical'
+                orientation="vertical"
                 value={alignment}
                 exclusive
                 // onChange={(value)=>handleAlignment(item ,value)}
-                onChange={(event, value) => handleAlignment(event, value, item._id)}
+                onChange={(event, value) =>
+                  handleAlignment(event, value, item._id)
+                }
                 // aria-label='text alignment'
+                sx={{
+                  width: '100%',
+                }}
               >
                 <Grid
                   container
                   sx={{
-                    paddingLeft: "20px",
-                    paddingBottom: "2%",
-                    paddingTop: "1px",
+                    paddingLeft: '20px',
+                    paddingBottom: '2%',
+                    paddingTop: '1px',
 
                     // backgroundColor: "red",
                   }}
                 >
                   {item?.possibleAnswers?.map((posibleAnswer, i) => (
                     <>
-                      {item.questionType === "imageInOptions" ? (
+                      {item.questionType === 'imageInOptions' ? (
                         <>
                           <Grid
                             item
                             xs={3}
                             sx={{
-                              paddingRight: "2%",
-                              borderRadius: "8px",
-                              width: "500px",
+                              paddingRight: '2%',
+                              borderRadius: '8px',
+                              width: '500px',
                             }}
                           >
                             <Box
                               sx={{
-                                border: "1px solid #E2E8F0",
-                                borderRadius: "8px",
+                                border: '1px solid #E2E8F0',
+                                borderRadius: '8px',
                               }}
                             >
                               {handleSwitchContent(posibleAnswer)}
@@ -204,30 +241,45 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                               <Box
                                 gap={1}
                                 sx={{
-                                  backgroundColor: "neutral.N000",
-                                  paddingLeft: "5%",
-                                  paddingTop: "3%",
-                                  paddingBottom: "3%",
+                                  backgroundColor: 'neutral.N000',
+                                  paddingLeft: '5%',
+                                  paddingTop: '3%',
+                                  paddingBottom: '3%',
 
-                                  borderRadius: "8px",
-                                  display: "flex",
+                                  borderRadius: '8px',
+                                  display: 'flex',
                                 }}
                               >
                                 <ToggleButton
                                   // style={{ color: alignment === "0" ? "blue" : "black" }}
                                   value={i}
-                                  aria-label='left aligned'
+                                  aria-label="left aligned"
                                   style={{
-                                    border: "none",
+                                    border: 'none',
                                     padding: 0,
-                                    backgroundColor: "transparent",
+                                    backgroundColor: 'transparent',
                                   }}
                                   // onChange={() => handleQuizResult(i, item._id)}
                                 >
-                                  <img src={alignment === i ? SwitchCheck : radioIcon} />
+                                  <img
+                                    src={
+                                      alignment === i ? SwitchCheck : radioIcon
+                                    }
+                                  />
                                 </ToggleButton>
-                                <Typography sx={{ color: alignment === i ? "#2E58FF" : "grey.600" }}>
-                                  {i === 0 ? "Option A" : i === 1 ? "Option B" : i === 2 ? "Option C" : "Option D"}{" "}
+                                <Typography
+                                  sx={{
+                                    color:
+                                      alignment === i ? '#2E58FF' : 'grey.600',
+                                  }}
+                                >
+                                  {i === 0
+                                    ? 'Option A'
+                                    : i === 1
+                                    ? 'Option B'
+                                    : i === 2
+                                    ? 'Option C'
+                                    : 'Option D'}{' '}
                                 </Typography>
                               </Box>
                             </Box>
@@ -243,8 +295,8 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                           <Box
                             sx={{
                               // width: { xl: "4%", lg: "5%", xxl: "3.5%" },
-                              width: "7%",
-                              paddingY: "10px",
+                              width: '7%',
+                              paddingY: '10px',
                               // paddingX: "10px",
                               // backgroundColor: "red",
                             }}
@@ -252,15 +304,17 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                             <ToggleButton
                               // style={{ color: alignment === "0" ? "blue" : "black" }}
                               value={i}
-                              aria-label='left aligned'
+                              aria-label="left aligned"
                               style={{
-                                border: "none",
+                                border: 'none',
                                 padding: 0,
-                                backgroundColor: "transparent",
+                                backgroundColor: 'transparent',
                               }}
                               // onChange={() => handleQuizResult(i, item._id)}
                             >
-                              <img src={alignment === i ? SwitchCheck : radioIcon} />
+                              <img
+                                src={alignment === i ? SwitchCheck : radioIcon}
+                              />
                             </ToggleButton>
                           </Box>
                           {/* </Grid> */}
@@ -268,16 +322,18 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                           <Box
                             sx={{
                               // width: { xl: "96%", lg: "95%", xxl: "96.5%" },
-                              width: "93%",
-                              paddingY: "10px",
-                              paddingX: "0px",
-                              backgroundColor: "",
+                              width: '93%',
+                              paddingY: '10px',
+                              paddingX: '0px',
+                              backgroundColor: '',
                             }}
                           >
                             <Typography
-                              variant='wpf_p3_regular'
+                              variant="wpf_p3_regular"
                               // sx={{ color: alignment === i ? "#2E58FF" : "#1E293B" }}
-                              sx={{ color: alignment === i ? "#2E58FF" : "grey.600" }}
+                              sx={{
+                                color: alignment === i ? '#2E58FF' : 'grey.600',
+                              }}
                             >
                               {posibleAnswer}
                             </Typography>
@@ -301,17 +357,17 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
               <>
                 <Box
                   sx={{
-                    borderTop: "2px solid #E2E8F0",
-                    borderRadius: "8px",
-                    backgroundColor: "neutral.N000",
-                    padding: "20px",
+                    borderTop: '2px solid #E2E8F0',
+                    borderRadius: '8px',
+                    backgroundColor: 'neutral.N000',
+                    padding: '20px',
                   }}
                 >
                   <Typography
-                    variant='wpf_h7_medium'
+                    variant="wpf_h7_medium"
                     sx={{
                       mb: 0,
-                      color: "neutral.N300",
+                      color: 'neutral.N300',
                     }}
                   >
                     Label
@@ -319,10 +375,18 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                   <PdTextField
                     fullWidth
                     // variant='outlined'
-                    placeholder='Write your thoughts...'
+                    placeholder="Write your thoughts..."
                     // onChange={(e) => handleQuizResultTextField(e.target.value, item._id)}
                     // onChange={(e) => handleQuizResult(null, item._id, e.target.value, false)}
-                    onChange={(event, value) => handleAlignment(event, value, item._id, event.target.value, false)}
+                    onChange={(event, value) =>
+                      handleAlignment(
+                        event,
+                        value,
+                        item._id,
+                        event.target.value,
+                        false,
+                      )
+                    }
                   />
                 </Box>
               </>

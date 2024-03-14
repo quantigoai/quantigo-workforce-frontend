@@ -12,7 +12,6 @@ const FeaturedCourse = ({ courses, handleViewDetailsButton }) => {
 
   const handleResize = () => {
     const windowWidth = window.innerWidth;
-
     if (windowWidth >= 1500) {
       setSlidesPerView(2.1);
     } else if (windowWidth === 1440) {
@@ -29,6 +28,7 @@ const FeaturedCourse = ({ courses, handleViewDetailsButton }) => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
   return (
     <Box>
       <Swiper
@@ -43,7 +43,7 @@ const FeaturedCourse = ({ courses, handleViewDetailsButton }) => {
       >
         <Box>
           <Grid container spacing={3}>
-            {courses.map((item) => (
+            {courses?.map((item) => (
               <Box
                 sx={{ backgroundColor: isLightTheme ? '#fff' : '#000' }}
                 key={item._id}

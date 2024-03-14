@@ -20,15 +20,20 @@ import { calculateProgress } from '../../helper/scoreStore';
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
 const initialState = {
-  isLoading: false,
+  isLoading: true,
   course: {},
   // courseChapters: {},
   courseChapters: [],
   courseChapter: {},
+  courseMeta: {},
+  archivedCourseMeta: {},
+  total: 0,
   quizzesResult: [],
   isEnrollAble: true,
   enrolmentMessage: '',
   courses: [],
+  myCourses: [],
+  myArchivedCourses: [],
   error: 'null',
   isCreated: false,
 };
@@ -89,6 +94,9 @@ export const getMyCourses = createAsyncThunk('myCourses', async (data) => {
     let query = `limit=${pagination.pageSize}&skip=${
       pagination.currentPage * pagination.pageSize
     }`;
+    if (pagination) {
+      query = `limit=${pagination.pageSize}`;
+    }
 
     if (search) {
       query += `&search=${search}`;
@@ -99,6 +107,17 @@ export const getMyCourses = createAsyncThunk('myCourses', async (data) => {
       filterOptions.map((f) => (query += `&${f}=${filter[f]}`));
     }
     return await axios.get(`${url}/courses/get-my-enrolled-course?${query}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+export const getCoursesCount = createAsyncThunk('coursesCount', async () => {
+  try {
+    return await axios.get(`${url}/courses/get-all-courses-count`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -489,7 +508,19 @@ const courseSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getMyCourses.fulfilled, (state, action) => {
-        state.courses = action.payload.data.enrolledCourses;
+        state.myCourses = action.payload.data.enrolledCourses;
+        state.courseMeta = action.payload.data.meta;
+        state.total = action.payload.data.total;
+        state.isLoading = false;
+      })
+      .addCase(getCoursesCount.rejected, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(getCoursesCount.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getCoursesCount.fulfilled, (state, action) => {
+        // state.courses = action.payload.data.enrolledCourses;
         state.isLoading = false;
       })
       .addCase(getMyCourses.rejected, (state, action) => {
@@ -499,7 +530,9 @@ const courseSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getArchivedCourses.fulfilled, (state, action) => {
-        state.courses = action.payload.data.archivedCourses;
+        state.myArchivedCourses = action.payload.data.archivedCourses;
+        state.archivedCourseMeta = action.payload.data.meta;
+        state.total = action.payload.data.total;
         state.isLoading = false;
       })
       .addCase(getArchivedCourses.rejected, (state, action) => {

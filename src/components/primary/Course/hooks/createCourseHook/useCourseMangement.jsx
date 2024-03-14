@@ -2,7 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 import useToaster from '../../../../../customHooks/useToaster';
 import { setActiveChapterIndex, setActiveCourseId } from '../../../../../features/slice/activePathSlice';
@@ -31,7 +31,7 @@ const useCourseManagement = () => {
   const { role } = useSelector((state) => state.user.user);
   const { course } = useSelector((state) => state.course);
   const [filterCourses, setFilterCourses] = useState([]);
-  const [isDataLoading, setIsDataLoading] = useState(true);
+  const [isDataLoading, setIsDataLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const searchRef = React.useRef(null);
   const [search, setSearch] = useState('');
@@ -56,6 +56,7 @@ const useCourseManagement = () => {
   const [hub, setHub] = useState(['Dhaka', 'Mymensingh', 'Sirajganj', 'Khulna', 'Chuadanga']);
   const dispatch = useDispatch();
   const toast = useToaster();
+  const { pathname } = useLocation();
   const CourseCreateSchema = Yup.object().shape({
     name: Yup.string().required('Course name is required'),
     description: Yup.string().required('Course description is required'),
@@ -111,14 +112,14 @@ const useCourseManagement = () => {
         });
       }
     } else {
-      if (isActiveEnrolled) {
+      if (pathname === '/courses2/myCourse') {
         dispatch(getMyCourses({ filter: {}, search, pagination })).then((action) => {
           setCourseCount(action.payload.data.searchedTotal);
           setAllCourses(action.payload.data);
           setIsDataLoading(false);
           setFilter({});
         });
-      } else if (isActiveArchived) {
+      } else if (pathname === '/courses2/archiveCourse') {
         dispatch(getArchivedCourses({ filter: {}, search, pagination })).then((action) => {
           setCourseCount(action.payload.data.searchedTotal);
           setAllCourses(action.payload.data);
@@ -157,17 +158,18 @@ const useCourseManagement = () => {
         });
       }
     } else {
-      if (isActiveEnrolled) {
+      if (pathname === '/courses2/myCourse') {
+        console.log('hitmain');
         dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
           setCourseCount(action.payload.data.searchedTotal);
           setAllCourses(action.payload.data);
-          setIsDataLoading(false);
+          // setIsDataLoading(false);
         });
-      } else if (isActiveArchived) {
+      } else if (pathname === '/courses2/archiveCourse') {
         dispatch(getArchivedCourses({ filter, search, pagination })).then((action) => {
           setCourseCount(action.payload.data.searchedTotal);
           setAllCourses(action.payload.data);
-          setIsDataLoading(false);
+          // setIsDataLoading(false);
         });
       } else {
         dispatch(getAllCoursesNew({ filter, search })).then((action) => {
@@ -252,7 +254,7 @@ const useCourseManagement = () => {
     );
   };
   const { handleSubmit, reset } = methods;
-  const [isCourseLoading, setIsCourseLoading] = useState(false);
+  const [isCourseLoading, setIsCourseLoading] = useState(true);
 
   const handleSearch = (e) => {
     setSearch(e.target.value);

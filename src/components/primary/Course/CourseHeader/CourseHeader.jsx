@@ -3,10 +3,10 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import FilterListOffIcon from '@mui/icons-material/FilterListOff';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, Button, Grid, IconButton, InputBase, Paper, Popover, Typography } from '@mui/material';
-import CommonHeader from '../../../shared/CustomComponenet/CommonHeader/CommonHeader';
+import { useLocation } from 'react-router-dom';
+import { capitalizeFirstLetter } from '../../../../helper/capitalizeFirstWord';
 import CoursePageFilter from './CoursePageFilter';
 import MIniModalCourseFilter from './MIniModalCourseFilter';
-import { capitalizeFirstLetter } from '../../../../helper/capitalizeFirstWord';
 const CourseHeader = ({
   handleOpen,
   open,
@@ -44,9 +44,10 @@ const CourseHeader = ({
   setFilter,
   pagination,
   setIsPagination,
-  setAllCoursesFull,
-  setCourseCountFull,
+  allCourseCount,
 }) => {
+  const { pathname } = useLocation();
+
   return (
     <>
       <Box
@@ -72,14 +73,31 @@ const CourseHeader = ({
             } Courses`}</Typography>
             {/* <CommonHeader
               title={`List of ${
-                isActiveEnrolled ? 'My' : isActiveArchived ? 'Archived' : level ? capitalizeFirstLetter(level) : ''
+                pathname === '/courses2/myCourse'
+                  ? 'My'
+                  : pathname === '/courses2/archiveCourse'
+                  ? 'Archived'
+                  : level
+                  ? capitalizeFirstLetter(level)
+                  : ''
               } Courses`}
               customButton="Create User"
             /> */}
 
             {courseCount > 0 && (
               <Typography sx={{ opacity: '0.7', height: '13px' }} variant="wpf_p3_regular" color={'neutral.750'}>
-                {courseCount === 1 ? courseCount + ' Result' : courseCount + ' Results'} found
+                {courseCount === 1 || courseCount === 0
+                  ? courseCount + ' Result '
+                  : pathname === '/courses2/myCourse'
+                  ? MyCourseCount === 1 || MyCourseCount === 0
+                    ? MyCourseCount + ' Result '
+                    : MyCourseCount + ' Results '
+                  : pathname === '/courses2/archiveCourse'
+                  ? ArchiveCount === 0 || ArchiveCount === 1
+                    ? ArchiveCount + ' Result '
+                    : ArchiveCount + ' Results '
+                  : courseCount + ' Results '}{' '}
+                found
               </Typography>
             )}
           </Grid>
@@ -119,9 +137,7 @@ const CourseHeader = ({
               searchRef={searchRef}
               pagination={pagination}
               setIsPagination={setIsPagination}
-              setAllCoursesFull={setAllCoursesFull}
-              setCourseCountFull={setCourseCountFull}
-              level={level}
+              allCourseCount={allCourseCount}
             />
           ) : (
             <></>

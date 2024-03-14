@@ -3,7 +3,12 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Box, Button, MenuItem, Select, Typography } from '@mui/material';
 import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 
 const paginationOptions = [
   { value: 10, label: 10 },
@@ -31,21 +36,33 @@ const PaginationTable = ({
   courseMeta,
   totalCourse,
 }) => {
-  console.log('🚀 ~ courseMeta:', courseMeta);
-  console.log('🚀 ~ totalCourse:', totalCourse);
-  const { myWorkHistoryCount, usersWorkHistoryCount, projectMeta, workHistoryMeta } = useSelector(
-    (state) => state.projectDrawer
-  );
+  console.log('🚀 ~ pagination:', pagination);
+  const {
+    myWorkHistoryCount,
+    usersWorkHistoryCount,
+    projectMeta,
+    workHistoryMeta,
+  } = useSelector((state) => state.projectDrawer);
+
   const { id } = useParams();
 
-  const { userFilter, projectDrawerFilter } = useSelector((state) => state.tempData);
+  const { userFilter, projectDrawerFilter } = useSelector(
+    (state) => state.tempData,
+  );
 
   const { total } = useSelector((state) => state.projectDrawer);
-  const { users, totalUsers, meta: userMeta } = useSelector((state) => state.user.users);
-  const { projectDirectory, totalDirectory, directoryMeta } = useSelector((state) => state.projectDirectory);
+
+  const {
+    users,
+    totalUsers,
+    meta: userMeta,
+  } = useSelector((state) => state.user.users);
+
+  const { projectDirectory, totalDirectory, directoryMeta } = useSelector(
+    (state) => state.projectDirectory,
+  );
 
   const [meta, setMeta] = useState(projectMeta);
-
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -64,18 +81,24 @@ const PaginationTable = ({
     if (pathname === `/submitted/${id}`) {
       setMeta(quizMeta);
     }
-    if (pathname === `/course`) {
+    // if (pathname === `/course`) {
+    //   setMeta(courseMeta);
+    // }
+    if (pathname === `/courses2/myCourse`) {
       setMeta(courseMeta);
     }
-    if (
-      pathname === `/all-course/basic` ||
-      pathname === `/all-course/beginner` ||
-      pathname === `/all-course/intermediate` ||
-      pathname === `/all-course/advanced`
-    ) {
+    if (pathname === `/courses2/archiveCourse`) {
       setMeta(courseMeta);
     }
-  }, [pathname, projectMeta, userMeta, workHistoryMeta, directoryMeta, quizMeta, courseMeta]);
+  }, [
+    pathname,
+    projectMeta,
+    userMeta,
+    workHistoryMeta,
+    directoryMeta,
+    quizMeta,
+    // courseMeta,
+  ]);
   const navigate = useNavigate();
   const [params] = useSearchParams();
 
@@ -102,7 +125,8 @@ const PaginationTable = ({
         pathname === '/projectDirectory' ||
         pathname === `/submitted/${id}`
         // ||
-        // pathname === `/course`
+        // pathname === `/courses2/myCourse` ||
+        // pathname === `/courses2/archiveCourse`
       ) {
         setPagination((prevPagination) => ({
           ...prevPagination,
@@ -130,14 +154,16 @@ const PaginationTable = ({
 
   const handleJumpToPage = useCallback(
     (pageNumber) => {
-      const manualUrl = `?limit=${pagination.pageSize}&skip=${pageNumber * pagination.pageSize}`;
+      const manualUrl = `?limit=${pagination.pageSize}&skip=${
+        pageNumber * pagination.pageSize
+      }`;
       setPagination((prevPagination) => ({
         ...prevPagination,
         currentPage: pageNumber,
       }));
       navigate(manualUrl);
     },
-    [meta]
+    [meta],
   );
   const handelChangeItems = useCallback(
     (e) => {
@@ -150,7 +176,7 @@ const PaginationTable = ({
       }));
       navigate(manualUrl);
     },
-    [meta]
+    [meta],
   );
 
   let [totalPages, setTotalPages] = useState(0);
@@ -171,7 +197,10 @@ const PaginationTable = ({
     if (pathname === `/submitted/${id}`) {
       setTotalPages(Math.ceil(submission?.total / pagination.pageSize));
     }
-    if (pathname === `/course`) {
+    if (
+      pathname === `/courses2/myCourse` ||
+      pathname === `/courses2/archiveCourse`
+    ) {
       setTotalPages(Math.ceil(totalCourse / pagination.pageSize));
     }
     if (
@@ -184,11 +213,17 @@ const PaginationTable = ({
     }
   }, [total, totalUsers, usersWorkHistoryCount, meta, submission, totalCourse]);
   const visiblePageCount = 5;
-  const firstVisiblePage = Math.max(0, pagination.currentPage - Math.floor(visiblePageCount / 2));
-  const lastVisiblePage = Math.min(totalPages - 1, firstVisiblePage + visiblePageCount - 1);
+  const firstVisiblePage = Math.max(
+    0,
+    pagination.currentPage - Math.floor(visiblePageCount / 2),
+  );
+  const lastVisiblePage = Math.min(
+    totalPages - 1,
+    firstVisiblePage + visiblePageCount - 1,
+  );
   const visiblePageNumbers = Array.from(
     { length: lastVisiblePage - firstVisiblePage + 1 },
-    (_, index) => firstVisiblePage + index
+    (_, index) => firstVisiblePage + index,
   );
 
   const disablePrev = pagination.currentPage === 0;
@@ -199,11 +234,8 @@ const PaginationTable = ({
     '/all-users',
     '/projectDirectory',
     '/submitted',
-    '/course',
-    '/all-course/basic',
-    '/all-course/beginner',
-    '/all-course/intermediate',
-    '/all-course/advanced',
+    '/courses2/myCourse',
+    '/courses2/archiveCourse',
   ];
 
   const approvedData = [
@@ -268,7 +300,11 @@ const PaginationTable = ({
           name="limit"
         >
           {paginationOptions.map((p) => (
-            <MenuItem key={p.value} value={p.value} sx={{ fontSize: { xl: '14px', xxl: '16px', lg: '12px' } }}>
+            <MenuItem
+              key={p.value}
+              value={p.value}
+              sx={{ fontSize: { xl: '14px', xxl: '16px', lg: '12px' } }}
+            >
               {p.label}
             </MenuItem>
           ))}
@@ -276,7 +312,9 @@ const PaginationTable = ({
       </Box>
 
       {/* Buttons */}
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Box
+        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+      >
         <Box>
           <Button
             disabled={disablePrev}
@@ -315,8 +353,14 @@ const PaginationTable = ({
                 fontSize: { xl: '14px', xxl: '16px', lg: '12px' },
                 fontWeight: '500',
                 padding: '6px 2px',
-                color: pagination.currentPage === pageNumberToShow ? 'white' : '#62728F',
-                backgroundColor: pagination.currentPage === pageNumberToShow ? '#2E58FF' : 'transparent',
+                color:
+                  pagination.currentPage === pageNumberToShow
+                    ? 'white'
+                    : '#62728F',
+                backgroundColor:
+                  pagination.currentPage === pageNumberToShow
+                    ? '#2E58FF'
+                    : 'transparent',
                 '&:focus': {
                   color: 'white',
                   backgroundColor: '#2E58FF',

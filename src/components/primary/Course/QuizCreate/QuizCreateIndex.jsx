@@ -212,24 +212,25 @@ const QuizCreateIndex = () => {
       // }
     });
     data.questionAndAnswer = inputFields;
-    await toast.responsePromise(
-      createQuizFunction(formData),
-      setQuizLoading,
-      {
-        initialMessage: "quiz is creating ...",
-        inPending: () => {
-          setReject(false);
-        },
-        afterSuccess: (data) => {
-          setReject(false);
-          navigate(`/course-homepage/${course._id}`);
-        },
-        afterError: (data) => {
-          setReject(false);
-        },
-      },
-      "forQuizCreate"
-    );
+    
+    // await toast.responsePromise(
+    //   createQuizFunction(formData),
+    //   setQuizLoading,
+    //   {
+    //     initialMessage: "quiz is creating ...",
+    //     inPending: () => {
+    //       setReject(false);
+    //     },
+    //     afterSuccess: (data) => {
+    //       setReject(false);
+    //       navigate(`/course-homepage/${course._id}`);
+    //     },
+    //     afterError: (data) => {
+    //       setReject(false);
+    //     },
+    //   },
+    //   "forQuizCreate"
+    // );
 
     // dispatch(createAQuiz(formData)).then((action) => {
     //   // navigate(`/course-details/${course._id}`);

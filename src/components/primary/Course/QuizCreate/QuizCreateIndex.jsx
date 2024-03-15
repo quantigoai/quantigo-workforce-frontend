@@ -73,6 +73,7 @@ const QuizCreateIndex = () => {
   };
 
   const handleChangeInput = (uniqueId, event, questionImage) => {
+    console.log("🚀 ~ handleChangeInput ~ event:", event)
     const newInputFields = inputFields.map((i) => {
       if (event === "imageAndOptions" || event === "default" || event === "imageInOptions") {
         if (uniqueId === i.uniqueId) {
@@ -105,7 +106,7 @@ const QuizCreateIndex = () => {
       console.log("🚀 ~ newInputFields ~ i:", i);
       return i;
     });
-
+    
     setInputFields(newInputFields);
   };
 

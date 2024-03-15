@@ -18,10 +18,11 @@ CustomTextField.propTypes = {
 export const MyTextField = styled(TextField)(() => ({
   borderRadius: "5px",
   padding: "0px 0px 0px 0px",
-  backgroundColor: "#fff",
+  // backgroundColor: "#fff",
+  backgroundColor: "neutral.N000",
 
   "& .MuiOutlinedInput-root": {
-    color: "#000",
+    color: "neutral.N000",
     // height: '45px',
     borderRadius: "8px",
   },
@@ -50,7 +51,7 @@ export default function CustomTextField({ name, label, helperText, isRequired, i
         return (
           <Box>
             {/* //!! For this special case use color like hex code, this is not standard */}
-            <Typography variant='wpf_p4_medium' color='#3c4d6b'>
+            <Typography variant='wpf_p4_medium' color='neutral.N300'>
               {label}
               <span style={{ color: "#F04438" }}>{isRequired && "*"}</span>
             </Typography>

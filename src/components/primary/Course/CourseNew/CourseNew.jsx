@@ -9,11 +9,9 @@ import {
   getCoursesCount,
   getMyCourses,
 } from '../../../../features/slice/courseSlice';
-import CHeader from './CHeader';
-import useCourse from './useCourse';
 import CourseHeader from '../CourseHeader/CourseHeader';
-import useCourseManagement from '../hooks/createCourseHook/useCourseMangement';
 import CourseCreateModal from '../CreateCourseModal/CourseCreateModal';
+import useCourseManagement from '../hooks/createCourseHook/useCourseMangement';
 
 const CourseNew = () => {
   const navigate = useNavigate();
@@ -81,7 +79,11 @@ const CourseNew = () => {
     setPagination,
   } = useCourseManagement();
   const { user } = useSelector((state) => state.user);
-  const { isLoading: cLoading, total, courseMeta } = useSelector((state) => state.course);
+  const {
+    isLoading: cLoading,
+    total,
+    courseMeta,
+  } = useSelector((state) => state.course);
   const dispatch = useDispatch();
 
   const [allCourseCount, setAllCourseCount] = useState(0);
@@ -101,6 +103,7 @@ const CourseNew = () => {
     backgroundColor: isLightTheme ? '#F2F6FC' : '#212121',
     boxShadow: '0px 1px 3px 0px #09008014',
   });
+
   useEffect(() => {
     dispatch(setActivePath('Course2'));
     dispatch(getCoursesCount()).then((action) => {
@@ -108,17 +111,22 @@ const CourseNew = () => {
       setArchiveCount(action.payload.data.coursesCount.myArchivedCourseCount);
       setAllCourseCount(action.payload.data.coursesCount.allCourseCount);
     });
-    navigate('/courses2/allCourse');
-  }, []);
+    if (pathname === '/courses2') {
+      navigate('/courses2/allCourse');
+    }
+  }, [pathname]);
+
   useEffect(() => {
     if (pathname === '/courses2/myCourse') {
       dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
-        setCourseCount(action.payload.data.courses.count);
+        // setCourseCount(action.payload.data.courses.count);
       });
     } else if (pathname === '/courses2/archiveCourse') {
-      dispatch(getArchivedCourses({ filter, search, pagination })).then((action) => {
-        setCourseCount(action.payload.data.courses.count);
-      });
+      dispatch(getArchivedCourses({ filter, search, pagination })).then(
+        (action) => {
+          // setCourseCount(action.payload.data.courses.count);
+        },
+      );
     } else {
       dispatch(getAllCoursesNew({ filter, search })).then((action) => {
         setCourseCount(action.payload.data.courses.count);
@@ -131,10 +139,12 @@ const CourseNew = () => {
   const handleNewCourses = () => {
     const seePagination = { currentPage: 1, pageSize: courseMeta.limit + 10 };
 
-    dispatch(getMyCourses({ filter, search, pagination: seePagination })).then((action) => {
-      // setAllCourses(action.payload.data);
-      // setIsDataLoading(false);
-    });
+    dispatch(getMyCourses({ filter, search, pagination: seePagination })).then(
+      (action) => {
+        // setAllCourses(action.payload.data);
+        // setIsDataLoading(false);
+      },
+    );
   };
   return (
     <>

@@ -39,7 +39,7 @@ const CourseDeleteModal = ({ course }) => {
         toast.trigger(action.error.message, "error");
       } else {
         toast.trigger(action.payload.data.message, "success");
-        navigate("/course");
+        navigate("/courses2");
       }
     });
   };

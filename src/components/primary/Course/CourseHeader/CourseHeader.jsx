@@ -45,6 +45,7 @@ const CourseHeader = ({
   pagination,
   setIsPagination,
   allCourseCount,
+  isLevel,
 }) => {
   const { pathname } = useLocation();
 
@@ -113,6 +114,7 @@ const CourseHeader = ({
             <CoursePageFilter
               search={search}
               filter={filter}
+              isLevel={isLevel}
               setIsDataLoading={setIsDataLoading}
               setFeatureCourses={setFeatureCourses}
               courseCount={courseCount}

@@ -3,11 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { setActivePath } from '../../../../features/slice/activePathSlice';
-import {
-  getArchivedCourses,
-  getCoursesCount,
-  getMyCourses,
-} from '../../../../features/slice/courseSlice';
+import { getArchivedCourses, getCoursesCount, getMyCourses } from '../../../../features/slice/courseSlice';
 import CourseHeader from '../CourseHeader/CourseHeader';
 import CourseCreateModal from '../CreateCourseModal/CourseCreateModal';
 import useCourseManagement from '../hooks/createCourseHook/useCourseMangement';
@@ -91,7 +87,7 @@ const CourseNew = () => {
 
   const CoursePaper = styled(Paper)({
     width: '100%',
-    height: pathname === '/courses2/myCourse' ? '87%' : '90%',
+    height: pathname === '/courses2/myCourse' ? '84%' : '90%',
     overflow: 'auto',
     display: 'flex',
     flexDirection: 'column',
@@ -130,15 +126,11 @@ const CourseNew = () => {
   const handleNewCourses = (pathname) => {
     const seePagination = { currentPage: 1, pageSize: courseMeta.limit + 10 };
     if (pathname === '/courses2/myCourse') {
-      dispatch(
-        getMyCourses({ filter, search, pagination: seePagination }),
-      ).then((action) => {
+      dispatch(getMyCourses({ filter, search, pagination: seePagination })).then((action) => {
         setCourseCount(action.payload.data.searchedTotal);
       });
     } else {
-      dispatch(
-        getArchivedCourses({ filter, search, pagination: seePagination }),
-      ).then((action) => {
+      dispatch(getArchivedCourses({ filter, search, pagination: seePagination })).then((action) => {
         setCourseCount(action.payload.data.searchedTotal);
       });
     }
@@ -188,13 +180,10 @@ const CourseNew = () => {
         <CoursePaper>
           <Outlet />
         </CoursePaper>
-        {(pathname === '/courses2/myCourse' ||
-          pathname === 'courses2/archiveCourse') && (
+        {(pathname === '/courses2/myCourse' || pathname === 'courses2/archiveCourse') && (
           <Box sx={{ px: 5 }}>
             {total > 10 && courseMeta.currentPage !== courseMeta.pageNumber && (
-              <Button onClick={() => handleNewCourses(pathname)}>
-                see more
-              </Button>
+              <Button onClick={() => handleNewCourses(pathname)}>see more</Button>
             )}
           </Box>
         )}

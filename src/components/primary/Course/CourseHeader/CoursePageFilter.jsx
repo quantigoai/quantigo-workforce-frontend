@@ -2,7 +2,7 @@ import { Box, Button } from '@mui/material';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const CoursePageFilter = ({ MyCourseCount, ArchiveCount, allCourseCount }) => {
+const CoursePageFilter = ({ MyCourseCount, ArchiveCount, allCourseCount, isLevel }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   return (
@@ -32,7 +32,7 @@ const CoursePageFilter = ({ MyCourseCount, ArchiveCount, allCourseCount }) => {
               color: '#fff',
             },
           }}
-          onClick={() => navigate('allCourse')}
+          onClick={() => (isLevel ? navigate('/courses2/allCourse') : navigate('allCourse'))}
         >
           All Courses({allCourseCount})
         </Button>
@@ -45,14 +45,14 @@ const CoursePageFilter = ({ MyCourseCount, ArchiveCount, allCourseCount }) => {
             backgroundColor: pathname === '/courses2/myCourse' ? '#244EF5' : '#FFF',
             color: pathname === '/courses2/myCourse' ? '#fff' : '#667085',
 
-            fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
+            fontSize: { xl: '12px', xxl: '14px', lg: '8px' },
             fontWeight: '500',
             '&:hover': {
               background: '#244EF5',
               color: '#fff',
             },
           }}
-          onClick={() => navigate('myCourse')}
+          onClick={() => (isLevel ? navigate('/courses2/myCourse') : navigate('myCourse'))}
         >
           {' '}
           My Courses({MyCourseCount})
@@ -66,14 +66,14 @@ const CoursePageFilter = ({ MyCourseCount, ArchiveCount, allCourseCount }) => {
             backgroundColor: pathname === '/courses2/archiveCourse' ? '#244EF5' : '#FFF',
             color: pathname === '/courses2/archiveCourse' ? '#fff' : '#667085',
 
-            fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
+            fontSize: { xl: '12px', xxl: '14px', lg: '8px' },
             fontWeight: '500',
             '&:hover': {
               background: '#244EF5',
               color: '#fff',
             },
           }}
-          onClick={() => navigate('archiveCourse')}
+          onClick={() => (isLevel ? navigate('/courses2/archiveCourse') : navigate('archiveCourse'))}
         >
           {' '}
           Archive Courses({ArchiveCount})

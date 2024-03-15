@@ -1,25 +1,43 @@
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getAllCourses } from '../../../features/slice/courseSlice';
 import CustomCard from './CustomCard';
+import useCourseManagement from './hooks/createCourseHook/useCourseMangement';
 
-const CourseLevel = ({ title, courses, handleViewDetailsButton, seeMore, isActiveEnrolled, isActiveArchived }) => {
+const CourseLevel = ({
+  title,
+  courses,
+  handleViewDetailsButton,
+  seeMore,
+  isActiveEnrolled,
+  isActiveArchived,
+}) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const {
+    // courses,
+    isDataLoading,
+    search,
+    filter,
+  } = useCourseManagement();
+
   const handleSeeMore = () => {
     if (title === 'Basic Courses') {
-      navigate(`/all-course/basic`);
+      navigate(`/courses2/allCourse/basic`);
     } else if (title === 'Beginner Courses') {
-      navigate('/all-course/beginner');
+      navigate('/courses2/allCourse/beginner');
     } else if (title === 'Intermediate Courses') {
-      navigate('/all-course/intermediate');
+      navigate('/courses2/allCourse/intermediate');
     } else {
-      navigate('/all-course/advanced');
+      navigate('/courses2/allCourse/advanced');
     }
   };
+
   return (
     <Box sx={{ pr: '10px' }}>
       <Box
@@ -47,7 +65,9 @@ const CourseLevel = ({ title, courses, handleViewDetailsButton, seeMore, isActiv
             variant="wpf_p3_medium_3"
           >
             See more
-            <ArrowForwardIosIcon sx={{ fontSize: '12px', ml: '5px', mt: '2px' }} />
+            <ArrowForwardIosIcon
+              sx={{ fontSize: '12px', ml: '5px', mt: '2px' }}
+            />
           </Typography>
         )}
       </Box>
@@ -79,7 +99,9 @@ const CourseLevel = ({ title, courses, handleViewDetailsButton, seeMore, isActiv
             <CustomCard
               isActiveEnrolled={isActiveEnrolled}
               isActiveArchived={isActiveArchived}
-              courseDirection={user.enrolledCourses.includes(course._id) ? 'MyCourse' : 'all'}
+              courseDirection={
+                user.enrolledCourses.includes(course._id) ? 'MyCourse' : 'all'
+              }
               handleViewDetailsButton={handleViewDetailsButton}
               course={course}
             />

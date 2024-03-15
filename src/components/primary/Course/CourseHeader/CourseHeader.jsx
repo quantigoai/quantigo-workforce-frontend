@@ -69,7 +69,13 @@ const CourseHeader = ({
         >
           <Grid container sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography variant="wpf_p1_semiBold">{`List of ${
-              isActiveEnrolled ? 'My' : isActiveArchived ? 'Archived' : level ? capitalizeFirstLetter(level) : ''
+              pathname === '/courses2/myCourse'
+                ? 'My'
+                : pathname === '/courses2/archiveCourse'
+                ? 'Archived'
+                : level
+                ? capitalizeFirstLetter(level)
+                : ''
             } Courses`}</Typography>
             {/* <CommonHeader
               title={`List of ${
@@ -86,18 +92,7 @@ const CourseHeader = ({
 
             {courseCount > 0 && (
               <Typography sx={{ opacity: '0.7', height: '13px' }} variant="wpf_p3_regular" color={'neutral.750'}>
-                {courseCount === 1 || courseCount === 0
-                  ? courseCount + ' Result '
-                  : pathname === '/courses2/myCourse'
-                  ? MyCourseCount === 1 || MyCourseCount === 0
-                    ? MyCourseCount + ' Result '
-                    : MyCourseCount + ' Results '
-                  : pathname === '/courses2/archiveCourse'
-                  ? ArchiveCount === 0 || ArchiveCount === 1
-                    ? ArchiveCount + ' Result '
-                    : ArchiveCount + ' Results '
-                  : courseCount + ' Results '}{' '}
-                found
+                {courseCount === 1 || courseCount == 0 ? courseCount + ' Result found' : courseCount + ' Results found'}
               </Typography>
             )}
           </Grid>

@@ -16,7 +16,6 @@ import {
   getAllCourses,
   getAllCoursesNew,
   getArchivedCourses,
-  getCourseQuizzesResults,
   getMyCourses,
 } from '../../../../../features/slice/courseSlice';
 
@@ -42,7 +41,7 @@ const useCourseManagement = () => {
   const [isActiveEnrolled, setIsActiveEnrolled] = useState(false);
   const [isActiveArchived, setIsActiveArchived] = useState(false);
   const { courses, isLoading } = useSelector((state) => state.course);
-  console.log('🚀 ~ useCourseManagement ~ isLoading:', isLoading);
+
   const { isLightTheme } = useSelector((state) => state.theme);
   const navigate = useNavigate();
   const [preRequisiteCourses, setPreRequisiteCourses] = React.useState([]);
@@ -286,7 +285,6 @@ const useCourseManagement = () => {
   };
   const { handleSubmit, reset } = methods;
   const [isCourseLoading, setIsCourseLoading] = useState(true);
-
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };
@@ -347,23 +345,21 @@ const useCourseManagement = () => {
     });
   };
 
-  const handleViewDetailsButton = (id, courseDirection) => {
+  const handleViewDetailsButton = async (id, courseDirection) => {
     setIsCourseLoading(true);
+
     dispatch(getACourseByID(id))
       .then((res) => {
         dispatch(setActiveCourseId(id));
         dispatch(setActiveChapterIndex(0));
         dispatch(getAllChapterFromACourse(id)).then((res) => {
-          dispatch(getCourseQuizzesResults(id)).then((results) => {
-            // navigate(`/course-details/${id}/index`);
-            if (courseDirection === 'MyCourse') {
-              navigate(`/course-homepage/${id}`);
-              setIsCourseLoading(false);
-            } else {
-              navigate(`/course-landing/${id}`);
-              setIsCourseLoading(false);
-            }
-          });
+          if (courseDirection === 'MyCourse') {
+            navigate(`/course-homepage/${id}`);
+            setIsCourseLoading(false);
+          } else {
+            navigate(`/course-landing/${id}`);
+            setIsCourseLoading(false);
+          }
         });
       })
       .catch(() => {
@@ -446,6 +442,7 @@ const useCourseManagement = () => {
     setFilter,
     pagination,
     setPagination,
+    setIsCourseLoading,
   };
 };
 

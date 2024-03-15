@@ -1,12 +1,10 @@
 import { Box, Paper, Typography, styled } from '@mui/material';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllCoursesNew } from '../../../../features/slice/courseSlice';
 import LoadingSkeleton from '../../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton';
 import LoadingComponent from '../../../shared/Loading/LoadingComponent';
 import CourseLevel from '../CourseLevel';
 import FeaturedCourse from '../FeaturedCourse';
-import useCourse from './useCourse';
 import useCourseManagement from '../hooks/createCourseHook/useCourseMangement';
 
 const AllCourse = () => {
@@ -63,9 +61,12 @@ const AllCourse = () => {
 
                     {courses.count === 0 ? (
                       <Box sx={{ mt: '20px' }}>
-                        <Typography variant="wpf_h7_semiBold">No course Found</Typography>
+                        <Typography variant="wpf_h7_semiBold">
+                          No course Found
+                        </Typography>
                       </Box>
-                    ) : courses?.enrolledCourses && courses.enrolledCourses.length > 0 ? (
+                    ) : courses?.enrolledCourses &&
+                      courses.enrolledCourses.length > 0 ? (
                       <CourseLevel
                         isActiveEnrolled={isActiveEnrolled}
                         isActiveArchived={isActiveArchived}
@@ -75,7 +76,8 @@ const AllCourse = () => {
                         courses={courses?.enrolledCourses}
                         handleViewDetailsButton={handleViewDetailsButton}
                       />
-                    ) : courses?.archivedCourses && courses.archivedCourses.length > 0 ? (
+                    ) : courses?.archivedCourses &&
+                      courses.archivedCourses.length > 0 ? (
                       <CourseLevel
                         isActiveEnrolled={isActiveEnrolled}
                         isActiveArchived={isActiveArchived}
@@ -96,6 +98,7 @@ const AllCourse = () => {
                             handleViewDetailsButton={handleViewDetailsButton}
                           />
                         )}
+
                         {courses.coursesByLevelList?.beginner?.length > 0 && (
                           <CourseLevel
                             title={'Beginner Courses'}
@@ -104,7 +107,8 @@ const AllCourse = () => {
                             handleViewDetailsButton={handleViewDetailsButton}
                           />
                         )}
-                        {courses.coursesByLevelList?.intermediate?.length > 0 && (
+                        {courses.coursesByLevelList?.intermediate?.length >
+                          0 && (
                           <CourseLevel
                             title={'Intermediate Courses'}
                             seeMore={true}

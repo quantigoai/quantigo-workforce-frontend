@@ -471,13 +471,11 @@ const courseSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(createCourseChapter.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.courseChapters = state.courseChapters
           ? [...state.courseChapters, action.payload.data.courseChapter]
           : [action.payload.data.courseChapter];
-        // state.courseChapter = Object.keys(state.courseChapter).length ? state.courseChapter : action.payload.data.courseChapter;
         state.courseChapter = action.payload.data.courseChapter;
-        // state.courses = [...state.courses, action.payload.data];
+        state.isLoading = false;
       })
       .addCase(createCourseChapter.rejected, (state, action) => {
         state.isLoading = false;
@@ -487,12 +485,11 @@ const courseSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getAllCourses.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.courses = action.payload.data.courses;
+        state.isLoading = false;
       })
       .addCase(getAllCourses.rejected, (state) => {
         state.isLoading = false;
-        state.error = 'Login failed';
       })
       .addCase(getAllCoursesNew.pending, (state) => {
         state.isLoading = true;
@@ -557,7 +554,6 @@ const courseSlice = createSlice({
         state.course = action.payload.data.course;
         state.enrolmentMessage = action.payload.data.enrolmentMessage;
         state.isEnrollAble = action.payload.data.isEnrollAble;
-
         state.isLoading = false;
       })
       .addCase(getACourseByID.rejected, (state) => {

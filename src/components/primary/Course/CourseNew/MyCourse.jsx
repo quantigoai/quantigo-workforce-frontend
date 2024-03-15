@@ -27,14 +27,6 @@ const MyCourse = () => {
   //   });
   // }, [search]);
 
-  const handleNewCourses = () => {
-    const seePagination = { currentPage: 1, pageSize: courseMeta.limit + 10 };
-
-    dispatch(getMyCourses({ filter, search, pagination: seePagination })).then((action) => {
-      // setAllCourses(action.payload.data);
-      // setIsDataLoading(false);
-    });
-  };
   return (
     <>
       {cLoading ? (
@@ -49,9 +41,7 @@ const MyCourse = () => {
             handleViewDetailsButton={handleViewDetailsButton}
             // courses={courses}
           />
-          {/* {total > 10 && courseMeta.currentPage !== courseMeta.pageNumber && (
-            <Button onClick={handleNewCourses}> see more</Button>
-          )} */}
+
           {/* <NewPagination
             pagination={pagination}
             setPagination={setPagination}

@@ -30,14 +30,7 @@ const ArchiveCourse = () => {
     courseMeta,
     archivedCourseMeta,
   } = useSelector((state) => state.course);
-  const handleNewCourses = () => {
-    const seePagination = { currentPage: 1, pageSize: courseMeta.limit + 10 };
 
-    dispatch(getArchivedCourses({ filter, search, pagination: seePagination })).then((action) => {
-      // setAllCourses(action.payload.data);
-      // setIsDataLoading(false);
-    });
-  };
   return (
     <>
       {cLoading ? (
@@ -45,15 +38,13 @@ const ArchiveCourse = () => {
           <LoadingSkeleton />
         </>
       ) : (
-        <Box>
+        <Box sx={{ paddingLeft: '25px' }}>
           <CourseLevel
             isDataLoading={isDataLoading}
             courses={courses}
             handleViewDetailsButton={handleViewDetailsButton}
           />
-          {total > 10 && archivedCourseMeta.currentPage !== archivedCourseMeta.pageNumber && (
-            <Button onClick={handleNewCourses}> see more</Button>
-          )}
+
           {/* <PaginationTable
             pagination={pagination}
             setPagination={setPagination}

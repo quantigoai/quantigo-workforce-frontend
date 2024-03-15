@@ -43,6 +43,7 @@ import CourseNew from '../Course/CourseNew/CourseNew';
 import MyCourse from '../Course/CourseNew/MyCourse';
 import ArchiveCourse from '../Course/CourseNew/ArchiveCourse';
 import AllCourse from '../Course/CourseNew/AllCourse';
+import FullCourse from '../Course/CourseNew/FullCourse';
 
 export const roles = {
   admin: 'admin',
@@ -125,6 +126,7 @@ const Routers = () => {
         <Route path="courses2" element={<CourseNew />}>
           <Route path="myCourse" element={<MyCourse />}></Route>
           <Route path="allCourse" element={<AllCourse />}></Route>
+          <Route path="allCourse/:level" element={<FullCourse />} />
           <Route path="archiveCourse" element={<ArchiveCourse />}></Route>
         </Route>
         {/* ---------- ------------ ---------------- */}

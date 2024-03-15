@@ -2,30 +2,7 @@ import { Box, Button } from '@mui/material';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const CoursePageFilter = ({
-  // setAllCourses,
-  // setCourseCount,
-  // search,
-  // filter,
-  // setIsDataLoading,
-  // setFeatureCourses,
-  // setIsActiveAll,
-  // isActiveEnrolled,
-  // setIsActiveEnrolled,
-  // isActiveArchived,
-  // setIsActiveArchived,
-  isActiveAll,
-  courseCount,
-  MyCourseCount,
-  ArchiveCount,
-  allCourseCount,
-  // allCount,
-  // setFilter,
-  // setSearch,
-  // searchRef,
-  // pagination,
-  // setIsPagination,
-}) => {
+const CoursePageFilter = ({ MyCourseCount, ArchiveCount, allCourseCount }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   return (
@@ -45,11 +22,10 @@ const CoursePageFilter = ({
 
             textTransform: 'none',
             borderRadius: '8px',
-            backgroundColor:
-              pathname === '/courses2/allCourse' ? '#244EF5' : '#FFF',
+            backgroundColor: pathname === '/courses2/allCourse' ? '#244EF5' : '#FFF',
             color: pathname === '/courses2/allCourse' ? '#fff' : '#667085',
 
-            fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
+            fontSize: { xl: '12px', xxl: '14px', lg: '8px' },
             fontWeight: '500',
             '&:hover': {
               background: '#244EF5',
@@ -66,8 +42,7 @@ const CoursePageFilter = ({
 
             textTransform: 'none',
             borderRadius: '8px',
-            backgroundColor:
-              pathname === '/courses2/myCourse' ? '#244EF5' : '#FFF',
+            backgroundColor: pathname === '/courses2/myCourse' ? '#244EF5' : '#FFF',
             color: pathname === '/courses2/myCourse' ? '#fff' : '#667085',
 
             fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
@@ -88,8 +63,7 @@ const CoursePageFilter = ({
 
             textTransform: 'none',
             borderRadius: '8px',
-            backgroundColor:
-              pathname === '/courses2/archiveCourse' ? '#244EF5' : '#FFF',
+            backgroundColor: pathname === '/courses2/archiveCourse' ? '#244EF5' : '#FFF',
             color: pathname === '/courses2/archiveCourse' ? '#fff' : '#667085',
 
             fontSize: { xl: '12px', xxl: '14px', lg: '10px' },

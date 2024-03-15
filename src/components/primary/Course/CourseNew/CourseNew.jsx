@@ -113,11 +113,11 @@ const CourseNew = () => {
   useEffect(() => {
     if (pathname === '/courses2/myCourse') {
       dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
-        setCourseCount(action.payload.data.courses.count);
+        setCourseCount(action.payload.data.searchedTotal);
       });
     } else if (pathname === '/courses2/archiveCourse') {
       dispatch(getArchivedCourses({ filter, search, pagination })).then((action) => {
-        setCourseCount(action.payload.data.courses.count);
+        setCourseCount(action.payload.data.searchedTotal);
       });
     } else {
       dispatch(getAllCoursesNew({ filter, search })).then((action) => {
@@ -128,13 +128,21 @@ const CourseNew = () => {
       });
     }
   }, [search, pathname]);
-  const handleNewCourses = () => {
+  const handleNewCourses = (pathname) => {
     const seePagination = { currentPage: 1, pageSize: courseMeta.limit + 10 };
-
-    dispatch(getMyCourses({ filter, search, pagination: seePagination })).then((action) => {
-      // setAllCourses(action.payload.data);
-      // setIsDataLoading(false);
-    });
+    if (pathname === '/courses2/myCourse') {
+      dispatch(getMyCourses({ filter, search, pagination: seePagination })).then((action) => {
+        setCourseCount(action.payload.data.searchedTotal);
+        // setAllCourses(action.payload.data);
+        // setIsDataLoading(false);
+      });
+    } else {
+      dispatch(getArchivedCourses({ filter, search, pagination: seePagination })).then((action) => {
+        setCourseCount(action.payload.data.searchedTotal);
+        // setAllCourses(action.payload.data);
+        // setIsDataLoading(false);
+      });
+    }
   };
   return (
     <>
@@ -181,10 +189,10 @@ const CourseNew = () => {
         <CoursePaper>
           <Outlet />
         </CoursePaper>
-        {pathname === '/courses2/myCourse' && (
+        {(pathname === '/courses2/myCourse' || pathname === 'courses2/archiveCourse') && (
           <Box sx={{ px: 5 }}>
             {total > 10 && courseMeta.currentPage !== courseMeta.pageNumber && (
-              <Button onClick={handleNewCourses}> see more</Button>
+              <Button onClick={() => handleNewCourses(pathname)}> see more</Button>
             )}
           </Box>
         )}

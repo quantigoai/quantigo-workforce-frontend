@@ -16,7 +16,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
   const [alignment, setAlignment] = React.useState(inputField?.correctAnswerIndex);
 
   const handleAlignment = (event, newAlignment) => {
-     setAlignment(newAlignment);
+    setAlignment(newAlignment);
 
     if (update) {
       // setCheckValue(index);
@@ -128,7 +128,8 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
               <TextFieldOption
                 sx={{
                   border: checkValue === 0 ? "1px solid #2E58FF" : "1px solid #E6ECF5 ",
-                  backgroundColor: checkValue === 0 ? "#F4F7FE" : "#F9FAFB",
+                  backgroundColor: checkValue === 0 ? "primary.B008" : "primary.B008",
+                  // backgroundColor: checkValue === 0 ? "#F4F7FE" : "#F9FAFB",
                 }}
                 name='possibleAnswer1'
                 fullWidth
@@ -192,7 +193,8 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
               <TextFieldOption
                 sx={{
                   border: checkValue === 1 ? "1px solid #2E58FF" : "1px solid #E6ECF5 ",
-                  backgroundColor: checkValue === 1 ? "#F4F7FE" : "#F9FAFB",
+                  // backgroundColor: checkValue === 1 ? "#F4F7FE" : "#F9FAFB",
+                  backgroundColor: checkValue === 0 ? "primary.B008" : "primary.B008",
                 }}
                 name='possibleAnswer1'
                 fullWidth
@@ -237,7 +239,8 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
               <TextFieldOption
                 sx={{
                   border: checkValue === 2 ? "1px solid #2E58FF" : "1px solid #E6ECF5",
-                  backgroundColor: checkValue === 2 ? "#F4F7FE" : "#F9FAFB",
+                  // backgroundColor: checkValue === 2 ? "#F4F7FE" : "#F9FAFB",
+                  backgroundColor: checkValue === 0 ? "primary.B008" : "primary.B008",
                 }}
                 name='possibleAnswer1'
                 defaultValue={
@@ -282,7 +285,8 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
               <TextFieldOption
                 sx={{
                   border: checkValue === 3 ? "1px solid #2E58FF" : "1px solid #E6ECF5",
-                  backgroundColor: checkValue === 3 ? "#F4F7FE" : "#F9FAFB",
+                  // backgroundColor: checkValue === 3 ? "#F4F7FE" : "#F9FAFB",
+                  backgroundColor: checkValue === 0 ? "primary.B008" : "primary.B008",
                 }}
                 name='possibleAnswer1'
                 fullWidth

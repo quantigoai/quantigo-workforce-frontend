@@ -1,10 +1,11 @@
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, TextField, FormControlLabel, Switch, Typography } from "@mui/material";
 import React, { useCallback, useMemo, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import ndaUploadStyle from "../../../Nda/ndaUploadStyle";
 import IconImage from "../../../../../assets/images/Icon.png";
 import ctaImage from "../../../../../assets/images/CTA.png";
 import { useSelector } from "react-redux";
+import { PdTextField } from "../../../../shared/CustomField/PDTextFIeld";
 const focusedStyle = {
   borderColor: "#2196f3",
 };
@@ -29,6 +30,9 @@ const ImageFieldQuestion2 = ({
   defaultImage,
 }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
+  const [videoLink, setVideoLink] = useState("");
+  const [checked, setChecked] = React.useState(false);
+
   const baseUploadBoxStyle = {
     flex: 1,
     display: "flex",
@@ -56,6 +60,8 @@ const ImageFieldQuestion2 = ({
   const [isHovered, setIsHovered] = useState(false);
 
   const handleImage = (e) => {
+    // console.log("🚀 ~ handleImage ~ e:", e.target.value);
+    // setVideoLink(e.target.value);
     setCoverImage(e[0]);
 
     // {
@@ -69,7 +75,16 @@ const ImageFieldQuestion2 = ({
       }
       handleUpdate(e[0], "questionImage", inputField);
     } else {
-      handleChangeInput(inputField.uniqueId, e[0], "questionImage");
+      // handleChangeInput(inputField.uniqueId, e[0], "questionImage");
+      // handleChangeInput(inputField.uniqueId, e.target.value, "questionImage");
+
+      if (checked) {
+        setVideoLink(e.target.value);
+        handleChangeInput(inputField.uniqueId, e.target.value, "questionImage");
+      } else {
+        handleChangeInput(inputField.uniqueId, e[0], "questionImage");
+      }
+
       const file = e[0];
       if (file) {
         const url = URL.createObjectURL(file);
@@ -167,32 +182,47 @@ const ImageFieldQuestion2 = ({
         return <p>Unsupported file </p>;
     }
   };
-  const [videoLink, setVideoLink] = useState("");
-  console.log("🚀 ~ videoLink:", videoLink);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
 
   return (
     <>
-      {/* <Box>
-        <TextField sx={{ border: "1px solid red" }} onChange={(e) => setVideoLink(e.target.value)} />
-        <iframe
-          width='560'
-          height='315'
-          src={videoLink}
-          title='YouTube video player'
-          frameborder='0'
-          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-          allowfullscreen
-        ></iframe>
-      </Box> */}
-
-      <Grid container>
-        <Grid xs={12}>
-          <Typography variant='wpf_p3_medium_2'>Upload image</Typography>
-        </Grid>
-        <Box {...getRootProps({ width, style })}>
-          {acceptedFiles.length ? (
-            <>
-              {/* <Box
+      <Box>
+        <FormControlLabel control={<Switch checked={checked} onChange={handleChange} />} label='Link' />
+      </Box>
+      {checked ? (
+        <>
+          <Box>
+            <PdTextField
+              fullWidth
+              sx={{ border: "1px solid red" }}
+              // onChange={(e) => setVideoLink(e.target.value)}
+              onChange={handleImage}
+            />
+            <iframe
+              width='100%'
+              height='240'
+              src={videoLink}
+              // src='https://www.youtube.com/embed/Lq1uQD4Orls?si=A_cbqxbmdDQxpxF5'
+              title='YouTube video player'
+              frameborder='0'
+              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+              allowfullscreen
+            ></iframe>
+          </Box>
+        </>
+      ) : (
+        <>
+          <Grid container>
+            <Grid xs={12}>
+              <Typography variant='wpf_p3_medium_2'>Upload image</Typography>
+            </Grid>
+            <Box {...getRootProps({ width, style })}>
+              {acceptedFiles.length ? (
+                <>
+                  {/* <Box
                 sx={{
                   position: 'relative',
                   borderRadius: '8px',
@@ -229,23 +259,26 @@ const ImageFieldQuestion2 = ({
                   </Box>
                 )}
               </Box> */}
-              {acceptedFiles[0].size > maxSize ? (
-                <Box sx={{ width: "70%" }}>
-                  <br />
-                  <br />
-                  <br />
-                  <Typography variant='wpf_p4_medium' sx={{ color: "#ff1744" }}>
-                    File : {files.length > 20 ? files.slice(0, 4) : files}
-                  </Typography>
-                  <Typography variant='wpf_p4_medium' sx={{ color: "#ff1744", textDecoration: "justify" }}>
-                    The selected file is too large. Please choose a file less than 1Mb.
-                  </Typography>
-                  <Typography variant='wpf_p4_medium' sx={{ color: "#ff1744", textDecoration: "justify" }}></Typography>
-                </Box>
-              ) : (
-                <>
-                  {" "}
-                  {/* <Box
+                  {acceptedFiles[0].size > maxSize ? (
+                    <Box sx={{ width: "70%" }}>
+                      <br />
+                      <br />
+                      <br />
+                      <Typography variant='wpf_p4_medium' sx={{ color: "#ff1744" }}>
+                        File : {files.length > 20 ? files.slice(0, 4) : files}
+                      </Typography>
+                      <Typography variant='wpf_p4_medium' sx={{ color: "#ff1744", textDecoration: "justify" }}>
+                        The selected file is too large. Please choose a file less than 1Mb.
+                      </Typography>
+                      <Typography
+                        variant='wpf_p4_medium'
+                        sx={{ color: "#ff1744", textDecoration: "justify" }}
+                      ></Typography>
+                    </Box>
+                  ) : (
+                    <>
+                      {" "}
+                      {/* <Box
                     sx={{
                       position: 'relative',
                       borderRadius: '8px',
@@ -277,6 +310,57 @@ const ImageFieldQuestion2 = ({
                       </Box>
                     )}
                   </Box> */}
+                      <Box
+                        sx={{
+                          position: "relative",
+                          borderRadius: "8px",
+                        }}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                      >
+                        {acceptedFiles[0].type === "image/png" ||
+                        acceptedFiles[0].type === "image/jpg" ||
+                        acceptedFiles[0].type === "image/jpeg" ? (
+                          <img height={250} src={coverImage} alt='' style={{ width, borderRadius: "8px" }} />
+                        ) : (
+                          <iframe height={250} src={coverImage} alt='' style={{ width, borderRadius: "8px" }}></iframe>
+                        )}
+
+                        {isHovered && (
+                          <Box
+                            sx={{
+                              color: "red",
+                              cursor: "pointer",
+                              position: "absolute",
+                              top: "40%",
+                              left: "30%",
+                            }}
+                          >
+                            <Button
+                              onClick={removeImage}
+                              sx={{
+                                width: "100px",
+                                textTransform: "none",
+                                backgroundColor: "#FFFFFF",
+                                color: "#2E58FF",
+                                borderRadius: "20px",
+
+                                "&:hover": {
+                                  backgroundColor: "#FFFFFF",
+                                  color: "#2E58FF",
+                                },
+                              }}
+                            >
+                              Replace
+                            </Button>
+                          </Box>
+                        )}
+                      </Box>
+                    </>
+                  )}
+                </>
+              ) : update && !inputField.newQuiz ? (
+                <>
                   <Box
                     sx={{
                       position: "relative",
@@ -285,13 +369,7 @@ const ImageFieldQuestion2 = ({
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
-                    {acceptedFiles[0].type === "image/png" ||
-                    acceptedFiles[0].type === "image/jpg" ||
-                    acceptedFiles[0].type === "image/jpeg" ? (
-                      <img height={250} src={coverImage} alt='' style={{ width, borderRadius: "8px" }} />
-                    ) : (
-                      <iframe height={250} src={coverImage} alt='' style={{ width, borderRadius: "8px" }}></iframe>
-                    )}
+                    {handleSwitchContent(inputField.question?.questionImage)}
 
                     {isHovered && (
                       <Box
@@ -306,6 +384,7 @@ const ImageFieldQuestion2 = ({
                         <Button
                           onClick={removeImage}
                           sx={{
+                            zIndex: 10,
                             width: "100px",
                             textTransform: "none",
                             backgroundColor: "#FFFFFF",
@@ -315,96 +394,52 @@ const ImageFieldQuestion2 = ({
                             "&:hover": {
                               backgroundColor: "#FFFFFF",
                               color: "#2E58FF",
+                              // border: "1px solid #2E58FF",
                             },
                           }}
                         >
                           Replace
                         </Button>
+                        {/* <DeleteIcon onClick={removeImage} sx={{ color: "red" }} /> */}
                       </Box>
                     )}
                   </Box>
                 </>
-              )}
-            </>
-          ) : update && !inputField.newQuiz ? (
-            <>
-              <Box
-                sx={{
-                  position: "relative",
-                  borderRadius: "8px",
-                }}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                {handleSwitchContent(inputField.question?.questionImage)}
-
-                {isHovered && (
+              ) : (
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100%",
+                  }}
+                >
                   <Box
                     sx={{
-                      color: "red",
-                      cursor: "pointer",
-                      position: "absolute",
-                      top: "40%",
-                      left: "30%",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexDirection: "column",
                     }}
                   >
-                    <Button
-                      onClick={removeImage}
-                      sx={{
-                        zIndex: 10,
-                        width: "100px",
-                        textTransform: "none",
-                        backgroundColor: "#FFFFFF",
-                        color: "#2E58FF",
-                        borderRadius: "20px",
+                    <input name='questionImage' {...getInputProps()} />
 
-                        "&:hover": {
-                          backgroundColor: "#FFFFFF",
-                          color: "#2E58FF",
-                          // border: "1px solid #2E58FF",
-                        },
-                      }}
-                    >
-                      Replace
-                    </Button>
-                    {/* <DeleteIcon onClick={removeImage} sx={{ color: "red" }} /> */}
+                    <br />
+                    <img src={IconImage} />
+                    <Typography variant='wpf_p4_medium' sx={{ paddingTop: "5%" }}>
+                      Upload media
+                    </Typography>
+                    <Typography variant='wpf_p4_medium' sx={{ paddingBottom: "2%" }}>
+                      Maximum file size: 512KB.
+                    </Typography>
+                    {/* <img src={ctaImage} /> */}
                   </Box>
-                )}
-              </Box>
-            </>
-          ) : (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "100%",
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <input name='questionImage' {...getInputProps()} />
-
-                <br />
-                <img src={IconImage} />
-                <Typography variant='wpf_p4_medium' sx={{ paddingTop: "5%" }}>
-                  Upload media
-                </Typography>
-                <Typography variant='wpf_p4_medium' sx={{ paddingBottom: "2%" }}>
-                  Maximum file size: 512KB.
-                </Typography>
-                {/* <img src={ctaImage} /> */}
-              </Box>
+                </Box>
+              )}
             </Box>
-          )}
-        </Box>
-      </Grid>
+          </Grid>
+        </>
+      )}
     </>
   );
 };

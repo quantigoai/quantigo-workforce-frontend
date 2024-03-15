@@ -1,10 +1,22 @@
-import { Box, Checkbox, Grid, styled, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
+import {
+  Box,
+  Checkbox,
+  FormControlLabel,
+  Grid,
+  styled,
+  Switch,
+  ToggleButton,
+  ToggleButtonGroup,
+  Typography,
+} from "@mui/material";
 import React, { useState } from "react";
 // import { RadioOption } from '../BasicOptionField';
 import ImageUploadIndex from "./ImageUploadIndex";
 import { RadioOption } from "../basicOptionDesign";
 import radioIcon from "../../../../../../assets/images/courses/Switch.svg";
 import SwitchCheck from "../../../../../../assets/images/courses/SwitchCheck.svg";
+import { PdTextField } from "../../../../../shared/CustomField/PDTextFIeld";
+import SwitchForLink from "./SwitchForLink";
 
 const BpIcon = styled("span")(({ theme }) => ({
   borderRadius: "50%",
@@ -71,6 +83,15 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
   const [coverImage3, setCoverImage3] = useState(null);
   const [coverImage4, setCoverImage4] = useState(null);
   const [checkValue, setCheckValue] = useState(inputField?.correctAnswerIndex);
+
+  const [videoLink1, setVideoLink1] = useState("");
+  const [checked1, setChecked1] = React.useState(false);
+
+  const handleChangeSwitch1 = (event) => {
+    setChecked1(event.target.checked);
+    // setVideoLink1("");
+  };
+
   const handleImage1 = (e) => {
     setCoverImageFile(e[0]);
 
@@ -85,7 +106,14 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
       }
       handleUpdate(e[0], "possibleAnswers_0", inputField);
     } else {
-      handleChangeInput((inputField.possibleAnswers[0] = e[0]), e[0]);
+      // handleChangeInput((inputField.possibleAnswers[0] = e[0]), e[0]);
+      if (checked1) {
+        setVideoLink1(e.target.value);
+
+        handleChangeInput((inputField.possibleAnswers[0] = e.target.value), e.target.value);
+      } else {
+        handleChangeInput((inputField.possibleAnswers[0] = e[0]), e[0]);
+      }
       const file = e[0];
       if (file) {
         const url = URL.createObjectURL(file);
@@ -93,6 +121,15 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
       }
     }
   };
+
+  const [videoLink2, setVideoLink2] = useState("");
+  const [checked2, setChecked2] = React.useState(false);
+
+  const handleChangeSwitch2 = (event) => {
+    setChecked2(event.target.checked);
+    // setVideoLink1("");
+  };
+
   const handleImage2 = (e) => {
     setCoverImageFile(e[0]);
 
@@ -107,7 +144,13 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
       }
       handleUpdate(e[0], "possibleAnswers_1", inputField);
     } else {
-      handleChangeInput((inputField.possibleAnswers[1] = e[0]), e[0]);
+      // handleChangeInput((inputField.possibleAnswers[1] = e[0]), e[0]);
+      if (checked2) {
+        setVideoLink2(e.target.value);
+        handleChangeInput((inputField.possibleAnswers[1] = e.target.value), e.target.value);
+      } else {
+        handleChangeInput((inputField.possibleAnswers[1] = e[0]), e[0]);
+      }
       const file = e[0];
       if (file) {
         const url = URL.createObjectURL(file);
@@ -115,6 +158,15 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
       }
     }
   };
+
+  const [videoLink3, setVideoLink3] = useState("");
+  const [checked3, setChecked3] = React.useState(false);
+
+  const handleChangeSwitch3 = (event) => {
+    setChecked3(event.target.checked);
+    // setVideoLink1("");
+  };
+
   const handleImage3 = (e) => {
     setCoverImageFile(e[0]);
 
@@ -129,7 +181,13 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
       }
       handleUpdate(e[0], "possibleAnswers_2", inputField);
     } else {
-      handleChangeInput((inputField.possibleAnswers[2] = e[0]), e[0]);
+      // handleChangeInput((inputField.possibleAnswers[2] = e[0]), e[0]);
+      if (checked3) {
+        setVideoLink3(e.target.value);
+        handleChangeInput((inputField.possibleAnswers[2] = e.target.value), e.target.value);
+      } else {
+        handleChangeInput((inputField.possibleAnswers[2] = e[0]), e[0]);
+      }
       const file = e[0];
       if (file) {
         const url = URL.createObjectURL(file);
@@ -137,8 +195,17 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
       }
     }
   };
+  const [videoLink4, setVideoLink4] = useState("");
+  const [checked4, setChecked4] = React.useState(false);
+
+  const handleChangeSwitch4 = (event) => {
+    setChecked4(event.target.checked);
+    // setVideoLink1("");
+  };
+
   const handleImage4 = (e) => {
     setCoverImageFile(e[0]);
+
     // {
     //   inputField?.possibleAnswers?.map((possibleAnswer, index) => (
     // )) }
@@ -151,7 +218,13 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
       }
       handleUpdate(e[0], "possibleAnswers_3", inputField);
     } else {
-      handleChangeInput((inputField.possibleAnswers[3] = e[0]), e[0]);
+      // handleChangeInput((inputField.possibleAnswers[3] = e[0]), e[0]);
+      if (checked4) {
+        setVideoLink4(e.target.value);
+        handleChangeInput((inputField.possibleAnswers[3] = e.target.value), e.target.value);
+      } else {
+        handleChangeInput((inputField.possibleAnswers[3] = e[0]), e[0]);
+      }
       const file = e[0];
       if (file) {
         const url = URL.createObjectURL(file);
@@ -377,12 +450,7 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
                   >
                     <img src={alignment === 0 ? SwitchCheck : radioIcon} />
                   </ToggleButton>
-                  {/* <RadioOption
-                  checked={inputField?.correctAnswerIndex === 0}
-                  onChange={(event) => handleCorrectAnswerChange(event, 0, inputField.possibleAnswers[0])}
-                  checkedIcon={<BpCheckedIcon />}
-                  icon={<BpIcon />}
-                /> */}
+
                   <Typography
                     variant='wpf_h7_medium'
                     sx={{
@@ -391,14 +459,44 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
                     }}
                   >
                     Option A
-                  </Typography>{" "}
-                  <ImageUploadIndex
-                    coverImage={coverImage1}
-                    removeImage={removeImage}
-                    handleImage={handleImage1}
-                    // handleImage={(event) => handleChangeInput((inputField.possibleAnswers[0] = event.target.value), event)}
-                    update={false}
+                  </Typography>
+                  <br />
+
+                  <FormControlLabel
+                    control={<Switch checked={checked1} onChange={handleChangeSwitch1} />}
+                    label='Link'
                   />
+                  {checked1 ? (
+                    <>
+                      <SwitchForLink handleImage={handleImage1} videoLink={videoLink1} />
+                      {/* <PdTextField
+                        fullWidth
+                        sx={{ border: "1px solid red" }}
+                        // onChange={(e) => setVideoLink(e.target.value)}
+                        onChange={handleImage1}
+                      />
+                      <iframe
+                        width='100%'
+                        height='240'
+                        src={videoLink1}
+                        // src='https://www.youtube.com/embed/Lq1uQD4Orls?si=A_cbqxbmdDQxpxF5'
+                        title='YouTube video player'
+                        frameborder='0'
+                        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+                        allowfullscreen
+                      ></iframe> */}
+                    </>
+                  ) : (
+                    <>
+                      <ImageUploadIndex
+                        coverImage={coverImage1}
+                        removeImage={removeImage}
+                        handleImage={handleImage1}
+                        // handleImage={(event) => handleChangeInput((inputField.possibleAnswers[0] = event.target.value), event)}
+                        update={false}
+                      />
+                    </>
+                  )}
                 </Grid>
                 <Grid item xs={3}>
                   {/* <RadioOption
@@ -428,12 +526,25 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
                   >
                     Option B
                   </Typography>
-                  <ImageUploadIndex
-                    coverImage={coverImage2}
-                    removeImage={removeImage}
-                    handleImage={handleImage2}
-                    update={false}
+                  <br />
+                  <FormControlLabel
+                    control={<Switch checked={checked2} onChange={handleChangeSwitch2} />}
+                    label='Link'
                   />
+                  {checked2 ? (
+                    <>
+                      <SwitchForLink handleImage={handleImage2} videoLink={videoLink2} />
+                    </>
+                  ) : (
+                    <>
+                      <ImageUploadIndex
+                        coverImage={coverImage2}
+                        removeImage={removeImage}
+                        handleImage={handleImage2}
+                        update={false}
+                      />
+                    </>
+                  )}
                 </Grid>
                 <Grid item xs={3}>
                   {/* <RadioOption
@@ -463,12 +574,25 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
                   >
                     Option C
                   </Typography>
-                  <ImageUploadIndex
-                    coverImage={coverImage3}
-                    removeImage={removeImage}
-                    handleImage={handleImage3}
-                    update={false}
+                  <br />
+                  <FormControlLabel
+                    control={<Switch checked={checked3} onChange={handleChangeSwitch3} />}
+                    label='Link'
                   />
+                  {checked3 ? (
+                    <>
+                      <SwitchForLink handleImage={handleImage3} videoLink={videoLink3} />
+                    </>
+                  ) : (
+                    <>
+                      <ImageUploadIndex
+                        coverImage={coverImage3}
+                        removeImage={removeImage}
+                        handleImage={handleImage3}
+                        update={false}
+                      />
+                    </>
+                  )}
                 </Grid>
                 <Grid item xs={3}>
                   {/* <RadioOption
@@ -498,12 +622,25 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
                   >
                     Option D
                   </Typography>
-                  <ImageUploadIndex
-                    coverImage={coverImage4}
-                    removeImage={removeImage}
-                    handleImage={handleImage4}
-                    update={false}
+                  <br />
+                  <FormControlLabel
+                    control={<Switch checked={checked4} onChange={handleChangeSwitch4} />}
+                    label='Link'
                   />
+                  {checked4 ? (
+                    <>
+                      <SwitchForLink handleImage={handleImage4} videoLink={videoLink4} />
+                    </>
+                  ) : (
+                    <>
+                      <ImageUploadIndex
+                        coverImage={coverImage4}
+                        removeImage={removeImage}
+                        handleImage={handleImage4}
+                        update={false}
+                      />
+                    </>
+                  )}
                 </Grid>
               </Grid>
             </ToggleButtonGroup>

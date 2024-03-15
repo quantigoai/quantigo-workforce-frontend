@@ -99,12 +99,24 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
     //   inputField?.possibleAnswers?.map((possibleAnswer, index) => (
     // )) }
     if (update) {
-      const file = e[0];
-      if (file) {
-        const url = URL.createObjectURL(file);
-        setCoverImage1(url);
+      if (checked1) {
+        setVideoLink1(e.target.value);
+        handleUpdate(e.target.value, "possibleAnswers_0", inputField);
+      } else {
+        const file = e[0];
+        if (file) {
+          const url = URL.createObjectURL(file);
+          setCoverImage1(url);
+        }
+        handleUpdate(e[0], "possibleAnswers_0", inputField);
       }
-      handleUpdate(e[0], "possibleAnswers_0", inputField);
+
+      // const file = e[0];
+      // if (file) {
+      //   const url = URL.createObjectURL(file);
+      //   setCoverImage1(url);
+      // }
+      // handleUpdate(e[0], "possibleAnswers_0", inputField);
     } else {
       // handleChangeInput((inputField.possibleAnswers[0] = e[0]), e[0]);
       if (checked1) {
@@ -137,12 +149,24 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
     //   inputField?.possibleAnswers?.map((possibleAnswer, index) => (
     // )) }
     if (update) {
-      const file = e[0];
-      if (file) {
-        const url = URL.createObjectURL(file);
-        setCoverImage2(url);
+      if (checked2) {
+        setVideoLink2(e.target.value);
+        handleUpdate(e.target.value, "possibleAnswers_1", inputField);
+      } else {
+        const file = e[0];
+        if (file) {
+          const url = URL.createObjectURL(file);
+          setCoverImage2(url);
+        }
+        handleUpdate(e[0], "possibleAnswers_1", inputField);
       }
-      handleUpdate(e[0], "possibleAnswers_1", inputField);
+
+      // const file = e[0];
+      // if (file) {
+      //   const url = URL.createObjectURL(file);
+      //   setCoverImage2(url);
+      // }
+      // handleUpdate(e[0], "possibleAnswers_1", inputField);
     } else {
       // handleChangeInput((inputField.possibleAnswers[1] = e[0]), e[0]);
       if (checked2) {
@@ -174,12 +198,25 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
     //   inputField?.possibleAnswers?.map((possibleAnswer, index) => (
     // )) }
     if (update) {
-      const file = e[0];
-      if (file) {
-        const url = URL.createObjectURL(file);
-        setCoverImage3(url);
+      if (checked3) {
+        setVideoLink3(e.target.value);
+
+        handleUpdate(e.target.value, "possibleAnswers_2", inputField);
+      } else {
+        e[0];
+        if (file) {
+          const url = URL.createObjectURL(file);
+          setCoverImage3(url);
+        }
+        handleUpdate(e[0], "possibleAnswers_2", inputField);
       }
-      handleUpdate(e[0], "possibleAnswers_2", inputField);
+
+      // const file = e[0];
+      // if (file) {
+      //   const url = URL.createObjectURL(file);
+      //   setCoverImage3(url);
+      // }
+      // handleUpdate(e[0], "possibleAnswers_2", inputField);
     } else {
       // handleChangeInput((inputField.possibleAnswers[2] = e[0]), e[0]);
       if (checked3) {
@@ -211,12 +248,24 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
     // )) }
 
     if (update) {
-      const file = e[0];
-      if (file) {
-        const url = URL.createObjectURL(file);
-        setCoverImage4(url);
+      if (checked4) {
+        setVideoLink4(e.target.value);
+
+        handleUpdate(e.target.value, "possibleAnswers_3", inputField);
+      } else {
+        const file = e[0];
+        if (file) {
+          const url = URL.createObjectURL(file);
+          setCoverImage4(url);
+        }
+        handleUpdate(e[0], "possibleAnswers_3", inputField);
       }
-      handleUpdate(e[0], "possibleAnswers_3", inputField);
+      // const file = e[0];
+      // if (file) {
+      //   const url = URL.createObjectURL(file);
+      //   setCoverImage4(url);
+      // }
+      // handleUpdate(e[0], "possibleAnswers_3", inputField);
     } else {
       // handleChangeInput((inputField.possibleAnswers[3] = e[0]), e[0]);
       if (checked4) {
@@ -302,8 +351,33 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
                     }}
                   >
                     Option A
-                  </Typography>{" "}
-                  <ImageUploadIndex
+                  </Typography>
+
+                  <br />
+
+                  <FormControlLabel
+                    control={<Switch checked={checked1} onChange={handleChangeSwitch1} />}
+                    label='Link'
+                  />
+                  {checked1 ? (
+                    <>
+                      <SwitchForLink handleImage={handleImage1} videoLink={videoLink1} />
+                    </>
+                  ) : (
+                    <>
+                      <ImageUploadIndex
+                        coverImage={coverImage1}
+                        removeImage={removeImage}
+                        handleImage={handleImage1}
+                        // handleImage={(event) => handleChangeInput((inputField.possibleAnswers[0] = event.target.value), event)}
+                        update={true}
+                        defaultImage={inputField.possibleAnswers[0]}
+                        inputField={inputField}
+                      />
+                    </>
+                  )}
+
+                  {/* <ImageUploadIndex
                     coverImage={coverImage1}
                     removeImage={removeImage}
                     handleImage={handleImage1}
@@ -311,7 +385,7 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
                     update={true}
                     defaultImage={inputField.possibleAnswers[0]}
                     inputField={inputField}
-                  />
+                  /> */}
                 </Grid>
                 <Grid item xs={3}>
                   {/* <RadioOption
@@ -341,14 +415,37 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
                   >
                     Option B
                   </Typography>
-                  <ImageUploadIndex
+
+                  <br />
+                  <FormControlLabel
+                    control={<Switch checked={checked2} onChange={handleChangeSwitch2} />}
+                    label='Link'
+                  />
+                  {checked2 ? (
+                    <>
+                      <SwitchForLink handleImage={handleImage2} videoLink={videoLink2} />
+                    </>
+                  ) : (
+                    <>
+                      <ImageUploadIndex
+                        coverImage={coverImage2}
+                        removeImage={removeImage}
+                        handleImage={handleImage2}
+                        update={true}
+                        defaultImage={inputField.possibleAnswers[1]}
+                        inputField={inputField}
+                      />
+                    </>
+                  )}
+
+                  {/* <ImageUploadIndex
                     coverImage={coverImage2}
                     removeImage={removeImage}
                     handleImage={handleImage2}
                     update={true}
                     defaultImage={inputField.possibleAnswers[1]}
                     inputField={inputField}
-                  />
+                  /> */}
                 </Grid>
                 <Grid item xs={3}>
                   {/* <RadioOption
@@ -378,14 +475,37 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
                   >
                     Option C
                   </Typography>
-                  <ImageUploadIndex
+
+                  <br />
+                  <FormControlLabel
+                    control={<Switch checked={checked3} onChange={handleChangeSwitch3} />}
+                    label='Link'
+                  />
+                  {checked3 ? (
+                    <>
+                      <SwitchForLink handleImage={handleImage3} videoLink={videoLink3} />
+                    </>
+                  ) : (
+                    <>
+                      <ImageUploadIndex
+                        coverImage={coverImage3}
+                        removeImage={removeImage}
+                        handleImage={handleImage3}
+                        update={true}
+                        defaultImage={inputField.possibleAnswers[2]}
+                        inputField={inputField}
+                      />
+                    </>
+                  )}
+
+                  {/* <ImageUploadIndex
                     coverImage={coverImage3}
                     removeImage={removeImage}
                     handleImage={handleImage3}
                     update={true}
                     defaultImage={inputField.possibleAnswers[2]}
                     inputField={inputField}
-                  />
+                  /> */}
                 </Grid>
                 <Grid item xs={3}>
                   {/* <RadioOption
@@ -415,14 +535,37 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
                   >
                     Option D
                   </Typography>
-                  <ImageUploadIndex
+
+                  <br />
+                  <FormControlLabel
+                    control={<Switch checked={checked4} onChange={handleChangeSwitch4} />}
+                    label='Link'
+                  />
+                  {checked4 ? (
+                    <>
+                      <SwitchForLink handleImage={handleImage4} videoLink={videoLink4} />
+                    </>
+                  ) : (
+                    <>
+                      <ImageUploadIndex
+                        coverImage={coverImage4}
+                        removeImage={removeImage}
+                        handleImage={handleImage4}
+                        update={true}
+                        defaultImage={inputField.possibleAnswers[3]}
+                        inputField={inputField}
+                      />
+                    </>
+                  )}
+
+                  {/* <ImageUploadIndex
                     coverImage={coverImage4}
                     removeImage={removeImage}
                     handleImage={handleImage4}
                     update={true}
                     defaultImage={inputField.possibleAnswers[3]}
                     inputField={inputField}
-                  />
+                  /> */}
                 </Grid>
               </Grid>
             </ToggleButtonGroup>
@@ -469,22 +612,6 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
                   {checked1 ? (
                     <>
                       <SwitchForLink handleImage={handleImage1} videoLink={videoLink1} />
-                      {/* <PdTextField
-                        fullWidth
-                        sx={{ border: "1px solid red" }}
-                        // onChange={(e) => setVideoLink(e.target.value)}
-                        onChange={handleImage1}
-                      />
-                      <iframe
-                        width='100%'
-                        height='240'
-                        src={videoLink1}
-                        // src='https://www.youtube.com/embed/Lq1uQD4Orls?si=A_cbqxbmdDQxpxF5'
-                        title='YouTube video player'
-                        frameborder='0'
-                        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-                        allowfullscreen
-                      ></iframe> */}
                     </>
                   ) : (
                     <>

@@ -136,6 +136,8 @@ const QuizUpdateIndex = () => {
             item.isTextFieldEnabled = value;
           }
         }
+        console.log("🚀 ~ newInputFields ~ item:", item);
+
         return item;
       });
 

@@ -18,7 +18,7 @@ import {
 
 const useCourseManagement = () => {
   const { level } = useParams();
-  console.log('🚀 ~ useCourseManagement ~ level:', level);
+
   const [featureCourses, setFeatureCourses] = useState([]);
   const [basicCourses, setBasicCourses] = useState([]);
   const [beginnerCourses, setBeginnerCourses] = useState([]);
@@ -298,20 +298,18 @@ const useCourseManagement = () => {
 
   const handleViewDetailsButton = async (id, courseDirection) => {
     setIsCourseLoading(true);
-
+    if (courseDirection === 'MyCourse') {
+      navigate(`/course-homepage/${id}`);
+      setIsCourseLoading(false);
+    } else {
+      navigate(`/course-landing/${id}`);
+      setIsCourseLoading(false);
+    }
     dispatch(getACourseByID(id))
       .then((res) => {
         dispatch(setActiveCourseId(id));
         dispatch(setActiveChapterIndex(0));
-        dispatch(getAllChapterFromACourse(id)).then((res) => {
-          if (courseDirection === 'MyCourse') {
-            navigate(`/course-homepage/${id}`);
-            setIsCourseLoading(false);
-          } else {
-            navigate(`/course-landing/${id}`);
-            setIsCourseLoading(false);
-          }
-        });
+        dispatch(getAllChapterFromACourse(id)).then((res) => {});
       })
       .catch(() => {
         setIsCourseLoading(false);

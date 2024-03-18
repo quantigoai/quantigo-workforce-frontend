@@ -31,6 +31,7 @@ import { getSubmittedQuiz, submitQuizById } from "../../../features/slice/quizSl
 import radioIcon from "../../../assets/images/courses/Switch.svg";
 import SwitchCheck from "../../../assets/images/courses/SwitchCheck.svg";
 import QuizQuestionShowIndex from "./QuizQuestionShowIndex";
+import { youtubeLinkEmbed } from "../../../helper/youtubeLinkEmbed";
 
 export const PdTextField = styled(TextField)(() => ({
   borderRadius: "5px",
@@ -203,6 +204,30 @@ const QuizShow = () => {
         return <audio style={audioStyle} src={value} controls></audio>;
       case value?.endsWith(".mp4"):
         return <iframe height={160} src={value} alt='' width='100%' style={{ borderRadius: "8px" }}></iframe>;
+      case value?.includes("youtube.com/watch"):
+        // Extracting the video ID from the YouTube URL
+        // const videoId = value.split("v=")[1];
+        const videoId = youtubeLinkEmbed(value);
+
+        return (
+          // <figure class='media'>
+          <div data-oembed-url={value}>
+            {/* <div data-oembed-url="https://www.youtube.com/watch?v=PEWP9nbqG9Q&list=RDPEWP9nbqG9Q&start_radio=1"> */}
+            {/* <div style="position: relative; padding-bottom: 100%; height: 0; padding-bottom: 56.2493%;"> */}
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}`}
+              frameborder='0'
+              // allow='autoplay; encrypted-media'
+              // allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+              // allowfullscreen
+              width='100%'
+              height='160px'
+            ></iframe>
+            {/* </div> */}
+          </div>
+          // </figure>
+        );
+
       default:
         return <p>Unsupported file </p>;
     }

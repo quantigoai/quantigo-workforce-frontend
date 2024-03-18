@@ -16,6 +16,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useToaster from "../../../../../customHooks/useToaster";
 import { getSingleSubmittedQuiz, getSubmittedQuiz, submitReviewQuiz } from "../../../../../features/slice/quizSlice";
 import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
+import { youtubeLinkEmbed } from "../../../../../helper/youtubeLinkEmbed";
 
 const PdTextField = styled(TextField)(() => ({
   borderRadius: "5px",
@@ -177,6 +178,30 @@ const QuizreviewIndex = () => {
       case value?.endsWith(".mp4"):
         return <video width='100%' height='160' controls style={{ borderRadius: "8px" }} src={value}></video>;
       // return <iframe height={160} src={value} alt='' width='100%' style={{ borderRadius: "8px" }}></iframe>;
+      case value?.includes("youtube.com/watch"):
+        // Extracting the video ID from the YouTube URL
+        // const videoId = value.split("v=")[1];
+        const videoId = youtubeLinkEmbed(value);
+
+        return (
+          // <figure class='media'>
+          <div data-oembed-url={value}>
+            {/* <div data-oembed-url="https://www.youtube.com/watch?v=PEWP9nbqG9Q&list=RDPEWP9nbqG9Q&start_radio=1"> */}
+            {/* <div style="position: relative; padding-bottom: 100%; height: 0; padding-bottom: 56.2493%;"> */}
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}`}
+              frameborder='0'
+              // allow='autoplay; encrypted-media'
+              // allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+              // allowfullscreen
+              width='100%'
+              height='160px'
+            ></iframe>
+            {/* </div> */}
+          </div>
+          // </figure>
+        );
+
       default:
         return <p>Unsupported file </p>;
     }
@@ -193,6 +218,30 @@ const QuizreviewIndex = () => {
       case value?.endsWith(".mp4"):
         return <video width='100%' height='240' controls style={{ borderRadius: "8px" }} src={value}></video>;
       // return <iframe height={224} src={value} alt='' width='100%' style={{ borderRadius: "8px" }}></iframe>;
+      case value?.includes("youtube.com/watch"):
+        // Extracting the video ID from the YouTube URL
+        // const videoId = value.split("v=")[1];
+        const videoId = youtubeLinkEmbed(value);
+
+        return (
+          // <figure class='media'>
+          <div data-oembed-url={value}>
+            {/* <div data-oembed-url="https://www.youtube.com/watch?v=PEWP9nbqG9Q&list=RDPEWP9nbqG9Q&start_radio=1"> */}
+            {/* <div style="position: relative; padding-bottom: 100%; height: 0; padding-bottom: 56.2493%;"> */}
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}`}
+              frameborder='0'
+              // allow='autoplay; encrypted-media'
+              // allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+              // allowfullscreen
+              width='100%'
+              height='240px'
+            ></iframe>
+            {/* </div> */}
+          </div>
+          // </figure>
+        );
+
       default:
         return <p>Unsupported file </p>;
     }
@@ -302,7 +351,7 @@ const QuizreviewIndex = () => {
                             paddingTop: "1%",
                           }}
                         >
-                          <Typography variant='wpf_p2_semiBold' sx={{ color: "primary.B300"}}>
+                          <Typography variant='wpf_p2_semiBold' sx={{ color: "primary.B300" }}>
                             Q{i + 1}. {item.question.questionText} ?
                           </Typography>
                         </Grid>
@@ -429,7 +478,7 @@ const QuizreviewIndex = () => {
                                     }
                                     label={
                                       <Typography
-                                      variant='wpf_h7_semiBold'
+                                        variant='wpf_h7_semiBold'
                                         sx={{ color: item.correctAnswerIndex === i ? "#36B37E" : "grey.600" }}
                                       >
                                         {posibleAnswer}
@@ -488,7 +537,7 @@ const QuizreviewIndex = () => {
                           <RadioGroup
                           //  value={value}
                           >
-                            <Grid container sx={{ paddingLeft: "2%", paddingBottom: "2%",paddingTop:"15px" }}>
+                            <Grid container sx={{ paddingLeft: "2%", paddingBottom: "2%", paddingTop: "15px" }}>
                               {item.possibleAnswers.map((posibleAnswer, i) => (
                                 <>
                                   {item.questionType === "imageInOptions" ? (
@@ -531,7 +580,13 @@ const QuizreviewIndex = () => {
                                           </Box> */}
                                           {/* </Grid> */}
                                           {/* <Grid item> */}
-                                          <Box sx={{ backgroundColor: "neutral.N000", paddingLeft: "5%", borderRadius: "8px" }}>
+                                          <Box
+                                            sx={{
+                                              backgroundColor: "neutral.N000",
+                                              paddingLeft: "5%",
+                                              borderRadius: "8px",
+                                            }}
+                                          >
                                             <FormControlLabel
                                               key={i}
                                               onChange={() => handleQuizResult(i, item._id)}
@@ -545,7 +600,7 @@ const QuizreviewIndex = () => {
                                               label={
                                                 <Typography
                                                   variant='wpf_h7_semiBold'
-                                                  sx={{ color: item.correctAnswerIndex === i ? "#36B37E" :  "grey.600" }}
+                                                  sx={{ color: item.correctAnswerIndex === i ? "#36B37E" : "grey.600" }}
                                                 >
                                                   {i === 0
                                                     ? "Option A"
@@ -617,7 +672,7 @@ const QuizreviewIndex = () => {
                                   mb: 0,
                                   textTransform: "uppercase",
                                   // color: "#64748B",
-                                  color:"neutral.N300"
+                                  color: "neutral.N300",
                                 }}
                               >
                                 {user.role === "admin" || user.role === "trainer"

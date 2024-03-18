@@ -194,6 +194,7 @@ const QuizShow = () => {
   };
 
   const handleSwitchContent = (value) => {
+    console.log("🚀 ~ handleSwitchContent ~ value:", value)
     switch (true) {
       case value?.endsWith(".png"):
       case value?.endsWith(".jpeg"):

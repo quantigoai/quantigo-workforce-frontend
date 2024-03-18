@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import radioIcon from "../../../assets/images/courses/Switch.svg";
 import SwitchCheck from "../../../assets/images/courses/SwitchCheck.svg";
 import { PdTextField } from "./QuizShow";
+import { youtubeLinkEmbed } from "../../../helper/youtubeLinkEmbed";
 
 const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitchContent }) => {
   const { isLightTheme } = useSelector((state) => state.theme);

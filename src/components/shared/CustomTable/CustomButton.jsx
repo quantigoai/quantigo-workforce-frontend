@@ -20,7 +20,6 @@ const CustomButton = ({
   handleReject,
   handleOpenNDA,
 }) => {
-  console.log('🚀 ~ params:', params.submissionStatus);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

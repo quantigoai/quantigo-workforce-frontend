@@ -8,13 +8,12 @@ const RelatedCourseIndex = ({handleViewDetailsButton}) => {
   // const relatedCourses = [1, 5, 6, 3];
   const { course, courses, isLoading } = useSelector((state) => state.course);
   const [relatedCourses, setRelatedCourses] = useState([]);
-  console.log("🚀 ~ RelatedCourseIndex ~ relatedCourses:", relatedCourses);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllRelatedCourses(course._id)).then((action) => {
-      console.log(action.payload.data);
-      setRelatedCourses(action.payload.data.relatedCourses);
-    });
+  dispatch(getAllRelatedCourses(course._id)).then((action) => {
+  console.log(action.payload.data);
+  setRelatedCourses(action.payload.data.relatedCourses);
+  });
   }, [course]);
   return (
     <>

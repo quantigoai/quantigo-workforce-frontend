@@ -24,12 +24,12 @@ const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
   };
 
   useEffect(() => {
-    dispatch(getAllCourseSeries(course._id)).then((action) => {
-      console.log(action.payload.data);
-      setCoursesSeries(action.payload.data.coursesSeries);
-    });
+  dispatch(getAllCourseSeries(course._id)).then((action) => {
+  console.log(action.payload.data);
+  setCoursesSeries(action.payload.data.coursesSeries);
+  });
   }, [course]);
-  const arr = [0, 1, 2, 3, 4, 5];
+    const arr = [0, 1, 2, 3, 4, 5];
   return (
     <Box>
       <Box>
@@ -52,15 +52,11 @@ const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
         sx={{
           mt: "20px",
           backgroundColor: isLightTheme ? "#F8FAFC" : "",
-          // height: "200px",
           border: "2px solid #E2E8F0",
           borderRadius: "8px",
           maxHeight: 430,
-          // overflowY: "auto",
           overflowY: "auto",
-          // "&::-webkit-scrollbar": {
-          //   width: "0", // Hide the scrollbar
-          // },
+
         }}
       >
         {coursesSeries &&
@@ -71,7 +67,6 @@ const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
                 justifyContent: "center",
                 display: "flex",
                 justifyContent: "center",
-                // paddingRight: "20px",
                 borderTop: index === 0 ? "" : "1px solid #E2E8F0",
                 paddingTop: "1%",
                 paddingBottom: "1%",
@@ -86,14 +81,11 @@ const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
                   <Box sx={accordionBoxNumberStyle}>
                     <Typography sx={{ fontSize: "14px", fontWeight: "600" }}>{index + 1}</Typography>
                   </Box>
-                  {/* <img src={course_Complete} alt='' /> */}
                 </Grid>
                 <Grid item xs={9} sx={{ backgroundColor: "" }}>
                   <Typography
-                    // color={"grey.600"}
                     variant='wpf_p3_semiBold'
                     sx={{ cursor: "pointer" }}
-                    // sx={{ opacity: "0.6", }}
                     onClick={() => handleViewDetailsButton(item._id, "All")}
                   >
                     {capitalizeFirstLetter(item.name)}

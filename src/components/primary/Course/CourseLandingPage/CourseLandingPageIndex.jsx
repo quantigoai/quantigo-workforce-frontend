@@ -1,19 +1,19 @@
 import { Box } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import {
+  setActiveChapterIndex,
+  setActiveCourseId,
+} from '../../../../features/slice/activePathSlice';
 import {
   getACourseByID,
   getAllChapterFromACourse,
   getCourseQuizzesResults,
 } from '../../../../features/slice/courseSlice';
-import CourseLandingHeader from './CourseLandingHeader';
-import CourseLandingContent from './CourseLandingContent';
-import CourseChapterContent from './CourseChapterContent';
-import CourseRelated from './CourseRelated';
-import useCourseManagement from '../hooks/createCourseHook/useCourseMangement';
 import LoadingComponent from '../../../shared/Loading/LoadingComponent';
-import { setActiveChapterIndex, setActiveCourseId } from '../../../../features/slice/activePathSlice';
+import CourseLandingContent from './CourseLandingContent';
+import CourseLandingHeader from './CourseLandingHeader';
 
 const CourseLandingPageIndex = () => {
   const params = useParams();
@@ -22,10 +22,9 @@ const CourseLandingPageIndex = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const [isCourseLoading, setIsCourseLoading] = useState(false);
   // const { handleViewDetailsButton, isCourseLoading } = useCourseManagement();
-
+  console.log("🚀 ~ CourseLandingPageIndex ~ isLoading:", isLoading)
+  
   const handleViewDetailsButton1 = (id, courseDirection) => {
-    console.log('123');
-
     setIsCourseLoading(true);
     dispatch(getACourseByID(id))
       .then((res) => {
@@ -36,9 +35,7 @@ const CourseLandingPageIndex = () => {
             // navigate(`/course-details/${id}/index`);
             if (courseDirection === 'MyCourse') {
               navigate(`/course-homepage/${id}`);
-              // setIsCourseLoading(false);
             } else {
-              // setIsCourseLoading(false);
               navigate(`/course-landing/${id}`);
             }
           });
@@ -58,7 +55,6 @@ const CourseLandingPageIndex = () => {
     <Box>
       {isCourseLoading ? (
         <>
-          {' '}
           <LoadingComponent />{' '}
         </>
       ) : (

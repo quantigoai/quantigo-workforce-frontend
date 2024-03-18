@@ -1,19 +1,18 @@
 import { Alert, Box, Button, Grid, Typography } from '@mui/material';
-import React, { useState } from 'react';
-import LanguageChip from '../LanguageChip';
-import CategoryChip from '../CategoryChip';
-import LevelChip from '../CourseCardActionLebel/LevelChip';
-import CourseContent from './CourseContent';
-import { useNavigate } from 'react-router-dom';
-import CourseHeaderTitle from './CourseHeaderTitle';
-import editCourseIcon from '../../../../assets/images/courses/editCourse.svg';
-import EditCourseModal from '../CreateCourseModal/EditCourseModal';
-import useCourseManagement from '../hooks/createCourseHook/useCourseMangement';
-import useCourseDetails from '../hooks/courseDetailshooks/useCourseDetails';
-import CourseDeleteModal from '../../../primary/Course/CourseDetailsPage/CourseDeleteModal';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import editCourseIcon from '../../../../assets/images/courses/editCourse.svg';
 import { enrollACourse } from '../../../../features/slice/courseSlice';
 import { updateUserEnrollCourse } from '../../../../features/slice/userSlice';
+import CourseDeleteModal from '../../../primary/Course/CourseDetailsPage/CourseDeleteModal';
+import CategoryChip from '../CategoryChip';
+import LevelChip from '../CourseCardActionLebel/LevelChip';
+import EditCourseModal from '../CreateCourseModal/EditCourseModal';
+import LanguageChip from '../LanguageChip';
+import useCourseDetails from '../hooks/courseDetailshooks/useCourseDetails';
+import CourseContent from './CourseContent';
+import CourseHeaderTitle from './CourseHeaderTitle';
 import CourseSubmitReviewModal from './CourseSubmitReviewModal';
 const boxStyle = {
   display: 'flex',
@@ -37,8 +36,9 @@ const CourseLandingHeader = () => {
   // const { course, courseChapter, courseChapters } = useSelector((state) => state.course);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-  console.log('🚀 ~ CourseLandingHeader ~ user:', user.completedCourses);
-  const { isEnrollAble, enrolmentMessage } = useSelector((state) => state.course);
+  const { isEnrollAble, enrolmentMessage } = useSelector(
+    (state) => state.course,
+  );
 
   const {
     skill,
@@ -102,7 +102,9 @@ const CourseLandingHeader = () => {
 
   return (
     <Box sx={boxStyle}>
-      <Box sx={{ width: { xxl: '72%', xl: '68%', lg: '80%' }, paddingY: '16px' }}>
+      <Box
+        sx={{ width: { xxl: '72%', xl: '68%', lg: '80%' }, paddingY: '16px' }}
+      >
         <Box sx={{ width: { xxl: '100%', xl: '80%', lg: '95%' } }}>
           <Grid container>
             <Grid item xs={8}>
@@ -123,8 +125,6 @@ const CourseLandingHeader = () => {
               {user.role === 'admin' || user.role === 'reviewer' ? (
                 <Box sx={{ display: 'flex', justifyContent: 'end' }}>
                   <Button
-                    // disabled={isLoading}
-
                     sx={{
                       textTransform: 'none',
                       width: '150px',
@@ -132,18 +132,15 @@ const CourseLandingHeader = () => {
                       borderRadius: '6px',
                       backgroundColor: '#fff',
                       border: '1px solid #F4F7FE',
-                      // color: "red",
-                      //   "&:hover": {
-                      //     backgroundColor: "#FF9A45",
-                      //     color: "#1D1D1D",
-                      //   },
                     }}
                     onClick={handleOpen}
-                    // onClick={() => handleNavigation(customButton)}
                   >
                     <img src={editCourseIcon} />
                     <span style={{ paddingLeft: '8px' }}>
-                      <Typography variant="wpf_p4_medium" sx={{ color: '#2D58FF' }}>
+                      <Typography
+                        variant="wpf_p4_medium"
+                        sx={{ color: '#2D58FF' }}
+                      >
                         Edit Course
                       </Typography>
                     </span>
@@ -155,7 +152,9 @@ const CourseLandingHeader = () => {
                     onSubmit={onSubmit}
                     course={course}
                     preRequisiteCourses={preRequisiteCourses}
-                    handleChange_Pre_Requisite_Course={handleChange_Pre_Requisite_Course}
+                    handleChange_Pre_Requisite_Course={
+                      handleChange_Pre_Requisite_Course
+                    }
                     skills={skills}
                     handleChangeSkills={handleChangeSkills}
                     coverImage={coverImage}
@@ -186,24 +185,51 @@ const CourseLandingHeader = () => {
             </Grid>
           </Grid>
 
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'start',
+            }}
+          >
             <Box sx={{ paddingY: '12px' }}>
               <CourseHeaderTitle course={course} />
             </Box>
           </Box>
         </Box>
-        <Box sx={{ borderTop: '1px solid #EAECF0', borderBottom: '1px solid #EAECF0', marginTop: '10px' }}>
+        <Box
+          sx={{
+            borderTop: '1px solid #EAECF0',
+            borderBottom: '1px solid #EAECF0',
+            marginTop: '10px',
+          }}
+        >
           <CourseContent course={course} />
         </Box>
-        <Box sx={{ display: 'flex', alignItems: 'center', marginTop: '20px', mb: '16px' }}>
-          <Button disabled={!isEnrollAble} sx={btnStyle} onClick={handleRouteChange}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            marginTop: '20px',
+            mb: '16px',
+          }}
+        >
+          <Button
+            disabled={!isEnrollAble}
+            sx={btnStyle}
+            onClick={handleRouteChange}
+          >
             {(user.role === 'level_0_annotator' &&
               !user.completedCourses.includes(course._id) &&
               user.completedCourses.includes(course._id)) ||
-            (user.role === 'level_1_annotator' && !user.completedCourses.includes(course._id)) ||
-            (user.role === 'level_2_annotator' && !user.completedCourses.includes(course._id)) ||
-            (user.role === 'level_3_annotator' && !user.completedCourses.includes(course._id)) ||
-            (user.role === 'reviewer' && user.completedCourses.includes(course._id))
+            (user.role === 'level_1_annotator' &&
+              !user.completedCourses.includes(course._id)) ||
+            (user.role === 'level_2_annotator' &&
+              !user.completedCourses.includes(course._id)) ||
+            (user.role === 'level_3_annotator' &&
+              !user.completedCourses.includes(course._id)) ||
+            (user.role === 'reviewer' &&
+              user.completedCourses.includes(course._id))
               ? 'Enroll Now'
               : 'View Course'}
           </Button>
@@ -220,10 +246,20 @@ const CourseLandingHeader = () => {
             Submit Review
           </Button>
           )} */}
-          <CourseSubmitReviewModal user={user} course={course} isEnrollAble={isEnrollAble} />
-          <Typography variant="wpf_p3_regular" color={'grey.550'} sx={{ marginLeft: '20px' }}>
-            <span style={{ color: '#344054', fontWeight: '600' }}>{course.totalCurrentEnrolledStudents}</span> already
-            enrolled
+          <CourseSubmitReviewModal
+            user={user}
+            course={course}
+            isEnrollAble={isEnrollAble}
+          />
+          <Typography
+            variant="wpf_p3_regular"
+            color={'grey.550'}
+            sx={{ marginLeft: '20px' }}
+          >
+            <span style={{ color: '#344054', fontWeight: '600' }}>
+              {course.totalCurrentEnrolledStudents}
+            </span>{' '}
+            already enrolled
           </Typography>
         </Box>
         {!isEnrollAble && (
@@ -236,8 +272,6 @@ const CourseLandingHeader = () => {
                 color: 'warning.400',
                 backgroundColor: 'warning.100',
                 borderRadius: '6px',
-                // height: "48px",
-                // fontSize: "12px",
               }}
             >
               {enrolmentMessage}
@@ -256,8 +290,6 @@ const CourseLandingHeader = () => {
             width,
             height,
             borderRadius: '8px',
-            // width: { xxl: '390px', xl: '340px', lg: '300px' },
-            // height: { xxl: '270px', xl: '40px', lg: '200px' },
           }}
           src={course.images}
           alt=""

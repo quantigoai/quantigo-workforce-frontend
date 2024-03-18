@@ -36,7 +36,6 @@ const PaginationTable = ({
   courseMeta,
   totalCourse,
 }) => {
-  console.log('🚀 ~ pagination:', pagination);
   const {
     myWorkHistoryCount,
     usersWorkHistoryCount,

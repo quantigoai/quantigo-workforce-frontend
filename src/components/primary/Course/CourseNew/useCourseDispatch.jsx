@@ -25,8 +25,6 @@ const useCourseDispatch = ({
   const dispatch = useDispatch();
 
   const handleDispatch = async (pathname, level) => {
-    console.log('🚀 ~ handleDispatch ~ level:', level);
-    console.log('🚀 ~ handleDispatch ~ pathname:', pathname);
     switch (true) {
       case pathname === '/courses2/myCourse':
         dispatch(getMyCourses({ filter, search, pagination })).then(

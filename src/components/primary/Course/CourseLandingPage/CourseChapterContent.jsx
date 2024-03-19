@@ -1,12 +1,12 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
-import arrowIcon from "../../../../assets/images/courses/arrowIcon.svg";
+import { Box, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CourseChapterAccordion from "./CourseChapterAccordion";
+import arrowIcon from "../../../../assets/images/courses/arrowIcon.svg";
 import { getAllCourseSeries } from "../../../../features/slice/courseSlice";
 import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 
 const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
+  console.log("🚀 ~ CourseChapterContent ~ course:", course);
   const { isLightTheme } = useSelector((state) => state.theme);
   const { courseChapters } = useSelector((state) => state.course);
   const [coursesSeries, setCoursesSeries] = useState([]);
@@ -24,21 +24,25 @@ const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
   };
 
   useEffect(() => {
-  dispatch(getAllCourseSeries(course._id)).then((action) => {
-  console.log(action.payload.data);
-  setCoursesSeries(action.payload.data.coursesSeries);
-  });
+    console.log("🚀 ~ dispatch ~ course._id:", course._id);
+    console.log("hitttttsdsd");
+
+    course._id &&
+      dispatch(getAllCourseSeries(course._id)).then((action) => {
+        // console.log(action.payload.data);
+        setCoursesSeries(action.payload.data.coursesSeries);
+      });
   }, [course]);
-    const arr = [0, 1, 2, 3, 4, 5];
+  const arr = [0, 1, 2, 3, 4, 5];
   return (
     <Box>
       <Box>
-        <Typography variant={"wpf_h5_Bold"} color='neutral.995'>
+        <Typography variant={"wpf_h5_Bold"} color="neutral.995">
           Professional Certificate - {coursesSeries?.length} course series
         </Typography>
         <br />
         <Box sx={{ mt: "8px" }}>
-          <Typography variant='wpf_p3_regular' color={"grey.500"}>
+          <Typography variant="wpf_p3_regular" color={"grey.500"}>
             Prepare for a new career in the high-growth field of project management, no experience or degree required.
             Get professional training designed by Google and get on the fastrack to a competitively paid job.
           </Typography>
@@ -56,15 +60,14 @@ const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
           borderRadius: "8px",
           maxHeight: 430,
           overflowY: "auto",
-
         }}
       >
         {coursesSeries &&
           coursesSeries.map((item, index) => (
             <Box
+              key={index}
               sx={{
                 alignItems: "center",
-                justifyContent: "center",
                 display: "flex",
                 justifyContent: "center",
                 borderTop: index === 0 ? "" : "1px solid #E2E8F0",
@@ -84,21 +87,21 @@ const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
                 </Grid>
                 <Grid item xs={9} sx={{ backgroundColor: "" }}>
                   <Typography
-                    variant='wpf_p3_semiBold'
+                    variant="wpf_p3_semiBold"
                     sx={{ cursor: "pointer" }}
                     onClick={() => handleViewDetailsButton(item._id, "All")}
                   >
                     {capitalizeFirstLetter(item.name)}
                   </Typography>
                   <br />
-                  <Typography variant='wpf_p4_regular' color={"grey.700"}>
+                  <Typography variant="wpf_p4_regular" color={"grey.700"}>
                     {item?.totalTimeToRead} minutes
                   </Typography>
                 </Grid>
                 <Grid item xs={2} sx={{ px: "2%", alignItems: "center", justifyContent: "end", display: "flex" }}>
                   <img
                     src={arrowIcon}
-                    alt=''
+                    alt=""
                     style={{ cursor: "pointer" }}
                     onClick={() => handleViewDetailsButton(item._id, "All")}
                   />

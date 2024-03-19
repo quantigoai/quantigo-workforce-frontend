@@ -22,9 +22,10 @@ const ReviewSwipper = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllReviewForCourseId(course._id)).then((action) => {
-      setAllReviews(action.payload.data.reviews);
-    });
+    course._id &&
+      dispatch(getAllReviewForCourseId(course._id)).then((action) => {
+        setAllReviews(action.payload.data.reviews);
+      });
   }, []);
 
   const review = {
@@ -52,10 +53,10 @@ const ReviewSwipper = () => {
         slidesPerView={2.2}
         spaceBetween={15}
       >
-        <Box sx={{ padding: "1%",}}>
-          <Grid sx={{ }} container spacing={3}>
+        <Box sx={{ padding: "1%" }}>
+          <Grid sx={{}} container spacing={3}>
             {allReviews.map((item, index) => (
-              <Grid sx={{ }} key={item} item xs={12} sm={6} md={3} gap={1}>
+              <Grid sx={{}} key={item} item xs={12} sm={6} md={3} gap={1}>
                 <SwiperSlide style={{ backgroundColor: isLightTheme ? "#fff" : "#000" }} key={item._id}>
                   <Box
                     onClick={() => handleSlideClick(index)}

@@ -4,6 +4,7 @@ import { useDropzone } from "react-dropzone";
 import { useSelector } from "react-redux";
 import IconImage from "../../../../../assets/images/Icon.png";
 import { PdTextField } from "../../../../shared/CustomField/PDTextFIeld";
+import { youtubeLinkEmbed } from "../../../../../helper/youtubeLinkEmbed";
 const focusedStyle = {
   borderColor: "#2196f3",
 };
@@ -36,7 +37,7 @@ const ImageFieldQuestion2 = ({
     flex: 1,
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
+    // alignItems: "center",
     // padding: "20px",
     marginTop: "6px",
     borderWidth: 2,
@@ -66,6 +67,9 @@ const ImageFieldQuestion2 = ({
     // {
     //   inputField?.possibleAnswers?.map((possibleAnswer, index) => (
     // )) }
+    // if (!checked) {
+    //   setVideoId("");
+    // }
     if (update) {
       if (checked) {
         setVideoLink(e.target.value);
@@ -100,17 +104,14 @@ const ImageFieldQuestion2 = ({
 
       if (checked) {
         setVideoLink(e.target.value);
-        const regex = /(?:\/|%3D|v=|vi=)([0-9A-Za-z_-]{11})(?:[\?&]|$)/;
 
-        // Extracting video ID using match function
-        const match = e.target.value.match(regex);
-
-        // Extracted video ID
-        const videoId = match ? match[1] : null;
+        const videoId = youtubeLinkEmbed(e.target.value);
         setVideoId(videoId);
 
         handleChangeInput(inputField.uniqueId, e.target.value, "questionImage");
       } else {
+        // setVideoLink("");
+        setVideoId("");
         handleChangeInput(inputField.uniqueId, e[0], "questionImage");
       }
 
@@ -207,6 +208,24 @@ const ImageFieldQuestion2 = ({
             <source src={value} />
           </video>
         );
+      case value?.includes("youtube.com/watch"):
+        const videoId = youtubeLinkEmbed(value);
+
+        return (
+          <div data-oembed-url={value}>
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}`}
+              frameborder='0'
+              // allow='autoplay; encrypted-media'
+              // allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+              allowfullscreen
+              width='100%'
+              height='250px'
+              style={{ borderRadius: "8px" }}
+            ></iframe>
+          </div>
+        );
+
       default:
         return <p>Unsupported file </p>;
     }
@@ -226,7 +245,7 @@ const ImageFieldQuestion2 = ({
           <Box>
             <PdTextField
               fullWidth
-              sx={{ border: "1px solid red" }}
+              // sx={{ border: "1px solid red" }}
               // onChange={(e) => setVideoLink(e.target.value)}
               onChange={handleImage}
             />
@@ -234,32 +253,35 @@ const ImageFieldQuestion2 = ({
             {/* <video height={'250px'} width={width} controls>
               <source src={videoLink} />
             </video> */}
-            <figure class='media'>
-              <div data-oembed-url={videoLink}>
-                {/* <div data-oembed-url="https://www.youtube.com/watch?v=PEWP9nbqG9Q&list=RDPEWP9nbqG9Q&start_radio=1"> */}
-                {/* <div style="position: relative; padding-bottom: 100%; height: 0; padding-bottom: 56.2493%;"> */}
-                <iframe
-                  src={`https://www.youtube.com/embed/${videoId}`}
-                  // style={{position: absolute; width: 100%; height: 100%; top: 0; left: 0;}}
-                  frameborder='0'
-                  allow='autoplay; encrypted-media'
-                  allowfullscreen=''
-                  width='100%'
-                  height='240'
-                ></iframe>
-                {/* </div> */}
-              </div>
-            </figure>
-            {/* <iframe
-              width='100%'
-              height='240'
-              src={videoLink}
-              // src='https://www.youtube.com/embed/Lq1uQD4Orls?si=A_cbqxbmdDQxpxF5'
-              title='YouTube video player'
-              frameborder='0'
-              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-              allowfullscreen
-            ></iframe> */}
+            {/* <figure class='media'> */}
+            {videoId ? (
+              <>
+                {" "}
+                <Box data-oembed-url={videoLink} sx={{ paddingTop: "2px" }}>
+                  {/* <div data-oembed-url="https://www.youtube.com/watch?v=PEWP9nbqG9Q&list=RDPEWP9nbqG9Q&start_radio=1"> */}
+                  {/* <div style="position: relative; padding-bottom: 100%; height: 0; padding-bottom: 56.2493%;"> */}
+                  <iframe
+                    src={`https://www.youtube.com/embed/${videoId}`}
+                    // style={{position: absolute; width: 100%; height: 100%; top: 0; left: 0;}}
+                    frameborder='0'
+                    allow='autoplay; encrypted-media'
+                    allowfullscreen=''
+                    width='100%'
+                    height='225'
+                    style={{ borderRadius: "8px" }}
+                  ></iframe>
+                  {/* </div> */}
+                </Box>
+              </>
+            ) : (
+              <>
+                <Box style={baseUploadBoxStyle}>
+                  <Box
+                    sx={{ display: "flex", justifyContent: "center", alignItems: "center", alignContent: "center" }}
+                  ></Box>
+                </Box>
+              </>
+            )}
           </Box>
         </>
       ) : (
@@ -382,7 +404,7 @@ const ImageFieldQuestion2 = ({
                               cursor: "pointer",
                               position: "absolute",
                               top: "40%",
-                              left: "30%",
+                              left: "40%",
                             }}
                           >
                             <Button
@@ -427,7 +449,7 @@ const ImageFieldQuestion2 = ({
                           cursor: "pointer",
                           position: "absolute",
                           top: "40%",
-                          left: "30%",
+                          left: "40%",
                         }}
                       >
                         <Button

@@ -7,14 +7,7 @@ import { getAllCourses } from '../../../features/slice/courseSlice';
 import CustomCard from './CustomCard';
 import useCourseManagement from './hooks/createCourseHook/useCourseMangement';
 
-const CourseLevel = ({
-  title,
-  courses,
-  handleViewDetailsButton,
-  seeMore,
-  isActiveEnrolled,
-  isActiveArchived,
-}) => {
+const CourseLevel = ({ title, courses, handleViewDetailsButton, seeMore, isActiveEnrolled, isActiveArchived }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -28,13 +21,13 @@ const CourseLevel = ({
 
   const handleSeeMore = () => {
     if (title === 'Basic Courses') {
-      navigate(`/courses2/allCourse/basic`);
+      navigate(`/courses/all-course/basic`);
     } else if (title === 'Beginner Courses') {
-      navigate('/courses2/allCourse/beginner');
+      navigate('/courses/all-course/beginner');
     } else if (title === 'Intermediate Courses') {
-      navigate('/courses2/allCourse/intermediate');
+      navigate('/courses/all-course/intermediate');
     } else {
-      navigate('/courses2/allCourse/advanced');
+      navigate('/courses/all-course/advanced');
     }
   };
 
@@ -60,14 +53,12 @@ const CourseLevel = ({
               justifyContent: 'center',
               alignItems: 'center',
               color: '#266AED',
-              // mr: { xxl: '20px', xl: '0px', lg: '' },
+              mr: '25px',
             }}
             variant="wpf_p3_medium_3"
           >
             See more
-            <ArrowForwardIosIcon
-              sx={{ fontSize: '12px', ml: '5px', mt: '2px' }}
-            />
+            <ArrowForwardIosIcon sx={{ fontSize: '12px', ml: '5px', mt: '2px' }} />
           </Typography>
         )}
       </Box>
@@ -99,9 +90,7 @@ const CourseLevel = ({
             <CustomCard
               isActiveEnrolled={isActiveEnrolled}
               isActiveArchived={isActiveArchived}
-              courseDirection={
-                user.enrolledCourses.includes(course._id) ? 'MyCourse' : 'all'
-              }
+              courseDirection={user.enrolledCourses.includes(course._id) ? 'MyCourse' : 'all'}
               handleViewDetailsButton={handleViewDetailsButton}
               course={course}
             />

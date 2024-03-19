@@ -129,6 +129,7 @@ const useCourseDetails = () => {
   };
 
   const onSubmit = (data) => {
+    console.log('🚀 ~ onSubmit ~ data:', data);
     const preRequisiteCoursesColl = preRequisiteCourses.map((preRequisite) => {
       return preRequisite._id;
     });
@@ -149,7 +150,6 @@ const useCourseDetails = () => {
 
     // if (dateTime !== undefined || dateTime !== null) {
     if (dateTime) {
-      console.log('🚀 ~ onSubmit ~ dateTime:', dateTime);
       if (dateTime.$d) {
         formData.append('liveSessionStartedAt', dateTime?.$d);
       } else {

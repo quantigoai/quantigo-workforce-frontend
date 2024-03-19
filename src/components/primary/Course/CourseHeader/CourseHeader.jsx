@@ -70,26 +70,14 @@ const CourseHeader = ({
         >
           <Grid container sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography variant="wpf_p1_semiBold">{`List of ${
-              pathname === '/courses2/myCourse'
+              pathname === '/courses/my-course'
                 ? 'My'
-                : pathname === '/courses2/archiveCourse'
+                : pathname === '/courses/archive-course'
                 ? 'Archived'
                 : level
                 ? capitalizeFirstLetter(level)
                 : ''
             } Courses`}</Typography>
-            {/* <CommonHeader
-              title={`List of ${
-                pathname === '/courses2/myCourse'
-                  ? 'My'
-                  : pathname === '/courses2/archiveCourse'
-                  ? 'Archived'
-                  : level
-                  ? capitalizeFirstLetter(level)
-                  : ''
-              } Courses`}
-              customButton="Create User"
-            /> */}
 
             {courseCount > 0 && (
               <Typography sx={{ opacity: '0.7', height: '13px' }} variant="wpf_p3_regular" color={'neutral.750'}>

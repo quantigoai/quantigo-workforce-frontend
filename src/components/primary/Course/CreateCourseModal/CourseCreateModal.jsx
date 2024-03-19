@@ -116,7 +116,7 @@ const CourseCreateModal = ({
   coverImage,
   removeImage,
   handleImage,
-  isLoading,
+  // isLoading,
   checkedFeatured,
   handleChangeFeatured,
   dateTime,
@@ -125,7 +125,9 @@ const CourseCreateModal = ({
   setOutcomes,
   hub,
   handleChangeHub,
+  isBtnLoading,
 }) => {
+  console.log('🚀 ~ isBtnLoading:', isBtnLoading);
   const [allCourses, setAllCourses] = useState([]);
   const [isCourseFetched, setIsCourseFetched] = useState(false);
   const dispatch = useDispatch();
@@ -412,7 +414,7 @@ const CourseCreateModal = ({
                 </Button>
                 <LoadingButton
                   type="submit"
-                  loading={isLoading}
+                  loading={isBtnLoading}
                   sx={{
                     textTransform: 'none',
                     paddingX: { lg: '20px', xl: '30px', xxl: '30px' },

@@ -18,7 +18,16 @@ import { realToken } from '../../helper/lib';
 import { calculateProgress } from '../../helper/scoreStore';
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
-
+const defaultCourse = {
+  name: '',
+  description: '',
+  level: 'basic',
+  language: 'english',
+  category: 'intro',
+  skills: [],
+  prerequisiteCourses: [],
+  totalTimeToRead: '',
+};
 const initialState = {
   isLoading: true,
   course: {},
@@ -412,14 +421,14 @@ const courseSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(createCourse.pending, (state) => {
-        state.isLoading = true;
+        // state.isLoading = true;
       })
       .addCase(createCourse.fulfilled, (state, action) => {
-        state.isLoading = false;
+        // state.isLoading = false;
         // state.courses = [...state.courses, action.payload.data.course];
       })
       .addCase(createCourse.rejected, (state, action) => {
-        state.isLoading = false;
+        // state.isLoading = false;
         state.error = action.error.message;
       })
       .addCase(createCourseChapter.pending, (state) => {
@@ -512,6 +521,7 @@ const courseSlice = createSlice({
         state.error = action.error.data;
       })
       .addCase(getACourseByID.pending, (state) => {
+        // state.course = defaultCourse;
         state.course = {};
         state.isLoading = true;
       })
@@ -574,8 +584,8 @@ const courseSlice = createSlice({
       })
       // TODO check if this is working
       .addCase(updateACourseById.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.course = action.payload.data.course;
+        state.isLoading = false;
         state.error = null;
         state.courses = [...state.courses, action.payload.data.course];
       })

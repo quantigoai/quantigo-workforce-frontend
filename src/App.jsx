@@ -17,10 +17,10 @@ import {
 } from './features/slice/notificationSlice';
 import { setFromPreviousTheme } from './features/slice/themeSlice';
 import { alreadyLogin, resetUserSlice } from './features/slice/userSlice';
+import { useLocation } from 'react-router-dom';
+import RouterCertificate from './components/primary/Routers/RouterCertificate';
 
-const RoutersLogin = lazy(() =>
-  import('./components/primary/Routers/RoutersLogin'),
-);
+const RoutersLogin = lazy(() => import('./components/primary/Routers/RoutersLogin'));
 
 const LayoutNew = lazy(() => import('./components/shared/Layout/LayoutNew'));
 
@@ -44,7 +44,8 @@ function App() {
   const storedUser = useSelector((state) => state.user);
   const { isLoading, user, isLoggedIn } = useSelector((state) => state.user);
   const { activePath } = useSelector((state) => state.activePath);
-
+  const { pathname } = useLocation();
+  console.log('🚀 ~ App ~ pathnaame:', pathname);
   // const { isLoggedIn } = user;
 
   // TODO need to deploy socket server future and need to handle this
@@ -112,7 +113,7 @@ function App() {
           <LoadingComponent />
         ) : isLoggedIn ? (
           <Suspense fallback={<LoadingComponent />}>
-            <LayoutNew>{<Routers />}</LayoutNew>
+            {pathname === '/certificate' ? <RouterCertificate /> : <LayoutNew>{<Routers />}</LayoutNew>}
           </Suspense>
         ) : (
           <Suspense fallback={<LoadingComponent />}>

@@ -27,7 +27,7 @@ const layoutMenuOption = () => {
     { name: 'All Projects', icon: ProjectSvg },
     { name: 'Skill', icon: BenchmarkSvg },
     { name: 'Course', icon: CourseSvg },
-    { name: 'Course2', icon: CourseSvg },
+    // { name: 'Course2', icon: CourseSvg },
 
     // { name: "Projects", icon: ProjectSvg },
     // { name: "Jobs", icon: JobSvg },
@@ -176,7 +176,7 @@ const layoutMenuOption = () => {
 
     { name: 'All Projects', icon: ProjectSvg },
     { name: 'Course', icon: CourseSvg },
-    { name: 'Course2', icon: CourseSvg },
+    // { name: 'Course2', icon: CourseSvg },
     // { name: "Jobs", icon: JobSvg },
     // { name: "Payment", icon: PaymentSvg },
   ];

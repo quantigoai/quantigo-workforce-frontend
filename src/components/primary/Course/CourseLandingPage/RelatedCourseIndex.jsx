@@ -3,17 +3,19 @@ import React, { useEffect, useState } from "react";
 import RelatedCourseCard from "./RelatedCourseCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllRelatedCourses } from "../../../../features/slice/courseSlice";
+import CustomCard from "../CustomCard";
 
-const RelatedCourseIndex = ({handleViewDetailsButton}) => {
+const RelatedCourseIndex = ({ handleViewDetailsButton }) => {
   // const relatedCourses = [1, 5, 6, 3];
   const { course, courses, isLoading } = useSelector((state) => state.course);
   const [relatedCourses, setRelatedCourses] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
-  dispatch(getAllRelatedCourses(course._id)).then((action) => {
-  console.log(action.payload.data);
-  setRelatedCourses(action.payload.data.relatedCourses);
-  });
+    course._id &&
+      dispatch(getAllRelatedCourses(course._id)).then((action) => {
+        console.log(action.payload.data);
+        setRelatedCourses(action.payload.data.relatedCourses);
+      });
   }, [course]);
   return (
     <>
@@ -50,7 +52,7 @@ const RelatedCourseIndex = ({handleViewDetailsButton}) => {
               {relatedCourses &&
                 relatedCourses?.map((course) => (
                   <Grid key={course._id} item xs={12} sm={6} md={3} sx={{ py: 2, paddingRight: "2%" }}>
-                    <RelatedCourseCard course={course}  handleViewDetailsButton={handleViewDetailsButton}/>
+                    <RelatedCourseCard course={course} handleViewDetailsButton={handleViewDetailsButton} />
                   </Grid>
                 ))}
             </Grid>

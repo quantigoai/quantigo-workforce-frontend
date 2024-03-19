@@ -98,9 +98,7 @@ export default function LayoutNew({ children }) {
 
   const { isBlocked } = useSelector((state) => state.user.user);
 
-  const { isVerified, role, isEmailVerified } = useSelector(
-    (state) => state.user.user,
-  );
+  const { isVerified, role, isEmailVerified } = useSelector((state) => state.user.user);
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const { isLightTheme } = useSelector((state) => state.theme);
@@ -161,10 +159,10 @@ export default function LayoutNew({ children }) {
         return navigate('/annotators');
       case 'Reviewer List':
         return navigate('/reviewers');
+      // case 'Course':
+      //   return navigate('/course');
       case 'Course':
-        return navigate('/course');
-      case 'Course2':
-        return navigate('/courses2');
+        return navigate('/courses');
       case 'Reviewer Course':
         return navigate('/course');
       case 'Quiz':
@@ -180,9 +178,7 @@ export default function LayoutNew({ children }) {
       case 'Create Job':
         return navigate('/jobs/create-job');
       case 'Jobs':
-        return role === 'reviewer'
-          ? navigate('/jobs/availablejobs')
-          : navigate('/jobs/alljobs');
+        return role === 'reviewer' ? navigate('/jobs/availablejobs') : navigate('/jobs/alljobs');
       case 'On Going Job':
         return navigate('/jobs/activejobs');
       case 'Archive Job':
@@ -210,16 +206,11 @@ export default function LayoutNew({ children }) {
 
   const handleMenu = (text) => {
     return (
-      <ListItem
-        key={text.name}
-        disablePadding
-        sx={{ paddingLeft: '7%', paddingRight: '7%' }}
-      >
+      <ListItem key={text.name} disablePadding sx={{ paddingLeft: '7%', paddingRight: '7%' }}>
         <ListItemButton
           sx={{
             borderRadius: activePath === text.name && '8px',
-            backgroundColor:
-              activePath === text.name && 'rgba(255, 255, 255, 0.15)',
+            backgroundColor: activePath === text.name && 'rgba(255, 255, 255, 0.15)',
             '&:hover': {
               backgroundColor: 'rgba(255, 154, 69, 0.1)',
             },
@@ -411,11 +402,7 @@ export default function LayoutNew({ children }) {
               {open && (
                 <Box>
                   <IconButton onClick={handleDrawerClose}>
-                    {theme.direction === 'rtl' ? (
-                      <img src={menuFoldLine} />
-                    ) : (
-                      <img src={menuFoldLine} />
-                    )}
+                    {theme.direction === 'rtl' ? <img src={menuFoldLine} /> : <img src={menuFoldLine} />}
                   </IconButton>
                 </Box>
               )}
@@ -451,10 +438,7 @@ export default function LayoutNew({ children }) {
                 </Typography>
               )}
               {!open && (
-                <Typography
-                  variant="wpf_p4_semiBold"
-                  sx={{ color: '#B6C9F0', pl: '5px' }}
-                >
+                <Typography variant="wpf_p4_semiBold" sx={{ color: '#B6C9F0', pl: '5px' }}>
                   MENU
                 </Typography>
               )}

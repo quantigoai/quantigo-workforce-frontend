@@ -26,7 +26,7 @@ const ReviewSwipper = () => {
       dispatch(getAllReviewForCourseId(course._id)).then((action) => {
         setAllReviews(action.payload.data.reviews);
       });
-  }, []);
+  }, [course]);
 
   const review = {
     img: img,

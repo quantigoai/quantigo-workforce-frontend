@@ -79,11 +79,7 @@ const CourseNew = () => {
     setPagination,
   } = useCourseManagement();
   const { user } = useSelector((state) => state.user);
-  const {
-    isLoading: cLoading,
-    total,
-    courseMeta,
-  } = useSelector((state) => state.course);
+  const { isLoading: cLoading, total, courseMeta } = useSelector((state) => state.course);
   const CoursePaper = styled(Paper)({
     width: '100%',
     height: '90%',
@@ -109,34 +105,7 @@ const CourseNew = () => {
     });
   }, []);
   const pathname = window.location.pathname;
-  console.log('🚀 ~ CourseNew ~ pathname:', pathname);
 
-  // useLayoutEffect(() => {
-  //   console.log('sss');
-  //   if (pathname === '/courses2/allCourse') {
-  //     dispatch(getAllCoursesNew({ filter, search })).then((action) => {
-  //       setCourseCount(action.payload.data.courses.count);
-  //       setAllCourses(action.payload.data.courses);
-  //       setFeatureCourses(action.payload.data.courses.featureCourseList);
-  //       setIsDataLoading(false);
-  //       // setIsPagination(false);
-  //     });
-  //   }
-  //   if (pathname === '/courses2/myCourse') {
-  //     dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
-  //       setAllCourses(action.payload.data);
-  //       setIsDataLoading(false);
-  //     });
-  //   }
-  //   if (pathname === '/courses2/archiveCourse') {
-  //     dispatch(getArchivedCourses({ filter, search, pagination })).then(
-  //       (action) => {
-  //         setAllCourses(action.payload.data);
-  //         setIsDataLoading(false);
-  //       },
-  //     );
-  //   }
-  // }, [pagination, search, pathname]);
   return (
     <Box className="content">
       <Box className="contentHeader">

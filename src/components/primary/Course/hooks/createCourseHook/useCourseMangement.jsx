@@ -247,6 +247,7 @@ const useCourseManagement = () => {
     setSearch('');
     searchRef.current.value = '';
   };
+  const [isBtnLoading, setIsBtnLoading] = useState(false);
   const onSubmit = (data) => {
     const preRequisiteCoursesColl = preRequisiteCourses.map((preRequisite) => {
       return preRequisite._id;
@@ -269,17 +270,20 @@ const useCourseManagement = () => {
     formData.append('isFeaturedCourse', checkedFeatured);
     outcomes.length > 1 && formData.append('outComes', outcomes);
     skillColl.length && formData.append('skills', skillColl);
+    setIsBtnLoading(true);
     dispatch(createCourse(formData)).then((action) => {
       if (action.error) {
         toast.trigger(action.error.message, 'error');
+        setIsBtnLoading(false);
       } else {
         toast.trigger(action.payload.data.message, 'success');
         if (level) {
           dispatch(getAllCourses({ level, filter, search })).then((action) => {
             setAllCoursesFull(action.payload.data.courses);
-            setCourseCountFull(action.payload.data.count);
+            setCourseCount(action.payload.data.count);
             setIsDataLoading(false);
             handleClose();
+            setIsBtnLoading(false);
           });
         } else {
           dispatch(getAllCoursesNew({})).then((action) => {
@@ -288,6 +292,7 @@ const useCourseManagement = () => {
             setFeatureCourses(action.payload.data.courses.featureCourseList);
             setIsDataLoading(false);
             handleClose();
+            setIsBtnLoading(false);
           });
           handleClose();
         }
@@ -393,6 +398,7 @@ const useCourseManagement = () => {
     setPagination,
     setIsCourseLoading,
     level,
+    isBtnLoading,
   };
 };
 

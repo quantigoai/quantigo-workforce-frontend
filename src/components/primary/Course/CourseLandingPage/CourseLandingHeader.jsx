@@ -76,7 +76,7 @@ const CourseLandingHeader = () => {
       user.role === 'reviewer'
     ) {
       navigate(`/course-homepage/${course._id}`);
-      user.enrolledCourses.includes(course._id) &&
+      !user.enrolledCourses.includes(course._id) &&
         dispatch(enrollACourse(course._id)).then((action) => {
           dispatch(updateUserEnrollCourse(action.payload.data.course._id));
         });
@@ -109,13 +109,13 @@ const CourseLandingHeader = () => {
             <Grid item xs={8}>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ paddingRight: '6px' }}>
-                  <LanguageChip language={course.language} />
+                  <LanguageChip language={course.language || ''} />
                 </Box>
                 <Box sx={{ paddingRight: '6px' }}>
-                  <CategoryChip category={course.category} />
+                  <CategoryChip category={course.category || ''} />
                 </Box>
                 <Box sx={{ padding: '0%' }}>
-                  <LevelChip level={course.level} />
+                  <LevelChip level={course.level || ''} />
                 </Box>
               </Box>
             </Grid>
@@ -198,7 +198,9 @@ const CourseLandingHeader = () => {
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', marginTop: '20px', mb: '16px' }}>
           <Button disabled={!isEnrollAble} sx={btnStyle} onClick={handleRouteChange}>
-            {(user.role === 'level_0_annotator' && !user.completedCourses.includes(course._id)) ||
+            {(user.role === 'level_0_annotator' &&
+              user.completedCourses.includes(course._id) &&
+              !user.completedCourses.includes(course._id)) ||
             (user.role === 'level_1_annotator' && !user.completedCourses.includes(course._id)) ||
             (user.role === 'level_2_annotator' && !user.completedCourses.includes(course._id)) ||
             (user.role === 'level_3_annotator' && !user.completedCourses.includes(course._id)) ||

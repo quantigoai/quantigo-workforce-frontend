@@ -88,8 +88,8 @@ const CourseLevel = ({ title, courses, handleViewDetailsButton, seeMore, isActiv
             key={course._id}
           >
             <CustomCard
-              isActiveEnrolled={isActiveEnrolled}
-              isActiveArchived={isActiveArchived}
+              // isActiveEnrolled={isActiveEnrolled}
+              // isActiveArchived={isActiveArchived}
               courseDirection={user.enrolledCourses.includes(course._id) ? 'MyCourse' : 'all'}
               handleViewDetailsButton={handleViewDetailsButton}
               course={course}

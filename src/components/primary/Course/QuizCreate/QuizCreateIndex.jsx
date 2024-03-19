@@ -73,7 +73,7 @@ const QuizCreateIndex = () => {
   };
 
   const handleChangeInput = (uniqueId, event, questionImage) => {
-    console.log("🚀 ~ handleChangeInput ~ event:", event)
+    console.log("🚀 ~ handleChangeInput ~ event:", event);
     const newInputFields = inputFields.map((i) => {
       if (event === "imageAndOptions" || event === "default" || event === "imageInOptions") {
         if (uniqueId === i.uniqueId) {
@@ -106,7 +106,7 @@ const QuizCreateIndex = () => {
       console.log("🚀 ~ newInputFields ~ i:", i);
       return i;
     });
-    
+
     setInputFields(newInputFields);
   };
 
@@ -212,7 +212,7 @@ const QuizCreateIndex = () => {
       // }
     });
     data.questionAndAnswer = inputFields;
-    
+
     await toast.responsePromise(
       createQuizFunction(formData),
       setQuizLoading,
@@ -223,7 +223,7 @@ const QuizCreateIndex = () => {
         },
         afterSuccess: (data) => {
           setReject(false);
-          // navigate(`/course-homepage/${course._id}`);
+          navigate(`/course-homepage/${course._id}`);
         },
         afterError: (data) => {
           setReject(false);

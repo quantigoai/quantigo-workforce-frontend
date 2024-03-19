@@ -7,6 +7,7 @@ import { getAllCourseSeries } from "../../../../features/slice/courseSlice";
 import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 
 const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
+  console.log("🚀 ~ CourseChapterContent ~ course:", course);
   const { isLightTheme } = useSelector((state) => state.theme);
   const { courseChapters } = useSelector((state) => state.course);
   const [coursesSeries, setCoursesSeries] = useState([]);
@@ -24,10 +25,14 @@ const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
   };
 
   useEffect(() => {
-    dispatch(getAllCourseSeries(course._id)).then((action) => {
-      console.log(action.payload.data);
-      setCoursesSeries(action.payload.data.coursesSeries);
-    });
+    console.log("🚀 ~ dispatch ~ course._id:", course._id);
+    console.log("hitttttsdsd");
+
+    course._id &&
+      dispatch(getAllCourseSeries(course._id)).then((action) => {
+        // console.log(action.payload.data);
+        setCoursesSeries(action.payload.data.coursesSeries);
+      });
   }, [course]);
   const arr = [0, 1, 2, 3, 4, 5];
   return (

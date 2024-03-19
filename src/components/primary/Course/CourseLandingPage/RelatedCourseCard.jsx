@@ -74,7 +74,9 @@ const RelatedCourseCard = ({ course, handleViewDetailsButton }) => {
   // let height = '10%'; // Default width for large screens
   if (screenSize >= 1500) {
     // Extra-large screens
-    width = 328;
+    width = 352;
+    // width = 328;
+
     height = 180;
   } else if (screenSize === 1440) {
     // Large screens
@@ -103,11 +105,96 @@ const RelatedCourseCard = ({ course, handleViewDetailsButton }) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         sx={{
+          borderRadius: "10px 10px 10px 10px",
+          display: "flex",
+          flexDirection: "column",
+          overflow: "hidden",
+          backgroundColor: "#fff",
+          boxShadow: "0px 1px 0px 0px #F8FAFC"
+        }}
+      >
+        <Box
+          sx={{ cursor: "pointer", position: "relative" }}
+          onClick={() => handleViewDetailsButton(course._id, "All")}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              left: { xxl: 280, xl: 200, lg: 175 },
+              top: 10,
+              zIndex: 20,
+            }}
+          ></Box>
+          <Box sx={{ overflow: "hidden" }}>
+            <img
+              style={
+                hovering
+                  ? {
+                      ...MyCustomCard,
+                      ...MyCustomCardHover,
+                      width,
+                      height,
+                      // overflow: 'hidden',
+                    }
+                  : {
+                      ...MyCustomCard,
+                      width,
+                      height,
+                    }
+              }
+              src={imageUrl}
+              alt=''
+            />
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            paddingX: "16px",
+            paddingY: "12px",
+        
+          }}
+        >
+          <Box>
+            <Typography variant='wpf_p4_semiBold' color={"primary.P600"} sx={{ mb: 1 }}>
+              {capitalizeFirstLetter(course.category)} <img src={RectangleIcon} /> {capitalizeFirstLetter(course.level)}
+            </Typography>
+          </Box>
+          <Box sx={{ height: "110px" }}>
+            <Box>
+              <Typography
+                onClick={() => handleViewDetailsButton(course._id, "All")}
+                variant='wpf_h6_semiBold'
+                color={"grey.500"}
+                sx={{ cursor: "pointer", lineHeight: "20px" }}
+              >
+                {course.name?.length > 50 ? course.name?.substring(0, 50) + "....." : course.name}
+              </Typography>
+            </Box>
+            <Box></Box>{" "}
+            <Typography sx={{ lineHeight: "18px" }} variant='wpf_h8_regular' color={"grey.550"}>
+              {course.description?.length > 100 ? course.description?.substring(0, 70) + "....." : course.description}
+            </Typography>
+          </Box>
+          <Box onClick={() => handleViewDetailsButton(course._id, "All")} sx={{ cursor: "pointer" }}>
+            <Typography variant='wpf_p4_medium'>View Details</Typography>
+
+            <img style={{ marginLeft: "15px" }} src={ArrowIcon} />
+          </Box>
+        </Box>
+      </Box>
+
+      {/* <Box
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        sx={{
           display: "flex",
           flexDirection: "column",
         }}
       >
-        <Box sx={{ cursor: "pointer" }} onClick={() => handleViewDetailsButton(course._id, "All")}>
+        <Box
+          sx={{ cursor: "pointer", position: "relative" }}
+          onClick={() => handleViewDetailsButton(course._id, "All")}
+        >
           <img
             style={
               hovering
@@ -156,7 +243,7 @@ const RelatedCourseCard = ({ course, handleViewDetailsButton }) => {
             <img style={{ marginLeft: "15px" }} src={ArrowIcon} />
           </Box>
         </Box>
-      </Box>
+      </Box> */}
     </>
   );
 };

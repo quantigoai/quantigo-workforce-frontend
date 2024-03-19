@@ -120,6 +120,7 @@ const CustomCard = ({
           display: 'flex',
           flexDirection: 'column',
           overflow: 'hidden',
+          
         }}
       >
         <Box

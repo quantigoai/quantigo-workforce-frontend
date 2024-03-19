@@ -66,8 +66,7 @@ const CourseLandingHeader = () => {
     hub,
     handleChangeHubs,
   } = useCourseDetails();
-  console.log(course.totalCurrentEnrolledStudents);
-  console.log(course);
+
   const handleRouteChange = () => {
     if (
       user.role === 'level_0_annotator' ||

@@ -56,6 +56,7 @@ const CustomCard = ({
   isActiveEnrolled,
   isActiveArchived,
 }) => {
+  console.log('🚀 ~ level:', level);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoading } = useSelector((state) => state.course);
@@ -120,7 +121,6 @@ const CustomCard = ({
           display: 'flex',
           flexDirection: 'column',
           overflow: 'hidden',
-          
         }}
       >
         <Box
@@ -135,7 +135,7 @@ const CustomCard = ({
               zIndex: 20,
             }}
           >
-            {(level && course.isFeaturedCourse) || course.isFeaturedCourse ? (
+            {level && course.isFeaturedCourse ? (
               <Typography
                 sx={{
                   mb: 1,

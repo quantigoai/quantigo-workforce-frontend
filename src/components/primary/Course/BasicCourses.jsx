@@ -200,6 +200,7 @@ const BasicCourses = () => {
                 key={course._id}
               >
                 <CustomCard
+                  level={level}
                   //   isActiveEnrolled={isActiveEnrolled}
                   //   isActiveArchived={isActiveArchived}
                   courseDirection={user.enrolledCourses.includes(course._id) ? 'MyCourse' : 'all'}

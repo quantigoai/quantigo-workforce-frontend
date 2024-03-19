@@ -134,9 +134,7 @@ const CustomCard = ({
               zIndex: 20,
             }}
           >
-            {(level && course.isFeaturedCourse) ||
-            (isActiveEnrolled && course.isFeaturedCourse) ||
-            (isActiveArchived && course.isFeaturedCourse) ? (
+            {(level && course.isFeaturedCourse) || course.isFeaturedCourse ? (
               <Typography
                 sx={{
                   mb: 1,

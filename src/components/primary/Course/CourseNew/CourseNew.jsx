@@ -87,7 +87,7 @@ const CourseNew = () => {
 
   const CoursePaper = styled(Paper)({
     width: '100%',
-    height: pathname === '/courses2/myCourse' ? '84%' : '90%',
+    height: pathname === '/courses/my-course' ? '84%' : '90%',
     overflow: 'auto',
     display: 'flex',
     flexDirection: 'column',
@@ -100,14 +100,14 @@ const CourseNew = () => {
   const { level } = useParams();
 
   useEffect(() => {
-    dispatch(setActivePath('Course2'));
+    dispatch(setActivePath('Course'));
     dispatch(getCoursesCount()).then((action) => {
       setMyCourseCount(action.payload.data.coursesCount.myCourseCount);
       setArchiveCount(action.payload.data.coursesCount.myArchivedCourseCount);
       setAllCourseCount(action.payload.data.coursesCount.allCourseCount);
     });
-    if (pathname === '/courses2') {
-      navigate('/courses2/allCourse');
+    if (pathname === '/courses') {
+      navigate('/courses/all-course');
     }
   }, [pathname]);
 
@@ -125,7 +125,7 @@ const CourseNew = () => {
 
   const handleNewCourses = (pathname) => {
     const seePagination = { currentPage: 1, pageSize: courseMeta.limit + 10 };
-    if (pathname === '/courses2/myCourse') {
+    if (pathname === '/courses/my-course') {
       dispatch(getMyCourses({ filter, search, pagination: seePagination })).then((action) => {
         setCourseCount(action.payload.data.searchedTotal);
       });
@@ -180,7 +180,7 @@ const CourseNew = () => {
         <CoursePaper>
           <Outlet />
         </CoursePaper>
-        {(pathname === '/courses2/myCourse' || pathname === 'courses2/archiveCourse') && (
+        {(pathname === '/courses/my-course' || pathname === 'courses/archive-course') && (
           <Box sx={{ px: 5 }}>
             {total > 10 && courseMeta.currentPage !== courseMeta.pageNumber && (
               <Button onClick={() => handleNewCourses(pathname)}>see more</Button>

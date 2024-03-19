@@ -15,34 +15,22 @@ import {
   getMyCourses,
 } from '../../../../features/slice/courseSlice';
 
-const useCourseDispatch = ({
-  setCourseCount,
-  search,
-  filter,
-  pagination,
-  seePagination,
-}) => {
+const useCourseDispatch = ({ setCourseCount, search, filter, pagination, seePagination }) => {
   const dispatch = useDispatch();
 
   const handleDispatch = async (pathname, level) => {
-    console.log('🚀 ~ handleDispatch ~ level:', level);
-    console.log('🚀 ~ handleDispatch ~ pathname:', pathname);
     switch (true) {
-      case pathname === '/courses2/myCourse':
-        dispatch(getMyCourses({ filter, search, pagination })).then(
-          (action) => {
-            setCourseCount(action.payload.data.searchedTotal);
-          },
-        );
+      case pathname === '/courses/my-course':
+        dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
+          setCourseCount(action.payload.data.searchedTotal);
+        });
         break;
-      case pathname === '/courses2/archiveCourse':
-        dispatch(getArchivedCourses({ filter, search, pagination })).then(
-          (action) => {
-            setCourseCount(action.payload.data.searchedTotal);
-          },
-        );
+      case pathname === '/courses/archive-course':
+        dispatch(getArchivedCourses({ filter, search, pagination })).then((action) => {
+          setCourseCount(action.payload.data.searchedTotal);
+        });
         break;
-      case pathname === '/courses2' || pathname === '/courses2/allCourse':
+      case pathname === '/courses' || pathname === '/courses/all-course':
         dispatch(getAllCoursesNew({ filter, search })).then((action) => {
           setCourseCount(action.payload.data.courses.count);
         });

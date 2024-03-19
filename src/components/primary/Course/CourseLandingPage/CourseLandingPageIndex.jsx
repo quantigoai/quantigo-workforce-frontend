@@ -13,15 +13,12 @@ import CourseChapterContent from './CourseChapterContent';
 import CourseRelated from './CourseRelated';
 import useCourseManagement from '../hooks/createCourseHook/useCourseMangement';
 import LoadingComponent from '../../../shared/Loading/LoadingComponent';
-import {
-  setActiveChapterIndex,
-  setActiveCourseId,
-} from '../../../../features/slice/activePathSlice';
+import { setActiveChapterIndex, setActiveCourseId } from '../../../../features/slice/activePathSlice';
 
 const CourseLandingPageIndex = () => {
   const params = useParams();
   const dispatch = useDispatch();
-  const { course } = useSelector((state) => state.course);
+  const { isLoading, course } = useSelector((state) => state.course);
   const { isLightTheme } = useSelector((state) => state.theme);
   const [isCourseLoading, setIsCourseLoading] = useState(false);
   // const { handleViewDetailsButton, isCourseLoading } = useCourseManagement();
@@ -39,9 +36,9 @@ const CourseLandingPageIndex = () => {
             // navigate(`/course-details/${id}/index`);
             if (courseDirection === 'MyCourse') {
               navigate(`/course-homepage/${id}`);
-              setIsCourseLoading(false);
+              // setIsCourseLoading(false);
             } else {
-              setIsCourseLoading(false);
+              // setIsCourseLoading(false);
               navigate(`/course-landing/${id}`);
             }
           });
@@ -61,7 +58,8 @@ const CourseLandingPageIndex = () => {
     <Box>
       {isCourseLoading ? (
         <>
-          <LoadingComponent />
+          {' '}
+          <LoadingComponent />{' '}
         </>
       ) : (
         <>
@@ -69,10 +67,7 @@ const CourseLandingPageIndex = () => {
             <CourseLandingHeader course={course} />
           </Box>
           <Box sx={{ backgroundColor: isLightTheme ? '#fff' : '#000' }}>
-            <CourseLandingContent
-              course={course}
-              handleViewDetailsButton={handleViewDetailsButton1}
-            />
+            <CourseLandingContent course={course} handleViewDetailsButton={handleViewDetailsButton1} />
           </Box>
         </>
       )}

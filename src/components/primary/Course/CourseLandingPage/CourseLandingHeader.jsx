@@ -4,7 +4,7 @@ import LanguageChip from '../LanguageChip';
 import CategoryChip from '../CategoryChip';
 import LevelChip from '../CourseCardActionLebel/LevelChip';
 import CourseContent from './CourseContent';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CourseHeaderTitle from './CourseHeaderTitle';
 import editCourseIcon from '../../../../assets/images/courses/editCourse.svg';
 import EditCourseModal from '../CreateCourseModal/EditCourseModal';
@@ -15,6 +15,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { enrollACourse } from '../../../../features/slice/courseSlice';
 import { updateUserEnrollCourse } from '../../../../features/slice/userSlice';
 import CourseSubmitReviewModal from './CourseSubmitReviewModal';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import CertificatePdf from '../Certificate/CertificatePdf';
 const boxStyle = {
   display: 'flex',
   justifyContent: 'space-between',
@@ -37,7 +39,6 @@ const CourseLandingHeader = () => {
   // const { course, courseChapter, courseChapters } = useSelector((state) => state.course);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-  console.log('🚀 ~ CourseLandingHeader ~ user:', user.completedCourses);
   const { isEnrollAble, enrolmentMessage } = useSelector((state) => state.course);
 
   const {
@@ -75,7 +76,7 @@ const CourseLandingHeader = () => {
       user.role === 'reviewer'
     ) {
       navigate(`/course-homepage/${course._id}`);
-      !user.enrolledCourses.includes(course._id) &&
+      user.enrolledCourses.includes(course._id) &&
         dispatch(enrollACourse(course._id)).then((action) => {
           dispatch(updateUserEnrollCourse(action.payload.data.course._id));
         });
@@ -197,9 +198,7 @@ const CourseLandingHeader = () => {
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', marginTop: '20px', mb: '16px' }}>
           <Button disabled={!isEnrollAble} sx={btnStyle} onClick={handleRouteChange}>
-            {(user.role === 'level_0_annotator' &&
-              !user.completedCourses.includes(course._id) &&
-              user.completedCourses.includes(course._id)) ||
+            {(user.role === 'level_0_annotator' && !user.completedCourses.includes(course._id)) ||
             (user.role === 'level_1_annotator' && !user.completedCourses.includes(course._id)) ||
             (user.role === 'level_2_annotator' && !user.completedCourses.includes(course._id)) ||
             (user.role === 'level_3_annotator' && !user.completedCourses.includes(course._id)) ||
@@ -209,9 +208,16 @@ const CourseLandingHeader = () => {
           </Button>
 
           {user.completedCourses.includes(course._id) && (
-            <Button disabled={!isEnrollAble} sx={{ ...btnStyle, ml: 1 }}>
-              Download Certificate
-            </Button>
+            // <PDFDownloadLink document={<CertificatePdf />} fileName="Certificate">
+            // </PDFDownloadLink>
+            // <Button onClick={handleDownloadCertificate} disabled={!isEnrollAble} sx={{ ...btnStyle, ml: 1 }}>
+            //   Download Certificate
+            // </Button>
+            <Link to="/certificate" target="blank">
+              <Button disabled={!isEnrollAble} sx={{ ...btnStyle, ml: 1 }}>
+                Download Certificate
+              </Button>
+            </Link>
           )}
           {/* {user.completedCourses.includes(course._id) && (
           <Button 

@@ -6,6 +6,8 @@ import LoadingComponent from '../../../shared/Loading/LoadingComponent';
 import CourseLevel from '../CourseLevel';
 import FeaturedCourse from '../FeaturedCourse';
 import useCourseManagement from '../hooks/createCourseHook/useCourseMangement';
+import { PDFViewer } from '@react-pdf/renderer';
+import Certificate from '../Certificate/Certificate';
 
 const AllCourse = () => {
   const dispatch = useDispatch();
@@ -61,12 +63,9 @@ const AllCourse = () => {
 
                     {courses.count === 0 ? (
                       <Box sx={{ mt: '20px' }}>
-                        <Typography variant="wpf_h7_semiBold">
-                          No course Found
-                        </Typography>
+                        <Typography variant="wpf_h7_semiBold">No course Found</Typography>
                       </Box>
-                    ) : courses?.enrolledCourses &&
-                      courses.enrolledCourses.length > 0 ? (
+                    ) : courses?.enrolledCourses && courses.enrolledCourses.length > 0 ? (
                       <CourseLevel
                         isActiveEnrolled={isActiveEnrolled}
                         isActiveArchived={isActiveArchived}
@@ -76,8 +75,7 @@ const AllCourse = () => {
                         courses={courses?.enrolledCourses}
                         handleViewDetailsButton={handleViewDetailsButton}
                       />
-                    ) : courses?.archivedCourses &&
-                      courses.archivedCourses.length > 0 ? (
+                    ) : courses?.archivedCourses && courses.archivedCourses.length > 0 ? (
                       <CourseLevel
                         isActiveEnrolled={isActiveEnrolled}
                         isActiveArchived={isActiveArchived}
@@ -107,8 +105,7 @@ const AllCourse = () => {
                             handleViewDetailsButton={handleViewDetailsButton}
                           />
                         )}
-                        {courses.coursesByLevelList?.intermediate?.length >
-                          0 && (
+                        {courses.coursesByLevelList?.intermediate?.length > 0 && (
                           <CourseLevel
                             title={'Intermediate Courses'}
                             seeMore={true}

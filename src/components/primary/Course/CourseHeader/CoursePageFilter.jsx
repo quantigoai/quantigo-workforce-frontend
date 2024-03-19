@@ -22,8 +22,8 @@ const CoursePageFilter = ({ MyCourseCount, ArchiveCount, allCourseCount, isLevel
 
             textTransform: 'none',
             borderRadius: '8px',
-            backgroundColor: pathname === '/courses2/allCourse' ? '#244EF5' : '#FFF',
-            color: pathname === '/courses2/allCourse' ? '#fff' : '#667085',
+            backgroundColor: pathname === '/courses/all-course' ? '#244EF5' : '#FFF',
+            color: pathname === '/courses/all-course' ? '#fff' : '#667085',
 
             fontSize: { xl: '12px', xxl: '14px', lg: '8px' },
             fontWeight: '500',
@@ -32,7 +32,7 @@ const CoursePageFilter = ({ MyCourseCount, ArchiveCount, allCourseCount, isLevel
               color: '#fff',
             },
           }}
-          onClick={() => (isLevel ? navigate('/courses2/allCourse') : navigate('allCourse'))}
+          onClick={() => (isLevel ? navigate('/courses/all-course') : navigate('all-course'))}
         >
           All Courses({allCourseCount})
         </Button>
@@ -42,8 +42,8 @@ const CoursePageFilter = ({ MyCourseCount, ArchiveCount, allCourseCount, isLevel
 
             textTransform: 'none',
             borderRadius: '8px',
-            backgroundColor: pathname === '/courses2/myCourse' ? '#244EF5' : '#FFF',
-            color: pathname === '/courses2/myCourse' ? '#fff' : '#667085',
+            backgroundColor: pathname === '/courses/my-course' ? '#244EF5' : '#FFF',
+            color: pathname === '/courses/my-course' ? '#fff' : '#667085',
 
             fontSize: { xl: '12px', xxl: '14px', lg: '8px' },
             fontWeight: '500',
@@ -52,7 +52,7 @@ const CoursePageFilter = ({ MyCourseCount, ArchiveCount, allCourseCount, isLevel
               color: '#fff',
             },
           }}
-          onClick={() => (isLevel ? navigate('/courses2/myCourse') : navigate('myCourse'))}
+          onClick={() => (isLevel ? navigate('/courses/my-course') : navigate('my-course'))}
         >
           {' '}
           My Courses({MyCourseCount})
@@ -63,8 +63,8 @@ const CoursePageFilter = ({ MyCourseCount, ArchiveCount, allCourseCount, isLevel
 
             textTransform: 'none',
             borderRadius: '8px',
-            backgroundColor: pathname === '/courses2/archiveCourse' ? '#244EF5' : '#FFF',
-            color: pathname === '/courses2/archiveCourse' ? '#fff' : '#667085',
+            backgroundColor: pathname === '/courses/archive-course' ? '#244EF5' : '#FFF',
+            color: pathname === '/courses/archive-course' ? '#fff' : '#667085',
 
             fontSize: { xl: '12px', xxl: '14px', lg: '8px' },
             fontWeight: '500',
@@ -73,7 +73,7 @@ const CoursePageFilter = ({ MyCourseCount, ArchiveCount, allCourseCount, isLevel
               color: '#fff',
             },
           }}
-          onClick={() => (isLevel ? navigate('/courses2/archiveCourse') : navigate('archiveCourse'))}
+          onClick={() => (isLevel ? navigate('/courses/archive-course') : navigate('archive-course'))}
         >
           {' '}
           Archive Courses({ArchiveCount})

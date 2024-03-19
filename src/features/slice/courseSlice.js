@@ -18,7 +18,16 @@ import { realToken } from '../../helper/lib';
 import { calculateProgress } from '../../helper/scoreStore';
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
-
+const defaultCourse = {
+  name: '',
+  description: '',
+  level: 'basic',
+  language: 'english',
+  category: 'intro',
+  skills: [],
+  prerequisiteCourses: [],
+  totalTimeToRead: '',
+};
 const initialState = {
   isLoading: true,
   course: {},
@@ -512,7 +521,7 @@ const courseSlice = createSlice({
         state.error = action.error.data;
       })
       .addCase(getACourseByID.pending, (state) => {
-        state.course = {};
+        state.course = defaultCourse;
         state.isLoading = true;
       })
       .addCase(getACourseByID.fulfilled, (state, action) => {

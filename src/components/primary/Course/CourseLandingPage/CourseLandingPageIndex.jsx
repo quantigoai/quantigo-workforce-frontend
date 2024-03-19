@@ -23,6 +23,34 @@ const CourseLandingPageIndex = () => {
   // const { handleViewDetailsButton, isCourseLoading } = useCourseManagement();
   console.log("🚀 ~ CourseLandingPageIndex ~ isLoading:", isLoading);
 
+  const handleViewDetailsButton = async (id, courseDirection) => {
+    setIsCourseLoading(true);
+    // if (courseDirection === 'MyCourse') {
+    //   navigate(`/course-homepage/${id}`);
+    //   setIsCourseLoading(false);
+    // } else {
+    //   navigate(`/course-landing/${id}`);
+    //   setIsCourseLoading(false);
+    // }
+    dispatch(getACourseByID(id))
+      .then((res) => {
+        dispatch(setActiveCourseId(id));
+        dispatch(setActiveChapterIndex(0));
+        dispatch(getAllChapterFromACourse(id)).then((res) => {
+          if (courseDirection === "MyCourse") {
+            navigate(`/course-homepage/${id}`);
+            setIsCourseLoading(false);
+          } else {
+            navigate(`/course-landing/${id}`);
+            setIsCourseLoading(false);
+          }
+        });
+      })
+      .catch(() => {
+        setIsCourseLoading(false);
+      });
+  };
+
   const handleViewDetailsButton1 = (id, courseDirection) => {
     console.log("123");
 
@@ -65,7 +93,7 @@ const CourseLandingPageIndex = () => {
             <CourseLandingHeader course={course} />
           </Box>
           <Box sx={{ backgroundColor: isLightTheme ? "#fff" : "#000" }}>
-            <CourseLandingContent course={course} handleViewDetailsButton={handleViewDetailsButton1} />
+            <CourseLandingContent course={course} handleViewDetailsButton={handleViewDetailsButton} />
           </Box>
         </>
       )}

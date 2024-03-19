@@ -53,7 +53,7 @@ const CourseLevel = ({ title, courses, handleViewDetailsButton, seeMore, isActiv
               justifyContent: 'center',
               alignItems: 'center',
               color: '#266AED',
-              // mr: { xxl: '20px', xl: '0px', lg: '' },
+              mr: '25px',
             }}
             variant="wpf_p3_medium_3"
           >

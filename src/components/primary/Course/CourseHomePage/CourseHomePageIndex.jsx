@@ -25,7 +25,7 @@ const CourseHomePageIndex = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getACourseByID(id));
-    // dispatch(getAllChapterFromACourse(id));
+    dispatch(getAllChapterFromACourse(id));
   }, []);
   const handleCreateChapter = () => {
     navigate(`/create-chapter/${course._id}`);

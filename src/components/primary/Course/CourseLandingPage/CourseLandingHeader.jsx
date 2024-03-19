@@ -109,13 +109,13 @@ const CourseLandingHeader = () => {
             <Grid item xs={8}>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ paddingRight: '6px' }}>
-                  <LanguageChip language={course.language} />
+                  <LanguageChip language={course.language || ''} />
                 </Box>
                 <Box sx={{ paddingRight: '6px' }}>
-                  <CategoryChip category={course.category} />
+                  <CategoryChip category={course.category || ''} />
                 </Box>
                 <Box sx={{ padding: '0%' }}>
-                  <LevelChip level={course.level} />
+                  <LevelChip level={course.level || ''} />
                 </Box>
               </Box>
             </Grid>

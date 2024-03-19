@@ -16,6 +16,7 @@ import useCourseManagement from './hooks/createCourseHook/useCourseMangement';
 import CourseHeader from './CourseHeader/CourseHeader';
 import LoadingSkeleton from '../../shared/CustomComponenet/LoadingSkeleton/LoadingSkeleton';
 import CourseCreateModal from './CreateCourseModal/CourseCreateModal';
+import { getAllSkills } from '../../../features/slice/skillSlice';
 const BasicCourses = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { isLoading: cLoading, courses, total } = useSelector((state) => state.course);
@@ -107,6 +108,7 @@ const BasicCourses = () => {
   const [ArchiveCount, setArchiveCount] = useState(0);
   useEffect(() => {
     // dispatch(setActivePath('Course2'));
+    dispatch(getAllSkills());
     dispatch(getCoursesCount()).then((action) => {
       setMyCourseCount(action.payload.data.coursesCount.myCourseCount);
       setArchiveCount(action.payload.data.coursesCount.myArchivedCourseCount);

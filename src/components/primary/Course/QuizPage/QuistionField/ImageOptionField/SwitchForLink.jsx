@@ -44,7 +44,7 @@ const SwitchForLink = ({ handleImage, videoLink, videoId }) => {
     marginTop: "6px",
     borderWidth: 2,
     borderRadius: 8,
-    height: "130px",
+    height: "120px",
     // width: "12px",
     borderColor: "rgba(70, 70, 70, 0.2)",
     borderStyle: "dashed",
@@ -77,8 +77,9 @@ const SwitchForLink = ({ handleImage, videoLink, videoId }) => {
                   frameborder='0'
                   allow='autoplay; encrypted-media'
                   allowfullscreen=''
+                  style={{ borderRadius: "8px" }}
                   width='100%'
-                  height='130px'
+                  height='123px'
                 ></iframe>
                 {/* </div> */}
               </div>

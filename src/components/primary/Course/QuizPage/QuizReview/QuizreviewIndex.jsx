@@ -196,6 +196,7 @@ const QuizreviewIndex = () => {
               // allowfullscreen
               width='100%'
               height='160px'
+              style={{ borderRadius: "8px" }}
             ></iframe>
             {/* </div> */}
           </div>

@@ -194,17 +194,17 @@ const QuizShow = () => {
   };
 
   const handleSwitchContent = (value) => {
-    console.log("🚀 ~ handleSwitchContent ~ value:", value)
+    console.log("🚀 ~ handleSwitchContent ~ value:", value);
     switch (true) {
       case value?.endsWith(".png"):
       case value?.endsWith(".jpeg"):
       case value?.endsWith(".jpg"):
-        return <img src={value} style={{ borderRadius: "8px" }} height={160} width='100%' />;
+        return <img src={value} style={{ borderRadius: "8px 8px 0px 0px" }} height={160} width='100%' />;
       case value?.endsWith(".mp3"):
       case value?.endsWith(".mpeg"):
         return <audio style={audioStyle} src={value} controls></audio>;
       case value?.endsWith(".mp4"):
-        return <iframe height={160} src={value} alt='' width='100%' style={{ borderRadius: "8px" }}></iframe>;
+        return <iframe height={160} src={value} alt='' width='100%' style={{ borderRadius: "8px 8px 0px 0px" }}></iframe>;
       case value?.includes("youtube.com/watch"):
         // Extracting the video ID from the YouTube URL
         // const videoId = value.split("v=")[1];
@@ -218,11 +218,12 @@ const QuizShow = () => {
             <iframe
               src={`https://www.youtube.com/embed/${videoId}`}
               frameborder='0'
-              // allow='autoplay; encrypted-media'
+              allow='autoplay; encrypted-media'
               // allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-              // allowfullscreen
+              allowfullscreen=''
               width='100%'
               height='160px'
+              style={{borderRadius: "8px 8px 0px 0px"}}
             ></iframe>
             {/* </div> */}
           </div>

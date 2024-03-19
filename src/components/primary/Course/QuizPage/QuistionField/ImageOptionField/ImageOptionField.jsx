@@ -606,7 +606,7 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
               sx={{ width: "100%" }}
               // aria-label='text alignment'
             >
-              <Grid container spacing={1} >
+              <Grid container spacing={1}>
                 <Grid item xs={3}>
                   <ToggleButton
                     // style={{ color: alignment === "0" ? "blue" : "black" }}

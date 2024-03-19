@@ -37,7 +37,7 @@ const ImageFieldQuestion2 = ({
     flex: 1,
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
+    // alignItems: "center",
     // padding: "20px",
     marginTop: "6px",
     borderWidth: 2,
@@ -218,13 +218,12 @@ const ImageFieldQuestion2 = ({
               frameborder='0'
               // allow='autoplay; encrypted-media'
               // allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-              // allowfullscreen
+              allowfullscreen
               width='100%'
               height='250px'
+              style={{ borderRadius: "8px" }}
             ></iframe>
-            {/* </div> */}
           </div>
-          // </figure>
         );
 
       default:
@@ -258,7 +257,7 @@ const ImageFieldQuestion2 = ({
             {videoId ? (
               <>
                 {" "}
-                <div data-oembed-url={videoLink}>
+                <Box data-oembed-url={videoLink} sx={{ paddingTop: "2px" }}>
                   {/* <div data-oembed-url="https://www.youtube.com/watch?v=PEWP9nbqG9Q&list=RDPEWP9nbqG9Q&start_radio=1"> */}
                   {/* <div style="position: relative; padding-bottom: 100%; height: 0; padding-bottom: 56.2493%;"> */}
                   <iframe
@@ -268,10 +267,11 @@ const ImageFieldQuestion2 = ({
                     allow='autoplay; encrypted-media'
                     allowfullscreen=''
                     width='100%'
-                    height='240'
+                    height='225'
+                    style={{ borderRadius: "8px" }}
                   ></iframe>
                   {/* </div> */}
-                </div>
+                </Box>
               </>
             ) : (
               <>
@@ -282,18 +282,6 @@ const ImageFieldQuestion2 = ({
                 </Box>
               </>
             )}
-
-            {/* </figure> */}
-            {/* <iframe
-              width='100%'
-              height='240'
-              src={videoLink}
-              // src='https://www.youtube.com/embed/Lq1uQD4Orls?si=A_cbqxbmdDQxpxF5'
-              title='YouTube video player'
-              frameborder='0'
-              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-              allowfullscreen
-            ></iframe> */}
           </Box>
         </>
       ) : (
@@ -416,7 +404,7 @@ const ImageFieldQuestion2 = ({
                               cursor: "pointer",
                               position: "absolute",
                               top: "40%",
-                              left: "30%",
+                              left: "40%",
                             }}
                           >
                             <Button
@@ -461,7 +449,7 @@ const ImageFieldQuestion2 = ({
                           cursor: "pointer",
                           position: "absolute",
                           top: "40%",
-                          left: "30%",
+                          left: "40%",
                         }}
                       >
                         <Button

@@ -60,11 +60,12 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
             <iframe
               src={`https://www.youtube.com/embed/${videoId}`}
               frameborder='0'
-              // allow='autoplay; encrypted-media'
+              allow='autoplay; encrypted-media'
               // allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-              // allowfullscreen
+              allowfullscreen=''
               width='100%'
               height='240px'
+              style={{ borderRadius: "8px" }}
             ></iframe>
             {/* </div> */}
           </div>
@@ -106,7 +107,7 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
           </Grid>
           {item?.questionType === "imageAndOptions" ? (
             <>
-              <Grid container sx={{ backgroundColor: "", width: "100%" }}>
+              <Grid container sx={{ backgroundColor: "", width: "100%", paddingBottom: "2%" }}>
                 <Grid xs={6} sx={{ paddingLeft: "2%", paddingTop: "3%" }}>
                   <ToggleButtonGroup
                     orientation='vertical'
@@ -150,7 +151,6 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                   sx={{
                     paddingLeft: "2%",
                     paddingRight: "2%",
-
                     paddingTop: "3%",
                   }}
                 >
@@ -191,7 +191,8 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                           >
                             <Box
                               sx={{
-                                border: "1px solid #E2E8F0",
+                                // border: "1px solid #E2E8F0",
+                                border: alignment === i ? "1px solid #2E58FF" : "1px solid #E2E8F0",
                                 borderRadius: "8px",
                               }}
                             >

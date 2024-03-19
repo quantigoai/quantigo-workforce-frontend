@@ -150,7 +150,7 @@ const ImageUploadIndex = ({
         );
       case value?.endsWith(".mp4"):
         return (
-          <video height={"150px"} width={"100%"} controls>
+          <video height={"155px"} width={"100%"} controls    style={{borderRadius:"8px"}}>
             <source src={value} />
           </video>
         );
@@ -170,7 +170,7 @@ const ImageUploadIndex = ({
               // allow='autoplay; encrypted-media'
               // allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
               // allowfullscreen
-            
+            style={{borderRadius:"8px"}}
               width='100%'
               height='160px'
             ></iframe>

@@ -95,14 +95,14 @@ const useCourseManagement = () => {
         setFilter({});
       });
     } else {
-      if (pathname === '/courses2/myCourse') {
+      if (pathname === '/courses/my-course') {
         dispatch(getMyCourses({ filter: {}, search, pagination })).then((action) => {
           setCourseCount(action.payload.data.searchedTotal);
           setAllCourses(action.payload.data);
           setIsDataLoading(false);
           setFilter({});
         });
-      } else if (pathname === '/courses2/archiveCourse') {
+      } else if (pathname === '/courses/archive-course') {
         dispatch(getArchivedCourses({ filter: {}, search, pagination })).then((action) => {
           setCourseCount(action.payload.data.searchedTotal);
           setAllCourses(action.payload.data);
@@ -143,13 +143,13 @@ const useCourseManagement = () => {
       });
       // }
     } else {
-      if (pathname === '/courses2/myCourse') {
+      if (pathname === '/courses/my-course') {
         dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
           setCourseCount(action.payload.data.searchedTotal);
           setAllCourses(action.payload.data);
           // setIsDataLoading(false);
         });
-      } else if (pathname === '/courses2/archiveCourse') {
+      } else if (pathname === '/courses/archive-course') {
         dispatch(getArchivedCourses({ filter, search, pagination })).then((action) => {
           setCourseCount(action.payload.data.searchedTotal);
           setAllCourses(action.payload.data);

@@ -1,4 +1,4 @@
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getArchivedCourses } from '../../../../features/slice/courseSlice';
@@ -37,6 +37,8 @@ const ArchiveCourse = () => {
         <>
           <LoadingSkeleton />
         </>
+      ) : courses.length === 0 ? (
+        <Typography sx={{ pl: 5, fontSize: '18px', fontWeight: '700', textAlign: 'left' }}>No course found</Typography>
       ) : (
         <Box sx={{ paddingLeft: '25px' }}>
           <CourseLevel
@@ -44,15 +46,6 @@ const ArchiveCourse = () => {
             courses={courses}
             handleViewDetailsButton={handleViewDetailsButton}
           />
-
-          {/* <PaginationTable
-            pagination={pagination}
-            setPagination={setPagination}
-            totalCourse={total}
-            courseMeta={archivedCourseMeta}
-            // setFilterValue={setFilterValue}
-            // setFilteredCol={setFilteredCol}
-          /> */}
         </Box>
       )}
     </>

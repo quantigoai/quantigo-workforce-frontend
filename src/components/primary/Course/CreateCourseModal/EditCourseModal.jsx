@@ -324,7 +324,7 @@ const EditCourseModal = ({
                           name={'language'}
                           label="Language"
                           options={courseLanguageFields}
-                          // defaultValue={course.language}
+                          defaultValue={course.language}
                           isRequired={true}
                         />
                       </FieldBox>

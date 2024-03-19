@@ -66,7 +66,8 @@ const CourseLandingHeader = () => {
     hub,
     handleChangeHubs,
   } = useCourseDetails();
-
+  console.log(course.totalCurrentEnrolledStudents);
+  console.log(course);
   const handleRouteChange = () => {
     if (
       user.role === 'level_0_annotator' ||
@@ -76,7 +77,7 @@ const CourseLandingHeader = () => {
       user.role === 'reviewer'
     ) {
       navigate(`/course-homepage/${course._id}`);
-      user.enrolledCourses.includes(course._id) &&
+      !user.enrolledCourses.includes(course._id) &&
         dispatch(enrollACourse(course._id)).then((action) => {
           dispatch(updateUserEnrollCourse(action.payload.data.course._id));
         });
@@ -198,7 +199,9 @@ const CourseLandingHeader = () => {
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', marginTop: '20px', mb: '16px' }}>
           <Button disabled={!isEnrollAble} sx={btnStyle} onClick={handleRouteChange}>
-            {(user.role === 'level_0_annotator' && !user.completedCourses.includes(course._id)) ||
+            {(user.role === 'level_0_annotator' &&
+              user.completedCourses.includes(course._id) &&
+              !user.completedCourses.includes(course._id)) ||
             (user.role === 'level_1_annotator' && !user.completedCourses.includes(course._id)) ||
             (user.role === 'level_2_annotator' && !user.completedCourses.includes(course._id)) ||
             (user.role === 'level_3_annotator' && !user.completedCourses.includes(course._id)) ||

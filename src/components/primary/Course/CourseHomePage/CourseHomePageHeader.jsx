@@ -42,11 +42,12 @@ const CourseHomePageHeader = ({ course }) => {
 
   useEffect(() => {
     // setLoadingForMarks(true);
-    dispatch(getAllCourseChapterWithMark(course._id)).then((action) => {
-      setCourseCompletedPercentage(action.payload.data.courseCompletedPercentage);
-      // setLoadingForMarks(false);
-    });
-  }, []);
+    course._id &&
+      dispatch(getAllCourseChapterWithMark(course._id)).then((action) => {
+        setCourseCompletedPercentage(action.payload.data.courseCompletedPercentage);
+        // setLoadingForMarks(false);
+      });
+  }, [course]);
   const screenSize = window.innerWidth;
   let width = "90%";
   let height = "90%";

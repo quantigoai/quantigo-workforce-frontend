@@ -1,5 +1,22 @@
+/*
+ * File           : CourseLandingHeader.jsx
+ * Project        : wmpfrontv2
+ * Created Date   : We 20 Mar 2024 01:30:06
+ * Description    : <<description>>
+ *
+ * -----------------------------------------------------
+ * Author         : Tanzim Ahmed
+ * Email          : tanzimahmed077@gmail.com
+ * -----------------------------------------------------
+ * Last Modified  : Wed Mar 20 2024
+ * Modified By    : Tanzim Ahmed
+ * -----------------------------------------------------
+ * Copyright (c) 2024 Tanzim Ahmed
+ * -----------------------------------------------------
+ */
+
 import { Alert, Box, Button, Grid, Typography } from "@mui/material";
-import React from "react";
+import { default as React } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import editCourseIcon from "../../../../assets/images/courses/editCourse.svg";
@@ -72,11 +89,22 @@ const CourseLandingHeader = () => {
       user.role === "level_3_annotator" ||
       user.role === "reviewer"
     ) {
-      navigate(`/course-homepage/${course._id}`);
-      !user.enrolledCourses.includes(course._id) &&
+      // navigate(`/course-homepage/${course._id}`);
+      if (user.enrolledCourses.includes(course._id)) {
+        navigate(`/course-homepage/${course._id}`);
+      } else if (user.completedCourses.includes(course._id)) {
+        navigate(`/course-homepage/${course._id}`);
+      } else {
+        navigate(`/course-homepage/${course._id}`);
         dispatch(enrollACourse(course._id)).then((action) => {
           dispatch(updateUserEnrollCourse(action.payload.data.course._id));
         });
+      }
+
+      // !user.enrolledCourses.includes(course._id) &&
+      //   dispatch(enrollACourse(course._id)).then((action) => {
+      //     dispatch(updateUserEnrollCourse(action.payload.data.course._id));
+      //   });
     } else {
       navigate(`/course-homepage/${course._id}`);
     }
@@ -128,6 +156,11 @@ const CourseLandingHeader = () => {
                       borderRadius: "6px",
                       backgroundColor: "#fff",
                       border: "1px solid #F4F7FE",
+                      // color: "red",
+                      //   "&:hover": {
+                      //     backgroundColor: "#FF9A45",
+                      //     color: "#1D1D1D",
+                      //   },
                     }}
                     onClick={handleOpen}
                   >
@@ -176,39 +209,18 @@ const CourseLandingHeader = () => {
             </Grid>
           </Grid>
 
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "start",
-            }}
-          >
+          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "start" }}>
             <Box sx={{ paddingY: "12px" }}>
               <CourseHeaderTitle course={course} />
             </Box>
           </Box>
         </Box>
-        <Box
-          sx={{
-            borderTop: "1px solid #EAECF0",
-            borderBottom: "1px solid #EAECF0",
-            marginTop: "10px",
-          }}
-        >
+        <Box sx={{ borderTop: "1px solid #EAECF0", borderBottom: "1px solid #EAECF0", marginTop: "10px" }}>
           <CourseContent course={course} />
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            marginTop: "20px",
-            mb: "16px",
-          }}
-        >
+        <Box sx={{ display: "flex", alignItems: "center", marginTop: "20px", mb: "16px" }}>
           <Button disabled={!isEnrollAble} sx={btnStyle} onClick={handleRouteChange}>
-            {(user.role === "level_0_annotator" &&
-              user.completedCourses.includes(course._id) &&
-              !user.completedCourses.includes(course._id)) ||
+            {(user.role === "level_0_annotator" && !user.completedCourses.includes(course._id)) ||
             (user.role === "level_1_annotator" && !user.completedCourses.includes(course._id)) ||
             (user.role === "level_2_annotator" && !user.completedCourses.includes(course._id)) ||
             (user.role === "level_3_annotator" && !user.completedCourses.includes(course._id)) ||
@@ -252,6 +264,8 @@ const CourseLandingHeader = () => {
                 color: "warning.400",
                 backgroundColor: "warning.100",
                 borderRadius: "6px",
+                // height: "48px",
+                // fontSize: "12px",
               }}
             >
               {enrolmentMessage}
@@ -270,6 +284,8 @@ const CourseLandingHeader = () => {
             width,
             height,
             borderRadius: "8px",
+            // width: { xxl: '390px', xl: '340px', lg: '300px' },
+            // height: { xxl: '270px', xl: '40px', lg: '200px' },
           }}
           src={course.images}
           alt=""

@@ -35,7 +35,7 @@ const ReviewCard = ({ item, review }) => {
             <Box sx={{ height: "100%" }}>
               <Box sx={{ height: "15%", backgroundColor: "" }}>
                 <Grid container sx={{ paddingBottom: "3%" }}>
-                  <Rating name='read-only' value={item.rating} readOnly />
+                  <Rating name='read-only' value={item.rating} readOnly precision={0.5} />
                 </Grid>
               </Box>
               <Box sx={{ height: "50%", backgroundColor: "" }}>

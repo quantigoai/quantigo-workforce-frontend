@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 const CertificatePdf = () => {
   const { certificate } = useSelector((state) => state.course);
-  console.log('🚀 ~ CertificatePdf ~ certificate:', certificate);
+
   return (
     <PDFViewer width="100%" height="922px">
       <Certificate certificate={certificate} />

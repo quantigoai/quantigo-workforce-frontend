@@ -42,10 +42,6 @@ const ContentField = ({ courseChapter = {}, uploadPlugin, setContent }) => {
           // onReady={(editor) => {}}
           onChange={(event, editor) => {
             setContent(editor.getData());
-            console.log(
-              '🚀 ~ ContentField ~ editor.getData():',
-              editor.getData(),
-            );
           }}
         />
       </Grid>

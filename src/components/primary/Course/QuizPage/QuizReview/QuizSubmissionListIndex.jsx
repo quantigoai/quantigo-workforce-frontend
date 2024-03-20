@@ -44,9 +44,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const QuizSubmissionListIndex = () => {
   const params = useParams();
   const { id } = params;
-  console.log('🚀 ~ QuizSubmissionListIndex ~ id:', id);
+
   const { course, courseChapters } = useSelector((state) => state.course);
-  console.log('🚀 ~ QuizSubmissionListIndex ~ courseChapters:', courseChapters);
 
   const filterChapter = courseChapters.filter((chapter) => chapter?.quiz?.id === id);
 

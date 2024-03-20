@@ -1,21 +1,21 @@
-import { Grid } from "@mui/material";
-import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
-import Tabs from "@mui/material/Tabs";
-import Typography from "@mui/material/Typography";
-import PropTypes from "prop-types";
-import * as React from "react";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import CustomCard from "./CustomCard";
-import useCourseManagement from "./hooks/createCourseHook/useCourseMangement";
+import { Grid } from '@mui/material';
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import Typography from '@mui/material/Typography';
+import PropTypes from 'prop-types';
+import * as React from 'react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import CustomCard from './CustomCard';
+import useCourseManagement from './hooks/createCourseHook/useCourseMangement';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
     <div
-      role='tabpanel'
+      role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
@@ -39,7 +39,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
   };
 }
 
@@ -47,13 +47,12 @@ export default function CourseTab({ handleViewDetailsButton, filterCourses, isLo
   const [value, setValue] = React.useState(0);
   const { courses } = useSelector((state) => state.course);
   const { user } = useSelector((state) => state.user);
-  console.log("🚀 ~ CourseTab ~ user:", user);
+
   const [filterAllCourses, setFilterAllCourses] = React.useState([]);
-  console.log("🚀 ~ CourseTab ~ filterAllCourses:", filterAllCourses);
+
   const [filterMyCourses, setFilterMyCourses] = React.useState([]);
-  console.log("🚀 ~ CourseTab ~ filterMyCourses:", filterMyCourses);
+
   const [filterMyCompleteCourses, setFilterMyCompleteCourses] = React.useState([]);
-  console.log("🚀 ~ CourseTab ~ filterMyCompleteCourses:", filterMyCompleteCourses);
 
   useEffect(() => {
     setFilterMyCourses(courses.filter((course) => user.enrolledCourses.includes(course._id)));
@@ -70,31 +69,31 @@ export default function CourseTab({ handleViewDetailsButton, filterCourses, isLo
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: '100%' }}>
       <Box>
         <Tabs
           sx={{
-            paddingX: "1%",
+            paddingX: '1%',
           }}
-          indicatorColor=''
+          indicatorColor=""
           value={value}
           onChange={handleChange}
         >
-          {" "}
+          {' '}
           <Tab
             sx={{
-              borderRadius: "8px",
-              backgroundColor: value === 0 ? "primary.B200" : "neutral.N000",
-              minHeight: "36px",
-              height: "36px",
+              borderRadius: '8px',
+              backgroundColor: value === 0 ? 'primary.B200' : 'neutral.N000',
+              minHeight: '36px',
+              height: '36px',
               mr: 2,
               ml: 1,
             }}
             label={
               <Typography
-                sx={{ textTransform: "none" }}
-                variant='wpf_p4_semiBold'
-                color={value === 0 ? "#fff" : "neutral.700"}
+                sx={{ textTransform: 'none' }}
+                variant="wpf_p4_semiBold"
+                color={value === 0 ? '#fff' : 'neutral.700'}
               >
                 All Courses
               </Typography>
@@ -103,16 +102,16 @@ export default function CourseTab({ handleViewDetailsButton, filterCourses, isLo
           />
           <Tab
             sx={{
-              borderRadius: "8px",
-              backgroundColor: value === 1 ? "primary.B200" : "neutral.N000",
-              minHeight: "36px",
-              height: "36px",
+              borderRadius: '8px',
+              backgroundColor: value === 1 ? 'primary.B200' : 'neutral.N000',
+              minHeight: '36px',
+              height: '36px',
             }}
             label={
               <Typography
-                sx={{ textTransform: "none" }}
-                variant='wpf_p4_semiBold'
-                color={value === 1 ? "#fff" : "neutral.700"}
+                sx={{ textTransform: 'none' }}
+                variant="wpf_p4_semiBold"
+                color={value === 1 ? '#fff' : 'neutral.700'}
               >
                 My Courses
               </Typography>
@@ -121,17 +120,17 @@ export default function CourseTab({ handleViewDetailsButton, filterCourses, isLo
           />
           <Tab
             sx={{
-              borderRadius: "8px",
-              backgroundColor: value === 2 ? "primary.B200" : "neutral.N000",
-              minHeight: "36px",
-              height: "36px",
+              borderRadius: '8px',
+              backgroundColor: value === 2 ? 'primary.B200' : 'neutral.N000',
+              minHeight: '36px',
+              height: '36px',
               ml: 2,
             }}
             label={
               <Typography
-                sx={{ textTransform: "none" }}
-                variant='wpf_p4_semiBold'
-                color={value === 2 ? "#fff" : "neutral.700"}
+                sx={{ textTransform: 'none' }}
+                variant="wpf_p4_semiBold"
+                color={value === 2 ? '#fff' : 'neutral.700'}
               >
                 Archive Courses
               </Typography>
@@ -153,7 +152,11 @@ export default function CourseTab({ handleViewDetailsButton, filterCourses, isLo
         <Grid container spacing={4}>
           {filterMyCourses.map((course) => (
             <Grid key={course._id} item xs={12} sm={6} md={3} gap={1}>
-              <CustomCard courseDirection="MyCourse" handleViewDetailsButton={handleViewDetailsButton} course={course} />
+              <CustomCard
+                courseDirection="MyCourse"
+                handleViewDetailsButton={handleViewDetailsButton}
+                course={course}
+              />
             </Grid>
           ))}
         </Grid>

@@ -1,47 +1,47 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Button, Grid } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import * as Yup from "yup";
-import useToaster from "../../../../customHooks/useToaster";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Box, Button, Grid } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import * as Yup from 'yup';
+import useToaster from '../../../../customHooks/useToaster';
 import {
   deleteQuestionFromQuiz,
   insertAQuestionInQuiz,
   updateQuizById,
   updateQuizQA,
-} from "../../../../features/slice/quizSlice";
-import FormProvider from "../../../shared/FormProvider/FormProvider";
-import ChapterUpdateHeader from "../ChapterCreate/ChapterUpdateHeader";
-import QuestionType from "../QuizPage/QuestionType";
-import QuizNameDurationField from "../QuizPage/QuizNameDurationField";
+} from '../../../../features/slice/quizSlice';
+import FormProvider from '../../../shared/FormProvider/FormProvider';
+import ChapterUpdateHeader from '../ChapterCreate/ChapterUpdateHeader';
+import QuestionType from '../QuizPage/QuestionType';
+import QuizNameDurationField from '../QuizPage/QuizNameDurationField';
 
 const QuizUpdateIndex = () => {
   const [inputFieldsCopy, setInputFieldsCopy] = useState([]);
   const { courseChapters } = useSelector((state) => state.course);
   const [isCompleted, setIsCompleted] = useState(false);
   const [disabledButton, setDisabledButton] = useState(true);
-  const [durationTime, setDurationTime] = useState("");
+  const [durationTime, setDurationTime] = useState('');
   const { quiz } = useSelector((state) => state.quiz);
   const [inputFields, setInputFields] = useState(quiz.questionAndAnswer);
 
   const dispatch = useDispatch();
   const [tempData, setTempData] = useState({
-    quizId: "",
+    quizId: '',
     questionAndAnswer: {},
   });
 
   const [addQuiz, setAddQuiz] = useState({
-    quizId: "",
+    quizId: '',
     questionAndAnswer: {},
   });
   const QuizEditSchema = Yup.object().shape({
-    name: Yup.string().required("Quiz name is required"),
+    name: Yup.string().required('Quiz name is required'),
     // duration: Yup.string().required("Quiz duration is required"),
     passMarkThreshold: Yup.number()
-      .required("Quiz Pass Mark Threshold is required")
-      .lessThan(101, "Quiz Pass Mark Threshold must be in range between 1 to 100")
+      .required('Quiz Pass Mark Threshold is required')
+      .lessThan(101, 'Quiz Pass Mark Threshold must be in range between 1 to 100')
       .transform((value) => (isNaN(value) ? undefined : value)),
   });
   const methods = useForm({
@@ -50,7 +50,7 @@ const QuizUpdateIndex = () => {
       name: quiz.name,
       passMarkThreshold: quiz.passMarkThreshold,
     },
-    mode: "all",
+    mode: 'all',
   });
   useEffect(() => {
     // setInputFields(quiz.questionAndAnswer);
@@ -63,12 +63,12 @@ const QuizUpdateIndex = () => {
     const minutes = duration % 60 || 0;
     if (hours === 0) {
       if (minutes === 0) {
-        setDurationTime(minutes + " minute");
+        setDurationTime(minutes + ' minute');
       } else {
-        setDurationTime(minutes + " minutes");
+        setDurationTime(minutes + ' minutes');
       }
     } else {
-      setDurationTime(hours + " hours " + minutes + " minutes");
+      setDurationTime(hours + ' hours ' + minutes + ' minutes');
     }
   }, [quiz]);
 
@@ -96,47 +96,46 @@ const QuizUpdateIndex = () => {
     if (field.newQuiz) {
       const newInputFields = inputFields.map((item) => {
         if (item._id === field._id) {
-          if (index === "questionText") {
+          if (index === 'questionText') {
             item.question[index] = value;
           }
-          if (index === "questionImage") {
+          if (index === 'questionImage') {
             item.question[index] = value;
           }
-          if (index === "correctAnswerIndex") {
+          if (index === 'correctAnswerIndex') {
             item.correctAnswerIndex = value;
           }
 
-          if (index === "questionType") {
+          if (index === 'questionType') {
             item.questionType = value;
-            if (value === "imageAndOptions" || value === "default" || value === "imageInOptions") {
+            if (value === 'imageAndOptions' || value === 'default' || value === 'imageInOptions') {
               item.possibleAnswers = [];
             }
-            if (value === "default" || value === "imageInOptions") {
+            if (value === 'default' || value === 'imageInOptions') {
               delete item.question.questionImage;
             }
           }
-          if (index === "correctAnswerIndex") {
+          if (index === 'correctAnswerIndex') {
             item.correctAnswerIndex = value;
           }
-          if (index === "possibleAnswers_0") {
+          if (index === 'possibleAnswers_0') {
             item.possibleAnswers[0] = value;
           }
-          if (index === "possibleAnswers_1") {
+          if (index === 'possibleAnswers_1') {
             item.possibleAnswers[1] = value;
           }
 
-          if (index === "possibleAnswers_2") {
+          if (index === 'possibleAnswers_2') {
             item.possibleAnswers[2] = value;
           }
 
-          if (index === "possibleAnswers_3") {
+          if (index === 'possibleAnswers_3') {
             item.possibleAnswers[3] = value;
           }
-          if (index === "isTextFieldEnabled") {
+          if (index === 'isTextFieldEnabled') {
             item.isTextFieldEnabled = value;
           }
         }
-        console.log("🚀 ~ newInputFields ~ item:", item);
 
         return item;
       });
@@ -150,7 +149,7 @@ const QuizUpdateIndex = () => {
       newAddData1.questionAndAnswer[qaID] = {
         pa: {
           ...newAddData1.questionAndAnswer[qaID]?.pa,
-          ...(index !== "questionType"
+          ...(index !== 'questionType'
             ? {
                 [index]: value,
                 ...(newAddData1.questionAndAnswer[qaID]?.pa?.questionType ? {} : { questionType: field.questionType }),
@@ -169,7 +168,7 @@ const QuizUpdateIndex = () => {
       newTempData1.questionAndAnswer[qaID] = {
         pa: {
           ...newTempData1.questionAndAnswer[qaID]?.pa,
-          ...(index !== "questionType"
+          ...(index !== 'questionType'
             ? {
                 [index]: value,
                 ...(newTempData1.questionAndAnswer[qaID]?.pa?.questionType ? {} : { questionType: field.questionType }),
@@ -179,7 +178,7 @@ const QuizUpdateIndex = () => {
               }),
         },
       };
-      console.log("🚀 ~ handleUpdate ~ newTempData1:", newTempData1);
+
       setTempData(newTempData1);
     }
   };
@@ -189,28 +188,28 @@ const QuizUpdateIndex = () => {
       inputFields.map((i) => {
         if (i._id === key) {
           if (val.pa.questionType != i.questionType) {
-            if (i.questionType === "imageInOptions") {
-              if (val.pa.questionType === "imageAndOptions") {
+            if (i.questionType === 'imageInOptions') {
+              if (val.pa.questionType === 'imageAndOptions') {
                 setDisabledButton(true);
                 const possibleAnswersArray = [
-                  "possibleAnswers_0",
-                  "possibleAnswers_1",
-                  "possibleAnswers_2",
-                  "possibleAnswers_3",
+                  'possibleAnswers_0',
+                  'possibleAnswers_1',
+                  'possibleAnswers_2',
+                  'possibleAnswers_3',
                 ];
                 const allPossibleAnswersPresent = possibleAnswersArray.every((answer) => answer in val.pa);
 
-                if (allPossibleAnswersPresent && "questionImage" in val.pa) {
+                if (allPossibleAnswersPresent && 'questionImage' in val.pa) {
                   setDisabledButton(false);
                 }
               }
-              if (val.pa.questionType === "default") {
+              if (val.pa.questionType === 'default') {
                 setDisabledButton(true);
                 const possibleAnswersArray = [
-                  "possibleAnswers_0",
-                  "possibleAnswers_1",
-                  "possibleAnswers_2",
-                  "possibleAnswers_3",
+                  'possibleAnswers_0',
+                  'possibleAnswers_1',
+                  'possibleAnswers_2',
+                  'possibleAnswers_3',
                 ];
                 const allPossibleAnswersPresent = possibleAnswersArray.every((answer) => answer in val.pa);
 
@@ -219,27 +218,27 @@ const QuizUpdateIndex = () => {
                 }
               }
             }
-            if (i.questionType === "imageAndOptions") {
-              if (val.pa.questionType === "default") {
+            if (i.questionType === 'imageAndOptions') {
+              if (val.pa.questionType === 'default') {
                 setDisabledButton(false);
               }
             }
-            if (val.pa.questionType === "imageAndOptions") {
+            if (val.pa.questionType === 'imageAndOptions') {
               setDisabledButton(true);
-              if ("questionImage" in val.pa) {
+              if ('questionImage' in val.pa) {
                 setDisabledButton(false);
               }
               // else {
               //   setDisabledButton(true)
               // }
             }
-            if (val.pa.questionType === "imageInOptions") {
+            if (val.pa.questionType === 'imageInOptions') {
               setDisabledButton(true);
               const possibleAnswersArray = [
-                "possibleAnswers_0",
-                "possibleAnswers_1",
-                "possibleAnswers_2",
-                "possibleAnswers_3",
+                'possibleAnswers_0',
+                'possibleAnswers_1',
+                'possibleAnswers_2',
+                'possibleAnswers_3',
               ];
               const allPossibleAnswersPresent = possibleAnswersArray.every((answer) => answer in val.pa);
 
@@ -256,7 +255,7 @@ const QuizUpdateIndex = () => {
     });
   }, [tempData]);
   const [deleteQuestionIds, setDeleteQuestionIds] = useState([]);
-  const [RestoreQuestionID, setRestoreQuestionID] = useState("");
+  const [RestoreQuestionID, setRestoreQuestionID] = useState('');
   const handleRemoveQA = (field) => {
     if (field.newQuiz) {
       // const values = [...inputFields];
@@ -292,10 +291,10 @@ const QuizUpdateIndex = () => {
         _id: new Date().getTime(),
         newQuiz: true,
         question: {},
-        correctAnswerIndex: "",
+        correctAnswerIndex: '',
         possibleAnswers: [],
-        correctAnswer: "",
-        questionType: "default",
+        correctAnswer: '',
+        questionType: 'default',
       },
     ]);
     setInputFields([
@@ -305,10 +304,10 @@ const QuizUpdateIndex = () => {
         _id: new Date().getTime(),
         newQuiz: true,
         question: {},
-        correctAnswerIndex: "",
+        correctAnswerIndex: '',
         possibleAnswers: [],
-        correctAnswer: "",
-        questionType: "default",
+        correctAnswer: '',
+        questionType: 'default',
       },
     ]);
   };
@@ -362,9 +361,9 @@ const QuizUpdateIndex = () => {
           dispatch(updateQuizQA(data1)).then((action) => {
             // navigate(`/course-details/${course._id}`);
             if (action.error) {
-              toast.trigger(action.error.message, "error");
+              toast.trigger(action.error.message, 'error');
             } else {
-              toast.trigger(action.payload.data.message, "success");
+              toast.trigger(action.payload.data.message, 'success');
             }
           });
         });
@@ -404,12 +403,12 @@ const QuizUpdateIndex = () => {
       id: quiz._id,
       data,
     };
-    console.log("🚀 ~ onSubmit ~ finalData:", finalData);
+
     dispatch(updateQuizById(finalData)).then((action) => {
       if (action.error) {
-        toast.trigger(action.error.message, "error");
+        toast.trigger(action.error.message, 'error');
       } else {
-        toast.trigger(action.payload.data.message, "success");
+        toast.trigger(action.payload.data.message, 'success');
         navigate(`/course-homepage/${course._id}`);
       }
     });
@@ -417,8 +416,8 @@ const QuizUpdateIndex = () => {
 
   return (
     <>
-      <Box className='content' sx={{ backgroundColor: "neutral.N000" }}>
-        <Grid container sx={{ borderTop: "1px solid #E6ECF5", paddingTop: "5px" }}>
+      <Box className="content" sx={{ backgroundColor: 'neutral.N000' }}>
+        <Grid container sx={{ borderTop: '1px solid #E6ECF5', paddingTop: '5px' }}>
           <Grid xs={2}>
             {/* <Button
               sx={{
@@ -452,20 +451,20 @@ const QuizUpdateIndex = () => {
           </Grid>
           <Grid xs={8}>
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-              <Box className=''>
+              <Box className="">
                 <ChapterUpdateHeader disabledButton={disabledButton} durationTime={durationTime} />
               </Box>
 
-              <Box sx={{ backgroundColor: "" }}>
+              <Box sx={{ backgroundColor: '' }}>
                 <QuizNameDurationField update={true} method={methods} onSubmit={onSubmit} handleSubmit={handleSubmit} />
               </Box>
               <Box
                 sx={{
                   // height: "76vh",
-                  height: { lg: "73vh", xl: "60vh", xxl: "67vh" },
-                  overflowY: "auto  ",
-                  "&::-webkit-scrollbar": {
-                    width: "0", // Hide the scrollbar
+                  height: { lg: '73vh', xl: '60vh', xxl: '67vh' },
+                  overflowY: 'auto  ',
+                  '&::-webkit-scrollbar': {
+                    width: '0', // Hide the scrollbar
                   },
                   // backgroundColor: "blue",
                 }}
@@ -473,10 +472,10 @@ const QuizUpdateIndex = () => {
                 {inputFieldsCopy &&
                   inputFieldsCopy.map((inputField) => {
                     const isDeleted = deleteQuestionIds.includes(inputField._id);
-                    const backgroundColor = isDeleted ? "#ffd6d6b5" : "";
+                    const backgroundColor = isDeleted ? '#ffd6d6b5' : '';
 
                     return (
-                      <Box key={inputField.uniqueId} sx={{ paddingBottom: "2%", backgroundColor }}>
+                      <Box key={inputField.uniqueId} sx={{ paddingBottom: '2%', backgroundColor }}>
                         <QuestionType
                           handleRemoveQA={handleRemoveQA}
                           handleChangeInput={handleChangeInput}

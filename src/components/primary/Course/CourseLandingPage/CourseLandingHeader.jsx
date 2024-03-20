@@ -55,7 +55,6 @@ const CourseLandingHeader = () => {
   const { user } = useSelector((state) => state.user);
   const { isEnrollAble, enrolmentMessage } = useSelector((state) => state.course);
   const { id } = useParams();
-  console.log("🚀 ~ CourseLandingHeader ~ id:", id);
 
   const {
     skill,
@@ -128,9 +127,7 @@ const CourseLandingHeader = () => {
     height = 200;
   }
   const handleCertificate = (id) => {
-    dispatch(getCertificateInfo(id)).then((action) => {
-      console.log(action.payload.data);
-    });
+    dispatch(getCertificateInfo(id)).then((action) => {});
   };
 
   return (

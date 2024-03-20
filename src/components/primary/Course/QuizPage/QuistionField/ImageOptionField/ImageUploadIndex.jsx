@@ -1,39 +1,39 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
-import React, { useMemo, useState } from "react";
-import { useDropzone } from "react-dropzone";
-import { useSelector } from "react-redux";
-import IconImage from "../../../../../../assets/images/uploadImageIcon.svg";
-import { youtubeLinkEmbed } from "../../../../../../helper/youtubeLinkEmbed";
+import { Box, Button, Grid, Typography } from '@mui/material';
+import React, { useMemo, useState } from 'react';
+import { useDropzone } from 'react-dropzone';
+import { useSelector } from 'react-redux';
+import IconImage from '../../../../../../assets/images/uploadImageIcon.svg';
+import { youtubeLinkEmbed } from '../../../../../../helper/youtubeLinkEmbed';
 
 const focusedStyle = {
-  borderColor: "#2196f3",
+  borderColor: '#2196f3',
 };
 
 const acceptStyle = {
-  borderColor: "#00e676",
+  borderColor: '#00e676',
 };
 
 const rejectStyle = {
-  borderColor: "#ff1744",
+  borderColor: '#ff1744',
 };
 const baseUploadBoxStyle = {
   flex: 1,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
   // padding: "20px",
 
   borderWidth: 2,
   borderRadius: 8,
-  height: "162px",
+  height: '162px',
   // width: "12px",
-  borderColor: "rgba(70, 70, 70, 0.2)",
-  borderStyle: "dashed",
+  borderColor: 'rgba(70, 70, 70, 0.2)',
+  borderStyle: 'dashed',
   // backgroundColor: isLightTheme ? "primary.B200" : "neutral.N400",
-  backgroundColor: "#FAFBFC",
-  color: "#fff",
-  outline: "none",
-  transition: "border .24s ease-in-out",
+  backgroundColor: '#FAFBFC',
+  color: '#fff',
+  outline: 'none',
+  transition: 'border .24s ease-in-out',
 };
 const ImageUploadIndex = ({
   coverImageFile,
@@ -48,22 +48,22 @@ const ImageUploadIndex = ({
   const { isLightTheme } = useSelector((state) => state.theme);
   const baseUploadBoxStyle = {
     flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     // padding: "20px",
 
     borderWidth: 2,
     borderRadius: 8,
-    height: "162px",
+    height: '162px',
     // width: "12px",
-    borderColor: "rgba(70, 70, 70, 0.2)",
-    borderStyle: "dashed",
+    borderColor: 'rgba(70, 70, 70, 0.2)',
+    borderStyle: 'dashed',
     // backgroundColor: isLightTheme ? "primary.B200" : "neutral.N400",
-    backgroundColor: isLightTheme ? "#FAFBFC" : "#000",
-    color: "#fff",
-    outline: "none",
-    transition: "border .24s ease-in-out",
+    backgroundColor: isLightTheme ? '#FAFBFC' : '#000',
+    color: '#fff',
+    outline: 'none',
+    transition: 'border .24s ease-in-out',
   };
   // const maxSize = 1024000;
 
@@ -71,11 +71,11 @@ const ImageUploadIndex = ({
   const [isHovered, setIsHovered] = useState(false);
   const { acceptedFiles, getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({
     accept: {
-      "image/jpeg": [],
-      "image/png": [],
-      "image/jpg": [],
-      "audio/*": [],
-      "video/*": [],
+      'image/jpeg': [],
+      'image/png': [],
+      'image/jpg': [],
+      'audio/*': [],
+      'video/*': [],
     },
     onDrop: handleImage,
   });
@@ -116,7 +116,7 @@ const ImageUploadIndex = ({
   //   // Do something with the files
   // }, []);
 
-  let width = "90%"; // Default width for large screens
+  let width = '90%'; // Default width for large screens
 
   if (screenSize >= 1500) {
     // Extra-large screens
@@ -135,26 +135,25 @@ const ImageUploadIndex = ({
     width = (12 * screenSize) / 100;
   }
   const handleSwitchContent = (value) => {
-    console.log("🚀 ~ handleSwitchContent ~ value:", value);
     switch (true) {
-      case value?.endsWith(".png"):
-      case value?.endsWith(".jpeg"):
-      case value?.endsWith(".jpg"):
-        return <img height={"155"} src={value} alt='' style={{ width, borderRadius: "8px" }} />;
-      case value?.endsWith(".mp3"):
-      case value?.endsWith(".mpeg"):
+      case value?.endsWith('.png'):
+      case value?.endsWith('.jpeg'):
+      case value?.endsWith('.jpg'):
+        return <img height={'155'} src={value} alt="" style={{ width, borderRadius: '8px' }} />;
+      case value?.endsWith('.mp3'):
+      case value?.endsWith('.mpeg'):
         return (
-          <audio style={{ height: "140px", width: "160px" }} controls>
-            <source src={value} type='audio/mpeg' />
+          <audio style={{ height: '140px', width: '160px' }} controls>
+            <source src={value} type="audio/mpeg" />
           </audio>
         );
-      case value?.endsWith(".mp4"):
+      case value?.endsWith('.mp4'):
         return (
-          <video height={"155px"} width={"100%"} controls    style={{borderRadius:"8px"}}>
+          <video height={'155px'} width={'100%'} controls style={{ borderRadius: '8px' }}>
             <source src={value} />
           </video>
         );
-      case value?.includes("youtube.com/watch"):
+      case value?.includes('youtube.com/watch'):
         // Extracting the video ID from the YouTube URL
         // const videoId = value.split("v=")[1];
         const videoId = youtubeLinkEmbed(value);
@@ -166,13 +165,13 @@ const ImageUploadIndex = ({
             {/* <div style="position: relative; padding-bottom: 100%; height: 0; padding-bottom: 56.2493%;"> */}
             <iframe
               src={`https://www.youtube.com/embed/${videoId}`}
-              frameborder='0'
+              frameborder="0"
               // allow='autoplay; encrypted-media'
               // allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
               // allowfullscreen
-            style={{borderRadius:"8px"}}
-              width='100%'
-              height='160px'
+              style={{ borderRadius: '8px' }}
+              width="100%"
+              height="160px"
             ></iframe>
             {/* </div> */}
           </div>
@@ -190,57 +189,57 @@ const ImageUploadIndex = ({
           {acceptedFiles.length ? (
             <>
               {acceptedFiles[0].size > maxSize ? (
-                <Box sx={{ width: "70%" }}>
+                <Box sx={{ width: '70%' }}>
                   <br />
-                  <Typography variant='wpf_p4_medium' sx={{ color: "#ff1744" }}>
+                  <Typography variant="wpf_p4_medium" sx={{ color: '#ff1744' }}>
                     File : {files.length > 20 ? files.slice(0, 4) : files}
                   </Typography>
-                  <Typography variant='wpf_p4_medium' sx={{ color: "#ff1744", textDecoration: "justify" }}>
+                  <Typography variant="wpf_p4_medium" sx={{ color: '#ff1744', textDecoration: 'justify' }}>
                     The selected file is too large. Please choose a file less than 1Mb.
                   </Typography>
-                  <Typography variant='wpf_p4_medium' sx={{ color: "#ff1744", textDecoration: "justify" }}></Typography>
+                  <Typography variant="wpf_p4_medium" sx={{ color: '#ff1744', textDecoration: 'justify' }}></Typography>
                 </Box>
               ) : (
                 <>
-                  {" "}
+                  {' '}
                   <Box
                     sx={{
-                      position: "relative",
-                      borderRadius: "8px",
+                      position: 'relative',
+                      borderRadius: '8px',
                     }}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
-                    {acceptedFiles[0].type === "image/png" ||
-                    acceptedFiles[0].type === "image/jpg" ||
-                    acceptedFiles[0].type === "image/jpeg" ? (
-                      <img height={160} src={coverImage} alt='' style={{ width, borderRadius: "8px" }} />
+                    {acceptedFiles[0].type === 'image/png' ||
+                    acceptedFiles[0].type === 'image/jpg' ||
+                    acceptedFiles[0].type === 'image/jpeg' ? (
+                      <img height={160} src={coverImage} alt="" style={{ width, borderRadius: '8px' }} />
                     ) : (
-                      <iframe height={155} src={coverImage} alt='' style={{ width, borderRadius: "8px" }}></iframe>
+                      <iframe height={155} src={coverImage} alt="" style={{ width, borderRadius: '8px' }}></iframe>
                     )}
 
                     {isHovered && (
                       <Box
                         sx={{
-                          color: "red",
-                          cursor: "pointer",
-                          position: "absolute",
-                          top: "40%",
-                          left: { xxl: "30%", xl: "25%", lg: "25%" },
+                          color: 'red',
+                          cursor: 'pointer',
+                          position: 'absolute',
+                          top: '40%',
+                          left: { xxl: '30%', xl: '25%', lg: '25%' },
                         }}
                       >
                         <Button
                           onClick={removeImage}
                           sx={{
-                            width: "100px",
-                            textTransform: "none",
-                            backgroundColor: "#FFFFFF",
-                            color: "#2E58FF",
-                            borderRadius: "20px",
+                            width: '100px',
+                            textTransform: 'none',
+                            backgroundColor: '#FFFFFF',
+                            color: '#2E58FF',
+                            borderRadius: '20px',
 
-                            "&:hover": {
-                              backgroundColor: "#FFFFFF",
-                              color: "#2E58FF",
+                            '&:hover': {
+                              backgroundColor: '#FFFFFF',
+                              color: '#2E58FF',
                             },
                           }}
                         >
@@ -252,12 +251,12 @@ const ImageUploadIndex = ({
                 </>
               )}
             </>
-          ) : update && inputField.questionType === "imageInOptions" && !inputField.newQuiz ? (
+          ) : update && inputField.questionType === 'imageInOptions' && !inputField.newQuiz ? (
             <>
               <Box
                 sx={{
-                  position: "relative",
-                  borderRadius: "8px",
+                  position: 'relative',
+                  borderRadius: '8px',
                 }}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
@@ -274,25 +273,25 @@ const ImageUploadIndex = ({
                 {isHovered && (
                   <Box
                     sx={{
-                      color: "red",
-                      cursor: "pointer",
-                      position: "absolute",
-                      top: { xxl: "40%", xl: "35%", lg: "30%" },
-                      left: { xxl: "30%", xl: "25%", lg: "25%" },
+                      color: 'red',
+                      cursor: 'pointer',
+                      position: 'absolute',
+                      top: { xxl: '40%', xl: '35%', lg: '30%' },
+                      left: { xxl: '30%', xl: '25%', lg: '25%' },
                     }}
                   >
                     <Button
                       onClick={removeImage}
                       sx={{
-                        width: "100px",
-                        textTransform: "none",
-                        backgroundColor: "#FFFFFF",
-                        color: "#2E58FF",
-                        borderRadius: "20px",
+                        width: '100px',
+                        textTransform: 'none',
+                        backgroundColor: '#FFFFFF',
+                        color: '#2E58FF',
+                        borderRadius: '20px',
 
-                        "&:hover": {
-                          backgroundColor: "#FFFFFF",
-                          color: "#2E58FF",
+                        '&:hover': {
+                          backgroundColor: '#FFFFFF',
+                          color: '#2E58FF',
                           // border: "1px solid #2E58FF",
                         },
                       }}
@@ -309,10 +308,10 @@ const ImageUploadIndex = ({
               <input {...getInputProps()} />
               <br />
               <img src={IconImage} />
-              <Typography variant='wpf_p4_medium' sx={{ paddingTop: "5%" }}>
+              <Typography variant="wpf_p4_medium" sx={{ paddingTop: '5%' }}>
                 Upload media
               </Typography>
-              <Typography variant='wpf_p4_medium' sx={{ paddingBottom: "2%" }}>
+              <Typography variant="wpf_p4_medium" sx={{ paddingBottom: '2%' }}>
                 Maximum file size: 512KB.
               </Typography>
               {/* <img src={ctaImage} /> */}

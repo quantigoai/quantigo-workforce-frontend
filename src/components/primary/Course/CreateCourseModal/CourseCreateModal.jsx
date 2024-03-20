@@ -127,7 +127,6 @@ const CourseCreateModal = ({
   handleChangeHub,
   isBtnLoading,
 }) => {
-  console.log('🚀 ~ isBtnLoading:', isBtnLoading);
   const [allCourses, setAllCourses] = useState([]);
   const [isCourseFetched, setIsCourseFetched] = useState(false);
   const dispatch = useDispatch();

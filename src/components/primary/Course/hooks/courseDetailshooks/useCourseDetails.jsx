@@ -129,7 +129,6 @@ const useCourseDetails = () => {
   };
 
   const onSubmit = (data) => {
-    console.log('🚀 ~ onSubmit ~ data:', data);
     const preRequisiteCoursesColl = preRequisiteCourses.map((preRequisite) => {
       return preRequisite._id;
     });

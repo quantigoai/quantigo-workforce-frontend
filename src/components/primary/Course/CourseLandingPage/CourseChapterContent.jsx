@@ -6,7 +6,6 @@ import { getAllCourseSeries } from "../../../../features/slice/courseSlice";
 import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
 
 const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
-  console.log("🚀 ~ CourseChapterContent ~ course:", course);
   const { isLightTheme } = useSelector((state) => state.theme);
   const { courseChapters } = useSelector((state) => state.course);
   const [coursesSeries, setCoursesSeries] = useState([]);
@@ -24,9 +23,6 @@ const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
   };
 
   useEffect(() => {
-    console.log("🚀 ~ dispatch ~ course._id:", course._id);
-    console.log("hitttttsdsd");
-
     course._id &&
       dispatch(getAllCourseSeries(course._id)).then((action) => {
         // console.log(action.payload.data);
@@ -56,10 +52,15 @@ const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
         sx={{
           mt: "20px",
           backgroundColor: isLightTheme ? "#F8FAFC" : "",
+          // height: "200px",
           border: "2px solid #E2E8F0",
           borderRadius: "8px",
           maxHeight: 430,
+          // overflowY: "auto",
           overflowY: "auto",
+          // "&::-webkit-scrollbar": {
+          //   width: "0", // Hide the scrollbar
+          // },
         }}
       >
         {coursesSeries &&
@@ -68,8 +69,10 @@ const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
               key={index}
               sx={{
                 alignItems: "center",
+                justifyContent: "center",
                 display: "flex",
                 justifyContent: "center",
+                // paddingRight: "20px",
                 borderTop: index === 0 ? "" : "1px solid #E2E8F0",
                 paddingTop: "1%",
                 paddingBottom: "1%",
@@ -87,8 +90,10 @@ const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
                 </Grid>
                 <Grid item xs={9} sx={{ backgroundColor: "" }}>
                   <Typography
+                    // color={"grey.600"}
                     variant="wpf_p3_semiBold"
                     sx={{ cursor: "pointer" }}
+                    // sx={{ opacity: "0.6", }}
                     onClick={() => handleViewDetailsButton(item._id, "All")}
                   >
                     {capitalizeFirstLetter(item.name)}

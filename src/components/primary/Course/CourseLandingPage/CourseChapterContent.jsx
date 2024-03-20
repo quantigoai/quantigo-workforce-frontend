@@ -9,6 +9,7 @@ const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { courseChapters } = useSelector((state) => state.course);
   const [coursesSeries, setCoursesSeries] = useState([]);
+  const [dataLoading, setDataLoading] = useState(true);
   const dispatch = useDispatch();
   const accordionBoxNumberStyle = {
     // backgroundColor: "#E2E8F0",
@@ -27,10 +28,13 @@ const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
       dispatch(getAllCourseSeries(course._id)).then((action) => {
         // console.log(action.payload.data);
         setCoursesSeries(action.payload.data.coursesSeries);
+        setDataLoading(false);
       });
   }, [course]);
   const arr = [0, 1, 2, 3, 4, 5];
-  return (
+  return dataLoading ? (
+    <>loading</>
+  ) : (
     <Box>
       <Box>
         <Typography variant={"wpf_h5_Bold"} color="neutral.995">

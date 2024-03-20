@@ -1,9 +1,9 @@
-import { Box, Grid } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { A11y, Autoplay, Navigation } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import FeaturedCard from './FeaturedCard';
+import { Box, Grid } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { A11y, Autoplay, Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import FeaturedCard from "./FeaturedCard";
 
 const FeaturedCourse = ({ courses, handleViewDetailsButton }) => {
   const { isLightTheme } = useSelector((state) => state.theme);
@@ -23,9 +23,9 @@ const FeaturedCourse = ({ courses, handleViewDetailsButton }) => {
 
   useEffect(() => {
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -44,20 +44,10 @@ const FeaturedCourse = ({ courses, handleViewDetailsButton }) => {
         <Box>
           <Grid container spacing={3}>
             {courses?.map((item) => (
-              <Box
-                sx={{ backgroundColor: isLightTheme ? '#fff' : '#000' }}
-                key={item._id}
-              >
-                <SwiperSlide
-                  style={{ backgroundColor: isLightTheme ? '#fff' : '#000' }}
-                  key={item._id}
-                >
+              <Box sx={{ backgroundColor: isLightTheme ? "#fff" : "#000" }} key={item._id}>
+                <SwiperSlide style={{ backgroundColor: isLightTheme ? "#fff" : "#000" }} key={item._id}>
                   <FeaturedCard
-                    courseDirection={
-                      user.enrolledCourses.includes(item._id)
-                        ? 'MyCourse'
-                        : 'all'
-                    }
+                    courseDirection={user.enrolledCourses.includes(item._id) ? "MyCourse" : "all"}
                     handleViewDetailsButton={handleViewDetailsButton}
                     course={item}
                   />

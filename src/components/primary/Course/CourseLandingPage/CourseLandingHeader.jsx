@@ -1,7 +1,7 @@
 /*
  * File           : CourseLandingHeader.jsx
  * Project        : wmpfrontv2
- * Created Date   : We 20 Mar 2024 01:30:06
+ * Created Date   : We 20 Mar 2024 12:28:38
  * Description    : <<description>>
  *
  * -----------------------------------------------------
@@ -16,18 +16,18 @@
  */
 
 import { Alert, Box, Button, Grid, Typography } from "@mui/material";
-import { default as React } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import editCourseIcon from "../../../../assets/images/courses/editCourse.svg";
-import { enrollACourse } from "../../../../features/slice/courseSlice";
+import { enrollACourse, getCertificateInfo } from "../../../../features/slice/courseSlice";
 import { updateUserEnrollCourse } from "../../../../features/slice/userSlice";
 import CourseDeleteModal from "../../../primary/Course/CourseDetailsPage/CourseDeleteModal";
 import CategoryChip from "../CategoryChip";
 import LevelChip from "../CourseCardActionLebel/LevelChip";
 import EditCourseModal from "../CreateCourseModal/EditCourseModal";
-import LanguageChip from "../LanguageChip";
 import useCourseDetails from "../hooks/courseDetailshooks/useCourseDetails";
+import LanguageChip from "../LanguageChip";
 import CourseContent from "./CourseContent";
 import CourseHeaderTitle from "./CourseHeaderTitle";
 import CourseSubmitReviewModal from "./CourseSubmitReviewModal";
@@ -54,6 +54,8 @@ const CourseLandingHeader = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const { isEnrollAble, enrolmentMessage } = useSelector((state) => state.course);
+  const { id } = useParams();
+  console.log("🚀 ~ CourseLandingHeader ~ id:", id);
 
   const {
     skill,
@@ -125,6 +127,11 @@ const CourseLandingHeader = () => {
     width = 300;
     height = 200;
   }
+  const handleCertificate = (id) => {
+    dispatch(getCertificateInfo(id)).then((action) => {
+      console.log(action.payload.data);
+    });
+  };
 
   return (
     <Box sx={boxStyle}>
@@ -235,8 +242,8 @@ const CourseLandingHeader = () => {
             // <Button onClick={handleDownloadCertificate} disabled={!isEnrollAble} sx={{ ...btnStyle, ml: 1 }}>
             //   Download Certificate
             // </Button>
-            <Link to="/certificate" target="blank">
-              <Button disabled={!isEnrollAble} sx={{ ...btnStyle, ml: 1 }}>
+            <Link to={`/certificate`} target="blank">
+              <Button onClick={() => handleCertificate(id)} disabled={!isEnrollAble} sx={{ ...btnStyle, ml: 1 }}>
                 Download Certificate
               </Button>
             </Link>

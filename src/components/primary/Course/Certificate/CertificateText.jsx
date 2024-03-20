@@ -1,7 +1,7 @@
 import { Font, StyleSheet, Text, View } from '@react-pdf/renderer';
 import React from 'react';
 import poppinsrc from './Poppins-ExtraBoldItalic.ttf';
-const CertificateText = () => {
+const CertificateText = ({ certificate }) => {
   // Font.register({
   //   family: 'Poppins',
   //   src: poppinsrc,
@@ -37,9 +37,9 @@ const CertificateText = () => {
     <View>
       <Text style={styles.text}>Quantigo AI</Text>
       <Text style={styles.text2}>Certificate of Completion</Text>
-      <Text style={styles.text3}>Congratulations, Robert Brown</Text>
-      <Text style={styles.text4}>Image annotation</Text>
-      <Text style={styles.text5}>Course completed on february 11</Text>
+      <Text style={styles.text3}>Congratulations, {certificate?.certificateData?.name}</Text>
+      <Text style={styles.text4}>{certificate?.certificateData?.courseName}</Text>
+      <Text style={styles.text5}>Course completed on {certificate?.certificateData?.completionDate}</Text>
     </View>
   );
 };

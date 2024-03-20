@@ -33,7 +33,7 @@ export const PdTextField = styled(TextField)(() => ({
   },
 }));
 const QuestionName = ({ handleChangeInput, inputField, inputFields, handleUpdate, update }) => {
-  const [questionNameField, setQuestionNameField] = useState(inputField.question.questionText);
+  const [questionNameField, setQuestionNameField] = useState(inputField?.question?.questionText);
 
   return (
     <>

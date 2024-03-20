@@ -217,7 +217,7 @@ const ImageOptionField = ({ handleChangeInput, inputField, inputFields, handleUp
 
         handleUpdate(e.target.value, 'possibleAnswers_2', inputField);
       } else {
-        e[0];
+        const file = e[0];
         if (file) {
           const url = URL.createObjectURL(file);
           setCoverImage3(url);

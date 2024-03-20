@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 const QuizResultShowIndex = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { result } = useSelector((state) => state.quiz);
+  const { course } = useSelector((state) => state.course);
+
   const { activeChapterIndex } = useSelector((state) => state.activePath);
 
   const navigate = useNavigate();
@@ -72,7 +74,7 @@ const QuizResultShowIndex = () => {
             </Grid>
             <Grid item xs={3} sx={{ display: 'flex', justifyContent: 'end' }}>
               <Button
-                onClick={() => handleChangePage(result.submissionResult.course._id)}
+                onClick={() => handleChangePage(course._id)}
                 sx={{
                   backgroundColor: '#2E58FF',
                   color: '#fff',

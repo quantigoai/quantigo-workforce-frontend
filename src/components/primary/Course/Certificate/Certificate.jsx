@@ -5,6 +5,7 @@ import sign from '../../../../assets/images/certificateImages/Robert_Brown (1) (
 import CertificateText from './CertificateText';
 import CertificateDescription from './CertificateDescription';
 import poppinsrc from './Poppins-Regular.ttf';
+import { useSelector } from 'react-redux';
 // import poppinsrc from './NotoSansBengali-Regular.ttf';
 Font.register({
   family: 'Poppins',
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     width: '130px',
   },
 });
-const Certificate = () => {
+const Certificate = ({ certificate }) => {
   return (
     <Document>
       <Page size="A4" orientation="landscape" style={styles.page}>
@@ -53,7 +54,7 @@ const Certificate = () => {
           <Image style={styles.logo} src={logo} alt="none" />
         </View>
         <View style={styles.section2}>
-          <CertificateText />
+          <CertificateText certificate={certificate} />
           <CertificateDescription />
           <Image style={styles.sign} src={sign} alt="none" />
         </View>

@@ -1,11 +1,14 @@
 import { PDFViewer } from '@react-pdf/renderer';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Certificate from './Certificate';
+import { useSelector } from 'react-redux';
 
 const CertificatePdf = () => {
+  const { certificate } = useSelector((state) => state.course);
+  console.log('🚀 ~ CertificatePdf ~ certificate:', certificate);
   return (
     <PDFViewer width="100%" height="922px">
-      <Certificate />
+      <Certificate certificate={certificate} />
     </PDFViewer>
   );
 };

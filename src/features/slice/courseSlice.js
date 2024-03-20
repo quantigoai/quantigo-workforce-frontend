@@ -35,6 +35,7 @@ const initialState = {
   courseChapters: [],
   courseChapter: {},
   courseMeta: {},
+  certificate: {},
   archivedCourseMeta: {},
   total: 0,
   quizzesResult: [],
@@ -158,6 +159,18 @@ export const getArchivedCourses = createAsyncThunk('archivedCourses', async (dat
       filterOptions.map((f) => (query += `&${f}=${filter[f]}`));
     }
     return await axios.get(`${url}/courses/get-my-archived-course?${query}`, {
+      headers: {
+        Authorization: `Bearer ${realToken()}`,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+export const getCertificateInfo = createAsyncThunk('certificateInfo', async (id) => {
+  console.log('🚀 ~ getCertificateInfo ~ id:', id);
+  try {
+    return await axios.get(`${url}/courses/get-my-course-certificate/${id}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
@@ -428,6 +441,19 @@ const courseSlice = createSlice({
         // state.courses = [...state.courses, action.payload.data.course];
       })
       .addCase(createCourse.rejected, (state, action) => {
+        // state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(getCertificateInfo.pending, (state) => {
+        state.certificate = {};
+        // state.isLoading = true;
+      })
+      .addCase(getCertificateInfo.fulfilled, (state, action) => {
+        // state.isLoading = false;
+        state.certificate = action.payload.data;
+        // state.courses = [...state.courses, action.payload.data.course];
+      })
+      .addCase(getCertificateInfo.rejected, (state, action) => {
         // state.isLoading = false;
         state.error = action.error.message;
       })

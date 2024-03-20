@@ -61,7 +61,7 @@ const useChapterCreateManage = () => {
     title: Yup.string().required("Course title is required"),
     estimatedTimeToRead: Yup.number()
       .required("Chapter estimated time is required")
-      .lessThan(21, "Chapter estimated time must be in range between 1 to 20")
+      .lessThan(121, "Chapter estimated time must be in range between 1 to 120")
       .transform((value) => (isNaN(value) ? undefined : value)),
     description: Yup.string().required("Chapter description is required"),
   });

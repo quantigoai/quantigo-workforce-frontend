@@ -28,21 +28,21 @@ const CourseCertificate = () => {
         onClick={() => handleDownloadCertificate()}
         style={{ textDecoration: "none", color: "#266AED" }}
       > */}
-      <img src={medal} alt='' />
-      <a
+      <img src={medal} alt="" />
+      <img src={certificate} alt="" />
+      {/* <a
         href={certificatePdf}
         download='Nda_File.pdf'
         onClick={() => handleDownloadCertificate()}
         style={{ textDecoration: "none", color: "#266AED" }}
       >
-        <img src={certificate} alt='' />
-      </a>
+      </a> */}
       <Box sx={{ textAlign: "center", paddingBottom: "48px", mt: "32px" }}>
-        <Typography variant='wpf_h5_Bold' color={"neutral.995"}>
+        <Typography variant="wpf_h5_Bold" color={"neutral.995"}>
           Earn a career certificate
         </Typography>
         <br />
-        <Typography color='neutral.996' variant='wpf_p3_regular'>
+        <Typography color="neutral.996" variant="wpf_p3_regular">
           Add this credential to your LinkedIn profile, resume, or CV. Share it on social media and in your performance
           review
         </Typography>

@@ -1,33 +1,29 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
-import arrowIcon from "../../../../assets/images/courses/arrowIcon.svg";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import CourseChapterAccordion from "./CourseChapterAccordion";
-import { getAllCourseSeries } from "../../../../features/slice/courseSlice";
-import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
+import { Box, Button, Grid, Typography } from '@mui/material';
+import arrowIcon from '../../../../assets/images/courses/arrowIcon.svg';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import CourseChapterAccordion from './CourseChapterAccordion';
+import { getAllCourseSeries } from '../../../../features/slice/courseSlice';
+import { capitalizeFirstLetter } from '../../../../helper/capitalizeFirstWord';
 
 const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
-  console.log("🚀 ~ CourseChapterContent ~ course:", course);
   const { isLightTheme } = useSelector((state) => state.theme);
   const { courseChapters } = useSelector((state) => state.course);
   const [coursesSeries, setCoursesSeries] = useState([]);
   const dispatch = useDispatch();
   const accordionBoxNumberStyle = {
     // backgroundColor: "#E2E8F0",
-    backgroundColor: isLightTheme ? "#E2E8F0" : "",
-    padding: "2px",
-    borderRadius: "99px",
-    display: "flex",
-    width: "24px",
-    height: "24px",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: isLightTheme ? '#E2E8F0' : '',
+    padding: '2px',
+    borderRadius: '99px',
+    display: 'flex',
+    width: '24px',
+    height: '24px',
+    justifyContent: 'center',
+    alignItems: 'center',
   };
 
   useEffect(() => {
-    console.log("🚀 ~ dispatch ~ course._id:", course._id);
-    console.log("hitttttsdsd");
-
     course._id &&
       dispatch(getAllCourseSeries(course._id)).then((action) => {
         // console.log(action.payload.data);
@@ -38,12 +34,12 @@ const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
   return (
     <Box>
       <Box>
-        <Typography variant={"wpf_h5_Bold"} color='neutral.995'>
+        <Typography variant={'wpf_h5_Bold'} color="neutral.995">
           Professional Certificate - {coursesSeries?.length} course series
         </Typography>
         <br />
-        <Box sx={{ mt: "8px" }}>
-          <Typography variant='wpf_p3_regular' color={"grey.500"}>
+        <Box sx={{ mt: '8px' }}>
+          <Typography variant="wpf_p3_regular" color={'grey.500'}>
             Prepare for a new career in the high-growth field of project management, no experience or degree required.
             Get professional training designed by Google and get on the fastrack to a competitively paid job.
           </Typography>
@@ -55,14 +51,14 @@ const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
 
       <Box
         sx={{
-          mt: "20px",
-          backgroundColor: isLightTheme ? "#F8FAFC" : "",
+          mt: '20px',
+          backgroundColor: isLightTheme ? '#F8FAFC' : '',
           // height: "200px",
-          border: "2px solid #E2E8F0",
-          borderRadius: "8px",
+          border: '2px solid #E2E8F0',
+          borderRadius: '8px',
           maxHeight: 430,
           // overflowY: "auto",
-          overflowY: "auto",
+          overflowY: 'auto',
           // "&::-webkit-scrollbar": {
           //   width: "0", // Hide the scrollbar
           // },
@@ -72,48 +68,48 @@ const CourseChapterContent = ({ course, handleViewDetailsButton }) => {
           coursesSeries.map((item, index) => (
             <Box
               sx={{
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-                justifyContent: "center",
+                alignItems: 'center',
+                justifyContent: 'center',
+                display: 'flex',
+                justifyContent: 'center',
                 // paddingRight: "20px",
-                borderTop: index === 0 ? "" : "1px solid #E2E8F0",
-                paddingTop: "1%",
-                paddingBottom: "1%",
+                borderTop: index === 0 ? '' : '1px solid #E2E8F0',
+                paddingTop: '1%',
+                paddingBottom: '1%',
               }}
             >
               <Grid container>
                 <Grid
                   item
                   xs={1}
-                  sx={{ backgroundColor: "", alignItems: "center", justifyContent: "center", display: "flex" }}
+                  sx={{ backgroundColor: '', alignItems: 'center', justifyContent: 'center', display: 'flex' }}
                 >
                   <Box sx={accordionBoxNumberStyle}>
-                    <Typography sx={{ fontSize: "14px", fontWeight: "600" }}>{index + 1}</Typography>
+                    <Typography sx={{ fontSize: '14px', fontWeight: '600' }}>{index + 1}</Typography>
                   </Box>
                   {/* <img src={course_Complete} alt='' /> */}
                 </Grid>
-                <Grid item xs={9} sx={{ backgroundColor: "" }}>
+                <Grid item xs={9} sx={{ backgroundColor: '' }}>
                   <Typography
                     // color={"grey.600"}
-                    variant='wpf_p3_semiBold'
-                    sx={{ cursor: "pointer" }}
+                    variant="wpf_p3_semiBold"
+                    sx={{ cursor: 'pointer' }}
                     // sx={{ opacity: "0.6", }}
-                    onClick={() => handleViewDetailsButton(item._id, "All")}
+                    onClick={() => handleViewDetailsButton(item._id, 'All')}
                   >
                     {capitalizeFirstLetter(item.name)}
                   </Typography>
                   <br />
-                  <Typography variant='wpf_p4_regular' color={"grey.700"}>
+                  <Typography variant="wpf_p4_regular" color={'grey.700'}>
                     {item?.totalTimeToRead} minutes
                   </Typography>
                 </Grid>
-                <Grid item xs={2} sx={{ px: "2%", alignItems: "center", justifyContent: "end", display: "flex" }}>
+                <Grid item xs={2} sx={{ px: '2%', alignItems: 'center', justifyContent: 'end', display: 'flex' }}>
                   <img
                     src={arrowIcon}
-                    alt=''
-                    style={{ cursor: "pointer" }}
-                    onClick={() => handleViewDetailsButton(item._id, "All")}
+                    alt=""
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => handleViewDetailsButton(item._id, 'All')}
                   />
                 </Grid>
               </Grid>

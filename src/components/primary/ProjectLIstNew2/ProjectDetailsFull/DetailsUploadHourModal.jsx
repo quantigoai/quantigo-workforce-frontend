@@ -73,8 +73,7 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
 
   const maxSize = 3 * 1024 * 1024;
   const dispatch = useDispatch();
-  const { getRootProps, getInputProps, isDragActive, acceptedFiles } =
-    useDropzone({});
+  const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({});
 
   const handleClose = () => {
     setOpen(false);
@@ -85,18 +84,14 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
 
   const uploadRequest = async (data) => {
     try {
-      return axios.patch(
-        `${url}/project-drawer/upload-hours/${data.id}`,
-        data.hoursData,
-        {
-          headers: {
-            Authorization: `Bearer ${realToken()}`,
-          },
-          content: {
-            'Content-Type': 'multipart/form-data',
-          },
+      return axios.patch(`${url}/project-drawer/upload-hours/${data.id}`, data.hoursData, {
+        headers: {
+          Authorization: `Bearer ${realToken()}`,
         },
-      );
+        content: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
     } catch (error) {
       throw new Error(error.response.data.message);
     }
@@ -140,9 +135,7 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
           'workingSkills',
         ];
 
-        const missingHeaders = requiredHeaders.filter(
-          (header) => !headers.includes(header),
-        );
+        const missingHeaders = requiredHeaders.filter((header) => !headers.includes(header));
         const userIds = result.data.map((row) => row.QAI_ID);
         const uniqueUserIds = new Set(userIds);
         const invalidQaiId = result.data.some((row) => {
@@ -158,7 +151,6 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
         });
 
         if (missingHeaders.length > 0) {
-          console.log(`Missing headers: ${missingHeaders.join(', ')}`);
           setIsError(true);
           toast.trigger(`CSV headers is not in correct format.`, 'error');
         } else if (userIds.length !== uniqueUserIds.size) {
@@ -292,10 +284,7 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
         >
           <Box sx={{ flex: '0 0 5%' }}>
             <Grid container sx={{ paddingRight: '0%' }}>
-              <ProjectModalHeader
-                handleCreateProjectClose={handleClose}
-                modalTitle={'Upload Effective Hour'}
-              />
+              <ProjectModalHeader handleCreateProjectClose={handleClose} modalTitle={'Upload Effective Hour'} />
             </Grid>
           </Box>
 
@@ -318,17 +307,12 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
               >
                 <Grid container>
                   <a
-                    href={
-                      '/src/assets/ndifile/Template_for_effective_hours.csv'
-                    }
+                    href={'/src/assets/ndifile/Template_for_effective_hours.csv'}
                     download="Template_for_effective_hours-Sheet1.csv"
                     style={{ textDecoration: 'none', color: '#266AED' }}
                   >
                     <i className="ri-download-2-line"></i>
-                    <Typography
-                      variant="body"
-                      sx={{ ml: 1, textTransform: 'none' }}
-                    >
+                    <Typography variant="body" sx={{ ml: 1, textTransform: 'none' }}>
                       Download Reference CSV
                     </Typography>
                   </a>
@@ -337,10 +321,7 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
             </Box>
 
             <Box sx={{ paddingLeft: '1%', paddingRight: '1%' }}>
-              <CsvUploadField
-                handleImage={handleUploadFile}
-                selectedFile={selectedFile}
-              />
+              <CsvUploadField handleImage={handleUploadFile} selectedFile={selectedFile} />
             </Box>
 
             <Box sx={{ paddingLeft: '1%', paddingRight: '1%' }}>
@@ -385,9 +366,7 @@ const DetailsUploadHourModal = ({ openModal, setOpen, setDataLoading }) => {
                             paddingLeft: '2%',
                           }}
                         >
-                          <Typography variant="wpf_p3_medium">
-                            {selectedFile?.name}
-                          </Typography>
+                          <Typography variant="wpf_p3_medium">{selectedFile?.name}</Typography>
                         </Grid>
                         <Grid item xs={1}>
                           <Button onClick={removeImage}>

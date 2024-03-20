@@ -18,10 +18,7 @@ import useToaster from '../../../../customHooks/useToaster';
 import { setActiveChapterIndex } from '../../../../features/slice/activePathSlice';
 import { getAChapterById } from '../../../../features/slice/courseSlice';
 
-import {
-  getAQuizById,
-  getQuizParticipationStatusById,
-} from '../../../../features/slice/quizSlice';
+import { getAQuizById, getQuizParticipationStatusById } from '../../../../features/slice/quizSlice';
 import ChapterDeleteModal from '../../CourseNew/ChapterDeleteModal';
 import useCourseDetails from '../hooks/courseDetailshooks/useCourseDetails';
 import ChapterHeaderMenuIndex from './ChapterHeaderMenuIndex';
@@ -41,7 +38,7 @@ const ChapterViewIndex = () => {
   } = useCourseDetails();
   const { activeChapterIndex } = useSelector((state) => state.activePath);
   const { courseChapter } = useSelector((state) => state.course);
-  console.log('🚀 ~ ChapterViewIndex ~ courseChapter:', courseChapter);
+
   const dispatch = useDispatch();
   const { role } = useSelector((state) => state.user.user);
   const navigate = useNavigate();
@@ -49,15 +46,9 @@ const ChapterViewIndex = () => {
   const [participationStatus, setParticipationStatus] = useState('');
 
   useEffect(() => {
-    dispatch(getQuizParticipationStatusById(courseChapter?.quiz?.id)).then(
-      (action) => {
-        setParticipationStatus(action.payload.data.quiz?.participationStatus);
-        console.log(
-          '🚀 ~ dispatch ~ action.payload.data.quiz:',
-          action.payload.data.quiz,
-        );
-      },
-    );
+    dispatch(getQuizParticipationStatusById(courseChapter?.quiz?.id)).then((action) => {
+      setParticipationStatus(action.payload.data.quiz?.participationStatus);
+    });
   }, [activeChapterIndex, courseChapter]);
   const handleChapterChangePre = () => {
     const activeChapterId = courseChapters.find((chapter, index) => {
@@ -82,7 +73,6 @@ const ChapterViewIndex = () => {
   };
   const handleDeleteChapter = () => {};
   const handleStartQuiz = () => {
-    console.log(courseChapter);
     if (courseChapter?.quiz?.id) {
       dispatch(getAQuizById(courseChapter.quiz.id)).then(() => {
         navigate(`/test-quiz-show`);
@@ -269,9 +259,7 @@ const ChapterViewIndex = () => {
                 },
                 padding: '16px 10px',
               }}
-              disabled={
-                activeChapterIndex === courseChapters.length - 1 ? true : false
-              }
+              disabled={activeChapterIndex === courseChapters.length - 1 ? true : false}
               onClick={() => handleChapterChangeNext()}
             >
               <span style={{ marginRight: '8px' }}>Next Chapter</span>
@@ -317,12 +305,7 @@ const ChapterViewIndex = () => {
               </Button>
             )} */}
             <Button
-              disabled={
-                participationStatus === 'pending' ||
-                participationStatus === 'accepted'
-                  ? true
-                  : false
-              }
+              disabled={participationStatus === 'pending' || participationStatus === 'accepted' ? true : false}
               sx={{
                 textTransform: 'none',
                 borderRadius: '8px',
@@ -343,17 +326,14 @@ const ChapterViewIndex = () => {
                 color: 'white',
                 '&:hover': {
                   background: '#31A373',
-                  color:"#fff"
-
+                  color: '#fff',
                 },
 
                 padding: '16px 10px',
               }}
               onClick={handleStartQuiz}
             >
-              {role === 'admin' || role === 'trainer'
-                ? 'View Quiz'
-                : ' Start Quiz'}
+              {role === 'admin' || role === 'trainer' ? 'View Quiz' : ' Start Quiz'}
             </Button>
           </Grid>
         </Grid>

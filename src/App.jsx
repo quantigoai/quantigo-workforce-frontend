@@ -45,7 +45,7 @@ function App() {
   const { isLoading, user, isLoggedIn } = useSelector((state) => state.user);
   const { activePath } = useSelector((state) => state.activePath);
   const { pathname } = useLocation();
-  console.log('🚀 ~ App ~ pathnaame:', pathname);
+
   // const { isLoggedIn } = user;
 
   // TODO need to deploy socket server future and need to handle this

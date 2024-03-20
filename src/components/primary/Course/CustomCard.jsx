@@ -56,7 +56,6 @@ const CustomCard = ({
   isActiveEnrolled,
   isActiveArchived,
 }) => {
-  console.log('🚀 ~ level:', level);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoading } = useSelector((state) => state.course);

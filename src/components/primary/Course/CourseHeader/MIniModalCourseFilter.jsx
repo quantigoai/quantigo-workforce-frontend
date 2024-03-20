@@ -13,7 +13,6 @@ const MIniModalCourseFilter = ({
   filter,
   level,
 }) => {
-  console.log('🚀 ~ level:', level);
   return (
     <>
       <Box

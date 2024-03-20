@@ -1,37 +1,35 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
-import React from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Box, Button, Grid, Typography } from '@mui/material';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const QuizResultShowIndex = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const { result } = useSelector((state) => state.quiz);
   const { activeChapterIndex } = useSelector((state) => state.activePath);
-  console.log("🚀 ~ QuizResultShowIndex ~ activeChapterIndex:", activeChapterIndex);
 
-  console.log("🚀 ~ QuizResultShowIndex ~ result:", result);
   const navigate = useNavigate();
   const ShowResultField = [
     {
-      label: "Correct Answer",
+      label: 'Correct Answer',
       value: result?.submissionResult?.correctAnswer,
     },
     {
-      label: "Wrong Answer",
+      label: 'Wrong Answer',
       value: result?.submissionResult?.wrongAnswer,
     },
     {
-      label: "Pending Answer",
+      label: 'Pending Answer',
       value: result?.submissionResult?.pendingAnswer,
     },
     {
-      label: "Score",
+      label: 'Score',
       value:
         result?.submissionResult?.score === 0
-          ? "0"
+          ? '0'
           : result?.submissionResult?.score > 0
           ? Math.floor(result.submissionResult.score)
-          : "N/A",
+          : 'N/A',
     },
   ];
   const handleChangePage = (id) => {
@@ -41,50 +39,50 @@ const QuizResultShowIndex = () => {
     <>
       <Box
         sx={{
-          backgroundColor: "neutral.N000",
-          height: "100%",
+          backgroundColor: 'neutral.N000',
+          height: '100%',
         }}
       >
         <Box
           sx={{
-            backgroundColor: isLightTheme ? "#F1F5F9" : "",
-            height: { xl: "23%", xxl: "18%", lg: "25%" },
+            backgroundColor: isLightTheme ? '#F1F5F9' : '',
+            height: { xl: '23%', xxl: '18%', lg: '25%' },
             // paddingLeft: "10%",
             // paddingRight: "10%",
             // paddingTop: "1%",
             // paddingBottom: "3%",
-            borderBottom: "2px solid ##F8FAFC",
-            display: "flex",
-            paddingLeft: "10%",
-            paddingRight: "10%",
+            borderBottom: '2px solid ##F8FAFC',
+            display: 'flex',
+            paddingLeft: '10%',
+            paddingRight: '10%',
             // justifyContent: "space-between",
-            alignItems: "center",
+            alignItems: 'center',
           }}
         >
           <Grid container sx={{}}>
             <Grid item xs={9}>
               <Grid container>
                 <Grid xs={12} sx={{}}>
-                  <Typography variant='wpf_h4_Bold'>Chapter {activeChapterIndex}: Quiz Result</Typography>
+                  <Typography variant="wpf_h4_Bold">Chapter {activeChapterIndex}: Quiz Result</Typography>
                 </Grid>
                 <Grid xs={12} sx={{}}>
-                  <Typography variant='wpf_p3_regular'>{result?.submissionResult?.courseChapter?.name} </Typography>
+                  <Typography variant="wpf_p3_regular">{result?.submissionResult?.courseChapter?.name} </Typography>
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item xs={3} sx={{ display: "flex", justifyContent: "end" }}>
+            <Grid item xs={3} sx={{ display: 'flex', justifyContent: 'end' }}>
               <Button
                 onClick={() => handleChangePage(result.submissionResult.course._id)}
                 sx={{
-                  backgroundColor: "#2E58FF",
-                  color: "#fff",
-                  "&:hover": {
-                    backgroundColor: "#2E58FF",
-                    color: "#fff",
+                  backgroundColor: '#2E58FF',
+                  color: '#fff',
+                  '&:hover': {
+                    backgroundColor: '#2E58FF',
+                    color: '#fff',
                   },
-                  borderRadius: "32px",
-                  height: "40px",
-                  padding: "5%",
+                  borderRadius: '32px',
+                  height: '40px',
+                  padding: '5%',
                 }}
               >
                 Go Back Course
@@ -95,9 +93,9 @@ const QuizResultShowIndex = () => {
         <Box
           sx={{
             // height: "82%",
-            height: { xl: "77%", xxl: "82%", lg: "75%" },
-            paddingLeft: "10%",
-            paddingRight: "8%",
+            height: { xl: '77%', xxl: '82%', lg: '75%' },
+            paddingLeft: '10%',
+            paddingRight: '8%',
             // overflow: "auto",
             // scrollbarWidth: "thin",
             // "&::-webkit-scrollbar": {
@@ -114,32 +112,32 @@ const QuizResultShowIndex = () => {
             // },
           }}
         >
-          <Grid container gap={2} sx={{ paddingTop: "3%" }}>
+          <Grid container gap={2} sx={{ paddingTop: '3%' }}>
             {ShowResultField.map((item) => (
               <>
                 <Grid
                   item
                   xs={2.8}
                   sx={{
-                    backgroundColor: isLightTheme ? "#F8FAFC" : "",
-                    borderRadius: "12px",
-                    height: "130px",
-                    border: "1px solid #E2E8F0",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
+                    backgroundColor: isLightTheme ? '#F8FAFC' : '',
+                    borderRadius: '12px',
+                    height: '130px',
+                    border: '1px solid #E2E8F0',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
                     // alignContent: "center",
                   }}
                 >
                   <Grid container>
                     <Grid
                       xs={12}
-                      sx={{ display: "flex", justifyContent: "center", alignItems: "center", paddingBottom: "4%" }}
+                      sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingBottom: '4%' }}
                     >
-                      <Typography variant='wpf_h6_regular'>{item.label}</Typography>
+                      <Typography variant="wpf_h6_regular">{item.label}</Typography>
                     </Grid>
-                    <Grid xs={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                      <Typography variant='wpf_h4_Bold'>{item.value}</Typography>
+                    <Grid xs={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                      <Typography variant="wpf_h4_Bold">{item.value}</Typography>
                     </Grid>
                   </Grid>
                 </Grid>

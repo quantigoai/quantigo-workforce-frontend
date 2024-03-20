@@ -168,7 +168,6 @@ export const getArchivedCourses = createAsyncThunk('archivedCourses', async (dat
   }
 });
 export const getCertificateInfo = createAsyncThunk('certificateInfo', async (id) => {
-  console.log('🚀 ~ getCertificateInfo ~ id:', id);
   try {
     return await axios.get(`${url}/courses/get-my-course-certificate/${id}`, {
       headers: {

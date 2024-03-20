@@ -1,14 +1,14 @@
-import { Box, Checkbox, Grid, InputAdornment, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
-import { BpCheckedIcon, BpIcon, RadioOption, TextFieldOption } from "./basicOptionDesign";
-import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
-import FormatAlignCenterIcon from "@mui/icons-material/FormatAlignCenter";
-import FormatAlignRightIcon from "@mui/icons-material/FormatAlignRight";
-import FormatAlignJustifyIcon from "@mui/icons-material/FormatAlignJustify";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import radioIcon from "../../../../../assets/images/courses/Switch.svg";
-import SwitchCheck from "../../../../../assets/images/courses/SwitchCheck.svg";
+import { Box, Checkbox, Grid, InputAdornment, TextField, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { BpCheckedIcon, BpIcon, RadioOption, TextFieldOption } from './basicOptionDesign';
+import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
+import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
+import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
+import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import radioIcon from '../../../../../assets/images/courses/Switch.svg';
+import SwitchCheck from '../../../../../assets/images/courses/SwitchCheck.svg';
 
 const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate }) => {
   const [checkValue, setCheckValue] = useState(inputField?.correctAnswerIndex);
@@ -21,9 +21,9 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
     if (update) {
       // setCheckValue(index);
       if (newAlignment === 0 || newAlignment === 1 || newAlignment === 2 || newAlignment === 3) {
-        handleUpdate(newAlignment, "correctAnswerIndex", inputField);
+        handleUpdate(newAlignment, 'correctAnswerIndex', inputField);
       } else {
-        handleUpdate(-1, "correctAnswerIndex", inputField);
+        handleUpdate(-1, 'correctAnswerIndex', inputField);
       }
 
       // handleUpdate(newAlignment, "correctAnswerIndex", inputField);
@@ -50,7 +50,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
     if (update) {
       setCheckValue(index);
 
-      handleUpdate(index, "correctAnswerIndex", inputField);
+      handleUpdate(index, 'correctAnswerIndex', inputField);
       // handleUpdate(value, "correctAnswer", inputField);
     } else {
       handleChangeInput((inputField.correctAnswerIndex = index), event);
@@ -58,10 +58,9 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
     }
   };
   const handleEnableInput = (e) => {
-    console.log("🚀 ~ handleEnableInput ~ e:", e.target.checked);
     if (update) {
       setCheckValue(index);
-      handleUpdate(index, "isTextFieldEnabled", inputField);
+      handleUpdate(index, 'isTextFieldEnabled', inputField);
       // handleUpdate(value, "correctAnswer", inputField);
     } else {
       handleChangeInput((inputField.isTextFieldEnabled = e.target.checked), e);
@@ -72,17 +71,17 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
     <>
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
+          display: 'flex',
+          justifyContent: 'space-between',
         }}
       >
         <Box>
           <Checkbox defaultChecked />
           <Typography
-            variant='wpf_h7_medium'
+            variant="wpf_h7_medium"
             sx={{
               mb: 0,
-              color: "neutral.N300",
+              color: 'neutral.N300',
             }}
           >
             List of Options
@@ -116,42 +115,42 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
       {/* change radio button  */}
       <>
         <ToggleButtonGroup
-          orientation='vertical'
+          orientation="vertical"
           value={alignment}
           exclusive
           onChange={handleAlignment}
           // aria-label='text alignment'
         >
           <Grid container sx={{}} gap={1}>
-            <Grid item xs={12} sx={{ width: "100%" }}>
+            <Grid item xs={12} sx={{ width: '100%' }}>
               {/* <TextField fullWidth /> */}
               <TextFieldOption
                 sx={{
-                  border: checkValue === 0 ? "1px solid #2E58FF" : "1px solid #E6ECF5 ",
-                  backgroundColor: checkValue === 0 ? "primary.B008" : "primary.B008",
+                  border: checkValue === 0 ? '1px solid #2E58FF' : '1px solid #E6ECF5 ',
+                  backgroundColor: checkValue === 0 ? 'primary.B008' : 'primary.B008',
                   // backgroundColor: checkValue === 0 ? "#F4F7FE" : "#F9FAFB",
                 }}
-                name='possibleAnswer1'
+                name="possibleAnswer1"
                 fullWidth
-                placeholder='Write an option'
+                placeholder="Write an option"
                 defaultValue={
                   inputField.newQuiz
                     ? inputField.possibleAnswers[0]
-                    : inputField.questionType === "imageInOptions"
-                    ? ""
+                    : inputField.questionType === 'imageInOptions'
+                    ? ''
                     : optionField0
                 }
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position='start'>
+                    <InputAdornment position="start">
                       <ToggleButton
                         // style={{ color: alignment === "0" ? "blue" : "black" }}
                         value={0}
-                        aria-label='left aligned'
+                        aria-label="left aligned"
                         style={{
-                          border: "none",
+                          border: 'none',
                           padding: 0,
-                          backgroundColor: "transparent",
+                          backgroundColor: 'transparent',
                         }}
                       >
                         <img src={alignment === 0 ? SwitchCheck : radioIcon} />
@@ -181,7 +180,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
                 onChange={(event) => {
                   setOptionField0(event.target.value);
                   if (update) {
-                    handleUpdate(event.target.value, "possibleAnswers_0", inputField);
+                    handleUpdate(event.target.value, 'possibleAnswers_0', inputField);
                   } else {
                     handleChangeInput((inputField.possibleAnswers[0] = event.target.value), event);
                   }
@@ -192,30 +191,30 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
             <Grid item xs={12}>
               <TextFieldOption
                 sx={{
-                  border: checkValue === 1 ? "1px solid #2E58FF" : "1px solid #E6ECF5 ",
+                  border: checkValue === 1 ? '1px solid #2E58FF' : '1px solid #E6ECF5 ',
                   // backgroundColor: checkValue === 1 ? "#F4F7FE" : "#F9FAFB",
-                  backgroundColor: checkValue === 0 ? "primary.B008" : "primary.B008",
+                  backgroundColor: checkValue === 0 ? 'primary.B008' : 'primary.B008',
                 }}
-                name='possibleAnswer1'
+                name="possibleAnswer1"
                 fullWidth
-                placeholder='Write an option'
+                placeholder="Write an option"
                 defaultValue={
                   inputField.newQuiz
                     ? inputField.possibleAnswers[1]
-                    : inputField.questionType === "imageInOptions"
-                    ? ""
+                    : inputField.questionType === 'imageInOptions'
+                    ? ''
                     : optionField1
                 }
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position='start'>
+                    <InputAdornment position="start">
                       <ToggleButton
                         value={1}
-                        aria-label='centered'
+                        aria-label="centered"
                         style={{
-                          border: "none",
+                          border: 'none',
                           padding: 0,
-                          backgroundColor: "transparent",
+                          backgroundColor: 'transparent',
                         }}
                       >
                         {/* <FormatAlignCenterIcon /> */}
@@ -227,7 +226,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
                 onChange={(event) => {
                   setOptionField1(event.target.value);
                   if (update) {
-                    handleUpdate(event.target.value, "possibleAnswers_1", inputField);
+                    handleUpdate(event.target.value, 'possibleAnswers_1', inputField);
                   } else {
                     handleChangeInput((inputField.possibleAnswers[1] = event.target.value), event);
                   }
@@ -238,30 +237,30 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
             <Grid item xs={12}>
               <TextFieldOption
                 sx={{
-                  border: checkValue === 2 ? "1px solid #2E58FF" : "1px solid #E6ECF5",
+                  border: checkValue === 2 ? '1px solid #2E58FF' : '1px solid #E6ECF5',
                   // backgroundColor: checkValue === 2 ? "#F4F7FE" : "#F9FAFB",
-                  backgroundColor: checkValue === 0 ? "primary.B008" : "primary.B008",
+                  backgroundColor: checkValue === 0 ? 'primary.B008' : 'primary.B008',
                 }}
-                name='possibleAnswer1'
+                name="possibleAnswer1"
                 defaultValue={
                   inputField.newQuiz
                     ? inputField.possibleAnswers[2]
-                    : inputField.questionType === "imageInOptions"
-                    ? ""
+                    : inputField.questionType === 'imageInOptions'
+                    ? ''
                     : optionField2
                 }
                 fullWidth
-                placeholder='Write an option'
+                placeholder="Write an option"
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position='start'>
+                    <InputAdornment position="start">
                       <ToggleButton
                         value={2}
-                        aria-label='right aligned'
+                        aria-label="right aligned"
                         style={{
-                          border: "none",
+                          border: 'none',
                           padding: 0,
-                          backgroundColor: "transparent",
+                          backgroundColor: 'transparent',
                         }}
                       >
                         {/* <FormatAlignRightIcon /> */}
@@ -273,7 +272,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
                 onChange={(event) => {
                   setOptionField2(event.target.value);
                   if (update) {
-                    handleUpdate(event.target.value, "possibleAnswers_2", inputField);
+                    handleUpdate(event.target.value, 'possibleAnswers_2', inputField);
                   } else {
                     handleChangeInput((inputField.possibleAnswers[2] = event.target.value), event);
                   }
@@ -284,31 +283,31 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
             <Grid item xs={12}>
               <TextFieldOption
                 sx={{
-                  border: checkValue === 3 ? "1px solid #2E58FF" : "1px solid #E6ECF5",
+                  border: checkValue === 3 ? '1px solid #2E58FF' : '1px solid #E6ECF5',
                   // backgroundColor: checkValue === 3 ? "#F4F7FE" : "#F9FAFB",
-                  backgroundColor: checkValue === 0 ? "primary.B008" : "primary.B008",
+                  backgroundColor: checkValue === 0 ? 'primary.B008' : 'primary.B008',
                 }}
-                name='possibleAnswer1'
+                name="possibleAnswer1"
                 fullWidth
-                placeholder='Write an option'
+                placeholder="Write an option"
                 defaultValue={
                   inputField.newQuiz
                     ? inputField.possibleAnswers[3]
-                    : inputField.questionType === "imageInOptions"
-                    ? ""
+                    : inputField.questionType === 'imageInOptions'
+                    ? ''
                     : optionField3
                 }
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position='start'>
+                    <InputAdornment position="start">
                       <ToggleButton
                         style={{
-                          border: "none",
+                          border: 'none',
                           padding: 0,
-                          backgroundColor: "transparent",
+                          backgroundColor: 'transparent',
                         }}
                         value={3}
-                        aria-label='justified'
+                        aria-label="justified"
                       >
                         {/* <FormatAlignJustifyIcon /> */}
                         <img src={alignment === 3 ? SwitchCheck : radioIcon} />
@@ -319,7 +318,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
                 onChange={(event) => {
                   setOptionField3(event.target.value);
                   if (update) {
-                    handleUpdate(event.target.value, "possibleAnswers_3", inputField);
+                    handleUpdate(event.target.value, 'possibleAnswers_3', inputField);
                   } else {
                     handleChangeInput((inputField.possibleAnswers[3] = event.target.value), event);
                   }

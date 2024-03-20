@@ -280,7 +280,6 @@ const quizSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getSubmittedQuiz.fulfilled, (state, action) => {
-        console.log('🚀 ~ .addCase ~ action:', action);
         state.isLoading = false;
         // state.quiz = action.payload.data.quiz;
       })

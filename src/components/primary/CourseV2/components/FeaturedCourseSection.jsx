@@ -19,9 +19,12 @@ import { default as React, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { A11y, Autoplay, Navigation } from "swiper/modules";
 import { Swiper } from "swiper/react";
+import { SwiperSlide } from "swiper/react";
 import FeaturedCard from "./CourseCard/FeatureCard";
 
 const FeaturedCourseSection = () => {
+  const { isLightTheme } = useSelector((state) => state.theme);
+
   const {
     initialCourses: { featureCourseList },
   } = useSelector((state) => state.course);
@@ -51,16 +54,26 @@ const FeaturedCourseSection = () => {
       <Swiper
         modules={[Navigation, A11y, Autoplay]}
         speed={2500}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
+        // autoplay={{
+        //   delay: 2500,
+        //   disableOnInteraction: false,
+        // }}
         slidesPerView={slidesPerView}
         spaceBetween={10}
       >
         <Grid container spacing={0} gap={1}>
           {featureCourseList.map((item) => (
-            <FeaturedCard key={item._id} course={item} />
+            <Grid key={item._id} item xs={5.8} sx={{ backgroundColor: isLightTheme ? "#fff" : "#000" }}>
+              <SwiperSlide
+                style={{
+                  backgroundColor: isLightTheme ? "#fff" : "#000",
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <FeaturedCard course={item} />
+              </SwiperSlide>
+            </Grid>
           ))}
         </Grid>
       </Swiper>

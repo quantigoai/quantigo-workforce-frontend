@@ -8,13 +8,7 @@
  */
 import LogoutIcon from '@mui/icons-material/Logout';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import {
-  Avatar,
-  FormControlLabel,
-  Stack,
-  styled,
-  Typography,
-} from '@mui/material';
+import { Avatar, FormControlLabel, Stack, styled, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -38,9 +32,7 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
-  const { role, name, image, firstName, lastName } = useSelector(
-    (state) => state.user.user,
-  );
+  const { role, name, image, firstName, lastName } = useSelector((state) => state.user.user);
   const { isLoading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [notificationOpen, setNotificationOpen] = React.useState(null);
@@ -115,6 +107,7 @@ const Header = () => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          borderBottom: '1px solid #fff',
         }}
       >
         <Box
@@ -136,12 +129,7 @@ const Header = () => {
             <Box sx={{ display: 'flex' }}>
               <MyFormControlLabel
                 onClick={() => dispatch(setTheme(!isLightTheme))}
-                control={
-                  <ThemeSwitch
-                    sx={{ m: 0 }}
-                    checked={isLightTheme ? false : true}
-                  />
-                }
+                control={<ThemeSwitch sx={{ m: 0 }} checked={isLightTheme ? false : true} />}
               />
 
               {/* <Box
@@ -190,10 +178,7 @@ const Header = () => {
                       {firstName} {lastName}
                     </Typography>
 
-                    <Typography
-                      sx={{ color: 'neutral.N650' }}
-                      variant="wpf_p4_regular"
-                    >
+                    <Typography sx={{ color: 'neutral.N650' }} variant="wpf_p4_regular">
                       {role === 'level_1_annotator'
                         ? 'Level 1 Annotator'
                         : role === 'level_2_annotator'
@@ -227,8 +212,7 @@ const Header = () => {
                           width: { xl: '182px', xxl: '182px', lg: '155px' },
                           mt: 1.3,
                           ml: -2,
-                          boxShadow:
-                            '0px 8px 24px 0px #253E5C14, 0px 0px 4px 0px #253E5C0A',
+                          boxShadow: '0px 8px 24px 0px #253E5C14, 0px 0px 4px 0px #253E5C0A',
                         },
                         '& .MuiMenu-list': {
                           padding: '0px',

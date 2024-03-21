@@ -14,3 +14,14 @@
  * Copyright (c) 2024 Tanzim Ahmed
  * -----------------------------------------------------
  */
+import React from 'react';
+
+const CreateChapterPage = () => {
+    return (
+        <div>
+            
+        </div>
+    );
+};
+
+export default CreateChapterPage;

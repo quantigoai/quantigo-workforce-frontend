@@ -12,10 +12,10 @@
  * Modified By    : Tanzim Ahmed
  * ------------------------
  */
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { realToken } from '../../helper/lib';
-import { calculateProgress } from '../../helper/scoreStore';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import { realToken } from "../../helper/lib";
+import { calculateProgress } from "../../helper/scoreStore";
 
 const url = import.meta.env.VITE_APP_SERVER_URL;
 
@@ -31,19 +31,19 @@ const initialState = {
   total: 0,
   quizzesResult: [],
   isEnrollAble: true,
-  enrolmentMessage: '',
+  enrolmentMessage: "",
   courses: [],
   myCourses: [],
-  initialCourses:{},
+  initialCourses: {},
   myArchivedCourses: [],
-  error: 'null',
+  error: "null",
   isCreated: false,
 };
 // All Courses get request
-export const getAllCourses = createAsyncThunk('courses', async (data) => {
+export const getAllCourses = createAsyncThunk("courses", async (data) => {
   const { level, search, filter } = data;
   try {
-    let query = '';
+    let query = "";
     if (level) {
       query += `level=${level}`;
     }
@@ -63,7 +63,7 @@ export const getAllCourses = createAsyncThunk('courses', async (data) => {
     throw new Error(error.response.data.message);
   }
 });
-export const getAllCoursesList = createAsyncThunk('coursesList', async () => {
+export const getAllCoursesList = createAsyncThunk("coursesList", async () => {
   try {
     return await axios.get(`${url}/courses`, {
       headers: {
@@ -77,11 +77,11 @@ export const getAllCoursesList = createAsyncThunk('coursesList', async () => {
 
 // All Courses New
 
-export const getAllCoursesNew = createAsyncThunk('coursesNew', async (data) => {
+export const getAllCoursesNew = createAsyncThunk("coursesNew", async (data) => {
   const { filter, search } = data;
 
   try {
-    let query = '';
+    let query = "";
 
     if (search) {
       query += `search=${search}`;
@@ -100,7 +100,7 @@ export const getAllCoursesNew = createAsyncThunk('coursesNew', async (data) => {
     throw new Error(error.response.data.message);
   }
 });
-export const getMyCourses = createAsyncThunk('myCourses', async (data) => {
+export const getMyCourses = createAsyncThunk("myCourses", async (data) => {
   const { filter, search, pagination } = data;
 
   try {
@@ -126,7 +126,7 @@ export const getMyCourses = createAsyncThunk('myCourses', async (data) => {
     throw new Error(error.response.data.message);
   }
 });
-export const getCoursesCount = createAsyncThunk('coursesCount', async () => {
+export const getCoursesCount = createAsyncThunk("coursesCount", async () => {
   try {
     return await axios.get(`${url}/courses/get-all-courses-count`, {
       headers: {
@@ -137,7 +137,7 @@ export const getCoursesCount = createAsyncThunk('coursesCount', async () => {
     throw new Error(error.response.data.message);
   }
 });
-export const getArchivedCourses = createAsyncThunk('archivedCourses', async (data) => {
+export const getArchivedCourses = createAsyncThunk("archivedCourses", async (data) => {
   const { filter, search, pagination } = data;
   try {
     let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
@@ -159,7 +159,7 @@ export const getArchivedCourses = createAsyncThunk('archivedCourses', async (dat
     throw new Error(error.response.data.message);
   }
 });
-export const getCertificateInfo = createAsyncThunk('certificateInfo', async (id) => {
+export const getCertificateInfo = createAsyncThunk("certificateInfo", async (id) => {
   try {
     return await axios.get(`${url}/courses/get-my-course-certificate/${id}`, {
       headers: {
@@ -172,7 +172,7 @@ export const getCertificateInfo = createAsyncThunk('certificateInfo', async (id)
 });
 
 // all course series
-export const getAllCourseSeries = createAsyncThunk('course/get-all-courses-series/:id', async (id) => {
+export const getAllCourseSeries = createAsyncThunk("course/get-all-courses-series/:id", async (id) => {
   try {
     return await axios.get(`${url}/courses/get-all-courses-series/${id}`, {
       headers: {
@@ -185,7 +185,7 @@ export const getAllCourseSeries = createAsyncThunk('course/get-all-courses-serie
 });
 
 // all course series
-export const getAllRelatedCourses = createAsyncThunk('course/getAll-Related-Courses/:id', async (id) => {
+export const getAllRelatedCourses = createAsyncThunk("course/getAll-Related-Courses/:id", async (id) => {
   try {
     return await axios.get(`${url}/courses/get-all-related-courses/${id}`, {
       headers: {
@@ -197,7 +197,7 @@ export const getAllRelatedCourses = createAsyncThunk('course/getAll-Related-Cour
   }
 });
 
-export const getACourseByID = createAsyncThunk('course/:id', async (id) => {
+export const getACourseByID = createAsyncThunk("course/:id", async (id) => {
   try {
     return await axios.get(`${url}/courses/${id}`, {
       headers: {
@@ -208,14 +208,14 @@ export const getACourseByID = createAsyncThunk('course/:id', async (id) => {
     throw new Error(error.response.data.message);
   }
 });
-export const createCourse = createAsyncThunk('courses/createCourse', async (data) => {
+export const createCourse = createAsyncThunk("courses/createCourse", async (data) => {
   try {
     return await axios.post(`${url}/courses`, data, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
       content: {
-        'Content-Type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
     });
   } catch (error) {
@@ -224,7 +224,7 @@ export const createCourse = createAsyncThunk('courses/createCourse', async (data
 });
 
 // validate course
-export const validateCourseName = createAsyncThunk('validate/A/course', async (data) => {
+export const validateCourseName = createAsyncThunk("validate/A/course", async (data) => {
   try {
     const response = await axios.post(`${url}/courses/checkcoursename`, data, {
       headers: {
@@ -238,7 +238,7 @@ export const validateCourseName = createAsyncThunk('validate/A/course', async (d
 });
 
 // Delate a course by Id
-export const deleteACourseById = createAsyncThunk('/courses/delete/:id', async (id) => {
+export const deleteACourseById = createAsyncThunk("/courses/delete/:id", async (id) => {
   try {
     return await axios.delete(`${url}/courses/${id}`, {
       headers: {
@@ -251,7 +251,7 @@ export const deleteACourseById = createAsyncThunk('/courses/delete/:id', async (
 });
 
 //delete A Chapter by id
-export const deleteAChapterById = createAsyncThunk('/chapter/delete/:id', async (id) => {
+export const deleteAChapterById = createAsyncThunk("/chapter/delete/:id", async (id) => {
   try {
     return await axios.delete(`${url}/coursechapter/${id}`, {
       headers: {
@@ -264,7 +264,7 @@ export const deleteAChapterById = createAsyncThunk('/chapter/delete/:id', async 
 });
 // Update A Course
 
-export const updateACourseById = createAsyncThunk('/courses/update/:id', async (data) => {
+export const updateACourseById = createAsyncThunk("/courses/update/:id", async (data) => {
   const { id, formData } = data;
   try {
     return await axios.patch(`${url}/courses/${id}`, formData, {
@@ -272,7 +272,7 @@ export const updateACourseById = createAsyncThunk('/courses/update/:id', async (
         Authorization: `Bearer ${realToken()}`,
       },
       content: {
-        'Content-Type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
     });
   } catch (error) {
@@ -281,7 +281,7 @@ export const updateACourseById = createAsyncThunk('/courses/update/:id', async (
 });
 
 // update a chapter by chapter ID
-export const updateAChapterById = createAsyncThunk('/courses/chapter/update/:id', async (newData) => {
+export const updateAChapterById = createAsyncThunk("/courses/chapter/update/:id", async (newData) => {
   const { id, formData } = newData;
   try {
     return await axios.patch(`${url}/coursechapter/${id}`, formData, {
@@ -294,7 +294,7 @@ export const updateAChapterById = createAsyncThunk('/courses/chapter/update/:id'
   }
 });
 
-export const enrollACourse = createAsyncThunk('/enroll/course', async (courseId) => {
+export const enrollACourse = createAsyncThunk("/enroll/course", async (courseId) => {
   try {
     return await axios.patch(
       `${url}/courses/enroll/${courseId}`,
@@ -312,7 +312,7 @@ export const enrollACourse = createAsyncThunk('/enroll/course', async (courseId)
 
 // get All chapter from a course
 
-export const getAllChapterFromACourse = createAsyncThunk('course/chapters/:id', async (id) => {
+export const getAllChapterFromACourse = createAsyncThunk("course/chapters/:id", async (id) => {
   try {
     return await axios.get(`${url}/coursechapter?rootCourse=${id}`, {
       headers: {
@@ -326,7 +326,7 @@ export const getAllChapterFromACourse = createAsyncThunk('course/chapters/:id', 
 
 // get a chapter by ID
 
-export const getAChapterById = createAsyncThunk('course/a/chapter/:id', async (id) => {
+export const getAChapterById = createAsyncThunk("course/a/chapter/:id", async (id) => {
   try {
     return await axios.get(`${url}/coursechapter/${id}`, {
       headers: {
@@ -337,7 +337,7 @@ export const getAChapterById = createAsyncThunk('course/a/chapter/:id', async (i
     throw new Error(error.response.data.message);
   }
 });
-export const getAllReviewForCourseId = createAsyncThunk('/review/course/:courseId/:id', async (id) => {
+export const getAllReviewForCourseId = createAsyncThunk("/review/course/:courseId/:id", async (id) => {
   try {
     return await axios.get(`${url}/review/course/${id}`, {
       headers: {
@@ -350,14 +350,14 @@ export const getAllReviewForCourseId = createAsyncThunk('/review/course/:courseI
 });
 // create Course Chapter
 
-export const createCourseChapter = createAsyncThunk('/createCourse/chapter', async (data) => {
+export const createCourseChapter = createAsyncThunk("/createCourse/chapter", async (data) => {
   try {
     return await axios.post(`${url}/coursechapter`, data, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
       content: {
-        'Content-Type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
     });
   } catch (error) {
@@ -365,14 +365,14 @@ export const createCourseChapter = createAsyncThunk('/createCourse/chapter', asy
   }
 });
 // Get quiz results of a coursr
-export const getCourseQuizzesResults = createAsyncThunk('/courses/quizzes/results', async (courseId) => {
+export const getCourseQuizzesResults = createAsyncThunk("/courses/quizzes/results", async (courseId) => {
   try {
     return await axios.get(`${url}/courses/results/${courseId}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
       },
       content: {
-        'Content-Type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
     });
   } catch (error) {
@@ -380,7 +380,7 @@ export const getCourseQuizzesResults = createAsyncThunk('/courses/quizzes/result
   }
 });
 
-export const createCourseReview = createAsyncThunk('courses/CourseReview', async (FinalData) => {
+export const createCourseReview = createAsyncThunk("courses/CourseReview", async (FinalData) => {
   const { id, data } = FinalData;
   try {
     return await axios.post(`${url}/review/create/${id}`, data, {
@@ -394,7 +394,7 @@ export const createCourseReview = createAsyncThunk('courses/CourseReview', async
 });
 
 const courseSlice = createSlice({
-  name: 'course',
+  name: "course",
   initialState: initialState,
   reducers: {
     updateCourseData: () => initialState,
@@ -551,7 +551,7 @@ const courseSlice = createSlice({
       })
       .addCase(getACourseByID.rejected, (state) => {
         state.isLoading = false;
-        state.error = '';
+        state.error = "";
       })
       .addCase(getAllCourseSeries.pending, (state) => {
         state.isLoading = true;
@@ -561,7 +561,7 @@ const courseSlice = createSlice({
       })
       .addCase(getAllCourseSeries.rejected, (state) => {
         state.isLoading = false;
-        state.error = '';
+        state.error = "";
       })
       .addCase(getAllRelatedCourses.pending, (state) => {
         state.isLoading = true;
@@ -571,7 +571,7 @@ const courseSlice = createSlice({
       })
       .addCase(getAllRelatedCourses.rejected, (state) => {
         state.isLoading = false;
-        state.error = '';
+        state.error = "";
       })
       .addCase(deleteACourseById.pending, (state) => {
         state.isLoading = true;
@@ -652,7 +652,7 @@ const courseSlice = createSlice({
       })
       .addCase(getAllChapterFromACourse.rejected, (state) => {
         state.isLoading = false;
-        state.error = 'Login failed';
+        state.error = "Login failed";
       })
       .addCase(getAChapterById.pending, (state) => {
         state.isLoading = true;
@@ -663,7 +663,7 @@ const courseSlice = createSlice({
       })
       .addCase(getAChapterById.rejected, (state) => {
         state.isLoading = false;
-        state.error = 'Login failed';
+        state.error = "Login failed";
       })
       .addCase(getCourseQuizzesResults.pending, (state) => {
         state.isLoading = true;
@@ -674,7 +674,7 @@ const courseSlice = createSlice({
       })
       .addCase(getCourseQuizzesResults.rejected, (state) => {
         state.isLoading = false;
-        state.error = 'Login failed';
+        state.error = "Login failed";
       })
       .addCase(createCourseReview.pending, (state) => {
         state.isLoading = true;

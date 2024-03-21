@@ -16,13 +16,13 @@
  */
 
 import { Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { setActiveChapterIndex, setActiveCourseId } from "../../../../features/slice/activePathSlice";
-import { getACourseByID, getAllChapterFromACourse } from "../../../../features/slice/courseSlice";
+import { getACourseByID } from "../../../../features/slice/courseSlice";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
-import CourseLandingContent from "../../Course/CourseLandingPage/CourseLandingContent";
+import LandingPageContent from "../components/LandingPageContent";
 import LandingPageHeader from "../components/LandingPageHeader";
 
 // import { setActiveChapterIndex, setActiveCourseId } from "../../../../features/slice/activePathSlice";
@@ -41,56 +41,19 @@ const CourseLandingPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isLoading, course } = useSelector((state) => state.course);
+  const { course } = useSelector((state) => state.course);
   const { isLightTheme } = useSelector((state) => state.theme);
   const [isCourseLoading, setIsCourseLoading] = useState(true);
-  // const { handleViewDetailsButton, isCourseLoading } = useCourseManagement();
-  const handleViewDetailsButton = async (id, courseDirection) => {
-    setIsCourseLoading(true);
-    // if (courseDirection === 'MyCourse') {
-    //   navigate(`/course-homepage/${id}`);
-    //   setIsCourseLoading(false);
-    // } else {
-    //   navigate(`/course-landing/${id}`);
-    //   setIsCourseLoading(false);
-    // }
 
-    dispatch(getACourseByID(id))
-      .then((res) => {
-        dispatch(setActiveCourseId(id));
-        dispatch(setActiveChapterIndex(0));
-        dispatch(getAllChapterFromACourse(id)).then((res) => {
-          if (courseDirection === "MyCourse") {
-            navigate(`/course-homepage/${id}`);
-            setIsCourseLoading(false);
-          } else {
-            navigate(`/course-landing/${id}`);
-            setIsCourseLoading(false);
-          }
-        });
-      })
-      .catch(() => {
-        setIsCourseLoading(false);
-      });
-  };
-
+  const refContainer = useRef(null);
   useEffect(() => {
+    setIsCourseLoading(true);
+    refContainer?.current?.scrollIntoView({ behavior: "smooth" });
     dispatch(getACourseByID(id))
       .then((res) => {
         dispatch(setActiveCourseId(id));
         dispatch(setActiveChapterIndex(0));
-        dispatch(getAllChapterFromACourse(id)).then((res) => {
-          // if (courseDirection === "MyCourse") {
-          //   navigate(`/course-homepage/${id}`);
-          //   setIsCourseLoading(false);
-          // } else {
-          //   navigate(`/course-landing/${id}`);
-          //   setIsCourseLoading(false);
-          // }
-        });
-      })
-      .catch(() => {
-        setIsCourseLoading(false);
+        // dispatch(getAllChapterFromACourse(id)).then((res) => {});
       })
       .finally(() => {
         setIsCourseLoading(false);
@@ -105,11 +68,11 @@ const CourseLandingPage = () => {
         </>
       ) : (
         <>
-          <Box>
+          <Box ref={refContainer}>
             <LandingPageHeader course={course} />
           </Box>
           <Box sx={{ backgroundColor: isLightTheme ? "#fff" : "#000" }}>
-            <CourseLandingContent course={course} handleViewDetailsButton={handleViewDetailsButton} />
+            <LandingPageContent course={course} />
           </Box>
         </>
       )}

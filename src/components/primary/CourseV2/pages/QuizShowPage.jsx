@@ -1,7 +1,7 @@
 /*
- * File           : UpdateQuiz.jsx
+ * File           : QuizShowPage.jsx
  * Project        : wmpfrontv2
- * Created Date   : Fr 22 Mar 2024 12:56:03
+ * Created Date   : Fr 22 Mar 2024 01:11:24
  * Description    : <<description>>
  *
  * -----------------------------------------------------
@@ -16,7 +16,7 @@
  */
 import React from 'react';
 
-const UpdateQuiz = () => {
+const QuizShowPage = () => {
     return (
         <div>
             
@@ -24,4 +24,4 @@ const UpdateQuiz = () => {
     );
 };
 
-export default UpdateQuiz;
+export default QuizShowPage;

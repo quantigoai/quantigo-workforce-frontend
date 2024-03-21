@@ -15,12 +15,13 @@
  * -----------------------------------------------------
  */
 
-import { Box } from "@mui/material";
-import { default as React, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getAllCoursesNew } from "../../../../features/slice/courseSlice";
-import FeaturedCourseSection from "../components/FeaturedCourseSection";
-import LevelBasedSection from "../components/LevelBasedSection";
+import { Box } from '@mui/material';
+import { default as React, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getAllCoursesNew } from '../../../../features/slice/courseSlice';
+import FeaturedCourseSection from '../components/FeaturedCourseSection';
+import LevelBasedSection from '../components/LevelBasedSection';
+import CourseHeader from '../shared/courseHeader/CourseHeader';
 
 const AllCourses = () => {
   const dispatch = useDispatch();
@@ -40,9 +41,9 @@ const AllCourses = () => {
   return dataLoading ? (
     <h1>Loading...</h1>
   ) : (
-    <Box sx={{ p: "25px" }}>
+    <Box sx={{ px: '25px' }}>
       {/* TODO implement header here */}
-
+      <CourseHeader />
       <FeaturedCourseSection />
       {level.map((level) => (
         <LevelBasedSection title={level} key={level} />

@@ -159,8 +159,8 @@ export default function LayoutNew({ children }) {
         return navigate('/annotators');
       case 'Reviewer List':
         return navigate('/reviewers');
-      // case 'Course':
-      //   return navigate('/course');
+      case 'Course-new':
+        return navigate('/course-new');
       case 'Course':
         return navigate('/courses');
       case 'Reviewer Course':

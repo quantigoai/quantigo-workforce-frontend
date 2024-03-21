@@ -28,7 +28,8 @@ const CourseLandingContent = ({ course, handleViewDetailsButton }) => {
   const coursesRef = useRef(null);
   const testimonialRef = useRef(null);
   const { isLightTheme } = useSelector((state) => state.theme);
-    const handleChange = (event, newValue) => {
+    
+  const handleChange = (event, newValue) => {
     setValue(newValue);
 
     if (newValue === '1') {

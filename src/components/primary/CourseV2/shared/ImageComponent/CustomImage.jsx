@@ -34,8 +34,8 @@ const CustomImage = ({ height, width, maxHeight, maxWidth, alt, imageUrl }) => {
           maxHeight: maxHeight,
           maxWidth: maxWidth,
           padding: "0 0 0 0 ",
-          objectFit: "cover",
           borderRadius: "10px 10px 0px 0px",
+          objectFit: "cover",
         }}
         alt={alt}
         src={imageUrl}

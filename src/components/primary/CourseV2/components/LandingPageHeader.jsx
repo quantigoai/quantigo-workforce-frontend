@@ -221,12 +221,12 @@ const LandingPageHeader = () => {
           </Box>
         )}
       </Box>
-
+    
       <CustomImage
         height={"100%"}
         width={"100%"}
-        maxHeight={{ xxl: "270px", xl: "40px", lg: "200px" }}
-        maxWidth={{ xxl: "390px", xl: "340px", lg: "300px" }}
+        maxHeight={{ xxl: "300px", xl: "300px", lg: "300px" }}
+        maxWidth={{ xxl: "390px", xl: "340px", lg: "320px" }}
         alt={course.name}
         imageUrl={course.images}
       />

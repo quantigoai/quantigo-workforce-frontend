@@ -17,20 +17,22 @@
 import { Box } from "@mui/material";
 import React from "react";
 
-const CustomHoverImage = ({ height, width, maxHeight, maxWidth, alt, imageUrl }) => {
+const CustomHoverImage = ({ maxHeight, maxWidth, alt, imageUrl }) => {
   return (
     <Box
       sx={{
         overflow: "hidden",
         minHeight: maxHeight,
         minWidth: maxWidth,
+        height: maxHeight,
+        width: maxWidth,
       }}
     >
       <Box
         component="img"
         sx={{
-          height: height,
-          width: width,
+          height: maxHeight,
+          width: maxWidth,
           maxHeight: maxHeight,
           maxWidth: maxWidth,
           padding: "0 0 0 0 ",

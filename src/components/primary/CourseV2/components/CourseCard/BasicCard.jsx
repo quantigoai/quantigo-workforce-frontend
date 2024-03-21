@@ -15,7 +15,7 @@
  * -----------------------------------------------------
  */
 import { Box, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 // import imageSample from "../../../assets/images/img.png";
@@ -24,7 +24,7 @@ import ArrowIcon from "../../../../../assets/images/courses/Vector.svg";
 import imageSample from "../../../../../assets/images/img.png";
 
 import { capitalizeFirstLetter } from "../../../../../helper/capitalizeFirstWord";
-import { MyCustomCard, MyCustomCardHover } from "./courseCardStyle";
+import CustomHoverImage from "../../shared/ImageComponent/CustomHoverImage";
 
 const BasicCard = ({ courseDirection, course, handleViewDetailsButton, level }) => {
   const dispatch = useDispatch();
@@ -33,40 +33,10 @@ const BasicCard = ({ courseDirection, course, handleViewDetailsButton, level }) 
 
   const imageUrl = course.images?.length ? `${course.images[0]}` : imageSample;
 
-  const [hovering, setHovering] = useState(false);
-
-  const handleMouseEnter = () => {
-    setHovering(true);
-  };
-
-  const handleMouseLeave = () => {
-    setHovering(false);
-    // setButtonHovering(false);
-  };
-
-  const screenSize = window.innerWidth;
-  let width = "90%";
-  let height = "90%";
-  // let height = '10%'; // Default width for large screens
-  if (screenSize >= 1500) {
-    // Extra-large screens
-    width = 368;
-    height = 180;
-  } else if (screenSize === 1440) {
-    // Large screens
-    width = 278;
-    height = 160;
-  } else if (screenSize >= 992) {
-    width = 250;
-    height = 160;
-  }
-
   return (
     // TODO Fix grid layout
     <>
       <Box
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
         sx={{
           borderRadius: "10px 10px 0px 0px",
           display: "flex",
@@ -76,7 +46,6 @@ const BasicCard = ({ courseDirection, course, handleViewDetailsButton, level }) 
       >
         <Box
           sx={{ cursor: "pointer", position: "relative" }}
-          // onClick={() => handleViewDetailsButton(course._id, courseDirection)}
           onClick={() => navigate(`/course-new/course-landing/${course._id}`)}
         >
           <Box
@@ -109,26 +78,16 @@ const BasicCard = ({ courseDirection, course, handleViewDetailsButton, level }) 
               <></>
             )}
           </Box>
-          <Box sx={{ overflow: "hidden" }}>
-            <img
-              style={
-                hovering
-                  ? {
-                      ...MyCustomCard,
-                      ...MyCustomCardHover,
-                      width,
-                      height,
-                    }
-                  : {
-                      ...MyCustomCard,
-                      width,
-                      height,
-                    }
-              }
-              src={imageUrl}
-              alt=""
-            />
-          </Box>
+          {/* <Box sx={{ overflow: "hidden" }}> */}
+          <CustomHoverImage
+            height={"100%"}
+            width={"100%"}
+            maxHeight={{ xxl: 180, xl: 160, md: 167, lg: 160 }}
+            maxWidth={{ xxl: 368, xl: 278, md: 167, lg: 250 }}
+            alt={course.name}
+            imageUrl={imageUrl}
+          />
+          {/* </Box> */}
         </Box>
         <Box
           sx={{
@@ -150,13 +109,11 @@ const BasicCard = ({ courseDirection, course, handleViewDetailsButton, level }) 
                 sx={{ cursor: "pointer", lineHeight: "20px" }}
               >
                 {course.name?.length > 50 ? course.name?.substring(0, 50) + "....." : course.name}
-                {/* Test Course */}
               </Typography>
             </Box>
             <Box></Box>{" "}
             <Typography sx={{ lineHeight: "18px" }} variant="wpf_h8_regular" color={"grey.550"}>
               {course.description?.length > 100 ? course.description?.substring(0, 70) + "....." : course.description}
-              {/* course Desc */}
             </Typography>
           </Box>
           <Box onClick={() => handleViewDetailsButton(course._id, courseDirection)} sx={{ cursor: "pointer" }}>

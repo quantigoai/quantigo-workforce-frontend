@@ -40,7 +40,6 @@ const FeaturedCourseSection = () => {
   };
 
   useEffect(() => {
-    console.log("object");
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
@@ -59,7 +58,7 @@ const FeaturedCourseSection = () => {
         slidesPerView={slidesPerView}
         spaceBetween={10}
       >
-        <Grid container spacing={0} gap={2}>
+        <Grid container spacing={0} gap={1}>
           {featureCourseList.map((item) => (
             <FeaturedCard key={item._id} course={item} />
           ))}

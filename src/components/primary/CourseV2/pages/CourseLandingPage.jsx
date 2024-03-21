@@ -23,7 +23,7 @@ import { setActiveChapterIndex, setActiveCourseId } from "../../../../features/s
 import { getACourseByID, getAllChapterFromACourse } from "../../../../features/slice/courseSlice";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import CourseLandingContent from "../../Course/CourseLandingPage/CourseLandingContent";
-import CourseLandingHeader from "../../Course/CourseLandingPage/CourseLandingHeader";
+import LandingPageHeader from "../components/LandingPageHeader";
 
 // import { setActiveChapterIndex, setActiveCourseId } from "../../../../features/slice/activePathSlice";
 // import {
@@ -38,7 +38,6 @@ import CourseLandingHeader from "../../Course/CourseLandingPage/CourseLandingHea
 const CourseLandingPage = () => {
   const params = useParams();
   const { courseId: id } = params;
-  console.log("🚀 ~ CourseLandingPage ~ params:", params);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -46,8 +45,6 @@ const CourseLandingPage = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
   const [isCourseLoading, setIsCourseLoading] = useState(true);
   // const { handleViewDetailsButton, isCourseLoading } = useCourseManagement();
-  console.log("🚀 ~ CourseLandingPageIndex ~ isLoading:", isLoading);
-
   const handleViewDetailsButton = async (id, courseDirection) => {
     setIsCourseLoading(true);
     // if (courseDirection === 'MyCourse') {
@@ -57,6 +54,7 @@ const CourseLandingPage = () => {
     //   navigate(`/course-landing/${id}`);
     //   setIsCourseLoading(false);
     // }
+
     dispatch(getACourseByID(id))
       .then((res) => {
         dispatch(setActiveCourseId(id));
@@ -103,22 +101,18 @@ const CourseLandingPage = () => {
     <Box>
       {isCourseLoading ? (
         <>
-          <LoadingComponent />{" "}
+          <LoadingComponent />
         </>
       ) : (
         <>
           <Box>
-            <CourseLandingHeader course={course} />
+            <LandingPageHeader course={course} />
           </Box>
           <Box sx={{ backgroundColor: isLightTheme ? "#fff" : "#000" }}>
             <CourseLandingContent course={course} handleViewDetailsButton={handleViewDetailsButton} />
           </Box>
         </>
       )}
-
-      {/* <Box sx={{ backgroundColor: isLightTheme ? '#fff' : '#000' }}>
-        <CourseRelated />
-      </Box> */}
     </Box>
   );
 };

@@ -47,3 +47,20 @@ export const ButtonHover = {
   backgroundColor: "rgba(255, 154, 69, 0.1)",
 };
 
+export const boxStyle = {
+  display: "flex",
+  justifyContent: "space-between",
+  padding: "20px",
+  width: "100%",
+};
+
+export const btnStyle = {
+  textTransform: "none",
+  borderRadius: "8px",
+  backgroundColor: "#2E58FF",
+  padding: "10px 24px",
+  color: "#fff",
+  height: "40px",
+  "&:hover": { backgroundColor: "#244EF5" },
+  "&:disabled": { backgroundColor: "#B6C9F0", color: "#FFFFFF" },
+};

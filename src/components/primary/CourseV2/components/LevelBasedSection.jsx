@@ -20,11 +20,10 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import BasicCard from "./CourseCard/BasicCard";
 import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
+import BasicCard from "./CourseCard/BasicCard";
 
 const LevelBasedSection = ({ title }) => {
-  console.log("🚀 ~ LevelBasedSection ~ title:", title)
   const {
     initialCourses: { coursesByLevelList },
   } = useSelector((state) => state.course);
@@ -41,15 +40,7 @@ const LevelBasedSection = ({ title }) => {
   //   } = useCourseManagement();
 
   const handleSeeMore = () => {
-    if (title === "Basic Courses") {
-      navigate(`/courses/all-course/basic`);
-    } else if (title === "Beginner Courses") {
-      navigate("/courses/all-course/beginner");
-    } else if (title === "Intermediate Courses") {
-      navigate("/courses/all-course/intermediate");
-    } else {
-      navigate("/courses/all-course/advanced");
-    }
+    navigate(`/course-new/course-level/${title}`);
   };
 
   return (

@@ -46,6 +46,7 @@ import QuizResultShowIndex from "../Quiz/QuizPage/ShowResult/QuizResultShowIndex
 import Skills from "../Skill/Skills";
 import PrivateRoute from "./PrivateRoute";
 import CourseLandingPage from "../CourseV2/pages/CourseLandingPage";
+import AllLeveledCourses from "../CourseV2/pages/AllLeveledCourses";
 
 export const roles = {
   admin: "admin",
@@ -136,6 +137,7 @@ const Routers = () => {
         {/*############################ newCourse #########################*/}
         {/* TODO Write new path here */}
         <Route path="course-new" element={<CourseNewIndex />} />
+        <Route path="/course-new/course-level/:level" element={<AllLeveledCourses />} />
         <Route path="/course-new/course-landing/:courseId" element={<CourseLandingPage />} />
 
         {/* ########################################################### */}

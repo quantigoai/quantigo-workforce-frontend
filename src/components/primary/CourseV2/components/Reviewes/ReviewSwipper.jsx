@@ -23,12 +23,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import img from "../../../../../assets/images/courses/image 35.png";
 import { getAllReviewForCourseId } from "../../../../../features/slice/courseSlice";
 import ReviewCard from "./ReviewCard";
+import CourseReviewSkeleton from "../../shared/CourseSkeleton/CourseReviewSkeleton";
 
 const ReviewSwipper = () => {
   const arr = [0, 1, 2, 3, 4, 5, 6];
   const dispatch = useDispatch();
   const [selectedSlide, setSelectedSlide] = useState(0);
   const [allReviews, setAllReviews] = useState([]);
+  const [isReviewLoading, setIsReviewLoading] = useState(false);
 
   const { isLightTheme } = useSelector((state) => state.theme);
   const { course } = useSelector((state) => state.course);
@@ -38,9 +40,11 @@ const ReviewSwipper = () => {
   };
 
   useEffect(() => {
+    setIsReviewLoading(true);
     course._id &&
       dispatch(getAllReviewForCourseId(course._id)).then((action) => {
         setAllReviews(action.payload.data.reviews);
+        setIsReviewLoading(false);
       });
   }, [course]);
 
@@ -53,51 +57,61 @@ const ReviewSwipper = () => {
   };
 
   return (
-    <Box
-      sx={{
-        cursor: "pointer",
-        // height: { xxl: "370px", xl: "340px", lg: "380px" },
-        backgroundColor: isLightTheme ? "#fff" : "#000",
-      }}
-    >
-      <Swiper
-        style={{}}
-        modules={[Navigation, A11y, Pagination]}
-        pagination={{
-          dynamicBullets: true,
-        }}
-        slidesPerView={2.2}
-        spaceBetween={15}
-      >
-        <Box sx={{ padding: "1%" }}>
-          <Grid sx={{}} container spacing={3}>
-            {allReviews.map((item, index) => (
-              <Grid sx={{}} key={item} item xs={12} sm={6} md={3} gap={1}>
-                <SwiperSlide style={{ backgroundColor: isLightTheme ? "#fff" : "#000" }} key={item._id}>
-                  <Box
-                    onClick={() => handleSlideClick(index)}
-                    sx={{
-                      backgroundColor:
-                        index === selectedSlide
-                          ? isLightTheme
-                            ? "#fff"
-                            : "#081429"
-                          : isLightTheme
-                          ? "#F1F5F9"
-                          : "#091E42",
-                      border: index === selectedSlide ? "2px solid  #2E58FF" : "2px solid #F1F5F9 ",
-                      borderRadius: "8px",
-                    }}
-                  >
-                    <ReviewCard item={item} review={review} />
-                  </Box>
-                </SwiperSlide>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-      </Swiper>
-    </Box>
+    <>
+      {isReviewLoading ? (
+        <>
+          <CourseReviewSkeleton />
+        </>
+      ) : (
+        <>
+          <Box
+            sx={{
+              cursor: "pointer",
+              // height: { xxl: "370px", xl: "340px", lg: "380px" },
+              backgroundColor: isLightTheme ? "#fff" : "#000",
+            }}
+          >
+            <Swiper
+              style={{}}
+              modules={[Navigation, A11y, Pagination]}
+              pagination={{
+                dynamicBullets: true,
+              }}
+              slidesPerView={2.2}
+              spaceBetween={15}
+            >
+              <Box sx={{ padding: "1%" }}>
+                <Grid sx={{}} container spacing={3}>
+                  {allReviews.map((item, index) => (
+                    <Grid sx={{}} key={item} item xs={12} sm={6} md={3} gap={1}>
+                      <SwiperSlide style={{ backgroundColor: isLightTheme ? "#fff" : "#000" }} key={item._id}>
+                        <Box
+                          onClick={() => handleSlideClick(index)}
+                          sx={{
+                            backgroundColor:
+                              index === selectedSlide
+                                ? isLightTheme
+                                  ? "#fff"
+                                  : "#081429"
+                                : isLightTheme
+                                ? "#F1F5F9"
+                                : "#091E42",
+                            border: index === selectedSlide ? "2px solid  #2E58FF" : "2px solid #F1F5F9 ",
+                            borderRadius: "8px",
+                          }}
+                        >
+                          <ReviewCard item={item} review={review} />
+                        </Box>
+                      </SwiperSlide>
+                    </Grid>
+                  ))}
+                </Grid>
+              </Box>
+            </Swiper>
+          </Box>
+        </>
+      )}
+    </>
   );
 };
 

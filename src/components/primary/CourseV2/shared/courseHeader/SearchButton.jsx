@@ -18,10 +18,13 @@ import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, Button, IconButton, InputBase, Paper } from '@mui/material';
 import React from 'react';
-import useCourseFilterDispatch from '../../hooks/useCourseFilterDispatch';
+import { useOutletContext } from 'react-router-dom';
 
-const SearchButton = ({x}) => {
-  const { search, searchRef, handleSearch, clearSearch } = x;
+const SearchButton = () => {
+  const [myContext] = useOutletContext();
+  const { courseFilterDispatch } = myContext;
+  const { search, searchRef, handleSearch, clearSearch } = courseFilterDispatch;
+
   return (
     <>
       <Box sx={{ pl: '10px' }}>
@@ -43,6 +46,7 @@ const SearchButton = ({x}) => {
           </IconButton>
           <InputBase
             inputRef={searchRef}
+            defaultValue={search}
             sx={{
               ml: 0,
               flex: 1,

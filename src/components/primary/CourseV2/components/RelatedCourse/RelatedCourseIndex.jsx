@@ -15,12 +15,12 @@
  * -----------------------------------------------------
  */
 
-import { Box, Grid, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllRelatedCourses } from "../../../../../features/slice/courseSlice";
-import BasicCard from "../CourseCard/BasicCard";
-import CourseCardSkeleton from "../../shared/CourseSkeleton/CourseCardSkeleton";
+import { Box, Grid, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllRelatedCourses } from '../../../../../features/slice/courseSlice';
+import CourseCardSkeleton from '../../shared/CourseSkeleton/CourseCardSkeleton';
+import BasicCard from '../CourseCard/BasicCard';
 
 const RelatedCourseIndex = () => {
   const { course } = useSelector((state) => state.course);
@@ -46,12 +46,12 @@ const RelatedCourseIndex = () => {
           <Grid
             container
             sx={{
-              height: "100%",
-              width: "100%",
+              height: '100%',
+              width: '100%',
             }}
           >
             {skeletonArray?.map((item) => (
-              <Grid key={course._id} item xs={12} sm={6} md={3} sx={{ py: 2, paddingRight: "2%" }}>
+              <Grid key={course._id} item xs={12} sm={6} md={3} sx={{ py: 2, paddingRight: '2%' }}>
                 <CourseCardSkeleton />
               </Grid>
             ))}
@@ -62,32 +62,32 @@ const RelatedCourseIndex = () => {
           {relatedCourses.length != 0 && (
             <Box>
               <Box>
-                <Typography variant='wpf_h5_Bold' color={"grey.600"}>
+                <Typography variant='wpf_h5_Bold' color={'grey.600'}>
                   Related Course
                 </Typography>
               </Box>
               <Box
                 sx={{
-                  mt: "20px",
-                  width: "100%",
-                  height: "10%",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  borderRadius: "8px",
-                  boxShadow: "0px 1px 3px 0px #09008014",
+                  mt: '20px',
+                  width: '100%',
+                  height: '10%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  borderRadius: '8px',
+                  boxShadow: '0px 1px 3px 0px #09008014',
                 }}
               >
                 <Grid
                   container
                   sx={{
-                    height: "100%",
-                    width: "100%",
+                    height: '100%',
+                    width: '100%',
                   }}
                 >
                   {relatedCourses &&
                     relatedCourses?.map((course) => (
-                      <Grid key={course._id} item xs={12} sm={6} md={3} sx={{ py: 2, paddingRight: "2%" }}>
+                      <Grid key={course._id} item xs={12} sm={6} md={3} sx={{ py: 2, paddingRight: '2%' }}>
                         <BasicCard course={course} />
                       </Grid>
                     ))}

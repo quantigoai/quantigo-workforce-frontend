@@ -18,7 +18,9 @@ import {
 const useCourseDispatch = ({ setCourseCount, search, filter, pagination, seePagination }) => {
   const dispatch = useDispatch();
 
+
   const handleDispatch = async (pathname, level) => {
+    
     switch (true) {
       case pathname === '/courses/my-course':
         dispatch(getMyCourses({ filter, search, pagination })).then((action) => {

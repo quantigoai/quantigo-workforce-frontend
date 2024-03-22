@@ -25,7 +25,7 @@ import CourseHeader from '../shared/courseHeader/CourseHeader';
 
 const AllCourses = () => {
   const [myContext] = useOutletContext();
-  const { level, x, dataLoading } = myContext;
+  const { level, courseFilterDispatch, dataLoading } = myContext;
 
   return dataLoading ? (
     <>
@@ -34,7 +34,7 @@ const AllCourses = () => {
   ) : (
     <Box sx={{ px: '25px' }}>
       {/* TODO implement header here */}
-      <CourseHeader x={x} />
+      <CourseHeader />
       <FeaturedCourseSection />
       {level?.map((level) => (
         <LevelBasedSection title={level} key={level} />

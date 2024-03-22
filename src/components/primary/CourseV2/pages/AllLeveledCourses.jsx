@@ -17,29 +17,36 @@
 import { Box } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useOutletContext, useParams } from 'react-router-dom';
 import { getAllCourses } from '../../../../features/slice/courseSlice';
-import BasicCard from '../components/CourseCard/BasicCard';
-import CourseHeader from '../shared/courseHeader/CourseHeader';
 import LoadingComponent from '../../../shared/Loading/LoadingComponent';
+import BasicCard from '../components/CourseCard/BasicCard';
+import CourseCardSkeleton from '../shared/CourseSkeleton/CourseCardSkeleton';
+import CourseHeader from '../shared/courseHeader/CourseHeader';
 
 const AllLeveledCourses = () => {
   const dispatch = useDispatch();
+  const [myContext] = useOutletContext();
+  const { courseFilterDispatch } = myContext;
+  const { search, } = courseFilterDispatch;
   const [isCourseLoading, setIsCourseLoading] = useState(true);
   const { level } = useParams();
   const { isLightTheme } = useSelector((state) => state.theme);
+
   useEffect(() => {
     const fetchAllCoursesByLevel = () => {
-      dispatch(getAllCourses({ level })).then((res) => {
+      dispatch(getAllCourses({ level, search })).finally(() => {
         setIsCourseLoading(false);
       });
     };
-    if (isCourseLoading) {
+    console.log("🚀 ~ useEffect ~ search:", search)
+    if (isCourseLoading || search || search === '') {
+      // if (isCourseLoading || search) {
       fetchAllCoursesByLevel();
     }
-  }, [isCourseLoading]);
-  const { courses } = useSelector((state) => state.course);
+  }, [isCourseLoading, search]);
 
+  const { isLoading, courses } = useSelector((state) => state.course);
   return isCourseLoading ? (
     <>
       <LoadingComponent />
@@ -70,7 +77,7 @@ const AllLeveledCourses = () => {
             }}
             key={course._id}
           >
-            <BasicCard isFeaturedShow={true} course={course} />
+            {isLoading ? <CourseCardSkeleton /> : <BasicCard isFeaturedShow={true} course={course} />}
           </Box>
         ))}
       </Box>

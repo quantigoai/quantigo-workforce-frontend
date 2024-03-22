@@ -5,7 +5,10 @@ import CourseEnrollNavigateButtons from '../../components/CourseEnrollNavigateBu
 import CreateCourseButton from './CreateCourseButton';
 import FilterIconButton from './FilterIconButton';
 import SearchButton from './SearchButton';
-const CourseHeader = ({ level,x }) => {
+import { useParams } from 'react-router-dom';
+const CourseHeader = () => {
+  const { level } = useParams();
+  
   const { user } = useSelector((state) => state.user);
   const adminRoles = ['admin', 'trainer'];
   const studentRoles = ['level_0_annotator', 'level_1_annotator', 'level_2_annotator', 'level_3_annotator', 'reviewer'];
@@ -48,7 +51,7 @@ const CourseHeader = ({ level,x }) => {
         }}
       >
         {studentRoles.includes(user.role) && <CourseEnrollNavigateButtons />}
-        <SearchButton x={x} />
+        <SearchButton />
         <FilterIconButton />
 
         {adminRoles.includes(user.role) && <CreateCourseButton />}

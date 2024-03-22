@@ -15,23 +15,24 @@
  * -----------------------------------------------------
  */
 
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { setActivePath } from '../../../features/slice/activePathSlice';
-import { getAllCoursesNew } from '../../../features/slice/courseSlice';
-import useCourseFilterDispatch from './hooks/useCourseFilterDispatch';
+import { setActivePath } from '../../../../features/slice/activePathSlice';
+import { getAllCoursesNew } from '../../../../features/slice/courseSlice';
+import useCourseFilterDispatch from '../hooks/useCourseFilterDispatch';
 
 const CourseNewIndex = () => {
   const navigate = useNavigate();
   const [courseCount, setCourseCount] = React.useState(0);
-  const x = useCourseFilterDispatch({ setCourseCount });
-  const { handleDispatch, search } = x;
+  const courseFilterDispatch = useCourseFilterDispatch({ setCourseCount });
+  const { pathLevel, handleDispatch, search } = courseFilterDispatch;
 
   const dispatch = useDispatch();
   const [level, setLevel] = React.useState([]);
 
   const [dataLoading, setDataLoading] = React.useState(true);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     dispatch(setActivePath('Course-new'));
@@ -42,23 +43,22 @@ const CourseNewIndex = () => {
       });
     };
     if (dataLoading) {
-      fetchAllCoursesAndSetLevel();
+      if (pathname === '/course-new' || pathname === '/course-new/all-courses') {
+        fetchAllCoursesAndSetLevel();
+      }
+    } else {
+      setDataLoading(false);
     }
-  }, [dataLoading]);
-
-  const { pathname } = useLocation();
+  }, [dataLoading, level]);
 
   useEffect(() => {
-    handleDispatch(pathname, level);
-  }, [search, pathname, level]);
-
-  useLayoutEffect(() => {
     pathname === '/course-new' && navigate('/course-new/all-courses');
-  }, [pathname]);
+    handleDispatch(pathname, level);
+  }, [search, pathname, level, pathLevel]);
 
   const myContext = {
     level,
-    x,
+    courseFilterDispatch,
     dataLoading,
   };
   return (

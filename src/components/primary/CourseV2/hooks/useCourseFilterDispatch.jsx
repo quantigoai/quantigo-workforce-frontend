@@ -9,32 +9,32 @@
 
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  getAllCourses,
-  getAllCoursesNew,
-  getArchivedCourses,
-  getMyCourses,
-} from '../../../../features/slice/courseSlice';
+import { getAllCoursesNew, getArchivedCourses, getMyCourses } from '../../../../features/slice/courseSlice';
 
 const useCourseFilterDispatch = ({ setCourseCount }) => {
   const dispatch = useDispatch();
   const searchRef = useRef(null);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(false);
+  const [pathLevel, setPathLevel] = useState('');
   const [filter, setFilter] = useState({});
+  const [isCourseLoading, setIsCourseLoading] = useState(true);
 
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
   });
+
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };
+
   const clearSearch = () => {
     setSearch('');
-    searchRef.current.value = '';
+    if (searchRef.current) {
+      searchRef.current.value = '';
+    }
   };
-  const handleDispatch = async (pathname, level) => {
-    console.log('🚀 ~ handleDispatch ~ pathname:', pathname);
+  const handleDispatch = async (pathname) => {
     switch (true) {
       case pathname === '/courses/my-course':
         dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
@@ -50,17 +50,38 @@ const useCourseFilterDispatch = ({ setCourseCount }) => {
         dispatch(getAllCoursesNew({ filter, search })).then((action) => {
           setCourseCount(action.payload.data.courses.count);
         });
-        break;
 
-      case level !== undefined:
-        dispatch(getAllCourses({ level }));
         break;
+      // case pathname === `/course-new/course-level/${pathLevel}`:
+      //   console.log(pathLevel);
+      //   if (pathLevel) {
+      //     setIsCourseLoading(true);
+      //     dispatch(getAllCourses({ level: pathLevel, search })).finally(() => {
+      //       setIsCourseLoading(false);
+      //     });
+      //   }
+      //   break;
+
+      // case level !== undefined:
+      //   dispatch(getAllCourses({ level }));
+      //   break;
 
       default:
         break;
     }
   };
-  return { handleDispatch, search, filter, pagination, searchRef, handleSearch, clearSearch };
+  return {
+    isCourseLoading,
+    setIsCourseLoading,
+    pathLevel,
+    setPathLevel,
+    handleDispatch,
+    search,
+    filter,
+    pagination,
+    searchRef,
+    handleSearch,
+    clearSearch,
+  };
 };
-
 export default useCourseFilterDispatch;

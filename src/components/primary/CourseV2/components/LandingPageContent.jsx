@@ -24,21 +24,10 @@ import CourseSeriesList from "./CourseSeries/CourseSeriesList";
 import CourseCertificate from "./Certificate/CourseCertificate";
 import CourseReviews from "./Reviewes/CourseReviews";
 import RelatedCourseIndex from "./RelatedCourse/RelatedCourseIndex";
+import { boxStyle, certificateStyle } from './LandingPage/landingPageSyle/landingPageSyle';
 
 
-const boxStyle = {
-  display: "flex",
-  justifyContent: "space-between",
-  width: "100%",
-  padding: "20px",
-  position: "relative",
-};
-const certificateStyle = {
-  height: "40%",
-  position: "sticky",
-  zIndex: "50",
-  top: 0,
-};
+
 const LandingPageContent = ({ course }) => {
   const [value, setValue] = React.useState();
   const aboutRef = useRef(null);
@@ -48,7 +37,6 @@ const LandingPageContent = ({ course }) => {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-
     if (newValue === "1") {
       aboutRef.current?.scrollIntoView({ behavior: "smooth" });
     } else if (newValue === "2") {

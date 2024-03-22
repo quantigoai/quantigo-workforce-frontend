@@ -46,11 +46,12 @@ const CourseLandingPage = () => {
   const [isCourseLoading, setIsCourseLoading] = useState(true);
 
   const refContainer = useRef(null);
+  
   useEffect(() => {
     setIsCourseLoading(true);
     refContainer?.current?.scrollIntoView({ behavior: "smooth" });
     dispatch(getACourseByID(id))
-      .then((res) => {
+      .then(() => {
         dispatch(setActiveCourseId(id));
         dispatch(setActiveChapterIndex(0));
         // dispatch(getAllChapterFromACourse(id)).then((res) => {});

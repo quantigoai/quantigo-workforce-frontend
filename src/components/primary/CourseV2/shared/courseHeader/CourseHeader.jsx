@@ -1,11 +1,13 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid, Popover, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { capitalizeFirstLetter } from '../../../../../helper/capitalizeFirstWord';
 import CourseEnrollNavigateButtons from '../../components/CourseEnrollNavigateButtons';
 import CreateCourseButton from './CreateCourseButton';
 import FilterIconButton from './FilterIconButton';
 import SearchButton from './SearchButton';
-const CourseHeader = ({ level,x }) => {
+import { useState } from 'react';
+import MIniModalCourseFilter from '../../../Course/CourseHeader/MIniModalCourseFilter';
+const CourseHeader = ({ level, x }) => {
   const { user } = useSelector((state) => state.user);
   const adminRoles = ['admin', 'trainer'];
   const studentRoles = ['level_0_annotator', 'level_1_annotator', 'level_2_annotator', 'level_3_annotator', 'reviewer'];
@@ -27,7 +29,7 @@ const CourseHeader = ({ level,x }) => {
         }}
       >
         <Grid container sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Typography variant='wpf_p1_semiBold'>{`List of ${
+          <Typography variant="wpf_p1_semiBold">{`List of ${
             level ? capitalizeFirstLetter(level) : ''
           } Courses`}</Typography>
 

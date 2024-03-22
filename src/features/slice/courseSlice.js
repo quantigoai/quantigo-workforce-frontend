@@ -483,8 +483,8 @@ const courseSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(getAllCoursesNew.pending, (state) => {
-        state.courses = [];
         state.isLoading = true;
+        state.initialCourses = {};
       })
       .addCase(getAllCoursesNew.fulfilled, (state, action) => {
         // state.courses = action.payload.data.courses;

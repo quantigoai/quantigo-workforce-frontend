@@ -59,7 +59,7 @@ const FeaturedCourseSection = () => {
         slidesPerView={slidesPerView}
         spaceBetween={10}
       >
-        {featureCourseList.map((item, index) => (
+        {featureCourseList?.map((item, index) => (
           <SwiperSlide
             key={item._id}
             style={{

@@ -28,7 +28,7 @@ const AllLeveledCourses = () => {
   const dispatch = useDispatch();
   const [myContext] = useOutletContext();
   const { courseFilterDispatch } = myContext;
-  const { search, } = courseFilterDispatch;
+  const { search, setSearch } = courseFilterDispatch;
   const [isCourseLoading, setIsCourseLoading] = useState(true);
   const { level } = useParams();
   const { isLightTheme } = useSelector((state) => state.theme);
@@ -39,10 +39,12 @@ const AllLeveledCourses = () => {
         setIsCourseLoading(false);
       });
     };
-    console.log("🚀 ~ useEffect ~ search:", search)
     if (isCourseLoading || search || search === '') {
       // if (isCourseLoading || search) {
       fetchAllCoursesByLevel();
+      if (search === '') {
+        setSearch(null);
+      }
     }
   }, [isCourseLoading, search]);
 

@@ -25,6 +25,7 @@ import BasicCard from './CourseCard/BasicCard';
 
 const LevelBasedSection = ({ title }) => {
   const {
+    isLoading,
     initialCourses: { coursesByLevelList },
   } = useSelector((state) => state.course);
 
@@ -43,7 +44,10 @@ const LevelBasedSection = ({ title }) => {
     navigate(`/course-new/course-level/${title}`);
   };
 
-  return (
+  return isLoading ? (
+    // TODO Update loader here
+    <>load</>
+  ) : (
     <Box sx={{ pr: '10px' }}>
       <Box
         sx={{

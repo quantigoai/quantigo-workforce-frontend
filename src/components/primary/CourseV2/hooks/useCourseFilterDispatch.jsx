@@ -14,7 +14,7 @@ import { getAllCoursesNew, getArchivedCourses, getMyCourses } from '../../../../
 const useCourseFilterDispatch = ({ setCourseCount }) => {
   const dispatch = useDispatch();
   const searchRef = useRef(null);
-  const [search, setSearch] = useState(false);
+  const [search, setSearch] = useState(null);
   const [pathLevel, setPathLevel] = useState('');
   const [filter, setFilter] = useState({});
   const [isCourseLoading, setIsCourseLoading] = useState(true);
@@ -77,6 +77,7 @@ const useCourseFilterDispatch = ({ setCourseCount }) => {
     setPathLevel,
     handleDispatch,
     search,
+    setSearch,
     filter,
     pagination,
     searchRef,

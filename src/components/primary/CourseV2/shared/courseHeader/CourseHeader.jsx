@@ -1,14 +1,14 @@
 import { Box, Grid, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { capitalizeFirstLetter } from '../../../../../helper/capitalizeFirstWord';
 import CourseEnrollNavigateButtons from '../../components/CourseEnrollNavigateButtons';
 import CreateCourseButton from './CreateCourseButton';
 import FilterIconButton from './FilterIconButton';
 import SearchButton from './SearchButton';
-import { useParams } from 'react-router-dom';
+
 const CourseHeader = () => {
   const { level } = useParams();
-  
   const { user } = useSelector((state) => state.user);
   const adminRoles = ['admin', 'trainer'];
   const studentRoles = ['level_0_annotator', 'level_1_annotator', 'level_2_annotator', 'level_3_annotator', 'reviewer'];

@@ -15,13 +15,13 @@
  * -----------------------------------------------------
  */
 
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { Box, Typography } from "@mui/material";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { capitalizeFirstLetter } from "../../../../helper/capitalizeFirstWord";
-import BasicCard from "./CourseCard/BasicCard";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Box, Typography } from '@mui/material';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { capitalizeFirstLetter } from '../../../../helper/capitalizeFirstWord';
+import BasicCard from './CourseCard/BasicCard';
 
 const LevelBasedSection = ({ title }) => {
   const {
@@ -44,59 +44,59 @@ const LevelBasedSection = ({ title }) => {
   };
 
   return (
-    <Box sx={{ pr: "10px" }}>
+    <Box sx={{ pr: '10px' }}>
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
+          display: 'flex',
+          justifyContent: 'space-between',
           py: 2,
           //   mt: seeMore ? "40px" : "",
-          mt: "40px",
+          mt: '40px',
         }}
       >
-        <Typography variant="wpf_h4_Bold" color={"neutral.995"}>
+        <Typography variant='wpf_h4_Bold' color={'neutral.995'}>
           {capitalizeFirstLetter(title)} Courses
         </Typography>
 
         <Typography
           onClick={handleSeeMore}
           sx={{
-            display: "flex",
-            cursor: "pointer",
-            justifyContent: "center",
-            alignItems: "center",
-            color: "#266AED",
-            mr: "25px",
+            display: 'flex',
+            cursor: 'pointer',
+            justifyContent: 'center',
+            alignItems: 'center',
+            color: '#266AED',
+            mr: '25px',
           }}
-          variant="wpf_p3_medium_3"
+          variant='wpf_p3_medium_3'
         >
           See more
-          <ArrowForwardIosIcon sx={{ fontSize: "12px", ml: "5px", mt: "2px" }} />
+          <ArrowForwardIosIcon sx={{ fontSize: '12px', ml: '5px', mt: '2px' }} />
         </Typography>
       </Box>
 
       <Box
         sx={{
-          display: "grid",
+          display: 'grid',
           gridTemplateColumns: {
-            xxl: "repeat(4,1fr)",
-            xl: "repeat(4,1fr)",
-            lg: "repeat(3,1fr)",
+            xxl: 'repeat(4,1fr)',
+            xl: 'repeat(4,1fr)',
+            lg: 'repeat(3,1fr)',
           },
-          gridGap: "8px",
-          mt: "16px",
-          pr: "15px",
-          gap: { xxl: "20px", xl: "15px", lg: "12px" },
+          gridGap: '8px',
+          mt: '16px',
+          pr: '15px',
+          gap: { xxl: '20px', xl: '15px', lg: '12px' },
         }}
       >
         {coursesByLevelList[title]?.map((course) => (
           <Box
             sx={{
-              backgroundColor: isLightTheme ? "#fff" : "#000",
-              width: { xxl: "368px", xl: "278px", lg: "250px" },
-              borderRadius: "10px",
+              backgroundColor: isLightTheme ? '#fff' : '#000',
+              width: { xxl: '368px', xl: '278px', lg: '250px' },
+              borderRadius: '10px',
             }}
-            key={course._id}
+            key={course.createdAt}
           >
             <BasicCard course={course} />
           </Box>

@@ -48,7 +48,7 @@ const CourseSeriesList = ({ course }) => {
         setDataLoading(false);
       });
   }, [course]);
-  
+
   return dataLoading ? (
     <>loading</>
   ) : (

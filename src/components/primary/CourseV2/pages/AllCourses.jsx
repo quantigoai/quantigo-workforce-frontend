@@ -15,14 +15,15 @@
  * -----------------------------------------------------
  */
 
-import { Box } from "@mui/material";
-import { default as React, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { setActivePath } from "../../../../features/slice/activePathSlice";
-import { getAllCoursesNew } from "../../../../features/slice/courseSlice";
-import FeaturedCourseSection from "../components/FeaturedCourseSection";
-import LevelBasedSection from "../components/LevelBasedSection";
-import CourseHeader from "../shared/courseHeader/CourseHeader";
+import { Box } from '@mui/material';
+import { default as React, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setActivePath } from '../../../../features/slice/activePathSlice';
+import { getAllCoursesNew } from '../../../../features/slice/courseSlice';
+import FeaturedCourseSection from '../components/FeaturedCourseSection';
+import LevelBasedSection from '../components/LevelBasedSection';
+import CourseHeader from '../shared/courseHeader/CourseHeader';
+import LoadingComponent from '../../../shared/Loading/LoadingComponent';
 
 const AllCourses = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const AllCourses = () => {
   const [dataLoading, setDataLoading] = React.useState(true);
 
   useEffect(() => {
-    dispatch(setActivePath("Course-new"));
+    dispatch(setActivePath('Course-new'));
     const fetchAllCoursesAndSetLevel = () => {
       dispatch(getAllCoursesNew({})).then((res) => {
         setLevel(Object.keys(res.payload.data.courses.coursesByLevelList));
@@ -44,9 +45,11 @@ const AllCourses = () => {
   }, [dataLoading]);
 
   return dataLoading ? (
-    <h1>Loading...</h1>
+    <>
+      <LoadingComponent />
+    </>
   ) : (
-    <Box sx={{ px: "25px" }}>
+    <Box sx={{ px: '25px' }}>
       {/* TODO implement header here */}
       <CourseHeader />
       <FeaturedCourseSection />

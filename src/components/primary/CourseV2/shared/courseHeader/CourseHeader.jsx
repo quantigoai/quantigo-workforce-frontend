@@ -2,40 +2,34 @@ import { Box, Button, Grid, IconButton, InputBase, Paper, Typography } from '@mu
 import ClearIcon from '@mui/icons-material/Clear';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import SearchIcon from '@mui/icons-material/Search';
-const CourseHeader = () => {
+import { capitalizeFirstLetter } from '../../../../../helper/capitalizeFirstWord';
+import { useSelector } from 'react-redux';
+import CourseEnrollNavigateButtons from '../../components/CourseEnrollNavigateButtons';
+const CourseHeader = ({ level }) => {
+  const { user } = useSelector((state) => state.user);
   return (
     <Box
       sx={{
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        py: '10px',
+        py: '15px',
         // px: '15px',
-        // backgroundColor: 'red',
+
         // borderTop: '1px solid #E6ECF5',
       }}
     >
       <Box
-        sx={
-          {
-            //   padding: '10px 30px',
-            //   height: '70px',
-            //   width: { xxl: '30%', xl: '40%', lg: '40%' },
-          }
-        }
+        sx={{
+          padding: '5px 10px',
+          //   height: '70px',
+          //   width: { xxl: '30%', xl: '40%', lg: '40%' },
+        }}
       >
         <Grid container sx={{ display: 'flex', flexDirection: 'column' }}>
-          {/* <Typography variant="wpf_p1_semiBold">{`List of ${
-        pathname === '/courses/my-course'
-          ? 'My'
-          : pathname === '/courses/archive-course'
-          ? 'Archived'
-          : level
-          ? capitalizeFirstLetter(level)
-          : ''
-      } Courses`}
-      </Typography> */}
-          <Typography>List of Courses</Typography>
+          <Typography variant="wpf_p1_semiBold">{`List of ${
+            level ? capitalizeFirstLetter(level) : ''
+          } Courses`}</Typography>
 
           {/* {courseCount > 0 && (
             <Typography sx={{ opacity: '0.7', height: '13px' }} variant="wpf_p3_regular" color={'neutral.750'}>
@@ -53,38 +47,7 @@ const CourseHeader = () => {
           // width: { xxl: '20%', xl: '20%', lg: '40%' },
         }}
       >
-        {/* {role === 'level_0_annotator' ||
-        role === 'level_1_annotator' ||
-        role === 'level_2_annotator' ||
-        role === 'level_3_annotator' ? (
-          <CoursePageFilter
-            search={search}
-            filter={filter}
-            isLevel={isLevel}
-            setIsDataLoading={setIsDataLoading}
-            setFeatureCourses={setFeatureCourses}
-            courseCount={courseCount}
-            setCourseCount={setCourseCount}
-            setAllCourses={setAllCourses}
-            isActiveAll={isActiveAll}
-            setIsActiveAll={setIsActiveAll}
-            isActiveEnrolled={isActiveEnrolled}
-            setIsActiveEnrolled={setIsActiveEnrolled}
-            isActiveArchived={isActiveArchived}
-            setIsActiveArchived={setIsActiveArchived}
-            MyCourseCount={MyCourseCount}
-            ArchiveCount={ArchiveCount}
-            allCount={allCount}
-            setFilter={setFilter}
-            setSearch={setSearch}
-            searchRef={searchRef}
-            pagination={pagination}
-            setIsPagination={setIsPagination}
-            allCourseCount={allCourseCount}
-          />
-        ) : (
-          <></>
-        )} */}
+        {user.role === 'level_1_annotator' ? <CourseEnrollNavigateButtons /> : <></>}
         <Box sx={{ pl: '10px' }}>
           <Paper
             sx={{

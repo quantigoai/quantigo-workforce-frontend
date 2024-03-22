@@ -215,7 +215,7 @@ export default function LayoutNew({ children }) {
               backgroundColor: 'rgba(255, 154, 69, 0.1)',
             },
           }}
-          className="responsive-drawer"
+          className='responsive-drawer'
           onClick={() => handleOptionClick(text.name)}
         >
           <ListItemIcon
@@ -231,7 +231,7 @@ export default function LayoutNew({ children }) {
             <img src={text.icon} />
           </ListItemIcon>
 
-          <Typography variant="wpf_p3_medium">
+          <Typography variant='wpf_p3_medium'>
             <ListItemText
               disableTypography
               primary={text.name}
@@ -358,7 +358,7 @@ export default function LayoutNew({ children }) {
               borderRight: 'none',
             },
           }}
-          variant="permanent"
+          variant='permanent'
           open={open}
         >
           <DrawerHeader
@@ -390,12 +390,12 @@ export default function LayoutNew({ children }) {
                 <img
                   onClick={() => navigate('/')}
                   src={logo}
-                  alt="logo"
+                  alt='logo'
                   style={{
                     cursor: 'pointer',
                     ...(!open && { display: 'none' }),
                   }}
-                  className="responsive-logo"
+                  className='responsive-logo'
                 />
               </Box>
 
@@ -433,12 +433,12 @@ export default function LayoutNew({ children }) {
           >
             <Box sx={{ paddingLeft: '9%' }}>
               {open && (
-                <Typography variant="wpf_p4_semiBold" sx={{ color: '#B6C9F0' }}>
+                <Typography variant='wpf_p4_semiBold' sx={{ color: '#B6C9F0' }}>
                   MAIN MENU
                 </Typography>
               )}
               {!open && (
-                <Typography variant="wpf_p4_semiBold" sx={{ color: '#B6C9F0', pl: '5px' }}>
+                <Typography variant='wpf_p4_semiBold' sx={{ color: '#B6C9F0', pl: '5px' }}>
                   MENU
                 </Typography>
               )}

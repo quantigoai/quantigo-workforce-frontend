@@ -15,42 +15,28 @@
  * -----------------------------------------------------
  */
 
-import { Box } from "@mui/material";
-import { default as React, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { setActivePath } from "../../../../features/slice/activePathSlice";
-import { getAllCoursesNew } from "../../../../features/slice/courseSlice";
-import FeaturedCourseSection from "../components/FeaturedCourseSection";
-import LevelBasedSection from "../components/LevelBasedSection";
-import CourseHeader from "../shared/courseHeader/CourseHeader";
+import { Box } from '@mui/material';
+import { default as React } from 'react';
+import { useOutletContext } from 'react-router-dom';
+import LoadingComponent from '../../../shared/Loading/LoadingComponent';
+import FeaturedCourseSection from '../components/FeaturedCourseSection';
+import LevelBasedSection from '../components/LevelBasedSection';
+import CourseHeader from '../shared/courseHeader/CourseHeader';
 
 const AllCourses = () => {
-  const dispatch = useDispatch();
-  const [level, setLevel] = React.useState([]);
-
-  const [dataLoading, setDataLoading] = React.useState(true);
-
-  useEffect(() => {
-    dispatch(setActivePath("Course-new"));
-    const fetchAllCoursesAndSetLevel = () => {
-      dispatch(getAllCoursesNew({})).then((res) => {
-        setLevel(Object.keys(res.payload.data.courses.coursesByLevelList));
-        setDataLoading(false);
-      });
-    };
-    if (dataLoading) {
-      fetchAllCoursesAndSetLevel();
-    }
-  }, [dataLoading]);
+  const [myContext] = useOutletContext();
+  const { level, x, dataLoading } = myContext;
 
   return dataLoading ? (
-    <h1>Loading...</h1>
+    <>
+      <LoadingComponent />
+    </>
   ) : (
-    <Box sx={{ px: "25px" }}>
+    <Box sx={{ px: '25px' }}>
       {/* TODO implement header here */}
-      <CourseHeader />
+      <CourseHeader x={x} />
       <FeaturedCourseSection />
-      {level.map((level) => (
+      {level?.map((level) => (
         <LevelBasedSection title={level} key={level} />
       ))}
     </Box>

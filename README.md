@@ -1,13 +1,13 @@
 - To run this application
 
-1. Rename the "dummy.env.local" to "env.local"
+1. Rename the "dummy.env.txt" to "env.local"
 2. Run "npm install" or "yarn install" to install the packages
 3. Run "npm start" to run the project  
 
 node version:  v18.13.0
 npm version:  9.2.0
 
-dummy.env.local
+dummy.env.txt
 
     VITE_APP_CLIENT_URL=
     VITE_APP_SERVER_URL=

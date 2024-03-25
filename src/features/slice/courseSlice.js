@@ -36,6 +36,7 @@ const initialState = {
   myCourses: [],
   initialCourses: {},
   myArchivedCourses: [],
+  coursesCount: {},
   error: 'null',
   isCreated: false,
 };
@@ -506,7 +507,7 @@ const courseSlice = createSlice({
         state.total = action.payload.data.total;
         state.isLoading = false;
       })
-      .addCase(getCoursesCount.rejected, (state, action) => {
+      .addCase(getMyCourses.rejected, (state, action) => {
         state.isLoading = false;
       })
       .addCase(getCoursesCount.pending, (state) => {
@@ -514,9 +515,10 @@ const courseSlice = createSlice({
       })
       .addCase(getCoursesCount.fulfilled, (state, action) => {
         // state.courses = action.payload.data.enrolledCourses;
+        state.coursesCount = action.payload.data.coursesCount;
         state.isLoading = false;
       })
-      .addCase(getMyCourses.rejected, (state, action) => {
+      .addCase(getCoursesCount.rejected, (state, action) => {
         state.isLoading = false;
       })
       .addCase(getArchivedCourses.pending, (state) => {

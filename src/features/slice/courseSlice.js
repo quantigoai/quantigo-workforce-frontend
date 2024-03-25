@@ -101,6 +101,7 @@ export const getAllCoursesNew = createAsyncThunk('coursesNew', async (data) => {
   }
 });
 export const getMyCourses = createAsyncThunk('myCourses', async (data) => {
+  console.log('🚀 ~ getMyCourses ~ data:', data);
   const { filter, search, pagination } = data;
 
   try {
@@ -117,6 +118,7 @@ export const getMyCourses = createAsyncThunk('myCourses', async (data) => {
       // query += `&${filter}=${search}`;
       filterOptions.map((f) => (query += `&${f}=${filter[f]}`));
     }
+    console.log('🚀 ~ getMyCourses ~ query:', query);
     return await axios.get(`${url}/courses/get-my-enrolled-course?${query}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
@@ -138,6 +140,7 @@ export const getCoursesCount = createAsyncThunk('coursesCount', async () => {
   }
 });
 export const getArchivedCourses = createAsyncThunk('archivedCourses', async (data) => {
+  console.log('🚀 ~ getArchivedCourses ~ data:', data);
   const { filter, search, pagination } = data;
   try {
     let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
@@ -498,6 +501,7 @@ const courseSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getMyCourses.fulfilled, (state, action) => {
+        console.log('🚀 ~ .addCase ~ action:', action);
         state.myCourses = action.payload.data.enrolledCourses;
         state.courseMeta = action.payload.data.meta;
         state.total = action.payload.data.total;
@@ -520,6 +524,7 @@ const courseSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getArchivedCourses.fulfilled, (state, action) => {
+        console.log('🚀 ~ .addCase ~ action:', action);
         state.myArchivedCourses = action.payload.data.archivedCourses;
         state.archivedCourseMeta = action.payload.data.meta;
         state.total = action.payload.data.total;

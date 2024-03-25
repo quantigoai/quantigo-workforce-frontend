@@ -49,6 +49,7 @@ import CreateQuiz from '../Quiz/CreateQuiz';
 import QuizResultShowIndex from '../Quiz/QuizPage/ShowResult/QuizResultShowIndex';
 import Skills from '../Skill/Skills';
 import PrivateRoute from './PrivateRoute';
+import CourseList from '../CourseV2/pages/CourseList.jsx';
 
 export const roles = {
   admin: 'admin',
@@ -109,9 +110,9 @@ const Routers = () => {
         <Route path={'/course-details/:id'} element={<CourseDetails />}>
           {/* TODO Check it and remove this */}
           {/* <Route path='index' element={<CourseDetailsIndex />} /> */}
-          <Route path='index' element={<CourseNewDetailsIndex />} />
-          <Route path='content' element={<CourseMainContent />} />
-          <Route path='show-quiz' element={<QuizShow />} />
+          <Route path="index" element={<CourseNewDetailsIndex />} />
+          <Route path="content" element={<CourseMainContent />} />
+          <Route path="show-quiz" element={<QuizShow />} />
           {/* <Route path={'quiz-result'} element={<ShowResult />} /> */}
         </Route>
 
@@ -132,36 +133,36 @@ const Routers = () => {
           <Route path={'/create-quiz'} element={<CreateQuiz />} />
         </Route>
 
-        <Route path='courses' element={<CourseNew />}>
-          <Route path='my-course' element={<MyCourse />}></Route>
+        <Route path="courses" element={<CourseNew />}>
+          <Route path="my-course" element={<MyCourse />}></Route>
 
           {/* ### */}
-          <Route path='all-course' element={<AllCourse />}></Route>
+          <Route path="all-course" element={<AllCourse />}></Route>
 
-          <Route path='archive-course' element={<ArchiveCourse />}></Route>
+          <Route path="archive-course" element={<ArchiveCourse />}></Route>
         </Route>
 
         {/* ### */}
-        <Route path='courses/all-course/:level' element={<BasicCourses />} />
+        <Route path="courses/all-course/:level" element={<BasicCourses />} />
 
         {/*############################ newCourse #########################*/}
         {/* TODO Write new path here */}
-        <Route path='course-new' element={<CourseNewIndex />}>
-          <Route path='all-courses/' element={<AllCourses />} />
-          <Route path='course-level/:level' element={<AllLeveledCourses />} />
-          <Route path='course-landing/:courseId' element={<CourseLandingPage />} />
-          <Route path='course-home-page/:courseId' element={<CourseHomepage />} />
+        <Route path="course-new" element={<CourseNewIndex />}>
+          <Route path="all-courses/" element={<AllCourses />} />
+          <Route path="course-level/:level" element={<AllLeveledCourses />} />
+          <Route path="course-landing/:courseId" element={<CourseLandingPage />} />
+          <Route path="course-home-page/:courseId" element={<CourseHomepage />} />
 
-          <Route path='course-list/:type' element={<></>} />
-          
-          <Route path='create-chapter/:courseId' element={<> </>} />
-          <Route path='update-chapter/:courseId' element={<> </>} />
-          <Route path='create-quiz/:courseId' element={<> </>} />
-          <Route path='get-quiz/:quizId' element={<> </>} />
-          <Route path='get-user-submission/:submissionId' element={<> </>} />
-          <Route path='update-quiz/:quizId' element={<> </>} />
-          <Route path='get-submission-result/' element={<> </>} />
-          <Route path='get-all-submission/:quizId' element={<> </>} />
+          <Route path="course-list/:type" element={<CourseList />} />
+
+          <Route path="create-chapter/:courseId" element={<> </>} />
+          <Route path="update-chapter/:courseId" element={<> </>} />
+          <Route path="create-quiz/:courseId" element={<> </>} />
+          <Route path="get-quiz/:quizId" element={<> </>} />
+          <Route path="get-user-submission/:submissionId" element={<> </>} />
+          <Route path="update-quiz/:quizId" element={<> </>} />
+          <Route path="get-submission-result/" element={<> </>} />
+          <Route path="get-all-submission/:quizId" element={<> </>} />
         </Route>
 
         {/* ########################################################### */}
@@ -284,7 +285,7 @@ const Routers = () => {
         </Route>
         {/* ---------- ---------- ----------- */}
         {/* ---------- Error Page ----------- */}
-        <Route path='*' element={<ErrorPage />} />
+        <Route path="*" element={<ErrorPage />} />
         {/* <Route path="/certificate" element={<CertificatePdf />} /> */}
         {/* <Route path="/certificate" element={<CertificatePdf />} /> */}
         {/* ---------- ---------- ----------- */}

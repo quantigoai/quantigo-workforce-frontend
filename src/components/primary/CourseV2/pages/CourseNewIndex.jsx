@@ -34,22 +34,21 @@ const CourseNewIndex = () => {
   const [dataLoading, setDataLoading] = React.useState(true);
   const { pathname } = useLocation();
 
+  const fetchAllCoursesAndSetLevel = () => {
+    dispatch(getAllCoursesNew({})).then((res) => {
+      setLevel(Object.keys(res.payload.data.courses.coursesByLevelList));
+      setDataLoading(false);
+    });
+  };
+
   useEffect(() => {
     dispatch(setActivePath('Course-new'));
-    const fetchAllCoursesAndSetLevel = () => {
-      dispatch(getAllCoursesNew({})).then((res) => {
-        setLevel(Object.keys(res.payload.data.courses.coursesByLevelList));
-        setDataLoading(false);
-      });
-    };
     if (dataLoading) {
-      if (pathname === '/course-new' || pathname === '/course-new/all-courses') {
+      if (pathname === '/course-new/all-courses') {
         fetchAllCoursesAndSetLevel();
       }
-    } else {
-      setDataLoading(false);
     }
-  }, [dataLoading, level]);
+  }, [dataLoading, level, pathname]);
 
   useEffect(() => {
     pathname === '/course-new' && navigate('/course-new/all-courses');

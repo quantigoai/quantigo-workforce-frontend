@@ -28,15 +28,6 @@ import { getAChapterById } from '../../../../../features/slice/courseSlice';
 import { getAllCourseChapterWithMark } from '../../../../../features/slice/quizSlice';
 import ChapterProgressbar from './ChapterProgressbar';
 
-const boxStyle = {
-  display: 'flex',
-  justifyContent: 'center',
-  justifyContent: 'space-between',
-  width: '100%',
-  alignItems: 'center',
-  gap: '14px',
-  backgroundColor: 'red',
-};
 const accordionBoxNumberStyle = {
   backgroundColor: '#E2E8F0',
   padding: '2px',

@@ -78,17 +78,17 @@ const LandingPageHeader = () => {
       user.role === "reviewer"
     ) {
       if (user.enrolledCourses.includes(course._id)) {
-        navigate(`/course-homepage/${course._id}`);
+        navigate(`/course-new/course-home-page/${course._id}`);
       } else if (user.completedCourses.includes(course._id)) {
-        navigate(`/course-homepage/${course._id}`);
+        navigate(`/course-new/course-home-page/${course._id}`);
       } else {
-        navigate(`/course-homepage/${course._id}`);
+        navigate(`/course-new/course-home-page/${course._id}`);
         dispatch(enrollACourse(course._id)).then((action) => {
           dispatch(updateUserEnrollCourse(action.payload.data.course._id));
         });
       }
     } else {
-      navigate(`/course-homepage/${course._id}`);
+      navigate(`/course-new/course-home-page/${course._id}`);
     }
   };
 

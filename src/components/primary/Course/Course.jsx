@@ -162,9 +162,11 @@ const Course = () => {
         },
       );
     } else {
+      console.log("x");
       dispatch(getAllCoursesNew({ filter, search })).then((action) => {
         setCourseCount(action.payload.data.courses.count);
         setAllCourses(action.payload.data.courses);
+        console.log("🚀 ~ dispatch ~ action.payload.data.courses:", action.payload.data.courses)
         setFeatureCourses(action.payload.data.courses.featureCourseList);
         setIsDataLoading(false);
         setIsPagination(false);

@@ -6,8 +6,6 @@ import LoadingComponent from '../../../shared/Loading/LoadingComponent';
 import CourseLevel from '../CourseLevel';
 import FeaturedCourse from '../FeaturedCourse';
 import useCourseManagement from '../hooks/createCourseHook/useCourseMangement';
-import { PDFViewer } from '@react-pdf/renderer';
-import Certificate from '../Certificate/Certificate';
 
 const AllCourse = () => {
   const dispatch = useDispatch();
@@ -20,7 +18,7 @@ const AllCourse = () => {
     isActiveArchived,
   } = useCourseManagement();
 
-  const { isLoading: cLoading, courses } = useSelector((state) => state.course);
+  const { isLoading: cLoading, courses, initialCourses } = useSelector((state) => state.course);
   const CoursePaper = styled(Paper)({
     width: '100%',
     height: '90%',
@@ -40,7 +38,7 @@ const AllCourse = () => {
         <LoadingComponent />
       ) : (
         <Box
-          className="content"
+          className='content'
           sx={
             {
               // pl: '30px',
@@ -57,13 +55,13 @@ const AllCourse = () => {
                 <>
                   <Box sx={{ paddingLeft: '25px' }}>
                     <FeaturedCourse
-                      courses={courses.featureCourseList}
+                      courses={initialCourses.featureCourseList}
                       handleViewDetailsButton={handleViewDetailsButton}
                     />
 
                     {courses.count === 0 ? (
                       <Box sx={{ mt: '20px' }}>
-                        <Typography variant="wpf_h7_semiBold">No course Found</Typography>
+                        <Typography variant='wpf_h7_semiBold'>No course Found</Typography>
                       </Box>
                     ) : courses?.enrolledCourses && courses.enrolledCourses.length > 0 ? (
                       <CourseLevel
@@ -87,37 +85,37 @@ const AllCourse = () => {
                       />
                     ) : (
                       <Box>
-                        {courses.coursesByLevelList?.basic?.length > 0 && (
+                        {initialCourses.coursesByLevelList?.basic?.length > 0 && (
                           <CourseLevel
                             isDataLoading={isDataLoading}
                             title={'Basic Courses'}
                             seeMore={true}
-                            courses={courses.coursesByLevelList?.basic}
+                            courses={initialCourses.coursesByLevelList?.basic}
                             handleViewDetailsButton={handleViewDetailsButton}
                           />
                         )}
 
-                        {courses.coursesByLevelList?.beginner?.length > 0 && (
+                        {initialCourses.coursesByLevelList?.beginner?.length > 0 && (
                           <CourseLevel
                             title={'Beginner Courses'}
                             seeMore={true}
-                            courses={courses.coursesByLevelList?.beginner}
+                            courses={initialCourses.coursesByLevelList?.beginner}
                             handleViewDetailsButton={handleViewDetailsButton}
                           />
                         )}
-                        {courses.coursesByLevelList?.intermediate?.length > 0 && (
+                        {initialCourses.coursesByLevelList?.intermediate?.length > 0 && (
                           <CourseLevel
                             title={'Intermediate Courses'}
                             seeMore={true}
-                            courses={courses.coursesByLevelList?.intermediate}
+                            courses={initialCourses.coursesByLevelList?.intermediate}
                             handleViewDetailsButton={handleViewDetailsButton}
                           />
                         )}
-                        {courses.coursesByLevelList?.advanced?.length > 0 && (
+                        {initialCourses.coursesByLevelList?.advanced?.length > 0 && (
                           <CourseLevel
                             title={'Advance Courses'}
                             seeMore={true}
-                            courses={courses.coursesByLevelList?.advanced}
+                            courses={initialCourses.coursesByLevelList?.advanced}
                             handleViewDetailsButton={handleViewDetailsButton}
                           />
                         )}

@@ -1,3 +1,20 @@
+/*
+ * File           : ChapterListShowIndex.jsx
+ * Project        : wmpfrontv2
+ * Created Date   : Mo 25 Mar 2024 11:57:41
+ * Description    : <<description>>
+ *
+ * -----------------------------------------------------
+ * Author         : Tanzim Ahmed
+ * Email          : tanzimahmed077@gmail.com
+ * -----------------------------------------------------
+ * Last Modified  : Mon Mar 25 2024
+ * Modified By    : Tanzim Ahmed
+ * -----------------------------------------------------
+ * Copyright (c) 2024 Tanzim Ahmed
+ * -----------------------------------------------------
+ */
+
 import { Box, Chip, Grid, Skeleton, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

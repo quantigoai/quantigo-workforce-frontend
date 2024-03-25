@@ -34,6 +34,7 @@ import CourseNewDetailsIndex from '../CourseNew/CourseNewDetailsIndex';
 import QuizShow from '../CourseNew/QuizShow';
 import AllCourses from '../CourseV2/pages/AllCourses';
 import AllLeveledCourses from '../CourseV2/pages/AllLeveledCourses';
+import CourseHomepage from '../CourseV2/pages/CourseHomepage.jsx';
 import CourseLandingPage from '../CourseV2/pages/CourseLandingPage';
 import CourseNewIndex from '../CourseV2/pages/CourseNewIndex';
 import AccountActivation from '../Dashboard/CongratulationDashBoard/AccountActivation';
@@ -98,12 +99,12 @@ const Routers = () => {
 
         {/* <Route path={"/quiz-page"} element={<QuizPage />} /> */}
         {/* <Route path={"/chapter-page"} element={<ChapterCreateIndex />} /> */}
-        <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}>
-          {/* <Route path={'/create-course'} element={<CreateCourse />} /> */}
-        </Route>
-        <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}>
-          {/* <Route path={'/edit-course/:id'} element={<UpdateCourse />} /> */}
-        </Route>
+        {/* <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}> */}
+        {/* <Route path={'/create-course'} element={<CreateCourse />} /> */}
+        {/* </Route> */}
+        {/* <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]}></PrivateRoute>}> */}
+        {/* <Route path={'/edit-course/:id'} element={<UpdateCourse />} /> */}
+        {/* </Route> */}
 
         <Route path={'/course-details/:id'} element={<CourseDetails />}>
           {/* TODO Check it and remove this */}
@@ -113,13 +114,16 @@ const Routers = () => {
           <Route path='show-quiz' element={<QuizShow />} />
           {/* <Route path={'quiz-result'} element={<ShowResult />} /> */}
         </Route>
+
+        {/* ### */}
         <Route path={'/course-landing/:id'} element={<CourseLandingPageIndex />}></Route>
-        {/* <Route path={'/basic-course'} element={<BasicCourseAll />}></Route> */}
+
+        {/* ### */}
         <Route path={'/all-course/:level'} element={<CourseAllPage />}></Route>
 
+        {/* ### */}
         <Route path={'/course-homepage/:id'} element={<CourseHomePageIndex />}></Route>
 
-        {/* <Route path={"/course-landing/content/:id"} element={<ChapterViewIndex />}></Route> */}
         <Route element={<PrivateRoute roles={[roles.admin, roles.trainer]} />}>
           <Route path={'/create-chapter/:id'} element={<ChapterCreateIndex />} />
           <Route path={'/update-chapter/:id'} element={<ChapterUpdateIndex />} />
@@ -127,12 +131,17 @@ const Routers = () => {
           <Route path={'/quiz-create/:id'} element={<QuizCreateIndex />} />
           <Route path={'/create-quiz'} element={<CreateQuiz />} />
         </Route>
+
         <Route path='courses' element={<CourseNew />}>
           <Route path='my-course' element={<MyCourse />}></Route>
+
+          {/* ### */}
           <Route path='all-course' element={<AllCourse />}></Route>
-          {/* <Route path="allCourse/:level" element={<FullCourse />} /> */}
+
           <Route path='archive-course' element={<ArchiveCourse />}></Route>
         </Route>
+
+        {/* ### */}
         <Route path='courses/all-course/:level' element={<BasicCourses />} />
 
         {/*############################ newCourse #########################*/}
@@ -141,6 +150,18 @@ const Routers = () => {
           <Route path='all-courses/' element={<AllCourses />} />
           <Route path='course-level/:level' element={<AllLeveledCourses />} />
           <Route path='course-landing/:courseId' element={<CourseLandingPage />} />
+          <Route path='course-home-page/:courseId' element={<CourseHomepage />} />
+
+          <Route path='course-list/:type' element={<></>} />
+          
+          <Route path='create-chapter/:courseId' element={<> </>} />
+          <Route path='update-chapter/:courseId' element={<> </>} />
+          <Route path='create-quiz/:courseId' element={<> </>} />
+          <Route path='get-quiz/:quizId' element={<> </>} />
+          <Route path='get-user-submission/:submissionId' element={<> </>} />
+          <Route path='update-quiz/:quizId' element={<> </>} />
+          <Route path='get-submission-result/' element={<> </>} />
+          <Route path='get-all-submission/:quizId' element={<> </>} />
         </Route>
 
         {/* ########################################################### */}

@@ -102,7 +102,6 @@ const CourseHomePageIndex = () => {
 
                             backgroundColor: "#2E58FF",
                             color: "white",
-
                             "&:hover": {
                               background: "#244EF5",
                             },

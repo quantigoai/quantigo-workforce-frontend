@@ -25,15 +25,7 @@ import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import LandingPageContent from "../components/LandingPageContent";
 import LandingPageHeader from "../components/LandingPageHeader";
 
-// import { setActiveChapterIndex, setActiveCourseId } from "../../../../features/slice/activePathSlice";
-// import {
-//   getACourseByID,
-//   getAllChapterFromACourse,
-//   getCourseQuizzesResults,
-// } from "../../../../features/slice/courseSlice";
-// import LoadingComponent from "../../../shared/Loading/LoadingComponent";
-// import CourseLandingContent from "./CourseLandingContent";
-// import CourseLandingHeader from "./CourseLandingHeader";
+
 
 const CourseLandingPage = () => {
   const params = useParams();

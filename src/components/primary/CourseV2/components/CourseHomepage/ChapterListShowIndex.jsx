@@ -99,7 +99,8 @@ const ChapterListShowIndex = () => {
     dispatch(setActiveChapterIndex(index));
     dispatch(getAChapterById(id)).then(() => {
       // navigate(`/course-details/${course._id}/index`);
-      navigate(`/update-chapter/${id}`);
+      // navigate(`/update-chapter/${id}`);
+      navigate(`/course-new/update-chapter/${id}`);
     });
   };
   return (

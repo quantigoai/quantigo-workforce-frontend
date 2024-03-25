@@ -38,7 +38,7 @@ const CourseHomepage = () => {
     dispatch(getAllChapterFromACourse(id));
   }, [id]);
   const handleCreateChapter = () => {
-    navigate(`/create-chapter/${course._id}`);
+    navigate(`/course-new/create-chapter/${course._id}`);
   };
 
   return (
@@ -65,8 +65,7 @@ const CourseHomepage = () => {
             <Box sx={{ backgroundColor: 'neutral.N000', paddingTop: '5px', padding: '10px' }}>
               <Grid container>
                 <Grid item xs={9} sx={{ padding: '1%' }}>
-                 
-                                      {/* TODO separate component */}
+                  {/* TODO separate component */}
                   <Grid container>
                     <Box
                       sx={{

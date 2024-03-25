@@ -101,9 +101,7 @@ export const getAllCoursesNew = createAsyncThunk('coursesNew', async (data) => {
   }
 });
 export const getMyCourses = createAsyncThunk('myCourses', async (data) => {
-  console.log('🚀 ~ getMyCourses ~ data:', data);
   const { filter, search, pagination } = data;
-
   try {
     let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
     if (pagination) {
@@ -115,10 +113,8 @@ export const getMyCourses = createAsyncThunk('myCourses', async (data) => {
     }
     const filterOptions = filter && Object.keys(filter);
     if (filterOptions) {
-      // query += `&${filter}=${search}`;
       filterOptions.map((f) => (query += `&${f}=${filter[f]}`));
     }
-    console.log('🚀 ~ getMyCourses ~ query:', query);
     return await axios.get(`${url}/courses/get-my-enrolled-course?${query}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
@@ -140,19 +136,21 @@ export const getCoursesCount = createAsyncThunk('coursesCount', async () => {
   }
 });
 export const getArchivedCourses = createAsyncThunk('archivedCourses', async (data) => {
-  console.log('🚀 ~ getArchivedCourses ~ data:', data);
   const { filter, search, pagination } = data;
   try {
     let query = `limit=${pagination.pageSize}&skip=${pagination.currentPage * pagination.pageSize}`;
+    if (pagination) {
+      query = `limit=${pagination.pageSize}`;
+    }
 
     if (search) {
-      query += `search=${search}`;
+      query += `&search=${search}`;
     }
     const filterOptions = filter && Object.keys(filter);
     if (filterOptions) {
-      // query += `&${filter}=${search}`;
       filterOptions.map((f) => (query += `&${f}=${filter[f]}`));
     }
+
     return await axios.get(`${url}/courses/get-my-archived-course?${query}`, {
       headers: {
         Authorization: `Bearer ${realToken()}`,
@@ -498,10 +496,11 @@ const courseSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(getMyCourses.pending, (state) => {
+        state.myCourses = [];
+        state.myArchivedCourses = [];
         state.isLoading = true;
       })
       .addCase(getMyCourses.fulfilled, (state, action) => {
-        console.log('🚀 ~ .addCase ~ action:', action);
         state.myCourses = action.payload.data.enrolledCourses;
         state.courseMeta = action.payload.data.meta;
         state.total = action.payload.data.total;
@@ -521,10 +520,11 @@ const courseSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(getArchivedCourses.pending, (state) => {
+        state.myCourses = [];
+        state.myArchivedCourses = [];
         state.isLoading = true;
       })
       .addCase(getArchivedCourses.fulfilled, (state, action) => {
-        console.log('🚀 ~ .addCase ~ action:', action);
         state.myArchivedCourses = action.payload.data.archivedCourses;
         state.archivedCourseMeta = action.payload.data.meta;
         state.total = action.payload.data.total;

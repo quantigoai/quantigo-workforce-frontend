@@ -1,38 +1,39 @@
+import { Box } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useOutletContext, useParams } from 'react-router-dom';
 import { getArchivedCourses, getMyCourses } from '../../../../features/slice/courseSlice';
-import { Box } from '@mui/material';
+import LoadingComponent from '../../../shared/Loading/LoadingComponent';
 import BasicCard from '../components/CourseCard/BasicCard';
 import CourseCardSkeleton from '../shared/CourseSkeleton/CourseCardSkeleton';
-import LoadingComponent from '../../../shared/Loading/LoadingComponent';
 import CourseHeader from '../shared/courseHeader/CourseHeader';
 
 const CourseList = () => {
   const dispatch = useDispatch();
   const [myContext] = useOutletContext();
   const { courseFilterDispatch } = myContext;
-  const { search, setSearch } = courseFilterDispatch;
+  const { pagination, search, setSearch } = courseFilterDispatch;
   const [isCourseLoading, setIsCourseLoading] = useState(true);
   const { type } = useParams();
-  console.log('🚀 ~ type:', type);
+  const [previousType, setPreviousType] = useState(null);
 
   useEffect(() => {
     const fetchAllCoursesByLevel = () => {
       if (type === 'my-courses') {
-        console.log('hit');
-        dispatch(getMyCourses({ search })).finally(() => {
+        dispatch(getMyCourses({ pagination, search })).finally(() => {
           setIsCourseLoading(false);
         });
       } else {
-        console.log('hit222222222');
-        dispatch(getArchivedCourses({ search })).finally(() => {
+        dispatch(getArchivedCourses({ pagination, search })).finally(() => {
           setIsCourseLoading(false);
         });
       }
     };
+    if (previousType !== type) {
+      setIsCourseLoading(true);
+      setPreviousType(type);
+    }
     if (isCourseLoading || search || search === '') {
-      // if (isCourseLoading || search) {
       fetchAllCoursesByLevel();
       if (search === '') {
         setSearch(null);

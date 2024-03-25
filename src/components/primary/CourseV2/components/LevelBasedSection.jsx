@@ -49,7 +49,7 @@ const LevelBasedSection = ({ title }) => {
           mt: '40px',
         }}
       >
-        <Typography variant='wpf_h4_Bold' color={'neutral.995'}>
+        <Typography variant="wpf_h4_Bold" color={'neutral.995'}>
           {capitalizeFirstLetter(title)} Courses
         </Typography>
 
@@ -63,7 +63,7 @@ const LevelBasedSection = ({ title }) => {
             color: '#266AED',
             mr: '25px',
           }}
-          variant='wpf_p3_medium_3'
+          variant="wpf_p3_medium_3"
         >
           See more
           <ArrowForwardIosIcon sx={{ fontSize: '12px', ml: '5px', mt: '2px' }} />
@@ -84,7 +84,7 @@ const LevelBasedSection = ({ title }) => {
           gap: { xxl: '20px', xl: '15px', lg: '12px' },
         }}
       >
-        {coursesByLevelList[title]?.map((course) => (
+        {coursesByLevelList?.[title]?.map((course) => (
           <Box
             sx={{
               backgroundColor: isLightTheme ? '#fff' : '#000',

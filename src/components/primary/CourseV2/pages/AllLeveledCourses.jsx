@@ -54,7 +54,7 @@ const AllLeveledCourses = () => {
       <LoadingComponent />
     </>
   ) : (
-    <>
+    <Box>
       <CourseHeader level={level} />
       <Box
         sx={{
@@ -83,7 +83,7 @@ const AllLeveledCourses = () => {
           </Box>
         ))}
       </Box>
-    </>
+    </Box>
   );
 };
 

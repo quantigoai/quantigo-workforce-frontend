@@ -11,6 +11,7 @@ import CourseHeader from '../shared/courseHeader/CourseHeader';
 const CourseList = () => {
   const dispatch = useDispatch();
   const [myContext] = useOutletContext();
+  const { isLightTheme } = useSelector((state) => state.theme);
   const { courseFilterDispatch } = myContext;
   const { pagination, search, setSearch } = courseFilterDispatch;
   const [isCourseLoading, setIsCourseLoading] = useState(true);
@@ -47,7 +48,7 @@ const CourseList = () => {
       <LoadingComponent />
     </>
   ) : (
-    <>
+    <Box sx={{ px: '25px' }}>
       <CourseHeader />
       <Box
         sx={{
@@ -67,7 +68,7 @@ const CourseList = () => {
           ? myCourses?.map((course) => (
               <Box
                 sx={{
-                  //   backgroundColor: isLightTheme ? '#fff' : '#000',
+                  backgroundColor: isLightTheme ? '#fff' : '#000',
                   width: { xxl: '368px', xl: '278px', lg: '250px' },
                   borderRadius: '10px',
                 }}
@@ -89,7 +90,7 @@ const CourseList = () => {
               </Box>
             ))}
       </Box>
-    </>
+    </Box>
   );
 };
 

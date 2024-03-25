@@ -27,18 +27,20 @@ const ChapterUpdateHeader = ({ isEditChapter, disabledButton, durationTime }) =>
 
   const handleQuizUpdate = () => {
     if (!courseChapter.quiz) {
-      navigate(`/quiz-create/${course._id}`);
+      navigate(`/course-new/create-quiz/${course._id}`);
     } else {
       dispatch(getAQuizById(courseChapter.quiz.id)).then((action) => {
         if (action.payload.status === 200) {
-          navigate(`/update-quiz/${courseChapter._id}`);
+          navigate(`/course-new/update-quiz/${courseChapter._id}`);
         }
       });
     }
   };
   const handleChapterUpdate = () => {
     // setIsActiveChapter(true);
-    navigate(`/update-chapter/${courseChapter._id}`);
+    navigate(`/course-new/update-chapter/${courseChapter._id}`);
+
+    // navigate(`/update-chapter/${courseChapter._id}`);
     // navigate(`/create-chapter/${course._id}`);
   };
 

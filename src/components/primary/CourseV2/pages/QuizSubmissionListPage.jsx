@@ -34,6 +34,7 @@ const QuizSubmissionListPage = () => {
     currentPage: 0,
     pageSize: 10,
   });
+  
   const [ascDesc, setAscDesc] = useState({});
   const searchRef = React.useRef(null);
   const [search, setSearch] = useState("");

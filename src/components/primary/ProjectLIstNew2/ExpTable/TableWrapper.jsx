@@ -52,7 +52,7 @@ const TableWrapper = ({
   const { currentlyCheckedInProject } = useSelector((state) => state.user.user);
   const location = useLocation();
   const { pathname } = location;
-  const { id } = useParams();
+  const { id, quizId } = useParams();
   const [data, setData] = useState([]);
   const [isObjectField, setIsObjectField] = useState(false);
 
@@ -70,7 +70,7 @@ const TableWrapper = ({
     '/all-users',
     `/projectDetails/${id}`,
     '/projectDirectory',
-    `/submitted/${id}`,
+    `/course-new/get-all-submission/${quizId}`,
   ];
   const {
     isLoading: usersLoading,
@@ -108,7 +108,7 @@ const TableWrapper = ({
       setIsDataLoading(false);
       setIsWorkHistoryDataLoading(false);
     }
-    if (pathname === `/submitted/${id}`) {
+    if (pathname === `/course-new/get-all-submission/${quizId}`) {
       setIsDataLoading(true);
       // projectDirectory && projectDirectory.length > 0 &&
       allAnswerSubmission && allAnswerSubmission.length > 0 && setMyRows(dataBuilder(allAnswerSubmission));
@@ -152,27 +152,27 @@ const TableWrapper = ({
         } else if (data && data.length === 0) {
           let message;
           if (pathname === '/allprojects' && !projectLoading)
-            return <Alert severity="error">No available projects data found!</Alert>;
+            return <Alert severity='error'>No available projects data found!</Alert>;
           if (pathname === '/all-users' && !usersLoading)
-            return <Alert severity="error">No available users data found!</Alert>;
+            return <Alert severity='error'>No available users data found!</Alert>;
           if (pathname === '/projectDirectory' && !isLoading)
-            return <Alert severity="error">No available projects found!</Alert>;
+            return <Alert severity='error'>No available projects found!</Alert>;
           if (pathname === `/submitted/${id}`)
-            return <Alert severity="error">No available quiz submission found!</Alert>;
+            return <Alert severity='error'>No available quiz submission found!</Alert>;
           if (pathname === `/projectDetails/${id}` && !isWorkHistoryDataLoading) {
             if (antRoles.includes(role)) {
               return <DetailsPage skillAlert={skillAlert} />;
             } else {
-              return <Alert severity="error">No available users history data found!</Alert>;
+              return <Alert severity='error'>No available users history data found!</Alert>;
             }
           }
         } else if (role === 'recruitment_manager') {
           const message = 'No Users found!!!';
-          return <Alert severity="error">{message}</Alert>;
+          return <Alert severity='error'>{message}</Alert>;
         } else if (!detailRoles.includes(role)) {
           return <DetailsPage skillAlert={skillAlert} />;
         } else {
-          return <Alert severity="error">No data found!</Alert>;
+          return <Alert severity='error'>No data found!</Alert>;
         }
       }
     } else {

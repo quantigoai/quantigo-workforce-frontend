@@ -50,7 +50,6 @@ const ChapterListShowIndex = () => {
   const navigate = useNavigate();
 
   const handleSubmittedQuiz = (courseChapter, index) => {
-    console.log("🚀 ~ handleSubmittedQuiz ~ courseChapter:", courseChapter);
     navigate(`/course-new/get-all-submission/${courseChapter?.quiz?.id}`);
   };
 
@@ -235,6 +234,7 @@ const ChapterListShowIndex = () => {
                                   fontFamily: "Inter",
                                 }}
                                 label={"Submission"}
+                                disabled = {!item.quiz}
                                 onClick={() => handleSubmittedQuiz(item, index)}
                               />
                             </>

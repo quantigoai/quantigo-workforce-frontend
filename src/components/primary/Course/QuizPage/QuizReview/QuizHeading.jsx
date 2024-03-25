@@ -21,7 +21,7 @@ const QuizHeading = ({ course, filterChapter }) => {
           width: { xxl: '100%', xl: '100%', lg: '100%' },
         }}
       >
-        <CommonHeader title={filterChapter[0]?.quiz.name} customButton="Create User" />
+        <CommonHeader title={filterChapter[0]?.quiz?.name} customButton="Create User" />
 
         <Typography sx={{ opacity: '0.7', height: '13px' }} variant="wpf_p3_regular" color={'neutral.750'}>
           Course Name: <span style={{ fontWeight: '600' }}>{course?.name} </span>,

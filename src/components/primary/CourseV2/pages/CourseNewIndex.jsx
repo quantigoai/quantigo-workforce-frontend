@@ -19,7 +19,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { setActivePath } from '../../../../features/slice/activePathSlice';
-import { getAllCoursesNew } from '../../../../features/slice/courseSlice';
+import { getAllCoursesNew, getCoursesCount } from '../../../../features/slice/courseSlice';
 import useCourseFilterDispatch from '../hooks/useCourseFilterDispatch';
 
 const CourseNewIndex = () => {
@@ -35,14 +35,19 @@ const CourseNewIndex = () => {
   const { pathname } = useLocation();
 
   const fetchAllCoursesAndSetLevel = () => {
-    dispatch(getAllCoursesNew({})).then((res) => {
-      setLevel(Object.keys(res.payload.data.courses.coursesByLevelList));
-      setDataLoading(false);
-    });
+    dispatch(getAllCoursesNew({}))
+      .then((res) => {
+        setLevel(Object.keys(res.payload.data.courses.coursesByLevelList));
+      })
+      .finally(() => {
+        setDataLoading(false);
+      });
   };
 
   useEffect(() => {
     dispatch(setActivePath('Course-new'));
+    dispatch(getCoursesCount());
+
     if (dataLoading) {
       if (pathname === '/course-new/all-courses') {
         fetchAllCoursesAndSetLevel();

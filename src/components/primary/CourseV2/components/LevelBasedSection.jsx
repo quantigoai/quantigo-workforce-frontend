@@ -18,7 +18,7 @@
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { capitalizeFirstLetter } from '../../../../helper/capitalizeFirstWord';
 import BasicCard from './CourseCard/BasicCard';
@@ -30,15 +30,7 @@ const LevelBasedSection = ({ title }) => {
   } = useSelector((state) => state.course);
 
   const { isLightTheme } = useSelector((state) => state.theme);
-  const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  //   const {
-  //     // courses,
-  //     isDataLoading,
-  //     search,
-  //     filter,
-  //   } = useCourseManagement();
 
   const handleSeeMore = () => {
     navigate(`/course-new/course-level/${title}`);
@@ -54,7 +46,6 @@ const LevelBasedSection = ({ title }) => {
           display: 'flex',
           justifyContent: 'space-between',
           py: 2,
-          //   mt: seeMore ? "40px" : "",
           mt: '40px',
         }}
       >

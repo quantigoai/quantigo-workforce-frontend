@@ -59,14 +59,14 @@ const CourseHomepage = () => {
             }}
           >
             <Box>
-              {/* <CourseLandingHeader course={course} /> */}
               <CourseHomePageHeader course={course} />
             </Box>
 
             <Box sx={{ backgroundColor: 'neutral.N000', paddingTop: '5px', padding: '10px' }}>
               <Grid container>
                 <Grid item xs={9} sx={{ padding: '1%' }}>
-                  {/* TODO separate component */}
+                 
+                                      {/* TODO separate component */}
                   <Grid container>
                     <Box
                       sx={{
@@ -79,7 +79,6 @@ const CourseHomepage = () => {
                       <Typography variant='wpf_h5_Bold'>All Chapters</Typography>
                       <br />
                       <Typography variant='wpf_p3_regular'>
-                        {' '}
                         Prepare for a new career in the high-growth field of project management, no experience or degree
                         required. Get professional training designed by Google and get on the fastrack to a
                         competitively paid job.
@@ -102,7 +101,6 @@ const CourseHomepage = () => {
                           sx={{
                             textTransform: 'none',
                             borderRadius: '8px',
-
                             backgroundColor: '#2E58FF',
                             color: 'white',
                             '&:hover': {

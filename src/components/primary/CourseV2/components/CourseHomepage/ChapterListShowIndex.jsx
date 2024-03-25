@@ -54,7 +54,7 @@ const ChapterListShowIndex = () => {
   const dispatch = useDispatch();
   const [allCourseChapterWithMark, setAllCourseChapterWithMark] = useState([]);
 
-  const [loadingForMarks, setLoadingForMarks] = useState(false);
+  const [loadingForMarks, setLoadingForMarks] = useState(true);
   const { isLightTheme } = useSelector((state) => state.theme);
   const navigate = useNavigate();
 
@@ -65,10 +65,13 @@ const ChapterListShowIndex = () => {
   useEffect(() => {
     setLoadingForMarks(true);
     course._id &&
-      dispatch(getAllCourseChapterWithMark(course._id)).then((action) => {
-        setAllCourseChapterWithMark(action.payload.data.chapters);
-        setLoadingForMarks(false);
-      });
+      dispatch(getAllCourseChapterWithMark(course._id))
+        .then((action) => {
+          setAllCourseChapterWithMark(action.payload.data.chapters);
+        })
+        .finally(() => {
+          setLoadingForMarks(false);
+        });
   }, [course]);
 
   const handleChapter = (courseChapter, index) => {

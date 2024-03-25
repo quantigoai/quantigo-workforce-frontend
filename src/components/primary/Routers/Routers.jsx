@@ -36,7 +36,10 @@ import AllCourses from '../CourseV2/pages/AllCourses';
 import AllLeveledCourses from '../CourseV2/pages/AllLeveledCourses';
 import CourseHomepage from '../CourseV2/pages/CourseHomepage.jsx';
 import CourseLandingPage from '../CourseV2/pages/CourseLandingPage';
+import CourseList from '../CourseV2/pages/CourseList.jsx';
 import CourseNewIndex from '../CourseV2/pages/CourseNewIndex';
+import CreateChapterPage from '../CourseV2/pages/CreateChapterPage.jsx';
+import UpdateChapterPage from '../CourseV2/pages/UpdateChapterPage.jsx';
 import AccountActivation from '../Dashboard/CongratulationDashBoard/AccountActivation';
 import Dashboard from '../Dashboard/Dashboard';
 import EditProfilePageIndex from '../EditProfile/EditProfilePage/EditProfilePageIndex';
@@ -49,8 +52,6 @@ import CreateQuiz from '../Quiz/CreateQuiz';
 import QuizResultShowIndex from '../Quiz/QuizPage/ShowResult/QuizResultShowIndex';
 import Skills from '../Skill/Skills';
 import PrivateRoute from './PrivateRoute';
-import CreateChapterPage from '../CourseV2/pages/CreateChapterPage.jsx';
-import UpdateChapterPage from '../CourseV2/pages/UpdateChapterPage.jsx';
 
 export const roles = {
   admin: 'admin',
@@ -154,10 +155,10 @@ const Routers = () => {
           <Route path='course-landing/:courseId' element={<CourseLandingPage />} />
           <Route path='course-home-page/:courseId' element={<CourseHomepage />} />
 
-          <Route path='course-list/:type' element={<></>} />
-          
-          <Route path='create-chapter/:courseId' element={<CreateChapterPage/>} />
-          <Route path='update-chapter/:courseId' element={<UpdateChapterPage/>} />
+          <Route path='course-list/:type' element={<CourseList />} />
+
+          <Route path='create-chapter/:courseId' element={<CreateChapterPage />} />
+          <Route path='update-chapter/:courseId' element={<UpdateChapterPage />} />
           <Route path='create-quiz/:courseId' element={<> </>} />
           <Route path='get-quiz/:quizId' element={<> </>} />
           <Route path='get-user-submission/:submissionId' element={<> </>} />

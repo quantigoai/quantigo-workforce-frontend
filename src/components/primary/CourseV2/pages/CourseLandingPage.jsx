@@ -25,8 +25,6 @@ import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import LandingPageContent from "../components/LandingPageContent";
 import LandingPageHeader from "../components/LandingPageHeader";
 
-
-
 const CourseLandingPage = () => {
   const params = useParams();
   const { courseId: id } = params;
@@ -38,7 +36,7 @@ const CourseLandingPage = () => {
   const [isCourseLoading, setIsCourseLoading] = useState(true);
 
   const refContainer = useRef(null);
-  
+
   useEffect(() => {
     setIsCourseLoading(true);
     refContainer?.current?.scrollIntoView({ behavior: "smooth" });
@@ -46,7 +44,7 @@ const CourseLandingPage = () => {
       .then(() => {
         dispatch(setActiveCourseId(id));
         dispatch(setActiveChapterIndex(0));
-        // dispatch(getAllChapterFromACourse(id)).then((res) => {});
+        dispatch(getAllChapterFromACourse(id)).then((res) => {});
       })
       .finally(() => {
         setIsCourseLoading(false);

@@ -15,37 +15,37 @@
  * -----------------------------------------------------
  */
 
-import { Box, Chip, Grid, Skeleton, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import editIcon from '../../../../assets/images/courses/EditIcon.svg';
-import arrowIcon from '../../../../assets/images/courses/arrowIcon.svg';
+import { Box, Chip, Grid, Skeleton, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import editIcon from "../../../../assets/images/courses/EditIcon.svg";
+import arrowIcon from "../../../../assets/images/courses/arrowIcon.svg";
 
-import { useNavigate } from 'react-router-dom';
-import Rectangle from '../../../../assets/images/courses/Rectangle 257.svg';
-import { setActiveChapterIndex } from '../../../../features/slice/activePathSlice';
-import { getAChapterById } from '../../../../features/slice/courseSlice';
-import { getAllCourseChapterWithMark } from '../../../../features/slice/quizSlice';
-import ChapterProgressbar from './ChapterProgressbar';
+import { useNavigate } from "react-router-dom";
+import Rectangle from "../../../../assets/images/courses/Rectangle 257.svg";
+import { setActiveChapterIndex } from "../../../../features/slice/activePathSlice";
+import { getAChapterById } from "../../../../features/slice/courseSlice";
+import { getAllCourseChapterWithMark } from "../../../../features/slice/quizSlice";
+import ChapterProgressbar from "./ChapterProgressbar";
 
 const boxStyle = {
-  display: 'flex',
-  justifyContent: 'center',
-  justifyContent: 'space-between',
-  width: '100%',
-  alignItems: 'center',
-  gap: '14px',
-  backgroundColor: 'red',
+  display: "flex",
+  justifyContent: "center",
+  justifyContent: "space-between",
+  width: "100%",
+  alignItems: "center",
+  gap: "14px",
+  backgroundColor: "red",
 };
 const accordionBoxNumberStyle = {
-  backgroundColor: '#E2E8F0',
-  padding: '2px',
-  borderRadius: '99px',
-  display: 'flex',
-  width: '24px',
-  height: '24px',
-  justifyContent: 'center',
-  alignItems: 'center',
+  backgroundColor: "#E2E8F0",
+  padding: "2px",
+  borderRadius: "99px",
+  display: "flex",
+  width: "24px",
+  height: "24px",
+  justifyContent: "center",
+  alignItems: "center",
 };
 const ChapterListShowIndex = () => {
   const { courseChapters, course } = useSelector((state) => state.course);
@@ -97,7 +97,8 @@ const ChapterListShowIndex = () => {
     dispatch(setActiveChapterIndex(index));
     dispatch(getAChapterById(id)).then(() => {
       // navigate(`/course-details/${course._id}/index`);
-      navigate(`/update-chapter/${id}`);
+      // navigate(`/update-chapter/${id}`);
+      navigate(`/course-new/update-chapter/${id}`);
     });
   };
   return (
@@ -105,20 +106,20 @@ const ChapterListShowIndex = () => {
       <Box
         sx={{
           // backgroundColor: "red",
-          backgroundColor: isLightTheme ? '#F8FAFC' : '',
-          border: '2px solid #E2E8F0',
-          borderRadius: '8px',
+          backgroundColor: isLightTheme ? "#F8FAFC" : "",
+          border: "2px solid #E2E8F0",
+          borderRadius: "8px",
           maxHeight: 430,
           // overflowY: "auto",
-          overflowY: 'auto',
-          '&::-webkit-scrollbar': {
-            width: '0', // Hide the scrollbar
+          overflowY: "auto",
+          "&::-webkit-scrollbar": {
+            width: "0", // Hide the scrollbar
           },
         }}
       >
         {loadingForMarks ? (
           <>
-            <Box sx={{ width: '100%', height: '430px', padding: '1%' }}>
+            <Box sx={{ width: "100%", height: "430px", padding: "1%" }}>
               <Skeleton />
               <Skeleton animation='wave' />
               <Skeleton animation={false} />
@@ -127,14 +128,14 @@ const ChapterListShowIndex = () => {
               <Skeleton animation={false} />
               <Skeleton animation='wave' />
               <Skeleton animation={false} />
-              <Skeleton animation={'wave'} />
+              <Skeleton animation={"wave"} />
               <Skeleton animation='wave' />
               <Skeleton animation={false} />
               <Skeleton animation='wave' />
               <Skeleton animation={false} />
               <Skeleton animation='wave' />
               <Skeleton animation={false} />
-              <Skeleton animation={'wave'} />
+              <Skeleton animation={"wave"} />
             </Box>
             {/* <LoadingComponent /> */}
           </>
@@ -142,7 +143,7 @@ const ChapterListShowIndex = () => {
           <>
             {courseChapters &&
               courseChapters.map((item, index) => {
-                const submissionStatus = allCourseChapterWithMark[index]?.submissionStatus || '';
+                const submissionStatus = allCourseChapterWithMark[index]?.submissionStatus || "";
                 const score = allCourseChapterWithMark[index]?.score || 0;
                 const passMarkThreshold = allCourseChapterWithMark[index]?.passMarkThreshold;
 
@@ -150,14 +151,14 @@ const ChapterListShowIndex = () => {
                   <Box
                     key={index}
                     sx={{
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      display: 'flex',
+                      alignItems: "center",
+                      justifyContent: "center",
+                      display: "flex",
                       // justifyContent: 'center',
                       // paddingRight: "20px",
-                      borderTop: index === 0 ? '' : '1px solid #E2E8F0',
-                      paddingTop: '1%',
-                      paddingBottom: '1%',
+                      borderTop: index === 0 ? "" : "1px solid #E2E8F0",
+                      paddingTop: "1%",
+                      paddingBottom: "1%",
                     }}
                   >
                     <Grid container>
@@ -169,21 +170,21 @@ const ChapterListShowIndex = () => {
                         md={1}
                         xl={0.78}
                         sx={{
-                          backgroundColor: '',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          display: 'flex',
+                          backgroundColor: "",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          display: "flex",
                         }}
                       >
-                        {role === 'admin' || role === 'trainer' ? (
+                        {role === "admin" || role === "trainer" ? (
                           <>
                             <Box sx={accordionBoxNumberStyle}>
-                              <Typography sx={{ fontSize: '14px', fontWeight: '600' }}>{index + 1}</Typography>
+                              <Typography sx={{ fontSize: "14px", fontWeight: "600" }}>{index + 1}</Typography>
                             </Box>
                           </>
                         ) : (
                           <>
-                            {' '}
+                            {" "}
                             <ChapterProgressbar item={item} score={score} passMarkThreshold={passMarkThreshold} />
                           </>
                         )}
@@ -196,13 +197,13 @@ const ChapterListShowIndex = () => {
                         sm={7}
                         md={5.5}
                         xl={8}
-                        sx={{ backgroundColor: '' }}
+                        sx={{ backgroundColor: "" }}
                       >
                         <Typography
                           // color={"grey.600"}
                           variant='wpf_p3_semiBold'
                           onClick={() => handleChapter(item, index)}
-                          sx={{ cursor: 'pointer' }}
+                          sx={{ cursor: "pointer" }}
                         >
                           {item.title}
                         </Typography>
@@ -213,16 +214,16 @@ const ChapterListShowIndex = () => {
                     </Button>
                   )} */}
                         <br />
-                        <Typography variant='wpf_p4_regular' color={'grey.600'}>
+                        <Typography variant='wpf_p4_regular' color={"grey.600"}>
                           {`Duration: ${item.estimatedTimeToRead} minutes`}
-                          {'  '}
+                          {"  "}
                         </Typography>
 
-                        {!(role === 'admin' || role === 'trainer') && (
+                        {!(role === "admin" || role === "trainer") && (
                           <>
                             <img src={Rectangle} />
-                            <Typography variant='wpf_p4_regular' color={'grey.600'}>
-                              {'  '} Quiz Score: {Math.floor(score)} %
+                            <Typography variant='wpf_p4_regular' color={"grey.600"}>
+                              {"  "} Quiz Score: {Math.floor(score)} %
                             </Typography>
                           </>
                         )}
@@ -234,58 +235,58 @@ const ChapterListShowIndex = () => {
                         md={2.5}
                         xl={3.2}
                         sx={{
-                          px: '2%',
-                          alignItems: 'center',
-                          justifyContent: 'end',
+                          px: "2%",
+                          alignItems: "center",
+                          justifyContent: "end",
 
-                          display: 'flex',
+                          display: "flex",
                         }}
                       >
                         <Box>
-                          {role === 'admin' || role === 'trainer' ? (
+                          {role === "admin" || role === "trainer" ? (
                             <>
                               <Chip
                                 sx={{
                                   height: {
-                                    lg: '20px',
-                                    xl: '24px',
-                                    xxl: '28px',
-                                    textTransform: 'none',
+                                    lg: "20px",
+                                    xl: "24px",
+                                    xxl: "28px",
+                                    textTransform: "none",
                                   },
-                                  borderRadius: '32px',
-                                  border: '2px solid  #E2E8F0',
-                                  color: 'neutral.700',
-                                  backgroundColor: isLightTheme ? '#F8FAFC' : '',
-                                  fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
-                                  fontFamily: 'Inter',
+                                  borderRadius: "32px",
+                                  border: "2px solid  #E2E8F0",
+                                  color: "neutral.700",
+                                  backgroundColor: isLightTheme ? "#F8FAFC" : "",
+                                  fontSize: { xl: "12px", xxl: "14px", lg: "10px" },
+                                  fontFamily: "Inter",
                                 }}
-                                label={'Submission'}
+                                label={"Submission"}
                                 onClick={() => handleSubmittedQuiz(item, index)}
                               />
                             </>
                           ) : (
                             <>
-                              {submissionStatus === 'notSubmitted' ? (
+                              {submissionStatus === "notSubmitted" ? (
                                 <></>
                               ) : (
                                 <>
-                                  {' '}
+                                  {" "}
                                   <Chip
                                     sx={{
                                       height: {
-                                        lg: '20px',
-                                        xl: '24px',
-                                        xxl: '28px',
-                                        textTransform: 'none',
+                                        lg: "20px",
+                                        xl: "24px",
+                                        xxl: "28px",
+                                        textTransform: "none",
                                       },
-                                      borderRadius: '32px',
-                                      border: '2px solid  #E2E8F0',
-                                      color: 'neutral.700',
-                                      backgroundColor: isLightTheme ? '#F8FAFC' : '',
-                                      fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
-                                      fontFamily: 'Inter',
+                                      borderRadius: "32px",
+                                      border: "2px solid  #E2E8F0",
+                                      color: "neutral.700",
+                                      backgroundColor: isLightTheme ? "#F8FAFC" : "",
+                                      fontSize: { xl: "12px", xxl: "14px", lg: "10px" },
+                                      fontFamily: "Inter",
                                     }}
-                                    label={'Submission'}
+                                    label={"Submission"}
                                     onClick={() => handleSubmittedQuiz(item, index)}
                                   />
                                 </>
@@ -293,20 +294,20 @@ const ChapterListShowIndex = () => {
                             </>
                           )}
                         </Box>
-                        <Box sx={{ paddingLeft: '5%' }}>
+                        <Box sx={{ paddingLeft: "5%" }}>
                           <Chip
                             sx={{
                               height: {
-                                lg: '20px',
-                                xl: '24px',
-                                xxl: '28px',
+                                lg: "20px",
+                                xl: "24px",
+                                xxl: "28px",
                               },
-                              borderRadius: '32px',
-                              border: '2px solid  #E2E8F0',
-                              color: 'neutral.700',
-                              backgroundColor: isLightTheme ? '#F8FAFC' : '',
-                              fontSize: { xl: '12px', xxl: '14px', lg: '10px' },
-                              fontFamily: 'Inter',
+                              borderRadius: "32px",
+                              border: "2px solid  #E2E8F0",
+                              color: "neutral.700",
+                              backgroundColor: isLightTheme ? "#F8FAFC" : "",
+                              fontSize: { xl: "12px", xxl: "14px", lg: "10px" },
+                              fontFamily: "Inter",
                             }}
                             onClick={() => handleChapter(item, index)}
                             // key={item.value}
@@ -314,13 +315,13 @@ const ChapterListShowIndex = () => {
                             // label='Chapter 01'
                           />
                         </Box>
-                        <Box sx={{ paddingLeft: '5%' }}>
-                          {role === 'admin' || role === 'trainer' ? (
+                        <Box sx={{ paddingLeft: "5%" }}>
+                          {role === "admin" || role === "trainer" ? (
                             <>
                               <img
                                 src={editIcon}
                                 alt=''
-                                style={{ cursor: 'pointer' }}
+                                style={{ cursor: "pointer" }}
                                 onClick={() => handleEditChapter(item._id, index)}
                               />
                             </>
@@ -329,7 +330,7 @@ const ChapterListShowIndex = () => {
                               <img
                                 src={arrowIcon}
                                 alt=''
-                                style={{ cursor: 'pointer' }}
+                                style={{ cursor: "pointer" }}
                                 onClick={() => handleChapter(item, index)}
                               />
                             </>

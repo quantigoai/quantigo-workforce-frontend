@@ -49,6 +49,8 @@ import CreateQuiz from '../Quiz/CreateQuiz';
 import QuizResultShowIndex from '../Quiz/QuizPage/ShowResult/QuizResultShowIndex';
 import Skills from '../Skill/Skills';
 import PrivateRoute from './PrivateRoute';
+import CreateChapterPage from '../CourseV2/pages/CreateChapterPage.jsx';
+import UpdateChapterPage from '../CourseV2/pages/UpdateChapterPage.jsx';
 
 export const roles = {
   admin: 'admin',
@@ -154,8 +156,8 @@ const Routers = () => {
 
           <Route path='course-list/:type' element={<></>} />
           
-          <Route path='create-chapter/:courseId' element={<> </>} />
-          <Route path='update-chapter/:courseId' element={<> </>} />
+          <Route path='create-chapter/:courseId' element={<CreateChapterPage/>} />
+          <Route path='update-chapter/:courseId' element={<UpdateChapterPage/>} />
           <Route path='create-quiz/:courseId' element={<> </>} />
           <Route path='get-quiz/:quizId' element={<> </>} />
           <Route path='get-user-submission/:submissionId' element={<> </>} />

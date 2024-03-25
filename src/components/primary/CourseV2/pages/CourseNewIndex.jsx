@@ -19,9 +19,8 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { setActivePath } from '../../../../features/slice/activePathSlice';
-import { getAllCoursesNew } from '../../../../features/slice/courseSlice';
+import { getAllCoursesNew, getCoursesCount } from '../../../../features/slice/courseSlice';
 import useCourseFilterDispatch from '../hooks/useCourseFilterDispatch';
-import { Paper, styled } from '@mui/material';
 
 const CourseNewIndex = () => {
   const navigate = useNavigate();
@@ -34,38 +33,27 @@ const CourseNewIndex = () => {
 
   const [dataLoading, setDataLoading] = React.useState(true);
   const { pathname } = useLocation();
-  const CoursePaper = styled(Paper)({
-    width: '100%',
-    // height: pathname === '/courses/my-course' ? '87%' : '90%',
-    overflow: 'auto',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    borderRadius: '8px',
-    border: '0px 0px 1px 0px',
-    // backgroundColor: isLightTheme ? '#F2F6FC' : '#212121',
-    boxShadow: '0px 1px 3px 0px #09008014',
-    '&::-webkit-scrollbar': {
-      width: '0',
-    },
-    // overflowY: 'hidden',
-  });
-  useEffect(() => {
-    dispatch(setActivePath('Course-new'));
-    const fetchAllCoursesAndSetLevel = () => {
-      dispatch(getAllCoursesNew({})).then((res) => {
+
+  const fetchAllCoursesAndSetLevel = () => {
+    dispatch(getAllCoursesNew({}))
+      .then((res) => {
         setLevel(Object.keys(res.payload.data.courses.coursesByLevelList));
+      })
+      .finally(() => {
         setDataLoading(false);
       });
-    };
+  };
+
+  useEffect(() => {
+    dispatch(setActivePath('Course-new'));
+    dispatch(getCoursesCount());
+
     if (dataLoading) {
-      if (pathname === '/course-new' || pathname === '/course-new/all-courses') {
+      if (pathname === '/course-new/all-courses') {
         fetchAllCoursesAndSetLevel();
       }
-    } else {
-      setDataLoading(false);
     }
-  }, [dataLoading, level]);
+  }, [dataLoading, level, pathname]);
 
   useEffect(() => {
     pathname === '/course-new' && navigate('/course-new/all-courses');

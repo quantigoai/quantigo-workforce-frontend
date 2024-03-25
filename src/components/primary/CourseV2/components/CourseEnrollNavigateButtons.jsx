@@ -1,18 +1,13 @@
 import { Box, Button } from '@mui/material';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { getCoursesCount } from '../../../../features/slice/courseSlice';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const CourseEnrollNavigateButtons = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getCoursesCount());
-  }, [pathname]);
-  const { coursesCount } = useSelector((state) => state.course);
 
+  const { coursesCount } = useSelector((state) => state.course);
   return (
     <Box>
       <Box

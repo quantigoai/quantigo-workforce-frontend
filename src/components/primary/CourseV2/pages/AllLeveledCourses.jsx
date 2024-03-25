@@ -40,7 +40,6 @@ const AllLeveledCourses = () => {
       });
     };
     if (isCourseLoading || search || search === '') {
-      // if (isCourseLoading || search) {
       fetchAllCoursesByLevel();
       if (search === '') {
         setSearch(null);

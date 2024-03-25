@@ -18,12 +18,12 @@ import { Box, Button, Grid, Typography } from '@mui/material';
 import { default as React, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getACourseByID } from '../../../../features/slice/courseSlice';
+import { getACourseByID, getAllChapterFromACourse } from '../../../../features/slice/courseSlice';
 import LoadingComponent from '../../../shared/Loading/LoadingComponent';
-import ChapterListShowIndex from '../../Course/CourseHomePage/ChapterListShowIndex';
-import CourseHomePageCertificate from '../../Course/CourseHomePage/CourseHomePageCertificate';
-import CourseInfoIndex from '../../Course/CourseHomePage/CourseInfoIndex';
+import ChapterListShowIndex from '../components/CourseHomepage/ChapterListShowIndex';
+import CourseHomePageCertificate from '../components/CourseHomepage/CourseHomePageCertificate';
 import CourseHomePageHeader from '../components/CourseHomepage/CourseHomePageHeader';
+import CourseInfoIndex from '../components/CourseHomepage/CourseInfoIndex';
 
 const CourseHomepage = () => {
   const { isLoading, course } = useSelector((state) => state.course);
@@ -35,7 +35,7 @@ const CourseHomepage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getACourseByID(id));
-    // dispatch(getAllChapterFromACourse(id));
+    dispatch(getAllChapterFromACourse(id));
   }, [id]);
   const handleCreateChapter = () => {
     navigate(`/create-chapter/${course._id}`);

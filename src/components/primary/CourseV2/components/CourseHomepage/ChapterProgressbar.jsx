@@ -1,6 +1,23 @@
+/*
+ * File           : ChapterProgressbar.jsx
+ * Project        : wmpfrontv2
+ * Created Date   : Mo 25 Mar 2024 12:38:23
+ * Description    : <<description>>
+ *
+ * -----------------------------------------------------
+ * Author         : Tanzim Ahmed
+ * Email          : tanzimahmed077@gmail.com
+ * -----------------------------------------------------
+ * Last Modified  : Mon Mar 25 2024
+ * Modified By    : Tanzim Ahmed
+ * -----------------------------------------------------
+ * Copyright (c) 2024 Tanzim Ahmed
+ * -----------------------------------------------------
+ */
+
 import { Box, CircularProgress } from '@mui/material';
 import React from 'react';
-import course_Complete from '../../../../assets/images/courses/course_Complete.svg';
+import course_Complete from '../../../../../assets/images/courses/course_Complete.svg';
 const ChapterProgressbar = ({ item, score, passMarkThreshold }) => {
   return (
     <>

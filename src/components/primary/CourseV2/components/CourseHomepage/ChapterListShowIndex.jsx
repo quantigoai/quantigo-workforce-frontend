@@ -18,14 +18,14 @@
 import { Box, Chip, Grid, Skeleton, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import editIcon from '../../../../assets/images/courses/EditIcon.svg';
-import arrowIcon from '../../../../assets/images/courses/arrowIcon.svg';
+import editIcon from '../../../../../assets/images/courses/EditIcon.svg';
+import arrowIcon from '../../../../../assets/images/courses/arrowIcon.svg';
 
 import { useNavigate } from 'react-router-dom';
-import Rectangle from '../../../../assets/images/courses/Rectangle 257.svg';
-import { setActiveChapterIndex } from '../../../../features/slice/activePathSlice';
-import { getAChapterById } from '../../../../features/slice/courseSlice';
-import { getAllCourseChapterWithMark } from '../../../../features/slice/quizSlice';
+import Rectangle from '../../../../../assets/images/courses/Rectangle 257.svg';
+import { setActiveChapterIndex } from '../../../../../features/slice/activePathSlice';
+import { getAChapterById } from '../../../../../features/slice/courseSlice';
+import { getAllCourseChapterWithMark } from '../../../../../features/slice/quizSlice';
 import ChapterProgressbar from './ChapterProgressbar';
 
 const boxStyle = {
@@ -61,6 +61,7 @@ const ChapterListShowIndex = () => {
   const handleSubmittedQuiz = (courseChapter, index) => {
     navigate(`/submitted/${courseChapter?.quiz?.id}`);
   };
+
   useEffect(() => {
     setLoadingForMarks(true);
     course._id &&
@@ -69,12 +70,10 @@ const ChapterListShowIndex = () => {
         setLoadingForMarks(false);
       });
   }, [course]);
+
   const handleChapter = (courseChapter, index) => {
-    // navigate("/content");
-    // navigate(`/content/${courseChapter._id}`);
     dispatch(setActiveChapterIndex(index));
     dispatch(getAChapterById(courseChapter._id)).then(() => {
-      // navigate(`/course-details/${course._id}/index`);
       navigate(`/content/${courseChapter._id}`);
     });
     // if (
@@ -104,12 +103,10 @@ const ChapterListShowIndex = () => {
     <>
       <Box
         sx={{
-          // backgroundColor: "red",
           backgroundColor: isLightTheme ? '#F8FAFC' : '',
           border: '2px solid #E2E8F0',
           borderRadius: '8px',
           maxHeight: 430,
-          // overflowY: "auto",
           overflowY: 'auto',
           '&::-webkit-scrollbar': {
             width: '0', // Hide the scrollbar
@@ -153,8 +150,6 @@ const ChapterListShowIndex = () => {
                       alignItems: 'center',
                       justifyContent: 'center',
                       display: 'flex',
-                      // justifyContent: 'center',
-                      // paddingRight: "20px",
                       borderTop: index === 0 ? '' : '1px solid #E2E8F0',
                       paddingTop: '1%',
                       paddingBottom: '1%',
@@ -163,7 +158,6 @@ const ChapterListShowIndex = () => {
                     <Grid container>
                       <Grid
                         item
-                        // xs={0.5}
                         xs={12}
                         sm={1}
                         md={1}
@@ -187,17 +181,8 @@ const ChapterListShowIndex = () => {
                             <ChapterProgressbar item={item} score={score} passMarkThreshold={passMarkThreshold} />
                           </>
                         )}
-                        {/* <img src={course_Complete} alt='' /> */}
                       </Grid>
-                      <Grid
-                        item
-                        // xs={9.5}
-                        xs={12}
-                        sm={7}
-                        md={5.5}
-                        xl={8}
-                        sx={{ backgroundColor: '' }}
-                      >
+                      <Grid item xs={12} sm={7} md={5.5} xl={8} sx={{ backgroundColor: '' }}>
                         <Typography
                           // color={"grey.600"}
                           variant='wpf_p3_semiBold'
@@ -206,16 +191,9 @@ const ChapterListShowIndex = () => {
                         >
                           {item.title}
                         </Typography>
-                        {/* {(role === "admin" || role === "trainer") && (
-                    <Button sx={{ height: "20px" }} onClick={() => handleEditChapter(item._id, index)}>
-                      {" "}
-                      <i className='ri-edit-line'></i>
-                    </Button>
-                  )} */}
                         <br />
                         <Typography variant='wpf_p4_regular' color={'grey.600'}>
                           {`Duration: ${item.estimatedTimeToRead} minutes`}
-                          {'  '}
                         </Typography>
 
                         {!(role === 'admin' || role === 'trainer') && (

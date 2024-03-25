@@ -101,23 +101,6 @@ const CourseHomePageHeader = ({ course }) => {
 
         <Box sx={{ height: '40%', display: 'flex', alignItems: 'center', marginTop: '20px', mb: '16px' }}>
           <Grid container gap={1}>
-            {/* <Box
-              sx={{
-                backgroundColor: "neutral.N000",
-                display: "flex",
-                alignItems: "center",
-                borderRadius: "8px",
-                border: "1px solid #E6ECF5",
-                padding: "1%",
-              }}
-            >
-              <img src={groupIcon} />
-              <span style={{ paddingLeft: "8px" }}>
-                {" "}
-                <Typography variant='wpf_p3_regular'>Start Date : 12 Dec,2023</Typography>
-              </span>
-            </Box> */}
-
             <CourseLiveSessionSection />
           </Grid>
         </Box>
@@ -125,8 +108,6 @@ const CourseHomePageHeader = ({ course }) => {
       <Box
         sx={{
           width: { xxl: '30%', xl: '30%', lg: '30%' },
-
-          // width: { xxl: "390px", xl: "340px", lg: "300px" },
           height: { xxl: '270px', xl: '240px', lg: '220px' },
           position: 'relative',
         }}
@@ -142,10 +123,8 @@ const CourseHomePageHeader = ({ course }) => {
               border: '1px solid #E6ECF5',
               padding: '12px',
               position: 'absolute',
-              // top: "80%",
               left: '10%',
               top: { xxl: '80%', xl: '80%', lg: '60%' },
-              // left: { xxl: 1200, xl: 860, lg: 550 },
             }}
           >
             <Box sx={{ position: 'relative', alignItems: 'center', display: 'flex' }}>
@@ -154,11 +133,9 @@ const CourseHomePageHeader = ({ course }) => {
                 sx={{
                   color: (theme) => (theme.palette.mode === 'light' ? '#D2DFFA' : '#D2DFFA'),
                   paddingTop: '2px',
-                  // backgroundColor: "red",
                 }}
                 size='20px'
                 thickness={7}
-                // {...props}
                 value={100}
               />
               <CircularProgress
@@ -166,14 +143,11 @@ const CourseHomePageHeader = ({ course }) => {
                 disableShrink
                 sx={{
                   paddingTop: '2px',
-
                   strokeLinecap: 'round',
                   strokeLinejoin: 'round',
                   color: (theme) => (theme.palette.mode === 'light' ? '#2D58FF' : '#2D58FF'),
                   animationDuration: '550ms',
                   position: 'absolute',
-                  // left: 0,
-                  // top: 0,
                 }}
                 size='20px'
                 value={courseCompletedPercentage}

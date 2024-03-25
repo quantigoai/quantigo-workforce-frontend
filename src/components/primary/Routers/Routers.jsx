@@ -39,7 +39,9 @@ import CourseLandingPage from '../CourseV2/pages/CourseLandingPage';
 import CourseList from '../CourseV2/pages/CourseList.jsx';
 import CourseNewIndex from '../CourseV2/pages/CourseNewIndex';
 import CreateChapterPage from '../CourseV2/pages/CreateChapterPage.jsx';
+import CreateQuizPage from '../CourseV2/pages/CreateQuizPage.jsx';
 import UpdateChapterPage from '../CourseV2/pages/UpdateChapterPage.jsx';
+import UpdateQuizPage from '../CourseV2/pages/UpdateQuizPage.jsx';
 import AccountActivation from '../Dashboard/CongratulationDashBoard/AccountActivation';
 import Dashboard from '../Dashboard/Dashboard';
 import EditProfilePageIndex from '../EditProfile/EditProfilePage/EditProfilePageIndex';
@@ -158,11 +160,11 @@ const Routers = () => {
           <Route path='course-list/:type' element={<CourseList />} />
 
           <Route path='create-chapter/:courseId' element={<CreateChapterPage />} />
-          <Route path='update-chapter/:courseId' element={<UpdateChapterPage />} />
-          <Route path='create-quiz/:courseId' element={<> </>} />
+          <Route path='update-chapter/:ChapterId' element={<UpdateChapterPage />} />
+          <Route path='create-quiz/:courseId' element={<CreateQuizPage />} />
+          <Route path='update-quiz/:quizId' element={<UpdateQuizPage />} />
           <Route path='get-quiz/:quizId' element={<> </>} />
           <Route path='get-user-submission/:submissionId' element={<> </>} />
-          <Route path='update-quiz/:quizId' element={<> </>} />
           <Route path='get-submission-result/' element={<> </>} />
           <Route path='get-all-submission/:quizId' element={<> </>} />
         </Route>

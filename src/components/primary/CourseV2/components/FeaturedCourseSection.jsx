@@ -19,6 +19,7 @@ import { useSelector } from 'react-redux';
 import { A11y, Autoplay, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import FeaturedCard from './CourseCard/FeatureCard';
+import { Box } from '@mui/material';
 
 const FeaturedCourseSection = () => {
   const { isLightTheme } = useSelector((state) => state.theme);
@@ -48,7 +49,7 @@ const FeaturedCourseSection = () => {
     };
   }, []);
   return (
-    <>
+    <Box sx={{ height: '100%' }}>
       <Swiper
         modules={[Navigation, A11y, Autoplay]}
         speed={2500}
@@ -63,16 +64,17 @@ const FeaturedCourseSection = () => {
           <SwiperSlide
             key={item._id}
             style={{
-              backgroundColor: isLightTheme ? '#fff' : '#000',
+              // backgroundColor: isLightTheme ? '#fff' : '#000',
               width: '100%',
-              height: '100%',
+              height: '60%',
+              // backgroundColor: 'yellow',
             }}
           >
             <FeaturedCard course={item} />
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </Box>
   );
 };
 

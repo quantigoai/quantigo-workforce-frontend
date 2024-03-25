@@ -15,30 +15,41 @@
  * -----------------------------------------------------
  */
 
-import { Box } from '@mui/material';
+import { Box, Paper, styled } from '@mui/material';
 import { default as React } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import LoadingComponent from '../../../shared/Loading/LoadingComponent';
 import FeaturedCourseSection from '../components/FeaturedCourseSection';
 import LevelBasedSection from '../components/LevelBasedSection';
 import CourseHeader from '../shared/courseHeader/CourseHeader';
+import { useSelector } from 'react-redux';
 
 const AllCourses = () => {
   const [myContext] = useOutletContext();
   const { level, courseFilterDispatch, dataLoading } = myContext;
+  const { isLightTheme } = useSelector((state) => state.theme);
 
   return dataLoading ? (
     <>
       <LoadingComponent />
     </>
   ) : (
-    <Box sx={{ px: '25px' }}>
+    <Box sx={{ px: '25px', height: ' 100%', padding: '0', margin: '0' }}>
       {/* TODO implement header here */}
-      <CourseHeader />
-      <FeaturedCourseSection />
-      {level?.map((level) => (
-        <LevelBasedSection title={level} key={level} />
-      ))}
+      <Box sx={{ height: '10%' }}>
+        <CourseHeader />
+      </Box>
+
+      <Box sx={{ height: '90%', overflow: 'auto' }}>
+        <Box>
+          <FeaturedCourseSection />
+        </Box>
+        <Box sx={{ height: '70%' }}>
+          {level?.map((level) => (
+            <LevelBasedSection title={level} key={level} />
+          ))}
+        </Box>
+      </Box>
     </Box>
   );
 };

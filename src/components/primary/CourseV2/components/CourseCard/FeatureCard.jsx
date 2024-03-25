@@ -34,7 +34,7 @@ const FeaturedCard = ({ course }) => {
         display: 'flex',
         width: '100%',
         padding: '8px',
-        height: '100%',
+        // height: '100%',
       }}
     >
       <Box
@@ -44,7 +44,7 @@ const FeaturedCard = ({ course }) => {
         onClick={() => navigate(`/course-new/course-landing/${course._id}`)}
       >
         <CustomHoverImage
-          height={'100%'}
+          // height={'100%'}
           width={'100%'}
           maxHeight={{ xxl: 250, xl: 224, md: 167, lg: 200 }}
           maxWidth={{ xxl: 250, xl: 224, md: 167, lg: 200 }}
@@ -55,7 +55,8 @@ const FeaturedCard = ({ course }) => {
 
       <Box
         sx={{
-          height: '100%',
+          // height: '100%',
+          // backgroundColor: 'yellow',
           width: '100%',
           paddingX: '24px',
           paddingY: '12px',
@@ -68,7 +69,7 @@ const FeaturedCard = ({ course }) => {
             }}
             label={
               <Typography
-                variant='wpf_p5_semiBold'
+                variant="wpf_p5_semiBold"
                 sx={{
                   textAlign: 'left',
                   display: 'flex',
@@ -81,12 +82,13 @@ const FeaturedCard = ({ course }) => {
                 Featured
               </Typography>
             }
-            color='primary'
+            color="primary"
           />
         </Box>
         <Box
           sx={{
             height: '75%',
+            // backgroundColor: 'blue',
             width: '100%',
             display: 'flex',
             flexDirection: 'column',
@@ -96,13 +98,13 @@ const FeaturedCard = ({ course }) => {
           <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'start', height: '90px', mt: '15px' }}>
             <Typography
               onClick={() => navigate(`/course-new/course-landing/${course._id}`)}
-              variant='wpf_h6_semiBold'
+              variant="wpf_h6_semiBold"
               color={'grey.500'}
               sx={{ cursor: 'pointer', lineHeight: '20px' }}
             >
               {course.name?.length > 50 ? course.name?.substring(0, 60) + '.....' : course.name}
             </Typography>{' '}
-            <Typography sx={{ lineHeight: '18px', mt: '6px' }} variant='wpf_h8_regular' color={'grey.550'}>
+            <Typography sx={{ lineHeight: '18px', mt: '6px' }} variant="wpf_h8_regular" color={'grey.550'}>
               {course.description?.length > 100 ? course.description?.substring(0, 110) + '.....' : course.description}
             </Typography>{' '}
           </Box>

@@ -6,7 +6,6 @@ import { getCoursesCount } from '../../../../features/slice/courseSlice';
 
 const CourseEnrollNavigateButtons = () => {
   const { pathname } = useLocation();
-  console.log('🚀 ~ CourseEnrollNavigateButtons ~ pathname:', pathname);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {

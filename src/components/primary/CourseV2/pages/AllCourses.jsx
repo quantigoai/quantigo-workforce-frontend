@@ -25,9 +25,38 @@ import CourseHeader from '../shared/courseHeader/CourseHeader';
 import { useSelector } from 'react-redux';
 import CourseIndexPageSkeleton from '../shared/CourseSkeleton/CourseIndexPageSkeleton';
 import '../shared/styles/index.css';
+import CourseCreateModal from '../../Course/CreateCourseModal/CourseCreateModal';
 const AllCourses = () => {
   const [myContext] = useOutletContext();
-  const { level, courseFilterDispatch, dataLoading } = myContext;
+  const {
+    level,
+    courseFilterDispatch,
+    dataLoading,
+    handleSubmit,
+    methods,
+    preRequisiteCourses,
+    handleChange_Pre_Requisite_Course,
+    onSubmit,
+    open,
+    setOpen,
+    handleClose,
+    skills,
+    skill,
+    handleChangeSkills,
+    coverImage,
+    removeImage,
+    handleImage,
+    isLoading,
+    checkedFeatured,
+    handleChangeFeatured,
+    dateTime,
+    handleDateTime,
+    outcomes,
+    setOutcomes,
+    hub,
+    handleChangeHub,
+    isBtnLoading,
+  } = myContext;
   const { isLightTheme } = useSelector((state) => state.theme);
 
   return dataLoading ? (
@@ -57,6 +86,33 @@ const AllCourses = () => {
           <LevelBasedSection title={level} key={level} />
         ))}
       </Box>
+
+      <CourseCreateModal
+        handleSubmit={handleSubmit}
+        methods={methods}
+        preRequisiteCourses={preRequisiteCourses}
+        handleChange_Pre_Requisite_Course={handleChange_Pre_Requisite_Course}
+        onSubmit={onSubmit}
+        open={open}
+        setOpen={setOpen}
+        handleClose={handleClose}
+        skills={skills}
+        skill={skill}
+        handleChangeSkills={handleChangeSkills}
+        coverImage={coverImage}
+        removeImage={removeImage}
+        handleImage={handleImage}
+        isLoading={isLoading}
+        checkedFeatured={checkedFeatured}
+        handleChangeFeatured={handleChangeFeatured}
+        dateTime={dateTime}
+        handleDateTime={handleDateTime}
+        outcomes={outcomes}
+        setOutcomes={setOutcomes}
+        hub={hub}
+        handleChangeHub={handleChangeHub}
+        isBtnLoading={isBtnLoading}
+      />
     </Box>
   );
 };

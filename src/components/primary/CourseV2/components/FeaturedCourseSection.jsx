@@ -64,7 +64,7 @@ const FeaturedCourseSection = () => {
           <SwiperSlide
             key={item._id}
             style={{
-              // backgroundColor: isLightTheme ? '#fff' : '#000',
+              backgroundColor: isLightTheme ? '#fff' : '#000',
               width: '100%',
               height: '60%',
               // backgroundColor: 'yellow',

@@ -26,7 +26,36 @@ const CourseNewIndex = () => {
   const navigate = useNavigate();
   const [courseCount, setCourseCount] = React.useState(0);
   const courseFilterDispatch = useCourseFilterDispatch({ setCourseCount });
-  const { pathLevel, handleDispatch, search } = courseFilterDispatch;
+  const {
+    pathLevel,
+    handleDispatch,
+    search,
+    handleSubmit,
+    methods,
+    preRequisiteCourses,
+    handleChange_Pre_Requisite_Course,
+    onSubmit,
+    open,
+    setOpen,
+    handleClose,
+    skills,
+    skill,
+    handleChangeSkills,
+    coverImage,
+    removeImage,
+    handleImage,
+    isLoading,
+    checkedFeatured,
+    handleChangeFeatured,
+    dateTime,
+    handleDateTime,
+    outcomes,
+    setOutcomes,
+    hub,
+    handleChangeHub,
+    isBtnLoading,
+    handleOpen,
+  } = courseFilterDispatch;
 
   const dispatch = useDispatch();
   const [level, setLevel] = React.useState([]);
@@ -64,6 +93,31 @@ const CourseNewIndex = () => {
     level,
     courseFilterDispatch,
     dataLoading,
+    handleSubmit,
+    methods,
+    preRequisiteCourses,
+    handleChange_Pre_Requisite_Course,
+    onSubmit,
+    open,
+    setOpen,
+    handleClose,
+    skills,
+    skill,
+    handleChangeSkills,
+    coverImage,
+    removeImage,
+    handleImage,
+    isLoading,
+    checkedFeatured,
+    handleChangeFeatured,
+    dateTime,
+    handleDateTime,
+    outcomes,
+    setOutcomes,
+    hub,
+    handleChangeHub,
+    isBtnLoading,
+    handleOpen,
   };
   return (
     <>

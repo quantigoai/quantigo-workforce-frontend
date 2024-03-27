@@ -28,24 +28,24 @@ const AllLeveledCourses = () => {
   const dispatch = useDispatch();
   const [myContext] = useOutletContext();
   const { courseFilterDispatch } = myContext;
-  const { search, setSearch } = courseFilterDispatch;
+  const { triggerFilter, filter, search, setSearch } = courseFilterDispatch;
   const [isCourseLoading, setIsCourseLoading] = useState(true);
   const { level } = useParams();
   const { isLightTheme } = useSelector((state) => state.theme);
 
   useEffect(() => {
     const fetchAllCoursesByLevel = () => {
-      dispatch(getAllCourses({ level, search })).finally(() => {
+      dispatch(getAllCourses({ level, search, filter })).finally(() => {
         setIsCourseLoading(false);
       });
     };
-    if (isCourseLoading || search || search === '') {
+    if (isCourseLoading || search || search === '' || triggerFilter) {
       fetchAllCoursesByLevel();
       if (search === '') {
         setSearch(null);
       }
     }
-  }, [isCourseLoading, search]);
+  }, [isCourseLoading, search, filter, triggerFilter]);
 
   const { isLoading, courses } = useSelector((state) => state.course);
   return isCourseLoading ? (

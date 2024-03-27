@@ -13,18 +13,18 @@ const CourseList = () => {
   const [myContext] = useOutletContext();
   const { isLightTheme } = useSelector((state) => state.theme);
   const { courseFilterDispatch } = myContext;
-  const { pagination, search, setSearch } = courseFilterDispatch;
+  const { triggerFilter, filter, pagination, search, setSearch } = courseFilterDispatch;
   const [isCourseLoading, setIsCourseLoading] = useState(true);
   const { type } = useParams();
   const [previousType, setPreviousType] = useState(null);
 
   const fetchAllCoursesByLevel = () => {
     if (type === 'my-courses') {
-      dispatch(getMyCourses({ pagination, search })).finally(() => {
+      dispatch(getMyCourses({ pagination, search, filter })).finally(() => {
         setIsCourseLoading(false);
       });
     } else {
-      dispatch(getArchivedCourses({ pagination, search })).finally(() => {
+      dispatch(getArchivedCourses({ pagination, search, filter })).finally(() => {
         setIsCourseLoading(false);
       });
     }
@@ -36,13 +36,13 @@ const CourseList = () => {
       setIsCourseLoading(true);
       setPreviousType(type);
     }
-    if (isCourseLoading || search || search === '') {
+    if (isCourseLoading || search || search === '' || triggerFilter) {
       fetchAllCoursesByLevel();
       if (search === '') {
         setSearch(null);
       }
     }
-  }, [isCourseLoading, search, type, previousType]);
+  }, [isCourseLoading, search, type, previousType, filter, triggerFilter]);
 
   const { isLoading, myCourses, myArchivedCourses } = useSelector((state) => state.course);
 

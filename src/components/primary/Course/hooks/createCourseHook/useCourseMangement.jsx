@@ -122,24 +122,9 @@ const useCourseManagement = () => {
   const handleFilterCourse = () => {
     setButtonClicked(true);
     if (level) {
-      // if (isActiveEnrolled) {
-      //   dispatch(getMyCourses({ filter, search, pagination })).then((action) => {
-      //     setCourseCountFull(action.payload.data.searchedTotal);
-      //     setAllCoursesFull(action.payload.data.enrolledCourses);
-      //     // setIsDataLoading(false);
-      //   });
-      // } else if (isActiveArchived) {
-      //   dispatch(getArchivedCourses({ filter, search, pagination })).then((action) => {
-      //     setCourseCountFull(action.payload.data.searchedTotal);
-      //     setAllCoursesFull(action.payload.data.archivedCourses);
-      //     // setIsDataLoading(false);
-      //   });
-      // }
-      // else {
       dispatch(getAllCourses({ level, filter, search })).then((action) => {
         setAllCoursesFull(action.payload.data.courses);
         setCourseCount(action.payload.data.count);
-        // setCourseCountFull(action.payload.data.count);
       });
       // }
     } else {
@@ -224,6 +209,7 @@ const useCourseManagement = () => {
     setCoverImageFile(null);
     setCoverImage(null);
   };
+  
   const handleChange_Pre_Requisite_Course = (event) => {
     const {
       target: { value },
@@ -237,8 +223,11 @@ const useCourseManagement = () => {
       typeof selectedPreRequisiteCourses === "string" ? value.split(",") : selectedPreRequisiteCourses
     );
   };
+  
   const { handleSubmit, reset } = methods;
+  
   const [isCourseLoading, setIsCourseLoading] = useState(true);
+  
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };

@@ -31,7 +31,7 @@ const CourseHeader = () => {
         }}
       >
         <Grid container sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Typography variant="wpf_p1_semiBold">{`List of ${
+          <Typography variant='wpf_p1_semiBold'>{`List of ${
             level ? capitalizeFirstLetter(level) : ''
           } Courses`}</Typography>
 

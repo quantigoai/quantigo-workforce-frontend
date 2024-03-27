@@ -15,14 +15,14 @@
  * -----------------------------------------------------
  */
 
-import { Box, Paper, styled } from '@mui/material';
+import { Box } from '@mui/material';
 import { default as React } from 'react';
+import { useSelector } from 'react-redux';
 import { useOutletContext } from 'react-router-dom';
 import LoadingComponent from '../../../shared/Loading/LoadingComponent';
 import FeaturedCourseSection from '../components/FeaturedCourseSection';
 import LevelBasedSection from '../components/LevelBasedSection';
 import CourseHeader from '../shared/courseHeader/CourseHeader';
-import { useSelector } from 'react-redux';
 
 const AllCourses = () => {
   const [myContext] = useOutletContext();

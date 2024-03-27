@@ -16,13 +16,30 @@ const useCourseFilterDispatch = ({ setCourseCount }) => {
   const searchRef = useRef(null);
   const [search, setSearch] = useState(null);
   const [pathLevel, setPathLevel] = useState('');
-  const [filter, setFilter] = useState({});
+  const [filter, setFilter] = useState(null);
   const [isCourseLoading, setIsCourseLoading] = useState(true);
+  const [triggerFilter, setTriggerFilter] = useState(false);
 
   const [pagination, setPagination] = useState({
     currentPage: 0,
     pageSize: 10,
   });
+
+  const handleChangeFilter = (event, label) => {
+    setFilter((prevFilter) => ({
+      ...prevFilter,
+      [label]: event.target.value,
+    }));
+  };
+
+  const handleResetFilter = () => {
+    setTriggerFilter(true);
+    setFilter(null);
+  };
+
+  const handleFilterCourse = () => {
+    setTriggerFilter(true);
+  };
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -50,26 +67,12 @@ const useCourseFilterDispatch = ({ setCourseCount }) => {
         dispatch(getAllCoursesNew({ filter, search })).then((action) => {
           setCourseCount(action.payload.data.courses.count);
         });
-
         break;
-      // case pathname === `/course-new/course-level/${pathLevel}`:
-      //   console.log(pathLevel);
-      //   if (pathLevel) {
-      //     setIsCourseLoading(true);
-      //     dispatch(getAllCourses({ level: pathLevel, search })).finally(() => {
-      //       setIsCourseLoading(false);
-      //     });
-      //   }
-      //   break;
-
-      // case level !== undefined:
-      //   dispatch(getAllCourses({ level }));
-      //   break;
-
       default:
         break;
     }
   };
+
   return {
     isCourseLoading,
     setIsCourseLoading,
@@ -83,6 +86,10 @@ const useCourseFilterDispatch = ({ setCourseCount }) => {
     searchRef,
     handleSearch,
     clearSearch,
+    handleChangeFilter,
+    handleResetFilter,
+    handleFilterCourse,
+    triggerFilter,
   };
 };
 export default useCourseFilterDispatch;

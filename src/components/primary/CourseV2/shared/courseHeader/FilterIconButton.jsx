@@ -15,19 +15,26 @@
  * -----------------------------------------------------
  */
 import FilterListIcon from '@mui/icons-material/FilterList';
-import { IconButton, Popover } from '@mui/material';
 import FilterListOffIcon from '@mui/icons-material/FilterListOff';
+import { IconButton, Popover } from '@mui/material';
 
 import React, { useState } from 'react';
-import MIniModalCourseFilter from '../../../Course/CourseHeader/MIniModalCourseFilter';
+import { useOutletContext } from 'react-router-dom';
+import FilterModal from './FilterModal';
 
 const FilterIconButton = () => {
+  const [myContext] = useOutletContext();
+  const { courseFilterDispatch } = myContext;
+  const { filter } = courseFilterDispatch;
+
   const [anchorE2, setAnchorE2] = useState(null);
   const openModal = Boolean(anchorE2);
   const id = openModal ? 'simple-popover' : undefined;
+
   const handleCloseFilter = () => {
     setAnchorE2(null);
   };
+
   const handleClickFilter = (event) => {
     setAnchorE2(event.currentTarget);
   };
@@ -41,9 +48,9 @@ const FilterIconButton = () => {
           mx: '5px',
           borderRadius: '8px',
         }}
-        aria-label="menu"
+        aria-label='menu'
       >
-        {openModal ? (
+        {openModal || filter ? (
           <FilterListOffIcon sx={{ color: 'primary.main' }} />
         ) : (
           <FilterListIcon sx={{ color: 'primary.main' }} />
@@ -61,13 +68,13 @@ const FilterIconButton = () => {
           horizontal: 'left',
         }}
       >
-        <MIniModalCourseFilter
-          // handleResetFilter={handleResetFilter}
-          // handleFilterCourse={handleFilterCourse}
+        <FilterModal
+          // // handleResetFilter={handleResetFilter}
+          // // handleFilterCourse={handleFilterCourse}
           handleCloseFilter={handleCloseFilter}
-          // handleChange={handleChange}
-          filter={{}}
-          // level={level}
+          // // handleChange={handleChange}
+          // filter={filter}
+          // // level={level}
         />
       </Popover>
     </>

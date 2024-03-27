@@ -20,6 +20,7 @@ const CourseHeader = () => {
         justifyContent: 'space-between',
         alignItems: 'center',
         py: '15px',
+        height: '10%',
       }}
     >
       <Box
@@ -30,7 +31,7 @@ const CourseHeader = () => {
         }}
       >
         <Grid container sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Typography variant='wpf_p1_semiBold'>{`List of ${
+          <Typography variant="wpf_p1_semiBold">{`List of ${
             level ? capitalizeFirstLetter(level) : ''
           } Courses`}</Typography>
 

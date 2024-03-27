@@ -51,20 +51,20 @@ const CourseList = () => {
       <LoadingComponent />
     </>
   ) : (
-    <>
+    <Box sx={{ px: '25px', height: ' 100%' }}>
       <CourseHeader />
-      <Box sx={{ px: '25px' }}>
+      <Box sx={{ height: '90%', overflow: 'auto' }}>
         <Box
           sx={{
             display: 'grid',
-            p: '25px',
+            // p: '25px',
             gridTemplateColumns: {
               xxl: 'repeat(4,1fr)',
               xl: 'repeat(4,1fr)',
               lg: 'repeat(3,1fr)',
             },
             gridGap: '8px',
-            mt: '16px',
+            // mt: '16px',
             gap: { xxl: '20px', xl: '15px', lg: '12px' },
           }}
         >
@@ -84,6 +84,7 @@ const CourseList = () => {
             : myArchivedCourses?.map((course) => (
                 <Box
                   sx={{
+                    backgroundColor: isLightTheme ? '#fff' : '#000',
                     width: { xxl: '368px', xl: '278px', lg: '250px' },
                     borderRadius: '10px',
                   }}
@@ -94,7 +95,7 @@ const CourseList = () => {
               ))}
         </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 

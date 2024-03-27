@@ -6,7 +6,8 @@ const CourseIndexPageSkeleton = () => {
     <>
       <Box
         sx={{
-          width: { xxl: '300px', xl: '278px', lg: '150px' },
+          width: { xxl: '535px', xl: '420px', lg: '350px' },
+          height: { xxl: '224px', xl: '200px', lg: '150px' },
           borderRadius: '10px',
         }}
       >
@@ -14,15 +15,6 @@ const CourseIndexPageSkeleton = () => {
           <Skeleton variant="rounded" width="100%" height={160} />
         </Box>
         <Box sx={{ py: 1, width: { xxl: 368, xl: 278, md: 167, lg: 200 } }}>
-          <Skeleton variant="rounded" width="100%" height={20} />
-        </Box>
-        <Box sx={{ py: 1, width: { xxl: 368, xl: 278, md: 167, lg: 200 } }}>
-          <Skeleton variant="rounded" width="100%" height={20} />
-        </Box>
-        <Box sx={{ py: 1, width: { xxl: 368, xl: 278, md: 167, lg: 200 } }}>
-          <Skeleton variant="rounded" width="100%" height={20} />
-        </Box>
-        <Box sx={{ pt: 2, width: { xxl: 368, xl: 278, md: 167, lg: 200 } }}>
           <Skeleton variant="rounded" width="100%" height={20} />
         </Box>
       </Box>

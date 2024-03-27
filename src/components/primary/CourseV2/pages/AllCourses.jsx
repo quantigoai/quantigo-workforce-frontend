@@ -34,21 +34,19 @@ const AllCourses = () => {
       <LoadingComponent />
     </>
   ) : (
-    <Box sx={{ px: '25px', height: ' 100%', padding: '0', margin: '0' }}>
+    <Box sx={{ px: '25px', height: ' 100%' }}>
       {/* TODO implement header here */}
-      <Box sx={{ height: '10%' }}>
-        <CourseHeader />
-      </Box>
+
+      <CourseHeader />
 
       <Box sx={{ height: '90%', overflow: 'auto' }}>
         <Box>
           <FeaturedCourseSection />
         </Box>
-        <Box sx={{ height: '70%' }}>
-          {level?.map((level) => (
-            <LevelBasedSection title={level} key={level} />
-          ))}
-        </Box>
+
+        {level?.map((level) => (
+          <LevelBasedSection title={level} key={level} />
+        ))}
       </Box>
     </Box>
   );

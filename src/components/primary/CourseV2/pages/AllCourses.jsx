@@ -23,6 +23,7 @@ import FeaturedCourseSection from '../components/FeaturedCourseSection';
 import LevelBasedSection from '../components/LevelBasedSection';
 import CourseHeader from '../shared/courseHeader/CourseHeader';
 import { useSelector } from 'react-redux';
+import CourseIndexPageSkeleton from '../shared/CourseSkeleton/CourseIndexPageSkeleton';
 
 const AllCourses = () => {
   const [myContext] = useOutletContext();
@@ -31,15 +32,15 @@ const AllCourses = () => {
 
   return dataLoading ? (
     <>
-      <LoadingComponent />
+      <CourseIndexPageSkeleton />
     </>
   ) : (
-    <Box sx={{ px: '25px', height: ' 100%' }}>
+    <Box sx={{ px: { xxl: '25px', xl: '14px', lg: '25px' }, height: ' 100%' }}>
       {/* TODO implement header here */}
 
       <CourseHeader />
 
-      <Box sx={{ height: '90%', overflow: 'auto' }}>
+      <Box sx={{ height: '91%', overflow: 'auto' }}>
         <Box>
           <FeaturedCourseSection />
         </Box>

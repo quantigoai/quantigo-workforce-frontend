@@ -51,9 +51,9 @@ const CourseList = () => {
       <LoadingComponent />
     </>
   ) : (
-    <Box sx={{ px: '25px', height: ' 100%' }}>
+    <Box sx={{ px: { xxl: '25px', xl: '14px', lg: '25px'  }, height: ' 100%' }}>
       <CourseHeader />
-      <Box sx={{ height: '90%', overflow: 'auto' }}>
+      <Box sx={{ height: '91%', overflow: 'auto' }}>
         <Box
           sx={{
             display: 'grid',

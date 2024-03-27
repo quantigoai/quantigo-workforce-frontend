@@ -15,15 +15,15 @@
  * -----------------------------------------------------
  */
 
-import { Box } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { setActiveChapterIndex, setActiveCourseId } from "../../../../features/slice/activePathSlice";
-import { getACourseByID } from "../../../../features/slice/courseSlice";
-import LoadingComponent from "../../../shared/Loading/LoadingComponent";
-import LandingPageContent from "../components/LandingPageContent";
-import LandingPageHeader from "../components/LandingPageHeader";
+import { Box } from '@mui/material';
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { setActiveChapterIndex, setActiveCourseId } from '../../../../features/slice/activePathSlice';
+import { getACourseByID, getAllChapterFromACourse } from '../../../../features/slice/courseSlice';
+import LoadingComponent from '../../../shared/Loading/LoadingComponent';
+import LandingPageContent from '../components/LandingPageContent';
+import LandingPageHeader from '../components/LandingPageHeader';
 
 const CourseLandingPage = () => {
   const params = useParams();
@@ -39,7 +39,7 @@ const CourseLandingPage = () => {
 
   useEffect(() => {
     setIsCourseLoading(true);
-    refContainer?.current?.scrollIntoView({ behavior: "smooth" });
+    refContainer?.current?.scrollIntoView({ behavior: 'smooth' });
     dispatch(getACourseByID(id))
       .then(() => {
         dispatch(setActiveCourseId(id));
@@ -62,7 +62,7 @@ const CourseLandingPage = () => {
           <Box ref={refContainer}>
             <LandingPageHeader course={course} />
           </Box>
-          <Box sx={{ backgroundColor: isLightTheme ? "#fff" : "#000" }}>
+          <Box sx={{ backgroundColor: isLightTheme ? '#fff' : '#000' }}>
             <LandingPageContent course={course} />
           </Box>
         </>

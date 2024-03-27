@@ -53,15 +53,15 @@ const AllLeveledCourses = () => {
       <LoadingComponent />
     </>
   ) : (
-    <Box sx={{ px: '25px', height: ' 100%' }}>
+    <Box sx={{ px: { xxl: '25px', xl: '14px', lg: '25px' }, height: ' 100%' }}>
       <CourseHeader level={level} />
 
       <Box
         sx={{
-          height: '90%',
+          height: '91%',
           overflow: 'auto',
           display: 'grid',
-          // p: '25px',
+          py: '15px',
           gridTemplateColumns: {
             xxl: 'repeat(4,1fr)',
             xl: 'repeat(4,1fr)',

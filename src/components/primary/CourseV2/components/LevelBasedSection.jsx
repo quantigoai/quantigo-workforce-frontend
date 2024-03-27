@@ -22,6 +22,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { capitalizeFirstLetter } from '../../../../helper/capitalizeFirstWord';
 import BasicCard from './CourseCard/BasicCard';
+import CourseIndexCardSkeleton from '../shared/CourseSkeleton/CourseIndexCardSkeleton';
+import CourseIndexPageSkeleton from '../shared/CourseSkeleton/CourseIndexPageSkeleton';
 
 const LevelBasedSection = ({ title }) => {
   const {
@@ -38,7 +40,7 @@ const LevelBasedSection = ({ title }) => {
 
   return isLoading ? (
     // TODO Update loader here
-    <>load</>
+    <> {/* <CourseIndexPageSkeleton />{' '} */}</>
   ) : (
     <Box sx={{ pr: '10px' }}>
       <Box

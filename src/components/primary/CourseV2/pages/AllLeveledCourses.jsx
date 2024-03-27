@@ -15,16 +15,14 @@
  * -----------------------------------------------------
  */
 import { Box } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useOutletContext, useParams } from 'react-router-dom';
 import { getAllCourses } from '../../../../features/slice/courseSlice';
-import LoadingComponent from '../../../shared/Loading/LoadingComponent';
 import BasicCard from '../components/CourseCard/BasicCard';
 import CourseCardSkeleton from '../shared/CourseSkeleton/CourseCardSkeleton';
-import CourseHeader from '../shared/courseHeader/CourseHeader';
 import CourseIndexCardSkeleton from '../shared/CourseSkeleton/CourseIndexCardSkeleton';
- 
+import CourseHeader from '../shared/courseHeader/CourseHeader';
 const AllLeveledCourses = () => {
   const dispatch = useDispatch();
   const [myContext] = useOutletContext();
@@ -34,12 +32,13 @@ const AllLeveledCourses = () => {
   const { level } = useParams();
   const { isLightTheme } = useSelector((state) => state.theme);
 
-  useEffect(() => {
-    const fetchAllCoursesByLevel = () => {
-      dispatch(getAllCourses({ level, search, filter })).finally(() => {
-        setIsCourseLoading(false);
-      });
-    };
+  const fetchAllCoursesByLevel = () => {
+    dispatch(getAllCourses({ level, search, filter })).finally(() => {
+      setIsCourseLoading(false);
+    });
+  };
+
+  useLayoutEffect(() => {
     if (isCourseLoading || search || search === '' || triggerFilter) {
       fetchAllCoursesByLevel();
       if (search === '') {

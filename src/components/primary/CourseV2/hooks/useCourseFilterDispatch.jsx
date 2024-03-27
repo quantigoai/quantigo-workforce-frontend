@@ -25,7 +25,7 @@ const useCourseFilterDispatch = ({ setCourseCount }) => {
   const searchRef = useRef(null);
   const [search, setSearch] = useState(null);
   const [pathLevel, setPathLevel] = useState('');
-  const [filter, setFilter] = useState({});
+  const [filter, setFilter] = useState(null);
   const toast = useToaster();
   const [isCourseLoading, setIsCourseLoading] = useState(true);
   const [triggerFilter, setTriggerFilter] = useState(false);

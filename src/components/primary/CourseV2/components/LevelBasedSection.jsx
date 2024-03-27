@@ -22,8 +22,6 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { capitalizeFirstLetter } from '../../../../helper/capitalizeFirstWord';
 import BasicCard from './CourseCard/BasicCard';
-import CourseIndexCardSkeleton from '../shared/CourseSkeleton/CourseIndexCardSkeleton';
-import CourseIndexPageSkeleton from '../shared/CourseSkeleton/CourseIndexPageSkeleton';
 
 const LevelBasedSection = ({ title }) => {
   const {
@@ -42,64 +40,66 @@ const LevelBasedSection = ({ title }) => {
     // TODO Update loader here
     <> {/* <CourseIndexPageSkeleton />{' '} */}</>
   ) : (
-    <Box sx={{ pr: '10px' }}>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          py: 2,
-          mt: '40px',
-        }}
-      >
-        <Typography variant="wpf_h4_Bold" color={'neutral.995'}>
-          {capitalizeFirstLetter(title)} Courses
-        </Typography>
-
-        <Typography
-          onClick={handleSeeMore}
+    coursesByLevelList?.[title]?.length  && (
+      <Box sx={{ pr: '10px' }}>
+        <Box
           sx={{
             display: 'flex',
-            cursor: 'pointer',
-            justifyContent: 'center',
-            alignItems: 'center',
-            color: '#266AED',
-            // mr: '15px',
+            justifyContent: 'space-between',
+            py: 2,
+            mt: '40px',
           }}
-          variant="wpf_p3_medium_3"
         >
-          See more
-          <ArrowForwardIosIcon sx={{ fontSize: '12px', ml: '5px', mt: '2px' }} />
-        </Typography>
-      </Box>
+          <Typography variant='wpf_h4_Bold' color={'neutral.995'}>
+            {capitalizeFirstLetter(title)} Courses
+          </Typography>
 
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: {
-            xxl: 'repeat(4,1fr)',
-            xl: 'repeat(4,1fr)',
-            lg: 'repeat(3,1fr)',
-          },
-          gridGap: '8px',
-          mt: '16px',
-          pr: '15px',
-          gap: { xxl: '20px', xl: '15px', lg: '12px' },
-        }}
-      >
-        {coursesByLevelList?.[title]?.map((course) => (
-          <Box
+          <Typography
+            onClick={handleSeeMore}
             sx={{
-              backgroundColor: isLightTheme ? '#fff' : '#000',
-              width: { xxl: '368px', xl: '278px', lg: '250px' },
-              borderRadius: '10px',
+              display: 'flex',
+              cursor: 'pointer',
+              justifyContent: 'center',
+              alignItems: 'center',
+              color: '#266AED',
+              // mr: '15px',
             }}
-            key={course.createdAt}
+            variant='wpf_p3_medium_3'
           >
-            <BasicCard course={course} />
-          </Box>
-        ))}
+            See more
+            <ArrowForwardIosIcon sx={{ fontSize: '12px', ml: '5px', mt: '2px' }} />
+          </Typography>
+        </Box>
+
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+              xxl: 'repeat(4,1fr)',
+              xl: 'repeat(4,1fr)',
+              lg: 'repeat(3,1fr)',
+            },
+            gridGap: '8px',
+            mt: '16px',
+            pr: '15px',
+            gap: { xxl: '20px', xl: '15px', lg: '12px' },
+          }}
+        >
+          {coursesByLevelList?.[title]?.map((course) => (
+            <Box
+              sx={{
+                backgroundColor: isLightTheme ? '#fff' : '#000',
+                width: { xxl: '368px', xl: '278px', lg: '250px' },
+                borderRadius: '10px',
+              }}
+              key={course.createdAt}
+            >
+              <BasicCard course={course} />
+            </Box>
+          ))}
+        </Box>
       </Box>
-    </Box>
+    )
   );
 };
 

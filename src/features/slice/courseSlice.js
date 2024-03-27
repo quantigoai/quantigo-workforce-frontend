@@ -353,6 +353,7 @@ export const getAllReviewForCourseId = createAsyncThunk('/review/course/:courseI
 // create Course Chapter
 
 export const createCourseChapter = createAsyncThunk('/createCourse/chapter', async (data) => {
+  console.log("🚀 ~ createCourseChapter ~ data:", data)
   try {
     return await axios.post(`${url}/coursechapter`, data, {
       headers: {

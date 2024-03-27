@@ -88,31 +88,7 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
           </Typography>
         </Box>
       </Box>
-      {/* <Grid container gap={1}>
-        {inputField?.possibleAnswers?.map((possibleAnswer, index) => (
-          <Grid item xs={12} key={index}>
-            <FormControlLabel
-              control={
-                <RadioOption
-                  checked={inputField.correctAnswer === index}
-                  onChange={(event) => handleCorrectAnswerChange(event, index)}
-                />
-              }
-              label={
-                <input
-                  type="text"
-                  value={possibleAnswer}
-                  onChange={(event) =>
-                    handleChangeInput((inputField.possibleAnswers[index] = event.target.value), event)
-                  }
-                />
-              }
-            />
-          </Grid>
-        ))}
-      </Grid> */}
-
-      {/* change radio button  */}
+    
       <>
         <ToggleButtonGroup
           orientation="vertical"
@@ -156,27 +132,11 @@ const BasicOptionField = ({ handleChangeInput, inputField, update, handleUpdate 
                         <img src={alignment === 0 ? SwitchCheck : radioIcon} />
                       </ToggleButton>
 
-                      {/* <RadioOption
-                       checked={update ? checkValue === 0 : inputField?.correctAnswerIndex === 0}
-                        onChange={(event) => handleCorrectAnswerChange(event, 0, inputField.possibleAnswers[0])}
-                        checkedIcon={<BpCheckedIcon />}
-                        icon={<BpIcon />}
-                      /> */}
+                
                     </InputAdornment>
                   ),
                 }}
-                // InputProps={{
-                //   startAdornment: (
-                //     <InputAdornment position='start'>
-                //       <RadioOption
-                //         checked={update ? checkValue === 0 : inputField?.correctAnswerIndex === 0}
-                //         onChange={(event) => handleCorrectAnswerChange(event, 0, inputField.possibleAnswers[0])}
-                //         checkedIcon={<BpCheckedIcon />}
-                //         icon={<BpIcon />}
-                //       />
-                //     </InputAdornment>
-                //   ),
-                // }}
+              
                 onChange={(event) => {
                   setOptionField0(event.target.value);
                   if (update) {

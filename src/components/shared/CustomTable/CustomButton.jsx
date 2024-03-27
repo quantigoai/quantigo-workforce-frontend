@@ -64,7 +64,7 @@ const CustomButton = ({
             </Button>
           </>
         )}
-      {pathname === `/submitted/${params.quizId}` && (
+      {pathname === `/course-new/get-all-submission/${params.quizId}` && (
         <>
           <Button
             sx={{ color: '#2E58FF', paddingX: '5px', minWidth: '16px' }}
@@ -146,7 +146,7 @@ const CustomButton = ({
             <i className="ri-eye-line"></i>
           </Button>
         </>
-      ) : pathname === `/submitted/${params.quizId}` ? (
+      ) : pathname === `/course-new/get-all-submission/${params.quizId}` ? (
         <></>
       ) : (
         <Button

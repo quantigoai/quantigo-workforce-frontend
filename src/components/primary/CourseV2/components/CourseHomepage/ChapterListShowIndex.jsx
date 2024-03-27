@@ -45,7 +45,7 @@ const ChapterListShowIndex = () => {
   const dispatch = useDispatch();
   const [allCourseChapterWithMark, setAllCourseChapterWithMark] = useState([]);
 
-  const [loadingForMarks, setLoadingForMarks] = useState(true);
+  const [loadingForMarks, setLoadingForMarks] = useState(false);
   const { isLightTheme } = useSelector((state) => state.theme);
   const navigate = useNavigate();
 
@@ -54,45 +54,33 @@ const ChapterListShowIndex = () => {
   };
 
   useEffect(() => {
-    setLoadingForMarks(true);
+    // setLoadingForMarks(true);
     course._id &&
       dispatch(getAllCourseChapterWithMark(course._id))
         .then((action) => {
           setAllCourseChapterWithMark(action.payload.data.chapters);
         })
         .finally(() => {
-          setLoadingForMarks(false);
+          setLoadingForMarks(true);
         });
   }, [course]);
 
   const handleChapter = (courseChapter, index) => {
+    navigate(`/course-new/course-content/${courseChapter._id}`);
+
     dispatch(setActiveChapterIndex(index));
-    dispatch(getAChapterById(courseChapter._id)).then(() => {
-      // navigate(`/content/${courseChapter._id}`);
-      navigate(`/course-new/course-content/${courseChapter._id}`);
-    });
-    // if (
-    //   user.role === "level_0_annotator" ||
-    //   user.role === "level_1_annotator" ||
-    //   user.role === "level_2_annotator" ||
-    //   user.role === "level_3_annotator" ||
-    //   user.role === "reviewer"
-    // ) {
-    //   !user.enrolledCourses.includes(courseChapter.rootCourse._id) &&
-    //     dispatch(enrollACourse(courseChapter.rootCourse._id)).then((action) => {
-    //       dispatch(updateUserEnrollCourse(action.payload.data._id));
-    //     });
-    // }
+    dispatch(getAChapterById(courseChapter._id)).then(() => {});
   };
   const handleCreateChapter = () => {
     navigate(`/create-chapter/${course._id}`);
   };
   const handleEditChapter = (id, index) => {
+    navigate(`/course-new/update-chapter/${id}`);
     dispatch(setActiveChapterIndex(index));
     dispatch(getAChapterById(id)).then(() => {
       // navigate(`/course-details/${course._id}/index`);
       // navigate(`/update-chapter/${id}`);
-      navigate(`/course-new/update-chapter/${id}`);
+      // navigate(`/course-new/update-chapter/${id}`);
     });
   };
   return (
@@ -109,7 +97,7 @@ const ChapterListShowIndex = () => {
           },
         }}
       >
-        {loadingForMarks ? (
+        {!loadingForMarks ? (
           <>
             <Box sx={{ width: "100%", height: "430px", padding: "1%" }}>
               <Skeleton />
@@ -129,7 +117,6 @@ const ChapterListShowIndex = () => {
               <Skeleton animation={false} />
               <Skeleton animation={"wave"} />
             </Box>
-            {/* <LoadingComponent /> */}
           </>
         ) : (
           <>
@@ -234,7 +221,7 @@ const ChapterListShowIndex = () => {
                                   fontFamily: "Inter",
                                 }}
                                 label={"Submission"}
-                                disabled = {!item.quiz}
+                                disabled={!item.quiz}
                                 onClick={() => handleSubmittedQuiz(item, index)}
                               />
                             </>
@@ -318,7 +305,6 @@ const ChapterListShowIndex = () => {
           </>
         )}
       </Box>
-      {/* <CourseChapterAccordion arr={arr} isLightTheme={isLightTheme} course={course} /> */}
     </>
   );
 };

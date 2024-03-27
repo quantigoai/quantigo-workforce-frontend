@@ -19,8 +19,8 @@ const CourseHeader = () => {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        py: '15px',
-        height: '10%',
+        // py: '15px',
+        height: '9%',
       }}
     >
       <Box

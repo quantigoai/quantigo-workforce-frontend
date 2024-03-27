@@ -19,9 +19,9 @@ import { Box } from '@mui/material';
 import { default as React } from 'react';
 import { useSelector } from 'react-redux';
 import { useOutletContext } from 'react-router-dom';
-import LoadingComponent from '../../../shared/Loading/LoadingComponent';
 import FeaturedCourseSection from '../components/FeaturedCourseSection';
 import LevelBasedSection from '../components/LevelBasedSection';
+import CourseIndexPageSkeleton from '../shared/CourseSkeleton/CourseIndexPageSkeleton';
 import CourseHeader from '../shared/courseHeader/CourseHeader';
 
 const AllCourses = () => {
@@ -31,15 +31,15 @@ const AllCourses = () => {
 
   return dataLoading ? (
     <>
-      <LoadingComponent />
+      <CourseIndexPageSkeleton />
     </>
   ) : (
-    <Box sx={{ px: '25px', height: ' 100%' }}>
+    <Box sx={{ px: { xxl: '25px', xl: '14px', lg: '25px' }, height: ' 100%' }}>
       {/* TODO implement header here */}
 
       <CourseHeader />
 
-      <Box sx={{ height: '90%', overflow: 'auto' }}>
+      <Box sx={{ height: '91%', overflow: 'auto' }}>
         <Box>
           <FeaturedCourseSection />
         </Box>

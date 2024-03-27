@@ -26,7 +26,7 @@ const CourseNewIndex = () => {
   const navigate = useNavigate();
   const [courseCount, setCourseCount] = React.useState(0);
   const courseFilterDispatch = useCourseFilterDispatch({ setCourseCount });
-  const {triggerFilter, pathLevel, handleDispatch, search } = courseFilterDispatch;
+  const { triggerFilter, filter, pathLevel, handleDispatch, search } = courseFilterDispatch;
 
   const dispatch = useDispatch();
   const [level, setLevel] = React.useState([]);
@@ -58,7 +58,7 @@ const CourseNewIndex = () => {
   useEffect(() => {
     pathname === '/course-new' && navigate('/course-new/all-courses');
     handleDispatch(pathname, level);
-  }, [search, pathname, level, pathLevel, triggerFilter]);
+  }, [search, pathname, level, pathLevel, filter, triggerFilter]);
 
   const myContext = {
     level,

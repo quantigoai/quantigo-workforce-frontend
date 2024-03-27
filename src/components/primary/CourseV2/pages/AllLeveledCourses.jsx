@@ -23,6 +23,7 @@ import LoadingComponent from '../../../shared/Loading/LoadingComponent';
 import BasicCard from '../components/CourseCard/BasicCard';
 import CourseCardSkeleton from '../shared/CourseSkeleton/CourseCardSkeleton';
 import CourseHeader from '../shared/courseHeader/CourseHeader';
+import CourseIndexCardSkeleton from '../shared/CourseSkeleton/CourseIndexCardSkeleton';
 
 const AllLeveledCourses = () => {
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const AllLeveledCourses = () => {
   const { isLoading, courses } = useSelector((state) => state.course);
   return isCourseLoading ? (
     <>
-      <LoadingComponent />
+      <CourseIndexCardSkeleton />
     </>
   ) : (
     <Box sx={{ px: { xxl: '25px', xl: '14px', lg: '25px' }, height: ' 100%' }}>

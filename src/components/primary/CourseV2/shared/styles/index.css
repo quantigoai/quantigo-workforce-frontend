@@ -1,0 +1,36 @@
+.courseContainer::-webkit-scrollbar {
+    width: 8px ;
+    /* height:100%; */
+      /* background-color: transparent;  */
+      /* background-color: #2E58FF;  */
+      cursor: pointer;
+      
+  }
+  
+  .courseContainer::-webkit-scrollbar-thumb {
+    background-color: #2E58FF;  
+    /* background-color: #0bed80;   */
+    height: 14px !important ;
+    border-radius: 6px;
+    /* width: 500px; */
+    cursor: grab;
+    /* height:10%; */
+    
+  }
+  
+  .courseContainer::-webkit-scrollbar-thumb:hover {
+      background-color: #2E58FF; 
+       background-color: red; 
+      border-radius: 16px;
+      height: 40px;
+      cursor: grab;
+  }
+  
+  .courseContainer::-webkit-scrollbar-track:hover {
+    background-color: rgb(255, 255, 255);
+    cursor: grab;
+  }
+  
+  ::-webkit-scrollbar-corner {
+      background-color: transparent; 
+  }

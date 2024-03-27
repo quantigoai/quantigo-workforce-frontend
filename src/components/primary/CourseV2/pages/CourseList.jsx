@@ -51,12 +51,13 @@ const CourseList = () => {
       <LoadingComponent />
     </>
   ) : (
-    <Box sx={{ px: { xxl: '25px', xl: '14px', lg: '25px'  }, height: ' 100%' }}>
+    <Box sx={{ height: ' 100%' }}>
       <CourseHeader />
       <Box sx={{ height: '91%', overflow: 'auto' }}>
         <Box
           sx={{
             display: 'grid',
+            px: { xxl: '25px', xl: '14px', lg: '25px' },
             // p: '25px',
             gridTemplateColumns: {
               xxl: 'repeat(4,1fr)',

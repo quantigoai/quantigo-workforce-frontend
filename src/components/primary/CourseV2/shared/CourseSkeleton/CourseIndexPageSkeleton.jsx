@@ -2,6 +2,7 @@ import { Box, Skeleton } from '@mui/material';
 import React from 'react';
 import CourseIndexCardSkeleton from './CourseIndexCardSkeleton';
 import CourseSkeletonHeader from './CourseSkeletonHeader';
+import CourseCardSkeleton from './CourseCardSkeleton';
 
 const CourseIndexPageSkeleton = () => {
   return (
@@ -48,7 +49,35 @@ const CourseIndexPageSkeleton = () => {
       <Box sx={{ px: '25px' }}>
         <Skeleton sx={{ ml: 1, mb: 5 }} variant="rounded" width={'25%'} height={30} />
       </Box>
-      <CourseIndexCardSkeleton />
+      <Box
+        sx={{
+          px: '25px',
+          display: 'grid',
+          gridTemplateColumns: {
+            xxl: 'repeat(4,1fr)',
+            xl: 'repeat(4,1fr)',
+            lg: 'repeat(3,1fr)',
+          },
+          gridGap: '8px',
+          mt: '16px',
+          pr: '15px',
+          gap: { xxl: '20px', xl: '15px', lg: '12px' },
+        }}
+      >
+        {[0, 1, 2, 3].map((course) => (
+          <Box
+            sx={{
+              // backgroundColor: isLightTheme ? '#fff' : '#000',
+              width: { xxl: '368px', xl: '278px', lg: '250px' },
+              borderRadius: '10px',
+            }}
+            key={course.createdAt}
+          >
+            <CourseCardSkeleton />
+          </Box>
+        ))}
+      </Box>
+      {/* <CourseIndexCardSkeleton /> */}
     </Box>
   );
 };

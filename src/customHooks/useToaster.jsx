@@ -13,22 +13,22 @@
  * ------------------------
  */
 
-import {toast} from "react-toastify";
-import ErrorToaster from "../components/shared/Toaster/ErrorToaster";
-import SuccessToaster from "../components/shared/Toaster/SuccessToaster";
+import { toast } from 'react-toastify';
+import ErrorToaster from '../components/shared/Toaster/ErrorToaster';
+import SuccessToaster from '../components/shared/Toaster/SuccessToaster';
 
 const useToaster = () => {
   const trigger = (message, type) => {
-    if (type === "success") {
+    if (type === 'success') {
       toast(<SuccessToaster message={message} />, {
-        className: "success-toast-background",
-        progressClassName: "success-progress-bar",
+        className: 'success-toast-background',
+        progressClassName: 'success-progress-bar',
       });
     }
-    if (type === "error") {
+    if (type === 'error') {
       toast(<ErrorToaster message={message} />, {
-        className: "error-toast-background",
-        progressClassName: "error-progress-bar",
+        className: 'error-toast-background',
+        progressClassName: 'error-progress-bar',
       });
     }
   };
@@ -36,7 +36,7 @@ const useToaster = () => {
   const responsePromise = async (
     request,
     setDataLading,
-    { initialMessage = "Loading...", inPending, afterSuccess, afterError },
+    { initialMessage = 'Loading...', inPending, afterSuccess, afterError },
     // forProjectDirectory = false,
     // forQuizCreate = false,
     // forQUizUpdate = false,
@@ -57,7 +57,7 @@ const useToaster = () => {
           setDataLading(false);
           return `${data.data.message}`;
         },
-        icon: "🤙",
+        icon: '🤙',
       },
       error: {
         render({ data }) {
@@ -65,9 +65,9 @@ const useToaster = () => {
           setDataLading(false);
 
           switch (type) {
-            case type === "forProjectDirectory":
+            case type === 'forProjectDirectory':
               return data.response.data.detail;
-            case type === "forQuizCreate":
+            case type === 'forQuizCreate':
               return data.response.data.message;
             default:
               return data.response.data.message;
@@ -80,7 +80,7 @@ const useToaster = () => {
   };
 
   const comp = (type) => {
-    if (type === "success") {
+    if (type === 'success') {
       return toast(<h1>Success</h1>);
     } else {
       return toast(<h2>err</h2>);

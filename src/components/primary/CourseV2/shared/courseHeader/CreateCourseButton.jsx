@@ -16,8 +16,11 @@
  */
 import { Button } from '@mui/material';
 import React from 'react';
+import { useOutletContext } from 'react-router-dom';
 
 const CreateCourseButton = () => {
+  const [myContext] = useOutletContext();
+  const { handleOpen } = myContext;
   return (
     <>
       <Button
@@ -32,10 +35,10 @@ const CreateCourseButton = () => {
             background: '#244EF5',
           },
         }}
-        variant='contained'
-        // onClick={handleOpen}
+        variant="contained"
+        onClick={handleOpen}
       >
-        <i style={{ fontSize: '17px', marginRight: '6px' }} className='ri-add-fill'></i> Create Course
+        <i style={{ fontSize: '17px', marginRight: '6px' }} className="ri-add-fill"></i> Create Course
       </Button>
     </>
   );

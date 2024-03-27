@@ -226,7 +226,7 @@ const CreateQuizPage = () => {
         },
         afterSuccess: (data) => {
           setReject(false);
-          navigate(`/course-homepage/${course._id}`);
+          navigate(`/course-new/course-home-page/${course._id}`);
         },
         afterError: (data) => {
           setReject(false);

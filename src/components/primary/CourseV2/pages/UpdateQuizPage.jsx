@@ -415,7 +415,7 @@ const UpdateQuizPage = () => {
         toast.trigger(action.error.message, "error");
       } else {
         toast.trigger(action.payload.data.message, "success");
-        navigate(`/course-homepage/${course._id}`);
+        navigate(`/course-new/course-home-page/${course._id}`);
       }
     });
   };

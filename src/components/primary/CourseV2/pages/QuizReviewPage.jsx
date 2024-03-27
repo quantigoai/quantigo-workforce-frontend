@@ -148,7 +148,7 @@ const QuizReviewPage = () => {
         toast.trigger(action.error.message, "error");
       } else {
         toast.trigger("Quiz Review Submitted", "success");
-        navigate(`/submitted/${responses?.quizId}`);
+        navigate(`/course-new/get-all-submission/${responses?.quizId}`);
         // navigate("/course");
       }
 

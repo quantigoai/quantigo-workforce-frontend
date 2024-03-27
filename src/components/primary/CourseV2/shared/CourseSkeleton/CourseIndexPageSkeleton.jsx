@@ -51,6 +51,7 @@ const CourseIndexPageSkeleton = () => {
       </Box>
       <Box
         sx={{
+          px: '25px',
           display: 'grid',
           gridTemplateColumns: {
             xxl: 'repeat(4,1fr)',

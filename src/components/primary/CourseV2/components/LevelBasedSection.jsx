@@ -63,7 +63,7 @@ const LevelBasedSection = ({ title }) => {
             justifyContent: 'center',
             alignItems: 'center',
             color: '#266AED',
-            mr: '25px',
+            // mr: '15px',
           }}
           variant="wpf_p3_medium_3"
         >

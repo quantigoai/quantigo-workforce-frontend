@@ -16,6 +16,7 @@ const CourseHeader = () => {
   return (
     <Box
       sx={{
+        px: { xxl: '25px', xl: '14px', lg: '25px' },
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',

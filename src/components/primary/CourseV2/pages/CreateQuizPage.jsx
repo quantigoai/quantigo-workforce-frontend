@@ -249,7 +249,7 @@ const CreateQuizPage = () => {
     <>
       <Box className='content' sx={{ backgroundColor: "neutral.N000" }}>
         <Grid container sx={{ borderTop: "1px solid #E6ECF5", paddingTop: "5px" }}>
-          <Grid xs={1}></Grid>
+          <Grid xs={2}></Grid>
           <Grid xs={8}>
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
               <Box className=''>

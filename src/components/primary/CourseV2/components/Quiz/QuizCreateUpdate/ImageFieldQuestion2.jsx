@@ -44,7 +44,7 @@ const ImageFieldQuestion2 = ({
     marginTop: "6px",
     borderWidth: 2,
     borderRadius: 8,
-    height: "255px",
+    height: "220px",
     // width: "12px",
     borderColor: "rgba(70, 70, 70, 0.2)",
     borderStyle: "dashed",
@@ -222,7 +222,7 @@ const ImageFieldQuestion2 = ({
               // allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
               allowfullscreen
               width='100%'
-              height='250px'
+              height='205px'
               style={{ borderRadius: "8px" }}
             ></iframe>
           </div>
@@ -269,7 +269,7 @@ const ImageFieldQuestion2 = ({
                     allow='autoplay; encrypted-media'
                     allowfullscreen=''
                     width='100%'
-                    height='225'
+                    height='205'
                     style={{ borderRadius: "8px" }}
                   ></iframe>
                   {/* </div> */}
@@ -277,7 +277,27 @@ const ImageFieldQuestion2 = ({
               </>
             ) : (
               <>
-                <Box style={baseUploadBoxStyle}>
+                <Box
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    // alignItems: "center",
+                    // padding: "20px",
+                    marginTop: "6px",
+                    borderWidth: 2,
+                    borderRadius: 8,
+                    height: "215px",
+                    // width: "12px",
+                    borderColor: "rgba(70, 70, 70, 0.2)",
+                    borderStyle: "dashed",
+                    // backgroundColor: isLightTheme ? "primary.B200" : "neutral.N400",
+                    backgroundColor: isLightTheme ? "#FAFBFC" : "#000",
+                    color: "#fff",
+                    outline: "none",
+                    transition: "border .24s ease-in-out",
+                  }}
+                >
                   <Box
                     sx={{ display: "flex", justifyContent: "center", alignItems: "center", alignContent: "center" }}
                   ></Box>

@@ -71,6 +71,7 @@ const QuizSubmissionListPage = () => {
     searchRef.current.value = "";
   };
   const handleClick = (params) => {
+    console.log("🚀 ~ handleClick ~ params:", params)
     navigate(`/course-new/get-user-submission/${params.id}`);
   };
   const handleDelete = () => {};

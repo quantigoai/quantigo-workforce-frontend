@@ -1,12 +1,12 @@
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate, useParams} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import useToaster from "../../../../../customHooks/useToaster";
-import {useState} from "react";
+import { useState } from "react";
 import * as Yup from "yup";
-import {createCourseChapter} from "../../../../../features/slice/courseSlice";
-import {useForm} from "react-hook-form";
-import {yupResolver} from "@hookform/resolvers/yup";
-import {realToken} from "../../../../../helper/lib";
+import { createCourseChapter } from "../../../../../features/slice/courseSlice";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { realToken } from "../../../../../helper/lib";
 import axios from "axios";
 
 const useChapterCreateManage = () => {
@@ -15,7 +15,9 @@ const useChapterCreateManage = () => {
   const navigate = useNavigate();
   const params = useParams();
   const toast = useToaster();
-  const id = params.id;
+  const { courseId: id } = params;
+  console.log("🚀 ~ useChapterCreateManage ~ id:", id)
+  console.log("🚀 ~ useChapterCreateManage ~ params:", params);
   const UPLOAD_ENDPOINT = "courses/couseimages/uploads";
   const API_URl = import.meta.env.VITE_APP_SERVER_URL;
   const [content, setContent] = useState("");
@@ -80,19 +82,22 @@ const useChapterCreateManage = () => {
   const isInValid = errors.estimatedTimeToRead;
 
   const onSubmit = (data) => {
+    console.log("🚀 ~ onSubmit ~ data:", data);
     const finalData = {
       ...data,
       // chapterNo,
       rootCourse: id,
       content,
     };
+    console.log("🚀 ~ onSubmit ~ finalData:", finalData);
+
     dispatch(createCourseChapter(finalData)).then((action) => {
       // dispatch(deleteTemporaryData({ id, chapterNo }));
       if (action.error) {
         toast.trigger(action.error.message, "error");
       } else {
         toast.trigger(action.payload.data.message, "success");
-        navigate(`/quiz-create/${id}`);
+        navigate(`/course-new/create-quiz/${id}`);
       }
     });
   };

@@ -1,18 +1,10 @@
 import { Box, Grid } from '@mui/material';
-// import FormProvider from "../../../shared/FormProvider/FormProvider";
-// import ContentField from "../InputFields/ContentField";
-// import ChapterCreateHeader from "./ChapterCreateHeader";
-// import ChapterDIsableNoFIeld from "./ChapterDIsableNoFIeld";
-// import ChapterDescritionField from "./ChapterDescritionField";
-// import ChapterField from "./ChapterField";
-
 import { useEffect } from 'react';
 import FormProvider from '../../../shared/FormProvider/FormProvider';
 import useChapterCreateManage from '../../Course/hooks/CourseChapter/useChapterCreateManage';
 import ChapterCreateHeader from '../components/Chapter/ChapterCreateHeader';
 import ChapterDIsableNoFIeld from '../components/Chapter/ChapterDIsableNoFIeld';
 import ChapterField from '../components/Chapter/ChapterField';
-
 import ChapterDescriptionField from '../components/Chapter/ChapterDescriptionField';
 import ContentField from '../components/Chapter/ContentField';
 
@@ -65,34 +57,28 @@ const CreateChapterPage = () => {
         <Grid xs={8}>
           <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
             <Box className=''>
-              {/* <QuizHeader />
-          <Button type="submit"> Create</Button> */}
+             
               <ChapterCreateHeader isDisable={isDisable} isLoading={isLoading} durationTime={durationTime} />
             </Box>
 
             <Box
               sx={{
                 height: '85%',
-                // overflow: "scroll",
-                // overflowY: "auto",
-                // height: "50vh",
-                // backgroundColor: "red",
+               
                 width: '100%',
                 pt: 2,
-                //   mt: 2,
-                // pr: 5,
-                // pl: 5,
+                
               }}
             >
               <Box
                 sx={{
-                  // height: "76vh",
+                 
                   height: { lg: '73vh', xl: '74vh', xxl: '78vh' },
                   overflowY: 'auto  ',
                   '&::-webkit-scrollbar': {
-                    width: '0', // Hide the scrollbar
+                    width: '0', 
                   },
-                  // backgroundColor: "blue",
+                 
                 }}
               >
                 <Grid container sx={{ width: '100%' }}>

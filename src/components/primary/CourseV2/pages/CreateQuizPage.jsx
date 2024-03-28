@@ -12,9 +12,6 @@ import ChapterCreateHeader from "../components/Chapter/ChapterCreateHeader";
 import QuizNameDurationField from "../components/Quiz/QuizCreateUpdate/QuizNameDurationField";
 import QuestionType from "../components/Quiz/QuizCreateUpdate/QuestionType";
 
-// import ChapterCreateHeader from "../ChapterCreate/ChapterCreateHeader";
-// import QuestionType from "../QuizPage/QuestionType";
-// import QuizNameDurationField from "../QuizPage/QuizNameDurationField";
 
 const CreateQuizPage = () => {
   const { courseChapter, courseChapters } = useSelector((state) => state.course);

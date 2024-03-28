@@ -6,20 +6,7 @@
  *
  * Copyright (c) 2023 Tanzim Ahmed
  */
-import {
-  Box,
-  Button,
-  FormControlLabel,
-  Grid,
-  Radio,
-  RadioGroup,
-  TextField,
-  ToggleButton,
-  ToggleButtonGroup,
-  Typography,
-  styled,
-  useRadioGroup,
-} from "@mui/material";
+import { Box, Button, FormControlLabel, Grid, TextField, Typography, styled, useRadioGroup } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -80,7 +67,6 @@ function MyFormControlLabel(props) {
 
 const QuizShowPage = () => {
   const { quiz, isLoading } = useSelector((state) => state.quiz);
-  // console.log('🚀 ~ QuizShow ~ quiz:', quiz);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
@@ -100,16 +86,7 @@ const QuizShowPage = () => {
   };
 
   const handleQuizResult = (possibleIndex, id, possibleText, isFromRadio = true) => {
-    // console.log('🚀 ~ handleQuizResult ~ possibleIndex:', possibleIndex);
-    // console.log('🚀 ~ handleQuizResult ~ id:', id);
-    // console.log('🚀 ~ handleQuizResult ~ possibleText:', possibleText);
-    // const x = {
-    //   [id]: {
-
-    //     submittedIndex: possibleIndex,
-    //     submittedText: possibleText,
-    //   },
-    // };
+    
     isFromRadio
       ? setData((prev) => ({
           ...prev,
@@ -126,15 +103,10 @@ const QuizShowPage = () => {
           },
         }));
 
-    // setData((prev) => ({
-    //   ...prev,
-    //   ...x,
-    // }));
+  
   };
 
-  // useEffect(() => {
-  //   dispatch(getSubmittedQuiz(quiz._id));
-  // }, []);
+  
 
   const handleQuizResultTextField = (textValue, id) => {
     const x = {
@@ -201,16 +173,13 @@ const QuizShowPage = () => {
           <iframe height={160} src={value} alt='' width='100%' style={{ borderRadius: "8px 8px 0px 0px" }}></iframe>
         );
       case value?.includes("youtube.com/watch"):
-        // Extracting the video ID from the YouTube URL
-        // const videoId = value.split("v=")[1];
+       
         const videoId = youtubeLinkEmbed(value);
 
         return (
           // <figure class='media'>
           <div data-oembed-url={value}>
-            {/* <div data-oembed-url="https://www.youtube.com/watch?v=PEWP9nbqG9Q&list=RDPEWP9nbqG9Q&start_radio=1"> */}
-            {/* <div style="position: relative; padding-bottom: 100%; height: 0; padding-bottom: 56.2493%;"> */}
-            <iframe
+           <iframe
               src={`https://www.youtube.com/embed/${videoId}`}
               frameborder='0'
               allow='autoplay; encrypted-media'
@@ -220,10 +189,8 @@ const QuizShowPage = () => {
               height='160px'
               style={{ borderRadius: "8px 8px 0px 0px" }}
             ></iframe>
-            {/* </div> */}
           </div>
-          // </figure>
-        );
+           );
 
       default:
         return <p>Unsupported file </p>;
@@ -241,14 +208,8 @@ const QuizShowPage = () => {
           sx={{
             backgroundColor: isLightTheme ? "#F1F5F9" : "",
             height: { xl: "23%", xxl: "18%", lg: "25%" },
-            // paddingLeft: "10%",
-            // paddingRight: "10%",
-            // paddingTop: "1%",
-            // paddingBottom: "3%",
             display: "flex",
-            // justifyContent: "center",
-            // alignContent: "center",
-            alignItems: "center",
+             alignItems: "center",
             borderBottom: "2px solid ##F8FAFC",
           }}
         >
@@ -285,8 +246,7 @@ const QuizShowPage = () => {
         >
           <Box sx={{ paddingTop: "20px" }}>
             {Object.keys(quiz).length &&
-              // quiz?.questionAndAnswer.map((item, i) => (
-              quizQuestions?.map((item, i) => (
+               quizQuestions?.map((item, i) => (
                 <>
                   <QuizQuestionShowIndex
                     item={item}
@@ -323,32 +283,7 @@ const QuizShowPage = () => {
             paddingBottom: "2%",
           }}
         >
-          {/* {user.role === 'trainer' || user.role === 'admin' ? (
-              <>
-                {' '}
-                <Button
-                  disabled={isLoading}
-                  sx={{
-                    borderRadius: '2px',
-                    width: '128px',
-                    backgroundColor: '#2D58FF',
-                    color: '#FFFFFF',
-                    '&:hover': {
-                      backgroundColor: '#FF9A45',
-                      color: '#1D1D1D',
-                    },
-                  }}
-                  onClick={handleQuizSubmit}
-                  // onClick={handleQuizEdit}
-  
-                  variant="contained"
-                >
-                  Edit Quiz
-                </Button>
-              </>
-            ) : (
-              <></>
-            )} */}
+       
 
           {user.role === "trainer" || user.role === "admin" ? (
             <></>

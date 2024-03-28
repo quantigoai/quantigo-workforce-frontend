@@ -38,7 +38,8 @@ const accordionBoxNumberStyle = {
   justifyContent: "center",
   alignItems: "center",
 };
-const ChapterListShowIndex = () => {
+const 
+ChapterListShowIndex = () => {
   const { courseChapters, course } = useSelector((state) => state.course);
 
   const { role } = useSelector((state) => state.user.user);

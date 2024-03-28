@@ -11,17 +11,7 @@ import FormProvider from "../../../shared/FormProvider/FormProvider";
 import ChapterUpdateHeader from "../components/Chapter/ChapterUpdateHeader";
 import QuizNameDurationField from "../components/Quiz/QuizCreateUpdate/QuizNameDurationField";
 import QuestionType from "../components/Quiz/QuizCreateUpdate/QuestionType";
-// import useToaster from "../../../../customHooks/useToaster";
-// import {
-//   deleteQuestionFromQuiz,
-//   insertAQuestionInQuiz,
-//   updateQuizById,
-//   updateQuizQA,
-// } from "../../../../features/slice/quizSlice";
-// import FormProvider from "../../../shared/FormProvider/FormProvider";
-// import ChapterUpdateHeader from "../ChapterCreate/ChapterUpdateHeader";
-// import QuestionType from "../QuizPage/QuestionType";
-// import QuizNameDurationField from "../QuizPage/QuizNameDurationField";
+
 
 const UpdateQuizPage = () => {
   const [inputFieldsCopy, setInputFieldsCopy] = useState([]);

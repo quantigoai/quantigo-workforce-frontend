@@ -5,12 +5,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getAllSubmissionOfQuizById } from "../../../../features/slice/quizSlice";
 import fieldBuilder from "../../../shared/CustomTable/fieldBuilder";
 import { fieldsListQuiz } from "../../ProjectLIstNew2/FIlterOptions";
-import QuizHeader from "../../Course/QuizPage/QuizReview/QuizHeader";
-import QuizHeading from "../../Course/QuizPage/QuizReview/QuizHeading";
 import { HeaderBox, TablePaper } from "../../ProjectLIstNew2/ProjectLIstIndex2";
 import LoadingComponent from "../../../shared/Loading/LoadingComponent";
 import TableWrapper from "../../ProjectLIstNew2/ExpTable/TableWrapper";
 import PaginationTable from "../../ProjectLIstNew2/PaginationTable";
+import QuizHeader from "../components/Quiz/QuizSubmission/QuizHeader";
+import QuizHeading from "../components/Quiz/QuizSubmission/QuizHeading";
 
 const QuizSubmissionListPage = () => {
   const params = useParams();
@@ -34,7 +34,7 @@ const QuizSubmissionListPage = () => {
     currentPage: 0,
     pageSize: 10,
   });
-  
+
   const [ascDesc, setAscDesc] = useState({});
   const searchRef = React.useRef(null);
   const [search, setSearch] = useState("");
@@ -71,7 +71,7 @@ const QuizSubmissionListPage = () => {
     searchRef.current.value = "";
   };
   const handleClick = (params) => {
-    console.log("🚀 ~ handleClick ~ params:", params)
+    console.log("🚀 ~ handleClick ~ params:", params);
     navigate(`/course-new/get-user-submission/${params.id}`);
   };
   const handleDelete = () => {};
@@ -89,7 +89,6 @@ const QuizSubmissionListPage = () => {
       setAllAnswerSubmission(action.payload.data.allAnswerSubmission);
       setSubmission(action.payload.data);
       setQuizMeta(action.payload.data.meta);
-     
     });
   }, [pagination, search, ascDesc]);
 

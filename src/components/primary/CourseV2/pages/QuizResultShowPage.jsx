@@ -49,15 +49,12 @@ const QuizResultShowPage = () => {
           sx={{
             backgroundColor: isLightTheme ? '#F1F5F9' : '',
             height: { xl: '23%', xxl: '18%', lg: '25%' },
-            // paddingLeft: "10%",
-            // paddingRight: "10%",
-            // paddingTop: "1%",
-            // paddingBottom: "3%",
+            
             borderBottom: '2px solid ##F8FAFC',
             display: 'flex',
             paddingLeft: '10%',
             paddingRight: '10%',
-            // justifyContent: "space-between",
+      
             alignItems: 'center',
           }}
         >
@@ -98,20 +95,7 @@ const QuizResultShowPage = () => {
             height: { xl: '77%', xxl: '82%', lg: '75%' },
             paddingLeft: '10%',
             paddingRight: '8%',
-            // overflow: "auto",
-            // scrollbarWidth: "thin",
-            // "&::-webkit-scrollbar": {
-            //   width: "0.4em",
-            // },
-            // "&::-webkit-scrollbar-track": {
-            //   background: "#f1f1f1",
-            // },
-            // "&::-webkit-scrollbar-thumb": {
-            //   backgroundColor: "#888",
-            // },
-            // "&::-webkit-scrollbar-thumb:hover": {
-            //   background: "#555",
-            // },
+           
           }}
         >
           <Grid container gap={2} sx={{ paddingTop: '3%' }}>
@@ -128,7 +112,7 @@ const QuizResultShowPage = () => {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    // alignContent: "center",
+                   
                   }}
                 >
                   <Grid container>

@@ -51,7 +51,7 @@ const PdTextField = styled(TextField)(() => ({
 }));
 const QuizReviewPage = () => {
   const { quiz, isLoading } = useSelector((state) => state.quiz);
-  // console.log('🚀 ~ QuizShow ~ quiz:', quiz);
+
   const params = useParams();
   const { submissionId: id } = params;
   const dispatch = useDispatch();
@@ -141,7 +141,6 @@ const QuizReviewPage = () => {
       BodyData,
       id: submittedId,
     };
-    // console.log(reviewerSubmissionFeedback);
 
     dispatch(submitReviewQuiz(finalData)).then((action) => {
       if (action.error) {
@@ -149,14 +148,7 @@ const QuizReviewPage = () => {
       } else {
         toast.trigger("Quiz Review Submitted", "success");
         navigate(`/course-new/get-all-submission/${responses?.quizId}`);
-        // navigate("/course");
       }
-
-      // if (action.payload?.status === 200) {
-      //   toast.trigger("Quiz Review Submitted", "success");
-      // } else {
-      //   toast.trigger("Quiz can not submit", "error");
-      // }
     });
   };
   const audioStyle = {
@@ -263,8 +255,6 @@ const QuizReviewPage = () => {
               sx={{
                 backgroundColor: isLightTheme ? "#F1F5F9" : "",
                 height: { xl: "23%", xxl: "20%", lg: "25%" },
-                // paddingLeft: "10%",
-                // paddingRight: "10%",
                 paddingTop: "1%",
                 paddingBottom: "3%",
                 borderBottom: "2px solid ##F8FAFC",
@@ -296,22 +286,16 @@ const QuizReviewPage = () => {
                   </Typography>
                   <PdTextField
                     disabled={user.role === "admin" || user.role === "trainer" ? responses?.reviewer : true}
-                    // && responses?.reviewer && true}
                     fullWidth
-                    // variant='outlined'
                     placeholder={user.role === "admin" || user.role === "trainer" ? "Write your thoughts..." : ""}
-                    // defaultValue={responses?.reviewerSubmissionFeedback}
-                    // defaultValue={responses?.reviewerSubmissionFeedback}
                     value={reviewerSubmissionFeedback}
                     onChange={(e) => handleReviewerSubmissionFeedback(e)}
-                    // onChange={(e) => handleQuizResult(null, item._id, e.target.value, false)}
                   />
                 </Box>
               </Grid>
             </Box>
             <Box
               sx={{
-                // height: "82%",
                 height: { xl: "77%", xxl: "80%", lg: "75%" },
                 paddingLeft: "10%",
                 paddingRight: "10%",
@@ -333,7 +317,6 @@ const QuizReviewPage = () => {
             >
               <Box sx={{ paddingTop: "20px" }}>
                 {quizQuestions.length &&
-                  // quiz?.questionAndAnswer.map((item, i) => (
                   quizQuestions.map((item, i) => (
                     <>
                       <Box>
@@ -352,7 +335,6 @@ const QuizReviewPage = () => {
                               sx={{
                                 paddingLeft: "2%",
                                 paddingRight: "2%",
-                                // paddingBottom: "1%",
                                 paddingTop: "1%",
                               }}
                             >
@@ -436,32 +418,6 @@ const QuizReviewPage = () => {
                                   )}
                                 </>
                               )}
-
-                              {/* {item.isTextFieldEnabled && (user.role === "admin" || user.role === "reviewer") ? (
-                            <>
-                              <RadioGroup
-                                row
-                                aria-labelledby='demo-row-radio-buttons-group-label'
-                                name='row-radio-buttons-group'
-                                onChange={(e) => handleQuizResultTextField(e.target.value, item._id)}
-                              >
-                                <FormControlLabel value='accepted' control={<Radio />} label='Accept' />
-                                <FormControlLabel value='rejected' control={<Radio />} label='Reject' />
-                              </RadioGroup>
-                            </>
-                          ) : (
-                            <>
-                              <Typography
-                                variant='wpf_h6_semiBold'
-                                sx={{ color: item.questionStatus === "accepted" ? "#36B37E" : "red" }}
-                              >
-                                {" "}
-                                {capitalizeFirstLetter(item.questionStatus)}
-                              </Typography>
-
-                            
-                            </>
-                          )} */}
                             </Grid>
                           </Grid>
                           {item.questionType === "imageAndOptions" ? (
@@ -474,7 +430,6 @@ const QuizReviewPage = () => {
                                         key={i}
                                         onChange={() => handleQuizResult(i, item._id)}
                                         value={i}
-                                        // control={<Radio />}
                                         control={
                                           <Radio
                                             sx={{ cursor: "default" }}
@@ -489,7 +444,6 @@ const QuizReviewPage = () => {
                                             {posibleAnswer}
                                           </Typography>
                                         }
-                                        // label={item.questionType === "imageInOptions" ? <img /> : posibleAnswer}
                                       />
                                     </Grid>
                                   ))}
@@ -505,34 +459,6 @@ const QuizReviewPage = () => {
                                   }}
                                 >
                                   {handleSwitchContent2(item.question.questionImage)}
-                                  {/* {item.question.questionImage.endsWith(".jpeg") && (
-                                <img
-                                  src={item.question.questionImage}
-                                  style={{ borderRadius: "8px" }}
-                                  height={224}
-                                  width='100%'
-                                />
-                              )} */}
-                                  <>
-                                    {/* for Audio */}
-                                    {/* <audio controls>
-                                  <source src='horse.ogg' type='audio/ogg' />
-                                  <source
-                                    src='https://soundcloud.com/51beats/sets/51bts073-joao-ceser-brz?utm_source=clipboard&utm_campaign=wtshare&utm_medium=widget&utm_content=https%253A%252F%252Fsoundcloud.com%252F51beats%252Fsets%252F51bts073-joao-ceser-brz'
-                                    type='audio/mpeg'
-                                  />
-                                  Your browser does not support the audio element.
-                                </audio> */}
-                                    {/* {item.question.questionImage.endsWith(".mp4") && (
-                                  <video
-                                    width='100%'
-                                    height='240'
-                                    controls
-                                    style={{ borderRadius: "8px" }}
-                                    src={item.question.questionImage}
-                                  ></video>
-                                )} */}
-                                  </>
                                 </Grid>
                               </Grid>
                             </>
@@ -557,34 +483,6 @@ const QuizReviewPage = () => {
                                               {/* <Grid item> */}
                                               {handleSwitchContent(posibleAnswer)}
 
-                                              {/* <Box sx={{}}>
-                                            {posibleAnswer.endsWith(".jpeg") ? (
-                                              <>
-                                                <img
-                                                  src={posibleAnswer}
-                                                  style={{ borderRadius: "8px" }}
-                                                  height={160}
-                                                  width='100%'
-                                                />
-                                              </>
-                                            ) : posibleAnswer.endsWith(".mpeg") ? (
-                                              <>
-                                                <audio height={160} width='60%' src={posibleAnswer} controls></audio>
-                                              </>
-                                            ) : (
-                                              <>
-                                                <iframe
-                                                  height={160}
-                                                  src={posibleAnswer}
-                                                  alt=''
-                                                  width='100%'
-                                                  style={{ borderRadius: "8px" }}
-                                                ></iframe>
-                                              </>
-                                            )}
-                                          </Box> */}
-                                              {/* </Grid> */}
-                                              {/* <Grid item> */}
                                               <Box
                                                 sx={{
                                                   backgroundColor: "neutral.N000",
@@ -626,11 +524,9 @@ const QuizReviewPage = () => {
                                         </>
                                       ) : (
                                         <>
-                                          {/* <Box style={{ display: "flex", flexDirection: "column" }}> */}
                                           <Grid xs={12}>
                                             <FormControlLabel
                                               key={i}
-                                              // onChange={() => handleQuizResult(i, item._id)}
                                               value={i}
                                               control={
                                                 <Radio
@@ -646,13 +542,8 @@ const QuizReviewPage = () => {
                                                   {posibleAnswer}
                                                 </Typography>
                                               }
-                                              // label={posibleAnswer}
-                                              // sx={{ cursor: "default" }}
-                                              // label={item.questionType === "imageInOptions" ? <img /> : posibleAnswer}
                                             />
                                           </Grid>
-
-                                          {/* </Box> */}
                                         </>
                                       )}
                                     </>
@@ -686,20 +577,11 @@ const QuizReviewPage = () => {
                                       ? "Annotator Feedback"
                                       : "  Given Text"}
                                   </Typography>
-                                  <PdTextField
-                                    fullWidth
-                                    disabled
-                                    // variant='outlined'
-                                    // placeholder='Write your thougts...'
-                                    defaultValue={item.userGivenText}
-                                    // onChange={(e) => handleQuizResultTextField(e.target.value, item._id)}
-                                    // onChange={(e) => handleQuizResult(null, item._id, e.target.value, false)}
-                                  />
+                                  <PdTextField fullWidth disabled defaultValue={item.userGivenText} />
                                 </Box>
                               </>
                             )}
                           </Grid>
-                          {/* {(user.role === "admin" || user.role === "trainer") && ( */}
                           <Grid item xs={12}>
                             <>
                               <Box
@@ -722,7 +604,6 @@ const QuizReviewPage = () => {
                                   Reviewer Feedback
                                 </Typography>
                                 <PdTextField
-                                  // disabled={responses?.reviewer && true}
                                   disabled={
                                     user.role === "admin" || user.role === "trainer" ? responses?.reviewer : true
                                   }
@@ -796,31 +677,6 @@ const QuizReviewPage = () => {
               ) : (
                 <></>
               )}
-
-              {/* {user.role === "trainer" || user.role === "admin" ? (
-            <>
-              {" "}
-              <Button
-                disabled={isLoading}
-                sx={{
-                  borderRadius: "2px",
-                  width: "128px",
-                  backgroundColor: "#2D58FF",
-                  color: "#FFFFFF",
-                  "&:hover": {
-                    backgroundColor: "#FF9A45",
-                    color: "#1D1D1D",
-                  },
-                }}
-                onClick={handleQuizSubmit}
-                variant='contained'
-              >
-                Submit
-              </Button>
-            </>
-          ) : (
-            <></>
-          )} */}
             </Grid>
           </Box>
         </>

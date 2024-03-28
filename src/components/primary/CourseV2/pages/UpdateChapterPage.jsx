@@ -1,11 +1,6 @@
 import { Box, Grid } from "@mui/material";
 import { useEffect } from "react";
-// import ChapterField from "../ChapterField";
-// import FormProvider from "../../../../shared/FormProvider/FormProvider";
-// import ChapterDescritionField from "../ChapterDescritionField";
-// import ContentField from "../../InputFields/ContentField";
-// import ChapterDIsableNoFIeld from "../ChapterDIsableNoFIeld";
-// import ChapterUpdateHeader from "../ChapterUpdateHeader";
+
 import useChapterUpdateManage from "../../Course/hooks/CourseChapter/useChapterUpdateManage";
 import FormProvider from "../../../shared/FormProvider/FormProvider";
 import ChapterUpdateHeader from "../components/Chapter/ChapterUpdateHeader";
@@ -13,8 +8,6 @@ import ChapterDIsableNoFIeld from "../components/Chapter/ChapterDIsableNoFIeld";
 import ChapterField from "../components/Chapter/ChapterField";
 import ChapterDescriptionField from "../components/Chapter/ChapterDescriptionField";
 import ContentField from "../components/Chapter/ContentField";
-// import ChapterUpdateHeader from "../../Course/ChapterCreate/ChapterUpdateHeader";
-// import useChapterUpdateManage from "../../hooks/CourseChapter/useChapterUpdateManage";
 
 const UpdateChapterPage = () => {
   const {
@@ -56,35 +49,27 @@ const UpdateChapterPage = () => {
         <Grid xs={8}>
           <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
             <Box className=''>
-              {/* <QuizHeader />
-          <Button type="submit"> Create</Button> */}
-              {/* <ChapterCreateHeader isEditChapter={true} durationTime={durationTime} /> */}
-              <ChapterUpdateHeader isEditChapter={true} durationTime={durationTime} />
+                <ChapterUpdateHeader isEditChapter={true} durationTime={durationTime} />
             </Box>
 
             <Box
               sx={{
                 height: "85%",
-                // overflow: "scroll",
-                // overflowY: "auto",
-                // height: "50vh",
-                // backgroundColor: "red",
+                
                 width: "100%",
                 pt: 2,
-                //   mt: 2,
-                // pr: 5,
-                // pl: 5,
+                
               }}
             >
               <Box
                 sx={{
-                  // height: "76vh",
+              
                   height: { lg: "73vh", xl: "74vh", xxl: "78vh" },
                   overflowY: "auto  ",
                   "&::-webkit-scrollbar": {
-                    width: "0", // Hide the scrollbar
+                    width: "0",
                   },
-                  // backgroundColor: "blue",
+                 
                 }}
               >
                 <Grid container sx={{ width: "100%" }}>

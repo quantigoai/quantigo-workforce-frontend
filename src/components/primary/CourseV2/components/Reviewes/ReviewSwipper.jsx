@@ -15,7 +15,7 @@
  * -----------------------------------------------------
  */
 
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { A11y, Navigation, Pagination } from "swiper/modules";
@@ -64,9 +64,17 @@ const ReviewSwipper = () => {
         </>
       ) : (
         <>
+          <Box>
+            {allReviews.length != 0 && (
+              <Typography variant='wpf_h5_Bold' color={"grey.600"}>
+                Why people choose Quantigo.AI for their career
+              </Typography>
+            )}
+          </Box>
           <Box
             sx={{
               cursor: "pointer",
+              mt: "20px",
               // height: { xxl: "370px", xl: "340px", lg: "380px" },
               backgroundColor: isLightTheme ? "#fff" : "#000",
             }}

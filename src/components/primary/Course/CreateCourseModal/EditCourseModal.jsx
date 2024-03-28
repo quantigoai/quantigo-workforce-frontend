@@ -376,6 +376,7 @@ const EditCourseModal = ({
                       />
                     </Stack>
                     <Stack
+                      className="courseContainer"
                       sx={{
                         border: '1px solid #E6ECF5',
                         padding: '16px',

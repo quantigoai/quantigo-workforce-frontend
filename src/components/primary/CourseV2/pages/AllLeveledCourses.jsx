@@ -24,10 +24,39 @@ import CourseCardSkeleton from '../shared/CourseSkeleton/CourseCardSkeleton';
 import CourseIndexCardSkeleton from '../shared/CourseSkeleton/CourseIndexCardSkeleton';
 import CourseHeader from '../shared/courseHeader/CourseHeader';
 import '../shared/styles/index.css';
+import CourseCreateModal from '../../Course/CreateCourseModal/CourseCreateModal';
+import CreateCourseModalV2 from '../components/CreateCourseModal/CreateCourseModalV2';
 const AllLeveledCourses = () => {
   const dispatch = useDispatch();
   const [myContext] = useOutletContext();
-  const { courseFilterDispatch } = myContext;
+  const {
+    courseFilterDispatch,
+    dataLoading,
+    handleSubmit,
+    methods,
+    preRequisiteCourses,
+    handleChange_Pre_Requisite_Course,
+    onSubmit,
+    open,
+    setOpen,
+    handleClose,
+    skills,
+    skill,
+    handleChangeSkills,
+    coverImage,
+    removeImage,
+    handleImage,
+    // isLoading,
+    checkedFeatured,
+    handleChangeFeatured,
+    dateTime,
+    handleDateTime,
+    outcomes,
+    setOutcomes,
+    hub,
+    handleChangeHub,
+    isBtnLoading,
+  } = myContext;
   const { triggerFilter, filter, search, setSearch } = courseFilterDispatch;
   const [isCourseLoading, setIsCourseLoading] = useState(true);
   const { level } = useParams();
@@ -95,6 +124,7 @@ const AllLeveledCourses = () => {
           ))}
         </Box>
       </Box>
+      {/* <CreateCourseModalV2 /> */}
     </Box>
   );
 };

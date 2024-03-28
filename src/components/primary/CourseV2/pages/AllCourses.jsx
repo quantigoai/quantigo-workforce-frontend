@@ -26,6 +26,7 @@ import CourseHeader from '../shared/courseHeader/CourseHeader';
 
 import '../shared/styles/index.css';
 import CourseCreateModal from '../../Course/CreateCourseModal/CourseCreateModal';
+import CreateCourseModalV2 from '../components/CreateCourseModal/CreateCourseModalV2';
 const AllCourses = () => {
   const [myContext] = useOutletContext();
   const {
@@ -70,7 +71,7 @@ const AllCourses = () => {
       <CourseHeader />
 
       <Box
-        className='courseContainer'
+        className="courseContainer"
         sx={{
           px: { xxl: '25px', xl: '14px', lg: '25px' },
           height: '91%',
@@ -87,7 +88,7 @@ const AllCourses = () => {
         ))}
       </Box>
 
-      <CourseCreateModal
+      {/* <CourseCreateModal
         handleSubmit={handleSubmit}
         methods={methods}
         preRequisiteCourses={preRequisiteCourses}
@@ -112,7 +113,8 @@ const AllCourses = () => {
         hub={hub}
         handleChangeHub={handleChangeHub}
         isBtnLoading={isBtnLoading}
-      />
+      /> */}
+      <CreateCourseModalV2 />
     </Box>
   );
 };

@@ -9,7 +9,7 @@ const CourseIndexPageSkeleton = () => {
     <Box>
       <CourseSkeletonHeader />
       <Box sx={{ display: 'flex' }}>
-        {[0, 1, 2].map((id) => (
+        {[0, 1].map((id) => (
           <Box
             key={id}
             sx={{
@@ -25,9 +25,9 @@ const CourseIndexPageSkeleton = () => {
             }}
           >
             <Box>
-              <Skeleton variant="rounded" width="300px" height={160} />
+              <Skeleton variant="rounded" width={'320px'} height={200} />
             </Box>
-            <Box>
+            <Box sx={{ width: { xxl: '450px', xl: '230px', lg: '250px' } }}>
               <Box sx={{ ml: 2 }}>
                 <Skeleton sx={{ py: 1 }} variant="rounded" width="200px" height={20} />
               </Box>
@@ -46,6 +46,7 @@ const CourseIndexPageSkeleton = () => {
           </Box>
         ))}
       </Box>
+
       <Box sx={{ px: '25px' }}>
         <Skeleton sx={{ ml: 1, mb: 5 }} variant="rounded" width={'25%'} height={30} />
       </Box>

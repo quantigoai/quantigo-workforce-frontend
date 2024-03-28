@@ -23,6 +23,7 @@ import BasicCard from '../components/CourseCard/BasicCard';
 import CourseCardSkeleton from '../shared/CourseSkeleton/CourseCardSkeleton';
 import CourseIndexCardSkeleton from '../shared/CourseSkeleton/CourseIndexCardSkeleton';
 import CourseHeader from '../shared/courseHeader/CourseHeader';
+import '../shared/styles/index.css';
 const AllLeveledCourses = () => {
   const dispatch = useDispatch();
   const [myContext] = useOutletContext();
@@ -53,38 +54,46 @@ const AllLeveledCourses = () => {
       <CourseIndexCardSkeleton />
     </>
   ) : (
-    <Box sx={{ height: ' 100%' }}>
+    <Box sx={{ height: '100%' }}>
       <CourseHeader level={level} />
 
       <Box
+        className="courseContainer"
         sx={{
           height: '91%',
-          px: { xxl: '25px', xl: '14px', lg: '25px' },
           overflow: 'auto',
-          display: 'grid',
-          py: '15px',
-          gridTemplateColumns: {
-            xxl: 'repeat(4,1fr)',
-            xl: 'repeat(4,1fr)',
-            lg: 'repeat(3,1fr)',
-          },
-          gridGap: '8px',
-          // mt: '16px',
-          gap: { xxl: '20px', xl: '15px', lg: '12px' },
         }}
       >
-        {courses?.map((course) => (
-          <Box
-            sx={{
-              backgroundColor: isLightTheme ? '#fff' : '#000',
-              width: { xxl: '368px', xl: '278px', lg: '250px' },
-              borderRadius: '10px',
-            }}
-            key={course._id}
-          >
-            {isLoading ? <CourseCardSkeleton /> : <BasicCard isFeaturedShow={true} course={course} />}
-          </Box>
-        ))}
+        <Box
+          sx={{
+            // height: '91%',
+            px: { xxl: '25px', xl: '14px', lg: '25px' },
+            overflow: 'auto',
+            display: 'grid',
+            py: '15px',
+            gridTemplateColumns: {
+              xxl: 'repeat(4,1fr)',
+              xl: 'repeat(4,1fr)',
+              lg: 'repeat(3,1fr)',
+            },
+            gridGap: '8px',
+            // mt: '16px',
+            gap: { xxl: '20px', xl: '15px', lg: '12px' },
+          }}
+        >
+          {courses?.map((course) => (
+            <Box
+              sx={{
+                backgroundColor: isLightTheme ? '#fff' : '#000',
+                width: { xxl: '368px', xl: '278px', lg: '250px' },
+                borderRadius: '10px',
+              }}
+              key={course._id}
+            >
+              {isLoading ? <CourseCardSkeleton /> : <BasicCard isFeaturedShow={true} course={course} />}
+            </Box>
+          ))}
+        </Box>
       </Box>
     </Box>
   );

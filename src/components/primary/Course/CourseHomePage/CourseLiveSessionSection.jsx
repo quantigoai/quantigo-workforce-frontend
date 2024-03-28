@@ -4,6 +4,7 @@ import LinkIcon from '../../../../assets/images/courses/LinkIcon.svg';
 import fi_clock from '../../../../assets/images/courses/fi_clock.svg';
 import fi_arrow from '../../../../assets/images/courses/fi_arrow-up-right.svg';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const CourseLiveSessionSection = () => {
   const { course } = useSelector((state) => state.course);
@@ -37,7 +38,7 @@ const CourseLiveSessionSection = () => {
           width: { xl: '80%', xxl: '80%', lg: '100%' },
         }}
       >
-        <Grid container sx={{}}>
+        <Grid container>
           <Grid item xs={1} sx={{ alignItems: 'center', justifyContent: 'center', display: 'flex' }}>
             <img src={fi_clock} alt="" />
           </Grid>
@@ -61,9 +62,15 @@ const CourseLiveSessionSection = () => {
               Live session link
             </Typography>
             <br />
-            <Typography variant="wpf_p3_medium_2" color={'grey.600'}>
-              {course.liveSessionLink ? course.liveSessionLink : 'N/A'}
-            </Typography>
+            <Link
+              target="blank"
+              style={{ textDecoration: 'none' }}
+              to={course.liveSessionLink && course.liveSessionLink}
+            >
+              <Typography variant="wpf_p3_medium_2" color={'grey.600'}>
+                {course.liveSessionLink ? course.liveSessionLink : 'N/A'}
+              </Typography>
+            </Link>
 
             {course.liveSessionLink && <img src={fi_arrow} />}
           </Grid>

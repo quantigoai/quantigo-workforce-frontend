@@ -166,7 +166,7 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                             variant='wpf_p3_regular'
                             //  sx={{ color: alignment === i ? "#2E58FF" : "#1E293B" }}
                             sx={{
-                              color: alignment === i ? "#2E58FF" : "grey.600",
+                              color: alignment === i ? "#2E58FF" : "grey.500",
                             }}
                           >
                             {posibleAnswer}
@@ -253,7 +253,7 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                                 </ToggleButton>
                                 <Typography
                                   sx={{
-                                    color: alignment === i ? "#2E58FF" : "grey.600",
+                                    color: alignment === i ? "#2E58FF" : "grey.500",
                                   }}
                                 >
                                   {i === 0 ? "Option A" : i === 1 ? "Option B" : i === 2 ? "Option C" : "Option D"}{" "}
@@ -298,7 +298,7 @@ const QuizQuestionShowIndex = ({ item, i, handleQuizResult, setData, handleSwitc
                               variant='wpf_p3_regular'
                               // sx={{ color: alignment === i ? "#2E58FF" : "#1E293B" }}
                               sx={{
-                                color: alignment === i ? "#2E58FF" : "grey.600",
+                                color: alignment === i ? "#2E58FF" : "grey.500",
                               }}
                             >
                               {posibleAnswer}

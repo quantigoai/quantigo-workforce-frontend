@@ -9,7 +9,7 @@ const CourseIndexPageSkeleton = () => {
     <Box>
       <CourseSkeletonHeader />
       <Box sx={{ display: 'flex' }}>
-        {[0, 1].map((id) => (
+        {[0, 1, 2].map((id) => (
           <Box
             key={id}
             sx={{

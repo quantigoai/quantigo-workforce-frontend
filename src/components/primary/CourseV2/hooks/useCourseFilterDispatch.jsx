@@ -8,13 +8,14 @@
  */
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import useToaster from '../../../../customHooks/useToaster';
 import {
   createCourse,
+  getAllCoursesList,
   getAllCoursesNew,
   getArchivedCourses,
   getMyCourses,
@@ -92,12 +93,18 @@ const useCourseFilterDispatch = ({ setCourseCount }) => {
   const [outcomes, setOutcomes] = useState(['']);
   const [hub, setHub] = useState(['Dhaka', 'Mymensingh', 'Sirajganj', 'Khulna', 'Chuadanga']);
   const [preRequisiteCourses, setPreRequisiteCourses] = useState([]);
+  const [allCourses, setAllCourses] = useState([]);
   const [coverImageFile, setCoverImageFile] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
 
-  //#selector call
+  //#selector and useeffect  call
 
-  const { courses, isLoading } = useSelector((state) => state.course);
+  useEffect(() => {
+    dispatch(getAllCoursesList({})).then((action) => {
+      setAllCourses(action.payload.data.courses);
+      // setIsCourseFetched(true);
+    });
+  }, []);
   const { skills } = useSelector((state) => state.skill);
   //course create schema
 
@@ -111,16 +118,15 @@ const useCourseFilterDispatch = ({ setCourseCount }) => {
   });
 
   //#create modal functions
-
   const methods = useForm({
     resolver: yupResolver(CourseCreateSchema),
     mode: 'all',
   });
+  const { handleSubmit, reset } = methods;
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
-    reset();
     setPreRequisiteCourses([]);
     setSkill([]);
     setHub(['Dhaka', 'Mymensingh', 'Sirajganj', 'Khulna', 'Chuadanga']);
@@ -131,7 +137,6 @@ const useCourseFilterDispatch = ({ setCourseCount }) => {
     setOutcomes(['']);
   };
 
-  const { handleSubmit, reset } = methods;
   const handleChangeSkills = (event) => {
     const {
       target: { value },
@@ -176,7 +181,7 @@ const useCourseFilterDispatch = ({ setCourseCount }) => {
     } = event;
 
     const selectedPreRequisiteCourses = value.map((course) => {
-      return courses.find((c) => c.name === course);
+      return allCourses.find((c) => c.name === course);
     });
 
     setPreRequisiteCourses(
@@ -214,11 +219,13 @@ const useCourseFilterDispatch = ({ setCourseCount }) => {
       if (action.error) {
         toast.trigger(action.error.message, 'error');
         setIsBtnLoading(false);
+        handleClose();
       } else {
         toast.trigger(action.payload.data.message, 'success');
         dispatch(getAllCoursesNew({ filter, search }));
         // setIsDataLoading(false);
         handleClose();
+        reset();
         setIsBtnLoading(false);
         // if (level) {
         //   dispatch(getAllCourses({ level, filter, search })).then((action) => {
@@ -270,7 +277,7 @@ const useCourseFilterDispatch = ({ setCourseCount }) => {
     coverImage,
     removeImage,
     handleImage,
-    isLoading,
+    // isLoading,
     checkedFeatured,
     handleChangeFeatured,
     dateTime,

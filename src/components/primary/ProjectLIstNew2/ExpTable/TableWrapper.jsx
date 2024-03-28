@@ -157,7 +157,7 @@ const TableWrapper = ({
             return <Alert severity='error'>No available users data found!</Alert>;
           if (pathname === '/projectDirectory' && !isLoading)
             return <Alert severity='error'>No available projects found!</Alert>;
-          if (pathname === `/submitted/${id}`)
+          if (pathname === `/course-new/get-all-submission/${quizId}`)
             return <Alert severity='error'>No available quiz submission found!</Alert>;
           if (pathname === `/projectDetails/${id}` && !isWorkHistoryDataLoading) {
             if (antRoles.includes(role)) {
